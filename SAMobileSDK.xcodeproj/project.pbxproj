@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		8AF30A29655A4A9EB9B25A3E /* libPods-SAMobileSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A60F40D7A3D540608A9F4B27 /* libPods-SAMobileSDK.a */; };
-		980E5F21198F8F8F00608828 /* sign_in_with_sa.png in Resources */ = {isa = PBXBuildFile; fileRef = 980E5F20198F8F8F00608828 /* sign_in_with_sa.png */; };
 		980E5F3C198FCD2000608828 /* login in Resources */ = {isa = PBXBuildFile; fileRef = 980E5F3B198FCD2000608828 /* login */; };
+		980E88AA199396D7009393DD /* SATokenResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 980E88A9199396D7009393DD /* SATokenResponse.m */; };
+		980E88AD1993974A009393DD /* SAUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 980E88AC1993974A009393DD /* SAUser.m */; };
+		980E88B1199399EB009393DD /* NSString+URLEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = 980E88B0199399EB009393DD /* NSString+URLEncode.m */; };
 		9856D98F1987D86B00B6804C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9856D98E1987D86B00B6804C /* Foundation.framework */; };
 		9856D9911987D86B00B6804C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9856D9901987D86B00B6804C /* CoreGraphics.framework */; };
 		9856D9931987D86B00B6804C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9856D9921987D86B00B6804C /* UIKit.framework */; };
@@ -43,17 +45,19 @@
 		98613FDC1988E68900C1E004 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 98613FDA1988E68900C1E004 /* libxml2.dylib */; };
 		98613FDD1988E68900C1E004 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 98613FDB1988E68900C1E004 /* libz.dylib */; };
 		98613FDF1988E6AF00C1E004 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98613FDE1988E6AF00C1E004 /* AdSupport.framework */; };
-		98613FE61988EA3D00C1E004 /* SABannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98613FE21988EA3D00C1E004 /* SABannerViewController.m */; };
 		98613FE81988EA3D00C1E004 /* SuperAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 98613FE51988EA3D00C1E004 /* SuperAwesome.m */; };
 		98613FEC1988ECC900C1E004 /* ADTECHAdConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 98613FEA1988ECC900C1E004 /* ADTECHAdConfiguration.plist */; };
 		98613FED1988ECC900C1E004 /* ADTECHMobileSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 98613FEB1988ECC900C1E004 /* ADTECHMobileSDK.bundle */; };
 		987FF08F19890B8700578014 /* SABannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 987FF08E19890B8700578014 /* SABannerViewController.xib */; };
+		98AAAAB61998FB8100B7E2B2 /* SALoginWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98AAAAB51998FB8100B7E2B2 /* SALoginWebViewController.xib */; };
+		98AAAABA19991A8000B7E2B2 /* SABannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 98AAAAB919991A8000B7E2B2 /* SABannerView.m */; };
+		98AAAABE19991E5D00B7E2B2 /* UIView+FindUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98AAAABD19991E5D00B7E2B2 /* UIView+FindUIViewController.m */; };
+		98AD4D1E199A1EA000915410 /* SAInterstitialView.m in Sources */ = {isa = PBXBuildFile; fileRef = 98AD4D1D199A1EA000915410 /* SAInterstitialView.m */; };
 		98CF200B198B91D000FD5896 /* SALoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98CF2009198B91D000FD5896 /* SALoginViewController.m */; };
 		98CF2010198B926100FD5896 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98CF200E198B926100FD5896 /* ViewController.m */; };
 		98CF2011198B926100FD5896 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98CF200F198B926100FD5896 /* ViewController.xib */; };
 		98CF2015198B9EE600FD5896 /* SALoginWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98CF2013198B9EE600FD5896 /* SALoginWebViewController.m */; };
-		98CF2016198B9EE600FD5896 /* SALoginWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98CF2014198B9EE600FD5896 /* SALoginWebViewController.xib */; };
-		98DA4B1519894EC300340E72 /* SAVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98DA4B1419894EC300340E72 /* SAVideoViewController.m */; };
+		98FF7A551990DF66003E87B0 /* sa_login.png in Resources */ = {isa = PBXBuildFile; fileRef = 98FF7A541990DF66003E87B0 /* sa_login.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,8 +72,13 @@
 
 /* Begin PBXFileReference section */
 		57F5CCA210A94DFB962966E6 /* Pods-SAMobileSDK.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SAMobileSDK.xcconfig"; path = "Pods/Pods-SAMobileSDK.xcconfig"; sourceTree = "<group>"; };
-		980E5F20198F8F8F00608828 /* sign_in_with_sa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sign_in_with_sa.png; path = "../../../../Projects/SuperAwesome/sa-platform-api/public/images/sign_in_with_sa.png"; sourceTree = "<group>"; };
 		980E5F3B198FCD2000608828 /* login */ = {isa = PBXFileReference; lastKnownFileType = folder; path = login; sourceTree = "<group>"; };
+		980E88A8199396D7009393DD /* SATokenResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SATokenResponse.h; sourceTree = "<group>"; };
+		980E88A9199396D7009393DD /* SATokenResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SATokenResponse.m; sourceTree = "<group>"; };
+		980E88AB1993974A009393DD /* SAUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAUser.h; sourceTree = "<group>"; };
+		980E88AC1993974A009393DD /* SAUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAUser.m; sourceTree = "<group>"; };
+		980E88AF199399EB009393DD /* NSString+URLEncode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncode.h"; sourceTree = "<group>"; };
+		980E88B0199399EB009393DD /* NSString+URLEncode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URLEncode.m"; sourceTree = "<group>"; };
 		9856D98B1987D86B00B6804C /* SAMobileSDK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SAMobileSDK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9856D98E1987D86B00B6804C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9856D9901987D86B00B6804C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -107,13 +116,18 @@
 		98613FDA1988E68900C1E004 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		98613FDB1988E68900C1E004 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		98613FDE1988E6AF00C1E004 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
-		98613FE11988EA3D00C1E004 /* SABannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SABannerViewController.h; sourceTree = "<group>"; };
-		98613FE21988EA3D00C1E004 /* SABannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SABannerViewController.m; sourceTree = "<group>"; };
 		98613FE41988EA3D00C1E004 /* SuperAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperAwesome.h; sourceTree = "<group>"; };
 		98613FE51988EA3D00C1E004 /* SuperAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperAwesome.m; sourceTree = "<group>"; };
 		98613FEA1988ECC900C1E004 /* ADTECHAdConfiguration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ADTECHAdConfiguration.plist; sourceTree = "<group>"; };
 		98613FEB1988ECC900C1E004 /* ADTECHMobileSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ADTECHMobileSDK.bundle; sourceTree = "<group>"; };
 		987FF08E19890B8700578014 /* SABannerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SABannerViewController.xib; sourceTree = "<group>"; };
+		98AAAAB51998FB8100B7E2B2 /* SALoginWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SALoginWebViewController.xib; sourceTree = "<group>"; };
+		98AAAAB819991A8000B7E2B2 /* SABannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SABannerView.h; sourceTree = "<group>"; };
+		98AAAAB919991A8000B7E2B2 /* SABannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SABannerView.m; sourceTree = "<group>"; };
+		98AAAABC19991E5D00B7E2B2 /* UIView+FindUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FindUIViewController.h"; sourceTree = "<group>"; };
+		98AAAABD19991E5D00B7E2B2 /* UIView+FindUIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FindUIViewController.m"; sourceTree = "<group>"; };
+		98AD4D1C199A1EA000915410 /* SAInterstitialView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAInterstitialView.h; sourceTree = "<group>"; };
+		98AD4D1D199A1EA000915410 /* SAInterstitialView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAInterstitialView.m; sourceTree = "<group>"; };
 		98CF2008198B91D000FD5896 /* SALoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SALoginViewController.h; sourceTree = "<group>"; };
 		98CF2009198B91D000FD5896 /* SALoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SALoginViewController.m; sourceTree = "<group>"; };
 		98CF200D198B926100FD5896 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -121,9 +135,7 @@
 		98CF200F198B926100FD5896 /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
 		98CF2012198B9EE600FD5896 /* SALoginWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SALoginWebViewController.h; sourceTree = "<group>"; };
 		98CF2013198B9EE600FD5896 /* SALoginWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SALoginWebViewController.m; sourceTree = "<group>"; };
-		98CF2014198B9EE600FD5896 /* SALoginWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SALoginWebViewController.xib; sourceTree = "<group>"; };
-		98DA4B1319894EC300340E72 /* SAVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAVideoViewController.h; sourceTree = "<group>"; };
-		98DA4B1419894EC300340E72 /* SAVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAVideoViewController.m; sourceTree = "<group>"; };
+		98FF7A541990DF66003E87B0 /* sa_login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sa_login.png; sourceTree = "<group>"; };
 		A60F40D7A3D540608A9F4B27 /* libPods-SAMobileSDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SAMobileSDK.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -173,6 +185,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		980E88AE199397AC009393DD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				980E88A8199396D7009393DD /* SATokenResponse.h */,
+				980E88A9199396D7009393DD /* SATokenResponse.m */,
+				980E88AB1993974A009393DD /* SAUser.h */,
+				980E88AC1993974A009393DD /* SAUser.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		9856D9821987D86B00B6804C = {
 			isa = PBXGroup;
 			children = (
@@ -234,6 +257,9 @@
 				98CF200D198B926100FD5896 /* ViewController.h */,
 				98CF200E198B926100FD5896 /* ViewController.m */,
 				98CF200F198B926100FD5896 /* ViewController.xib */,
+				980E88AF199399EB009393DD /* NSString+URLEncode.h */,
+				980E88B0199399EB009393DD /* NSString+URLEncode.m */,
+				980E88AE199397AC009393DD /* Models */,
 				98613FE01988EA3D00C1E004 /* Classes */,
 				98613FE91988ECC900C1E004 /* Resources */,
 				9856D9A01987D86B00B6804C /* Images.xcassets */,
@@ -274,17 +300,11 @@
 		98613FE01988EA3D00C1E004 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				98613FE11988EA3D00C1E004 /* SABannerViewController.h */,
-				98613FE21988EA3D00C1E004 /* SABannerViewController.m */,
-				98DA4B1319894EC300340E72 /* SAVideoViewController.h */,
-				98DA4B1419894EC300340E72 /* SAVideoViewController.m */,
 				98613FE41988EA3D00C1E004 /* SuperAwesome.h */,
 				98613FE51988EA3D00C1E004 /* SuperAwesome.m */,
-				98CF2008198B91D000FD5896 /* SALoginViewController.h */,
-				98CF2009198B91D000FD5896 /* SALoginViewController.m */,
-				98CF2012198B9EE600FD5896 /* SALoginWebViewController.h */,
-				98CF2013198B9EE600FD5896 /* SALoginWebViewController.m */,
-				98CF2014198B9EE600FD5896 /* SALoginWebViewController.xib */,
+				98AAAABF19991E6200B7E2B2 /* Categories */,
+				98AD4D21199A1EC000915410 /* Advertising */,
+				98AD4D22199A1ED900915410 /* Loyalty */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -292,13 +312,69 @@
 		98613FE91988ECC900C1E004 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				98FF7A541990DF66003E87B0 /* sa_login.png */,
 				980E5F3B198FCD2000608828 /* login */,
-				980E5F20198F8F8F00608828 /* sign_in_with_sa.png */,
 				987FF08E19890B8700578014 /* SABannerViewController.xib */,
+				98AAAAB51998FB8100B7E2B2 /* SALoginWebViewController.xib */,
 				98613FEA1988ECC900C1E004 /* ADTECHAdConfiguration.plist */,
 				98613FEB1988ECC900C1E004 /* ADTECHMobileSDK.bundle */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		98AAAAB71999195300B7E2B2 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				98CF2008198B91D000FD5896 /* SALoginViewController.h */,
+				98CF2009198B91D000FD5896 /* SALoginViewController.m */,
+				98CF2012198B9EE600FD5896 /* SALoginWebViewController.h */,
+				98CF2013198B9EE600FD5896 /* SALoginWebViewController.m */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		98AAAABB19991A8B00B7E2B2 /* Banner */ = {
+			isa = PBXGroup;
+			children = (
+				98AAAAB819991A8000B7E2B2 /* SABannerView.h */,
+				98AAAAB919991A8000B7E2B2 /* SABannerView.m */,
+			);
+			name = Banner;
+			sourceTree = "<group>";
+		};
+		98AAAABF19991E6200B7E2B2 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				98AAAABC19991E5D00B7E2B2 /* UIView+FindUIViewController.h */,
+				98AAAABD19991E5D00B7E2B2 /* UIView+FindUIViewController.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		98AD4D1F199A1EA400915410 /* Interstitial */ = {
+			isa = PBXGroup;
+			children = (
+				98AD4D1C199A1EA000915410 /* SAInterstitialView.h */,
+				98AD4D1D199A1EA000915410 /* SAInterstitialView.m */,
+			);
+			name = Interstitial;
+			sourceTree = "<group>";
+		};
+		98AD4D21199A1EC000915410 /* Advertising */ = {
+			isa = PBXGroup;
+			children = (
+				98AAAABB19991A8B00B7E2B2 /* Banner */,
+				98AD4D1F199A1EA400915410 /* Interstitial */,
+			);
+			name = Advertising;
+			sourceTree = "<group>";
+		};
+		98AD4D22199A1ED900915410 /* Loyalty */ = {
+			isa = PBXGroup;
+			children = (
+				98AAAAB71999195300B7E2B2 /* Login */,
+			);
+			name = Loyalty;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -379,14 +455,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				980E5F3C198FCD2000608828 /* login in Resources */,
+				98AAAAB61998FB8100B7E2B2 /* SALoginWebViewController.xib in Resources */,
 				98CF2011198B926100FD5896 /* ViewController.xib in Resources */,
 				987FF08F19890B8700578014 /* SABannerViewController.xib in Resources */,
 				9856D9991987D86B00B6804C /* InfoPlist.strings in Resources */,
-				980E5F21198F8F8F00608828 /* sign_in_with_sa.png in Resources */,
 				98613FED1988ECC900C1E004 /* ADTECHMobileSDK.bundle in Resources */,
 				9856D9A11987D86B00B6804C /* Images.xcassets in Resources */,
 				98613FEC1988ECC900C1E004 /* ADTECHAdConfiguration.plist in Resources */,
-				98CF2016198B9EE600FD5896 /* SALoginWebViewController.xib in Resources */,
+				98FF7A551990DF66003E87B0 /* sa_login.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,12 +515,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				98CF2010198B926100FD5896 /* ViewController.m in Sources */,
+				980E88AA199396D7009393DD /* SATokenResponse.m in Sources */,
+				98AD4D1E199A1EA000915410 /* SAInterstitialView.m in Sources */,
 				98CF200B198B91D000FD5896 /* SALoginViewController.m in Sources */,
 				9856D99F1987D86B00B6804C /* AppDelegate.m in Sources */,
+				980E88B1199399EB009393DD /* NSString+URLEncode.m in Sources */,
+				980E88AD1993974A009393DD /* SAUser.m in Sources */,
 				98613FE81988EA3D00C1E004 /* SuperAwesome.m in Sources */,
-				98DA4B1519894EC300340E72 /* SAVideoViewController.m in Sources */,
+				98AAAABA19991A8000B7E2B2 /* SABannerView.m in Sources */,
 				9856D99B1987D86B00B6804C /* main.m in Sources */,
-				98613FE61988EA3D00C1E004 /* SABannerViewController.m in Sources */,
+				98AAAABE19991E5D00B7E2B2 /* UIView+FindUIViewController.m in Sources */,
 				98CF2015198B9EE600FD5896 /* SALoginWebViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

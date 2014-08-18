@@ -7,9 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <ADTECHMobileSDK/ADTECHMobileSDK.h>
 
 @interface SuperAwesome : NSObject
-
-- (BOOL)isWorking;
 
 @end

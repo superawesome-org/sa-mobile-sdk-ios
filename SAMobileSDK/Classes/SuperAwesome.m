@@ -10,9 +10,12 @@
 
 @implementation SuperAwesome
 
-- (BOOL)isWorking
+- (instancetype)init
 {
-    return YES;
+    if(self = [super init]){
+        [ATBaseConfiguration setLoggingLevel:kATLogOff];
+    }
+    return self;
 }
 
 @end

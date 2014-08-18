@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/SAVideoViewController.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/SAVideoViewController</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>SAVideoViewController.h</DeclaredIn>
+            
+			
+			<NodeRef refid="1"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/SAVideoViewController/didReceiveMemoryWarning</TokenIdentifier>
+			<Abstract type="html">/    configuration.networkID = YOURNETWORKID; // if different from the default value set in the ADTECHAdConfiguration.plist file
+/    configuration.subNetworkID = YOURSUBNETWORK_ID; // if different from the default value set in the ADTECHAdConfiguration.plist file
+/    configuration.alias = YOUR_ALIAS;</Abstract>
+			<DeclaredIn>SAVideoViewController.m</DeclaredIn>
+			
+			<Declaration>- (void)didReceiveMemoryWarning</Declaration>
+			
+			
+			<Anchor>//api/name/didReceiveMemoryWarning</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

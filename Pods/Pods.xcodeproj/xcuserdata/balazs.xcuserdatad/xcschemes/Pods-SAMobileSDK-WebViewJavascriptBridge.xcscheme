@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8C150AA3A3B2446484072EBE"
+               BlueprintIdentifier = "8197493085934692981C9061"
                BuildableName = "libPods-SAMobileSDK-WebViewJavascriptBridge.a"
                BlueprintName = "Pods-SAMobileSDK-WebViewJavascriptBridge"
                ReferencedContainer = "container:Pods.xcodeproj">

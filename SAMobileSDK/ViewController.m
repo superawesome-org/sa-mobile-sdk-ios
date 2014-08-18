@@ -7,18 +7,37 @@
 //
 
 #import "ViewController.h"
+#import "SATokenResponse.h"
+#import "NSString+URLEncode.h"
+
 
 @interface ViewController ()
+
+@property (nonatomic,strong) SAInterstitialView *interstitial;
 
 @end
 
 @implementation ViewController
+
+- (void)fetchToken:(NSString*)token {
+    NSString *url = [NSString stringWithFormat:@"http://172.16.0.3/jsonp/app/superawesomegames/%@/token", [token urlencode]];
+    NSURL *jokesUrl = [NSURL URLWithString:url];
+    
+    [[[NSURLSession sharedSession] dataTaskWithURL:jokesUrl completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        SATokenResponse *resp = [[SATokenResponse alloc] initWithData:data error:&error];
+    }] resume];
+}
 
 - (IBAction)openLogin:(id)sender
 {
     SALoginViewController *vc = [[SALoginViewController alloc] init];
     vc.delegate = self;
     [self presentViewController:vc animated:YES completion:nil];
+}
+
+- (IBAction)presentInterstitionalAd:(id)sender
+{
+    [self.interstitial present];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -34,6 +53,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    self.interstitial = [[SAInterstitialView alloc] initWithViewController:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,6 +68,7 @@
 - (void)loginViewController:(SALoginViewController *)loginVC didSucceedWithToken:(NSString *)token
 {
     NSLog(@"Login success! Token: %@", token);
+    [self fetchToken: token];
 }
 
 - (void)loginViewController:(SALoginViewController *)loginVC didFailWithError:(NSString *)error

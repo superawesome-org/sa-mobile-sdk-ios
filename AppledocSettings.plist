@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>--company-id</key>
+	<string>tv.superawesome</string>
+	<key>--project-company</key>
+	<string>SuperAwesome Ltd</string>
+	<key>--project-name</key>
+	<string>SuperAwesome Mobile SDK</string>
+	<key>--templates</key>
+	<string>~/.appledoc</string>
+	<key>--keep-intermediate-files</key>
+	<true/>
+	<key>--output</key>
+	<string>./doc</string>
+	<key>--ignore</key>
+	<array>
+		<string>Pods</string>
+		<string>ADTECHMobileSDK.framework</string>
+	</array>
+</dict>
+</plist>

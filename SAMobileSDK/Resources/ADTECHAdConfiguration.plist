@@ -15,9 +15,9 @@
 		<key>SubNetworkID</key>
 		<integer>4</integer>
 		<key>HostApplicationName</key>
-		<string>ADTECHSample</string>
+		<string>YOUR_APPNAME</string>
 		<key>OpenLandingPagesThroughBrowser</key>
-		<true/>
+		<false/>
 	</dict>
 </dict>
 </plist>

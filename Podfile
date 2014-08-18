@@ -3,6 +3,7 @@
 
 target "SAMobileSDK" do
 pod "WebViewJavascriptBridge"
+pod 'JSONModel'
 end
 
 target "SAMobileSDKTests" do

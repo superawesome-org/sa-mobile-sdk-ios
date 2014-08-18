@@ -5,48 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>65BC30D4-B429-4A93-B5FE-3BC1C8698AA1</string>
+	<string>545B65D2-914B-4D03-902F-8C059733FE13</string>
 	<key>IDESourceControlProjectName</key>
 	<string>SAMobileSDK</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>9E9A0D54-2916-4583-A195-9CCBB0FF8298</key>
-		<string>https://github.com/SuperAwesomeLTD/sa-platform-api.git</string>
-		<key>C27E2F1C-90F6-4159-8DA0-62BC53E4CEB0</key>
-		<string>https://github.com/balazskiss/SAMobileSDK.git</string>
+		<key>1263BC3E-F8AF-4B78-9430-8C5C73688378</key>
+		<string>https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>SAMobileSDK.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>9E9A0D54-2916-4583-A195-9CCBB0FF8298</key>
-		<string>../../../Projects/SuperAwesome/sa-platform-api</string>
-		<key>C27E2F1C-90F6-4159-8DA0-62BC53E4CEB0</key>
+		<key>1263BC3E-F8AF-4B78-9430-8C5C73688378</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/balazskiss/SAMobileSDK.git</string>
+	<string>https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>C27E2F1C-90F6-4159-8DA0-62BC53E4CEB0</string>
+	<string>1263BC3E-F8AF-4B78-9430-8C5C73688378</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>9E9A0D54-2916-4583-A195-9CCBB0FF8298</string>
+			<string>1263BC3E-F8AF-4B78-9430-8C5C73688378</string>
 			<key>IDESourceControlWCCName</key>
-			<string>sa-platform-api</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>C27E2F1C-90F6-4159-8DA0-62BC53E4CEB0</string>
-			<key>IDESourceControlWCCName</key>
-			<string>SAMobileSDK</string>
+			<string>sa-mobile-sdk-ios</string>
 		</dict>
 	</array>
 </dict>

@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Pods-SAMobileSDK-JSONModel.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-SAMobileSDK-WebViewJavascriptBridge.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -17,12 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0492B5C68C0B47C0A056C862</key>
+		<key>80C6DAC39D0A44C58C749B70</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8C150AA3A3B2446484072EBE</key>
+		<key>8197493085934692981C9061</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9256D003D7C34283B34B5DE0</key>
 		<dict>
 			<key>primary</key>
 			<true/>

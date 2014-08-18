@@ -36,9 +36,8 @@
         [self.navigationItem setRightBarButtonItem:doneButton];
     }
     
-    NSString *htmlFile = [[NSBundle mainBundle] pathForResource:@"login/index" ofType:@"html"];
-    NSString* htmlString = [NSString stringWithContentsOfFile:htmlFile encoding:NSUTF8StringEncoding error:nil];
-    [self.webView loadHTMLString:htmlString baseURL:nil];
+    NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"login"]];
+    [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
     
     [self.webView2.scrollView setBounces:NO];
 }
@@ -61,7 +60,11 @@
     
     if(webView == self.webView){
         [webView stringByEvaluatingJavaScriptFromString:@"window.open = function (url, d1, d2, d3, title, callback){ window.native_window_title = title; window.native_window_closed_callback = callback; window.location.assign('open://' + url); }"];
-        [self.webView stringByEvaluatingJavaScriptFromString:@"login()"];
+        NSString *appName = @"superawesomegames";
+        NSString *customUrl = @"http://172.16.0.3";
+        customUrl = @"https://superawesome.club";
+        NSString *js = [NSString stringWithFormat:@"login('%@', '%@')", appName, customUrl];
+        [self.webView stringByEvaluatingJavaScriptFromString:js];
     }
     
     if(webView == self.webView2){
@@ -114,6 +117,12 @@
     }
     
     return YES;
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+    [alertView show];
 }
 
 @end
