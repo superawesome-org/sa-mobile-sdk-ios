@@ -1,0 +1,20 @@
+PODS:
+  - GoogleAds-IMA-iOS-SDK (3.0.beta.12)
+  - JSONModel (1.0.2)
+  - SuperAwesome (1.2.0):
+    - GoogleAds-IMA-iOS-SDK (~> 3.0.beta.11)
+    - JSONModel (~> 1.0.2)
+
+DEPENDENCIES:
+  - SuperAwesome (from `../`)
+
+EXTERNAL SOURCES:
+  SuperAwesome:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  GoogleAds-IMA-iOS-SDK: ce1c9191e3859466391de21c3e17d22ecbf77ecb
+  JSONModel: 6ffcb4ffa3659c9e9a2e5d45d6c7705bab187c03
+  SuperAwesome: dd7e177e5e872de2c0394c2a0310846b04ada4b5
+
+COCOAPODS: 0.36.1

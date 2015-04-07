@@ -1,0 +1,11 @@
+# Uncomment this line to define a global platform for your project
+# platform :ios, '6.0'
+
+target 'SuperAwesome Demo' do
+pod 'SuperAwesome', :path => '../'
+end
+
+target 'SuperAwesome DemoTests' do
+
+end
+

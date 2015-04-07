@@ -1,7 +1,0 @@
-GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/GoogleAds-IMA-iOS-SDK" "${PODS_ROOT}/Headers/Public/JSONModel" "${PODS_ROOT}/Headers/Public/WebViewJavascriptBridge"
-LIBRARY_SEARCH_PATHS = "$(PODS_ROOT)/GoogleAds-IMA-iOS-SDK/GoogleIMASDK3/"
-OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/GoogleAds-IMA-iOS-SDK" -isystem "${PODS_ROOT}/Headers/Public/JSONModel" -isystem "${PODS_ROOT}/Headers/Public/WebViewJavascriptBridge"
-OTHER_LDFLAGS = -ObjC -l"GoogleIMA3" -l"Pods-SAMobileSDK-GoogleAds-IMA-iOS-SDK" -l"Pods-SAMobileSDK-JSONModel" -l"Pods-SAMobileSDK-WebViewJavascriptBridge" -framework "AVFoundation" -framework "AdSupport" -framework "AudioToolbox" -framework "CoreFoundation" -framework "CoreGraphics" -framework "CoreMedia" -framework "MessageUI" -framework "QuartzCore" -framework "SystemConfiguration" -framework "UIKit" -weak_framework "WebKit"
-OTHER_LIBTOOLFLAGS = $(OTHER_LDFLAGS)
-PODS_ROOT = ${SRCROOT}/Pods

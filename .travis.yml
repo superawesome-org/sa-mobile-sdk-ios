@@ -1,0 +1,5 @@
+language: objective-c
+before_install:
+  - gem install xcpretty --no-ri --no-rdoc
+script:
+  - set -o pipefail && xcodebuild build -workspace "demo/SuperAwesome Demo.xcworkspace" -scheme "SuperAwesome Demo" -sdk iphonesimulator | xcpretty -c
