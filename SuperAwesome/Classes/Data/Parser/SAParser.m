@@ -20,12 +20,12 @@
 + (SAAd*) parseAdWithDictionary:(NSDictionary*)dict {
     SAAd *ad = [[SAAd alloc] init];
     
-    _Nullable id errorObj = [dict objectForKey:@"error"];
-    _Nullable id lineItemIdObj = [dict objectForKey:@"line_item_id"];
-    _Nullable id campaignIdObj = [dict objectForKey:@"campaign_id"];
-    _Nullable id isTestObj = [dict objectForKey:@"test"];
-    _Nullable id isFallbackObj = [dict objectForKey:@"is_fallback"];
-    _Nullable id isFillObj = [dict objectForKey:@"is_fill"];
+    id errorObj = [dict objectForKey:@"error"];
+    id lineItemIdObj = [dict objectForKey:@"line_item_id"];
+    id campaignIdObj = [dict objectForKey:@"campaign_id"];
+    id isTestObj = [dict objectForKey:@"test"];
+    id isFallbackObj = [dict objectForKey:@"is_fallback"];
+    id isFillObj = [dict objectForKey:@"is_fill"];
     
     ad.error = (errorObj != NULL ? [errorObj integerValue] : -1);
     ad.lineItemId = (lineItemIdObj != NULL ? [lineItemIdObj integerValue] : -1);
@@ -47,13 +47,13 @@
     NSDictionary *dict = (NSDictionary*)creativeObj;
     SACreative *creative = [[SACreative alloc] init];
     
-    _Nullable id creativeIdObj = [dict objectForKey:@"id"];
-    _Nullable id nameObj = [dict objectForKey:@"name"];
-    _Nullable id cpmObj = [dict objectForKey:@"cpm"];
-    _Nullable id baseFormatObj = [dict objectForKey:@"format"];
-    _Nullable id impressionUrlObj = [dict objectForKey:@"impression_url"];
-    _Nullable id targetUrlObj = [dict objectForKey:@"click_url"];
-    _Nullable id approvedObj = [dict objectForKey:@"approved"];
+    id creativeIdObj = [dict objectForKey:@"id"];
+    id nameObj = [dict objectForKey:@"name"];
+    id cpmObj = [dict objectForKey:@"cpm"];
+    id baseFormatObj = [dict objectForKey:@"format"];
+    id impressionUrlObj = [dict objectForKey:@"impression_url"];
+    id targetUrlObj = [dict objectForKey:@"click_url"];
+    id approvedObj = [dict objectForKey:@"approved"];
     
     creative.creativeId = (creativeIdObj != NULL ? [creativeIdObj integerValue] : -1);
     creative.cpm = (cpmObj != NULL ? [cpmObj integerValue] : 0);
@@ -83,19 +83,19 @@
     SADetails *details = [[SADetails alloc] init];
     
     // parse the info
-    _Nullable id widthObj = [dict objectForKey:@"width"];
-    _Nullable id heightObj = [dict objectForKey:@"height"];
-    _Nullable id imageObj = [dict objectForKey:@"image"];
-    _Nullable id valueObj = [dict valueForKey:@"value"];
-    _Nullable id nameObj = [dict objectForKey:@"name"];
-    _Nullable id videoObj = [dict objectForKey:@"video"];
-    _Nullable id bitrateObj = [dict objectForKey:@"bitrate"];
-    _Nullable id durationObj = [dict objectForKey:@"duration"];
-    _Nullable id vastObj = [dict objectForKey:@"vast"];
-    _Nullable id tagObj = [dict objectForKey:@"tag"];
-    _Nullable id placementFormatObj = [dict objectForKey:@"placement_format"];
-    _Nullable id zipFileObj = [dict objectForKey:@"zip_file"];
-    _Nullable id urlObj = [dict objectForKey:@"url"];
+    id widthObj = [dict objectForKey:@"width"];
+    id heightObj = [dict objectForKey:@"height"];
+    id imageObj = [dict objectForKey:@"image"];
+    id valueObj = [dict valueForKey:@"value"];
+    id nameObj = [dict objectForKey:@"name"];
+    id videoObj = [dict objectForKey:@"video"];
+    id bitrateObj = [dict objectForKey:@"bitrate"];
+    id durationObj = [dict objectForKey:@"duration"];
+    id vastObj = [dict objectForKey:@"vast"];
+    id tagObj = [dict objectForKey:@"tag"];
+    id placementFormatObj = [dict objectForKey:@"placement_format"];
+    id zipFileObj = [dict objectForKey:@"zip_file"];
+    id urlObj = [dict objectForKey:@"url"];
     
     details.width = (widthObj != NULL ? [widthObj integerValue] : 0);
     details.height = (heightObj != NULL ? [heightObj integerValue] : 0);

@@ -78,9 +78,9 @@
         } else if (indexPath.row == 5){
             [SALoader loadAdForPlacementId:28000];
         } else if (indexPath.row == 6){
-            [SALoader loadAdForPlacementId:30077];
+            [SALoader loadAdForPlacementId:25397];
         } else if (indexPath.row == 7){
-            [SALoader loadAdForPlacementId:7223];
+            [SALoader loadAdForPlacementId:25971];
         }
     }
 }
@@ -118,13 +118,13 @@
         [self presentViewController:fvideo animated:YES completion:^{
             [fvideo play];
         }];
-    } else if (ad.placementId == 30077) {
+    } else if (ad.placementId == 25397) {
         SAInterstitialAd *i1 = [[SAInterstitialAd alloc] init];
         [i1 setAd:ad];
         [self presentViewController:i1 animated:YES completion:^{
             [i1 play];
         }];
-    } else if (ad.placementId == 7223) {
+    } else if (ad.placementId == 25971) {
         SAFullscreenVideoAd *vad = [[SAFullscreenVideoAd alloc] init];
         [vad setAd:ad];
         [self presentViewController:vad animated:YES completion:^{
