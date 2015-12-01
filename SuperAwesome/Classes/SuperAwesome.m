@@ -48,7 +48,7 @@
 }
 
 - (NSString*) version {
-    return @"3.1";
+    return @"3.1.1";
 }
 
 - (void) setConfigurationProduction {

@@ -62,10 +62,11 @@
         [_delegate adWasClicked:ad.placementId];
     }
     
+    NSURL *gotoUrl = NULL;
+    
     // simplest case scenario - image
     if (ad.creative.format == image) {
-        NSURL *imgURL = [NSURL URLWithString:ad.creative.clickURL];
-        [[UIApplication sharedApplication] openURL:imgURL];
+        gotoUrl = [NSURL URLWithString:ad.creative.clickURL];
     }
     // edge case rich media
     else if (ad.creative.format == rich) {
@@ -76,13 +77,18 @@
         NSString *startURL = [url absoluteString];
         NSString *okURL = [startURL substringFromIndex:[startURL rangeOfString:@"http"].location];
         NSString *finalURL = [NSString stringWithFormat:@"%@&redir=%@", ad.creative.trackingURL, okURL];
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:finalURL]];
+        gotoUrl = [NSURL URLWithString:finalURL];
     }
     // edge case video
     else if (ad.creative.format == video) {
-        NSLog(@"CLICK: %@", ad.creative.clickURL);
-        NSURL *imgURL = [NSURL URLWithString:ad.creative.clickURL];
-        [[UIApplication sharedApplication] openURL:imgURL];
+        gotoUrl = [NSURL URLWithString:ad.creative.clickURL];
+    }
+    
+    if (_isParentalGateEnabled) {
+        gate.gotoURL = gotoUrl;
+        [gate show];
+    } else {
+        [[UIApplication sharedApplication] openURL:gotoUrl];
     }
 }
 
@@ -105,7 +111,7 @@
         [_delegate parentalGateWasSucceded:ad.placementId];
     }
     
-    [self tryToGoToURL:url];
+    [[UIApplication sharedApplication] openURL:url];
 }
 
 #pragma mark Padlock

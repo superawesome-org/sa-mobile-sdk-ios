@@ -18,6 +18,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [[SuperAwesome getInstance] enableTestMode];
+    
     [SALoader setDelegate:self];
     [SALoader loadAdForPlacementId:10277];
     
@@ -31,6 +33,7 @@
 
 - (void) didLoadAd:(SAAd *)ad {
     [_banner setAd:ad];
+    [_banner setIsParentalGateEnabled:YES];
     [_banner play];
 }
 

@@ -97,36 +97,42 @@
     if (ad.placementId == 10324) {
         SAInterstitialAd *i1 = [[SAInterstitialAd alloc] init];
         [i1 setAd:ad];
+        [i1 setIsParentalGateEnabled:YES];
         [self presentViewController:i1 animated:YES completion:^{
             [i1 play];
         }];
     } else if (ad.placementId == 10278) {
         SAInterstitialAd *i2 = [[SAInterstitialAd alloc] init];
         [i2 setAd:ad];
+        [i2 setIsParentalGateEnabled:YES];
         [self presentViewController:i2 animated:YES completion:^{
             [i2 play];
         }];
     } else if (ad.placementId == 30025) {
         SAInterstitialAd *i3 = [[SAInterstitialAd alloc] init];
         [i3 setAd:ad];
+        [i3 setIsParentalGateEnabled:YES];
         [self presentViewController:i3 animated:YES completion:^{
             [i3 play];
         }];
     } else if (ad.placementId == 28000){
         SAFullscreenVideoAd *fvideo = [[SAFullscreenVideoAd alloc] init];
         [fvideo setAd:ad];
+        [fvideo setIsParentalGateEnabled:YES];
         [self presentViewController:fvideo animated:YES completion:^{
             [fvideo play];
         }];
     } else if (ad.placementId == 25397) {
         SAInterstitialAd *i1 = [[SAInterstitialAd alloc] init];
         [i1 setAd:ad];
+        [i1 setIsParentalGateEnabled:YES];
         [self presentViewController:i1 animated:YES completion:^{
             [i1 play];
         }];
     } else if (ad.placementId == 25971) {
         SAFullscreenVideoAd *vad = [[SAFullscreenVideoAd alloc] init];
         [vad setAd:ad];
+        [vad setIsParentalGateEnabled:YES];
         [self presentViewController:vad animated:YES completion:^{
             [vad play];
         }];

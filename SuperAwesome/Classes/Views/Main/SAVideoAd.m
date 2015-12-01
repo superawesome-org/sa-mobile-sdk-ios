@@ -26,6 +26,9 @@
 #import "SADetails.h"
 #import "SASender.h"
 
+// import parental gate
+#import "SAParentalGate.h"
+
 // import utils
 #import "UIViewController+Utils.h"
 
@@ -213,7 +216,9 @@
 }
 
 - (void) gotoURL: (id)sender {
+    
     [self tryToGoToURL:NULL];
+
 }
 
 #pragma mark Resize

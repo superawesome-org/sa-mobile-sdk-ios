@@ -33,6 +33,7 @@
 - (void) didLoadAd:(SAAd *)ad {
     [ad print];
     [_video setAd:ad];
+    [_video setIsParentalGateEnabled:YES];
     [_video play];
 }
 

@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+3.1.1
+ - Fixed Parental Gate for video ads
+
 3.1 
  - Move out of Beta
  - Imrovements to targeting

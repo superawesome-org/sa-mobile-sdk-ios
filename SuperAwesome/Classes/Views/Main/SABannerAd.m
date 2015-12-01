@@ -87,13 +87,7 @@
 }
 
 - (void) mraidViewNavigate:(SKMRAIDView *)mraidView withURL:(NSURL *)url {
-    
-    if (super.isParentalGateEnabled) {
-        gate.gotoURL = url;
-        [gate show];
-    } else {
-        [self tryToGoToURL:url];
-    }
+    [self tryToGoToURL:url];
 }
 
 #pragma mark Resize
