@@ -53,9 +53,7 @@ typedef NS_ENUM(NSUInteger, SALoggingLevel) {
 
 @property (nonatomic,assign) SALoggingLevel loggingLevel;
 
-- (NSString*) version;
-- (NSString*) platform;
-- (NSString*) sdkVersion;
+- (NSString*) getSdkVersion;
 
 /**
  *  Returns singleton instance

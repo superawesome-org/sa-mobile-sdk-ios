@@ -35,18 +35,18 @@
     return self;
 }
 
-- (NSString*) version {
+- (NSString*) getVersion {
     return @"2.1.7";
 }
 
-- (NSString*) platform {
+- (NSString*) getSdk {
     return @"ios";
 }
 
-- (NSString*) sdkVersion {
+- (NSString*) getSdkVersion {
     return [NSString stringWithFormat:@"%@_%@",
-            [[SuperAwesome sharedManager] platform],
-            [[SuperAwesome sharedManager] version]];
+            [[SuperAwesome sharedManager] getSdk],
+            [[SuperAwesome sharedManager] getVersion]];
 }
 
 
