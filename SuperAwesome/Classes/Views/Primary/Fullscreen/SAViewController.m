@@ -93,8 +93,8 @@
 
 - (void) close {
     [self dismissViewControllerAnimated:YES completion:^{
-        if ([adview.delegate respondsToSelector:@selector(adWasClosed:)]) {
-            [adview.delegate adWasClosed:_ad.placementId];
+        if ([adview.adDelegate respondsToSelector:@selector(adWasClosed:)]) {
+            [adview.adDelegate adWasClosed:_ad.placementId];
         }
     }];
 }

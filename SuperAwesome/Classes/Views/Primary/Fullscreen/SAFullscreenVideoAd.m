@@ -20,8 +20,8 @@
     self.view.backgroundColor = [UIColor blackColor];
     
     adview = [[SAVideoAd alloc] initWithFrame:adviewFrame];
-    adview.delegate = super.delegate;
-    adview.pgdelegate = super.pgdelegate;
+    adview.adDelegate = super.adDelegate;
+    adview.parentalGateDelegate = super.parentalGateDelegate;
     [(SAVideoAd*)adview setVideoDelegate:_videoDelegate];
     
     [self.view addSubview:adview];

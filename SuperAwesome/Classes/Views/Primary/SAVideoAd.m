@@ -124,8 +124,8 @@
 - (void) adsLoader:(IMAAdsLoader *)loader failedWithErrorData:(IMAAdLoadingErrorData *)adErrorData {
     [_contentPlayer play];
     
-    if ([super.delegate respondsToSelector:@selector(adFailedToShow:)]) {
-        [super.delegate adFailedToShow:super.ad.placementId];
+    if ([super.adDelegate respondsToSelector:@selector(adFailedToShow:)]) {
+        [super.adDelegate adFailedToShow:super.ad.placementId];
     }
 }
 
@@ -142,8 +142,8 @@
         }
         case kIMAAdEvent_STARTED:{
             
-            if ([super.delegate respondsToSelector:@selector(adWasShown:)]) {
-                [super.delegate adWasShown:super.ad.placementId];
+            if ([super.adDelegate respondsToSelector:@selector(adWasShown:)]) {
+                [super.adDelegate adWasShown:super.ad.placementId];
             }
             
             if ([_videoDelegate respondsToSelector:@selector(videoStarted:)]) {
@@ -197,8 +197,8 @@
 - (void)adsManager:(IMAAdsManager *)adsManager didReceiveAdError:(IMAAdError *)error {
     [_contentPlayer play];
     
-    if (super.delegate && [super.delegate respondsToSelector:@selector(adFailedToShow:)]) {
-        [super.delegate adFailedToShow:super.ad.placementId];
+    if (super.adDelegate && [super.adDelegate respondsToSelector:@selector(adFailedToShow:)]) {
+        [super.adDelegate adFailedToShow:super.ad.placementId];
     }
 }
 

@@ -54,7 +54,7 @@
 - (void) play {
     // init parental gate
     gate = [[SAParentalGate alloc] initWithWeakRefToView:self];
-    gate.delegate = _pgdelegate;
+    gate.delegate = _parentalGateDelegate;
     
     // init the pad
     pad = [[SAPadlock alloc] initWithWeakRefToView:self];
@@ -66,8 +66,8 @@
 - (void) tryToGoToURL:(NSURL*)url {
     
     // call delegate
-    if (_delegate && [_delegate respondsToSelector:@selector(adWasClicked:)]) {
-        [_delegate adWasClicked:_ad.placementId];
+    if (_adDelegate && [_adDelegate respondsToSelector:@selector(adWasClicked:)]) {
+        [_adDelegate adWasClicked:_ad.placementId];
     }
     
     // form the correct final URL

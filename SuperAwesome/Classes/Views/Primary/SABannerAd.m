@@ -74,15 +74,15 @@
 - (void) mraidViewAdReady:(SKMRAIDView *)mraidView {
     [SASender sendEventToURL:super.ad.creative.viewableImpressionURL];
     
-    if ([super.delegate respondsToSelector:@selector(adWasShown:)]) {
-        [super.delegate adWasShown:super.ad.placementId];
+    if ([super.adDelegate respondsToSelector:@selector(adWasShown:)]) {
+        [super.adDelegate adWasShown:super.ad.placementId];
     }
 }
 
 - (void) mraidViewAdFailed:(SKMRAIDView *)mraidView {
     
-    if ([super.delegate respondsToSelector:@selector(adFailedToShow:)]) {
-        [super.delegate adFailedToShow:super.ad.placementId];
+    if ([super.adDelegate respondsToSelector:@selector(adFailedToShow:)]) {
+        [super.adDelegate adFailedToShow:super.ad.placementId];
     }
 }
 

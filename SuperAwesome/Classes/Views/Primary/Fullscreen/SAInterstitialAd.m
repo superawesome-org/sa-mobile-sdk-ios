@@ -17,8 +17,8 @@
     [super viewDidLoad];
     
     adview = [[SABannerAd alloc] initWithFrame:adviewFrame];
-    adview.delegate = super.delegate;
-    adview.pgdelegate = super.pgdelegate;
+    adview.adDelegate = super.adDelegate;
+    adview.parentalGateDelegate = super.parentalGateDelegate;
     [self.view addSubview:adview];
     
     // only <<IF>> ad is already here

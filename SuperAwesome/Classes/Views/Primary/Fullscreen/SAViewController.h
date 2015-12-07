@@ -39,10 +39,10 @@
 }
 
 // delegate of the SA View protocol
-@property id<SAAdProtocol> delegate;
+@property id<SAAdProtocol> adDelegate;
 
 // delegate for the SA Parental Gate protocol
-@property id<SAParentalGateProtocol> pgdelegate;
+@property id<SAParentalGateProtocol> parentalGateDelegate;
 
 // the ad associated with this ad view
 @property (nonatomic, retain) SAAd *ad;

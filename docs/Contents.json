@@ -12,69 +12,66 @@
                 {
                     "name": "Integrating the SDK",
                     "text": "01 Getting Started/02 Integrate.md"
+                },
+                {
+                    "name": "Including the SDK in your project",
+                    "text": "01 Getting Started/03 Include.md"
+                },
+                {
+                    "name": "Before you start",
+                    "text": "01 Getting Started/04 Before start.md"
                 }
             ]
         },
-        
         {
-            "name": "Banner Ads",
+            "name": "Loading Ads",
+            "text": "02 Loading ads.md"
+        },
+        {
+            "name": "Displaying Ads",
             "sections":[
                 {
-                    "name": "Banner Ads With Interface Builder",
-                    "text": "02 Banner Ads/01 AddBanner.md"
+                    "name": "Banner Ads",
+                    "text": "03 Displaying Ads/01 Banner Ads.md"
                 },
                 {
-                    "name": "Banner Ads With Code",
-                    "text": "02 Banner Ads/02 AddBannerCode.md"
+                    "name": "Video Ads",
+                    "text": "03 Displaying Ads/02 Video Ads.md"
                 },
                 {
-                    "name": "Advanced Configuration",
-                    "text": "02 Banner Ads/03 BannerConfig.md"
-                }
-            ]
-        },
-        {
-            "name": "Interstitial Ads",
-            "sections": [
-                {
-                    "name":"Interstitial Ads With Code",
-                    "text":"03 Interstitial Ads/01 Interstitial Ads.md"
-                },
-                {
-                    "name":"Advanced Configuration",
-                    "text":"03 Interstitial Ads/02 Interstitial Config.md"
-                }
-            ]
-        },
-        {
-            "name": "Video Ads",
-
-            "sections":[
-                {
-                    "name": "Video Ads With Interface Builder",
-                    "text": "04 Video Ads/01 AddVideo.md"
-                },
-                {
-                    "name": "Video Ads With Code",
-                    "text": "04 Video Ads/02 AddVideoCode.md"
+                    "name": "Interstitial Ads",
+                    "text": "03 Displaying Ads/03 Interstitial Ads.md"
                 },
                 {
                     "name": "Fullscreen Video Ads",
-                    "text": "04 Video Ads/03 VideoFullscreen.md"
-                },
-                {
-                    "name": "Advanced Configuration",
-                    "text": "04 Video Ads/04 VideoConfig.md"
+                    "text": "03 Displaying Ads/04 Fullscreen Video Ads.md"
                 }
             ]
         },
         {
             "name": "Parental Gate",
-            "text": "05 ParentalGate.md"
+            "text": "04 ParentalGate.md"
         },
         {
-            "name": "Testing Placements",
-            "text": "06 Testing Placements.md"
+            "name": "Ad Lifecycle Events",
+            "sections": [
+                {
+                    "name": "Common Events",
+                    "text": "05 Ad Lifecycle Events/01 Common Events.md"
+                },
+                {
+                    "name": "Video Events",
+                    "text": "05 Ad Lifecycle Events/02 Video Events.md"
+                },
+                {
+                    "name": "Parental Gate Events",
+                    "text": "05 Ad Lifecycle Events/03 Parental Gate Events.md"
+                }
+            ]
+        },
+        {
+            "name": "MoPub Integration",
+            "text": "06 MoPub Integration.md"
         },
         {
             "name": "Technical Support",
