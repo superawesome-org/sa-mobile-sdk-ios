@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+2.1.9
+ - Stabilize podspec
+
 2.1.8
  - Documentation fixes
 
