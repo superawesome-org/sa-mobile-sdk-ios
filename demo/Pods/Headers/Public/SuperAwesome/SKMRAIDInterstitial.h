@@ -1,1 +1,0 @@
-../../../../../Frameworks/sourcekit-mraid-ios/src/MRAID/SKMRAIDInterstitial.h
