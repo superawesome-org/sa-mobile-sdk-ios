@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+2.1.8
+ - Documentation fixes
+
 2.1.7
  - Fix issue when dureation isn't in the VAST tag
 
