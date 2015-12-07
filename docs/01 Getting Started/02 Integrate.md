@@ -21,8 +21,3 @@ After the pod source has been added, update your project's dependencies by runni
 pod update
 ```
 Don't forget to use the .xcworkspace file to open your project in Xcode, instead of the .xcproj file, from here on out.
-
-We recommend using the stable releases of our SDK, but if you want to try out the developer preview versions modify your Podfile as follows:
-```
-pod 'SuperAwesome', :git => 'https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git', :branch => 'develop_v2'
-```
