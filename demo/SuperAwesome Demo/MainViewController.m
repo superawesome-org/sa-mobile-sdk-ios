@@ -7,8 +7,6 @@
 //
 
 #import "MainViewController.h"
-#import "FullscreenVideoViewController.h"
-#import "FullscreenVideoPreloadViewController.h"
 
 @interface MainViewController ()
 @end
@@ -22,13 +20,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSString *text = [[[tableView cellForRowAtIndexPath:indexPath] textLabel] text];
-    
-    NSLog(@"Opened: %@", text);
 }
 
 @end

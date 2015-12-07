@@ -1,0 +1,1 @@
+../../../../../SuperAwesome/Classes/Data/Models/SADetails.h

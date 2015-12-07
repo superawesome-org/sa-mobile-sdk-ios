@@ -1,6 +1,29 @@
 CHANGELOG
 =========
 
+3.2
+ - Update ad parsing and reorganise display methods
+
+3.1.1
+ - Fixed Parental Gate for video ads
+
+3.1 
+ - Move out of Beta
+ - Imrovements to targeting
+
+3.0 Beta 2
+ - Rewriting video and rich media ads
+ - Internal improvements
+
+3.0 Beta
+ - Rewriting the iOS SDK for better code
+
+2.1.9
+ - Update podspec
+
+2.1.8
+ - Update documentation
+
 2.1.7
  - Fix issue when dureation isn't in the VAST tag
 

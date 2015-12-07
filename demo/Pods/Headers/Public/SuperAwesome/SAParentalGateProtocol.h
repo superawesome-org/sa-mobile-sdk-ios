@@ -1,0 +1,1 @@
+../../../../../SuperAwesome/Classes/Views/Protocols/SAParentalGateProtocol.h

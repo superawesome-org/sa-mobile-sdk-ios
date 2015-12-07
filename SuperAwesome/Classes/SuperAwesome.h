@@ -1,65 +1,60 @@
 //
 //  SuperAwesome.h
-//  SAMobileSDK
+//  Pods
 //
-//  Created by Balázs Kiss on 29/07/14.
-//  Copyright (c) 2014 SuperAwesome Ltd. All rights reserved.
+//  Copyright (c) 2015 SuperAwesome Ltd. All rights reserved.
+//
+//  Created by Gabriel Coman on 28/09/2015.
+//
 //
 
 #import <Foundation/Foundation.h>
 
-#import "SAAdManager.h"
+// import system
+#import "SASystem.h"
 
-// import parental gate
-#import "SAParentalGate.h"
-#import "SAPadlockView.h"
+// import model header files
+#import "SAAd.h"
+#import "SACreative.h"
+#import "SADetails.h"
 
-//Advertising Classes
-#import "SABannerView.h"
-#import "SAInterstitialView.h"
-#import "SAAdResponse.h"
-#import "SAAdCreative.h"
-#import "SAEventManager.h"
-#import "SAVideoAdView.h"
-#import "SAVideoAdViewController.h"
+// import load
+#import "SALoader.h"
 
-typedef NS_ENUM(NSUInteger, SAClientConfiguration) {
-    SAClientConfigurationDevelopment,
-    SAClientConfigurationStaging,
-    SAClientConfigurationProduction
-};
+// import views
+#import "SABannerAd.h"
+#import "SAInterstitialAd.h"
+#import "SAVideoAd.h"
+#import "SAFullscreenVideoAd.h"
 
-typedef NS_ENUM(NSUInteger, SALoggingLevel) {
-    SALoggingLevelNone,
-    SALoggingLevelError,
-    SALoggingLevelWarning,
-    SALoggingLevelInfo,
-    SALoggingLevelDebug
-};
+// load protocols
+#import "SALoaderProtocol.h"
+#import "SAAdProtocol.h"
+#import "SAVideoAdProtocol.h"
 
-/**
- *  SuperAwesome Mobile SDK Main Class
- */
+// @brief:
+// This is the main SuperAwesome class that handles the Ad Session
+// as a singleton (enable / disable test mode, configuration, version, etc)
 @interface SuperAwesome : NSObject
 
-/**
- *  SDK client configuration
- */
-@property (nonatomic,assign) SAClientConfiguration clientConfiguration;
+// singleton instance (instead of init)
++ (SuperAwesome *)getInstance;
 
-@property (nonatomic,assign,getter=isTestModeEnabled) BOOL testModeEnabled;
-
-@property (nonatomic,strong) SAAdManager *adManager;
-
-@property (nonatomic,assign) SALoggingLevel loggingLevel;
-
+// current SDK version
 - (NSString*) getSdkVersion;
 
-/**
- *  Returns singleton instance
- *
- *  @return singleton instance
- */
-+ (SuperAwesome *)sharedManager;
+// set configuration - which determines what URL will call for ads
+// @production: https://ads.superawesome.tv
+// @staging: https://ads.staging.superawesome.tv
+// @development: https://ads.dev.superawesome.tv
+- (void) setConfigurationProduction;
+- (void) setConfigurationStaging;
+- (void) setConfigurationDevelopment;
+- (NSString*) getBaseURL;
+
+// enable or disable test mode
+- (void) enableTestMode;
+- (void) disableTestMode;
+- (BOOL) isTestingEnabled;
 
 @end

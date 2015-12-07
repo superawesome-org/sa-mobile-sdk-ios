@@ -1,22 +1,32 @@
 //
-//  SuperAwesome.m
-//  SAMobileSDK
+//  SuperAwesome.h
+//  Pods
 //
-//  Created by Balázs Kiss on 29/07/14.
-//  Copyright (c) 2014 SuperAwesome Ltd. All rights reserved.
+//  Copyright (c) 2015 SuperAwesome Ltd. All rights reserved.
+//
+//  Created by Gabriel Coman on 28/09/2015.
+//
 //
 
+// import header
 #import "SuperAwesome.h"
-#import "SKLogger.h"
+
+// define the three URL constants
+#define BASE_URL_STAGING @"https://ads.staging.superawesome.tv/v2"
+#define BASE_URL_DEVELOPMENT @"https://ads.dev.superawesome.tv/v2"
+#define BASE_URL_PRODUCTION @"https://ads.superawesome.tv/v2"
 
 @interface SuperAwesome ()
+
+// private vars
+@property (nonatomic, strong) NSString *baseURL;
+@property (nonatomic, assign) BOOL isTestEnabled;
 
 @end
 
 @implementation SuperAwesome
 
-+ (SuperAwesome *)sharedManager
-{
++ (SuperAwesome *)getInstance {
     static SuperAwesome *sharedManager = nil;
     @synchronized(self) {
         if (sharedManager == nil){
@@ -26,17 +36,19 @@
     return sharedManager;
 }
 
-- (instancetype)init
-{
-    if(self = [super init]){
-        _adManager = [[SAAdManager alloc] init];
-        [self setClientConfiguration:SAClientConfigurationProduction];
+- (instancetype) init {
+    if (self = [super init]) {
+        // by default configuration is set to production
+        // and test mode is disabled
+        [self setConfigurationProduction];
+        [self disableTestMode];
     }
+    
     return self;
 }
 
 - (NSString*) getVersion {
-    return @"2.1.7";
+    return @"3.2";
 }
 
 - (NSString*) getSdk {
@@ -45,57 +57,36 @@
 
 - (NSString*) getSdkVersion {
     return [NSString stringWithFormat:@"%@_%@",
-            [[SuperAwesome sharedManager] getSdk],
-            [[SuperAwesome sharedManager] getVersion]];
+            [[SuperAwesome getInstance] getSdk],
+            [[SuperAwesome getInstance] getVersion]];
 }
 
-
-- (void)setClientConfiguration:(SAClientConfiguration)clientConfiguration
-{
-    _clientConfiguration = clientConfiguration;
-    
-    if(self.clientConfiguration == SAClientConfigurationProduction){
-        self.adManager.baseURL = @"https://ads.superawesome.tv/v2";
-        [self setLoggingLevel:SALoggingLevelWarning];
-    }else if(self.clientConfiguration == SAClientConfigurationStaging){
-        self.adManager.baseURL = @"https://staging.beta.ads.superawesome.tv/v2";
-        [self setLoggingLevel:SALoggingLevelDebug];
-    }else{
-        self.adManager.baseURL = @"https://dev.ads.superawesome.tv/v2";
-        [self setLoggingLevel:SALoggingLevelDebug];
-    }
+- (void) setConfigurationProduction {
+    _baseURL = BASE_URL_PRODUCTION;
 }
 
-- (void)setTestModeEnabled:(BOOL)testModeEnabled
-{
-    _testModeEnabled = testModeEnabled;
-    self.adManager.testModeEnabled = testModeEnabled;
+- (void) setConfigurationStaging {
+    _baseURL = BASE_URL_STAGING;
 }
 
-- (void)setLoggingLevel:(SALoggingLevel)loggingLevel
-{
-    _loggingLevel = loggingLevel;
-    
-    switch (loggingLevel) {
-        case SALoggingLevelNone:
-            [SKLogger setLogLevel:SourceKitLogLevelNone];
-            break;
-        case SALoggingLevelError:
-            [SKLogger setLogLevel:SourceKitLogLevelError];
-            break;
-        case SALoggingLevelWarning:
-            [SKLogger setLogLevel:SourceKitLogLevelWarning];
-            break;
-        case SALoggingLevelInfo:
-            [SKLogger setLogLevel:SourceKitLogLevelInfo];
-            break;
-        case SALoggingLevelDebug:
-            [SKLogger setLogLevel:SourceKitLogLevelDebug];
-            break;
-        default:
-            break;
-    }
-    
+- (void) setConfigurationDevelopment {
+    _baseURL = BASE_URL_DEVELOPMENT;
+}
+
+- (NSString*) getBaseURL {
+    return _baseURL;
+}
+
+- (void) enableTestMode {
+    _isTestEnabled = true;
+}
+
+- (void) disableTestMode {
+    _isTestEnabled = false;
+}
+
+- (BOOL) isTestingEnabled {
+    return _isTestEnabled;
 }
 
 

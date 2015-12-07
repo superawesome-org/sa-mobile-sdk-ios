@@ -18,8 +18,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    NSLog(@"%@", [[SuperAwesome sharedManager] getSdkVersion]);
-    [[SuperAwesome sharedManager] setTestModeEnabled:NO];
+    NSLog(@"%@", [[SuperAwesome getInstance] getSdkVersion]);
+    NSLog(@"%@", [SASystem getVerboseSystemDetails]);
     
     return YES;
 }
