@@ -2,13 +2,15 @@
 //  SASystemSize.h
 //  Pods
 //
-//  Created by Gabriel Coman on 01/12/2015.
+//  Copyright (c) 2015 SuperAwesome Ltd. All rights reserved.
+//
+//  Created by Gabriel Coman on 11/10/2015.
 //
 //
 
 #import <Foundation/Foundation.h>
 
-// creative format typedef
+// enum that lists the available system sizes
 typedef enum SASystemSize {
     size_undefined = -1,
     size_mobile = 0,
