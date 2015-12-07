@@ -24,6 +24,7 @@
 // import models
 #import "SAAd.h"
 #import "SACreative.h"
+#import "SACreativeFormat.h"
 #import "SADetails.h"
 #import "SASender.h"
 
@@ -68,6 +69,13 @@
 
 - (void) play {
     [super play];
+    
+    if (super.ad.creative.format != video) {
+        if (super.adDelegate != NULL && [super.adDelegate respondsToSelector:@selector(adHasIncorrectPlacement:)]){
+            [super.adDelegate adHasIncorrectPlacement:super.ad.placementId];
+        }
+        return;
+    }
     
     // init notification center
     _notifCenter = [NSNotificationCenter defaultCenter];

@@ -21,8 +21,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [[SuperAwesome getInstance] enableTestMode];
+    
     [SALoader setDelegate:self];
-    [SALoader loadAdForPlacementId:28000];
+    [SALoader loadAdForPlacementId:5692];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -64,6 +66,10 @@
 
 - (void) adWasClicked:(NSInteger)placementId {
     NSLog(@"%ld - adWasClicked", placementId);
+}
+
+- (void) adHasIncorrectPlacement:(NSInteger)placementId {
+    NSLog(@"%ld - ad has incorrect placement", placementId);
 }
 
 #pragma mark <SAParentalGateProtocol>

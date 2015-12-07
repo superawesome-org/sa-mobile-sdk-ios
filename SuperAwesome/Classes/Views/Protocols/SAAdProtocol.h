@@ -1,5 +1,5 @@
 //
-//  SAViewProtocol.h
+//  SAAdProtocol.h
 //  Pods
 //
 //  Copyright (c) 2015 SuperAwesome Ltd. All rights reserved.
@@ -31,5 +31,9 @@
 
 // this function is called when an ad is clicked
 - (void) adWasClicked:(NSInteger)placementId;
+
+// this is called in case of incorrect format - e.g. user calls a video
+// placement for an interstitial, etc
+- (void) adHasIncorrectPlacement:(NSInteger)placementId;
 
 @end

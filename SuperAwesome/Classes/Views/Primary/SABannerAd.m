@@ -53,6 +53,13 @@
 - (void) play {
     [super play];
     
+    if (super.ad.creative.format != video) {
+        if (super.adDelegate != NULL && [super.adDelegate respondsToSelector:@selector(adHasIncorrectPlacement:)]){
+            [super.adDelegate adHasIncorrectPlacement:super.ad.placementId];
+        }
+        return;
+    }
+    
     CGRect frame = [SAAux arrangeAdInNewFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
                                     fromFrame:CGRectMake(0, 0, super.ad.creative.details.width, super.ad.creative.details.height)];
     
