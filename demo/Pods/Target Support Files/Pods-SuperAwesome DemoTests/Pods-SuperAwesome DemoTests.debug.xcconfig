@@ -1,0 +1,6 @@
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/GoogleAds-IMA-iOS-SDK" "${PODS_ROOT}/Headers/Public/JSONModel" "${PODS_ROOT}/Headers/Public/SuperAwesome"
+LIBRARY_SEARCH_PATHS = "$(PODS_ROOT)/GoogleAds-IMA-iOS-SDK/GoogleIMASDK3/" "$(PODS_ROOT)/GoogleAds-IMA-iOS-SDK/GoogleIMASDK3/"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/GoogleAds-IMA-iOS-SDK" -isystem "${PODS_ROOT}/Headers/Public/JSONModel" -isystem "${PODS_ROOT}/Headers/Public/SuperAwesome"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"GoogleIMA3" -l"JSONModel" -l"SuperAwesome" -l"xml2" -l"z" -framework "AVFoundation" -framework "AdSupport" -framework "AudioToolbox" -framework "CFNetwork" -framework "CoreData" -framework "CoreFoundation" -framework "CoreGraphics" -framework "CoreLocation" -framework "CoreMedia" -framework "CoreMotion" -framework "CoreTelephony" -framework "EventKit" -framework "EventKitUI" -framework "MediaPlayer" -framework "MessageUI" -framework "MobileCoreServices" -framework "QuartzCore" -framework "Security" -framework "StoreKit" -framework "SystemConfiguration" -framework "UIKit" -weak_framework "WebKit"
+PODS_ROOT = ${SRCROOT}/Pods

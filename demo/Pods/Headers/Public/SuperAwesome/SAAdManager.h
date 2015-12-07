@@ -1,0 +1,1 @@
+../../../../../SuperAwesome/Classes/SAAdManager.h
