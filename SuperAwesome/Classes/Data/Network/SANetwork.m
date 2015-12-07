@@ -18,6 +18,57 @@
 
 @implementation SANetwork
 
++ (void) sendGETtoEndpoint:(NSString*)endpoint
+             withQueryDict:(NSDictionary*)GETDict
+                andSuccess:(success)success
+                 orFailure:(failure)failure {
+    
+    // prepare the URL
+    __block NSMutableString *_surl = [endpoint mutableCopy];
+    
+    [_surl appendString:(GETDict.allKeys.count > 0 ? @"?" : @"")];
+    [_surl appendString:[SAAux formGetQueryFromDict:GETDict]];
+    
+    NSURL *url = [NSURL URLWithString:_surl];
+    
+    // create the request
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:url];
+    [request setValue:[SAUserAgent getUserAgent] forHTTPHeaderField:@"User-Agent"];
+    [request setHTTPMethod:@"GET"];
+    
+    // form the response block to the POST
+    netresponse resp = ^(NSURLResponse * response, NSData * data, NSError * error) {
+        
+        if (error != nil) {
+            NSLog(@"Network error %@", error);
+            if (failure) {
+                failure();
+            }
+        }
+        else {
+            // only if status code is 200
+            if (((NSHTTPURLResponse*)response).statusCode == 200) {
+                NSLog(@"Success: %@", _surl);
+                success(data);
+            }
+            // else call it failure
+            else {
+                NSLog(@"Some other failure: %@ - %ld", _surl, ((NSHTTPURLResponse*)response).statusCode);
+                if (failure) {
+                    failure();
+                }
+            }
+        }
+    };
+    
+    // make the request and get back the data
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue currentQueue]
+                           completionHandler:resp];
+    
+}
+
 // Generic functions to GET & POST
 + (void) sendPOSTtoEndpoint:(NSString*)endpoint
                withBodyDict:(NSDictionary*)POSTDict
@@ -57,57 +108,6 @@
             if (((NSHTTPURLResponse*)response).statusCode == 200) {
                 NSString *strData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
                 NSLog(@"Success: %@ - %@", _surl, strData);
-                success(data);
-            }
-            // else call it failure
-            else {
-                NSLog(@"Some other failure: %@ - %ld", _surl, ((NSHTTPURLResponse*)response).statusCode);
-                if (failure) {
-                    failure();
-                }
-            }
-        }
-    };
-    
-    // make the request and get back the data
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue currentQueue]
-                           completionHandler:resp];
-    
-}
-
-+ (void) sendGETtoEndpoint:(NSString*)endpoint
-             withQueryDict:(NSDictionary*)GETDict
-                andSuccess:(success)success
-                 orFailure:(failure)failure {
-    
-    // prepare the URL
-    __block NSMutableString *_surl = [endpoint mutableCopy];
-    
-    [_surl appendString:(GETDict.allKeys.count > 0 ? @"?" : @"")];
-    [_surl appendString:[SAAux formGetQueryFromDict:GETDict]];
-    
-    NSURL *url = [NSURL URLWithString:_surl];
-    
-    // create the request
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:url];
-    [request setValue:[SAUserAgent getUserAgent] forHTTPHeaderField:@"User-Agent"];
-    [request setHTTPMethod:@"GET"];
-    
-    // form the response block to the POST
-    netresponse resp = ^(NSURLResponse * response, NSData * data, NSError * error) {
-        
-        if (error != nil) {
-            NSLog(@"Network error %@", error);
-            if (failure) {
-                failure();
-            }
-        }
-        else {
-            // only if status code is 200
-            if (((NSHTTPURLResponse*)response).statusCode == 200) {
-                NSLog(@"Success: %@", _surl);
                 success(data);
             }
             // else call it failure

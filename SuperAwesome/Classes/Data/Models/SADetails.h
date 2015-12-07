@@ -47,10 +47,6 @@
 // in case creative format is tag, this is the JS tag
 @property (nonatomic, strong) NSString *tag;
 
-// this is the placement format, defined in SAPlacementFormat.h
-// as of now, it's kind of useless
-@property (nonatomic, strong) NSString *placementFormat;
-
 // in case creative format is rich media, this is the URL to the zip with all
 // media resources; at the moment it's not used, but could be used when doing
 // truly preloaded ads
@@ -58,6 +54,10 @@
 
 // in case creative format is rich media, this is the URL of the rich media
 @property (nonatomic, strong) NSString *url;
+
+// this is the placement format, defined in SAPlacementFormat.h
+// as of now, it's kind of useless
+@property (nonatomic, strong) NSString *placementFormat;
 
 // aux value needed when sending ad data like rating and such
 @property (nonatomic, assign) NSInteger value;

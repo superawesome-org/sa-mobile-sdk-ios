@@ -19,16 +19,14 @@
 typedef void (^parsedad)(SAAd *parsedAd);
 
 // @brief:
-// The SAParser class acts as a repository of "static" class methods
-// that deal with different aspects of parsing the JSON
-// data that comes from the AA server
-// @params:
-// - A NSDictionary parser by ObjC from a JSON
-// @return:
-// - some kind of AA model object
+// The SAParser class acts contains one static function that parses a
+// network-received dictionary into an Ad
+// @param - adDict: A NSDictionary parser by ObjC from a JSON
+// @param - placementId - the placement id of the ad that's been requested
+// @param - parse - a callback that actually returns the ad
 @interface SAParser : NSObject
 
-// function that finalises parsing of an object
+// parsing function
 + (void) parseDictionary:(NSDictionary*)adDict withPlacementId:(NSInteger)placementId intoAd:(parsedad)parse;
 
 @end

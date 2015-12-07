@@ -22,13 +22,12 @@
 // main protocol functions
 @optional
 
-// function that gets called when an Ad is succesfully called
-// returns a valid SAAd object and it's associated placement Id
-// through two callbacks
+// @brief: function that gets called when an Ad is succesfully called
+// @return: returns a valid SAAd object
 - (void) didLoadAd:(SAAd*)ad;
 
-// function that gets called when an Ad has failed to load
-// it returns a placementId of the failing ad through callback
+// @brief: function that gets called when an Ad has failed to load
+// @return: it returns a placementId of the failing ad through callback
 - (void) didFailToLoadAdForPlacementId:(NSInteger)placementId;
 
 @end

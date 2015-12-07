@@ -32,17 +32,17 @@
 // function that performs the basic integritiy check on the just-received ad
 + (BOOL) performIntegrityCheck:(NSDictionary*)dict {
     
-    // 1. check if it's empt
-    if([dict count] > 0){
+    // 1. check if it's empty
+    if(dict != NULL && [dict count] > 0){
         
         // 2. check if the dictionary has a "creative" sub-dict
         NSDictionary *creativeObj = [dict objectForKey:@"creative"];
-        if (creativeObj != NULL){
+        if (creativeObj != NULL && [creativeObj count] > 0){
             
             // 3. check if the "creative" sub-dict has a "details" sub-dict of
             // its own
             NSDictionary *details = [creativeObj objectForKey:@"details"];
-            if (details != NULL){
+            if (details != NULL && [details count] > 0){
                 return true;
             }
             return false;
@@ -133,7 +133,7 @@
 + (void) parseDictionary:(NSDictionary*)adDict withPlacementId:(NSInteger)placementId intoAd:(parsedad)parse {
     
     // perform an integrity check
-    if ([SAParser performIntegrityCheck:adDict] == false) {
+    if (![SAParser performIntegrityCheck:adDict]) {
         parse(NULL);
         return;
     }
@@ -179,11 +179,10 @@
         @"creative":[NSNumber numberWithInteger:ad.creative.creativeId],
         @"type":@"viewable_impression"
     };
-    NSString *encodedStr = [SAAux encodeJSONDictionaryFromNSDictionary:impressionDict];
     NSDictionary *impressionDict2 = @{
         @"sdkVersion":[[SuperAwesome getInstance] getSdkVersion],
         @"rnd":[NSNumber numberWithInteger:[SAAux getCachebuster]],
-        @"data":encodedStr
+        @"data":[SAAux encodeJSONDictionaryFromNSDictionary:impressionDict]
     };
     ad.creative.viewableImpressionURL = [NSString stringWithFormat:@"%@/event?%@",
                                          [[SuperAwesome getInstance] getBaseURL],

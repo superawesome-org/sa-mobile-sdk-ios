@@ -28,6 +28,17 @@ typedef void (^failure)();
 @interface SANetwork : NSObject
 
 // @brief:
+// perform GET request to server
+//  - endpoint: the URL to send the POST request to; must be full URL e.g. http://google.com
+//  - GETDict: a key-value dictionary that will get transformed to a query e.g. ?key1=value1&key2=value2
+//  - success: callback function when the POST request has succedded; cannot be nil;
+//  - failure: callback in case of error; can be nil;
++ (void) sendGETtoEndpoint:(NSString*)endpoint
+             withQueryDict:(NSDictionary*)GETDict
+                andSuccess:(success)success
+                 orFailure:(failure)failure;
+
+// @brief:
 // perform POST request to server
 // @params:
 //  - endpoint: the URL to send the POST request to; must be full URL e.g. http://google.com
@@ -38,16 +49,5 @@ typedef void (^failure)();
                withBodyDict:(NSDictionary*)POSTDict
                  andSuccess:(success)success
                   orFailure:(failure)failure;
-
-// @brief:
-// perform GET request to server
-//  - endpoint: the URL to send the POST request to; must be full URL e.g. http://google.com
-//  - GETDict: a key-value dictionary that will get transformed to a query e.g. ?key1=value1&key2=value2
-//  - success: callback function when the POST request has succedded; cannot be nil;
-//  - failure: callback in case of error; can be nil;
-+ (void) sendGETtoEndpoint:(NSString*)endpoint
-             withQueryDict:(NSDictionary*)GETDict
-                andSuccess:(success)success
-                 orFailure:(failure)failure;
 
 @end

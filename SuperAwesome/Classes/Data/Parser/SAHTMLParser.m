@@ -51,16 +51,20 @@
 }
 
 + (NSString*) formatCreativeIntoImageHTML:(SAAd*)ad {
+    // load template
     NSString *fPath = [[NSBundle mainBundle] pathForResource:@"displayImage" ofType:@"html"];
     NSString *htmlString = [NSString stringWithContentsOfFile:fPath encoding:NSUTF8StringEncoding error:nil];
-    htmlString = [htmlString stringByReplacingOccurrencesOfString:@"imageURL" withString:ad.creative.details.image];
-    return htmlString;
+    
+    // return the parametrized template
+    return [htmlString stringByReplacingOccurrencesOfString:@"imageURL" withString:ad.creative.details.image];
 }
 
 + (NSString*) formatCreativeIntoRichMediaHTML:(SAAd*)ad {
+    // load template
     NSString *fPath = [[NSBundle mainBundle] pathForResource:@"displayRichMedia" ofType:@"html"];
     NSString *htmlString = [NSString stringWithContentsOfFile:fPath encoding:NSUTF8StringEncoding error:nil];
     
+    // format template parameters
     NSMutableString *richMediaString = [[NSMutableString alloc] init];
     [richMediaString appendString:ad.creative.details.url];
     
@@ -74,17 +78,17 @@
     [richMediaString appendString:@"?"];
     [richMediaString appendString:[SAAux formGetQueryFromDict:richMediaDict]];
     
-    htmlString = [htmlString stringByReplacingOccurrencesOfString:@"richMediaURL" withString:richMediaString];
     
-    // return HTML string
-    return htmlString;
+    // return the parametrized template
+    return [htmlString stringByReplacingOccurrencesOfString:@"richMediaURL" withString:richMediaString];
 }
 
 + (NSString*) formatCreativeIntoTagHTML:(SAAd*)ad {
+    // get template
     NSString *fPath = [[NSBundle mainBundle] pathForResource:@"displayTag" ofType:@"html"];
     NSString *htmlString = [NSString stringWithContentsOfFile:fPath encoding:NSUTF8StringEncoding error:nil];
     
-    // correct some tag issues
+    // format template parameters
     NSString *tagString = ad.creative.details.tag;
     tagString = [tagString stringByReplacingOccurrencesOfString:@"[click]" withString:[NSString stringWithFormat:@"%@&redir=",ad.creative.trackingURL]];
     tagString = [tagString stringByReplacingOccurrencesOfString:@"[click_enc]" withString:[SAAux encodeURI:ad.creative.trackingURL]];
@@ -93,8 +97,8 @@
     tagString = [tagString stringByReplacingOccurrencesOfString:@"target=\"_blank\"" withString:@""];
     tagString = [tagString stringByReplacingOccurrencesOfString:@"“" withString:@"\""];
     
-    htmlString = [htmlString stringByReplacingOccurrencesOfString:@"tagdata" withString:tagString];
-    return htmlString;
+    // return the parametrized template
+    return [htmlString stringByReplacingOccurrencesOfString:@"tagdata" withString:tagString];
 }
 
 @end

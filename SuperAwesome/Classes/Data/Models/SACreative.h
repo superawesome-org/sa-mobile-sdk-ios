@@ -35,8 +35,11 @@
 @property (nonatomic, strong) NSString *baseFormat;
 @property (nonatomic, assign) SACreativeFormat format;
 
-// the impression URL; not really useful
+// the impression URL; not really useful because it's used server-side
 @property (nonatomic, strong) NSString *impressionURL;
+
+// the viewable impression URL; used by the SDK to track a viewable impression
+@property (nonatomic, strong) NSString *viewableImpressionURL;
 
 // the click URL - taken from the ad server; it's the direct target to
 // which the ad points, if it exists
@@ -53,8 +56,8 @@
 // data pulled from the Ad Server or done on the fly, or null, etc
 @property (nonatomic, assign) BOOL isFullClickURLReliable;
 
-// the viewable impression URL; used by the SDK to track a viewable impression
-@property (nonatomic, strong) NSString *viewableImpressionURL;
+// the tracking URL used when video is complete - used only by AIR SDK
+@property (nonatomic, strong) NSString *videoCompleteURL;
 
 // must be always true for real ads
 @property (nonatomic, assign) BOOL approved;

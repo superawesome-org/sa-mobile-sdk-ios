@@ -37,28 +37,28 @@
         if (ad.creative.details != NULL) {
             switch (ad.creative.format) {
                 case image:{
-                    // 4.1. if Ad is image with link, but no image filed
+                    // 3.1. if Ad is image with link, but no image filed
                     // could be found, data is not valid
                     if (ad.creative.details.image == NULL)
                         return false;
                     break;
                 }
                 case video:{
-                    // 4.2. if Ad is video and either the video or the vast
+                    // 3.2. if Ad is video and either the video or the vast
                     // tags could not be found, data is not valid
                     if (ad.creative.details.vast == NULL)
                         return false;
                     break;
                 }
                 case rich:{
-                    // 4.3. if Ad is rich media and no url can be found,
+                    // 3.3. if Ad is rich media and no url can be found,
                     // then data is not valid
                     if (ad.creative.details.url == NULL)
                         return false;
                     break;
                 }
                 case tag:{
-                    // 4.4. if Ad is rich media (resizing) and no url can be found,
+                    // 3.4. if Ad is rich media (resizing) and no url can be found,
                     // then data is not valid
                     if (ad.creative.details.tag == NULL)
                         return false;

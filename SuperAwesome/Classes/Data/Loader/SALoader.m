@@ -47,9 +47,8 @@ static id<SALoaderProtocol> delegate;
     
     // First thing to do is format the AA URL to get an ad, based on specs
     NSString *endpoint = [NSString stringWithFormat:@"%@/ad/%ld", [[SuperAwesome getInstance] getBaseURL], (long)placementId];
-    BOOL isTest = [[SuperAwesome getInstance] isTestingEnabled];
     NSDictionary *dict = @{
-        @"test": [NSNumber numberWithBool:isTest],
+        @"test": [NSNumber numberWithBool:[[SuperAwesome getInstance] isTestingEnabled]],
         @"sdkVersion": [[SuperAwesome getInstance] getSdkVersion],
         @"rnd": [NSNumber numberWithInteger:[SAAux getCachebuster]]
     };

@@ -19,7 +19,10 @@
 // such as viewable impression, ad rating, etc
 @interface SASender : NSObject
 
-// just send an event to a URL
+// @brief: this is just a "dumb" function that sends a GET request to the
+// specified URL; it's a thing wrapper for SANetwork.sendGetToEndpoint() so that
+// it's fire-and-forget
+// @param: the URL to make the event request to
 + (void) sendEventToURL:(NSString*)url;
 
 @end
