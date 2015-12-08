@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+3.2.2
+ - Stopped padlock view controller
+
 3.2.1
  - Added some more comments and refined some issues
 
