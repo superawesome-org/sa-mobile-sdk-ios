@@ -53,7 +53,7 @@
 - (void) play {
     [super play];
     
-    if (super.ad.creative.format != video) {
+    if (super.ad.creative.format == video) {
         if (super.adDelegate != NULL && [super.adDelegate respondsToSelector:@selector(adHasIncorrectPlacement:)]){
             [super.adDelegate adHasIncorrectPlacement:super.ad.placementId];
         }
