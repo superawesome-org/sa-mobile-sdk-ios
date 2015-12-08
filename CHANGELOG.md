@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+3.2.1
+ - Added some more comments and refined some issues
+
 3.2
  - Update ad parsing and reorganise display methods
 
