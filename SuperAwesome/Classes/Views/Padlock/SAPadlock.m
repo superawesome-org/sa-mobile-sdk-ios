@@ -87,12 +87,12 @@
 #pragma mark <PadlockButton> action
 
 - (void) onPadlockClick {
-    if (!_pad) {
-        _pad = [[SAPadlockView alloc] initWithAd:_ad];
-    }
-    
-    // show this
-    [[[[UIApplication sharedApplication] delegate] window] addSubview:_pad];
+//    if (!_pad) {
+//        _pad = [[SAPadlockView alloc] initWithAd:_ad];
+//    }
+//    
+//    // show this
+//    [[[[UIApplication sharedApplication] delegate] window] addSubview:_pad];
 }
 
 @end

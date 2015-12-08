@@ -21,10 +21,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [[SuperAwesome getInstance] enableTestMode];
+    [[SuperAwesome getInstance] disableTestMode];
     
     [SALoader setDelegate:self];
-    [SALoader loadAdForPlacementId:5692];
+    [SALoader loadAdForPlacementId:7455];
 }
 
 - (void)didReceiveMemoryWarning {
