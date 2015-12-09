@@ -83,6 +83,7 @@
 }
 
 - (void) advanceToClick {
+    NSLog(@"[AA :: INFO] Going to %@", _ad.creative.fullClickURL);
     NSURL *url = [NSURL URLWithString:_ad.creative.fullClickURL];
     [[UIApplication sharedApplication] openURL:url];
 }
