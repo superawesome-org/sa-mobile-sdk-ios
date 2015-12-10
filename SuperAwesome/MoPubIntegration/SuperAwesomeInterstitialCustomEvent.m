@@ -53,18 +53,17 @@
     placementId = [placementIdObj integerValue];
     isParentalGateEnabled = [parentalGateEnabledObj boolValue];
     _parentalGate = isParentalGateEnabled;
-//    NSLog(@"Placement: %ld - %d", placementId]);
     
     // enable or disable test mode
     if (testMode) {
-        [[SuperAwesome sharedManager] enableTestMode];
+        [[SuperAwesome getInstance] enableTestMode];
     }
     else {
-        [[SuperAwesome sharedManager] disableTestMode];
+        [[SuperAwesome getInstance] disableTestMode];
     }
     
-    [[SALoader sharedManager] setDelegate:self];
-    [[SALoader sharedManager] preloadAdForPlacementId:placementId];
+    [SALoader setDelegate:self];
+    [SALoader loadAdForPlacementId:placementId];
 }
 
 - (void) showInterstitialFromRootViewController:(UIViewController *)rootViewController {
@@ -72,7 +71,7 @@
     [rootViewController presentViewController:_interstitial animated:YES completion:^{
         
         // play preloaded ad
-        [_interstitial playPreloaded];
+        [_interstitial play];
         
         // call events
         [self.delegate interstitialCustomEventWillAppear:self];
@@ -94,7 +93,7 @@
 
 #pragma mark <SALoaderProtocol>
 
-- (void) didPreloadAd:(SAAd *)ad forPlacementId:(NSInteger)placementId {
+- (void) didLoadAd:(SAAd *)ad {
     // init interstitial
     _interstitial = [[SAInterstitialAd alloc] init];
     [_interstitial setIsParentalGateEnabled:_parentalGate];
@@ -104,8 +103,7 @@
     [self.delegate interstitialCustomEvent:self didLoadAd:_interstitial];
 }
 
-- (void) didFailToPreloadAdForPlacementId:(NSInteger)placementId {
-    
+- (void) didFailToLoadAdForPlacementId:(NSInteger)placementId {
     // then send this to bannerCustomEvent:didFailToLoadAdWithError:
     [self.delegate interstitialCustomEvent:self
                   didFailToLoadAdWithError:[self createErrorWith:[NSString stringWithFormat:@"Failed to preload SuperAwesome Intestitial Ad for PlacementId: %ld", placementId]
@@ -115,23 +113,25 @@
 
 #pragma mark <SAAdProtocol>
 
+- (void) adWasShown:(NSInteger)placementId {
+    // do nothing
+}
+
 - (void) adFailedToShow:(NSInteger)placementId {
     
     // then send this to bannerCustomEvent:didFailToLoadAdWithError:
     [self.delegate interstitialCustomEvent:self
                   didFailToLoadAdWithError:[self createErrorWith:[NSString stringWithFormat:@"Failed to display SuperAwesome Intestitial Ad for PlacementId: %ld", placementId]
                                                        andReason:@"JSON invalid."
-                                                   andSuggestion:@"Contact SuperAwesome support: <devsuppoer@superawesome.tv>"]];
+                                                   andSuggestion:@"Contact SuperAwesome support: <devsupport@superawesome.tv>"]];
 }
 
-- (void) adFollowedURL:(NSInteger)placementId {
-    
+- (void) adWasClicked:(NSInteger)placementId {
     // call required event
     [self.delegate interstitialCustomEventDidReceiveTapEvent:self];
 }
 
 - (void) adWasClosed:(NSInteger)placementId {
-    
     // call required events
     [self.delegate interstitialCustomEventWillDisappear:self];
     [self.delegate interstitialCustomEventDidDisappear:self];

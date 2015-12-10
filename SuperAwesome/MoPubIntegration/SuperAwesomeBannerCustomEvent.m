@@ -59,17 +59,17 @@
     
     // enable or disable test mode
     if (testMode) {
-        [[SuperAwesome sharedManager] enableTestMode];
+        [[SuperAwesome getInstance] enableTestMode];
     }
     else {
-        [[SuperAwesome sharedManager] disableTestMode];
+        [[SuperAwesome getInstance] disableTestMode];
     }
     
     // code from SA to load ad
     _bannerFrame = CGRectMake(0, 0, size.width, size.height);
     
-    [[SALoader sharedManager] setDelegate:self];
-    [[SALoader sharedManager] preloadAdForPlacementId:placementId];
+    [SALoader setDelegate:self];
+    [SALoader loadAdForPlacementId:placementId];
 }
 
 #pragma mark Custom Functions
@@ -84,29 +84,32 @@
     return [NSError errorWithDomain:@"SuperAwesomeErrorDomain" code:0 userInfo:userInfo];
 }
 
-#pragma mark SALoaderProtocol functions
+#pragma mark <SALoaderProtocol>
 
-- (void) didPreloadAd:(SAAd *)ad forPlacementId:(NSInteger)placementId {
-
+- (void) didLoadAd:(SAAd *)ad {
     // first step is to actually create the Ad View, as defined by SuperAwesome
     _banner = [[SABannerAd alloc] initWithFrame:_bannerFrame];
     [_banner setAd:ad];
-    [_banner setDelegate:self];
+    [_banner setAdDelegate:self];
     [_banner setIsParentalGateEnabled:_parentalGate];
-    [_banner playPreloaded];
+    [_banner play];
     
     // and then send it to bannerCustomEvent:didLoadAd:
     [self.delegate bannerCustomEvent:self didLoadAd:_banner];
 }
 
-- (void) didFailToPreloadAdForPlacementId:(NSInteger)placementId {
-    
+- (void) didFailToLoadAdForPlacementId:(NSInteger)placementId {
     // then send this to bannerCustomEvent:didFailToLoadAdWithError:
     [self.delegate bannerCustomEvent:self
             didFailToLoadAdWithError:[self createErrorWith:[NSString stringWithFormat:@"Failed to preload SuperAwesome Banner Ad for PlacementId: %ld", placementId]
                                                  andReason:@"The operation timed out."
                                              andSuggestion:@"Check your placement Id."]];
-    
+}
+
+#pragma mark <SAAdProtocol>
+
+- (void) adWasShown:(NSInteger)placementId {
+    // do nothing
 }
 
 - (void) adFailedToShow:(NSInteger)placementId {
@@ -115,14 +118,17 @@
     [self.delegate bannerCustomEvent:self
             didFailToLoadAdWithError:[self createErrorWith:[NSString stringWithFormat:@"Failed to display SuperAwesome Banner Ad for PlacementId: %ld", placementId]
                                                  andReason:@"JSON invalid."
-                                             andSuggestion:@"Contact SuperAwesome support: <devsuppoer@superawesome.tv>"]];
+                                             andSuggestion:@"Contact SuperAwesome support: <devsupport@superawesome.tv>"]];
 }
 
-- (void) adFollowedURL:(NSInteger)placementId {
-    
+- (void) adWasClicked:(NSInteger)placementId {
     // this must be called to log clicks to MoPub
     [self.delegate bannerCustomEventWillLeaveApplication:self];
-    
 }
+
+- (void) adWasClosed:(NSInteger)placementId {
+    // do nothing
+}
+
 
 @end
