@@ -24,7 +24,7 @@
     [[SuperAwesome getInstance] disableTestMode];
     
     [SALoader setDelegate:self];
-    [SALoader loadAdForPlacementId:10273];
+    [SALoader loadAdForPlacementId:8533];
 }
 
 - (void)didReceiveMemoryWarning {

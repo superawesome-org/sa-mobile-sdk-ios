@@ -2,7 +2,7 @@ If you haven't registered your app on the SuperAwesome Dashboard yet, you can do
 
 ![](img/IMG_01_Dashboard.png "Registering an app on the dashboard")
 
-Once your app is registered, you can create placements for it and use the documentation provided below to integrate these placements into your iOS application.
+Once your app is registered, you can create placements for it and use the documentation provided below to integrate them into your iOS application.
 
 We also provide some demo placements that can be used for testing. These placements have a 100% fill rate.
 

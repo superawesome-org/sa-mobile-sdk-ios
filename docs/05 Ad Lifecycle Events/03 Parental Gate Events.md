@@ -22,10 +22,9 @@ Finally, you can implement the `SAParentalGateProtocol` to capture parental gate
 
 ```
 
-And just as before, any ads in your app must set their `parentalGateDelegate` object to `MyViewController`, as class that implements the SAParentalGateProtocol interface.
+And just as before, any ads in your app must set their `parentalGateDelegate` object to `MyViewController`, as the class that implements the SAParentalGateProtocol interface.
 
 ```
-
 _vad = [[SAVideoAd alloc] initWithFrame:CGRectMake(0, 0, 320, 300)];
 [_vad setParentalGateDelegate: self]; // where "self" is the view controller
 

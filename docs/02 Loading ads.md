@@ -1,6 +1,6 @@
 After setting up the SDK, the first thing you'll want to do is start loading ads. 
 
-To do so, the first thing you'll need is to declare your view or view controller as implementing the `SALoaderProcol`, which is a custom AwesomeAds protocol:
+To do so, you'll need to make your view or view controller implement the `SALoaderProcol`, which is a custom AwesomeAds protocol:
 
 ```
 @interface MyViewController () <SALoaderProtocol>
@@ -40,4 +40,4 @@ Finally, to actually start loading the ad, in the `init` method you'll have to a
 
 ```
 
-Replace `__PLACEMENT_ID__` with a valid banner ad Placement Id from the Dashboard or one of the test Placement Id.
+Replace `__PLACEMENT_ID__` with a valid ad placement ID from the Dashboard or one of the test placement IDs.

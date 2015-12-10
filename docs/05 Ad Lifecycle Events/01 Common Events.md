@@ -9,7 +9,7 @@ To do this, your `ViewController` or `View` class must also implement the `SAAdP
 
 ``` 
 
-This protocol defines a series of optional functions you can implement and catch events:
+This protocol defines a series of optional functions you can implement and catch events with:
 
 ```
 
@@ -39,7 +39,6 @@ This protocol defines a series of optional functions you can implement and catch
 Finally, to complete the code, all ads must assign their `adDelegate` object to `MyViewController`. This means that when an ad launches an adWasShown or adWasClosed event, the controller will respond with the functions implemented above.
 
 ```
-
 _ad = [[SABannerAd alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
 [_ad setAdDelegate: self]; // where "self" is the view controller
 

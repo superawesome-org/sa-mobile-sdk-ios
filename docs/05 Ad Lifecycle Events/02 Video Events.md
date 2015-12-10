@@ -32,10 +32,9 @@ As usual, you need to change your `ViewController` class:
 
 ```
 
-And just as before, any Video Ads in your app must set their `videoDelegate` object to `MyViewController`, as class that implements the SAVideoAdProtocol interface.
+And just as before, any Video Ads in your app must set their `videoDelegate` object to `MyViewController`, as the class that implements the SAVideoAdProtocol interface.
 
 ```
-
 _vad = [[SAVideoAd alloc] initWithFrame:CGRectMake(0, 0, 320, 300)];
 [_vad setVideoDelegate: self]; // where "self" is the view controller
 

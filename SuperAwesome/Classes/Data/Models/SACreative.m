@@ -22,11 +22,11 @@
     NSLog(@"\t baseFormat: %@", _baseFormat);
     NSLog(@"\t format: %ld", (long)_format);
     NSLog(@"\t impressionURL: %@", _impressionURL);
+    NSLog(@"\t viewableImpressionURL: %@", _viewableImpressionURL);
     NSLog(@"\t clickURL: %@", _clickURL);
     NSLog(@"\t trackingURL: %@", _trackingURL);
     NSLog(@"\t fullClickURL: %@", _fullClickURL);
     NSLog(@"\t isFullClickURLReliable: %d", _isFullClickURLReliable);
-    NSLog(@"\t viewableImpressionURL: %@", _viewableImpressionURL);
     NSLog(@"\t approved: %d", _approved);
     [_details print];
 }
