@@ -112,7 +112,7 @@
             }
             // else call it failure
             else {
-                NSLog(@"Some other failure: %@ - %ld", _surl, ((NSHTTPURLResponse*)response).statusCode);
+//                NSLog(@"Some other failure: %@ - %ld", _surl, ((NSHTTPURLResponse*)response).statusCode);
                 if (failure) {
                     failure();
                 }
