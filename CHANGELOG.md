@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+3.2.4
+ - Changed the Parental Gate copy
+
 3.2.2
  - Stopped padlock view controller
 
