@@ -1,1 +1,0 @@
-../../../../../Frameworks/sourcekit-mraid-ios/src/MRAID/MRAIDSettings.h

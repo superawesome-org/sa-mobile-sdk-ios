@@ -11,9 +11,6 @@
 // impor theader
 #import "SABannerAd.h"
 
-// import actual SKMRAIDView class
-#import "SKMRAIDView.h"
-
 // import models
 #import "SAAd.h"
 #import "SACreative.h"
@@ -25,7 +22,8 @@
 // import sender
 #import "SASender.h"
 
-// import aux classes parental gate & padlock
+// import aux classes parental gate & padlock & sawebview
+#import "SAWebView.h"
 #import "SAParentalGate.h"
 #import "SAPadlock.h"
 
@@ -40,10 +38,10 @@
 @end
 
 // Internal category declaration of SABannerAd
-@interface SABannerAd () <SKMRAIDViewDelegate>
+@interface SABannerAd () <SAWebViewProtocol>
 
 // internal raidview
-@property (nonatomic, retain) SKMRAIDView *raidview;
+@property (nonatomic, retain) SAWebView *sawebview;
 
 @end
 
@@ -63,22 +61,18 @@
     CGRect frame = [SAAux arrangeAdInNewFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
                                     fromFrame:CGRectMake(0, 0, super.ad.creative.details.width, super.ad.creative.details.height)];
     
-    _raidview = [[SKMRAIDView alloc] initWithFrame:frame
-                                     withHtmlData:super.ad.adHTML
-                                      withBaseURL:[NSURL URLWithString:@""]
-                                supportedFeatures:@[]
-                                         delegate:self
-                                  serviceDelegate:nil
-                               rootViewController:nil];
+    _sawebview = [[SAWebView alloc] initWithFrame:frame
+                                          andHTML:super.ad.adHTML
+                                      andDelegate:self];
     
-    [self addSubview:_raidview];
+    [self addSubview:_sawebview];
     
-    [pad addPadlockButtonToSubview:_raidview];
+    [pad addPadlockButtonToSubview:_sawebview];
 }
 
 #pragma mark MKRAID View delegate
 
-- (void) mraidViewAdReady:(SKMRAIDView *)mraidView {
+- (void) saWebViewDidLoad {
     [SASender sendEventToURL:super.ad.creative.viewableImpressionURL];
     
     if ([super.adDelegate respondsToSelector:@selector(adWasShown:)]) {
@@ -86,14 +80,13 @@
     }
 }
 
-- (void) mraidViewAdFailed:(SKMRAIDView *)mraidView {
-    
+- (void) saWebViewDidFail {
     if ([super.adDelegate respondsToSelector:@selector(adFailedToShow:)]) {
         [super.adDelegate adFailedToShow:super.ad.placementId];
     }
 }
 
-- (void) mraidViewNavigate:(SKMRAIDView *)mraidView withURL:(NSURL *)url {
+- (void) saWebViewWillNavigate:(NSURL *)url {
     [self tryToGoToURL:url];
 }
 
@@ -106,10 +99,10 @@
     CGRect frame = [SAAux arrangeAdInNewFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
                                     fromFrame:CGRectMake(0, 0, super.ad.creative.details.width, super.ad.creative.details.height)];
     
-    _raidview.frame = frame;
+    _sawebview.frame = frame;
     
     [pad removePadlockButton];
-    [pad addPadlockButtonToSubview:_raidview];
+    [pad addPadlockButtonToSubview:_sawebview];
 }
 
 @end

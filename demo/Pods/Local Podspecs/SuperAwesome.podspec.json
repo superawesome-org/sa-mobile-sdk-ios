@@ -50,11 +50,7 @@
     "xml2",
     "z"
   ],
-  "source_files": [
-    "Frameworks/sourcekit-common-ios/src/**/*.{h,m}",
-    "Frameworks/sourcekit-mraid-ios/src/MRAID/**/*.{h,m}",
-    "SuperAwesome/Classes/**/*.{h,m}"
-  ],
+  "source_files": "SuperAwesome/Classes/**/*.{h,m}",
   "resources": "SuperAwesome/Resources/*",
   "default_subspecs": "Default",
   "subspecs": [

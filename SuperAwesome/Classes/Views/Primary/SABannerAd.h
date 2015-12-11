@@ -11,9 +11,9 @@
 // import base class
 #import "SAView.h"
 
-// forward declaration of SKMRAIDView, a special subclass of WebView that
+// forward declaration of SAWebView, a special subclass of WebView that
 // is used by Ads to display all kinds of content
-@class SKMRAIDView;
+@class SAWebView;
 
 // @brief:
 // The SABannerAd class can hold any type of image or rich media ad
