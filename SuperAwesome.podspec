@@ -17,19 +17,8 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.source       = { :git => "https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git", :tag => "3.2.4" }
 
-  s.dependency "JSONModel", "~> 1.0.2"
   s.frameworks = 'AVFoundation', 'AudioToolbox', 'CFNetwork', 'CoreGraphics', 'CoreData', 'CoreLocation', 'CoreMedia', 'CoreMotion', 'CoreTelephony', 'EventKit', 'MediaPlayer', 'MessageUI', 'MobileCoreServices', 'QuartzCore', 'Security', 'SystemConfiguration', 'StoreKit', 'AdSupport', 'EventKitUI'
   s.libraries = "xml2", "z"
   s.source_files  = "SuperAwesome/Classes/**/*.{h,m}"
   s.resources = "SuperAwesome/Resources/*"
-
-  s.default_subspec = 'Default'
-  
-  s.subspec 'Default' do |default|
-    default.dependency "GoogleAds-IMA-iOS-SDK", "3.0.beta.12"
-  end
-
-  s.subspec 'AdMob' do |admob|
-    admob.dependency "GoogleAds-IMA-iOS-SDK-For-AdMob", "3.0.beta.12"
-  end
 end

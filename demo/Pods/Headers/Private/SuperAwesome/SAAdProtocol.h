@@ -1,1 +1,1 @@
-../../../../../SuperAwesome/Classes/Views/Protocols/SAAdProtocol.h
+../../../../../SuperAwesome/Classes/SDK/Views/Protocols/SAAdProtocol.h

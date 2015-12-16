@@ -1,1 +1,1 @@
-../../../../../SuperAwesome/Classes/Views/Protocols/SAVideoAdProtocol.h
+../../../../../SuperAwesome/Classes/SDK/Views/Protocols/SAVideoAdProtocol.h

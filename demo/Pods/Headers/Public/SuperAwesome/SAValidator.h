@@ -1,1 +1,1 @@
-../../../../../SuperAwesome/Classes/Data/Validator/SAValidator.h
+../../../../../SuperAwesome/Classes/SDK/AdParser/Validator/SAValidator.h

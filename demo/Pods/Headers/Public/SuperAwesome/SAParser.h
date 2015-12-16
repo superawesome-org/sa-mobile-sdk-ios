@@ -1,1 +1,1 @@
-../../../../../SuperAwesome/Classes/Data/Parser/SAParser.h
+../../../../../SuperAwesome/Classes/SDK/AdParser/Parser/SAParser.h

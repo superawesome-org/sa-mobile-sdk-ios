@@ -1,1 +1,1 @@
-../../../../../SuperAwesome/Classes/Views/Primary/Fullscreen/SAViewController.h
+../../../../../SuperAwesome/Classes/SDK/Views/Primary/Fullscreen/SAViewController.h

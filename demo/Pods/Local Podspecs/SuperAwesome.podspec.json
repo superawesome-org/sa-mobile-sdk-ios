@@ -20,11 +20,6 @@
     "git": "https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git",
     "tag": "3.2.4"
   },
-  "dependencies": {
-    "JSONModel": [
-      "~> 1.0.2"
-    ]
-  },
   "frameworks": [
     "AVFoundation",
     "AudioToolbox",
@@ -51,24 +46,5 @@
     "z"
   ],
   "source_files": "SuperAwesome/Classes/**/*.{h,m}",
-  "resources": "SuperAwesome/Resources/*",
-  "default_subspecs": "Default",
-  "subspecs": [
-    {
-      "name": "Default",
-      "dependencies": {
-        "GoogleAds-IMA-iOS-SDK": [
-          "3.0.beta.12"
-        ]
-      }
-    },
-    {
-      "name": "AdMob",
-      "dependencies": {
-        "GoogleAds-IMA-iOS-SDK-For-AdMob": [
-          "3.0.beta.12"
-        ]
-      }
-    }
-  ]
+  "resources": "SuperAwesome/Resources/*"
 }
