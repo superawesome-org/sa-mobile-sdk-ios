@@ -140,6 +140,17 @@
     
 }
 
+- (void) didGoToURL:(NSURL *)url {
+    [self tryToGoToURL:url];
+}
+
+#pragma mark <Stop Ad>
+
+- (void) stopVideoAd {
+    // just reset the player and it will all stop
+    [_player resetPlayer];
+}
+
 #pragma mark <Resize functions>
 
 - (void) resizeToFrame:(CGRect)toframe {

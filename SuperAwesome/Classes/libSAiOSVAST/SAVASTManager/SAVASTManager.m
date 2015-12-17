@@ -211,6 +211,12 @@
     [self progressThroughAds];
 }
 
+- (void) didGoToURL:(NSURL *)url {
+    if (_delegate && [_delegate respondsToSelector:@selector(didGoToURL:)]) {
+        [_delegate didGoToURL:url];
+    }
+}
+
 #pragma mark <Progress Through Ads>
 
 - (void) progressThroughAds {
@@ -269,6 +275,23 @@
 // @brief: basically code that I use a lot in this class and felt the need
 // to be included in a function
 - (void) playCurrentAdWithCurrentCreative {
+    // setup the current click URL
+    if (__cCreative.ClickThrough != NULL && [SAURLUtils isValidURL:__cCreative.ClickThrough]) {
+        [_playerRef setupClickURL:__cCreative.ClickThrough];
+    }
+    // if no click through is there - just go through the ClickTracking URLs and
+    // maybe one is good
+    else {
+        
+        for (NSString *clickTracking in __cCreative.ClickTracking) {
+            if ([SAURLUtils isValidURL:clickTracking]) {
+                [_playerRef setupClickURL:clickTracking];
+                break;
+            }
+        }
+    }
+    
+    // play the current creative
     NSString *urlStr = [(SAMediaFile*)[__cCreative.MediaFiles firstObject] URL];
     NSURL *url = [NSURL URLWithString:urlStr];
     [_playerRef playWithMediaURL:url];

@@ -100,6 +100,7 @@
     NSLog(@"\t\tDuration: %@", _Duration);
     if (_ClickThrough) NSLog(@"\t\tClickThrough: OK");
     else NSLog(@"\t\tClickThrough: NOK");
+    NSLog(@"%@", _ClickThrough);
     NSLog(@"\t\tClickTracking[%ld]", _ClickTracking.count);
     NSLog(@"\t\tCustomClicks[%ld]", _CustomClicks.count);
     NSLog(@"\t\tTracking[%ld]", _TrackingEvents.count);

@@ -36,4 +36,9 @@
     adview.refreshPeriod = super.refreshPeriod;
 }
 
+- (void) close {
+    [(SAVideoAd*)adview stopVideoAd];
+    [super close];
+}
+
 @end

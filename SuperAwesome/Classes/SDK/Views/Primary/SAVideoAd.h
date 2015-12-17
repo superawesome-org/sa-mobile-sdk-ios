@@ -19,4 +19,7 @@
 // video delegate
 @property id<SAVideoAdProtocol> videoDelegate;
 
+// function to stop the video ad
+- (void) stopVideoAd;
+
 @end

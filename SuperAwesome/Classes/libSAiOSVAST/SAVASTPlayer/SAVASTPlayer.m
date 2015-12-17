@@ -17,6 +17,7 @@
 
 // import chrome views
 #import "SACronograph.h"
+#import "SAURLClicker.h"
 
 @interface SAVASTPlayer () <AVPlayerItemMetadataOutputPushDelegate>
 
@@ -48,9 +49,13 @@
 
 // chrome elememnts
 @property (nonatomic, strong) SACronograph *chrono;
+@property (nonatomic, strong) SAURLClicker *clicker;
 
 // other aux vars
 @property (nonatomic, strong) NSNotificationCenter *notif;
+
+// the click
+@property (nonatomic, strong) NSString *clickURL;
 
 @end
 
@@ -127,6 +132,10 @@
     // setup the chronograph
     _chrono = [[SACronograph alloc] init];
     [self addSubview:_chrono];
+    
+    _clicker = [[SAURLClicker alloc] init];
+    [_clicker addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:_clicker];
 }
 
 - (void) resetPlayer {
@@ -134,12 +143,16 @@
     [self resetChecks];
     
     // stop the player
-    [_player pause];
-    [_playerLayer removeFromSuperlayer];
-    _player = NULL;
+    if (_player){
+        [_player pause];
+        [_playerLayer removeFromSuperlayer];
+        _player = NULL;
+    }
     
     // remove chrome
     [_chrono removeFromSuperview];
+    [_clicker removeTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
+    [_clicker removeFromSuperview];
     
     // remove observer
     [_playerItem removeObserver:self forKeyPath:@"status"];
@@ -243,6 +256,17 @@
 #pragma mark SEND_AA_FINISH_MOVIE_EVENT
     if (_delegate && [_delegate respondsToSelector:@selector(didReachEnd)] ) {
         [_delegate didReachEnd];
+    }
+}
+
+- (void) setupClickURL:(NSString *)url {
+    _clickURL = url;
+}
+
+- (IBAction) onClick: (id) sender {
+    // call click delegate
+    if (_delegate && [_delegate respondsToSelector:@selector(didGoToURL:)]) {
+        [_delegate didGoToURL:[NSURL URLWithString:_clickURL]];
     }
 }
 

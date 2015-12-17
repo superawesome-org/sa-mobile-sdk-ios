@@ -40,6 +40,13 @@
                                                                      CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding)));
 }
 
++ (NSString*) decodeURI:(NSString *)stringToDecode {
+    return (__bridge NSString *) CFURLCreateStringByReplacingPercentEscapesUsingEncoding(NULL,
+                                                                                         (__bridge CFStringRef) stringToDecode,
+                                                                                         CFSTR(""),
+                                                                                         kCFStringEncodingUTF8);
+}
+
 + (NSString*) encodeJSONDictionaryFromNSDictionary:(NSDictionary *)dict {
     
     // initial var declaration

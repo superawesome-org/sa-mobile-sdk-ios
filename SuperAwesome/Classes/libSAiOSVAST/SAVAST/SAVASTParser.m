@@ -18,6 +18,9 @@
 #import "TBXML.h"
 #import "TBXML+SAStaticFunctions.h"
 
+// import aux
+#import "NSString+HTML.h"
+
 @interface SAVASTParser ()
 
 // the current vast
@@ -83,7 +86,8 @@
         
         // get errors
         [TBXML searchSiblingsAndChildrenOf:adElement->firstChild forName:@"Error" andInterate:^(TBXMLElement *errElement) {
-            [ad.Errors addObject:[TBXML textForElement:errElement]];
+            [ad.Errors addObject:
+             [[TBXML textForElement:errElement] stringByDecodingHTMLEntities]];
         }];
         
         // get impressions
@@ -91,7 +95,7 @@
             // the impression object is now a more complex one
             SAImpression *impr = [[SAImpression alloc] init];
             impr.isSent = false;
-            impr.URL = [TBXML textForElement:impElement];
+            impr.URL = [[TBXML textForElement:impElement] stringByDecodingHTMLEntities];
             [ad.Impressions addObject:impr];
         }];
         
@@ -136,17 +140,19 @@
         
         // populate clickthrough
         [TBXML searchSiblingsAndChildrenOf:element->firstChild forName:@"ClickThrough" andInterate:^(TBXMLElement *clickElement) {
-            _creative.ClickThrough = [TBXML textForElement:clickElement];
+            _creative.ClickThrough = [[TBXML textForElement:clickElement] stringByDecodingHTMLEntities];
         }];
         
         // populate click tracking array
         [TBXML searchSiblingsAndChildrenOf:element->firstChild forName:@"ClickTracking" andInterate:^(TBXMLElement *ctrackElement) {
-            [_creative.ClickTracking addObject:[TBXML textForElement:ctrackElement]];
+            [_creative.ClickTracking addObject:
+             [[TBXML textForElement:ctrackElement] stringByDecodingHTMLEntities]];
         }];
         
         // populate custom clicks array
         [TBXML searchSiblingsAndChildrenOf:element->firstChild forName:@"CustomClicks" andInterate:^(TBXMLElement *cclickElement) {
-            [_creative.CustomClicks addObject:[TBXML textForElement:cclickElement]];
+            [_creative.CustomClicks addObject:
+             [[TBXML textForElement:cclickElement] stringByDecodingHTMLEntities]];
         }];
         
         // populate media files
@@ -157,7 +163,7 @@
             SAMediaFile *mediaFile = [[SAMediaFile alloc] init];
             mediaFile.width = [TBXML valueOfAttributeNamed:@"width" forElement:cMediaElement];
             mediaFile.height = [TBXML valueOfAttributeNamed:@"height" forElement:cMediaElement];
-            mediaFile.URL = [TBXML textForElement:cMediaElement];
+            mediaFile.URL = [[TBXML textForElement:cMediaElement] stringByDecodingHTMLEntities];
             [_creative.MediaFiles addObject:mediaFile];
         }];
         
@@ -168,7 +174,7 @@
             // array assignmenent
             SATracking *tracking = [[SATracking alloc] init];
             tracking.event = [TBXML valueOfAttributeNamed:@"event" forElement:cTrackingElement];
-            tracking.URL = [TBXML textForElement:cTrackingElement];
+            tracking.URL = [[TBXML textForElement:cTrackingElement] stringByDecodingHTMLEntities];
             [_creative.TrackingEvents addObject:tracking];
         }];
         

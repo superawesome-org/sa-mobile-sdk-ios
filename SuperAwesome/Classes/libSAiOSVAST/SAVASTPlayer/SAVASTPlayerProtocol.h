@@ -40,4 +40,8 @@
 // @brief: called when the player terminates with error
 - (void) didPlayWithError;
 
+//
+// @brief: go to URL
+- (void) didGoToURL:(NSURL*)url;
+
 @end

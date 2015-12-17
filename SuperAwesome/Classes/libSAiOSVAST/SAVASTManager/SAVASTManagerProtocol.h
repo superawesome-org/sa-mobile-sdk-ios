@@ -65,4 +65,7 @@
 // @brief: called when all ads and all creative have played
 - (void) didEndAllAds;
 
+// @brief: goto URL
+- (void) didGoToURL:(NSURL*)url;
+
 @end
