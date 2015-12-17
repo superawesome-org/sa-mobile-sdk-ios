@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0841B3AF02D845D7F4EDE258 /* libPods-SuperAwesome DemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CB7E89D3831DF69FAF8A307 /* libPods-SuperAwesome DemoTests.a */; };
+		1BE0EDE91C22D95700B4C2CD /* AdItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BE0EDE81C22D95700B4C2CD /* AdItem.m */; };
+		1BE0EDEC1C22D99700B4C2CD /* TestDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BE0EDEB1C22D99700B4C2CD /* TestDataProvider.m */; };
+		1BE0EDEF1C22D9C400B4C2CD /* PresentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BE0EDEE1C22D9C400B4C2CD /* PresentViewController.m */; };
 		6D89FF0A295919F2A168AE98 /* libPods-SuperAwesome Demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EFA8DE86343AF7A5C634FCA /* libPods-SuperAwesome Demo.a */; settings = {ATTRIBUTES = (Required, ); }; };
 		98A4EE491AD524B6005FCE20 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98A4EE481AD524B6005FCE20 /* Main.storyboard */; };
 		98B360E11AE51C19004D1C8D /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98B360E01AE51C19004D1C8D /* MainViewController.m */; };
@@ -42,6 +45,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1BE0EDE71C22D95700B4C2CD /* AdItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdItem.h; sourceTree = "<group>"; };
+		1BE0EDE81C22D95700B4C2CD /* AdItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdItem.m; sourceTree = "<group>"; };
+		1BE0EDEA1C22D99700B4C2CD /* TestDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestDataProvider.h; sourceTree = "<group>"; };
+		1BE0EDEB1C22D99700B4C2CD /* TestDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestDataProvider.m; sourceTree = "<group>"; };
+		1BE0EDED1C22D9C400B4C2CD /* PresentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresentViewController.h; sourceTree = "<group>"; };
+		1BE0EDEE1C22D9C400B4C2CD /* PresentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresentViewController.m; sourceTree = "<group>"; };
 		5634DFB8E076111266332FE4 /* Pods-SuperAwesome Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesome Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-SuperAwesome Demo/Pods-SuperAwesome Demo.release.xcconfig"; sourceTree = "<group>"; };
 		5EFA8DE86343AF7A5C634FCA /* libPods-SuperAwesome Demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SuperAwesome Demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CB7E89D3831DF69FAF8A307 /* libPods-SuperAwesome DemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SuperAwesome DemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,6 +90,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1BE0EDE31C22D92000B4C2CD /* App */ = {
+			isa = PBXGroup;
+			children = (
+				98B98FCB1ACD5F0400EFFA27 /* AppDelegate.h */,
+				98B98FCC1ACD5F0400EFFA27 /* AppDelegate.m */,
+			);
+			name = App;
+			sourceTree = "<group>";
+		};
+		1BE0EDE41C22D92800B4C2CD /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				98B360DF1AE51C19004D1C8D /* MainViewController.h */,
+				98B360E01AE51C19004D1C8D /* MainViewController.m */,
+				1BE0EDED1C22D9C400B4C2CD /* PresentViewController.h */,
+				1BE0EDEE1C22D9C400B4C2CD /* PresentViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		1BE0EDE51C22D93E00B4C2CD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1BE0EDE71C22D95700B4C2CD /* AdItem.h */,
+				1BE0EDE81C22D95700B4C2CD /* AdItem.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		1BE0EDE61C22D94300B4C2CD /* TestData */ = {
+			isa = PBXGroup;
+			children = (
+				1BE0EDEA1C22D99700B4C2CD /* TestDataProvider.h */,
+				1BE0EDEB1C22D99700B4C2CD /* TestDataProvider.m */,
+			);
+			name = TestData;
+			sourceTree = "<group>";
+		};
 		4CE4A61138BBFB030F35D563 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -113,11 +160,11 @@
 		98B98FC61ACD5F0400EFFA27 /* SuperAwesome Demo */ = {
 			isa = PBXGroup;
 			children = (
+				1BE0EDE61C22D94300B4C2CD /* TestData */,
+				1BE0EDE51C22D93E00B4C2CD /* Models */,
+				1BE0EDE41C22D92800B4C2CD /* Controller */,
+				1BE0EDE31C22D92000B4C2CD /* App */,
 				98A4EE481AD524B6005FCE20 /* Main.storyboard */,
-				98B98FCB1ACD5F0400EFFA27 /* AppDelegate.h */,
-				98B98FCC1ACD5F0400EFFA27 /* AppDelegate.m */,
-				98B360DF1AE51C19004D1C8D /* MainViewController.h */,
-				98B360E01AE51C19004D1C8D /* MainViewController.m */,
 				98B98FD41ACD5F0400EFFA27 /* Images.xcassets */,
 				98B98FD61ACD5F0400EFFA27 /* LaunchScreen.xib */,
 				98B98FC71ACD5F0400EFFA27 /* Supporting Files */,
@@ -328,6 +375,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BE0EDE91C22D95700B4C2CD /* AdItem.m in Sources */,
+				1BE0EDEC1C22D99700B4C2CD /* TestDataProvider.m in Sources */,
+				1BE0EDEF1C22D9C400B4C2CD /* PresentViewController.m in Sources */,
 				98B98FCD1ACD5F0400EFFA27 /* AppDelegate.m in Sources */,
 				98B360E11AE51C19004D1C8D /* MainViewController.m in Sources */,
 				98B98FCA1ACD5F0400EFFA27 /* main.m in Sources */,

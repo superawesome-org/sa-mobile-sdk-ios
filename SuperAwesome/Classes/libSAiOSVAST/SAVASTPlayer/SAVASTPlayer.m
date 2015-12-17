@@ -154,14 +154,14 @@
     [_clicker removeTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
     [_clicker removeFromSuperview];
     
-    // remove observer
+    // remove _playerItem observer
     @try {
         [_playerItem removeObserver:self forKeyPath:@"status"];
     } @catch(id anException){
         // do nothing
     }
     
-    // remove observer
+    // remove notif center observer
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:AVPlayerItemDidPlayToEndTimeNotification
                                                   object:_playerItem];
@@ -279,10 +279,14 @@
 //
 // @brief: in this at dealloc I have to remove the observer
 - (void) dealloc {
-    // remove KVO stuff
-    [_playerItem removeObserver:self forKeyPath:@"status"];
+    // remove _playerItem observer
+    @try {
+        [_playerItem removeObserver:self forKeyPath:@"status"];
+    } @catch(id anException){
+        // do nothing
+    }
     
-    // remove other observers
+    // remove notif center observer
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:AVPlayerItemDidPlayToEndTimeNotification
                                                   object:_playerItem];
