@@ -155,7 +155,13 @@
     [_clicker removeFromSuperview];
     
     // remove observer
-    [_playerItem removeObserver:self forKeyPath:@"status"];
+    @try {
+        [_playerItem removeObserver:self forKeyPath:@"status"];
+    } @catch(id anException){
+        // do nothing
+    }
+    
+    // remove observer
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:AVPlayerItemDidPlayToEndTimeNotification
                                                   object:_playerItem];
