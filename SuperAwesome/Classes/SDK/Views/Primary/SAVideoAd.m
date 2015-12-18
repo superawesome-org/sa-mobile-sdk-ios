@@ -141,6 +141,8 @@
 }
 
 - (void) didGoToURL:(NSURL *)url {
+    super.ad.creative.fullClickURL = [url absoluteString];
+    super.ad.creative.isFullClickURLReliable = true;
     [self tryToGoToURL:url];
 }
 

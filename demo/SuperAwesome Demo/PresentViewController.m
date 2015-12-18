@@ -7,6 +7,7 @@
 //
 
 #import "PresentViewController.h"
+#import "SuperAwesome.h"
 
 @interface PresentViewController ()
 
@@ -36,7 +37,12 @@
 
 - (void) goBack {
     [self dismissViewControllerAnimated:YES completion:^{
-        
+        //
+        for (UIView *v in self.view.subviews) {
+            if ([v isKindOfClass:[SAVideoAd class]]) {
+                [(SAVideoAd*)v stopVideoAd];
+            }
+        }
     }];
 }
 

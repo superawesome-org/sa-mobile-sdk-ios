@@ -27,6 +27,11 @@ typedef void (^failure)();
 // the SA servers needs
 @interface SANetwork : NSObject
 
+//
+// @brief:
+// perform a Sync GET to a URL
++ (NSData*) sendSyncGETToEndpoint:(NSString*)endpoint;
+
 // @brief:
 // perform GET request to server
 //  - endpoint: the URL to send the POST request to; must be full URL e.g. http://google.com

@@ -13,12 +13,14 @@
 
 // import modelspace
 #import "SAVASTModels.h"
+#import "SAVASTModels+Operations.h"
 
 // parser
 #import "TBXML.h"
 #import "TBXML+SAStaticFunctions.h"
 
 // import aux
+#import "libSAiOSNetwork.h"
 #import "NSString+HTML.h"
 
 @interface SAVASTParser ()
@@ -34,24 +36,32 @@
 // Main Public Parse functions
 ////////////////////////////////////////////////////////////////////////////////
 
-- (void) parseVASTXML:(NSString *)xml {
-    // init the parser
-    NSError *xmlError = NULL;
-    TBXML *tbxml = [[TBXML alloc] initWithXMLString:xml error:&xmlError];
+- (void) parseVASTURL:(NSString *)url {
     
-    // check for error
-    if (!xmlError) {
-        // start parsing
-        if (tbxml.rootXMLElement) {
+    // get URL
+    [SANetwork sendGETtoEndpoint:url withQueryDict:NULL andSuccess:^(NSData *data) {
+        
+        NSString *xmlString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSError *xmlError = NULL;
+        TBXML *tbxml = [[TBXML alloc] initWithXMLString:xmlString error:&xmlError];
+        
+        if (!xmlError) {
             [self parseAdsInVAST:tbxml.rootXMLElement];
             [__cvast printShortVersion];
             [self validateAndReturnData];
+        } else {
+            // failed to access and load the URL
+            if (_delegate && [_delegate respondsToSelector:@selector(didFindInvalidVASTResponse)]) {
+                [_delegate didFindInvalidVASTResponse];
+            }
         }
-    } else {
+        
+    } orFailure:^{
+        // failed to access and load the URL
         if (_delegate && [_delegate respondsToSelector:@selector(didFindInvalidVASTResponse)]) {
             [_delegate didFindInvalidVASTResponse];
         }
-    }
+    }];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -140,7 +150,8 @@
         
         // populate clickthrough
         [TBXML searchSiblingsAndChildrenOf:element->firstChild forName:@"ClickThrough" andInterate:^(TBXMLElement *clickElement) {
-            _creative.ClickThrough = [[TBXML textForElement:clickElement] stringByDecodingHTMLEntities];
+            _creative.ClickThrough = [TBXML textForElement:clickElement];
+            _creative.ClickThrough = [_creative.ClickThrough stringByDecodingHTMLEntities];
         }];
         
         // populate click tracking array
@@ -198,6 +209,14 @@
     }
 }
 
+//
+// @brief: This function is used in the case of 3rd party Wrapper Ad type, in
+// which the actual media data is in a different VAST Tag, served by
+// the VASTAdTagURI field
+- (void) parseThirdPartyCreativeData {
+    
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 // Validating, getting rid of unused data and trying to return something
 ////////////////////////////////////////////////////////////////////////////////
@@ -220,7 +239,7 @@
     NSMutableArray *returnAdsArray = [[NSMutableArray alloc] init];
     
     for (SAVASTAd *ad in __cvast.Ads) {
-        if (ad.type == InLine) {
+        if (ad.type == InLine || ad.type == Wrapper) {
             NSMutableArray *creativesToDelete = [[NSMutableArray alloc] init];
             
             // gather in-valid creative types

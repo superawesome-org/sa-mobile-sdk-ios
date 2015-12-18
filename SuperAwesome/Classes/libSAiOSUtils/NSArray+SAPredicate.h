@@ -23,4 +23,9 @@
 // the current array elements to
 - (NSArray*) filterBy:(NSString*) member withBool:(BOOL)value;
 
+//
+//
+// aux function that removes all elements but the first one
+- (NSArray*) removeAllButFirstElement;
+
 @end

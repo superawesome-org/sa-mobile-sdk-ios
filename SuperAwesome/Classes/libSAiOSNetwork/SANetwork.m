@@ -18,6 +18,10 @@
 
 @implementation SANetwork
 
++ (NSData*) sendSyncGETToEndpoint:(NSString *)endpoint {
+    return [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:endpoint]];
+}
+
 + (void) sendGETtoEndpoint:(NSString*)endpoint
              withQueryDict:(NSDictionary*)GETDict
                 andSuccess:(success)success

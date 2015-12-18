@@ -23,7 +23,7 @@
 @interface SAVASTManager () <SAVASTParserProtocol, SAVASTPlayerProtocol>
 
 // a strong reference to a parser
-@property (nonatomic, strong) SAVASTParser *parser;
+@property (nonatomic, strong) SAVAST2Parser *parser;
 
 // a weak reference to a player declared somewhere - that just acts as renderer
 @property (nonatomic, weak) SAVASTPlayer *playerRef;
@@ -51,7 +51,7 @@
         _playerRef.delegate = self;
         
         // init parser
-        _parser = [[SAVASTParser alloc] init];
+        _parser = [[SAVAST2Parser alloc] init];
         _parser.delegate = self;
     }
     
@@ -59,12 +59,7 @@
 }
 
 - (void) parseVASTURL:(NSString *)urlString {
-    [SANetwork sendGETtoEndpoint:urlString withQueryDict:NULL andSuccess:^(NSData *data) {
-        NSString *xmlString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        [_parser parseVASTXML:xmlString];
-    } orFailure:^{
-        NSLog(@"AAAAAA: Could not load VAST");
-    }];
+    [_parser parseVASTURL:urlString];
 }
 
 #pragma mark <SAVASTParserProtocol>
@@ -212,6 +207,12 @@
 }
 
 - (void) didGoToURL:(NSURL *)url {
+    // send event to URL
+    for (NSString *ctracking in __cCreative.ClickTracking) {
+        [SASender sendEventToURL:ctracking];
+    }
+    
+    // call delegate
     if (_delegate && [_delegate respondsToSelector:@selector(didGoToURL:)]) {
         [_delegate didGoToURL:url];
     }

@@ -42,6 +42,15 @@
     return container;
 }
 
++ (NSValue*) findFirstIntanceInSiblingsAndChildrenOf:(TBXMLElement *)element
+                                             forName:(NSString *)name {
+    NSMutableArray *container = [self searchSiblingsAndChildrenOf:element forName:name];
+    if (container.count >= 1) {
+        return [container firstObject];
+    }
+    return NULL;
+}
+
 + (void) searchSiblingsAndChildrenOf:(TBXMLElement*)element
                              forName:(NSString*)name
                          andInterate:(TBXMLIterateBlock)block {
@@ -55,7 +64,6 @@
         block(_element);
     }
 }
-
 
 
 + (BOOL) checkSiblingsAndChildrenOf:(TBXMLElement *)element

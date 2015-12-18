@@ -34,4 +34,14 @@
     return [_mutableSelf filteredArrayUsingPredicate:searchPref];
 }
 
+- (NSArray*) removeAllButFirstElement {
+    NSMutableArray *_mutableSelf = [self mutableCopy];
+    
+    if (_mutableSelf.count >= 1) {
+        return [[NSMutableArray alloc] initWithObjects:[_mutableSelf firstObject], nil];
+    } else {
+        return _mutableSelf;
+    }
+}
+
 @end

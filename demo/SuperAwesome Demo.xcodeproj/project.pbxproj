@@ -160,14 +160,14 @@
 		98B98FC61ACD5F0400EFFA27 /* SuperAwesome Demo */ = {
 			isa = PBXGroup;
 			children = (
+				98B98FC71ACD5F0400EFFA27 /* Supporting Files */,
+				1BE0EDE31C22D92000B4C2CD /* App */,
 				1BE0EDE61C22D94300B4C2CD /* TestData */,
 				1BE0EDE51C22D93E00B4C2CD /* Models */,
 				1BE0EDE41C22D92800B4C2CD /* Controller */,
-				1BE0EDE31C22D92000B4C2CD /* App */,
 				98A4EE481AD524B6005FCE20 /* Main.storyboard */,
 				98B98FD41ACD5F0400EFFA27 /* Images.xcassets */,
 				98B98FD61ACD5F0400EFFA27 /* LaunchScreen.xib */,
-				98B98FC71ACD5F0400EFFA27 /* Supporting Files */,
 			);
 			path = "SuperAwesome Demo";
 			sourceTree = "<group>";

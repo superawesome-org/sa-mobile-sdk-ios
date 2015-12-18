@@ -19,6 +19,6 @@
 @property id<SAVASTParserProtocol> delegate;
 
 // parsing functions
-- (void) parseVASTXML:(NSString*)xml;
+- (void) parseVASTURL:(NSString*)url;
 
 @end
