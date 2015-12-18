@@ -75,7 +75,6 @@
         
         // call events
         [self.delegate interstitialCustomEventWillAppear:self];
-        [self.delegate interstitialCustomEventDidAppear:self];
     }];
 }
 
@@ -115,6 +114,7 @@
 
 - (void) adWasShown:(NSInteger)placementId {
     // do nothing
+    [self.delegate interstitialCustomEventDidAppear:self];
 }
 
 - (void) adFailedToShow:(NSInteger)placementId {

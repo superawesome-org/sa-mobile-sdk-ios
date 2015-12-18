@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+3.3.0
+ - Removed all 3rd party non-open-source libraries
+ - Built a custom SAWebView to display image, rich-media and 3rd party tags
+ - Built a custom VAST Parser to display SA and 3rd party VAST
+
 3.2.4
  - Changed the Parental Gate copy
 
