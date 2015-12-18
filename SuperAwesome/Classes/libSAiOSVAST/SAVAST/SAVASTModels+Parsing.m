@@ -93,12 +93,10 @@
         // populate clickthrough
         [TBXML searchSiblingsAndChildrenOf:element->firstChild forName:@"ClickThrough" andInterate:^(TBXMLElement *clickElement) {
             _creative.ClickThrough = [TBXML textForElement:clickElement];
-//            _creative.ClickThrough = [_creative.ClickThrough stringByDecodingHTMLEntities];
+            _creative.ClickThrough = [_creative.ClickThrough stringByDecodingHTMLEntities];
             _creative.ClickThrough = [_creative.ClickThrough stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
             _creative.ClickThrough = [_creative.ClickThrough stringByReplacingOccurrencesOfString:@"%3A" withString:@":"];
             _creative.ClickThrough = [_creative.ClickThrough stringByReplacingOccurrencesOfString:@"%2F" withString:@"/"];
-//            _creative.ClickThrough = ;
-            NSLog(@"AAABBBB %@", [_creative.ClickThrough stringByLinkifyingURLs]);
         }];
         
         // populate click tracking array

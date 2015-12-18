@@ -11,7 +11,7 @@
 #import <Foundation/Foundation.h>
 
 // import vast stuff
-#import "SAVAST2Parser.h"
+#import "SAVASTParser.h"
 #import "SAVASTPlayer.h"
 
 // import delegate

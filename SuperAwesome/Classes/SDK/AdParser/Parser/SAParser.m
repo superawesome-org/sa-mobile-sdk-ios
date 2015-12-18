@@ -22,6 +22,7 @@
 // import SAAux library of goodies
 #import "libSAiOSUtils.h"
 #import "libSAiOSNetwork.h"
+#import "NSString+HTML.h"
 
 // import other parsers
 #import "SAVASTParser.h"
@@ -206,18 +207,9 @@
             break;
         }
         case video:{
-//            SAVASTParser *parser = [[SAVASTParser alloc] init];
+            // just continue parsing the ad - the heavy lifting will be done
+            // at playtime by the SAVASTManager, SAVASTPlayer and SASVASTParser
             parse(ad);
-//            [parser findCorrectVASTClickFor:ad.creative.details.vast withResult:^(NSString *vastClickURL) {
-//                ad.creative.fullClickURL = vastClickURL;
-//                ad.creative.isFullClickURLReliable = true;
-//                
-//                // format the ad HTML
-//                ad.adHTML = [SAHTMLParser formatCreativeDataIntoAdHTML:ad];
-//                
-//                // send back the callback
-//                parse(ad);
-//            }];
             break;
         }
         case rich:

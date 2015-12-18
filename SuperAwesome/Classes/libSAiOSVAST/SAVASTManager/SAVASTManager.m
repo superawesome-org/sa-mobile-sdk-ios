@@ -23,7 +23,7 @@
 @interface SAVASTManager () <SAVASTParserProtocol, SAVASTPlayerProtocol>
 
 // a strong reference to a parser
-@property (nonatomic, strong) SAVAST2Parser *parser;
+@property (nonatomic, strong) SAVASTParser *parser;
 
 // a weak reference to a player declared somewhere - that just acts as renderer
 @property (nonatomic, weak) SAVASTPlayer *playerRef;
@@ -51,7 +51,7 @@
         _playerRef.delegate = self;
         
         // init parser
-        _parser = [[SAVAST2Parser alloc] init];
+        _parser = [[SAVASTParser alloc] init];
         _parser.delegate = self;
     }
     

@@ -24,7 +24,7 @@
 // overwriting init functions
 - (id) init {
     if (self = [super init]) {
-        _isParentalGateEnabled = YES;
+        _isParentalGateEnabled = NO;
         _refreshPeriod = 30;
     }
     
@@ -33,7 +33,7 @@
 
 - (id) initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        _isParentalGateEnabled = YES;
+        _isParentalGateEnabled = NO;
         _refreshPeriod = 30;
     }
     
@@ -42,7 +42,7 @@
 
 - (id) initWithCoder:(NSCoder *)aDecoder {
     if (self = [super initWithCoder:aDecoder]) {
-        _isParentalGateEnabled = YES;
+        _isParentalGateEnabled = NO;
         _refreshPeriod = 30;
     }
     
