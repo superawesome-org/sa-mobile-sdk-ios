@@ -10,10 +10,12 @@ This will add the SDK to your current project.
 
 Next, you'll need to download a list of files called Adapters:
 
-  * [SuperAwesomeBannerCustomEvent.h](https://raw.githubusercontent.com/SuperAwesomeLTD/sa-mobile-sdk-ios/develop_v3/SuperAwesome/MoPubIntegration/SuperAwesomeBannerCustomEvent.h)
-  * [SuperAwesomeBannerCustomEvent.m](https://raw.githubusercontent.com/SuperAwesomeLTD/sa-mobile-sdk-ios/develop_v3/SuperAwesome/MoPubIntegration/SuperAwesomeBannerCustomEvent.m)
-  * [SuperAwesomeInterstitialCustomEvent.h](https://raw.githubusercontent.com/SuperAwesomeLTD/sa-mobile-sdk-ios/develop_v3/SuperAwesome/MoPubIntegration/SuperAwesomeInterstitialCustomEvent.h)
-  * [SuperAwesomeInterstitialCustomEvent.m](https://raw.githubusercontent.com/SuperAwesomeLTD/sa-mobile-sdk-ios/develop_v3/SuperAwesome/MoPubIntegration/SuperAwesomeInterstitialCustomEvent.m)
+  * [SuperAwesomeBannerCustomEvent.h](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/blob/update/mraid_to_webview/SuperAwesome/MoPubIntegration/SuperAwesomeBannerCustomEvent.h)
+  * [SuperAwesomeBannerCustomEvent.m](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/blob/update/mraid_to_webview/SuperAwesome/MoPubIntegration/SuperAwesomeBannerCustomEvent.m)
+  * [SuperAwesomeInterstitialCustomEvent.h](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/blob/update/mraid_to_webview/SuperAwesome/MoPubIntegration/SuperAwesomeInterstitialCustomEvent.h)
+  * [SuperAwesomeInterstitialCustomEvent.m](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/blob/update/mraid_to_webview/SuperAwesome/MoPubIntegration/SuperAwesomeInterstitialCustomEvent.m)
+  * [SuperAwesomeRewardedVideoCustomEvent.h](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/blob/update/mraid_to_webview/SuperAwesome/MoPubIntegration/SuperAwesomeRewardedVideoCustomEvent.h)
+  * [SuperAwesomeRewardedVideoCustomEvent.m](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/blob/update/mraid_to_webview/SuperAwesome/MoPubIntegration/SuperAwesomeRewardedVideoCustomEvent.m)
 
 These will act as a convenient bridge between SuperAwesome and MoPub, so that you don't have to write any aditional line of code.
 You'll need to add these to your project, wherever is convenient.
@@ -39,6 +41,7 @@ And assign custom inventory details for Banner and Interstitial ads:
 Custom Event Class is:
   * for Banner Ads: `SuperAwesomeBannerCustomEvent`
   * for Interstitial Ads: `SuperAwesomeInterstitialCustomEvent`
+  * for Rewarded Video Ads: `SuperAwesomeRewardedVideoCustomEvent`
 
 Notice these are identical to the names of the four files you downloaded in step one.
 
@@ -53,4 +56,4 @@ Custom Event Data is always required, and must be given in the form of  JSON:
 
 ```
 
-If you don't yet have a Placement ID for Awesome Ads, check out the [Getting Started / Registering Your App on the Dashboard](https://developers.superawesome.tv/docs/iossdk/Getting%20Started/Registering%20Your%20App%20on%20the%20Dashboard?version=3) section.
+If you don't yet have a Placement ID for Awesome Ads, check out the [Getting Started / Registering Your App on the Dashboard](https://developers.superawesome.tv/docs/iossdk/Getting%20Started/Registering%20Your%20App%20on%20the%20Dashboard?version=4) section.
