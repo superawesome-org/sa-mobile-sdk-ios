@@ -167,6 +167,24 @@
                                                   object:_playerItem];
 }
 
+- (void) updateToFrame:(CGRect)frame {
+    self.frame = frame;
+    _playerLayer.frame = frame;
+    
+    // remove chrome
+    [_chrono removeFromSuperview];
+    [_clicker removeTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
+    [_clicker removeFromSuperview];
+    
+    // setup the chronograph
+    _chrono = [[SACronograph alloc] init];
+    [self addSubview:_chrono];
+    
+    _clicker = [[SAURLClicker alloc] init];
+    [_clicker addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:_clicker];
+}
+
 //
 // @brief: handle the player status - mainly to init duration and time management
 - (void) observeValueForKeyPath:(NSString *)keyPath

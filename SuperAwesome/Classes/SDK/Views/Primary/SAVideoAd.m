@@ -51,6 +51,8 @@
 - (void) play {
     [super play];
     
+    self.backgroundColor = [UIColor redColor];
+    
     if (super.ad.creative.format != video) {
         if (super.adDelegate != NULL && [super.adDelegate respondsToSelector:@selector(adHasIncorrectPlacement:)]){
             [super.adDelegate adHasIncorrectPlacement:super.ad.placementId];
@@ -158,6 +160,8 @@
 - (void) resizeToFrame:(CGRect)toframe {
     
     self.frame = toframe;
+    CGRect playerFrame = CGRectMake(0, 0, toframe.size.width, toframe.size.height);
+    [_player updateToFrame:playerFrame];
     
     _actionButton.frame = CGRectMake(0, 0, self.frame.size.width, 30.0f);
     
