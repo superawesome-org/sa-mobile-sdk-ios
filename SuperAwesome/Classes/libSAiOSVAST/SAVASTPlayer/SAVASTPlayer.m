@@ -123,12 +123,23 @@
     [_playerItem addObserver:self forKeyPath:@"status" options:0 context:nil];
     
     // add an observer for _playerItem to monitor when it actually ends
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(itemDidFinishPlaying:)
-                                                 name:AVPlayerItemDidPlayToEndTimeNotification
-                                               object:_playerItem];
-
+    [_notif addObserver:self
+               selector:@selector(itemDidFinishPlaying:)
+                   name:AVPlayerItemDidPlayToEndTimeNotification
+                 object:_playerItem];
     
+    // observer check if we're going to background
+    [_notif addObserver:self
+               selector:@selector(didEnterBackground)
+                   name:UIApplicationDidEnterBackgroundNotification
+                 object:nil];
+    
+    // observer checks if we're back from the background
+    [_notif addObserver:self
+               selector:@selector(willEnterForeground)
+                   name:UIApplicationWillEnterForegroundNotification
+                 object:nil];
+
     // setup the chronograph
     _chrono = [[SACronograph alloc] init];
     [self addSubview:_chrono];
@@ -162,9 +173,23 @@
     }
     
     // remove notif center observer
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:AVPlayerItemDidPlayToEndTimeNotification
-                                                  object:_playerItem];
+    [_notif removeObserver:self
+                      name:AVPlayerItemDidPlayToEndTimeNotification
+                    object:_playerItem];
+    [_notif removeObserver:self
+                      name:UIApplicationDidEnterBackgroundNotification
+                    object:nil];
+    [_notif removeObserver:self
+                name:UIApplicationWillEnterForegroundNotification
+                    object:nil];
+}
+
+- (void) didEnterBackground {
+    [_player pause];
+}
+
+- (void) willEnterForeground {
+    [_player play];
 }
 
 - (void) updateToFrame:(CGRect)frame {
@@ -305,9 +330,16 @@
     }
     
     // remove notif center observer
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:AVPlayerItemDidPlayToEndTimeNotification
-                                                  object:_playerItem];
+    [_notif removeObserver:self
+                      name:AVPlayerItemDidPlayToEndTimeNotification
+                    object:_playerItem];
+    // remove foreground & background observers
+    [_notif removeObserver:self
+                      name:UIApplicationDidEnterBackgroundNotification
+                    object:nil];
+    [_notif removeObserver:self
+                      name:UIApplicationWillEnterForegroundNotification
+                    object:nil];
 }
 
 @end

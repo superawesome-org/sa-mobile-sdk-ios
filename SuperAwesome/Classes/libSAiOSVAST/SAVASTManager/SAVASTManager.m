@@ -120,9 +120,6 @@
         impression.isSent = true;
         [SASender sendEventToURL:impression.URL];
     }
-    
-    // also, for each creative send the creativeView event
-    [self sendCurrentCreativeTrackersFor:@"creativeView"];
 }
 
 - (void) didStartPlayer {
@@ -130,6 +127,9 @@
     
     // send event tracker
     [self sendCurrentCreativeTrackersFor:@"start"];
+    
+    // also, for each creative send the creativeView event
+    [self sendCurrentCreativeTrackersFor:@"creativeView"];
     
     // call delegate
     if (_delegate && [_delegate respondsToSelector:@selector(didStartCreative)]) {

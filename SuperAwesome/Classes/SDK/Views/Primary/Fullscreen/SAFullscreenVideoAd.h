@@ -19,4 +19,7 @@
 // video delegate
 @property id<SAVideoAdProtocol> videoDelegate;
 
+// directs user to close ad
+@property (nonatomic, assign) BOOL shouldAutomaticallyCloseAtEnd;
+
 @end

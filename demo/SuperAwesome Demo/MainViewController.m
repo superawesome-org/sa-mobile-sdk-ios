@@ -13,8 +13,6 @@
 #import "AdItem.h"
 #import "PresentViewController.h"
 
-#import "SAVAST2Parser.h"
-
 @interface MainViewController ()
 <UITableViewDelegate,
  UITableViewDataSource,
@@ -67,11 +65,6 @@
     // create test data
     _data = [TestDataProvider createTestData];
     
-    //
-//    SAVAST2Parser *parser = [[SAVAST2Parser alloc] init];
-//    [parser parseVASTURL:@"https://ads.superawesome.tv/v2/video/vast/30244/30369/30222/?sdkVersion=unknown&rnd=736470781"];
-//    [parser parseVASTURL:@"https://ads.superawesome.tv/v2/video/vast/30245/30370/30223/?sdkVersion=unknown&rnd=819836586"];
-//    NSLog(@"Abc");
 }
 
 - (void)didReceiveMemoryWarning {
@@ -165,7 +158,8 @@
             [fvad setAdDelegate:self];
             [fvad setVideoDelegate:self];
             [fvad setParentalGateDelegate:self];
-//            [fvad setIsParentalGateEnabled:true];
+            [fvad setIsParentalGateEnabled:false];
+            [fvad setShouldAutomaticallyCloseAtEnd:false];
             [self presentViewController:fvad animated:YES completion:^{
                 [fvad play];
             }];

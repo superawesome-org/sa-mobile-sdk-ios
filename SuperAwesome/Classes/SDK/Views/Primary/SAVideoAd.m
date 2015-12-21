@@ -43,6 +43,10 @@
 // and the associated parser
 @property (nonatomic, strong) SAVASTManager *manager;
 
+// internal proto
+@property id<SAAdProtocol> internalAdProto;
+@property id<SAVideoAdProtocol> internalVideoAdProto;
+
 @end
 
 // Implementation of SAVideo Ad
@@ -83,11 +87,21 @@
     if (super.adDelegate && [super.adDelegate respondsToSelector:@selector(adFailedToShow:)]) {
         [super.adDelegate adFailedToShow:super.ad.placementId];
     }
+    
+    // send a message to the internal ad proto as well
+    if (_internalAdProto && [_internalAdProto respondsToSelector:@selector(adFailedToShow:)]) {
+        [_internalAdProto adFailedToShow:super.ad.placementId];
+    }
 }
 
 - (void) didNotParseVAST {
     if (super.adDelegate && [super.adDelegate respondsToSelector:@selector(adFailedToShow:)]) {
         [super.adDelegate adFailedToShow:super.ad.placementId];
+    }
+    
+    // send a message to the internal ad proto as well
+    if (_internalAdProto && [_internalAdProto respondsToSelector:@selector(adFailedToShow:)]) {
+        [_internalAdProto adFailedToShow:super.ad.placementId];
     }
 }
 
@@ -135,11 +149,18 @@
 }
 
 - (void) didEndAd {
-    
+    if (_videoDelegate && [_videoDelegate respondsToSelector:@selector(adEnded:)]) {
+        [_videoDelegate adEnded:super.ad.placementId];
+    }
 }
 
 - (void) didEndAllAds {
-    
+    if (_videoDelegate && [_videoDelegate respondsToSelector:@selector(allAdsEnded:)]) {
+        [_videoDelegate allAdsEnded:super.ad.placementId];
+    }
+    if (_internalVideoAdProto && [_internalVideoAdProto respondsToSelector:@selector(allAdsEnded:)]) {
+        [_internalVideoAdProto allAdsEnded:super.ad.placementId];
+    }
 }
 
 - (void) didGoToURL:(NSURL *)url {

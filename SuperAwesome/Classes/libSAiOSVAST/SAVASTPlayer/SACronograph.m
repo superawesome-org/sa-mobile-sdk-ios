@@ -20,9 +20,9 @@
     UILabel *chrono = [[UILabel alloc] init];
     
     chrono.backgroundColor = [UIColor clearColor];
-    chrono.textColor = [UIColor whiteColor];
+    chrono.textColor = [UIColor colorWithRed:0.9f green:0.9f blue:0.9f alpha:1];
     chrono.font = [UIFont systemFontOfSize:10];
-    chrono.textAlignment = NSTextAlignmentCenter;
+    chrono.textAlignment = NSTextAlignmentLeft;
     
     return chrono;
 }
@@ -36,7 +36,6 @@
 
 // subviews
 @property (nonatomic, strong) UILabel *adLabel;
-@property (nonatomic, strong) UILabel *remainingLabel;
 
 @end
 
@@ -64,18 +63,14 @@
     
     // add the two other label
     _adLabel = [UILabel createChrono];
-    _adLabel.text = @"Ad: ";
-    _adLabel.frame = CGRectMake(0, 0, 20, 20);
+    _adLabel.text = @"";
+    _adLabel.frame = CGRectMake(0, 0, 50, 20);
     [self addSubview:_adLabel];
-    
-    _remainingLabel = [UILabel createChrono];
-    _remainingLabel.frame = CGRectMake(20, 0, 30, 20);
-    [self addSubview:_remainingLabel];
 }
 
 - (void) setTime:(NSInteger)current andMax:(NSInteger)max {
     NSInteger remaining = max - current;
-    _remainingLabel.text = [NSString stringWithFormat:@"%ld", remaining];
+    _adLabel.text = [NSString stringWithFormat:@"Ad: %ld", remaining];
 }
 
 @end

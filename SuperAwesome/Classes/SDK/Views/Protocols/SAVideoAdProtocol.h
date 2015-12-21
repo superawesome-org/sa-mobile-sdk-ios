@@ -19,6 +19,9 @@
 // all functions are optional
 @optional
 
+// fired when an ad has started
+- (void) adStarted:(NSInteger)placementId;
+
 // fired when a video ad has started
 - (void) videoStarted:(NSInteger)placementId;
 
@@ -33,5 +36,11 @@
 
 // fired when a video ad has ended
 - (void) videoEnded:(NSInteger)placementId;
+
+// fired when an ad has ended
+- (void) adEnded:(NSInteger)placementId;
+
+// fired when all ads have ended
+- (void) allAdsEnded:(NSInteger)placementId;
 
 @end
