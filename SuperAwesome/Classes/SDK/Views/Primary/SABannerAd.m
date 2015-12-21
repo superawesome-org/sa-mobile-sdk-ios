@@ -65,6 +65,14 @@
     
     [self addSubview:_sawebview];
     
+//    NSLog(@"CALC WW FRAME %@", NSStringFromCGRect(frame));
+//    NSLog(@"INITIAL AD WIDTH : %ld - AD HEIGHT: %ld",
+//          (long)super.ad.creative.details.width,
+//          (long)super.ad.creative.details.height);
+//    NSLog(@"SCR WIDTH: %f - SCR HEIGHT: %f",
+//          [UIScreen mainScreen].bounds.size.width,
+//          [UIScreen mainScreen].bounds.size.height);
+    
     [pad addPadlockButtonToSubview:_sawebview];
 }
 

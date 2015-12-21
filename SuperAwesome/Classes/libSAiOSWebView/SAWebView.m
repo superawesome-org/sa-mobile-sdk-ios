@@ -25,9 +25,12 @@
         // proper customization
         self.delegate = self;
         self.scalesPageToFit = YES;
+        self.contentMode = UIViewContentModeScaleAspectFit;
         self.scrollView.delegate = self;
         self.scrollView.scrollEnabled = NO;
         self.scrollView.bounces = NO;
+        self.allowsInlineMediaPlayback = YES;
+        self.mediaPlaybackRequiresUserAction = YES;
         
         // delegate
         self.sadelegate = delegate;
