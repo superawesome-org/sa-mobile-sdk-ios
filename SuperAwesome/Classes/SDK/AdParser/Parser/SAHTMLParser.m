@@ -81,7 +81,10 @@
     
     
     // return the parametrized template
-    return [htmlString stringByReplacingOccurrencesOfString:@"richMediaURL" withString:richMediaString];
+    NSString *richString = [htmlString stringByReplacingOccurrencesOfString:@"richMediaURL" withString:richMediaString];
+    richString = [richString stringByReplacingOccurrencesOfString:@"" withString:@""];
+    
+    return richString;
 }
 
 + (NSString*) formatCreativeIntoTagHTML:(SAAd*)ad {

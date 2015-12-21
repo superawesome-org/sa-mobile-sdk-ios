@@ -146,7 +146,7 @@
             [iad setAd:ad];
             [iad setAdDelegate:self];
             [iad setParentalGateDelegate:self];
-            [iad setIsParentalGateEnabled:true];
+            [iad setIsParentalGateEnabled:false];
             [self presentViewController:iad animated:YES completion:^{
                 [iad play];
             }];

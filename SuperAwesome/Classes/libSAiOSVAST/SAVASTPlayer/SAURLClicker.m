@@ -32,7 +32,7 @@
     CGRect parentFrame = self.superview.frame;
     self.frame = CGRectMake(5, 5, parentFrame.size.width - 10, 20);
     
-    [[self titleLabel] setFont:[UIFont systemFontOfSize:16]];
+    [[self titleLabel] setFont:[UIFont systemFontOfSize:12]];
     [self setTitleColor:[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1] forState:UIControlStateNormal];
     self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
 }

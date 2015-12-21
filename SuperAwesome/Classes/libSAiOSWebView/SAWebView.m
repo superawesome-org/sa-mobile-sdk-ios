@@ -42,6 +42,7 @@
 #pragma mark <UIWebViewDelegate>
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    
     if (navigationType == UIWebViewNavigationTypeLinkClicked) {
     
         // send a click message

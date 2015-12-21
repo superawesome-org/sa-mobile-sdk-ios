@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+3.3.1
+ - Small improvements to UI and experience
+
 3.3.0
  - Removed all 3rd party non-open-source libraries
  - Built a custom SAWebView to display image, rich-media and 3rd party tags
