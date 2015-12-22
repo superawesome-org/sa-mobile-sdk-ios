@@ -26,7 +26,8 @@
              CreateAdItem(@"Dorin VAST Tag - 30244", 30244, false, fullscreen_video_item),
              CreateAdItem(@"Dorin 3rd Party VAST Tag - 30245", 30245, false, fullscreen_video_item),
              CreateAdItem(@"Dorin 3rd Party vAST Tag with Flash - 30243", 30243, false, fullscreen_video_item),
-             CreateAdItem(@"Zepto - 30016", 30016, false, interstitial_item)
+             CreateAdItem(@"Zepto - 30016", 30016, false, interstitial_item),
+             CreateAdItem(@"Test 5740", 5750, true, fullscreen_video_item)
              ];
 }
 

@@ -22,6 +22,7 @@
 // SA objects
 @property (nonatomic, strong) SAFullscreenVideoAd *fvad;
 @property (nonatomic, assign) BOOL parentalGate;
+@property (nonatomic, assign) BOOL closeButtonAppears;
 
 @end
 
@@ -37,6 +38,7 @@
     id _Nullable testModeObj = [info objectForKey:@"testMode"];
     id _Nullable placementIdObj = [info objectForKey:@"placementId"];
     id _Nullable parentalGateEnabledObj = [info objectForKey:@"parentalGateEnabled"];
+    id _Nullable shouldVideoHaveClose = [info objectForKey:@"closeButtonAppears"];
     
     if (testModeObj == NULL || placementIdObj == NULL || parentalGateEnabledObj == NULL) {
         
@@ -56,6 +58,7 @@
     placementId = [placementIdObj integerValue];
     isParentalGateEnabled = [parentalGateEnabledObj boolValue];
     _parentalGate = isParentalGateEnabled;
+    _closeButtonAppears = (shouldVideoHaveClose != NULL ? [shouldVideoHaveClose boolValue] : false);
     
     // enable or disable test mode
     if (testMode) {
@@ -111,6 +114,7 @@
     [_fvad setVideoDelegate:self];
     [_fvad setParentalGateDelegate:self];
     [_fvad setAdDelegate:self];
+    [_fvad setShouldAutomaticallyCloseAtEnd:!_closeButtonAppears];
     [_fvad setAd:ad];
     
     // call events
