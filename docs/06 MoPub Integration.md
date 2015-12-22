@@ -45,13 +45,22 @@ Custom Event Class is:
 
 Notice these are identical to the names of the four files you downloaded in step one.
 
-Custom Event Data is always required, and must be given in the form of  JSON:
+Custom Event Data that is always required, and must be given in the form of  JSON:
 
 ```
 {
 	"placementId": 5692,
 	"testMode": true,
 	"parentalGateEnabled": true
+}
+
+```
+
+Optional Event Data for Rewarded Videos is:
+
+```
+{
+  "closeButtonAppears": false
 }
 
 ```
