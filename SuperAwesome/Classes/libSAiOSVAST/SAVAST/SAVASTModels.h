@@ -18,16 +18,6 @@
 @end
 
 //
-// @brief: the main VAST object, which just holds an array of Ads
-@interface SAVAST : SAGenericVAST
-@property (nonatomic, strong) NSMutableArray *Ads;
-
-// print short version of the VAST data
-- (void) printShortVersion;
-
-@end
-
-//
 // @brief: this enum should hold the type of content an ad holds
 typedef enum SAAdType {
     Invalid = -1,

@@ -22,41 +22,6 @@
 @end
 
 ////////////////////////////////////////////////////////////////////////////////
-// SAVAST
-
-@implementation SAVAST
-
-- (void) print {
-    for (SAVASTAd *ad in _Ads) {
-        [ad print];
-    }
-}
-
-- (void) printShortVersion {
-    NSInteger noInLineAds = 0;
-    NSInteger noWrapperAds = 0;
-    for (SAVASTAd *ad in _Ads) {
-        if (ad.type == InLine) noInLineAds++;
-        if (ad.type == Wrapper) noWrapperAds++;
-    }
-    NSLog(@"Original VAST has %ld InLine Ads and %ld Wrapper Ads", noInLineAds, noWrapperAds);
-    for (SAVASTAd *ad in _Ads) {
-        NSInteger noLinearCreatives = 0;
-        NSInteger noNonLinearCreatives = 0;
-        NSInteger noCompanionAdsCreatives = 0;
-        for (SAVASTCreative *c in ad.Creatives) {
-            if (c.type == Linear) noLinearCreatives++;
-            if (c.type == NonLinear) noNonLinearCreatives++;
-            if (c.type == CompanionAds) noCompanionAdsCreatives++;
-        }
-        NSLog(@"Ad %@ has %ld Linear, %ld NonLinear and %ld Companion Creatives",
-              ad._id, noLinearCreatives, noNonLinearCreatives, noCompanionAdsCreatives);
-    }
-}
-
-@end
-
-////////////////////////////////////////////////////////////////////////////////
 // SAAd
 
 @implementation SAVASTAd

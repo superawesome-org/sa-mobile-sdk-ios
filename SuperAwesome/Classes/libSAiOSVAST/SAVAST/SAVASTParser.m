@@ -34,7 +34,7 @@
     dispatch_async(myQueue, ^{
     
         // get ads array
-        NSMutableArray *adsArray = [self parseVASTXML:url withWrapperOn:false];
+        NSMutableArray *adsArray = [self parseVAST:url];
         
         // long running stuff
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -58,7 +58,7 @@
 
 //
 // @brief: get ads starting from a root
-- (NSMutableArray*) parseVASTXML:(NSString*)vastURL withWrapperOn:(BOOL)isWrapperOn {
+- (NSMutableArray*) parseVAST:(NSString*)vastURL {
     // create the array of ads that should be returned
     __block NSMutableArray *ads = [[NSMutableArray alloc] init];
     
@@ -99,7 +99,7 @@
             }
             
             // call back this function recursevly
-            NSMutableArray *foundAds = [self parseVASTXML:VASTAdTagURI withWrapperOn:true];
+            NSMutableArray *foundAds = [self parseVAST:VASTAdTagURI];
             
             // now try to joing creatives - that's a bit tricky
             // step 1: remove all creatives other than one from the Wrapper
