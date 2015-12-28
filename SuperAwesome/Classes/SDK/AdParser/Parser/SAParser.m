@@ -68,7 +68,7 @@
     ad.lineItemId = (lineItemIdObj != NULL ? [lineItemIdObj integerValue] : -1);
     ad.campaignId = (campaignIdObj != NULL ? [campaignIdObj integerValue] : -1);
     ad.isTest = (isTestObj != NULL ? [isTestObj boolValue] : true);
-    ad.isFallback = (isFallbackObj != NULL ? [isFallbackObj boolValue] : false);
+    ad.isFallback = (isFallbackObj != NULL ? [isFallbackObj boolValue] : true);
     ad.isFill = (isFillObj != NULL ? [isFillObj boolValue] : false);
     
     return ad;
@@ -170,8 +170,9 @@
         @"sdkVersion":[[SuperAwesome getInstance] getSdkVersion],
         @"rnd":[NSNumber numberWithInteger:[SAURLUtils getCachebuster]]
     };
-    ad.creative.trackingURL = [NSString stringWithFormat:@"%@/click?%@",
+    ad.creative.trackingURL = [NSString stringWithFormat:@"%@/%@click?%@",
                                [[SuperAwesome getInstance] getBaseURL],
+                               (ad.creative.format == video ? @"video/" : @""),
                                [SAURLUtils formGetQueryFromDict:trackingDict]];
     
     // get the viewbale impression URL

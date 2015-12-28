@@ -165,7 +165,14 @@
 
 - (void) didGoToURL:(NSURL *)url {
     super.ad.creative.fullClickURL = [url absoluteString];
-    super.ad.creative.isFullClickURLReliable = true;
+    
+    // repair the URL one final time
+    if ([super.ad.creative.fullClickURL rangeOfString:@"ads.superawesome.tv/v2/video/click/"].location == NSNotFound) {
+        super.ad.creative.isFullClickURLReliable = false;
+    } else {
+        super.ad.creative.isFullClickURLReliable = true;
+    }
+    
     [self tryToGoToURL:url];
 }
 

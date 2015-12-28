@@ -19,6 +19,9 @@
 #import "SAParentalGate.h"
 #import "SAPadlock.h"
 
+#import "SAURLUtils.h"
+#import "SASender.h"
+
 @implementation SAView
 
 // overwriting init functions
@@ -70,9 +73,8 @@
         [_adDelegate adWasClicked:_ad.placementId];
     }
     
-    // form the correct final URL
-    if (!_ad.creative.isFullClickURLReliable) {
-        _ad.creative.fullClickURL = [NSString stringWithFormat:@"%@&redir=%@", _ad.creative.trackingURL, [url absoluteString]];
+    if (!_ad.creative.isFullClickURLReliable){
+        _ad.creative.fullClickURL = [url absoluteString];
     }
     
     if (_isParentalGateEnabled) {
@@ -84,6 +86,13 @@
 
 - (void) advanceToClick {
     NSLog(@"[AA :: INFO] Going to %@", _ad.creative.fullClickURL);
+    
+    // if full clicks is not reliable, just goto the designeted website,
+    // but first send an event to the tracking stuff
+    if (!_ad.creative.isFullClickURLReliable) {
+        [SASender sendEventToURL:_ad.creative.trackingURL];
+    }
+    
     NSURL *url = [NSURL URLWithString:_ad.creative.fullClickURL];
     [[UIApplication sharedApplication] openURL:url];
 }
