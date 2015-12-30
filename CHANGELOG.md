@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+3.3.2
+ - Small improvements to click tracking
+
 3.3.1
  - Small improvements to UI and experience
 
