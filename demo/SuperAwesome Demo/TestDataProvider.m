@@ -15,19 +15,12 @@
     return @[
              CreateAdItem(@"Banner - 9549", 9549, false, banner_item),
              CreateAdItem(@"Interstitial - 10324", 10324, false, interstitial_item),
-             CreateAdItem(@"Video - 28000", 28000, false, video_item),
              CreateAdItem(@"Fullscreen Video - 21022", 21022, false, fullscreen_video_item),
-             CreateAdItem(@"Tag - 10273", 10273, false, interstitial_item),
              CreateAdItem(@"Fallback Tag - 10213 ", 10213, false, interstitial_item),
              CreateAdItem(@"Interstitial - 25397", 25397, false, interstitial_item),
              CreateAdItem(@"Small Banner - 25785", 25785, false, banner_item),
-             CreateAdItem(@"Video Preroll - 25971", 25971, false, fullscreen_video_item),
-             CreateAdItem(@"Tag - 25785", 25785, false, interstitial_item),
-             CreateAdItem(@"Dorin VAST Tag - 30244", 30244, false, fullscreen_video_item),
-             CreateAdItem(@"Dorin 3rd Party VAST Tag - 30245", 30245, false, fullscreen_video_item),
-             CreateAdItem(@"Dorin 3rd Party vAST Tag with Flash - 30243", 30243, false, fullscreen_video_item),
-             CreateAdItem(@"Zepto - 30016", 30016, false, interstitial_item),
-             CreateAdItem(@"Test 5740", 5750, true, fullscreen_video_item)
+             CreateAdItem(@"Test 5740", 5750, true, fullscreen_video_item),
+             CreateAdItem(@"Preroll 24720", 24720, false, fullscreen_video_item)
              ];
 }
 

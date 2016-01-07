@@ -53,7 +53,8 @@
         else {
             // only if status code is 200
             if (((NSHTTPURLResponse*)response).statusCode == 200) {
-                NSLog(@"Success: %@", _surl);
+                NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                NSLog(@"Success: %@ ==> %@", _surl, str);
                 if (success){
                     success(data);
                 }
