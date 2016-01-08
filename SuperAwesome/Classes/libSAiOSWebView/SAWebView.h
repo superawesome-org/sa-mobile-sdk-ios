@@ -14,6 +14,9 @@
 @interface SAWebView : UIWebView <UIWebViewDelegate>
 
 // custom init
-- (id) initWithFrame:(CGRect)frame andHTML:(NSString*)html andDelegate:(id<SAWebViewProtocol>)delegate;
+- (id) initWithHTML:(NSString*)html andAdSize:(CGSize)size andFrame:(CGRect)frame andDelegate:(id<SAWebViewProtocol>)delegate;
+
+// re-arramge func
+- (void) rearrangeForFrame:(CGRect)frame;
 
 @end

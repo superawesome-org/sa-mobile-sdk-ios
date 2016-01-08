@@ -56,15 +56,20 @@
         return;
     }
     
+    // calc correctly scaled frame
     CGRect frame = [SAUtils arrangeAdInNewFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
                                       fromFrame:CGRectMake(0, 0, super.ad.creative.details.width, super.ad.creative.details.height)];
     
-    _sawebview = [[SAWebView alloc] initWithFrame:frame
-                                          andHTML:super.ad.adHTML
-                                      andDelegate:self];
+    // add the sawebview
+    _sawebview = [[SAWebView alloc] initWithHTML:super.ad.adHTML
+                                       andAdSize:CGSizeMake(super.ad.creative.details.width, super.ad.creative.details.height)
+                                        andFrame:frame
+                                     andDelegate:self];
     
+    // add the subview
     [self addSubview:_sawebview];
     
+    // add the padlick
     [pad addPadlockButtonToSubview:_sawebview];
 }
 
@@ -97,8 +102,10 @@
     CGRect frame = [SAUtils arrangeAdInNewFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
                                       fromFrame:CGRectMake(0, 0, super.ad.creative.details.width, super.ad.creative.details.height)];
     
-    _sawebview.frame = frame;
+    // rearrange the webview
+    [_sawebview rearrangeForFrame:frame];
     
+    // rearrange the padlock
     [pad removePadlockButton];
     [pad addPadlockButtonToSubview:_sawebview];
 }

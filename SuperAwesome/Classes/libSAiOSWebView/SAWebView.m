@@ -12,17 +12,26 @@
 
 @interface SAWebView () <UIScrollViewDelegate>
 
-// delegate
+// ad view internal stuff
 @property id<SAWebViewProtocol> sadelegate;
+@property (nonatomic, strong) NSString *html;
+@property (nonatomic, assign) CGSize size;
+
+// load once
+@property (nonatomic, assign) BOOL loadedOnce;
 
 @end
 
 @implementation SAWebView
 
-- (id) initWithFrame:(CGRect)frame andHTML:(NSString *)html andDelegate:(id<SAWebViewProtocol>)delegate {
+- (id) initWithHTML:(NSString *)html andAdSize:(CGSize)size andFrame:(CGRect)frame andDelegate:(id<SAWebViewProtocol>)delegate {
     if (self = [super initWithFrame:frame]) {
+        // copy important vals
+        _sadelegate = delegate;
+        _html = html;
+        _size = size;
         
-        // proper customization
+        // customize stuff
         self.delegate = self;
         self.scalesPageToFit = YES;
         self.contentMode = UIViewContentModeScaleAspectFit;
@@ -32,14 +41,39 @@
         self.allowsInlineMediaPlayback = YES;
         self.mediaPlaybackRequiresUserAction = YES;
         
-        // delegate
-        self.sadelegate = delegate;
+        // set scale
+        CGFloat xscale = self.frame.size.width / _size.width;
+        CGFloat yscale = self.frame.size.height / _size.height;
+        CGFloat scale = MIN(xscale, yscale);
         
-        // start loading HTML
-        [self loadHTMLString:html baseURL:NULL];
+        // modify HTML
+        _html = html;
+        _html = [_html stringByReplacingOccurrencesOfString:@"_WIDTH_" withString:[NSString stringWithFormat:@"%ld", (long)_size.width]];
+        _html = [_html stringByReplacingOccurrencesOfString:@"_HEIGHT_" withString:[NSString stringWithFormat:@"%ld", (long)_size.height]];
+        _html = [_html stringByReplacingOccurrencesOfString:@"_PARAM_SCALE_" withString:[NSString stringWithFormat:@"%.2f", scale]];
+        
+        // reload the webview
+        [self loadHTMLString:_html baseURL:NULL];
     }
     
     return self;
+}
+
+- (void) rearrangeForFrame:(CGRect)frame {
+    
+    // set frame
+    self.frame = frame;
+    
+    // set scale
+    CGFloat xscale = frame.size.width / _size.width;
+    CGFloat yscale = frame.size.height / _size.height;
+    CGFloat scale = MIN(xscale, yscale);
+    
+    NSMutableString *script = [[NSMutableString alloc] init];
+    [script appendString:@"viewport = document.querySelector('meta[name=viewport]');"];
+    [script appendFormat:@"viewport.setAttribute('content', 'width=device-width, initial-scale=%.2f, maximum-scale=%.2f, user-scalable=no, target-densitydpi=device-dpi');", scale, scale];
+    
+    [self stringByEvaluatingJavaScriptFromString:script];
 }
 
 #pragma mark <UIWebViewDelegate>
@@ -65,8 +99,9 @@
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-    if (_sadelegate != NULL && [_sadelegate respondsToSelector:@selector(saWebViewDidLoad)]) {
+    if (_sadelegate != NULL && [_sadelegate respondsToSelector:@selector(saWebViewDidLoad)] && !_loadedOnce) {
         [_sadelegate saWebViewDidLoad];
+        _loadedOnce = true;
     }
 }
 

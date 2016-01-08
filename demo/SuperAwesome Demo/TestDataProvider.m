@@ -13,6 +13,7 @@
 
 + (NSArray*) createTestData {
     return @[
+             CreateAdItem(@"Rich Media Test - 19", 19, false, interstitial_item),
              CreateAdItem(@"Banner - 9549", 9549, false, banner_item),
              CreateAdItem(@"Interstitial - 10324", 10324, false, interstitial_item),
              CreateAdItem(@"Fullscreen Video - 21022", 21022, false, fullscreen_video_item),

@@ -35,6 +35,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // set config to stanging
+    [[SuperAwesome getInstance] setConfigurationStaging];
+    
     // set title
     UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 30)];
     title.backgroundColor = [UIColor clearColor];
@@ -159,7 +162,7 @@
             [fvad setVideoDelegate:self];
             [fvad setParentalGateDelegate:self];
             [fvad setIsParentalGateEnabled:false];
-            [fvad setShouldAutomaticallyCloseAtEnd:true];
+            [fvad setShouldAutomaticallyCloseAtEnd:false];
             [self presentViewController:fvad animated:YES completion:^{
                 [fvad play];
             }];
