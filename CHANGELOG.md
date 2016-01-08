@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+3.3.3
+ - Improvements to Ad UI across the board
+
 3.3.2
  - Small improvements to click tracking
 
