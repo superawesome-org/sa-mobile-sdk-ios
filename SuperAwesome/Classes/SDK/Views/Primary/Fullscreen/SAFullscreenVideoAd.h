@@ -21,5 +21,6 @@
 
 // directs user to close ad
 @property (nonatomic, assign) BOOL shouldAutomaticallyCloseAtEnd;
+@property (nonatomic, assign) BOOL shouldShowCloseButton;
 
 @end

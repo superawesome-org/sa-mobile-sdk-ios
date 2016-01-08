@@ -33,6 +33,7 @@
 - (id) init {
     if (self = [super init]) {
         _shouldAutomaticallyCloseAtEnd = YES;
+        _shouldShowCloseButton = NO;
         closeBtn.hidden = YES;
     }
     
@@ -42,6 +43,7 @@
 - (id) initWithCoder:(NSCoder *)aDecoder {
     if (self = [super initWithCoder:aDecoder]) {
         _shouldAutomaticallyCloseAtEnd = YES;
+        _shouldShowCloseButton = NO;
         closeBtn.hidden = YES;
     }
     return self;
@@ -50,6 +52,7 @@
 - (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         _shouldAutomaticallyCloseAtEnd = YES;
+        _shouldShowCloseButton = NO;
         closeBtn.hidden = YES;
     }
     return self;
@@ -70,6 +73,9 @@
     
     [self.view addSubview:adview];
 
+    // setup the other coords
+    [self setupCoordinates];
+    
     // only <<IF>> ad is already here
     if (super.ad != NULL) {
         [adview setAd:super.ad];
@@ -81,15 +87,18 @@
 }
 
 - (void) setupCoordinates {
-    // then if the ads says it's supposed to close at the end - redo the
-    // adviewFrame and closeBtn frames
-    if (_shouldAutomaticallyCloseAtEnd) {
-        CGRect frame = [UIScreen mainScreen].bounds;
-        adviewFrame = frame;
-        closeBtn.frame = CGRectZero;
-    } else {
-        [super setupCoordinates];
+    // setup frame
+    CGRect frame = [UIScreen mainScreen].bounds;
+    adviewFrame = frame;
+    
+    if (_shouldShowCloseButton){
+        CGFloat cs = 40.0f;
+        buttonFrame = CGRectMake(frame.size.width - cs, 0, cs, cs);
         closeBtn.hidden = NO;
+        [self.view bringSubviewToFront:closeBtn];
+    } else {
+        closeBtn.hidden = YES;
+        buttonFrame = CGRectZero;
     }
 }
 

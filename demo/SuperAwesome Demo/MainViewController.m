@@ -162,7 +162,8 @@
             [fvad setVideoDelegate:self];
             [fvad setParentalGateDelegate:self];
             [fvad setIsParentalGateEnabled:false];
-            [fvad setShouldAutomaticallyCloseAtEnd:false];
+            [fvad setShouldAutomaticallyCloseAtEnd:true];
+            [fvad setShouldShowCloseButton:YES];
             [self presentViewController:fvad animated:YES completion:^{
                 [fvad play];
             }];

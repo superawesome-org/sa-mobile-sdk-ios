@@ -60,7 +60,7 @@
     newR.origin.x += tX;
     newR.origin.y += tY;
     
-    CGFloat cs = MIN(frame.size.width, frame.size.height) * 0.15f;
+    CGFloat cs = 40.0f; // MIN(frame.size.width, frame.size.height) * 0.15f;
     
     // final frames
     adviewFrame = newR;

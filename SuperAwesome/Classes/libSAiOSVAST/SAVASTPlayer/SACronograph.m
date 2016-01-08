@@ -56,14 +56,17 @@
     
     // setup own frame
     CGFloat H = 20.0f;
-    CGFloat W = _parentFrame.size.width - 20.0f;
+    CGFloat W = 50.0f;
     CGFloat X = 10.0f;
     CGFloat Y = _parentFrame.size.height - 30.0f;
     self.frame = CGRectMake(X, Y, W, H);
+    self.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:0.25];
+    self.layer.cornerRadius = 5.0f;
     
     // add the two other label
     _adLabel = [UILabel createChrono];
     _adLabel.text = @"";
+    _adLabel.textAlignment = NSTextAlignmentCenter;
     _adLabel.frame = CGRectMake(0, 0, 50, 20);
     [self addSubview:_adLabel];
 }

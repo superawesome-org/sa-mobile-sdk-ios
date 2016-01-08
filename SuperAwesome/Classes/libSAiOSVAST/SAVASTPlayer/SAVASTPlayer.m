@@ -16,6 +16,7 @@
 #import <AVKit/AVKit.h>
 
 // import chrome views
+#import "SABlackMask.h"
 #import "SACronograph.h"
 #import "SAURLClicker.h"
 
@@ -48,6 +49,7 @@
 @property (nonatomic, assign) BOOL isErrorHandled;
 
 // chrome elememnts
+@property (nonatomic, strong) SABlackMask *mask;
 @property (nonatomic, strong) SACronograph *chrono;
 @property (nonatomic, strong) SAURLClicker *clicker;
 
@@ -140,6 +142,10 @@
                    name:UIApplicationWillEnterForegroundNotification
                  object:nil];
 
+    // setup mask
+    _mask = [[SABlackMask alloc] init];
+    [self addSubview:_mask];
+    
     // setup the chronograph
     _chrono = [[SACronograph alloc] init];
     [self addSubview:_chrono];
@@ -197,9 +203,14 @@
     _playerLayer.frame = frame;
     
     // remove chrome
+    [_mask removeFromSuperview];
     [_chrono removeFromSuperview];
     [_clicker removeTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
     [_clicker removeFromSuperview];
+    
+    // setup the mask
+    _mask = [[SABlackMask alloc] init];
+    [self addSubview:_mask];
     
     // setup the chronograph
     _chrono = [[SACronograph alloc] init];

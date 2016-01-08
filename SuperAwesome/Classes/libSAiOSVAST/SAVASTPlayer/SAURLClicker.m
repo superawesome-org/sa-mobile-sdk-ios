@@ -26,15 +26,21 @@
 }
 
 - (void) didMoveToSuperview {
-    [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self setTitle:@"Find out more" forState:UIControlStateNormal];
+    NSMutableAttributedString *titleString = [[NSMutableAttributedString alloc] initWithString:@"Find out more »"];
+//    [titleString addAttribute:NSUnderlineStyleAttributeName
+//                        value:[NSNumber numberWithInteger:NSUnderlineStyleSingle]
+//                        range:NSMakeRange(0, titleString.length)];
+    [titleString addAttribute:NSForegroundColorAttributeName
+                        value:[UIColor colorWithRed:0.9f green:0.9f blue:0.9f alpha:1]
+                        range:NSMakeRange(0, titleString.length)];
+    [self setAttributedTitle:titleString forState:UIControlStateNormal];
     
     CGRect parentFrame = self.superview.frame;
-    self.frame = CGRectMake(5, 5, parentFrame.size.width - 10, 20);
+    self.frame = CGRectMake(70.0, parentFrame.size.height - 30, 100, 20);
     
     [[self titleLabel] setFont:[UIFont systemFontOfSize:12]];
     [self setTitleColor:[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1] forState:UIControlStateNormal];
-    self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+    self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
 }
 
 @end
