@@ -36,7 +36,7 @@
     [super viewDidLoad];
     
 //     set config to stanging
-//    [[SuperAwesome getInstance] setConfigurationStaging];
+    [[SuperAwesome getInstance] setConfigurationStaging];
     
     // set title
     UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 30)];
@@ -120,7 +120,7 @@
         case banner_item:{
             PresentViewController *vc = [[PresentViewController alloc] init];
             [self presentViewController:vc animated:YES completion:^{
-                SABannerAd *bad = [[SABannerAd alloc] initWithFrame:CGRectMake(0, 100, 320, 250)];
+                SABannerAd *bad = [[SABannerAd alloc] initWithFrame:CGRectMake(0, 100, 320, 350)];
                 [bad setAd:ad];
                 [vc.view addSubview:bad];
                 [bad play];

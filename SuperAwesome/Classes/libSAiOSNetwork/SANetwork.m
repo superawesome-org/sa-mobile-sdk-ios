@@ -38,6 +38,7 @@
     // create the request
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:url];
+    NSLog(@"USER AGENT: %@", [SAUserAgent getUserAgent]);
     [request setValue:[SAUserAgent getUserAgent] forHTTPHeaderField:@"User-Agent"];
     [request setHTTPMethod:@"GET"];
     

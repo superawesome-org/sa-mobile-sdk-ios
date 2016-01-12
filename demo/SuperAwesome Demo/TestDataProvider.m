@@ -13,9 +13,11 @@
 
 + (NSArray*) createTestData {
     return @[
-             CreateAdItem(@"Rich Media Test - 19", 19, false, interstitial_item),
-             CreateAdItem(@"Video for Mobile / Tablet - 20", 20, false, fullscreen_video_item),
-             CreateAdItem(@"Banner - 9549", 9549, false, banner_item),
+             CreateAdItem(@"20 - Video for Tablet", 20, false, fullscreen_video_item),
+             CreateAdItem(@"21 - Video for Mobile", 21, false, fullscreen_video_item),
+             CreateAdItem(@"22 - Video for Web only", 22, false, fullscreen_video_item),
+             CreateAdItem(@"23 - Video for all devices", 23, false, fullscreen_video_item),
+             CreateAdItem(@"Banner - 9549", 9549, false, interstitial_item),
              CreateAdItem(@"Interstitial - 10324", 10324, false, interstitial_item),
              CreateAdItem(@"Fullscreen Video - 21022", 21022, false, fullscreen_video_item),
              CreateAdItem(@"Fallback Tag - 10213 ", 10213, false, interstitial_item),
@@ -23,7 +25,10 @@
              CreateAdItem(@"Small Banner - 25785", 25785, false, banner_item),
              CreateAdItem(@"Test 5740", 5750, true, fullscreen_video_item),
              CreateAdItem(@"Preroll 28000", 28000, false, fullscreen_video_item),
-             CreateAdItem(@"10198", 10198, false, interstitial_item)
+             CreateAdItem(@"10198", 10198, false, interstitial_item),
+             CreateAdItem(@"Unity - 30288", 30288, false, interstitial_item),
+             CreateAdItem(@"Fungus Amungus - 30302", 30302, false, interstitial_item),
+             CreateAdItem(@"10305", 10305, false, interstitial_item)
              ];
 }
 
