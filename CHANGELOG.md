@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+3.3.4
+ - Added Unity Linker
+
 3.3.3
  - Improvements to Ad UI across the board
 
