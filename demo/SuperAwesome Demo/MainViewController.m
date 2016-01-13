@@ -67,6 +67,32 @@
     
     // create test data
     _data = [TestDataProvider createTestData];
+    
+    SAFullscreenVideoAdUnityLinker *linker = [[SAFullscreenVideoAdUnityLinker alloc] initWithVideoAd:27
+                                                                                        andUnityName:@"merdre"
+                                                                                            withGate:true
+                                                                                          inTestMode:false
+                                                                                      hasCloseButton:true
+                                                                                      andClosesAtEnd:false];
+    [linker addLoadVideoBlock:^(NSString *unityAd) {
+        NSLog(@"BLOCKY LOADED!!!! - %@", unityAd);
+    }];
+    [linker addStartVideoBlock:^(NSString *unityAd) {
+        NSLog(@"BLOCKY STARTED!!!! - %@", unityAd);
+    }];
+    [linker addFailToLoadVideoBlock:^(NSString *unityAd) {
+        NSLog(@"BLOCKY FAILED!!!! - %@", unityAd);
+    }];
+    [linker addStopVideoBlock:^(NSString *unityAd) {
+        NSLog(@"BLOCKY STOPED!!!! - %@", unityAd);
+    }];
+    [linker addClickVideoBlock:^(NSString *unityAd) {
+        NSLog(@"BLOCKY CLICK!!! - %@", unityAd);
+    }];
+    [linker addFailToPlayVideoBlock:^(NSString *unityAd) {
+        NSLog(@"BLOCKY FAIL TO PLAY!!! - %@", unityAd);
+    }];
+    [linker start];
 }
 
 - (void)didReceiveMemoryWarning {

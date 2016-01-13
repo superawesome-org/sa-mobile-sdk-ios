@@ -26,6 +26,8 @@
 @property (nonatomic, assign) NSString *unityAdName;
 
 // parametrizers
+@property (nonatomic, assign) NSInteger placementId;
+@property (nonatomic, assign) BOOL testMode;
 @property (nonatomic, assign) BOOL hasGate;
 @property (nonatomic, assign) BOOL hasCloseBtn;
 @property (nonatomic, assign) BOOL closesAtEnd;
@@ -34,22 +36,29 @@
 
 @implementation SAFullscreenVideoAdUnityLinker
 
-- (void) startVideoAd:(int)placementId
-         andUnityName:(NSString*)unityAdName
-             withGate:(BOOL)hasGate
-           inTestMode:(BOOL)testMode
-       hasCloseButton:(BOOL)hasClose
-       andClosesAtEnd:(BOOL)closesAtEnd
-{
+- (id) initWithVideoAd:(int)placementId
+          andUnityName:(NSString *)unityAdName
+              withGate:(BOOL)hasGate
+            inTestMode:(BOOL)testMode
+        hasCloseButton:(BOOL)hasClose
+        andClosesAtEnd:(BOOL)closesAtEnd {
     
-    // assign success or error blocks
-    _unityAdName = unityAdName;
-    _hasGate = hasGate;
-    _hasCloseBtn = hasClose;
-    _closesAtEnd = closesAtEnd;
+    if (self = [super init]) {
+        // assign success or error blocks
+        _unityAdName = unityAdName;
+        _testMode = testMode;
+        _placementId = placementId;
+        _hasGate = hasGate;
+        _hasCloseBtn = hasClose;
+        _closesAtEnd = closesAtEnd;
+    }
     
+    return self;
+}
+
+- (void) start{
     // enable or disable test mode
-    if (testMode) {
+    if (_testMode) {
         [[SuperAwesome getInstance] enableTestMode];
     } else {
         [[SuperAwesome getInstance] disableTestMode];
@@ -57,7 +66,7 @@
     
     // start loading Ad
     [SALoader setDelegate:self];
-    [SALoader loadAdForPlacementId:placementId];
+    [SALoader loadAdForPlacementId:_placementId];
 }
 
 - (void) addLoadVideoBlock:(adEvent)block {
