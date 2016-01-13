@@ -29,6 +29,8 @@
     if (self = [super init]) {
         _isParentalGateEnabled = NO;
         _refreshPeriod = 30;
+        gate = [[SAParentalGate alloc] initWithWeakRefToView:self];
+        pad = [[SAPadlock alloc] initWithWeakRefToView:self];
     }
     
     return self;
@@ -38,6 +40,8 @@
     if (self = [super initWithFrame:frame]) {
         _isParentalGateEnabled = NO;
         _refreshPeriod = 30;
+        gate = [[SAParentalGate alloc] initWithWeakRefToView:self];
+        pad = [[SAPadlock alloc] initWithWeakRefToView:self];
     }
     
     return self;
@@ -47,6 +51,8 @@
     if (self = [super initWithCoder:aDecoder]) {
         _isParentalGateEnabled = NO;
         _refreshPeriod = 30;
+        gate = [[SAParentalGate alloc] initWithWeakRefToView:self];
+        pad = [[SAPadlock alloc] initWithWeakRefToView:self];
     }
     
     return self;
@@ -56,11 +62,10 @@
 
 - (void) play {
     // init parental gate
-    gate = [[SAParentalGate alloc] initWithWeakRefToView:self];
     gate.delegate = _parentalGateDelegate;
     
     // init the pad
-    pad = [[SAPadlock alloc] initWithWeakRefToView:self];
+    
 }
 
 
