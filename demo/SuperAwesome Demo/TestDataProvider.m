@@ -13,11 +13,16 @@
 
 + (NSArray*) createTestData {
     return @[
+             CreateAdItem(@"27 - AA - Mobile", 27, false, fullscreen_video_item),
+             CreateAdItem(@"28 - AA - Tablet", 28, false, fullscreen_video_item),
+             
              CreateAdItem(@"20 - Video for Tablet", 20, false, fullscreen_video_item),
              CreateAdItem(@"21 - Video for Mobile", 21, false, fullscreen_video_item),
              CreateAdItem(@"22 - Video for Web only", 22, false, fullscreen_video_item),
              CreateAdItem(@"23 - Video for all devices", 23, false, fullscreen_video_item),
+             
              CreateAdItem(@"Banner - 9549", 9549, false, interstitial_item),
+             CreateAdItem(@"25 - Rich media", 25, false, interstitial_item),
              CreateAdItem(@"Interstitial - 10324", 10324, false, interstitial_item),
              CreateAdItem(@"Fullscreen Video - 21022", 21022, false, fullscreen_video_item),
              CreateAdItem(@"Fallback Tag - 10213 ", 10213, false, interstitial_item),

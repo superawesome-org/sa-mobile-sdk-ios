@@ -18,6 +18,7 @@
 		155A3C70D70902329A2688C9C4E88A4C /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81E6AEEEA59875691EB63575C34A1D79 /* EventKit.framework */; };
 		16877EAFD02C5CEF231BC45F802AC537 /* SAUserAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = B362D99FE1ECB5244269D72D8626DC9E /* SAUserAgent.m */; };
 		1B0399561C4002ED00D887C2 /* SABlackMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0399551C4002ED00D887C2 /* SABlackMask.m */; };
+		1B6538AC1C4663F100CA29D5 /* SAUnityLinker.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B6538AB1C4663F100CA29D5 /* SAUnityLinker.m */; };
 		1EFB899F6788E88619FB3B19E02ABE28 /* SACronograph.m in Sources */ = {isa = PBXBuildFile; fileRef = 710564B9526F6F7C7CEB66E7A8B0E890 /* SACronograph.m */; };
 		21D2D01A75A71436045C77D69CA96A50 /* SAPadlockView.h in Headers */ = {isa = PBXBuildFile; fileRef = E672A91EB86838C5ED6810D96F37C059 /* SAPadlockView.h */; };
 		24853A2247280414B6EBFE53FD4BEC86 /* SAAd.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E7EAF4528AA81EA2848FB66FB3CD2A /* SAAd.m */; };
@@ -170,6 +171,8 @@
 		1B0399531C40027800D887C2 /* mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mark.png; sourceTree = "<group>"; };
 		1B0399541C4002ED00D887C2 /* SABlackMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SABlackMask.h; sourceTree = "<group>"; };
 		1B0399551C4002ED00D887C2 /* SABlackMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SABlackMask.m; sourceTree = "<group>"; };
+		1B6538AA1C4663F100CA29D5 /* SAUnityLinker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAUnityLinker.h; sourceTree = "<group>"; };
+		1B6538AB1C4663F100CA29D5 /* SAUnityLinker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAUnityLinker.m; sourceTree = "<group>"; };
 		1B89747CDC60B7F47D23503B3E271FD1 /* SAViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAViewController.m; sourceTree = "<group>"; };
 		1C49AC6C8FD5CCAF9522BB9E758F341A /* SAInterstitialAd.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAInterstitialAd.m; sourceTree = "<group>"; };
 		1DC27EC40655FEDDEB2074761516A778 /* SuperAwesome.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SuperAwesome.h; sourceTree = "<group>"; };
@@ -347,6 +350,23 @@
 			path = SuperAwesome;
 			sourceTree = "<group>";
 		};
+		1B6538A81C46563F00CA29D5 /* Plugins */ = {
+			isa = PBXGroup;
+			children = (
+				1B6538A91C46563F00CA29D5 /* Unity */,
+			);
+			path = Plugins;
+			sourceTree = "<group>";
+		};
+		1B6538A91C46563F00CA29D5 /* Unity */ = {
+			isa = PBXGroup;
+			children = (
+				1B6538AA1C4663F100CA29D5 /* SAUnityLinker.h */,
+				1B6538AB1C4663F100CA29D5 /* SAUnityLinker.m */,
+			);
+			path = Unity;
+			sourceTree = "<group>";
+		};
 		29F484C6C0E0F0F1524029CA97DB6B34 /* SDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -361,6 +381,7 @@
 		2E36F61E739E07F2D4600753C33525FA /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1B6538A81C46563F00CA29D5 /* Plugins */,
 				29F484C6C0E0F0F1524029CA97DB6B34 /* SDK */,
 				D10DC62CFE2D319C5EE78C4FA75C10D3 /* libSAiOSNetwork */,
 				8BE885B9CCE51F4B11654F0A34923F5A /* libSAiOSUtils */,
@@ -971,6 +992,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B6538AC1C4663F100CA29D5 /* SAUnityLinker.m in Sources */,
 				C3F851D007290FB8C4F0BDE8C94C7192 /* Pods-SuperAwesome Demo-dummy.m in Sources */,
 				1B0399561C4002ED00D887C2 /* SABlackMask.m in Sources */,
 			);

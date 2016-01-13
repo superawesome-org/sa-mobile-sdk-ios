@@ -73,7 +73,6 @@
         @"placement":[NSNumber numberWithInteger:ad.placementId],
         @"line_item":[NSNumber numberWithInteger:ad.lineItemId],
         @"creative":[NSNumber numberWithInteger:ad.creative.creativeId],
-        @"sdkVersion":[[SuperAwesome getInstance] getSdkVersion],
         @"rnd":[NSNumber numberWithInteger:[SAURLUtils getCachebuster]]
     };
     [richMediaString appendString:@"?"];
