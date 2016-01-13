@@ -48,18 +48,19 @@
 }
 
 - (void) didLoadAd:(SAAd *)ad {
-    if (_successBlock != NULL){
-        _successBlock(ad);
-    }
-    
     // create fvad
     SAFullscreenVideoAd *fvad = [[SAFullscreenVideoAd alloc] init];
+    [fvad setAd:ad];
     [fvad setIsParentalGateEnabled:_hasGate];
     
     // get root vc
     UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
     [root presentViewController:fvad animated:YES completion:^{
         [fvad play];
+        
+        if (_successBlock != NULL){
+            _successBlock(ad);
+        }
     }];
 }
 

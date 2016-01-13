@@ -68,6 +68,12 @@
     // create test data
     _data = [TestDataProvider createTestData];
     
+    SAUnityLinker *linker = [[SAUnityLinker alloc] init];
+    [linker startVideoAd:28 withGate:YES inTestMode:false withSuccess:^(SAAd *ad) {
+        NSLog(@"Success");
+    } orFail:^(NSInteger placementId) {
+        NSLog(@"Failure");
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

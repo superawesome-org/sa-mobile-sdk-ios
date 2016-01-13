@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+3.3.5
+ - Improved Unity Linker
+
 3.3.4
  - Added Unity Linker
 
