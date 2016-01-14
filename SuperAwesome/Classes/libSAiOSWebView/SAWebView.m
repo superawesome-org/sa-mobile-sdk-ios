@@ -76,13 +76,30 @@
     [script appendFormat:@"viewport.setAttribute('content', 'width=device-width, initial-scale=%.2f, maximum-scale=%.2f, user-scalable=no, target-densitydpi=device-dpi');", scale, scale];
     
     [self stringByEvaluatingJavaScriptFromString:script];
+    
+//    NSString *script2 = @"window.open = function (open) { return function  (url, name, features) { window.location.href = url; return window; }; } (window.open);";
+//    NSString *script3 = @"window.open = function (open) { window.alert('wohoo'); }";
+//    [self stringByEvaluatingJavaScriptFromString:script3];
 }
 
 #pragma mark <UIWebViewDelegate>
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     
-    if (navigationType == UIWebViewNavigationTypeLinkClicked) {
+    BOOL shouldContinue = true;
+    
+    if (navigationType == UIWebViewNavigationTypeLinkClicked){
+        shouldContinue = false;
+    } else {
+        if ([request.URL.absoluteString rangeOfString:@"&redir=" options:NSCaseInsensitiveSearch].location != NSNotFound) {
+            shouldContinue = false;
+        }
+        if ([request.URL.relativeString rangeOfString:@"/v2/click"].location != NSNotFound) {
+            shouldContinue = false;
+        }
+    }
+    
+    if (!shouldContinue) {
     
         // send a click message
         NSURL *url = [request URL];
@@ -102,9 +119,13 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     
-    [self stringByEvaluatingJavaScriptFromString:@";{ var a = document.getElementsByTagName(\"a\");  for (var i=0; i<a.length; i++)  { a[i].target = \"_self\"; }	 }"];
-    [self stringByEvaluatingJavaScriptFromString:@";window.open = function( inurl, blah, blah2 ) {  document.location = inurl; }"];
+//    [self stringByEvaluatingJavaScriptFromString:@";{ var a = document.getElementsByTagName(\"a\");  for (var i=0; i<a.length; i++)  { a[i].target = \"_self\"; }	 }"];
+//    [self stringByEvaluatingJavaScriptFromString:@";window.open = function( inurl, blah, blah2 ) {  document.location = inurl; }"];
 
+//    NSString *script3 = @"window.open = function (open) { window.alert('wohoo'); }";
+//    [self stringByEvaluatingJavaScriptFromString:script3];
+//    [self stringByEvaluatingJavaScriptFromString:@"window.alert('ooo');"];
+    
 //    [self stringByEvaluatingJavaScriptFromString:@"window.alert('wow');"];
 //    [self stringByEvaluatingJavaScriptFromString:@"window.open = function (open) { return function  (url, name, features) { window.alert('rex'); window.location.href = url; return window; }; } (window.open);"];
 //    // append JS
