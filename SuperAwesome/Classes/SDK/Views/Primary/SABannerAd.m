@@ -46,6 +46,15 @@
 // Actual implementation of SABannerAd
 @implementation SABannerAd
 
+- (id) initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]) {
+        // set specific bg color
+        self.backgroundColor = [UIColor colorWithRed:(191.0/255.0) green:(191.0/255.0) blue:(191.0/255.0) alpha:1];
+    }
+    
+    return self;
+}
+
 - (void) play {
     [super play];
     
@@ -55,6 +64,7 @@
         }
         return;
     }
+    
     
     // calc correctly scaled frame
     CGRect frame = [SAUtils arrangeAdInNewFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)

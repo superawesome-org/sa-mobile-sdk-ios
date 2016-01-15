@@ -55,6 +55,10 @@
             // only if status code is 200
             if (((NSHTTPURLResponse*)response).statusCode == 200) {
                 NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                // internal logging
+                if (str.length >= 10){
+                    str = [[str substringToIndex:9] stringByAppendingString:@" ... /truncated"];
+                }
                 NSLog(@"Success: %@ ==> %@", _surl, str);
                 if (success){
                     success(data);

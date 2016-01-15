@@ -19,6 +19,7 @@
     adview = [[SABannerAd alloc] initWithFrame:adviewFrame];
     adview.adDelegate = super.adDelegate;
     adview.parentalGateDelegate = super.parentalGateDelegate;
+    adview.backgroundColor = [UIColor colorWithRed:(239/255.0f) green:(239/255.0f) blue:(239/255.0f) alpha:1];
     [self.view addSubview:adview];
     
     // only <<IF>> ad is already here

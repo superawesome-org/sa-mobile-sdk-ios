@@ -67,6 +67,7 @@
     adview = [[SAVideoAd alloc] initWithFrame:adviewFrame];
     adview.adDelegate = super.adDelegate;
     adview.parentalGateDelegate = super.parentalGateDelegate;
+    [(SAVideoAd*)adview setIsParentalGateEnabled:super.isParentalGateEnabled];
     [(SAVideoAd*)adview setVideoDelegate:_videoDelegate];
     [(SAVideoAd*)adview setInternalAdProto:self];
     [(SAVideoAd*)adview setInternalVideoAdProto:self];

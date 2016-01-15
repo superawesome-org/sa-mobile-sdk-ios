@@ -29,8 +29,6 @@
     if (self = [super init]) {
         _isParentalGateEnabled = NO;
         _refreshPeriod = 30;
-        gate = [[SAParentalGate alloc] initWithWeakRefToView:self];
-        pad = [[SAPadlock alloc] initWithWeakRefToView:self];
     }
     
     return self;
@@ -40,8 +38,6 @@
     if (self = [super initWithFrame:frame]) {
         _isParentalGateEnabled = NO;
         _refreshPeriod = 30;
-        gate = [[SAParentalGate alloc] initWithWeakRefToView:self];
-        pad = [[SAPadlock alloc] initWithWeakRefToView:self];
     }
     
     return self;
@@ -51,8 +47,7 @@
     if (self = [super initWithCoder:aDecoder]) {
         _isParentalGateEnabled = NO;
         _refreshPeriod = 30;
-        gate = [[SAParentalGate alloc] initWithWeakRefToView:self];
-        pad = [[SAPadlock alloc] initWithWeakRefToView:self];
+        
     }
     
     return self;
@@ -65,7 +60,8 @@
     gate.delegate = _parentalGateDelegate;
     
     // init the pad
-    
+    gate = [[SAParentalGate alloc] initWithWeakRefToView:self];
+    pad = [[SAPadlock alloc] initWithWeakRefToView:self];
 }
 
 

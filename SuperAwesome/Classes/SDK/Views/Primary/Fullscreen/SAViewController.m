@@ -97,7 +97,7 @@
             [adview.adDelegate adWasClosed:_ad.placementId];
         }
     }];
-}
+} 
 
 - (void) orientationChanged:(NSNotification *)notification{
     // restup coordinates

@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+3.3.9
+ - Finally fixed most of the issues
+
 3.3.8
  - Finished Unity Linker
 

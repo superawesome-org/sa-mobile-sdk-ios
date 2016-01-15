@@ -36,7 +36,7 @@
     [super viewDidLoad];
     
 //     set config to stanging
-//    [[SuperAwesome getInstance] setConfigurationStaging];
+    [[SuperAwesome getInstance] setConfigurationStaging];
     
     // set title
     UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 30)];
@@ -160,7 +160,7 @@
             [fvad setAdDelegate:self];
             [fvad setVideoDelegate:self];
             [fvad setParentalGateDelegate:self];
-            [fvad setIsParentalGateEnabled:true];
+            [fvad setIsParentalGateEnabled:false];
             [fvad setShouldAutomaticallyCloseAtEnd:true];
             [fvad setShouldShowCloseButton:YES];
             [self presentViewController:fvad animated:YES completion:^{
