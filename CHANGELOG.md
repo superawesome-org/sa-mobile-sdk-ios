@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+3.4.0
+ - Updates to the Unity integration
+
 3.3.9
  - Finally fixed most of the issues
 

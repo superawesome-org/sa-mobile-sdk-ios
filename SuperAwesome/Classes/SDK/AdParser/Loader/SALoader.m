@@ -61,6 +61,7 @@ static id<SALoaderProtocol> delegate;
         // We're assuming the NSData is actually a JSON in string format,
         // so the next step is to parse it
         NSError *jsonError;
+        NSString *adJson = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&jsonError];
         
         // some error occured, probably the JSON string was badly formatted
@@ -75,6 +76,9 @@ static id<SALoaderProtocol> delegate;
             // we invoke SAParser class functions to parse different aspects
             // of the Ad
             [SAParser parseDictionary:json withPlacementId:placementId intoAd:^(SAAd *parsedAd) {
+                
+                // add the json to the ad body
+                parsedAd.adJson = adJson;
                 
                 // one final check for validity
                 BOOL isValid = [SAValidator isAdDataValid:parsedAd];

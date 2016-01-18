@@ -16,6 +16,7 @@
 
 - (void) print {
     NSLog(@"Ad:");
+    NSLog(@"json: %@", _adJson);
     NSLog(@"error: %ld", (long)_error);
     NSLog(@"placementId: %ld", (long)_placementId);
     NSLog(@"lineItemId: %ld", (long)_lineItemId);

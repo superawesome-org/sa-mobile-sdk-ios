@@ -19,6 +19,10 @@
 // by the SDK
 @interface SAAd : NSObject
 
+// the original ad json, as sent from the server
+// really need it for the Unity integration part
+@property (nonatomic, assign) NSString *adJson;
+
 // the SA server can send an error; if that's the case, this field will not be nill
 @property (nonatomic, assign) NSInteger error;
 
