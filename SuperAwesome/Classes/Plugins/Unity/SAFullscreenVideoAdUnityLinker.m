@@ -38,26 +38,19 @@
 
 @implementation SAFullscreenVideoAdUnityLinker
 
-- (id) initWithPlacementId:(NSInteger)placementId
-                 andAdJson:(NSString*)adJson
-              andUnityName:(NSString*)unityAd
-        andHasParentalGate:(BOOL)isParentalGateEnabled
-         andHasCloseButton:(BOOL)shouldShowCloseButton
-            andClosesAtEnd:(BOOL)shouldAutomaticallyCloseAtEnd {
+- (void) startWithPlacementId:(NSInteger)placementId
+                    andAdJson:(NSString*)adJson
+                 andUnityName:(NSString*)unityAd
+           andHasParentalGate:(BOOL)isParentalGateEnabled
+            andHasCloseButton:(BOOL)shouldShowCloseButton
+               andClosesAtEnd:(BOOL)shouldAutomaticallyCloseAtEnd {
     
-    if (self = [super init]) {
-        _placementId = placementId;
-        _adJson = adJson;
-        _unityAd = unityAd;
-        _isParentalGateEnabled = isParentalGateEnabled;
-        _shouldShowCloseButton = shouldShowCloseButton;
-        _shouldAutomaticallyCloseAtEnd = shouldAutomaticallyCloseAtEnd;
-    }
-    
-    return self;
-}
-
-- (void) start {
+    _placementId = placementId;
+    _adJson = adJson;
+    _unityAd = unityAd;
+    _isParentalGateEnabled = isParentalGateEnabled;
+    _shouldShowCloseButton = shouldShowCloseButton;
+    _shouldAutomaticallyCloseAtEnd = shouldAutomaticallyCloseAtEnd;
     
     // We're assuming the NSData is actually a JSON in string format,
     // so the next step is to parse it
