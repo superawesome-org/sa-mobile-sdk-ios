@@ -16,21 +16,23 @@ typedef void (^adEvent)(NSString *unityAd);
 
 @interface SAFullscreenVideoAdUnityLinker : NSObject
 
+
+
 // static function that starts a unity video
-- (id) initWithVideoAd:(int)placementId
-          andUnityName:(NSString*)unityAdName
-              withGate:(BOOL)hasGate
-            inTestMode:(BOOL)testMode
-        hasCloseButton:(BOOL)hasClose
-        andClosesAtEnd:(BOOL)closesAtEnd;
+- (id) initWithPlacementId:(NSInteger)placementId
+                 andAdJson:(NSString*)adJson
+              andUnityName:(NSString*)unityAd
+        andHasParentalGate:(BOOL)isParentalGateEnabled
+         andHasCloseButton:(BOOL)shouldShowCloseButton
+            andClosesAtEnd:(BOOL)shouldAutomaticallyCloseAtEnd;
 - (void) start;
 
-// add blocks
-- (void) addLoadVideoBlock:(adEvent)block;
-- (void) addFailToLoadVideoBlock:(adEvent)block;
-- (void) addStartVideoBlock:(adEvent)block;
-- (void) addStopVideoBlock:(adEvent)block;
-- (void) addFailToPlayVideoBlock:(adEvent)block;
-- (void) addClickVideoBlock:(adEvent)block;
+//// add blocks
+//- (void) addLoadVideoBlock:(adEvent)block;
+//- (void) addFailToLoadVideoBlock:(adEvent)block;
+//- (void) addStartVideoBlock:(adEvent)block;
+//- (void) addStopVideoBlock:(adEvent)block;
+//- (void) addFailToPlayVideoBlock:(adEvent)block;
+//- (void) addClickVideoBlock:(adEvent)block;
 
 @end
