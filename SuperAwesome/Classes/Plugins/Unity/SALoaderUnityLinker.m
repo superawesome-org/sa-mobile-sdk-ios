@@ -39,14 +39,15 @@
 }
 
 - (void) didLoadAd:(SAAd *)ad {
-    if (_success != NULL) {
-        _success(_unityAdName, ad.adJson);
+    
+    if (_event) {
+        _event(_unityAdName, @"callback_didLoadAd", ad.adJson);
     }
 }
 
 - (void) didFailToLoadAdForPlacementId:(NSInteger)placementId {
-    if (_error) {
-        _error(_unityAdName, placementId);
+    if (_event) {
+        _event(_unityAdName, @"callback_didFailToLoadAd",@"");
     }
 }
 

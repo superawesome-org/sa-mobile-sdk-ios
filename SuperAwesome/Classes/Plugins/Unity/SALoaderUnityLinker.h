@@ -9,8 +9,7 @@
 #import <Foundation/Foundation.h>
 
 // callback for generic success with data
-typedef void (^successEvent)(NSString *unityAd, NSString *adString);
-typedef void (^errorEvent)(NSString *unityAd, NSInteger placementId);
+typedef void (^loadingEvent)(NSString *unityAd, NSString *unityCallback, NSString *adString);
 
 @interface SALoaderUnityLinker : NSObject
 
@@ -19,7 +18,6 @@ typedef void (^errorEvent)(NSString *unityAd, NSInteger placementId);
      forUnityAd:(NSString*)unityAd
    withTestMode:(BOOL)isTestEnabled;
 
-@property (nonatomic, assign) successEvent success;
-@property (nonatomic, assign) errorEvent error;
+@property (nonatomic, assign) loadingEvent event;
 
 @end

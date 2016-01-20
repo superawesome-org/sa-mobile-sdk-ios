@@ -23,6 +23,6 @@ typedef void (^adEvent)(NSString *unityAd, NSString *unityCallback);
             andHasCloseButton:(BOOL)shouldShowCloseButton
                andClosesAtEnd:(BOOL)shouldAutomaticallyCloseAtEnd;
 
-@property (nonatomic, assign) adEvent genericEvent;
+@property (nonatomic, assign) adEvent event;
 
 @end

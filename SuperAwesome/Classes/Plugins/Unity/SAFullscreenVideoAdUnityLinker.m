@@ -91,98 +91,98 @@
 #pragma mark <Delegate Implementations>
 
 - (void) adWasShown:(NSInteger)placementId {
-    if (_genericEvent){
-        _genericEvent(_unityAd, @"callback_adWasShown");
+    if (_event){
+        _event(_unityAd, @"callback_adWasShown");
     }
 }
 
 - (void) adFailedToShow:(NSInteger)placementId {
-    if (_genericEvent){
-        _genericEvent(_unityAd, @"callback_adFailedToShow");
+    if (_event){
+        _event(_unityAd, @"callback_adFailedToShow");
     }
 }
 
 - (void) adWasClosed:(NSInteger)placementId {
-    if (_genericEvent){
-        _genericEvent(_unityAd, @"callback_adWasClosed");
+    if (_event){
+        _event(_unityAd, @"callback_adWasClosed");
     }
 }
 
 - (void) adWasClicked:(NSInteger)placementId{
-    if (_genericEvent){
-        _genericEvent(_unityAd, @"callback_adWasClicked");
+    if (_event){
+        _event(_unityAd, @"callback_adWasClicked");
     }
 }
 
 - (void) adHasIncorrectPlacement:(NSInteger)placementId {
-    if (_genericEvent){
-        _genericEvent(_unityAd, @"callback_adHasIncorrectPlacement");
+    if (_event){
+        _event(_unityAd, @"callback_adHasIncorrectPlacement");
     }
 }
 
 - (void) parentalGateWasCanceled:(NSInteger)placementId {
-    if (_genericEvent){
-        _genericEvent(_unityAd, @"callback_parentalGateWasCanceled");
+    if (_event){
+        _event(_unityAd, @"callback_parentalGateWasCanceled");
     }
 }
 
 - (void) parentalGateWasFailed:(NSInteger)placementId {
-    if (_genericEvent){
-        _genericEvent(_unityAd, @"callback_parentalGateWasFailed");
+    if (_event){
+        _event(_unityAd, @"callback_parentalGateWasFailed");
     }
 }
 
 - (void) parentalGateWasSucceded:(NSInteger)placementId {
-    if (_genericEvent){
-        _genericEvent(_unityAd, @"callback_parentalGateWasSucceded");
+    if (_event){
+        _event(_unityAd, @"callback_parentalGateWasSucceded");
     }
 }
 
 - (void) adStarted:(NSInteger)placementId {
-    if (_genericEvent){
-        _genericEvent(_unityAd, @"callback_adStarted");
+    if (_event){
+        _event(_unityAd, @"callback_adStarted");
     }
 }
 
 - (void) videoStarted:(NSInteger)placementId {
-    if (_genericEvent){
-        _genericEvent(_unityAd, @"callback_videoStarted");
+    if (_event){
+        _event(_unityAd, @"callback_videoStarted");
     }
 }
 
 - (void) videoReachedFirstQuartile:(NSInteger)placementId {
-    if (_genericEvent){
-        _genericEvent(_unityAd, @"callback_videoReachedFirstQuartile");
+    if (_event){
+        _event(_unityAd, @"callback_videoReachedFirstQuartile");
     }
 }
 
 - (void) videoReachedMidpoint:(NSInteger)placementId {
-    if (_genericEvent){
-        _genericEvent(_unityAd, @"callback_videoReachedMidpoint");
+    if (_event){
+        _event(_unityAd, @"callback_videoReachedMidpoint");
     }
 }
 
 - (void) videoReachedThirdQuartile:(NSInteger)placementId {
-    if (_genericEvent){
-        _genericEvent(_unityAd, @"callback_videoReachedThirdQuartile");
+    if (_event){
+        _event(_unityAd, @"callback_videoReachedThirdQuartile");
     }
 }
 
 - (void) videoEnded:(NSInteger)placementId {
-    if (_genericEvent){
-        _genericEvent(_unityAd, @"callback_videoEnded");
+    if (_event){
+        _event(_unityAd, @"callback_videoEnded");
     }
 }
 
 - (void) adEnded:(NSInteger)placementId {
-    if (_genericEvent){
-        _genericEvent(_unityAd, @"callback_adEnded");
+    if (_event){
+        _event(_unityAd, @"callback_adEnded");
     }
 }
 
 - (void) allAdsEnded:(NSInteger)placementId {
-    if (_genericEvent){
-        _genericEvent(_unityAd, @"callback_allAdsEnded");
+    if (_event){
+        _event(_unityAd, @"callback_allAdsEnded");
     }
 }
 
