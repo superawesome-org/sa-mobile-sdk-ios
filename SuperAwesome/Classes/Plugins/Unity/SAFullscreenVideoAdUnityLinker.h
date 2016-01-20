@@ -12,7 +12,7 @@
 @class SAAd;
 
 // callback for generic success with data
-typedef void (^adEvent)(NSString *unityAd, NSInteger placementId);
+typedef void (^adEvent)(NSString *unityAd, NSString *unityCallback);
 
 @interface SAFullscreenVideoAdUnityLinker : NSObject
 
@@ -23,23 +23,6 @@ typedef void (^adEvent)(NSString *unityAd, NSInteger placementId);
             andHasCloseButton:(BOOL)shouldShowCloseButton
                andClosesAtEnd:(BOOL)shouldAutomaticallyCloseAtEnd;
 
-@property (nonatomic, assign) adEvent adWasShownBlock;
-@property (nonatomic, assign) adEvent adFailedToShowBlock;
-@property (nonatomic, assign) adEvent adWasClosedBlock;
-@property (nonatomic, assign) adEvent adWasClickedBlock;
-@property (nonatomic, assign) adEvent adHasIncorrectPlacementBlock;
-
-@property (nonatomic, assign) adEvent parentalGateWasCanceledBlock;
-@property (nonatomic, assign) adEvent parentalGateWasFailedBlock;
-@property (nonatomic, assign) adEvent parentalGateWasSuccededBlock;
-
-@property (nonatomic, assign) adEvent adStartedBlock;
-@property (nonatomic, assign) adEvent videoStartedBlock;
-@property (nonatomic, assign) adEvent videoReachedFirstQuartileBlock;
-@property (nonatomic, assign) adEvent videoReachedMidpointBlock;
-@property (nonatomic, assign) adEvent videoReachedThirdQuartileBlock;
-@property (nonatomic, assign) adEvent videoEndedBlock;
-@property (nonatomic, assign) adEvent adEndedBlock;
-@property (nonatomic, assign) adEvent allAdsEndedBlock;
+@property (nonatomic, assign) adEvent genericEvent;
 
 @end

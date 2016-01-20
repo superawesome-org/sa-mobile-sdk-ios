@@ -12,10 +12,6 @@
 
 @interface SALoaderUnityLinker () <SALoaderProtocol>
 
-// internal function pointers to code-blocks
-@property (nonatomic, assign) successEvent internalSuccess;
-@property (nonatomic, assign) errorEvent internalError;
-
 // internal unity ad name
 @property (nonatomic, strong) NSString *unityAdName;
 
@@ -25,14 +21,10 @@
 
 - (void) loadAd:(NSInteger)placementId
      forUnityAd:(NSString *)unityAd
-   withTestMode:(BOOL)isTestEnabled
-     andSuccess:(successEvent)success
-       andError:(errorEvent)error {
+   withTestMode:(BOOL)isTestEnabled {
     
     // get external vars
     _unityAdName = unityAd;
-    _internalSuccess = success;
-    _internalError = error;
     
     // enable or disable test mode
     if (isTestEnabled) {
@@ -47,14 +39,14 @@
 }
 
 - (void) didLoadAd:(SAAd *)ad {
-    if (_internalSuccess != NULL) {
-        _internalSuccess(_unityAdName, ad.adJson);
+    if (_success != NULL) {
+        _success(_unityAdName, ad.adJson);
     }
 }
 
 - (void) didFailToLoadAdForPlacementId:(NSInteger)placementId {
-    if (_internalError) {
-        _internalError(_unityAdName, placementId);
+    if (_error) {
+        _error(_unityAdName, placementId);
     }
 }
 

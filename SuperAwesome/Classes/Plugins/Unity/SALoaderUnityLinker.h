@@ -17,8 +17,9 @@ typedef void (^errorEvent)(NSString *unityAd, NSInteger placementId);
 // main loading function for the linker
 - (void) loadAd:(NSInteger)placementId
      forUnityAd:(NSString*)unityAd
-   withTestMode:(BOOL)isTestEnabled
-     andSuccess:(successEvent) success
-       andError:(errorEvent) error;
+   withTestMode:(BOOL)isTestEnabled;
+
+@property (nonatomic, assign) successEvent success;
+@property (nonatomic, assign) errorEvent error;
 
 @end
