@@ -7,9 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-// callback for generic success with data
-typedef void (^loadingEvent)(NSString *unityAd, NSString *unityCallback, NSString *adString);
+#import "SAUnityLinkerCallbacks.h"
 
 @interface SALoaderUnityLinker : NSObject
 

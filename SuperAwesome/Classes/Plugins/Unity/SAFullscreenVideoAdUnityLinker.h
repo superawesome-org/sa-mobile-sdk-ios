@@ -7,12 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "SAUnityLinkerCallbacks.h"
 
 @class SAAd;
-
-// callback for generic success with data
-typedef void (^adEvent)(NSString *unityAd, NSString *unityCallback);
 
 @interface SAFullscreenVideoAdUnityLinker : NSObject
 
