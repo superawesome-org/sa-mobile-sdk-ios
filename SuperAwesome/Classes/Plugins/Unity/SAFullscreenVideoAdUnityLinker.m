@@ -16,15 +16,7 @@
 #import "SAValidator.h"
 #import "SAFullscreenVideoAd.h"
 
-@interface SAFullscreenVideoAdUnityLinker () <SAAdProtocol, SAVideoAdProtocol>
-
-// block vars
-//@property (nonatomic, assign) adEvent adLoadBlock;
-//@property (nonatomic, assign) adEvent adFailBlock;
-//@property (nonatomic, assign) adEvent adStartBlock;
-//@property (nonatomic, assign) adEvent adStopBlock;
-//@property (nonatomic, assign) adEvent adFailBlockToPlayBlock;
-//@property (nonatomic, assign) adEvent adClickBlock;
+@interface SAFullscreenVideoAdUnityLinker () <SAAdProtocol, SAParentalGateProtocol, SAVideoAdProtocol>
 
 // parameters
 @property (nonatomic, strong) NSString *unityAd;
@@ -76,7 +68,10 @@
                 [fvad setIsParentalGateEnabled:_isParentalGateEnabled];
                 [fvad setShouldAutomaticallyCloseAtEnd:_shouldAutomaticallyCloseAtEnd];
                 [fvad setShouldShowCloseButton:_shouldShowCloseButton];
+                
+                // set delegates
                 [fvad setAdDelegate:self];
+                [fvad setParentalGateDelegate:self];
                 [fvad setVideoDelegate:self];
                 
                 // get root vc, show fvad and then play it
@@ -93,58 +88,102 @@
     }
 }
 
-//- (void) addLoadVideoBlock:(adEvent)block {
-//    _adLoadBlock = block;
-//}
-//
-//- (void) addFailToLoadVideoBlock:(adEvent)block {
-//    _adFailBlock = block;
-//}
-//
-//- (void) addStartVideoBlock:(adEvent)block {
-//    _adStartBlock = block;
-//}
-//
-//- (void) addStopVideoBlock:(adEvent)block {
-//    _adStopBlock = block;
-//}
-//
-//- (void) addFailToPlayVideoBlock:(adEvent)block {
-//    _adFailBlock = block;
-//}
-//
-//- (void) addClickVideoBlock:(adEvent)block {
-//    _adClickBlock = block;
-//}
+#pragma mark <Delegate Implementations>
 
-//- (void) didLoadAd:(SAAd *)ad {
-//    // create fvad
-//    SAFullscreenVideoAd *fvad = [[SAFullscreenVideoAd alloc] init];
-//    [fvad setAd:ad];
-//    
-//    // parametrize
-//    [fvad setIsParentalGateEnabled:_hasGate];
-//    [fvad setShouldAutomaticallyCloseAtEnd:_closesAtEnd];
-//    [fvad setShouldShowCloseButton:_hasCloseBtn];
-//    [fvad setAdDelegate:self];
-//    [fvad setVideoDelegate:self];
-//    
-//    // get root vc
-//    UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
-//    [root presentViewController:fvad animated:YES completion:^{
-//        [fvad play];
-//    }];
-////
-////    // call block
-////    if (_adLoadBlock){
-////        _adLoadBlock(_unityAdName);
-////    }
-//}
-//
-//- (void) didFailToLoadAdForPlacementId:(NSInteger)placementId {
-////    if (_adFailBlock){
-////        _adFailBlock(_unityAdName);
-////    }
-//}
+- (void) adWasShown:(NSInteger)placementId {
+    if (_adWasShownBlock){
+        _adWasShownBlock(_unityAd, placementId);
+    }
+}
+
+- (void) adFailedToShow:(NSInteger)placementId {
+    if (_adFailedToShowBlock) {
+        _adFailedToShowBlock(_unityAd, placementId);
+    }
+}
+
+- (void) adWasClosed:(NSInteger)placementId {
+    if (_adWasClosedBlock) {
+        _adWasClosedBlock(_unityAd, placementId);
+    }
+}
+
+- (void) adWasClicked:(NSInteger)placementId{
+    if (_adWasClickedBlock) {
+        _adWasClickedBlock(_unityAd, placementId);
+    }
+}
+
+- (void) adHasIncorrectPlacement:(NSInteger)placementId {
+    if (_adHasIncorrectPlacementBlock) {
+        _adHasIncorrectPlacementBlock(_unityAd, placementId);
+    }
+}
+
+- (void) parentalGateWasCanceled:(NSInteger)placementId {
+    if (_parentalGateWasCanceledBlock) {
+        _parentalGateWasCanceledBlock (_unityAd, placementId);
+    }
+}
+
+- (void) parentalGateWasFailed:(NSInteger)placementId {
+    if (_parentalGateWasFailedBlock) {
+        _parentalGateWasFailedBlock(_unityAd, placementId);
+    }
+}
+
+- (void) parentalGateWasSucceded:(NSInteger)placementId {
+    if (_parentalGateWasSuccededBlock) {
+        _parentalGateWasSuccededBlock(_unityAd, placementId);
+    }
+}
+
+- (void) adStarted:(NSInteger)placementId {
+    if (_adStartedBlock) {
+        _adStartedBlock(_unityAd, placementId);
+    }
+}
+
+- (void) videoStarted:(NSInteger)placementId {
+    if (_videoStartedBlock) {
+        _videoStartedBlock(_unityAd, placementId);
+    }
+}
+
+- (void) videoReachedFirstQuartile:(NSInteger)placementId {
+    if (_videoReachedFirstQuartileBlock) {
+        _videoReachedFirstQuartileBlock(_unityAd, placementId);
+    }
+}
+
+- (void) videoReachedMidpoint:(NSInteger)placementId {
+    if (_videoReachedMidpointBlock) {
+        _videoReachedMidpointBlock (_unityAd, placementId);
+    }
+}
+
+- (void) videoReachedThirdQuartile:(NSInteger)placementId {
+    if (_videoReachedThirdQuartileBlock) {
+        _videoReachedThirdQuartileBlock(_unityAd, placementId);
+    }
+}
+
+- (void) videoEnded:(NSInteger)placementId {
+    if (_videoEndedBlock) {
+        _videoEndedBlock(_unityAd, placementId);
+    }
+}
+
+- (void) adEnded:(NSInteger)placementId {
+    if (_adEndedBlock) {
+        _adEndedBlock(_unityAd, placementId);
+    }
+}
+
+- (void) allAdsEnded:(NSInteger)placementId {
+    if (_allAdsEndedBlock) {
+        _allAdsEndedBlock(_unityAd, placementId);
+    }
+}
 
 @end
