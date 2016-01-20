@@ -34,6 +34,7 @@
 
 // import plugins
 #import "SAFullscreenVideoAdUnityLinker.h"
+#import "SAInterstitialAdUnityLinker.h"
 #import "SALoaderUnityLinker.h"
 
 // @brief:
