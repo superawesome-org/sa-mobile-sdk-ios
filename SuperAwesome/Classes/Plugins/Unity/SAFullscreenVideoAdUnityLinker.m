@@ -52,7 +52,9 @@
     
     // check to see if the json Unity send is still OK
     if (jsonError) {
-        NSLog(@"[iOS] Ad data not valid");
+        if (_event){
+            _event(_unityAd, @"callback_adFailedToShow");
+        }
     } else {
         [SAParser parseDictionary:json withPlacementId:_placementId intoAd:^(SAAd *parsedAd) {
             
@@ -82,7 +84,9 @@
             }
             // if data is not valid
             else {
-                NSLog(@"[iOS] Ad data not valid");
+                if (_event){
+                    _event(_unityAd, @"callback_adFailedToShow");
+                }
             }
         }];
     }
