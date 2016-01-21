@@ -69,18 +69,6 @@
     
     // create test data
     _data = [TestDataProvider createTestData];
-    
-    SAUnityLinker *linker1 = [[SAUnityLinker alloc] init];
-    linker1.loadingEvent = ^(NSString *unityAd, NSString *unityCallback, NSString *adString) {
-        NSLog(@"Reached here and is %@", unityAd);
-    };
-    [linker1 loadAd:44 forUnityAd:@"unityAd1" withTestMode:false];
-    
-    SAUnityLinker *linker2 = [[SAUnityLinker alloc] init];
-    linker2.loadingEvent = ^(NSString *unityAd, NSString *unityCallback, NSString *adString) {
-        NSLog(@"Reached here and is %@", unityAd);
-    };
-    [linker2 loadAd:45 forUnityAd:@"unityAd2" withTestMode:false];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -131,11 +119,12 @@
             [self presentViewController:vc animated:YES completion:^{
                 SABannerAd *bad = [[SABannerAd alloc] initWithFrame:CGRectMake(0, 100, 320, 350)];
                 [bad setAd:ad];
+                [bad setIsParentalGateEnabled:true];
+                [bad setAdDelegate:self];
+                [bad setParentalGateDelegate:self];
                 [vc.view addSubview:bad];
                 [bad play];
                 
-                [bad setAdDelegate:self];
-                [bad setParentalGateDelegate:self];
             }];
             break;
         }
@@ -144,12 +133,13 @@
             [self presentViewController:vc animated:YES completion:^{
                 SAVideoAd *vad = [[SAVideoAd alloc] initWithFrame:CGRectMake(0, 100, 320, 240)];
                 [vad setAd:ad];
-                [vc.view addSubview:vad];
-                [vad play];
-                
                 [vad setAdDelegate:self];
                 [vad setVideoDelegate:self];
                 [vad setParentalGateDelegate:self];
+                [vc.view addSubview:vad];
+                [vad play];
+                
+                
             }];
             break;
         }
@@ -158,7 +148,7 @@
             [iad setAd:ad];
             [iad setAdDelegate:self];
             [iad setParentalGateDelegate:self];
-            [iad setIsParentalGateEnabled:false];
+            [iad setIsParentalGateEnabled:true];
             [self presentViewController:iad animated:YES completion:^{
                 [iad play];
             }];
@@ -170,7 +160,7 @@
             [fvad setAdDelegate:self];
             [fvad setVideoDelegate:self];
             [fvad setParentalGateDelegate:self];
-            [fvad setIsParentalGateEnabled:false];
+            [fvad setIsParentalGateEnabled:true];
             [fvad setShouldAutomaticallyCloseAtEnd:true];
             [fvad setShouldShowCloseButton:YES];
             [self presentViewController:fvad animated:YES completion:^{

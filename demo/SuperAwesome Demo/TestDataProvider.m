@@ -21,6 +21,7 @@
              CreateAdItem(@"Mobile Preroll - 40", 40, false, fullscreen_video_item),
              CreateAdItem(@"Rich Media MPU - 46", 46, false, banner_item),
              CreateAdItem(@"Third Party Tag - 48", 48, false, interstitial_item),
+             CreateAdItem(@"30372", 30372, true, banner_item)
              
 //             CreateAdItem(@"Banner - 9549", 9549, false, interstitial_item),
 //             CreateAdItem(@"Interstitial - 10324", 10324, false, interstitial_item),

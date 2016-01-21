@@ -48,7 +48,6 @@
 		4CDCE5F5D62D09E30E66382FB993A4A3 /* SAUnityLinker.h in Headers */ = {isa = PBXBuildFile; fileRef = E10FDBAAF8259C92266561FD1C1C788C /* SAUnityLinker.h */; };
 		4DA7865F870102E238996BEA655B45A7 /* SAViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = C465976720448DE4BA31F405ABD86E23 /* SAViewController.h */; };
 		4DBF0AACBE910274EDEC4084342E77A3 /* SASender.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BC6A9F71950E9543FD2F94C82E49D49 /* SASender.m */; };
-		4E88F8BCD605BC89B35B6858AD1EE2D3 /* SAPadlockView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94B734477F2B5FE6BD82B4B5B5FE4EBC /* SAPadlockView.m */; };
 		4FC8294E5331FDBE3B64E517E51BBDDF /* SAVASTPlayerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = FCF0AE1031C2D95E1D88B5C433A3768D /* SAVASTPlayerProtocol.h */; };
 		51CFD437F441FD88A288862855334BF1 /* SAWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = F8476FE537DCFCE9D6F359E01478E79D /* SAWebView.m */; };
 		5266E3698FD5147592522365FB2BE15F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D7E54B138644269B78862E148673F3 /* CoreLocation.framework */; };
@@ -71,7 +70,6 @@
 		76B8195C01C5B649D6C885CB9A6A08E0 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA98C4F81D36C1FB48F3D72922D208D /* MobileCoreServices.framework */; };
 		771C317E0D9EB98B0D224FA913EFAB6D /* SAFullscreenVideoAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 29965920EBF7EA11BCCB6A5DA462FFEE /* SAFullscreenVideoAd.h */; };
 		77CE9C70ADAF0F23559DC31B9BACE6B1 /* SAValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = A6949816242BC864009C553095A8871A /* SAValidator.h */; };
-		7A22DC885E0EBFC27BDA4958CC23C318 /* SAPadlockView.h in Headers */ = {isa = PBXBuildFile; fileRef = D4D85FECF8F8E7442D068D0A482F63AE /* SAPadlockView.h */; };
 		7E53203CAB8709362271E726F1309F32 /* libSAiOSNetwork.h in Headers */ = {isa = PBXBuildFile; fileRef = 42CF4918F39412D736D063D2102FF3DB /* libSAiOSNetwork.h */; };
 		80FF2368AC1FFEE17B2578E1401ECD53 /* SuperAwesome.h in Headers */ = {isa = PBXBuildFile; fileRef = 02B1A2ED738728922FC6F352B524D1B0 /* SuperAwesome.h */; };
 		81D54AF28C7C5110A27FA9E85B0747A9 /* UIAlertController+Window.m in Sources */ = {isa = PBXBuildFile; fileRef = FB6C7CE956FA6018011C2C54BAB8E746 /* UIAlertController+Window.m */; };
@@ -230,7 +228,6 @@
 		9297107AAB66D221521CBD15BC1ADE7F /* NSArray+SAPredicate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSArray+SAPredicate.h"; sourceTree = "<group>"; };
 		94787E933688AD2EC4A28116DAFF1887 /* TBXML.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TBXML.h; sourceTree = "<group>"; };
 		94B2BE5B44414E3E702DF13CDFA058B6 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
-		94B734477F2B5FE6BD82B4B5B5FE4EBC /* SAPadlockView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAPadlockView.m; sourceTree = "<group>"; };
 		9544C40DE2FE1011C74F40AF4B686C2B /* TBXML+SAStaticFunctions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TBXML+SAStaticFunctions.m"; sourceTree = "<group>"; };
 		9823668308DF4B117720AE4B2BF63419 /* SAURLClicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAURLClicker.m; sourceTree = "<group>"; };
 		98BCC071E1508854F35F94D6D4A105E5 /* GTMNSString+HTML.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GTMNSString+HTML.h"; sourceTree = "<group>"; };
@@ -259,7 +256,6 @@
 		CD8ABD392ABF62656963FE05FBFF28BC /* Pods-SuperAwesome Demo-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SuperAwesome Demo-resources.sh"; sourceTree = "<group>"; };
 		D0FFE8ED122B9907EBBF7BAF2234F5FA /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
 		D316B0FE25338397D7CC71BC87993738 /* SAFullscreenVideoAd.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAFullscreenVideoAd.m; sourceTree = "<group>"; };
-		D4D85FECF8F8E7442D068D0A482F63AE /* SAPadlockView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAPadlockView.h; sourceTree = "<group>"; };
 		D57D8CA14BCF7C5E6C840C64E0D765FC /* Pods-SuperAwesome DemoTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SuperAwesome DemoTests-acknowledgements.plist"; sourceTree = "<group>"; };
 		D64E03F3709AD685E4EDA1E1ACAABEAD /* SAParentalGate.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAParentalGate.m; sourceTree = "<group>"; };
 		D878998DEAD53D7292C7F0CE80776B04 /* SALoader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SALoader.h; sourceTree = "<group>"; };
@@ -748,8 +744,6 @@
 			children = (
 				E088E428800D42EA1EAB54FD8EC694E8 /* SAPadlock.h */,
 				E4A64C57AF1A2AE574A8CA4E3CF8822F /* SAPadlock.m */,
-				D4D85FECF8F8E7442D068D0A482F63AE /* SAPadlockView.h */,
-				94B734477F2B5FE6BD82B4B5B5FE4EBC /* SAPadlockView.m */,
 			);
 			path = Padlock;
 			sourceTree = "<group>";
@@ -821,7 +815,6 @@
 				99ACB3FF17EA98DEA647D2B529F01C3E /* SALoaderProtocol.h in Headers */,
 				109154A4DD91E9E541CAED58E2AFB4B4 /* SANetwork.h in Headers */,
 				058A0C761AFA18C634DFF652D5FC6E7E /* SAPadlock.h in Headers */,
-				7A22DC885E0EBFC27BDA4958CC23C318 /* SAPadlockView.h in Headers */,
 				F1E4413F226A1ACB9F67D17F8D333384 /* SAParentalGate.h in Headers */,
 				15D44FBFE83947F1C278A04BEBF9A7C6 /* SAParentalGateProtocol.h in Headers */,
 				079714E6CACCB38BDFF85D2E180735D8 /* SAParser.h in Headers */,
@@ -972,7 +965,6 @@
 				2297520EC04CC9512B03FB6EAAB67A58 /* SALoader.m in Sources */,
 				F66130343EA90FD0A24732466F00F1AB /* SANetwork.m in Sources */,
 				C1DF2B2E8EC93A0A6E70D6739A73DE59 /* SAPadlock.m in Sources */,
-				4E88F8BCD605BC89B35B6858AD1EE2D3 /* SAPadlockView.m in Sources */,
 				70614C3B3783F78E196BB9AD50302B2C /* SAParentalGate.m in Sources */,
 				B258704F137CA66D2993F5918A92A2E1 /* SAParser.m in Sources */,
 				4DBF0AACBE910274EDEC4084342E77A3 /* SASender.m in Sources */,

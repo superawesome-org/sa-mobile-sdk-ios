@@ -17,9 +17,6 @@
 #import "SACreative.h"
 #import "SADetails.h"
 
-// import padlock view
-#import "SAPadlockView.h"
-
 // import saaux
 #import "libSAiOSUtils.h"
 
@@ -36,9 +33,6 @@
 
 // the padlock button
 @property (nonatomic, strong) UIButton *padlockBtn;
-
-// the actual padlock view
-@property (nonatomic, strong) SAPadlockView *pad;
 
 @end
 

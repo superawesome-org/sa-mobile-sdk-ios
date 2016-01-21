@@ -56,11 +56,9 @@
 #pragma mark Playing and displaying
 
 - (void) play {
-    // init parental gate
-    gate.delegate = _parentalGateDelegate;
-    
     // init the pad
     gate = [[SAParentalGate alloc] initWithWeakRefToView:self];
+    gate.delegate = _parentalGateDelegate;
     pad = [[SAPadlock alloc] initWithWeakRefToView:self];
 }
 

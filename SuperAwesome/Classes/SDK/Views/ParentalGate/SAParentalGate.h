@@ -19,29 +19,16 @@
 // define a block used by UIAlertActions
 typedef void(^actionBlock) (UIAlertAction *action);
 
-// define a block used for custom interactions
-// (mostly needed because of Unity plugin limitations)
-typedef void(^interactionBlock) (NSString *adname);
-
 // interface
 @interface SAParentalGate : NSObject <UIAlertViewDelegate>
 
 // custom init functions
 - (id) initWithWeakRefToView:(SAView*)weakRef;
-- (id) initWithPlacementId:(NSInteger)placementId
-             andCreativeId:(NSInteger)creativeId
-             andLineItemId:(NSInteger)lineItemId;
 
 // delegate
-@property (nonatomic, weak) id<SAParentalGateProtocol> delegate;
+@property id<SAParentalGateProtocol> delegate;
 
 // show function
 - (void) show;
-
-// blocks
-- (void) addSuccessBlock:(interactionBlock)block;
-- (void) addCancelBlock:(interactionBlock)block;
-- (void) addErrorBlock:(interactionBlock)block;
-- (void) setAdName:(NSString*)adname;
 
 @end

@@ -54,12 +54,6 @@
 @property (nonatomic, retain) UIAlertController *challangeAlertView;
 @property (nonatomic, retain) UIAlertView *wrongAnswerAlertView;
 
-// blocks (if you don't want to use protocols
-@property (nonatomic, retain) NSString *adname;
-@property (nonatomic, assign) interactionBlock didGetThroughParentalGate;
-@property (nonatomic, assign) interactionBlock didCancelParentalGate;
-@property (nonatomic, assign) interactionBlock didFailChallengeForParentalGate;
-
 // the ad response
 @property (nonatomic, retain) SAAd *ad;
 
@@ -80,21 +74,6 @@
     return self;
 }
 
-- (id) initWithPlacementId:(NSInteger)placementId
-             andCreativeId:(NSInteger)creativeId
-             andLineItemId:(NSInteger)lineItemId {
-    if (self = [super init]) {
-        // form the ad from bits and pieces
-        _ad = [[SAAd alloc] init];
-        _ad.creative = [[SACreative alloc] init];
-        _ad.placementId = placementId;
-        _ad.lineItemId = lineItemId;
-        _ad.creative.creativeId = creativeId;
-    }
-    
-    return self;
-}
-
 // init a new question
 - (void) newQuestion {
     _number1 = [SAUtils randomNumberBetween:SA_RAND_MIN maxNumber:SA_RAND_MAX];
@@ -108,14 +87,8 @@
     // action block #1
     actionBlock cancelBlock = ^(UIAlertAction *action) {
         // calls to delegate or blocks
-#pragma mark Normal iOS behaviour
-        if(self.delegate && [self.delegate respondsToSelector:@selector(parentalGateWasCanceled:)]){
-            [self.delegate parentalGateWasCanceled:_ad.placementId];
-        }
-        
-#pragma mark Unity / iOS behaviour
-        if (_didCancelParentalGate != nil) {
-            _didCancelParentalGate(_adname);
+        if(_delegate && [_delegate respondsToSelector:@selector(parentalGateWasCanceled:)]){
+            [_delegate parentalGateWasCanceled:_ad.placementId];
         }
     };
     
@@ -132,14 +105,8 @@
         if([input integerValue] == self.solution){
             
             // call to delegate
-#pragma mark Normal iOS behaviour
-            if(self.delegate && [self.delegate respondsToSelector:@selector(parentalGateWasSucceded:)]){
-                [self.delegate parentalGateWasSucceded:_ad.placementId];
-            }
-            
-#pragma mark Unity / iOS behaviour
-            if (_didGetThroughParentalGate != nil){
-                _didGetThroughParentalGate(_adname);
+            if(_delegate && [_delegate respondsToSelector:@selector(parentalGateWasSucceded:)]){
+                [_delegate parentalGateWasSucceded:_ad.placementId];
             }
             
             // finally advance to URL
@@ -156,14 +123,8 @@
             [_wrongAnswerAlertView show];
             
             // call to delegate
-#pragma mark Normal iOS behaviour
-            if(self.delegate && [self.delegate respondsToSelector:@selector(parentalGateWasFailed:)]){
-                [self.delegate parentalGateWasFailed:_ad.placementId];
-            }
-            
-#pragma mark Unity / iOS behaviour
-            if (_didFailChallengeForParentalGate != nil){
-                _didFailChallengeForParentalGate(_adname);
+            if(_delegate && [_delegate respondsToSelector:@selector(parentalGateWasFailed:)]){
+                [_delegate parentalGateWasFailed:_ad.placementId];
             }
         }
     };
@@ -194,22 +155,6 @@
     }];
     
     [_challangeAlertView show];
-}
-
-- (void) setAdName:(NSString *)adname {
-    _adname = adname;
-}
-
-- (void) addSuccessBlock:(interactionBlock)block {
-    _didGetThroughParentalGate = block;
-}
-
-- (void) addErrorBlock:(interactionBlock)block {
-    _didFailChallengeForParentalGate = block;
-}
-
-- (void) addCancelBlock:(interactionBlock)block {
-    _didCancelParentalGate = block;
 }
 
 @end
