@@ -42,8 +42,8 @@
         self.mediaPlaybackRequiresUserAction = YES;
         
         // set scale
-        CGFloat xscale = self.frame.size.width / _size.width;
-        CGFloat yscale = self.frame.size.height / _size.height;
+        CGFloat xscale = frame.size.width / _size.width;
+        CGFloat yscale = frame.size.height / _size.height;
         CGFloat scale = MIN(xscale, yscale);
         
         // modify HTML
@@ -51,8 +51,6 @@
         _html = [_html stringByReplacingOccurrencesOfString:@"_WIDTH_" withString:[NSString stringWithFormat:@"%ld", (long)_size.width]];
         _html = [_html stringByReplacingOccurrencesOfString:@"_HEIGHT_" withString:[NSString stringWithFormat:@"%ld", (long)_size.height]];
         _html = [_html stringByReplacingOccurrencesOfString:@"_PARAM_SCALE_" withString:[NSString stringWithFormat:@"%.2f", scale]];
-        
-        NSLog(@"AND THIS IS THE HTML %@", _html);
         
         // reload the webview
         [self loadHTMLString:_html baseURL:NULL];
@@ -76,10 +74,6 @@
     [script appendFormat:@"viewport.setAttribute('content', 'width=device-width, initial-scale=%.2f, maximum-scale=%.2f, user-scalable=no, target-densitydpi=device-dpi');", scale, scale];
     
     [self stringByEvaluatingJavaScriptFromString:script];
-    
-//    NSString *script2 = @"window.open = function (open) { return function  (url, name, features) { window.location.href = url; return window; }; } (window.open);";
-//    NSString *script3 = @"window.open = function (open) { window.alert('wohoo'); }";
-//    [self stringByEvaluatingJavaScriptFromString:script3];
 }
 
 #pragma mark <UIWebViewDelegate>
