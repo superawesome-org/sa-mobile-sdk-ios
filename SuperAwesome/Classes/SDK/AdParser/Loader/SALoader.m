@@ -31,20 +31,7 @@
 
 @implementation SALoader
 
-static id<SALoaderProtocol> delegate;
-
-+ (id<SALoaderProtocol>) delegate {
-    @synchronized(self) {
-        return delegate;
-    }
-}
-+ (void) setDelegate:(id<SALoaderProtocol>)del {
-    @synchronized(self) {
-        delegate = del;
-    }
-}
-
-+ (void) loadAdForPlacementId:(NSInteger)placementId {
+- (void) loadAdForPlacementId:(NSInteger)placementId {
     
     // First thing to do is format the AA URL to get an ad, based on specs
     NSString *endpoint = [NSString stringWithFormat:@"%@/ad/%ld", [[SuperAwesome getInstance] getBaseURL], (long)placementId];
@@ -66,8 +53,8 @@ static id<SALoaderProtocol> delegate;
         
         // some error occured, probably the JSON string was badly formatted
         if (jsonError) {
-            if (SALoader.delegate != NULL && [SALoader.delegate respondsToSelector:@selector(didFailToLoadAdForPlacementId:)]) {
-                [SALoader.delegate didFailToLoadAdForPlacementId:placementId];
+            if (_delegate != NULL && [_delegate respondsToSelector:@selector(didFailToLoadAdForPlacementId:)]) {
+                [_delegate didFailToLoadAdForPlacementId:placementId];
             }
         }
         // if there is no specific JSON Error, we can move forward to try to
@@ -85,22 +72,22 @@ static id<SALoaderProtocol> delegate;
                 
                 // and if all is OK go forward and announce the new ad
                 if (isValid) {
-                    if (SALoader.delegate != NULL && [SALoader.delegate respondsToSelector:@selector(didLoadAd:)]) {
-                        [SALoader.delegate didLoadAd:parsedAd];
+                    if (_delegate != NULL && [_delegate respondsToSelector:@selector(didLoadAd:)]) {
+                        [_delegate didLoadAd:parsedAd];
                     }
                 }
                 // else announce failure
                 else {
-                    if (SALoader.delegate != NULL && [SALoader.delegate respondsToSelector:@selector(didFailToLoadAdForPlacementId:)]) {
-                        [SALoader.delegate didFailToLoadAdForPlacementId:placementId];
+                    if (_delegate != NULL && [_delegate respondsToSelector:@selector(didFailToLoadAdForPlacementId:)]) {
+                        [_delegate didFailToLoadAdForPlacementId:placementId];
                     }
                 }
             }];
         }
         
     } orFailure:^{
-        if (SALoader.delegate != NULL && [SALoader.delegate respondsToSelector:@selector(didFailToLoadAdForPlacementId:)]) {
-            [SALoader.delegate didFailToLoadAdForPlacementId:placementId];
+        if (_delegate != NULL && [_delegate respondsToSelector:@selector(didFailToLoadAdForPlacementId:)]) {
+            [_delegate didFailToLoadAdForPlacementId:placementId];
         }
     }];
 }

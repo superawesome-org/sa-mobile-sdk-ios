@@ -27,11 +27,10 @@
 @interface SALoader : NSObject
 
 // set delegate function
-+ (void) setDelegate:(id<SALoaderProtocol>) delegate;
-+ (id<SALoaderProtocol>) delegate;
+@property id<SALoaderProtocol> delegate;
 
 // laod ad function;
 // does not return anything directly, but via the SALoaderProtocol delegate
-+ (void) loadAdForPlacementId:(NSInteger)placementId;
+- (void) loadAdForPlacementId:(NSInteger)placementId;
 
 @end

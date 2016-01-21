@@ -1,1 +1,0 @@
-../../../../../SuperAwesome/Classes/Plugins/Unity/SAFullscreenVideoAdUnityLinker.h

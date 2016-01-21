@@ -85,6 +85,10 @@
     _isTestEnabled = false;
 }
 
+- (void) setTesting:(BOOL)enabled {
+    _isTestEnabled = enabled;
+}
+
 - (BOOL) isTestingEnabled {
     return _isTestEnabled;
 }

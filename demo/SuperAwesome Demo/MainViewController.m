@@ -27,6 +27,7 @@
 
 // app
 @property (nonatomic, weak) AppDelegate *del;
+@property (nonatomic, strong) SALoader *loader;
 
 @end
 
@@ -63,10 +64,23 @@
     _del = [[UIApplication sharedApplication] delegate];
     
     // assign delegate
-    [SALoader setDelegate:self];
+    _loader = [[SALoader alloc] init];
+    _loader.delegate = self;
     
     // create test data
     _data = [TestDataProvider createTestData];
+    
+    SAUnityLinker *linker1 = [[SAUnityLinker alloc] init];
+    linker1.loadingEvent = ^(NSString *unityAd, NSString *unityCallback, NSString *adString) {
+        NSLog(@"Reached here and is %@", unityAd);
+    };
+    [linker1 loadAd:44 forUnityAd:@"unityAd1" withTestMode:false];
+    
+    SAUnityLinker *linker2 = [[SAUnityLinker alloc] init];
+    linker2.loadingEvent = ^(NSString *unityAd, NSString *unityCallback, NSString *adString) {
+        NSLog(@"Reached here and is %@", unityAd);
+    };
+    [linker2 loadAd:45 forUnityAd:@"unityAd2" withTestMode:false];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -97,14 +111,10 @@
     AdItem *item = _data[indexPath.row];
     
     // setup testing
-    if (item.testEnabled) {
-        [[SuperAwesome getInstance] enableTestMode];
-    } else {
-        [[SuperAwesome getInstance] disableTestMode];
-    }
+    [[SuperAwesome getInstance] setTesting:item.testEnabled];
     
     // load the ad
-    [SALoader loadAdForPlacementId:item.placementId];
+    [_loader loadAdForPlacementId:item.placementId];
 }
 
 #pragma mark <SALoaderProtocol>

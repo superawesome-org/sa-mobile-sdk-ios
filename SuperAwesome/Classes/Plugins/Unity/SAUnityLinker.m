@@ -21,10 +21,10 @@
 
 @interface SAUnityLinker () <SALoaderProtocol, SAAdProtocol, SAVideoAdProtocol, SAParentalGateProtocol>
 
-// parameters
 @property (nonatomic, strong) NSString *unityAd;
 @property (nonatomic, strong) NSString *adJson;
 @property (nonatomic, assign) NSInteger placementId;
+@property (nonatomic, assign) BOOL isTestingEnabled;
 @property (nonatomic, assign) BOOL isParentalGateEnabled;
 @property (nonatomic, assign) BOOL shouldShowCloseButton;
 @property (nonatomic, assign) BOOL shouldAutomaticallyCloseAtEnd;
@@ -40,23 +40,22 @@
 ////////////////////////////////////////////////////////////
 // This function does the loading of an Ad
 ////////////////////////////////////////////////////////////
+
 - (void) loadAd:(NSInteger)placementId
      forUnityAd:(NSString *)unityAd
    withTestMode:(BOOL)isTestEnabled {
     
     // get external vars
     _unityAd = unityAd;
+    _isTestingEnabled = isTestEnabled;
     
     // enable or disable test mode
-    if (isTestEnabled) {
-        [[SuperAwesome getInstance] enableTestMode];
-    } else {
-        [[SuperAwesome getInstance] disableTestMode];
-    }
+    [[SuperAwesome getInstance] setTesting:_isTestingEnabled];
     
     // start loading
-    [SALoader setDelegate:self];
-    [SALoader loadAdForPlacementId:placementId];
+    SALoader *loader = [[SALoader alloc] init];
+    loader.delegate = self;
+    [loader loadAdForPlacementId:placementId];
 }
 
 ////////////////////////////////////////////////////////////

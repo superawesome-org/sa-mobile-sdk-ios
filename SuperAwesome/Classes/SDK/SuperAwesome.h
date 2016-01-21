@@ -58,6 +58,7 @@
 // enable or disable test mode
 - (void) enableTestMode;
 - (void) disableTestMode;
+- (void) setTesting:(BOOL)enabled;
 - (BOOL) isTestingEnabled;
 
 @end
