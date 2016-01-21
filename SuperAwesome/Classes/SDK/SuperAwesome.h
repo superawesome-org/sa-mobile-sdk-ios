@@ -33,9 +33,7 @@
 #import "SAVideoAdProtocol.h"
 
 // import plugins
-#import "SAFullscreenVideoAdUnityLinker.h"
-#import "SAInterstitialAdUnityLinker.h"
-#import "SALoaderUnityLinker.h"
+#import "SAUnityLinker.h"
 
 // @brief:
 // This is the main SuperAwesome class that handles the Ad Session
