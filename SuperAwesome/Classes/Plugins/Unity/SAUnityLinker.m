@@ -258,13 +258,16 @@
 #pragma mark <Delegate Implementations>
 
 - (void) didLoadAd:(SAAd *)ad {
-    
+    NSLog(@"Sending didLoadAd to %@", _unityAd);
     if (_loadingEvent) {
         _loadingEvent(_unityAd, @"callback_didLoadAd", ad.adJson);
     }
 }
 
 - (void) didFailToLoadAdForPlacementId:(NSInteger)placementId {
+    
+    NSLog(@"Sending didFailToLoadAdForPlacementId to %@", _unityAd);
+    
     if (_loadingEvent) {
         _loadingEvent(_unityAd, @"callback_didFailToLoadAd",@"");
     }
