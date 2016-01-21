@@ -105,6 +105,7 @@
                 
                 // add the banner to the topmost root
                 [root.view addSubview:bad];
+                [bad play];
             }
             // if data is not valid
             else {
