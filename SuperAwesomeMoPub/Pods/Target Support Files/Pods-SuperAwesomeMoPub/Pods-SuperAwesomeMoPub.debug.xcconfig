@@ -1,0 +1,5 @@
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/SuperAwesome" "${PODS_ROOT}/Headers/Public/mopub-ios-sdk"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/SuperAwesome" -isystem "${PODS_ROOT}/Headers/Public/mopub-ios-sdk"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"SuperAwesome" -l"mopub-ios-sdk" -l"xml2" -l"z" -framework "AVFoundation" -framework "AdSupport" -framework "AudioToolbox" -framework "CFNetwork" -framework "CoreData" -framework "CoreGraphics" -framework "CoreLocation" -framework "CoreMedia" -framework "CoreMotion" -framework "CoreTelephony" -framework "EventKit" -framework "EventKitUI" -framework "Foundation" -framework "MediaPlayer" -framework "MessageUI" -framework "MobileCoreServices" -framework "QuartzCore" -framework "Security" -framework "StoreKit" -framework "SystemConfiguration" -framework "UIKit" -weak_framework "AdSupport" -weak_framework "StoreKit"
+PODS_ROOT = ${SRCROOT}/Pods

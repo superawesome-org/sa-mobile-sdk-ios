@@ -1,0 +1,16 @@
+# Uncomment this line to define a global platform for your project
+platform :ios, '6.0'
+
+target 'SuperAwesomeMoPub' do
+pod 'mopub-ios-sdk'
+pod 'SuperAwesome', :path => '../'
+end
+
+target 'SuperAwesomeMoPubTests' do
+
+end
+
+target 'SuperAwesomeMoPubUITests' do
+
+end
+
