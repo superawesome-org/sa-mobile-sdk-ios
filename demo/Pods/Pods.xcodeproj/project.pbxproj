@@ -7,290 +7,290 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		003EBC778E9E73B18A00EF00F74EAD3C /* SACreative.h in Headers */ = {isa = PBXBuildFile; fileRef = E137D9E201ED951178C90B8E0A8C8D1A /* SACreative.h */; };
-		0154E9575DB4F29DF5BC33319A9C54F0 /* SAVASTManagerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = EA1C38B173A7A1EE7B3DA84C58B303FA /* SAVASTManagerProtocol.h */; };
-		058A0C761AFA18C634DFF652D5FC6E7E /* SAPadlock.h in Headers */ = {isa = PBXBuildFile; fileRef = E088E428800D42EA1EAB54FD8EC694E8 /* SAPadlock.h */; };
-		064AA64D5F4F0302A8393C21E185C1A5 /* SABannerAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 7925549CDCDA56E49ACBB54E09D73EF2 /* SABannerAd.h */; };
-		079714E6CACCB38BDFF85D2E180735D8 /* SAParser.h in Headers */ = {isa = PBXBuildFile; fileRef = DB311D423788F8FD6E0A952145D56CED /* SAParser.h */; };
-		08CCF09FA2A2881695B469B63928BB2A /* SAVideoAdProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 36CD9523D43B39032B2FBECF2E51E0A6 /* SAVideoAdProtocol.h */; };
-		08D2A853B73C0FC567229662365B4766 /* GTMNSString+HTML.h in Headers */ = {isa = PBXBuildFile; fileRef = 98BCC071E1508854F35F94D6D4A105E5 /* GTMNSString+HTML.h */; };
+		02F47D2C72A91C7368AFBCBB2B883691 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 679071465C20A4A043AAEB9F436E58E9 /* Security.framework */; };
+		0369CFA56A2F37E9611F182F2A78F2C0 /* SAParser.h in Headers */ = {isa = PBXBuildFile; fileRef = C7BFB6F4A62EEC20EA8D00BC6A78C989 /* SAParser.h */; };
+		053D6761F39099EABA86E10D2F67BEC7 /* SAFullscreenVideoAd.m in Sources */ = {isa = PBXBuildFile; fileRef = A7BBD5FDF645B9695B3836AD0544F979 /* SAFullscreenVideoAd.m */; };
+		061A597FB68B0FAFB38DC9E52E20A3A9 /* SAValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = E54B5DAA0F6B2DFAA49B73E33D1BEDC0 /* SAValidator.m */; };
+		063E00EA66460EB3A1FCB18CCE2B5A5F /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8625E517A41567FFD39CF1AA630F847 /* CoreTelephony.framework */; };
+		07F6E2F80386C2FDD5E4CE65D2385E6A /* SuperAwesome.h in Headers */ = {isa = PBXBuildFile; fileRef = BC1D02AD0C8AD2933DBBB896AC355E5C /* SuperAwesome.h */; };
 		09FDD1713DABA83533039BE1C195988C /* Pods-SuperAwesome DemoTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EE050A38FCF45D9A2399B691593AE9F /* Pods-SuperAwesome DemoTests-dummy.m */; };
-		0BD6D2ED66E5F61FC188E49A49920D24 /* SAUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C80B5948DA37900B335F8BC7F11736E /* SAUtils.m */; };
-		0D4986221D10337BC980218FEB3CDE1D /* SAVASTModels+Parsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 20837DCE8EAB8D90D257E90E530DB9DA /* SAVASTModels+Parsing.m */; };
-		109154A4DD91E9E541CAED58E2AFB4B4 /* SANetwork.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FD0708E5EDD50B57BB0225CF58A0D94 /* SANetwork.h */; };
-		1139359288FDF9BBE83C0407D4E413C5 /* SAVASTModels.h in Headers */ = {isa = PBXBuildFile; fileRef = C4C685B8F27CC125C0BA1E17C5B59CCA /* SAVASTModels.h */; };
-		15D44FBFE83947F1C278A04BEBF9A7C6 /* SAParentalGateProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 0226E48AB835E5810BB566E6400F0390 /* SAParentalGateProtocol.h */; };
-		1681C49063285A1FAB1B576BBFF1E6AA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5990866BF087AA0B680B2E18620B080 /* QuartzCore.framework */; };
-		18654A1941BB824B121E97310077CD6F /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A09F753028B80013A90661C05B688A9 /* CoreTelephony.framework */; };
-		1A800B515EB4DCBC6E223C24A138B8A4 /* SAInterstitialAd.h in Headers */ = {isa = PBXBuildFile; fileRef = F693F0A1681CD5C929E6B721CE07923A /* SAInterstitialAd.h */; };
-		1B21FBC2B80279276ECB3C52CBFA962C /* SAWebViewProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 17A1E0D07DE67CFD0ABA370EF2FC240C /* SAWebViewProtocol.h */; };
-		1B5FBBA8D987E77A6C7B29B8205A663C /* SAVASTParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 84722D00759D7BBB30411ADD3DC2550F /* SAVASTParser.h */; };
-		1FFD0DB27E75C05FA7CD00158C1D59E3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA36D6D8D3FC3F7A5F9DE2B83D0FC566 /* Security.framework */; };
-		2297520EC04CC9512B03FB6EAAB67A58 /* SALoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3744856D6E69A8CFF8C7FC6CF4A6ED3B /* SALoader.m */; };
-		230C1980B5F0B9ACD4C43C1BAB633D55 /* SuperAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD0C821FDA75A306B84B0B297528CBB /* SuperAwesome.m */; };
-		2478072D683E1610EE3830AAB0D4BD4B /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B39E4A07E91B03A3725487A6EEC65DB5 /* EventKit.framework */; };
-		250BC46A89773A548CF95EED2660FC79 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B325F5502D2167B084F503CAEA694664 /* AVFoundation.framework */; };
-		28324D63790272F93BA48520B227197F /* SAAdProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F167FAA5C58BAEEA54655DEEE2D3B56 /* SAAdProtocol.h */; };
-		2ABA227CF35078FC0ECE4BA285F12315 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB0EDCA9B870D569E325C3107CA4E050 /* MediaPlayer.framework */; };
-		2EE239D6A0F1F4B752123DEEF7AF808C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 121210B76293B909B197C9C901E0DDF0 /* CoreData.framework */; };
-		2F0018911BD56594A1952C73DB1EF72C /* SAAd.m in Sources */ = {isa = PBXBuildFile; fileRef = 011310CEBF6AF2ED4EE420FB2FAA1A32 /* SAAd.m */; };
-		3368B919C8CC992EC82165B024353C02 /* SAVASTModels.m in Sources */ = {isa = PBXBuildFile; fileRef = 649AD1FBAAC0F9B499AFA5FFB01451E1 /* SAVASTModels.m */; };
-		341FC4F5032C0A896624569663B01BFB /* SADetails.m in Sources */ = {isa = PBXBuildFile; fileRef = E1823B9EC528E07B4E7D0A7C2E9A512E /* SADetails.m */; };
-		342887B081B0330D257B3F7B615F3DCA /* SAVideoAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A5AC8CD6D951CDF227B9A9F3CE24E97 /* SAVideoAd.h */; };
-		34A27560AC01E9109F5C339ADEDC6BAF /* SAView.m in Sources */ = {isa = PBXBuildFile; fileRef = FBC92C099E7AE5CD1897FDC9737E3B0D /* SAView.m */; };
-		35F4A469B223F9154B3601E137364984 /* SAWebView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6691F211D70CDFAADCB74446D15F4C92 /* SAWebView.h */; };
-		365A420FD1F8013083391362593057E0 /* SALoader.h in Headers */ = {isa = PBXBuildFile; fileRef = D878998DEAD53D7292C7F0CE80776B04 /* SALoader.h */; };
-		3959C1C8DC90C6F295CCD15073E324D9 /* SAURLClicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9823668308DF4B117720AE4B2BF63419 /* SAURLClicker.m */; };
-		3E2B8188F887AB3156DFFE1397AF1441 /* SAUserAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = F288FF3821C06B3763D82A1DFD7084CC /* SAUserAgent.m */; };
-		3F2DDA1BF4C327C2DD8CE23888647A83 /* SAView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0403C9AC6980B1525EB9104F0E169AEE /* SAView.h */; };
-		42AF7927B845FA13B1918CC70288FB7A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701064F22A8E7787D2C232E04F3420DB /* StoreKit.framework */; };
-		43759C2E873D8C55A82938F394B852EA /* SACronograph.m in Sources */ = {isa = PBXBuildFile; fileRef = 408626FADC2327B0278E871CFD8C7DAE /* SACronograph.m */; };
-		4CDCE5F5D62D09E30E66382FB993A4A3 /* SAUnityLinker.h in Headers */ = {isa = PBXBuildFile; fileRef = E10FDBAAF8259C92266561FD1C1C788C /* SAUnityLinker.h */; };
-		4DA7865F870102E238996BEA655B45A7 /* SAViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = C465976720448DE4BA31F405ABD86E23 /* SAViewController.h */; };
-		4DBF0AACBE910274EDEC4084342E77A3 /* SASender.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BC6A9F71950E9543FD2F94C82E49D49 /* SASender.m */; };
-		4FC8294E5331FDBE3B64E517E51BBDDF /* SAVASTPlayerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = FCF0AE1031C2D95E1D88B5C433A3768D /* SAVASTPlayerProtocol.h */; };
-		51CFD437F441FD88A288862855334BF1 /* SAWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = F8476FE537DCFCE9D6F359E01478E79D /* SAWebView.m */; };
-		5266E3698FD5147592522365FB2BE15F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D7E54B138644269B78862E148673F3 /* CoreLocation.framework */; };
-		53A80B20532653427C28754B0F0BC2FD /* SAUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A1BDAA120D590993FBE61C11789DCB2 /* SAUtils.h */; };
-		57C8B1685C46212C7B617A3A32A1C710 /* SASystemSize.h in Headers */ = {isa = PBXBuildFile; fileRef = 63731292F659B648DA30ABC6FE5A078F /* SASystemSize.h */; };
-		5AA2A576485882C45685275BF38A13D2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9DBEC634BC570DB5894556D139E49A6 /* Foundation.framework */; };
-		60040B25A26C74A8B2A1A771BB297855 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 759837008D657C3364E9B240DA5C1AA5 /* GTMNSString+HTML.m */; };
-		62CA80C04E5BF13EC45109F7EDB3FE36 /* SASystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 86894143F7123FAE067DB4E842C55E0C /* SASystem.m */; };
-		657B450A39FC9A8595EA75A002BCB52F /* SAURLUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = C57899C6E422364703EF5802CD260BB5 /* SAURLUtils.h */; };
-		68D5DE16B6D79AA404EF198915AFEE39 /* SAValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = F667DD4661FD1594F7B085073B3FFFFA /* SAValidator.m */; };
-		6A21F34029B210FAA4D927ACF856BCB4 /* SABlackMask.h in Headers */ = {isa = PBXBuildFile; fileRef = 772B48BFEA858070CBBE162C33190077 /* SABlackMask.h */; };
-		6AAC968FFBB72DBB3581EA815D09E1E8 /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CE2404AC832307DEB852DE365B01B8B /* EventKitUI.framework */; };
-		6BC4C16C18F5D1D12BF39CD97FF80615 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8268244FD2EA4F4403C71D2C48C75E3B /* CoreMotion.framework */; };
-		7040ED0C420AA3A120C3F6652E0B104A /* SAVASTModels+Operations.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A906E37F669B9F1E625E8025045707E /* SAVASTModels+Operations.h */; };
-		70614C3B3783F78E196BB9AD50302B2C /* SAParentalGate.m in Sources */ = {isa = PBXBuildFile; fileRef = D64E03F3709AD685E4EDA1E1ACAABEAD /* SAParentalGate.m */; };
-		7243B1E0DE80E738F86E747CB3F84FC9 /* TBXML+SAStaticFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 84E560529B61E044AF6783CEDCBA7894 /* TBXML+SAStaticFunctions.h */; };
-		73A65850EB58BECF97C7FB0274B58F13 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3845E4620CFCBC03EE232E9C6D76C662 /* SystemConfiguration.framework */; };
-		7461647BFEFABC0F3906C1D1571EC3E4 /* SAVASTPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 43C53EB73459A3FEA4C1730481B8B71D /* SAVASTPlayer.m */; };
-		7468B027DDAE4A44B92B38A1AD695FD9 /* SAVASTParserProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CF499CE025DE050EC3C217B27F43AD0 /* SAVASTParserProtocol.h */; };
-		76B8195C01C5B649D6C885CB9A6A08E0 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA98C4F81D36C1FB48F3D72922D208D /* MobileCoreServices.framework */; };
-		771C317E0D9EB98B0D224FA913EFAB6D /* SAFullscreenVideoAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 29965920EBF7EA11BCCB6A5DA462FFEE /* SAFullscreenVideoAd.h */; };
-		77CE9C70ADAF0F23559DC31B9BACE6B1 /* SAValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = A6949816242BC864009C553095A8871A /* SAValidator.h */; };
-		7E53203CAB8709362271E726F1309F32 /* libSAiOSNetwork.h in Headers */ = {isa = PBXBuildFile; fileRef = 42CF4918F39412D736D063D2102FF3DB /* libSAiOSNetwork.h */; };
-		80FF2368AC1FFEE17B2578E1401ECD53 /* SuperAwesome.h in Headers */ = {isa = PBXBuildFile; fileRef = 02B1A2ED738728922FC6F352B524D1B0 /* SuperAwesome.h */; };
-		81D54AF28C7C5110A27FA9E85B0747A9 /* UIAlertController+Window.m in Sources */ = {isa = PBXBuildFile; fileRef = FB6C7CE956FA6018011C2C54BAB8E746 /* UIAlertController+Window.m */; };
-		8377431929E5E7C95F9BC9CCFD22F1ED /* SAVASTPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 24BD5B898D6362ADC3D1EB6C6018DC9C /* SAVASTPlayer.h */; };
-		86BF8BA398681D93A5AF9887757D6D88 /* NSArray+SAPredicate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2495EC17DAD63E1092F565627F4926E7 /* NSArray+SAPredicate.m */; };
-		89C98ACC736DD0E215407203882608F0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9DBEC634BC570DB5894556D139E49A6 /* Foundation.framework */; };
-		915549328EF17065F290C3EA2923D894 /* SABannerAd.m in Sources */ = {isa = PBXBuildFile; fileRef = A01AB5206AD3A77892356CD1CCE396B0 /* SABannerAd.m */; };
-		94F5156AE16AD56E86E62B041BAE0058 /* TBXML.h in Headers */ = {isa = PBXBuildFile; fileRef = 94787E933688AD2EC4A28116DAFF1887 /* TBXML.h */; };
-		9644A79F027D5F88CEF7F7B8C16A6394 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = BA172E928A8C2C4441B9345078771315 /* NSString+HTML.m */; };
-		98EA3304070A05F435E70F1531EDBC63 /* SAVASTParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 20B5B8568E00CECB5368362C13914D69 /* SAVASTParser.m */; };
-		990CEF770B9B4FAE69DA8F5350B22CBB /* SAUserAgent.h in Headers */ = {isa = PBXBuildFile; fileRef = F84B684AEA01B1FBF563196072FEE824 /* SAUserAgent.h */; };
-		996A50FE2492EDAFB0375BBE769AFE48 /* libSAiOSUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 010B7C652402763C758B6050F11F4CD2 /* libSAiOSUtils.h */; };
-		99ACB3FF17EA98DEA647D2B529F01C3E /* SALoaderProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C492AFFE730799F8D534677C32F74B7 /* SALoaderProtocol.h */; };
-		9BF46BFFB86D79634974B1E6D0994F39 /* UIViewController+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = F64386B8D0733909F5DCD3A6C966B4B9 /* UIViewController+Utils.m */; };
-		A02ABB6C1044628A41DDEF76CBDFA2ED /* SASystemType.h in Headers */ = {isa = PBXBuildFile; fileRef = F71D650A694BB93D35BAE6122E83D123 /* SASystemType.h */; };
-		A1E185EC988D054BB30E3D0C7EBB6D44 /* SAFullscreenVideoAd.m in Sources */ = {isa = PBXBuildFile; fileRef = D316B0FE25338397D7CC71BC87993738 /* SAFullscreenVideoAd.m */; };
-		A5623A422B712D85611A4ED315AF2D1E /* NSString+HTML.h in Headers */ = {isa = PBXBuildFile; fileRef = 1562C639FEE774EA8261492ACBBA346E /* NSString+HTML.h */; };
-		AADF3F7F929018152995A3C1F13BADF5 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFFC4E856A5EDF15854B2F13E60B8A70 /* CoreMedia.framework */; };
-		AF4BC795180D0A72342C2B87BF37AFB2 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B720A02FA01E46BF5B840043919933F /* AdSupport.framework */; };
-		B05A645F532128F789410803D689A455 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BBBEA24E7D521DDB99FD4C4B05F5207 /* CoreGraphics.framework */; };
-		B09D7EE8A03CA3C01C077FF34707CDD5 /* SAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1D9A8C4764F2FCAB486A0D5040F7454 /* SAViewController.m */; };
-		B258704F137CA66D2993F5918A92A2E1 /* SAParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C0021422EFE8E7BB73A38DD25D1651BF /* SAParser.m */; };
-		B360B246C499FEA20A8027D6612CFAE9 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10CA1E0019276A0850C380DA895006D1 /* MessageUI.framework */; };
-		B4D41CAE3707B07070B00C3630FB41B6 /* SACreativeFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = EEC3A0530C3E3FFBB16D76CA30E1B252 /* SACreativeFormat.h */; };
-		B7AD62EBBFA6042DD38A2BAB6455AA29 /* SASystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 4AC2C44F2774762627F05CA75021C0EA /* SASystem.h */; };
-		B820152D1C5AAEB90165C16ABB397EAF /* UIAlertController+Window.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A751E07EA27E43559377D400E364880 /* UIAlertController+Window.h */; };
-		B82FF97388ABCC5406F2359E5D28885D /* SAUnityLinker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DD156375FA44BE9CC93F4454ACCF234 /* SAUnityLinker.m */; };
-		BA32D8C71C375FEBCCEA085F205BEFA3 /* SAVASTModels+Operations.m in Sources */ = {isa = PBXBuildFile; fileRef = F40A7C5D2889DF64C66A98D0A057A804 /* SAVASTModels+Operations.m */; };
-		BAB692224421D529A66513BDEE70638B /* SAAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 467EBC136B1FC4A7339506A946B25FA8 /* SAAd.h */; };
-		BE188F14B4B9935A92B4A4F5C40F4718 /* libSAiOSWebView.h in Headers */ = {isa = PBXBuildFile; fileRef = BAB75FE60B80213C428E7647D0939D00 /* libSAiOSWebView.h */; };
-		C1DF2B2E8EC93A0A6E70D6739A73DE59 /* SAPadlock.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A64C57AF1A2AE574A8CA4E3CF8822F /* SAPadlock.m */; };
-		C2838CD4131349419FC8AA334FCCBDF1 /* UIViewController+Utils.h in Headers */ = {isa = PBXBuildFile; fileRef = BA19E5D6804BC982D6185D4BE48AD119 /* UIViewController+Utils.h */; };
-		C3710651EBCEB78EC5CBFDF056FCD09D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0FFE8ED122B9907EBBF7BAF2234F5FA /* AudioToolbox.framework */; };
+		0F9448A181D83B6B566AED3A35459100 /* SAURLClicker.h in Headers */ = {isa = PBXBuildFile; fileRef = AEC51C54C783CF04C65365A11A431864 /* SAURLClicker.h */; };
+		118766087EB1156B0011AE55978FEDD6 /* SACronograph.m in Sources */ = {isa = PBXBuildFile; fileRef = B564CFAAAEE6E221E8B07F5AD7600647 /* SACronograph.m */; };
+		13F0B3F63308E2DD5656C2734A0460C8 /* SAUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = D7504400FF003FB0F6A15BB85594821A /* SAUtils.m */; };
+		14B479465E318DE783486E64F1E37740 /* SAAd.m in Sources */ = {isa = PBXBuildFile; fileRef = A4606B595FEDE8713DA3EC669C2A4EA1 /* SAAd.m */; };
+		15AEBECAC177F1CA11A2C4FB4A4F0D2A /* SAVASTManager.h in Headers */ = {isa = PBXBuildFile; fileRef = FAB39A78D7C3FBBC75B1D77646764258 /* SAVASTManager.h */; };
+		165405CF67CFF26DA6DF622AF407E43F /* NSArray+SAPredicate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A2A92A9DB0FB84F6CD7077A3C5A6AD /* NSArray+SAPredicate.m */; };
+		18B374B8CAD70B191DE2AA950A6D9449 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF1B896DE64BE7616A8C575969E74240 /* AVFoundation.framework */; };
+		18C2DE27B1B29797EF9CB55720E2427C /* SAVASTModels.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B90B1873DC13D05099FB348EE52EBD3 /* SAVASTModels.h */; };
+		18EF01A6F84E0FD053FB825393D4C3AF /* NSArray+SAPredicate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D025243BCD160B94A560C7B16840C98 /* NSArray+SAPredicate.h */; };
+		1B37832EF97009F9DB259F1E7242BCF0 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D41BAC01B25A9CC10431E24A9DCBF09D /* MobileCoreServices.framework */; };
+		1BAF8976F5DD3EF62BE24E8387029D7E /* TBXML+SAStaticFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 81C6E4E3949873C9E6EC59E0829B61AC /* TBXML+SAStaticFunctions.h */; };
+		1C2EEEABC0914BE9C8B4ECA3552073C4 /* SAParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4884A5F80F6EA04B978C6DB9DC5F8FB9 /* SAParser.m */; };
+		1D5768117EEEBBCC8FB412564838678A /* UIViewController+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 812BDE46A5F220612F7CA3255509B60F /* UIViewController+Utils.m */; };
+		1E2A1E393FF7706E5C9796D3BD2C29A4 /* TBXML.h in Headers */ = {isa = PBXBuildFile; fileRef = A53E6F2B08ED3EEF68009D65072ADB71 /* TBXML.h */; };
+		1F1BAC80A7FFB96AD8D9B644244F3972 /* SASystemType.h in Headers */ = {isa = PBXBuildFile; fileRef = CA40028516E58C99ED940ECD4EC8616E /* SASystemType.h */; };
+		238E7AB33A03A4F73D16FB9F932D9ED7 /* SAWebView.h in Headers */ = {isa = PBXBuildFile; fileRef = F17CD1AC7A290FB534733BADFF3DFF65 /* SAWebView.h */; };
+		280DC8A9E2E2C51EF5868FB0B967F015 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF722BE7A9ECD664B5DBBB2AEBC0A1CB /* AdSupport.framework */; };
+		2C0565B8E5219C47E58F70D5677CFED8 /* SADetails.m in Sources */ = {isa = PBXBuildFile; fileRef = D3BF0C823985BBFA54552705F26E400B /* SADetails.m */; };
+		2C56EC08A2B61C5B6D4F445603D5FFC2 /* SAVASTParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 60989945DC1625290763ED8B5712F1CC /* SAVASTParser.m */; };
+		2F3B62F3E5B17ADDDAA0914946ACECF7 /* SAUnityLinker.m in Sources */ = {isa = PBXBuildFile; fileRef = D21EFE82D7A1642764DD5CF4647BB879 /* SAUnityLinker.m */; };
+		323AC13B61F4E3413A4C3663C919840D /* SASystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 3895CD3992F2F3A3054B456AB16A3788 /* SASystem.h */; };
+		34C460F4D35B74437856F869C1FFF6AE /* SACreativeFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = 75922D12442B25B000C01BE4C493739D /* SACreativeFormat.h */; };
+		3583632F2EE29EA7671036FA3125660E /* SAValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 49AECC12F7FE9BE7B60D621DC2BEFD26 /* SAValidator.h */; };
+		368C58E152DD5BDDD73A4E1E9B541C20 /* SAWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5C107D3A23F91C735BB5A1D89DEF59 /* SAWebView.m */; };
+		3A3D2204C29CB09DD908731AF9B7B4C9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DF0C90B5BCD32700FB47F109E73E18E /* QuartzCore.framework */; };
+		3E13946B98135219FE3C3320A74037E3 /* UIViewController+Utils.h in Headers */ = {isa = PBXBuildFile; fileRef = B10611D0107EBCAB8DD27E88C8B0C5D3 /* UIViewController+Utils.h */; };
+		4115E5696B423FFB6409E322798F3B87 /* GTMNSString+HTML.h in Headers */ = {isa = PBXBuildFile; fileRef = 571C6B99018C8E064A554E1FC73C4704 /* GTMNSString+HTML.h */; };
+		485A8E428F49719FD9EC75D30854866D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96EF72B82C9FE107BE812E10DC1034EE /* CoreGraphics.framework */; };
+		49C7CFEA41C945A509AF4A0F9179A1CF /* SASystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DCAE39A57C21C331EBD0E5228DD6C7D /* SASystem.m */; };
+		4A9C3FA6E8FD810BE9C6B3D11CC5EA0D /* SABlackMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 9490CBBB2BE2477FC112C721B0468F2C /* SABlackMask.m */; };
+		4D58F851A332E8DEFDC1AEC0C3FB4576 /* SABannerAd.m in Sources */ = {isa = PBXBuildFile; fileRef = 604EDFE9355E4B437778D68FE5675AE1 /* SABannerAd.m */; };
+		510F8DF1954930F8CB85E340A0A2B974 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 70D95ACFD0CA443BC2A597CEB2F3F896 /* GTMNSString+HTML.m */; };
+		52007A5AE81C8137C658229A060DDDD0 /* SADetails.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C449082D03B302F0C6791013B63B5C2 /* SADetails.h */; };
+		5597B7CF1F291F2F636D805D0CEAE0FC /* SAHTMLParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 4ADF896C28F6A511C30E56D4171B1846 /* SAHTMLParser.h */; };
+		5A177096F164C58C78CD7965A2B88850 /* SAView.m in Sources */ = {isa = PBXBuildFile; fileRef = A52B25699066189132361B09F549FA79 /* SAView.m */; };
+		5AA2A576485882C45685275BF38A13D2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F26653684BEB8709C376404B4178B044 /* Foundation.framework */; };
+		5AD977F87AF09498644E3BD895B20D41 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89FB514E78EB55009F2A77C776844097 /* CoreLocation.framework */; };
+		5C6AA4B106B39759428657C390D37407 /* SAWebViewProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = FF1D3123C2EFB11EFDA2440B418037F5 /* SAWebViewProtocol.h */; };
+		5FFE512F2D937F5069CE8FE19FD3B758 /* SAURLClicker.m in Sources */ = {isa = PBXBuildFile; fileRef = EBA5256A25EFFD42ADC265EF134B0E18 /* SAURLClicker.m */; };
+		608853E6973AB697F6426D1462B25E0B /* SAParentalGate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C3CA922A924D0B3AD1DF2E6C5B53A4 /* SAParentalGate.m */; };
+		6179B60FBDE0C82E7A6DC21CFB76126B /* libSAiOSNetwork.h in Headers */ = {isa = PBXBuildFile; fileRef = 3317CB0A75EB68BC81C8F9186353BEA4 /* libSAiOSNetwork.h */; };
+		61D42C240CCD34B1D10271A44B1D2040 /* SAView.h in Headers */ = {isa = PBXBuildFile; fileRef = 297C979768D673B26FAD78C54376F6BB /* SAView.h */; };
+		66F49254176F85F846E6E0D951DF4B74 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA331871638B9043C6BDBDBA2BBB3A4 /* MediaPlayer.framework */; };
+		6868D4F0FE0309E8EB509F457617B0D3 /* SAPadlock.h in Headers */ = {isa = PBXBuildFile; fileRef = C52D4ACC7BCAB1BD9A039EFAC2D227F8 /* SAPadlock.h */; };
+		68B173689AB6A4B8B4D2EFCA4B118EDC /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC48AA6F36683438CED1A4425E1E656D /* EventKitUI.framework */; };
+		6ABFA5858A4ED4CDA6E5E6B45F995000 /* SAUnityLinker.h in Headers */ = {isa = PBXBuildFile; fileRef = 882363109E7A547A5C597A9F7045FD54 /* SAUnityLinker.h */; };
+		6D1F5578F7E4192F577540C912D3EFCA /* SAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CA84CF22B762030365E92B22A31C4A /* SAViewController.m */; };
+		6D247487F58F658504FFF81658842222 /* SAAdProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = B5389C1681AAA8D43BED580F56EBAF63 /* SAAdProtocol.h */; };
+		70A2D2906D0DF5C8CA57B67491317F1B /* libSAiOSVAST.h in Headers */ = {isa = PBXBuildFile; fileRef = 53072C6A0ED7E2D4FFE08BC66A39A632 /* libSAiOSVAST.h */; };
+		737035D51F1AA85E8B0E4C68240FBC5C /* SAVideoAd.h in Headers */ = {isa = PBXBuildFile; fileRef = A962CD74C2E895E6577D53029B3BAB67 /* SAVideoAd.h */; };
+		73FFBFFC24A7CCCB4EA7A32262E8DA1C /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74939966866FE69ECC7A5383DA6AF470 /* StoreKit.framework */; };
+		7680F8D926B862F4D51EDF214D7A7F6A /* SACreative.h in Headers */ = {isa = PBXBuildFile; fileRef = D1C9A291FD64F6540DB7F480401E7AD3 /* SACreative.h */; };
+		7847E614D6E491B2FE6C4DB3F6F805A9 /* SACreative.m in Sources */ = {isa = PBXBuildFile; fileRef = BB17F3B1E2F4DA623754F382BE0FCD01 /* SACreative.m */; };
+		7A227359BD95D09A9AD94602C3BFDB71 /* SALoader.h in Headers */ = {isa = PBXBuildFile; fileRef = DC2B369B3D6FA806239E47C37F3076A5 /* SALoader.h */; };
+		80A456CEF55640A9628442538BC0E667 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D85A3BE91542895EFE1C7461347BCF6E /* CoreData.framework */; };
+		80B37DB32D7EC3F7AE7FAD97C3ED36A2 /* SAURLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 51266465CDC08D74C89DEB96B640CFA1 /* SAURLUtils.m */; };
+		83781010C7DCF198DF6C131A30BC089A /* SAHTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E025D643EC94F60719101FAF24A6A8 /* SAHTMLParser.m */; };
+		85739B0D10328364E630D3B06EAEEB58 /* SANetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = E01B4FF0EFC105F3F1865E978C07EC83 /* SANetwork.m */; };
+		85D5342E141494FBD0CA712DE8DC4C46 /* SAUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = CF2CFCDE014A964C07D136462D939CB6 /* SAUtils.h */; };
+		86DB42FB4AF06D84492C180EF376687A /* SAVASTModels+Operations.h in Headers */ = {isa = PBXBuildFile; fileRef = 11127C3263F6A82AACA3BED731992FBA /* SAVASTModels+Operations.h */; };
+		8ACDBFA21115CAD9ED40BD08FD3B13F7 /* UIAlertController+Window.h in Headers */ = {isa = PBXBuildFile; fileRef = B60A3BDD106378086A417D0C8882601B /* UIAlertController+Window.h */; };
+		8B87C194E3183D8F9B17441777CC51FB /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BC0D3EDE0A0276C36BAD50D0D5F942E /* CoreMedia.framework */; };
+		8D973F3A9347336D6FAE109E677BCE41 /* SAVASTModels+Parsing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DFC76D969519E5D72EBA80B562ECF97 /* SAVASTModels+Parsing.m */; };
+		8E77A2C1C1FE198C1EBBDBC980DF1FAC /* SAURLUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 280FFA5604289E2181DF4D3A253EDAC3 /* SAURLUtils.h */; };
+		8F984A1C52D6467D061D7B5B5D2A1809 /* SAUserAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF1EDCE6764F998CDB95CA80179DCF2 /* SAUserAgent.m */; };
+		91B19D1E2F2F32D6370E3FEFFFBD1F68 /* SAViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 4284C8DCFC810BF8B9CC1325E44ED705 /* SAViewController.h */; };
+		92A69A60ED4A608B35E584B38DAFE484 /* SASystemSize.h in Headers */ = {isa = PBXBuildFile; fileRef = 6FFD78962367B4E11A45ADE3CBBD23E8 /* SASystemSize.h */; };
+		9607052561C6BBFB2D0024436437912C /* libSAiOSUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = CF9E8E62D92485046D193C4BC2991D31 /* libSAiOSUtils.h */; };
+		96449C72F9146D58C72F229C0798ED4F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E393848254785D71FC280EC2A0C2EC1 /* SystemConfiguration.framework */; };
+		96583FD8DA29A03F769E26169BD0AF61 /* SABannerAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F7ACAB1BE44BB6296D6F4A3C3222C02 /* SABannerAd.h */; };
+		9A256E6066CC3624732ED59340662657 /* SALoaderProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 43D6ADF893B5F57DCD8234FB34FC8BAF /* SALoaderProtocol.h */; };
+		9E052E77E056B06FC0C60E14EE83EA0C /* SAPadlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 76470A919C5B9CDA504F680F5E900843 /* SAPadlock.m */; };
+		A10D0BE554DE3F336E5DF1B7CF7E24FB /* SAVASTModels+Operations.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE764E0F48DB5A5094E0039695F467B /* SAVASTModels+Operations.m */; };
+		A34985DFA9F5C9EF24D3896A8C4C9461 /* SASender.m in Sources */ = {isa = PBXBuildFile; fileRef = 03DBC9FC79FB1A7AE28ED3F34ADB1EC8 /* SASender.m */; };
+		A730DEC82E536BBB253583FDFD6ED5D8 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FF48154663AF6F3E8CA6418069032AF /* MessageUI.framework */; };
+		AD069D98C6A3391C30ADB7756AE2497C /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF4E475416DA2BCEDB1F081EB6CF2BB6 /* EventKit.framework */; };
+		AF4A52B16A036CEE0172BA08AD2233E3 /* SAVideoAd.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C03DF3C627D2B2979592C36AD5AF03 /* SAVideoAd.m */; };
+		B03D882B0A0AD19A43F617B22D4A14E1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F26653684BEB8709C376404B4178B044 /* Foundation.framework */; };
+		B1413F99C723CB450D17995D197CCD89 /* SAAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 8028B8664948D7DAD1E187206D1E54FF /* SAAd.h */; };
+		B1BE7286CBAD0BDB86E99F876855654D /* libSAiOSWebView.h in Headers */ = {isa = PBXBuildFile; fileRef = 94792022733821825441729D2379B2E5 /* libSAiOSWebView.h */; };
+		B4E2590BD55A973EBB6CDA090B07A149 /* SALoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 561C23EB99DEA010EF4E33F40C43A190 /* SALoader.m */; };
+		B4F775D14DC4BFF826A97EFF314751E1 /* SAFullscreenVideoAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 69ABA5310EC578929AE21D41FCE0D135 /* SAFullscreenVideoAd.h */; };
+		B6CD8FC436CB53CF3F3B3C6527E2AEAF /* SAVASTManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 54966AFF242DD2F4D95248DB2FB90C8C /* SAVASTManager.m */; };
+		BBA86377E80A991A81E734DC9E1DFD75 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C222CAD053113883E2F803AF1BDDF2 /* CFNetwork.framework */; };
+		BC3F435AB7BA5F544A8E4D4FC06B3932 /* SuperAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 6393C1DE7B4F8686DB2799432B063F82 /* SuperAwesome.m */; };
+		BDC26E56BEA1064A9B68EB2327422623 /* SANetwork.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AA084B6381FCCC1E048ABB504902A57 /* SANetwork.h */; };
+		BE9AEDB158F039DCF12BBCC23020D35D /* SAUserAgent.h in Headers */ = {isa = PBXBuildFile; fileRef = 70FE644337AA1DC80735AC5FE8C0CDF7 /* SAUserAgent.h */; };
+		C34B9ED5480F0564CD20C7114AD96B5F /* SAVASTModels+Parsing.h in Headers */ = {isa = PBXBuildFile; fileRef = 45A0DDCDB77A5F62368D5287E048BF37 /* SAVASTModels+Parsing.h */; };
 		C3F851D007290FB8C4F0BDE8C94C7192 /* Pods-SuperAwesome Demo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 75CFB114986BC5598E4D441F22E4A87B /* Pods-SuperAwesome Demo-dummy.m */; };
-		CAF962E708BA1A6BA0274D0008BB5333 /* TBXML+SAStaticFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9544C40DE2FE1011C74F40AF4B686C2B /* TBXML+SAStaticFunctions.m */; };
-		D0FADF8075CE1911AFF9290AC7C1893D /* TBXML.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB34E323A154E6A54F7FD44E4DCC84C /* TBXML.m */; };
-		D4A03D24E89D239BE048885FF6D0A3A9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94B2BE5B44414E3E702DF13CDFA058B6 /* CFNetwork.framework */; };
-		D8194D7CDC9D1EAEED648E88BE18413D /* NSArray+SAPredicate.h in Headers */ = {isa = PBXBuildFile; fileRef = 9297107AAB66D221521CBD15BC1ADE7F /* NSArray+SAPredicate.h */; };
-		D9E87DB8DF1F0BD715428077BA7279A3 /* SuperAwesome-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 738C76631A8C06B0534A122A49DC8CD6 /* SuperAwesome-dummy.m */; };
-		DB498FE0D3F7CEFE24DEA4C88D05DC60 /* SASender.h in Headers */ = {isa = PBXBuildFile; fileRef = 99F9AD6716100FBC2454C89EC3651810 /* SASender.h */; };
-		DFBAFD55C18CFB0376B55CBF162A6F17 /* SAURLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B1444DFCE7D3654980F0190E20EE031 /* SAURLUtils.m */; };
-		E0C98B0CF2AF5AEEDD8F7F64C4157079 /* SAVASTManager.h in Headers */ = {isa = PBXBuildFile; fileRef = DEBC13BF1E47C443D6F47BD6DD0E3949 /* SAVASTManager.h */; };
-		E55A4F9689E654774C350CA3554B3458 /* SADetails.h in Headers */ = {isa = PBXBuildFile; fileRef = EC57BD48CBC2F2BAF2CFAA39A299BAF7 /* SADetails.h */; };
-		E74FBB9E57DA21500D67A11709BE8971 /* SAInterstitialAd.m in Sources */ = {isa = PBXBuildFile; fileRef = 4039D907AD6C60FB80448733845635E3 /* SAInterstitialAd.m */; };
-		E7E88089BAB42735CF5D2EE998DCEB36 /* SAURLClicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 51AD1EC0E71B07458806E66D80861EFB /* SAURLClicker.h */; };
-		E9683CE7AE373E3E43118409E0EB0824 /* SACreative.m in Sources */ = {isa = PBXBuildFile; fileRef = 532474761415587D29DAF7B56B7090D3 /* SACreative.m */; };
-		EAEF60799929BBCE246D6447F483D00A /* SAVASTManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BC50F212EFC45206F0787DFE8D3087 /* SAVASTManager.m */; };
-		EC6100B1D787F09EDDBA2BC9FA704073 /* SAVASTModels+Parsing.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AA274692E83F1C10134773DCE1E5503 /* SAVASTModels+Parsing.h */; };
-		EC71A3B080C25D96293484143B0D8E1B /* libSAiOSVAST.h in Headers */ = {isa = PBXBuildFile; fileRef = 126A0A21B1A04C4AADB2B811ED6553B1 /* libSAiOSVAST.h */; };
-		ECD312EF045B15EF25C0C28DF4C6A3BA /* SABlackMask.m in Sources */ = {isa = PBXBuildFile; fileRef = F03EA599C8BCE4B12F3ADD3711171152 /* SABlackMask.m */; };
-		F0019841CC4C18ED819886794D614ADD /* SACronograph.h in Headers */ = {isa = PBXBuildFile; fileRef = F8F09830542FB6C6F884A21E53DEAF21 /* SACronograph.h */; };
-		F1E4413F226A1ACB9F67D17F8D333384 /* SAParentalGate.h in Headers */ = {isa = PBXBuildFile; fileRef = 13A4FDE625A5FB301D2DD650759B6648 /* SAParentalGate.h */; };
-		F393E5C9FE840BC27AD481B0140216E1 /* SAVideoAd.m in Sources */ = {isa = PBXBuildFile; fileRef = 4329235C0A1AE1C604C78D6DF1E8EB63 /* SAVideoAd.m */; };
-		F5170F602367FC38E1C130B9A003A970 /* SAHTMLParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 733D9E25C072D4FFF03C0A490B0757A8 /* SAHTMLParser.h */; };
-		F66130343EA90FD0A24732466F00F1AB /* SANetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 41696C0A3CED378713DF7C229DFA4F5C /* SANetwork.m */; };
-		F84C8D0FD6C49F8E96BEF4F96B70AC95 /* SAHTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CAADD8178C643AFD4F4293A6AEADEF /* SAHTMLParser.m */; };
-		FD0674AF791DAF8567D9474E154EC16C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9DBEC634BC570DB5894556D139E49A6 /* Foundation.framework */; };
+		C4EBB8C379770C421B6F0CAE1B05DDD1 /* SAVASTManagerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 3CD2045EDBB7BC4161071D5430C7426F /* SAVASTManagerProtocol.h */; };
+		C6D7EE995EC740B437BB9606B48E1B2A /* SASender.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C794104B0966665870A272B98D81F5D /* SASender.h */; };
+		CC965F51675461F6F623C47B481E6518 /* TBXML.m in Sources */ = {isa = PBXBuildFile; fileRef = BDA525900FB85EEE7733E0EA05753610 /* TBXML.m */; };
+		CE1644DB76C44B11B52E5AE0CA6B9CFD /* SAVASTPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3632FE62BAF3DC45EC2954938BB5188E /* SAVASTPlayer.h */; };
+		CF596947D476DE5FCED7AC45B8899989 /* SABlackMask.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A1F15E5F8640133AF9A2D6AAF4D0770 /* SABlackMask.h */; };
+		D308674165EF8C9CAC0DD9E0B776AA8A /* SAVASTParserProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = D47697FA65B8BCEB1C30BF03675903C3 /* SAVASTParserProtocol.h */; };
+		D36D8EBA6CA836BA87891FC46537EB36 /* SAVASTPlayerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 67856A5DE8B798EDCA884A7439B411A2 /* SAVASTPlayerProtocol.h */; };
+		D4B852E4BB689A4AE3E83331A7FE22EB /* TBXML+SAStaticFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45528C517E6BE938C7FC2CD0C17B0F80 /* TBXML+SAStaticFunctions.m */; };
+		DBC6A5B4987902B1C360F0FCAA3D0BE2 /* SuperAwesome-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECE9ED2E68A577A3A670DF33A7D0EA0 /* SuperAwesome-dummy.m */; };
+		DDFBA2A81071F2C60F8A387223DF53EF /* SAInterstitialAd.m in Sources */ = {isa = PBXBuildFile; fileRef = C03E1A96B4689DC68A85F15FE2779DAA /* SAInterstitialAd.m */; };
+		E028FB5936CF38A355DE47446F3A6CF8 /* NSString+HTML.h in Headers */ = {isa = PBXBuildFile; fileRef = 46C1CF365179A8CA9FBA68993032FA9F /* NSString+HTML.h */; };
+		E7909ABB102867775A1BAC98D5F4A14E /* SAVideoAdProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = B0EA5BDF637F4E7DB6A15AED795E3177 /* SAVideoAdProtocol.h */; };
+		EA4FF7FF12A699B3166E9FE676D3277E /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF95DA116BC99C6DEC0D22B7AA5699F4 /* CoreMotion.framework */; };
+		EB6AE5EB702AE2690A091D240F4FC4ED /* SAParentalGateProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = EABB3D4F6B2D8BF7E3A9AD5CDAE0DD86 /* SAParentalGateProtocol.h */; };
+		EED8B9AB6E9CBF19B8E2D2D8AFE180B4 /* SAVASTParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D790BF15939502B7ACFC028DBAFF9C8 /* SAVASTParser.h */; };
+		F0691AD29F4DCD81CD3CB0B2CBBBA392 /* SAVASTModels.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC3111175FCBB763FFEB35A1913C72F /* SAVASTModels.m */; };
+		F0E872E513D911CF3CD63E3270E9BEA8 /* SAParentalGate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1CF8021AD90DCD3A2D34839AA104F325 /* SAParentalGate.h */; };
+		F46D198DC2333B476359DB83A9E12B6F /* SACronograph.h in Headers */ = {isa = PBXBuildFile; fileRef = BF5FA3EDCAEC88E436FE55F955DCEA40 /* SACronograph.h */; };
+		F4B7AE55F9068A15692E6D13B58B7FEC /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = B36BAD1B1430262CBDD0CE959BFF87ED /* NSString+HTML.m */; };
+		F5599D4EF302D81F3CE5213311EFEFC0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13FF7310381BE106AFC135ABBB59945E /* AudioToolbox.framework */; };
+		F97D271159481C30BAEE0AF87F1761FE /* SAInterstitialAd.h in Headers */ = {isa = PBXBuildFile; fileRef = AE41643F53DBB8F83E59FA11DD2A6C0D /* SAInterstitialAd.h */; };
+		FB7D76DE0F98CBEBDF6E8559171353EC /* UIAlertController+Window.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E42D57CBA5BD756D512A0350B1CB0D4 /* UIAlertController+Window.m */; };
+		FC34851941B6E1B44CA4958BAD7EB8BD /* SAVASTPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 63FF58821F17ED44D1F1FE5B679D5605 /* SAVASTPlayer.m */; };
+		FD0674AF791DAF8567D9474E154EC16C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F26653684BEB8709C376404B4178B044 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3D1DD814DDB7573091C2644D4C02B341 /* PBXContainerItemProxy */ = {
+		047C1E27F4C4357464F763F212035EF7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = A788EE107AFA374E2E6549009266DB59;
+			remoteGlobalIDString = FD10A884DC961B4081EB6A55769D90DD;
 			remoteInfo = SuperAwesome;
 		};
-		FA65BA7048A5486BBCDDCBD97BE81F0F /* PBXContainerItemProxy */ = {
+		CCE1A8B6FF971F51347750C419344FB6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = A788EE107AFA374E2E6549009266DB59;
+			remoteGlobalIDString = FD10A884DC961B4081EB6A55769D90DD;
 			remoteInfo = SuperAwesome;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		010B7C652402763C758B6050F11F4CD2 /* libSAiOSUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = libSAiOSUtils.h; sourceTree = "<group>"; };
-		011310CEBF6AF2ED4EE420FB2FAA1A32 /* SAAd.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAAd.m; sourceTree = "<group>"; };
-		0226E48AB835E5810BB566E6400F0390 /* SAParentalGateProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAParentalGateProtocol.h; sourceTree = "<group>"; };
-		02B1A2ED738728922FC6F352B524D1B0 /* SuperAwesome.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SuperAwesome.h; sourceTree = "<group>"; };
-		0403C9AC6980B1525EB9104F0E169AEE /* SAView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAView.h; sourceTree = "<group>"; };
+		00A2A92A9DB0FB84F6CD7077A3C5A6AD /* NSArray+SAPredicate.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSArray+SAPredicate.m"; sourceTree = "<group>"; };
+		03DBC9FC79FB1A7AE28ED3F34ADB1EC8 /* SASender.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SASender.m; sourceTree = "<group>"; };
 		041FCC37BB08146454C9DF95BF957CD7 /* Pods-SuperAwesome DemoTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SuperAwesome DemoTests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		0A5AC8CD6D951CDF227B9A9F3CE24E97 /* SAVideoAd.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAVideoAd.h; sourceTree = "<group>"; };
-		0B720A02FA01E46BF5B840043919933F /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/AdSupport.framework; sourceTree = DEVELOPER_DIR; };
+		04C3CA922A924D0B3AD1DF2E6C5B53A4 /* SAParentalGate.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAParentalGate.m; sourceTree = "<group>"; };
+		0A1F15E5F8640133AF9A2D6AAF4D0770 /* SABlackMask.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SABlackMask.h; sourceTree = "<group>"; };
+		0B5C107D3A23F91C735BB5A1D89DEF59 /* SAWebView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAWebView.m; sourceTree = "<group>"; };
 		0BA80EBE7F0AC487A423020D4E0D5979 /* SuperAwesome-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SuperAwesome-prefix.pch"; sourceTree = "<group>"; };
-		0C80B5948DA37900B335F8BC7F11736E /* SAUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAUtils.m; sourceTree = "<group>"; };
-		0CE2404AC832307DEB852DE365B01B8B /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/EventKitUI.framework; sourceTree = DEVELOPER_DIR; };
-		10CA1E0019276A0850C380DA895006D1 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/MessageUI.framework; sourceTree = DEVELOPER_DIR; };
-		121210B76293B909B197C9C901E0DDF0 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
-		126A0A21B1A04C4AADB2B811ED6553B1 /* libSAiOSVAST.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = libSAiOSVAST.h; sourceTree = "<group>"; };
+		0CF1EDCE6764F998CDB95CA80179DCF2 /* SAUserAgent.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAUserAgent.m; sourceTree = "<group>"; };
+		11127C3263F6A82AACA3BED731992FBA /* SAVASTModels+Operations.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SAVASTModels+Operations.h"; sourceTree = "<group>"; };
 		130B6E7DE4F453F71D0626B0B92ECFD5 /* Pods-SuperAwesome Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SuperAwesome Demo.debug.xcconfig"; sourceTree = "<group>"; };
-		13A4FDE625A5FB301D2DD650759B6648 /* SAParentalGate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAParentalGate.h; sourceTree = "<group>"; };
 		13E73CAB44585E7185289503F26E160F /* libPods-SuperAwesome Demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SuperAwesome Demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1562C639FEE774EA8261492ACBBA346E /* NSString+HTML.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
-		17A1E0D07DE67CFD0ABA370EF2FC240C /* SAWebViewProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAWebViewProtocol.h; sourceTree = "<group>"; };
-		18D7E54B138644269B78862E148673F3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
-		1BC6A9F71950E9543FD2F94C82E49D49 /* SASender.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SASender.m; sourceTree = "<group>"; };
-		1C492AFFE730799F8D534677C32F74B7 /* SALoaderProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SALoaderProtocol.h; sourceTree = "<group>"; };
+		13FF7310381BE106AFC135ABBB59945E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
+		1AA084B6381FCCC1E048ABB504902A57 /* SANetwork.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SANetwork.h; sourceTree = "<group>"; };
+		1B90B1873DC13D05099FB348EE52EBD3 /* SAVASTModels.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAVASTModels.h; sourceTree = "<group>"; };
+		1CF8021AD90DCD3A2D34839AA104F325 /* SAParentalGate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAParentalGate.h; sourceTree = "<group>"; };
+		1D025243BCD160B94A560C7B16840C98 /* NSArray+SAPredicate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSArray+SAPredicate.h"; sourceTree = "<group>"; };
 		1E6FBBB40ABA4530407FCA511AB0E60C /* Pods-SuperAwesome Demo-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SuperAwesome Demo-acknowledgements.markdown"; sourceTree = "<group>"; };
-		20837DCE8EAB8D90D257E90E530DB9DA /* SAVASTModels+Parsing.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SAVASTModels+Parsing.m"; sourceTree = "<group>"; };
-		20B5B8568E00CECB5368362C13914D69 /* SAVASTParser.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAVASTParser.m; sourceTree = "<group>"; };
-		2495EC17DAD63E1092F565627F4926E7 /* NSArray+SAPredicate.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSArray+SAPredicate.m"; sourceTree = "<group>"; };
-		24BD5B898D6362ADC3D1EB6C6018DC9C /* SAVASTPlayer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAVASTPlayer.h; sourceTree = "<group>"; };
-		29965920EBF7EA11BCCB6A5DA462FFEE /* SAFullscreenVideoAd.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAFullscreenVideoAd.h; sourceTree = "<group>"; };
-		2A906E37F669B9F1E625E8025045707E /* SAVASTModels+Operations.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SAVASTModels+Operations.h"; sourceTree = "<group>"; };
-		2CD0C821FDA75A306B84B0B297528CBB /* SuperAwesome.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SuperAwesome.m; sourceTree = "<group>"; };
-		2FD0708E5EDD50B57BB0225CF58A0D94 /* SANetwork.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SANetwork.h; sourceTree = "<group>"; };
-		36CD9523D43B39032B2FBECF2E51E0A6 /* SAVideoAdProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAVideoAdProtocol.h; sourceTree = "<group>"; };
-		3744856D6E69A8CFF8C7FC6CF4A6ED3B /* SALoader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SALoader.m; sourceTree = "<group>"; };
-		3845E4620CFCBC03EE232E9C6D76C662 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
-		3A1BDAA120D590993FBE61C11789DCB2 /* SAUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAUtils.h; sourceTree = "<group>"; };
+		1F7ACAB1BE44BB6296D6F4A3C3222C02 /* SABannerAd.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SABannerAd.h; sourceTree = "<group>"; };
+		280FFA5604289E2181DF4D3A253EDAC3 /* SAURLUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAURLUtils.h; sourceTree = "<group>"; };
+		297C979768D673B26FAD78C54376F6BB /* SAView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAView.h; sourceTree = "<group>"; };
+		2C794104B0966665870A272B98D81F5D /* SASender.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SASender.h; sourceTree = "<group>"; };
+		3317CB0A75EB68BC81C8F9186353BEA4 /* libSAiOSNetwork.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = libSAiOSNetwork.h; sourceTree = "<group>"; };
+		3632FE62BAF3DC45EC2954938BB5188E /* SAVASTPlayer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAVASTPlayer.h; sourceTree = "<group>"; };
+		3895CD3992F2F3A3054B456AB16A3788 /* SASystem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SASystem.h; sourceTree = "<group>"; };
+		3CD2045EDBB7BC4161071D5430C7426F /* SAVASTManagerProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAVASTManagerProtocol.h; sourceTree = "<group>"; };
 		3DE5ABF1646BC3849DFBC5EF2DDB57C3 /* Pods-SuperAwesome Demo-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SuperAwesome Demo-acknowledgements.plist"; sourceTree = "<group>"; };
-		3E5C7117EDFBBC0642A6011537CF00D3 /* libSuperAwesome.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSuperAwesome.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		3F167FAA5C58BAEEA54655DEEE2D3B56 /* SAAdProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAAdProtocol.h; sourceTree = "<group>"; };
 		401047FFA37F4CD9730090679430D80B /* libPods-SuperAwesome DemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SuperAwesome DemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4039D907AD6C60FB80448733845635E3 /* SAInterstitialAd.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAInterstitialAd.m; sourceTree = "<group>"; };
 		40627F92658B103C7120F887F14E1426 /* start_selected.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = start_selected.png; sourceTree = "<group>"; };
-		408626FADC2327B0278E871CFD8C7DAE /* SACronograph.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SACronograph.m; sourceTree = "<group>"; };
-		41696C0A3CED378713DF7C229DFA4F5C /* SANetwork.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SANetwork.m; sourceTree = "<group>"; };
-		42CF4918F39412D736D063D2102FF3DB /* libSAiOSNetwork.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = libSAiOSNetwork.h; sourceTree = "<group>"; };
-		4329235C0A1AE1C604C78D6DF1E8EB63 /* SAVideoAd.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAVideoAd.m; sourceTree = "<group>"; };
-		43C53EB73459A3FEA4C1730481B8B71D /* SAVASTPlayer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAVASTPlayer.m; sourceTree = "<group>"; };
-		467EBC136B1FC4A7339506A946B25FA8 /* SAAd.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAAd.h; sourceTree = "<group>"; };
-		4A09F753028B80013A90661C05B688A9 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/CoreTelephony.framework; sourceTree = DEVELOPER_DIR; };
-		4A751E07EA27E43559377D400E364880 /* UIAlertController+Window.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+Window.h"; sourceTree = "<group>"; };
-		4AC2C44F2774762627F05CA75021C0EA /* SASystem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SASystem.h; sourceTree = "<group>"; };
-		4DD156375FA44BE9CC93F4454ACCF234 /* SAUnityLinker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAUnityLinker.m; sourceTree = "<group>"; };
+		4284C8DCFC810BF8B9CC1325E44ED705 /* SAViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAViewController.h; sourceTree = "<group>"; };
+		42DEF87BDF77DE1969BB85B6B78012DA /* SuperAwesome-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "SuperAwesome-Private.xcconfig"; sourceTree = "<group>"; };
+		43D6ADF893B5F57DCD8234FB34FC8BAF /* SALoaderProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SALoaderProtocol.h; sourceTree = "<group>"; };
+		45528C517E6BE938C7FC2CD0C17B0F80 /* TBXML+SAStaticFunctions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TBXML+SAStaticFunctions.m"; sourceTree = "<group>"; };
+		45A0DDCDB77A5F62368D5287E048BF37 /* SAVASTModels+Parsing.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SAVASTModels+Parsing.h"; sourceTree = "<group>"; };
+		46C1CF365179A8CA9FBA68993032FA9F /* NSString+HTML.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
+		4884A5F80F6EA04B978C6DB9DC5F8FB9 /* SAParser.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAParser.m; sourceTree = "<group>"; };
+		49AECC12F7FE9BE7B60D621DC2BEFD26 /* SAValidator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAValidator.h; sourceTree = "<group>"; };
+		4ADF896C28F6A511C30E56D4171B1846 /* SAHTMLParser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAHTMLParser.h; sourceTree = "<group>"; };
+		4DFC76D969519E5D72EBA80B562ECF97 /* SAVASTModels+Parsing.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SAVASTModels+Parsing.m"; sourceTree = "<group>"; };
 		4E7DA7AC2805CE67AB883943635644DC /* mark.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = mark.png; sourceTree = "<group>"; };
-		51AD1EC0E71B07458806E66D80861EFB /* SAURLClicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAURLClicker.h; sourceTree = "<group>"; };
-		51F72D3B026993E58C9E0D7A3D8B03C7 /* SuperAwesome-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "SuperAwesome-Private.xcconfig"; sourceTree = "<group>"; };
-		532474761415587D29DAF7B56B7090D3 /* SACreative.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SACreative.m; sourceTree = "<group>"; };
-		5AA274692E83F1C10134773DCE1E5503 /* SAVASTModels+Parsing.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SAVASTModels+Parsing.h"; sourceTree = "<group>"; };
-		5BBBEA24E7D521DDB99FD4C4B05F5207 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		51266465CDC08D74C89DEB96B640CFA1 /* SAURLUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAURLUtils.m; sourceTree = "<group>"; };
+		53072C6A0ED7E2D4FFE08BC66A39A632 /* libSAiOSVAST.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = libSAiOSVAST.h; sourceTree = "<group>"; };
+		54966AFF242DD2F4D95248DB2FB90C8C /* SAVASTManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAVASTManager.m; sourceTree = "<group>"; };
+		561C23EB99DEA010EF4E33F40C43A190 /* SALoader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SALoader.m; sourceTree = "<group>"; };
+		571C6B99018C8E064A554E1FC73C4704 /* GTMNSString+HTML.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GTMNSString+HTML.h"; sourceTree = "<group>"; };
 		5C4EF92C234F8D5AB24B98FE686782DC /* Pods-SuperAwesome DemoTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SuperAwesome DemoTests-resources.sh"; sourceTree = "<group>"; };
-		63731292F659B648DA30ABC6FE5A078F /* SASystemSize.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SASystemSize.h; sourceTree = "<group>"; };
-		649AD1FBAAC0F9B499AFA5FFB01451E1 /* SAVASTModels.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAVASTModels.m; sourceTree = "<group>"; };
-		6691F211D70CDFAADCB74446D15F4C92 /* SAWebView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAWebView.h; sourceTree = "<group>"; };
-		701064F22A8E7787D2C232E04F3420DB /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
-		733D9E25C072D4FFF03C0A490B0757A8 /* SAHTMLParser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAHTMLParser.h; sourceTree = "<group>"; };
-		738C76631A8C06B0534A122A49DC8CD6 /* SuperAwesome-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SuperAwesome-dummy.m"; sourceTree = "<group>"; };
-		759837008D657C3364E9B240DA5C1AA5 /* GTMNSString+HTML.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "GTMNSString+HTML.m"; sourceTree = "<group>"; };
+		604EDFE9355E4B437778D68FE5675AE1 /* SABannerAd.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SABannerAd.m; sourceTree = "<group>"; };
+		60989945DC1625290763ED8B5712F1CC /* SAVASTParser.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAVASTParser.m; sourceTree = "<group>"; };
+		6140AC22CCF6D8C7AB06672F0026BF71 /* libSuperAwesome.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSuperAwesome.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6393C1DE7B4F8686DB2799432B063F82 /* SuperAwesome.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SuperAwesome.m; sourceTree = "<group>"; };
+		63FF58821F17ED44D1F1FE5B679D5605 /* SAVASTPlayer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAVASTPlayer.m; sourceTree = "<group>"; };
+		66C222CAD053113883E2F803AF1BDDF2 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
+		67856A5DE8B798EDCA884A7439B411A2 /* SAVASTPlayerProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAVASTPlayerProtocol.h; sourceTree = "<group>"; };
+		679071465C20A4A043AAEB9F436E58E9 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
+		68C03DF3C627D2B2979592C36AD5AF03 /* SAVideoAd.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAVideoAd.m; sourceTree = "<group>"; };
+		69ABA5310EC578929AE21D41FCE0D135 /* SAFullscreenVideoAd.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAFullscreenVideoAd.h; sourceTree = "<group>"; };
+		6ECE9ED2E68A577A3A670DF33A7D0EA0 /* SuperAwesome-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SuperAwesome-dummy.m"; sourceTree = "<group>"; };
+		6EE764E0F48DB5A5094E0039695F467B /* SAVASTModels+Operations.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SAVASTModels+Operations.m"; sourceTree = "<group>"; };
+		6FFD78962367B4E11A45ADE3CBBD23E8 /* SASystemSize.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SASystemSize.h; sourceTree = "<group>"; };
+		70D95ACFD0CA443BC2A597CEB2F3F896 /* GTMNSString+HTML.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "GTMNSString+HTML.m"; sourceTree = "<group>"; };
+		70FE644337AA1DC80735AC5FE8C0CDF7 /* SAUserAgent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAUserAgent.h; sourceTree = "<group>"; };
+		74939966866FE69ECC7A5383DA6AF470 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
+		75922D12442B25B000C01BE4C493739D /* SACreativeFormat.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SACreativeFormat.h; sourceTree = "<group>"; };
 		75CFB114986BC5598E4D441F22E4A87B /* Pods-SuperAwesome Demo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SuperAwesome Demo-dummy.m"; sourceTree = "<group>"; };
-		772B48BFEA858070CBBE162C33190077 /* SABlackMask.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SABlackMask.h; sourceTree = "<group>"; };
-		78CAADD8178C643AFD4F4293A6AEADEF /* SAHTMLParser.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAHTMLParser.m; sourceTree = "<group>"; };
-		7925549CDCDA56E49ACBB54E09D73EF2 /* SABannerAd.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SABannerAd.h; sourceTree = "<group>"; };
-		7B1444DFCE7D3654980F0190E20EE031 /* SAURLUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAURLUtils.m; sourceTree = "<group>"; };
-		8268244FD2EA4F4403C71D2C48C75E3B /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/CoreMotion.framework; sourceTree = DEVELOPER_DIR; };
-		84722D00759D7BBB30411ADD3DC2550F /* SAVASTParser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAVASTParser.h; sourceTree = "<group>"; };
-		84E560529B61E044AF6783CEDCBA7894 /* TBXML+SAStaticFunctions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TBXML+SAStaticFunctions.h"; sourceTree = "<group>"; };
-		86894143F7123FAE067DB4E842C55E0C /* SASystem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SASystem.m; sourceTree = "<group>"; };
+		76470A919C5B9CDA504F680F5E900843 /* SAPadlock.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAPadlock.m; sourceTree = "<group>"; };
+		77E025D643EC94F60719101FAF24A6A8 /* SAHTMLParser.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAHTMLParser.m; sourceTree = "<group>"; };
+		78CA84CF22B762030365E92B22A31C4A /* SAViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAViewController.m; sourceTree = "<group>"; };
+		7C449082D03B302F0C6791013B63B5C2 /* SADetails.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SADetails.h; sourceTree = "<group>"; };
+		7D790BF15939502B7ACFC028DBAFF9C8 /* SAVASTParser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAVASTParser.h; sourceTree = "<group>"; };
+		7DF0C90B5BCD32700FB47F109E73E18E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		7E393848254785D71FC280EC2A0C2EC1 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
+		8028B8664948D7DAD1E187206D1E54FF /* SAAd.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAAd.h; sourceTree = "<group>"; };
+		812BDE46A5F220612F7CA3255509B60F /* UIViewController+Utils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Utils.m"; sourceTree = "<group>"; };
+		81C6E4E3949873C9E6EC59E0829B61AC /* TBXML+SAStaticFunctions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TBXML+SAStaticFunctions.h"; sourceTree = "<group>"; };
+		882363109E7A547A5C597A9F7045FD54 /* SAUnityLinker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAUnityLinker.h; sourceTree = "<group>"; };
 		89A119A6D25DAA21DD44B6984F5728FA /* SAPadlockView.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = SAPadlockView.xib; sourceTree = "<group>"; };
-		8CF499CE025DE050EC3C217B27F43AD0 /* SAVASTParserProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAVASTParserProtocol.h; sourceTree = "<group>"; };
+		89FB514E78EB55009F2A77C776844097 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
+		8E42D57CBA5BD756D512A0350B1CB0D4 /* UIAlertController+Window.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+Window.m"; sourceTree = "<group>"; };
 		8EE050A38FCF45D9A2399B691593AE9F /* Pods-SuperAwesome DemoTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SuperAwesome DemoTests-dummy.m"; sourceTree = "<group>"; };
+		8FF48154663AF6F3E8CA6418069032AF /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/MessageUI.framework; sourceTree = DEVELOPER_DIR; };
 		9231A3607BCB6968BC5AB82064A94D00 /* sa_padlock.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = sa_padlock.png; sourceTree = "<group>"; };
-		9297107AAB66D221521CBD15BC1ADE7F /* NSArray+SAPredicate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSArray+SAPredicate.h"; sourceTree = "<group>"; };
-		94787E933688AD2EC4A28116DAFF1887 /* TBXML.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TBXML.h; sourceTree = "<group>"; };
-		94B2BE5B44414E3E702DF13CDFA058B6 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
-		9544C40DE2FE1011C74F40AF4B686C2B /* TBXML+SAStaticFunctions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TBXML+SAStaticFunctions.m"; sourceTree = "<group>"; };
-		9823668308DF4B117720AE4B2BF63419 /* SAURLClicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAURLClicker.m; sourceTree = "<group>"; };
-		98BCC071E1508854F35F94D6D4A105E5 /* GTMNSString+HTML.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GTMNSString+HTML.h"; sourceTree = "<group>"; };
-		99F9AD6716100FBC2454C89EC3651810 /* SASender.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SASender.h; sourceTree = "<group>"; };
-		A01AB5206AD3A77892356CD1CCE396B0 /* SABannerAd.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SABannerAd.m; sourceTree = "<group>"; };
+		94792022733821825441729D2379B2E5 /* libSAiOSWebView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = libSAiOSWebView.h; sourceTree = "<group>"; };
+		9490CBBB2BE2477FC112C721B0468F2C /* SABlackMask.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SABlackMask.m; sourceTree = "<group>"; };
+		96EF72B82C9FE107BE812E10DC1034EE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		9AA331871638B9043C6BDBDBA2BBB3A4 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/MediaPlayer.framework; sourceTree = DEVELOPER_DIR; };
+		9BC0D3EDE0A0276C36BAD50D0D5F942E /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/CoreMedia.framework; sourceTree = DEVELOPER_DIR; };
+		9DCAE39A57C21C331EBD0E5228DD6C7D /* SASystem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SASystem.m; sourceTree = "<group>"; };
 		A06BF637E1817D18D3D1BE2AEC26C500 /* close.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
-		A6949816242BC864009C553095A8871A /* SAValidator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAValidator.h; sourceTree = "<group>"; };
+		A4606B595FEDE8713DA3EC669C2A4EA1 /* SAAd.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAAd.m; sourceTree = "<group>"; };
+		A52B25699066189132361B09F549FA79 /* SAView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAView.m; sourceTree = "<group>"; };
+		A53E6F2B08ED3EEF68009D65072ADB71 /* TBXML.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TBXML.h; sourceTree = "<group>"; };
+		A7BBD5FDF645B9695B3836AD0544F979 /* SAFullscreenVideoAd.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAFullscreenVideoAd.m; sourceTree = "<group>"; };
+		A962CD74C2E895E6577D53029B3BAB67 /* SAVideoAd.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAVideoAd.h; sourceTree = "<group>"; };
 		ACDAF6329EB5F7AAC3C5BF86C99A6EEF /* Pods-SuperAwesome DemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SuperAwesome DemoTests.release.xcconfig"; sourceTree = "<group>"; };
-		AFFC4E856A5EDF15854B2F13E60B8A70 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/CoreMedia.framework; sourceTree = DEVELOPER_DIR; };
-		B325F5502D2167B084F503CAEA694664 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
-		B39E4A07E91B03A3725487A6EEC65DB5 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/EventKit.framework; sourceTree = DEVELOPER_DIR; };
-		B5BC50F212EFC45206F0787DFE8D3087 /* SAVASTManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAVASTManager.m; sourceTree = "<group>"; };
-		BA172E928A8C2C4441B9345078771315 /* NSString+HTML.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
-		BA19E5D6804BC982D6185D4BE48AD119 /* UIViewController+Utils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Utils.h"; sourceTree = "<group>"; };
+		AE41643F53DBB8F83E59FA11DD2A6C0D /* SAInterstitialAd.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAInterstitialAd.h; sourceTree = "<group>"; };
+		AEC51C54C783CF04C65365A11A431864 /* SAURLClicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAURLClicker.h; sourceTree = "<group>"; };
+		B0EA5BDF637F4E7DB6A15AED795E3177 /* SAVideoAdProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAVideoAdProtocol.h; sourceTree = "<group>"; };
+		B10611D0107EBCAB8DD27E88C8B0C5D3 /* UIViewController+Utils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Utils.h"; sourceTree = "<group>"; };
+		B36BAD1B1430262CBDD0CE959BFF87ED /* NSString+HTML.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
+		B5389C1681AAA8D43BED580F56EBAF63 /* SAAdProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAAdProtocol.h; sourceTree = "<group>"; };
+		B564CFAAAEE6E221E8B07F5AD7600647 /* SACronograph.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SACronograph.m; sourceTree = "<group>"; };
+		B60A3BDD106378086A417D0C8882601B /* UIAlertController+Window.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+Window.h"; sourceTree = "<group>"; };
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		BAB75FE60B80213C428E7647D0939D00 /* libSAiOSWebView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = libSAiOSWebView.h; sourceTree = "<group>"; };
-		C0021422EFE8E7BB73A38DD25D1651BF /* SAParser.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAParser.m; sourceTree = "<group>"; };
-		C1D9A8C4764F2FCAB486A0D5040F7454 /* SAViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAViewController.m; sourceTree = "<group>"; };
+		BB17F3B1E2F4DA623754F382BE0FCD01 /* SACreative.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SACreative.m; sourceTree = "<group>"; };
+		BC1D02AD0C8AD2933DBBB896AC355E5C /* SuperAwesome.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SuperAwesome.h; sourceTree = "<group>"; };
+		BDA525900FB85EEE7733E0EA05753610 /* TBXML.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TBXML.m; sourceTree = "<group>"; };
+		BDC3111175FCBB763FFEB35A1913C72F /* SAVASTModels.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAVASTModels.m; sourceTree = "<group>"; };
+		BF5FA3EDCAEC88E436FE55F955DCEA40 /* SACronograph.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SACronograph.h; sourceTree = "<group>"; };
+		BF722BE7A9ECD664B5DBBB2AEBC0A1CB /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/AdSupport.framework; sourceTree = DEVELOPER_DIR; };
+		C03E1A96B4689DC68A85F15FE2779DAA /* SAInterstitialAd.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAInterstitialAd.m; sourceTree = "<group>"; };
 		C40FC1E154E7C90FF34125544074780C /* displayRichMedia.html */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.html; path = displayRichMedia.html; sourceTree = "<group>"; };
-		C465976720448DE4BA31F405ABD86E23 /* SAViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAViewController.h; sourceTree = "<group>"; };
 		C4793B85ED16AEBA31B791B558666DBE /* Pods-SuperAwesome DemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SuperAwesome DemoTests.debug.xcconfig"; sourceTree = "<group>"; };
-		C4C685B8F27CC125C0BA1E17C5B59CCA /* SAVASTModels.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAVASTModels.h; sourceTree = "<group>"; };
-		C57899C6E422364703EF5802CD260BB5 /* SAURLUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAURLUtils.h; sourceTree = "<group>"; };
-		C5990866BF087AA0B680B2E18620B080 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
-		C9DBEC634BC570DB5894556D139E49A6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		C52D4ACC7BCAB1BD9A039EFAC2D227F8 /* SAPadlock.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAPadlock.h; sourceTree = "<group>"; };
+		C7BFB6F4A62EEC20EA8D00BC6A78C989 /* SAParser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAParser.h; sourceTree = "<group>"; };
+		CA40028516E58C99ED940ECD4EC8616E /* SASystemType.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SASystemType.h; sourceTree = "<group>"; };
+		CC48AA6F36683438CED1A4425E1E656D /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/EventKitUI.framework; sourceTree = DEVELOPER_DIR; };
 		CD8ABD392ABF62656963FE05FBFF28BC /* Pods-SuperAwesome Demo-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SuperAwesome Demo-resources.sh"; sourceTree = "<group>"; };
-		D0FFE8ED122B9907EBBF7BAF2234F5FA /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
-		D316B0FE25338397D7CC71BC87993738 /* SAFullscreenVideoAd.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAFullscreenVideoAd.m; sourceTree = "<group>"; };
+		CF2CFCDE014A964C07D136462D939CB6 /* SAUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAUtils.h; sourceTree = "<group>"; };
+		CF95DA116BC99C6DEC0D22B7AA5699F4 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/CoreMotion.framework; sourceTree = DEVELOPER_DIR; };
+		CF9E8E62D92485046D193C4BC2991D31 /* libSAiOSUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = libSAiOSUtils.h; sourceTree = "<group>"; };
+		D1C9A291FD64F6540DB7F480401E7AD3 /* SACreative.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SACreative.h; sourceTree = "<group>"; };
+		D21EFE82D7A1642764DD5CF4647BB879 /* SAUnityLinker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAUnityLinker.m; sourceTree = "<group>"; };
+		D3BF0C823985BBFA54552705F26E400B /* SADetails.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SADetails.m; sourceTree = "<group>"; };
+		D41BAC01B25A9CC10431E24A9DCBF09D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/MobileCoreServices.framework; sourceTree = DEVELOPER_DIR; };
+		D47697FA65B8BCEB1C30BF03675903C3 /* SAVASTParserProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAVASTParserProtocol.h; sourceTree = "<group>"; };
 		D57D8CA14BCF7C5E6C840C64E0D765FC /* Pods-SuperAwesome DemoTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SuperAwesome DemoTests-acknowledgements.plist"; sourceTree = "<group>"; };
-		D64E03F3709AD685E4EDA1E1ACAABEAD /* SAParentalGate.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAParentalGate.m; sourceTree = "<group>"; };
-		D878998DEAD53D7292C7F0CE80776B04 /* SALoader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SALoader.h; sourceTree = "<group>"; };
-		DB311D423788F8FD6E0A952145D56CED /* SAParser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAParser.h; sourceTree = "<group>"; };
-		DEA98C4F81D36C1FB48F3D72922D208D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/MobileCoreServices.framework; sourceTree = DEVELOPER_DIR; };
-		DEBC13BF1E47C443D6F47BD6DD0E3949 /* SAVASTManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAVASTManager.h; sourceTree = "<group>"; };
-		E088E428800D42EA1EAB54FD8EC694E8 /* SAPadlock.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAPadlock.h; sourceTree = "<group>"; };
-		E10FDBAAF8259C92266561FD1C1C788C /* SAUnityLinker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAUnityLinker.h; sourceTree = "<group>"; };
-		E137D9E201ED951178C90B8E0A8C8D1A /* SACreative.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SACreative.h; sourceTree = "<group>"; };
-		E1823B9EC528E07B4E7D0A7C2E9A512E /* SADetails.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SADetails.m; sourceTree = "<group>"; };
-		E4A64C57AF1A2AE574A8CA4E3CF8822F /* SAPadlock.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAPadlock.m; sourceTree = "<group>"; };
-		EA1C38B173A7A1EE7B3DA84C58B303FA /* SAVASTManagerProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAVASTManagerProtocol.h; sourceTree = "<group>"; };
+		D7504400FF003FB0F6A15BB85594821A /* SAUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAUtils.m; sourceTree = "<group>"; };
+		D85A3BE91542895EFE1C7461347BCF6E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
+		DC2B369B3D6FA806239E47C37F3076A5 /* SALoader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SALoader.h; sourceTree = "<group>"; };
+		E01B4FF0EFC105F3F1865E978C07EC83 /* SANetwork.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SANetwork.m; sourceTree = "<group>"; };
+		E54B5DAA0F6B2DFAA49B73E33D1BEDC0 /* SAValidator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAValidator.m; sourceTree = "<group>"; };
+		EABB3D4F6B2D8BF7E3A9AD5CDAE0DD86 /* SAParentalGateProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAParentalGateProtocol.h; sourceTree = "<group>"; };
 		EB03486FB3BCDFCB6D43E613040D95FD /* start_notselected.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = start_notselected.png; sourceTree = "<group>"; };
 		EB4CE57DF45C1FFDDE736140E5089824 /* displayImage.html */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.html; path = displayImage.html; sourceTree = "<group>"; };
-		EC57BD48CBC2F2BAF2CFAA39A299BAF7 /* SADetails.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SADetails.h; sourceTree = "<group>"; };
-		EEB34E323A154E6A54F7FD44E4DCC84C /* TBXML.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TBXML.m; sourceTree = "<group>"; };
-		EEC3A0530C3E3FFBB16D76CA30E1B252 /* SACreativeFormat.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SACreativeFormat.h; sourceTree = "<group>"; };
-		F03EA599C8BCE4B12F3ADD3711171152 /* SABlackMask.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SABlackMask.m; sourceTree = "<group>"; };
-		F288FF3821C06B3763D82A1DFD7084CC /* SAUserAgent.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAUserAgent.m; sourceTree = "<group>"; };
-		F40A7C5D2889DF64C66A98D0A057A804 /* SAVASTModels+Operations.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SAVASTModels+Operations.m"; sourceTree = "<group>"; };
-		F64386B8D0733909F5DCD3A6C966B4B9 /* UIViewController+Utils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Utils.m"; sourceTree = "<group>"; };
-		F667DD4661FD1594F7B085073B3FFFFA /* SAValidator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAValidator.m; sourceTree = "<group>"; };
-		F693F0A1681CD5C929E6B721CE07923A /* SAInterstitialAd.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAInterstitialAd.h; sourceTree = "<group>"; };
+		EBA5256A25EFFD42ADC265EF134B0E18 /* SAURLClicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAURLClicker.m; sourceTree = "<group>"; };
+		EF4E475416DA2BCEDB1F081EB6CF2BB6 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/EventKit.framework; sourceTree = DEVELOPER_DIR; };
+		F17CD1AC7A290FB534733BADFF3DFF65 /* SAWebView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAWebView.h; sourceTree = "<group>"; };
+		F26653684BEB8709C376404B4178B044 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		F6F9805D9E4FD21DA79AB48D4495355B /* Pods-SuperAwesome Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SuperAwesome Demo.release.xcconfig"; sourceTree = "<group>"; };
-		F71D650A694BB93D35BAE6122E83D123 /* SASystemType.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SASystemType.h; sourceTree = "<group>"; };
-		F8476FE537DCFCE9D6F359E01478E79D /* SAWebView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAWebView.m; sourceTree = "<group>"; };
-		F84B684AEA01B1FBF563196072FEE824 /* SAUserAgent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAUserAgent.h; sourceTree = "<group>"; };
-		F8F09830542FB6C6F884A21E53DEAF21 /* SACronograph.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SACronograph.h; sourceTree = "<group>"; };
-		FA36D6D8D3FC3F7A5F9DE2B83D0FC566 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
-		FB0EDCA9B870D569E325C3107CA4E050 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/MediaPlayer.framework; sourceTree = DEVELOPER_DIR; };
-		FB6C7CE956FA6018011C2C54BAB8E746 /* UIAlertController+Window.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+Window.m"; sourceTree = "<group>"; };
-		FBC92C099E7AE5CD1897FDC9737E3B0D /* SAView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAView.m; sourceTree = "<group>"; };
+		F8625E517A41567FFD39CF1AA630F847 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/CoreTelephony.framework; sourceTree = DEVELOPER_DIR; };
+		FAB39A78D7C3FBBC75B1D77646764258 /* SAVASTManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAVASTManager.h; sourceTree = "<group>"; };
 		FBDFD2EC80116BA1F313DDEE8E6EBCB6 /* displayTag.html */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.html; path = displayTag.html; sourceTree = "<group>"; };
-		FCF0AE1031C2D95E1D88B5C433A3768D /* SAVASTPlayerProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAVASTPlayerProtocol.h; sourceTree = "<group>"; };
 		FCFCDFB5AEF094907175DDD8636B5C9C /* SuperAwesome.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SuperAwesome.xcconfig; sourceTree = "<group>"; };
+		FF1B896DE64BE7616A8C575969E74240 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
+		FF1D3123C2EFB11EFDA2440B418037F5 /* SAWebViewProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAWebViewProtocol.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -310,30 +310,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B9FA3E45C85516122F00BAFDE5BEEC23 /* Frameworks */ = {
+		BF6F1C9A1CA18BB70AC8D292F331F03D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				250BC46A89773A548CF95EED2660FC79 /* AVFoundation.framework in Frameworks */,
-				AF4BC795180D0A72342C2B87BF37AFB2 /* AdSupport.framework in Frameworks */,
-				C3710651EBCEB78EC5CBFDF056FCD09D /* AudioToolbox.framework in Frameworks */,
-				D4A03D24E89D239BE048885FF6D0A3A9 /* CFNetwork.framework in Frameworks */,
-				2EE239D6A0F1F4B752123DEEF7AF808C /* CoreData.framework in Frameworks */,
-				B05A645F532128F789410803D689A455 /* CoreGraphics.framework in Frameworks */,
-				5266E3698FD5147592522365FB2BE15F /* CoreLocation.framework in Frameworks */,
-				AADF3F7F929018152995A3C1F13BADF5 /* CoreMedia.framework in Frameworks */,
-				6BC4C16C18F5D1D12BF39CD97FF80615 /* CoreMotion.framework in Frameworks */,
-				18654A1941BB824B121E97310077CD6F /* CoreTelephony.framework in Frameworks */,
-				2478072D683E1610EE3830AAB0D4BD4B /* EventKit.framework in Frameworks */,
-				6AAC968FFBB72DBB3581EA815D09E1E8 /* EventKitUI.framework in Frameworks */,
-				89C98ACC736DD0E215407203882608F0 /* Foundation.framework in Frameworks */,
-				2ABA227CF35078FC0ECE4BA285F12315 /* MediaPlayer.framework in Frameworks */,
-				B360B246C499FEA20A8027D6612CFAE9 /* MessageUI.framework in Frameworks */,
-				76B8195C01C5B649D6C885CB9A6A08E0 /* MobileCoreServices.framework in Frameworks */,
-				1681C49063285A1FAB1B576BBFF1E6AA /* QuartzCore.framework in Frameworks */,
-				1FFD0DB27E75C05FA7CD00158C1D59E3 /* Security.framework in Frameworks */,
-				42AF7927B845FA13B1918CC70288FB7A /* StoreKit.framework in Frameworks */,
-				73A65850EB58BECF97C7FB0274B58F13 /* SystemConfiguration.framework in Frameworks */,
+				18B374B8CAD70B191DE2AA950A6D9449 /* AVFoundation.framework in Frameworks */,
+				280DC8A9E2E2C51EF5868FB0B967F015 /* AdSupport.framework in Frameworks */,
+				F5599D4EF302D81F3CE5213311EFEFC0 /* AudioToolbox.framework in Frameworks */,
+				BBA86377E80A991A81E734DC9E1DFD75 /* CFNetwork.framework in Frameworks */,
+				80A456CEF55640A9628442538BC0E667 /* CoreData.framework in Frameworks */,
+				485A8E428F49719FD9EC75D30854866D /* CoreGraphics.framework in Frameworks */,
+				5AD977F87AF09498644E3BD895B20D41 /* CoreLocation.framework in Frameworks */,
+				8B87C194E3183D8F9B17441777CC51FB /* CoreMedia.framework in Frameworks */,
+				EA4FF7FF12A699B3166E9FE676D3277E /* CoreMotion.framework in Frameworks */,
+				063E00EA66460EB3A1FCB18CCE2B5A5F /* CoreTelephony.framework in Frameworks */,
+				AD069D98C6A3391C30ADB7756AE2497C /* EventKit.framework in Frameworks */,
+				68B173689AB6A4B8B4D2EFCA4B118EDC /* EventKitUI.framework in Frameworks */,
+				B03D882B0A0AD19A43F617B22D4A14E1 /* Foundation.framework in Frameworks */,
+				66F49254176F85F846E6E0D951DF4B74 /* MediaPlayer.framework in Frameworks */,
+				A730DEC82E536BBB253583FDFD6ED5D8 /* MessageUI.framework in Frameworks */,
+				1B37832EF97009F9DB259F1E7242BCF0 /* MobileCoreServices.framework in Frameworks */,
+				3A3D2204C29CB09DD908731AF9B7B4C9 /* QuartzCore.framework in Frameworks */,
+				02F47D2C72A91C7368AFBCBB2B883691 /* Security.framework in Frameworks */,
+				73FFBFFC24A7CCCB4EA7A32262E8DA1C /* StoreKit.framework in Frameworks */,
+				96449C72F9146D58C72F229C0798ED4F /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,37 +359,35 @@
 		125A9C1E559FAEF9E70930A0EEE45CA6 /* SAVAST */ = {
 			isa = PBXGroup;
 			children = (
-				C4C685B8F27CC125C0BA1E17C5B59CCA /* SAVASTModels.h */,
-				649AD1FBAAC0F9B499AFA5FFB01451E1 /* SAVASTModels.m */,
-				2A906E37F669B9F1E625E8025045707E /* SAVASTModels+Operations.h */,
-				F40A7C5D2889DF64C66A98D0A057A804 /* SAVASTModels+Operations.m */,
-				5AA274692E83F1C10134773DCE1E5503 /* SAVASTModels+Parsing.h */,
-				20837DCE8EAB8D90D257E90E530DB9DA /* SAVASTModels+Parsing.m */,
-				84722D00759D7BBB30411ADD3DC2550F /* SAVASTParser.h */,
-				20B5B8568E00CECB5368362C13914D69 /* SAVASTParser.m */,
-				8CF499CE025DE050EC3C217B27F43AD0 /* SAVASTParserProtocol.h */,
+				1B90B1873DC13D05099FB348EE52EBD3 /* SAVASTModels.h */,
+				BDC3111175FCBB763FFEB35A1913C72F /* SAVASTModels.m */,
+				11127C3263F6A82AACA3BED731992FBA /* SAVASTModels+Operations.h */,
+				6EE764E0F48DB5A5094E0039695F467B /* SAVASTModels+Operations.m */,
+				45A0DDCDB77A5F62368D5287E048BF37 /* SAVASTModels+Parsing.h */,
+				4DFC76D969519E5D72EBA80B562ECF97 /* SAVASTModels+Parsing.m */,
+				7D790BF15939502B7ACFC028DBAFF9C8 /* SAVASTParser.h */,
+				60989945DC1625290763ED8B5712F1CC /* SAVASTParser.m */,
+				D47697FA65B8BCEB1C30BF03675903C3 /* SAVASTParserProtocol.h */,
 			);
 			path = SAVAST;
-			sourceTree = "<group>";
-		};
-		13F9A9C54B4FA2202C0C516601CA3EBE /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				DD750C4ECDE05C20ED27C74DCF7961F2 /* Padlock */,
-				FA6F6DD8F9A99473ED840B6A6FE7ABE1 /* ParentalGate */,
-				DA17A8A2E5DB5A0843B4B681BE81E86D /* Primary */,
-				CB72922DC5C48ABC19EDE48100B27ACC /* Protocols */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		14296771849E471D6846A8FD1885CC80 /* Validator */ = {
 			isa = PBXGroup;
 			children = (
-				A6949816242BC864009C553095A8871A /* SAValidator.h */,
-				F667DD4661FD1594F7B085073B3FFFFA /* SAValidator.m */,
+				49AECC12F7FE9BE7B60D621DC2BEFD26 /* SAValidator.h */,
+				E54B5DAA0F6B2DFAA49B73E33D1BEDC0 /* SAValidator.m */,
 			);
 			path = Validator;
+			sourceTree = "<group>";
+		};
+		19CD2EE889C404FF1C2C2800937CFB90 /* ParentalGate */ = {
+			isa = PBXGroup;
+			children = (
+				1CF8021AD90DCD3A2D34839AA104F325 /* SAParentalGate.h */,
+				04C3CA922A924D0B3AD1DF2E6C5B53A4 /* SAParentalGate.m */,
+			);
+			path = ParentalGate;
 			sourceTree = "<group>";
 		};
 		200A7EA5C1DE7CE1D20D1BC068CDB13D /* Classes */ = {
@@ -408,10 +406,10 @@
 		295EB5A4F93392FDF7957F235853D604 /* HTML */ = {
 			isa = PBXGroup;
 			children = (
-				98BCC071E1508854F35F94D6D4A105E5 /* GTMNSString+HTML.h */,
-				759837008D657C3364E9B240DA5C1AA5 /* GTMNSString+HTML.m */,
-				1562C639FEE774EA8261492ACBBA346E /* NSString+HTML.h */,
-				BA172E928A8C2C4441B9345078771315 /* NSString+HTML.m */,
+				571C6B99018C8E064A554E1FC73C4704 /* GTMNSString+HTML.h */,
+				70D95ACFD0CA443BC2A597CEB2F3F896 /* GTMNSString+HTML.m */,
+				46C1CF365179A8CA9FBA68993032FA9F /* NSString+HTML.h */,
+				B36BAD1B1430262CBDD0CE959BFF87ED /* NSString+HTML.m */,
 			);
 			path = HTML;
 			sourceTree = "<group>";
@@ -419,9 +417,9 @@
 		2D28DBF7DD8291B7106CFB0E94469911 /* Loader */ = {
 			isa = PBXGroup;
 			children = (
-				D878998DEAD53D7292C7F0CE80776B04 /* SALoader.h */,
-				3744856D6E69A8CFF8C7FC6CF4A6ED3B /* SALoader.m */,
-				1C492AFFE730799F8D534677C32F74B7 /* SALoaderProtocol.h */,
+				DC2B369B3D6FA806239E47C37F3076A5 /* SALoader.h */,
+				561C23EB99DEA010EF4E33F40C43A190 /* SALoader.m */,
+				43D6ADF893B5F57DCD8234FB34FC8BAF /* SALoaderProtocol.h */,
 			);
 			path = Loader;
 			sourceTree = "<group>";
@@ -429,26 +427,26 @@
 		313888897F75254D0E8B1E6ECBDF4947 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				B325F5502D2167B084F503CAEA694664 /* AVFoundation.framework */,
-				0B720A02FA01E46BF5B840043919933F /* AdSupport.framework */,
-				D0FFE8ED122B9907EBBF7BAF2234F5FA /* AudioToolbox.framework */,
-				94B2BE5B44414E3E702DF13CDFA058B6 /* CFNetwork.framework */,
-				121210B76293B909B197C9C901E0DDF0 /* CoreData.framework */,
-				5BBBEA24E7D521DDB99FD4C4B05F5207 /* CoreGraphics.framework */,
-				18D7E54B138644269B78862E148673F3 /* CoreLocation.framework */,
-				AFFC4E856A5EDF15854B2F13E60B8A70 /* CoreMedia.framework */,
-				8268244FD2EA4F4403C71D2C48C75E3B /* CoreMotion.framework */,
-				4A09F753028B80013A90661C05B688A9 /* CoreTelephony.framework */,
-				B39E4A07E91B03A3725487A6EEC65DB5 /* EventKit.framework */,
-				0CE2404AC832307DEB852DE365B01B8B /* EventKitUI.framework */,
-				C9DBEC634BC570DB5894556D139E49A6 /* Foundation.framework */,
-				FB0EDCA9B870D569E325C3107CA4E050 /* MediaPlayer.framework */,
-				10CA1E0019276A0850C380DA895006D1 /* MessageUI.framework */,
-				DEA98C4F81D36C1FB48F3D72922D208D /* MobileCoreServices.framework */,
-				C5990866BF087AA0B680B2E18620B080 /* QuartzCore.framework */,
-				FA36D6D8D3FC3F7A5F9DE2B83D0FC566 /* Security.framework */,
-				701064F22A8E7787D2C232E04F3420DB /* StoreKit.framework */,
-				3845E4620CFCBC03EE232E9C6D76C662 /* SystemConfiguration.framework */,
+				FF1B896DE64BE7616A8C575969E74240 /* AVFoundation.framework */,
+				BF722BE7A9ECD664B5DBBB2AEBC0A1CB /* AdSupport.framework */,
+				13FF7310381BE106AFC135ABBB59945E /* AudioToolbox.framework */,
+				66C222CAD053113883E2F803AF1BDDF2 /* CFNetwork.framework */,
+				D85A3BE91542895EFE1C7461347BCF6E /* CoreData.framework */,
+				96EF72B82C9FE107BE812E10DC1034EE /* CoreGraphics.framework */,
+				89FB514E78EB55009F2A77C776844097 /* CoreLocation.framework */,
+				9BC0D3EDE0A0276C36BAD50D0D5F942E /* CoreMedia.framework */,
+				CF95DA116BC99C6DEC0D22B7AA5699F4 /* CoreMotion.framework */,
+				F8625E517A41567FFD39CF1AA630F847 /* CoreTelephony.framework */,
+				EF4E475416DA2BCEDB1F081EB6CF2BB6 /* EventKit.framework */,
+				CC48AA6F36683438CED1A4425E1E656D /* EventKitUI.framework */,
+				F26653684BEB8709C376404B4178B044 /* Foundation.framework */,
+				9AA331871638B9043C6BDBDBA2BBB3A4 /* MediaPlayer.framework */,
+				8FF48154663AF6F3E8CA6418069032AF /* MessageUI.framework */,
+				D41BAC01B25A9CC10431E24A9DCBF09D /* MobileCoreServices.framework */,
+				7DF0C90B5BCD32700FB47F109E73E18E /* QuartzCore.framework */,
+				679071465C20A4A043AAEB9F436E58E9 /* Security.framework */,
+				74939966866FE69ECC7A5383DA6AF470 /* StoreKit.framework */,
+				7E393848254785D71FC280EC2A0C2EC1 /* SystemConfiguration.framework */,
 			);
 			name = iOS;
 			sourceTree = "<group>";
@@ -456,7 +454,7 @@
 		32C11ECEBBDD6B383799DB713AE10902 /* libSAiOSVAST */ = {
 			isa = PBXGroup;
 			children = (
-				126A0A21B1A04C4AADB2B811ED6553B1 /* libSAiOSVAST.h */,
+				53072C6A0ED7E2D4FFE08BC66A39A632 /* libSAiOSVAST.h */,
 				295EB5A4F93392FDF7957F235853D604 /* HTML */,
 				125A9C1E559FAEF9E70930A0EEE45CA6 /* SAVAST */,
 				4C7C2F3E3DCA975FE8D31319F60CCA7B /* SAVASTManager */,
@@ -466,12 +464,21 @@
 			path = libSAiOSVAST;
 			sourceTree = "<group>";
 		};
+		3577AEA80A419A2AC8A6A1C98F0F7637 /* Padlock */ = {
+			isa = PBXGroup;
+			children = (
+				C52D4ACC7BCAB1BD9A039EFAC2D227F8 /* SAPadlock.h */,
+				76470A919C5B9CDA504F680F5E900843 /* SAPadlock.m */,
+			);
+			path = Padlock;
+			sourceTree = "<group>";
+		};
 		41582AD6108C9A4401740E32CD1E1559 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
 				FCFCDFB5AEF094907175DDD8636B5C9C /* SuperAwesome.xcconfig */,
-				51F72D3B026993E58C9E0D7A3D8B03C7 /* SuperAwesome-Private.xcconfig */,
-				738C76631A8C06B0534A122A49DC8CD6 /* SuperAwesome-dummy.m */,
+				42DEF87BDF77DE1969BB85B6B78012DA /* SuperAwesome-Private.xcconfig */,
+				6ECE9ED2E68A577A3A670DF33A7D0EA0 /* SuperAwesome-dummy.m */,
 				0BA80EBE7F0AC487A423020D4E0D5979 /* SuperAwesome-prefix.pch */,
 			);
 			name = "Support Files";
@@ -481,19 +488,19 @@
 		41E5F2167041D8B41D57A44A52A291E5 /* libSAiOSNetwork */ = {
 			isa = PBXGroup;
 			children = (
-				2FD0708E5EDD50B57BB0225CF58A0D94 /* SANetwork.h */,
-				41696C0A3CED378713DF7C229DFA4F5C /* SANetwork.m */,
-				99F9AD6716100FBC2454C89EC3651810 /* SASender.h */,
-				1BC6A9F71950E9543FD2F94C82E49D49 /* SASender.m */,
-				4AC2C44F2774762627F05CA75021C0EA /* SASystem.h */,
-				86894143F7123FAE067DB4E842C55E0C /* SASystem.m */,
-				63731292F659B648DA30ABC6FE5A078F /* SASystemSize.h */,
-				F71D650A694BB93D35BAE6122E83D123 /* SASystemType.h */,
-				C57899C6E422364703EF5802CD260BB5 /* SAURLUtils.h */,
-				7B1444DFCE7D3654980F0190E20EE031 /* SAURLUtils.m */,
-				F84B684AEA01B1FBF563196072FEE824 /* SAUserAgent.h */,
-				F288FF3821C06B3763D82A1DFD7084CC /* SAUserAgent.m */,
-				42CF4918F39412D736D063D2102FF3DB /* libSAiOSNetwork.h */,
+				1AA084B6381FCCC1E048ABB504902A57 /* SANetwork.h */,
+				E01B4FF0EFC105F3F1865E978C07EC83 /* SANetwork.m */,
+				2C794104B0966665870A272B98D81F5D /* SASender.h */,
+				03DBC9FC79FB1A7AE28ED3F34ADB1EC8 /* SASender.m */,
+				3895CD3992F2F3A3054B456AB16A3788 /* SASystem.h */,
+				9DCAE39A57C21C331EBD0E5228DD6C7D /* SASystem.m */,
+				6FFD78962367B4E11A45ADE3CBBD23E8 /* SASystemSize.h */,
+				CA40028516E58C99ED940ECD4EC8616E /* SASystemType.h */,
+				280FFA5604289E2181DF4D3A253EDAC3 /* SAURLUtils.h */,
+				51266465CDC08D74C89DEB96B640CFA1 /* SAURLUtils.m */,
+				70FE644337AA1DC80735AC5FE8C0CDF7 /* SAUserAgent.h */,
+				0CF1EDCE6764F998CDB95CA80179DCF2 /* SAUserAgent.m */,
+				3317CB0A75EB68BC81C8F9186353BEA4 /* libSAiOSNetwork.h */,
 			);
 			path = libSAiOSNetwork;
 			sourceTree = "<group>";
@@ -501,9 +508,9 @@
 		4C7C2F3E3DCA975FE8D31319F60CCA7B /* SAVASTManager */ = {
 			isa = PBXGroup;
 			children = (
-				DEBC13BF1E47C443D6F47BD6DD0E3949 /* SAVASTManager.h */,
-				B5BC50F212EFC45206F0787DFE8D3087 /* SAVASTManager.m */,
-				EA1C38B173A7A1EE7B3DA84C58B303FA /* SAVASTManagerProtocol.h */,
+				FAB39A78D7C3FBBC75B1D77646764258 /* SAVASTManager.h */,
+				54966AFF242DD2F4D95248DB2FB90C8C /* SAVASTManager.m */,
+				3CD2045EDBB7BC4161071D5430C7426F /* SAVASTManagerProtocol.h */,
 			);
 			path = SAVASTManager;
 			sourceTree = "<group>";
@@ -535,6 +542,19 @@
 			path = AdParser;
 			sourceTree = "<group>";
 		};
+		56763CF32DF97D7067F6FBB1AE8EE55E /* Fullscreen */ = {
+			isa = PBXGroup;
+			children = (
+				69ABA5310EC578929AE21D41FCE0D135 /* SAFullscreenVideoAd.h */,
+				A7BBD5FDF645B9695B3836AD0544F979 /* SAFullscreenVideoAd.m */,
+				AE41643F53DBB8F83E59FA11DD2A6C0D /* SAInterstitialAd.h */,
+				C03E1A96B4689DC68A85F15FE2779DAA /* SAInterstitialAd.m */,
+				4284C8DCFC810BF8B9CC1325E44ED705 /* SAViewController.h */,
+				78CA84CF22B762030365E92B22A31C4A /* SAViewController.m */,
+			);
+			path = Fullscreen;
+			sourceTree = "<group>";
+		};
 		58FB2401015CF3642D25AE82E4EE38BB /* SuperAwesome */ = {
 			isa = PBXGroup;
 			children = (
@@ -554,6 +574,16 @@
 			path = Plugins;
 			sourceTree = "<group>";
 		};
+		629F840F55BC2C79E33CB09DFAA5F6DB /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				B5389C1681AAA8D43BED580F56EBAF63 /* SAAdProtocol.h */,
+				EABB3D4F6B2D8BF7E3A9AD5CDAE0DD86 /* SAParentalGateProtocol.h */,
+				B0EA5BDF637F4E7DB6A15AED795E3177 /* SAVideoAdProtocol.h */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		6C9012D254331104AFFAC8B63F24FBC0 /* Pods-SuperAwesome Demo */ = {
 			isa = PBXGroup;
 			children = (
@@ -568,29 +598,16 @@
 			path = "Target Support Files/Pods-SuperAwesome Demo";
 			sourceTree = "<group>";
 		};
-		6E4E4A593736A8E7F4BFAA3616F7CCC1 /* Fullscreen */ = {
-			isa = PBXGroup;
-			children = (
-				29965920EBF7EA11BCCB6A5DA462FFEE /* SAFullscreenVideoAd.h */,
-				D316B0FE25338397D7CC71BC87993738 /* SAFullscreenVideoAd.m */,
-				F693F0A1681CD5C929E6B721CE07923A /* SAInterstitialAd.h */,
-				4039D907AD6C60FB80448733845635E3 /* SAInterstitialAd.m */,
-				C465976720448DE4BA31F405ABD86E23 /* SAViewController.h */,
-				C1D9A8C4764F2FCAB486A0D5040F7454 /* SAViewController.m */,
-			);
-			path = Fullscreen;
-			sourceTree = "<group>";
-		};
 		79F628239C919EDFB7F4ECCA7CE01657 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				467EBC136B1FC4A7339506A946B25FA8 /* SAAd.h */,
-				011310CEBF6AF2ED4EE420FB2FAA1A32 /* SAAd.m */,
-				E137D9E201ED951178C90B8E0A8C8D1A /* SACreative.h */,
-				532474761415587D29DAF7B56B7090D3 /* SACreative.m */,
-				EEC3A0530C3E3FFBB16D76CA30E1B252 /* SACreativeFormat.h */,
-				EC57BD48CBC2F2BAF2CFAA39A299BAF7 /* SADetails.h */,
-				E1823B9EC528E07B4E7D0A7C2E9A512E /* SADetails.m */,
+				8028B8664948D7DAD1E187206D1E54FF /* SAAd.h */,
+				A4606B595FEDE8713DA3EC669C2A4EA1 /* SAAd.m */,
+				D1C9A291FD64F6540DB7F480401E7AD3 /* SACreative.h */,
+				BB17F3B1E2F4DA623754F382BE0FCD01 /* SACreative.m */,
+				75922D12442B25B000C01BE4C493739D /* SACreativeFormat.h */,
+				7C449082D03B302F0C6791013B63B5C2 /* SADetails.h */,
+				D3BF0C823985BBFA54552705F26E400B /* SADetails.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -620,18 +637,29 @@
 			path = "Target Support Files/Pods-SuperAwesome DemoTests";
 			sourceTree = "<group>";
 		};
+		A5EA9296A14989DA846A501E3E20D489 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3577AEA80A419A2AC8A6A1C98F0F7637 /* Padlock */,
+				19CD2EE889C404FF1C2C2800937CFB90 /* ParentalGate */,
+				CA7E4A55AC4F16BDF437610136B3419F /* Primary */,
+				629F840F55BC2C79E33CB09DFAA5F6DB /* Protocols */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		A85B51C1CDA40D33A055C611079923CB /* libSAiOSUtils */ = {
 			isa = PBXGroup;
 			children = (
-				9297107AAB66D221521CBD15BC1ADE7F /* NSArray+SAPredicate.h */,
-				2495EC17DAD63E1092F565627F4926E7 /* NSArray+SAPredicate.m */,
-				3A1BDAA120D590993FBE61C11789DCB2 /* SAUtils.h */,
-				0C80B5948DA37900B335F8BC7F11736E /* SAUtils.m */,
-				4A751E07EA27E43559377D400E364880 /* UIAlertController+Window.h */,
-				FB6C7CE956FA6018011C2C54BAB8E746 /* UIAlertController+Window.m */,
-				BA19E5D6804BC982D6185D4BE48AD119 /* UIViewController+Utils.h */,
-				F64386B8D0733909F5DCD3A6C966B4B9 /* UIViewController+Utils.m */,
-				010B7C652402763C758B6050F11F4CD2 /* libSAiOSUtils.h */,
+				1D025243BCD160B94A560C7B16840C98 /* NSArray+SAPredicate.h */,
+				00A2A92A9DB0FB84F6CD7077A3C5A6AD /* NSArray+SAPredicate.m */,
+				CF2CFCDE014A964C07D136462D939CB6 /* SAUtils.h */,
+				D7504400FF003FB0F6A15BB85594821A /* SAUtils.m */,
+				B60A3BDD106378086A417D0C8882601B /* UIAlertController+Window.h */,
+				8E42D57CBA5BD756D512A0350B1CB0D4 /* UIAlertController+Window.m */,
+				B10611D0107EBCAB8DD27E88C8B0C5D3 /* UIViewController+Utils.h */,
+				812BDE46A5F220612F7CA3255509B60F /* UIViewController+Utils.m */,
+				CF9E8E62D92485046D193C4BC2991D31 /* libSAiOSUtils.h */,
 			);
 			path = libSAiOSUtils;
 			sourceTree = "<group>";
@@ -639,15 +667,15 @@
 		B4F27B4BACC92E7E71B7719CFFB54996 /* SAVASTPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				772B48BFEA858070CBBE162C33190077 /* SABlackMask.h */,
-				F03EA599C8BCE4B12F3ADD3711171152 /* SABlackMask.m */,
-				F8F09830542FB6C6F884A21E53DEAF21 /* SACronograph.h */,
-				408626FADC2327B0278E871CFD8C7DAE /* SACronograph.m */,
-				51AD1EC0E71B07458806E66D80861EFB /* SAURLClicker.h */,
-				9823668308DF4B117720AE4B2BF63419 /* SAURLClicker.m */,
-				24BD5B898D6362ADC3D1EB6C6018DC9C /* SAVASTPlayer.h */,
-				43C53EB73459A3FEA4C1730481B8B71D /* SAVASTPlayer.m */,
-				FCF0AE1031C2D95E1D88B5C433A3768D /* SAVASTPlayerProtocol.h */,
+				0A1F15E5F8640133AF9A2D6AAF4D0770 /* SABlackMask.h */,
+				9490CBBB2BE2477FC112C721B0468F2C /* SABlackMask.m */,
+				BF5FA3EDCAEC88E436FE55F955DCEA40 /* SACronograph.h */,
+				B564CFAAAEE6E221E8B07F5AD7600647 /* SACronograph.m */,
+				AEC51C54C783CF04C65365A11A431864 /* SAURLClicker.h */,
+				EBA5256A25EFFD42ADC265EF134B0E18 /* SAURLClicker.m */,
+				3632FE62BAF3DC45EC2954938BB5188E /* SAVASTPlayer.h */,
+				63FF58821F17ED44D1F1FE5B679D5605 /* SAVASTPlayer.m */,
+				67856A5DE8B798EDCA884A7439B411A2 /* SAVASTPlayerProtocol.h */,
 			);
 			path = SAVASTPlayer;
 			sourceTree = "<group>";
@@ -663,8 +691,8 @@
 		C5E4997A6AA2F9503A5B5B849CA21EB5 /* Unity */ = {
 			isa = PBXGroup;
 			children = (
-				E10FDBAAF8259C92266561FD1C1C788C /* SAUnityLinker.h */,
-				4DD156375FA44BE9CC93F4454ACCF234 /* SAUnityLinker.m */,
+				882363109E7A547A5C597A9F7045FD54 /* SAUnityLinker.h */,
+				D21EFE82D7A1642764DD5CF4647BB879 /* SAUnityLinker.m */,
 			);
 			path = Unity;
 			sourceTree = "<group>";
@@ -672,22 +700,26 @@
 		C7EE046C08AEBFCE1FFDF64C5059A1A8 /* Parser */ = {
 			isa = PBXGroup;
 			children = (
-				733D9E25C072D4FFF03C0A490B0757A8 /* SAHTMLParser.h */,
-				78CAADD8178C643AFD4F4293A6AEADEF /* SAHTMLParser.m */,
-				DB311D423788F8FD6E0A952145D56CED /* SAParser.h */,
-				C0021422EFE8E7BB73A38DD25D1651BF /* SAParser.m */,
+				4ADF896C28F6A511C30E56D4171B1846 /* SAHTMLParser.h */,
+				77E025D643EC94F60719101FAF24A6A8 /* SAHTMLParser.m */,
+				C7BFB6F4A62EEC20EA8D00BC6A78C989 /* SAParser.h */,
+				4884A5F80F6EA04B978C6DB9DC5F8FB9 /* SAParser.m */,
 			);
 			path = Parser;
 			sourceTree = "<group>";
 		};
-		CB72922DC5C48ABC19EDE48100B27ACC /* Protocols */ = {
+		CA7E4A55AC4F16BDF437610136B3419F /* Primary */ = {
 			isa = PBXGroup;
 			children = (
-				3F167FAA5C58BAEEA54655DEEE2D3B56 /* SAAdProtocol.h */,
-				0226E48AB835E5810BB566E6400F0390 /* SAParentalGateProtocol.h */,
-				36CD9523D43B39032B2FBECF2E51E0A6 /* SAVideoAdProtocol.h */,
+				1F7ACAB1BE44BB6296D6F4A3C3222C02 /* SABannerAd.h */,
+				604EDFE9355E4B437778D68FE5675AE1 /* SABannerAd.m */,
+				A962CD74C2E895E6577D53029B3BAB67 /* SAVideoAd.h */,
+				68C03DF3C627D2B2979592C36AD5AF03 /* SAVideoAd.m */,
+				297C979768D673B26FAD78C54376F6BB /* SAView.h */,
+				A52B25699066189132361B09F549FA79 /* SAView.m */,
+				56763CF32DF97D7067F6FBB1AE8EE55E /* Fullscreen */,
 			);
-			path = Protocols;
+			path = Primary;
 			sourceTree = "<group>";
 		};
 		CCA510CFBEA2D207524CDA0D73C3B561 /* Products */ = {
@@ -695,7 +727,7 @@
 			children = (
 				13E73CAB44585E7185289503F26E160F /* libPods-SuperAwesome Demo.a */,
 				401047FFA37F4CD9730090679430D80B /* libPods-SuperAwesome DemoTests.a */,
-				3E5C7117EDFBBC0642A6011537CF00D3 /* libSuperAwesome.a */,
+				6140AC22CCF6D8C7AB06672F0026BF71 /* libSuperAwesome.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -725,36 +757,13 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		DA17A8A2E5DB5A0843B4B681BE81E86D /* Primary */ = {
-			isa = PBXGroup;
-			children = (
-				7925549CDCDA56E49ACBB54E09D73EF2 /* SABannerAd.h */,
-				A01AB5206AD3A77892356CD1CCE396B0 /* SABannerAd.m */,
-				0A5AC8CD6D951CDF227B9A9F3CE24E97 /* SAVideoAd.h */,
-				4329235C0A1AE1C604C78D6DF1E8EB63 /* SAVideoAd.m */,
-				0403C9AC6980B1525EB9104F0E169AEE /* SAView.h */,
-				FBC92C099E7AE5CD1897FDC9737E3B0D /* SAView.m */,
-				6E4E4A593736A8E7F4BFAA3616F7CCC1 /* Fullscreen */,
-			);
-			path = Primary;
-			sourceTree = "<group>";
-		};
-		DD750C4ECDE05C20ED27C74DCF7961F2 /* Padlock */ = {
-			isa = PBXGroup;
-			children = (
-				E088E428800D42EA1EAB54FD8EC694E8 /* SAPadlock.h */,
-				E4A64C57AF1A2AE574A8CA4E3CF8822F /* SAPadlock.m */,
-			);
-			path = Padlock;
-			sourceTree = "<group>";
-		};
 		E6955BDE4F29441950136B94D4AF8077 /* SDK */ = {
 			isa = PBXGroup;
 			children = (
-				02B1A2ED738728922FC6F352B524D1B0 /* SuperAwesome.h */,
-				2CD0C821FDA75A306B84B0B297528CBB /* SuperAwesome.m */,
+				BC1D02AD0C8AD2933DBBB896AC355E5C /* SuperAwesome.h */,
+				6393C1DE7B4F8686DB2799432B063F82 /* SuperAwesome.m */,
 				564F82AD2633152A95E027DFB60CED4F /* AdParser */,
-				13F9A9C54B4FA2202C0C516601CA3EBE /* Views */,
+				A5EA9296A14989DA846A501E3E20D489 /* Views */,
 			);
 			path = SDK;
 			sourceTree = "<group>";
@@ -762,30 +771,21 @@
 		EC86E4A02A83012DE9FACB2F885EAB09 /* XMLLib */ = {
 			isa = PBXGroup;
 			children = (
-				94787E933688AD2EC4A28116DAFF1887 /* TBXML.h */,
-				EEB34E323A154E6A54F7FD44E4DCC84C /* TBXML.m */,
-				84E560529B61E044AF6783CEDCBA7894 /* TBXML+SAStaticFunctions.h */,
-				9544C40DE2FE1011C74F40AF4B686C2B /* TBXML+SAStaticFunctions.m */,
+				A53E6F2B08ED3EEF68009D65072ADB71 /* TBXML.h */,
+				BDA525900FB85EEE7733E0EA05753610 /* TBXML.m */,
+				81C6E4E3949873C9E6EC59E0829B61AC /* TBXML+SAStaticFunctions.h */,
+				45528C517E6BE938C7FC2CD0C17B0F80 /* TBXML+SAStaticFunctions.m */,
 			);
 			path = XMLLib;
-			sourceTree = "<group>";
-		};
-		FA6F6DD8F9A99473ED840B6A6FE7ABE1 /* ParentalGate */ = {
-			isa = PBXGroup;
-			children = (
-				13A4FDE625A5FB301D2DD650759B6648 /* SAParentalGate.h */,
-				D64E03F3709AD685E4EDA1E1ACAABEAD /* SAParentalGate.m */,
-			);
-			path = ParentalGate;
 			sourceTree = "<group>";
 		};
 		FB72AA2DED9C6A0CC8875AD7C4E193D2 /* libSAiOSWebView */ = {
 			isa = PBXGroup;
 			children = (
-				6691F211D70CDFAADCB74446D15F4C92 /* SAWebView.h */,
-				F8476FE537DCFCE9D6F359E01478E79D /* SAWebView.m */,
-				17A1E0D07DE67CFD0ABA370EF2FC240C /* SAWebViewProtocol.h */,
-				BAB75FE60B80213C428E7647D0939D00 /* libSAiOSWebView.h */,
+				F17CD1AC7A290FB534733BADFF3DFF65 /* SAWebView.h */,
+				0B5C107D3A23F91C735BB5A1D89DEF59 /* SAWebView.m */,
+				FF1D3123C2EFB11EFDA2440B418037F5 /* SAWebViewProtocol.h */,
+				94792022733821825441729D2379B2E5 /* libSAiOSWebView.h */,
 			);
 			path = libSAiOSWebView;
 			sourceTree = "<group>";
@@ -793,65 +793,65 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		E01BE2DDB7196A52FCA6717F5CC4ECA1 /* Headers */ = {
+		74D6A46DE37C23CA7F4DB7C01E78618C /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				08D2A853B73C0FC567229662365B4766 /* GTMNSString+HTML.h in Headers */,
-				D8194D7CDC9D1EAEED648E88BE18413D /* NSArray+SAPredicate.h in Headers */,
-				A5623A422B712D85611A4ED315AF2D1E /* NSString+HTML.h in Headers */,
-				BAB692224421D529A66513BDEE70638B /* SAAd.h in Headers */,
-				28324D63790272F93BA48520B227197F /* SAAdProtocol.h in Headers */,
-				064AA64D5F4F0302A8393C21E185C1A5 /* SABannerAd.h in Headers */,
-				6A21F34029B210FAA4D927ACF856BCB4 /* SABlackMask.h in Headers */,
-				003EBC778E9E73B18A00EF00F74EAD3C /* SACreative.h in Headers */,
-				B4D41CAE3707B07070B00C3630FB41B6 /* SACreativeFormat.h in Headers */,
-				F0019841CC4C18ED819886794D614ADD /* SACronograph.h in Headers */,
-				E55A4F9689E654774C350CA3554B3458 /* SADetails.h in Headers */,
-				771C317E0D9EB98B0D224FA913EFAB6D /* SAFullscreenVideoAd.h in Headers */,
-				F5170F602367FC38E1C130B9A003A970 /* SAHTMLParser.h in Headers */,
-				1A800B515EB4DCBC6E223C24A138B8A4 /* SAInterstitialAd.h in Headers */,
-				365A420FD1F8013083391362593057E0 /* SALoader.h in Headers */,
-				99ACB3FF17EA98DEA647D2B529F01C3E /* SALoaderProtocol.h in Headers */,
-				109154A4DD91E9E541CAED58E2AFB4B4 /* SANetwork.h in Headers */,
-				058A0C761AFA18C634DFF652D5FC6E7E /* SAPadlock.h in Headers */,
-				F1E4413F226A1ACB9F67D17F8D333384 /* SAParentalGate.h in Headers */,
-				15D44FBFE83947F1C278A04BEBF9A7C6 /* SAParentalGateProtocol.h in Headers */,
-				079714E6CACCB38BDFF85D2E180735D8 /* SAParser.h in Headers */,
-				DB498FE0D3F7CEFE24DEA4C88D05DC60 /* SASender.h in Headers */,
-				B7AD62EBBFA6042DD38A2BAB6455AA29 /* SASystem.h in Headers */,
-				57C8B1685C46212C7B617A3A32A1C710 /* SASystemSize.h in Headers */,
-				A02ABB6C1044628A41DDEF76CBDFA2ED /* SASystemType.h in Headers */,
-				E7E88089BAB42735CF5D2EE998DCEB36 /* SAURLClicker.h in Headers */,
-				657B450A39FC9A8595EA75A002BCB52F /* SAURLUtils.h in Headers */,
-				4CDCE5F5D62D09E30E66382FB993A4A3 /* SAUnityLinker.h in Headers */,
-				990CEF770B9B4FAE69DA8F5350B22CBB /* SAUserAgent.h in Headers */,
-				53A80B20532653427C28754B0F0BC2FD /* SAUtils.h in Headers */,
-				E0C98B0CF2AF5AEEDD8F7F64C4157079 /* SAVASTManager.h in Headers */,
-				0154E9575DB4F29DF5BC33319A9C54F0 /* SAVASTManagerProtocol.h in Headers */,
-				7040ED0C420AA3A120C3F6652E0B104A /* SAVASTModels+Operations.h in Headers */,
-				EC6100B1D787F09EDDBA2BC9FA704073 /* SAVASTModels+Parsing.h in Headers */,
-				1139359288FDF9BBE83C0407D4E413C5 /* SAVASTModels.h in Headers */,
-				1B5FBBA8D987E77A6C7B29B8205A663C /* SAVASTParser.h in Headers */,
-				7468B027DDAE4A44B92B38A1AD695FD9 /* SAVASTParserProtocol.h in Headers */,
-				8377431929E5E7C95F9BC9CCFD22F1ED /* SAVASTPlayer.h in Headers */,
-				4FC8294E5331FDBE3B64E517E51BBDDF /* SAVASTPlayerProtocol.h in Headers */,
-				77CE9C70ADAF0F23559DC31B9BACE6B1 /* SAValidator.h in Headers */,
-				342887B081B0330D257B3F7B615F3DCA /* SAVideoAd.h in Headers */,
-				08CCF09FA2A2881695B469B63928BB2A /* SAVideoAdProtocol.h in Headers */,
-				3F2DDA1BF4C327C2DD8CE23888647A83 /* SAView.h in Headers */,
-				4DA7865F870102E238996BEA655B45A7 /* SAViewController.h in Headers */,
-				35F4A469B223F9154B3601E137364984 /* SAWebView.h in Headers */,
-				1B21FBC2B80279276ECB3C52CBFA962C /* SAWebViewProtocol.h in Headers */,
-				80FF2368AC1FFEE17B2578E1401ECD53 /* SuperAwesome.h in Headers */,
-				7243B1E0DE80E738F86E747CB3F84FC9 /* TBXML+SAStaticFunctions.h in Headers */,
-				94F5156AE16AD56E86E62B041BAE0058 /* TBXML.h in Headers */,
-				B820152D1C5AAEB90165C16ABB397EAF /* UIAlertController+Window.h in Headers */,
-				C2838CD4131349419FC8AA334FCCBDF1 /* UIViewController+Utils.h in Headers */,
-				7E53203CAB8709362271E726F1309F32 /* libSAiOSNetwork.h in Headers */,
-				996A50FE2492EDAFB0375BBE769AFE48 /* libSAiOSUtils.h in Headers */,
-				EC71A3B080C25D96293484143B0D8E1B /* libSAiOSVAST.h in Headers */,
-				BE188F14B4B9935A92B4A4F5C40F4718 /* libSAiOSWebView.h in Headers */,
+				4115E5696B423FFB6409E322798F3B87 /* GTMNSString+HTML.h in Headers */,
+				18EF01A6F84E0FD053FB825393D4C3AF /* NSArray+SAPredicate.h in Headers */,
+				E028FB5936CF38A355DE47446F3A6CF8 /* NSString+HTML.h in Headers */,
+				B1413F99C723CB450D17995D197CCD89 /* SAAd.h in Headers */,
+				6D247487F58F658504FFF81658842222 /* SAAdProtocol.h in Headers */,
+				96583FD8DA29A03F769E26169BD0AF61 /* SABannerAd.h in Headers */,
+				CF596947D476DE5FCED7AC45B8899989 /* SABlackMask.h in Headers */,
+				7680F8D926B862F4D51EDF214D7A7F6A /* SACreative.h in Headers */,
+				34C460F4D35B74437856F869C1FFF6AE /* SACreativeFormat.h in Headers */,
+				F46D198DC2333B476359DB83A9E12B6F /* SACronograph.h in Headers */,
+				52007A5AE81C8137C658229A060DDDD0 /* SADetails.h in Headers */,
+				B4F775D14DC4BFF826A97EFF314751E1 /* SAFullscreenVideoAd.h in Headers */,
+				5597B7CF1F291F2F636D805D0CEAE0FC /* SAHTMLParser.h in Headers */,
+				F97D271159481C30BAEE0AF87F1761FE /* SAInterstitialAd.h in Headers */,
+				7A227359BD95D09A9AD94602C3BFDB71 /* SALoader.h in Headers */,
+				9A256E6066CC3624732ED59340662657 /* SALoaderProtocol.h in Headers */,
+				BDC26E56BEA1064A9B68EB2327422623 /* SANetwork.h in Headers */,
+				6868D4F0FE0309E8EB509F457617B0D3 /* SAPadlock.h in Headers */,
+				F0E872E513D911CF3CD63E3270E9BEA8 /* SAParentalGate.h in Headers */,
+				EB6AE5EB702AE2690A091D240F4FC4ED /* SAParentalGateProtocol.h in Headers */,
+				0369CFA56A2F37E9611F182F2A78F2C0 /* SAParser.h in Headers */,
+				C6D7EE995EC740B437BB9606B48E1B2A /* SASender.h in Headers */,
+				323AC13B61F4E3413A4C3663C919840D /* SASystem.h in Headers */,
+				92A69A60ED4A608B35E584B38DAFE484 /* SASystemSize.h in Headers */,
+				1F1BAC80A7FFB96AD8D9B644244F3972 /* SASystemType.h in Headers */,
+				0F9448A181D83B6B566AED3A35459100 /* SAURLClicker.h in Headers */,
+				8E77A2C1C1FE198C1EBBDBC980DF1FAC /* SAURLUtils.h in Headers */,
+				6ABFA5858A4ED4CDA6E5E6B45F995000 /* SAUnityLinker.h in Headers */,
+				BE9AEDB158F039DCF12BBCC23020D35D /* SAUserAgent.h in Headers */,
+				85D5342E141494FBD0CA712DE8DC4C46 /* SAUtils.h in Headers */,
+				15AEBECAC177F1CA11A2C4FB4A4F0D2A /* SAVASTManager.h in Headers */,
+				C4EBB8C379770C421B6F0CAE1B05DDD1 /* SAVASTManagerProtocol.h in Headers */,
+				86DB42FB4AF06D84492C180EF376687A /* SAVASTModels+Operations.h in Headers */,
+				C34B9ED5480F0564CD20C7114AD96B5F /* SAVASTModels+Parsing.h in Headers */,
+				18C2DE27B1B29797EF9CB55720E2427C /* SAVASTModels.h in Headers */,
+				EED8B9AB6E9CBF19B8E2D2D8AFE180B4 /* SAVASTParser.h in Headers */,
+				D308674165EF8C9CAC0DD9E0B776AA8A /* SAVASTParserProtocol.h in Headers */,
+				CE1644DB76C44B11B52E5AE0CA6B9CFD /* SAVASTPlayer.h in Headers */,
+				D36D8EBA6CA836BA87891FC46537EB36 /* SAVASTPlayerProtocol.h in Headers */,
+				3583632F2EE29EA7671036FA3125660E /* SAValidator.h in Headers */,
+				737035D51F1AA85E8B0E4C68240FBC5C /* SAVideoAd.h in Headers */,
+				E7909ABB102867775A1BAC98D5F4A14E /* SAVideoAdProtocol.h in Headers */,
+				61D42C240CCD34B1D10271A44B1D2040 /* SAView.h in Headers */,
+				91B19D1E2F2F32D6370E3FEFFFBD1F68 /* SAViewController.h in Headers */,
+				238E7AB33A03A4F73D16FB9F932D9ED7 /* SAWebView.h in Headers */,
+				5C6AA4B106B39759428657C390D37407 /* SAWebViewProtocol.h in Headers */,
+				07F6E2F80386C2FDD5E4CE65D2385E6A /* SuperAwesome.h in Headers */,
+				1BAF8976F5DD3EF62BE24E8387029D7E /* TBXML+SAStaticFunctions.h in Headers */,
+				1E2A1E393FF7706E5C9796D3BD2C29A4 /* TBXML.h in Headers */,
+				8ACDBFA21115CAD9ED40BD08FD3B13F7 /* UIAlertController+Window.h in Headers */,
+				3E13946B98135219FE3C3320A74037E3 /* UIViewController+Utils.h in Headers */,
+				6179B60FBDE0C82E7A6DC21CFB76126B /* libSAiOSNetwork.h in Headers */,
+				9607052561C6BBFB2D0024436437912C /* libSAiOSUtils.h in Headers */,
+				70A2D2906D0DF5C8CA57B67491317F1B /* libSAiOSVAST.h in Headers */,
+				B1BE7286CBAD0BDB86E99F876855654D /* libSAiOSWebView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -868,7 +868,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				3D9FF227F0501FC0CAB2F6667CB3708A /* PBXTargetDependency */,
+				1688F26BCDBCD502F742C0D92B81E08F /* PBXTargetDependency */,
 			);
 			name = "Pods-SuperAwesome DemoTests";
 			productName = "Pods-SuperAwesome DemoTests";
@@ -885,20 +885,20 @@
 			buildRules = (
 			);
 			dependencies = (
-				3C9A8F5C98C46665ED612E8E81DADBAC /* PBXTargetDependency */,
+				3E50BF3CD9C9ED1B6913EC6350CD24A4 /* PBXTargetDependency */,
 			);
 			name = "Pods-SuperAwesome Demo";
 			productName = "Pods-SuperAwesome Demo";
 			productReference = 13E73CAB44585E7185289503F26E160F /* libPods-SuperAwesome Demo.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		A788EE107AFA374E2E6549009266DB59 /* SuperAwesome */ = {
+		FD10A884DC961B4081EB6A55769D90DD /* SuperAwesome */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1C56E1BD332796F63DA4A91F8E0C96A9 /* Build configuration list for PBXNativeTarget "SuperAwesome" */;
+			buildConfigurationList = 023DE9755C19AF95DA9B1A0E18BC5073 /* Build configuration list for PBXNativeTarget "SuperAwesome" */;
 			buildPhases = (
-				73FC207FC3BC56C9B8EC3251A56C07B5 /* Sources */,
-				B9FA3E45C85516122F00BAFDE5BEEC23 /* Frameworks */,
-				E01BE2DDB7196A52FCA6717F5CC4ECA1 /* Headers */,
+				CE78F2B79920854C7284EB2BE093EC7F /* Sources */,
+				BF6F1C9A1CA18BB70AC8D292F331F03D /* Frameworks */,
+				74D6A46DE37C23CA7F4DB7C01E78618C /* Headers */,
 			);
 			buildRules = (
 			);
@@ -906,7 +906,7 @@
 			);
 			name = SuperAwesome;
 			productName = SuperAwesome;
-			productReference = 3E5C7117EDFBBC0642A6011537CF00D3 /* libSuperAwesome.a */;
+			productReference = 6140AC22CCF6D8C7AB06672F0026BF71 /* libSuperAwesome.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -932,7 +932,7 @@
 			targets = (
 				A26824B5AF27183434D92AB8B5F3C6F9 /* Pods-SuperAwesome Demo */,
 				977B850743B9DBD296D8D03BF69BF53B /* Pods-SuperAwesome DemoTests */,
-				A788EE107AFA374E2E6549009266DB59 /* SuperAwesome */,
+				FD10A884DC961B4081EB6A55769D90DD /* SuperAwesome */,
 			);
 		};
 /* End PBXProject section */
@@ -946,54 +946,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		73FC207FC3BC56C9B8EC3251A56C07B5 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				60040B25A26C74A8B2A1A771BB297855 /* GTMNSString+HTML.m in Sources */,
-				86BF8BA398681D93A5AF9887757D6D88 /* NSArray+SAPredicate.m in Sources */,
-				9644A79F027D5F88CEF7F7B8C16A6394 /* NSString+HTML.m in Sources */,
-				2F0018911BD56594A1952C73DB1EF72C /* SAAd.m in Sources */,
-				915549328EF17065F290C3EA2923D894 /* SABannerAd.m in Sources */,
-				ECD312EF045B15EF25C0C28DF4C6A3BA /* SABlackMask.m in Sources */,
-				E9683CE7AE373E3E43118409E0EB0824 /* SACreative.m in Sources */,
-				43759C2E873D8C55A82938F394B852EA /* SACronograph.m in Sources */,
-				341FC4F5032C0A896624569663B01BFB /* SADetails.m in Sources */,
-				A1E185EC988D054BB30E3D0C7EBB6D44 /* SAFullscreenVideoAd.m in Sources */,
-				F84C8D0FD6C49F8E96BEF4F96B70AC95 /* SAHTMLParser.m in Sources */,
-				E74FBB9E57DA21500D67A11709BE8971 /* SAInterstitialAd.m in Sources */,
-				2297520EC04CC9512B03FB6EAAB67A58 /* SALoader.m in Sources */,
-				F66130343EA90FD0A24732466F00F1AB /* SANetwork.m in Sources */,
-				C1DF2B2E8EC93A0A6E70D6739A73DE59 /* SAPadlock.m in Sources */,
-				70614C3B3783F78E196BB9AD50302B2C /* SAParentalGate.m in Sources */,
-				B258704F137CA66D2993F5918A92A2E1 /* SAParser.m in Sources */,
-				4DBF0AACBE910274EDEC4084342E77A3 /* SASender.m in Sources */,
-				62CA80C04E5BF13EC45109F7EDB3FE36 /* SASystem.m in Sources */,
-				3959C1C8DC90C6F295CCD15073E324D9 /* SAURLClicker.m in Sources */,
-				DFBAFD55C18CFB0376B55CBF162A6F17 /* SAURLUtils.m in Sources */,
-				B82FF97388ABCC5406F2359E5D28885D /* SAUnityLinker.m in Sources */,
-				3E2B8188F887AB3156DFFE1397AF1441 /* SAUserAgent.m in Sources */,
-				0BD6D2ED66E5F61FC188E49A49920D24 /* SAUtils.m in Sources */,
-				EAEF60799929BBCE246D6447F483D00A /* SAVASTManager.m in Sources */,
-				BA32D8C71C375FEBCCEA085F205BEFA3 /* SAVASTModels+Operations.m in Sources */,
-				0D4986221D10337BC980218FEB3CDE1D /* SAVASTModels+Parsing.m in Sources */,
-				3368B919C8CC992EC82165B024353C02 /* SAVASTModels.m in Sources */,
-				98EA3304070A05F435E70F1531EDBC63 /* SAVASTParser.m in Sources */,
-				7461647BFEFABC0F3906C1D1571EC3E4 /* SAVASTPlayer.m in Sources */,
-				68D5DE16B6D79AA404EF198915AFEE39 /* SAValidator.m in Sources */,
-				F393E5C9FE840BC27AD481B0140216E1 /* SAVideoAd.m in Sources */,
-				34A27560AC01E9109F5C339ADEDC6BAF /* SAView.m in Sources */,
-				B09D7EE8A03CA3C01C077FF34707CDD5 /* SAViewController.m in Sources */,
-				51CFD437F441FD88A288862855334BF1 /* SAWebView.m in Sources */,
-				D9E87DB8DF1F0BD715428077BA7279A3 /* SuperAwesome-dummy.m in Sources */,
-				230C1980B5F0B9ACD4C43C1BAB633D55 /* SuperAwesome.m in Sources */,
-				CAF962E708BA1A6BA0274D0008BB5333 /* TBXML+SAStaticFunctions.m in Sources */,
-				D0FADF8075CE1911AFF9290AC7C1893D /* TBXML.m in Sources */,
-				81D54AF28C7C5110A27FA9E85B0747A9 /* UIAlertController+Window.m in Sources */,
-				9BF46BFFB86D79634974B1E6D0994F39 /* UIViewController+Utils.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		BB12FA284257CE2B46E5EF31719D8887 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1002,24 +954,88 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CE78F2B79920854C7284EB2BE093EC7F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				510F8DF1954930F8CB85E340A0A2B974 /* GTMNSString+HTML.m in Sources */,
+				165405CF67CFF26DA6DF622AF407E43F /* NSArray+SAPredicate.m in Sources */,
+				F4B7AE55F9068A15692E6D13B58B7FEC /* NSString+HTML.m in Sources */,
+				14B479465E318DE783486E64F1E37740 /* SAAd.m in Sources */,
+				4D58F851A332E8DEFDC1AEC0C3FB4576 /* SABannerAd.m in Sources */,
+				4A9C3FA6E8FD810BE9C6B3D11CC5EA0D /* SABlackMask.m in Sources */,
+				7847E614D6E491B2FE6C4DB3F6F805A9 /* SACreative.m in Sources */,
+				118766087EB1156B0011AE55978FEDD6 /* SACronograph.m in Sources */,
+				2C0565B8E5219C47E58F70D5677CFED8 /* SADetails.m in Sources */,
+				053D6761F39099EABA86E10D2F67BEC7 /* SAFullscreenVideoAd.m in Sources */,
+				83781010C7DCF198DF6C131A30BC089A /* SAHTMLParser.m in Sources */,
+				DDFBA2A81071F2C60F8A387223DF53EF /* SAInterstitialAd.m in Sources */,
+				B4E2590BD55A973EBB6CDA090B07A149 /* SALoader.m in Sources */,
+				85739B0D10328364E630D3B06EAEEB58 /* SANetwork.m in Sources */,
+				9E052E77E056B06FC0C60E14EE83EA0C /* SAPadlock.m in Sources */,
+				608853E6973AB697F6426D1462B25E0B /* SAParentalGate.m in Sources */,
+				1C2EEEABC0914BE9C8B4ECA3552073C4 /* SAParser.m in Sources */,
+				A34985DFA9F5C9EF24D3896A8C4C9461 /* SASender.m in Sources */,
+				49C7CFEA41C945A509AF4A0F9179A1CF /* SASystem.m in Sources */,
+				5FFE512F2D937F5069CE8FE19FD3B758 /* SAURLClicker.m in Sources */,
+				80B37DB32D7EC3F7AE7FAD97C3ED36A2 /* SAURLUtils.m in Sources */,
+				2F3B62F3E5B17ADDDAA0914946ACECF7 /* SAUnityLinker.m in Sources */,
+				8F984A1C52D6467D061D7B5B5D2A1809 /* SAUserAgent.m in Sources */,
+				13F0B3F63308E2DD5656C2734A0460C8 /* SAUtils.m in Sources */,
+				B6CD8FC436CB53CF3F3B3C6527E2AEAF /* SAVASTManager.m in Sources */,
+				A10D0BE554DE3F336E5DF1B7CF7E24FB /* SAVASTModels+Operations.m in Sources */,
+				8D973F3A9347336D6FAE109E677BCE41 /* SAVASTModels+Parsing.m in Sources */,
+				F0691AD29F4DCD81CD3CB0B2CBBBA392 /* SAVASTModels.m in Sources */,
+				2C56EC08A2B61C5B6D4F445603D5FFC2 /* SAVASTParser.m in Sources */,
+				FC34851941B6E1B44CA4958BAD7EB8BD /* SAVASTPlayer.m in Sources */,
+				061A597FB68B0FAFB38DC9E52E20A3A9 /* SAValidator.m in Sources */,
+				AF4A52B16A036CEE0172BA08AD2233E3 /* SAVideoAd.m in Sources */,
+				5A177096F164C58C78CD7965A2B88850 /* SAView.m in Sources */,
+				6D1F5578F7E4192F577540C912D3EFCA /* SAViewController.m in Sources */,
+				368C58E152DD5BDDD73A4E1E9B541C20 /* SAWebView.m in Sources */,
+				DBC6A5B4987902B1C360F0FCAA3D0BE2 /* SuperAwesome-dummy.m in Sources */,
+				BC3F435AB7BA5F544A8E4D4FC06B3932 /* SuperAwesome.m in Sources */,
+				D4B852E4BB689A4AE3E83331A7FE22EB /* TBXML+SAStaticFunctions.m in Sources */,
+				CC965F51675461F6F623C47B481E6518 /* TBXML.m in Sources */,
+				FB7D76DE0F98CBEBDF6E8559171353EC /* UIAlertController+Window.m in Sources */,
+				1D5768117EEEBBCC8FB412564838678A /* UIViewController+Utils.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3C9A8F5C98C46665ED612E8E81DADBAC /* PBXTargetDependency */ = {
+		1688F26BCDBCD502F742C0D92B81E08F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SuperAwesome;
-			target = A788EE107AFA374E2E6549009266DB59 /* SuperAwesome */;
-			targetProxy = 3D1DD814DDB7573091C2644D4C02B341 /* PBXContainerItemProxy */;
+			target = FD10A884DC961B4081EB6A55769D90DD /* SuperAwesome */;
+			targetProxy = CCE1A8B6FF971F51347750C419344FB6 /* PBXContainerItemProxy */;
 		};
-		3D9FF227F0501FC0CAB2F6667CB3708A /* PBXTargetDependency */ = {
+		3E50BF3CD9C9ED1B6913EC6350CD24A4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SuperAwesome;
-			target = A788EE107AFA374E2E6549009266DB59 /* SuperAwesome */;
-			targetProxy = FA65BA7048A5486BBCDDCBD97BE81F0F /* PBXContainerItemProxy */;
+			target = FD10A884DC961B4081EB6A55769D90DD /* SuperAwesome */;
+			targetProxy = 047C1E27F4C4357464F763F212035EF7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		11BAA7FCBD0EA065BB9D4D48E437FE42 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 42DEF87BDF77DE1969BB85B6B78012DA /* SuperAwesome-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/SuperAwesome/SuperAwesome-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		2584E42048EE7D3F71E0C23384E8BDC7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C4793B85ED16AEBA31B791B558666DBE /* Pods-SuperAwesome DemoTests.debug.xcconfig */;
@@ -1051,6 +1067,22 @@
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
+		};
+		4747141CD21D09143E2C220D646BAD71 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 42DEF87BDF77DE1969BB85B6B78012DA /* SuperAwesome-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/SuperAwesome/SuperAwesome-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
 		};
 		6569F07DC21AD8B72752685013E3D9D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1107,22 +1139,6 @@
 			};
 			name = Debug;
 		};
-		9832C293F4BA04B7E33CC7A22DEEF8BA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 51F72D3B026993E58C9E0D7A3D8B03C7 /* SuperAwesome-Private.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/SuperAwesome/SuperAwesome-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
 		A14E2444F162A20E3776820E0ADFFB52 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1173,30 +1189,14 @@
 			};
 			name = Release;
 		};
-		C3342DF44A5732AA212C04188389F813 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 51F72D3B026993E58C9E0D7A3D8B03C7 /* SuperAwesome-Private.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/SuperAwesome/SuperAwesome-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1C56E1BD332796F63DA4A91F8E0C96A9 /* Build configuration list for PBXNativeTarget "SuperAwesome" */ = {
+		023DE9755C19AF95DA9B1A0E18BC5073 /* Build configuration list for PBXNativeTarget "SuperAwesome" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9832C293F4BA04B7E33CC7A22DEEF8BA /* Debug */,
-				C3342DF44A5732AA212C04188389F813 /* Release */,
+				4747141CD21D09143E2C220D646BAD71 /* Debug */,
+				11BAA7FCBD0EA065BB9D4D48E437FE42 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
