@@ -2,7 +2,7 @@ If you already have MoPub ads serving in your app, but want to integrate SuperAw
 
 #### Integrate the SDK
 
-The first thing you should do is integrate the SDK in your current app by following the instructions in [Getting Started / Integrating the SDK](https://developers.superawesome.tv/docs/iossdk/Getting%20Started/Integrating%20the%20SDK?version=3).
+The first thing you should do is integrate the SDK in your current app by following the instructions in [Getting Started / Integrating the SDK](https://developers.superawesome.tv/docs/iossdk/Getting%20Started/Integrating%20the%20SDK?version=4).
 
 This will add the SDK to your current project. 
 
@@ -10,12 +10,12 @@ This will add the SDK to your current project.
 
 Next, you'll need to download a list of files called Adapters:
 
-  * [SuperAwesomeBannerCustomEvent.h](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/raw/update/mraid_to_webview/SuperAwesome/MoPubIntegration/SuperAwesomeBannerCustomEvent.h)
-  * [SuperAwesomeBannerCustomEvent.m](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/raw/update/mraid_to_webview/SuperAwesome/MoPubIntegration/SuperAwesomeBannerCustomEvent.m)
-  * [SuperAwesomeInterstitialCustomEvent.h](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/raw/update/mraid_to_webview/SuperAwesome/MoPubIntegration/SuperAwesomeInterstitialCustomEvent.h)
-  * [SuperAwesomeInterstitialCustomEvent.m](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/raw/update/mraid_to_webview/SuperAwesome/MoPubIntegration/SuperAwesomeInterstitialCustomEvent.m)
-  * [SuperAwesomeRewardedVideoCustomEvent.h](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/raw/update/mraid_to_webview/SuperAwesome/MoPubIntegration/SuperAwesomeRewardedVideoCustomEvent.h)
-  * [SuperAwesomeRewardedVideoCustomEvent.m](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/raw/update/mraid_to_webview/SuperAwesome/MoPubIntegration/SuperAwesomeRewardedVideoCustomEvent.m)
+  * [SuperAwesomeBannerCustomEvent.h](https://raw.githubusercontent.com/SuperAwesomeLTD/sa-mobile-sdk-ios/update/mraid_to_webview/SuperAwesomeMoPub/SuperAwesomeMoPub/SuperAwesomeBannerCustomEvent.h)
+  * [SuperAwesomeBannerCustomEvent.m](https://raw.githubusercontent.com/SuperAwesomeLTD/sa-mobile-sdk-ios/update/mraid_to_webview/SuperAwesomeMoPub/SuperAwesomeMoPub/SuperAwesomeBannerCustomEvent.m)
+  * [SuperAwesomeInterstitialCustomEvent.h](https://raw.githubusercontent.com/SuperAwesomeLTD/sa-mobile-sdk-ios/update/mraid_to_webview/SuperAwesomeMoPub/SuperAwesomeMoPub/SuperAwesomeInterstitialCustomEvent.h)
+  * [SuperAwesomeInterstitialCustomEvent.m](https://raw.githubusercontent.com/SuperAwesomeLTD/sa-mobile-sdk-ios/update/mraid_to_webview/SuperAwesomeMoPub/SuperAwesomeMoPub/SuperAwesomeInterstitialCustomEvent.m)
+  * [SuperAwesomeRewardedVideoCustomEvent.h](https://raw.githubusercontent.com/SuperAwesomeLTD/sa-mobile-sdk-ios/update/mraid_to_webview/SuperAwesomeMoPub/SuperAwesomeMoPub/SuperAwesomeRewardedVideoCustomEvent.h)
+  * [SuperAwesomeRewardedVideoCustomEvent.m](https://raw.githubusercontent.com/SuperAwesomeLTD/sa-mobile-sdk-ios/update/mraid_to_webview/SuperAwesomeMoPub/SuperAwesomeMoPub/SuperAwesomeRewardedVideoCustomEvent.m)
 
 These will act as a convenient bridge between SuperAwesome and MoPub, so that you don't have to write any aditional line of code.
 You'll need to add these to your project, wherever is convenient.
@@ -50,8 +50,8 @@ Custom Event Data that is always required, and must be given in the form of  JSO
 ```
 {
 	"placementId": 5692,
-	"testMode": true,
-	"parentalGateEnabled": true
+	"isTestEnabled": true,
+	"isParentalGateEnabled": true
 }
 
 ```
@@ -60,7 +60,8 @@ Optional Event Data for Rewarded Videos is:
 
 ```
 {
-  "closeButtonAppears": false
+  "shouldShowCloseButton": false,
+  "shouldAutomaticallyCloseAtEnd": true
 }
 
 ```

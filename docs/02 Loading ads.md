@@ -30,8 +30,10 @@ Finally, to actually start loading the ad, in the `init` method you'll have to a
 - (id) init {
 	if (self = [super init]) {
 
-		[SALoader setDelegate: self];
-		[SALoader loadAdForPlacementId: __PLACEMENT_ID__];
+		// create a Loader object
+		SALoader *loader = [[SALoader alloc] init];
+		[loader setDelegate: self];
+		[loader loadAdForPlacementId: __PLACEMENT_ID__];
 
 	}
 

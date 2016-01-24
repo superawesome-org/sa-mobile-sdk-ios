@@ -3,7 +3,7 @@ Parental gates are used in apps targeted towards kids to prevent them from engag
 You can enable our parental gate on banners, interstitials and video views. You can either enable it in Interface Builder or by using the following code in your project:
 
 ```
-[ad setIsParentalGateEnabled:YES];
+[banner setIsParentalGateEnabled:true];
 
 ```
 

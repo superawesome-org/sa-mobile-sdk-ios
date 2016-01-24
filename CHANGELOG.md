@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+3.4.1
+ - Updates to MoPub & Unity integration
+
 3.4.0
  - Updates to the Unity integration
 

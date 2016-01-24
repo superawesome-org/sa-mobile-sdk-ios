@@ -14,7 +14,7 @@ pod init
 The dependencies for your projects are specified in a single text file called a Podfile. CocoaPods will resolve dependencies between libraries, fetch the resulting source code, then link it together in an Xcode workspace to build your project.
 To download the latest release of the SDK add the following line to your Podfile:
 ```
-pod 'SuperAwesome', '3.3.9'
+pod 'SuperAwesome'
 ```
 After the pod source has been added, update your project's dependencies by running the following command in the terminal:
 ```
