@@ -16,7 +16,7 @@
 // implements two important ad protocols
 // - SALoaderProtocol (of SALoader class)
 // - SAAdProtocol (common to all SAViews)
-@interface SuperAwesomeInterstitialCustomEvent () <SALoaderProtocol, SAAdProtocol>
+@interface SuperAwesomeInterstitialCustomEvent () <SALoaderProtocol, SAAdProtocol, SAParentalGateProtocol>
 
 @property (nonatomic, strong) SAInterstitialAd *interstitial;
 @property (nonatomic, assign) NSInteger placementId;
@@ -65,11 +65,11 @@
     
     [rootViewController presentViewController:_interstitial animated:YES completion:^{
         
-        // play preloaded ad
-        [_interstitial play];
-        
         // call events
         [self.delegate interstitialCustomEventWillAppear:self];
+        
+        // play preloaded ad
+        [_interstitial play];
     }];
 }
 
@@ -96,6 +96,7 @@
     
     // set delegate
     [_interstitial setAdDelegate:self];
+    [_interstitial setParentalGateDelegate: self];
     
     // set ad
     [_interstitial setAd:ad];
@@ -115,7 +116,6 @@
 #pragma mark <SAAdProtocol>
 
 - (void) adWasShown:(NSInteger)placementId {
-    // do nothing
     [self.delegate interstitialCustomEventDidAppear:self];
 }
 
@@ -131,12 +131,32 @@
 - (void) adWasClicked:(NSInteger)placementId {
     // call required event
     [self.delegate interstitialCustomEventDidReceiveTapEvent:self];
+    
+    // only show this directly if PG is not enabled
+    // if it is, it will be called when PG is successfull
+    if (!_isParentalGateEnabled) {
+        [self.delegate interstitialCustomEventWillLeaveApplication:self];
+    }
 }
 
 - (void) adWasClosed:(NSInteger)placementId {
     // call required events
     [self.delegate interstitialCustomEventWillDisappear:self];
     [self.delegate interstitialCustomEventDidDisappear:self];
+}
+
+#pragma mark <SAParentalGateProtocol>
+
+- (void) parentalGateWasCanceled:(NSInteger)placementId {
+    // do nothing here
+}
+
+- (void) parentalGateWasSucceded:(NSInteger)placementId {
+    [self.delegate interstitialCustomEventWillLeaveApplication:self];
+}
+
+- (void) parentalGateWasFailed:(NSInteger)placementId {
+    // do nothing here
 }
 
 @end

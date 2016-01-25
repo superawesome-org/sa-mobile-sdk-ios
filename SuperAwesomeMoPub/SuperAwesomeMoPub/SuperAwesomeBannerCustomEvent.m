@@ -16,7 +16,7 @@
 // implements two important ad protocols
 // - SALoaderProtocol (of SALoader class)
 // - SAAdProtocol (common to all SAViews)
-@interface SuperAwesomeBannerCustomEvent () <SALoaderProtocol, SAAdProtocol>
+@interface SuperAwesomeBannerCustomEvent () <SALoaderProtocol, SAAdProtocol, SAParentalGateProtocol>
 
 @property (nonatomic, strong) SABannerAd *banner;
 @property (nonatomic, assign) CGRect bannerFrame;
@@ -88,6 +88,7 @@
     
     // set delegates
     [_banner setAdDelegate:self];
+    [_banner setParentalGateDelegate:self];
     
     // customize
     [_banner setIsParentalGateEnabled:_isParentalGateEnabled];
@@ -127,11 +128,27 @@
 
 - (void) adWasClicked:(NSInteger)placementId {
     // this must be called to log clicks to MoPub
-    [self.delegate bannerCustomEventWillLeaveApplication:self];
+    if (!_isParentalGateEnabled){
+        [self.delegate bannerCustomEventWillLeaveApplication:self];
+    }
 }
 
 - (void) adWasClosed:(NSInteger)placementId {
     // do nothing
+}
+
+#pragma mark <SAParentalGateProtocol>
+
+- (void) parentalGateWasCanceled:(NSInteger)placementId {
+    // do nothing here
+}
+
+- (void) parentalGateWasSucceded:(NSInteger)placementId {
+    [self.delegate bannerCustomEventWillLeaveApplication:self];
+}
+
+- (void) parentalGateWasFailed:(NSInteger)placementId {
+    // do nothing here
 }
 
 
