@@ -20,4 +20,6 @@
 // It's a simple implementation over SKMRAIDView
 @interface SABannerAd : SAView
 
+- (void) resizeToFrame:(CGRect)toframe;
+
 @end

@@ -97,15 +97,15 @@
                 UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
                 
                 // calculate the size of the ad
-                CGSize realSize = CGSizeZero;
+                __block CGSize realSize = CGSizeZero;
                 if (size == 1) realSize = CGSizeMake(300, 50);
                 else if (size == 2) realSize = CGSizeMake(728, 90);
                 else if (size == 3) realSize = CGSizeMake(300, 250);
                 else realSize = CGSizeMake(320, 50);
                 
                 // calculate the position of the ad
-                CGPoint realPos = CGPointZero;
-                CGSize screen = [UIScreen mainScreen].bounds.size;
+                __block CGPoint realPos = CGPointZero;
+                __block CGSize screen = [UIScreen mainScreen].bounds.size;
                 if (position == 0) realPos = CGPointMake((screen.width - realSize.width) / 2.0f, 0);
                 else realPos = CGPointMake((screen.width - realSize.width) / 2.0f, screen.height - realSize.height);
                 
@@ -119,6 +119,20 @@
                 // add the banner to the topmost root
                 [root.view addSubview:bad];
                 [bad play];
+                
+
+                // add a block notification
+                [[NSNotificationCenter defaultCenter] addObserverForName:@"UIDeviceOrientationDidChangeNotification"
+                                                                  object:nil
+                                                                   queue:nil
+                                                              usingBlock:
+                 ^(NSNotification * _Nonnull note) {
+                     screen = [UIScreen mainScreen].bounds.size;
+                     if (position == 0) realPos = CGPointMake((screen.width - realSize.width) / 2.0f, 0);
+                     else realPos = CGPointMake((screen.width - realSize.width) / 2.0f, screen.height - realSize.height);
+                     
+                     [bad resizeToFrame:CGRectMake(realPos.x, realPos.y, realSize.width, realSize.height)];
+                 }];
             }
             // if data is not valid
             else {
