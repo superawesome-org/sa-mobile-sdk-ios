@@ -476,14 +476,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		A71EC5407A020840789DE8D6C83C9589 /* PBXContainerItemProxy */ = {
+		131BDEA2795A3ABE17CC5F3A1D83DACA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = FD10A884DC961B4081EB6A55769D90DD;
 			remoteInfo = SuperAwesome;
 		};
-		FE04398B9B2D18E0D802B2F7F046A3D2 /* PBXContainerItemProxy */ = {
+		D12CAAAECC22E248CC3DA2AF561025F5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
@@ -2169,8 +2169,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				CC8116375D62DB3EDCE2C5D55951C448 /* PBXTargetDependency */,
-				F04A8419EC53282AD653279626DB3AA7 /* PBXTargetDependency */,
+				55B28F65ED3F51BC0A13E36255509EDF /* PBXTargetDependency */,
+				CA0528C294D835A551AA79176BFCA001 /* PBXTargetDependency */,
 			);
 			name = "Pods-SuperAwesomeMoPub";
 			productName = "Pods-SuperAwesomeMoPub";
@@ -2447,17 +2447,17 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		CC8116375D62DB3EDCE2C5D55951C448 /* PBXTargetDependency */ = {
+		55B28F65ED3F51BC0A13E36255509EDF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SuperAwesome;
 			target = FD10A884DC961B4081EB6A55769D90DD /* SuperAwesome */;
-			targetProxy = A71EC5407A020840789DE8D6C83C9589 /* PBXContainerItemProxy */;
+			targetProxy = 131BDEA2795A3ABE17CC5F3A1D83DACA /* PBXContainerItemProxy */;
 		};
-		F04A8419EC53282AD653279626DB3AA7 /* PBXTargetDependency */ = {
+		CA0528C294D835A551AA79176BFCA001 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "mopub-ios-sdk";
 			target = 3328DE7B61120881E07B1674ABC15018 /* mopub-ios-sdk */;
-			targetProxy = FE04398B9B2D18E0D802B2F7F046A3D2 /* PBXContainerItemProxy */;
+			targetProxy = D12CAAAECC22E248CC3DA2AF561025F5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

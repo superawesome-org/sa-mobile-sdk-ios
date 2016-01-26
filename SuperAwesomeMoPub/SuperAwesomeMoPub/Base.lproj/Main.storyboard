@@ -18,15 +18,29 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CbZ-7J-D7u">
-                                <rect key="frame" x="20" y="84" width="109" height="30"/>
-                                <state key="normal" title="Open Interstitial"/>
+                                <rect key="frame" x="40" y="84" width="69" height="30"/>
+                                <state key="normal" title="Load Inter"/>
                                 <connections>
                                     <action selector="openInterstitial:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jyR-LM-lRg"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lnp-SK-5K1">
+                                <rect key="frame" x="184" y="84" width="64" height="30"/>
+                                <state key="normal" title="Play Inter"/>
+                                <connections>
+                                    <action selector="playInter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gaC-fi-LLq"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RQ5-FW-WOB">
+                                <rect key="frame" x="180" y="122" width="72" height="30"/>
+                                <state key="normal" title="Play Video"/>
+                                <connections>
+                                    <action selector="playVideo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="z3P-cQ-G2d"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WB4-Q1-YkX">
-                                <rect key="frame" x="34" y="122" width="81" height="30"/>
-                                <state key="normal" title="Open Video"/>
+                                <rect key="frame" x="36" y="122" width="77" height="30"/>
+                                <state key="normal" title="Load Video"/>
                                 <connections>
                                     <action selector="openVideo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xAt-cm-xIL"/>
                                 </connections>

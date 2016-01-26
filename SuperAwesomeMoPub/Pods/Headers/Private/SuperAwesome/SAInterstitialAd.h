@@ -1,0 +1,1 @@
+../../../../../SuperAwesome/Classes/SDK/Views/Primary/Fullscreen/SAInterstitialAd.h

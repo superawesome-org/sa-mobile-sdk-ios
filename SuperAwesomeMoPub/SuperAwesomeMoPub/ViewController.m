@@ -54,11 +54,27 @@
     [self.interstitial loadAd];
     
 }
+- (IBAction)playInter:(id)sender {
+    if (self.interstitial.ready) {
+        [self.interstitial showFromViewController:self];
+    } else {
+        NSLog(@"No interstitial present");
+    }
+}
 
 - (IBAction)openVideo:(id)sender {
     [[MoPub sharedInstance] initializeRewardedVideoWithGlobalMediationSettings:nil delegate:self];
     [MPRewardedVideo loadRewardedVideoAdWithAdUnitID:@"39d8771203114e7b9a3d77a45e238a1a" withMediationSettings:nil];
 }
+
+- (IBAction)playVideo:(id)sender {
+    if ([MPRewardedVideo hasAdAvailableForAdUnitID:@"39d8771203114e7b9a3d77a45e238a1a"]) {
+        [MPRewardedVideo presentRewardedVideoAdForAdUnitID:@"39d8771203114e7b9a3d77a45e238a1a" fromViewController:self];
+    } else {
+        NSLog(@"No video present");
+    }
+}
+
 
 
 #pragma mark - <MPAdViewDelegate>
@@ -68,9 +84,7 @@
 
 #pragma mark - <MPInterstitialAdControllerDelegate>
 - (void) interstitialDidLoadAd:(MPInterstitialAdController *)interstitial {
-    if (self.interstitial.ready) {
-        [self.interstitial showFromViewController:self];
-    }
+    NSLog(@"interstitialDidLoadAd");
 }
 
 - (void) interstitialDidFailToLoadAd:(MPInterstitialAdController *)interstitial {
@@ -80,9 +94,7 @@
 #pragma mark - <MPRewardedVideoDelegate>
 
 - (void) rewardedVideoAdDidLoadForAdUnitID:(NSString *)adUnitID {
-    if ([MPRewardedVideo hasAdAvailableForAdUnitID:adUnitID]) {
-        [MPRewardedVideo presentRewardedVideoAdForAdUnitID:adUnitID fromViewController:self];
-    }
+    
 }
 
 - (void) rewardedVideoAdShouldRewardForAdUnitID:(NSString *)adUnitID reward:(MPRewardedVideoReward *)reward {
