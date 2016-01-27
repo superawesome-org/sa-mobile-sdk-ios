@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+3.4.2
+ - Updated MoPub & Unity integration to handle banner rotations correctly
+
 3.4.1
  - Updates to MoPub & Unity integration
 
