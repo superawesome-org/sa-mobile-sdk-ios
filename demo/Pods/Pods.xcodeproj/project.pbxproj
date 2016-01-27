@@ -24,7 +24,6 @@
 		18C2DE27B1B29797EF9CB55720E2427C /* SAVASTModels.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B90B1873DC13D05099FB348EE52EBD3 /* SAVASTModels.h */; };
 		18EF01A6F84E0FD053FB825393D4C3AF /* NSArray+SAPredicate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D025243BCD160B94A560C7B16840C98 /* NSArray+SAPredicate.h */; };
 		1B37832EF97009F9DB259F1E7242BCF0 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D41BAC01B25A9CC10431E24A9DCBF09D /* MobileCoreServices.framework */; };
-		1B5EB00F1C583EB00068A607 /* SABlockNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B5EB00E1C583EB00068A607 /* SABlockNotification.m */; };
 		1BAF8976F5DD3EF62BE24E8387029D7E /* TBXML+SAStaticFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 81C6E4E3949873C9E6EC59E0829B61AC /* TBXML+SAStaticFunctions.h */; };
 		1C2EEEABC0914BE9C8B4ECA3552073C4 /* SAParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4884A5F80F6EA04B978C6DB9DC5F8FB9 /* SAParser.m */; };
 		1D5768117EEEBBCC8FB412564838678A /* UIViewController+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 812BDE46A5F220612F7CA3255509B60F /* UIViewController+Utils.m */; };
@@ -161,8 +160,6 @@
 		13E73CAB44585E7185289503F26E160F /* libPods-SuperAwesome Demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SuperAwesome Demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13FF7310381BE106AFC135ABBB59945E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
 		1AA084B6381FCCC1E048ABB504902A57 /* SANetwork.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SANetwork.h; sourceTree = "<group>"; };
-		1B5EB00D1C583EB00068A607 /* SABlockNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SABlockNotification.h; sourceTree = "<group>"; };
-		1B5EB00E1C583EB00068A607 /* SABlockNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SABlockNotification.m; sourceTree = "<group>"; };
 		1B90B1873DC13D05099FB348EE52EBD3 /* SAVASTModels.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAVASTModels.h; sourceTree = "<group>"; };
 		1CF8021AD90DCD3A2D34839AA104F325 /* SAParentalGate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAParentalGate.h; sourceTree = "<group>"; };
 		1D025243BCD160B94A560C7B16840C98 /* NSArray+SAPredicate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSArray+SAPredicate.h"; sourceTree = "<group>"; };
@@ -696,8 +693,6 @@
 			children = (
 				882363109E7A547A5C597A9F7045FD54 /* SAUnityLinker.h */,
 				D21EFE82D7A1642764DD5CF4647BB879 /* SAUnityLinker.m */,
-				1B5EB00D1C583EB00068A607 /* SABlockNotification.h */,
-				1B5EB00E1C583EB00068A607 /* SABlockNotification.m */,
 			);
 			path = Unity;
 			sourceTree = "<group>";
@@ -947,7 +942,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B5EB00F1C583EB00068A607 /* SABlockNotification.m in Sources */,
 				C3F851D007290FB8C4F0BDE8C94C7192 /* Pods-SuperAwesome Demo-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

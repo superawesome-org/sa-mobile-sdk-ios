@@ -35,6 +35,12 @@
 // import plugins
 #import "SAUnityLinker.h"
 
+typedef enum SAConfiguration {
+    STAGING = 0,
+    DEVELOPMENT = 1,
+    PRODUCTION = 2
+} SAConfiguration;
+
 // @brief:
 // This is the main SuperAwesome class that handles the Ad Session
 // as a singleton (enable / disable test mode, configuration, version, etc)
@@ -54,6 +60,7 @@
 - (void) setConfigurationStaging;
 - (void) setConfigurationDevelopment;
 - (NSString*) getBaseURL;
+- (SAConfiguration) getConfiguration;
 
 // enable or disable test mode
 - (void) enableTestMode;

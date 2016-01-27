@@ -21,6 +21,7 @@
 // private vars
 @property (nonatomic, strong) NSString *baseURL;
 @property (nonatomic, assign) BOOL isTestEnabled;
+@property (nonatomic, assign) SAConfiguration config;
 
 @end
 
@@ -62,19 +63,26 @@
 }
 
 - (void) setConfigurationProduction {
+    _config = PRODUCTION;
     _baseURL = BASE_URL_PRODUCTION;
 }
 
 - (void) setConfigurationStaging {
+    _config = STAGING;
     _baseURL = BASE_URL_STAGING;
 }
 
 - (void) setConfigurationDevelopment {
+    _config = DEVELOPMENT;
     _baseURL = BASE_URL_DEVELOPMENT;
 }
 
 - (NSString*) getBaseURL {
     return _baseURL;
+}
+
+- (SAConfiguration) getConfiguration {
+    return _config;
 }
 
 - (void) enableTestMode {
