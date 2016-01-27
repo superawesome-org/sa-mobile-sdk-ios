@@ -69,6 +69,7 @@
     
     // create test data
     _data = [TestDataProvider createTestData];
+    
 }
 
 - (void)didReceiveMemoryWarning {
