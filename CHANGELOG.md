@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+3.4.3
+ - Finally merged update/mraid_to_webview branch to master
+
 3.4.2
  - Updated MoPub & Unity integration to handle banner rotations correctly
 
