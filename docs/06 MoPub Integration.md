@@ -2,7 +2,7 @@ If you already have MoPub ads serving in your app, but want to integrate SuperAw
 
 #### Integrate the SDK
 
-The first thing you should do is integrate the SDK in your current app by following the instructions in [Getting Started / Integrating the SDK](https://developers.superawesome.tv/docs/iossdk/Getting%20Started/Integrating%20the%20SDK?version=4).
+The first thing you should do is integrate the SDK in your current app by following the instructions in [Getting Started / Integrating the SDK](https://developers.superawesome.tv/docs/iossdk/Getting%20Started/Integrating%20the%20SDK?version=3).
 
 This will add the SDK to your current project.
 
