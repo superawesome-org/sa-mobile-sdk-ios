@@ -1,22 +1,24 @@
-.. SuperAwesome iOS SDK documentation master file, created by
-   sphinx-quickstart on Fri Jan 29 15:09:14 2016.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+SuperAwesome iOS SDK
+====================
 
-Welcome to SuperAwesome iOS SDK's documentation!
-================================================
+The SuperAwesome iOS SDK (Software Development Kit) lets you to easily add COPPA compliant advertisements to your apps.
 
-Contents:
+=======   ========
+Info      Contents
+=======   ========
+Version   3.4.2
+GitHub    https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios
+Support   `devsupport@superawesome.tv <mailto:devsupport@superawesome.tv>`_
+License   `LICENSE.txt <https://raw.githubusercontent.com/SuperAwesomeLTD/sa-mobile-sdk-ios/master/LICENSE.txt>`_
+=======   ========
+
+Table of Contents:
 
 .. toctree::
    :maxdepth: 2
 
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-
+   Getting started <01start>
+   Loading ads <02load>
+   Displaying ads <03display>
+   Parental Gate <04parentalgate>
+   Ad Callbacks <05callbacks>
