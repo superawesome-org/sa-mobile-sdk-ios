@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+3.4.4
+ - Update the unity linker
+
 3.4.3
  - Finally merged update/mraid_to_webview branch to master
 
