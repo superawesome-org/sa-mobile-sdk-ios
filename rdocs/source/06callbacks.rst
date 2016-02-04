@@ -47,7 +47,7 @@ This means that when an ad launches an **adWasShown** or **adWasClosed** event,
 the controller will respond with the functions implemented above, similar to how
 **UITableViewDelegate** works.
 
-.. code-block:: objetive-c
+.. code-block:: objective-c
 
     banner = [[SABannerAd alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
     // where "self" is the view controller
@@ -68,7 +68,7 @@ Additionally, you can implement the **SAParentalGateProtocol** to capture parent
 
       // this function is called when a parental gate pop-up "cancel" button is pressed
       - (void) parentalGateWasCanceled:(NSInteger)placementId {
-      
+
       }
 
 	    // this function is called when a parental gate pop-up "continue" button is

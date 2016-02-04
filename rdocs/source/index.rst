@@ -1,3 +1,6 @@
+.. This page should present an overview of the whole documentation, with a TOC
+   as well as a main table that lists the most important stuff about the project
+
 SuperAwesome iOS SDK
 ====================
 
@@ -18,8 +21,10 @@ Table of Contents:
 .. toctree::
    :maxdepth: 2
 
-   Getting started <01start>
-   Loading ads <02load>
-   Displaying ads <03display>
-   Parental Gate <04parentalgate>
-   Ad Callbacks <05callbacks>
+   Setting up <01dashboard>
+   Integrate the SDK <02integrate>
+   Load ads <03load>
+   Display ads <04display>
+   Parental gate <05parentalgate>
+   Ad Callbacks <06callbacks>
+   Examples <07examples>
