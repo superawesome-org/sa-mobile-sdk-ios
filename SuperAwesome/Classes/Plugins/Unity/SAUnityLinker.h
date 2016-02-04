@@ -16,9 +16,6 @@ typedef void (^loadingEvent)(NSString *unityAd, NSString *unityCallback, NSStrin
 
 @interface SAUnityLinker : NSObject
 
-// singleton instance (instead of init)
-+ (SAUnityLinker *)getInstance;
-
 // main loading function for the linker
 - (void) loadAd:(NSInteger)placementId
      forUnityAd:(NSString*)unityAd
