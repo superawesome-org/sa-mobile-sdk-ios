@@ -26,6 +26,7 @@
 @property (nonatomic, assign) BOOL isParentalGateEnabled;
 @property (nonatomic, assign) BOOL shouldShowCloseButton;
 @property (nonatomic, assign) BOOL shouldAutomaticallyCloseAtEnd;
+@property (nonatomic, strong) SAAd *cAd;
 @property (nonatomic, strong) SALoader *loader;
 
 @end
@@ -80,7 +81,7 @@
 }
 
 - (BOOL) hasAdAvailable {
-    return true;
+    return (_cAd ? true : false);
 }
 
 - (void) handleCustomEventInvalidated {
@@ -106,6 +107,9 @@
 #pragma mark <SALoaderDelegate>
 
 - (void) didLoadAd:(SAAd *)ad {
+    // assign current ad
+    _cAd = ad;
+    
     // init video
     _fvad = [[SAFullscreenVideoAd alloc] init];
     
@@ -120,7 +124,7 @@
     [_fvad setShouldShowCloseButton:_shouldShowCloseButton];
     
     // set ad
-    [_fvad setAd:ad];
+    [_fvad setAd:_cAd];
     
     // call events
     [self.delegate rewardedVideoDidLoadAdForCustomEvent:self];

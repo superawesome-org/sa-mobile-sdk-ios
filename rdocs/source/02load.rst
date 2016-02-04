@@ -3,7 +3,33 @@ Loading ads
 
 After setting up the SDK, the first thing you'll want to do is start loading ads.
 
-To do so, you'll need to make your view or view controller implement the **SALoaderProcol**, which is a custom AwesomeAds protocol:
+With AwesomeAds, this is simple:
+
+.. code-block:: objective-c
+
+    @interface MyViewController ()
+
+    // you can start loading ads in your View Controller's init method,
+    // for example
+    - (id) init {
+      if (self = [super init]) {
+
+        // create a new SALoader object
+        SALoader *loader = [[SALoader alloc] init];
+
+        // call it's loadAdForPlacementId method
+        // any placement for any kind of ad can be loaded like this
+        [loader loadAdForPlacementId: 5740];
+      }
+
+      return self;
+    }
+
+    @end
+
+The code above does load an ad, but by itself it does not allow you to be notified of when the ad data is actually loaded.
+To do so, you'll need to make your View Controller conform to the **SALoaderProtocol**, much the same way you'd conform to the
+UITableViewDelegate or UITableViewDataSource protocols.
 
 .. code-block:: objective-c
 
@@ -12,14 +38,16 @@ To do so, you'll need to make your view or view controller implement the **SALoa
     @end
 
 
-The SALoaderProtocol defines two methods that any class can implement.
-Therefore, add the following code to your view or view controller's source file:
+Finally, the SALoaderProtocol defines two methods that need to be implemented:
 
 .. code-block:: objective-c
 
     - (void) didLoadAd:(SAAd *)ad {
       // at this moment the ad data is loaded and ready
       // to be used to display ad contents
+      //
+      // you can check that all is OK by using the ad's "print" function
+      [ad print];
     }
 
     - (void) didFailToLoadAdForPlacementId:(NSInteger)placementId {
@@ -28,21 +56,8 @@ Therefore, add the following code to your view or view controller's source file:
 
 When **didLoadAd:** gets called, the ad data is completely loaded.
 
-Finally, to actually start loading the ad, in the **init** method you'll have to add:
+Finally, the SALoader object you've just created must set it's delegate to the current View Controller:
 
 .. code-block :: objective-c
 
-    - (id) init {
-    	if (self = [super init]) {
-
-    		// create a new SALoader object
-    		SALoader *loader = [[SALoader alloc] init];
-    		[loader setDelegate: self];
-    		[loader loadAdForPlacementId: __PLACEMENT_ID__];
-
-    	}
-
-    	return self;
-    }
-
-Replace **__PLACEMENT_ID__** with a valid ad placement ID from the Dashboard or one of the test placement IDs.
+    [loader setDelegate: self];

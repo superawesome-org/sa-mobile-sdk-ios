@@ -51,13 +51,24 @@ To download the latest release of the SDK add the following line to your Podfile
 
     pod 'SuperAwesome'
 
+so it looks something like this:
+
+.. code-block:: shell
+
+    # Uncomment this line to define a global platform for your project
+    platform :ios, '6.0'
+
+    target 'MyProject' do
+    pod 'SuperAwesome'
+    end
+
 After the pod source has been added, update your project's dependencies by running the following command in the terminal:
 
 .. code-block:: shell
 
     pod update
 
-Don't forget to use the **.xcworkspace** file to open your project in Xcode, instead of the .xcproj file, from here on out.
+Don't forget to use the **.xcworkspace** file to open your project in Xcode, instead of the **.xcproj** file, from here on out.
 
 Include project
 ^^^^^^^^^^^^^^^
