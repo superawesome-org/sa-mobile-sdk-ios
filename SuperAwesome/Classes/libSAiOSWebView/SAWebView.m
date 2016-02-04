@@ -31,9 +31,6 @@
         _html = html;
         _size = size;
         
-        self.layer.borderColor = [UIColor yellowColor].CGColor;
-        self.layer.borderWidth = 2.0f;
-        
         // customize stuff
         self.delegate = self;
         self.scalesPageToFit = YES;
