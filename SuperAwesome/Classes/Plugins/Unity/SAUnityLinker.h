@@ -16,6 +16,8 @@ typedef void (^loadingEvent)(NSString *unityAd, NSString *unityCallback, NSStrin
 
 @interface SAUnityLinker : NSObject
 
+// singleton instance (instead of init)
++ (SAUnityLinker *)getInstance;
 
 // main loading function for the linker
 - (void) loadAd:(NSInteger)placementId
@@ -30,11 +32,17 @@ typedef void (^loadingEvent)(NSString *unityAd, NSString *unityCallback, NSStrin
                   andSize:(NSInteger)size
        andHasParentalGate:(BOOL)isParentalGateEnabled;
 
+// remove the banner ad
+- (void) removeBannerForUnityName:(NSString*)unityAd;
+
 // show an interstitial ad
 - (void) showInterstitialAdWith:(NSInteger)placementId
                       andAdJson:(NSString*)adJson
                    andUnityName:(NSString*)unityAd
              andHasParentalGate:(BOOL)isParentalGateEnabled;
+
+// close the interstitial
+- (void) closeInterstitialForUnityName:(NSString*)unityAd;
 
 // show a video ad
 - (void) showVideoAdWith:(NSInteger)placementId
@@ -43,6 +51,9 @@ typedef void (^loadingEvent)(NSString *unityAd, NSString *unityCallback, NSStrin
       andHasParentalGate:(BOOL)isParentalGateEnabled
        andHasCloseButton:(BOOL)shouldShowCloseButton
           andClosesAtEnd:(BOOL)shouldAutomaticallyCloseAtEnd;
+
+// close the fullscreen video
+- (void) closeFullscreenVideoForUnityName:(NSString*)unityAd;
 
 // callback variables
 @property (nonatomic, assign) loadingEvent loadingEvent;

@@ -31,9 +31,31 @@
 @property (nonatomic, assign) NSInteger position;
 @property (nonatomic, assign) NSInteger size;
 
+// ad dictionary
+@property (nonatomic, strong) NSMutableDictionary *adsDictionary;
+
 @end
 
 @implementation SAUnityLinker
+
++ (SAUnityLinker *)getInstance {
+    static SAUnityLinker *sharedManager = nil;
+    @synchronized(self) {
+        if (sharedManager == nil){
+            sharedManager = [[self alloc] init];
+        }
+    }
+    return sharedManager;
+}
+
+- (instancetype) init {
+    if (self = [super init]) {
+        // init the mutable dictionary
+        _adsDictionary = [[NSMutableDictionary alloc] init];
+    }
+    
+    return self;
+}
 
 #pragma mark <Functions> 
 
@@ -120,6 +142,9 @@
                 [root.view addSubview:bad];
                 [bad play];
                 
+                // add "bad" as a key in the dictionary, under the Unity Ad name
+                [_adsDictionary setObject:bad forKey:unityAd];
+                
 
                 // add a block notification
                 [[NSNotificationCenter defaultCenter] addObserverForName:@"UIDeviceOrientationDidChangeNotification"
@@ -141,6 +166,17 @@
                 }
             }
         }];
+    }
+}
+
+- (void) removeBannerForUnityName:(NSString *)unityAd {
+    NSObject * _Nullable temp = [_adsDictionary objectForKey:unityAd];
+    if (temp != NULL){
+        if ([temp isKindOfClass:[SABannerAd class]]){
+            SABannerAd *bad = (SABannerAd*)temp;
+            [bad removeFromSuperview];
+            bad = NULL;
+        }
     }
 }
 
@@ -189,7 +225,11 @@
                 // get root vc, show fvad and then play it
                 UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
                 [root presentViewController:iad animated:YES completion:^{
+                    // play
                     [iad play];
+                    
+                    // add "bad" as a key in the dictionary, under the Unity Ad name
+                    [_adsDictionary setObject:iad forKey:unityAd];
                 }];
             }
             // if data is not valid
@@ -199,6 +239,16 @@
                 }
             }
         }];
+    }
+}
+
+- (void) closeInterstitialForUnityName:(NSString *)unityAd {
+     NSObject * _Nullable temp = [_adsDictionary objectForKey:unityAd];
+    if (temp != NULL) {
+        if ([temp isKindOfClass:[SAInterstitialAd class]]){
+            SAInterstitialAd *iad = (SAInterstitialAd*)temp;
+            [iad close];
+        }
     }
 }
 
@@ -254,7 +304,11 @@
                 // get root vc, show fvad and then play it
                 UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
                 [root presentViewController:fvad animated:YES completion:^{
+                    // play
                     [fvad play];
+                    
+                    // add "bad" as a key in the dictionary, under the Unity Ad name
+                    [_adsDictionary setObject:fvad forKey:unityAd];
                 }];
             }
             // if data is not valid
@@ -267,6 +321,15 @@
     }
 }
 
+- (void) closeFullscreenVideoForUnityName:(NSString *)unityAd {
+    NSObject * _Nullable temp = [_adsDictionary objectForKey:unityAd];
+    if (temp != NULL){
+        if ([temp isKindOfClass:[SAFullscreenVideoAd class]]){
+            SAFullscreenVideoAd *fvad = (SAFullscreenVideoAd*)temp;
+            [fvad close];
+        }
+    }
+}
 
 #pragma mark <Delegate Implementations>
 
