@@ -123,6 +123,9 @@
                 [bad setParentalGateDelegate:self];
                 [bad setAdDelegate:self];
                 
+                bad.layer.borderColor = [UIColor redColor].CGColor;
+                bad.layer.borderWidth = 1.0;
+                
                 // add the banner to the topmost root
                 [root.view addSubview:bad];
                 [bad play];
