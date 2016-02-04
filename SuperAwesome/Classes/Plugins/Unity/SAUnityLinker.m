@@ -104,9 +104,16 @@
                 else if (size == 3) realSize = CGSizeMake(300, 250);
                 else realSize = CGSizeMake(320, 50);
                 
+                __block CGSize screen = [UIScreen mainScreen].bounds.size;
+                
+                // in case ad width is > screen.width
+                if (realSize.width > screen.width) {
+                    realSize.height = (screen.width * realSize.height) / realSize.width;
+                    realSize.width = screen.width;
+                }
+                
                 // calculate the position of the ad
                 __block CGPoint realPos = CGPointZero;
-                __block CGSize screen = [UIScreen mainScreen].bounds.size;
                 if (position == 0) realPos = CGPointMake((screen.width - realSize.width) / 2.0f, 0);
                 else realPos = CGPointMake((screen.width - realSize.width) / 2.0f, screen.height - realSize.height);
                 

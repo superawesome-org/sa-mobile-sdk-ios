@@ -38,7 +38,7 @@
         self.scrollView.delegate = self;
         self.scrollView.scrollEnabled = NO;
         self.scrollView.bounces = NO;
-        self.allowsInlineMediaPlayback = YES;
+        self.allowsInlineMediaPlayback = NO;
         self.mediaPlaybackRequiresUserAction = YES;
         
         // set scale

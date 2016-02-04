@@ -20,12 +20,12 @@
  SAParentalGateProtocol>
 
 // SA objects
-@property (nonatomic, strong) SAFullscreenVideoAd *fvad;
 @property (nonatomic, assign) NSInteger placementId;
 @property (nonatomic, assign) BOOL isTestEnabled;
 @property (nonatomic, assign) BOOL isParentalGateEnabled;
 @property (nonatomic, assign) BOOL shouldShowCloseButton;
 @property (nonatomic, assign) BOOL shouldAutomaticallyCloseAtEnd;
+@property (nonatomic, strong) SAFullscreenVideoAd *fvad;
 @property (nonatomic, strong) SAAd *cAd;
 @property (nonatomic, strong) SALoader *loader;
 
@@ -190,6 +190,7 @@
 #pragma mark <SAVideoProtocol>
 
 - (void) videoEnded:(NSInteger)placementId {
+    
     MPRewardedVideoReward *reward = [[MPRewardedVideoReward alloc] initWithCurrencyType:kMPRewardedVideoRewardCurrencyTypeUnspecified amount:[NSNumber numberWithInt:0]];
     [self.delegate rewardedVideoShouldRewardUserForCustomEvent:self reward:reward];
 }
