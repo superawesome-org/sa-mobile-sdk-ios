@@ -138,6 +138,19 @@
                                                               usingBlock:
                  ^(NSNotification * _Nonnull note) {
                      screen = [UIScreen mainScreen].bounds.size;
+                     
+                     // calculate the size of the ad
+                     if (size == 1) realSize = CGSizeMake(300, 50);
+                     else if (size == 2) realSize = CGSizeMake(728, 90);
+                     else if (size == 3) realSize = CGSizeMake(300, 250);
+                     else realSize = CGSizeMake(320, 50);
+                     
+                     // in case ad width is > screen.width
+                     if (realSize.width > screen.width) {
+                         realSize.height = (screen.width * realSize.height) / realSize.width;
+                         realSize.width = screen.width;
+                     }
+                     
                      if (position == 0) realPos = CGPointMake((screen.width - realSize.width) / 2.0f, 0);
                      else realPos = CGPointMake((screen.width - realSize.width) / 2.0f, screen.height - realSize.height);
                      
