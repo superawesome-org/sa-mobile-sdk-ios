@@ -67,6 +67,7 @@
              andUnityName:(NSString*)unityAd
               andPosition:(NSInteger)position
                   andSize:(NSInteger)size
+                 andColor:(NSInteger)color
        andHasParentalGate:(BOOL)isParentalGateEnable {
     
     _placementId = placementId;
@@ -122,6 +123,12 @@
                 [bad setIsParentalGateEnabled:_isParentalGateEnabled];
                 [bad setParentalGateDelegate:self];
                 [bad setAdDelegate:self];
+                
+                if (color == 0){
+                    bad.backgroundColor = [UIColor clearColor];
+                } else {
+                    bad.backgroundColor = [UIColor colorWithRed:191.0/255.0f green:191.0/255.0f blue:191.0/255.0f alpha:1];
+                }
                 
                 // add the banner to the topmost root
                 [root.view addSubview:bad];
