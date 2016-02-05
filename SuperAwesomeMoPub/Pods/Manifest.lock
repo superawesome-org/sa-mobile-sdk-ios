@@ -2,7 +2,7 @@ PODS:
   - mopub-ios-sdk (4.3.0):
     - mopub-ios-sdk/MoPubSDK (= 4.3.0)
   - mopub-ios-sdk/MoPubSDK (4.3.0)
-  - SuperAwesome (3.4.4)
+  - SuperAwesome (3.4.5)
 
 DEPENDENCIES:
   - mopub-ios-sdk
@@ -14,6 +14,6 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   mopub-ios-sdk: ef4aa305367b11c3bb465e9771e6622175049b03
-  SuperAwesome: ab9ba1d4dca1dc7792c3db18fba93d87da0981dd
+  SuperAwesome: 0aa4969fe6a714d4313e36423abb29061c21721d
 
 COCOAPODS: 0.38.2

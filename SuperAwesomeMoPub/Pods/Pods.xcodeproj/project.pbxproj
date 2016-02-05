@@ -478,14 +478,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		D2FC996EF8FB91F9131D6E2DDA6202C1 /* PBXContainerItemProxy */ = {
+		0AD683BB3A60EE6B2405AF66EE319E42 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 3328DE7B61120881E07B1674ABC15018;
 			remoteInfo = "mopub-ios-sdk";
 		};
-		E9DDB000AEEB2A9BA3F26E7B3AC6079A /* PBXContainerItemProxy */ = {
+		132A03370567EB5A7B4B0262E688305A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
@@ -2176,8 +2176,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				0DEE408F5857C98E3ADE221881482C1D /* PBXTargetDependency */,
-				E1827BF58157DC915B0A776EA612AACA /* PBXTargetDependency */,
+				243D3A3B6F35B126F1AE94ADE78C9D98 /* PBXTargetDependency */,
+				5BDA7F60A38C06F1D159C22388850323 /* PBXTargetDependency */,
 			);
 			name = "Pods-SuperAwesomeMoPub";
 			productName = "Pods-SuperAwesomeMoPub";
@@ -2455,17 +2455,17 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		0DEE408F5857C98E3ADE221881482C1D /* PBXTargetDependency */ = {
+		243D3A3B6F35B126F1AE94ADE78C9D98 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SuperAwesome;
 			target = A788EE107AFA374E2E6549009266DB59 /* SuperAwesome */;
-			targetProxy = E9DDB000AEEB2A9BA3F26E7B3AC6079A /* PBXContainerItemProxy */;
+			targetProxy = 132A03370567EB5A7B4B0262E688305A /* PBXContainerItemProxy */;
 		};
-		E1827BF58157DC915B0A776EA612AACA /* PBXTargetDependency */ = {
+		5BDA7F60A38C06F1D159C22388850323 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "mopub-ios-sdk";
 			target = 3328DE7B61120881E07B1674ABC15018 /* mopub-ios-sdk */;
-			targetProxy = D2FC996EF8FB91F9131D6E2DDA6202C1 /* PBXContainerItemProxy */;
+			targetProxy = 0AD683BB3A60EE6B2405AF66EE319E42 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

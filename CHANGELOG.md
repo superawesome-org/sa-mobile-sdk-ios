@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+3.4.6
+ - minor updates to unity linker
+
 3.4.5
  - Fixed to the Unity linker
 
