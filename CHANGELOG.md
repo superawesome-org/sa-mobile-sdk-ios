@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+3.4.7
+ - improved rotation handling
+
 3.4.6
  - minor updates to unity linker
 

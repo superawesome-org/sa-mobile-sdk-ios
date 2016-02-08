@@ -14,16 +14,25 @@
 + (NSArray*) createTestData {
     return @[
              
-             CreateAdItem(@"Image Interstitial - 43", 43, false, interstitial_item),
-             CreateAdItem(@"Image Banner - 45", 45, false, banner_item),
-             CreateAdItem(@"Rich Media Interstitial - 44", 44, false, interstitial_item),
-             CreateAdItem(@"Tablet Preroll - 38", 38, false, fullscreen_video_item),
-             CreateAdItem(@"Mobile Preroll - 40", 40, false, fullscreen_video_item),
-             CreateAdItem(@"Rich Media MPU - 46", 46, false, banner_item),
-             CreateAdItem(@"Third Party Tag - 48", 48, false, interstitial_item),
-             CreateAdItem(@"30372", 30372, true, banner_item),
-             CreateAdItem(@"63", 63, false, interstitial_item),
-             CreateAdItem(@"72", 72, false, interstitial_item)
+//             CreateAdItem(@"Image Interstitial - 43", 43, false, interstitial_item),
+//             CreateAdItem(@"Image Banner - 45", 45, false, banner_item),
+//             CreateAdItem(@"Rich Media Interstitial - 44", 44, false, interstitial_item),
+//             CreateAdItem(@"Tablet Preroll - 38", 38, false, fullscreen_video_item),
+//             CreateAdItem(@"Mobile Preroll - 40", 40, false, fullscreen_video_item),
+//             CreateAdItem(@"Rich Media MPU - 46", 46, false, banner_item),
+//             CreateAdItem(@"Third Party Tag - 48", 48, false, interstitial_item),
+//             CreateAdItem(@"30372", 30372, true, banner_item),
+//             CreateAdItem(@"63", 63, false, interstitial_item),
+//             CreateAdItem(@"72", 72, false, interstitial_item),
+             
+             CreateAdItem(@"Upsight - Phone Portrait Static - 30165", 30165, false, interstitial_item),
+             CreateAdItem(@"Upsight - Phone Landscape Static - 30164", 30164, false, interstitial_item),
+             
+             CreateAdItem(@"Upsight - Tablet Portrait Static - 30166", 30166, false, interstitial_item),
+             CreateAdItem(@"Upsight - Tablet Landscape Static - 30167", 30167, false, interstitial_item),
+             
+             CreateAdItem(@"Upsight - Rewarded Video - 30169", 30169, false, fullscreen_video_item),
+             CreateAdItem(@"Upsight - Non Reward Video - 30168", 30168, false, fullscreen_video_item)
              
 //             CreateAdItem(@"Banner - 9549", 9549, false, interstitial_item),
 //             CreateAdItem(@"Interstitial - 10324", 10324, false, interstitial_item),

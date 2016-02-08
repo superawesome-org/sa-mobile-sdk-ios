@@ -20,7 +20,7 @@
 
 @interface SAViewController ()
 
-- (void) setupCoordinates;
+- (void) setupCoordinates:(CGSize)size;
 
 @end
 
@@ -75,7 +75,7 @@
     [self.view addSubview:adview];
 
     // setup the other coords
-    [self setupCoordinates];
+    [self setupCoordinates:[UIScreen mainScreen].bounds.size];
     
     // only <<IF>> ad is already here
     if (super.ad != NULL) {
@@ -87,9 +87,9 @@
     adview.refreshPeriod = super.refreshPeriod;
 }
 
-- (void) setupCoordinates {
+- (void) setupCoordinates:(CGSize)size {
     // setup frame
-    CGRect frame = [UIScreen mainScreen].bounds;
+    CGRect frame = CGRectMake(0, 0, size.width, size.height); // [UIScreen mainScreen].bounds;
     adviewFrame = frame;
     
     if (_shouldShowCloseButton){

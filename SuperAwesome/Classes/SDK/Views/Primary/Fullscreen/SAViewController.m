@@ -31,7 +31,7 @@
     self.view.backgroundColor = [UIColor colorWithRed:239.0/255.0f green:239.0f/255.0f blue:239.0f/255.0f alpha:1];
     
     // setup coordinates
-    [self setupCoordinates];
+    [self setupCoordinates:[UIScreen mainScreen].bounds.size];
     
     // create close button
     closeBtn = [[UIButton alloc] initWithFrame:buttonFrame];
@@ -39,21 +39,16 @@
     [closeBtn setImage:[UIImage imageNamed:@"close"] forState:UIControlStateNormal];
     [closeBtn addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:closeBtn];
-    
-    // add notification
-    [[NSNotificationCenter defaultCenter] addObserver:self // put here the view controller which has to be notified
-                                             selector:@selector(orientationChanged:)
-                                                 name:@"UIDeviceOrientationDidChangeNotification"
-                                               object:nil];
+    [self.view bringSubviewToFront:closeBtn];
 }
 
 // This private function is used to calculate X & Y positions and Width & Height
 // for each subview of the Ad, for auto-rotation cases
-- (void) setupCoordinates {
-    CGRect frame = [UIScreen mainScreen].bounds;
+- (void) setupCoordinates:(CGSize)size {
+    CGRect frame = CGRectMake(0, 0, size.width, size.height);
     
-    CGFloat tW = frame.size.width * 0.85;
-    CGFloat tH = frame.size.height * 0.85;
+    CGFloat tW = frame.size.width;// * 0.85;
+    CGFloat tH = frame.size.height;// * 0.85;
     CGFloat tX = ( frame.size.width - tW ) / 2;
     CGFloat tY = ( frame.size.height - tH) / 2;
     CGRect newR = [SAUtils arrangeAdInNewFrame:CGRectMake(tX, tY, tW, tH) fromFrame:frame];
@@ -79,6 +74,15 @@
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
 }
 
+- (void) viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    
+    [self setupCoordinates:size];
+    
+    closeBtn.frame = buttonFrame;
+    [adview resizeToFrame:adviewFrame];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -98,14 +102,6 @@
         }
     }];
 } 
-
-- (void) orientationChanged:(NSNotification *)notification{
-    // restup coordinates
-    [self setupCoordinates];
-    
-    closeBtn.frame = buttonFrame;
-    [adview resizeToFrame:adviewFrame];
-}
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return YES;
