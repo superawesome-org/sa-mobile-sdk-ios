@@ -175,65 +175,65 @@
 }
 
 - (void) didFailToLoadAdForPlacementId:(NSInteger)placementId {
-    NSLog(@"[AA :: INFO] %ld didFailToLoadAdForPlacementId", placementId);
+    NSLog(@"[AA :: INFO] %ld didFailToLoadAdForPlacementId", (long)placementId);
 }
 
 #pragma mark <SAAdProtocol>
 
 - (void) adWasShown:(NSInteger)placementId {
-    NSLog(@"%ld - adWasShown", placementId);
+    NSLog(@"%ld - adWasShown", (long)placementId);
 }
 
 - (void) adFailedToShow:(NSInteger)placementId {
-    NSLog(@"%ld - adFailedToShow", placementId);
+    NSLog(@"%ld - adFailedToShow", (long)placementId);
 }
 
 - (void) adWasClosed:(NSInteger)placementId {
-    NSLog(@"%ld - adWasClosed", placementId);
+    NSLog(@"%ld - adWasClosed", (long)placementId);
 }
 
 - (void) adWasClicked:(NSInteger)placementId {
-    NSLog(@"%ld - adWasClicked", placementId);
+    NSLog(@"%ld - adWasClicked", (long)placementId);
 }
 
 - (void) adHasIncorrectPlacement:(NSInteger)placementId {
-    NSLog(@"%ld - ad has incorrect placement", placementId);
+    NSLog(@"%ld - ad has incorrect placement", (long)placementId);
 }
 
 #pragma mark <SAParentalGateProtocol>
 
 - (void) parentalGateWasCanceled:(NSInteger)placementId {
-    NSLog(@"%ld - parentalGateWasCanceled", placementId);
+    NSLog(@"%ld - parentalGateWasCanceled", (long)placementId);
 }
 
 - (void) parentalGateWasFailed:(NSInteger)placementId {
-    NSLog(@"%ld - parentalGateWasFailed", placementId);
+    NSLog(@"%ld - parentalGateWasFailed", (long)placementId);
 }
 
 - (void) parentalGateWasSucceded:(NSInteger)placementId {
-    NSLog(@"%ld - parentalGateWasSucceded", placementId);
+    NSLog(@"%ld - parentalGateWasSucceded", (long)placementId);
 }
 
 #pragma mark <SAVideoAdProtocol>
 
 - (void) videoStarted:(NSInteger)placementId {
-    NSLog(@"%ld - videoStarted", placementId);
+    NSLog(@"%ld - videoStarted", (long)placementId);
 }
 
 - (void) videoReachedFirstQuartile:(NSInteger)placementId {
-    NSLog(@"%ld - videoReachedFirstQuartile", placementId);
+    NSLog(@"%ld - videoReachedFirstQuartile", (long)placementId);
 }
 
 - (void) videoReachedMidpoint:(NSInteger)placementId {
-    NSLog(@"%ld - videoReachedMidpoint", placementId);
+    NSLog(@"%ld - videoReachedMidpoint", (long)placementId);
 }
 
 - (void) videoReachedThirdQuartile:(NSInteger)placementId {
-    NSLog(@"%ld - videoReachedThirdQuartile", placementId);
+    NSLog(@"%ld - videoReachedThirdQuartile", (long)placementId);
 }
 
 - (void) videoEnded:(NSInteger)placementId {
-    NSLog(@"%ld - videoEnded", placementId);
+    NSLog(@"%ld - videoEnded", (long)placementId);
 }
 
 @end

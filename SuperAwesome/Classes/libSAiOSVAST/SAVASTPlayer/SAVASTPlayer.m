@@ -258,7 +258,7 @@
             _observer = [_player addPeriodicTimeObserverForInterval:CMTimeMake(1, 2) queue:dispatch_get_main_queue() usingBlock:^(CMTime time) {
                 
                 // update current time
-                _currentTime = CMTimeGetSeconds(time);
+                weakSelf.currentTime = CMTimeGetSeconds(time);
                 
                 // each tick update chrono
                 [weakSelf.chrono setTime:weakSelf.currentTime andMax:weakSelf.duration];
