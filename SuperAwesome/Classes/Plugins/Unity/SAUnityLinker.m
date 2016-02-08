@@ -142,7 +142,7 @@
                                                                   object:nil
                                                                    queue:nil
                                                               usingBlock:
-                 ^(NSNotification * _Nonnull note) {
+                 ^(NSNotification * note) {
                      screen = [UIScreen mainScreen].bounds.size;
                      
                      if (size == 1) realSize = CGSizeMake(300, 50);
@@ -172,7 +172,7 @@
 }
 
 - (void) removeBannerForUnityName:(NSString *)unityAd {
-    NSObject * _Nullable temp = [[SAUnityLinkerManager getInstance] getAdForKey:unityAd];
+    NSObject * temp = [[SAUnityLinkerManager getInstance] getAdForKey:unityAd];
     if (temp != NULL){
         if ([temp isKindOfClass:[SABannerAd class]]){
             SABannerAd *bad = (SABannerAd*)temp;
@@ -245,7 +245,7 @@
 }
 
 - (void) closeInterstitialForUnityName:(NSString *)unityAd {
-     NSObject * _Nullable temp = [[SAUnityLinkerManager getInstance] getAdForKey:unityAd];
+     NSObject * temp = [[SAUnityLinkerManager getInstance] getAdForKey:unityAd];
     if (temp != NULL) {
         if ([temp isKindOfClass:[SAInterstitialAd class]]){
             SAInterstitialAd *iad = (SAInterstitialAd*)temp;
@@ -324,7 +324,7 @@
 }
 
 - (void) closeFullscreenVideoForUnityName:(NSString *)unityAd {
-    NSObject * _Nullable temp = [[SAUnityLinkerManager getInstance] getAdForKey:unityAd];
+    NSObject * temp = [[SAUnityLinkerManager getInstance] getAdForKey:unityAd];
     if (temp != NULL){
         if ([temp isKindOfClass:[SAFullscreenVideoAd class]]){
             SAFullscreenVideoAd *fvad = (SAFullscreenVideoAd*)temp;

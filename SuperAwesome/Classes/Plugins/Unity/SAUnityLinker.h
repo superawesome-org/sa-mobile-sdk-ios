@@ -27,6 +27,7 @@ typedef void (^loadingEvent)(NSString *unityAd, NSString *unityCallback, NSStrin
              andUnityName:(NSString*)unityAd
               andPosition:(NSInteger)position
                   andSize:(NSInteger)size
+                 andColor:(NSInteger)color
        andHasParentalGate:(BOOL)isParentalGateEnabled;
 
 // remove the banner ad

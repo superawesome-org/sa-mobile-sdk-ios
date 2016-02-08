@@ -73,7 +73,7 @@
 
 - (void) setTime:(NSInteger)current andMax:(NSInteger)max {
     NSInteger remaining = max - current;
-    _adLabel.text = [NSString stringWithFormat:@"Ad: %ld", remaining];
+    _adLabel.text = [NSString stringWithFormat:@"Ad: %ld", (long)remaining];
 }
 
 @end

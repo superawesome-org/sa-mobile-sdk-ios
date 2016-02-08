@@ -31,6 +31,17 @@
 // parser implementation
 @implementation SAParser
 
+// function that validates a dictionary / json field and returns true or false
+// in each case
++ (BOOL) validateField:(id)object {
+    
+    if (object != NULL && ![object isKindOfClass:[NSNull class]]){
+        return true;
+    }
+    
+    return false;
+}
+
 // function that performs the basic integritiy check on the just-received ad
 + (BOOL) performIntegrityCheck:(NSDictionary*)dict {
     
@@ -39,12 +50,12 @@
         
         // 2. check if the dictionary has a "creative" sub-dict
         NSDictionary *creativeObj = [dict objectForKey:@"creative"];
-        if (creativeObj != NULL && [creativeObj count] > 0){
+        if ([SAParser validateField:creativeObj] && [creativeObj count] > 0){
             
             // 3. check if the "creative" sub-dict has a "details" sub-dict of
             // its own
             NSDictionary *details = [creativeObj objectForKey:@"details"];
-            if (details != NULL && [details count] > 0){
+            if ([SAParser validateField:details] && [details count] > 0){
                 return true;
             }
             return false;
@@ -64,12 +75,12 @@
     id isFallbackObj = [adict objectForKey:@"is_fallback"];
     id isFillObj = [adict objectForKey:@"is_fill"];
     
-    ad.error = (errorObj != NULL ? [errorObj integerValue] : -1);
-    ad.lineItemId = (lineItemIdObj != NULL ? [lineItemIdObj integerValue] : -1);
-    ad.campaignId = (campaignIdObj != NULL ? [campaignIdObj integerValue] : -1);
-    ad.isTest = (isTestObj != NULL ? [isTestObj boolValue] : true);
-    ad.isFallback = (isFallbackObj != NULL ? [isFallbackObj boolValue] : true);
-    ad.isFill = (isFillObj != NULL ? [isFillObj boolValue] : false);
+    ad.error = ([SAParser validateField:errorObj] ? [errorObj integerValue] : -1);
+    ad.lineItemId = ([SAParser validateField:lineItemIdObj] ? [lineItemIdObj integerValue] : -1);
+    ad.campaignId = ([SAParser validateField:campaignIdObj] ? [campaignIdObj integerValue] : -1);
+    ad.isTest = ([SAParser validateField:isTestObj] ? [isTestObj boolValue] : true);
+    ad.isFallback = ([SAParser validateField:isFallbackObj] ? [isFallbackObj boolValue] : true);
+    ad.isFill = ([SAParser validateField:isFillObj] ? [isFillObj boolValue] : false);
     
     return ad;
 }
@@ -85,13 +96,13 @@
     id clickURLObj = [cdict objectForKey:@"click_url"];
     id approvedObj = [cdict objectForKey:@"approved"];
     
-    creative.creativeId = (creativeIdObj != NULL ? [creativeIdObj integerValue] : -1);
-    creative.cpm = (cpmObj != NULL ? [cpmObj integerValue] : 0);
-    creative.name = (nameObj != NULL ? nameObj : NULL);
-    creative.impressionURL = (impressionUrlObj != NULL ? impressionUrlObj : NULL);
-    creative.clickURL = (clickURLObj != NULL ? clickURLObj : NULL);
-    creative.approved = (approvedObj != NULL ? [approvedObj boolValue] : false);
-    creative.baseFormat = (baseFormatObj != NULL ? baseFormatObj : NULL);
+    creative.creativeId = ([SAParser validateField:creativeIdObj] ? [creativeIdObj integerValue] : -1);
+    creative.cpm = ([SAParser validateField:cpmObj] ? [cpmObj integerValue] : 0);
+    creative.name = ([SAParser validateField:nameObj] ? nameObj : NULL);
+    creative.impressionURL = ([SAParser validateField:impressionUrlObj] ? impressionUrlObj : NULL);
+    creative.clickURL = ([SAParser validateField:clickURLObj] ? clickURLObj : NULL);
+    creative.approved = ([SAParser validateField:approvedObj] ? [approvedObj boolValue] : false);
+    creative.baseFormat = ([SAParser validateField:baseFormatObj] ? baseFormatObj : NULL);
     
     return creative;
 }
@@ -115,19 +126,19 @@
     id zipFileObj = [ddict objectForKey:@"zip_file"];
     id urlObj = [ddict objectForKey:@"url"];
     
-    details.width = (widthObj != NULL ? [widthObj integerValue] : 0);
-    details.height = (heightObj != NULL ? [heightObj integerValue] : 0);
-    details.image = (imageObj != NULL ? imageObj : NULL);
-    details.value = (valueObj != NULL ? [valueObj integerValue] : -1);
-    details.name = (nameObj != NULL ? nameObj : NULL);
-    details.video = (videoObj != NULL ? videoObj : NULL);
-    details.bitrate = (bitrateObj != NULL ? [bitrateObj integerValue] : 0);
-    details.duration = (durationObj != NULL ? [durationObj integerValue] : 0);
-    details.vast = (vastObj != NULL ? vastObj : NULL);
-    details.tag = (tagObj != NULL ? tagObj : NULL);
-    details.zip = (zipFileObj != NULL ? zipFileObj : NULL);
-    details.url = (urlObj != NULL ? urlObj : NULL);
-    details.placementFormat = (placementFormatObj != NULL ? placementFormatObj : NULL);
+    details.width = ([SAParser validateField:widthObj] ? [widthObj integerValue] : 0);
+    details.height = ([SAParser validateField:heightObj] ? [heightObj integerValue] : 0);
+    details.image = ([SAParser validateField:imageObj] ? imageObj : NULL);
+    details.value = ([SAParser validateField:valueObj] ? [valueObj integerValue] : -1);
+    details.name = ([SAParser validateField:nameObj] ? nameObj : NULL);
+    details.video = ([SAParser validateField:videoObj] ? videoObj : NULL);
+    details.bitrate = ([SAParser validateField:bitrateObj] ? [bitrateObj integerValue] : 0);
+    details.duration = ([SAParser validateField:durationObj] ? [durationObj integerValue] : 0);
+    details.vast = ([SAParser validateField:vastObj] ? vastObj : NULL);
+    details.tag = ([SAParser validateField:tagObj] ? tagObj : NULL);
+    details.zip = ([SAParser validateField:zipFileObj] ? zipFileObj : NULL);
+    details.url = ([SAParser validateField:urlObj] ? urlObj : NULL);
+    details.placementFormat = ([SAParser validateField:placementFormatObj] ? placementFormatObj : NULL);
     
     return details;
 }
@@ -140,109 +151,117 @@
         return;
     }
     
-    // if all ok, extract dictionaries
-    NSDictionary *adict = adDict;
-    NSDictionary *cdict = [adict objectForKey:@"creative"];
-    NSDictionary *ddict = [cdict objectForKey:@"details"];
-    
-    // invoke previous functions to do the basic ad parsing
-    SAAd *ad = [SAParser parseAdWithDictionary:adict];
-    ad.placementId = placementId;
-    ad.creative = [SAParser parseCreativeWithDictionary:cdict];
-    ad.creative.details = [SAParser parseDetailsWithDictionary:ddict];
-    
-    // prform the next steps of the parsing
-    ad.creative.format = invalid;
-    // case "image_with_link"
-    if ([ad.creative.baseFormat isEqualToString:@"image_with_link"])   ad.creative.format = image;
-    // case "video"
-    else if ([ad.creative.baseFormat isEqualToString:@"video"])        ad.creative.format = video;
-    // case "rich_media" and "rich_media_resizing"
-    else if ([ad.creative.baseFormat containsString:@"rich_media"])    ad.creative.format = rich;
-    // case "tag" and "fallback_tag"
-    else if ([ad.creative.baseFormat containsString:@"tag"])          ad.creative.format = tag;
-    
-    // create the tracking URL
-    NSDictionary *trackingDict = @{
-        @"placement":[NSNumber numberWithInteger:ad.placementId],
-        @"line_item":[NSNumber numberWithInteger:ad.lineItemId],
-        @"creative":[NSNumber numberWithInteger:ad.creative.creativeId],
-        @"sdkVersion":[[SuperAwesome getInstance] getSdkVersion],
-        @"rnd":[NSNumber numberWithInteger:[SAURLUtils getCachebuster]]
-    };
-    ad.creative.trackingURL = [NSString stringWithFormat:@"%@/%@click?%@",
-                               [[SuperAwesome getInstance] getBaseURL],
-                               (ad.creative.format == video ? @"video/" : @""),
-                               [SAURLUtils formGetQueryFromDict:trackingDict]];
-    
-    // get the viewbale impression URL
-    NSDictionary *impressionDict = @{
-        @"placement":[NSNumber numberWithInteger:ad.placementId],
-        @"line_item":[NSNumber numberWithInteger:ad.lineItemId],
-        @"creative":[NSNumber numberWithInteger:ad.creative.creativeId],
-        @"type":@"viewable_impression"
-    };
-    NSDictionary *impressionDict2 = @{
-        @"sdkVersion":[[SuperAwesome getInstance] getSdkVersion],
-        @"rnd":[NSNumber numberWithInteger:[SAURLUtils getCachebuster]],
-        @"data":[SAURLUtils encodeJSONDictionaryFromNSDictionary:impressionDict]
-    };
-    ad.creative.viewableImpressionURL = [NSString stringWithFormat:@"%@/event?%@",
-                                         [[SuperAwesome getInstance] getBaseURL],
-                                         [SAURLUtils formGetQueryFromDict:impressionDict2]];
-    
-    // create the click URL
-    switch (ad.creative.format) {
-        case image:{
-            ad.creative.fullClickURL = [NSString stringWithFormat:@"%@&redir=%@",
-                                        ad.creative.trackingURL,
-                                        ad.creative.clickURL];
-            ad.creative.isFullClickURLReliable = true;
-            
-            // format the ad HTML
-            ad.adHTML = [SAHTMLParser formatCreativeDataIntoAdHTML:ad];
-            
-            // send back the callback
-            parse(ad);
-            
-            break;
-        }
-        case video:{
-            // just continue parsing the ad - the heavy lifting will be done
-            // at playtime by the SAVASTManager, SAVASTPlayer and SASVASTParser
-            parse(ad);
-            break;
-        }
-        case rich:
-        case tag:{
-            // fist - and most fortunate case - when the clickURL is supplied by the
-            // ad server
-            if (ad.creative.clickURL != NULL && [SAURLUtils isValidURL:ad.creative.clickURL]) {
+    // Adding Try block to all the parsing, in case objects are not the correct types expected
+    @try{
+        
+        // if all ok, extract dictionaries
+        NSDictionary *adict = adDict;
+        NSDictionary *cdict = [adict objectForKey:@"creative"];
+        NSDictionary *ddict = [cdict objectForKey:@"details"];
+        
+        // invoke previous functions to do the basic ad parsing
+        SAAd *ad = [SAParser parseAdWithDictionary:adict];
+        ad.placementId = placementId;
+        ad.creative = [SAParser parseCreativeWithDictionary:cdict];
+        ad.creative.details = [SAParser parseDetailsWithDictionary:ddict];
+        
+        // prform the next steps of the parsing
+        ad.creative.format = invalid;
+        // case "image_with_link"
+        if ([ad.creative.baseFormat isEqualToString:@"image_with_link"])   ad.creative.format = image;
+        // case "video"
+        else if ([ad.creative.baseFormat isEqualToString:@"video"])        ad.creative.format = video;
+        // case "rich_media" and "rich_media_resizing"
+        else if ([ad.creative.baseFormat containsString:@"rich_media"])    ad.creative.format = rich;
+        // case "tag" and "fallback_tag"
+        else if ([ad.creative.baseFormat containsString:@"tag"])          ad.creative.format = tag;
+        
+        // create the tracking URL
+        NSDictionary *trackingDict = @{
+                                       @"placement":[NSNumber numberWithInteger:ad.placementId],
+                                       @"line_item":[NSNumber numberWithInteger:ad.lineItemId],
+                                       @"creative":[NSNumber numberWithInteger:ad.creative.creativeId],
+                                       @"sdkVersion":[[SuperAwesome getInstance] getSdkVersion],
+                                       @"rnd":[NSNumber numberWithInteger:[SAURLUtils getCachebuster]]
+                                       };
+        ad.creative.trackingURL = [NSString stringWithFormat:@"%@/%@click?%@",
+                                   [[SuperAwesome getInstance] getBaseURL],
+                                   (ad.creative.format == video ? @"video/" : @""),
+                                   [SAURLUtils formGetQueryFromDict:trackingDict]];
+        
+        // get the viewbale impression URL
+        NSDictionary *impressionDict = @{
+                                         @"placement":[NSNumber numberWithInteger:ad.placementId],
+                                         @"line_item":[NSNumber numberWithInteger:ad.lineItemId],
+                                         @"creative":[NSNumber numberWithInteger:ad.creative.creativeId],
+                                         @"type":@"viewable_impression"
+                                         };
+        NSDictionary *impressionDict2 = @{
+                                          @"sdkVersion":[[SuperAwesome getInstance] getSdkVersion],
+                                          @"rnd":[NSNumber numberWithInteger:[SAURLUtils getCachebuster]],
+                                          @"data":[SAURLUtils encodeJSONDictionaryFromNSDictionary:impressionDict]
+                                          };
+        ad.creative.viewableImpressionURL = [NSString stringWithFormat:@"%@/event?%@",
+                                             [[SuperAwesome getInstance] getBaseURL],
+                                             [SAURLUtils formGetQueryFromDict:impressionDict2]];
+        
+        // create the click URL
+        switch (ad.creative.format) {
+            case image:{
                 ad.creative.fullClickURL = [NSString stringWithFormat:@"%@&redir=%@",
                                             ad.creative.trackingURL,
                                             ad.creative.clickURL];
                 ad.creative.isFullClickURLReliable = true;
+                
+                // format the ad HTML
+                ad.adHTML = [SAHTMLParser formatCreativeDataIntoAdHTML:ad];
+                
+                // send back the callback
+                parse(ad);
+                
+                break;
             }
-            // second - when the URL is not supplied by the ad server or it's not
-            // a really valid URL, then just set the fullClickURL param to NULL
-            // and the isFullClickURLReliable set to false, so that all the
-            // final stages will be handled during runtime, when the user clicks
-            // on the <a href="someURL"> HTML tags of the rich media document
-            else {
-                ad.creative.fullClickURL = NULL;
-                ad.creative.isFullClickURLReliable = false;
+            case video:{
+                // just continue parsing the ad - the heavy lifting will be done
+                // at playtime by the SAVASTManager, SAVASTPlayer and SASVASTParser
+                parse(ad);
+                break;
             }
-            
-            // format the ad HTML
-            ad.adHTML = [SAHTMLParser formatCreativeDataIntoAdHTML:ad];
-            
-            // send back the callback
-            parse(ad);
-            
-            break;
+            case rich:
+            case tag:{
+                // fist - and most fortunate case - when the clickURL is supplied by the
+                // ad server
+                if (ad.creative.clickURL != NULL && [SAURLUtils isValidURL:ad.creative.clickURL]) {
+                    ad.creative.fullClickURL = [NSString stringWithFormat:@"%@&redir=%@",
+                                                ad.creative.trackingURL,
+                                                ad.creative.clickURL];
+                    ad.creative.isFullClickURLReliable = true;
+                }
+                // second - when the URL is not supplied by the ad server or it's not
+                // a really valid URL, then just set the fullClickURL param to NULL
+                // and the isFullClickURLReliable set to false, so that all the
+                // final stages will be handled during runtime, when the user clicks
+                // on the <a href="someURL"> HTML tags of the rich media document
+                else {
+                    ad.creative.fullClickURL = NULL;
+                    ad.creative.isFullClickURLReliable = false;
+                }
+                
+                // format the ad HTML
+                ad.adHTML = [SAHTMLParser formatCreativeDataIntoAdHTML:ad];
+                
+                // send back the callback
+                parse(ad);
+                
+                break;
+            }
+            default:
+                break;
         }
-        default:
-            break;
+    }
+    @catch (NSException *exception) {
+        parse(NULL);
+        return;
     }
 }
 
