@@ -264,16 +264,16 @@
                 [weakSelf.chrono setTime:weakSelf.currentTime andMax:weakSelf.duration];
                 
 #pragma mark SEND_AA_TIME_EVENTS
-                if (_currentTime >= 1 && !_isStartHandled) {
-                    _isStartHandled = true;
+                if (weakSelf.currentTime >= 1 && !weakSelf.isStartHandled) {
+                    weakSelf.isStartHandled = true;
                     
                     if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(didStartPlayer)]) {
                         [weakSelf.delegate didStartPlayer];
                     }
                 };
                 
-                if (_currentTime >= _firstQuartileTime && !_isFirstQuartileHandled){
-                    _isFirstQuartileHandled = true;
+                if (weakSelf.currentTime >= weakSelf.firstQuartileTime && !weakSelf.isFirstQuartileHandled){
+                    weakSelf.isFirstQuartileHandled = true;
                     
                     if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(didReachFirstQuartile)]) {
                         [weakSelf.delegate didReachFirstQuartile];
@@ -281,21 +281,20 @@
                     
                 }
                 
-                if (_currentTime >= _midpointTime && !_isMidpointHandled){
-                    _isMidpointHandled = true;
+                if (weakSelf.currentTime >= weakSelf.midpointTime && !weakSelf.isMidpointHandled){
+                    weakSelf.isMidpointHandled = true;
                     
                     if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(didReachMidpoint)]) {
                         [weakSelf.delegate didReachMidpoint];
                     }
                 }
                 
-                if (_currentTime >= _thirdQuartileTime && !_isThirdQuartileHandled) {
-                    _isThirdQuartileHandled = true;
+                if (weakSelf.currentTime >= weakSelf.thirdQuartileTime && !weakSelf.isThirdQuartileHandled) {
+                    weakSelf.isThirdQuartileHandled = true;
                     
                     if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(didReachThirdQuartile)]) {
                         [weakSelf.delegate didReachThirdQuartile];
                     }
-                    
                 }
             }];
             
