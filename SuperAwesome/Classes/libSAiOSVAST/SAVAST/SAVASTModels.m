@@ -30,9 +30,9 @@
     if (_type == 0) NSLog(@"\tType: InLine Ad(%@)", __id);
     if (_type == 1) NSLog(@"\tType: Wrapper Ad(%@)", __id);
     NSLog(@"\tSequence: %@", _sequence);
-    NSLog(@"\tImpressions[%ld]", _Impressions.count);
-    NSLog(@"\tErrors[%ld]", _Errors.count);
-    NSLog(@"\tCreatives[%ld]", _Creatives.count);
+    NSLog(@"\tImpressions[%ld]", (long)_Impressions.count);
+    NSLog(@"\tErrors[%ld]", (long)_Errors.count);
+    NSLog(@"\tCreatives[%ld]", (long)_Creatives.count);
     for (SAVASTCreative *c in _Creatives) {
         [c print];
     }
@@ -65,10 +65,10 @@
     NSLog(@"\t\tDuration: %@", _Duration);
     if (_ClickThrough) NSLog(@"\t\tClickThrough: OK %@", _ClickThrough);
     else NSLog(@"\t\tClickThrough: NOK");
-    NSLog(@"\t\tClickTracking[%ld]", _ClickTracking.count);
-    NSLog(@"\t\tCustomClicks[%ld]", _CustomClicks.count);
-    NSLog(@"\t\tTracking[%ld]", _TrackingEvents.count);
-    NSLog(@"\t\tMediaFiles[%ld]", _MediaFiles.count);
+    NSLog(@"\t\tClickTracking[%ld]", (long)_ClickTracking.count);
+    NSLog(@"\t\tCustomClicks[%ld]", (long)_CustomClicks.count);
+    NSLog(@"\t\tTracking[%ld]", (long)_TrackingEvents.count);
+    NSLog(@"\t\tMediaFiles[%ld]", (long)_MediaFiles.count);
 }
 
 @end

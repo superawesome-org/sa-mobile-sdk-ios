@@ -145,7 +145,7 @@
     }
 }
 
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error {
+- (void) webView:(UIWebView*) webView didFailLoadWithError:(NSError *)error {
     if (_sadelegate != NULL && [_sadelegate respondsToSelector:@selector(saWebViewDidFail)]) {
         [_sadelegate saWebViewDidFail];
     }

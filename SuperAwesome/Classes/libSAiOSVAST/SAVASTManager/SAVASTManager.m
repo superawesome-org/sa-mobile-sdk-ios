@@ -65,7 +65,7 @@
 #pragma mark <SAVASTParserProtocol>
 
 - (void) didParseVASTAndHasAdsResponse:(NSArray*)ads {
-    NSLog(@"[AA :: INFO] Found %ld valid ads", ads.count);
+    NSLog(@"[AA :: INFO] Found %ld valid ads", (long)ads.count);
     
     // copy a ref to the ads
     _adQueue = ads;
@@ -232,7 +232,7 @@
         _currentCreativeIndex++;
         __cCreative = __cAd.Creatives[_currentCreativeIndex];
         
-        NSLog(@"Ad %ld Creative %ld", _currentAdIndex, _currentCreativeIndex);
+        NSLog(@"Ad %ld Creative %ld", (long)_currentAdIndex, (long)_currentCreativeIndex);
         
         // play the video
         [self playCurrentAdWithCurrentCreative];
@@ -251,7 +251,7 @@
             __cAd = _adQueue[_currentAdIndex];
             __cCreative = __cAd.Creatives[_currentCreativeIndex];
             
-            NSLog(@"Ad %ld Creative %ld", _currentAdIndex, _currentCreativeIndex);
+            NSLog(@"Ad %ld Creative %ld", (long)_currentAdIndex, (long)_currentCreativeIndex);
             
             // call start ad
             if (_delegate && [_delegate respondsToSelector:@selector(didStartAd)]) {
