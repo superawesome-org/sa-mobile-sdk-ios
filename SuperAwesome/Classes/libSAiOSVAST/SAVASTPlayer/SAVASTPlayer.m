@@ -56,9 +56,6 @@
 // other aux vars
 @property (nonatomic, strong) NSNotificationCenter *notif;
 
-// the click
-@property (nonatomic, strong) NSString *clickURL;
-
 @end
 
 @implementation SAVASTPlayer
@@ -318,14 +315,10 @@
     }
 }
 
-- (void) setupClickURL:(NSString *)url {
-    _clickURL = url;
-}
-
 - (IBAction) onClick: (id) sender {
     // call click delegate
-    if (_delegate && [_delegate respondsToSelector:@selector(didGoToURL:)]) {
-        [_delegate didGoToURL:[NSURL URLWithString:_clickURL]];
+    if (_delegate && [_delegate respondsToSelector:@selector(didGoToURL)]) {
+        [_delegate didGoToURL];
     }
 }
 

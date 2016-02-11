@@ -42,6 +42,6 @@
 
 //
 // @brief: go to URL
-- (void) didGoToURL:(NSURL*)url;
+- (void) didGoToURL;
 
 @end

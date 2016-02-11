@@ -24,10 +24,6 @@
 // reset the player
 - (void) resetPlayer;
 
-// setup the URL that gets called when clicking on a the "click button"
-// can be different for each creative in an Ad
-- (void) setupClickURL:(NSString*)url;
-
 // update frame function
 - (void) updateToFrame:(CGRect)frame;
 
