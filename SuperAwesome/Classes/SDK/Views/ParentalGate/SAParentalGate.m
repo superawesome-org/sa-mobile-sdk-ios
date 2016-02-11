@@ -17,7 +17,6 @@
 
 // import other headers
 #import "SuperAwesome.h"
-#import "SASender.h"
 
 // import views
 #import "SAView.h"

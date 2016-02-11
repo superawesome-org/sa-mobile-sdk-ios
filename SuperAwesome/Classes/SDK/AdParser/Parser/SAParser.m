@@ -205,6 +205,22 @@
                                              [[SuperAwesome getInstance] getBaseURL],
                                              [SAURLUtils formGetQueryFromDict:impressionDict2]];
         
+        // get the parental gate URL
+        NSDictionary *pgDict1 = @{
+                                  @"placement":[NSNumber numberWithInteger:ad.placementId],
+                                  @"line_item":[NSNumber numberWithInteger:ad.lineItemId],
+                                  @"creative":[NSNumber numberWithInteger:ad.creative.creativeId],
+                                  @"type":@"custom.parentalGateAccessed"
+                                  };
+        NSDictionary *pgDict2 = @{
+                                  @"sdkVersion":[[SuperAwesome getInstance] getSdkVersion],
+                                  @"rnd":[NSNumber numberWithInteger:[SAURLUtils getCachebuster]],
+                                  @"data":[SAURLUtils encodeJSONDictionaryFromNSDictionary:pgDict1]
+                                  };
+        ad.creative.parentalGateClickURL = [NSString stringWithFormat:@"%@/event?%@",
+                                            [[SuperAwesome getInstance] getBaseURL],
+                                            [SAURLUtils formGetQueryFromDict:pgDict2]];
+        
         // create the click URL
         switch (ad.creative.format) {
             case image:{

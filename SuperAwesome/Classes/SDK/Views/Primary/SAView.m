@@ -67,16 +67,15 @@
 
 - (void) tryToGoToURL:(NSURL*)url {
     
-    // call delegate
-    if (_adDelegate && [_adDelegate respondsToSelector:@selector(adWasClicked:)]) {
-        [_adDelegate adWasClicked:_ad.placementId];
-    }
-    
     if (!_ad.creative.isFullClickURLReliable){
         _ad.creative.fullClickURL = [url absoluteString];
     }
     
     if (_isParentalGateEnabled) {
+        // send an event
+        [SASender sendEventToURL:_ad.creative.parentalGateClickURL];
+        
+        // show the gate
         [gate show];
     } else {
         [self advanceToClick];
@@ -85,6 +84,11 @@
 
 - (void) advanceToClick {
     NSLog(@"[AA :: INFO] Going to %@", _ad.creative.fullClickURL);
+    
+    // call delegate
+    if (_adDelegate && [_adDelegate respondsToSelector:@selector(adWasClicked:)]) {
+        [_adDelegate adWasClicked:_ad.placementId];
+    }
     
     // if full clicks is not reliable, just goto the designeted website,
     // but first send an event to the tracking stuff
