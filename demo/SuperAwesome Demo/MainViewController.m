@@ -47,9 +47,10 @@
     title.font = [UIFont systemFontOfSize:14];
     title.text = @"SA SDK";
     UILabel *subtitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 24, self.view.bounds.size.width, 14)];
-    subtitle.text = [NSString stringWithFormat:@"(%@ - %@)",
+    subtitle.text = [NSString stringWithFormat:@"(%@ - %@ - %@)",
                      [[SuperAwesome getInstance] getSdkVersion],
-                     [SASystem getVerboseSystemDetails]];
+                     [SASystem getVerboseSystemDetails],
+                     [[SuperAwesome getInstance] getDAUID]];
     subtitle.textColor = [UIColor colorWithRed:0.85 green:0.85 blue:0.85 alpha:1];
     subtitle.backgroundColor = [UIColor clearColor];
     subtitle.textAlignment = NSTextAlignmentCenter;

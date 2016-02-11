@@ -38,7 +38,8 @@
     NSDictionary *dict = @{
         @"test": [NSNumber numberWithBool:[[SuperAwesome getInstance] isTestingEnabled]],
         @"sdkVersion": [[SuperAwesome getInstance] getSdkVersion],
-        @"rnd": [NSNumber numberWithInteger:[SAURLUtils getCachebuster]]
+        @"rnd": [NSNumber numberWithInteger:[SAURLUtils getCachebuster]],
+        @"dauid": [[SuperAwesome getInstance] getDAUID]
     };
     
     // The second operation to perform is calling a SANetwork class function
