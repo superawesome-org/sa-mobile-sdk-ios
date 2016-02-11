@@ -38,32 +38,19 @@ Each placement has a number of associated parameters like ID, name, format, dime
 
 .. image:: img/IMG_01_Dashboard_4.png
 
-When creating placements in the dashboard, you have the following options for Mobile:
+Below you can find a description of all mobile placements, as well as test placement IDs, that have a 100% fill rate.
 
-==================  ==========  ========    ===========
-Name                Size        Format      Description
-==================  ==========  ========    ===========
-Standard Mobile     320x50px    image       Standard mobile banner. Displays images and rich media. Won't display video.
-SM Mobile           300x50px    image       Smaller mobile banner; Displays images and rich media. Won't display video.
-Interstitial        320x480px   image       Portrait mobile interstitial (fullscreen) ad. Displays images and rich media. Won't display video.
-Interstitial LS     480x320px   image       Landscape mobile interstitial (fullscreen) ad. Displays images and rich media. Won't display video.
-Leaderboard         728x90px    image       Larger banner-type ad, for tablets. Displays images and rich media. Won't display video.
-MPU                 300x250px   image       Special 300x250 banner. Used to break page content. Displays images and rich media. Won't display video.
-LG Interstitial     768x1024px  image       Large portrait tablet interstitial (fullscreen) ad. Displays images and rich media. Won't display video.
-LG Interstitial LS  1024x768px  image       Large landscape tablet interstitial (fullscreen) ad. Displays images and rich media. Won't display video.
-Video Preroll       Flexible    video       Fullscreen video ad.
-Gamewall            Flexible    gamewall    Fullscreen game wall.
-==================  ==========  ========    ===========
-
-Test placements
-^^^^^^^^^^^^^^^
-
-We also provide some demo placements that can be used for testing. These placements have a 100% fill rate.
-
-============  ===========
-Placement Id  Description
-============  ===========
-5687          320x50 banner
-5692          320x480 interstitial
-5740          video
-============  ===========
+==================  ==========  ========    ==============
+Name                Size        Format      Test Placement
+==================  ==========  ========    ==============
+Standard Mobile     320x50px    image       30471
+SM Mobile           300x50px    image       30476
+Interstitial        320x480px   image       30473
+Interstitial LS     480x320px   image       30474
+Leaderboard         728x90px    image       30475
+MPU                 300x250px   image       30472
+LG Interstitial     768x1024px  image       30477
+LG Interstitial LS  1024x768px  image       30478
+Video Preroll       Flexible    video       30479
+Gamewall            Flexible    gamewall    N/A
+==================  ==========  ========    ==============
