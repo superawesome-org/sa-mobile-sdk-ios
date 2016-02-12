@@ -93,6 +93,7 @@
     // if full clicks is not reliable, just goto the designeted website,
     // but first send an event to the tracking stuff
     if (!_ad.creative.isFullClickURLReliable) {
+        NSLog(@"Success: %@", _ad.creative.trackingURL);
         [SASender sendEventToURL:_ad.creative.trackingURL];
     }
     

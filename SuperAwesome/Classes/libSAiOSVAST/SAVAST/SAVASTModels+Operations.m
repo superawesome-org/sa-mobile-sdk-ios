@@ -57,6 +57,12 @@
     if ([SAURLUtils isValidURL:creative.ClickThrough]) {
         self.ClickThrough = creative.ClickThrough;
     }
+    if ([SAURLUtils isValidURL:self.playableMediaURL]){
+        self.playableMediaURL = self.playableMediaURL;
+    }
+    if ([SAURLUtils isValidURL:creative.playableMediaURL]){
+        self.playableMediaURL = creative.playableMediaURL;
+    }
     
     // then concatenate arrays (this is what's important)
     [self.MediaFiles addObjectsFromArray:creative.MediaFiles];
