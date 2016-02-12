@@ -72,6 +72,7 @@ typedef enum SAVASTCreativeType {
 @property (nonatomic, strong) NSString *sequence;
 @property (nonatomic, strong) NSString *Duration;
 @property (nonatomic, strong) NSString *ClickThrough;
+@property (nonatomic, strong) NSString *playableMediaURL;
 @property (nonatomic, strong) NSMutableArray *MediaFiles;
 @property (nonatomic, strong) NSMutableArray *TrackingEvents;
 @property (nonatomic, strong) NSMutableArray *ClickTracking;
@@ -103,5 +104,6 @@ typedef enum SAVASTCreativeType {
 @interface SAMediaFile : SAGenericVAST
 @property (nonatomic, strong) NSString *width;
 @property (nonatomic, strong) NSString *height;
+@property (nonatomic, strong) NSString *type;
 @property (nonatomic, strong) NSString *URL;
 @end

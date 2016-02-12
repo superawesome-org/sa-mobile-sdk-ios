@@ -25,7 +25,7 @@
 @end
 
 @interface SAFullscreenVideoAd () <SAVideoAdProtocol, SAAdProtocol>
-
+@property (nonatomic, assign) BOOL isOKToClose;
 @end
 
 @implementation SAFullscreenVideoAd
@@ -34,6 +34,7 @@
     if (self = [super init]) {
         _shouldAutomaticallyCloseAtEnd = YES;
         _shouldShowCloseButton = NO;
+        _isOKToClose = NO;
         closeBtn.hidden = YES;
     }
     
@@ -44,6 +45,7 @@
     if (self = [super initWithCoder:aDecoder]) {
         _shouldAutomaticallyCloseAtEnd = YES;
         _shouldShowCloseButton = NO;
+        _isOKToClose = NO;
         closeBtn.hidden = YES;
     }
     return self;
@@ -53,6 +55,7 @@
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         _shouldAutomaticallyCloseAtEnd = YES;
         _shouldShowCloseButton = NO;
+        _isOKToClose = NO;
         closeBtn.hidden = YES;
     }
     return self;
@@ -73,7 +76,7 @@
     [(SAVideoAd*)adview setInternalVideoAdProto:self];
     
     [self.view addSubview:adview];
-
+    
     // setup the other coords
     [self setupCoordinates:[UIScreen mainScreen].bounds.size];
     
@@ -109,6 +112,10 @@
 }
 
 #pragma mark <SAVideoAdProtocol> - internal
+
+- (void) adStarted:(NSInteger)placementId{
+    _isOKToClose = true;
+}
 
 - (void) allAdsEnded:(NSInteger)placementId {
     if (_shouldAutomaticallyCloseAtEnd) {

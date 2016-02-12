@@ -106,6 +106,14 @@
 //
 // @brief: Main function that starts playing the VAST URl
 - (void) playWithMediaURL:(NSURL *)url {
+    // in case this is null
+    if (url == NULL) {
+        if (_delegate && [_delegate respondsToSelector:@selector(didPlayWithError)]){
+            [_delegate didPlayWithError];
+        }
+        return;
+    }
+    
     // init the player
     _player = [AVPlayer playerWithURL:url];
     _playerLayer = [AVPlayerLayer playerLayerWithPlayer:_player];

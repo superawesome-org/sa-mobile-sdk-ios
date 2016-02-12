@@ -32,7 +32,10 @@
              CreateAdItem(@"Upsight - Tablet Landscape Static - 30167", 30167, false, interstitial_item),
              
              CreateAdItem(@"Upsight - Rewarded Video - 30169", 30169, false, fullscreen_video_item),
-             CreateAdItem(@"Upsight - Non Reward Video - 30168", 30168, false, fullscreen_video_item)
+             CreateAdItem(@"Upsight - Non Reward Video - 30168", 30168, false, fullscreen_video_item),
+             
+//             CreateAdItem(@"79 Inter", 79, false, interstitial_item),
+             CreateAdItem(@"79 Video", 79, false, fullscreen_video_item)
              
 //             CreateAdItem(@"Banner - 9549", 9549, false, interstitial_item),
 //             CreateAdItem(@"Interstitial - 10324", 10324, false, interstitial_item),

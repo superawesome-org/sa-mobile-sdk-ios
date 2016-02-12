@@ -249,8 +249,6 @@
         _currentCreativeIndex++;
         __cCreative = __cAd.Creatives[_currentCreativeIndex];
         
-        NSLog(@"Ad %ld Creative %ld", (long)_currentAdIndex, (long)_currentCreativeIndex);
-        
         // play the video
         [self playCurrentAdWithCurrentCreative];
     }
@@ -268,8 +266,6 @@
             __cAd = _adQueue[_currentAdIndex];
             __cCreative = __cAd.Creatives[_currentCreativeIndex];
             
-            NSLog(@"Ad %ld Creative %ld", (long)_currentAdIndex, (long)_currentCreativeIndex);
-            
             // call start ad
             if (_delegate && [_delegate respondsToSelector:@selector(didStartAd)]) {
                 [_delegate didStartAd];
@@ -279,8 +275,6 @@
             [self playCurrentAdWithCurrentCreative];
             
         } else {
-            NSLog(@"REACHED THE FINAL END");
-            
             // call delegate
             if (_delegate && [_delegate respondsToSelector:@selector(didEndAllAds)]) {
                 [_delegate didEndAllAds];
@@ -294,8 +288,7 @@
 // to be included in a function
 - (void) playCurrentAdWithCurrentCreative {
     // play the current creative
-    NSString *urlStr = [(SAMediaFile*)[__cCreative.MediaFiles firstObject] URL];
-    NSURL *url = [NSURL URLWithString:urlStr];
+    NSURL *url = [NSURL URLWithString:__cCreative.playableMediaURL];
     [_playerRef playWithMediaURL:url];
     _playerRef.delegate = self;
 }

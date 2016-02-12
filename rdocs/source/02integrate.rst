@@ -1,4 +1,4 @@
-.. This file should be all about including the SDK in your project
+.. [OK] This file should be all about including the SDK in your project
 
 Getting started
 ===============
@@ -9,7 +9,7 @@ CocoaPods manages library dependencies for your Xcode projects.
 Installing CocoaPods
 --------------------
 
-If you don't have CocoaPods installed on your machine you can install it by using the following command in your terminal:
+If you don't have CocoaPods installed on your machine you can install it by issuing the following command in your terminal:
 
 .. code-block:: shell
 
@@ -52,8 +52,8 @@ After the pod source has been added, update your project's dependencies by runni
 
 Don't forget to use the **.xcworkspace** file to open your project in Xcode, instead of the **.xcproj** file, from here on out.
 
-Include project
-^^^^^^^^^^^^^^^
+Including the project
+---------------------
 
 Once you've integrated the SuperAwesome SDK, you can access all functionality by including the SuperAwesome header file:
 
@@ -62,9 +62,9 @@ Once you've integrated the SuperAwesome SDK, you can access all functionality by
     #import "SuperAwesome.h"
 
 Prerequisites
-^^^^^^^^^^^^^
+-------------
 
-One thing to note is that sometimes, even though you're accesing SuperAwesome server data through HTTPS, the actual ad content is on HTTP, which on iOS 9+ will cause issues.
+One thing to note is that sometimes, even though you're accessing SuperAwesome server data through HTTPS, the actual ad content is on HTTP, which on iOS 9+ will cause issues.
 
 To circumvent this, add the following to your .plist file:
 

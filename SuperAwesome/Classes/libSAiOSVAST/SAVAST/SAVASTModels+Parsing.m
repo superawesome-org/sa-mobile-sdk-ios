@@ -56,6 +56,8 @@
         }
     }];
     
+    // now do a check - if the 
+    
     return ad;
 }
 
@@ -119,8 +121,14 @@
             SAMediaFile *mediaFile = [[SAMediaFile alloc] init];
             mediaFile.width = [TBXML valueOfAttributeNamed:@"width" forElement:cMediaElement];
             mediaFile.height = [TBXML valueOfAttributeNamed:@"height" forElement:cMediaElement];
+            mediaFile.type = [TBXML valueOfAttributeNamed:@"type" forElement:cMediaElement];
             mediaFile.URL = [[TBXML textForElement:cMediaElement] stringByDecodingHTMLEntities];
-            [_creative.MediaFiles addObject:mediaFile];
+            
+            // only add the Media file if the type is MP4
+            if ([mediaFile.type rangeOfString:@"mp4"].location != NSNotFound ||
+                [mediaFile.URL rangeOfString:@".mp4"].location != NSNotFound) {
+                [_creative.MediaFiles addObject:mediaFile];
+            }
         }];
         
         // populate tracking
@@ -134,6 +142,12 @@
             [_creative.TrackingEvents addObject:tracking];
         }];
         
+        // get the designated playable Media File
+        if (_creative.MediaFiles > 0){
+            _creative.playableMediaURL = [(SAMediaFile*)_creative.MediaFiles.firstObject URL];
+        }
+        
+        // return creative
         return _creative;
     }
     // non-linear / companion ads is not yet supported

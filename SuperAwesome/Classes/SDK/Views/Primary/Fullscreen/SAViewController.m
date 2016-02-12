@@ -21,11 +21,17 @@
 - (void) resizeToFrame:(CGRect)toframe;
 @end
 
+@interface SAViewController ()
+@property (nonatomic, assign) BOOL isOKToClose;
+@end
+
 // Actual implementation of SAViewController
 @implementation SAViewController
 
 - (void) viewDidLoad {
     [super viewDidLoad];
+    
+    _isOKToClose = YES;
     
     // set bg color
     self.view.backgroundColor = [UIColor colorWithRed:239.0/255.0f green:239.0f/255.0f blue:239.0f/255.0f alpha:1];
@@ -37,7 +43,7 @@
     closeBtn = [[UIButton alloc] initWithFrame:buttonFrame];
     [closeBtn setTitle:@"" forState:UIControlStateNormal];
     [closeBtn setImage:[UIImage imageNamed:@"close"] forState:UIControlStateNormal];
-    [closeBtn addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
+    [closeBtn addTarget:self action:@selector(closeAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:closeBtn];
     [self.view bringSubviewToFront:closeBtn];
 }
@@ -76,7 +82,7 @@
 
 - (void) viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-    
+    NSLog(@"viewWillTransitionToSize %@", NSStringFromCGSize(size));
     [self setupCoordinates:size];
     
     closeBtn.frame = buttonFrame;
@@ -94,6 +100,12 @@
 }
 
 // Specific SAViewController functions and handles
+
+- (IBAction) closeAction:(id)sender {
+    if (_isOKToClose) {
+        [self close];
+    }
+}
 
 - (void) close {
     [self dismissViewControllerAnimated:YES completion:^{
