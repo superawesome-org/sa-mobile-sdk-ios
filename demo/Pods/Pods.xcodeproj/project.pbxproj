@@ -132,14 +132,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		87D92B59FA340013217E7B409B0E9931 /* PBXContainerItemProxy */ = {
+		CA114ADE4FC8D810B4226ECC02DE957E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = A788EE107AFA374E2E6549009266DB59;
 			remoteInfo = SuperAwesome;
 		};
-		E6746571C90E942F537E1F8AE89ED79A /* PBXContainerItemProxy */ = {
+		CD17B0BFF548DA25371889FCEF5C1DE1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
@@ -875,7 +875,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				F8280EE815394068DC76464638687BBE /* PBXTargetDependency */,
+				26CDA9F94E2107D4170B48C890AABDA8 /* PBXTargetDependency */,
 			);
 			name = "Pods-SuperAwesome DemoTests";
 			productName = "Pods-SuperAwesome DemoTests";
@@ -892,7 +892,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				A11D62CCCDD95DABC33B6FC761446011 /* PBXTargetDependency */,
+				CAB73ED8B5BAC8F814548DAD09895C7B /* PBXTargetDependency */,
 			);
 			name = "Pods-SuperAwesome Demo";
 			productName = "Pods-SuperAwesome Demo";
@@ -1013,17 +1013,17 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		A11D62CCCDD95DABC33B6FC761446011 /* PBXTargetDependency */ = {
+		26CDA9F94E2107D4170B48C890AABDA8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SuperAwesome;
 			target = A788EE107AFA374E2E6549009266DB59 /* SuperAwesome */;
-			targetProxy = E6746571C90E942F537E1F8AE89ED79A /* PBXContainerItemProxy */;
+			targetProxy = CA114ADE4FC8D810B4226ECC02DE957E /* PBXContainerItemProxy */;
 		};
-		F8280EE815394068DC76464638687BBE /* PBXTargetDependency */ = {
+		CAB73ED8B5BAC8F814548DAD09895C7B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SuperAwesome;
 			target = A788EE107AFA374E2E6549009266DB59 /* SuperAwesome */;
-			targetProxy = 87D92B59FA340013217E7B409B0E9931 /* PBXContainerItemProxy */;
+			targetProxy = CD17B0BFF548DA25371889FCEF5C1DE1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

@@ -478,14 +478,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		0AD683BB3A60EE6B2405AF66EE319E42 /* PBXContainerItemProxy */ = {
+		B961C74E364F0CE8A8411E2DAFF8D10B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 3328DE7B61120881E07B1674ABC15018;
 			remoteInfo = "mopub-ios-sdk";
 		};
-		132A03370567EB5A7B4B0262E688305A /* PBXContainerItemProxy */ = {
+		F9A9640A1566B6AC3FE69D114D5FF13D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
@@ -2176,8 +2176,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				243D3A3B6F35B126F1AE94ADE78C9D98 /* PBXTargetDependency */,
-				5BDA7F60A38C06F1D159C22388850323 /* PBXTargetDependency */,
+				E9BBCF622188A37E0056B4E2D53AEE5C /* PBXTargetDependency */,
+				E78604E5C44AF452C6EC4D0B9E69937A /* PBXTargetDependency */,
 			);
 			name = "Pods-SuperAwesomeMoPub";
 			productName = "Pods-SuperAwesomeMoPub";
@@ -2455,17 +2455,17 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		243D3A3B6F35B126F1AE94ADE78C9D98 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = SuperAwesome;
-			target = A788EE107AFA374E2E6549009266DB59 /* SuperAwesome */;
-			targetProxy = 132A03370567EB5A7B4B0262E688305A /* PBXContainerItemProxy */;
-		};
-		5BDA7F60A38C06F1D159C22388850323 /* PBXTargetDependency */ = {
+		E78604E5C44AF452C6EC4D0B9E69937A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "mopub-ios-sdk";
 			target = 3328DE7B61120881E07B1674ABC15018 /* mopub-ios-sdk */;
-			targetProxy = 0AD683BB3A60EE6B2405AF66EE319E42 /* PBXContainerItemProxy */;
+			targetProxy = B961C74E364F0CE8A8411E2DAFF8D10B /* PBXContainerItemProxy */;
+		};
+		E9BBCF622188A37E0056B4E2D53AEE5C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SuperAwesome;
+			target = A788EE107AFA374E2E6549009266DB59 /* SuperAwesome */;
+			targetProxy = F9A9640A1566B6AC3FE69D114D5FF13D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

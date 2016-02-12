@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+3.4.8
+ - A slew of minor bug-fixes and adding better support for iOS 7
+
 3.4.7
  - improved rotation handling
 

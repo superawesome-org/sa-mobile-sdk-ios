@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "SuperAwesome"
-  s.version      = "3.4.7"
+  s.version      = "3.4.8"
   s.summary      = "SuperAwesome Mobile SDK for iOS"
 
   s.description  = <<-DESC
