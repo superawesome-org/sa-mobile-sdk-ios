@@ -89,85 +89,86 @@
             _adEvent(_unityAd, @"callback_adFailedToShow");
         }
     } else {
-        [SAParser parseDictionary:json withPlacementId:_placementId intoAd:^(SAAd *parsedAd) {
+        // parse ad
+        SAAd *parsedAd = [SAParser parseAdFromDictionary:json withPlacementId:_placementId];
+        
+        // validate ad
+        BOOL isValid = [SAValidator isAdDataValid:parsedAd];
+        
+        if (isValid) {
             
-            BOOL isValid = [SAValidator isAdDataValid:parsedAd];
+            // get root vc, show fvad and then play it
+            UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
             
-            if (isValid) {
-                
-                // get root vc, show fvad and then play it
-                UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
-                
-                // calculate the size of the ad
-                __block CGSize realSize = CGSizeZero;
-                if (size == 1) realSize = CGSizeMake(300, 50);
-                else if (size == 2) realSize = CGSizeMake(728, 90);
-                else if (size == 3) realSize = CGSizeMake(300, 250);
-                else realSize = CGSizeMake(320, 50);
-                
-                __block CGSize screen = [UIScreen mainScreen].bounds.size;
-                
-                if (realSize.width > screen.width) {
-                    realSize.height = (screen.width * realSize.height) / realSize.width;
-                    realSize.width = screen.width;
-                }
-                
-                // calculate the position of the ad
-                __block CGPoint realPos = CGPointZero;
-                if (position == 0) realPos = CGPointMake((screen.width - realSize.width) / 2.0f, 0);
-                else realPos = CGPointMake((screen.width - realSize.width) / 2.0f, screen.height - realSize.height);
-                
-                // init the banner
-                SABannerAd *bad = [[SABannerAd alloc] initWithFrame:CGRectMake(realPos.x, realPos.y, realSize.width, realSize.height)];
-                [bad setAd:parsedAd];
-                [bad setIsParentalGateEnabled:_isParentalGateEnabled];
-                [bad setParentalGateDelegate:self];
-                [bad setAdDelegate:self];
-                
-                if (color == 0){
-                    bad.backgroundColor = [UIColor clearColor];
-                } else {
-                    bad.backgroundColor = [UIColor colorWithRed:191.0/255.0f green:191.0/255.0f blue:191.0/255.0f alpha:1];
-                }
-                
-                // add the banner to the topmost root
-                [root.view addSubview:bad];
-                [bad play];
-                
-                // add "bad" as a key in the dictionary, under the Unity Ad name
-                [[SAUnityLinkerManager getInstance] setAd:bad forKey:unityAd];
-
-                // add a block notification
-                [[NSNotificationCenter defaultCenter] addObserverForName:@"UIDeviceOrientationDidChangeNotification"
-                                                                  object:nil
-                                                                   queue:nil
-                                                              usingBlock:
-                 ^(NSNotification * note) {
-                     screen = [UIScreen mainScreen].bounds.size;
-                     
-                     if (size == 1) realSize = CGSizeMake(300, 50);
-                     else if (size == 2) realSize = CGSizeMake(728, 90);
-                     else if (size == 3) realSize = CGSizeMake(300, 250);
-                     else realSize = CGSizeMake(320, 50);
-                     
-                     if (realSize.width > screen.width) {
-                         realSize.height = (screen.width * realSize.height) / realSize.width;
-                         realSize.width = screen.width;
-                     }
-                     
-                     if (position == 0) realPos = CGPointMake((screen.width - realSize.width) / 2.0f, 0);
-                     else realPos = CGPointMake((screen.width - realSize.width) / 2.0f, screen.height - realSize.height);
-                     
-                     [bad resizeToFrame:CGRectMake(realPos.x, realPos.y, realSize.width, realSize.height)];
-                 }];
+            // calculate the size of the ad
+            __block CGSize realSize = CGSizeZero;
+            if (size == 1) realSize = CGSizeMake(300, 50);
+            else if (size == 2) realSize = CGSizeMake(728, 90);
+            else if (size == 3) realSize = CGSizeMake(300, 250);
+            else realSize = CGSizeMake(320, 50);
+            
+            __block CGSize screen = [UIScreen mainScreen].bounds.size;
+            
+            if (realSize.width > screen.width) {
+                realSize.height = (screen.width * realSize.height) / realSize.width;
+                realSize.width = screen.width;
             }
-            // if data is not valid
-            else {
-                if (_adEvent){
-                    _adEvent(_unityAd, @"callback_adFailedToShow");
-                }
+            
+            // calculate the position of the ad
+            __block CGPoint realPos = CGPointZero;
+            if (position == 0) realPos = CGPointMake((screen.width - realSize.width) / 2.0f, 0);
+            else realPos = CGPointMake((screen.width - realSize.width) / 2.0f, screen.height - realSize.height);
+            
+            // init the banner
+            SABannerAd *bad = [[SABannerAd alloc] initWithFrame:CGRectMake(realPos.x, realPos.y, realSize.width, realSize.height)];
+            [bad setAd:parsedAd];
+            [bad setIsParentalGateEnabled:_isParentalGateEnabled];
+            [bad setParentalGateDelegate:self];
+            [bad setAdDelegate:self];
+            
+            if (color == 0){
+                bad.backgroundColor = [UIColor clearColor];
+            } else {
+                bad.backgroundColor = [UIColor colorWithRed:191.0/255.0f green:191.0/255.0f blue:191.0/255.0f alpha:1];
             }
-        }];
+            
+            // add the banner to the topmost root
+            [root.view addSubview:bad];
+            [bad play];
+            
+            // add "bad" as a key in the dictionary, under the Unity Ad name
+            [[SAUnityLinkerManager getInstance] setAd:bad forKey:unityAd];
+            
+            // add a block notification
+            [[NSNotificationCenter defaultCenter] addObserverForName:@"UIDeviceOrientationDidChangeNotification"
+                                                              object:nil
+                                                               queue:nil
+                                                          usingBlock:
+             ^(NSNotification * note) {
+                 screen = [UIScreen mainScreen].bounds.size;
+                 
+                 if (size == 1) realSize = CGSizeMake(300, 50);
+                 else if (size == 2) realSize = CGSizeMake(728, 90);
+                 else if (size == 3) realSize = CGSizeMake(300, 250);
+                 else realSize = CGSizeMake(320, 50);
+                 
+                 if (realSize.width > screen.width) {
+                     realSize.height = (screen.width * realSize.height) / realSize.width;
+                     realSize.width = screen.width;
+                 }
+                 
+                 if (position == 0) realPos = CGPointMake((screen.width - realSize.width) / 2.0f, 0);
+                 else realPos = CGPointMake((screen.width - realSize.width) / 2.0f, screen.height - realSize.height);
+                 
+                 [bad resizeToFrame:CGRectMake(realPos.x, realPos.y, realSize.width, realSize.height)];
+             }];
+        }
+        // if data is not valid
+        else {
+            if (_adEvent){
+                _adEvent(_unityAd, @"callback_adFailedToShow");
+            }
+        }
     }
 }
 
@@ -207,40 +208,41 @@
             _adEvent(_unityAd, @"callback_adFailedToShow");
         }
     } else {
-        [SAParser parseDictionary:json withPlacementId:_placementId intoAd:^(SAAd *parsedAd) {
+        // parse ad
+        SAAd *parsedAd = [SAParser parseAdFromDictionary:json withPlacementId:_placementId];
+        
+        // validate ad
+        BOOL isValid = [SAValidator isAdDataValid:parsedAd];
+        
+        if (isValid) {
             
-            BOOL isValid = [SAValidator isAdDataValid:parsedAd];
+            // create fvad
+            SAInterstitialAd *iad = [[SAInterstitialAd alloc] init];
+            [iad setAd:parsedAd];
             
-            if (isValid) {
+            // parametrize
+            [iad setIsParentalGateEnabled:_isParentalGateEnabled];
+            
+            // set delegates
+            [iad setAdDelegate:self];
+            [iad setParentalGateDelegate:self];
+            
+            // get root vc, show fvad and then play it
+            UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
+            [root presentViewController:iad animated:YES completion:^{
+                // play
+                [iad play];
                 
-                // create fvad
-                SAInterstitialAd *iad = [[SAInterstitialAd alloc] init];
-                [iad setAd:parsedAd];
-                
-                // parametrize
-                [iad setIsParentalGateEnabled:_isParentalGateEnabled];
-                
-                // set delegates
-                [iad setAdDelegate:self];
-                [iad setParentalGateDelegate:self];
-                
-                // get root vc, show fvad and then play it
-                UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
-                [root presentViewController:iad animated:YES completion:^{
-                    // play
-                    [iad play];
-                    
-                    // add "bad" as a key in the dictionary, under the Unity Ad name
-                    [[SAUnityLinkerManager getInstance] setAd:iad forKey:unityAd];
-                }];
+                // add "bad" as a key in the dictionary, under the Unity Ad name
+                [[SAUnityLinkerManager getInstance] setAd:iad forKey:unityAd];
+            }];
+        }
+        // if data is not valid
+        else {
+            if (_adEvent){
+                _adEvent(_unityAd, @"callback_adFailedToShow");
             }
-            // if data is not valid
-            else {
-                if (_adEvent){
-                    _adEvent(_unityAd, @"callback_adFailedToShow");
-                }
-            }
-        }];
+        }
     }
 }
 
@@ -283,43 +285,44 @@
             _adEvent(_unityAd, @"callback_adFailedToShow");
         }
     } else {
-        [SAParser parseDictionary:json withPlacementId:_placementId intoAd:^(SAAd *parsedAd) {
+        // parse ad
+        SAAd *parsedAd = [SAParser parseAdFromDictionary:json withPlacementId:_placementId];
+        
+        // validate ad
+        BOOL isValid = [SAValidator isAdDataValid:parsedAd];
+        
+        if (isValid) {
             
-            BOOL isValid = [SAValidator isAdDataValid:parsedAd];
+            // create fvad
+            SAFullscreenVideoAd *fvad = [[SAFullscreenVideoAd alloc] init];
+            [fvad setAd:parsedAd];
             
-            if (isValid) {
+            // parametrize
+            [fvad setIsParentalGateEnabled:_isParentalGateEnabled];
+            [fvad setShouldAutomaticallyCloseAtEnd:_shouldAutomaticallyCloseAtEnd];
+            [fvad setShouldShowCloseButton:_shouldShowCloseButton];
+            
+            // set delegates
+            [fvad setAdDelegate:self];
+            [fvad setParentalGateDelegate:self];
+            [fvad setVideoDelegate:self];
+            
+            // get root vc, show fvad and then play it
+            UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
+            [root presentViewController:fvad animated:YES completion:^{
+                // play
+                [fvad play];
                 
-                // create fvad
-                SAFullscreenVideoAd *fvad = [[SAFullscreenVideoAd alloc] init];
-                [fvad setAd:parsedAd];
-                
-                // parametrize
-                [fvad setIsParentalGateEnabled:_isParentalGateEnabled];
-                [fvad setShouldAutomaticallyCloseAtEnd:_shouldAutomaticallyCloseAtEnd];
-                [fvad setShouldShowCloseButton:_shouldShowCloseButton];
-                
-                // set delegates
-                [fvad setAdDelegate:self];
-                [fvad setParentalGateDelegate:self];
-                [fvad setVideoDelegate:self];
-                
-                // get root vc, show fvad and then play it
-                UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
-                [root presentViewController:fvad animated:YES completion:^{
-                    // play
-                    [fvad play];
-                    
-                    // add "bad" as a key in the dictionary, under the Unity Ad name
-                    [[SAUnityLinkerManager getInstance] setAd:fvad forKey:unityAd];
-                }];
+                // add "bad" as a key in the dictionary, under the Unity Ad name
+                [[SAUnityLinkerManager getInstance] setAd:fvad forKey:unityAd];
+            }];
+        }
+        // if data is not valid
+        else {
+            if (_adEvent){
+                _adEvent(_unityAd, @"callback_adFailedToShow");
             }
-            // if data is not valid
-            else {
-                if (_adEvent){
-                    _adEvent(_unityAd, @"callback_adFailedToShow");
-                }
-            }
-        }];
+        }
     }
 }
 

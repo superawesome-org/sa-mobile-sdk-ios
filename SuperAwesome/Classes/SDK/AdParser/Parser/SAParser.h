@@ -27,6 +27,6 @@ typedef void (^parsedad)(SAAd *parsedAd);
 @interface SAParser : NSObject
 
 // parsing function
-+ (void) parseDictionary:(NSDictionary*)adDict withPlacementId:(NSInteger)placementId intoAd:(parsedad)parse;
++ (SAAd*) parseAdFromDictionary:(NSDictionary*)adDict withPlacementId:(NSInteger)placementId;
 
 @end

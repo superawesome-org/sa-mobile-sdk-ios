@@ -63,27 +63,24 @@
         else {
             // we invoke SAParser class functions to parse different aspects
             // of the Ad
-            [SAParser parseDictionary:json withPlacementId:placementId intoAd:^(SAAd *parsedAd) {
-                
-                // add the json to the ad body
-                parsedAd.adJson = adJson;
-                
-                // one final check for validity
-                BOOL isValid = [SAValidator isAdDataValid:parsedAd];
-                
-                // and if all is OK go forward and announce the new ad
-                if (isValid) {
-                    if (_delegate != NULL && [_delegate respondsToSelector:@selector(didLoadAd:)]) {
-                        [_delegate didLoadAd:parsedAd];
-                    }
+            SAAd *parsedAd = [SAParser parseAdFromDictionary:json withPlacementId:placementId];
+            parsedAd.adJson = adJson;
+            
+            // one final check for validity
+            BOOL isValid = [SAValidator isAdDataValid:parsedAd];
+            
+            // and if all is OK go forward and announce the new ad
+            if (isValid) {
+                if (_delegate != NULL && [_delegate respondsToSelector:@selector(didLoadAd:)]) {
+                    [_delegate didLoadAd:parsedAd];
                 }
-                // else announce failure
-                else {
-                    if (_delegate != NULL && [_delegate respondsToSelector:@selector(didFailToLoadAdForPlacementId:)]) {
-                        [_delegate didFailToLoadAdForPlacementId:placementId];
-                    }
+            }
+            // else announce failure
+            else {
+                if (_delegate != NULL && [_delegate respondsToSelector:@selector(didFailToLoadAdForPlacementId:)]) {
+                    [_delegate didFailToLoadAdForPlacementId:placementId];
                 }
-            }];
+            }
         }
         
     } orFailure:^{

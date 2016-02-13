@@ -143,12 +143,11 @@
     return details;
 }
 
-+ (void) parseDictionary:(NSDictionary*)adDict withPlacementId:(NSInteger)placementId intoAd:(parsedad)parse {
++ (SAAd*) parseAdFromDictionary:(NSDictionary*)adDict withPlacementId:(NSInteger)placementId {
     
     // perform an integrity check
     if (![SAParser performIntegrityCheck:adDict]) {
-        parse(NULL);
-        return;
+        return nil;
     }
     
     // Adding Try block to all the parsing, in case objects are not the correct types expected
@@ -223,11 +222,12 @@
         
         // format the ad HTML, then parse Ad
         ad.adHTML = [SAHTMLParser formatCreativeDataIntoAdHTML:ad];
-        parse(ad);
+        
+        // return the ad
+        return ad;
     }
     @catch (NSException *exception) {
-        parse(NULL);
-        return;
+        return nil;
     }
 }
 
