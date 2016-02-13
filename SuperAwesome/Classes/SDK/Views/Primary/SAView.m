@@ -10,6 +10,9 @@
 
 #import "SAView.h"
 
+// import SA.h
+#import "SuperAwesome.h"
+
 // import model
 #import "SAAd.h"
 #import "SACreative.h"
@@ -21,6 +24,10 @@
 
 #import "SAURLUtils.h"
 #import "SASender.h"
+
+@interface SAView ()
+@property (nonatomic, strong) NSString *destinationURL;
+@end
 
 @implementation SAView
 
@@ -67,9 +74,8 @@
 
 - (void) tryToGoToURL:(NSURL*)url {
     
-    if (!_ad.creative.isFullClickURLReliable){
-        _ad.creative.fullClickURL = [url absoluteString];
-    }
+    // get the going to URL
+    _destinationURL = [url absoluteString];
     
     if (_isParentalGateEnabled) {
         // send an event
@@ -83,21 +89,19 @@
 }
 
 - (void) advanceToClick {
-    NSLog(@"[AA :: INFO] Going to %@", _ad.creative.fullClickURL);
+    NSLog(@"[AA :: INFO] Going to %@", _destinationURL);
+    
+    if ([_destinationURL rangeOfString:[[SuperAwesome getInstance] getBaseURL]].location == NSNotFound) {
+        NSLog(@"Sending click event to %@", _ad.creative.trackingURL);
+        [SASender sendEventToURL:_ad.creative.trackingURL];
+    }
     
     // call delegate
     if (_adDelegate && [_adDelegate respondsToSelector:@selector(adWasClicked:)]) {
         [_adDelegate adWasClicked:_ad.placementId];
     }
     
-    // if full clicks is not reliable, just goto the designeted website,
-    // but first send an event to the tracking stuff
-    if (!_ad.creative.isFullClickURLReliable) {
-        NSLog(@"Success: %@", _ad.creative.trackingURL);
-        [SASender sendEventToURL:_ad.creative.trackingURL];
-    }
-    
-    NSURL *url = [NSURL URLWithString:_ad.creative.fullClickURL];
+    NSURL *url = [NSURL URLWithString:_destinationURL];
     [[UIApplication sharedApplication] openURL:url];
 }
 

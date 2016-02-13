@@ -57,7 +57,9 @@
     NSString *htmlString = [NSString stringWithContentsOfFile:fPath encoding:NSUTF8StringEncoding error:nil];
     
     // return the parametrized template
-    return [htmlString stringByReplacingOccurrencesOfString:@"imageURL" withString:ad.creative.details.image];
+    htmlString = [htmlString stringByReplacingOccurrencesOfString:@"hrefURL" withString:ad.creative.clickURL];
+    htmlString = [htmlString stringByReplacingOccurrencesOfString:@"imageURL" withString:ad.creative.details.image];
+    return htmlString;
 }
 
 + (NSString*) formatCreativeIntoRichMediaHTML:(SAAd*)ad {
@@ -81,26 +83,6 @@
     
     // return the parametrized template
     NSString *richString = [htmlString stringByReplacingOccurrencesOfString:@"richMediaURL" withString:richMediaString];
-    
-//    CGFloat scale = 1.0f;
-//    if (ad.creative.details.width < ad.creative.details.height) {
-//        scale =
-//    } else {
-//        
-//    }
-    
-    
-//    var scale: Number = 1;
-//    if (ad.creative.details.width < ad.creative.details.height) {
-//        scale = newR.width / Math.min(this.stage.stageWidth, this.stage.stageHeight);
-//    } else {
-//        scale = newR.height / Math.max(this.stage.stageWidth, this.stage.stageHeight);
-//    }
-//    
-//    var finalString1: String = ad.adHTML;
-//    finalString1 = finalString1.replace("_PARAM_SCALE_", scale);
-//    finalString1 = finalString1.replace("_PARAM_SCALE_", scale);
-//    finalString1 = finalString1.replace("_PARAM_DPI_", "device-dpi");
     
     richString = [richString stringByReplacingOccurrencesOfString:@"" withString:@""];
     

@@ -221,59 +221,9 @@
                                             [[SuperAwesome getInstance] getBaseURL],
                                             [SAURLUtils formGetQueryFromDict:pgDict2]];
         
-        // create the click URL
-        switch (ad.creative.format) {
-            case image:{
-                ad.creative.fullClickURL = [NSString stringWithFormat:@"%@&redir=%@",
-                                            ad.creative.trackingURL,
-                                            ad.creative.clickURL];
-                ad.creative.isFullClickURLReliable = true;
-                
-                // format the ad HTML
-                ad.adHTML = [SAHTMLParser formatCreativeDataIntoAdHTML:ad];
-                
-                // send back the callback
-                parse(ad);
-                
-                break;
-            }
-            case video:{
-                // just continue parsing the ad - the heavy lifting will be done
-                // at playtime by the SAVASTManager, SAVASTPlayer and SASVASTParser
-                parse(ad);
-                break;
-            }
-            case rich:
-            case tag:{
-                // fist - and most fortunate case - when the clickURL is supplied by the
-                // ad server
-                if (ad.creative.clickURL != NULL && [SAURLUtils isValidURL:ad.creative.clickURL]) {
-                    ad.creative.fullClickURL = [NSString stringWithFormat:@"%@&redir=%@",
-                                                ad.creative.trackingURL,
-                                                ad.creative.clickURL];
-                    ad.creative.isFullClickURLReliable = true;
-                }
-                // second - when the URL is not supplied by the ad server or it's not
-                // a really valid URL, then just set the fullClickURL param to NULL
-                // and the isFullClickURLReliable set to false, so that all the
-                // final stages will be handled during runtime, when the user clicks
-                // on the <a href="someURL"> HTML tags of the rich media document
-                else {
-                    ad.creative.fullClickURL = NULL;
-                    ad.creative.isFullClickURLReliable = false;
-                }
-                
-                // format the ad HTML
-                ad.adHTML = [SAHTMLParser formatCreativeDataIntoAdHTML:ad];
-                
-                // send back the callback
-                parse(ad);
-                
-                break;
-            }
-            default:
-                break;
-        }
+        // format the ad HTML, then parse Ad
+        ad.adHTML = [SAHTMLParser formatCreativeDataIntoAdHTML:ad];
+        parse(ad);
     }
     @catch (NSException *exception) {
         parse(NULL);

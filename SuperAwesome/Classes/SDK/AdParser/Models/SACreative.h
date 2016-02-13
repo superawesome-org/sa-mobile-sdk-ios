@@ -48,19 +48,8 @@
 // the tracking URL
 @property (nonatomic, strong) NSString *trackingURL;
 
-// the actual, full click URL - contains the base targetURL as well as a call to the
-// ad server to register the click
-@property (nonatomic, strong) NSString *fullClickURL;
-
-// this boolean says if the click URL is reliable - e.g. if it was formed from
-// data pulled from the Ad Server or done on the fly, or null, etc
-@property (nonatomic, assign) BOOL isFullClickURLReliable;
-
 // the Parental gate event url
 @property (nonatomic, strong) NSString *parentalGateClickURL;
-
-// the tracking URL used when video is complete - used only by AIR SDK
-@property (nonatomic, strong) NSString *videoCompleteURL;
 
 // must be always true for real ads
 @property (nonatomic, assign) BOOL approved;

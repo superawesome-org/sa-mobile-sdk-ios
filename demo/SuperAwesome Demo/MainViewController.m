@@ -36,7 +36,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//     set config to stanging
+    //  set config to stanging
     [[SuperAwesome getInstance] setConfigurationStaging];
     
     // set title
@@ -121,7 +121,7 @@
             [self presentViewController:vc animated:YES completion:^{
                 SABannerAd *bad = [[SABannerAd alloc] initWithFrame:CGRectMake(0, 100, 320, 350)];
                 [bad setAd:ad];
-                [bad setIsParentalGateEnabled:true];
+                [bad setIsParentalGateEnabled:false];
                 [bad setAdDelegate:self];
                 [bad setParentalGateDelegate:self];
                 [vc.view addSubview:bad];
@@ -137,11 +137,9 @@
                 [vad setAd:ad];
                 [vad setAdDelegate:self];
                 [vad setVideoDelegate:self];
-                [vad setParentalGateDelegate:self];
+                [vad setParentalGateDelegate:false];
                 [vc.view addSubview:vad];
                 [vad play];
-                
-                
             }];
             break;
         }
@@ -150,7 +148,7 @@
             [iad setAd:ad];
             [iad setAdDelegate:self];
             [iad setParentalGateDelegate:self];
-            [iad setIsParentalGateEnabled:true];
+            [iad setIsParentalGateEnabled:false];
             [self presentViewController:iad animated:YES completion:^{
                 [iad play];
             }];

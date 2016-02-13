@@ -163,17 +163,7 @@
     }
 }
 
-- (void) didGoToURL:(NSURL *)url {
-    super.ad.creative.fullClickURL = [url absoluteString];
-    
-    // repair the URL one final time
-    if ([super.ad.creative.fullClickURL rangeOfString:@"ads.superawesome.tv/v2/video/click/"].location == NSNotFound &&
-        [super.ad.creative.fullClickURL rangeOfString:@"ads.staging.superawesome.tv/v2/video/click/"].location == NSNotFound) {
-        super.ad.creative.isFullClickURLReliable = false;
-    } else {
-        super.ad.creative.isFullClickURLReliable = true;
-    }
-    
+- (void) didGoToURL:(NSURL *)url {    
     [self tryToGoToURL:url];
 }
 
