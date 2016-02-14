@@ -1,1 +1,1 @@
-../../../../../SuperAwesome/Classes/SDK/Views/Primary/Fullscreen/SAInterstitialAd.h
+../../../../../SuperAwesome/Classes/SDK/Views/SAInterstitialAd.h

@@ -119,15 +119,7 @@
         case banner_item:{
             PresentViewController *vc = [[PresentViewController alloc] init];
             [self presentViewController:vc animated:YES completion:^{
-//                SABannerAd *bad = [[SABannerAd alloc] initWithFrame:CGRectMake(0, 100, 320, 350)];
-//                [bad setAd:ad];
-//                [bad setIsParentalGateEnabled:false];
-//                [bad setAdDelegate:self];
-//                [bad setParentalGateDelegate:self];
-//                [vc.view addSubview:bad];
-//                [bad play];
-                
-                SABannerAd2 *bad = [[SABannerAd2 alloc] initWithFrame:CGRectMake(0, 100, 320, 350)];
+                SABannerAd *bad = [[SABannerAd alloc] initWithFrame:CGRectMake(0, 100, 320, 350)];
                 [bad setAd:ad];
                 [bad setIsParentalGateEnabled:true];
                 [bad setAdDelegate:self];
@@ -141,15 +133,7 @@
         case video_item:{
             PresentViewController *vc = [[PresentViewController alloc] init];
             [self presentViewController:vc animated:YES completion:^{
-//                SAVideoAd *vad = [[SAVideoAd alloc] initWithFrame:CGRectMake(0, 100, 320, 240)];
-//                [vad setAd:ad];
-//                [vad setAdDelegate:self];
-//                [vad setVideoDelegate:self];
-//                [vad setParentalGateDelegate:false];
-//                [vc.view addSubview:vad];
-//                [vad play];
-                
-                SAVideoAd2 *vad = [[SAVideoAd2 alloc] initWithFrame:CGRectMake(0, 100, 320, 240)];
+                SAVideoAd *vad = [[SAVideoAd alloc] initWithFrame:CGRectMake(0, 100, 320, 240)];
                 [vad setAd:ad];
                 [vad setAdDelegate:self];
                 [vad setVideoDelegate:self];
@@ -161,16 +145,7 @@
             break;
         }
         case interstitial_item:{
-//            SAInterstitialAd *iad = [[SAInterstitialAd alloc] init];
-//            [iad setAd:ad];
-//            [iad setAdDelegate:self];
-//            [iad setParentalGateDelegate:self];
-//            [iad setIsParentalGateEnabled:false];
-//            [self presentViewController:iad animated:YES completion:^{
-//                [iad play];
-//            }];
-            
-            SAInterstitialAd2 *iad = [[SAInterstitialAd2 alloc] init];
+            SAInterstitialAd *iad = [[SAInterstitialAd alloc] init];
             [iad setAd:ad];
             [iad setAdDelegate:self];
             [iad setParentalGateDelegate:self];
@@ -182,19 +157,7 @@
             break;
         }
         case fullscreen_video_item:{
-//            SAFullscreenVideoAd *fvad = [[SAFullscreenVideoAd alloc] init];
-//            [fvad setAd:ad];
-//            [fvad setAdDelegate:self];
-//            [fvad setVideoDelegate:self];
-//            [fvad setParentalGateDelegate:self];
-//            [fvad setIsParentalGateEnabled:false];
-//            [fvad setShouldAutomaticallyCloseAtEnd:YES];
-//            [fvad setShouldShowCloseButton:YES];
-//            [self presentViewController:fvad animated:YES completion:^{
-//                [fvad play];
-//            }];
-            
-            SAFullscreenVideoAd2 *fvad = [[SAFullscreenVideoAd2 alloc] init];
+            SAFullscreenVideoAd *fvad = [[SAFullscreenVideoAd alloc] init];
             [fvad setAd:ad];
             [fvad setAdDelegate:self];
             [fvad setVideoDelegate:self];

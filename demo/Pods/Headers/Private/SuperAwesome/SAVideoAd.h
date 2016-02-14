@@ -1,1 +1,1 @@
-../../../../../SuperAwesome/Classes/SDK/Views/Primary/SAVideoAd.h
+../../../../../SuperAwesome/Classes/SDK/Views/SAVideoAd.h

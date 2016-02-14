@@ -1,1 +1,1 @@
-../../../../../SuperAwesome/Classes/SDK/Views/ParentalGate/SAParentalGate.h
+../../../../../SuperAwesome/Classes/SDK/Views/SAParentalGate.h

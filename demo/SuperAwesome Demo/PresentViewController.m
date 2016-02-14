@@ -39,11 +39,8 @@
     [self dismissViewControllerAnimated:YES completion:^{
         //
         for (UIView *v in self.view.subviews) {
-            if ([v isKindOfClass:[SAVideoAd class]]) {
-                [(SAVideoAd*)v stopVideoAd];
-            }
-            if ([v isKindOfClass:[SAVideoAd2 class]]){
-                [(SAVideoAd2*)v close];
+            if ([v isKindOfClass:[SAVideoAd class]]){
+                [(SAVideoAd*)v close];
             }
         }
     }];

@@ -23,18 +23,13 @@
 
 // import views
 #import "SABannerAd.h"
-#import "SABannerAd2.h"
 #import "SAInterstitialAd.h"
-#import "SAInterstitialAd2.h"
 #import "SAVideoAd.h"
-#import "SAVideoAd2.h"
 #import "SAFullscreenVideoAd.h"
-#import "SAFullscreenVideoAd2.h"
 
 // load protocols
 #import "SALoaderProtocol.h"
-#import "SAAdProtocol.h"
-#import "SAVideoAdProtocol.h"
+#import "SAProtocols.h"
 
 // import plugins
 #import "SAUnityLinker.h"

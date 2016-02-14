@@ -1,1 +1,1 @@
-../../../../../SuperAwesome/Classes/SDK/Views/Primary/Fullscreen/SAFullscreenVideoAd.h
+../../../../../SuperAwesome/Classes/SDK/Views/SAFullscreenVideoAd.h
