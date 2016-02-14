@@ -47,6 +47,22 @@
     // set bg color
     self.view.backgroundColor = INTER_BG_COLOR;
     
+    banner = [[SABannerAd alloc] initWithFrame:adviewFrame];
+    banner.adDelegate = _adDelegate;
+    banner.parentalGateDelegate = _parentalGateDelegate;
+    banner.isParentalGateEnabled = _isParentalGateEnabled;
+    [banner setAd:ad];
+    banner.backgroundColor = INTER_BG_COLOR;
+    [self.view addSubview:banner];
+    
+    // create close button
+    closeBtn = [[UIButton alloc] initWithFrame:buttonFrame];
+    [closeBtn setTitle:@"" forState:UIControlStateNormal];
+    [closeBtn setImage:[UIImage imageNamed:@"close"] forState:UIControlStateNormal];
+    [closeBtn addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:closeBtn];
+    [self.view bringSubviewToFront:closeBtn];
+    
     // setup coordinates
     CGSize scrSize = [UIScreen mainScreen].bounds.size;
     CGSize currentSize = CGSizeZero;
@@ -69,22 +85,6 @@
     }
     
     [self resizeToFrame:CGRectMake(0, 0, currentSize.width, currentSize.height)];
-    
-    banner = [[SABannerAd alloc] initWithFrame:adviewFrame];
-    banner.adDelegate = _adDelegate;
-    banner.parentalGateDelegate = _parentalGateDelegate;
-    banner.isParentalGateEnabled = _isParentalGateEnabled;
-    [banner setAd:ad];
-    banner.backgroundColor = INTER_BG_COLOR;
-    [self.view addSubview:banner];
-    
-    // create close button
-    closeBtn = [[UIButton alloc] initWithFrame:buttonFrame];
-    [closeBtn setTitle:@"" forState:UIControlStateNormal];
-    [closeBtn setImage:[UIImage imageNamed:@"close"] forState:UIControlStateNormal];
-    [closeBtn addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:closeBtn];
-    [self.view bringSubviewToFront:closeBtn];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -100,9 +100,6 @@
 - (void) viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
     [self resizeToFrame:CGRectMake(0, 0, size.width, size.height)];
-    
-    closeBtn.frame = buttonFrame;
-    [banner resizeToFrame:adviewFrame];
 }
 
 - (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
@@ -124,10 +121,6 @@
             break;
         }
     }
-    
-    closeBtn.frame = buttonFrame;
-    [banner resizeToFrame:adviewFrame];
-    
 }
 
 - (void) didReceiveMemoryWarning {
@@ -187,6 +180,10 @@
     // final frames
     adviewFrame = newR;
     buttonFrame = CGRectMake(frame.size.width - cs, 0, cs, cs);
+    
+    // actually resize stuff
+    closeBtn.frame = buttonFrame;
+    [banner resizeToFrame:adviewFrame];
 }
 
 @end

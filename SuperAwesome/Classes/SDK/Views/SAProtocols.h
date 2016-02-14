@@ -105,13 +105,25 @@
 
 @protocol SAViewProtocol <NSObject>
 
-// functions that all SA - Views should implement
+// sets the ad for a SABannerAd, SAInterstitialAd, etc type class
 - (void) setAd:(SAAd*)ad;
+
+// return an Ad
 - (SAAd*) getAd;
+
+// play the ad
 - (void) play;
+
+// close the ad
 - (void) close;
+
+// first pass at trying to go to URL
 - (void) tryToGoToURL:(NSURL*)url;
+
+// second pass at trying to go to URL
 - (void) advanceToClick;
+
+// resize view or view controller
 - (void) resizeToFrame:(CGRect)frame;
 
 @end

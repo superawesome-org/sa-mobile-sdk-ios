@@ -59,6 +59,23 @@
     // set bg color
     self.view.backgroundColor = [UIColor blackColor];
     
+    video = [[SAVideoAd alloc] initWithFrame:adviewFrame];
+    [video setAd:ad];
+    video.adDelegate = _adDelegate;
+    video.parentalGateDelegate = _parentalGateDelegate;
+    video.videoDelegate = _videoDelegate;
+    video.isParentalGateEnabled = _isParentalGateEnabled;
+    video.internalVideoAdProto = self;
+    [self.view addSubview:video];
+    
+    // create close button
+    closeBtn = [[UIButton alloc] initWithFrame:buttonFrame];
+    [closeBtn setTitle:@"" forState:UIControlStateNormal];
+    [closeBtn setImage:[UIImage imageNamed:@"close"] forState:UIControlStateNormal];
+    [closeBtn addTarget:self action:@selector(closeAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:closeBtn];
+    [self.view bringSubviewToFront:closeBtn];
+    
     // setup coordinates
     CGSize scrSize = [UIScreen mainScreen].bounds.size;
     CGSize currentSize = CGSizeZero;
@@ -81,23 +98,6 @@
     }
     
     [self resizeToFrame:CGRectMake(0, 0, currentSize.width, currentSize.height)];
-    
-    video = [[SAVideoAd alloc] initWithFrame:adviewFrame];
-    [video setAd:ad];
-    video.adDelegate = _adDelegate;
-    video.parentalGateDelegate = _parentalGateDelegate;
-    video.videoDelegate = _videoDelegate;
-    video.isParentalGateEnabled = _isParentalGateEnabled;
-    video.internalVideoAdProto = self;
-    [self.view addSubview:video];
-    
-    // create close button
-    closeBtn = [[UIButton alloc] initWithFrame:buttonFrame];
-    [closeBtn setTitle:@"" forState:UIControlStateNormal];
-    [closeBtn setImage:[UIImage imageNamed:@"close"] forState:UIControlStateNormal];
-    [closeBtn addTarget:self action:@selector(closeAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:closeBtn];
-    [self.view bringSubviewToFront:closeBtn];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -113,9 +113,6 @@
 - (void) viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
     [self resizeToFrame:CGRectMake(0, 0, size.width, size.height)];
-    
-    closeBtn.frame = buttonFrame;
-    [video resizeToFrame:adviewFrame];
 }
 
 - (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
@@ -137,10 +134,6 @@
             break;
         }
     }
-    
-    closeBtn.frame = buttonFrame;
-    [video resizeToFrame:adviewFrame];
-    
 }
 
 - (void) didReceiveMemoryWarning {
@@ -202,6 +195,9 @@
         closeBtn.hidden = YES;
         buttonFrame = CGRectZero;
     }
+    
+    closeBtn.frame = buttonFrame;
+    [video resizeToFrame:adviewFrame];
 }
 
 #pragma mark <SAVideoAdProtocol> - internal
