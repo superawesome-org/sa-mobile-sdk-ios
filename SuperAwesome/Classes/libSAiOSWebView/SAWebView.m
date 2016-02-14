@@ -113,31 +113,6 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     
-//    [self stringByEvaluatingJavaScriptFromString:@";{ var a = document.getElementsByTagName(\"a\");  for (var i=0; i<a.length; i++)  { a[i].target = \"_self\"; }	 }"];
-//    [self stringByEvaluatingJavaScriptFromString:@";window.open = function( inurl, blah, blah2 ) {  document.location = inurl; }"];
-
-//    NSString *script3 = @"window.open = function (open) { window.alert('wohoo'); }";
-//    [self stringByEvaluatingJavaScriptFromString:script3];
-//    [self stringByEvaluatingJavaScriptFromString:@"window.alert('ooo');"];
-    
-//    [self stringByEvaluatingJavaScriptFromString:@"window.alert('wow');"];
-//    [self stringByEvaluatingJavaScriptFromString:@"window.open = function (open) { return function  (url, name, features) { window.alert('rex'); window.location.href = url; return window; }; } (window.open);"];
-//    // append JS
-//    NSMutableString *jsCallback = [[NSMutableString alloc] init];
-//    [jsCallback appendString:@"function reportBackToObjectiveC(string) {"];
-//    [jsCallback appendString:@"var iframe = document.createElement(\"iframe\")"];
-//    [jsCallback appendString:@"iframe.setAttribute(\"src\", \"callback://\" + string);"];
-//    [jsCallback appendString:@"document.documentElement.appendChild(iframe);"];
-//    [jsCallback appendString:@"iframe.parentNode.removeChild(iframe);"];
-//    [jsCallback appendString:@"iframe = null;"];
-//    [jsCallback appendString:@"}"];
-//    [jsCallback appendString:@"var links = document.getElementsByTagName(\"a\");"];
-//    [jsCallback appendString:@"for (var i=0; i<links.length; i++) {"];
-//    [jsCallback appendString:@"links[i].addEventListener(\"click\", function() { reportBackToObjectiveC(\"link-clicked\"); }, true);"];
-//    [jsCallback appendString:@"}"];
-//    
-//    [self stringByEvaluatingJavaScriptFromString:jsCallback];
-    
     // call delegate
     if (_sadelegate != NULL && [_sadelegate respondsToSelector:@selector(saWebViewDidLoad)] && !_loadedOnce) {
         [_sadelegate saWebViewDidLoad];

@@ -18,7 +18,7 @@
              CreateAdItem(@"Tag Movie 233", 233, false, fullscreen_video_item),
              CreateAdItem(@"Rich Media Interstitial 232", 232, false, interstitial_item),
              CreateAdItem(@"Banner 229", 229, false, banner_item),
-             CreateAdItem(@"Normal Movie 231", 231, false, fullscreen_video_item),
+             CreateAdItem(@"Normal Movie 231", 231, false, video_item),
              
              
 //             CreateAdItem(@"Image Interstitial - 43", 43, false, interstitial_item),

@@ -42,6 +42,9 @@
             if ([v isKindOfClass:[SAVideoAd class]]) {
                 [(SAVideoAd*)v stopVideoAd];
             }
+            if ([v isKindOfClass:[SAVideoAd2 class]]){
+                [(SAVideoAd2*)v close];
+            }
         }
     }];
 }

@@ -19,7 +19,8 @@
 #import "SuperAwesome.h"
 
 // import views
-#import "SAView.h"
+#import "SABannerAd2.h"
+#import "SAVideoAd2.h"
 
 // aux stuff
 #import "UIAlertController+Window.h"
@@ -57,17 +58,22 @@
 @property (nonatomic, retain) SAAd *ad;
 
 // weak ref to view
-@property (nonatomic, weak) SAView *weakAdView;
+@property (nonatomic, weak) UIView *weakAdView;
 
 @end
 
 @implementation SAParentalGate
 
 // custom init functions
-- (id) initWithWeakRefToView:(SAView *)weakRef {
+- (id) initWithWeakRefToView:(UIView *)weakRef {
     if (self = [super init]) {
         _weakAdView = weakRef;
-        _ad = [_weakAdView ad];
+        if ([_weakAdView isKindOfClass:[SABannerAd2 class]]) {
+            _ad = [(SABannerAd2*)_weakAdView getAd];
+        }
+        if ([_weakAdView isKindOfClass:[SAVideoAd2 class]]){
+            _ad = [(SAVideoAd2*)_weakAdView getAd];
+        }
     }
     
     return self;
@@ -109,7 +115,14 @@
             }
             
             // finally advance to URL
-            [_weakAdView advanceToClick];
+            if ([_weakAdView respondsToSelector:@selector(advanceToClick)]) {
+                if ([_weakAdView isKindOfClass:[SABannerAd2 class]]) {
+                    [(SABannerAd2*)_weakAdView advanceToClick];
+                }
+                if ([_weakAdView isKindOfClass:[SAVideoAd2 class]]){
+                    [(SAVideoAd2*)_weakAdView advanceToClick];
+                }
+            }
         }
         // or a bad solution
         else{
