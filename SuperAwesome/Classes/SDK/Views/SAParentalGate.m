@@ -51,7 +51,7 @@
 @property (nonatomic,assign) NSInteger solution;
 
 @property (nonatomic, retain) UIAlertView *challengeAlertView;
-@property (nonatomic, retain) UIAlertController *challangeAlertView;
+@property (nonatomic, retain) UIAlertController *challangeAlertController;
 @property (nonatomic, retain) UIAlertView *wrongAnswerAlertView;
 
 // the ad response
@@ -89,6 +89,16 @@
 - (void) show {
     [self newQuestion];
     
+    if (NSClassFromString(@"UIAlertController")) {
+        [self showWithAlertController];
+    } else {
+        [self showWithUIAlertView];
+    }
+}
+
+#pragma mark iOS 8.0 +
+
+- (void) showWithAlertController {
     // action block #1
     actionBlock cancelBlock = ^(UIAlertAction *action) {
         // calls to delegate or blocks
@@ -101,51 +111,27 @@
     actionBlock continueBlock = ^(UIAlertAction *action) {
         
         // get number from text field
-        UITextField *textField = [[_challangeAlertView textFields] firstObject];
+        UITextField *textField = [[_challangeAlertController textFields] firstObject];
         NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
         [f setNumberStyle:NSNumberFormatterDecimalStyle];
         NSNumber *input = [f numberFromString:textField.text];
+        [textField resignFirstResponder];
         
         // what happens when you get a right solution
         if([input integerValue] == self.solution){
-            
-            // call to delegate
-            if(_delegate && [_delegate respondsToSelector:@selector(parentalGateWasSucceded:)]){
-                [_delegate parentalGateWasSucceded:_ad.placementId];
-            }
-            
-            // finally advance to URL
-            if ([_weakAdView respondsToSelector:@selector(advanceToClick)]) {
-                if ([_weakAdView isKindOfClass:[SABannerAd class]]) {
-                    [(SABannerAd*)_weakAdView advanceToClick];
-                }
-                if ([_weakAdView isKindOfClass:[SAVideoAd class]]){
-                    [(SAVideoAd*)_weakAdView advanceToClick];
-                }
-            }
+            [self handlePGSuccess];
         }
         // or a bad solution
         else{
-            // ERROR
-            _wrongAnswerAlertView = [[UIAlertView alloc] initWithTitle:SA_ERROR_ALERTVIEW_TITLE
-                                                               message:SA_ERROR_ALERTVIEW_MESSAGE
-                                                              delegate:self
-                                                     cancelButtonTitle:SA_ERROR_ALERTVIEW_CANCELBUTTON_TITLE
-                                                     otherButtonTitles: nil];
-            [_wrongAnswerAlertView show];
-            
-            // call to delegate
-            if(_delegate && [_delegate respondsToSelector:@selector(parentalGateWasFailed:)]){
-                [_delegate parentalGateWasFailed:_ad.placementId];
-            }
+            [self handlePGError];
         }
     };
     
     
     // alert view (controller)
-    _challangeAlertView = [UIAlertController alertControllerWithTitle:SA_CHALLANGE_ALERTVIEW_TITLE
-                                                              message:SA_CHALLANGE_ALERTVIEW_FORMATTED_MESSAGE
-                                                       preferredStyle:UIAlertControllerStyleAlert];
+    _challangeAlertController = [UIAlertController alertControllerWithTitle:SA_CHALLANGE_ALERTVIEW_TITLE
+                                                                    message:SA_CHALLANGE_ALERTVIEW_FORMATTED_MESSAGE
+                                                             preferredStyle:UIAlertControllerStyleAlert];
     
     // actions
     UIAlertAction* continueBtn = [UIAlertAction actionWithTitle:SA_CHALLANGE_ALERTVIEW_CONTINUEBUTTON_TITLE
@@ -157,16 +143,83 @@
     
     
     // add actions
-    [_challangeAlertView addAction:cancelBtn];
-    [_challangeAlertView addAction:continueBtn];
+    [_challangeAlertController addAction:cancelBtn];
+    [_challangeAlertController addAction:continueBtn];
     __block UITextField *localTextField;
     
-    [_challangeAlertView addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+    [_challangeAlertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         localTextField = textField;
         localTextField.keyboardType = UIKeyboardTypeNumberPad;
     }];
     
-    [_challangeAlertView show];
+    [_challangeAlertController show];
+}
+
+#pragma mark iOS 8.0 -
+
+- (void) showWithUIAlertView {
+    _challengeAlertView = [[UIAlertView alloc] initWithTitle:SA_CHALLANGE_ALERTVIEW_TITLE
+                                                                 message:SA_CHALLANGE_ALERTVIEW_FORMATTED_MESSAGE
+                                                                delegate:self
+                                                       cancelButtonTitle:SA_CHALLANGE_ALERTVIEW_CANCELBUTTON_TITLE
+                                                       otherButtonTitles:SA_CHALLANGE_ALERTVIEW_CONTINUEBUTTON_TITLE, nil];
+    _challengeAlertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [_challengeAlertView show];
+}
+
+- (void) willPresentAlertView:(UIAlertView *)alertView {
+    UITextField *textField = [_challengeAlertView textFieldAtIndex:0];
+    textField.keyboardType = UIKeyboardTypeNumberPad;
+}
+
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 1) {
+        UITextField *textField = [_challengeAlertView textFieldAtIndex:0];
+        NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
+        [f setNumberStyle:NSNumberFormatterDecimalStyle];
+        NSNumber *input = [f numberFromString:textField.text];
+        
+        if ([input integerValue] == _solution) {
+            [self handlePGSuccess];
+        } else {
+            [self handlePGError];
+        }
+    }
+}
+
+#pragma mark General Functions
+
+- (void) handlePGSuccess {
+    // call to delegate
+    if(_delegate && [_delegate respondsToSelector:@selector(parentalGateWasSucceded:)]){
+        [_delegate parentalGateWasSucceded:_ad.placementId];
+    }
+    
+    // finally advance to URL
+    if ([_weakAdView respondsToSelector:@selector(advanceToClick)]) {
+        if ([_weakAdView isKindOfClass:[SABannerAd class]]) {
+            [(SABannerAd*)_weakAdView advanceToClick];
+        }
+        if ([_weakAdView isKindOfClass:[SAVideoAd class]]){
+            [(SAVideoAd*)_weakAdView advanceToClick];
+        }
+    }
+}
+
+- (void) handlePGError {
+    // ERROR
+    _wrongAnswerAlertView = [[UIAlertView alloc] initWithTitle:SA_ERROR_ALERTVIEW_TITLE
+                                                       message:SA_ERROR_ALERTVIEW_MESSAGE
+                                                      delegate:nil
+                                             cancelButtonTitle:SA_ERROR_ALERTVIEW_CANCELBUTTON_TITLE
+                                             otherButtonTitles:nil];
+    _wrongAnswerAlertView.alertViewStyle = UIAlertViewStyleDefault;
+    [_wrongAnswerAlertView show];
+    
+    // call to delegate
+    if(_delegate && [_delegate respondsToSelector:@selector(parentalGateWasFailed:)]){
+        [_delegate parentalGateWasFailed:_ad.placementId];
+    }
 }
 
 @end

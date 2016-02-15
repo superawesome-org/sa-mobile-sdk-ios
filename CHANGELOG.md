@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+3.5.0
+ - Updated Parental Gate
+
 3.4.9
  - Uniformised Views
 
