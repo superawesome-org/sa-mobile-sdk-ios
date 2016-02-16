@@ -47,16 +47,16 @@
         // and test mode is disabled
         [self setConfigurationProduction];
         [self disableTestMode];
-        SACapper *capper = [[SACapper alloc] init];
-        [capper enableDeviceAppUserId];
-        _dauID = [capper getDAUId];
+        [SACapper enableCapping:^(NSUInteger dauId) {
+            _dauID = dauId;
+        }];
     }
     
     return self;
 }
 
 - (NSString*) getVersion {
-    return @"3.5.2";
+    return @"3.5.3";
 }
 
 - (NSString*) getSdk {

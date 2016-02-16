@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+3.5.3
+ - Unifomised DAU part with Android One (which is a little more complex)
+
 3.5.2
  - When no advertising tracking is permitted, SA SDK respects that now
 

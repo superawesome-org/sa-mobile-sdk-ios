@@ -13,15 +13,41 @@
 // this thing right here imports AdSupport framework
 @import AdSupport;
 
-@interface SACapper ()
-@property (nonatomic, assign) NSUInteger dauHash;
-@end
-
 @implementation SACapper
+
++ (void) enableCapping:(didFindDAUId)callback {
+    // get if the user has an advertising enabled
+    BOOL canTrack = [[ASIdentifierManager sharedManager] isAdvertisingTrackingEnabled];
+    
+    // if user had disabled tracking --> that's it
+    if (!canTrack) {
+        callback(0);
+        return;
+    }
+    
+    // get user defaults
+    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+    
+    // continue as if  user has Ad Tracking enabled and all ...
+    NSString *firstPartOfDAU = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+    NSString *secondPartOfDAU = [def objectForKey:SUPER_AWESOME_FIRST_PART_DAU];
+    
+    if (!secondPartOfDAU || [secondPartOfDAU isEqualToString:@""]){
+        secondPartOfDAU = [self generateUniqueKey];
+        [def setObject:secondPartOfDAU forKey:SUPER_AWESOME_FIRST_PART_DAU];
+        [def synchronize];
+    }
+    
+    NSUInteger hash1 = [firstPartOfDAU hash];
+    NSUInteger hash2 = [secondPartOfDAU hash];
+    NSUInteger dauHash = hash1 ^ hash2;
+    
+    callback(dauHash);
+}
 
 // generates a unique per device / per app / per user ID
 // that is COPPA compliant
-- (NSString*) generateFirstPartOfDAU {
++ (NSString*) generateUniqueKey {
     // constants
     const NSString *alphabet  = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXZY0123456789";
     const NSInteger length = [alphabet length];
@@ -36,48 +62,6 @@
     }
     
     return s;
-}
-
-// generate the second part of the DAU, which is the IDFA string
-- (NSString*) generateSecondPartOfDAU {
-    if ([self shouldTrackAdvertising]) {
-        NSUUID *idfa = [[ASIdentifierManager sharedManager] advertisingIdentifier];
-        return [idfa UUIDString];
-    }
-    
-    return @"";
-}
-
-- (BOOL) shouldTrackAdvertising {
-    return [[ASIdentifierManager sharedManager] isAdvertisingTrackingEnabled];
-}
-
-// create the Device App User Id
-- (void) enableDeviceAppUserId {
-    if (![self shouldTrackAdvertising]) {
-        _dauHash = 0;
-        return;
-    }
-    
-    // get user defaults
-    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
-    
-    // get the first part of dau
-    NSString *firstPartDau = [def objectForKey:SUPER_AWESOME_FIRST_PART_DAU];
-    
-    if (!firstPartDau || [firstPartDau isEqualToString:@""]){
-        firstPartDau = [self generateFirstPartOfDAU];
-        [def setObject:firstPartDau forKey:SUPER_AWESOME_FIRST_PART_DAU];
-        [def synchronize];
-    }
-    
-    NSUInteger hash1 = [firstPartDau hash];
-    NSUInteger hash2 = [[self generateSecondPartOfDAU] hash];
-    _dauHash = hash1 ^ hash2;
-}
-
-- (NSUInteger) getDAUId {
-    return _dauHash;
 }
 
 @end
