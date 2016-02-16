@@ -11,11 +11,13 @@
 // import header
 #import "SuperAwesome.h"
 
+// import the SACapper part
+#import "SACapper.h"
+
 // define the three URL constants
 #define BASE_URL_STAGING @"https://ads.staging.superawesome.tv/v2"
 #define BASE_URL_DEVELOPMENT @"https://ads.dev.superawesome.tv/v2"
 #define BASE_URL_PRODUCTION @"https://ads.superawesome.tv/v2"
-#define SUPER_AWESOME_DAU_ID @"SUPER_AWESOME_DAU_ID"
 
 @interface SuperAwesome ()
 
@@ -29,7 +31,7 @@
 
 @implementation SuperAwesome
 
-+ (SuperAwesome *)getInstance {
++ (SuperAwesome *) getInstance {
     static SuperAwesome *sharedManager = nil;
     @synchronized(self) {
         if (sharedManager == nil){
@@ -45,14 +47,16 @@
         // and test mode is disabled
         [self setConfigurationProduction];
         [self disableTestMode];
-        [self enableDeviceAppUserId];
+        SACapper *capper = [[SACapper alloc] init];
+        [capper enableDeviceAppUserId];
+        _dauID = [capper getDAUId];
     }
     
     return self;
 }
 
 - (NSString*) getVersion {
-    return @"3.5.0";
+    return @"3.5.1";
 }
 
 - (NSString*) getSdk {
@@ -102,38 +106,6 @@
 
 - (BOOL) isTestingEnabled {
     return _isTestEnabled;
-}
-
-// generates a unique per device / per app / per user ID
-// that is COPPA compliant
-- (NSString*) generateId {
-    // constants
-    const NSString *alphabet  = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXZY0123456789";
-    const NSInteger length = [alphabet length];
-    const NSInteger dauLength = 32;
-    
-    // create the string
-    NSMutableString *s = [NSMutableString stringWithCapacity:20];
-    for (NSUInteger i = 0U; i < dauLength; i++) {
-        u_int32_t r = arc4random() % length;
-        unichar c = [alphabet characterAtIndex:r];
-        [s appendFormat:@"%C", c];
-    }
-    
-    return s;
-}
-
-- (void) enableDeviceAppUserId {
-    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
-    NSString *dauID = [def objectForKey:SUPER_AWESOME_DAU_ID];
-    if (!dauID || [dauID isEqualToString:@""]){
-        dauID = [self generateId];
-        [def setObject:dauID forKey:SUPER_AWESOME_DAU_ID];
-        [def synchronize];
-        _dauID = dauID;
-    } else {
-        _dauID = dauID;
-    }
 }
 
 - (NSString*) getDAUID {

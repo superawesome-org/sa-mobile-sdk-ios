@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+3.5.1
+ - Added better frecquency capping
+
 3.5.0
  - Updated Parental Gate
 
