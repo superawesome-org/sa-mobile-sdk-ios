@@ -4,7 +4,7 @@ Full Examples
 Simple Example
 ^^^^^^^^^^^^^^
 
-The first example show how you can add a banner ad in your app with just a
+The first example shows how you can add a banner ad in your app with just a
 few lines of code.
 
 .. code-block:: objective-c
