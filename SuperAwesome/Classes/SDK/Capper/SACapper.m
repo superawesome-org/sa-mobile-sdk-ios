@@ -40,7 +40,7 @@
 
 // generate the second part of the DAU, which is the IDFA string
 - (NSString*) generateSecondPartOfDAU {
-    if ([[ASIdentifierManager sharedManager] isAdvertisingTrackingEnabled]) {
+    if ([self shouldTrackAdvertising]) {
         NSUUID *idfa = [[ASIdentifierManager sharedManager] advertisingIdentifier];
         return [idfa UUIDString];
     }
@@ -48,8 +48,17 @@
     return @"";
 }
 
+- (BOOL) shouldTrackAdvertising {
+    return [[ASIdentifierManager sharedManager] isAdvertisingTrackingEnabled];
+}
+
 // create the Device App User Id
 - (void) enableDeviceAppUserId {
+    if (![self shouldTrackAdvertising]) {
+        _dauHash = 0;
+        return;
+    }
+    
     // get user defaults
     NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
     
@@ -67,8 +76,8 @@
     _dauHash = hash1 ^ hash2;
 }
 
-- (NSString*) getDAUId {
-    return [NSString stringWithFormat:@"%lu", (unsigned long)_dauHash];
+- (NSUInteger) getDAUId {
+    return _dauHash;
 }
 
 @end

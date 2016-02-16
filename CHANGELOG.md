@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+3.5.2
+ - When no advertising tracking is permitted, SA SDK respects that now
+
 3.5.1
  - Added better frecquency capping
 

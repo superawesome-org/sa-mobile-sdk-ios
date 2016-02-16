@@ -472,14 +472,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		60ECFEC0F3B70F4EE3C83ACE610DB3BB /* PBXContainerItemProxy */ = {
+		3460D4B43F67E5160EDC95BC2F280E5A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 3328DE7B61120881E07B1674ABC15018;
 			remoteInfo = "mopub-ios-sdk";
 		};
-		9444A712701F0903425F5109D7834848 /* PBXContainerItemProxy */ = {
+		9DBB42E84F8747201C15968A86C58166 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
@@ -2122,8 +2122,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				4A99E20054146DB2D3B1AFA0FD5CED83 /* PBXTargetDependency */,
-				E6F8B5FE79A73B9145F325BD2D776C17 /* PBXTargetDependency */,
+				42EC975359BFE483B844006CD8AA045F /* PBXTargetDependency */,
+				D4C224285BD356B96DA899C7BCB7AEFC /* PBXTargetDependency */,
 			);
 			name = "Pods-SuperAwesomeMoPub";
 			productName = "Pods-SuperAwesomeMoPub";
@@ -2399,17 +2399,17 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		4A99E20054146DB2D3B1AFA0FD5CED83 /* PBXTargetDependency */ = {
+		42EC975359BFE483B844006CD8AA045F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SuperAwesome;
 			target = 3C8CF4B347C4DA19316D74204D4AD7D6 /* SuperAwesome */;
-			targetProxy = 9444A712701F0903425F5109D7834848 /* PBXContainerItemProxy */;
+			targetProxy = 9DBB42E84F8747201C15968A86C58166 /* PBXContainerItemProxy */;
 		};
-		E6F8B5FE79A73B9145F325BD2D776C17 /* PBXTargetDependency */ = {
+		D4C224285BD356B96DA899C7BCB7AEFC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "mopub-ios-sdk";
 			target = 3328DE7B61120881E07B1674ABC15018 /* mopub-ios-sdk */;
-			targetProxy = 60ECFEC0F3B70F4EE3C83ACE610DB3BB /* PBXContainerItemProxy */;
+			targetProxy = 3460D4B43F67E5160EDC95BC2F280E5A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

@@ -14,6 +14,6 @@
 - (void) enableDeviceAppUserId;
 
 // function that returns the DAU Id
-- (NSString*) getDAUId;
+- (NSUInteger) getDAUId;
 
 @end

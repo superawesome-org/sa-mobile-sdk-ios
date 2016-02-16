@@ -35,12 +35,14 @@
     
     // First thing to do is format the AA URL to get an ad, based on specs
     NSString *endpoint = [NSString stringWithFormat:@"%@/ad/%ld", [[SuperAwesome getInstance] getBaseURL], (long)placementId];
-    NSDictionary *dict = @{
-        @"test": [NSNumber numberWithBool:[[SuperAwesome getInstance] isTestingEnabled]],
-        @"sdkVersion": [[SuperAwesome getInstance] getSdkVersion],
-        @"rnd": [NSNumber numberWithInteger:[SAURLUtils getCachebuster]],
-        @"dauid": [[SuperAwesome getInstance] getDAUID]
-    };
+    NSMutableDictionary *dict;
+    dict = [[NSMutableDictionary alloc] init];
+    [dict setObject:[NSNumber numberWithBool:[[SuperAwesome getInstance] isTestingEnabled]] forKey:@"test"];
+    [dict setObject:[[SuperAwesome getInstance] getSdkVersion] forKey:@"sdkVersion"];
+    [dict setObject:[NSNumber numberWithInteger:[SAURLUtils getCachebuster]] forKey:@"rnd"];
+    if ([[SuperAwesome getInstance] getDAUID] != 0){
+        [dict setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[[SuperAwesome getInstance] getDAUID]] forKey:@"dauid"];
+    }
     
     // The second operation to perform is calling a SANetwork class function
     // to get Ad data, returned as NSData

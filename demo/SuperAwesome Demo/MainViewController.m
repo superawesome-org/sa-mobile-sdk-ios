@@ -50,7 +50,7 @@
     subtitle.text = [NSString stringWithFormat:@"(%@ - %@ - %@)",
                      [[SuperAwesome getInstance] getSdkVersion],
                      [SASystem getVerboseSystemDetails],
-                     [[SuperAwesome getInstance] getDAUID]];
+                     [NSString stringWithFormat:@"%lu", (unsigned long)[[SuperAwesome getInstance] getDAUID]]];
     subtitle.textColor = [UIColor colorWithRed:0.85 green:0.85 blue:0.85 alpha:1];
     subtitle.backgroundColor = [UIColor clearColor];
     subtitle.textAlignment = NSTextAlignmentCenter;

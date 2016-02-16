@@ -24,7 +24,7 @@
 // private vars
 @property (nonatomic, strong) NSString *baseURL;
 @property (nonatomic, assign) BOOL isTestEnabled;
-@property (nonatomic, strong) NSString *dauID;
+@property (nonatomic, assign) NSUInteger dauID;
 @property (nonatomic, assign) SAConfiguration config;
 
 @end
@@ -56,7 +56,7 @@
 }
 
 - (NSString*) getVersion {
-    return @"3.5.1";
+    return @"3.5.2";
 }
 
 - (NSString*) getSdk {
@@ -108,9 +108,8 @@
     return _isTestEnabled;
 }
 
-- (NSString*) getDAUID {
+- (NSUInteger) getDAUID {
     return _dauID;
 }
-
 
 @end

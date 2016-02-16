@@ -68,6 +68,6 @@ typedef enum SAConfiguration {
 - (BOOL) isTestingEnabled;
 
 // get the dau
-- (NSString*) getDAUID;
+- (NSUInteger) getDAUID;
 
 @end
