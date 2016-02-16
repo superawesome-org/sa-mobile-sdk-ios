@@ -9,7 +9,7 @@ The SuperAwesome iOS SDK (Software Development Kit) lets you to easily add COPPA
 =======   ========
 Info      Contents
 =======   ========
-Version   3.4.7
+Version   3.5.2
 GitHub    https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios
 Support   `devsupport@superawesome.tv <mailto:devsupport@superawesome.tv>`_
 License   `LICENSE.txt <https://raw.githubusercontent.com/SuperAwesomeLTD/sa-mobile-sdk-ios/master/LICENSE.txt>`_

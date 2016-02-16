@@ -31,6 +31,7 @@ like images, videos, interactive rich media content, etc.
 .. image:: img/IMG_01_Dashboard_3.png
 
 Each placement has a number of associated parameters like ID, name, format, dimension.
+
     * The placement's ID is a unique identifier associated with it. In the SDK it will be used to load ad data.
     * The name is a human readable identifier. It's good practice to name your placements something easy to remember or suggestive.
     * The format can be video, display, etc, and informs you of what type of ads should be run on the placement.
