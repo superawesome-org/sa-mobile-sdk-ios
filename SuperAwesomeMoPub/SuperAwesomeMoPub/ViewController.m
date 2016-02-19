@@ -64,12 +64,12 @@
 
 - (IBAction)openVideo:(id)sender {
     [[MoPub sharedInstance] initializeRewardedVideoWithGlobalMediationSettings:nil delegate:self];
-    [MPRewardedVideo loadRewardedVideoAdWithAdUnitID:@"39d8771203114e7b9a3d77a45e238a1a" withMediationSettings:nil];
+    [MPRewardedVideo loadRewardedVideoAdWithAdUnitID:@"b21c7878bb1343fc8a9b267edf3c6618" withMediationSettings:nil];
 }
 
 - (IBAction)playVideo:(id)sender {
-    if ([MPRewardedVideo hasAdAvailableForAdUnitID:@"39d8771203114e7b9a3d77a45e238a1a"]) {
-        [MPRewardedVideo presentRewardedVideoAdForAdUnitID:@"39d8771203114e7b9a3d77a45e238a1a" fromViewController:self];
+    if ([MPRewardedVideo hasAdAvailableForAdUnitID:@"b21c7878bb1343fc8a9b267edf3c6618"]) {
+        [MPRewardedVideo presentRewardedVideoAdForAdUnitID:@"b21c7878bb1343fc8a9b267edf3c6618" fromViewController:self];
     } else {
         NSLog(@"No video present");
     }

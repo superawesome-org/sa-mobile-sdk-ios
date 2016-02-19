@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+3.5.4
+ - Fixed orientation issue when device is lying on a table
+
 3.5.3
  - Unifomised DAU part with Android One (which is a little more complex)
 
