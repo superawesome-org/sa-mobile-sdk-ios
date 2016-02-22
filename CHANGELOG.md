@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+3.5.5
+ - New padlock image
+ - Added isHouse as paramter
+
 3.5.4
  - Fixed orientation issue when device is lying on a table
 

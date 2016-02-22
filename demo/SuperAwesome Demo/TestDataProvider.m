@@ -39,8 +39,8 @@
              CreateAdItem(@"Upsight - Tablet Portrait Static - 30166", 30166, false, interstitial_item),
              CreateAdItem(@"Upsight - Tablet Landscape Static - 30167", 30167, false, interstitial_item),
              
-             CreateAdItem(@"30510", 30510, true, fullscreen_video_item),
-             CreateAdItem(@"30512", 30512, true, fullscreen_video_item),
+             CreateAdItem(@"30260", 30260, false, video_item),
+             CreateAdItem(@"30512", 30512, false, fullscreen_video_item),
 //
 ////             CreateAdItem(@"79 Inter", 79, false, interstitial_item),
 //             CreateAdItem(@"79 Video", 79, false, fullscreen_video_item)

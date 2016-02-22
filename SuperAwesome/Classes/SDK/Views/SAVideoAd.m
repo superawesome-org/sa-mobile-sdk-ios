@@ -20,6 +20,8 @@
 #import "SAVASTPlayer.h"
 #import "SAVASTManager.h"
 
+#define SMALL_PAD_FRAME CGRectMake(0, 0, 49, 25)
+
 @interface SAVideoAd () <SAVASTManagerProtocol>
 @property id<SAAdProtocol> internalAdProto;
 @property id<SAVideoAdProtocol> internalVideoAdProto;
@@ -83,10 +85,9 @@
     [manager parseVASTURL:ad.creative.details.vast];
     
     // add the padlick
-    CGRect padFrame = CGRectMake(self.frame.origin.x + self.frame.size.width - 15, self.frame.origin.y + self.frame.size.height - 15, 15, 15);
-    padlock = [[UIImageView alloc] initWithFrame:padFrame];
-    padlock.image = [UIImage imageNamed:@"sa_padlock"];
-    if (!ad.isFallback) {
+    padlock = [[UIImageView alloc] initWithFrame:SMALL_PAD_FRAME];
+    padlock.image = [UIImage imageNamed:@"watermark_49x25"];
+    if (!ad.isFallback && !ad.isHouse) {
         [self addSubview:padlock];
     }
 }
@@ -134,8 +135,7 @@
     [player updateToFrame:playerFrame];
     
     // rearrange the padlock
-    CGRect padFrame = CGRectMake(self.frame.origin.x + self.frame.size.width - 15, self.frame.origin.y + self.frame.size.height - 15, 15, 15);
-    padlock.frame = padFrame;
+    padlock.frame = SMALL_PAD_FRAME;
 }
 
 #pragma mark <SAVASTProtocol>

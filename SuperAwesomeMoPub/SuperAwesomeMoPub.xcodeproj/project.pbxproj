@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1B1470601C76A2180097F3C6 /* AdColonyRewardedVideoCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B14705F1C76A2180097F3C6 /* AdColonyRewardedVideoCustomEvent.m */; };
-		1B1470631C76A31C0097F3C6 /* AdColonyInstanceMediationSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B1470621C76A31C0097F3C6 /* AdColonyInstanceMediationSettings.m */; };
 		1BC2D8EE1C55056400232778 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BC2D8ED1C55056400232778 /* main.m */; };
 		1BC2D8F11C55056400232778 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BC2D8F01C55056400232778 /* AppDelegate.m */; };
 		1BC2D8F41C55056400232778 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BC2D8F31C55056400232778 /* ViewController.m */; };
@@ -41,10 +39,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1B14705E1C76A2180097F3C6 /* AdColonyRewardedVideoCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdColonyRewardedVideoCustomEvent.h; sourceTree = "<group>"; };
-		1B14705F1C76A2180097F3C6 /* AdColonyRewardedVideoCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdColonyRewardedVideoCustomEvent.m; sourceTree = "<group>"; };
-		1B1470611C76A31C0097F3C6 /* AdColonyInstanceMediationSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdColonyInstanceMediationSettings.h; sourceTree = "<group>"; };
-		1B1470621C76A31C0097F3C6 /* AdColonyInstanceMediationSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdColonyInstanceMediationSettings.m; sourceTree = "<group>"; };
 		1BC2D8E91C55056400232778 /* SuperAwesomeMoPub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperAwesomeMoPub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BC2D8ED1C55056400232778 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1BC2D8EF1C55056400232778 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -188,10 +182,6 @@
 				1BC2D9251C5506C200232778 /* SuperAwesomeInterstitialCustomEvent.m */,
 				1BC2D9261C5506C200232778 /* SuperAwesomeRewardedVideoCustomEvent.h */,
 				1BC2D9271C5506C200232778 /* SuperAwesomeRewardedVideoCustomEvent.m */,
-				1B14705E1C76A2180097F3C6 /* AdColonyRewardedVideoCustomEvent.h */,
-				1B14705F1C76A2180097F3C6 /* AdColonyRewardedVideoCustomEvent.m */,
-				1B1470611C76A31C0097F3C6 /* AdColonyInstanceMediationSettings.h */,
-				1B1470621C76A31C0097F3C6 /* AdColonyInstanceMediationSettings.m */,
 			);
 			name = MoPub;
 			sourceTree = "<group>";
@@ -380,12 +370,10 @@
 			files = (
 				1BC2D8F41C55056400232778 /* ViewController.m in Sources */,
 				1BC2D92A1C5506C200232778 /* SuperAwesomeRewardedVideoCustomEvent.m in Sources */,
-				1B1470601C76A2180097F3C6 /* AdColonyRewardedVideoCustomEvent.m in Sources */,
 				1BC2D9281C5506C200232778 /* SuperAwesomeBannerCustomEvent.m in Sources */,
 				1BC2D8F11C55056400232778 /* AppDelegate.m in Sources */,
 				1BC2D8EE1C55056400232778 /* main.m in Sources */,
 				1BC2D9291C5506C200232778 /* SuperAwesomeInterstitialCustomEvent.m in Sources */,
-				1B1470631C76A31C0097F3C6 /* AdColonyInstanceMediationSettings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

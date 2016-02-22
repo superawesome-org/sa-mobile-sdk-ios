@@ -74,6 +74,7 @@
     id isTestObj = [adict objectForKey:@"test"];
     id isFallbackObj = [adict objectForKey:@"is_fallback"];
     id isFillObj = [adict objectForKey:@"is_fill"];
+    id isHouseObj = [adict objectForKey:@"is_house"];
     
     ad.error = ([SAParser validateField:errorObj] ? [errorObj integerValue] : -1);
     ad.lineItemId = ([SAParser validateField:lineItemIdObj] ? [lineItemIdObj integerValue] : -1);
@@ -81,6 +82,7 @@
     ad.isTest = ([SAParser validateField:isTestObj] ? [isTestObj boolValue] : true);
     ad.isFallback = ([SAParser validateField:isFallbackObj] ? [isFallbackObj boolValue] : true);
     ad.isFill = ([SAParser validateField:isFillObj] ? [isFillObj boolValue] : false);
+    ad.isHouse = ([SAParser validateField:isHouseObj] ? [isHouseObj boolValue] : false);
     
     return ad;
 }

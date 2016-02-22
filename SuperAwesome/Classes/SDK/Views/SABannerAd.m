@@ -20,6 +20,7 @@
 
 // defines
 #define BG_COLOR [UIColor colorWithRed:0.75 green:0.75 blue:0.75 alpha:1]
+#define BIG_PAD_FRAME CGRectMake(0, 0, 67, 25)
 
 @implementation SABannerAd
 
@@ -86,11 +87,10 @@
     [self addSubview:sawebview];
     
     // add the padlick
-    CGRect padFrame = CGRectMake(frame.origin.x + frame.size.width - 15, frame.origin.y + frame.size.height - 15, 15, 15);
-    padlock = [[UIImageView alloc] initWithFrame:padFrame];
-    padlock.image = [UIImage imageNamed:@"sa_padlock"];
-    if (!ad.isFallback) {
-        [self addSubview:padlock];
+    padlock = [[UIImageView alloc] initWithFrame:BIG_PAD_FRAME];
+    padlock.image = [UIImage imageNamed:@"watermark_67x25"];
+    if (!ad.isFallback && !ad.isHouse) {
+        [sawebview addSubview:padlock];
     }
 }
 
@@ -140,8 +140,7 @@
     [sawebview rearrangeForFrame:frame];
     
     // rearrange the padlock
-    CGRect padFrame = CGRectMake(frame.origin.x + frame.size.width - 15, frame.origin.y + frame.size.height - 15, 15, 15);
-    padlock.frame = padFrame;
+    padlock.frame = BIG_PAD_FRAME;
 }
 
 #pragma mark <SAWebViewProtocol> functions
