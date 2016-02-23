@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+3.5.6
+ - Minor improvements to padlock
+
 3.5.5
  - New padlock image
  - Added isHouse as paramter

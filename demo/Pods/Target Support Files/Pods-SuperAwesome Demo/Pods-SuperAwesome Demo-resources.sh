@@ -65,6 +65,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "../../SuperAwesome/Resources/mark.png"
   install_resource "../../SuperAwesome/Resources/watermark_49x25.png"
   install_resource "../../SuperAwesome/Resources/watermark_67x25.png"
+  install_resource "../../SuperAwesome/Resources/watermark_89x25.png"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "../../SuperAwesome/Resources/close.png"
@@ -74,6 +75,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "../../SuperAwesome/Resources/mark.png"
   install_resource "../../SuperAwesome/Resources/watermark_49x25.png"
   install_resource "../../SuperAwesome/Resources/watermark_67x25.png"
+  install_resource "../../SuperAwesome/Resources/watermark_89x25.png"
 fi
 
 mkdir -p "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
