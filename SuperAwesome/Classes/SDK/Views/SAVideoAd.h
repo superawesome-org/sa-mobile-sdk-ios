@@ -19,7 +19,7 @@
 @class SAVASTPlayer;
 @class SAVASTManager;
 
-@interface SAVideoAd : UIView <SAViewProtocol, SAVASTManagerProtocol>
+@interface SAVideoAd : UIView <SAViewProtocol>
 
 @property (nonatomic, weak) id<SAAdProtocol> adDelegate;
 @property (nonatomic, weak) id<SAParentalGateProtocol> parentalGateDelegate;

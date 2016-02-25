@@ -14,17 +14,10 @@
 @class SAAd;
 @class SABannerAd;
 
-@interface SAInterstitialAd : UIViewController <SAViewProtocol> {
-    SAAd *ad;
-    CGRect adviewFrame;
-    CGRect buttonFrame;
-    
-    SABannerAd *banner;
-    UIButton *closeBtn;
-}
+@interface SAInterstitialAd : UIViewController <SAViewProtocol>
 
-@property id<SAAdProtocol> adDelegate;
-@property id<SAParentalGateProtocol> parentalGateDelegate;
+@property (nonatomic, weak) id<SAAdProtocol> adDelegate;
+@property (nonatomic, weak) id<SAParentalGateProtocol> parentalGateDelegate;
 @property (nonatomic, assign) IBInspectable BOOL isParentalGateEnabled;
 
 @end

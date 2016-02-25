@@ -16,7 +16,7 @@
 @interface SAVASTPlayer : UIView
 
 // protocol delegate
-@property id<SAVASTPlayerProtocol> delegate;
+@property (nonatomic, weak) id<SAVASTPlayerProtocol> delegate;
 
 // play or stop
 - (void) playWithMediaURL:(NSURL *)url;

@@ -27,7 +27,7 @@
 @interface SALoader : NSObject
 
 // set delegate function
-@property id<SALoaderProtocol> delegate;
+@property (nonatomic, weak) id<SALoaderProtocol> delegate;
 
 // laod ad function;
 // does not return anything directly, but via the SALoaderProtocol delegate

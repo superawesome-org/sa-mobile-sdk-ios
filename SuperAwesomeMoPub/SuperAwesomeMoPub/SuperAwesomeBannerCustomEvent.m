@@ -18,12 +18,12 @@
 // - SAAdProtocol (common to all SAViews)
 @interface SuperAwesomeBannerCustomEvent () <SALoaderProtocol, SAAdProtocol, SAParentalGateProtocol>
 
-@property (nonatomic, strong) SABannerAd *banner;
 @property (nonatomic, assign) CGRect bannerFrame;
 @property (nonatomic, assign) NSInteger placementId;
 @property (nonatomic, assign) BOOL isTestEnabled;
 @property (nonatomic, assign) BOOL isParentalGateEnabled;
 @property (nonatomic, strong) SALoader *loader;
+@property (nonatomic, strong) SABannerAd *banner;
 
 @end
 

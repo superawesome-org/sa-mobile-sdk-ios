@@ -26,7 +26,7 @@ typedef void(^actionBlock) (UIAlertAction *action);
 - (id) initWithWeakRefToView:(UIView*)weakRef;
 
 // delegate
-@property id<SAParentalGateProtocol> delegate;
+@property (nonatomic, weak) id<SAParentalGateProtocol> delegate;
 
 // show function
 - (void) show;

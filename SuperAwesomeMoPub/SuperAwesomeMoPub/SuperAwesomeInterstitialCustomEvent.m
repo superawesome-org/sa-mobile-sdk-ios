@@ -18,11 +18,11 @@
 // - SAAdProtocol (common to all SAViews)
 @interface SuperAwesomeInterstitialCustomEvent () <SALoaderProtocol, SAAdProtocol, SAParentalGateProtocol>
 
-@property (nonatomic, strong) SAInterstitialAd *interstitial;
 @property (nonatomic, assign) NSInteger placementId;
 @property (nonatomic, assign) BOOL isTestEnabled;
 @property (nonatomic, assign) BOOL isParentalGateEnabled;
 @property (nonatomic, strong) SALoader *loader;
+@property (nonatomic, strong) SAInterstitialAd *interstitial;
 
 @end
 

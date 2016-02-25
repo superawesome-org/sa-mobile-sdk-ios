@@ -11,8 +11,10 @@
 
 @interface SAVASTParser : NSObject
 
-@property id<SAVASTParserProtocol> delegate;
+// weak object delegate to SAVAStParserProtocol
+@property (nonatomic, weak) id<SAVASTParserProtocol> delegate;
 
+// parse the VAST URL
 - (void) parseVASTURL:(NSString*)url;
 
 @end

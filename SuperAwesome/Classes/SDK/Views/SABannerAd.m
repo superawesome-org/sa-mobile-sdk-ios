@@ -22,6 +22,14 @@
 #define BG_COLOR [UIColor colorWithRed:0.75 green:0.75 blue:0.75 alpha:1]
 #define BIG_PAD_FRAME CGRectMake(0, 0, 67, 25)
 
+@interface SABannerAd () <SAWebViewProtocol>
+@property (nonatomic, strong) SAAd *ad;
+@property (nonatomic, strong) NSString *destinationURL;
+@property (nonatomic, strong) SAWebView *sawebview;
+@property (nonatomic, strong) SAParentalGate *gate;
+@property (nonatomic, strong) UIImageView *padlock;
+@end
+
 @implementation SABannerAd
 
 #pragma mark <INIT> functions
@@ -52,45 +60,45 @@
 
 #pragma mark <SAViewProtocol> functions
 
-- (void) setAd:(SAAd*)_ad {
-    ad = _ad;
+- (void) setAd:(SAAd*)__ad {
+    _ad = __ad;
 }
 
 - (SAAd*) getAd {
-    return ad;
+    return _ad;
 }
 
 - (void) play {
     // check for incorrect placement
-    if (ad.creative.format == video || ad == nil) {
+    if (_ad.creative.format == video || _ad == nil) {
         if (_adDelegate != NULL && [_adDelegate respondsToSelector:@selector(adHasIncorrectPlacement:)]){
-            [_adDelegate adHasIncorrectPlacement:ad.placementId];
+            [_adDelegate adHasIncorrectPlacement:_ad.placementId];
         }
         return;
     }
     
     // start creating the banner ad
-    gate = [[SAParentalGate alloc] initWithWeakRefToView:self];
-    gate.delegate = _parentalGateDelegate;
+    _gate = [[SAParentalGate alloc] initWithWeakRefToView:self];
+    _gate.delegate = _parentalGateDelegate;
     
     // calc correctly scaled frame
     CGRect frame = [SAUtils arrangeAdInNewFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
-                                      fromFrame:CGRectMake(0, 0, ad.creative.details.width, ad.creative.details.height)];
+                                      fromFrame:CGRectMake(0, 0, _ad.creative.details.width, _ad.creative.details.height)];
     
     // add the sawebview
-    sawebview = [[SAWebView alloc] initWithHTML:ad.adHTML
-                                      andAdSize:CGSizeMake(ad.creative.details.width, ad.creative.details.height)
-                                       andFrame:frame
-                                    andDelegate:self];
+    _sawebview = [[SAWebView alloc] initWithHTML:_ad.adHTML
+                                       andAdSize:CGSizeMake(_ad.creative.details.width, _ad.creative.details.height)
+                                        andFrame:frame
+                                     andDelegate:self];
     
     // add the subview
-    [self addSubview:sawebview];
+    [self addSubview:_sawebview];
     
     // add the padlick
-    padlock = [[UIImageView alloc] initWithFrame:BIG_PAD_FRAME];
-    padlock.image = [UIImage imageNamed:@"watermark_67x25"];
-    if (!ad.isFallback && !ad.isHouse) {
-        [sawebview addSubview:padlock];
+    _padlock = [[UIImageView alloc] initWithFrame:BIG_PAD_FRAME];
+    _padlock.image = [UIImage imageNamed:@"watermark_67x25"];
+    if (!_ad.isFallback && !_ad.isHouse) {
+        [_sawebview addSubview:_padlock];
     }
 }
 
@@ -100,33 +108,33 @@
 
 - (void) tryToGoToURL:(NSURL*)url {
     // get the going to URL
-    destinationURL = [url absoluteString];
+    _destinationURL = [url absoluteString];
     
     if (_isParentalGateEnabled) {
         // send an event
-        [SASender sendEventToURL:ad.creative.parentalGateClickURL];
+        [SASender sendEventToURL:_ad.creative.parentalGateClickURL];
         
         // show the gate
-        [gate show];
+        [_gate show];
     } else {
         [self advanceToClick];
     }
 }
 
 - (void) advanceToClick {
-    NSLog(@"[AA :: INFO] Going to %@", destinationURL);
+    NSLog(@"[AA :: INFO] Going to %@", _destinationURL);
     
-    if ([destinationURL rangeOfString:[[SuperAwesome getInstance] getBaseURL]].location == NSNotFound) {
-        NSLog(@"Sending click event to %@", ad.creative.trackingURL);
-        [SASender sendEventToURL:ad.creative.trackingURL];
+    if ([_destinationURL rangeOfString:[[SuperAwesome getInstance] getBaseURL]].location == NSNotFound) {
+        NSLog(@"Sending click event to %@", _ad.creative.trackingURL);
+        [SASender sendEventToURL:_ad.creative.trackingURL];
     }
     
     // call delegate
     if (_adDelegate && [_adDelegate respondsToSelector:@selector(adWasClicked:)]) {
-        [_adDelegate adWasClicked:ad.placementId];
+        [_adDelegate adWasClicked:_ad.placementId];
     }
     
-    NSURL *url = [NSURL URLWithString:destinationURL];
+    NSURL *url = [NSURL URLWithString:_destinationURL];
     [[UIApplication sharedApplication] openURL:url];
 }
 
@@ -134,28 +142,28 @@
     self.frame = toframe;
     
     CGRect frame = [SAUtils arrangeAdInNewFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
-                                      fromFrame:CGRectMake(0, 0, ad.creative.details.width, ad.creative.details.height)];
+                                      fromFrame:CGRectMake(0, 0, _ad.creative.details.width, _ad.creative.details.height)];
     
     // rearrange the webview
-    [sawebview rearrangeForFrame:frame];
+    [_sawebview rearrangeForFrame:frame];
     
     // rearrange the padlock
-    padlock.frame = BIG_PAD_FRAME;
+    _padlock.frame = BIG_PAD_FRAME;
 }
 
 #pragma mark <SAWebViewProtocol> functions
 
 - (void) saWebViewDidLoad {
-    [SASender sendEventToURL:ad.creative.viewableImpressionURL];
+    [SASender sendEventToURL:_ad.creative.viewableImpressionURL];
     
     if ([_adDelegate respondsToSelector:@selector(adWasShown:)]) {
-        [_adDelegate adWasShown:ad.placementId];
+        [_adDelegate adWasShown:_ad.placementId];
     }
 }
 
 - (void) saWebViewDidFail {
     if ([_adDelegate respondsToSelector:@selector(adFailedToShow:)]) {
-        [_adDelegate adFailedToShow:ad.placementId];
+        [_adDelegate adFailedToShow:_ad.placementId];
     }
 }
 

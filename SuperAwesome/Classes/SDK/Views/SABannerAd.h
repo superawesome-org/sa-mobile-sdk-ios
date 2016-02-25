@@ -18,18 +18,10 @@
 @class SAWebView;
 
 // class declaration for SABannerAd
-@interface SABannerAd : UIView <SAViewProtocol, SAWebViewProtocol> {
-    
-    SAAd *ad;
-    NSString *destinationURL;
-    
-    SAWebView *sawebview;
-    SAParentalGate *gate;
-    UIImageView *padlock;
-}
+@interface SABannerAd : UIView <SAViewProtocol>
 
-@property id<SAAdProtocol> adDelegate;
-@property id<SAParentalGateProtocol> parentalGateDelegate;
+@property (nonatomic, weak) id<SAAdProtocol> adDelegate;
+@property (nonatomic, weak) id<SAParentalGateProtocol> parentalGateDelegate;
 @property (nonatomic, assign) IBInspectable BOOL isParentalGateEnabled;
 
 @end

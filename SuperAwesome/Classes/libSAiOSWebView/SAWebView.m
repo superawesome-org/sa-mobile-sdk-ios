@@ -13,7 +13,7 @@
 @interface SAWebView () <UIScrollViewDelegate>
 
 // ad view internal stuff
-@property id<SAWebViewProtocol> sadelegate;
+@property (nonatomic, weak) id<SAWebViewProtocol> sadelegate;
 @property (nonatomic, strong) NSString *html;
 @property (nonatomic, assign) CGSize size;
 

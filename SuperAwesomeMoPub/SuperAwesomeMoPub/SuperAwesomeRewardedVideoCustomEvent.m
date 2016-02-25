@@ -25,9 +25,9 @@
 @property (nonatomic, assign) BOOL isParentalGateEnabled;
 @property (nonatomic, assign) BOOL shouldShowCloseButton;
 @property (nonatomic, assign) BOOL shouldAutomaticallyCloseAtEnd;
-@property (nonatomic, strong) SAFullscreenVideoAd *fvad;
 @property (nonatomic, strong) SAAd *cAd;
 @property (nonatomic, strong) SALoader *loader;
+@property (nonatomic, strong) SAFullscreenVideoAd *fvad;
 @property (nonatomic, strong) MPRewardedVideoReward *reward;
 
 @end

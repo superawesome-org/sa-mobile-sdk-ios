@@ -472,19 +472,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		0E7A3AA89C2B539ED39500A0285ED278 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3C8CF4B347C4DA19316D74204D4AD7D6;
-			remoteInfo = SuperAwesome;
-		};
-		5A28A6F18382BF23DA2FA595DB25DACA /* PBXContainerItemProxy */ = {
+		143EBD00DEDDC7C8C898292C0D5C8CAD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 3328DE7B61120881E07B1674ABC15018;
 			remoteInfo = "mopub-ios-sdk";
+		};
+		4332730D81D4C063176CB57E385CC542 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3C8CF4B347C4DA19316D74204D4AD7D6;
+			remoteInfo = SuperAwesome;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -2120,8 +2120,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				EB460188CBE3ADC497AF960D153E9107 /* PBXTargetDependency */,
-				6580405B5B8EC6BD166AA895C1E51EBF /* PBXTargetDependency */,
+				5F4020B25FFE65E15A0BDB78916EEEC0 /* PBXTargetDependency */,
+				4C4272C3BBC79463A72BAD66B9898E05 /* PBXTargetDependency */,
 			);
 			name = "Pods-SuperAwesomeMoPub";
 			productName = "Pods-SuperAwesomeMoPub";
@@ -2397,17 +2397,17 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		6580405B5B8EC6BD166AA895C1E51EBF /* PBXTargetDependency */ = {
+		4C4272C3BBC79463A72BAD66B9898E05 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "mopub-ios-sdk";
 			target = 3328DE7B61120881E07B1674ABC15018 /* mopub-ios-sdk */;
-			targetProxy = 5A28A6F18382BF23DA2FA595DB25DACA /* PBXContainerItemProxy */;
+			targetProxy = 143EBD00DEDDC7C8C898292C0D5C8CAD /* PBXContainerItemProxy */;
 		};
-		EB460188CBE3ADC497AF960D153E9107 /* PBXTargetDependency */ = {
+		5F4020B25FFE65E15A0BDB78916EEEC0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SuperAwesome;
 			target = 3C8CF4B347C4DA19316D74204D4AD7D6 /* SuperAwesome */;
-			targetProxy = 0E7A3AA89C2B539ED39500A0285ED278 /* PBXContainerItemProxy */;
+			targetProxy = 4332730D81D4C063176CB57E385CC542 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

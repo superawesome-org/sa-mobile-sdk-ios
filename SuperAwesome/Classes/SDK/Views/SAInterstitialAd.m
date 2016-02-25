@@ -15,6 +15,14 @@
 // defines
 #define INTER_BG_COLOR [UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1]
 
+@interface SAInterstitialAd ()
+@property (nonatomic, assign) CGRect adviewFrame;
+@property (nonatomic, assign) CGRect buttonFrame;
+@property (nonatomic, strong) SAAd *ad;
+@property (nonatomic, strong) SABannerAd *banner;
+@property (nonatomic, strong) UIButton *closeBtn;
+@end
+
 @implementation SAInterstitialAd
 
 #pragma mark <ViewController> functions
@@ -47,21 +55,21 @@
     // set bg color
     self.view.backgroundColor = INTER_BG_COLOR;
     
-    banner = [[SABannerAd alloc] initWithFrame:adviewFrame];
-    banner.adDelegate = _adDelegate;
-    banner.parentalGateDelegate = _parentalGateDelegate;
-    banner.isParentalGateEnabled = _isParentalGateEnabled;
-    [banner setAd:ad];
-    banner.backgroundColor = INTER_BG_COLOR;
-    [self.view addSubview:banner];
+    _banner = [[SABannerAd alloc] initWithFrame:_adviewFrame];
+    _banner.adDelegate = _adDelegate;
+    _banner.parentalGateDelegate = _parentalGateDelegate;
+    _banner.isParentalGateEnabled = _isParentalGateEnabled;
+    [_banner setAd:_ad];
+    _banner.backgroundColor = INTER_BG_COLOR;
+    [self.view addSubview:_banner];
     
     // create close button
-    closeBtn = [[UIButton alloc] initWithFrame:buttonFrame];
-    [closeBtn setTitle:@"" forState:UIControlStateNormal];
-    [closeBtn setImage:[UIImage imageNamed:@"close"] forState:UIControlStateNormal];
-    [closeBtn addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:closeBtn];
-    [self.view bringSubviewToFront:closeBtn];
+    _closeBtn = [[UIButton alloc] initWithFrame:_buttonFrame];
+    [_closeBtn setTitle:@"" forState:UIControlStateNormal];
+    [_closeBtn setImage:[UIImage imageNamed:@"close"] forState:UIControlStateNormal];
+    [_closeBtn addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_closeBtn];
+    [self.view bringSubviewToFront:_closeBtn];
     
     // setup coordinates
     CGSize scrSize = [UIScreen mainScreen].bounds.size;
@@ -137,22 +145,22 @@
 
 #pragma mark <SAViewProtocol> functions
 
-- (void) setAd:(SAAd*)_ad {
-    ad = _ad;
+- (void) setAd:(SAAd*)__ad {
+    _ad = __ad;
 }
 
 - (SAAd*) getAd {
-    return ad;
+    return _ad;
 }
 
 - (void) play {
-    [banner play];
+    [_banner play];
 }
 
 - (void) close {
     [self dismissViewControllerAnimated:YES completion:^{
-        if ([banner.adDelegate respondsToSelector:@selector(adWasClosed:)]) {
-            [banner.adDelegate adWasClosed:ad.placementId];
+        if ([_banner.adDelegate respondsToSelector:@selector(adWasClosed:)]) {
+            [_banner.adDelegate adWasClosed:_ad.placementId];
         }
     }];
 
@@ -178,12 +186,12 @@
     CGFloat cs = 40.0f;
     
     // final frames
-    adviewFrame = newR;
-    buttonFrame = CGRectMake(frame.size.width - cs, 0, cs, cs);
+    _adviewFrame = newR;
+    _buttonFrame = CGRectMake(frame.size.width - cs, 0, cs, cs);
     
     // actually resize stuff
-    closeBtn.frame = buttonFrame;
-    [banner resizeToFrame:adviewFrame];
+    _closeBtn.frame = _buttonFrame;
+    [_banner resizeToFrame:_adviewFrame];
 }
 
 @end

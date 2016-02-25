@@ -1,5 +1,5 @@
 PODS:
-  - SuperAwesome (3.5.6)
+  - SuperAwesome (3.5.7)
 
 DEPENDENCIES:
   - SuperAwesome (from `../`)
@@ -9,6 +9,6 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  SuperAwesome: dcca30d4cdbb7c479543fc744f71ba455918a8b2
+  SuperAwesome: cd6a5d83b81c7504381a1b7f3a4cfaa47e1ef5eb
 
 COCOAPODS: 0.38.2
