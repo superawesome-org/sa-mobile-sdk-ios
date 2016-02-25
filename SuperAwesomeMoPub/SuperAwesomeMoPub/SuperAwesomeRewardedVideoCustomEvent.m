@@ -28,6 +28,7 @@
 @property (nonatomic, strong) SAFullscreenVideoAd *fvad;
 @property (nonatomic, strong) SAAd *cAd;
 @property (nonatomic, strong) SALoader *loader;
+@property (nonatomic, strong) MPRewardedVideoReward *reward;
 
 @end
 
@@ -109,6 +110,7 @@
 - (void) didLoadAd:(SAAd *)ad {
     // assign current ad
     _cAd = ad;
+    _reward = [[MPRewardedVideoReward alloc] initWithCurrencyType:kMPRewardedVideoRewardCurrencyTypeUnspecified amount:@(0)];
     
     // init video
     _fvad = [[SAFullscreenVideoAd alloc] init];
@@ -190,9 +192,7 @@
 #pragma mark <SAVideoProtocol>
 
 - (void) videoEnded:(NSInteger)placementId {
-    
-    MPRewardedVideoReward *reward = [[MPRewardedVideoReward alloc] initWithCurrencyType:kMPRewardedVideoRewardCurrencyTypeUnspecified amount:[NSNumber numberWithInt:0]];
-    [self.delegate rewardedVideoShouldRewardUserForCustomEvent:self reward:reward];
+    [self.delegate rewardedVideoShouldRewardUserForCustomEvent:self reward:_reward];
 }
 
 @end

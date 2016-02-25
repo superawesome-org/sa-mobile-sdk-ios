@@ -34,13 +34,13 @@
 //             CreateAdItem(@"72", 72, false, interstitial_item),
 //             
              CreateAdItem(@"Upsight - Phone Portrait Static - 30165", 30165, false, interstitial_item),
-             CreateAdItem(@"Upsight - Phone Landscape Static - 30164", 30164, false, interstitial_item),
+             CreateAdItem(@"28000", 28000, false, fullscreen_video_item),
              
              CreateAdItem(@"Upsight - Tablet Portrait Static - 30166", 30166, false, interstitial_item),
              CreateAdItem(@"10305", 10305, false, interstitial_item),
              CreateAdItem(@"30468", 30468, false, interstitial_item),
              CreateAdItem(@"30260", 30260, false, video_item),
-             CreateAdItem(@"30512", 30512, false, fullscreen_video_item),
+             CreateAdItem(@"30512", 30512, true, fullscreen_video_item),
 //
 ////             CreateAdItem(@"79 Inter", 79, false, interstitial_item),
 //             CreateAdItem(@"79 Video", 79, false, fullscreen_video_item)

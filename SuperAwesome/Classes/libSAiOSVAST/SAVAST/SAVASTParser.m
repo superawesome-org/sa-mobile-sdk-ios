@@ -39,9 +39,9 @@
         // long running stuff
         dispatch_async(dispatch_get_main_queue(), ^{
             
-            for (SAVASTAd *ad in adsArray) {
-                [ad print];
-            }
+//            for (SAVASTAd *ad in adsArray) {
+//                [ad print];
+//            }
             
             if (adsArray.count >= 1 ) {
                 if (_delegate && [_delegate respondsToSelector:@selector(didParseVASTAndHasAdsResponse:)]) {

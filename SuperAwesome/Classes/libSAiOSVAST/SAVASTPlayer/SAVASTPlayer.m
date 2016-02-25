@@ -127,7 +127,7 @@
     
     // add observer for _playerItem for the status - to monitor how much
     // of the movie has played
-    [_playerItem addObserver:self forKeyPath:@"status" options:0 context:nil];
+//    [_playerItem addObserver:self forKeyPath:@"status" options:0 context:nil];
     
     // add an observer for _playerItem to monitor when it actually ends
     [_notif addObserver:self
@@ -176,12 +176,13 @@
     [_clicker removeTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
     [_clicker removeFromSuperview];
     
-    // remove _playerItem observer
-    @try {
-        [_playerItem removeObserver:self forKeyPath:@"status"];
-    } @catch(id anException){
-        // do nothing
-    }
+//    // remove _playerItem observer
+//    @try {
+//        [_playerItem removeObserver:self forKeyPath:@"status"];
+//    } @catch(id anException){
+//        NSLog(@"Did get an exception! %@", anException);
+//        // do nothing
+//    }
     
     // remove notif center observer
     [_notif removeObserver:self
@@ -337,6 +338,7 @@
     @try {
         [_playerItem removeObserver:self forKeyPath:@"status"];
     } @catch(id anException){
+        NSLog(@"Did get an exception! %@", anException);
         // do nothing
     }
     

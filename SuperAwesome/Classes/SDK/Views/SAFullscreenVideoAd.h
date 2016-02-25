@@ -14,19 +14,11 @@
 @class SAAd;
 @class SAVideoAd;
 
-@interface SAFullscreenVideoAd : UIViewController <SAViewProtocol> {
-    SAAd *ad;
-    CGRect adviewFrame;
-    CGRect buttonFrame;
-    BOOL isOKToClose;
-    
-    SAVideoAd *video;
-    UIButton *closeBtn;
-}
+@interface SAFullscreenVideoAd : UIViewController <SAViewProtocol>
 
-@property id<SAAdProtocol> adDelegate;
-@property id<SAParentalGateProtocol> parentalGateDelegate;
-@property id<SAVideoAdProtocol> videoDelegate;
+@property (nonatomic, weak) id<SAAdProtocol> adDelegate;
+@property (nonatomic, weak) id<SAParentalGateProtocol> parentalGateDelegate;
+@property (nonatomic, weak) id<SAVideoAdProtocol> videoDelegate;
 @property (nonatomic, assign) IBInspectable BOOL isParentalGateEnabled;
 @property (nonatomic, assign) IBInspectable BOOL shouldAutomaticallyCloseAtEnd;
 @property (nonatomic, assign) IBInspectable BOOL shouldShowCloseButton;

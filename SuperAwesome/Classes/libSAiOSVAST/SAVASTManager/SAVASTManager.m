@@ -65,7 +65,7 @@
 #pragma mark <SAVASTParserProtocol>
 
 - (void) didParseVASTAndHasAdsResponse:(NSArray*)ads {
-    NSLog(@"[AA :: INFO] Found %ld valid ads", (long)ads.count);
+    // NSLog(@"[AA :: INFO] Found %ld valid ads", (long)ads.count);
     
     // copy a ref to the ads
     _adQueue = ads;

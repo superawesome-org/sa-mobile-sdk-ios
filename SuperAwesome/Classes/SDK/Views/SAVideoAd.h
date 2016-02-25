@@ -19,19 +19,11 @@
 @class SAVASTPlayer;
 @class SAVASTManager;
 
-@interface SAVideoAd : UIView <SAViewProtocol, SAVASTManagerProtocol> {
-    SAAd *ad;
-    NSString *destinationURL;
-    
-    SAParentalGate *gate;
-    UIImageView *padlock;
-    SAVASTPlayer *player;
-    SAVASTManager *manager;
-}
+@interface SAVideoAd : UIView <SAViewProtocol, SAVASTManagerProtocol>
 
-@property id<SAAdProtocol> adDelegate;
-@property id<SAParentalGateProtocol> parentalGateDelegate;
-@property id<SAVideoAdProtocol> videoDelegate;
+@property (nonatomic, weak) id<SAAdProtocol> adDelegate;
+@property (nonatomic, weak) id<SAParentalGateProtocol> parentalGateDelegate;
+@property (nonatomic, weak) id<SAVideoAdProtocol> videoDelegate;
 @property (nonatomic, assign) IBInspectable BOOL isParentalGateEnabled;
 
 @end

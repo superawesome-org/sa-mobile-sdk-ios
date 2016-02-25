@@ -20,7 +20,7 @@
 @interface SAVASTManager : NSObject
 
 // delegate
-@property id<SAVASTManagerProtocol> delegate;
+@property (nonatomic, weak) id<SAVASTManagerProtocol> delegate;
 
 // custom init
 - (id) initWithPlayer:(SAVASTPlayer*)player;

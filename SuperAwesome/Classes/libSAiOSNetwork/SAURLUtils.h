@@ -23,9 +23,6 @@
 // encode as URI
 + (NSString*) encodeURI:(NSString*)stringToEncode;
 
-// decode URI from net
-+ (NSString*) decodeURI:(NSString *)stringToDecode;
-
 // returns an encoded JSON from a dictionary
 // should be used as part of a GET query
 + (NSString*) encodeJSONDictionaryFromNSDictionary:(NSDictionary*)dict;

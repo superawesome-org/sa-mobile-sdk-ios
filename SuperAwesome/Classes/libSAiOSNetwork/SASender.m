@@ -19,7 +19,7 @@
 // (private) sa sender function
 
 + (void) sendEventToURL:(NSString *)url {
-    [SANetwork sendGETtoEndpoint:url withQueryDict:NULL andSuccess:NULL orFailure:NULL];
+//    [SANetwork sendGETtoEndpoint:url withQueryDict:NULL andSuccess:NULL orFailure:NULL];
 }
 
 @end

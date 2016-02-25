@@ -10,12 +10,24 @@
 #import "SAAd.h"
 #import "SAVideoAd.h"
 
+//#import <AVFoundation/AVFoundation.h>
+//#import <AVKit/AVKit.h>
+
 @interface SAVideoAd () <SAVASTManagerProtocol>
-@property id<SAAdProtocol> internalAdProto;
-@property id<SAVideoAdProtocol> internalVideoAdProto;
+@property (nonatomic, weak) id<SAAdProtocol> internalAdProto;
+@property (nonatomic, weak) id<SAVideoAdProtocol> internalVideoAdProto;
 @end
 
-@interface SAFullscreenVideoAd () <SAVideoAdProtocol>
+@interface SAFullscreenVideoAd () <SAVideoAdProtocol, SAAdProtocol>
+
+@property (nonatomic, assign) CGRect adviewFrame;
+@property (nonatomic, assign) CGRect buttonFrame;
+@property (nonatomic, assign) BOOL isOKToClose;
+
+@property (nonatomic, strong) SAAd *ad;
+@property (nonatomic, strong) SAVideoAd *video;
+@property (nonatomic, strong) UIButton *closeBtn;
+
 @end
 
 @implementation SAFullscreenVideoAd
@@ -26,8 +38,8 @@
     if (self = [super init]) {
         _shouldAutomaticallyCloseAtEnd = YES;
         _shouldShowCloseButton = NO;
-        isOKToClose = NO;
-        closeBtn.hidden = YES;
+        _isOKToClose = NO;
+        _closeBtn.hidden = YES;
     }
     
     return self;
@@ -37,8 +49,8 @@
     if (self = [super initWithCoder:aDecoder]) {
         _shouldAutomaticallyCloseAtEnd = YES;
         _shouldShowCloseButton = NO;
-        isOKToClose = NO;
-        closeBtn.hidden = YES;
+        _isOKToClose = NO;
+        _closeBtn.hidden = YES;
     }
     return self;
 }
@@ -47,8 +59,8 @@
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         _shouldAutomaticallyCloseAtEnd = YES;
         _shouldShowCloseButton = NO;
-        isOKToClose = NO;
-        closeBtn.hidden = YES;
+        _isOKToClose = NO;
+        _closeBtn.hidden = YES;
     }
     return self;
 }
@@ -56,25 +68,28 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
     
+    NSLog(@"SAFullscreenVideoAd viewDidLoad");
+    
     // set bg color
     self.view.backgroundColor = [UIColor blackColor];
     
-    video = [[SAVideoAd alloc] initWithFrame:adviewFrame];
-    [video setAd:ad];
-    video.adDelegate = _adDelegate;
-    video.parentalGateDelegate = _parentalGateDelegate;
-    video.videoDelegate = _videoDelegate;
-    video.isParentalGateEnabled = _isParentalGateEnabled;
-    video.internalVideoAdProto = self;
-    [self.view addSubview:video];
+    _video = [[SAVideoAd alloc] initWithFrame:_adviewFrame];
+    [_video setAd:_ad];
+    _video.adDelegate = _adDelegate;
+    _video.parentalGateDelegate = _parentalGateDelegate;
+    _video.videoDelegate = _videoDelegate;
+    _video.isParentalGateEnabled = _isParentalGateEnabled;
+    _video.internalVideoAdProto = self;
+    _video.internalAdProto = self;
+    [self.view addSubview:_video];
     
     // create close button
-    closeBtn = [[UIButton alloc] initWithFrame:buttonFrame];
-    [closeBtn setTitle:@"" forState:UIControlStateNormal];
-    [closeBtn setImage:[UIImage imageNamed:@"close"] forState:UIControlStateNormal];
-    [closeBtn addTarget:self action:@selector(closeAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:closeBtn];
-    [self.view bringSubviewToFront:closeBtn];
+    _closeBtn = [[UIButton alloc] initWithFrame:_buttonFrame];
+    [_closeBtn setTitle:@"" forState:UIControlStateNormal];
+    [_closeBtn setImage:[UIImage imageNamed:@"close"] forState:UIControlStateNormal];
+    [_closeBtn addTarget:self action:@selector(closeAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_closeBtn];
+    [self.view bringSubviewToFront:_closeBtn];
     
     // setup coordinates
     CGSize scrSize = [UIScreen mainScreen].bounds.size;
@@ -100,14 +115,21 @@
     [self resizeToFrame:CGRectMake(0, 0, currentSize.width, currentSize.height)];
 }
 
+- (void) viewDidUnload {
+    [super viewDidUnload];
+    NSLog(@"SAFullscreenVideoAd viewDidUnload");
+}
+
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
+    NSLog(@"SAFullscreenVideoAd viewWillAppear");
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
+    NSLog(@"SAFullscreenVideoAd viewWillDisappear");
 }
 
 - (void) viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
@@ -138,6 +160,7 @@
 
 - (void) didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+    NSLog(@"SAFullscreenVideoAd didReceiveMemoryWarning");
 }
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -150,25 +173,25 @@
 
 #pragma mark <SAViewProtocol> functions
 
-- (void) setAd:(SAAd*)_ad {
-    ad = _ad;
+- (void) setAd:(SAAd*)__ad {
+    _ad = __ad;
 }
 
 - (SAAd*) getAd {
-    return ad;
+    return _ad;
 }
 
 - (void) play {
-    [video play];
+    [_video play];
 }
 
 - (void) close {
     
-    [video close];
+    [_video close];
     
     [self dismissViewControllerAnimated:YES completion:^{
-        if ([video.adDelegate respondsToSelector:@selector(adWasClosed:)]) {
-            [video.adDelegate adWasClosed:ad.placementId];
+        if ([_video.adDelegate respondsToSelector:@selector(adWasClosed:)]) {
+            [_video.adDelegate adWasClosed:_ad.placementId];
         }
     }];
     
@@ -184,26 +207,26 @@
 
 - (void) resizeToFrame:(CGRect)frame {
     // setup frame
-    adviewFrame = frame;
+    _adviewFrame = frame;
     
     if (_shouldShowCloseButton){
         CGFloat cs = 40.0f;
-        buttonFrame = CGRectMake(frame.size.width - cs, 0, cs, cs);
-        closeBtn.hidden = NO;
-        [self.view bringSubviewToFront:closeBtn];
+        _buttonFrame = CGRectMake(frame.size.width - cs, 0, cs, cs);
+        _closeBtn.hidden = NO;
+        [self.view bringSubviewToFront:_closeBtn];
     } else {
-        closeBtn.hidden = YES;
-        buttonFrame = CGRectZero;
+        _closeBtn.hidden = YES;
+        _buttonFrame = CGRectZero;
     }
     
-    closeBtn.frame = buttonFrame;
-    [video resizeToFrame:adviewFrame];
+    _closeBtn.frame = _buttonFrame;
+    [_video resizeToFrame:_adviewFrame];
 }
 
 #pragma mark <SAVideoAdProtocol> - internal
 
 - (void) adStarted:(NSInteger)placementId {
-    isOKToClose = true;
+    _isOKToClose = true;
 }
 
 - (void) allAdsEnded:(NSInteger)placementId {
@@ -221,7 +244,7 @@
 #pragma mark <Other> actions
 
 - (IBAction) closeAction: (id)sender {
-    if (isOKToClose) {
+    if (_isOKToClose) {
         [self close];
     }
 }

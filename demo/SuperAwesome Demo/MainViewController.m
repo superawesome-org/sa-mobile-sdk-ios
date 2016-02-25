@@ -76,6 +76,7 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    NSLog(@"MainViewController didReceiveMemoryWarning");
 }
 
 #pragma mark <UITableViewDelegate>
@@ -113,7 +114,7 @@
     AdItem *item = getItemFromArrayByPlacement(_data, ad.placementId);
     
     // print the ad
-    [ad print];
+//    [ad print];
     
     switch (item.type) {
         case banner_item:{
@@ -182,7 +183,7 @@
 #pragma mark <SAAdProtocol>
 
 - (void) adWasShown:(NSInteger)placementId {
-    NSLog(@"%ld - adWasShown", (long)placementId);
+//    NSLog(@"%ld - adWasShown", (long)placementId);
 }
 
 - (void) adFailedToShow:(NSInteger)placementId {
@@ -218,23 +219,23 @@
 #pragma mark <SAVideoAdProtocol>
 
 - (void) videoStarted:(NSInteger)placementId {
-    NSLog(@"%ld - videoStarted", (long)placementId);
+//    NSLog(@"%ld - videoStarted", (long)placementId);
 }
 
 - (void) videoReachedFirstQuartile:(NSInteger)placementId {
-    NSLog(@"%ld - videoReachedFirstQuartile", (long)placementId);
+//    NSLog(@"%ld - videoReachedFirstQuartile", (long)placementId);
 }
 
 - (void) videoReachedMidpoint:(NSInteger)placementId {
-    NSLog(@"%ld - videoReachedMidpoint", (long)placementId);
+//    NSLog(@"%ld - videoReachedMidpoint", (long)placementId);
 }
 
 - (void) videoReachedThirdQuartile:(NSInteger)placementId {
-    NSLog(@"%ld - videoReachedThirdQuartile", (long)placementId);
+//    NSLog(@"%ld - videoReachedThirdQuartile", (long)placementId);
 }
 
 - (void) videoEnded:(NSInteger)placementId {
-    NSLog(@"%ld - videoEnded", (long)placementId);
+//    NSLog(@"%ld - videoEnded", (long)placementId);
 }
 
 @end
