@@ -14,10 +14,10 @@
 + (NSArray*) createTestData {
     return @[
              
-             CreateAdItem(@"9549", 9549, false, interstitial_item),
-             CreateAdItem(@"Normal Interstiail 231", 230, false, interstitial_item),
-             CreateAdItem(@"Tag Movie 233", 233, false, fullscreen_video_item),
-             CreateAdItem(@"Rich Media Interstitial 232", 232, false, interstitial_item),
+             CreateAdItem(@"79", 79, false, fullscreen_video_item),
+             CreateAdItem(@"1830", 1830, false, fullscreen_video_item),
+             CreateAdItem(@"230", 230, false, interstitial_item),
+             CreateAdItem(@"232", 232, false, interstitial_item),
              CreateAdItem(@"Banner 229", 229, false, banner_item),
              CreateAdItem(@"30714", 30714, false, interstitial_item),
              

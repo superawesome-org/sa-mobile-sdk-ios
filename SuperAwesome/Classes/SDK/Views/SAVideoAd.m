@@ -125,10 +125,10 @@
 - (void) advanceToClick {
     NSLog(@"[AA :: INFO] Going to %@", _destinationURL);
     
-    if ([_destinationURL rangeOfString:[[SuperAwesome getInstance] getBaseURL]].location == NSNotFound) {
-        NSLog(@"Sending click event to %@", _ad.creative.trackingURL);
-        [SASender sendEventToURL:_ad.creative.trackingURL];
-    }
+//    if ([_destinationURL rangeOfString:[[SuperAwesome getInstance] getBaseURL]].location == NSNotFound) {
+//        NSLog(@"Sending click event to %@", _ad.creative.trackingURL);
+//        [SASender sendEventToURL:_ad.creative.trackingURL];
+//    }
     
     // call delegate
     if (_adDelegate && [_adDelegate respondsToSelector:@selector(adWasClicked:)]) {

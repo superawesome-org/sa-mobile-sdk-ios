@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+3.5.9
+ - Fixed some click tracking issues and other stuffs
+
 3.5.8
  - Fixed the issue on Unity and MoPub as well
 

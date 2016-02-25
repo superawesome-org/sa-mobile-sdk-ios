@@ -472,19 +472,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		C0A9E97834E32BBDDA896DEFA53996D0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3C8CF4B347C4DA19316D74204D4AD7D6;
-			remoteInfo = SuperAwesome;
-		};
-		E0DD759D18BD5A83BEF6368FE34AE33D /* PBXContainerItemProxy */ = {
+		45D68C44197F9F5FAC4182EA044E50BE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 3328DE7B61120881E07B1674ABC15018;
 			remoteInfo = "mopub-ios-sdk";
+		};
+		4E8315F05B12F6A122808EA58383BCF8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3C8CF4B347C4DA19316D74204D4AD7D6;
+			remoteInfo = SuperAwesome;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -2120,8 +2120,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				E817E09156F58E3C107494D8137266B3 /* PBXTargetDependency */,
-				ABEEE8F99B0A85801599F86FA2F7797E /* PBXTargetDependency */,
+				3C4742806778130BF99D6F96156C5870 /* PBXTargetDependency */,
+				5ECE31C01B732183998A7ED1635DE5F1 /* PBXTargetDependency */,
 			);
 			name = "Pods-SuperAwesomeMoPub";
 			productName = "Pods-SuperAwesomeMoPub";
@@ -2397,17 +2397,17 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		ABEEE8F99B0A85801599F86FA2F7797E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "mopub-ios-sdk";
-			target = 3328DE7B61120881E07B1674ABC15018 /* mopub-ios-sdk */;
-			targetProxy = E0DD759D18BD5A83BEF6368FE34AE33D /* PBXContainerItemProxy */;
-		};
-		E817E09156F58E3C107494D8137266B3 /* PBXTargetDependency */ = {
+		3C4742806778130BF99D6F96156C5870 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SuperAwesome;
 			target = 3C8CF4B347C4DA19316D74204D4AD7D6 /* SuperAwesome */;
-			targetProxy = C0A9E97834E32BBDDA896DEFA53996D0 /* PBXContainerItemProxy */;
+			targetProxy = 4E8315F05B12F6A122808EA58383BCF8 /* PBXContainerItemProxy */;
+		};
+		5ECE31C01B732183998A7ED1635DE5F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "mopub-ios-sdk";
+			target = 3328DE7B61120881E07B1674ABC15018 /* mopub-ios-sdk */;
+			targetProxy = 45D68C44197F9F5FAC4182EA044E50BE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
