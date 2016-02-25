@@ -121,6 +121,8 @@
 
 - (void) adFailedToShow:(NSInteger)placementId {
     
+    [_interstitial close];
+    
     // then send this to bannerCustomEvent:didFailToLoadAdWithError:
     [self.delegate interstitialCustomEvent:self
                   didFailToLoadAdWithError:[self createErrorWith:[NSString stringWithFormat:@"Failed to display SuperAwesome Intestitial Ad for PlacementId: %ld", (long)placementId]
@@ -143,6 +145,14 @@
     // call required events
     [self.delegate interstitialCustomEventWillDisappear:self];
     [self.delegate interstitialCustomEventDidDisappear:self];
+    
+    // null these so no references remain and memory is freed
+    _interstitial = NULL;
+    _loader = NULL;
+}
+
+- (void) adHasIncorrectPlacement:(NSInteger)placementId {
+    [_interstitial close];
 }
 
 #pragma mark <SAParentalGateProtocol>

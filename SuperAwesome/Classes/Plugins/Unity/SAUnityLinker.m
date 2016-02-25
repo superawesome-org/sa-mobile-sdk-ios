@@ -362,12 +362,19 @@
 }
 
 - (void) adFailedToShow:(NSInteger)placementId {
+    
+    [[SAUnityLinkerManager getInstance] removeAd:placementId];
+    
     if (_adEvent){
         _adEvent(_unityAd, @"callback_adFailedToShow");
     }
 }
 
 - (void) adWasClosed:(NSInteger)placementId {
+    
+    
+    [[SAUnityLinkerManager getInstance] removeAd:placementId];
+    
     if (_adEvent){
         _adEvent(_unityAd, @"callback_adWasClosed");
     }

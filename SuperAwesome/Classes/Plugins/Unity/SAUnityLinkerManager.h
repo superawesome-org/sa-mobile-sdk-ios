@@ -17,5 +17,7 @@
 // setters and getters
 - (void) setAd:(NSObject*)adView forKey:(NSString*)key;
 - (NSObject*) getAdForKey:(NSString*)key;
+- (NSString*) getKeyForId:(NSInteger)placementId;
+- (void) removeAd:(NSInteger)placementId;
 
 @end

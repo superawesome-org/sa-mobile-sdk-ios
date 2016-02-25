@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+3.5.8
+ - Fixed the issue on Unity and MoPub as well
+
 3.5.7
  - Fixed a retain cycle between delegates and made the videos not swallow up so much memory
 

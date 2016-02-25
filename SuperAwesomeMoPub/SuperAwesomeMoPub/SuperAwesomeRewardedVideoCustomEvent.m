@@ -173,6 +173,15 @@
     // call required events
     [self.delegate rewardedVideoWillDisappearForCustomEvent:self];
     [self.delegate rewardedVideoDidDisappearForCustomEvent:self];
+    
+    // also null this so no references remain and memory is freed correctly
+    _fvad = NULL;
+    _cAd = NULL;
+    _loader = NULL;
+}
+
+- (void) adHasIncorrectPlacement:(NSInteger)placementId {
+    [_fvad close];
 }
 
 #pragma mark <SAParentalGateProtocol>
