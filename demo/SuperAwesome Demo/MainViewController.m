@@ -38,8 +38,6 @@
     
     //  set config to stanging
     [[SuperAwesome getInstance] setConfigurationStaging];
-    [[SuperAwesome getInstance] enableTestMode];
-    [[SuperAwesome getInstance] enableMoatTracking];
     
     // set title
     UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 30)];
