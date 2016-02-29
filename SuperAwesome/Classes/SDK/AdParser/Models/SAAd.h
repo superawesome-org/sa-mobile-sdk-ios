@@ -26,6 +26,9 @@
 // the SA server can send an error; if that's the case, this field will not be nill
 @property (nonatomic, assign) NSInteger error;
 
+// the App id
+@property (nonatomic, assign) NSInteger appId;
+
 // the ID of the placement that the ad was sent for
 @property (nonatomic, assign) NSInteger placementId;
 

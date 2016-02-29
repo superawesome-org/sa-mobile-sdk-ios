@@ -1,0 +1,1 @@
+../../../../../../SuperAwesome/Frameworks/SUPMoatMobileAppKit.framework/Versions/A/Headers/SUPMoatVideoTracker.h

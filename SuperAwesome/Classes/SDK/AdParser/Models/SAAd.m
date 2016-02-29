@@ -17,6 +17,7 @@
 - (void) print {
     NSLog(@"Ad:");
     NSLog(@"error: %ld", (long)_error);
+    NSLog(@"appId: %ld", (long)_appId);
     NSLog(@"placementId: %ld", (long)_placementId);
     NSLog(@"lineItemId: %ld", (long)_lineItemId);
     NSLog(@"campaignId: %ld", (long)_campaignId);

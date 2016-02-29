@@ -355,4 +355,12 @@
 //                    object:nil];
 }
 
+- (AVPlayer*) getPlayer {
+    return _player;
+}
+
+- (AVPlayerLayer*) getPlayerLayer {
+    return _playerLayer;
+}
+
 @end

@@ -14,7 +14,7 @@
 #import "SAAd.h"
 #import "SACreative.h"
 #import "SADetails.h"
-#import "SASender.h"
+#import "SAEvents.h"
 #import "SAWebView.h"
 #import "SAUtils.h"
 #import "SAVASTPlayer.h"
@@ -113,7 +113,7 @@
     
     if (_isParentalGateEnabled) {
         // send an event
-        [SASender sendEventToURL:_ad.creative.parentalGateClickURL];
+        [SAEvents sendEventToURL:_ad.creative.parentalGateClickURL];
         
         // show the gate
         [_gate show];
@@ -179,7 +179,8 @@
 
 - (void) didStartAd {
     // send the viewable impression URL as well
-    [SASender sendEventToURL:_ad.creative.viewableImpressionURL];
+    [SAEvents sendEventToURL:_ad.creative.viewableImpressionURL];
+    [SAEvents sendVideoMoatEvent:[_player getPlayer] andLayer:[_player getPlayerLayer] andView:self andAd:_ad];
     
     if (_adDelegate && [_adDelegate respondsToSelector:@selector(adWasShown:)]) {
         [_adDelegate adWasShown:_ad.placementId];

@@ -19,11 +19,17 @@
 #define BASE_URL_DEVELOPMENT @"https://ads.dev.superawesome.tv/v2"
 #define BASE_URL_PRODUCTION @"https://ads.superawesome.tv/v2"
 
+// define Moat stuffs
+#define MOAT_DISPLAY_PARTNER_CODE @"superawesomeinappdisplay731223424656";
+#define MOAT_VIDEO_PARTNER_CODE @"superawesomeinappvideo467548716573";
+
+
 @interface SuperAwesome ()
 
 // private vars
 @property (nonatomic, strong) NSString *baseURL;
 @property (nonatomic, assign) BOOL isTestEnabled;
+@property (nonatomic, assign) BOOL isMoatEnabled;
 @property (nonatomic, assign) NSUInteger dauID;
 @property (nonatomic, assign) SAConfiguration config;
 
@@ -47,6 +53,7 @@
         // and test mode is disabled
         [self setConfigurationProduction];
         [self disableTestMode];
+        [self enableMoatTracking];
         [SACapper enableCapping:^(NSUInteger dauId) {
             _dauID = dauId;
         }];
@@ -56,7 +63,7 @@
 }
 
 - (NSString*) getVersion {
-    return @"3.5.9";
+    return @"3.6.0";
 }
 
 - (NSString*) getSdk {
@@ -106,6 +113,31 @@
 
 - (BOOL) isTestingEnabled {
     return _isTestEnabled;
+}
+
+// enable or disable MOAT
+- (void) enableMoatTracking {
+    _isMoatEnabled = true;
+}
+
+- (void) disableMoatTracking{
+    _isMoatEnabled = false;
+}
+
+- (void) setMoatTracking:(BOOL)enabled{
+    _isMoatEnabled = enabled;
+}
+
+- (BOOL) isMoatEnabled{
+    return _isMoatEnabled;
+}
+
+- (NSString*) getDisplayMoatPartnerCode {
+    return MOAT_DISPLAY_PARTNER_CODE;
+}
+
+- (NSString*) getVideoMoatPartnerCode {
+    return MOAT_VIDEO_PARTNER_CODE;
 }
 
 - (NSUInteger) getDAUID {

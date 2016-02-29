@@ -14,7 +14,7 @@
 #import "SAAd.h"
 #import "SACreative.h"
 #import "SADetails.h"
-#import "SASender.h"
+#import "SAEvents.h"
 #import "SAWebView.h"
 #import "SAUtils.h"
 
@@ -112,7 +112,7 @@
     
     if (_isParentalGateEnabled) {
         // send an event
-        [SASender sendEventToURL:_ad.creative.parentalGateClickURL];
+        [SAEvents sendEventToURL:_ad.creative.parentalGateClickURL];
         
         // show the gate
         [_gate show];
@@ -126,7 +126,7 @@
     
     if ([_destinationURL rangeOfString:[[SuperAwesome getInstance] getBaseURL]].location == NSNotFound) {
         NSLog(@"Sending click event to %@", _ad.creative.trackingURL);
-        [SASender sendEventToURL:_ad.creative.trackingURL];
+        [SAEvents sendEventToURL:_ad.creative.trackingURL];
     }
     
     // call delegate
@@ -154,7 +154,8 @@
 #pragma mark <SAWebViewProtocol> functions
 
 - (void) saWebViewDidLoad {
-    [SASender sendEventToURL:_ad.creative.viewableImpressionURL];
+    [SAEvents sendEventToURL:_ad.creative.viewableImpressionURL];
+    [SAEvents sendDisplayMoatEvent:self andAd:_ad];
     
     if ([_adDelegate respondsToSelector:@selector(adWasShown:)]) {
         [_adDelegate adWasShown:_ad.placementId];

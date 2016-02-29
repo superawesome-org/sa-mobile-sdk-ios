@@ -17,6 +17,7 @@
 // import aux headers
 #import "libSAiOSUtils.h"
 #import "libSAiOSNetwork.h"
+#import "SAEvents.h"
 
 //
 // @brief: private interface
@@ -118,7 +119,7 @@
     NSArray *impressionsToSend = [__cAd.Impressions filterBy:@"isSent" withBool:false];
     for (SAImpression *impression in impressionsToSend) {
         impression.isSent = true;
-        [SASender sendEventToURL:impression.URL];
+        [SAEvents sendEventToURL:impression.URL];
     }
 }
 
@@ -194,7 +195,7 @@
     // if a creative is played with error, send events to the error tag
     // and advance to the next ad
     for (NSString *error in __cAd.Errors) {
-        [SASender sendEventToURL:error];
+        [SAEvents sendEventToURL:error];
     }
     
     // call delegate
@@ -209,7 +210,7 @@
 - (void) didGoToURL {
     // send event to URL
     for (NSString *ctracking in __cCreative.ClickTracking) {
-        [SASender sendEventToURL:ctracking];
+        [SAEvents sendEventToURL:ctracking];
     }
     
     // setup the current click URL
@@ -301,7 +302,7 @@
 - (void) sendCurrentCreativeTrackersFor:(NSString*)event {
     NSArray *trackers = [__cCreative.TrackingEvents filterBy:@"event" withValue:event];
     for (SATracking *tracker in trackers) {
-        [SASender sendEventToURL:tracker.URL];
+        [SAEvents sendEventToURL:tracker.URL];
     }
 }
 

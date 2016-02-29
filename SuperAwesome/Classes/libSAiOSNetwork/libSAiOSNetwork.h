@@ -15,4 +15,3 @@
 #import "SASystem.h"
 #import "SASystemSize.h"
 #import "SASystemType.h"
-#import "SASender.h"

@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+3.6.0
+ - Added moat integration
+
 3.5.9
  - Fixed some click tracking issues and other stuffs
 

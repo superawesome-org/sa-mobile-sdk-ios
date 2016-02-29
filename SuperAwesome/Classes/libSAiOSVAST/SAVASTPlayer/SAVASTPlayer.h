@@ -13,6 +13,9 @@
 // import protocol
 #import "SAVASTPlayerProtocol.h"
 
+@class AVPlayer;
+@class AVPlayerLayer;
+
 @interface SAVASTPlayer : UIView
 
 // protocol delegate
@@ -26,5 +29,9 @@
 
 // update frame function
 - (void) updateToFrame:(CGRect)frame;
+
+// getters for player & player layer
+- (AVPlayer*) getPlayer;
+- (AVPlayerLayer*) getPlayerLayer;
 
 @end
