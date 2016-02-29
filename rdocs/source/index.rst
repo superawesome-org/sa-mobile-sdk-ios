@@ -23,7 +23,7 @@ Table of Contents:
 
    Setting up <01dashboard>
    Integrate the SDK <02integrate>
-   Setup the SDK <03setup>
+   Configure the SDK <03config>
    Load ads <04load>
    Display ads <05display>
    Parental gate <06parentalgate>

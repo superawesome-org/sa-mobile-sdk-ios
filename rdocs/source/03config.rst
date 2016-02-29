@@ -1,16 +1,13 @@
 .. [OK] This file should be all about setting up the SDK in your project
 
-Setting up the SDK
-==================
+Configuring up the SDK
+======================
 
 Once you've integrated the SuperAwesome SDK, you can access all functionality by including the SuperAwesome header file:
 
 .. code-block:: c++
 
     #import "SuperAwesome.h"
-
-Configuring the environment
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 There are also a few global SDK parameters you can change according to your needs:
 
