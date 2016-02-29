@@ -1,5 +1,3 @@
-.. [OK] This file should be all about including the SDK in your project
-
 Getting started
 ===============
 

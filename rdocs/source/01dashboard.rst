@@ -1,5 +1,3 @@
-.. [OK] This presents the dashboard, apps and placements
-
 Getting started
 ===============
 
