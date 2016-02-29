@@ -9,7 +9,7 @@ The SuperAwesome iOS SDK (Software Development Kit) lets you to easily add COPPA
 =======   ========
 Info      Contents
 =======   ========
-Version   3.5.2
+Version   3.6.0
 GitHub    https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios
 Support   `devsupport@superawesome.tv <mailto:devsupport@superawesome.tv>`_
 License   `LICENSE.txt <https://raw.githubusercontent.com/SuperAwesomeLTD/sa-mobile-sdk-ios/master/LICENSE.txt>`_
@@ -23,8 +23,9 @@ Table of Contents:
 
    Setting up <01dashboard>
    Integrate the SDK <02integrate>
-   Load ads <03load>
-   Display ads <04display>
-   Parental gate <05parentalgate>
-   Ad Callbacks <06callbacks>
-   Examples <07examples>
+   Setup the SDK <03setup>
+   Load ads <04load>
+   Display ads <05display>
+   Parental gate <06parentalgate>
+   Ad Callbacks <07callbacks>
+   Examples <08examples>
