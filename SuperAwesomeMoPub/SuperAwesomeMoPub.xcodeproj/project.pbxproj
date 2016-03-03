@@ -18,7 +18,7 @@
 		1BC2D9281C5506C200232778 /* SuperAwesomeBannerCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BC2D9231C5506C200232778 /* SuperAwesomeBannerCustomEvent.m */; };
 		1BC2D9291C5506C200232778 /* SuperAwesomeInterstitialCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BC2D9251C5506C200232778 /* SuperAwesomeInterstitialCustomEvent.m */; };
 		1BC2D92A1C5506C200232778 /* SuperAwesomeRewardedVideoCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BC2D9271C5506C200232778 /* SuperAwesomeRewardedVideoCustomEvent.m */; };
-		C5927D24DAD43F85D71965E3 /* libPods-SuperAwesomeMoPub.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BA81ACB83D32846A88096424 /* libPods-SuperAwesomeMoPub.a */; };
+		A9F59E7C48AB645AFD41BDCE /* Pods_SuperAwesomeMoPub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6D08BC8CE05FDAA18AA576C /* Pods_SuperAwesomeMoPub.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,8 +61,8 @@
 		1BC2D9251C5506C200232778 /* SuperAwesomeInterstitialCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperAwesomeInterstitialCustomEvent.m; sourceTree = "<group>"; };
 		1BC2D9261C5506C200232778 /* SuperAwesomeRewardedVideoCustomEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperAwesomeRewardedVideoCustomEvent.h; sourceTree = "<group>"; };
 		1BC2D9271C5506C200232778 /* SuperAwesomeRewardedVideoCustomEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperAwesomeRewardedVideoCustomEvent.m; sourceTree = "<group>"; };
+		A6D08BC8CE05FDAA18AA576C /* Pods_SuperAwesomeMoPub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SuperAwesomeMoPub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA3A236F64136D625C2E98BB /* Pods-SuperAwesomeMoPub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesomeMoPub.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SuperAwesomeMoPub/Pods-SuperAwesomeMoPub.debug.xcconfig"; sourceTree = "<group>"; };
-		BA81ACB83D32846A88096424 /* libPods-SuperAwesomeMoPub.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SuperAwesomeMoPub.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBAF38E1CF4283870BEA163E /* Pods-SuperAwesomeMoPub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesomeMoPub.release.xcconfig"; path = "Pods/Target Support Files/Pods-SuperAwesomeMoPub/Pods-SuperAwesomeMoPub.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,7 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C5927D24DAD43F85D71965E3 /* libPods-SuperAwesomeMoPub.a in Frameworks */,
+				A9F59E7C48AB645AFD41BDCE /* Pods_SuperAwesomeMoPub.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,7 +198,7 @@
 		7C25325AC7342A01E8C034A3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BA81ACB83D32846A88096424 /* libPods-SuperAwesomeMoPub.a */,
+				A6D08BC8CE05FDAA18AA576C /* Pods_SuperAwesomeMoPub.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -215,6 +215,7 @@
 				1BC2D8E61C55056400232778 /* Frameworks */,
 				1BC2D8E71C55056400232778 /* Resources */,
 				DA080F436142A87E7E0538F3 /* Copy Pods Resources */,
+				2BD6FD3DBB84BCFD7AA57939 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -331,6 +332,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2BD6FD3DBB84BCFD7AA57939 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SuperAwesomeMoPub/Pods-SuperAwesomeMoPub-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		BFC5D0CE431753AB247B9782 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

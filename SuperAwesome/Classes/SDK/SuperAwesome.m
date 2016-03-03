@@ -53,7 +53,8 @@
         // and test mode is disabled
         [self setConfigurationProduction];
         [self disableTestMode];
-        [self enableMoatTracking];
+//        [self enableMoatTracking];
+        _isMoatEnabled = false;
         [SACapper enableCapping:^(NSUInteger dauId) {
             _dauID = dauId;
         }];
@@ -63,7 +64,7 @@
 }
 
 - (NSString*) getVersion {
-    return @"3.6.0";
+    return @"3.6.1";
 }
 
 - (NSString*) getSdk {
@@ -116,18 +117,18 @@
 }
 
 // enable or disable MOAT
-- (void) enableMoatTracking {
-    _isMoatEnabled = true;
-}
-
-- (void) disableMoatTracking{
-    _isMoatEnabled = false;
-}
-
-- (void) setMoatTracking:(BOOL)enabled{
-    _isMoatEnabled = enabled;
-}
-
+//- (void) enableMoatTracking {
+//    _isMoatEnabled = true;
+//}
+//
+//- (void) disableMoatTracking{
+//    _isMoatEnabled = false;
+//}
+//
+//- (void) setMoatTracking:(BOOL)enabled{
+//    _isMoatEnabled = enabled;
+//}
+//
 - (BOOL) isMoatEnabled{
     return _isMoatEnabled;
 }

@@ -1,1 +1,0 @@
-../../../../../SuperAwesome/Classes/SDK/Views/SAFullscreenVideoAd.h

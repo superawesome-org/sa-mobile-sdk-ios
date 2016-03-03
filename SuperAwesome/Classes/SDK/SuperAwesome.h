@@ -68,9 +68,9 @@ typedef enum SAConfiguration {
 - (BOOL) isTestingEnabled;
 
 // enable or disable MOAT
-- (void) enableMoatTracking;
-- (void) disableMoatTracking;
-- (void) setMoatTracking:(BOOL)enabled;
+//- (void) enableMoatTracking;
+//- (void) disableMoatTracking;
+//- (void) setMoatTracking:(BOOL)enabled;
 - (BOOL) isMoatEnabled;
 - (NSString*) getDisplayMoatPartnerCode;
 - (NSString*) getVideoMoatPartnerCode;

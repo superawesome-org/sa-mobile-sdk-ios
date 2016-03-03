@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+3.6.1
+ - Disabled moat integration for the moment
+ - Added use_frameworks! to pod build
+
 3.6.0
  - Added moat integration
 
