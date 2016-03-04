@@ -195,7 +195,7 @@
         [_video.adDelegate adWasClosed:_ad.placementId];
     }
     
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void) tryToGoToURL:(NSURL*)url {

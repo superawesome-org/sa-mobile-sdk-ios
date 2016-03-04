@@ -129,12 +129,12 @@
 //    // of the movie has played
 //    [_playerItem addObserver:self forKeyPath:@"status" options:0 context:nil];
 //    
-//    // add an observer for _playerItem to monitor when it actually ends
-//    [_notif addObserver:self
-//               selector:@selector(itemDidFinishPlaying:)
-//                   name:AVPlayerItemDidPlayToEndTimeNotification
-//                 object:_playerItem];
-//    
+    // add an observer for _playerItem to monitor when it actually ends
+    [_notif addObserver:self
+               selector:@selector(itemDidFinishPlaying:)
+                   name:AVPlayerItemDidPlayToEndTimeNotification
+                 object:_playerItem];
+//
 //    // observer check if we're going to background
 //    [_notif addObserver:self
 //               selector:@selector(didEnterBackground)
@@ -186,10 +186,10 @@
 //        // do nothing
 //    }
 //    
-//    // remove notif center observer
-//    [_notif removeObserver:self
-//                      name:AVPlayerItemDidPlayToEndTimeNotification
-//                    object:_playerItem];
+    // remove notif center observer
+    [_notif removeObserver:self
+                      name:AVPlayerItemDidPlayToEndTimeNotification
+                    object:_playerItem];
 //    [_notif removeObserver:self
 //                      name:UIApplicationDidEnterBackgroundNotification
 //                    object:nil];
