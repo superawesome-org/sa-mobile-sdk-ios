@@ -218,17 +218,6 @@
     if (__cCreative.ClickThrough != NULL && [SAURLUtils isValidURL:__cCreative.ClickThrough]) {
         url = __cCreative.ClickThrough;
     }
-    // if no click through is there - just go through the ClickTracking URLs and
-    // maybe one is good
-    else {
-        
-        for (NSString *clickTracking in __cCreative.ClickTracking) {
-            if ([SAURLUtils isValidURL:clickTracking]) {
-                url = clickTracking;
-                break;
-            }
-        }
-    }
     
     // call delegate
     if (_delegate && [_delegate respondsToSelector:@selector(didGoToURL:)]) {
@@ -304,6 +293,10 @@
     for (SATracking *tracker in trackers) {
         [SAEvents sendEventToURL:tracker.URL];
     }
+}
+
+- (void) dealloc {
+    NSLog(@"SAVASTManager dealloc");
 }
 
 @end

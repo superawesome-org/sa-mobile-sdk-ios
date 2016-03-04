@@ -495,19 +495,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		0A54C8898518F867EFCD6CBD6EF98EFE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8F97C8D5516634A9694CCEFC244F91FE;
-			remoteInfo = SuperAwesome;
-		};
-		7EE76756E21FBD31FB37D9EAB8200146 /* PBXContainerItemProxy */ = {
+		0B1C385DBC530151DBE36E1CA4BD9750 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 7F2875461E914D4953B8419940A20291;
 			remoteInfo = "mopub-ios-sdk";
+		};
+		8AE617FDEC19569F4A9BDB8DC25753C0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8F97C8D5516634A9694CCEFC244F91FE;
+			remoteInfo = SuperAwesome;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -587,10 +587,8 @@
 		25D4ADD0F2AD21308A86D34EF8DBBF26 /* Pods-SuperAwesomeMoPub-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SuperAwesomeMoPub-acknowledgements.markdown"; sourceTree = "<group>"; };
 		2605BB18B2671D8AB2BB8B596E20CFAF /* SANetwork.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SANetwork.m; sourceTree = "<group>"; };
 		26909466EF61238E8586D16179482AF4 /* MPMRAIDInterstitialCustomEvent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPMRAIDInterstitialCustomEvent.h; path = MoPubSDK/Internal/MRAID/MPMRAIDInterstitialCustomEvent.h; sourceTree = "<group>"; };
-		26A666597D81E49CC00E8EDDD3E49A7C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		27BD6CF8303A4D98CBE5E62EB222B624 /* MOPUBAVPlayer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MOPUBAVPlayer.h; path = MoPubSDK/NativeVideo/Internal/MOPUBAVPlayer.h; sourceTree = "<group>"; };
 		286A05C77CEF0D33C8F27B2C4D919A59 /* SAInterstitialAd.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAInterstitialAd.h; sourceTree = "<group>"; };
-		2917A75444560491C4CC7D117AD30FB8 /* SuperAwesome.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SuperAwesome.modulemap; sourceTree = "<group>"; };
 		2974298AD1FBA76F8CD42BCCF4552E32 /* MPVASTDurationOffset.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPVASTDurationOffset.m; path = MoPubSDK/Internal/VAST/MPVASTDurationOffset.m; sourceTree = "<group>"; };
 		29B01C01B4D66D47287338330BF43EC6 /* MPLogProvider.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPLogProvider.m; path = MoPubSDK/Internal/Utility/MPLogProvider.m; sourceTree = "<group>"; };
 		2B3ABD35ABD0B4FF7F51815C6FFC0566 /* MPNativeAdRequest.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPNativeAdRequest.m; path = "MoPubSDK/Native Ads/MPNativeAdRequest.m"; sourceTree = "<group>"; };
@@ -654,6 +652,7 @@
 		4C4D266B29E1C9D622E0A3A166421DCC /* SuperAwesome-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SuperAwesome-umbrella.h"; sourceTree = "<group>"; };
 		4C5EB41189DCE07ABBAD15F698D95E10 /* MPNativeAd.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPNativeAd.h; path = "MoPubSDK/Native Ads/MPNativeAd.h"; sourceTree = "<group>"; };
 		4C9D24F3168A8C199C9371DFCE1E455B /* MPEnhancedDeeplinkRequest.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPEnhancedDeeplinkRequest.h; path = MoPubSDK/Internal/Common/MPEnhancedDeeplinkRequest.h; sourceTree = "<group>"; };
+		4CC0AABD76B1FE81A3C9FB0E03976D90 /* SuperAwesome-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SuperAwesome-prefix.pch"; sourceTree = "<group>"; };
 		4D2B0ED89AEA3A869444683438C782F1 /* MPPlayBtn@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "MPPlayBtn@2x.png"; path = "MoPubSDK/Resources/MPPlayBtn@2x.png"; sourceTree = "<group>"; };
 		4D7F4E12B6CB8F0D052EC3C9F59EB904 /* MPNativeAdRendererConfiguration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPNativeAdRendererConfiguration.h; path = "MoPubSDK/Native Ads/MPNativeAdRendererConfiguration.h"; sourceTree = "<group>"; };
 		4DAB2C24D854FA7FA0572BEEF239C38F /* MPNativeAdRendererSettings.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPNativeAdRendererSettings.h; path = "MoPubSDK/Native Ads/MPNativeAdRendererSettings.h"; sourceTree = "<group>"; };
@@ -677,9 +676,9 @@
 		564901D0B11ADC5F74FBE9D6617BE3E8 /* MPStaticNativeAdImpressionTimer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPStaticNativeAdImpressionTimer.m; path = "MoPubSDK/Native Ads/Internal/MPStaticNativeAdImpressionTimer.m"; sourceTree = "<group>"; };
 		5689DAA788164BEB33C2AEC724B58188 /* UIAlertController+Window.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+Window.h"; sourceTree = "<group>"; };
 		56B1E64215338529541270D5F3FED85E /* SABannerAd.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SABannerAd.m; sourceTree = "<group>"; };
-		5739A587F559182AC6ED8B2EA4798872 /* SuperAwesome-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SuperAwesome-prefix.pch"; sourceTree = "<group>"; };
 		573E1156DC216C1A21328B665ED08088 /* SACapper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SACapper.m; sourceTree = "<group>"; };
 		58414850EA53DBD6D4C19127ADC0EA88 /* MPStreamAdPlacer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPStreamAdPlacer.h; path = "MoPubSDK/Native Ads/MPStreamAdPlacer.h"; sourceTree = "<group>"; };
+		5917E9A5DEE0BE8F6ADCE3FA5B6057DA /* SuperAwesome.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SuperAwesome.xcconfig; sourceTree = "<group>"; };
 		597064A003D2CF3272573AEF98DB22ED /* MPAdPlacerInvocation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPAdPlacerInvocation.h; path = "MoPubSDK/Native Ads/Internal/MPAdPlacerInvocation.h"; sourceTree = "<group>"; };
 		597C813D22C01E16A5B16834EBCA756B /* NSJSONSerialization+MPAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSJSONSerialization+MPAdditions.h"; path = "MoPubSDK/Internal/Utility/Categories/NSJSONSerialization+MPAdditions.h"; sourceTree = "<group>"; };
 		5AFEF2F4F9B6AF64E7ED3D1E53227ACB /* MPAdPositioning.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPAdPositioning.h; path = "MoPubSDK/Native Ads/MPAdPositioning.h"; sourceTree = "<group>"; };
@@ -805,6 +804,7 @@
 		955A763A2D8C5E3AB366B90E9CE5D72B /* MOPUBPlayerViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MOPUBPlayerViewController.h; path = MoPubSDK/NativeVideo/Internal/MOPUBPlayerViewController.h; sourceTree = "<group>"; };
 		958D73954CD4A25385BE2ADCC31EC8CA /* Pods-SuperAwesomeMoPub-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SuperAwesomeMoPub-umbrella.h"; sourceTree = "<group>"; };
 		9697C6266051A8D089B1854F1B2DBA32 /* MPSessionTracker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPSessionTracker.m; path = MoPubSDK/Internal/Utility/MPSessionTracker.m; sourceTree = "<group>"; };
+		96EE62B93A1AF032564C9555B99B73C3 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96FC1D15287983051937C2E393B24DEF /* MPTimer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPTimer.h; path = MoPubSDK/Internal/Utility/MPTimer.h; sourceTree = "<group>"; };
 		9704C6CDA72F7A5D07BE3AB8B2EE2B5E /* MPActivityViewControllerHelper+TweetShare.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "MPActivityViewControllerHelper+TweetShare.m"; path = "MoPubSDK/Internal/Common/MPActivityViewControllerHelper+TweetShare.m"; sourceTree = "<group>"; };
 		98BC864F32E71481563A593DB3E61D14 /* MRBridge.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MRBridge.m; path = MoPubSDK/Internal/MRAID/MRBridge.m; sourceTree = "<group>"; };
@@ -831,7 +831,6 @@
 		A446D3D63F4188A8437C0CB48F8A1725 /* MPVASTResponse.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPVASTResponse.m; path = MoPubSDK/Internal/VAST/MPVASTResponse.m; sourceTree = "<group>"; };
 		A45BD848771DDF272931F016BF3376B6 /* SAEvents.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAEvents.h; sourceTree = "<group>"; };
 		A45C7A3D9ABA5511FD5967340B4ED154 /* MPAdAlertManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPAdAlertManager.m; path = MoPubSDK/Internal/Common/AdAlerts/MPAdAlertManager.m; sourceTree = "<group>"; };
-		A4AB89BFB75759936A982BF82D8972A7 /* SuperAwesome-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "SuperAwesome-Private.xcconfig"; sourceTree = "<group>"; };
 		A50E678B34DB3C6933B2164CD75AA0A5 /* MPDAAIcon@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "MPDAAIcon@2x.png"; path = "MoPubSDK/Resources/MPDAAIcon@2x.png"; sourceTree = "<group>"; };
 		A52F349C875D6BED24CAA1DCB4764E04 /* MPCloseButtonX@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "MPCloseButtonX@2x.png"; path = "MoPubSDK/Resources/MPCloseButtonX@2x.png"; sourceTree = "<group>"; };
 		A5839F7E00CDFD946C24AB2CFF89245C /* MPLogEventCommunicator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPLogEventCommunicator.h; path = "MoPubSDK/Internal/Event Logging/MPLogEventCommunicator.h"; sourceTree = "<group>"; };
@@ -851,7 +850,6 @@
 		AB49300F33F9ADD013B0C2AE00C800B0 /* SAFullscreenVideoAd.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAFullscreenVideoAd.m; sourceTree = "<group>"; };
 		AB6E84F3B510861147FAD392B483EC00 /* MoPub.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MoPub.h; path = MoPubSDK/MoPub.h; sourceTree = "<group>"; };
 		AC40579E949B1BE31A3299D3088C4413 /* MPVASTModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPVASTModel.h; path = MoPubSDK/Internal/VAST/MPVASTModel.h; sourceTree = "<group>"; };
-		AC89FB0F6860B523B44D0585DF9C594A /* SuperAwesome.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SuperAwesome.xcconfig; sourceTree = "<group>"; };
 		AD0DC8E820B4263ED171F606071BC1CF /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/CoreMedia.framework; sourceTree = DEVELOPER_DIR; };
 		AD237BDE796CA1345327CEBCB44DC640 /* MPNativeAdRenderingImageLoader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPNativeAdRenderingImageLoader.m; path = "MoPubSDK/Native Ads/MPNativeAdRenderingImageLoader.m"; sourceTree = "<group>"; };
 		ADFDBF9049A270219D1DED2C6ED0DBE3 /* SAVASTModels+Operations.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SAVASTModels+Operations.h"; sourceTree = "<group>"; };
@@ -889,6 +887,7 @@
 		C04F0EEA595C063A4379CC1F14D84034 /* MOPUBNativeVideoAdConfigValues.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MOPUBNativeVideoAdConfigValues.m; path = MoPubSDK/NativeVideo/Internal/MOPUBNativeVideoAdConfigValues.m; sourceTree = "<group>"; };
 		C065381A5AEAEADABF08BF6A14EFBCD0 /* MPQRunLoopOperation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPQRunLoopOperation.m; path = "MoPubSDK/Internal/Event Logging/MPQRunLoopOperation.m"; sourceTree = "<group>"; };
 		C0A8BB546B30DCB3457771B2204C8E45 /* MPURLActionInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPURLActionInfo.h; path = MoPubSDK/Internal/Common/MPURLActionInfo.h; sourceTree = "<group>"; };
+		C16B5E78B52DE712520DD51ACA02E35D /* SuperAwesome-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "SuperAwesome-Private.xcconfig"; sourceTree = "<group>"; };
 		C20755CA793F9F50A9EFE7C3ABA1A6C2 /* MPStaticNativeAdRenderer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPStaticNativeAdRenderer.h; path = "MoPubSDK/Native Ads/MPStaticNativeAdRenderer.h"; sourceTree = "<group>"; };
 		C20F3A401B22572B18098CDB26E27B43 /* SAValidator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAValidator.m; sourceTree = "<group>"; };
 		C31532084244DA7167BF24C763924730 /* SALoader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SALoader.h; sourceTree = "<group>"; };
@@ -979,7 +978,6 @@
 		EC899EE3FC3A20057568A6E9A1C41DAF /* MPVASTModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPVASTModel.m; path = MoPubSDK/Internal/VAST/MPVASTModel.m; sourceTree = "<group>"; };
 		ECEBBB367E3A829E7FDB80CD0E18EDC9 /* SAParentalGate.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAParentalGate.m; sourceTree = "<group>"; };
 		ED2B2EC73408648F2F7E32DBCD9B830A /* MPCoreInstanceProvider.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPCoreInstanceProvider.h; path = MoPubSDK/Internal/MPCoreInstanceProvider.h; sourceTree = "<group>"; };
-		ED79BC39BCE38850F1C80D9FF7DA6B5A /* SUPMoatMobileAppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SUPMoatMobileAppKit.framework; path = SuperAwesome/Frameworks/SUPMoatMobileAppKit.framework; sourceTree = "<group>"; };
 		EE6022E7C8870FA6983E6B57FAA75FA0 /* watermark_67x25.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = watermark_67x25.png; sourceTree = "<group>"; };
 		EF8A264AF028FAA1F8171A45FB743914 /* MPAdConversionTracker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPAdConversionTracker.m; path = MoPubSDK/MPAdConversionTracker.m; sourceTree = "<group>"; };
 		EFE0621DEC694CFE3D4D338165FBD788 /* SAFullscreenVideoAd.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAFullscreenVideoAd.h; sourceTree = "<group>"; };
@@ -1007,6 +1005,7 @@
 		FBB40641757076E4A95F00712D624403 /* MPHTMLInterstitialViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPHTMLInterstitialViewController.m; path = MoPubSDK/Internal/HTML/MPHTMLInterstitialViewController.m; sourceTree = "<group>"; };
 		FBCE5874754E1D8A240B4E20A4F81E35 /* MPVASTMediaFile.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPVASTMediaFile.h; path = MoPubSDK/Internal/VAST/MPVASTMediaFile.h; sourceTree = "<group>"; };
 		FC10CC3AFA886DF4C2083E0F054E1F3A /* MPNativeAdRenderingImageLoader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPNativeAdRenderingImageLoader.h; path = "MoPubSDK/Native Ads/MPNativeAdRenderingImageLoader.h"; sourceTree = "<group>"; };
+		FC395D04AE978A653C3FC1BC5DE313AC /* SuperAwesome.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SuperAwesome.modulemap; sourceTree = "<group>"; };
 		FCA0D83DD089D16359B8CBC7D5546716 /* MPNativeAdUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPNativeAdUtils.h; path = "MoPubSDK/Native Ads/Internal/MPNativeAdUtils.h"; sourceTree = "<group>"; };
 		FCD7011E34E82B9BF1B4CBE15FA6421C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD8600604E3EB752303D022DB0AB5878 /* MPBaseInterstitialAdapter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPBaseInterstitialAdapter.h; path = MoPubSDK/Internal/Interstitials/MPBaseInterstitialAdapter.h; sourceTree = "<group>"; };
@@ -1064,50 +1063,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0F511D2D7050E62C53E89C7D75559113 /* SuperAwesome */ = {
+		01E28C6E04FC5369FD365A751B4A4622 /* libSAiOSUtils */ = {
 			isa = PBXGroup;
 			children = (
-				61948C2242A7B79FE18B1F1F9C54F5BC /* Frameworks */,
-				417055C8C044DB1A81BD00EFD5A6A35F /* Resources */,
-				3D27B074811A100BB383AD653AE3F29B /* SuperAwesome */,
-				EE814E3E2E51B1419DB1077623D4AE4D /* Support Files */,
+				9B2F804A7AB367A49082AB28DA2C60D6 /* NSArray+SAPredicate.h */,
+				F654B4B394CF69CD05E7730D5F5E4914 /* NSArray+SAPredicate.m */,
+				F5A0F91C2E19EB0D1D48121C1B64F2BA /* SAUtils.h */,
+				CB286AF205B33D788F009A82103643B8 /* SAUtils.m */,
+				5689DAA788164BEB33C2AEC724B58188 /* UIAlertController+Window.h */,
+				A17173CFD18580C0B4AB41D26929F641 /* UIAlertController+Window.m */,
+				9CF5A29CBFEAC2C4F23D2C394A5BA747 /* UIViewController+Utils.h */,
+				D967DFDB78F34537DC6C4D22250F9B82 /* UIViewController+Utils.m */,
+				6EC52443D8300EA17991E487213F80C6 /* libSAiOSUtils.h */,
 			);
-			name = SuperAwesome;
-			path = ../..;
+			path = libSAiOSUtils;
 			sourceTree = "<group>";
 		};
-		1862299BF92C1AC9C8924AAD3C9A134B /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				98CD0E9A77F9F802D27AF922ABFF5E07 /* mopub-ios-sdk */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		1EF09F5560AB6E5D8C04EDB7268B061C /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				F503406B0659432BB392E01805B8522B /* Plugins */,
-				28DCBD661E2C2434E85E66D00BEAF669 /* SDK */,
-				EAEDE40A584979F7BABD487DA1F36BEB /* libSAiOSNetwork */,
-				BAD364495D9C78C4247C73B0559704E1 /* libSAiOSUtils */,
-				BDB3D471374F8CD15C7FA72991B65B82 /* libSAiOSVAST */,
-				43E32759C7FDFF0057828048CD667225 /* libSAiOSWebView */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		20D7211062CA85EE3FD3BD3BD7BDBA15 /* SAVASTManager */ = {
-			isa = PBXGroup;
-			children = (
-				DACE5A719E6EA72F70989D35C35EF10C /* SAVASTManager.h */,
-				02EFB666691FA0D6E8508C30F313730A /* SAVASTManager.m */,
-				6C8D8AF21DB11BB08F193EA99F1138DB /* SAVASTManagerProtocol.h */,
-			);
-			path = SAVASTManager;
-			sourceTree = "<group>";
-		};
-		26491816F0A01AC6BE90D859C49F0501 /* Resources */ = {
+		049D39BAF8048F11902859385097BC92 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				B6BD861BD597EF8C0A1F2B6F3978CE53 /* close.png */,
@@ -1122,26 +1094,56 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		283300F2BF765AB679598219C9A4F7FB /* Capper */ = {
+		09098B2F1BB80C0DD780E8F5E2883013 /* Events */ = {
 			isa = PBXGroup;
 			children = (
-				D2AEB36903051883C660D266DEEDFDD8 /* SACapper.h */,
-				573E1156DC216C1A21328B665ED08088 /* SACapper.m */,
+				A45BD848771DDF272931F016BF3376B6 /* SAEvents.h */,
+				33339C9C17E259D7796B0664DE646003 /* SAEvents.m */,
 			);
-			path = Capper;
+			path = Events;
 			sourceTree = "<group>";
 		};
-		28DCBD661E2C2434E85E66D00BEAF669 /* SDK */ = {
+		13EB4FD1EAB029FF2BB3E29F8F9997CF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				53DA3DA744B5CA916F270E16ABBEF7C7 /* SuperAwesome.h */,
-				3AB35DEA9262141BBDB33E548698AD7C /* SuperAwesome.m */,
-				4B35943D8CE090ECBD08864D5D6F072D /* AdParser */,
-				283300F2BF765AB679598219C9A4F7FB /* Capper */,
-				B674153E69E9C47CC4A70A23BDD35916 /* Events */,
-				2FAD4047C87DE43CF91AC794A9927BAB /* Views */,
+				4A7D08B95270CCC82226A29EEE453AFD /* SuperAwesome */,
 			);
-			path = SDK;
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		1474B847E61C7CF5B9D4B04CE0EFB337 /* libSAiOSNetwork */ = {
+			isa = PBXGroup;
+			children = (
+				95079D89295141BF44043933816F272C /* SANetwork.h */,
+				2605BB18B2671D8AB2BB8B596E20CFAF /* SANetwork.m */,
+				E43FD85C004A9BEB91B6E8E2C5B496F0 /* SASystem.h */,
+				5CF311AA72114B7314C7022B8EBF439C /* SASystem.m */,
+				3BCD5D072EEB74DDB58D0FB2D9D90F53 /* SASystemSize.h */,
+				BDF6FC896CF7B0FCCE049C2ACF2B57B1 /* SASystemType.h */,
+				7C559E37FD050BFBE394CF3AE0F976F7 /* SAURLUtils.h */,
+				3E3CFB3B1C38276397E2BDF589EAE325 /* SAURLUtils.m */,
+				BA2A96B28A27B86BE9D614714E92A6AB /* SAUserAgent.h */,
+				782D04010C536C57267A4441B3EC3F64 /* SAUserAgent.m */,
+				3BC4E4D8B81F550B4FD36E5BD358E60A /* libSAiOSNetwork.h */,
+			);
+			path = libSAiOSNetwork;
+			sourceTree = "<group>";
+		};
+		1862299BF92C1AC9C8924AAD3C9A134B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				98CD0E9A77F9F802D27AF922ABFF5E07 /* mopub-ios-sdk */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		210B1C7E4783BF35664FEB3559A89F3D /* Validator */ = {
+			isa = PBXGroup;
+			children = (
+				B227DD8CF5E632BD188454D8A14318F3 /* SAValidator.h */,
+				C20F3A401B22572B18098CDB26E27B43 /* SAValidator.m */,
+			);
+			path = Validator;
 			sourceTree = "<group>";
 		};
 		2CC444D2C23176AB4CC1CB1A121C792B /* Pods-SuperAwesomeMoPub */ = {
@@ -1162,24 +1164,6 @@
 			path = "Target Support Files/Pods-SuperAwesomeMoPub";
 			sourceTree = "<group>";
 		};
-		2FAD4047C87DE43CF91AC794A9927BAB /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				2B43480674E2BC540A19553AFA62A809 /* SABannerAd.h */,
-				56B1E64215338529541270D5F3FED85E /* SABannerAd.m */,
-				EFE0621DEC694CFE3D4D338165FBD788 /* SAFullscreenVideoAd.h */,
-				AB49300F33F9ADD013B0C2AE00C800B0 /* SAFullscreenVideoAd.m */,
-				286A05C77CEF0D33C8F27B2C4D919A59 /* SAInterstitialAd.h */,
-				560783DC469B22EEA8A8F35D7BFD1D2E /* SAInterstitialAd.m */,
-				6467A1B46F948FB490A229C70FA6CB52 /* SAParentalGate.h */,
-				ECEBBB367E3A829E7FDB80CD0E18EDC9 /* SAParentalGate.m */,
-				3DED075ACCD15D08E4F1A2A7E42832A1 /* SAProtocols.h */,
-				A8D9E3FABBD341F262AF72482599920D /* SAVideoAd.h */,
-				B145356F9E991731AE8C8D71F67D6F3A /* SAVideoAd.m */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		35217C48FD71ACCDF2D2AC96073A4932 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -1195,23 +1179,7 @@
 			path = "../Target Support Files/mopub-ios-sdk";
 			sourceTree = "<group>";
 		};
-		3D27B074811A100BB383AD653AE3F29B /* SuperAwesome */ = {
-			isa = PBXGroup;
-			children = (
-				1EF09F5560AB6E5D8C04EDB7268B061C /* Classes */,
-			);
-			path = SuperAwesome;
-			sourceTree = "<group>";
-		};
-		417055C8C044DB1A81BD00EFD5A6A35F /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				4440DDB55BA469BB1A57CC60E57F8D8D /* SuperAwesome */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		43E32759C7FDFF0057828048CD667225 /* libSAiOSWebView */ = {
+		3571015DC6A0A1F0962096D5A2BA3386 /* libSAiOSWebView */ = {
 			isa = PBXGroup;
 			children = (
 				19D8F9F1B65A8773BE0778AAD32A8FB5 /* SAWebView.h */,
@@ -1222,15 +1190,28 @@
 			path = libSAiOSWebView;
 			sourceTree = "<group>";
 		};
-		4440DDB55BA469BB1A57CC60E57F8D8D /* SuperAwesome */ = {
+		4A7D08B95270CCC82226A29EEE453AFD /* SuperAwesome */ = {
 			isa = PBXGroup;
 			children = (
-				26491816F0A01AC6BE90D859C49F0501 /* Resources */,
+				049D39BAF8048F11902859385097BC92 /* Resources */,
 			);
 			path = SuperAwesome;
 			sourceTree = "<group>";
 		};
-		45D237C8D6A0EB0C7CE4FFA2AA2774E7 /* Parser */ = {
+		50C5FFD525FF0A87B754B79F36D6798D /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				E4CCC5CDAAD1B4DD0F30F7DB5AFD7BD2 /* Plugins */,
+				77C5A5EE645B097C705D45B8C4439849 /* SDK */,
+				1474B847E61C7CF5B9D4B04CE0EFB337 /* libSAiOSNetwork */,
+				01E28C6E04FC5369FD365A751B4A4622 /* libSAiOSUtils */,
+				CD5B9A008C72C6466EFF9187C414A96D /* libSAiOSVAST */,
+				3571015DC6A0A1F0962096D5A2BA3386 /* libSAiOSWebView */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		513864FCDD7B932361C6223AE8C7300C /* Parser */ = {
 			isa = PBXGroup;
 			children = (
 				88A690C564AA0D2CE473CB65427CE535 /* SAHTMLParser.h */,
@@ -1239,17 +1220,6 @@
 				461B95894A8F8B3D1B0C42C67E1D2B8F /* SAParser.m */,
 			);
 			path = Parser;
-			sourceTree = "<group>";
-		};
-		4B35943D8CE090ECBD08864D5D6F072D /* AdParser */ = {
-			isa = PBXGroup;
-			children = (
-				AD4EA336CEE737E65F787494FDCD3E75 /* Loader */,
-				7223A62CC4314EC1A9DDECAFFB4E7040 /* Models */,
-				45D237C8D6A0EB0C7CE4FFA2AA2774E7 /* Parser */,
-				9447AD1F5785E712B4A3D40516EF37C9 /* Validator */,
-			);
-			path = AdParser;
 			sourceTree = "<group>";
 		};
 		51BD01F2042330EFAEC355BEA0C010B9 /* Targets Support Files */ = {
@@ -1604,44 +1574,33 @@
 			name = MoPubSDK;
 			sourceTree = "<group>";
 		};
-		61948C2242A7B79FE18B1F1F9C54F5BC /* Frameworks */ = {
+		77C5A5EE645B097C705D45B8C4439849 /* SDK */ = {
 			isa = PBXGroup;
 			children = (
-				ED79BC39BCE38850F1C80D9FF7DA6B5A /* SUPMoatMobileAppKit.framework */,
+				53DA3DA744B5CA916F270E16ABBEF7C7 /* SuperAwesome.h */,
+				3AB35DEA9262141BBDB33E548698AD7C /* SuperAwesome.m */,
+				D0C4E40DD1E1E549DF0ED998D9A04525 /* AdParser */,
+				7C9858EDBB32E850E261378C897D4838 /* Capper */,
+				09098B2F1BB80C0DD780E8F5E2883013 /* Events */,
+				D10687802BB0537774B430A426863345 /* Views */,
 			);
-			name = Frameworks;
+			path = SDK;
 			sourceTree = "<group>";
 		};
-		62EDB65D8FA6FC58D2802ADC56DC5612 /* XMLLib */ = {
+		7C9858EDBB32E850E261378C897D4838 /* Capper */ = {
 			isa = PBXGroup;
 			children = (
-				BBD58D6A667F73F97A5EBF8BA50FA118 /* TBXML.h */,
-				55AE00271743D59B27F7219C01DAF8B5 /* TBXML.m */,
-				182F1815CF6C64D08412643EF1AD5C55 /* TBXML+SAStaticFunctions.h */,
-				789E13D8192766E86F8899366A7C4F72 /* TBXML+SAStaticFunctions.m */,
+				D2AEB36903051883C660D266DEEDFDD8 /* SACapper.h */,
+				573E1156DC216C1A21328B665ED08088 /* SACapper.m */,
 			);
-			path = XMLLib;
-			sourceTree = "<group>";
-		};
-		7223A62CC4314EC1A9DDECAFFB4E7040 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				45EE1C76F341E4DB3E8EFC4F2DF2A59B /* SAAd.h */,
-				DAAAB76A647E4FE50765707D79900EDE /* SAAd.m */,
-				DEAE913652C17F8970BBEED79644E009 /* SACreative.h */,
-				81EB6EEEDF5A60AB92B3384F134365E9 /* SACreative.m */,
-				82AF28E5448A803A503F01F4FD656B09 /* SACreativeFormat.h */,
-				52DDD6A199CBB3C9C7B6C6098C64CBC7 /* SADetails.h */,
-				89D817AD6B3B8DE09F011B08FBDCF846 /* SADetails.m */,
-			);
-			path = Models;
+			path = Capper;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */,
-				E9729F8786805DE1DACCBF51EC4C45EC /* Development Pods */,
+				BFA4E192C1961558BF83D796B7E08FA6 /* Development Pods */,
 				A23C02BB00D461845CB0F37EB451D88F /* Frameworks */,
 				1862299BF92C1AC9C8924AAD3C9A134B /* Pods */,
 				CCA510CFBEA2D207524CDA0D73C3B561 /* Products */,
@@ -1676,29 +1635,19 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		8F266B34E88920B0A251CB82C5813E43 /* SAVASTPlayer */ = {
+		7F5C42062CDA09791C30CDF5FACEC4E6 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				F076A7576B9DC9E69FE1803788082D6A /* SABlackMask.h */,
-				E90A90A36FBCEF219CC8C7C686D7DE64 /* SABlackMask.m */,
-				CDB485D7B696112A546B8D2879C7C123 /* SACronograph.h */,
-				E07C3893E6598E72A9AC42B1AC77FEC3 /* SACronograph.m */,
-				49079AD4CB70E3208823DF1051102ED0 /* SAURLClicker.h */,
-				DC42BB3804CAA2A4805E2FA380BDAEA0 /* SAURLClicker.m */,
-				0C6246F7926650768B6E2AB5CEA6023F /* SAVASTPlayer.h */,
-				3C805AC9467BA32314ACB2F92E5682C8 /* SAVASTPlayer.m */,
-				0F7C7BA9AC821715745273A81E488D32 /* SAVASTPlayerProtocol.h */,
+				96EE62B93A1AF032564C9555B99B73C3 /* Info.plist */,
+				FC395D04AE978A653C3FC1BC5DE313AC /* SuperAwesome.modulemap */,
+				5917E9A5DEE0BE8F6ADCE3FA5B6057DA /* SuperAwesome.xcconfig */,
+				C16B5E78B52DE712520DD51ACA02E35D /* SuperAwesome-Private.xcconfig */,
+				A82D3988D9DC2C46779ECA7289C14B56 /* SuperAwesome-dummy.m */,
+				4CC0AABD76B1FE81A3C9FB0E03976D90 /* SuperAwesome-prefix.pch */,
+				4C4D266B29E1C9D622E0A3A166421DCC /* SuperAwesome-umbrella.h */,
 			);
-			path = SAVASTPlayer;
-			sourceTree = "<group>";
-		};
-		9447AD1F5785E712B4A3D40516EF37C9 /* Validator */ = {
-			isa = PBXGroup;
-			children = (
-				B227DD8CF5E632BD188454D8A14318F3 /* SAValidator.h */,
-				C20F3A401B22572B18098CDB26E27B43 /* SAValidator.m */,
-			);
-			path = Validator;
+			name = "Support Files";
+			path = "SuperAwesomeMoPub/Pods/Target Support Files/SuperAwesome";
 			sourceTree = "<group>";
 		};
 		98CD0E9A77F9F802D27AF922ABFF5E07 /* mopub-ios-sdk */ = {
@@ -1710,15 +1659,50 @@
 			path = "mopub-ios-sdk";
 			sourceTree = "<group>";
 		};
-		A07FDBB3C455B0A674BEBA846F5DB141 /* Unity */ = {
+		9B89D452A2504C4141013A8A46141B16 /* SuperAwesome */ = {
 			isa = PBXGroup;
 			children = (
-				A2F3BE77043FFC872A0FB0FB1C8EBD18 /* SAUnityLinker.h */,
-				6ADBB0C54AD651B6B2AFA7CDC4CA25CA /* SAUnityLinker.m */,
-				00F673AB5CDBDC9240648C2C29598BFB /* SAUnityLinkerManager.h */,
-				E8F4D396822E3FA0B9D36D5E8468E280 /* SAUnityLinkerManager.m */,
+				13EB4FD1EAB029FF2BB3E29F8F9997CF /* Resources */,
+				C30D11CFC5345B965FA4B4F189EBC350 /* SuperAwesome */,
+				7F5C42062CDA09791C30CDF5FACEC4E6 /* Support Files */,
 			);
-			path = Unity;
+			name = SuperAwesome;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		9BA6D07648C7F46CCFDB99CA5C25DE98 /* HTML */ = {
+			isa = PBXGroup;
+			children = (
+				6A0CC9A06981D71A5D869494A635D445 /* GTMNSString+HTML.h */,
+				C8F32C9669B517242BDEC953EF1F9136 /* GTMNSString+HTML.m */,
+				BBED25AA6F1B4626EC823BF9CD1C42FD /* NSString+HTML.h */,
+				E3FB64BC034BA79CAB74D5D26448C8A6 /* NSString+HTML.m */,
+			);
+			path = HTML;
+			sourceTree = "<group>";
+		};
+		9C89059305CAEF4CED27FDAB3D8333C0 /* SAVASTManager */ = {
+			isa = PBXGroup;
+			children = (
+				DACE5A719E6EA72F70989D35C35EF10C /* SAVASTManager.h */,
+				02EFB666691FA0D6E8508C30F313730A /* SAVASTManager.m */,
+				6C8D8AF21DB11BB08F193EA99F1138DB /* SAVASTManagerProtocol.h */,
+			);
+			path = SAVASTManager;
+			sourceTree = "<group>";
+		};
+		A1C3FB20DD90442372E6E2EF4EE3C441 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				45EE1C76F341E4DB3E8EFC4F2DF2A59B /* SAAd.h */,
+				DAAAB76A647E4FE50765707D79900EDE /* SAAd.m */,
+				DEAE913652C17F8970BBEED79644E009 /* SACreative.h */,
+				81EB6EEEDF5A60AB92B3384F134365E9 /* SACreative.m */,
+				82AF28E5448A803A503F01F4FD656B09 /* SACreativeFormat.h */,
+				52DDD6A199CBB3C9C7B6C6098C64CBC7 /* SADetails.h */,
+				89D817AD6B3B8DE09F011B08FBDCF846 /* SADetails.m */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		A23C02BB00D461845CB0F37EB451D88F /* Frameworks */ = {
@@ -1727,6 +1711,33 @@
 				A6CE0868822227F11E7F7C2B704B8319 /* iOS */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A2C49FEF8C4065FF38B3ABAFCE066256 /* SAVAST */ = {
+			isa = PBXGroup;
+			children = (
+				661F0CC08FC5E9B983985987DB668E9E /* SAVASTModels.h */,
+				70AE8019CBFF25100627D71CE89AEF90 /* SAVASTModels.m */,
+				ADFDBF9049A270219D1DED2C6ED0DBE3 /* SAVASTModels+Operations.h */,
+				7270880D269B904F726397900102B038 /* SAVASTModels+Operations.m */,
+				6358810FBE2299B137CB0B141057807C /* SAVASTModels+Parsing.h */,
+				0468C0A19ED2BE6AD79E00F53A89C06A /* SAVASTModels+Parsing.m */,
+				8CA95063A623F93A94E79CE96D65E6FB /* SAVASTParser.h */,
+				6333C56C809C348CD2A4A9C7305C60B3 /* SAVASTParser.m */,
+				8B0DF04226F0EF740FF193E7D3381620 /* SAVASTParserProtocol.h */,
+			);
+			path = SAVAST;
+			sourceTree = "<group>";
+		};
+		A3371DA11B4B54A9120B76F8A321BE6D /* XMLLib */ = {
+			isa = PBXGroup;
+			children = (
+				BBD58D6A667F73F97A5EBF8BA50FA118 /* TBXML.h */,
+				55AE00271743D59B27F7219C01DAF8B5 /* TBXML.m */,
+				182F1815CF6C64D08412643EF1AD5C55 /* TBXML+SAStaticFunctions.h */,
+				789E13D8192766E86F8899366A7C4F72 /* TBXML+SAStaticFunctions.m */,
+			);
+			path = XMLLib;
 			sourceTree = "<group>";
 		};
 		A6CE0868822227F11E7F7C2B704B8319 /* iOS */ = {
@@ -1753,7 +1764,7 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		AD4EA336CEE737E65F787494FDCD3E75 /* Loader */ = {
+		B37354AF4C3B64A1E5E2913E2F92EEA2 /* Loader */ = {
 			isa = PBXGroup;
 			children = (
 				C31532084244DA7167BF24C763924730 /* SALoader.h */,
@@ -1763,42 +1774,20 @@
 			path = Loader;
 			sourceTree = "<group>";
 		};
-		B674153E69E9C47CC4A70A23BDD35916 /* Events */ = {
+		BFA4E192C1961558BF83D796B7E08FA6 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				A45BD848771DDF272931F016BF3376B6 /* SAEvents.h */,
-				33339C9C17E259D7796B0664DE646003 /* SAEvents.m */,
+				9B89D452A2504C4141013A8A46141B16 /* SuperAwesome */,
 			);
-			path = Events;
+			name = "Development Pods";
 			sourceTree = "<group>";
 		};
-		BAD364495D9C78C4247C73B0559704E1 /* libSAiOSUtils */ = {
+		C30D11CFC5345B965FA4B4F189EBC350 /* SuperAwesome */ = {
 			isa = PBXGroup;
 			children = (
-				9B2F804A7AB367A49082AB28DA2C60D6 /* NSArray+SAPredicate.h */,
-				F654B4B394CF69CD05E7730D5F5E4914 /* NSArray+SAPredicate.m */,
-				F5A0F91C2E19EB0D1D48121C1B64F2BA /* SAUtils.h */,
-				CB286AF205B33D788F009A82103643B8 /* SAUtils.m */,
-				5689DAA788164BEB33C2AEC724B58188 /* UIAlertController+Window.h */,
-				A17173CFD18580C0B4AB41D26929F641 /* UIAlertController+Window.m */,
-				9CF5A29CBFEAC2C4F23D2C394A5BA747 /* UIViewController+Utils.h */,
-				D967DFDB78F34537DC6C4D22250F9B82 /* UIViewController+Utils.m */,
-				6EC52443D8300EA17991E487213F80C6 /* libSAiOSUtils.h */,
+				50C5FFD525FF0A87B754B79F36D6798D /* Classes */,
 			);
-			path = libSAiOSUtils;
-			sourceTree = "<group>";
-		};
-		BDB3D471374F8CD15C7FA72991B65B82 /* libSAiOSVAST */ = {
-			isa = PBXGroup;
-			children = (
-				F1CB1742A0C518AB8ECC729A99960A63 /* libSAiOSVAST.h */,
-				FBE86332C5CCA139579E1CEA554B4C54 /* HTML */,
-				DC49EAF1D70AE36007641C51FA21BB8E /* SAVAST */,
-				20D7211062CA85EE3FD3BD3BD7BDBA15 /* SAVASTManager */,
-				8F266B34E88920B0A251CB82C5813E43 /* SAVASTPlayer */,
-				62EDB65D8FA6FC58D2802ADC56DC5612 /* XMLLib */,
-			);
-			path = libSAiOSVAST;
+			path = SuperAwesome;
 			sourceTree = "<group>";
 		};
 		CCA510CFBEA2D207524CDA0D73C3B561 /* Products */ = {
@@ -1811,80 +1800,81 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		DC49EAF1D70AE36007641C51FA21BB8E /* SAVAST */ = {
+		CD5B9A008C72C6466EFF9187C414A96D /* libSAiOSVAST */ = {
 			isa = PBXGroup;
 			children = (
-				661F0CC08FC5E9B983985987DB668E9E /* SAVASTModels.h */,
-				70AE8019CBFF25100627D71CE89AEF90 /* SAVASTModels.m */,
-				ADFDBF9049A270219D1DED2C6ED0DBE3 /* SAVASTModels+Operations.h */,
-				7270880D269B904F726397900102B038 /* SAVASTModels+Operations.m */,
-				6358810FBE2299B137CB0B141057807C /* SAVASTModels+Parsing.h */,
-				0468C0A19ED2BE6AD79E00F53A89C06A /* SAVASTModels+Parsing.m */,
-				8CA95063A623F93A94E79CE96D65E6FB /* SAVASTParser.h */,
-				6333C56C809C348CD2A4A9C7305C60B3 /* SAVASTParser.m */,
-				8B0DF04226F0EF740FF193E7D3381620 /* SAVASTParserProtocol.h */,
+				F1CB1742A0C518AB8ECC729A99960A63 /* libSAiOSVAST.h */,
+				9BA6D07648C7F46CCFDB99CA5C25DE98 /* HTML */,
+				A2C49FEF8C4065FF38B3ABAFCE066256 /* SAVAST */,
+				9C89059305CAEF4CED27FDAB3D8333C0 /* SAVASTManager */,
+				D1576876279A175725E962E51B8825BF /* SAVASTPlayer */,
+				A3371DA11B4B54A9120B76F8A321BE6D /* XMLLib */,
 			);
-			path = SAVAST;
+			path = libSAiOSVAST;
 			sourceTree = "<group>";
 		};
-		E9729F8786805DE1DACCBF51EC4C45EC /* Development Pods */ = {
+		D0C4E40DD1E1E549DF0ED998D9A04525 /* AdParser */ = {
 			isa = PBXGroup;
 			children = (
-				0F511D2D7050E62C53E89C7D75559113 /* SuperAwesome */,
+				B37354AF4C3B64A1E5E2913E2F92EEA2 /* Loader */,
+				A1C3FB20DD90442372E6E2EF4EE3C441 /* Models */,
+				513864FCDD7B932361C6223AE8C7300C /* Parser */,
+				210B1C7E4783BF35664FEB3559A89F3D /* Validator */,
 			);
-			name = "Development Pods";
+			path = AdParser;
 			sourceTree = "<group>";
 		};
-		EAEDE40A584979F7BABD487DA1F36BEB /* libSAiOSNetwork */ = {
+		D10687802BB0537774B430A426863345 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				95079D89295141BF44043933816F272C /* SANetwork.h */,
-				2605BB18B2671D8AB2BB8B596E20CFAF /* SANetwork.m */,
-				E43FD85C004A9BEB91B6E8E2C5B496F0 /* SASystem.h */,
-				5CF311AA72114B7314C7022B8EBF439C /* SASystem.m */,
-				3BCD5D072EEB74DDB58D0FB2D9D90F53 /* SASystemSize.h */,
-				BDF6FC896CF7B0FCCE049C2ACF2B57B1 /* SASystemType.h */,
-				7C559E37FD050BFBE394CF3AE0F976F7 /* SAURLUtils.h */,
-				3E3CFB3B1C38276397E2BDF589EAE325 /* SAURLUtils.m */,
-				BA2A96B28A27B86BE9D614714E92A6AB /* SAUserAgent.h */,
-				782D04010C536C57267A4441B3EC3F64 /* SAUserAgent.m */,
-				3BC4E4D8B81F550B4FD36E5BD358E60A /* libSAiOSNetwork.h */,
+				2B43480674E2BC540A19553AFA62A809 /* SABannerAd.h */,
+				56B1E64215338529541270D5F3FED85E /* SABannerAd.m */,
+				EFE0621DEC694CFE3D4D338165FBD788 /* SAFullscreenVideoAd.h */,
+				AB49300F33F9ADD013B0C2AE00C800B0 /* SAFullscreenVideoAd.m */,
+				286A05C77CEF0D33C8F27B2C4D919A59 /* SAInterstitialAd.h */,
+				560783DC469B22EEA8A8F35D7BFD1D2E /* SAInterstitialAd.m */,
+				6467A1B46F948FB490A229C70FA6CB52 /* SAParentalGate.h */,
+				ECEBBB367E3A829E7FDB80CD0E18EDC9 /* SAParentalGate.m */,
+				3DED075ACCD15D08E4F1A2A7E42832A1 /* SAProtocols.h */,
+				A8D9E3FABBD341F262AF72482599920D /* SAVideoAd.h */,
+				B145356F9E991731AE8C8D71F67D6F3A /* SAVideoAd.m */,
 			);
-			path = libSAiOSNetwork;
+			path = Views;
 			sourceTree = "<group>";
 		};
-		EE814E3E2E51B1419DB1077623D4AE4D /* Support Files */ = {
+		D1576876279A175725E962E51B8825BF /* SAVASTPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				26A666597D81E49CC00E8EDDD3E49A7C /* Info.plist */,
-				2917A75444560491C4CC7D117AD30FB8 /* SuperAwesome.modulemap */,
-				AC89FB0F6860B523B44D0585DF9C594A /* SuperAwesome.xcconfig */,
-				A4AB89BFB75759936A982BF82D8972A7 /* SuperAwesome-Private.xcconfig */,
-				A82D3988D9DC2C46779ECA7289C14B56 /* SuperAwesome-dummy.m */,
-				5739A587F559182AC6ED8B2EA4798872 /* SuperAwesome-prefix.pch */,
-				4C4D266B29E1C9D622E0A3A166421DCC /* SuperAwesome-umbrella.h */,
+				F076A7576B9DC9E69FE1803788082D6A /* SABlackMask.h */,
+				E90A90A36FBCEF219CC8C7C686D7DE64 /* SABlackMask.m */,
+				CDB485D7B696112A546B8D2879C7C123 /* SACronograph.h */,
+				E07C3893E6598E72A9AC42B1AC77FEC3 /* SACronograph.m */,
+				49079AD4CB70E3208823DF1051102ED0 /* SAURLClicker.h */,
+				DC42BB3804CAA2A4805E2FA380BDAEA0 /* SAURLClicker.m */,
+				0C6246F7926650768B6E2AB5CEA6023F /* SAVASTPlayer.h */,
+				3C805AC9467BA32314ACB2F92E5682C8 /* SAVASTPlayer.m */,
+				0F7C7BA9AC821715745273A81E488D32 /* SAVASTPlayerProtocol.h */,
 			);
-			name = "Support Files";
-			path = "SuperAwesomeMoPub/Pods/Target Support Files/SuperAwesome";
+			path = SAVASTPlayer;
 			sourceTree = "<group>";
 		};
-		F503406B0659432BB392E01805B8522B /* Plugins */ = {
+		E4CCC5CDAAD1B4DD0F30F7DB5AFD7BD2 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
-				A07FDBB3C455B0A674BEBA846F5DB141 /* Unity */,
+				F5C8DF3BEA58B1CC19C342D3262D4DF0 /* Unity */,
 			);
 			path = Plugins;
 			sourceTree = "<group>";
 		};
-		FBE86332C5CCA139579E1CEA554B4C54 /* HTML */ = {
+		F5C8DF3BEA58B1CC19C342D3262D4DF0 /* Unity */ = {
 			isa = PBXGroup;
 			children = (
-				6A0CC9A06981D71A5D869494A635D445 /* GTMNSString+HTML.h */,
-				C8F32C9669B517242BDEC953EF1F9136 /* GTMNSString+HTML.m */,
-				BBED25AA6F1B4626EC823BF9CD1C42FD /* NSString+HTML.h */,
-				E3FB64BC034BA79CAB74D5D26448C8A6 /* NSString+HTML.m */,
+				A2F3BE77043FFC872A0FB0FB1C8EBD18 /* SAUnityLinker.h */,
+				6ADBB0C54AD651B6B2AFA7CDC4CA25CA /* SAUnityLinker.m */,
+				00F673AB5CDBDC9240648C2C29598BFB /* SAUnityLinkerManager.h */,
+				E8F4D396822E3FA0B9D36D5E8468E280 /* SAUnityLinkerManager.m */,
 			);
-			path = HTML;
+			path = Unity;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2195,8 +2185,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				C06DC7835E3C0D24776517029C470DB5 /* PBXTargetDependency */,
-				3F0228DEEA7230C640C037E8EA0637A7 /* PBXTargetDependency */,
+				FFCE2D555017022A3A753A7ED0154155 /* PBXTargetDependency */,
+				16264B86890D7C8AD178BC11BE22C45E /* PBXTargetDependency */,
 			);
 			name = "Pods-SuperAwesomeMoPub";
 			productName = "Pods-SuperAwesomeMoPub";
@@ -2500,17 +2490,17 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3F0228DEEA7230C640C037E8EA0637A7 /* PBXTargetDependency */ = {
+		16264B86890D7C8AD178BC11BE22C45E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "mopub-ios-sdk";
 			target = 7F2875461E914D4953B8419940A20291 /* mopub-ios-sdk */;
-			targetProxy = 7EE76756E21FBD31FB37D9EAB8200146 /* PBXContainerItemProxy */;
+			targetProxy = 0B1C385DBC530151DBE36E1CA4BD9750 /* PBXContainerItemProxy */;
 		};
-		C06DC7835E3C0D24776517029C470DB5 /* PBXTargetDependency */ = {
+		FFCE2D555017022A3A753A7ED0154155 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SuperAwesome;
 			target = 8F97C8D5516634A9694CCEFC244F91FE /* SuperAwesome */;
-			targetProxy = 0A54C8898518F867EFCD6CBD6EF98EFE /* PBXContainerItemProxy */;
+			targetProxy = 8AE617FDEC19569F4A9BDB8DC25753C0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2541,6 +2531,33 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
+		};
+		2E023AD7A6754A14078440FE2185C275 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C16B5E78B52DE712520DD51ACA02E35D /* SuperAwesome-Private.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 3.6.2;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 3;
+				DYLIB_CURRENT_VERSION = "$(CURRENT_PROJECT_VERSION)";
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/SuperAwesome/SuperAwesome-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SuperAwesome/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SuperAwesome/SuperAwesome.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = SuperAwesome;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
 		};
 		6569F07DC21AD8B72752685013E3D9D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -2581,6 +2598,33 @@
 			};
 			name = Debug;
 		};
+		6B9969D9C328BF3B203229D96A1A789E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C16B5E78B52DE712520DD51ACA02E35D /* SuperAwesome-Private.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 3.6.2;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 3;
+				DYLIB_CURRENT_VERSION = "$(CURRENT_PROJECT_VERSION)";
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/SuperAwesome/SuperAwesome-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SuperAwesome/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SuperAwesome/SuperAwesome.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = SuperAwesome;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		7CB146EA461EF9A8EA2CE51E03E2CE7B /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1BE3048EA4CA5D214807E7004D3BE5DF /* Pods-SuperAwesomeMoPub.release.xcconfig */;
@@ -2602,33 +2646,6 @@
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_NAME = Pods_SuperAwesomeMoPub;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		8431541366EDC2C315664D9CB496E7D8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A4AB89BFB75759936A982BF82D8972A7 /* SuperAwesome-Private.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 3.6.1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 3;
-				DYLIB_CURRENT_VERSION = "$(CURRENT_PROJECT_VERSION)";
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/SuperAwesome/SuperAwesome-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SuperAwesome/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SuperAwesome/SuperAwesome.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = SuperAwesome;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2700,33 +2717,6 @@
 			};
 			name = Debug;
 		};
-		C9DA9EC3E83982BBEF0D64CDF4FF4DA0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A4AB89BFB75759936A982BF82D8972A7 /* SuperAwesome-Private.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 3.6.1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 3;
-				DYLIB_CURRENT_VERSION = "$(CURRENT_PROJECT_VERSION)";
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/SuperAwesome/SuperAwesome-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SuperAwesome/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SuperAwesome/SuperAwesome.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = SuperAwesome;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		F2E5ABD706B911000AAB2CD564B803E4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5B17DE4A8B001C604E70B1B1603702BF /* mopub-ios-sdk-Private.xcconfig */;
@@ -2769,8 +2759,8 @@
 		44F002A0131D0B3D9E87B29B234683B4 /* Build configuration list for PBXNativeTarget "SuperAwesome" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C9DA9EC3E83982BBEF0D64CDF4FF4DA0 /* Debug */,
-				8431541366EDC2C315664D9CB496E7D8 /* Release */,
+				6B9969D9C328BF3B203229D96A1A789E /* Debug */,
+				2E023AD7A6754A14078440FE2185C275 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

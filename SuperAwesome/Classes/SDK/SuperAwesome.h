@@ -71,9 +71,9 @@ typedef enum SAConfiguration {
 //- (void) enableMoatTracking;
 //- (void) disableMoatTracking;
 //- (void) setMoatTracking:(BOOL)enabled;
-- (BOOL) isMoatEnabled;
-- (NSString*) getDisplayMoatPartnerCode;
-- (NSString*) getVideoMoatPartnerCode;
+//- (BOOL) isMoatEnabled;
+//- (NSString*) getDisplayMoatPartnerCode;
+//- (NSString*) getVideoMoatPartnerCode;
 
 // get the dau
 - (NSUInteger) getDAUID;

@@ -15,9 +15,9 @@
 
 @interface SuperAwesomeRewardedVideoCustomEvent ()
 <SALoaderProtocol,
- SAAdProtocol,
- SAVideoAdProtocol,
- SAParentalGateProtocol>
+SAAdProtocol,
+SAVideoAdProtocol,
+SAParentalGateProtocol>
 
 // SA objects
 @property (nonatomic, assign) NSInteger placementId;
@@ -60,7 +60,7 @@
     _isTestEnabled = [isTestEnabledObj boolValue];
     _placementId = [placementIdObj integerValue];
     _isParentalGateEnabled = (isParentalGateEnabledObj != NULL ? [isParentalGateEnabledObj boolValue] : true);
-    _shouldShowCloseButton = (shouldShowCloseButtonObj != NULL ? [shouldShowCloseButtonObj boolValue] : false);
+    _shouldShowCloseButton = true; // (shouldShowCloseButtonObj != NULL ? [shouldShowCloseButtonObj boolValue] : false);
     _shouldAutomaticallyCloseAtEnd = (shouldAutomaticallyCloseAtEndObj != NULL ? [shouldAutomaticallyCloseAtEndObj boolValue] : true);
     
     // enable or disable test mode
@@ -73,11 +73,15 @@
 }
 
 - (void) presentRewardedVideoFromViewController:(UIViewController *)viewController {
+    
+    __weak typeof (self) weakSelf = self;
+    
     [viewController presentViewController:_fvad animated:YES completion:^{
-        [_fvad play];
+        // play
+        [weakSelf.fvad play];
         
         // call delegate
-        [self.delegate rewardedVideoWillAppearForCustomEvent:self];
+        [weakSelf.delegate rewardedVideoWillAppearForCustomEvent:weakSelf];
     }];
 }
 
@@ -170,6 +174,7 @@
 }
 
 - (void) adWasClosed:(NSInteger)placementId {
+    NSLog(@"Pressed on Ad was closed");
     // call required events
     [self.delegate rewardedVideoWillDisappearForCustomEvent:self];
     [self.delegate rewardedVideoDidDisappearForCustomEvent:self];
@@ -178,6 +183,7 @@
     _fvad = NULL;
     _cAd = NULL;
     _loader = NULL;
+    _reward = NULL;
 }
 
 - (void) adHasIncorrectPlacement:(NSInteger)placementId {

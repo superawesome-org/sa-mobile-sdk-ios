@@ -44,6 +44,9 @@
         [dict setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[[SuperAwesome getInstance] getDAUID]] forKey:@"dauid"];
     }
     
+    // get a reference to weak self, for the block
+    __weak typeof (self) weakSelf = self;
+    
     // The second operation to perform is calling a SANetwork class function
     // to get Ad data, returned as NSData
     [SANetwork sendGETtoEndpoint:endpoint withQueryDict:dict andSuccess:^(NSData *data) {
@@ -56,8 +59,8 @@
         
         // some error occured, probably the JSON string was badly formatted
         if (jsonError) {
-            if (_delegate != NULL && [_delegate respondsToSelector:@selector(didFailToLoadAdForPlacementId:)]) {
-                [_delegate didFailToLoadAdForPlacementId:placementId];
+            if (weakSelf.delegate != NULL && [weakSelf.delegate respondsToSelector:@selector(didFailToLoadAdForPlacementId:)]) {
+                [weakSelf.delegate didFailToLoadAdForPlacementId:placementId];
             }
         }
         // if there is no specific JSON Error, we can move forward to try to
@@ -73,21 +76,21 @@
             
             // and if all is OK go forward and announce the new ad
             if (isValid) {
-                if (_delegate != NULL && [_delegate respondsToSelector:@selector(didLoadAd:)]) {
-                    [_delegate didLoadAd:parsedAd];
+                if (weakSelf.delegate != NULL && [weakSelf.delegate respondsToSelector:@selector(didLoadAd:)]) {
+                    [weakSelf.delegate didLoadAd:parsedAd];
                 }
             }
             // else announce failure
             else {
-                if (_delegate != NULL && [_delegate respondsToSelector:@selector(didFailToLoadAdForPlacementId:)]) {
-                    [_delegate didFailToLoadAdForPlacementId:placementId];
+                if (weakSelf.delegate != NULL && [weakSelf.delegate respondsToSelector:@selector(didFailToLoadAdForPlacementId:)]) {
+                    [weakSelf.delegate didFailToLoadAdForPlacementId:placementId];
                 }
             }
         }
         
     } orFailure:^{
-        if (_delegate != NULL && [_delegate respondsToSelector:@selector(didFailToLoadAdForPlacementId:)]) {
-            [_delegate didFailToLoadAdForPlacementId:placementId];
+        if (weakSelf.delegate != NULL && [weakSelf.delegate respondsToSelector:@selector(didFailToLoadAdForPlacementId:)]) {
+            [weakSelf.delegate didFailToLoadAdForPlacementId:placementId];
         }
     }];
 }

@@ -31,6 +31,8 @@
     
     dispatch_queue_t myQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     
+    __weak typeof (self) weakSelf = self;
+    
     dispatch_async(myQueue, ^{
     
         // get ads array
@@ -38,18 +40,14 @@
         
         // long running stuff
         dispatch_async(dispatch_get_main_queue(), ^{
-            
-//            for (SAVASTAd *ad in adsArray) {
-//                [ad print];
-//            }
-            
+                       
             if (adsArray.count >= 1 ) {
-                if (_delegate && [_delegate respondsToSelector:@selector(didParseVASTAndHasAdsResponse:)]) {
-                    [_delegate didParseVASTAndHasAdsResponse:adsArray];
+                if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(didParseVASTAndHasAdsResponse:)]) {
+                    [weakSelf.delegate didParseVASTAndHasAdsResponse:adsArray];
                 }
             } else {
-                if (_delegate && [_delegate respondsToSelector:@selector(didNotFindAnyValidAds)]) {
-                    [_delegate didNotFindAnyValidAds];
+                if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(didNotFindAnyValidAds)]) {
+                    [weakSelf.delegate didNotFindAnyValidAds];
                 }
             }
         });
@@ -119,5 +117,8 @@
     return ads;
 }
 
+- (void) dealloc {
+    NSLog(@"SAVASTParser dealloc");
+}
 
 @end

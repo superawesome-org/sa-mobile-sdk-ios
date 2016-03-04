@@ -24,6 +24,6 @@
 @property (nonatomic, weak) id<SAAdProtocol> adDelegate;
 @property (nonatomic, weak) id<SAParentalGateProtocol> parentalGateDelegate;
 @property (nonatomic, weak) id<SAVideoAdProtocol> videoDelegate;
-@property (nonatomic, assign) IBInspectable BOOL isParentalGateEnabled;
+@property (nonatomic, assign) BOOL isParentalGateEnabled;
 
 @end

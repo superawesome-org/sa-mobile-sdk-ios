@@ -158,11 +158,12 @@
             break;
         }
         case fullscreen_video_item:{
-            SAFullscreenVideoAd *fvad = [[SAFullscreenVideoAd alloc] init];
+//            __weak typeof (self) weakSelf = self;
+            SAFullscreenVideoAd *fvad = [[SAFullscreenVideoAd alloc] initWithNibName:nil bundle:nil];
             [fvad setAd:ad];
             [fvad setAdDelegate:self];
-            [fvad setVideoDelegate:self];
-            [fvad setParentalGateDelegate:self];
+//            [fvad setVideoDelegate:self];
+//            [fvad setParentalGateDelegate:self];
             [fvad setIsParentalGateEnabled:true];
             [fvad setShouldAutomaticallyCloseAtEnd:true];
             [fvad setShouldShowCloseButton:true];

@@ -27,14 +27,15 @@
 
 - (void)viewDidLoad {
     // ... your other -viewDidLoad code ...
+    [[MoPub sharedInstance] initializeRewardedVideoWithGlobalMediationSettings:nil delegate:self];
     
-    self.adView = [[MPAdView alloc] initWithAdUnitId:@"6acb36d7c1c94461844419ef03cc10cf" size:MOPUB_BANNER_SIZE];
-    self.adView.delegate = self;
-    self.adView.frame = CGRectMake((self.view.bounds.size.width - MOPUB_BANNER_SIZE.width) / 2,
-                                   self.view.bounds.size.height - MOPUB_BANNER_SIZE.height,
-                                   MOPUB_BANNER_SIZE.width, MOPUB_BANNER_SIZE.height);
-    [self.view addSubview:self.adView];
-    [self.adView loadAd];
+//    self.adView = [[MPAdView alloc] initWithAdUnitId:@"6acb36d7c1c94461844419ef03cc10cf" size:MOPUB_BANNER_SIZE];
+//    self.adView.delegate = self;
+//    self.adView.frame = CGRectMake((self.view.bounds.size.width - MOPUB_BANNER_SIZE.width) / 2,
+//                                   self.view.bounds.size.height - MOPUB_BANNER_SIZE.height,
+//                                   MOPUB_BANNER_SIZE.width, MOPUB_BANNER_SIZE.height);
+//    [self.view addSubview:self.adView];
+//    [self.adView loadAd];
     
     [super viewDidLoad];
 }
@@ -63,7 +64,6 @@
 }
 
 - (IBAction)openVideo:(id)sender {
-    [[MoPub sharedInstance] initializeRewardedVideoWithGlobalMediationSettings:nil delegate:self];
     [MPRewardedVideo loadRewardedVideoAdWithAdUnitID:@"e7fbea8a838740139eb41edf10aba4b1" withMediationSettings:nil];
 }
 

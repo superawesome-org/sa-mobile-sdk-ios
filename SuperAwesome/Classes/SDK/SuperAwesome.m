@@ -20,8 +20,8 @@
 #define BASE_URL_PRODUCTION @"https://ads.superawesome.tv/v2"
 
 // define Moat stuffs
-#define MOAT_DISPLAY_PARTNER_CODE @"superawesomeinappdisplay731223424656";
-#define MOAT_VIDEO_PARTNER_CODE @"superawesomeinappvideo467548716573";
+//#define MOAT_DISPLAY_PARTNER_CODE @"superawesomeinappdisplay731223424656";
+//#define MOAT_VIDEO_PARTNER_CODE @"superawesomeinappvideo467548716573";
 
 
 @interface SuperAwesome ()
@@ -54,7 +54,7 @@
         [self setConfigurationProduction];
         [self disableTestMode];
 //        [self enableMoatTracking];
-        _isMoatEnabled = false;
+//        _isMoatEnabled = false;
         [SACapper enableCapping:^(NSUInteger dauId) {
             _dauID = dauId;
         }];
@@ -64,7 +64,7 @@
 }
 
 - (NSString*) getVersion {
-    return @"3.6.1";
+    return @"3.6.2";
 }
 
 - (NSString*) getSdk {
@@ -129,17 +129,17 @@
 //    _isMoatEnabled = enabled;
 //}
 //
-- (BOOL) isMoatEnabled{
-    return _isMoatEnabled;
-}
-
-- (NSString*) getDisplayMoatPartnerCode {
-    return MOAT_DISPLAY_PARTNER_CODE;
-}
-
-- (NSString*) getVideoMoatPartnerCode {
-    return MOAT_VIDEO_PARTNER_CODE;
-}
+//- (BOOL) isMoatEnabled{
+//    return _isMoatEnabled;
+//}
+//
+//- (NSString*) getDisplayMoatPartnerCode {
+//    return MOAT_DISPLAY_PARTNER_CODE;
+//}
+//
+//- (NSString*) getVideoMoatPartnerCode {
+//    return MOAT_VIDEO_PARTNER_CODE;
+//}
 
 - (NSUInteger) getDAUID {
     return _dauID;

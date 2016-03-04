@@ -24,7 +24,7 @@
 @property (nonatomic, assign) CGRect buttonFrame;
 @property (nonatomic, assign) BOOL isOKToClose;
 
-@property (nonatomic, strong) SAAd *ad;
+@property (nonatomic, weak) SAAd *ad;
 @property (nonatomic, strong) SAVideoAd *video;
 @property (nonatomic, strong) UIButton *closeBtn;
 
@@ -72,6 +72,8 @@
     
     // set bg color
     self.view.backgroundColor = [UIColor blackColor];
+
+    _isOKToClose = true;
     
     _video = [[SAVideoAd alloc] initWithFrame:_adviewFrame];
     [_video setAd:_ad];
@@ -189,12 +191,11 @@
     
     [_video close];
     
-    [self dismissViewControllerAnimated:YES completion:^{
-        if ([_video.adDelegate respondsToSelector:@selector(adWasClosed:)]) {
-            [_video.adDelegate adWasClosed:_ad.placementId];
-        }
-    }];
+    if ([_video.adDelegate respondsToSelector:@selector(adWasClosed:)]) {
+        [_video.adDelegate adWasClosed:_ad.placementId];
+    }
     
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void) tryToGoToURL:(NSURL*)url {
@@ -221,6 +222,10 @@
     
     _closeBtn.frame = _buttonFrame;
     [_video resizeToFrame:_adviewFrame];
+}
+
+- (void) dealloc {
+    NSLog(@"SAFullscreenVideoAd dealloc");
 }
 
 #pragma mark <SAVideoAdProtocol> - internal

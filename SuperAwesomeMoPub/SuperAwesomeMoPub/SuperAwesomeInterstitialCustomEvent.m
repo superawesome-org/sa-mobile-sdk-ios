@@ -63,13 +63,15 @@
 
 - (void) showInterstitialFromRootViewController:(UIViewController *)rootViewController {
     
+    __weak typeof (self) weakSelf = self;
+    
     [rootViewController presentViewController:_interstitial animated:YES completion:^{
         
         // call events
-        [self.delegate interstitialCustomEventWillAppear:self];
+        [weakSelf.delegate interstitialCustomEventWillAppear:weakSelf];
         
         // play preloaded ad
-        [_interstitial play];
+        [weakSelf.interstitial play];
     }];
 }
 

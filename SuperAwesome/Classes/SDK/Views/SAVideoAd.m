@@ -70,7 +70,6 @@
 
 - (SAAd*) getAd {
     return _ad;
-    return nil;
 }
 
 - (void) play {
@@ -105,6 +104,8 @@
 
 - (void) close {
     [_player resetPlayer];
+    _player = NULL;
+    _ad = NULL;
 }
 
 - (void) tryToGoToURL:(NSURL*)url {

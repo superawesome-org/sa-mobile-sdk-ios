@@ -69,30 +69,37 @@
         return false;
     }
     else if ([urlObject isKindOfClass:[NSString class]]){
-        NSString *urlString = (NSString*)urlObject;
         
-        NSUInteger length = [urlString length];
-        // Empty strings should return NO
-        if (length > 0) {
-            NSError *error = nil;
-            NSDataDetector *dataDetector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink error:&error];
-            if (dataDetector && !error) {
-                NSRange range = NSMakeRange(0, length);
-                NSRange notFoundRange = (NSRange){NSNotFound, 0};
-                NSRange linkRange = [dataDetector rangeOfFirstMatchInString:urlString options:0 range:range];
-                if (!NSEqualRanges(notFoundRange, linkRange) && NSEqualRanges(range, linkRange)) {
-                    if ([urlString isEqualToString:@"http://"] || [urlString isEqualToString:@"https://"]){
-                        return false;
-                    } else {
-                        return true;
-                    }
-                }
-            }
-            else {
-                NSLog(@"Could not create link data detector: %@ %@", [error localizedDescription], [error userInfo]);
-            }
-        }
-        return false;
+        BOOL isValidURL = NO;
+        NSURL *candidateURL = [NSURL URLWithString:(NSString*)urlObject];
+        if (candidateURL && candidateURL.scheme && candidateURL.host)
+            isValidURL = YES;
+        return isValidURL;
+        
+//        NSString *urlString = (NSString*)urlObject;
+//        
+//        NSUInteger length = [urlString length];
+//        // Empty strings should return NO
+//        if (length > 0) {
+//            NSError *error = nil;
+//            NSDataDetector *dataDetector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink error:&error];
+//            if (dataDetector && !error) {
+//                NSRange range = NSMakeRange(0, length);
+//                NSRange notFoundRange = (NSRange){NSNotFound, 0};
+//                NSRange linkRange = [dataDetector rangeOfFirstMatchInString:urlString options:0 range:range];
+//                if (!NSEqualRanges(notFoundRange, linkRange) && NSEqualRanges(range, linkRange)) {
+//                    if ([urlString isEqualToString:@"http://"] || [urlString isEqualToString:@"https://"]){
+//                        return false;
+//                    } else {
+//                        return true;
+//                    }
+//                }
+//            }
+//            else {
+//                NSLog(@"Could not create link data detector: %@ %@", [error localizedDescription], [error userInfo]);
+//            }
+//        }
+//        return false;
     }
     
     return false;
