@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "SuperAwesome"
-  s.version      = "3.6.3"
+  s.version      = "3.6.4"
   s.summary      = "SuperAwesome Mobile SDK for iOS"
 
   s.description  = <<-DESC
@@ -15,11 +15,16 @@ Pod::Spec.new do |s|
   s.platform     = :ios, "6.0"
   s.ios.deployment_target = "6.0"
   s.requires_arc = true
-  s.source       = { :git => "https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git", :branch => "master" ,:tag => "3.6.3" }
+  s.source       = { :git => "https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git", :branch => "master" ,:tag => "3.6.4" }
 
   s.frameworks = 'AVFoundation', 'AudioToolbox', 'CoreGraphics', 'CoreMedia', 'CoreMotion', 'MediaPlayer', 'MobileCoreServices', 'QuartzCore', 'Security', 'SystemConfiguration', 'AdSupport'
   # s.libraries = "xml2", "z"
   s.source_files  = "SuperAwesome/Classes/**/*.{h,m}"
   s.resources = "SuperAwesome/Resources/*"
+  # s.resource_bundles = {
+  #   'SuperAwesome' => ['Pod/Assets/*']
+  # }
+  s.dependency 'SAWebPlayer'
+  s.dependency 'SAVideoPlayer'
   # s.vendored_frameworks = "SuperAwesome/Frameworks/SUPMoatMobileAppKit.framework"
 end

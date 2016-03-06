@@ -15,9 +15,8 @@
 #import "SACreative.h"
 #import "SADetails.h"
 #import "SAEvents.h"
-#import "SAWebView.h"
 #import "SAUtils.h"
-#import "SAVASTPlayer.h"
+#import "SAVideoPlayer.h"
 #import "SAVASTManager.h"
 
 #define SMALL_PAD_FRAME CGRectMake(0, 0, 49, 25)
@@ -32,7 +31,7 @@
 
 @property (nonatomic, strong) SAParentalGate *gate;
 @property (nonatomic, strong) UIImageView *padlock;
-@property (nonatomic, strong) SAVASTPlayer *player;
+@property (nonatomic, strong) SAVideoPlayer *player;
 @property (nonatomic, strong) SAVASTManager *manager;
 
 @end
@@ -86,7 +85,7 @@
     _gate.delegate = _parentalGateDelegate;
     
     // create the player
-    _player = [[SAVASTPlayer alloc] initWithFrame:self.bounds];
+    _player = [[SAVideoPlayer alloc] initWithFrame:self.bounds];
     [self addSubview:_player];
 
     // create the vast manager
@@ -103,7 +102,7 @@
 }
 
 - (void) close {
-    [_player resetPlayer];
+    [_player destroy];
     _player = NULL;
     _ad = NULL;
 }
@@ -125,11 +124,6 @@
 
 - (void) advanceToClick {
     NSLog(@"[AA :: INFO] Going to %@", _destinationURL);
-    
-//    if ([_destinationURL rangeOfString:[[SuperAwesome getInstance] getBaseURL]].location == NSNotFound) {
-//        NSLog(@"Sending click event to %@", _ad.creative.trackingURL);
-//        [SASender sendEventToURL:_ad.creative.trackingURL];
-//    }
     
     // call delegate
     if (_adDelegate && [_adDelegate respondsToSelector:@selector(adWasClicked:)]) {

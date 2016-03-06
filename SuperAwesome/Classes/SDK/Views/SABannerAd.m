@@ -15,17 +15,16 @@
 #import "SACreative.h"
 #import "SADetails.h"
 #import "SAEvents.h"
-#import "SAWebView.h"
 #import "SAUtils.h"
 
 // defines
 #define BG_COLOR [UIColor colorWithRed:0.75 green:0.75 blue:0.75 alpha:1]
 #define BIG_PAD_FRAME CGRectMake(0, 0, 67, 25)
 
-@interface SABannerAd () <SAWebViewProtocol>
+@interface SABannerAd () <SAWebPlayerProtocol>
 @property (nonatomic, strong) SAAd *ad;
 @property (nonatomic, strong) NSString *destinationURL;
-@property (nonatomic, strong) SAWebView *sawebview;
+@property (nonatomic, strong) SAWebPlayer *webplayer;
 @property (nonatomic, strong) SAParentalGate *gate;
 @property (nonatomic, strong) UIImageView *padlock;
 @end
@@ -86,19 +85,19 @@
                                       fromFrame:CGRectMake(0, 0, _ad.creative.details.width, _ad.creative.details.height)];
     
     // add the sawebview
-    _sawebview = [[SAWebView alloc] initWithHTML:_ad.adHTML
-                                       andAdSize:CGSizeMake(_ad.creative.details.width, _ad.creative.details.height)
-                                        andFrame:frame
-                                     andDelegate:self];
+    _webplayer = [[SAWebPlayer alloc] initWithFrame:frame];
+    _webplayer.sadelegate = self;
+    [_webplayer setAdSize:CGSizeMake(_ad.creative.details.width, _ad.creative.details.height)];
+    [_webplayer loadAdHTML:_ad.adHTML];
     
     // add the subview
-    [self addSubview:_sawebview];
+    [self addSubview:_webplayer];
     
     // add the padlick
     _padlock = [[UIImageView alloc] initWithFrame:BIG_PAD_FRAME];
     _padlock.image = [UIImage imageNamed:@"watermark_67x25"];
     if (!_ad.isFallback && !_ad.isHouse) {
-        [_sawebview addSubview:_padlock];
+        [_webplayer addSubview:_padlock];
     }
 }
 
@@ -145,7 +144,7 @@
                                       fromFrame:CGRectMake(0, 0, _ad.creative.details.width, _ad.creative.details.height)];
     
     // rearrange the webview
-    [_sawebview rearrangeForFrame:frame];
+    [_webplayer updateToFrame:frame];
     
     // rearrange the padlock
     _padlock.frame = BIG_PAD_FRAME;
@@ -153,7 +152,7 @@
 
 #pragma mark <SAWebViewProtocol> functions
 
-- (void) saWebViewDidLoad {
+- (void) webPlayerDidLoad {
     [SAEvents sendEventToURL:_ad.creative.viewableImpressionURL];
     [SAEvents sendDisplayMoatEvent:self andAd:_ad];
     
@@ -162,13 +161,13 @@
     }
 }
 
-- (void) saWebViewDidFail {
+- (void) webPlayerDidFail {
     if ([_adDelegate respondsToSelector:@selector(adFailedToShow:)]) {
         [_adDelegate adFailedToShow:_ad.placementId];
     }
 }
 
-- (void) saWebViewWillNavigate:(NSURL *)url {
+- (void) webPlayerWillNavigate:(NSURL *)url {
     [self tryToGoToURL:url];
 }
 

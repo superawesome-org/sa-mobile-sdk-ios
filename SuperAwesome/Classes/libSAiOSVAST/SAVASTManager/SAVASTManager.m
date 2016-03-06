@@ -11,6 +11,9 @@
 // import headers
 #import "SAVASTManager.h"
 
+// import player
+#import "SAVideoPlayer.h"
+
 // import modelspace
 #import "SAVASTModels.h"
 
@@ -21,13 +24,13 @@
 
 //
 // @brief: private interface
-@interface SAVASTManager () <SAVASTParserProtocol, SAVASTPlayerProtocol>
+@interface SAVASTManager () <SAVASTParserProtocol, SAVideoPlayerProtocol>
 
 // a strong reference to a parser
 @property (nonatomic, strong) SAVASTParser *parser;
 
 // a weak reference to a player declared somewhere - that just acts as renderer
-@property (nonatomic, weak) SAVASTPlayer *playerRef;
+@property (nonatomic, weak) SAVideoPlayer *playerRef;
 
 // the queue of ads
 @property (nonatomic, strong) NSArray *adQueue;
@@ -44,7 +47,7 @@
 // @brief: implementation
 @implementation SAVASTManager
 
-- (id) initWithPlayer:(SAVASTPlayer *)player {
+- (id) initWithPlayer:(SAVideoPlayer *)player {
     if (self = [super init]) {
         
         // init player ref
@@ -230,7 +233,7 @@
 - (void) progressThroughAds {
     
     // reset player
-    [_playerRef resetPlayer];
+    [_playerRef reset];
     
     NSInteger creativeCount = [[_adQueue objectAtIndex:_currentAdIndex] Creatives].count;
     
@@ -265,6 +268,8 @@
             [self playCurrentAdWithCurrentCreative];
             
         } else {
+            [_playerRef destroy];
+            
             // call delegate
             if (_delegate && [_delegate respondsToSelector:@selector(didEndAllAds)]) {
                 [_delegate didEndAllAds];

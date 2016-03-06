@@ -1,0 +1,25 @@
+{
+  "name": "TestLib",
+  "version": "0.1.0",
+  "summary": "A short description of TestLib.",
+  "description": "",
+  "homepage": "https://github.com/<GITHUB_USERNAME>/TestLib",
+  "license": "MIT",
+  "authors": {
+    "Gabriel Coman": "dev.gabriel.coman@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/<GITHUB_USERNAME>/TestLib.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "7.0"
+  },
+  "requires_arc": true,
+  "source_files": "Pod/Classes/**/*",
+  "resource_bundles": {
+    "TestLib": [
+      "Pod/Assets/*.png"
+    ]
+  }
+}

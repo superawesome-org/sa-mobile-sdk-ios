@@ -10,12 +10,12 @@
 
 // useful imports
 #import "SAProtocols.h"
-#import "SAWebViewProtocol.h"
+#import "SAWebPlayer.h"
 
 // forward declarations
 @class SAParentalGate;
 @class SAAd;
-@class SAWebView;
+@class SAWebPlayer;
 
 // class declaration for SABannerAd
 @interface SABannerAd : UIView <SAViewProtocol>

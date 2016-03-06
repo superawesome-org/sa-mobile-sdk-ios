@@ -52,7 +52,7 @@
 }
 
 + (NSString*) formatCreativeIntoImageHTML:(SAAd*)ad {
-    // load template
+    // load template    
     NSString *fPath = [[NSBundle mainBundle] pathForResource:@"displayImage" ofType:@"html"];
     NSString *htmlString = [NSString stringWithContentsOfFile:fPath encoding:NSUTF8StringEncoding error:nil];
     

@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+3.6.4
+ - With improved SAVideoPlayer
+ - Modularised elements
+
 3.6.2
  - TEST
 

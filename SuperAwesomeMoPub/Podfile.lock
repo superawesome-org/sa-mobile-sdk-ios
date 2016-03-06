@@ -1,8 +1,14 @@
 PODS:
+  - FLAnimatedImage (1.0.12)
   - mopub-ios-sdk (4.4.0):
     - mopub-ios-sdk/MoPubSDK (= 4.4.0)
   - mopub-ios-sdk/MoPubSDK (4.4.0)
-  - SuperAwesome (3.6.2)
+  - SAVideoPlayer (0.7.0):
+    - FLAnimatedImage
+  - SAWebPlayer (0.2.0)
+  - SuperAwesome (3.6.4):
+    - SAVideoPlayer
+    - SAWebPlayer
 
 DEPENDENCIES:
   - mopub-ios-sdk
@@ -13,7 +19,10 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   mopub-ios-sdk: 89e57bd4c0d4ba8159781e11961c5afce7c19efe
-  SuperAwesome: 9df0ec92627bc05ed72db19fdd6c435600a48127
+  SAVideoPlayer: 9589672416e42c20d54aecaa21f3d059271c27c0
+  SAWebPlayer: 75545a3e89b7ca66826abd1e8b8f70f4451e3604
+  SuperAwesome: 025cf11ac12640d3793df30b5161eadbd7f1a46b
 
 COCOAPODS: 0.38.2

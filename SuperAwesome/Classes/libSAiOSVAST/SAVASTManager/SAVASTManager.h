@@ -12,10 +12,9 @@
 
 // import vast stuff
 #import "SAVASTParser.h"
-#import "SAVASTPlayer.h"
-
-// import delegate
 #import "SAVASTManagerProtocol.h"
+
+@class SAVideoPlayer;
 
 @interface SAVASTManager : NSObject
 
@@ -23,7 +22,7 @@
 @property (nonatomic, weak) id<SAVASTManagerProtocol> delegate;
 
 // custom init
-- (id) initWithPlayer:(SAVASTPlayer*)player;
+- (id) initWithPlayer:(SAVideoPlayer*)player;
 
 // parse VAST
 - (void) parseVASTURL:(NSString*)urlString;

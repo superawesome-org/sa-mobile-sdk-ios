@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		04D3336D2021F20F3843DFC5 /* Pods_SuperAwesome_DemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39B347E4CA610179399455C5 /* Pods_SuperAwesome_DemoTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		1BE0EDE91C22D95700B4C2CD /* AdItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BE0EDE81C22D95700B4C2CD /* AdItem.m */; };
 		1BE0EDEC1C22D99700B4C2CD /* TestDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BE0EDEB1C22D99700B4C2CD /* TestDataProvider.m */; };
 		1BE0EDEF1C22D9C400B4C2CD /* PresentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BE0EDEE1C22D9C400B4C2CD /* PresentViewController.m */; };
+		329E21DD3565EAF7452355D4 /* libPods-SuperAwesome DemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C0D28256AAF9021D28356DB /* libPods-SuperAwesome DemoTests.a */; };
+		85CB37259CA124D76C7A0505 /* libPods-SuperAwesome Demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ACB3173560F98A5DE7A5C5A /* libPods-SuperAwesome Demo.a */; };
 		98A4EE491AD524B6005FCE20 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98A4EE481AD524B6005FCE20 /* Main.storyboard */; };
 		98B360E11AE51C19004D1C8D /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98B360E01AE51C19004D1C8D /* MainViewController.m */; };
 		98B98FCA1ACD5F0400EFFA27 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 98B98FC91ACD5F0400EFFA27 /* main.m */; };
@@ -18,7 +19,6 @@
 		98B98FD51ACD5F0400EFFA27 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 98B98FD41ACD5F0400EFFA27 /* Images.xcassets */; };
 		98B98FD81ACD5F0400EFFA27 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98B98FD61ACD5F0400EFFA27 /* LaunchScreen.xib */; };
 		98B98FE41ACD5F0400EFFA27 /* SuperAwesome_DemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 98B98FE31ACD5F0400EFFA27 /* SuperAwesome_DemoTests.m */; };
-		C3EED3E1B06CD19F94A138E1 /* Pods_SuperAwesome_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E0651669B357FA2840F414A /* Pods_SuperAwesome_Demo.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,15 +45,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0ACB3173560F98A5DE7A5C5A /* libPods-SuperAwesome Demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SuperAwesome Demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BE0EDE71C22D95700B4C2CD /* AdItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdItem.h; sourceTree = "<group>"; };
 		1BE0EDE81C22D95700B4C2CD /* AdItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdItem.m; sourceTree = "<group>"; };
 		1BE0EDEA1C22D99700B4C2CD /* TestDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestDataProvider.h; sourceTree = "<group>"; };
 		1BE0EDEB1C22D99700B4C2CD /* TestDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestDataProvider.m; sourceTree = "<group>"; };
 		1BE0EDED1C22D9C400B4C2CD /* PresentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresentViewController.h; sourceTree = "<group>"; };
 		1BE0EDEE1C22D9C400B4C2CD /* PresentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresentViewController.m; sourceTree = "<group>"; };
-		1E0651669B357FA2840F414A /* Pods_SuperAwesome_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SuperAwesome_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		39B347E4CA610179399455C5 /* Pods_SuperAwesome_DemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SuperAwesome_DemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5634DFB8E076111266332FE4 /* Pods-SuperAwesome Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesome Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-SuperAwesome Demo/Pods-SuperAwesome Demo.release.xcconfig"; sourceTree = "<group>"; };
+		5C0D28256AAF9021D28356DB /* libPods-SuperAwesome DemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SuperAwesome DemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		98A4EE481AD524B6005FCE20 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		98B360DF1AE51C19004D1C8D /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		98B360E01AE51C19004D1C8D /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
@@ -75,7 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C3EED3E1B06CD19F94A138E1 /* Pods_SuperAwesome_Demo.framework in Frameworks */,
+				85CB37259CA124D76C7A0505 /* libPods-SuperAwesome Demo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,7 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04D3336D2021F20F3843DFC5 /* Pods_SuperAwesome_DemoTests.framework in Frameworks */,
+				329E21DD3565EAF7452355D4 /* libPods-SuperAwesome DemoTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,8 +201,8 @@
 		98B98FF81ACD60E500EFFA27 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1E0651669B357FA2840F414A /* Pods_SuperAwesome_Demo.framework */,
-				39B347E4CA610179399455C5 /* Pods_SuperAwesome_DemoTests.framework */,
+				0ACB3173560F98A5DE7A5C5A /* libPods-SuperAwesome Demo.a */,
+				5C0D28256AAF9021D28356DB /* libPods-SuperAwesome DemoTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -220,7 +220,6 @@
 				98B98FC21ACD5F0400EFFA27 /* Resources */,
 				98B98FFE1ACD618500EFFA27 /* Embed Frameworks */,
 				1902F5F3E58E4725F562E787 /* Copy Pods Resources */,
-				03B415ABD09162826668B279 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -240,7 +239,6 @@
 				98B98FDA1ACD5F0400EFFA27 /* Frameworks */,
 				98B98FDB1ACD5F0400EFFA27 /* Resources */,
 				8DCA2CEE987520262D1CF85F /* Copy Pods Resources */,
-				F7E49EB1791308E7CD816D99 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -311,21 +309,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		03B415ABD09162826668B279 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SuperAwesome Demo/Pods-SuperAwesome Demo-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		0719CC4BB74F35537714BBBE /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -384,21 +367,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SuperAwesome DemoTests/Pods-SuperAwesome DemoTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F7E49EB1791308E7CD816D99 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SuperAwesome DemoTests/Pods-SuperAwesome DemoTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -484,7 +452,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Pods/Headers/\"";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -521,7 +489,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Pods/Headers/\"";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

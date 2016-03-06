@@ -10,13 +10,13 @@
 
 // useful imports
 #import "SAProtocols.h"
+#import "SAVideoPlayer.h"
 #import "SAVASTManagerProtocol.h"
 
 
 // forward declarations
 @class SAParentalGate;
 @class SAAd;
-@class SAVASTPlayer;
 @class SAVASTManager;
 
 @interface SAVideoAd : UIView <SAViewProtocol>

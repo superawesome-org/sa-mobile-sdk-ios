@@ -1,4 +1,6 @@
 # Uncomment this line to define a global platform for your project
+source 'https://github.com/CocoaPods/Specs.git'
+source '/Users/gabriel.coman/Workspace/sa-mobileios-aux/PrivateSpecs/.git'
 platform :ios, '6.0'
 use_frameworks!
 
