@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+3.6.5
+ - added again the libs
+
 3.6.4
  - With improved SAVideoPlayer
  - Modularised elements

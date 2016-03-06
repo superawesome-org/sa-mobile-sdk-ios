@@ -53,15 +53,11 @@ code_sign_if_enabled() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods-SuperAwesomeMoPub/FLAnimatedImage.framework'
-  install_framework 'Pods-SuperAwesomeMoPub/SAVideoPlayer.framework'
-  install_framework 'Pods-SuperAwesomeMoPub/SAWebPlayer.framework'
   install_framework 'Pods-SuperAwesomeMoPub/SuperAwesome.framework'
   install_framework 'Pods-SuperAwesomeMoPub/mopub_ios_sdk.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods-SuperAwesomeMoPub/FLAnimatedImage.framework'
-  install_framework 'Pods-SuperAwesomeMoPub/SAVideoPlayer.framework'
-  install_framework 'Pods-SuperAwesomeMoPub/SAWebPlayer.framework'
   install_framework 'Pods-SuperAwesomeMoPub/SuperAwesome.framework'
   install_framework 'Pods-SuperAwesomeMoPub/mopub_ios_sdk.framework'
 fi

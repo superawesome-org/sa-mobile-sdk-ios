@@ -46,7 +46,7 @@
     netresponse resp = ^(NSURLResponse * response, NSData * data, NSError * error) {
         
         if (error != nil) {
-            NSLog(@"Network error %@", error);
+            NSLog(@"Network error for %@ - %@", _surl, error);
             if (failure) {
                 failure();
             }

@@ -63,11 +63,10 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "../../SuperAwesome/Resources/displayRichMedia.html"
   install_resource "../../SuperAwesome/Resources/displayTag.html"
   install_resource "../../SuperAwesome/Resources/mark.png"
+  install_resource "../../SuperAwesome/Resources/spinner.gif"
   install_resource "../../SuperAwesome/Resources/watermark_49x25.png"
   install_resource "../../SuperAwesome/Resources/watermark_67x25.png"
   install_resource "../../SuperAwesome/Resources/watermark_89x25.png"
-  install_resource "${BUILT_PRODUCTS_DIR}/SAVideoPlayer.bundle"
-  install_resource "${BUILT_PRODUCTS_DIR}/SAWebPlayer.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "../../SuperAwesome/Resources/close.png"
@@ -75,11 +74,10 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "../../SuperAwesome/Resources/displayRichMedia.html"
   install_resource "../../SuperAwesome/Resources/displayTag.html"
   install_resource "../../SuperAwesome/Resources/mark.png"
+  install_resource "../../SuperAwesome/Resources/spinner.gif"
   install_resource "../../SuperAwesome/Resources/watermark_49x25.png"
   install_resource "../../SuperAwesome/Resources/watermark_67x25.png"
   install_resource "../../SuperAwesome/Resources/watermark_89x25.png"
-  install_resource "${BUILT_PRODUCTS_DIR}/SAVideoPlayer.bundle"
-  install_resource "${BUILT_PRODUCTS_DIR}/SAWebPlayer.bundle"
 fi
 
 mkdir -p "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
