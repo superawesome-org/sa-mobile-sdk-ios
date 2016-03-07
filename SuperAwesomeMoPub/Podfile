@@ -6,7 +6,7 @@ use_frameworks!
 
 target 'SuperAwesomeMoPub' do
 pod 'mopub-ios-sdk'
-pod 'SuperAwesome', :path => '../'
+pod 'SuperAwesome'
 end
 
 target 'SuperAwesomeMoPubTests' do

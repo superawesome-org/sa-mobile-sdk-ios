@@ -3,20 +3,16 @@ PODS:
   - mopub-ios-sdk (4.4.0):
     - mopub-ios-sdk/MoPubSDK (= 4.4.0)
   - mopub-ios-sdk/MoPubSDK (4.4.0)
-  - SuperAwesome (3.6.5):
+  - SuperAwesome (3.6.6):
     - FLAnimatedImage
 
 DEPENDENCIES:
   - mopub-ios-sdk
-  - SuperAwesome (from `../`)
-
-EXTERNAL SOURCES:
-  SuperAwesome:
-    :path: ../
+  - SuperAwesome
 
 SPEC CHECKSUMS:
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   mopub-ios-sdk: 89e57bd4c0d4ba8159781e11961c5afce7c19efe
-  SuperAwesome: bc413a462d954e0d8719058af7291090fe83a171
+  SuperAwesome: c6d6523d70823d4e21e17790e31fd82c4cb86ba2
 
 COCOAPODS: 0.38.2

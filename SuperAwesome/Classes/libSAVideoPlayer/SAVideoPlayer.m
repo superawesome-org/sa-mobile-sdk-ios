@@ -143,7 +143,7 @@
     _clicker = [[SAURLClicker alloc] init];
     [_clicker addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
     [_chrome addSubview:_clicker];
-    
+
     _spinner = [[SASpinner alloc] init];
     [_chrome addSubview:_spinner];
     _spinner.hidden = !_shouldShowSpinner;

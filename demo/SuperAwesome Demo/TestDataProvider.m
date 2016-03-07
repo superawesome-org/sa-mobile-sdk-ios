@@ -19,7 +19,8 @@
              CreateAdItem(@"7455", 7455, false, fullscreen_video_item),
              CreateAdItem(@"2559", 2559, false, interstitial_item),
              CreateAdItem(@"10305", 10305, false, interstitial_item),
-             CreateAdItem(@"30716", 30716, false, interstitial_item)
+             CreateAdItem(@"30716", 30716, false, interstitial_item),
+             CreateAdItem(@"30740", 30740, false, interstitial_item),
     ];
 }
 

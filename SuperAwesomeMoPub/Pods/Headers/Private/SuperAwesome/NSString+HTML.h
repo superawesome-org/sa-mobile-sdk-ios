@@ -1,1 +1,1 @@
-../../../../../SuperAwesome/Classes/libSAiOSVAST/HTML/NSString+HTML.h
+../../../SuperAwesome/SuperAwesome/Classes/libSAiOSVAST/HTML/NSString+HTML.h

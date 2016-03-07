@@ -1,1 +1,1 @@
-../../../../../SuperAwesome/Classes/libSAiOSVAST/HTML/GTMNSString+HTML.h
+../../../SuperAwesome/SuperAwesome/Classes/libSAiOSVAST/HTML/GTMNSString+HTML.h

@@ -60,7 +60,7 @@ SAParentalGateProtocol>
     _isTestEnabled = [isTestEnabledObj boolValue];
     _placementId = [placementIdObj integerValue];
     _isParentalGateEnabled = (isParentalGateEnabledObj != NULL ? [isParentalGateEnabledObj boolValue] : true);
-    _shouldShowCloseButton = true; // (shouldShowCloseButtonObj != NULL ? [shouldShowCloseButtonObj boolValue] : false);
+    _shouldShowCloseButton = (shouldShowCloseButtonObj != NULL ? [shouldShowCloseButtonObj boolValue] : false);
     _shouldAutomaticallyCloseAtEnd = (shouldAutomaticallyCloseAtEndObj != NULL ? [shouldAutomaticallyCloseAtEndObj boolValue] : true);
     
     // enable or disable test mode

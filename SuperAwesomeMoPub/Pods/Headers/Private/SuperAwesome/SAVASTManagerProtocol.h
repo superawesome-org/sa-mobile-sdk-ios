@@ -1,1 +1,1 @@
-../../../../../SuperAwesome/Classes/libSAiOSVAST/SAVASTManager/SAVASTManagerProtocol.h
+../../../SuperAwesome/SuperAwesome/Classes/libSAiOSVAST/SAVASTManager/SAVASTManagerProtocol.h

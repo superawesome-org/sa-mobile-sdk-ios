@@ -1,1 +1,1 @@
-../../../../../SuperAwesome/Classes/SDK/Views/SABannerAd.h
+../../../SuperAwesome/SuperAwesome/Classes/SDK/Views/SABannerAd.h
