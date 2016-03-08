@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+3.6.7
+ - revert some SALoader changes so that it does not always have to be an ivar
+
+3.6.6
+ - disney release
+
 3.6.5
  - added again the libs
 

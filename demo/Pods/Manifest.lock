@@ -1,6 +1,6 @@
 PODS:
   - FLAnimatedImage (1.0.12)
-  - SuperAwesome (3.6.6):
+  - SuperAwesome (3.6.7):
     - FLAnimatedImage
 
 DEPENDENCIES:
@@ -12,6 +12,6 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
-  SuperAwesome: c6d6523d70823d4e21e17790e31fd82c4cb86ba2
+  SuperAwesome: 38d0644742ea019dbc87294917daf4da72a67ff2
 
 COCOAPODS: 0.38.2
