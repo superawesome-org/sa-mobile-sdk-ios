@@ -28,16 +28,26 @@
     "CoreMedia",
     "CoreMotion",
     "MediaPlayer",
-    "MobileCoreServices",
     "QuartzCore",
-    "Security",
     "SystemConfiguration",
     "AdSupport"
   ],
-  "source_files": "SuperAwesome/Classes/**/*.{h,m}",
-  "resources": "SuperAwesome/Resources/*",
+  "source_files": "Pod/Classes/**/*",
+  "resources": "Pod/Assets/*",
   "dependencies": {
-    "FLAnimatedImage": [
+    "SAUtils": [
+
+    ],
+    "SAVideoPlayer": [
+
+    ],
+    "SAWebPlayer": [
+
+    ],
+    "SAEvents": [
+
+    ],
+    "SAVASTParser": [
 
     ]
   }

@@ -1,1 +1,1 @@
-../../../../../SuperAwesome/Classes/SDK/Views/SAFullscreenVideoAd.h
+../../../../../Pod/Classes/Views/SAFullscreenVideoAd.h

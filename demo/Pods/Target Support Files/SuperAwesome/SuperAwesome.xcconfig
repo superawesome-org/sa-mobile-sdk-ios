@@ -1,1 +1,1 @@
-SUPERAWESOME_OTHER_LDFLAGS = -framework "AVFoundation" -framework "AdSupport" -framework "AudioToolbox" -framework "CoreGraphics" -framework "CoreMedia" -framework "CoreMotion" -framework "MediaPlayer" -framework "MobileCoreServices" -framework "QuartzCore" -framework "Security" -framework "SystemConfiguration"
+SUPERAWESOME_OTHER_LDFLAGS = -framework "AVFoundation" -framework "AdSupport" -framework "AudioToolbox" -framework "CoreGraphics" -framework "CoreMedia" -framework "CoreMotion" -framework "MediaPlayer" -framework "QuartzCore" -framework "SystemConfiguration"

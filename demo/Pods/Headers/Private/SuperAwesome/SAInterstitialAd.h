@@ -1,1 +1,1 @@
-../../../../../SuperAwesome/Classes/SDK/Views/SAInterstitialAd.h
+../../../../../Pod/Classes/Views/SAInterstitialAd.h

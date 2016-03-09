@@ -1,1 +1,1 @@
-../../../../../SuperAwesome/Classes/SDK/AdParser/Models/SADetails.h
+../../../../../Pod/Classes/Models/SADetails.h

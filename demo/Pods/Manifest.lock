@@ -1,7 +1,21 @@
 PODS:
   - FLAnimatedImage (1.0.12)
-  - SuperAwesome (3.6.7):
+  - SAEvents (1.0.1):
+    - SAUtils
+  - SAUtils (1.0.2)
+  - SAVASTParser (1.0.0):
+    - SAEvents
+    - SAUtils
+    - SAVideoPlayer
+  - SAVideoPlayer (1.0.0):
     - FLAnimatedImage
+  - SAWebPlayer (1.0.0)
+  - SuperAwesome (3.6.7):
+    - SAEvents
+    - SAUtils
+    - SAVASTParser
+    - SAVideoPlayer
+    - SAWebPlayer
 
 DEPENDENCIES:
   - SuperAwesome (from `../`)
@@ -12,6 +26,11 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
-  SuperAwesome: 38d0644742ea019dbc87294917daf4da72a67ff2
+  SAEvents: e27f9dd861a0f0326c20483c5bfd75fd69014884
+  SAUtils: c8a2c80060f4bc94fb205330a02fc36674fb96cc
+  SAVASTParser: 1edd520a492d2228fdc69feb16961af17188edc3
+  SAVideoPlayer: b5368d2a91775e075db41b44a494e79afb4203a1
+  SAWebPlayer: 2c532ea2c3158290d2ac7d7bb568aa63217c3465
+  SuperAwesome: f89943d3c5dca7c913bf9a1f9f027d33d3d7c250
 
 COCOAPODS: 0.38.2

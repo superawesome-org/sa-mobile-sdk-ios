@@ -13,6 +13,7 @@
 
 + (NSArray*) createTestData {
     return @[
+             CreateAdItem(@"Lego occasions test", 3051, false, interstitial_item),
              CreateAdItem(@"79", 79, false, fullscreen_video_item),
              CreateAdItem(@"1830", 1830, false, fullscreen_video_item),
              CreateAdItem(@"2548", 2548, false, fullscreen_video_item),

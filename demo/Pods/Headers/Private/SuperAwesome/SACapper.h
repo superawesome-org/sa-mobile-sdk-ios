@@ -1,1 +1,1 @@
-../../../../../SuperAwesome/Classes/SDK/Capper/SACapper.h
+../../../../../Pod/Classes/Capper/SACapper.h

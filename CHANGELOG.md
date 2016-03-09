@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+3.6.8
+ - Modularised the SDK
+
 3.6.7
  - revert some SALoader changes so that it does not always have to be an ivar
 

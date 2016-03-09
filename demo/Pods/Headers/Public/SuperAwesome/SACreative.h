@@ -1,1 +1,1 @@
-../../../../../SuperAwesome/Classes/SDK/AdParser/Models/SACreative.h
+../../../../../Pod/Classes/Models/SACreative.h

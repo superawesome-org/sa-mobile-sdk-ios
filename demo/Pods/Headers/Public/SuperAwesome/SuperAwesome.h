@@ -1,1 +1,1 @@
-../../../../../SuperAwesome/Classes/SDK/SuperAwesome.h
+../../../../../Pod/Classes/SuperAwesome.h

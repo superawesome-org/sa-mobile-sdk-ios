@@ -1,1 +1,1 @@
-../../../../../SuperAwesome/Classes/SDK/AdParser/Parser/SAHTMLParser.h
+../../../../../Pod/Classes/Parser/SAHTMLParser.h

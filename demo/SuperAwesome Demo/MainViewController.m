@@ -49,7 +49,7 @@
     UILabel *subtitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 24, self.view.bounds.size.width, 14)];
     subtitle.text = [NSString stringWithFormat:@"(%@ - %@ - %@)",
                      [[SuperAwesome getInstance] getSdkVersion],
-                     [SASystem getVerboseSystemDetails],
+                     [SAUtils getVerboseSystemDetails],
                      [NSString stringWithFormat:@"%lu", (unsigned long)[[SuperAwesome getInstance] getDAUID]]];
     subtitle.textColor = [UIColor colorWithRed:0.85 green:0.85 blue:0.85 alpha:1];
     subtitle.backgroundColor = [UIColor clearColor];
