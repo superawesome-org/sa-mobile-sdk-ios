@@ -1,6 +1,6 @@
 {
   "name": "SuperAwesome",
-  "version": "3.6.8",
+  "version": "3.6.9",
   "summary": "SuperAwesome Mobile SDK for iOS",
   "description": "The SuperAwesome Mobile SDK lets you to easily add COPPA compliant advertisements and other platform features, like user authentication and registration, to your apps. We try to make integration as easy as possible, so we provide all the necessary tools such as this guide, API documentation, screencasts and demo apps.",
   "homepage": "http://developers.superawesome.tv/docs/iossdk",
@@ -19,7 +19,7 @@
   "source": {
     "git": "https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git",
     "branch": "master",
-    "tag": "3.6.8"
+    "tag": "3.6.9"
   },
   "frameworks": [
     "AVFoundation",
@@ -32,9 +32,7 @@
     "SystemConfiguration",
     "AdSupport"
   ],
-  "source_files": "Pod/Classes/**/*",
   "resources": "Pod/Assets/*",
-  "private_header_files": "Pod/Classes/Plugin/**/*",
   "dependencies": {
     "SAUtils": [
 
@@ -51,5 +49,33 @@
     "SAVASTParser": [
 
     ]
-  }
+  },
+  "default_subspecs": "Core",
+  "subspecs": [
+    {
+      "name": "Core",
+      "source_files": "Pod/Classes/**/*"
+    },
+    {
+      "name": "Unity",
+      "dependencies": {
+        "SuperAwesome/Core": [
+
+        ]
+      },
+      "source_files": "Pod/Plugin/Unity/*"
+    },
+    {
+      "name": "MoPub",
+      "dependencies": {
+        "mopub-ios-sdk": [
+
+        ],
+        "SuperAwesome/Core": [
+
+        ]
+      },
+      "source_files": "Pod/Plugin/MoPub/*"
+    }
+  ]
 }

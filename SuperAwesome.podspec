@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "SuperAwesome"
-  s.version      = "3.6.9"
+  s.version      = "3.7.0"
   s.summary      = "SuperAwesome Mobile SDK for iOS"
   s.description  = <<-DESC
                    The SuperAwesome Mobile SDK lets you to easily add COPPA compliant advertisements and other platform features, like user authentication and registration, to your apps. We try to make integration as easy as possible, so we provide all the necessary tools such as this guide, API documentation, screencasts and demo apps.
@@ -13,15 +13,31 @@ Pod::Spec.new do |s|
   s.platform     = :ios, "6.0"
   s.ios.deployment_target = "6.0"
   s.requires_arc = true
-  s.source       = { :git => "https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git", :branch => "master" ,:tag => "3.6.9" }
+  s.source       = { :git => "https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git", :branch => "master" ,:tag => "3.7.0" }
 
   s.frameworks = 'AVFoundation', 'AudioToolbox', 'CoreGraphics', 'CoreMedia', 'CoreMotion', 'MediaPlayer', 'QuartzCore', 'SystemConfiguration', 'AdSupport'
-  s.source_files  = "Pod/Classes/**/*"
+  # s.source_files  = "Pod/Classes/{Capper, Loader, Models, Parser, Views}/*", "Pod/Classes/SuperAwesome.*"
+  # s.source_files = "Pod/Classes/**/*"
   s.resources = "Pod/Assets/*"
-  s.private_header_files = "Pod/Classes/Plugin/**/*"
   s.dependency 'SAUtils'
   s.dependency 'SAVideoPlayer'
   s.dependency 'SAWebPlayer'
   s.dependency 'SAEvents'
   s.dependency 'SAVASTParser'
+  s.default_subspec = 'Core' 
+
+  s.subspec 'Core' do |c|
+    c.source_files = 'Pod/Classes/**/*'
+  end
+
+  s.subspec 'Unity' do |un|
+    un.dependency 'SuperAwesome/Core'
+    un.source_files = "Pod/Plugin/Unity/*"
+  end
+
+  s.subspec 'MoPub' do |mp|
+    mp.dependency 'mopub-ios-sdk'
+    mp.dependency 'SuperAwesome/Core'
+    mp.source_files = 'Pod/Plugin/MoPub/*'
+  end
 end

@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+3.7.0 
+ - Finally did it right
+
 3.6.9
  - Added Unity & MoPub as plugins
 
