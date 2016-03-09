@@ -18,6 +18,7 @@ Pod::Spec.new do |s|
   s.frameworks = 'AVFoundation', 'AudioToolbox', 'CoreGraphics', 'CoreMedia', 'CoreMotion', 'MediaPlayer', 'QuartzCore', 'SystemConfiguration', 'AdSupport'
   s.source_files  = "Pod/Classes/**/*"
   s.resources = "Pod/Assets/*"
+  s.private_header_files = "Pod/Classes/Plugin/**/*"
   s.dependency 'SAUtils'
   s.dependency 'SAVideoPlayer'
   s.dependency 'SAWebPlayer'

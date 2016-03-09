@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+3.6.9
+ - Added Unity & MoPub as plugins
+
 3.6.8
  - Modularised the SDK
 
