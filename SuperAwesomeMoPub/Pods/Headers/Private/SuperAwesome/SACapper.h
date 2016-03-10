@@ -1,1 +1,0 @@
-../../../SuperAwesome/SuperAwesome/Classes/SDK/Capper/SACapper.h
