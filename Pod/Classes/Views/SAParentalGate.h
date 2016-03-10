@@ -31,4 +31,7 @@ typedef void(^actionBlock) (UIAlertAction *action);
 // show function
 - (void) show;
 
+// close function
+- (void) close;
+
 @end

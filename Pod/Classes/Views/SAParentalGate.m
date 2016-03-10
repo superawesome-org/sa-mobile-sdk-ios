@@ -96,6 +96,14 @@
     }
 }
 
+- (void) close {
+    if (NSClassFromString(@"UIAlertController")) {
+        [_challangeAlertController dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        [_challengeAlertView dismissWithClickedButtonIndex:0 animated:YES];
+    }
+}
+
 #pragma mark iOS 8.0 +
 
 - (void) showWithAlertController {

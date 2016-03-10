@@ -28,6 +28,7 @@
 
 @property (nonatomic, strong) SAAd *ad;
 @property (nonatomic, strong) NSString *destinationURL;
+@property (nonatomic, strong) NSArray *trackingArray;
 
 @property (nonatomic, strong) SAParentalGate *gate;
 @property (nonatomic, strong) UIImageView *padlock;
@@ -95,7 +96,14 @@
 
     // add the padlick
     _padlock = [[UIImageView alloc] initWithFrame:SMALL_PAD_FRAME];
-    _padlock.image = [UIImage imageNamed:@"watermark_49x25"];
+    
+    NSBundle *podBundle = [NSBundle bundleForClass:self.classForCoder];
+    NSURL *bundleUrl = [podBundle URLForResource:@"SuperAwesome" withExtension:@"bundle"];
+    NSBundle *bundle = [NSBundle bundleWithURL:bundleUrl];
+    NSString *file = [bundle pathForResource:@"watermark_49x25" ofType:@"png"];
+    UIImage *image = [UIImage imageWithContentsOfFile:file];
+    
+    _padlock.image = image;
     if (!_ad.isFallback && !_ad.isHouse) {
         [self addSubview:_padlock];
     }
@@ -107,31 +115,22 @@
     _ad = NULL;
 }
 
-- (void) tryToGoToURL:(NSURL*)url {
-    // get the going to URL
-    _destinationURL = [url absoluteString];
-    
-    if (_isParentalGateEnabled) {
-        // send an event
-        [SAEvents sendEventToURL:_ad.creative.parentalGateClickURL];
-        
-        // show the gate
-        [_gate show];
-    } else {
-        [self advanceToClick];
-    }
-}
-
 - (void) advanceToClick {
-    NSLog(@"[AA :: INFO] Going to %@", _destinationURL);
-    
     // call delegate
     if (_adDelegate && [_adDelegate respondsToSelector:@selector(adWasClicked:)]) {
         [_adDelegate adWasClicked:_ad.placementId];
     }
     
+    // call trackers
+    for (NSString *ctracking in _trackingArray) {
+        [SAEvents sendEventToURL:ctracking];
+    }
+    
+    // goto url
     NSURL *url = [NSURL URLWithString:_destinationURL];
     [[UIApplication sharedApplication] openURL:url];
+    
+    NSLog(@"[AA :: INFO] Going to %@", _destinationURL);
 }
 
 - (void) resizeToFrame:(CGRect)toframe {
@@ -236,6 +235,10 @@
 }
 
 - (void) didEndAllAds {
+    
+    // close the Pg
+    [_gate close];
+    
     if (_videoDelegate && [_videoDelegate respondsToSelector:@selector(allAdsEnded:)]) {
         [_videoDelegate allAdsEnded:_ad.placementId];
     }
@@ -245,8 +248,19 @@
     }
 }
 
-- (void) didGoToURL:(NSURL *)url {
-    [self tryToGoToURL:url];
+- (void) didGoToURL:(NSURL *)url withTrackingArray:(NSArray *)clickTarcking{
+    _trackingArray = clickTarcking;
+    _destinationURL = [url absoluteString];
+    
+    if (_isParentalGateEnabled) {
+        // send an event
+        [SAEvents sendEventToURL:_ad.creative.parentalGateClickURL];
+        
+        // show the gate
+        [_gate show];
+    } else {
+        [self advanceToClick];
+    }
 }
 
 @end

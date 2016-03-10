@@ -117,9 +117,6 @@
 // close the ad
 - (void) close;
 
-// first pass at trying to go to URL
-- (void) tryToGoToURL:(NSURL*)url;
-
 // second pass at trying to go to URL
 - (void) advanceToClick;
 

@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+3.7.1
+ - Implementing some fixed
+
 3.7.0 
  - Finally did it right
 

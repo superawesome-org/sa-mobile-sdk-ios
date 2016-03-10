@@ -95,7 +95,14 @@
     
     // add the padlick
     _padlock = [[UIImageView alloc] initWithFrame:BIG_PAD_FRAME];
-    _padlock.image = [UIImage imageNamed:@"watermark_67x25"];
+    
+    NSBundle *podBundle = [NSBundle bundleForClass:self.classForCoder];
+    NSURL *bundleUrl = [podBundle URLForResource:@"SuperAwesome" withExtension:@"bundle"];
+    NSBundle *bundle = [NSBundle bundleWithURL:bundleUrl];
+    NSString *file = [bundle pathForResource:@"watermark_49x25" ofType:@"png"];
+    UIImage *image = [UIImage imageWithContentsOfFile:file];
+    
+    _padlock.image = image;
     if (!_ad.isFallback && !_ad.isHouse) {
         [_webplayer addSubview:_padlock];
     }
@@ -103,21 +110,6 @@
 
 - (void) close {
     // do nothing
-}
-
-- (void) tryToGoToURL:(NSURL*)url {
-    // get the going to URL
-    _destinationURL = [url absoluteString];
-    
-    if (_isParentalGateEnabled) {
-        // send an event
-        [SAEvents sendEventToURL:_ad.creative.parentalGateClickURL];
-        
-        // show the gate
-        [_gate show];
-    } else {
-        [self advanceToClick];
-    }
 }
 
 - (void) advanceToClick {
@@ -174,7 +166,18 @@
 }
 
 - (void) webPlayerWillNavigate:(NSURL *)url {
-    [self tryToGoToURL:url];
+    // get the going to URL
+    _destinationURL = [url absoluteString];
+    
+    if (_isParentalGateEnabled) {
+        // send an event
+        [SAEvents sendEventToURL:_ad.creative.parentalGateClickURL];
+        
+        // show the gate
+        [_gate show];
+    } else {
+        [self advanceToClick];
+    }
 }
 
 @end
