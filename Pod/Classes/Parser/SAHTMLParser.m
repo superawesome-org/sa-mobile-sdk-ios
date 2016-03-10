@@ -52,10 +52,7 @@
 
 + (NSString*) formatCreativeIntoImageHTML:(SAAd*)ad {
     // load template
-    NSBundle *podBundle = [NSBundle bundleForClass:self.classForCoder];
-    NSURL *bundleUrl = [podBundle URLForResource:@"SuperAwesome" withExtension:@"bundle"];
-    NSBundle *bundle = [NSBundle bundleWithURL:bundleUrl];
-    NSString *fPath = [bundle pathForResource:@"displayImage" ofType:@"html"];
+    NSString *fPath = [[NSBundle mainBundle] pathForResource:@"displayImage" ofType:@"html"];
     NSString *htmlString = [NSString stringWithContentsOfFile:fPath encoding:NSUTF8StringEncoding error:nil];
     
     // return the parametrized template
@@ -66,10 +63,7 @@
 
 + (NSString*) formatCreativeIntoRichMediaHTML:(SAAd*)ad {
     // load template
-    NSBundle *podBundle = [NSBundle bundleForClass:self.classForCoder];
-    NSURL *bundleUrl = [podBundle URLForResource:@"SuperAwesome" withExtension:@"bundle"];
-    NSBundle *bundle = [NSBundle bundleWithURL:bundleUrl];
-    NSString *fPath = [bundle pathForResource:@"displayRichMedia" ofType:@"html"];
+    NSString *fPath = [[NSBundle mainBundle] pathForResource:@"displayRichMedia" ofType:@"html"];
     NSString *htmlString = [NSString stringWithContentsOfFile:fPath encoding:NSUTF8StringEncoding error:nil];
     
     // format template parameters
@@ -96,10 +90,7 @@
 
 + (NSString*) formatCreativeIntoTagHTML:(SAAd*)ad {
     // get template
-    NSBundle *podBundle = [NSBundle bundleForClass:self.classForCoder];
-    NSURL *bundleUrl = [podBundle URLForResource:@"SuperAwesome" withExtension:@"bundle"];
-    NSBundle *bundle = [NSBundle bundleWithURL:bundleUrl];
-    NSString *fPath = [bundle pathForResource:@"displayTag" ofType:@"html"];
+    NSString *fPath = [[NSBundle mainBundle] pathForResource:@"displayTag" ofType:@"html"];
     NSString *htmlString = [NSString stringWithContentsOfFile:fPath encoding:NSUTF8StringEncoding error:nil];
     
     // format template parameters

@@ -64,15 +64,9 @@
     [self.view addSubview:_banner];
     
     // create close button
-    NSBundle *podBundle = [NSBundle bundleForClass:self.classForCoder];
-    NSURL *bundleUrl = [podBundle URLForResource:@"SuperAwesome" withExtension:@"bundle"];
-    NSBundle *bundle = [NSBundle bundleWithURL:bundleUrl];
-    NSString *file = [bundle pathForResource:@"close" ofType:@"png"];
-    UIImage *image = [UIImage imageWithContentsOfFile:file];
-    
     _closeBtn = [[UIButton alloc] initWithFrame:_buttonFrame];
     [_closeBtn setTitle:@"" forState:UIControlStateNormal];
-    [_closeBtn setImage:image forState:UIControlStateNormal];
+    [_closeBtn setImage:[UIImage imageNamed:@"close"] forState:UIControlStateNormal];
     [_closeBtn addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_closeBtn];
     [self.view bringSubviewToFront:_closeBtn];

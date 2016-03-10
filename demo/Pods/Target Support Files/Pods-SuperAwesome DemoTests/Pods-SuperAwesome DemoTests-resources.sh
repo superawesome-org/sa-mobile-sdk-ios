@@ -58,6 +58,13 @@ install_resource()
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_resource "../../Pod/Assets/close.png"
+  install_resource "../../Pod/Assets/displayImage.html"
+  install_resource "../../Pod/Assets/displayRichMedia.html"
+  install_resource "../../Pod/Assets/displayTag.html"
+  install_resource "../../Pod/Assets/watermark_49x25.png"
+  install_resource "../../Pod/Assets/watermark_67x25.png"
+  install_resource "../../Pod/Assets/watermark_89x25.png"
   install_resource "mopub-ios-sdk/MoPubSDK/Internal/Common/MPAdBrowserController.xib"
   install_resource "mopub-ios-sdk/MoPubSDK/Resources/MPCloseBtn.png"
   install_resource "mopub-ios-sdk/MoPubSDK/Resources/MPCloseBtn@2x.png"
@@ -83,9 +90,15 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "${BUILT_PRODUCTS_DIR}/SAVASTParser.bundle"
   install_resource "${BUILT_PRODUCTS_DIR}/SAVideoPlayer.bundle"
   install_resource "${BUILT_PRODUCTS_DIR}/SAWebPlayer.bundle"
-  install_resource "${BUILT_PRODUCTS_DIR}/SuperAwesome.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_resource "../../Pod/Assets/close.png"
+  install_resource "../../Pod/Assets/displayImage.html"
+  install_resource "../../Pod/Assets/displayRichMedia.html"
+  install_resource "../../Pod/Assets/displayTag.html"
+  install_resource "../../Pod/Assets/watermark_49x25.png"
+  install_resource "../../Pod/Assets/watermark_67x25.png"
+  install_resource "../../Pod/Assets/watermark_89x25.png"
   install_resource "mopub-ios-sdk/MoPubSDK/Internal/Common/MPAdBrowserController.xib"
   install_resource "mopub-ios-sdk/MoPubSDK/Resources/MPCloseBtn.png"
   install_resource "mopub-ios-sdk/MoPubSDK/Resources/MPCloseBtn@2x.png"
@@ -111,7 +124,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "${BUILT_PRODUCTS_DIR}/SAVASTParser.bundle"
   install_resource "${BUILT_PRODUCTS_DIR}/SAVideoPlayer.bundle"
   install_resource "${BUILT_PRODUCTS_DIR}/SAWebPlayer.bundle"
-  install_resource "${BUILT_PRODUCTS_DIR}/SuperAwesome.bundle"
 fi
 
 mkdir -p "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

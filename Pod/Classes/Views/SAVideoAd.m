@@ -96,14 +96,7 @@
 
     // add the padlick
     _padlock = [[UIImageView alloc] initWithFrame:SMALL_PAD_FRAME];
-    
-    NSBundle *podBundle = [NSBundle bundleForClass:self.classForCoder];
-    NSURL *bundleUrl = [podBundle URLForResource:@"SuperAwesome" withExtension:@"bundle"];
-    NSBundle *bundle = [NSBundle bundleWithURL:bundleUrl];
-    NSString *file = [bundle pathForResource:@"watermark_49x25" ofType:@"png"];
-    UIImage *image = [UIImage imageWithContentsOfFile:file];
-    
-    _padlock.image = image;
+    _padlock.image = [UIImage imageNamed:@"watermark_49x25"];
     if (!_ad.isFallback && !_ad.isHouse) {
         [self addSubview:_padlock];
     }
