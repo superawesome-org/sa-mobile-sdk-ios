@@ -2,23 +2,49 @@ If you already have MoPub ads serving in your app, but want to integrate SuperAw
 
 #### Integrate the SDK
 
-The first thing you should do is integrate the SDK in your current app by following the instructions in [Getting Started / Integrating the SDK](https://developers.superawesome.tv/docs/iossdk/Getting%20Started/Integrating%20the%20SDK?version=3).
+The first thing you should do is integrate the SDK in your current app:
 
-This will add the SDK to your current project.
+If you haven't already, install [CocoaPods](http://cocoapods.org).
 
-#### Download Adapters
+```
+sudo gem install cocoapods
 
-Next, you'll need to download a list of files called Adapters:
+```
 
-  * [SuperAwesomeBannerCustomEvent.h](https://raw.githubusercontent.com/SuperAwesomeLTD/sa-mobile-sdk-ios/master/SuperAwesomeMoPub/SuperAwesomeMoPub/SuperAwesomeBannerCustomEvent.h)
-  * [SuperAwesomeBannerCustomEvent.m](https://raw.githubusercontent.com/SuperAwesomeLTD/sa-mobile-sdk-ios/master/SuperAwesomeMoPub/SuperAwesomeMoPub/SuperAwesomeBannerCustomEvent.m)
-  * [SuperAwesomeInterstitialCustomEvent.h](https://raw.githubusercontent.com/SuperAwesomeLTD/sa-mobile-sdk-ios/master/SuperAwesomeMoPub/SuperAwesomeMoPub/SuperAwesomeInterstitialCustomEvent.h)
-  * [SuperAwesomeInterstitialCustomEvent.m](https://raw.githubusercontent.com/SuperAwesomeLTD/sa-mobile-sdk-ios/master/SuperAwesomeMoPub/SuperAwesomeMoPub/SuperAwesomeInterstitialCustomEvent.m)
-  * [SuperAwesomeRewardedVideoCustomEvent.h](https://raw.githubusercontent.com/SuperAwesomeLTD/sa-mobile-sdk-ios/master/SuperAwesomeMoPub/SuperAwesomeMoPub/SuperAwesomeRewardedVideoCustomEvent.h)
-  * [SuperAwesomeRewardedVideoCustomEvent.m](https://raw.githubusercontent.com/SuperAwesomeLTD/sa-mobile-sdk-ios/master/SuperAwesomeMoPub/SuperAwesomeMoPub/SuperAwesomeRewardedVideoCustomEvent.m)
+After that you need to go to the project's directory and initialize CocoaPods
 
-These will act as a convenient bridge between SuperAwesome and MoPub, so that you don't have to write any additional line of code.
-You'll need to add these to your project, wherever is convenient.
+```
+cd /project_root
+pod init
+
+```
+
+Then open and edit the `Podfile` so it looks something similar to the following:
+
+```
+# Uncomment this line to define a global platform for your project
+platform :ios, '6.0'
+
+target 'MyProject' do
+  pod 'SuperAwesome/MoPub'
+end
+
+```
+
+After the pod source has been added, update your project's dependencies by running the following command in the terminal:
+
+```
+pod update
+
+```
+
+This will automatically add the SDK to your current project, add MoPub adapters and resolve all dependency issues.
+The MoPub adapters CocoaPods will download are:
+
+  * [SuperAwesomeBannerCustomEvent](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/blob/master/Pod/Plugin/MoPub/SuperAwesomeBannerCustomEvent.h)
+  * [SuperAwesomeInterstitialCustomEvent](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/blob/master/Pod/Plugin/MoPub/SuperAwesomeInterstitialCustomEvent.h)
+  * [SuperAwesomeRewardedVideoCustomEvent](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/blob/master/Pod/Plugin/MoPub/SuperAwesomeRewardedVideoCustomEvent.h)
+
 
 #### Setup a MoPub Custom Network
 
