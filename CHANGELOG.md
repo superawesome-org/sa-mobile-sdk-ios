@@ -1,6 +1,8 @@
 CHANGELOG
 =========
 
+3.7.6
+ - Add bundle id to list of sent item
 3.7.5
 3.7.4
 3.7.3 

@@ -38,6 +38,7 @@
     [dict setObject:[NSNumber numberWithBool:[[SuperAwesome getInstance] isTestingEnabled]] forKey:@"test"];
     [dict setObject:[[SuperAwesome getInstance] getSdkVersion] forKey:@"sdkVersion"];
     [dict setObject:[NSNumber numberWithInteger:[SAUtils getCachebuster]] forKey:@"rnd"];
+    [dict setObject:[[NSBundle mainBundle] bundleIdentifier] forKey:@"bundle"];
     if ([[SuperAwesome getInstance] getDAUID] != 0){
         [dict setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[[SuperAwesome getInstance] getDAUID]] forKey:@"dauid"];
     }
