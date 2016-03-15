@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git", :branch => "master" ,:tag => "3.7.5" }
 
   s.frameworks = 'AdSupport'
-  s.resource_bundles = { 'SuperAwesome' => ['Pod/Assets/*'] }
+  # s.resource_bundles = { 'SuperAwesome' => ['Pod/Assets/*'] }
   s.dependency 'SAUtils'
   s.dependency 'SAVideoPlayer'
   s.dependency 'SAWebPlayer'
