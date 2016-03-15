@@ -52,8 +52,8 @@
 
 + (NSString*) formatCreativeIntoImageHTML:(SAAd*)ad {
     // load template
-    NSString *fPath = [[NSBundle mainBundle] pathForResource:@"displayImage" ofType:@"html"];
-    NSString *htmlString = [NSString stringWithContentsOfFile:fPath encoding:NSUTF8StringEncoding error:nil];
+    NSString *file = [SAUtils filePathForName:@"displayImage" type:@"html" andBundle:@"SuperAwesome" andClass:self.classForCoder];
+    NSString *htmlString = [NSString stringWithContentsOfFile:file encoding:NSUTF8StringEncoding error:nil];
     
     // return the parametrized template
     htmlString = [htmlString stringByReplacingOccurrencesOfString:@"hrefURL" withString:ad.creative.clickURL];
@@ -63,8 +63,8 @@
 
 + (NSString*) formatCreativeIntoRichMediaHTML:(SAAd*)ad {
     // load template
-    NSString *fPath = [[NSBundle mainBundle] pathForResource:@"displayRichMedia" ofType:@"html"];
-    NSString *htmlString = [NSString stringWithContentsOfFile:fPath encoding:NSUTF8StringEncoding error:nil];
+    NSString *file = [SAUtils filePathForName:@"displayRichMedia" type:@"html" andBundle:@"SuperAwesome" andClass:self.classForCoder];
+    NSString *htmlString = [NSString stringWithContentsOfFile:file encoding:NSUTF8StringEncoding error:nil];
     
     // format template parameters
     NSMutableString *richMediaString = [[NSMutableString alloc] init];
@@ -90,8 +90,8 @@
 
 + (NSString*) formatCreativeIntoTagHTML:(SAAd*)ad {
     // get template
-    NSString *fPath = [[NSBundle mainBundle] pathForResource:@"displayTag" ofType:@"html"];
-    NSString *htmlString = [NSString stringWithContentsOfFile:fPath encoding:NSUTF8StringEncoding error:nil];
+    NSString *file = [SAUtils filePathForName:@"displayTag" type:@"html" andBundle:@"SuperAwesome" andClass:self.classForCoder];
+    NSString *htmlString = [NSString stringWithContentsOfFile:file encoding:NSUTF8StringEncoding error:nil];
     
     // format template parameters
     NSString *tagString = ad.creative.details.tag;

@@ -9,9 +9,7 @@
 #import "SAFullscreenVideoAd.h"
 #import "SAAd.h"
 #import "SAVideoAd.h"
-
-//#import <AVFoundation/AVFoundation.h>
-//#import <AVKit/AVKit.h>
+#import "SAUtils.h"
 
 @interface SAVideoAd () <SAVASTManagerProtocol>
 @property (nonatomic, weak) id<SAAdProtocol> internalAdProto;
@@ -88,7 +86,7 @@
     // create close button
     _closeBtn = [[UIButton alloc] initWithFrame:_buttonFrame];
     [_closeBtn setTitle:@"" forState:UIControlStateNormal];
-    [_closeBtn setImage:[UIImage imageNamed:@"close"] forState:UIControlStateNormal];
+    [_closeBtn setImage:[UIImage imageWithContentsOfFile:[SAUtils filePathForName:@"close" type:@"png" andBundle:@"SuperAwesome" andClass:self.classForCoder]] forState:UIControlStateNormal];
     [_closeBtn addTarget:self action:@selector(closeAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_closeBtn];
     [self.view bringSubviewToFront:_closeBtn];

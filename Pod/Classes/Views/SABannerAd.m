@@ -95,7 +95,7 @@
     
     // add the padlick
     _padlock = [[UIImageView alloc] initWithFrame:BIG_PAD_FRAME];
-    _padlock.image = [UIImage imageNamed:@"watermark_67x25"];
+    _padlock.image = [UIImage imageWithContentsOfFile:[SAUtils filePathForName:@"watermark_67x25" type:@"png" andBundle:@"SuperAwesome" andClass:self.classForCoder]];
     if (!_ad.isFallback && !_ad.isHouse) {
         [_webplayer addSubview:_padlock];
     }
@@ -139,13 +139,13 @@
 
 - (void) webPlayerDidLoad {
     [SAEvents sendEventToURL:_ad.creative.viewableImpressionURL];
-    [SAEvents sendDisplayMoatEvent:self andAdDictionary:@{
-        @"campaign": [NSString stringWithFormat:@"%ld", (long)_ad.campaignId],
-        @"line_item": [NSString stringWithFormat:@"%ld", (long)_ad.lineItemId],
-        @"creative": [NSString stringWithFormat:@"%ld", (long)_ad.creative.creativeId],
-        @"app": [NSString stringWithFormat:@"%ld", (long)_ad.appId],
-        @"placement": [NSString stringWithFormat:@"%ld", (long)_ad.placementId],
-    }];
+//    [SAEvents sendDisplayMoatEvent:self andAdDictionary:@{
+//        @"campaign": [NSString stringWithFormat:@"%ld", (long)_ad.campaignId],
+//        @"line_item": [NSString stringWithFormat:@"%ld", (long)_ad.lineItemId],
+//        @"creative": [NSString stringWithFormat:@"%ld", (long)_ad.creative.creativeId],
+//        @"app": [NSString stringWithFormat:@"%ld", (long)_ad.appId],
+//        @"placement": [NSString stringWithFormat:@"%ld", (long)_ad.placementId],
+//    }];
     
     if ([_adDelegate respondsToSelector:@selector(adWasShown:)]) {
         [_adDelegate adWasShown:_ad.placementId];

@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+3.7.3 
+ - Changed the way resources are stored & accessed for the SDK
+
 3.7.2
  - bugs
 3.7.1

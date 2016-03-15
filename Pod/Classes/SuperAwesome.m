@@ -49,7 +49,7 @@
         [self setConfigurationProduction];
         [self disableTestMode];
         [SAEvents enableSATracking];
-        [SAEvents disableMoatTracking];
+//        [SAEvents disableMoatTracking];
         [SACapper enableCapping:^(NSUInteger dauId) {
             _dauID = dauId;
         }];
@@ -59,7 +59,7 @@
 }
 
 - (NSString*) getVersion {
-    return @"3.7.2";
+    return @"3.7.3";
 }
 
 - (NSString*) getSdk {
