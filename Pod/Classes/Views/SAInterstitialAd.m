@@ -21,6 +21,7 @@
 @property (nonatomic, strong) SAAd *ad;
 @property (nonatomic, strong) SABannerAd *banner;
 @property (nonatomic, strong) UIButton *closeBtn;
+@property (nonatomic, assign) BOOL wasStatusBarHidden;
 @end
 
 @implementation SAInterstitialAd
@@ -97,12 +98,13 @@
 
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    _wasStatusBarHidden = [UIApplication sharedApplication].isStatusBarHidden;
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
+    [[UIApplication sharedApplication] setStatusBarHidden:_wasStatusBarHidden withAnimation:UIStatusBarAnimationNone];
 }
 
 - (void) viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {

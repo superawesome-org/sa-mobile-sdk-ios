@@ -26,6 +26,8 @@
 @property (nonatomic, strong) SAVideoAd *video;
 @property (nonatomic, strong) UIButton *closeBtn;
 
+@property (nonatomic, assign) BOOL wasStatusBarHidden;
+
 @end
 
 @implementation SAFullscreenVideoAd
@@ -122,13 +124,14 @@
 
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    _wasStatusBarHidden = [UIApplication sharedApplication].isStatusBarHidden;
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
     NSLog(@"SAFullscreenVideoAd viewWillAppear");
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
+    [[UIApplication sharedApplication] setStatusBarHidden:_wasStatusBarHidden withAnimation:UIStatusBarAnimationNone];
     NSLog(@"SAFullscreenVideoAd viewWillDisappear");
 }
 
