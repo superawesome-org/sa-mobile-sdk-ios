@@ -56,7 +56,8 @@
     NSString *htmlString = [NSString stringWithContentsOfFile:file encoding:NSUTF8StringEncoding error:nil];
     
     // return the parametrized template
-    htmlString = [htmlString stringByReplacingOccurrencesOfString:@"hrefURL" withString:ad.creative.clickURL];
+    NSString *click = (ad.creative.clickURL ? ad.creative.clickURL : ad.creative.trackingURL);
+    htmlString = [htmlString stringByReplacingOccurrencesOfString:@"hrefURL" withString:click];
     htmlString = [htmlString stringByReplacingOccurrencesOfString:@"imageURL" withString:ad.creative.details.image];
     return htmlString;
 }

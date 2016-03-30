@@ -139,10 +139,10 @@
 #pragma mark <SAVASTProtocol>
 
 - (void) didParseVASTAndFindAds {
-    
 }
 
 - (void) didParseVASTButDidNotFindAnyAds {
+    
     if (_adDelegate && [_adDelegate respondsToSelector:@selector(adFailedToShow:)]) {
         [_adDelegate adFailedToShow:_ad.placementId];
     }
@@ -154,6 +154,7 @@
 }
 
 - (void) didNotParseVAST {
+    
     if (_adDelegate && [_adDelegate respondsToSelector:@selector(adFailedToShow:)]) {
         [_adDelegate adFailedToShow:_ad.placementId];
     }
@@ -167,6 +168,13 @@
 - (void) didStartAd {
     // send the viewable impression URL as well
     [SAEvents sendEventToURL:_ad.creative.viewableImpressionURL];
+    
+    // if the banner has a separate impression URL, send that as well for 3rd party tracking
+    // although that's usually handled in the VAST tag for videos
+    if (_ad.creative.impressionURL && [_ad.creative.impressionURL rangeOfString:[[SuperAwesome getInstance] getBaseURL]].location == NSNotFound) {
+        [SAEvents sendEventToURL:_ad.creative.impressionURL];
+    }
+    
 //    [SAEvents sendVideoMoatEvent:[_player getPlayer]
 //                        andLayer:[_player getPlayerLayer]
 //                         andView:self

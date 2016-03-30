@@ -138,7 +138,14 @@
 #pragma mark <SAWebViewProtocol> functions
 
 - (void) webPlayerDidLoad {
+    // send viewable impression
     [SAEvents sendEventToURL:_ad.creative.viewableImpressionURL];
+    
+    // if the banner has a separate impression URL, send that as well for 3rd party tracking
+    if (_ad.creative.impressionURL && [_ad.creative.impressionURL rangeOfString:[[SuperAwesome getInstance] getBaseURL]].location == NSNotFound) {
+        [SAEvents sendEventToURL:_ad.creative.impressionURL];
+    }
+    
 //    [SAEvents sendDisplayMoatEvent:self andAdDictionary:@{
 //        @"campaign": [NSString stringWithFormat:@"%ld", (long)_ad.campaignId],
 //        @"line_item": [NSString stringWithFormat:@"%ld", (long)_ad.lineItemId],

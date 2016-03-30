@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+3.7.7
+ - Fix a small issue when clickURL is N/A for image type ads
+
 3.7.6
  - Add bundle id to list of sent item
 3.7.5
