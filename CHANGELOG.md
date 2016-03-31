@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+3.7.8
+ - Add fix for Unity & orientation face-up/face-down
+
 3.7.7
  - Fix a small issue when clickURL is N/A for image type ads
 

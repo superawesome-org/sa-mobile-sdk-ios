@@ -85,7 +85,20 @@
             break;
         }
         case UIDeviceOrientationPortrait:
-        case UIDeviceOrientationPortraitUpsideDown:
+        case UIDeviceOrientationPortraitUpsideDown:{
+            currentSize = CGSizeMake(smallDimension, bigDimension);
+            break;
+        }
+        case UIDeviceOrientationFaceUp:
+        case UIDeviceOrientationFaceDown: {
+            if (scrSize.width > scrSize.height){
+                currentSize = CGSizeMake(bigDimension, smallDimension);
+            }
+            else {
+                currentSize = CGSizeMake(smallDimension, bigDimension);
+            }
+            break;
+        }
         default: {
             currentSize = CGSizeMake(smallDimension, bigDimension);
             break;

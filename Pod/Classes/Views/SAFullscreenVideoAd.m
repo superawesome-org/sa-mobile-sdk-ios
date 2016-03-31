@@ -99,13 +99,26 @@
     CGFloat smallDimension = MIN(scrSize.width, scrSize.height);
     
     switch (orientation) {
-        case UIInterfaceOrientationLandscapeLeft:
-        case UIInterfaceOrientationLandscapeRight:{
+        case UIDeviceOrientationLandscapeLeft:
+        case UIDeviceOrientationLandscapeRight:{
             currentSize = CGSizeMake(bigDimension, smallDimension);
             break;
         }
-        case UIInterfaceOrientationPortrait:
-        case UIInterfaceOrientationPortraitUpsideDown:
+        case UIDeviceOrientationPortrait:
+        case UIDeviceOrientationPortraitUpsideDown:{
+            currentSize = CGSizeMake(smallDimension, bigDimension);
+            break;
+        }
+        case UIDeviceOrientationFaceUp:
+        case UIDeviceOrientationFaceDown: {
+            if (scrSize.width > scrSize.height){
+                currentSize = CGSizeMake(bigDimension, smallDimension);
+            }
+            else {
+                currentSize = CGSizeMake(smallDimension, bigDimension);
+            }
+            break;
+        }
         default: {
             currentSize = CGSizeMake(smallDimension, bigDimension);
             break;
