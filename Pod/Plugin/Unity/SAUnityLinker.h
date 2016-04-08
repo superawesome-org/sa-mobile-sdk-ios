@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 
 // callback for generic success with data
-typedef void (^adEvent)(NSString *unityAd, NSString *unityCallback);
+typedef void (^adEvent)(NSString *unityAd, int placementId, NSString *unityCallback);
 
 // callback for generic success with data
-typedef void (^loadingEvent)(NSString *unityAd, NSString *unityCallback, NSString *adString);
+typedef void (^loadingEvent)(NSString *unityAd, int placementId, NSString *unityCallback, NSString *adString);
 
 @interface SAUnityLinker : NSObject
 

@@ -1,8 +1,9 @@
 CHANGELOG
 =========
 
+3.8.0
 3.7.9
- - Improvements to VAST & new padlock for video
+ - Improvements to VAST & Unity (to become in line with Android version)
 
 3.7.8
  - Add fix for Unity & orientation face-up/face-down
