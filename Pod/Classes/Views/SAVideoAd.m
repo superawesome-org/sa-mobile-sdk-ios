@@ -19,7 +19,7 @@
 #import "SAVideoPlayer.h"
 #import "SAVASTManager.h"
 
-#define SMALL_PAD_FRAME CGRectMake(0, 0, 49, 25)
+#define SMALL_PAD_FRAME CGRectMake(0, 0, 67, 25)
 
 @interface SAVideoAd () <SAVASTManagerProtocol>
 
@@ -96,7 +96,7 @@
 
     // add the padlick
     _padlock = [[UIImageView alloc] initWithFrame:SMALL_PAD_FRAME];
-    _padlock.image = [UIImage imageWithContentsOfFile:[SAUtils filePathForName:@"watermark_49x25" type:@"png" andBundle:@"SuperAwesome" andClass:self.classForCoder]];
+    _padlock.image = [UIImage imageWithContentsOfFile:[SAUtils filePathForName:@"watermark_67x25" type:@"png" andBundle:@"SuperAwesome" andClass:self.classForCoder]];
     if (!_ad.isFallback && !_ad.isHouse) {
         [self addSubview:_padlock];
     }
@@ -138,28 +138,11 @@
 
 #pragma mark <SAVASTProtocol>
 
-- (void) didParseVASTAndFindAds {
-}
-
-- (void) didParseVASTButDidNotFindAnyAds {
-    
+- (void) didNotFindAds {
     if (_adDelegate && [_adDelegate respondsToSelector:@selector(adFailedToShow:)]) {
         [_adDelegate adFailedToShow:_ad.placementId];
     }
     
-    // send a message to the internal ad proto as well
-    if (_internalAdProto && [_internalAdProto respondsToSelector:@selector(adFailedToShow:)]) {
-        [_internalAdProto adFailedToShow:_ad.placementId];
-    }
-}
-
-- (void) didNotParseVAST {
-    
-    if (_adDelegate && [_adDelegate respondsToSelector:@selector(adFailedToShow:)]) {
-        [_adDelegate adFailedToShow:_ad.placementId];
-    }
-    
-    // send a message to the internal ad proto as well
     if (_internalAdProto && [_internalAdProto respondsToSelector:@selector(adFailedToShow:)]) {
         [_internalAdProto adFailedToShow:_ad.placementId];
     }

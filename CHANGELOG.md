@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+3.7.9
+ - Improvements to VAST & new padlock for video
+
 3.7.8
  - Add fix for Unity & orientation face-up/face-down
 
