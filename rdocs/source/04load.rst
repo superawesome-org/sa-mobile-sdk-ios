@@ -21,13 +21,15 @@ You'll usually need just one instance per ViewController.
     @implementation MyViewController
 
     - (id) init {
-      if (self = [super init]) {
 
-        SALoader *loader = [[SALoader alloc] init];
-        [loader loadAdForPlacementId: 30471];
-      }
+        if (self = [super init]) {
 
-      return self;
+            SALoader *loader = [[SALoader alloc] init];
+            [loader loadAdForPlacementId: 30471];
+
+        }
+
+        return self;
     }
 
     @end
@@ -42,7 +44,9 @@ In order to use these callbacks:
 .. code-block:: objective-c
 
     @interface MyViewController () <SALoaderProtocol>
+
     // rest of your code ...
+
     @end
 
 * the ViewController must be set as delegate for the SALoader object created earlier
@@ -55,13 +59,16 @@ In order to use these callbacks:
     @implementation MyViewController
 
     - (id) init {
-      if (self = [super init]){
-        SALoader *loader = [[SALoader alloc] init];
-        loader.delegate = self;
-        [loader loadAdForPlacementId: 30471];
-      }
 
-      return self;
+        if (self = [super init]){
+
+            SALoader *loader = [[SALoader alloc] init];
+            loader.delegate = self;
+            [loader loadAdForPlacementId: 30471];
+
+        }
+
+        return self;
     }
 
     @end
@@ -74,15 +81,16 @@ In order to use these callbacks:
     @end
 
     @implementation MyViewController
+
     // rest of your implementation ...
 
     - (void) didLoadAd:(SAAd *)ad {
-      // at this moment ad data is ready
-      [ad print];
+        // at this moment ad data is ready
+        [ad print];
     }
 
     - (void) didFailToLoadAdForPlacementId:(NSInteger)placementId {
-      // handle error case
+        // handle error case
     }
 
     @end
@@ -91,7 +99,10 @@ You'll notice that didLoadAd: has a callback parameter of type **SAAd**. The SAA
 actually display an ad, such as format (image, video), dimensions, click URL, video information, creative details, etc.
 You can find out all details by calling the **print** function, as shown in the example.
 
-Knowing this, to save ads for later use, you can do something like this:
+Saving an Ad for later use
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To save ads for later use, you can do something like this:
 
 .. code-block:: objective-c
 
@@ -103,11 +114,14 @@ Knowing this, to save ads for later use, you can do something like this:
     // rest of your implementation ...
 
     - (void) didLoadAd:(SAAd *)ad {
-      // save the ad data for later use
-      _myAdData = ad;
+        // save the ad data for later use
+        _myAdData = ad;
     }
 
     @end
+
+Saving multiple Ads for later use
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Finally, if you want to load multiple ads and save them for later use, you can do as such:
 
@@ -122,33 +136,38 @@ Finally, if you want to load multiple ads and save them for later use, you can d
     @implementation MyViewController
 
     - (id) init {
-      if (self = [super init]) {
-        SALoader *loader = [[SALoader alloc] init];
-        loader.delegate = self;
 
-        // load ad data for a banner
-        [loader loadAdForPlacementId: 30471];
-        // load ad data for an interstitial
-        [loader loadAdForPlacementId: 30473];
-        // load ad data for a video
-        [loader loadAdForPlacementId: 30479];
-      }
+        if (self = [super init]) {
 
-      return self;
+            SALoader *loader = [[SALoader alloc] init];
+            loader.delegate = self;
+
+            // load ad data for a banner
+            [loader loadAdForPlacementId: 30471];
+            // load ad data for an interstitial
+            [loader loadAdForPlacementId: 30473];
+            // load ad data for a video
+            [loader loadAdForPlacementId: 30479];
+        }
+
+        return self;
     }
 
     - (void) didLoadAd:(SAAd *)ad {
-      if (ad.placementId == 30471) {
-        _bannerAdData = ad;
-      } else if (ad.placementId == 30473) {
-        _interstitialAdData = ad;
-      } else if (ad.videoAdData == 30479) {
-        _videoAdData = ad;
-      }
+
+        if (ad.placementId == 30471) {
+            _bannerAdData = ad;
+        }
+        else if (ad.placementId == 30473) {
+            _interstitialAdData = ad;
+        }
+        else if (ad.videoAdData == 30479) {
+            _videoAdData = ad;
+        }
     }
 
     - (void) didFailToLoadAdForPlacementId:(NSInteger)placementId {
-      NSLog("Failed to load ad data for %ld", placementId);
+        NSLog("Failed to load ad data for %ld", placementId);
     }
 
     @end

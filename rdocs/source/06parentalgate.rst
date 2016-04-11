@@ -13,3 +13,4 @@ You can either enable it in Interface Builder or by using the following code in 
     [banner setIsParentalGateEnabled:true];
 
 .. image:: img/IMG_06_ParentalGate.png
+    :align: center

@@ -60,6 +60,6 @@ To circumvent this, add the following to your .plist file:
 .. code-block:: xml
 
     <dict>
-      <key>NSAllowsArbitraryLoads</key>
-      <true/>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
     </dict>

@@ -14,6 +14,7 @@ Parameter      Values          Meaning
 =============  ==============  =======
 Configuration  | Production *  | If the SDK gets ads from
                | Staging       | the production or test server.
+                               | Test placements are all on production.
 
 Test mode      | Enabled       | If the SDK serves test ads. For test
                | Disabled *    | placements (30471, 30476, etc) must be Enabled.
@@ -32,19 +33,13 @@ You can specify them in your **AppDelegate** class or on a View Controller basis
     - (BOOL) application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-      [[SuperAwesome getInstance] setConfigurationStaging];
-      // or
-      // [[SuperAwesome getInstance] setConfigurationProduction];
+        [[SuperAwesome getInstance] setConfigurationStaging];
+        // [[SuperAwesome getInstance] setConfigurationProduction];
 
-      [[SuperAwesome getInstance] enableTestMode];
-      // or
-      // [[SuperAwesome getInstance] disableTestMode];
+        [[SuperAwesome getInstance] enableTestMode];
+        // [[SuperAwesome getInstance] disableTestMode];
 
-      [[SuperAwesome getInstance] enableMoatTracking];
-      // or
-      // [[SuperAwesome getInstance] disableMoatTracking];
-
-      return YES;
+        return YES;
     }
 
     // rest of AppDelegate implementation ...

@@ -23,18 +23,19 @@ To catch standard ad callbacks:
 .. code-block:: objective-c
 
     @implementation MyViewController
+
     // rest of your implementation ...
 
     - (IBAction) showBanner {
 
-      CGRect top = CGRectMake(0, 0, 320, 50);
-      _banner = [[SABannerAd alloc] initWithFrame:top];
+        CGRect top = CGRectMake(0, 0, 320, 50);
+        _banner = [[SABannerAd alloc] initWithFrame:top];
 
-      // set the delegate
-      [_banner setAdDelegate:self];
+        // set the delegate
+        [_banner setAdDelegate:self];
 
-      [self.view addSubview:_banner];
-      [_banner play];
+        [self.view addSubview:_banner];
+        [_banner play];
     }
 
     @end
@@ -44,6 +45,7 @@ To catch standard ad callbacks:
 .. code-block:: objective-c
 
     @implementation MyViewController
+
     // rest of the implementation ...
 
     // this function is called when the ad
@@ -89,17 +91,34 @@ To catch parental gate callbacks:
 
     @interface MyViewController ()
     <SALoaderProtocol, SAAdProtocol, SAParentalGateProtocol>
+
     // rest of your implementation ..
+
     @end
 
 * The ViewController again must be set as delegate for your display objects
 
 .. code-block:: objective-c
 
-    // rest of your code ...
-    // ...
-    [_banner setIsParentalGateEnabled: true];
-    [_banner setParentalGateDelegate: self];
+    @implementation MyViewController
+
+    // rest of your implementation ...
+
+    - (IBAction) showBanner {
+
+        CGRect top = CGRectMake(0, 0, 320, 50);
+        _banner = [[SABannerAd alloc] initWithFrame:top];
+
+        // set the parental gate delegate
+        [_banner setIsParentalGateEnabled: true];
+        [_banner setParentalGateDelegate: self];
+
+        [self.view addSubview:_banner];
+        [_banner play];
+
+    }
+
+    @end
 
 * and it must implement the callback methods specified by SAParentalGateProtocol
 
@@ -138,8 +157,13 @@ To catch video ad callbacks (available only for SAVideoAd and SAFullscreenVideoA
 .. code-block:: objective-c
 
     @interface MyViewController ()
-    <SALoaderProtocol, SAAdProtocol, SAParentalGateProtocol, SAVideoAdProtocol>
+    <SALoaderProtocol,
+     SAAdProtocol,
+     SAParentalGateProtocol,
+     SAVideoAdProtocol>
+
     // rest of your implementation ..
+
     @end
 
 * The ViewController again must be set as delegate for your display objects
