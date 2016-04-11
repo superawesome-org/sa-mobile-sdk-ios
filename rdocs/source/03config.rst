@@ -12,11 +12,11 @@ There are also a few global SDK parameters you can change according to your need
 =============  ==============  =======
 Parameter      Values          Meaning
 =============  ==============  =======
-Configuration  | Production *  | If the SDK gets ads from
+Configuration  | Production *  | Should the SDK get ads from
                | Staging       | the production or test server.
                                | Test placements are all on production.
 
-Test mode      | Enabled       | If the SDK serves test ads. For test
+Test mode      | Enabled       | Should the SDK serve test ads. For test
                | Disabled *    | placements (30471, 30476, etc) must be Enabled.
 =============  ==============  =======
  * = denotes default values

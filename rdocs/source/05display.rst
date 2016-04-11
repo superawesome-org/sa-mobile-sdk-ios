@@ -3,29 +3,26 @@ Display Ads
 
 In the next sections we'll see how to display banners, inline video ads, interstitials and fullscreen video ads.
 
-We'll suppose we have the same setup as the previous section:
+We'll suppose we have the same setup as the previous section, but we'll also add
+four SuperAwesome display objects that we'll want to show at the press of a button
+in our app.
 
 .. code-block:: objective-c
 
     @interface MyViewController () <SALoaderProtocol>
+
     // three SAAd objects to hold data for placements
     // 30471, 30473 and 30479
     @property (nonatomic, strong) SAAd *bannerAdData;
     @property (nonatomic, strong) SAAd *interstitialAdData;
     @property (nonatomic, strong) SAAd *videoAdData;
-    @end
 
-Additionally we'll also create four display objects we'll want to show at the press of a button in our app:
-
-.. code-block:: objective-c
-
-    @interface MyViewController () <SALoaderProtocol>
-    // rest of category implementation ...
     // then define four SuperAwesome ad display objects
     @property (nonatomic, strong) SABannerAd *banner;
     @property (nonatomic, strong) SAVideoAd *video;
     @property (nonatomic, strong) SAInterstitialAd *interstitial;
     @property (nonatomic, strong) SAFullscreenVideoAd *fvideo;
+
     @end
 
 Banner ads
@@ -36,17 +33,19 @@ To following code snippet shows you how to init and add a **SABannerAd** object 
 .. code-block:: objective-c
 
     @implementation MyViewController
+
     // rest of your implementation ...
 
-    - (IBAction) showBanner {
+    - (IBAction) showBanner:(id)sender {
 
         CGRect top = CGRectMake(0, 0, 320, 50);
-        _banner = [[SABannerAd alloc] initWithFrame:top];
-        [_banner setAd:bannerAdData];
 
-        [self.view addSubview:_banner];
-        [_banner play];
-
+        if (_bannerAdData) {
+            _banner = [[SABannerAd alloc] initWithFrame:top];
+            [_banner setAd:_bannerAdData];
+            [self.view addSubview:_banner];
+            [_banner play];
+        }
     }
 
     @end
@@ -70,15 +69,16 @@ In-Line Video ads
 
     // rest of your implementation ...
 
-    - (IBAction) showInLineVideo {
+    - (IBAction) showInLineVideo:(id)sender {
 
         CGRect frame = CGRectMake(0, 0, 480, 240);
-        _video = [[SAVideoAd alloc] initWithFrame:frame];
-        [_video setAd:videoAdData];
 
-        [self.view addSubview: _video];
-        [_video play];
-
+        if (_videoAdData) {
+            _video = [[SAVideoAd alloc] initWithFrame:frame];
+            [_video setAd:_videoAdData];
+            [self.view addSubview: _video];
+            [_video play];
+        }
     }
 
     @end
@@ -97,15 +97,15 @@ Interstitial ads are represented by objects of type **SAInterstitialAd**.
 
     // rest of your implementation ...
 
-    - (IBAction) showInterstitial {
+    - (IBAction) showInterstitial:(id)sender {
 
-        _interstitial = [[SAInterstitialAd alloc] init];
-        [_interstitial setAd:interstitialAdData];
-
-        [self presentViewController:_interstitial animated:YES completion:^{
-            [_interstitial play];
-        }];
-
+        if (_interstitialAdData) {
+            _interstitial = [[SAInterstitialAd alloc] init];
+            [_interstitial setAd:_interstitialAdData];
+            [self presentViewController:_interstitial animated:YES completion:^{
+                [_interstitial play];
+            }];
+        }
     }
 
     @end
@@ -127,15 +127,17 @@ Finally, fullscreen video ads are represented by **SAFullscreenVideoAd**.
 
     // rest of your implementation ...
 
-    - (IBAction) showVideo {
+    - (IBAction) showVideo:(id)sender {
 
-        _fvideo = [[SAFullscreenVideoAd alloc] init];
-        [_fvideo setAd:videoAdData];
-
-        [self presentViewController:_fvideo animated:YES completion:^{
-            [_fvideo play];
-        }];
-
+        if (_videoAdData) {
+            _fvideo = [[SAFullscreenVideoAd alloc] init];
+            [_fvideo setAd:_videoAdData];
+            [_fvideo setShouldAutomaticallyCloseAtEnd:NO];
+            [_fvideo setShouldShowCloseButton:YES];
+            [self presentViewController:_fvideo animated:YES completion:^{
+                [_fvideo play];
+            }];
+        }
     }
 
     @end
@@ -143,25 +145,7 @@ Finally, fullscreen video ads are represented by **SAFullscreenVideoAd**.
 SAFullscreenVideoAd is also a subclasses of UIViewController, and implements the setAd: and play methods.
 Notice also the fact that we're *reusing the videoAdData* object when displaying video.
 
-Additionally, a fullscreen video ad can have two more parameters that can be set:
-
-.. code-block:: objective-c
-
-    @implementation MyViewController
-
-    // rest of your implementation ...
-
-    - (IBAction) showVideo {
-
-        _fvideo = [[SAFullscreenVideoAd alloc] init];
-        [_fvideo setAd:videoAdData];
-        [_fvideo setShouldAutomaticallyCloseAtEnd:NO];
-        [_fvideo setShouldShowCloseButton:YES];
-
-        // rest of the function ...
-
-    }
-
-    @end
+Additionally, a fullscreen video ad can have two more parameters that can be set, **shouldShowCloseButton** and
+**shouldAutomaticallyCloseAtEnd**.
 
 Fullscreen video ads can be closed by calling the **close** function.

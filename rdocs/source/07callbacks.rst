@@ -14,8 +14,11 @@ To catch standard ad callbacks:
 .. code-block:: objective-c
 
     @interface MyViewController () <SALoaderProtocol, SAAdProtocol>
+
+    // SAAd and display object
     @property (nonatomic, strong) SAAd *bannerAdData;
     @property (nonatomic, strong) SABannerAd *banner;
+
     @end
 
 * the ViewController must be set as delegate for your display objects:
@@ -29,13 +32,14 @@ To catch standard ad callbacks:
     - (IBAction) showBanner {
 
         CGRect top = CGRectMake(0, 0, 320, 50);
-        _banner = [[SABannerAd alloc] initWithFrame:top];
 
-        // set the delegate
-        [_banner setAdDelegate:self];
-
-        [self.view addSubview:_banner];
-        [_banner play];
+        if (_bannerAdData) {
+            _banner = [[SABannerAd alloc] initWithFrame:top];
+            [_banner setAd:_bannerAdData];
+            [_banner setAdDelegate:self];
+            [self.view addSubview:_banner];
+            [_banner play];
+        }
     }
 
     @end
@@ -48,34 +52,29 @@ To catch standard ad callbacks:
 
     // rest of the implementation ...
 
-    // this function is called when the ad
-    // is shown on the screen
     - (void) adWasShown:(NSInteger)placementId {
-
+        // this function is called when the ad
+        // is shown on the screen
     }
 
-    // this function is called when the ad failed to show
     - (void) adFailedToShow:(NSInteger)placementId {
-
+        // this function is called when the ad failed to show
     }
 
-    // this function is called when an ad is closed;
-    // only applies to fullscreen ads
-    // like interstitials and fullscreen videos
     - (void) adWasClosed:(NSInteger)placementId {
-
+        // this function is called when an ad is closed;
+        // only applies to fullscreen ads
+        // like interstitials and fullscreen videos
     }
 
-    // this function is called when an ad is clicked
     - (void) adWasClicked:(NSInteger)placementId {
-
+        // this function is called when an ad is clicked
     }
 
-    // only called when setting an SAAd object
-    // containing video data for a
-    // banner type display object (or similar)
     - (void) adHasIncorrectPlacement:(NSInteger)placementId {
-
+        // only called when setting an SAAd object
+        // containing video data for a
+        // banner type display object (or similar)
     }
 
     @end
@@ -89,10 +88,11 @@ To catch parental gate callbacks:
 
 .. code-block:: objective-c
 
-    @interface MyViewController ()
-    <SALoaderProtocol, SAAdProtocol, SAParentalGateProtocol>
+    @interface MyViewController () <SALoaderProtocol, SAParentalGateProtocol>
 
-    // rest of your implementation ..
+    // SAAd and display object
+    @property (nonatomic, strong) SAAd *bannerAdData;
+    @property (nonatomic, strong) SABannerAd *banner;
 
     @end
 
@@ -107,15 +107,15 @@ To catch parental gate callbacks:
     - (IBAction) showBanner {
 
         CGRect top = CGRectMake(0, 0, 320, 50);
-        _banner = [[SABannerAd alloc] initWithFrame:top];
 
-        // set the parental gate delegate
-        [_banner setIsParentalGateEnabled: true];
-        [_banner setParentalGateDelegate: self];
-
-        [self.view addSubview:_banner];
-        [_banner play];
-
+        if (_bannerAdData) {
+            _banner = [[SABannerAd alloc] initWithFrame:top];
+            [_banner setAd:_bannerAdData];
+            [_banner setIsParentalGateEnabled: true];
+            [_banner setParentalGateDelegate: self];
+            [self.view addSubview:_banner];
+            [_banner play];
+        }
     }
 
     @end
@@ -124,25 +124,26 @@ To catch parental gate callbacks:
 
 .. code-block:: objective-c
 
-    // this function is called when a
-    // parental gate pop-up "cancel" button is pressed
+    @implementation MyViewController
+
+    // rest of the implementation ...
+
     - (void) parentalGateWasCanceled:(NSInteger)placementId {
-
+        // this function is called when a
+        // parental gate pop-up "cancel" button is pressed
     }
 
-    // this function is called when a
-    // parental gate pop-up "continue" button is
-    // pressed and the parental gate
-    // failed (because the numbers weren't OK)
     - (void) parentalGateWasFailed:(NSInteger)placementId {
-
+        // this function is called when a
+        // parental gate pop-up "continue" button is
+        // pressed and the parental gate
+        // failed (because the numbers weren't OK)
     }
 
-    // this function is called when a
-    // parental gate pop-up "continue" button is
-    // pressed and the parental gate succeeded
     - (void) parentalGateWasSucceded:(NSInteger)placementId {
-
+        // this function is called when a
+        // parental gate pop-up "continue" button is
+        // pressed and the parental gate succeeded
     }
 
     @end
@@ -156,13 +157,11 @@ To catch video ad callbacks (available only for SAVideoAd and SAFullscreenVideoA
 
 .. code-block:: objective-c
 
-    @interface MyViewController ()
-    <SALoaderProtocol,
-     SAAdProtocol,
-     SAParentalGateProtocol,
-     SAVideoAdProtocol>
+    @interface MyViewController () <SALoaderProtocol, SAVideoAdProtocol>
 
-    // rest of your implementation ..
+    // SAAd object and video ad display
+    @property (nonatomic, strong) SAAd *videoAdData;
+    @property (nonatomic, strong) SAVideoAd *video;
 
     @end
 
@@ -170,52 +169,63 @@ To catch video ad callbacks (available only for SAVideoAd and SAFullscreenVideoA
 
 .. code-block:: objective-c
 
-    // rest of your code ...
-    // ...
-    [_video setVideoDelegate:self];
+    @implementation MyViewController
+
+    // rest of your implementation ...
+
+    - (IBAction) showInLineVideo {
+
+        CGRect frame = CGRectMake(0, 0, 480, 240);
+
+        if (_videoAdData) {
+            _video = [[SAVideoAd alloc] initWithFrame:frame];
+            [_video setAd:_videoAdData];
+            [_video setVideoDelegate:self];
+            [self.view addSubview: _video];
+            [_video play];
+        }
+    }
+
+    @end
 
 * and it must implement the callback methods specified by SAVideoAdProtocol
 
 .. code-block:: objective-c
 
-    // fired when an ad has started
+    @implementation MyViewController
+
+    // rest of the implementation ...
+
     - (void) adStarted:(NSInteger)placementId {
-
+        // fired when an ad has started
     }
 
-    // fired when a video ad has started
     - (void) videoStarted:(NSInteger)placementId {
-
+        // fired when a video ad has started
     }
 
-    // fired when a video ad has reached 1/4 of total duration
     - (void) videoReachedFirstQuartile:(NSInteger)placementId {
-
+        // fired when a video ad has reached 1/4 of total duration
     }
 
-    // fired when a video ad has reached 1/2 of total duration
     - (void) videoReachedMidpoint:(NSInteger)placementId {
-
+        // fired when a video ad has reached 1/2 of total duration
     }
 
-    // fired when a video ad has reached 3/4 of total duration
     - (void) videoReachedThirdQuartile:(NSInteger)placementId {
-
+        // fired when a video ad has reached 3/4 of total duration
     }
 
-    // fired when a video ad has ended
     - (void) videoEnded:(NSInteger)placementId {
-
+        // fired when a video ad has ended
     }
 
-    // fired when an ad has ended
     - (void) adEnded:(NSInteger)placementId {
-
+        // fired when an ad has ended
     }
 
-    // fired when all ads have ended
     - (void) allAdsEnded:(NSInteger)placementId {
-
+        // fired when all ads have ended
     }
 
     @end

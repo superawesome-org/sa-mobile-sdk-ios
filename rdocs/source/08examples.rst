@@ -17,9 +17,9 @@ few lines of code.
     @implementation MyViewController
 
     - (void) viewDidLoad {
-
         [super viewDidLoad];
 
+        // load ads
         SALoader *loader = [[SALoader alloc] init];
         loader.delegate = self;
         [loader loadAdForPlacementId: 30471];
@@ -31,6 +31,7 @@ few lines of code.
 
         CGRect top = CGRectMake(0, 0, 320, 50);
 
+        // create the banner
         SABannerAd *banner = [[SABannerAd alloc] initWithFrame:top];
         [banner setAd: ad];
         [self.view addSubview: banner];
@@ -80,6 +81,7 @@ multiple callbacks.
     #pragma mark <Button> actions
 
     - (IBAction) loadAds:(id)sender {
+        // load three ads in a row!
         SALoader *loader = [[SALoader alloc] init];
         loader.delegate = self;
         [loader loadAdForPlacementId: 30471];
@@ -87,32 +89,25 @@ multiple callbacks.
         [loader loadAdForPlacementId: 30479];
     }
 
-    - (IBAction) displayBannerAd:(id)sender {
+    - (IBAction) showBanner:(id)sender {
 
         CGRect top = CGRectMake(0, 0, 320, 50);
 
-        // init and set ad data
-        _banner = [[SABannerAd alloc] initWithFrame:top];
-        [_banner setAd: _bannerAdData];
-
-        // set more parameters
-        [_banner setAdDelegate:self];
-        [_banner setIsParentalGateEnabled:true];
-
-        // add to screen
-        [self.view addSubview: _banner];
-        [_banner play];
-      }
+        if (_bannerAdData) {
+            _banner = [[SABannerAd alloc] initWithFrame:top];
+            [_banner setAd: _bannerAdData];
+            [_banner setAdDelegate:self];
+            [_banner setIsParentalGateEnabled:true];
+            [self.view addSubview: _banner];
+            [_banner play];
+        }
     }
 
-    - (IBAction) displayInterstitialAd:(id)sender {
-
+    - (IBAction) showInterstitial:(id)sender {
         if (_interstitialAdData) {
-            // init and set ad data
+            // init
             _interstitial = [[SAInterstitialAd alloc] init];
             [_interstitial setAd: _interstitialAdData];
-
-            // set more parameters
             [_interstitial setIsParentalGateEnabled:true];
             [_interstitial setParentalGateDelegate:self];
 
@@ -125,15 +120,11 @@ multiple callbacks.
         }
     }
 
-    - (IBAction) displayVideoAd:(id)sender {
-
+    - (IBAction) showVideoAd:(id)sender {
         if (_videoAdData) {
-
-            // init and set ad data
+            // init
             _fvideo = [[SAFullscreenVideoAd alloc] init];
             [_fvideo setAd:videoAdData];
-
-            // set more parameters
             [_fvideo setVideoDelegate:self];
             [_fvideo setShouldAutomaticallyCloseAtEnd:false];
             [_fvideo setShouldShowCloseButton:false];

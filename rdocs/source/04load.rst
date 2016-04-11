@@ -24,6 +24,7 @@ You'll usually need just one instance per ViewController.
 
         if (self = [super init]) {
 
+            // create loader and load ad
             SALoader *loader = [[SALoader alloc] init];
             [loader loadAdForPlacementId: 30471];
 
@@ -44,9 +45,6 @@ In order to use these callbacks:
 .. code-block:: objective-c
 
     @interface MyViewController () <SALoaderProtocol>
-
-    // rest of your code ...
-
     @end
 
 * the ViewController must be set as delegate for the SALoader object created earlier
@@ -62,6 +60,7 @@ In order to use these callbacks:
 
         if (self = [super init]){
 
+            // create loader and load ad
             SALoader *loader = [[SALoader alloc] init];
             loader.delegate = self;
             [loader loadAdForPlacementId: 30471];
@@ -82,7 +81,19 @@ In order to use these callbacks:
 
     @implementation MyViewController
 
-    // rest of your implementation ...
+    - (id) init {
+
+        if (self = [super init]){
+
+            // create loader and load ad
+            SALoader *loader = [[SALoader alloc] init];
+            loader.delegate = self;
+            [loader loadAdForPlacementId: 30471];
+
+        }
+
+        return self;
+    }
 
     - (void) didLoadAd:(SAAd *)ad {
         // at this moment ad data is ready
@@ -107,15 +118,34 @@ To save ads for later use, you can do something like this:
 .. code-block:: objective-c
 
     @interface MyViewController () <SALoaderProtocol>
+    // declare a SAAd object to save data in
     @property (nonatomic, strong) SAAd *bannerAdData;
+
     @end
 
     @implementation MyViewController
-    // rest of your implementation ...
+
+    - (id) init {
+
+        if (self = [super init]){
+
+            // create loader and load ad
+            SALoader *loader = [[SALoader alloc] init];
+            loader.delegate = self;
+            [loader loadAdForPlacementId: 30471];
+
+        }
+
+        return self;
+    }
 
     - (void) didLoadAd:(SAAd *)ad {
         // save the ad data for later use
-        _myAdData = ad;
+        _bannerAdData = ad;
+    }
+
+    - (void) didFailToLoadAdForPlacementId:(NSInteger)placementId {
+        // handle error case
     }
 
     @end
@@ -128,9 +158,12 @@ Finally, if you want to load multiple ads and save them for later use, you can d
 .. code-block:: objective-c
 
     @interface MyViewController () <SALoaderProtocol>
+
+    // declare three SAAD objects to save ad data in
     @property (nonatomic, strong) SAAd *bannerAdData;
     @property (nonatomic, strong) SAAd *interstitialAdData;
     @property (nonatomic, strong) SAAd *videoAdData;
+
     @end
 
     @implementation MyViewController
@@ -139,6 +172,7 @@ Finally, if you want to load multiple ads and save them for later use, you can d
 
         if (self = [super init]) {
 
+            // create loader and set delegate
             SALoader *loader = [[SALoader alloc] init];
             loader.delegate = self;
 
