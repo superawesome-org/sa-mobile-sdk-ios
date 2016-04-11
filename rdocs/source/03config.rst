@@ -17,9 +17,6 @@ Configuration  | Production *  | If the SDK gets ads from
 
 Test mode      | Enabled       | If the SDK serves test ads. For test
                | Disabled *    | placements (30471, 30476, etc) must be Enabled.
-
-MOAT tracking  | Enabled *     | Whether to allow 3rd party tracking
-               | Disabled      | through `MOAT <http://www.moat.com/>`_.
 =============  ==============  =======
  * = denotes default values
 
