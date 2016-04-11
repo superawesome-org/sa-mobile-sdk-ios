@@ -19,13 +19,14 @@ few lines of code.
     - (void) viewDidLoad {
         [super viewDidLoad];
 
+        // configure SDK to test mode
+        [[SuperAwesome getInstance] enableTestMode];
+
         // load ads
         SALoader *loader = [[SALoader alloc] init];
         loader.delegate = self;
         [loader loadAdForPlacementId: 30471];
     }
-
-    #pragma mark <SALoaderProtocol> functions
 
     - (void) didLoadAd:(SAAd *)ad {
 
@@ -75,12 +76,16 @@ multiple callbacks.
 
     - (void) viewDidLoad {
         [super viewDidLoad];
+
         // additional setup ...
+        [[SuperAwesome getInstance] enableTestMode];
     }
 
-    #pragma mark <Button> actions
+    //
+    // Button actions
 
     - (IBAction) loadAds:(id)sender {
+
         // load three ads in a row!
         SALoader *loader = [[SALoader alloc] init];
         loader.delegate = self;
@@ -138,7 +143,8 @@ multiple callbacks.
         }
     }
 
-    #pragma mark <SALoaderProtocol> functions
+    //
+    // SALoaderProtocol implementation
 
     - (void) didLoadAd:(SAAd *)ad {
         // the moment the ad data gets loaded from
@@ -159,7 +165,8 @@ multiple callbacks.
         NSLog("Failed to load for %ld", placementId);
     }
 
-    #pragma mark <SAAdProtocol> functions
+    //
+    // SAAdProtocol implementation
 
     - (void) adWasShown:(NSInteger)placementId {}
     - (void) adFailedToShow:(NSInteger)placementId {}
@@ -169,13 +176,15 @@ multiple callbacks.
         NSLog("Ad has incorrect placement for %ld", placementId);
     }
 
-    #pragma mark <SAParentalGateProtocol> functions
+    //
+    // SAParentalGateProtocol implementation
 
     - (void) parentalGateWasCanceled:(NSInteger)placementId {}
     - (void) parentalGateWasFailed:(NSInteger)placementId {}
     - (void) parentalGateWasSucceded:(NSInteger)placementId {}
 
-    #pragma mark <SAVideoAdProtocol> functions
+    //
+    // SAVideoAdProtocol implementation
 
     - (void) adStarted:(NSInteger)placementId {}
     - (void) videoStarted:(NSInteger)placementId {}

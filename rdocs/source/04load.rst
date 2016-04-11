@@ -20,17 +20,16 @@ You'll usually need just one instance per ViewController.
 
     @implementation MyViewController
 
-    - (id) init {
+    - (void) viewDidLoad {
+        [super viewDidLoad];
 
-        if (self = [super init]) {
+        // configure SDK to test mode
+        [[SuperAwesome getInstance] enableTestMode];
 
-            // create loader and load ad
-            SALoader *loader = [[SALoader alloc] init];
-            [loader loadAdForPlacementId: 30471];
+        // create loader and load ad
+        SALoader *loader = [[SALoader alloc] init];
+        [loader loadAdForPlacementId: 30471];
 
-        }
-
-        return self;
     }
 
     @end
@@ -56,18 +55,16 @@ In order to use these callbacks:
 
     @implementation MyViewController
 
-    - (id) init {
+    - (void) viewDidLoad {
+        [super viewDidLoad];
 
-        if (self = [super init]){
+        // configure SDK to test mode
+        [[SuperAwesome getInstance] enableTestMode];
 
-            // create loader and load ad
-            SALoader *loader = [[SALoader alloc] init];
-            loader.delegate = self;
-            [loader loadAdForPlacementId: 30471];
-
-        }
-
-        return self;
+        // create loader and load ad
+        SALoader *loader = [[SALoader alloc] init];
+        loader.delegate = self;
+        [loader loadAdForPlacementId: 30471];
     }
 
     @end
@@ -81,18 +78,17 @@ In order to use these callbacks:
 
     @implementation MyViewController
 
-    - (id) init {
+    - (void) viewDidLoad {
+        [super viewDidLoad];
 
-        if (self = [super init]){
+        // configure SDK to test mode
+        [[SuperAwesome getInstance] enableTestMode];
 
-            // create loader and load ad
-            SALoader *loader = [[SALoader alloc] init];
-            loader.delegate = self;
-            [loader loadAdForPlacementId: 30471];
+        // create loader and load ad
+        SALoader *loader = [[SALoader alloc] init];
+        loader.delegate = self;
+        [loader loadAdForPlacementId: 30471];
 
-        }
-
-        return self;
     }
 
     - (void) didLoadAd:(SAAd *)ad {
@@ -125,18 +121,16 @@ To save ads for later use, you can do something like this:
 
     @implementation MyViewController
 
-    - (id) init {
+    - (void) viewDidLoad {
+        [super viewDidLoad];
 
-        if (self = [super init]){
+        // configure SDK to test mode
+        [[SuperAwesome getInstance] enableTestMode];
 
-            // create loader and load ad
-            SALoader *loader = [[SALoader alloc] init];
-            loader.delegate = self;
-            [loader loadAdForPlacementId: 30471];
-
-        }
-
-        return self;
+        // create loader and load ad
+        SALoader *loader = [[SALoader alloc] init];
+        loader.delegate = self;
+        [loader loadAdForPlacementId: 30471];
     }
 
     - (void) didLoadAd:(SAAd *)ad {
@@ -168,23 +162,23 @@ Finally, if you want to load multiple ads and save them for later use, you can d
 
     @implementation MyViewController
 
-    - (id) init {
+    - (void) viewDidLoad {
+        [super viewDidLoad];
 
-        if (self = [super init]) {
+        // configure SDK to test mode
+        [[SuperAwesome getInstance] enableTestMode];
 
-            // create loader and set delegate
-            SALoader *loader = [[SALoader alloc] init];
-            loader.delegate = self;
+        // create loader and set delegate
+        SALoader *loader = [[SALoader alloc] init];
+        loader.delegate = self;
 
-            // load ad data for a banner
-            [loader loadAdForPlacementId: 30471];
-            // load ad data for an interstitial
-            [loader loadAdForPlacementId: 30473];
-            // load ad data for a video
-            [loader loadAdForPlacementId: 30479];
-        }
+        // load ad data for a banner
+        [loader loadAdForPlacementId: 30471];
+        // load ad data for an interstitial
+        [loader loadAdForPlacementId: 30473];
+        // load ad data for a video
+        [loader loadAdForPlacementId: 30479];
 
-        return self;
     }
 
     - (void) didLoadAd:(SAAd *)ad {

@@ -29,7 +29,7 @@ To catch standard ad callbacks:
 
     // rest of your implementation ...
 
-    - (IBAction) showBanner {
+    - (IBAction) showBanner:(id)sender {
 
         CGRect top = CGRectMake(0, 0, 320, 50);
 
@@ -104,7 +104,7 @@ To catch parental gate callbacks:
 
     // rest of your implementation ...
 
-    - (IBAction) showBanner {
+    - (IBAction) showBanner:(id)sender {
 
         CGRect top = CGRectMake(0, 0, 320, 50);
 
@@ -173,7 +173,7 @@ To catch video ad callbacks (available only for SAVideoAd and SAFullscreenVideoA
 
     // rest of your implementation ...
 
-    - (IBAction) showInLineVideo {
+    - (IBAction) showInLineVideo:(id)sender {
 
         CGRect frame = CGRectMake(0, 0, 480, 240);
 
