@@ -11,6 +11,9 @@ in our app.
 
     @interface MyViewController () <SALoaderProtocol>
 
+    // loader object
+    @property (nonatomic, strong) SALoader *loader;
+
     // three SAAd objects to hold data for placements
     // 30471, 30473 and 30479
     @property (nonatomic, strong) SAAd *bannerAdData;

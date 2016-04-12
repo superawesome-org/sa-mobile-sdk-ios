@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+3.8.1
+ - Add name as ad request param
+
 3.8.0
 3.7.9
  - Improvements to VAST & Unity (to become in line with Android version)

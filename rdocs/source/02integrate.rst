@@ -1,6 +1,11 @@
 Getting started
 ===============
 
+**Note**: This document assumes:
+
+* an XCode project called **iOSDemo**
+* that contains a single view controller called **MyViewController**
+
 We use `CocoaPods <http://cocoapods.org>`_ in order to make installing and updating our SDK super easy.
 CocoaPods manages library dependencies for your Xcode projects.
 

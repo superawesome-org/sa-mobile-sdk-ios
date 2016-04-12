@@ -15,6 +15,9 @@ To catch standard ad callbacks:
 
     @interface MyViewController () <SALoaderProtocol, SAAdProtocol>
 
+    // loader object
+    @property (nonatomic, strong) SALoader *loader;
+
     // SAAd and display object
     @property (nonatomic, strong) SAAd *bannerAdData;
     @property (nonatomic, strong) SABannerAd *banner;
@@ -90,6 +93,9 @@ To catch parental gate callbacks:
 
     @interface MyViewController () <SALoaderProtocol, SAParentalGateProtocol>
 
+    // loader object
+    @property (nonatomic, strong) SALoader *loader;
+
     // SAAd and display object
     @property (nonatomic, strong) SAAd *bannerAdData;
     @property (nonatomic, strong) SABannerAd *banner;
@@ -158,6 +164,9 @@ To catch video ad callbacks (available only for SAVideoAd and SAFullscreenVideoA
 .. code-block:: objective-c
 
     @interface MyViewController () <SALoaderProtocol, SAVideoAdProtocol>
+
+    // loader object
+    @property (nonatomic, strong) SALoader *loader;
 
     // SAAd object and video ad display
     @property (nonatomic, strong) SAAd *videoAdData;

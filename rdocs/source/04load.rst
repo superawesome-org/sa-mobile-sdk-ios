@@ -18,6 +18,13 @@ You'll usually need just one instance per ViewController.
 
 .. code-block:: objective-c
 
+    @interface MyViewController()
+
+    // loader object
+    @property (nonatomic, strong) SALoader *loader;
+
+    @end
+
     @implementation MyViewController
 
     - (void) viewDidLoad {
@@ -27,8 +34,8 @@ You'll usually need just one instance per ViewController.
         [[SuperAwesome getInstance] enableTestMode];
 
         // create loader and load ad
-        SALoader *loader = [[SALoader alloc] init];
-        [loader loadAdForPlacementId: 30471];
+        _loader = [[SALoader alloc] init];
+        [_loader loadAdForPlacementId: 30471];
 
     }
 
@@ -51,6 +58,10 @@ In order to use these callbacks:
 .. code-block:: objective-c
 
     @interface MyViewController () <SALoaderProtocol>
+
+    // loader object
+    @property (nonatomic, strong) SALoader *loader;
+
     @end
 
     @implementation MyViewController
@@ -62,9 +73,9 @@ In order to use these callbacks:
         [[SuperAwesome getInstance] enableTestMode];
 
         // create loader and load ad
-        SALoader *loader = [[SALoader alloc] init];
-        loader.delegate = self;
-        [loader loadAdForPlacementId: 30471];
+        _loader = [[SALoader alloc] init];
+        _loader.delegate = self;
+        [_loader loadAdForPlacementId: 30471];
     }
 
     @end
@@ -74,6 +85,10 @@ In order to use these callbacks:
 .. code-block:: objective-c
 
     @interface MyViewController () <SALoaderProtocol>
+
+    // loader object
+    @property (nonatomic, strong) SALoader *loader;
+
     @end
 
     @implementation MyViewController
@@ -85,9 +100,9 @@ In order to use these callbacks:
         [[SuperAwesome getInstance] enableTestMode];
 
         // create loader and load ad
-        SALoader *loader = [[SALoader alloc] init];
-        loader.delegate = self;
-        [loader loadAdForPlacementId: 30471];
+        _loader = [[SALoader alloc] init];
+        _loader.delegate = self;
+        [_loader loadAdForPlacementId: 30471];
 
     }
 
@@ -97,7 +112,7 @@ In order to use these callbacks:
     }
 
     - (void) didFailToLoadAdForPlacementId:(NSInteger)placementId {
-        // handle error case
+        // at this moment no ad could be found
     }
 
     @end
@@ -114,6 +129,10 @@ To save ads for later use, you can do something like this:
 .. code-block:: objective-c
 
     @interface MyViewController () <SALoaderProtocol>
+
+    // loader object
+    @property (nonatomic, strong) SALoader *loader;
+
     // declare a SAAd object to save data in
     @property (nonatomic, strong) SAAd *bannerAdData;
 
@@ -128,9 +147,9 @@ To save ads for later use, you can do something like this:
         [[SuperAwesome getInstance] enableTestMode];
 
         // create loader and load ad
-        SALoader *loader = [[SALoader alloc] init];
-        loader.delegate = self;
-        [loader loadAdForPlacementId: 30471];
+        _loader = [[SALoader alloc] init];
+        _loader.delegate = self;
+        [_loader loadAdForPlacementId: 30471];
     }
 
     - (void) didLoadAd:(SAAd *)ad {
@@ -153,6 +172,9 @@ Finally, if you want to load multiple ads and save them for later use, you can d
 
     @interface MyViewController () <SALoaderProtocol>
 
+    // loader object
+    @property (nonatomic, strong) SALoader *loader;
+
     // declare three SAAD objects to save ad data in
     @property (nonatomic, strong) SAAd *bannerAdData;
     @property (nonatomic, strong) SAAd *interstitialAdData;
@@ -169,15 +191,15 @@ Finally, if you want to load multiple ads and save them for later use, you can d
         [[SuperAwesome getInstance] enableTestMode];
 
         // create loader and set delegate
-        SALoader *loader = [[SALoader alloc] init];
-        loader.delegate = self;
+        _loader = [[SALoader alloc] init];
+        _loader.delegate = self;
 
         // load ad data for a banner
-        [loader loadAdForPlacementId: 30471];
+        [_loader loadAdForPlacementId: 30471];
         // load ad data for an interstitial
-        [loader loadAdForPlacementId: 30473];
+        [_loader loadAdForPlacementId: 30473];
         // load ad data for a video
-        [loader loadAdForPlacementId: 30479];
+        [_loader loadAdForPlacementId: 30479];
 
     }
 

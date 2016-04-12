@@ -22,7 +22,7 @@ Test mode      | Enabled       | Should the SDK serve test ads. For test
  * = denotes default values
 
 You can leave these settings as they are or change them to fit your testing or production needs.
-You can specify them in your **AppDelegate** class or on a View Controller basis.
+You can specify them once in your **AppDelegate** class:
 
 .. code-block:: objective-c
 
@@ -43,5 +43,20 @@ You can specify them in your **AppDelegate** class or on a View Controller basis
     }
 
     // rest of AppDelegate implementation ...
+
+    @end
+
+or in each View Controller:
+
+.. code-block:: objective-c
+
+    @implementation MyViewController
+
+    - (void) viewDidLoad {
+        [super viewDidLoad];
+
+        [[SuperAwesome getInstance] enableTestMode];
+        [[SuperAwesome getInstance] setConfigurationProduction];
+    }
 
     @end

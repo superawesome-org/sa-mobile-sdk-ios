@@ -61,6 +61,9 @@ multiple callbacks.
      SAParentalGateProtocol,
      SAVideoAdProtocol>
 
+    // loader object
+    @property (nonatomic, strong) SALoader *loader;
+
     // retained SAAd objects to hold all types of ad data
     @property (nonatomic, strong) SAAd *bannerAdData;
     @property (nonatomic, strong) SAAd *interstitialAdData;
@@ -87,11 +90,11 @@ multiple callbacks.
     - (IBAction) loadAds:(id)sender {
 
         // load three ads in a row!
-        SALoader *loader = [[SALoader alloc] init];
-        loader.delegate = self;
-        [loader loadAdForPlacementId: 30471];
-        [loader loadAdForPlacementId: 30473];
-        [loader loadAdForPlacementId: 30479];
+        _loader = [[SALoader alloc] init];
+        _loader.delegate = self;
+        [_loader loadAdForPlacementId: 30471];
+        [_loader loadAdForPlacementId: 30473];
+        [_loader loadAdForPlacementId: 30479];
     }
 
     - (IBAction) showBanner:(id)sender {
