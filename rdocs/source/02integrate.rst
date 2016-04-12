@@ -22,7 +22,7 @@ After that you need to go to the project's directory and initialize CocoaPods
 
 .. code-block:: shell
 
-    cd /project_root
+    cd /path_to/iOSDemo/
     pod init
 
 Getting the SDK
