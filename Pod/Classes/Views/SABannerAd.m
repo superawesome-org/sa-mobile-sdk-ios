@@ -14,6 +14,8 @@
 #import "SAAd.h"
 #import "SACreative.h"
 #import "SADetails.h"
+#import "SAData.h"
+
 #import "SAEvents.h"
 #import "SAUtils.h"
 
@@ -88,7 +90,7 @@
     _webplayer = [[SAWebPlayer alloc] initWithFrame:frame];
     _webplayer.sadelegate = self;
     [_webplayer setAdSize:CGSizeMake(_ad.creative.details.width, _ad.creative.details.height)];
-    [_webplayer loadAdHTML:_ad.adHTML];
+    [_webplayer loadAdHTML:_ad.creative.details.data.adHTML];
     
     // add the subview
     [self addSubview:_webplayer];

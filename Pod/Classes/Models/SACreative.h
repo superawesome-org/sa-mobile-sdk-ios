@@ -64,6 +64,6 @@ typedef enum SACreativeFormat {
 @property (nonatomic, strong) SADetails *details;
 
 // aux print func
-- (void) print;
+- (NSString*) print;
 
 @end

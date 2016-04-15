@@ -15,6 +15,7 @@
 #import "SAParser.h"
 #import "SAHTMLParser.h"
 #import "SAVASTParser.h"
+#import "SALoaderExtra.h"
 
 // import model headers
 #import "SAAd.h"
@@ -26,6 +27,10 @@
 
 // import Aux class
 #import "SAUtils.h"
+
+@interface SALoader ()
+@property (nonatomic, strong) SALoaderExtra *extra;
+@end
 
 @implementation SALoader
 
@@ -71,11 +76,13 @@
             if (parsedAd) {
                 // append the ad json
                 parsedAd.adJson = adJson;
-                
-                // send delegate calls
-                if (_delegate != NULL && [_delegate respondsToSelector:@selector(didLoadAd:)]) {
-                    [_delegate didLoadAd:parsedAd];
-                }
+                SALoaderExtra *extra = [[SALoaderExtra alloc] initWithAd:parsedAd];
+                [extra getExtraData:^(SAAd *finalAd) {
+                    // send delegate calls
+                    if (_delegate != NULL && [_delegate respondsToSelector:@selector(didLoadAd:)]) {
+                        [_delegate didLoadAd:finalAd];
+                    }
+                }];
             }
             // else announce failure
             else {

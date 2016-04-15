@@ -10,6 +10,10 @@
 
 #import <Foundation/Foundation.h>
 
+//
+// forward declaration of ad data
+@class SAData;
+
 // @brief:
 // The SADetails class contains fine grained information about the creative
 // of an ad (such as width, iamge, vast, tag, etc)
@@ -62,7 +66,10 @@
 // aux value needed when sending ad data like rating and such
 @property (nonatomic, assign) NSInteger value;
 
+// the ad's data (either HTML, or video, etc)
+@property (nonatomic, strong) SAData *data;
+
 // aux print function
-- (void) print;
+- (NSString*) print;
 
 @end

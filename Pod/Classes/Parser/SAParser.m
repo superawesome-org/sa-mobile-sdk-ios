@@ -252,9 +252,6 @@
                                             [[SuperAwesome getInstance] getBaseURL],
                                             [SAUtils formGetQueryFromDict:pgDict2]];
         
-        // format the ad HTML, then parse Ad
-        ad.adHTML = [SAHTMLParser formatCreativeDataIntoAdHTML:ad];
-        
         // also check for integrity
         if (![self isAdDataValid:ad]) {
             return nil;

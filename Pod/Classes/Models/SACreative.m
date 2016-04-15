@@ -14,20 +14,22 @@
 
 @implementation SACreative
 
-- (void) print {
-    NSLog(@"Creative:");
-    NSLog(@"\t creativeId: %ld", (long)_creativeId);
-    NSLog(@"\t name: %@", _name);
-    NSLog(@"\t cpm: %ld", (long)_cpm);
-    NSLog(@"\t baseFormat: %@", _baseFormat);
-    NSLog(@"\t format: %ld", (long)_format);
-    NSLog(@"\t impressionURL: %@", _impressionURL);
-    NSLog(@"\t viewableImpressionURL: %@", _viewableImpressionURL);
-    NSLog(@"\t clickURL: %@", _clickURL);
-    NSLog(@"\t trackingURL: %@", _trackingURL);
-    NSLog(@"\t parentalGateClickURL %@", _parentalGateClickURL);
-    NSLog(@"\t approved: %d", _approved);
-    [_details print];
+- (NSString*) print {
+    NSMutableString *result = [[NSMutableString alloc] init];
+    [result appendFormat:@"\nCreative:"];
+    [result appendFormat:@"\n\t creativeId: %ld", (long)_creativeId];
+    [result appendFormat:@"\n\t name: %@", _name];
+    [result appendFormat:@"\n\t cpm: %ld", (long)_cpm];
+    [result appendFormat:@"\n\t baseFormat: %@", _baseFormat];
+    [result appendFormat:@"\n\t format: %ld", (long)_format];
+    [result appendFormat:@"\n\t impressionURL: %@", _impressionURL];
+    [result appendFormat:@"\n\t viewableImpressionURL: %@", _viewableImpressionURL];
+    [result appendFormat:@"\n\t clickURL: %@", _clickURL];
+    [result appendFormat:@"\n\t trackingURL: %@", _trackingURL];
+    [result appendFormat:@"\n\t parentalGateClickURL %@", _parentalGateClickURL];
+    [result appendFormat:@"\n\t approved: %d", _approved];
+    [result appendFormat:@"%@", [_details print]];
+    return result;
 }
 
 @end

@@ -15,17 +15,18 @@
 @implementation SAAd
 
 - (void) print {
-    NSLog(@"Ad:");
-    NSLog(@"error: %ld", (long)_error);
-    NSLog(@"appId: %ld", (long)_appId);
-    NSLog(@"placementId: %ld", (long)_placementId);
-    NSLog(@"lineItemId: %ld", (long)_lineItemId);
-    NSLog(@"campaignId: %ld", (long)_campaignId);
-    NSLog(@"isTest: %d", _isTest);
-    NSLog(@"isFallback: %d", _isFallback);
-    NSLog(@"isFill: %d", _isFill);
-    [_creative print];
-    NSLog(@"adHTML: %@", _adHTML);
+    NSMutableString *result = [[NSMutableString alloc] init];
+    [result appendFormat:@"\nAd:"];
+    [result appendFormat:@"\nerror: %ld", (long)_error];
+    [result appendFormat:@"\nappId: %ld", (long)_appId];
+    [result appendFormat:@"\nplacementId: %ld", (long)_placementId];
+    [result appendFormat:@"\nlineItemId: %ld", (long)_lineItemId];
+    [result appendFormat:@"\ncampaignId: %ld", (long)_campaignId];
+    [result appendFormat:@"\nisTest: %d", _isTest];
+    [result appendFormat:@"\nisFallback: %d", _isFallback];
+    [result appendFormat:@"\nisFill: %d", _isFill];
+    [result appendFormat:[_creative print]];
+    NSLog(@"%@", result);
 }
 
 @end
