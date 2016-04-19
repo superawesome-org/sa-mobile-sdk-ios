@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+// forward declarations
+@class SAVASTAd;
+
 @interface SAData : NSObject
 
 //
@@ -15,12 +18,12 @@
 @property (nonatomic, strong) NSString *adHTML;
 
 //
-// the path to the video
-@property (nonatomic, strong) NSString *videoPath;
-
-//
 // the path to the image
 @property (nonatomic, strong) NSString *imagePath;
+
+//
+// the path to the video
+@property (nonatomic, strong) NSArray *vastAds;
 
 // print function
 - (NSString*) print;

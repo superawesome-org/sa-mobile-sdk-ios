@@ -8,12 +8,18 @@
 
 #import "SAVideoAd.h"
 
-// import Parental Gate
 #import "SuperAwesome.h"
+
+// import Parental Gate
 #import "SAParentalGate.h"
+
+// import modelspace
 #import "SAAd.h"
 #import "SACreative.h"
 #import "SADetails.h"
+#import "SAData.h"
+
+// import other headers
 #import "SAEvents.h"
 #import "SAUtils.h"
 #import "SAVideoPlayer.h"
@@ -92,7 +98,7 @@
     // create the vast manager
     _manager = [[SAVASTManager alloc] initWithPlayer:_player];
     _manager.delegate = self;
-    [_manager parseVASTURL:_ad.creative.details.vast];
+    [_manager manageWithAds:_ad.creative.details.data.vastAds];
 
     // add the padlick
     _padlock = [[UIImageView alloc] initWithFrame:SMALL_PAD_FRAME];

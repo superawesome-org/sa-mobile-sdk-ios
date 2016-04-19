@@ -76,8 +76,8 @@
             if (parsedAd) {
                 // append the ad json
                 parsedAd.adJson = adJson;
-                SALoaderExtra *extra = [[SALoaderExtra alloc] initWithAd:parsedAd];
-                [extra getExtraData:^(SAAd *finalAd) {
+                _extra = [[SALoaderExtra alloc] init];
+                [_extra getExtraData:parsedAd andDone:^(SAAd *finalAd) {
                     // send delegate calls
                     if (_delegate != NULL && [_delegate respondsToSelector:@selector(didLoadAd:)]) {
                         [_delegate didLoadAd:finalAd];

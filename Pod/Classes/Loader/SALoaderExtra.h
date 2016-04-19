@@ -23,11 +23,7 @@ typedef void (^extraDone)(SAAd *finalAd);
 @interface SALoaderExtra : NSObject
 
 //
-//  custom init
-- (id) initWithAd:(SAAd*)ad;
-
-//
 // parsing function
-- (void) getExtraData:(extraDone)done;
+- (void) getExtraData:(SAAd*)ad andDone:(extraDone)done;
 
 @end
