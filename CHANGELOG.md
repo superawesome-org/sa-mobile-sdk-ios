@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+3.8.2
+ - Added video pre-caching
+
 3.8.1
  - Add name as ad request param
 
