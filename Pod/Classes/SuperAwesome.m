@@ -49,7 +49,6 @@
         [self setConfigurationProduction];
         [self disableTestMode];
         [SAEvents enableSATracking];
-//        [SAEvents disableMoatTracking];
         [SACapper enableCapping:^(NSUInteger dauId) {
             _dauID = dauId;
         }];

@@ -164,17 +164,6 @@
         [SAEvents sendEventToURL:_ad.creative.impressionURL];
     }
     
-//    [SAEvents sendVideoMoatEvent:[_player getPlayer]
-//                        andLayer:[_player getPlayerLayer]
-//                         andView:self
-//                 andAdDictionary:@{
-//        @"campaign": [NSString stringWithFormat:@"%ld", (long)_ad.campaignId],
-//        @"line_item": [NSString stringWithFormat:@"%ld", (long)_ad.lineItemId],
-//        @"creative": [NSString stringWithFormat:@"%ld", (long)_ad.creative.creativeId],
-//        @"app": [NSString stringWithFormat:@"%ld", (long)_ad.appId],
-//        @"placement": [NSString stringWithFormat:@"%ld", (long)_ad.placementId],
-//    }];
-    
     if (_adDelegate && [_adDelegate respondsToSelector:@selector(adWasShown:)]) {
         [_adDelegate adWasShown:_ad.placementId];
     }
