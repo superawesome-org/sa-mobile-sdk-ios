@@ -22,6 +22,7 @@ Pod::Spec.new do |s|
   s.dependency 'SAWebPlayer'
   s.dependency 'SAEvents'
   s.dependency 'SAVASTParser'
+  s.dependency 'SAJsonParser'
   s.default_subspec = 'Core' 
 
   s.subspec 'Core' do |c|

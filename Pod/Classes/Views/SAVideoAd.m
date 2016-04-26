@@ -80,7 +80,7 @@
 
 - (void) play {
     // check for incorrect placement
-    if (_ad.creative.format != video || _ad == nil) {
+    if (_ad.creative.creativeFormat != video || _ad == nil) {
         if (_adDelegate != NULL && [_adDelegate respondsToSelector:@selector(adHasIncorrectPlacement:)]){
             [_adDelegate adHasIncorrectPlacement:_ad.placementId];
         }
@@ -156,12 +156,12 @@
 
 - (void) didStartAd {
     // send the viewable impression URL as well
-    [SAEvents sendEventToURL:_ad.creative.viewableImpressionURL];
+    [SAEvents sendEventToURL:_ad.creative.viewableImpressionUrl];
     
     // if the banner has a separate impression URL, send that as well for 3rd party tracking
     // although that's usually handled in the VAST tag for videos
-    if (_ad.creative.impressionURL && [_ad.creative.impressionURL rangeOfString:[[SuperAwesome getInstance] getBaseURL]].location == NSNotFound) {
-        [SAEvents sendEventToURL:_ad.creative.impressionURL];
+    if (_ad.creative.impressionUrl && [_ad.creative.impressionUrl rangeOfString:[[SuperAwesome getInstance] getBaseURL]].location == NSNotFound) {
+        [SAEvents sendEventToURL:_ad.creative.impressionUrl];
     }
     
     if (_adDelegate && [_adDelegate respondsToSelector:@selector(adWasShown:)]) {
@@ -233,7 +233,7 @@
     
     if (_isParentalGateEnabled) {
         // send an event
-        [SAEvents sendEventToURL:_ad.creative.parentalGateClickURL];
+        [SAEvents sendEventToURL:_ad.creative.parentalGateClickUrl];
         
         // show the gate
         [_gate show];

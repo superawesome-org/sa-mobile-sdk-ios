@@ -33,6 +33,9 @@
 // in case creative format is image_with_link, this is the URL of the image
 @property (nonatomic, strong) NSString *image;
 
+// aux value needed when sending ad data like rating and such
+@property (nonatomic, assign) NSInteger value;
+
 // name of the creative
 @property (nonatomic, strong) NSString *name;
 
@@ -54,7 +57,7 @@
 // in case creative format is rich media, this is the URL to the zip with all
 // media resources; at the moment it's not used, but could be used when doing
 // truly preloaded ads
-@property (nonatomic, strong) NSString *zip;
+@property (nonatomic, strong) NSString *zipFile;
 
 // in case creative format is rich media, this is the URL of the rich media
 @property (nonatomic, strong) NSString *url;
@@ -63,13 +66,7 @@
 // as of now, it's kind of useless
 @property (nonatomic, strong) NSString *placementFormat;
 
-// aux value needed when sending ad data like rating and such
-@property (nonatomic, assign) NSInteger value;
-
 // the ad's data (either HTML, or video, etc)
 @property (nonatomic, strong) SAData *data;
-
-// aux print function
-- (NSString*) print;
 
 @end

@@ -23,9 +23,6 @@
 
 //
 // the path to the video
-@property (nonatomic, strong) NSArray *vastAds;
-
-// print function
-- (NSString*) print;
+@property (nonatomic, strong) NSMutableArray *vastAds;
 
 @end

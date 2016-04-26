@@ -28,7 +28,7 @@ typedef enum SACreativeFormat {
 @interface SACreative : NSObject
 
 // the creative ID is a unique ID associated by the server with this Ad
-@property (nonatomic, assign) NSInteger creativeId;
+@property (nonatomic, assign) NSInteger _id;
 
 // name of the creative - set by the user in the dashboard
 @property (nonatomic, strong) NSString *name;
@@ -38,30 +38,35 @@ typedef enum SACreativeFormat {
 
 // the creative format defines the type of ad (image, video, rich media, tag, etc)
 // and is an enum defined in SACreativeFormat.h
-@property (nonatomic, strong) NSString *baseFormat;
-@property (nonatomic, assign) SACreativeFormat format;
+@property (nonatomic, strong) NSString *format;
 
 // the impression URL; not really useful because it's used server-side
-@property (nonatomic, strong) NSString *impressionURL;
-
-// the viewable impression URL; used by the SDK to track a viewable impression
-@property (nonatomic, strong) NSString *viewableImpressionURL;
+@property (nonatomic, strong) NSString *impressionUrl;
 
 // the click URL - taken from the ad server; it's the direct target to
 // which the ad points, if it exists
-@property (nonatomic, strong) NSString *clickURL;
+@property (nonatomic, strong) NSString *clickUrl;
 
-// the tracking URL
-@property (nonatomic, strong) NSString *trackingURL;
-
-// the Parental gate event url
-@property (nonatomic, strong) NSString *parentalGateClickURL;
+// the live property
+@property (nonatomic, assign) BOOL live;
 
 // must be always true for real ads
 @property (nonatomic, assign) BOOL approved;
 
 // pointer to a SADetails object containing even more creative information
 @property (nonatomic, strong) SADetails *details;
+
+// the formatted creative format
+@property (nonatomic, assign) SACreativeFormat creativeFormat;
+
+// the viewable impression URL; used by the SDK to track a viewable impression
+@property (nonatomic, strong) NSString *viewableImpressionUrl;
+
+// the tracking URL
+@property (nonatomic, strong) NSString *trackingUrl;
+
+// the Parental gate event url
+@property (nonatomic, strong) NSString *parentalGateClickUrl;
 
 // aux print func
 - (NSString*) print;

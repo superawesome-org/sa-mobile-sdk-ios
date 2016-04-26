@@ -19,15 +19,11 @@
 // by the SDK
 @interface SAAd : NSObject
 
-// the original ad json, as sent from the server
-// really need it for the Unity integration part
-@property (nonatomic, assign) NSString *adJson;
-
 // the SA server can send an error; if that's the case, this field will not be nill
 @property (nonatomic, assign) NSInteger error;
 
 // the App id
-@property (nonatomic, assign) NSInteger appId;
+@property (nonatomic, assign) NSInteger app;
 
 // the ID of the placement that the ad was sent for
 @property (nonatomic, assign) NSInteger placementId;
@@ -39,7 +35,7 @@
 @property (nonatomic, assign) NSInteger campaignId;
 
 // is true when the ad is a test ad
-@property (nonatomic, assign) BOOL isTest;
+@property (nonatomic, assign) BOOL test;
 
 // is true when ad is fallback (fallback ads are sent when there are no
 // real ads to display for a certain placement)
@@ -49,8 +45,5 @@
 
 // pointer to the creative data associated with the ad
 @property (nonatomic, strong) SACreative *creative;
-
-// aux print func
-- (void) print;
 
 @end

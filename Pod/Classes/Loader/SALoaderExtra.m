@@ -37,7 +37,7 @@
     _done = done;
     
     // get type
-    SACreativeFormat type = _ad.creative.format;
+    SACreativeFormat type = _ad.creative.creativeFormat;
 
     // init ad data
     _ad.creative.details.data = [[SAData alloc] init];

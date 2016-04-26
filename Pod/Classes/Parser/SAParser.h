@@ -26,7 +26,24 @@ typedef void (^parsedad)(SAAd *parsedAd);
 // @param - parse - a callback that actually returns the ad
 @interface SAParser : NSObject
 
-// parsing function
-+ (SAAd*) parseAdFromDictionary:(NSDictionary*)adDict withPlacementId:(NSInteger)placementId;
+/**
+ *  Parse ad data from jetwork
+ *
+ *  @param jsonData    a NSData object with json contents
+ *  @param placementId the placement Id
+ *
+ *  @return either an SAAd object or nil
+ */
+- (SAAd*) parseInitialAdFromNetwork:(NSData*)jsonData withPlacementId:(NSInteger)placementId;
+
+/**
+ *  Use the new fancy Reflective json parser to get an ad object from a json string
+ *  Used mainly by the Unity & AIR integrations
+ *
+ *  @param jsonString the already validated ad json string
+ *
+ *  @return a SAAd value
+ */
+- (SAAd*) parseAdFromExistingString:(NSString*)jsonString;
 
 @end

@@ -26,7 +26,7 @@
 
 + (NSString*) formatCreativeDataIntoAdHTML:(SAAd*)ad {
     
-    switch (ad.creative.format) {
+    switch (ad.creative.creativeFormat) {
         case image:{
             return [self formatCreativeIntoImageHTML:ad];
             break;
@@ -43,6 +43,7 @@
             return [self formatCreativeIntoTagHTML:ad];
             break;
         }
+        case invalid:
         default:{
             return nil;
             break;
@@ -56,7 +57,7 @@
     NSString *htmlString = [NSString stringWithContentsOfFile:file encoding:NSUTF8StringEncoding error:nil];
     
     // return the parametrized template
-    NSString *click = (ad.creative.clickURL ? ad.creative.clickURL : ad.creative.trackingURL);
+    NSString *click = (ad.creative.clickUrl ? ad.creative.clickUrl : ad.creative.trackingUrl);
     htmlString = [htmlString stringByReplacingOccurrencesOfString:@"hrefURL" withString:click];
     htmlString = [htmlString stringByReplacingOccurrencesOfString:@"imageURL" withString:ad.creative.details.image];
     return htmlString;
@@ -74,7 +75,7 @@
     NSDictionary *richMediaDict = @{
         @"placement":[NSNumber numberWithInteger:ad.placementId],
         @"line_item":[NSNumber numberWithInteger:ad.lineItemId],
-        @"creative":[NSNumber numberWithInteger:ad.creative.creativeId],
+        @"creative":[NSNumber numberWithInteger:ad.creative._id],
         @"rnd":[NSNumber numberWithInteger:[SAUtils getCachebuster]]
     };
     [richMediaString appendString:@"?"];
@@ -96,8 +97,8 @@
     
     // format template parameters
     NSString *tagString = ad.creative.details.tag;
-    tagString = [tagString stringByReplacingOccurrencesOfString:@"[click]" withString:[NSString stringWithFormat:@"%@&redir=",ad.creative.trackingURL]];
-    tagString = [tagString stringByReplacingOccurrencesOfString:@"[click_enc]" withString:[SAUtils encodeURI:ad.creative.trackingURL]];
+    tagString = [tagString stringByReplacingOccurrencesOfString:@"[click]" withString:[NSString stringWithFormat:@"%@&redir=",ad.creative.trackingUrl]];
+    tagString = [tagString stringByReplacingOccurrencesOfString:@"[click_enc]" withString:[SAUtils encodeURI:ad.creative.trackingUrl]];
     tagString = [tagString stringByReplacingOccurrencesOfString:@"[keywords]" withString:@""];
     tagString = [tagString stringByReplacingOccurrencesOfString:@"[timestamp]" withString:[NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970]]];
     tagString = [tagString stringByReplacingOccurrencesOfString:@"target=\"_blank\"" withString:@""];

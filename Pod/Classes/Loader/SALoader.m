@@ -24,11 +24,13 @@
 
 // import SA main Singleton
 #import "SuperAwesome.h"
+#import "NSObject+ModelToString.h"
 
 // import Aux class
 #import "SAUtils.h"
 
 @interface SALoader ()
+@property (nonatomic, strong) SAParser *parser;
 @property (nonatomic, strong) SALoaderExtra *extra;
 @end
 
@@ -53,44 +55,62 @@
     // to get Ad data, returned as NSData
     [SAUtils sendGETtoEndpoint:endpoint withQueryDict:dict andSuccess:^(NSData *data) {
         
-        // We're assuming the NSData is actually a JSON in string format,
-        // so the next step is to parse it
-        NSError *jsonError;
-        NSString *adJson = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&jsonError];
+        _parser = [[SAParser alloc] init];
+        SAAd *parsedAd = [_parser parseInitialAdFromNetwork:data withPlacementId:placementId];
         
-        // some error occured, probably the JSON string was badly formatted
-        if (jsonError) {
-            if (_delegate != NULL && [_delegate respondsToSelector:@selector(didFailToLoadAdForPlacementId:)]) {
+        if (!parsedAd) {
+            if (_delegate != NULL && [_delegate respondsToSelector:@selector(didFailToLoadAdForPlacementId:)]){
                 [_delegate didFailToLoadAdForPlacementId:placementId];
             }
-        }
-        // if there is no specific JSON Error, we can move forward to try to
-        // create the Ad as it's needed by AA
-        else {
-            // we invoke SAParser class functions to parse different aspects
-            // of the Ad
-            SAAd *parsedAd = [SAParser parseAdFromDictionary:json withPlacementId:placementId];
-            
-            // and if all is OK go forward and announce the new ad
-            if (parsedAd) {
-                // append the ad json
-                parsedAd.adJson = adJson;
-                _extra = [[SALoaderExtra alloc] init];
-                [_extra getExtraData:parsedAd andDone:^(SAAd *finalAd) {
-                    // send delegate calls
-                    if (_delegate != NULL && [_delegate respondsToSelector:@selector(didLoadAd:)]) {
-                        [_delegate didLoadAd:finalAd];
-                    }
-                }];
-            }
-            // else announce failure
-            else {
-                if (_delegate != NULL && [_delegate respondsToSelector:@selector(didFailToLoadAdForPlacementId:)]) {
-                    [_delegate didFailToLoadAdForPlacementId:placementId];
+        } else {
+            _extra = [[SALoaderExtra alloc] init];
+            [_extra getExtraData:parsedAd andDone:^(SAAd *finalAd) {
+                if (_delegate != NULL && [_delegate respondsToSelector:@selector(didLoadAd:)]) {
+                    [_delegate didLoadAd:finalAd];
                 }
-            }
+            }];
         }
+        
+//        NSString *stringy = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//        SAAd *testAd = [SAParser parseInitialAdFromNetwork:data withPlacementId:placementId];
+//        
+//        // We're assuming the NSData is actually a JSON in string format,
+//        // so the next step is to parse it
+//        NSError *jsonError;
+//        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&jsonError];
+//        NSLog(@"Test %@", [testAd jsonStringPreetyRepresentation]);
+//        
+//        // some error occured, probably the JSON string was badly formatted
+//        if (jsonError) {
+//            if (_delegate != NULL && [_delegate respondsToSelector:@selector(didFailToLoadAdForPlacementId:)]) {
+//                [_delegate didFailToLoadAdForPlacementId:placementId];
+//            }
+//        }
+//        // if there is no specific JSON Error, we can move forward to try to
+//        // create the Ad as it's needed by AA
+//        else {
+//            // we invoke SAParser class functions to parse different aspects
+//            // of the Ad
+//            SAAd *parsedAd = [SAParser parseAdFromDictionary:json withPlacementId:placementId];
+//            NSLog(@"%@", [parsedAd jsonStringPreetyRepresentation]);
+//            // and if all is OK go forward and announce the new ad
+//            if (parsedAd) {
+//                // append the ad json
+//                _extra = [[SALoaderExtra alloc] init];
+//                [_extra getExtraData:parsedAd andDone:^(SAAd *finalAd) {
+//                    // send delegate calls
+//                    if (_delegate != NULL && [_delegate respondsToSelector:@selector(didLoadAd:)]) {
+//                        [_delegate didLoadAd:finalAd];
+//                    }
+//                }];
+//            }
+//            // else announce failure
+//            else {
+//                if (_delegate != NULL && [_delegate respondsToSelector:@selector(didFailToLoadAdForPlacementId:)]) {
+//                    [_delegate didFailToLoadAdForPlacementId:placementId];
+//                }
+//            }
+//        }
         
     } orFailure:^{
         if (_delegate != NULL && [_delegate respondsToSelector:@selector(didFailToLoadAdForPlacementId:)]) {
