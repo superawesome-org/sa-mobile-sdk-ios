@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+3.8.3
+ - New json parsing
+
 3.8.2
  - Added video pre-caching
 
