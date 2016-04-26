@@ -83,7 +83,7 @@
     SAParser *parser = [[SAParser alloc] init];
     SAAd *parsedAd = [parser parseAdFromExistingString:_adJson];
     
-    if (!parsedAd) {
+    if (parsedAd != NULL) {
         // get root vc, show fvad and then play it
         UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
         
@@ -185,7 +185,7 @@
     SAParser *parser = [[SAParser alloc] init];
     SAAd *parsedAd = [parser parseAdFromExistingString:adJson];
     
-    if (!parsedAd) {
+    if (parsedAd != NULL) {
         // create fvad
         SAInterstitialAd *iad = [[SAInterstitialAd alloc] init];
         [iad setAd:parsedAd];
@@ -200,11 +200,11 @@
         // get root vc, show fvad and then play it
         UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
         [root presentViewController:iad animated:YES completion:^{
-            // play
-            [iad play];
-            
             // add "bad" as a key in the dictionary, under the Unity Ad name
             [[SAUnityLinkerManager getInstance] setAd:iad forKey:unityAd];
+            
+            // play
+            [iad play];
         }];
     } else {
         if (_adEvent){
@@ -245,7 +245,7 @@
     SAParser *parser = [[SAParser alloc] init];
     SAAd *parsedAd = [parser parseAdFromExistingString:_adJson];
     
-    if (!parsedAd) {
+    if (parsedAd != NULL) {
         // create fvad
         SAFullscreenVideoAd *fvad = [[SAFullscreenVideoAd alloc] init];
         [fvad setAd:parsedAd];
