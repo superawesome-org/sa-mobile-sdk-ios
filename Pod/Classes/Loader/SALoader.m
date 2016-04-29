@@ -55,7 +55,6 @@
         
         // parse the ad
         NSString* str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        NSLog(@"Original String %@", str);
         
         __block SAAd *parsedAd = [parser parseInitialAdFromNetwork:data withPlacementId:placementId];
         
@@ -74,11 +73,10 @@
                 // parse video
                 case video: {
                     SAVASTParser *vastParser = [[SAVASTParser alloc] init];
-                    __weak SALoader* weakSelf = self;
                     [vastParser parseVASTURL:parsedAd.creative.details.vast done:^(NSArray *ads) {
                         parsedAd.creative.details.data.vastAds = [ads mutableCopy];
-                        if (weakSelf.delegate != NULL && [weakSelf.delegate respondsToSelector:@selector(didLoadAd:)]) {
-                            [weakSelf.delegate didLoadAd:parsedAd];
+                        if (_delegate != NULL && [_delegate respondsToSelector:@selector(didLoadAd:)]) {
+                            [_delegate didLoadAd:parsedAd];
                         }
                     }];
                     break;

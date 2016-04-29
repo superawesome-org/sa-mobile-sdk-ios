@@ -1,6 +1,7 @@
 CHANGELOG
 =========
 
+3.8.6
 3.8.5
  - Fixed some minor issues
 
