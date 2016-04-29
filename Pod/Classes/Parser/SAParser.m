@@ -86,7 +86,7 @@
     };
     ad.creative.trackingUrl = [NSString stringWithFormat:@"%@/%@click?%@",
                                [[SuperAwesome getInstance] getBaseURL],
-                               (ad.creative.format == video ? @"video/" : @""),
+                               (ad.creative.creativeFormat == video ? @"video/" : @""),
                                [SAUtils formGetQueryFromDict:trackjson]];
     
     // get the viewbale impression URL

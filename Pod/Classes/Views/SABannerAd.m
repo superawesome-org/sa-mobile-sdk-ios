@@ -24,6 +24,9 @@
 #define BIG_PAD_FRAME CGRectMake(0, 0, 67, 25)
 
 @interface SABannerAd () <SAWebPlayerProtocol>
+
+@property (nonatomic, weak) id<SAAdProtocol> internalAdProto;
+
 @property (nonatomic, strong) SAAd *ad;
 @property (nonatomic, strong) NSString *destinationURL;
 @property (nonatomic, strong) SAWebPlayer *webplayer;
@@ -75,6 +78,10 @@
         if (_adDelegate != NULL && [_adDelegate respondsToSelector:@selector(adHasIncorrectPlacement:)]){
             [_adDelegate adHasIncorrectPlacement:_ad.placementId];
         }
+        if (_internalAdProto != NULL && [_internalAdProto respondsToSelector:@selector(adHasIncorrectPlacement:)]){
+            [_internalAdProto adHasIncorrectPlacement:_ad.placementId];
+        }
+        
         return;
     }
     

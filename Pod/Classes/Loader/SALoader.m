@@ -15,7 +15,6 @@
 #import "SAParser.h"
 #import "SAHTMLParser.h"
 #import "SAVASTParser.h"
-#import "SALoaderExtra.h"
 
 // import model headers
 #import "SAAd.h"
@@ -30,8 +29,6 @@
 #import "SAUtils.h"
 
 @interface SALoader ()
-@property (nonatomic, strong) SAParser *parser;
-@property (nonatomic, strong) SALoaderExtra *extra;
 @end
 
 @implementation SALoader
@@ -40,78 +37,65 @@
     
     // First thing to do is format the AA URL to get an ad, based on specs
     NSString *endpoint = [NSString stringWithFormat:@"%@/ad/%ld", [[SuperAwesome getInstance] getBaseURL], (long)placementId];
-    NSMutableDictionary *dict;
-    dict = [[NSMutableDictionary alloc] init];
-    [dict setObject:[NSNumber numberWithBool:[[SuperAwesome getInstance] isTestingEnabled]] forKey:@"test"];
-    [dict setObject:[[SuperAwesome getInstance] getSdkVersion] forKey:@"sdkVersion"];
-    [dict setObject:[NSNumber numberWithInteger:[SAUtils getCachebuster]] forKey:@"rnd"];
-    [dict setObject:[[NSBundle mainBundle] bundleIdentifier] forKey:@"bundle"];
-    [dict setObject:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"] forKey:@"name"];
-    if ([[SuperAwesome getInstance] getDAUID] != 0){
-        [dict setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[[SuperAwesome getInstance] getDAUID]] forKey:@"dauid"];
-    }
+    NSDictionary *dict = @{
+        @"test": @([[SuperAwesome getInstance] isTestingEnabled]),
+        @"sdkVersion":[[SuperAwesome getInstance] getSdkVersion],
+        @"rnd":@([SAUtils getCachebuster]),
+        @"bundle":[[NSBundle mainBundle] bundleIdentifier],
+        @"name":[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"],
+        @"dauid":@([[SuperAwesome getInstance] getDAUID])
+    };
     
     // The second operation to perform is calling a SANetwork class function
     // to get Ad data, returned as NSData
     [SAUtils sendGETtoEndpoint:endpoint withQueryDict:dict andSuccess:^(NSData *data) {
         
-        _parser = [[SAParser alloc] init];
-        SAAd *parsedAd = [_parser parseInitialAdFromNetwork:data withPlacementId:placementId];
+        // create parser & extra
+        SAParser *parser = [[SAParser alloc] init];
+        
+        // parse the ad
+        NSString* str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSLog(@"Original String %@", str);
+        
+        __block SAAd *parsedAd = [parser parseInitialAdFromNetwork:data withPlacementId:placementId];
         
         if (!parsedAd) {
             if (_delegate != NULL && [_delegate respondsToSelector:@selector(didFailToLoadAdForPlacementId:)]){
                 [_delegate didFailToLoadAdForPlacementId:placementId];
             }
-        } else {
-            _extra = [[SALoaderExtra alloc] init];
-            [_extra getExtraData:parsedAd andDone:^(SAAd *finalAd) {
-                if (_delegate != NULL && [_delegate respondsToSelector:@selector(didLoadAd:)]) {
-                    [_delegate didLoadAd:finalAd];
-                }
-            }];
         }
-        
-//        NSString *stringy = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//        SAAd *testAd = [SAParser parseInitialAdFromNetwork:data withPlacementId:placementId];
-//        
-//        // We're assuming the NSData is actually a JSON in string format,
-//        // so the next step is to parse it
-//        NSError *jsonError;
-//        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&jsonError];
-//        NSLog(@"Test %@", [testAd jsonStringPreetyRepresentation]);
-//        
-//        // some error occured, probably the JSON string was badly formatted
-//        if (jsonError) {
-//            if (_delegate != NULL && [_delegate respondsToSelector:@selector(didFailToLoadAdForPlacementId:)]) {
-//                [_delegate didFailToLoadAdForPlacementId:placementId];
-//            }
-//        }
-//        // if there is no specific JSON Error, we can move forward to try to
-//        // create the Ad as it's needed by AA
-//        else {
-//            // we invoke SAParser class functions to parse different aspects
-//            // of the Ad
-//            SAAd *parsedAd = [SAParser parseAdFromDictionary:json withPlacementId:placementId];
-//            NSLog(@"%@", [parsedAd jsonStringPreetyRepresentation]);
-//            // and if all is OK go forward and announce the new ad
-//            if (parsedAd) {
-//                // append the ad json
-//                _extra = [[SALoaderExtra alloc] init];
-//                [_extra getExtraData:parsedAd andDone:^(SAAd *finalAd) {
-//                    // send delegate calls
-//                    if (_delegate != NULL && [_delegate respondsToSelector:@selector(didLoadAd:)]) {
-//                        [_delegate didLoadAd:finalAd];
-//                    }
-//                }];
-//            }
-//            // else announce failure
-//            else {
-//                if (_delegate != NULL && [_delegate respondsToSelector:@selector(didFailToLoadAdForPlacementId:)]) {
-//                    [_delegate didFailToLoadAdForPlacementId:placementId];
-//                }
-//            }
-//        }
-        
+        // and get extra data
+        else {
+            
+            parsedAd.creative.details.data = [[SAData alloc] init];
+            SACreativeFormat type = parsedAd.creative.creativeFormat;
+            
+            switch (type) {
+                // parse video
+                case video: {
+                    SAVASTParser *vastParser = [[SAVASTParser alloc] init];
+                    __weak SALoader* weakSelf = self;
+                    [vastParser parseVASTURL:parsedAd.creative.details.vast done:^(NSArray *ads) {
+                        parsedAd.creative.details.data.vastAds = [ads mutableCopy];
+                        if (weakSelf.delegate != NULL && [weakSelf.delegate respondsToSelector:@selector(didLoadAd:)]) {
+                            [weakSelf.delegate didLoadAd:parsedAd];
+                        }
+                    }];
+                    break;
+                }
+                // parse HTML data
+                case image:
+                case rich:
+                case tag:
+                case invalid: {
+                    parsedAd.creative.details.data.adHTML = [SAHTMLParser formatCreativeDataIntoAdHTML:parsedAd];
+                    if (_delegate != NULL && [_delegate respondsToSelector:@selector(didLoadAd:)]) {
+                        [_delegate didLoadAd:parsedAd];
+                    }
+                    break;
+                }
+            }
+        }
     } orFailure:^{
         if (_delegate != NULL && [_delegate respondsToSelector:@selector(didFailToLoadAdForPlacementId:)]) {
             [_delegate didFailToLoadAdForPlacementId:placementId];

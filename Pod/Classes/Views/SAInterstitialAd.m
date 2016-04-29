@@ -15,7 +15,11 @@
 // defines
 #define INTER_BG_COLOR [UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1]
 
-@interface SAInterstitialAd ()
+@interface SABannerAd () <SAWebPlayerProtocol>
+@property (nonatomic, weak) id<SAAdProtocol> internalAdProto;
+@end
+
+@interface SAInterstitialAd () <SAAdProtocol>
 @property (nonatomic, assign) CGRect adviewFrame;
 @property (nonatomic, assign) CGRect buttonFrame;
 @property (nonatomic, strong) SAAd *ad;
@@ -59,6 +63,7 @@
     _banner.adDelegate = _adDelegate;
     _banner.parentalGateDelegate = _parentalGateDelegate;
     _banner.isParentalGateEnabled = _isParentalGateEnabled;
+    _banner.internalAdProto = self;
     [_banner setAd:_ad];
     _banner.backgroundColor = INTER_BG_COLOR;
     [self.view addSubview:_banner];
@@ -201,6 +206,16 @@
     // actually resize stuff
     _closeBtn.frame = _buttonFrame;
     [_banner resizeToFrame:_adviewFrame];
+}
+
+#pragma mark <SAAdProtocol> - internal
+
+- (void) adFailedToShow:(NSInteger)placementId {
+    [self close];
+}
+
+- (void) adHasIncorrectPlacement:(NSInteger)placementId {
+    [self close];
 }
 
 @end

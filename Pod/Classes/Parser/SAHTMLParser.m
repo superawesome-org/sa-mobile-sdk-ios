@@ -102,6 +102,10 @@
     tagString = [tagString stringByReplacingOccurrencesOfString:@"[keywords]" withString:@""];
     tagString = [tagString stringByReplacingOccurrencesOfString:@"[timestamp]" withString:[NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970]]];
     tagString = [tagString stringByReplacingOccurrencesOfString:@"target=\"_blank\"" withString:@""];
+    tagString = [tagString stringByReplacingOccurrencesOfString:@"\\t" withString:@""];
+    tagString = [tagString stringByReplacingOccurrencesOfString:@"\\n" withString:@""];
+    tagString = [tagString stringByReplacingOccurrencesOfString:@"\t" withString:@""];
+    tagString = [tagString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
     tagString = [tagString stringByReplacingOccurrencesOfString:@"“" withString:@"\""];
     
     // return the parametrized template

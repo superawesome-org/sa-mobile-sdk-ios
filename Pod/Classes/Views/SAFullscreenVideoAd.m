@@ -253,6 +253,10 @@
     [self close];
 }
 
+- (void) adHasIncorrectPlacement:(NSInteger)placementId {
+    [self close];
+}
+
 #pragma mark <Other> actions
 
 - (IBAction) closeAction: (id)sender {

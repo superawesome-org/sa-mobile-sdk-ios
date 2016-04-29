@@ -15,7 +15,6 @@
 
 // import other needed headers
 #import "SALoader.h"
-#import "SALoaderExtra.h"
 #import "SAParser.h"
 #import "SAFullscreenVideoAd.h"
 #import "SAInterstitialAd.h"
@@ -151,7 +150,7 @@
          }];
     } else {
         if (_adEvent){
-            _adEvent(_unityAd, placementId, @"callback_adFailedToShow");
+            _adEvent(_unityAd, (int)placementId, @"callback_adFailedToShow");
         }
     }
 }
@@ -208,7 +207,7 @@
         }];
     } else {
         if (_adEvent){
-            _adEvent(_unityAd, placementId, @"callback_adFailedToShow");
+            _adEvent(_unityAd, (int)placementId, @"callback_adFailedToShow");
         }
     }
 }
@@ -245,7 +244,7 @@
     SAParser *parser = [[SAParser alloc] init];
     SAAd *parsedAd = [parser parseAdFromExistingString:_adJson];
     
-    if (parsedAd != NULL) {
+    if (parsedAd != NULL) {
         // create fvad
         SAFullscreenVideoAd *fvad = [[SAFullscreenVideoAd alloc] init];
         [fvad setAd:parsedAd];
@@ -271,7 +270,7 @@
         }];
     } else {
         if (_adEvent){
-            _adEvent(_unityAd, placementId, @"callback_adFailedToShow");
+            _adEvent(_unityAd, (int)placementId, @"callback_adFailedToShow");
         }
     }
 
@@ -292,7 +291,7 @@
 - (void) didLoadAd:(SAAd *)ad {
     NSLog(@"Sending didLoadAd to %@", _unityAd);
     if (_loadingEvent) {
-        _loadingEvent(_unityAd, ad.placementId, @"callback_didLoadAd", [ad jsonStringCompactRepresentation]);
+        _loadingEvent(_unityAd, (int)ad.placementId, @"callback_didLoadAd", [ad jsonStringCompactRepresentation]);
     }
 }
 
@@ -301,14 +300,14 @@
     NSLog(@"Sending didFailToLoadAdForPlacementId to %@", _unityAd);
 
     if (_loadingEvent) {
-        _loadingEvent(_unityAd, placementId, @"callback_didFailToLoadAd",@"");
+        _loadingEvent(_unityAd, (int)placementId, @"callback_didFailToLoadAd",@"");
     }
 }
 
 
 - (void) adWasShown:(NSInteger)placementId {
     if (_adEvent){
-        _adEvent(_unityAd, placementId, @"callback_adWasShown");
+        _adEvent(_unityAd, (int)placementId, @"callback_adWasShown");
     }
 }
 
@@ -317,7 +316,7 @@
     [[SAUnityLinkerManager getInstance] removeAd:placementId];
 
     if (_adEvent){
-        _adEvent(_unityAd, placementId, @"callback_adFailedToShow");
+        _adEvent(_unityAd, (int)placementId, @"callback_adFailedToShow");
     }
 }
 
@@ -327,85 +326,85 @@
     [[SAUnityLinkerManager getInstance] removeAd:placementId];
 
     if (_adEvent){
-        _adEvent(_unityAd, placementId, @"callback_adWasClosed");
+        _adEvent(_unityAd, (int)placementId, @"callback_adWasClosed");
     }
 }
 
 - (void) adWasClicked:(NSInteger)placementId{
     if (_adEvent){
-        _adEvent(_unityAd, placementId, @"callback_adWasClicked");
+        _adEvent(_unityAd, (int)placementId, @"callback_adWasClicked");
     }
 }
 
 - (void) adHasIncorrectPlacement:(NSInteger)placementId {
     if (_adEvent){
-        _adEvent(_unityAd, placementId, @"callback_adHasIncorrectPlacement");
+        _adEvent(_unityAd, (int)placementId, @"callback_adHasIncorrectPlacement");
     }
 }
 
 - (void) parentalGateWasCanceled:(NSInteger)placementId {
     if (_adEvent){
-        _adEvent(_unityAd, placementId, @"callback_parentalGateWasCanceled");
+        _adEvent(_unityAd, (int)placementId, @"callback_parentalGateWasCanceled");
     }
 }
 
 - (void) parentalGateWasFailed:(NSInteger)placementId {
     if (_adEvent){
-        _adEvent(_unityAd, placementId, @"callback_parentalGateWasFailed");
+        _adEvent(_unityAd, (int)placementId, @"callback_parentalGateWasFailed");
     }
 }
 
 - (void) parentalGateWasSucceded:(NSInteger)placementId {
     if (_adEvent){
-        _adEvent(_unityAd, placementId, @"callback_parentalGateWasSucceded");
+        _adEvent(_unityAd, (int)placementId, @"callback_parentalGateWasSucceded");
     }
 }
 
 - (void) adStarted:(NSInteger)placementId {
     if (_adEvent){
-        _adEvent(_unityAd, placementId, @"callback_adStarted");
+        _adEvent(_unityAd, (int)placementId, @"callback_adStarted");
     }
 }
 
 - (void) videoStarted:(NSInteger)placementId {
     if (_adEvent){
-        _adEvent(_unityAd, placementId, @"callback_videoStarted");
+        _adEvent(_unityAd, (int)placementId, @"callback_videoStarted");
     }
 }
 
 - (void) videoReachedFirstQuartile:(NSInteger)placementId {
     if (_adEvent){
-        _adEvent(_unityAd, placementId, @"callback_videoReachedFirstQuartile");
+        _adEvent(_unityAd, (int)placementId, @"callback_videoReachedFirstQuartile");
     }
 }
 
 - (void) videoReachedMidpoint:(NSInteger)placementId {
     if (_adEvent){
-        _adEvent(_unityAd, placementId, @"callback_videoReachedMidpoint");
+        _adEvent(_unityAd, (int)placementId, @"callback_videoReachedMidpoint");
     }
 }
 
 - (void) videoReachedThirdQuartile:(NSInteger)placementId {
     if (_adEvent){
-        _adEvent(_unityAd, placementId, @"callback_videoReachedThirdQuartile");
+        _adEvent(_unityAd, (int)placementId, @"callback_videoReachedThirdQuartile");
     }
 }
 
 - (void) videoEnded:(NSInteger)placementId {
     if (_adEvent){
-        _adEvent(_unityAd, placementId, @"callback_videoEnded");
+        _adEvent(_unityAd, (int)placementId, @"callback_videoEnded");
     }
 }
 
 - (void) adEnded:(NSInteger)placementId {
     if (_adEvent){
-        _adEvent(_unityAd, placementId, @"callback_adEnded");
+        _adEvent(_unityAd, (int)placementId, @"callback_adEnded");
     }
 }
 
 - (void) allAdsEnded:(NSInteger)placementId {
     if (_adEvent){
-        _adEvent(_unityAd, placementId, @"callback_allAdsEnded");
+        _adEvent(_unityAd, (int)placementId, @"callback_allAdsEnded");
     }
 }
 

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "SuperAwesome"
-  s.version      = "3.8.4"
+  s.version      = "3.8.5"
   s.summary      = "SuperAwesome Mobile SDK for iOS"
   s.description  = <<-DESC
                    The SuperAwesome Mobile SDK lets you to easily add COPPA compliant advertisements and other platform features, like user authentication and registration, to your apps. We try to make integration as easy as possible, so we provide all the necessary tools such as this guide, API documentation, screencasts and demo apps.
@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.platform     = :ios, "6.0"
   s.ios.deployment_target = "6.0"
   s.requires_arc = true
-  s.source       = { :git => "https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git", :branch => "master" ,:tag => "3.8.4" }
+  s.source       = { :git => "https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git", :branch => "master" ,:tag => "3.8.5" }
 
   s.frameworks = 'AdSupport'
   # s.resource_bundles = { 'SuperAwesome' => ['Pod/Assets/*'] }
@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
   s.dependency 'SAEvents'
   s.dependency 'SAVASTParser'
   s.dependency 'SAJsonParser'
-  s.default_subspec = 'Core' 
+  s.default_subspec = 'Core'
 
   s.subspec 'Core' do |c|
     c.source_files = 'Pod/Classes/**/*'
@@ -33,8 +33,8 @@ Pod::Spec.new do |s|
   s.subspec 'Unity' do |un|
     un.dependency 'SuperAwesome/Core'
     un.source_files = "Pod/Plugin/Unity/*"
-    un.pod_target_xcconfig = { 
-	'OTHER_LDFLAGS' => '$(inherited)',  
+    un.pod_target_xcconfig = {
+	'OTHER_LDFLAGS' => '$(inherited)',
   	'OTHER_CFLAGS' => '$(inherited)',
   	'HEADER_SEARCH_PATHS' => '$(inherited)'
   }

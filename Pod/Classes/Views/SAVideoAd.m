@@ -84,6 +84,9 @@
         if (_adDelegate != NULL && [_adDelegate respondsToSelector:@selector(adHasIncorrectPlacement:)]){
             [_adDelegate adHasIncorrectPlacement:_ad.placementId];
         }
+        if (_internalAdProto != NULL && [_internalAdProto respondsToSelector:@selector(adHasIncorrectPlacement:)]){
+            [_internalAdProto adHasIncorrectPlacement:_ad.placementId];
+        }
         return;
     }
     
@@ -98,6 +101,7 @@
     // create the vast manager
     _manager = [[SAVASTManager alloc] initWithPlayer:_player];
     _manager.delegate = self;
+//    [_manager parseVASTURL:_ad.creative.details.vast];
     [_manager manageWithAds:_ad.creative.details.data.vastAds];
 
     // add the padlick

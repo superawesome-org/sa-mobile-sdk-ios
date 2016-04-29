@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+3.8.5
+ - Fixed some minor issues
+
 3.8.4
 3.8.3
  - New json parsing
@@ -25,7 +28,7 @@ CHANGELOG
  - Add bundle id to list of sent item
 3.7.5
 3.7.4
-3.7.3 
+3.7.3
  - Changed the way resources are stored & accessed for the SDK
 
 3.7.2
@@ -33,7 +36,7 @@ CHANGELOG
 3.7.1
  - Implementing some fixed
 
-3.7.0 
+3.7.0
  - Finally did it right
 
 3.6.9
@@ -173,7 +176,7 @@ CHANGELOG
 3.1.1
  - Fixed Parental Gate for video ads
 
-3.1 
+3.1
  - Move out of Beta
  - Imrovements to targeting
 

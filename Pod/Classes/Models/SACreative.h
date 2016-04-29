@@ -68,7 +68,4 @@ typedef enum SACreativeFormat {
 // the Parental gate event url
 @property (nonatomic, strong) NSString *parentalGateClickUrl;
 
-// aux print func
-- (NSString*) print;
-
 @end
