@@ -19,5 +19,7 @@
 @property (nonatomic, weak) id<SAAdProtocol> adDelegate;
 @property (nonatomic, weak) id<SAParentalGateProtocol> parentalGateDelegate;
 @property (nonatomic, assign) IBInspectable BOOL isParentalGateEnabled;
+@property (nonatomic, assign) BOOL shouldLockOrientation;
+@property (nonatomic, assign) NSUInteger lockOrientation;
 
 @end

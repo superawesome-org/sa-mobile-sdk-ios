@@ -36,6 +36,8 @@
     if (self = [super init]) {
         _shouldAutomaticallyCloseAtEnd = YES;
         _shouldShowCloseButton = NO;
+        _shouldLockOrientation = NO;
+        _lockOrientation = UIInterfaceOrientationMaskAll;
         _isOKToClose = NO;
         _closeBtn.hidden = YES;
     }
@@ -47,6 +49,8 @@
     if (self = [super initWithCoder:aDecoder]) {
         _shouldAutomaticallyCloseAtEnd = YES;
         _shouldShowCloseButton = NO;
+        _shouldLockOrientation = NO;
+        _lockOrientation = UIInterfaceOrientationMaskAll;
         _isOKToClose = NO;
         _closeBtn.hidden = YES;
     }
@@ -57,6 +61,8 @@
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         _shouldAutomaticallyCloseAtEnd = YES;
         _shouldShowCloseButton = NO;
+        _shouldLockOrientation = NO;
+        _lockOrientation = UIInterfaceOrientationMaskAll;
         _isOKToClose = NO;
         _closeBtn.hidden = YES;
     }
@@ -65,8 +71,6 @@
 
 - (void) viewDidLoad {
     [super viewDidLoad];
-    
-    NSLog(@"SAFullscreenVideoAd viewDidLoad");
     
     // set bg color
     self.view.backgroundColor = [UIColor blackColor];
@@ -90,6 +94,14 @@
     [_closeBtn addTarget:self action:@selector(closeAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_closeBtn];
     [self.view bringSubviewToFront:_closeBtn];
+}
+
+- (void) viewDidUnload {
+    [super viewDidUnload];
+}
+
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
     // setup coordinates
     CGSize scrSize = [UIScreen mainScreen].bounds.size;
@@ -126,23 +138,13 @@
     }
     
     [self resizeToFrame:CGRectMake(0, 0, currentSize.width, currentSize.height)];
-}
-
-- (void) viewDidUnload {
-    [super viewDidUnload];
-    NSLog(@"SAFullscreenVideoAd viewDidUnload");
-}
-
-- (void) viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+    
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
-    NSLog(@"SAFullscreenVideoAd viewWillAppear");
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
-    NSLog(@"SAFullscreenVideoAd viewWillDisappear");
 }
 
 - (void) viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
@@ -171,9 +173,15 @@
     }
 }
 
+- (NSUInteger) supportedInterfaceOrientations {
+    if (_shouldLockOrientation) {
+        return _lockOrientation;
+    }
+    return UIInterfaceOrientationMaskAll;
+}
+
 - (void) didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    NSLog(@"SAFullscreenVideoAd didReceiveMemoryWarning");
 }
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

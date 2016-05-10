@@ -11,6 +11,7 @@
 // import useful headers
 #import "SuperAwesomeInterstitialCustomEvent.h"
 #import "SuperAwesome.h"
+#import "SuperAwesomeMoPub.h"
 
 // private anonymous category of SuperAwesomeBannerCustomEvent, that
 // implements two important ad protocols
@@ -21,6 +22,8 @@
 @property (nonatomic, assign) NSInteger placementId;
 @property (nonatomic, assign) BOOL isTestEnabled;
 @property (nonatomic, assign) BOOL isParentalGateEnabled;
+@property (nonatomic, assign) BOOL shouldLockOrientation;
+@property (nonatomic, assign) NSUInteger lockOrientation;
 @property (nonatomic, strong) SALoader *loader;
 @property (nonatomic, strong) SAInterstitialAd *interstitial;
 
@@ -31,17 +34,19 @@
 - (void) requestInterstitialWithCustomEventInfo:(NSDictionary *)info {
     
     // variables received from the MoPub server
-    id _Nullable placementIdObj = [info objectForKey:@"placementId"];
-    id _Nullable isTestEnabledObj = [info objectForKey:@"isTestEnabled"];
-    id _Nullable isParentalGateEnabledObj = [info objectForKey:@"isParentalGateEnabled"];
+    id _Nullable placementIdObj = [info objectForKey:PLACEMENT_ID];
+    id _Nullable isTestEnabledObj = [info objectForKey:TEST_ENABLED];
+    id _Nullable isParentalGateEnabledObj = [info objectForKey:PARENTAL_GATE];
+    id _Nullable shouldLockOrientationObj = [info objectForKey:SHOULD_LOCK];
+    id _Nullable lockOrientationObj = [info objectForKey:LOCK_ORIENTATION];
     
     if (isTestEnabledObj == NULL || placementIdObj == NULL) {
         
         // then send this to bannerCustomEvent:didFailToLoadAdWithError:
         [self.delegate interstitialCustomEvent:self
-                      didFailToLoadAdWithError:[self createErrorWith:@"Failed to get correct custom data from MoPub server."
-                                                           andReason:@"Either \"testMode\" or \"placementId\" parameters are wrong."
-                                                       andSuggestion:@"Make sure your custom data JSON has format: { \"placementId\":XXX, \"testMode\":true/false }"]];
+                      didFailToLoadAdWithError:[self createErrorWith:ERROR_JSON_TITLE
+                                                           andReason:ERROR_JSON_MESSAGE
+                                                       andSuggestion:ERROR_JSON_SUGGESTION]];
         
         // return
         return;
@@ -51,6 +56,17 @@
     _isTestEnabled = [isTestEnabledObj boolValue];
     _placementId = [placementIdObj integerValue];
     _isParentalGateEnabled = (isParentalGateEnabledObj != NULL ? [isParentalGateEnabledObj boolValue] : true);
+    _shouldLockOrientation = (shouldLockOrientationObj != NULL ? [shouldLockOrientationObj boolValue] : false);
+    if (lockOrientationObj != NULL) {
+        NSString *orient = [lockOrientationObj string];
+        if ([orient isEqualToString:@"LANDSCAPE"]){
+            _lockOrientation = UIInterfaceOrientationMaskLandscape;
+        } else if ([orient isEqualToString:@"PORTRAIT"]){
+            _lockOrientation = UIInterfaceOrientationMaskPortrait;
+        } else {
+            _shouldLockOrientation = NO;
+        }
+    }
     
     // enable or disable test mode
     [[SuperAwesome getInstance] setTesting:_isTestEnabled];
@@ -84,7 +100,7 @@
                                NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(suggestion, nil)
                                };
     
-    return [NSError errorWithDomain:@"SuperAwesomeErrorDomain" code:0 userInfo:userInfo];
+    return [NSError errorWithDomain:ERROR_DOMAIN code:ERROR_CODE userInfo:userInfo];
 }
 
 #pragma mark <SALoaderProtocol>
@@ -99,6 +115,8 @@
     // set delegate
     [_interstitial setAdDelegate:self];
     [_interstitial setParentalGateDelegate: self];
+    [_interstitial setShouldLockOrientation:_shouldLockOrientation];
+    [_interstitial setLockOrientation:_lockOrientation];
     
     // set ad
     [_interstitial setAd:ad];
@@ -110,9 +128,9 @@
 - (void) didFailToLoadAdForPlacementId:(NSInteger)placementId {
     // then send this to bannerCustomEvent:didFailToLoadAdWithError:
     [self.delegate interstitialCustomEvent:self
-                  didFailToLoadAdWithError:[self createErrorWith:[NSString stringWithFormat:@"Failed to preload SuperAwesome Intestitial Ad for PlacementId: %ld", (long)placementId]
-                                                       andReason:@"The operation timed out."
-                                                   andSuggestion:@"Check your placement Id."]];
+                  didFailToLoadAdWithError:[self createErrorWith:ERROR_LOAD_TITLE(@"Interstitial Ad", placementId)
+                                                       andReason:ERROR_LOAD_MESSAGE
+                                                   andSuggestion:ERROR_LOAD_SUGGESTION]];
 }
 
 #pragma mark <SAAdProtocol>
@@ -127,9 +145,9 @@
     
     // then send this to bannerCustomEvent:didFailToLoadAdWithError:
     [self.delegate interstitialCustomEvent:self
-                  didFailToLoadAdWithError:[self createErrorWith:[NSString stringWithFormat:@"Failed to display SuperAwesome Intestitial Ad for PlacementId: %ld", (long)placementId]
-                                                       andReason:@"JSON invalid."
-                                                   andSuggestion:@"Contact SuperAwesome support: <devsupport@superawesome.tv>"]];
+                  didFailToLoadAdWithError:[self createErrorWith:ERROR_SHOW_TITLE(@"Interstitial Ad", placementId)
+                                                       andReason:ERROR_SHOW_MESSAGE
+                                                   andSuggestion:ERROR_SHOW_SUGGESTION]];
 }
 
 - (void) adWasClicked:(NSInteger)placementId {

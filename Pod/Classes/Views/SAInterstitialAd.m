@@ -33,7 +33,8 @@
 
 - (id) init {
     if (self = [super init]) {
-        
+        _shouldLockOrientation = NO;
+        _lockOrientation = UIInterfaceOrientationMaskAll;
     }
     
     return self;
@@ -41,14 +42,16 @@
 
 - (id) initWithCoder:(NSCoder *)aDecoder {
     if (self = [super initWithCoder:aDecoder]) {
-        
+        _shouldLockOrientation = NO;
+        _lockOrientation = UIInterfaceOrientationMaskAll;
     }
     return self;
 }
 
 - (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        
+        _shouldLockOrientation = NO;
+        _lockOrientation = UIInterfaceOrientationMaskAll;
     }
     return self;
 }
@@ -75,11 +78,15 @@
     [_closeBtn addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_closeBtn];
     [self.view bringSubviewToFront:_closeBtn];
+}
+
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
     // setup coordinates
     CGSize scrSize = [UIScreen mainScreen].bounds.size;
     CGSize currentSize = CGSizeZero;
-    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+    UIDeviceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
     CGFloat bigDimension = MAX(scrSize.width, scrSize.height);
     CGFloat smallDimension = MIN(scrSize.width, scrSize.height);
     
@@ -111,10 +118,7 @@
     }
     
     [self resizeToFrame:CGRectMake(0, 0, currentSize.width, currentSize.height)];
-}
 
-- (void) viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
 }
 
@@ -147,6 +151,13 @@
             break;
         }
     }
+}
+
+- (NSUInteger) supportedInterfaceOrientations {
+    if (_shouldLockOrientation) {
+        return _lockOrientation;
+    }
+    return UIInterfaceOrientationMaskAll;
 }
 
 - (void) didReceiveMemoryWarning {

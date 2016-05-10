@@ -12,6 +12,7 @@
 // import SuperAwesome
 #import "SuperAwesome.h"
 #import "MPRewardedVideoReward.h"
+#import "SuperAwesomeMoPub.h"
 
 @interface SuperAwesomeRewardedVideoCustomEvent ()
 <SALoaderProtocol,
@@ -25,6 +26,8 @@ SAParentalGateProtocol>
 @property (nonatomic, assign) BOOL isParentalGateEnabled;
 @property (nonatomic, assign) BOOL shouldShowCloseButton;
 @property (nonatomic, assign) BOOL shouldAutomaticallyCloseAtEnd;
+@property (nonatomic, assign) BOOL shouldLockOrientation;
+@property (nonatomic, assign) NSUInteger lockOrientation;
 @property (nonatomic, strong) SAAd *cAd;
 @property (nonatomic, strong) SALoader *loader;
 @property (nonatomic, strong) SAFullscreenVideoAd *fvad;
@@ -37,19 +40,21 @@ SAParentalGateProtocol>
 - (void) requestRewardedVideoWithCustomEventInfo:(NSDictionary *)info {
     
     // get values from the info dictionary
-    id _Nullable isTestEnabledObj = [info objectForKey:@"isTestEnabled"];
-    id _Nullable placementIdObj = [info objectForKey:@"placementId"];
-    id _Nullable isParentalGateEnabledObj = [info objectForKey:@"isParentalGateEnabled"];
-    id _Nullable shouldShowCloseButtonObj = [info objectForKey:@"shouldShowCloseButton"];
-    id _Nullable shouldAutomaticallyCloseAtEndObj = [info objectForKey:@"shouldAutomaticallyCloseAtEnd"];
+    id _Nullable placementIdObj = [info objectForKey:PLACEMENT_ID];
+    id _Nullable isTestEnabledObj = [info objectForKey:TEST_ENABLED];
+    id _Nullable isParentalGateEnabledObj = [info objectForKey:PARENTAL_GATE];
+    id _Nullable shouldShowCloseButtonObj = [info objectForKey:SHOULD_SHOW_CLOSE];
+    id _Nullable shouldAutomaticallyCloseAtEndObj = [info objectForKey:SHOULD_AUTO_CLOSE];
+    id _Nullable shouldLockOrientationObj = [info objectForKey:SHOULD_LOCK];
+    id _Nullable lockOrientationObj = [info objectForKey:LOCK_ORIENTATION];
     
     if (isTestEnabledObj == NULL || placementIdObj == NULL) {
         
         // then send this to bannerCustomEvent:didFailToLoadAdWithError:
         [self.delegate rewardedVideoDidFailToLoadAdForCustomEvent:self
-                                                            error:[self createErrorWith:@"Failed to get correct custom data from MoPub server."
-                                                                              andReason:@"Either \"testMode\" or \"placementId\" parameters are wrong."
-                                                                          andSuggestion:@"Make sure your custom data JSON has format: { \"placementId\":XXX, \"testMode\":true/false }"]];
+                                                            error:[self createErrorWith:ERROR_JSON_TITLE
+                                                                              andReason:ERROR_JSON_MESSAGE
+                                                                          andSuggestion:ERROR_JSON_SUGGESTION]];
         
         
         // return
@@ -62,6 +67,18 @@ SAParentalGateProtocol>
     _isParentalGateEnabled = (isParentalGateEnabledObj != NULL ? [isParentalGateEnabledObj boolValue] : true);
     _shouldShowCloseButton = (shouldShowCloseButtonObj != NULL ? [shouldShowCloseButtonObj boolValue] : false);
     _shouldAutomaticallyCloseAtEnd = (shouldAutomaticallyCloseAtEndObj != NULL ? [shouldAutomaticallyCloseAtEndObj boolValue] : true);
+    _shouldLockOrientation = (shouldLockOrientationObj != NULL ? [shouldLockOrientationObj boolValue] : false);
+    if (lockOrientationObj != NULL) {
+        NSString *orient = [lockOrientationObj string];
+        if ([orient isEqualToString:@"LANDSCAPE"]){
+            _lockOrientation = UIInterfaceOrientationMaskLandscape;
+        } else if ([orient isEqualToString:@"PORTRAIT"]){
+            _lockOrientation = UIInterfaceOrientationMaskPortrait;
+        } else {
+            _shouldLockOrientation = NO;
+            _lockOrientation = UIInterfaceOrientationMaskAll;
+        }
+    }
     
     // enable or disable test mode
     [[SuperAwesome getInstance] setTesting:_isTestEnabled];
@@ -94,7 +111,7 @@ SAParentalGateProtocol>
 }
 
 - (void) handleAdPlayedForCustomEventNetwork {
-    NSLog(@"Ad played");
+    // do nothing
 }
 
 #pragma mark Custom Functions
@@ -106,7 +123,7 @@ SAParentalGateProtocol>
                                NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(suggestion, nil)
                                };
     
-    return [NSError errorWithDomain:@"SuperAwesomeErrorDomain" code:0 userInfo:userInfo];
+    return [NSError errorWithDomain:ERROR_DOMAIN code:ERROR_CODE userInfo:userInfo];
 }
 
 #pragma mark <SALoaderDelegate>
@@ -128,6 +145,8 @@ SAParentalGateProtocol>
     [_fvad setIsParentalGateEnabled:_isParentalGateEnabled];
     [_fvad setShouldAutomaticallyCloseAtEnd:_shouldAutomaticallyCloseAtEnd];
     [_fvad setShouldShowCloseButton:_shouldShowCloseButton];
+    [_fvad setShouldLockOrientation:_shouldLockOrientation];
+    [_fvad setLockOrientation:_lockOrientation];
     
     // set ad
     [_fvad setAd:_cAd];
@@ -138,9 +157,9 @@ SAParentalGateProtocol>
 
 - (void) didFailToLoadAdForPlacementId:(NSInteger)placementId {
     [self.delegate rewardedVideoDidFailToLoadAdForCustomEvent:self
-                                                        error:[self createErrorWith:[NSString stringWithFormat:@"Failed to load SuperAwesome Rewarded Video Ad for PlacementId: %ld", (long)placementId]
-                                                                          andReason:@"The operation timed out."
-                                                                      andSuggestion:@"Check your placement Id."]];
+                                                        error:[self createErrorWith:ERROR_LOAD_TITLE(@"Video Ad", placementId)
+                                                                          andReason:ERROR_LOAD_MESSAGE
+                                                                      andSuggestion:ERROR_LOAD_SUGGESTION]];
 }
 
 #pragma mark <SAAdProtocol>
@@ -156,9 +175,9 @@ SAParentalGateProtocol>
     
     // then send this to bannerCustomEvent:didFailToLoadAdWithError:
     [self.delegate rewardedVideoDidFailToPlayForCustomEvent:self
-                                                      error:[self createErrorWith:[NSString stringWithFormat:@"Failed to display SuperAwesome Rewarded Video Ad for PlacementId: %ld", (long)placementId]
-                                                                        andReason:@"JSON invalid."
-                                                                    andSuggestion:@"Contact SuperAwesome support: <devsupport@superawesome.tv>"]];
+                                                      error:[self createErrorWith:ERROR_SHOW_TITLE(@"Video Ad", placementId)
+                                                                        andReason:ERROR_SHOW_MESSAGE
+                                                                    andSuggestion:ERROR_SHOW_SUGGESTION]];
     
 }
 
@@ -174,7 +193,6 @@ SAParentalGateProtocol>
 }
 
 - (void) adWasClosed:(NSInteger)placementId {
-    NSLog(@"Pressed on Ad was closed");
     // call required events
     [self.delegate rewardedVideoWillDisappearForCustomEvent:self];
     [self.delegate rewardedVideoDidDisappearForCustomEvent:self];

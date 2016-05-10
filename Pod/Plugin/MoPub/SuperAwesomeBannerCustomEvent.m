@@ -10,6 +10,7 @@
 
 // import useful headers
 #import "SuperAwesomeBannerCustomEvent.h"
+#import "SuperAwesomeMoPub.h"
 #import "SuperAwesome.h"
 
 // private anonymous category of SuperAwesomeBannerCustomEvent, that
@@ -34,17 +35,17 @@
 - (void) requestAdWithSize:(CGSize)size customEventInfo:(NSDictionary *)info {
     
     // variables received from the MoPub server
-    id _Nullable isTestEnabledObj = [info objectForKey:@"isTestEnabled"];
-    id _Nullable placementIdObj = [info objectForKey:@"placementId"];
-    id _Nullable isParentalGateEnabledObj = [info objectForKey:@"isParentalGateEnabled"];
+    id _Nullable placementIdObj = [info objectForKey:PLACEMENT_ID];
+    id _Nullable isTestEnabledObj = [info objectForKey:TEST_ENABLED];
+    id _Nullable isParentalGateEnabledObj = [info objectForKey:PARENTAL_GATE];
     
     if (isTestEnabledObj == NULL || placementIdObj == NULL) {
         
         // then send this to bannerCustomEvent:didFailToLoadAdWithError:
         [self.delegate bannerCustomEvent:self
-                didFailToLoadAdWithError:[self createErrorWith:@"Failed to get correct custom data from MoPub server."
-                                                     andReason:@"Either \"testMode\" or \"placementId\" parameters are wrong."
-                                                 andSuggestion:@"Make sure your custom data JSON has format: { \"placementId\":XXX, \"testMode\":true/false }"]];
+                didFailToLoadAdWithError:[self createErrorWith:ERROR_JSON_TITLE
+                                                     andReason:ERROR_JSON_MESSAGE
+                                                 andSuggestion:ERROR_JSON_SUGGESTION]];
         
         // return
         return;
@@ -77,7 +78,7 @@
                                NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(suggestion, nil)
                                };
     
-    return [NSError errorWithDomain:@"SuperAwesomeErrorDomain" code:0 userInfo:userInfo];
+    return [NSError errorWithDomain:ERROR_DOMAIN code:ERROR_CODE userInfo:userInfo];
 }
 
 #pragma mark <SALoaderProtocol>
@@ -106,9 +107,9 @@
 - (void) didFailToLoadAdForPlacementId:(NSInteger)placementId {
     // then send this to bannerCustomEvent:didFailToLoadAdWithError:
     [self.delegate bannerCustomEvent:self
-            didFailToLoadAdWithError:[self createErrorWith:[NSString stringWithFormat:@"Failed to preload SuperAwesome Banner Ad for PlacementId: %ld", (long)placementId]
-                                                 andReason:@"The operation timed out."
-                                             andSuggestion:@"Check your placement Id."]];
+            didFailToLoadAdWithError:[self createErrorWith:ERROR_LOAD_TITLE(@"Banner Ad", placementId)
+                                                 andReason:ERROR_LOAD_MESSAGE
+                                             andSuggestion:ERROR_LOAD_SUGGESTION]];
 }
 
 #pragma mark <SAAdProtocol>
@@ -121,9 +122,9 @@
     
     // then send this to bannerCustomEvent:didFailToLoadAdWithError:
     [self.delegate bannerCustomEvent:self
-            didFailToLoadAdWithError:[self createErrorWith:[NSString stringWithFormat:@"Failed to display SuperAwesome Banner Ad for PlacementId: %ld", (long)placementId]
-                                                 andReason:@"JSON invalid."
-                                             andSuggestion:@"Contact SuperAwesome support: <devsupport@superawesome.tv>"]];
+            didFailToLoadAdWithError:[self createErrorWith:ERROR_SHOW_TITLE(@"Banner Ad", placementId)
+                                                 andReason:ERROR_SHOW_MESSAGE
+                                             andSuggestion:ERROR_SHOW_SUGGESTION]];
 }
 
 - (void) adWasClicked:(NSInteger)placementId {

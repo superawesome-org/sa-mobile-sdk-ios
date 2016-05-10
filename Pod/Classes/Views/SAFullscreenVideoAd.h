@@ -22,5 +22,7 @@
 @property (nonatomic, assign) BOOL isParentalGateEnabled;
 @property (nonatomic, assign) BOOL shouldAutomaticallyCloseAtEnd;
 @property (nonatomic, assign) BOOL shouldShowCloseButton;
+@property (nonatomic, assign) BOOL shouldLockOrientation;
+@property (nonatomic, assign) NSUInteger lockOrientation;
 
 @end

@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+3.8.7
+ - Add orientation lock to Fullscreen video & interstitial
+
 3.8.6
 3.8.5
  - Fixed some minor issues
