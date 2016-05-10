@@ -58,7 +58,7 @@
     _isParentalGateEnabled = (isParentalGateEnabledObj != NULL ? [isParentalGateEnabledObj boolValue] : true);
     _shouldLockOrientation = (shouldLockOrientationObj != NULL ? [shouldLockOrientationObj boolValue] : false);
     if (lockOrientationObj != NULL) {
-        NSString *orient = [lockOrientationObj string];
+        NSString *orient = (NSString*)lockOrientationObj;
         if ([orient isEqualToString:@"LANDSCAPE"]){
             _lockOrientation = UIInterfaceOrientationMaskLandscape;
         } else if ([orient isEqualToString:@"PORTRAIT"]){
