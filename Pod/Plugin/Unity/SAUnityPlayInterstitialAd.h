@@ -20,8 +20,4 @@
 // close the interstitial
 - (void) closeInterstitialForUnityName:(NSString*)unityAd;
 
-// callback variables
-@property (nonatomic, assign) loadingEvent loadingEvent;
-@property (nonatomic, assign) adEvent adEvent;
-
 @end

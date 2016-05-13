@@ -22,8 +22,4 @@
 // close the fullscreen video
 - (void) closeFullscreenVideoForUnityName:(NSString*)unityAd;
 
-// callback variables
-@property (nonatomic, assign) loadingEvent loadingEvent;
-@property (nonatomic, assign) adEvent adEvent;
-
 @end

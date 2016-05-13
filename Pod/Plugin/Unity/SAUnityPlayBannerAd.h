@@ -23,8 +23,4 @@
 // remove the banner ad
 - (void) removeBannerForUnityName:(NSString*)unityAd;
 
-// callback variables
-@property (nonatomic, assign) loadingEvent loadingEvent;
-@property (nonatomic, assign) adEvent adEvent;
-
 @end

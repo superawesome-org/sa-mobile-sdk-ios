@@ -62,8 +62,8 @@
             [iad play];
         }];
     } else {
-        if (_adEvent){
-            _adEvent(_unityAd, (int)placementId, @"callback_adFailedToShow");
+        if (super.adEvent){
+            super.adEvent(_unityAd, (int)placementId, @"callback_adFailedToShow");
         }
     }
 }
@@ -81,8 +81,8 @@
 #pragma mark <SAAdProtocol Implementations>
 
 - (void) adWasShown:(NSInteger)placementId {
-    if (_adEvent){
-        _adEvent(_unityAd, (int)placementId, @"callback_adWasShown");
+    if (super.adEvent){
+        super.adEvent(_unityAd, (int)placementId, @"callback_adWasShown");
     }
 }
 
@@ -90,8 +90,8 @@
     
     [[SAUnityExtensionContext getInstance] removeAd:placementId];
     
-    if (_adEvent){
-        _adEvent(_unityAd, (int)placementId, @"callback_adFailedToShow");
+    if (super.adEvent){
+        super.adEvent(_unityAd, (int)placementId, @"callback_adFailedToShow");
     }
 }
 
@@ -100,40 +100,40 @@
     
     [[SAUnityExtensionContext getInstance] removeAd:placementId];
     
-    if (_adEvent){
-        _adEvent(_unityAd, (int)placementId, @"callback_adWasClosed");
+    if (super.adEvent){
+        super.adEvent(_unityAd, (int)placementId, @"callback_adWasClosed");
     }
 }
 
 - (void) adWasClicked:(NSInteger)placementId{
-    if (_adEvent){
-        _adEvent(_unityAd, (int)placementId, @"callback_adWasClicked");
+    if (super.adEvent){
+        super.adEvent(_unityAd, (int)placementId, @"callback_adWasClicked");
     }
 }
 
 - (void) adHasIncorrectPlacement:(NSInteger)placementId {
-    if (_adEvent){
-        _adEvent(_unityAd, (int)placementId, @"callback_adHasIncorrectPlacement");
+    if (super.adEvent){
+        super.adEvent(_unityAd, (int)placementId, @"callback_adHasIncorrectPlacement");
     }
 }
 
 #pragma mark <SAParentalGateProtocol Implementations>
 
 - (void) parentalGateWasCanceled:(NSInteger)placementId {
-    if (_adEvent){
-        _adEvent(_unityAd, (int)placementId, @"callback_parentalGateWasCanceled");
+    if (super.adEvent){
+        super.adEvent(_unityAd, (int)placementId, @"callback_parentalGateWasCanceled");
     }
 }
 
 - (void) parentalGateWasFailed:(NSInteger)placementId {
-    if (_adEvent){
-        _adEvent(_unityAd, (int)placementId, @"callback_parentalGateWasFailed");
+    if (super.adEvent){
+        super.adEvent(_unityAd, (int)placementId, @"callback_parentalGateWasFailed");
     }
 }
 
 - (void) parentalGateWasSucceded:(NSInteger)placementId {
-    if (_adEvent){
-        _adEvent(_unityAd, (int)placementId, @"callback_parentalGateWasSucceded");
+    if (super.adEvent){
+        super.adEvent(_unityAd, (int)placementId, @"callback_parentalGateWasSucceded");
     }
 }
 

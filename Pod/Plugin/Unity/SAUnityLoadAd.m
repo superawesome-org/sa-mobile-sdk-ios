@@ -44,8 +44,8 @@
 
 - (void) didLoadAd:(SAAd *)ad {
     NSLog(@"Sending didLoadAd to %@", _unityAd);
-    if (_loadingEvent) {
-        _loadingEvent(_unityAd, (int)ad.placementId, @"callback_didLoadAd", [ad jsonStringCompactRepresentation]);
+    if (super.loadingEvent) {
+        super.loadingEvent(_unityAd, (int)ad.placementId, @"callback_didLoadAd", [ad jsonStringCompactRepresentation]);
     }
 }
 
@@ -53,8 +53,8 @@
     
     NSLog(@"Sending didFailToLoadAdForPlacementId to %@", _unityAd);
     
-    if (_loadingEvent) {
-        _loadingEvent(_unityAd, (int)placementId, @"callback_didFailToLoadAd",@"");
+    if (super.loadingEvent) {
+        super.loadingEvent(_unityAd, (int)placementId, @"callback_didFailToLoadAd",@"");
     }
 }
 
