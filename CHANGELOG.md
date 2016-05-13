@@ -1,6 +1,7 @@
 CHANGELOG
 =========
 
+3.9.0
 3.8.9
  - Refactor code & unity pugin
 
