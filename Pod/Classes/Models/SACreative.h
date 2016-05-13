@@ -56,6 +56,7 @@ typedef enum SACreativeFormat {
 // pointer to a SADetails object containing even more creative information
 @property (nonatomic, strong) SADetails *details;
 
+
 // the formatted creative format
 @property (nonatomic, assign) SACreativeFormat creativeFormat;
 

@@ -6,19 +6,19 @@
 //
 //
 
-#import "SAUnityLinkerManager.h"
+#import "SAUnityExtensionContext.h"
 
-@interface SAUnityLinkerManager ()
+@interface SAUnityExtensionContext ()
 
 // a dictionary of ads
 @property (nonatomic, strong) NSMutableDictionary *adsDictionary;
 
 @end
 
-@implementation SAUnityLinkerManager
+@implementation SAUnityExtensionContext
 
-+ (SAUnityLinkerManager *)getInstance {
-    static SAUnityLinkerManager *sharedManager = nil;
++ (SAUnityExtensionContext *)getInstance {
+    static SAUnityExtensionContext *sharedManager = nil;
     @synchronized(self) {
         if (sharedManager == nil){
             sharedManager = [[self alloc] init];

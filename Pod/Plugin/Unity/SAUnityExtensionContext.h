@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "SuperAwesome.h"
 
-@interface SAUnityLinkerManager : NSObject
+@interface SAUnityExtensionContext : NSObject
 
 // singleton instance (instead of init)
-+ (SAUnityLinkerManager *)getInstance;
++ (SAUnityExtensionContext *)getInstance;
 
 // setters and getters
 - (void) setAd:(NSObject*)adView forKey:(NSString*)key;

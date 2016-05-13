@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+3.8.9
+ - Refactor code & unity pugin
+
 3.8.8
 3.8.7
  - Add orientation lock to Fullscreen video & interstitial
