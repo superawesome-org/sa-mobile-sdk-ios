@@ -101,8 +101,7 @@
     // create the vast manager
     _manager = [[SAVASTManager alloc] initWithPlayer:_player];
     _manager.delegate = self;
-//    [_manager parseVASTURL:_ad.creative.details.vast];
-    [_manager manageWithAds:_ad.creative.details.data.vastAds];
+    [_manager manageWithAd:_ad.creative.details.data.vastAd];
 
     // add the padlick
     _padlock = [[UIImageView alloc] initWithFrame:SMALL_PAD_FRAME];

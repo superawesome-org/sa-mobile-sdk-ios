@@ -23,6 +23,6 @@
 
 //
 // the path to the video
-@property (nonatomic, strong) NSMutableArray *vastAds;
+@property (nonatomic, strong) SAVASTAd *vastAd;
 
 @end

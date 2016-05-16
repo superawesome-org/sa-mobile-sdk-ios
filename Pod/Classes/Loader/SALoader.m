@@ -73,8 +73,8 @@
                 // parse video
                 case video: {
                     SAVASTParser *vastParser = [[SAVASTParser alloc] init];
-                    [vastParser parseVASTURL:parsedAd.creative.details.vast done:^(NSArray *ads) {
-                        parsedAd.creative.details.data.vastAds = [ads mutableCopy];
+                    [vastParser parseVASTURL:parsedAd.creative.details.vast done:^(SAVASTAd *ad) {
+                        parsedAd.creative.details.data.vastAd = ad;
                         if (_delegate != NULL && [_delegate respondsToSelector:@selector(didLoadAd:)]) {
                             [_delegate didLoadAd:parsedAd];
                         }

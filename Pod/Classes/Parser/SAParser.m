@@ -128,28 +128,10 @@
     // parse the main ad
     SAAd *ad = [[SAAd alloc] initModelFromJsonString:jsonString andOptions:CapitalizeKeysThatHaveUnderscores];
     
-    // if this is vast - do the more detailed vast parsing
-    for (short i = 0; i < ad.creative.details.data.vastAds.count; i++) {
-        // parse the SAVASTad object
-        NSDictionary *d = ad.creative.details.data.vastAds[i];
-        SAVASTAd *vast = [[SAVASTAd alloc] initModelFromJsonDictionary:d andOptions:CapitalizeKeysThatHaveUnderscores];
-        
-        for (short j = 0; j < vast.Creatives.count; j++){
-            // parse the SAVASTCreative object
-            NSDictionary *d = vast.Creatives[j];
-            SAVASTCreative *creative = [[SAVASTCreative alloc] initModelFromJsonDictionary:d andOptions:CapitalizeKeysThatHaveUnderscores];
-            
-            for (short k = 0; k < creative.TrackingEvents.count; k++){
-                // and finally parse the SATracking object
-                NSDictionary *d = creative.TrackingEvents[k];
-                SAVASTTracking *tracking = [[SAVASTTracking alloc] initModelFromJsonDictionary:d andOptions:CapitalizeKeysThatHaveUnderscores];
-                [creative.TrackingEvents replaceObjectAtIndex:k withObject:tracking];
-            }
-            
-            [vast.Creatives replaceObjectAtIndex:j withObject:creative];
-        }
-        
-        [ad.creative.details.data.vastAds replaceObjectAtIndex:i withObject:vast];
+    for (short i = 0; i < ad.creative.details.data.vastAd.creative.TrackingEvents.count; i++){
+        NSDictionary *d = ad.creative.details.data.vastAd.creative.TrackingEvents[i];
+        SAVASTTracking *tracking = [[SAVASTTracking alloc] initModelFromJsonDictionary:d andOptions:CapitalizeKeysThatHaveUnderscores];
+        [ad.creative.details.data.vastAd.creative.TrackingEvents replaceObjectAtIndex:i withObject:tracking];
     }
     
     return ad;
