@@ -27,6 +27,7 @@ SAParentalGateProtocol>
 @property (nonatomic, assign) BOOL shouldShowCloseButton;
 @property (nonatomic, assign) BOOL shouldAutomaticallyCloseAtEnd;
 @property (nonatomic, assign) BOOL shouldLockOrientation;
+@property (nonatomic, assign) enum ClickerStyle buttonStyle;
 @property (nonatomic, assign) NSUInteger lockOrientation;
 @property (nonatomic, strong) SAAd *cAd;
 @property (nonatomic, strong) SALoader *loader;
@@ -47,6 +48,7 @@ SAParentalGateProtocol>
     id _Nullable shouldAutomaticallyCloseAtEndObj = [info objectForKey:SHOULD_AUTO_CLOSE];
     id _Nullable shouldLockOrientationObj = [info objectForKey:SHOULD_LOCK];
     id _Nullable lockOrientationObj = [info objectForKey:LOCK_ORIENTATION];
+    id _Nullable buttonStyleObj = [info objectForKey:VIDEO_BUTTON_STYLE];
     
     if (isTestEnabledObj == NULL || placementIdObj == NULL) {
         
@@ -77,6 +79,14 @@ SAParentalGateProtocol>
         } else {
             _shouldLockOrientation = NO;
             _lockOrientation = UIInterfaceOrientationMaskAll;
+        }
+    }
+    if (buttonStyleObj != NULL) {
+        NSString *style = (NSString*)buttonStyleObj;
+        if ([style isEqualToString:@"FULLSCREEN"]){
+            _buttonStyle = Fullscreen;
+        } else if ([style isEqualToString:@"BUTTON"]){
+            _buttonStyle = Button;
         }
     }
     
@@ -147,6 +157,7 @@ SAParentalGateProtocol>
     [_fvad setShouldShowCloseButton:_shouldShowCloseButton];
     [_fvad setShouldLockOrientation:_shouldLockOrientation];
     [_fvad setLockOrientation:_lockOrientation];
+    [_fvad setButtonStyle:_buttonStyle];
     
     // set ad
     [_fvad setAd:_cAd];

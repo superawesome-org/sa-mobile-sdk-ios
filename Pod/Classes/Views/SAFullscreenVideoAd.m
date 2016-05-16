@@ -85,6 +85,7 @@
     _video.isParentalGateEnabled = _isParentalGateEnabled;
     _video.internalVideoAdProto = self;
     _video.internalAdProto = self;
+    _video.buttonStyle = _buttonStyle;
     [self.view addSubview:_video];
     
     // create close button

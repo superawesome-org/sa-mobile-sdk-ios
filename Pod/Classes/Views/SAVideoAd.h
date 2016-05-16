@@ -24,5 +24,6 @@
 @property (nonatomic, weak) id<SAParentalGateProtocol> parentalGateDelegate;
 @property (nonatomic, weak) id<SAVideoAdProtocol> videoDelegate;
 @property (nonatomic, assign) BOOL isParentalGateEnabled;
+@property (nonatomic, assign) enum ClickerStyle buttonStyle;
 
 @end

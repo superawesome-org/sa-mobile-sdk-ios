@@ -1,6 +1,8 @@
 CHANGELOG
 =========
 
+3.9.3
+
 3.9.2
  - Added support for IPv6 networks
 
