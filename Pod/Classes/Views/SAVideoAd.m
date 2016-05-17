@@ -96,7 +96,7 @@
     
     // create the player
     _player = [[SAVideoPlayer alloc] initWithFrame:self.bounds];
-    _player.style = _buttonStyle;
+    _player.shouldShowSmallClickButton = _shouldShowSmallClickButton;
     [self addSubview:_player];
 
     // create the vast manager

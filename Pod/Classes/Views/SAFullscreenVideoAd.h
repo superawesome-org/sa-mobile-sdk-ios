@@ -23,7 +23,7 @@
 @property (nonatomic, assign) BOOL shouldAutomaticallyCloseAtEnd;
 @property (nonatomic, assign) BOOL shouldShowCloseButton;
 @property (nonatomic, assign) BOOL shouldLockOrientation;
+@property (nonatomic, assign) BOOL shouldShowSmallClickButton;
 @property (nonatomic, assign) NSUInteger lockOrientation;
-@property (nonatomic, assign) enum ClickerStyle buttonStyle;
 
 @end

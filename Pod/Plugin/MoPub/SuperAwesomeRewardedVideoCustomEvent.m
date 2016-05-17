@@ -27,7 +27,7 @@ SAParentalGateProtocol>
 @property (nonatomic, assign) BOOL shouldShowCloseButton;
 @property (nonatomic, assign) BOOL shouldAutomaticallyCloseAtEnd;
 @property (nonatomic, assign) BOOL shouldLockOrientation;
-@property (nonatomic, assign) enum ClickerStyle buttonStyle;
+@property (nonatomic, assign) BOOL shouldShowSmallClickButton;
 @property (nonatomic, assign) NSUInteger lockOrientation;
 @property (nonatomic, strong) SAAd *cAd;
 @property (nonatomic, strong) SALoader *loader;
@@ -48,7 +48,7 @@ SAParentalGateProtocol>
     id _Nullable shouldAutomaticallyCloseAtEndObj = [info objectForKey:SHOULD_AUTO_CLOSE];
     id _Nullable shouldLockOrientationObj = [info objectForKey:SHOULD_LOCK];
     id _Nullable lockOrientationObj = [info objectForKey:LOCK_ORIENTATION];
-    id _Nullable buttonStyleObj = [info objectForKey:VIDEO_BUTTON_STYLE];
+    id _Nullable shouldShowSmallClickButtonObj = [info objectForKey:VIDEO_BUTTON_STYLE];
     
     if (isTestEnabledObj == NULL || placementIdObj == NULL) {
         
@@ -70,6 +70,8 @@ SAParentalGateProtocol>
     _shouldShowCloseButton = (shouldShowCloseButtonObj != NULL ? [shouldShowCloseButtonObj boolValue] : false);
     _shouldAutomaticallyCloseAtEnd = (shouldAutomaticallyCloseAtEndObj != NULL ? [shouldAutomaticallyCloseAtEndObj boolValue] : true);
     _shouldLockOrientation = (shouldLockOrientationObj != NULL ? [shouldLockOrientationObj boolValue] : false);
+    _shouldShowSmallClickButton = (shouldShowSmallClickButtonObj != NULL ? [shouldShowSmallClickButtonObj boolValue] : false);
+    
     if (lockOrientationObj != NULL) {
         NSString *orient = (NSString*)lockOrientationObj;
         if ([orient isEqualToString:@"LANDSCAPE"]){
@@ -79,14 +81,6 @@ SAParentalGateProtocol>
         } else {
             _shouldLockOrientation = NO;
             _lockOrientation = UIInterfaceOrientationMaskAll;
-        }
-    }
-    if (buttonStyleObj != NULL) {
-        NSString *style = (NSString*)buttonStyleObj;
-        if ([style isEqualToString:@"FULLSCREEN"]){
-            _buttonStyle = Fullscreen;
-        } else if ([style isEqualToString:@"BUTTON"]){
-            _buttonStyle = Button;
         }
     }
     
@@ -156,8 +150,8 @@ SAParentalGateProtocol>
     [_fvad setShouldAutomaticallyCloseAtEnd:_shouldAutomaticallyCloseAtEnd];
     [_fvad setShouldShowCloseButton:_shouldShowCloseButton];
     [_fvad setShouldLockOrientation:_shouldLockOrientation];
+    [_fvad setShouldShowSmallClickButton:_shouldShowSmallClickButton];
     [_fvad setLockOrientation:_lockOrientation];
-    [_fvad setButtonStyle:_buttonStyle];
     
     // set ad
     [_fvad setAd:_cAd];
