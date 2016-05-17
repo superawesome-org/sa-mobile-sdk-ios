@@ -22,6 +22,9 @@
 @property (nonatomic, assign) BOOL isParentalGateEnabled;
 @property (nonatomic, assign) BOOL shouldShowCloseButton;
 @property (nonatomic, assign) BOOL shouldAutomaticallyCloseAtEnd;
+@property (nonatomic, assign) BOOL shouldShowSmallClickButton;
+@property (nonatomic, assign) BOOL shouldLockOrientation;
+@property (nonatomic, assign) NSUInteger lockOrientation;
 
 @end
 
@@ -33,7 +36,10 @@
             andUnityName:(NSString*)unityAd
       andHasParentalGate:(BOOL)isParentalGateEnabled
        andHasCloseButton:(BOOL)shouldShowCloseButton
-          andClosesAtEnd:(BOOL)shouldAutomaticallyCloseAtEnd {
+          andClosesAtEnd:(BOOL)shouldAutomaticallyCloseAtEnd
+ andShouldShowSmallClick:(BOOL)shouldShowSmallClickButton
+           andShouldLock:(BOOL)shouldLockOrientation
+         lockOrientation:(NSUInteger)lockOrientation {
     
     // get parameters
     _placementId = placementId;
@@ -42,6 +48,9 @@
     _isParentalGateEnabled = isParentalGateEnabled;
     _shouldShowCloseButton = shouldShowCloseButton;
     _shouldAutomaticallyCloseAtEnd = shouldAutomaticallyCloseAtEnd;
+    _shouldShowSmallClickButton = shouldShowSmallClickButton;
+    _shouldLockOrientation = shouldLockOrientation;
+    _lockOrientation = lockOrientation;
     
     // form the ad
     SAParser *parser = [[SAParser alloc] init];
@@ -56,6 +65,9 @@
         [fvad setIsParentalGateEnabled:_isParentalGateEnabled];
         [fvad setShouldAutomaticallyCloseAtEnd:_shouldAutomaticallyCloseAtEnd];
         [fvad setShouldShowCloseButton:_shouldShowCloseButton];
+        [fvad setLockOrientation:_lockOrientation];
+        [fvad setShouldLockOrientation:_shouldLockOrientation];
+        [fvad setShouldShowSmallClickButton:_shouldShowSmallClickButton];
         
         // set delegates
         [fvad setAdDelegate:self];

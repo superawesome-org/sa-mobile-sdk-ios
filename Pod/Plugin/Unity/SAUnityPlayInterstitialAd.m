@@ -20,6 +20,8 @@
 @property (nonatomic, assign) NSInteger placementId;
 @property (nonatomic, assign) BOOL isTestingEnabled;
 @property (nonatomic, assign) BOOL isParentalGateEnabled;
+@property (nonatomic, assign) BOOL shouldLockOrientation;
+@property (nonatomic, assign) NSUInteger lockOrientation;
 
 @end
 
@@ -28,13 +30,17 @@
 - (void) showInterstitialAdWith:(NSInteger)placementId
                       andAdJson:(NSString *)adJson
                    andUnityName:(NSString *)unityAd
-             andHasParentalGate:(BOOL)isParentalGateEnabled {
+             andHasParentalGate:(BOOL)isParentalGateEnabled
+                  andShouldLock:(BOOL)shouldLockOrientation
+                lockOrientation:(NSUInteger)lockOrientation {
     
     // get data
     _placementId = placementId;
     _adJson = adJson;
     _unityAd = unityAd;
     _isParentalGateEnabled = isParentalGateEnabled;
+    _shouldLockOrientation = shouldLockOrientation;
+    _lockOrientation = lockOrientation;
     
     // form new ad
     SAParser *parser = [[SAParser alloc] init];
@@ -51,6 +57,8 @@
         // set delegates
         [iad setAdDelegate:self];
         [iad setParentalGateDelegate:self];
+        [iad setShouldLockOrientation:_shouldLockOrientation];
+        [iad setLockOrientation:_lockOrientation];
         
         // get root vc, show fvad and then play it
         UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;

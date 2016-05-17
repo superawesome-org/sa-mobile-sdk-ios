@@ -17,7 +17,10 @@
             andUnityName:(NSString*)unityAd
       andHasParentalGate:(BOOL)isParentalGateEnabled
        andHasCloseButton:(BOOL)shouldShowCloseButton
-          andClosesAtEnd:(BOOL)shouldAutomaticallyCloseAtEnd;
+          andClosesAtEnd:(BOOL)shouldAutomaticallyCloseAtEnd
+ andShouldShowSmallClick:(BOOL)shouldShowSmallClickButton
+           andShouldLock:(BOOL)shouldLockOrientation
+         lockOrientation:(NSUInteger)lockOrientation;
 
 // close the fullscreen video
 - (void) closeFullscreenVideoForUnityName:(NSString*)unityAd;

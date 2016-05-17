@@ -15,7 +15,9 @@
 - (void) showInterstitialAdWith:(NSInteger)placementId
                       andAdJson:(NSString*)adJson
                    andUnityName:(NSString*)unityAd
-             andHasParentalGate:(BOOL)isParentalGateEnabled;
+             andHasParentalGate:(BOOL)isParentalGateEnabled
+                  andShouldLock:(BOOL)shouldLockOrientation
+                lockOrientation:(NSUInteger)lockOrientation;
 
 // close the interstitial
 - (void) closeInterstitialForUnityName:(NSString*)unityAd;
