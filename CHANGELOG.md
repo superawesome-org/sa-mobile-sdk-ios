@@ -1,6 +1,7 @@
 CHANGELOG
 =========
 
+3.9.6
 3.9.5
  - Added support for rotation lock & small btn for Unity plugin
 

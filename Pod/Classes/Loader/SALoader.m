@@ -42,7 +42,7 @@
         @"sdkVersion":[[SuperAwesome getInstance] getSdkVersion],
         @"rnd":@([SAUtils getCachebuster]),
         @"bundle":[[NSBundle mainBundle] bundleIdentifier],
-        @"name":[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"],
+        @"name":[SAUtils encodeURI:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"]],
         @"dauid":@([[SuperAwesome getInstance] getDAUID])
     };
     
