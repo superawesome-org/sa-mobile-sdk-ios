@@ -1,8 +1,12 @@
 CHANGELOG
 =========
 
+3.9.5
+ - Added support for rotation lock & small btn for Unity plugin
+
 3.9.4
 3.9.3
+ - Refactor some VAST code
 
 3.9.2
  - Added support for IPv6 networks
