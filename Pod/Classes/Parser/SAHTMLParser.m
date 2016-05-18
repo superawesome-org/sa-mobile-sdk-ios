@@ -52,9 +52,13 @@
 }
 
 + (NSString*) formatCreativeIntoImageHTML:(SAAd*)ad {
-    // load template
-    NSString *file = [SAUtils filePathForName:@"displayImage" type:@"html" andBundle:@"SuperAwesome" andClass:self.classForCoder];
-    NSString *htmlString = [NSString stringWithContentsOfFile:file encoding:NSUTF8StringEncoding error:nil];
+    
+    NSMutableString *htmlString = [[NSMutableString alloc] init];
+    [htmlString appendString:@"<!DOCTYPE html><html><head><meta charset=\"UTF-8\"/>"];
+    [htmlString appendString:@"<meta name='viewport' content='width=device-width, initial-scale=_PARAM_SCALE_, maximum-scale=_PARAM_SCALE_, user-scalable=no' />"];
+    [htmlString appendString:@"<title>SuperAwesome Image Template</title>"];
+    [htmlString appendString:@"<style>html, body, div { margin: 0px; padding: 0px; width: 100%; height: 100%; overflow: hidden; background-color: #efefef; }</style>"];
+    [htmlString appendString:@"</head><body><a href='hrefURL'><img id='image' src='imageURL'/></a></body></html>"];
     
     // return the parametrized template
     NSString *click = (ad.creative.clickUrl ? ad.creative.clickUrl : ad.creative.trackingUrl);
@@ -64,9 +68,13 @@
 }
 
 + (NSString*) formatCreativeIntoRichMediaHTML:(SAAd*)ad {
-    // load template
-    NSString *file = [SAUtils filePathForName:@"displayRichMedia" type:@"html" andBundle:@"SuperAwesome" andClass:self.classForCoder];
-    NSString *htmlString = [NSString stringWithContentsOfFile:file encoding:NSUTF8StringEncoding error:nil];
+    
+    NSMutableString *htmlString = [[NSMutableString alloc] init];
+    [htmlString appendString:@"<!DOCTYPE html><html><head>"];
+    [htmlString appendString:@"<meta name='viewport' content='width=device-width, initial-scale=_PARAM_SCALE_, maximum-scale=_PARAM_SCALE_, user-scalable=no, target-densitydpi=device-dpi'/>"];
+    [htmlString appendString:@"<title>SuperAwesome Rich Media Template</title>"];
+    [htmlString appendString:@"<style>html, body, iframe { width: 100%; height: 100%; padding: 0; margin: 0; border: 0; background-color: #efefef; overflow: hidden; }</style>"];
+    [htmlString appendString:@"</head><body><iframe src='richMediaURL'></iframe></body></html>"];
     
     // format template parameters
     NSMutableString *richMediaString = [[NSMutableString alloc] init];
@@ -81,7 +89,6 @@
     [richMediaString appendString:@"?"];
     [richMediaString appendString:[SAUtils formGetQueryFromDict:richMediaDict]];
     
-    
     // return the parametrized template
     NSString *richString = [htmlString stringByReplacingOccurrencesOfString:@"richMediaURL" withString:richMediaString];
     
@@ -91,9 +98,16 @@
 }
 
 + (NSString*) formatCreativeIntoTagHTML:(SAAd*)ad {
-    // get template
-    NSString *file = [SAUtils filePathForName:@"displayTag" type:@"html" andBundle:@"SuperAwesome" andClass:self.classForCoder];
-    NSString *htmlString = [NSString stringWithContentsOfFile:file encoding:NSUTF8StringEncoding error:nil];
+    
+    NSMutableString *htmlString = [[NSMutableString alloc] init];
+    [htmlString appendString:@"<!DOCTYPE html><html><head><meta charset=\"UTF-8\"/>"];
+    [htmlString appendString:@"<title>SuperAwesome 3rd Party Tag Template</title>"];
+    [htmlString appendString:@"<meta name=\"viewport\" content=\"width=device-width, initial-scale=_PARAM_SCALE_, maximum-scale=_PARAM_SCALE_, user-scalable=no, target-densitydpi=device-dpi\"/>"];
+    [htmlString appendString:@"<style>"];
+    [htmlString appendString:@"html, body { width: _WIDTH_px; height: _HEIGHT_px; padding: 0; margin: 0; border: 0; background-color: #efefef; }"];
+    [htmlString appendString:@"* { width: 100%; height: 100%; }"];
+    [htmlString appendString:@"</style>"];
+    [htmlString appendString:@"</head><body>tagdata</body></html>"];
     
     // format template parameters
     NSString *tagString = ad.creative.details.tag;

@@ -91,7 +91,7 @@
     // create close button
     _closeBtn = [[UIButton alloc] initWithFrame:_buttonFrame];
     [_closeBtn setTitle:@"" forState:UIControlStateNormal];
-    [_closeBtn setImage:[UIImage imageWithContentsOfFile:[SAUtils filePathForName:@"close" type:@"png" andBundle:@"SuperAwesome" andClass:self.classForCoder]] forState:UIControlStateNormal];
+    [_closeBtn setImage:[SAUtils closeImage] forState:UIControlStateNormal];
     [_closeBtn addTarget:self action:@selector(closeAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_closeBtn];
     [self.view bringSubviewToFront:_closeBtn];
