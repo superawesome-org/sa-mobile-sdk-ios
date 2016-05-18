@@ -1,0 +1,1 @@
+../../../SAVASTParser/Pod/Classes/Models/SAVASTAd.h

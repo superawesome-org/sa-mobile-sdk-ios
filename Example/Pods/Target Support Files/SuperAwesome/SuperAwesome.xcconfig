@@ -1,0 +1,3 @@
+SUPERAWESOME_HEADER_SEARCH_PATHS = $(inherited)
+SUPERAWESOME_OTHER_CFLAGS = $(inherited)
+SUPERAWESOME_OTHER_LDFLAGS = $(inherited) -framework "AdSupport"

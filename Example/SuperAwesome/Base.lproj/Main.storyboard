@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3mH-9c-17k">
+                                <rect key="frame" x="20" y="72" width="560" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="0ex-C7-tdr"/>
+                                </constraints>
+                                <state key="normal" title="Play Banner"/>
+                                <connections>
+                                    <action selector="playBanner:" destination="BYZ-38-t0r" eventType="touchUpInside" id="V3R-zH-oLV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j1d-qs-TPY">
+                                <rect key="frame" x="20" y="110" width="560" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="5c8-aD-juF"/>
+                                </constraints>
+                                <state key="normal" title="Play Interstitial 1"/>
+                                <connections>
+                                    <action selector="playInterstitial1:" destination="BYZ-38-t0r" eventType="touchUpInside" id="enz-Om-ifB"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ip-nJ-7SI">
+                                <rect key="frame" x="20" y="148" width="560" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="7vW-Ld-Omb"/>
+                                </constraints>
+                                <state key="normal" title="Play Interstitial 2"/>
+                                <connections>
+                                    <action selector="playInterstitial2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JtI-8D-bQa"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tCC-fG-tpV">
+                                <rect key="frame" x="20" y="186" width="560" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="dFp-de-Ljk"/>
+                                </constraints>
+                                <state key="normal" title="Play Interstitial 3"/>
+                                <connections>
+                                    <action selector="playInterstitial3:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cBK-Kg-ZaR"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n5q-jS-QqV">
+                                <rect key="frame" x="20" y="224" width="560" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="1hr-ci-4cP"/>
+                                </constraints>
+                                <state key="normal" title="Play Video 1"/>
+                                <connections>
+                                    <action selector="playVideo1:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3J8-UM-hHe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xIh-8h-hcJ">
+                                <rect key="frame" x="20" y="262" width="560" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="3PB-6e-omL"/>
+                                </constraints>
+                                <state key="normal" title="Play Video 2"/>
+                                <connections>
+                                    <action selector="playVideo2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Pff-Gs-l99"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NQl-2B-YWd" customClass="SABannerAd">
+                                <rect key="frame" x="140" y="550" width="320" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="RpK-wb-dFQ"/>
+                                    <constraint firstAttribute="height" constant="50" id="VKC-pu-HXO"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3Ip-nJ-7SI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="50D-4X-ape"/>
+                            <constraint firstItem="j1d-qs-TPY" firstAttribute="top" secondItem="3mH-9c-17k" secondAttribute="bottom" constant="8" id="Bpl-uD-igH"/>
+                            <constraint firstAttribute="trailing" secondItem="3Ip-nJ-7SI" secondAttribute="trailing" constant="20" id="C6j-dY-um4"/>
+                            <constraint firstItem="xIh-8h-hcJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="DFi-rC-zzM"/>
+                            <constraint firstItem="n5q-jS-QqV" firstAttribute="top" secondItem="tCC-fG-tpV" secondAttribute="bottom" constant="8" id="GPA-Se-05p"/>
+                            <constraint firstItem="xIh-8h-hcJ" firstAttribute="top" secondItem="n5q-jS-QqV" secondAttribute="bottom" constant="8" id="JNT-BK-DAg"/>
+                            <constraint firstItem="n5q-jS-QqV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="Nn7-hm-Y2W"/>
+                            <constraint firstAttribute="trailing" secondItem="3mH-9c-17k" secondAttribute="trailing" constant="20" id="OYZ-sP-9cw"/>
+                            <constraint firstAttribute="trailing" secondItem="j1d-qs-TPY" secondAttribute="trailing" constant="20" id="TIz-bJ-uPh"/>
+                            <constraint firstAttribute="trailing" secondItem="n5q-jS-QqV" secondAttribute="trailing" constant="20" id="UZK-kG-MmG"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="NQl-2B-YWd" secondAttribute="bottom" id="Uij-Ig-011"/>
+                            <constraint firstItem="NQl-2B-YWd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Yh4-dI-EpZ"/>
+                            <constraint firstItem="j1d-qs-TPY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="cmm-7W-Jbb"/>
+                            <constraint firstAttribute="trailing" secondItem="tCC-fG-tpV" secondAttribute="trailing" constant="20" id="eh6-tK-Y6M"/>
+                            <constraint firstItem="3mH-9c-17k" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="52" id="jjR-Wk-lUV"/>
+                            <constraint firstItem="tCC-fG-tpV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="mRu-wm-EzI"/>
+                            <constraint firstItem="3Ip-nJ-7SI" firstAttribute="top" secondItem="j1d-qs-TPY" secondAttribute="bottom" constant="8" id="nPN-NP-cCU"/>
+                            <constraint firstItem="3mH-9c-17k" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="wiI-HZ-K8T"/>
+                            <constraint firstItem="tCC-fG-tpV" firstAttribute="top" secondItem="3Ip-nJ-7SI" secondAttribute="bottom" constant="8" id="xkd-p4-Yep"/>
+                            <constraint firstAttribute="trailing" secondItem="xIh-8h-hcJ" secondAttribute="trailing" constant="20" id="ym3-f2-jxn"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="bannerAd" destination="NQl-2B-YWd" id="ff7-XY-hZP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="311" y="136"/>
+        </scene>
+    </scenes>
+</document>
