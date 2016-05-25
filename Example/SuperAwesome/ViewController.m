@@ -17,6 +17,7 @@
 @property (nonatomic, retain) SAAd *interstitial1Data;
 @property (nonatomic, retain) SAAd *interstitial2Data;
 @property (nonatomic, retain) SAAd *interstitial3Data;
+@property (nonatomic, retain) SAAd *interstitial4Data;
 @property (nonatomic, retain) SAAd *video1Data;
 @property (nonatomic, retain) SAAd *video2Data;
 @end
@@ -37,6 +38,7 @@
     [loader loadAdForPlacementId:116];
     [loader loadAdForPlacementId:117];
     [loader loadAdForPlacementId:118];
+    [loader loadAdForPlacementId:130];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,6 +57,7 @@
         case 118: _interstitial3Data = ad; break;
         case 116: _video1Data = ad; break;
         case 117: _video2Data = ad; break;
+        case 130: _interstitial4Data = ad; break;
         default:break;
     }
 }
@@ -101,6 +104,15 @@
         }];
     }
 }
+- (IBAction)playInterstitial4:(id)sender {
+    if (_interstitial4Data != NULL){
+        SAInterstitialAd *iad = [[SAInterstitialAd alloc] init];
+        [iad setAd:_interstitial4Data];
+        [self presentViewController:iad animated:YES completion:^{
+            [iad play];
+        }];
+    }
+}
 
 - (IBAction)playVideo1:(id)sender {
     if (_video1Data != NULL) {
@@ -127,8 +139,8 @@
     }
 }
 
-- (NSUInteger) supportedInterfaceOrientations {
-    return UIInterfaceOrientationMaskLandscape;
-}
+//- (NSUInteger) supportedInterfaceOrientations {
+//    return UIInterfaceOrientationMaskLandscape;
+//}
 
 @end
