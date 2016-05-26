@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B0D26CF1CF7186F00619C9C /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0D26CE1CF7186F00619C9C /* Tests.m */; };
 		1B76D2381C91EEB1000AE8F3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B76D2371C91EEB1000AE8F3 /* main.m */; };
 		1B76D23B1C91EEB1000AE8F3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B76D23A1C91EEB1000AE8F3 /* AppDelegate.m */; };
 		1B76D23E1C91EEB1000AE8F3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B76D23D1C91EEB1000AE8F3 /* ViewController.m */; };
@@ -16,7 +17,20 @@
 		E72FDC8768FA27CEDC0E9A34 /* libPods-SuperAwesome.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48E48709BB5C700A38511235 /* libPods-SuperAwesome.a */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		1B0D26D11CF7186F00619C9C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1B76D22B1C91EEB1000AE8F3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1B76D2321C91EEB1000AE8F3;
+			remoteInfo = SuperAwesome;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		1B0D26CC1CF7186F00619C9C /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B0D26CE1CF7186F00619C9C /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
+		1B0D26D01CF7186F00619C9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B76D2331C91EEB1000AE8F3 /* SuperAwesome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperAwesome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B76D2371C91EEB1000AE8F3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1B76D2391C91EEB1000AE8F3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -33,6 +47,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1B0D26C91CF7186F00619C9C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1B76D2301C91EEB1000AE8F3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -44,10 +65,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B0D26CD1CF7186F00619C9C /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				1B0D26CE1CF7186F00619C9C /* Tests.m */,
+				1B0D26D01CF7186F00619C9C /* Info.plist */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
 		1B76D22A1C91EEB1000AE8F3 = {
 			isa = PBXGroup;
 			children = (
 				1B76D2351C91EEB1000AE8F3 /* SuperAwesome */,
+				1B0D26CD1CF7186F00619C9C /* Tests */,
 				1B76D2341C91EEB1000AE8F3 /* Products */,
 				EA29C2D2FA45CF4E89572C24 /* Pods */,
 				D1776AC2A4A6F898B57E3EB0 /* Frameworks */,
@@ -58,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				1B76D2331C91EEB1000AE8F3 /* SuperAwesome.app */,
+				1B0D26CC1CF7186F00619C9C /* Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -106,6 +138,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		1B0D26CB1CF7186F00619C9C /* Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1B0D26D31CF7186F00619C9C /* Build configuration list for PBXNativeTarget "Tests" */;
+			buildPhases = (
+				1B0D26C81CF7186F00619C9C /* Sources */,
+				1B0D26C91CF7186F00619C9C /* Frameworks */,
+				1B0D26CA1CF7186F00619C9C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1B0D26D21CF7186F00619C9C /* PBXTargetDependency */,
+			);
+			name = Tests;
+			productName = Tests;
+			productReference = 1B0D26CC1CF7186F00619C9C /* Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		1B76D2321C91EEB1000AE8F3 /* SuperAwesome */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1B76D24A1C91EEB1000AE8F3 /* Build configuration list for PBXNativeTarget "SuperAwesome" */;
@@ -134,6 +184,10 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Gabriel Coman";
 				TargetAttributes = {
+					1B0D26CB1CF7186F00619C9C = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 1B76D2321C91EEB1000AE8F3;
+					};
 					1B76D2321C91EEB1000AE8F3 = {
 						CreatedOnToolsVersion = 7.2.1;
 					};
@@ -153,11 +207,19 @@
 			projectRoot = "";
 			targets = (
 				1B76D2321C91EEB1000AE8F3 /* SuperAwesome */,
+				1B0D26CB1CF7186F00619C9C /* Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		1B0D26CA1CF7186F00619C9C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1B76D2311C91EEB1000AE8F3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -204,6 +266,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		1B0D26C81CF7186F00619C9C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B0D26CF1CF7186F00619C9C /* Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1B76D22F1C91EEB1000AE8F3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -215,6 +285,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1B0D26D21CF7186F00619C9C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1B76D2321C91EEB1000AE8F3 /* SuperAwesome */;
+			targetProxy = 1B0D26D11CF7186F00619C9C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		1B76D23F1C91EEB1000AE8F3 /* Main.storyboard */ = {
@@ -236,6 +314,36 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		1B0D26D41CF7186F00619C9C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = tv.superawesome.Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SuperAwesome.app/SuperAwesome";
+			};
+			name = Debug;
+		};
+		1B0D26D51CF7186F00619C9C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = tv.superawesome.Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SuperAwesome.app/SuperAwesome";
+			};
+			name = Release;
+		};
 		1B76D2481C91EEB1000AE8F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -353,6 +461,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1B0D26D31CF7186F00619C9C /* Build configuration list for PBXNativeTarget "Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1B0D26D41CF7186F00619C9C /* Debug */,
+				1B0D26D51CF7186F00619C9C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		1B76D22E1C91EEB1000AE8F3 /* Build configuration list for PBXProject "SuperAwesome" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
