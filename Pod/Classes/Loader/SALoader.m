@@ -23,7 +23,6 @@
 
 // import SA main Singleton
 #import "SuperAwesome.h"
-#import "NSObject+ModelToString.h"
 
 // import Aux class
 #import "SAUtils.h"

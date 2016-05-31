@@ -8,7 +8,6 @@
 
 #import "ViewController.h"
 #import "SuperAwesome.h"
-#import "NSObject+ModelToString.h"
 
 @interface ViewController () <SALoaderProtocol>
 @property (weak, nonatomic) IBOutlet SABannerAd *bannerAd;
@@ -39,6 +38,7 @@
     [loader loadAdForPlacementId:117];
     [loader loadAdForPlacementId:118];
     [loader loadAdForPlacementId:130];
+//    [loader loadAdForPlacementId:31107];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -48,7 +48,7 @@
 
 - (void) didLoadAd:(SAAd *)ad {
     NSLog(@"Loaded Ad %ld", (long)ad.placementId);
-    NSLog(@"%@", [ad jsonStringPreetyRepresentation]);
+    NSLog(@"%@", [ad jsonPreetyStringRepresentation]);
     
     switch (ad.placementId) {
         case 113: _bannerData = ad; break;
@@ -58,6 +58,7 @@
         case 116: _video1Data = ad; break;
         case 117: _video2Data = ad; break;
         case 130: _interstitial4Data = ad; break;
+        case 31107: _bannerData = ad; break;
         default:break;
     }
 }

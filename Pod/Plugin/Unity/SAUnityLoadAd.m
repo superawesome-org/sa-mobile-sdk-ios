@@ -10,7 +10,7 @@
 // import SA header
 #import "SALoader.h"
 #import "SAUnityExtensionContext.h"
-#import "NSObject+ModelToString.h"
+#import "SAJsonParser.h"
 
 @interface SAUnityLoadAd () <SALoaderProtocol>
 
@@ -45,7 +45,7 @@
 - (void) didLoadAd:(SAAd *)ad {
     NSLog(@"Sending didLoadAd to %@", _unityAd);
     if (super.loadingEvent) {
-        super.loadingEvent(_unityAd, (int)ad.placementId, @"callback_didLoadAd", [ad jsonStringCompactRepresentation]);
+        super.loadingEvent(_unityAd, (int)ad.placementId, @"callback_didLoadAd", [ad jsonCompactStringRepresentation]);
     }
 }
 

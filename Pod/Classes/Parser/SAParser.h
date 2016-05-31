@@ -36,14 +36,4 @@ typedef void (^parsedad)(SAAd *parsedAd);
  */
 - (SAAd*) parseInitialAdFromNetwork:(NSData*)jsonData withPlacementId:(NSInteger)placementId;
 
-/**
- *  Use the new fancy Reflective json parser to get an ad object from a json string
- *  Used mainly by the Unity & AIR integrations
- *
- *  @param jsonString the already validated ad json string
- *
- *  @return a SAAd value
- */
-- (SAAd*) parseAdFromExistingString:(NSString*)jsonString;
-
 @end

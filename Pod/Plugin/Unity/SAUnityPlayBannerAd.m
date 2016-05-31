@@ -10,7 +10,7 @@
 // import SA header
 #import "SuperAwesome.h"
 #import "SAUnityExtensionContext.h"
-#import "NSObject+ModelToString.h"
+#import "SAJsonParser.h"
 #import "SAParser.h"
 
 @interface SAUnityPlayBannerAd () <SAAdProtocol, SAParentalGateProtocol>
@@ -44,8 +44,7 @@
     _isParentalGateEnabled = isParentalGateEnable;
     
     // form new ad
-    SAParser *parser = [[SAParser alloc] init];
-    SAAd *parsedAd = [parser parseAdFromExistingString:_adJson];
+    SAAd *parsedAd = [[SAAd alloc] initWithJsonString:_adJson];
     
     if (parsedAd != NULL) {
         // get root vc, show fvad and then play it

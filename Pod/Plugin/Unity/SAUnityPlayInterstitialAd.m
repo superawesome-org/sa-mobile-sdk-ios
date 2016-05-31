@@ -10,7 +10,7 @@
 // import SA header
 #import "SuperAwesome.h"
 #import "SAUnityExtensionContext.h"
-#import "NSObject+ModelToString.h"
+#import "SAJsonParser.h"
 #import "SAParser.h"
 
 @interface SAUnityPlayInterstitialAd () <SAAdProtocol, SAParentalGateProtocol>
@@ -43,8 +43,7 @@
     _lockOrientation = lockOrientation;
     
     // form new ad
-    SAParser *parser = [[SAParser alloc] init];
-    SAAd *parsedAd = [parser parseAdFromExistingString:adJson];
+    SAAd *parsedAd = [[SAAd alloc] initWithJsonString:_adJson];
     
     if (parsedAd != NULL) {
         // create fvad

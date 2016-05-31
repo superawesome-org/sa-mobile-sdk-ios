@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+#import "SAJsonParser.h"
+
 // forward declarations
 @class SAVASTAd;
 
-@interface SAData : NSObject
+@interface SAData : NSObject <SADeserializationProtocol, SASerializationProtocol>
 
 //
 // the HTML string

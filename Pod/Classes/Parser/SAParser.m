@@ -21,10 +21,7 @@
 
 // import SAAux library of goodies
 #import "SAUtils.h"
-
-// import nsobject categories for parsing
-#import "NSObject+StringToModel.h"
-#import "NSObject+ModelToString.h"
+#import "SAJsonParser.h"
 
 // modelspace for vast parsing
 #import "SAVASTAd.h"
@@ -34,40 +31,9 @@
 // parser implementation
 @implementation SAParser
 
-- (BOOL) isAdDataValid:(SAAd *)ad {
-    if (ad == NULL) return false;
-    if (ad.creative == NULL) return false;
-    if (ad.creative != NULL) {
-        if (ad.creative.creativeFormat == invalid) return false;
-        if (ad.creative.details == NULL) return false;
-        if (ad.creative.details != NULL) {
-            switch (ad.creative.creativeFormat) {
-                case image:{
-                    if (ad.creative.details.image == NULL) return false;
-                    break;
-                }
-                case video:{
-                    if (ad.creative.details.vast == NULL) return false;
-                    break;
-                }
-                case rich:{
-                    if (ad.creative.details.url == NULL) return false;
-                    break;
-                }
-                case tag:{
-                    if (ad.creative.details.tag == NULL) return false;
-                    break;
-                }
-                case invalid: return false;
-            }
-        }
-    }
-    
-    return true;
-}
-
 - (SAAd*) parseInitialAdFromNetwork:(NSData*)jsonData withPlacementId:(NSInteger)placementId {
-    SAAd *ad = [[SAAd alloc] initModelFromJsonData:jsonData andOptions:CapitalizeKeysThatHaveUnderscores];
+    
+    SAAd *ad = [[SAAd alloc] initWithJsonData:jsonData];
     ad.placementId = placementId;
     
     ad.creative.creativeFormat = invalid;
@@ -98,7 +64,7 @@
             @"line_item":@(ad.lineItemId),
             @"creative":@(ad.creative._id),
             @"type":@"viewable_impression"
-        } jsonStringCompactRepresentation]]
+        } jsonCompactStringRepresentation]]
     };
     ad.creative.viewableImpressionUrl = [NSString stringWithFormat:@"%@/event?%@",
                                          [[SuperAwesome getInstance] getBaseURL],
@@ -113,28 +79,15 @@
             @"line_item":@(ad.lineItemId),
             @"creative":@(ad.creative._id),
             @"type":@"custom.parentalGateAccessed"
-        } jsonStringCompactRepresentation]]
+        } jsonCompactStringRepresentation]]
     };
     ad.creative.parentalGateClickUrl = [NSString stringWithFormat:@"%@/event?%@",
                                         [[SuperAwesome getInstance] getBaseURL],
                                         [SAUtils formGetQueryFromDict:pgjson]];
     
     // valdate ad
-     if ([self isAdDataValid:ad]) return ad;
+     if ([ad isValid]) return ad;
     return nil;
-}
-
-- (SAAd*) parseAdFromExistingString:(NSString *)jsonString {
-    // parse the main ad
-    SAAd *ad = [[SAAd alloc] initModelFromJsonString:jsonString andOptions:CapitalizeKeysThatHaveUnderscores];
-    
-    for (short i = 0; i < ad.creative.details.data.vastAd.creative.TrackingEvents.count; i++){
-        NSDictionary *d = ad.creative.details.data.vastAd.creative.TrackingEvents[i];
-        SAVASTTracking *tracking = [[SAVASTTracking alloc] initModelFromJsonDictionary:d andOptions:CapitalizeKeysThatHaveUnderscores];
-        [ad.creative.details.data.vastAd.creative.TrackingEvents replaceObjectAtIndex:i withObject:tracking];
-    }
-    
-    return ad;
 }
 
 @end

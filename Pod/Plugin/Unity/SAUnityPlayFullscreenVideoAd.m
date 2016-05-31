@@ -10,7 +10,7 @@
 // import SA header
 #import "SuperAwesome.h"
 #import "SAUnityExtensionContext.h"
-#import "NSObject+ModelToString.h"
+#import "SAJsonParser.h"
 #import "SAParser.h"
 
 @interface SAUnityPlayFullscreenVideoAd () <SAAdProtocol, SAVideoAdProtocol, SAParentalGateProtocol>
@@ -53,8 +53,7 @@
     _lockOrientation = lockOrientation;
     
     // form the ad
-    SAParser *parser = [[SAParser alloc] init];
-    SAAd *parsedAd = [parser parseAdFromExistingString:_adJson];
+    SAAd *parsedAd = [[SAAd alloc] initWithJsonString:_adJson];
     
     if (parsedAd != NULL) {
         // create fvad
