@@ -33,7 +33,7 @@
         _live = [[jsonDictionary safeObjectForKey:@"live"] boolValue];
         _approved = [[jsonDictionary safeObjectForKey:@"approved"] boolValue];
         _details = [[SADetails alloc] initWithJsonDictionary:[jsonDictionary safeObjectForKey:@"details"]];
-        _creativeFormat = (SACreativeFormat)[jsonDictionary safeObjectForKey:@"creativeFormat"];
+        _creativeFormat = (SACreativeFormat)[[jsonDictionary safeObjectForKey:@"creativeFormat"] integerValue];
         _viewableImpressionUrl = [jsonDictionary safeObjectForKey:@"viewableImpressionUrl"];
         _trackingUrl = [jsonDictionary safeObjectForKey:@"trackingUrl"];
         _parentalGateClickUrl = [jsonDictionary safeObjectForKey:@"parentalGateClickUrl"];
