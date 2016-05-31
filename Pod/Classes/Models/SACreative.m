@@ -22,20 +22,21 @@
 }
 
 - (id) initWithJsonDictionary:(NSDictionary *)jsonDictionary {
-    if (self = [super init]) {
-        __id = [jsonDictionary safeIntForKey:@"id"];
-        _name = [jsonDictionary safeStringForKey:@"name"];
-        _cpm = [jsonDictionary safeIntForKey:@"cpm"];
-        _format = [jsonDictionary safeStringForKey:@"format"];
-        _impressionUrl = [jsonDictionary safeStringForKey:@"impressionUrl"];
-        _clickUrl = [jsonDictionary safeStringForKey:@"clickUrl"];
-        _live = [jsonDictionary safeBoolForKey:@"live"];
-        _approved = [jsonDictionary safeBoolForKey:@"approved"];
-        _details = [[SADetails alloc] initWithJsonDictionary:[jsonDictionary objectForKey:@"details"]];
-        _creativeFormat = (SACreativeFormat)[jsonDictionary safeIntForKey:@"creativeFormat"];
-        _viewableImpressionUrl = [jsonDictionary safeStringForKey:@"viewableImpressionUrl"];
-        _trackingUrl = [jsonDictionary safeStringForKey:@"trackingUrl"];
-        _parentalGateClickUrl = [jsonDictionary safeStringForKey:@"parentalGateClickUrl"];
+    if (self = [super initWithJsonDictionary:jsonDictionary]) {
+        
+        __id = [[jsonDictionary safeObjectForKey:@"id"] integerValue];
+        _name = [jsonDictionary safeObjectForKey:@"name"];
+        _cpm = [[jsonDictionary safeObjectForKey:@"cpm"] integerValue];
+        _format = [jsonDictionary safeObjectForKey:@"format"];
+        _impressionUrl = [jsonDictionary safeObjectForKey:@"impressionUrl"];
+        _clickUrl = [jsonDictionary safeObjectForKey:@"clickUrl"];
+        _live = [[jsonDictionary safeObjectForKey:@"live"] boolValue];
+        _approved = [[jsonDictionary safeObjectForKey:@"approved"] boolValue];
+        _details = [[SADetails alloc] initWithJsonDictionary:[jsonDictionary safeObjectForKey:@"details"]];
+        _creativeFormat = (SACreativeFormat)[jsonDictionary safeObjectForKey:@"creativeFormat"];
+        _viewableImpressionUrl = [jsonDictionary safeObjectForKey:@"viewableImpressionUrl"];
+        _trackingUrl = [jsonDictionary safeObjectForKey:@"trackingUrl"];
+        _parentalGateClickUrl = [jsonDictionary safeObjectForKey:@"parentalGateClickUrl"];
     }
     return self;
 }

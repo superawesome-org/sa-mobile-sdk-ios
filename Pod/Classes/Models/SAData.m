@@ -19,10 +19,11 @@
 }
 
 - (id) initWithJsonDictionary:(NSDictionary *)jsonDictionary {
-    if (self = [super init]) {
-        _adHTML = [jsonDictionary safeStringForKey:@"adHTML"];
-        _imagePath = [jsonDictionary safeStringForKey:@"imagePath"];
-        _vastAd = [[SAVASTAd alloc] initWithJsonDictionary:[jsonDictionary objectForKey:@"vastAd"]];
+    if (self = [super initWithJsonDictionary:jsonDictionary]) {
+        
+        _adHTML = [jsonDictionary safeObjectForKey:@"adHTML"];
+        _imagePath = [jsonDictionary safeObjectForKey:@"imagePath"];
+        _vastAd = [[SAVASTAd alloc] initWithJsonDictionary:[jsonDictionary safeObjectForKey:@"vastAd"]];
     }
     return self;
 }

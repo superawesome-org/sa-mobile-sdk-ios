@@ -18,19 +18,20 @@
 }
 
 - (id) initWithJsonDictionary:(NSDictionary *)jsonDictionary {
-    if (self = [super init]) {
-        _type = (SAAdType)[jsonDictionary safeIntForKey:@"type"];
-        __id = [jsonDictionary safeStringForKey:@"id"];
-        _sequence = [jsonDictionary safeStringForKey:@"sequence"];
-        _redirectUri = [jsonDictionary safeStringForKey:@"redirectUri"];
-        _isImpressionSent = [jsonDictionary safeBoolForKey:@"isImpressionSent"];
-        _Errors = [[[NSArray alloc] initWithJsonArray:[jsonDictionary objectForKey:@"Errors"] andIterator:^id(id item) {
+    if (self = [super initWithJsonDictionary:jsonDictionary]) {
+        
+        _type = (SAAdType)[[jsonDictionary objectForKey:@"type"] integerValue];
+        __id = [jsonDictionary safeObjectForKey:@"id"];
+        _sequence = [jsonDictionary safeObjectForKey:@"sequence"];
+        _redirectUri = [jsonDictionary safeObjectForKey:@"redirectUri"];
+        _isImpressionSent = [[jsonDictionary safeObjectForKey:@"isImpressionSent"] boolValue];
+        _Errors = [[[NSArray alloc] initWithJsonArray:[jsonDictionary safeObjectForKey:@"Errors"] andIterator:^id(id item) {
             return (NSString*)item;
         }] mutableCopy];
-        _Impressions = [[[NSArray alloc] initWithJsonArray:[jsonDictionary objectForKey:@"Impressions"] andIterator:^id(id item) {
+        _Impressions = [[[NSArray alloc] initWithJsonArray:[jsonDictionary safeObjectForKey:@"Impressions"] andIterator:^id(id item) {
             return (NSString*)item;
         }] mutableCopy];
-        _creative = [[SAVASTCreative alloc] initWithJsonDictionary:[jsonDictionary objectForKey:@"creative"]];
+        _creative = [[SAVASTCreative alloc] initWithJsonDictionary:[jsonDictionary safeObjectForKey:@"creative"]];
     }
     return self;
 }

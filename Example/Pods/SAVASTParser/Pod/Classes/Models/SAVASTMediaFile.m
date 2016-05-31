@@ -18,12 +18,12 @@
 }
 
 - (id) initWithJsonDictionary:(NSDictionary *)jsonDictionary {
-    if (self = [super init]) {
-        _width = [jsonDictionary safeStringForKey:@"width"];
-        _height = [jsonDictionary safeStringForKey:@"height"];
-        _type = [jsonDictionary safeStringForKey:@"type"];
-        _URL = [jsonDictionary safeStringForKey:@"URL"];
-        _diskURL = [jsonDictionary safeStringForKey:@"diskURL"];
+    if (self = [super initWithJsonDictionary:jsonDictionary]) {
+        _width = [jsonDictionary safeObjectForKey:@"width"];
+        _height = [jsonDictionary safeObjectForKey:@"height"];
+        _type = [jsonDictionary safeObjectForKey:@"type"];
+        _URL = [jsonDictionary safeObjectForKey:@"URL"];
+        _diskURL = [jsonDictionary safeObjectForKey:@"diskURL"];
     }
     return self;
 }

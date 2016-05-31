@@ -25,19 +25,20 @@
 }
 
 - (id) initWithJsonDictionary:(NSDictionary *)jsonDictionary {
-    if (self = [super init]) {
+    if (self = [super initWithJsonDictionary:jsonDictionary]) {
         
-        _error = [jsonDictionary safeIntForKey:@"error"];
-        _app = [jsonDictionary safeIntForKey:@"app"];
-        _placementId = [jsonDictionary safeIntForKey:@"placementId"];
-        _lineItemId = [jsonDictionary safeIntForKey:@"lineItemId"];
-        _campaignId = [jsonDictionary safeIntForKey:@"campaignId"];
-        _test = [jsonDictionary safeBoolForKey:@"test"];
-        _isFallback = [jsonDictionary safeBoolForKey:@"isFallback"];
-        _isFill = [jsonDictionary safeBoolForKey:@"isFill"];
-        _isHouse = [jsonDictionary safeBoolForKey:@"isHouse"];
-        _creative = [[SACreative alloc] initWithJsonDictionary:[jsonDictionary objectForKey:@"creative"]];
+        _error = [[jsonDictionary safeObjectForKey:@"error"] integerValue];
+        _app = [[jsonDictionary safeObjectForKey:@"app"] integerValue];
+        _placementId = [[jsonDictionary safeObjectForKey:@"placementId"] integerValue];
+        _lineItemId = [[jsonDictionary safeObjectForKey:@"lineItemId"] integerValue];
+        _campaignId = [[jsonDictionary safeObjectForKey:@"campaignId"] integerValue];
+        _test = [[jsonDictionary safeObjectForKey:@"test"] boolValue];
+        _isFallback = [[jsonDictionary safeObjectForKey:@"isFallback"] boolValue];
+        _isFill = [[jsonDictionary safeObjectForKey:@"isFill"] boolValue];
+        _isHouse = [[jsonDictionary safeObjectForKey:@"isHouse"] boolValue];
+        _creative = [[SACreative alloc] initWithJsonDictionary:[jsonDictionary safeObjectForKey:@"creative"]];
     }
+    
     return self;
 }
 

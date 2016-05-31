@@ -22,21 +22,22 @@
 }
 
 - (id) initWithJsonDictionary:(NSDictionary *)jsonDictionary {
-    if (self = [super init]) {
-        _width = [jsonDictionary safeIntForKey:@"width"];
-        _height = [jsonDictionary safeIntForKey:@"height"];
-        _image = [jsonDictionary safeStringForKey:@"image"];
-        _value = [jsonDictionary safeIntForKey:@"value"];
-        _name = [jsonDictionary safeStringForKey:@"name"];
-        _video = [jsonDictionary safeStringForKey:@"video"];
-        _bitrate = [jsonDictionary safeIntForKey:@"bitrate"];
-        _duration = [jsonDictionary safeIntForKey:@"duration"];
-        _vast = [jsonDictionary safeStringForKey:@"vast"];
-        _tag = [jsonDictionary safeStringForKey:@"tag"];
-        _zipFile = [jsonDictionary safeStringForKey:@"zipFile"];
-        _url = [jsonDictionary safeStringForKey:@"url"];
-        _placementFormat = [jsonDictionary safeStringForKey:@"placementFormat"];
-        _data = [[SAData alloc] initWithJsonDictionary:[jsonDictionary objectForKey:@"data"]];
+    if (self = [super initWithJsonDictionary:jsonDictionary]) {
+        
+        _width = [[jsonDictionary safeObjectForKey:@"width"] integerValue];
+        _height = [[jsonDictionary safeObjectForKey:@"height"] integerValue];
+        _image = [jsonDictionary safeObjectForKey:@"image"];
+        _value = [[jsonDictionary safeObjectForKey:@"value"] integerValue];
+        _name = [jsonDictionary safeObjectForKey:@"name"];
+        _video = [jsonDictionary safeObjectForKey:@"video"];
+        _bitrate = [[jsonDictionary safeObjectForKey:@"bitrate"] integerValue];
+        _duration = [[jsonDictionary safeObjectForKey:@"duration"] integerValue];
+        _vast = [jsonDictionary safeObjectForKey:@"vast"];
+        _tag = [jsonDictionary safeObjectForKey:@"tag"];
+        _zipFile = [jsonDictionary safeObjectForKey:@"zipFile"];
+        _url = [jsonDictionary safeObjectForKey:@"url"];
+        _placementFormat = [jsonDictionary safeObjectForKey:@"placementFormat"];
+        _data = [[SAData alloc] initWithJsonDictionary:[jsonDictionary safeObjectForKey:@"data"]];
     }
     return self;
 }

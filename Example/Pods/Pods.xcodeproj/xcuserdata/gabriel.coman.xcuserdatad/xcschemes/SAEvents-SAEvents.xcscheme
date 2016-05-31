@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3CF054DB0F789AD3E4098AEA"
+               BlueprintIdentifier = "813D7CCE7A27944C945AB4C4"
                BuildableName = "SAEvents.bundle"
                BlueprintName = "SAEvents-SAEvents"
                ReferencedContainer = "container:Pods.xcodeproj">

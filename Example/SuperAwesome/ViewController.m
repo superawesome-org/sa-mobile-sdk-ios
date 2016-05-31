@@ -88,6 +88,7 @@
     if (_interstitial2Data != NULL) {
         SAInterstitialAd *fvad = [[SAInterstitialAd alloc] init];
         [fvad setAd:_interstitial2Data];
+        [fvad setIsParentalGateEnabled:true];
         [self presentViewController:fvad animated:YES completion:^{
             [fvad play];
         }];
