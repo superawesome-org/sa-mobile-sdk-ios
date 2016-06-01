@@ -86,6 +86,7 @@
                 case tag:
                 case invalid: {
                     parsedAd.creative.details.data.adHTML = [SAHTMLParser formatCreativeDataIntoAdHTML:parsedAd];
+                    NSLog(@"%@", parsedAd.creative.details.data.adHTML);
                     if (_delegate != NULL && [_delegate respondsToSelector:@selector(didLoadAd:)]) {
                         [_delegate didLoadAd:parsedAd];
                     }

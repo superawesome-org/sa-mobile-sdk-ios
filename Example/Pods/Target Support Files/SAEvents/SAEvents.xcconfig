@@ -1,0 +1,2 @@
+SAEVENTS_FRAMEWORK_SEARCH_PATHS = "$(PODS_ROOT)/SAEvents/Pod/Frameworks"
+SAEVENTS_OTHER_LDFLAGS = -framework "SUPMoatMobileAppKit"

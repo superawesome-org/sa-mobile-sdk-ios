@@ -17,6 +17,11 @@
 #import "SAData.h"
 
 #import "SAEvents.h"
+#if defined(__has_include)
+#if __has_include("SAEvents+Moat.h")
+#import "SAEvents+Moat.h"
+#endif
+#endif
 #import "SAUtils.h"
 
 // defines
@@ -149,6 +154,20 @@
 - (void) webPlayerDidLoad {
     // send viewable impression
     [SAEvents sendEventToURL:_ad.creative.viewableImpressionUrl];
+    
+    // moat tracking
+    if ([[SAEvents class] respondsToSelector:@selector(sendDisplayMoatEvent:andAdDictionary:)]) {
+        
+        NSDictionary *moatDict = @{
+                                   @"campaign":@(_ad.campaignId),
+                                   @"line_item":@(_ad.lineItemId),
+                                   @"creative":@(_ad.creative._id),
+                                   @"app":@(_ad.app),
+                                   @"placement":@(_ad.placementId)
+                                   };
+        
+        [SAEvents sendDisplayMoatEvent:self andAdDictionary:moatDict];
+    }
     
     // if the banner has a separate impression URL, send that as well for 3rd party tracking
     if (_ad.creative.impressionUrl && [_ad.creative.impressionUrl rangeOfString:[[SuperAwesome getInstance] getBaseURL]].location == NSNotFound) {

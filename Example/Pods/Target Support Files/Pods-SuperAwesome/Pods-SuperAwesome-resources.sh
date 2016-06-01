@@ -78,13 +78,12 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "mopub-ios-sdk/MoPubSDK/Resources/MPUnmutedBtn@2x.png"
   install_resource "mopub-ios-sdk/MoPubSDK/Resources/MPUnmutedBtn@3x.png"
   install_resource "mopub-ios-sdk/MoPubSDK/Resources/MRAID.bundle"
-  install_resource "${BUILT_PRODUCTS_DIR}/SAEvents.bundle"
+  install_resource "${BUILT_PRODUCTS_DIR}/SuperAwesome.bundle"
   install_resource "${BUILT_PRODUCTS_DIR}/SAJsonParser.bundle"
   install_resource "${BUILT_PRODUCTS_DIR}/SAUtils.bundle"
   install_resource "${BUILT_PRODUCTS_DIR}/SAVASTParser.bundle"
   install_resource "${BUILT_PRODUCTS_DIR}/SAVideoPlayer.bundle"
   install_resource "${BUILT_PRODUCTS_DIR}/SAWebPlayer.bundle"
-  install_resource "${BUILT_PRODUCTS_DIR}/SuperAwesome.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "mopub-ios-sdk/MoPubSDK/Internal/Common/MPAdBrowserController.xib"
@@ -107,13 +106,12 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "mopub-ios-sdk/MoPubSDK/Resources/MPUnmutedBtn@2x.png"
   install_resource "mopub-ios-sdk/MoPubSDK/Resources/MPUnmutedBtn@3x.png"
   install_resource "mopub-ios-sdk/MoPubSDK/Resources/MRAID.bundle"
-  install_resource "${BUILT_PRODUCTS_DIR}/SAEvents.bundle"
+  install_resource "${BUILT_PRODUCTS_DIR}/SuperAwesome.bundle"
   install_resource "${BUILT_PRODUCTS_DIR}/SAJsonParser.bundle"
   install_resource "${BUILT_PRODUCTS_DIR}/SAUtils.bundle"
   install_resource "${BUILT_PRODUCTS_DIR}/SAVASTParser.bundle"
   install_resource "${BUILT_PRODUCTS_DIR}/SAVideoPlayer.bundle"
   install_resource "${BUILT_PRODUCTS_DIR}/SAWebPlayer.bundle"
-  install_resource "${BUILT_PRODUCTS_DIR}/SuperAwesome.bundle"
 fi
 
 mkdir -p "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

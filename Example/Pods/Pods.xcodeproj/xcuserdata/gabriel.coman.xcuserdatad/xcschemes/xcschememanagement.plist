@@ -9,7 +9,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>SAEvents-SAEvents.xcscheme</key>
+		<key>SAEvents-SuperAwesome.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -74,7 +74,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>SuperAwesome.xcscheme_^#shared#^_</key>
+		<key>SuperAwesome.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -87,37 +87,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>18E6B8185482C31CC34FC48981BDE1D1</key>
+		<key>11DD5F9D5BEA2C18702E02CE62660FEC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2DA36E91E60D3A15215B2F6F1D1B62FF</key>
+		<key>21D20C50E696A08E736692781E6D033C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>371CBDF429CE823FE005E8AD89AA34A1</key>
+		<key>2FA4F8258E7AD4ACC1A5A8BF7D33DEF1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>382AAE3F70E59B99B8AB488061610B57</key>
+		<key>3043C7BC33CD60B44747805AC611F93E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>452D000CF3C2212CF5759C2A9AEC435C</key>
+		<key>363285400EF3BE90B7653C3C99FBF3B4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4F03594817669EED98943D1368248A14</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>551D9D76363559609763C602275E2BA5</key>
+		<key>531AA1B3F6DEAC251289C7ABC5BAB012</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -132,7 +127,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9C9102AEA07D971608E4D5C26207CD36</key>
+		<key>8EFFB02B95DA8D9EC1CBCC2436410773</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -142,17 +137,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AC6236EFC299930EC4E13FC835912166</key>
+		<key>A345F378A9728939977EBA8CB60EE048</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DA879BADB1AFC5ED968F99C396BBCBAB</key>
+		<key>A3E04816C07EACC5B0E3DBDD20422DD1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F0FD0577D5337651ACDBC64AE0956523</key>
+		<key>C9314410AB1F32B6130E1A88D67C0AB6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -162,7 +157,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F9B19BA8AB8CF97D659970C56E0AF3C0</key>
+		<key>FC324BE4EF6D246E9563E52A9F2855BE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FDFC59DE164EFA9FC42532E8D464410F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

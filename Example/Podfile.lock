@@ -2,11 +2,17 @@ PODS:
   - mopub-ios-sdk (4.6.0):
     - mopub-ios-sdk/MoPubSDK (= 4.6.0)
   - mopub-ios-sdk/MoPubSDK (4.6.0)
-  - SAEvents (1.0.4):
+  - SAEvents (1.0.6):
+    - SAEvents/Core (= 1.0.6)
     - SAUtils
-  - SAJsonParser (1.1.9)
+  - SAEvents/Core (1.0.6):
+    - SAUtils
+  - SAEvents/Moat (1.0.6):
+    - SAEvents/Core
+    - SAUtils
+  - SAJsonParser (1.2.0)
   - SAUtils (1.1.6)
-  - SAVASTParser (1.2.4):
+  - SAVASTParser (1.2.6):
     - SAEvents
     - SAJsonParser
     - SAUtils
@@ -14,22 +20,31 @@ PODS:
   - SAVideoPlayer (1.0.8):
     - SAUtils
   - SAWebPlayer (1.0.0)
-  - SuperAwesome (3.9.9):
+  - SuperAwesome (4.0.2):
     - SAEvents
     - SAJsonParser
     - SAUtils
     - SAVASTParser
     - SAVideoPlayer
     - SAWebPlayer
-    - SuperAwesome/Core (= 3.9.9)
-  - SuperAwesome/Core (3.9.9):
+    - SuperAwesome/Core (= 4.0.2)
+  - SuperAwesome/Core (4.0.2):
     - SAEvents
     - SAJsonParser
     - SAUtils
     - SAVASTParser
     - SAVideoPlayer
     - SAWebPlayer
-  - SuperAwesome/MoPub (3.9.9):
+    - SuperAwesome/Core/Moat (= 4.0.2)
+  - SuperAwesome/Core/Moat (4.0.2):
+    - SAEvents
+    - SAEvents/Moat
+    - SAJsonParser
+    - SAUtils
+    - SAVASTParser
+    - SAVideoPlayer
+    - SAWebPlayer
+  - SuperAwesome/MoPub (4.0.2):
     - mopub-ios-sdk
     - SAEvents
     - SAJsonParser
@@ -38,7 +53,7 @@ PODS:
     - SAVideoPlayer
     - SAWebPlayer
     - SuperAwesome/Core
-  - SuperAwesome/Unity (3.9.9):
+  - SuperAwesome/Unity (4.0.2):
     - SAEvents
     - SAJsonParser
     - SAUtils
@@ -49,6 +64,7 @@ PODS:
 
 DEPENDENCIES:
   - SuperAwesome (from `../`)
+  - SuperAwesome/Core/Moat (from `../`)
   - SuperAwesome/MoPub (from `../`)
   - SuperAwesome/Unity (from `../`)
 
@@ -58,12 +74,12 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   mopub-ios-sdk: 5e7193f1a0f9bfe6513816416117d9c28d8dcf19
-  SAEvents: 920515c4e0ac6f6dc3aeaabe411550ac391f7a58
-  SAJsonParser: b8e2c92569c23c97071d129befd103ce55d996ae
+  SAEvents: 0d386d7316f5d148bd6fd96fec0665eb3189570f
+  SAJsonParser: b2ca75e9916c9f416adb1c75707ba776de760140
   SAUtils: acb66358c0744e48632849dc88d44188bbef7d4b
-  SAVASTParser: 6a566f61dc2690aa033dcb6fc12fde05025093a1
+  SAVASTParser: 7c2edc9064512b68dd383810d505cfb70fb05e69
   SAVideoPlayer: 7598f1c67bbfbe0eddfd214fb86b7848c639ca7a
   SAWebPlayer: a592e62b276a904ded2bd298c1072b2d75cfd17c
-  SuperAwesome: 92eb14d0e492db5f931bfe57a3a219b04c74c692
+  SuperAwesome: d92bd24ad9712df0031ac7b81b2a6d359bb06824
 
 COCOAPODS: 0.38.2

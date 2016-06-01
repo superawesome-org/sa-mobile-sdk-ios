@@ -21,6 +21,11 @@
 
 // import other headers
 #import "SAEvents.h"
+#if defined(__has_include)
+#if __has_include("SAEvents+Moat.h")
+#import "SAEvents+Moat.h"
+#endif
+#endif
 #import "SAUtils.h"
 #import "SAVideoPlayer.h"
 #import "SAVASTManager.h"
@@ -161,6 +166,20 @@
 - (void) didStartAd {
     // send the viewable impression URL as well
     [SAEvents sendEventToURL:_ad.creative.viewableImpressionUrl];
+    
+    // moat
+    if ([[SAEvents class] respondsToSelector:@selector(sendVideoMoatEvent:andLayer:andView:andAdDictionary:)]) {
+        
+        NSDictionary *moatDict = @{
+                                   @"campaign":@(_ad.campaignId),
+                                   @"line_item":@(_ad.lineItemId),
+                                   @"creative":@(_ad.creative._id),
+                                   @"app":@(_ad.app),
+                                   @"placement":@(_ad.placementId)
+                                   };
+        
+        [SAEvents sendVideoMoatEvent:[_player getPlayer] andLayer:[_player getPlayerLayer] andView:self andAdDictionary:moatDict];
+    }
     
     // if the banner has a separate impression URL, send that as well for 3rd party tracking
     // although that's usually handled in the VAST tag for videos

@@ -30,8 +30,8 @@
         _error = [[jsonDictionary safeObjectForKey:@"error"] integerValue];
         _app = [[jsonDictionary safeObjectForKey:@"app"] integerValue];
         _placementId = [[jsonDictionary safeObjectForKey:@"placementId"] integerValue];
-        _lineItemId = [[jsonDictionary safeObjectForKey:@"lineItemId"] integerValue];
-        _campaignId = [[jsonDictionary safeObjectForKey:@"campaignId"] integerValue];
+        _lineItemId = [[jsonDictionary safeObjectForKey:@"line_item_id"] integerValue];
+        _campaignId = [[jsonDictionary safeObjectForKey:@"campaign_id"] integerValue];
         _test = [[jsonDictionary safeObjectForKey:@"test"] boolValue];
         _isFallback = [[jsonDictionary safeObjectForKey:@"isFallback"] boolValue];
         _isFill = [[jsonDictionary safeObjectForKey:@"isFill"] boolValue];
@@ -47,8 +47,8 @@
         @"error": @(_error),
         @"app": @(_app),
         @"placementId": @(_placementId),
-        @"lineItemId": @(_lineItemId),
-        @"campaignId": @(_campaignId),
+        @"line_item_id": @(_lineItemId),
+        @"campaign_id": @(_campaignId),
         @"test": @(_test),
         @"isFallback": @(_isFallback),
         @"isFill": @(_isFill),

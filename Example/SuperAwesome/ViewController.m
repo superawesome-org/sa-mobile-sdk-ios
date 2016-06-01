@@ -38,7 +38,8 @@
     [loader loadAdForPlacementId:117];
     [loader loadAdForPlacementId:118];
     [loader loadAdForPlacementId:130];
-//    [loader loadAdForPlacementId:31107];
+//    [loader loadAdForPlacementId:31513];
+//    [loader loadAdForPlacementId:142];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -58,7 +59,8 @@
         case 116: _video1Data = ad; break;
         case 117: _video2Data = ad; break;
         case 130: _interstitial4Data = ad; break;
-        case 31107: _bannerData = ad; break;
+//        case 142: _bannerData = ad; break;
+//        case 31513: _bannerData = ad; break;
         default:break;
     }
 }

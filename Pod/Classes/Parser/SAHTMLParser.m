@@ -122,8 +122,12 @@
     tagString = [tagString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
     tagString = [tagString stringByReplacingOccurrencesOfString:@"“" withString:@"\""];
     
+    NSString *html = [htmlString stringByReplacingOccurrencesOfString:@"tagdata" withString:tagString];
+    html = [html stringByReplacingOccurrencesOfString:@"\/" withString:@"/"];
+    html = [html stringByReplacingOccurrencesOfString:@"\"" withString:@"'"];
+    
     // return the parametrized template
-    return [htmlString stringByReplacingOccurrencesOfString:@"tagdata" withString:tagString];
+    return html;
 }
 
 @end
