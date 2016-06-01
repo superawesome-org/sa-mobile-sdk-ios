@@ -26,18 +26,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [[SuperAwesome getInstance] setConfigurationStaging];
+    [[SuperAwesome getInstance] setConfigurationProduction];
     [[SuperAwesome getInstance] disableTestMode];
 
     SALoader *loader = [[SALoader alloc] init];
     loader.delegate = self;
-    [loader loadAdForPlacementId:113];
-    [loader loadAdForPlacementId:114];
-    [loader loadAdForPlacementId:115];
-    [loader loadAdForPlacementId:116];
-    [loader loadAdForPlacementId:117];
-    [loader loadAdForPlacementId:118];
-    [loader loadAdForPlacementId:130];
+//    [loader loadAdForPlacementId:113];
+//    [loader loadAdForPlacementId:114];
+//    [loader loadAdForPlacementId:115];
+//    [loader loadAdForPlacementId:116];
+//    [loader loadAdForPlacementId:117];
+//    [loader loadAdForPlacementId:118];
+//    [loader loadAdForPlacementId:130];
+    [loader loadAdForPlacementId:28000];
 //    [loader loadAdForPlacementId:31513];
 //    [loader loadAdForPlacementId:142];
 }
@@ -59,6 +60,7 @@
         case 116: _video1Data = ad; break;
         case 117: _video2Data = ad; break;
         case 130: _interstitial4Data = ad; break;
+        case 28000: _video1Data = ad; break;
 //        case 142: _bannerData = ad; break;
 //        case 31513: _bannerData = ad; break;
         default:break;
