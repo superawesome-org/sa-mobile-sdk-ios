@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "SuperAwesome"
-  s.version      = "4.0.4"
+  s.version      = "4.0.5"
   s.summary      = "SuperAwesome Mobile SDK for iOS"
   s.description  = <<-DESC
                    The SuperAwesome Mobile SDK lets you to easily add COPPA compliant advertisements and other platform features, like user authentication and registration, to your apps. We try to make integration as easy as possible, so we provide all the necessary tools such as this guide, API documentation, screencasts and demo apps.
@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.platform     = :ios, "6.0"
   s.ios.deployment_target = "6.0"
   s.requires_arc = true
-  s.source       = { :git => "https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git", :branch => "master" ,:tag => "4.0.4" }
+  s.source       = { :git => "https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git", :branch => "master" ,:tag => "4.0.5" }
 
   s.frameworks = 'AdSupport'
   s.dependency 'SAUtils'
@@ -44,9 +44,19 @@ Pod::Spec.new do |s|
   }
   end
 
+  s.subspec 'Unity+Moat' do |unmo|
+    unmo.dependency 'SuperAwesome/Unity'
+    unmo.dependency 'SAEvents/Moat'
+  end
+
   s.subspec 'MoPub' do |mp|
     mp.dependency 'mopub-ios-sdk'
     mp.dependency 'SuperAwesome/Core'
     mp.source_files = 'Pod/Plugin/MoPub/*'
+  end
+
+  s.subspec 'MoPub+Moat' do |mpmo|
+    mpmo.dependency 'SuperAwesome/Moat'
+    mpmo.dependency 'SAEvents/Moat'
   end
 end
