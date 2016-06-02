@@ -14,6 +14,7 @@
 // import the SACapper part
 #import "SACapper.h"
 #import "SAEvents.h"
+#import "SALoaderSession.h"
 
 // define the three URL constants
 #define BASE_URL_STAGING @"https://ads.staging.superawesome.tv/v2"
@@ -52,13 +53,17 @@
         [SACapper enableCapping:^(NSUInteger dauId) {
             _dauID = dauId;
         }];
+        
+        // set loader session instance
+        [[SALoaderSession getInstance] setVersion:[self getSdkVersion]];
+        [[SALoaderSession getInstance] setDauId:_dauID];
     }
     
     return self;
 }
 
 - (NSString*) getVersion {
-    return @"4.0.4";
+    return @"4.0.7";
 }
 
 - (NSString*) getSdk {
@@ -66,24 +71,25 @@
 }
 
 - (NSString*) getSdkVersion {
-    return [NSString stringWithFormat:@"%@_%@",
-            [[SuperAwesome getInstance] getSdk],
-            [[SuperAwesome getInstance] getVersion]];
+    return [NSString stringWithFormat:@"%@_%@", [self getSdk], [self getVersion]];
 }
 
 - (void) setConfigurationProduction {
     _config = PRODUCTION;
     _baseURL = BASE_URL_PRODUCTION;
+    [[SALoaderSession getInstance] setBaseUrl:_baseURL];
 }
 
 - (void) setConfigurationStaging {
     _config = STAGING;
     _baseURL = BASE_URL_STAGING;
+    [[SALoaderSession getInstance] setBaseUrl:_baseURL];
 }
 
 - (void) setConfigurationDevelopment {
     _config = DEVELOPMENT;
     _baseURL = BASE_URL_DEVELOPMENT;
+    [[SALoaderSession getInstance] setBaseUrl:_baseURL];
 }
 
 - (SAConfiguration) getConfiguration {
@@ -96,14 +102,17 @@
 
 - (void) enableTestMode {
     _isTestEnabled = true;
+    [[SALoaderSession getInstance] setTest:_isTestEnabled];
 }
 
 - (void) disableTestMode {
     _isTestEnabled = false;
+    [[SALoaderSession getInstance] setTest:_isTestEnabled];
 }
 
 - (void) setTesting:(BOOL)enabled {
     _isTestEnabled = enabled;
+    [[SALoaderSession getInstance] setTest:_isTestEnabled];
 }
 
 - (BOOL) isTestingEnabled {

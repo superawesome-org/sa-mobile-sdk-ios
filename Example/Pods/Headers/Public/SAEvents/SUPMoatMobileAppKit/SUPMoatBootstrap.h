@@ -1,1 +1,0 @@
-../../../../SAEvents/Pod/Frameworks/SUPMoatMobileAppKit.framework/Versions/A/Headers/SUPMoatBootstrap.h

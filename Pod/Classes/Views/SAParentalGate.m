@@ -89,6 +89,11 @@
 - (void) show {
     [self newQuestion];
     
+    // resume video
+    if ([_weakAdView isKindOfClass:[SAVideoAd class]]) {
+        [(SAVideoAd*)_weakAdView pause];
+    }
+    
     if (NSClassFromString(@"UIAlertController")) {
         [self showWithAlertController];
     } else {
@@ -97,6 +102,7 @@
 }
 
 - (void) close {
+    
     if (NSClassFromString(@"UIAlertController")) {
         [_challangeAlertController dismissViewControllerAnimated:YES completion:nil];
     } else {
@@ -109,6 +115,12 @@
 - (void) showWithAlertController {
     // action block #1
     actionBlock cancelBlock = ^(UIAlertAction *action) {
+        
+        // resume video
+        if ([_weakAdView isKindOfClass:[SAVideoAd class]]) {
+            [(SAVideoAd*)_weakAdView resume];
+        }
+        
         // calls to delegate or blocks
         if(_delegate && [_delegate respondsToSelector:@selector(parentalGateWasCanceled:)]){
             [_delegate parentalGateWasCanceled:_ad.placementId];
@@ -131,6 +143,12 @@
         }
         // or a bad solution
         else{
+            
+            // resume video
+            if ([_weakAdView isKindOfClass:[SAVideoAd class]]) {
+                [(SAVideoAd*)_weakAdView resume];
+            }
+            
             [self handlePGError];
         }
     };
@@ -181,6 +199,7 @@
 }
 
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    // continue
     if (buttonIndex == 1) {
         UITextField *textField = [_challengeAlertView textFieldAtIndex:0];
         NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
@@ -190,7 +209,20 @@
         if ([input integerValue] == _solution) {
             [self handlePGSuccess];
         } else {
+            
+            // resume video
+            if ([_weakAdView isKindOfClass:[SAVideoAd class]]) {
+                [(SAVideoAd*)_weakAdView resume];
+            }
+            
             [self handlePGError];
+        }
+    }
+    // cancel
+    else if (buttonIndex == 0){
+        // resume video
+        if ([_weakAdView isKindOfClass:[SAVideoAd class]]) {
+            [(SAVideoAd*)_weakAdView resume];
         }
     }
 }

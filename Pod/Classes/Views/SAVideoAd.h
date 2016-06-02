@@ -26,4 +26,7 @@
 @property (nonatomic, assign) BOOL isParentalGateEnabled;
 @property (nonatomic, assign) BOOL shouldShowSmallClickButton;
 
+- (void) pause;
+- (void) resume;
+
 @end

@@ -123,6 +123,14 @@
     _ad = NULL;
 }
 
+- (void) pause {
+    [_player pause];
+}
+
+- (void) resume {
+    [_player resume];
+}
+
 - (void) advanceToClick {
     // call delegate
     if (_adDelegate && [_adDelegate respondsToSelector:@selector(adWasClicked:)]) {
