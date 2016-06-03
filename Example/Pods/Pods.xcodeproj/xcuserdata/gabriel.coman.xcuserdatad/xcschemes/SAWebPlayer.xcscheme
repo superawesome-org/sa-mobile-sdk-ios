@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "621C10B349DE85AF305F30F0"
+               BlueprintIdentifier = "334B864A4B61B48B5EE2D8B1"
                BuildableName = "libSAWebPlayer.a"
                BlueprintName = "SAWebPlayer"
                ReferencedContainer = "container:Pods.xcodeproj">

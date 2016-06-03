@@ -36,7 +36,7 @@
         _tag = [jsonDictionary safeObjectForKey:@"tag"];
         _zipFile = [jsonDictionary safeObjectForKey:@"zipFile"];
         _url = [jsonDictionary safeObjectForKey:@"url"];
-        _placementFormat = [jsonDictionary safeObjectForKey:@"placementFormat"];
+        _placementFormat = [jsonDictionary safeObjectForKey:@"placement_format"];
         _data = [[SAData alloc] initWithJsonDictionary:[jsonDictionary safeObjectForKey:@"data"]];
     }
     return self;
@@ -56,7 +56,7 @@
         @"tag": nullSafe(_tag),
         @"zipFile": nullSafe(_zipFile),
         @"url": nullSafe(_url),
-        @"placementFormat": nullSafe(_placementFormat),
+        @"placement_format": nullSafe(_placementFormat),
         @"data": nullSafe([_data dictionaryRepresentation])
     };
 }

@@ -28,8 +28,8 @@
         _name = [jsonDictionary safeObjectForKey:@"name"];
         _cpm = [[jsonDictionary safeObjectForKey:@"cpm"] integerValue];
         _format = [jsonDictionary safeObjectForKey:@"format"];
-        _impressionUrl = [jsonDictionary safeObjectForKey:@"impressionUrl"];
-        _clickUrl = [jsonDictionary safeObjectForKey:@"clickUrl"];
+        _impressionUrl = [jsonDictionary safeObjectForKey:@"impression_url"];
+        _clickUrl = [jsonDictionary safeObjectForKey:@"click_url"];
         _live = [[jsonDictionary safeObjectForKey:@"live"] boolValue];
         _approved = [[jsonDictionary safeObjectForKey:@"approved"] boolValue];
         _details = [[SADetails alloc] initWithJsonDictionary:[jsonDictionary safeObjectForKey:@"details"]];
@@ -47,8 +47,8 @@
         @"name": nullSafe(_name),
         @"cpm": @(_cpm),
         @"format": nullSafe(_format),
-        @"impressionUrl": nullSafe(_impressionUrl),
-        @"clickUrl": nullSafe(_clickUrl),
+        @"impression_url": nullSafe(_impressionUrl),
+        @"click_url": nullSafe(_clickUrl),
         @"live": @(_live),
         @"approved": @(_approved),
         @"details": nullSafe([_details dictionaryRepresentation]),

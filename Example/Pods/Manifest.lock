@@ -2,7 +2,7 @@ PODS:
   - mopub-ios-sdk (4.6.0):
     - mopub-ios-sdk/MoPubSDK (= 4.6.0)
   - mopub-ios-sdk/MoPubSDK (4.6.0)
-  - SAAdLoader (0.1.0):
+  - SAAdLoader (0.1.2):
     - SAJsonParser
     - SAUtils
     - SAVASTParser
@@ -21,7 +21,7 @@ PODS:
   - SAVideoPlayer (1.1.0):
     - SAUtils
   - SAWebPlayer (1.0.0)
-  - SuperAwesome (4.0.6):
+  - SuperAwesome (4.0.7):
     - SAAdLoader
     - SAEvents
     - SAJsonParser
@@ -29,8 +29,8 @@ PODS:
     - SAVASTParser
     - SAVideoPlayer
     - SAWebPlayer
-    - SuperAwesome/Core (= 4.0.6)
-  - SuperAwesome/Core (4.0.6):
+    - SuperAwesome/Core (= 4.0.7)
+  - SuperAwesome/Core (4.0.7):
     - SAAdLoader
     - SAEvents
     - SAJsonParser
@@ -38,7 +38,7 @@ PODS:
     - SAVASTParser
     - SAVideoPlayer
     - SAWebPlayer
-  - SuperAwesome/MoPub (4.0.6):
+  - SuperAwesome/MoPub (4.0.7):
     - mopub-ios-sdk
     - SAAdLoader
     - SAEvents
@@ -48,7 +48,7 @@ PODS:
     - SAVideoPlayer
     - SAWebPlayer
     - SuperAwesome/Core
-  - SuperAwesome/Unity (4.0.6):
+  - SuperAwesome/Unity (4.0.7):
     - SAAdLoader
     - SAEvents
     - SAJsonParser
@@ -69,13 +69,13 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   mopub-ios-sdk: 5e7193f1a0f9bfe6513816416117d9c28d8dcf19
-  SAAdLoader: b2d4068be63789b0887226ee6587400b5002f77b
+  SAAdLoader: 2129e74f0647b63f2cae2d173c942edc0f8433b5
   SAEvents: 0d386d7316f5d148bd6fd96fec0665eb3189570f
   SAJsonParser: b2ca75e9916c9f416adb1c75707ba776de760140
   SAUtils: acb66358c0744e48632849dc88d44188bbef7d4b
   SAVASTParser: 41f220c09bef312d810473c15c9fd5d5c321930a
   SAVideoPlayer: dba919a10db3119059c393b249d614e165d4a599
   SAWebPlayer: a592e62b276a904ded2bd298c1072b2d75cfd17c
-  SuperAwesome: d24e46aedacc82139ae765f06cff3accf8247b80
+  SuperAwesome: 88777ed1df9f09c9fe31cc1fe3b3d65d6cd93d3c
 
 COCOAPODS: 0.38.2

@@ -60,7 +60,7 @@
         case 116: _video1Data = ad; break;
         case 117: _video2Data = ad; break;
         case 130: _interstitial4Data = ad; break;
-        case 28000: _video1Data = ad; break;
+//        case 28000: _video1Data = ad; break;
 //        case 142: _bannerData = ad; break;
 //        case 31513: _bannerData = ad; break;
         default:break;

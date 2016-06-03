@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F106F6F6C26550DC4DE4C3E7"
+               BlueprintIdentifier = "7A086018C6824DEA4910239D"
                BuildableName = "libSAVideoPlayer.a"
                BlueprintName = "SAVideoPlayer"
                ReferencedContainer = "container:Pods.xcodeproj">
