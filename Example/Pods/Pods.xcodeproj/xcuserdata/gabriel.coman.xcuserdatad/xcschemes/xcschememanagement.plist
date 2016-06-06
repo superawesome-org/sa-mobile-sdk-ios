@@ -87,7 +87,7 @@
 		<key>SuperAwesome.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>isShown</key>
-			<false/>
+			<true/>
 		</dict>
 		<key>mopub-ios-sdk.xcscheme</key>
 		<dict>
