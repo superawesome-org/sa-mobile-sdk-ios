@@ -37,6 +37,7 @@
 @property (nonatomic, strong) SAWebPlayer *webplayer;
 @property (nonatomic, strong) SAParentalGate *gate;
 @property (nonatomic, strong) UIImageView *padlock;
+
 @end
 
 @implementation SABannerAd
@@ -65,6 +66,38 @@
         self.backgroundColor = BG_COLOR;
     }
     return self;
+}
+
+- (BOOL) shouldTriggerViewableImpression {
+    // base
+    CGRect winframe = [UIScreen mainScreen].bounds;
+    CGRect bframe = self.frame;
+    
+    // window
+    CGFloat x11 = winframe.origin.x;
+    CGFloat y11 = winframe.origin.y;
+    CGFloat x12 = winframe.origin.x + winframe.size.width;
+    CGFloat y12 = winframe.origin.y + winframe.size.height;
+    
+    // banner
+    CGFloat x21 = bframe.origin.x;
+    CGFloat y21 = bframe.origin.y;
+    CGFloat x22 = bframe.origin.x + winframe.size.width;
+    CGFloat y22 = bframe.origin.y + winframe.size.height;
+    
+    CGFloat x_overlap = MAX(0, MIN(x12, x22)) - MAX(x11, x21);
+    CGFloat y_overlap = MAX(0, MIN(y12, y22)) - MAX(y11, y21);
+    
+    // overlap area
+    CGFloat overlap = x_overlap * y_overlap;
+    
+    // banner area
+    CGFloat barea = bframe.size.width * bframe.size.height;
+    
+    // treshold
+    CGFloat treshold = barea / 2.0f;
+    
+    return overlap > treshold;
 }
 
 #pragma mark <SAViewProtocol> functions
@@ -153,7 +186,12 @@
 
 - (void) webPlayerDidLoad {
     // send viewable impression
-    [SAEvents sendEventToURL:_ad.creative.viewableImpressionUrl];
+    if ([self shouldTriggerViewableImpression]) {
+        NSLog(@"[AA :: Info] Sent viewable impression");
+        [SAEvents sendEventToURL:_ad.creative.viewableImpressionUrl];
+    } else {
+        NSLog(@"[AA :: Error] Did not send viewable impression");
+    }
     
     // moat tracking
     if ([[SAEvents class] respondsToSelector:@selector(sendDisplayMoatEvent:andAdDictionary:)]) {

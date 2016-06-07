@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -77,14 +78,6 @@
                                     <action selector="playVideo2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Pff-Gs-l99"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NQl-2B-YWd" customClass="SABannerAd">
-                                <rect key="frame" x="140" y="550" width="320" height="50"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="RpK-wb-dFQ"/>
-                                    <constraint firstAttribute="height" constant="50" id="VKC-pu-HXO"/>
-                                </constraints>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EiB-bO-8sf">
                                 <rect key="frame" x="20" y="300" width="560" height="30"/>
                                 <constraints>
@@ -96,6 +89,14 @@
                                     <action selector="playInterstitial4:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZhZ-aC-9go"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NQl-2B-YWd" customClass="SABannerAd">
+                                <rect key="frame" x="140" y="550" width="320" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="Apl-SF-4PL"/>
+                                    <constraint firstAttribute="height" constant="50" id="WBd-Aw-4PH"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -111,14 +112,14 @@
                             <constraint firstAttribute="trailing" secondItem="3mH-9c-17k" secondAttribute="trailing" constant="20" id="OYZ-sP-9cw"/>
                             <constraint firstAttribute="trailing" secondItem="j1d-qs-TPY" secondAttribute="trailing" constant="20" id="TIz-bJ-uPh"/>
                             <constraint firstAttribute="trailing" secondItem="n5q-jS-QqV" secondAttribute="trailing" constant="20" id="UZK-kG-MmG"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="NQl-2B-YWd" secondAttribute="bottom" id="Uij-Ig-011"/>
-                            <constraint firstItem="NQl-2B-YWd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Yh4-dI-EpZ"/>
                             <constraint firstItem="j1d-qs-TPY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="cmm-7W-Jbb"/>
                             <constraint firstAttribute="trailing" secondItem="EiB-bO-8sf" secondAttribute="trailing" constant="20" id="de8-hk-6OH"/>
                             <constraint firstAttribute="trailing" secondItem="tCC-fG-tpV" secondAttribute="trailing" constant="20" id="eh6-tK-Y6M"/>
                             <constraint firstItem="3mH-9c-17k" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="52" id="jjR-Wk-lUV"/>
                             <constraint firstItem="tCC-fG-tpV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="mRu-wm-EzI"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="NQl-2B-YWd" secondAttribute="bottom" id="mvT-Bm-26o"/>
                             <constraint firstItem="3Ip-nJ-7SI" firstAttribute="top" secondItem="j1d-qs-TPY" secondAttribute="bottom" constant="8" id="nPN-NP-cCU"/>
+                            <constraint firstItem="NQl-2B-YWd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="t4c-ji-0jO"/>
                             <constraint firstItem="3mH-9c-17k" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="wiI-HZ-K8T"/>
                             <constraint firstItem="tCC-fG-tpV" firstAttribute="top" secondItem="3Ip-nJ-7SI" secondAttribute="bottom" constant="8" id="xkd-p4-Yep"/>
                             <constraint firstAttribute="trailing" secondItem="xIh-8h-hcJ" secondAttribute="trailing" constant="20" id="ym3-f2-jxn"/>

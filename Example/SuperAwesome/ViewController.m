@@ -32,12 +32,12 @@
     SALoader *loader = [[SALoader alloc] init];
     loader.delegate = self;
     [loader loadAdForPlacementId:113];
-    [loader loadAdForPlacementId:114];
-    [loader loadAdForPlacementId:115];
-    [loader loadAdForPlacementId:116];
-    [loader loadAdForPlacementId:117];
-    [loader loadAdForPlacementId:118];
-    [loader loadAdForPlacementId:130];
+//    [loader loadAdForPlacementId:114];
+//    [loader loadAdForPlacementId:115];
+//    [loader loadAdForPlacementId:116];
+//    [loader loadAdForPlacementId:117];
+//    [loader loadAdForPlacementId:118];
+//    [loader loadAdForPlacementId:130];
 //    [loader loadAdForPlacementId:28000];
 //    [loader loadAdForPlacementId:31513];
 //    [loader loadAdForPlacementId:142];
@@ -68,7 +68,7 @@
 }
 
 - (void) didFailToLoadAdForPlacementId:(NSInteger)placementId {
-    NSLog(@"Failed to load %ld", (long)placementId);
+    NSLog(@"Failed to load %ld", (long)placementId);    
 }
 
 - (IBAction)playBanner:(id)sender {
