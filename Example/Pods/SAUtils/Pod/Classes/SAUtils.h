@@ -35,6 +35,7 @@ typedef void (^failure)();
 ////////////////////////////////////////////////////////////////////////////////
 
 + (CGRect) mapOldFrame:(CGRect)frame toNewFrame:(CGRect)oldframe;
++ (BOOL) isRect:(CGRect)target inRect:(CGRect)frame;
 + (NSInteger) randomNumberBetween:(NSInteger)min maxNumber:(NSInteger)max;
 + (NSString*) findSubstringFrom:(NSString*)source betweenStart:(NSString*)start andEnd:(NSString*)end;
 + (NSString*) generateUniqueKey;
