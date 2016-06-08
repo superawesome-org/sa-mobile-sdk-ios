@@ -183,20 +183,6 @@
     _viewabilityTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(viewableImpressionFunc) userInfo:nil repeats:YES];
     [_viewabilityTimer fire];
     
-    // moat
-    if ([[SAEvents class] respondsToSelector:@selector(sendVideoMoatEvent:andLayer:andView:andAdDictionary:)]) {
-        
-        NSDictionary *moatDict = @{
-                                   @"campaign":@(_ad.campaignId),
-                                   @"line_item":@(_ad.lineItemId),
-                                   @"creative":@(_ad.creative._id),
-                                   @"app":@(_ad.app),
-                                   @"placement":@(_ad.placementId)
-                                   };
-        
-        [SAEvents sendVideoMoatEvent:[_player getPlayer] andLayer:[_player getPlayerLayer] andView:self andAdDictionary:moatDict];
-    }
-    
     // if the banner has a separate impression URL, send that as well for 3rd party tracking
     // although that's usually handled in the VAST tag for videos
     if (_ad.creative.impressionUrl && [_ad.creative.impressionUrl rangeOfString:[[SuperAwesome getInstance] getBaseURL]].location == NSNotFound) {
@@ -232,6 +218,21 @@
 }
 
 - (void) didStartCreative {
+    
+    // moat
+    if ([[SAEvents class] respondsToSelector:@selector(sendVideoMoatEvent:andLayer:andView:andAdDictionary:)]) {
+        
+        NSDictionary *moatDict = @{
+                                   @"campaign":@(_ad.campaignId),
+                                   @"line_item":@(_ad.lineItemId),
+                                   @"creative":@(_ad.creative._id),
+                                   @"app":@(_ad.app),
+                                   @"placement":@(_ad.placementId)
+                                   };
+        
+        [SAEvents sendVideoMoatEvent:[_player getPlayer] andLayer:[_player getPlayerLayer] andView:self andAdDictionary:moatDict];
+    }
+    
     if (_videoDelegate && [_videoDelegate respondsToSelector:@selector(videoStarted:)]) {
         [_videoDelegate videoStarted:_ad.placementId];
     }
