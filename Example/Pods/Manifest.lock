@@ -24,7 +24,7 @@ PODS:
   - SAVideoPlayer (1.1.0):
     - SAUtils
   - SAWebPlayer (1.0.0)
-  - SuperAwesome (4.0.8):
+  - SuperAwesome (4.0.9):
     - SAAdLoader
     - SAEvents
     - SAJsonParser
@@ -32,8 +32,8 @@ PODS:
     - SAVASTParser
     - SAVideoPlayer
     - SAWebPlayer
-    - SuperAwesome/Core (= 4.0.8)
-  - SuperAwesome/Core (4.0.8):
+    - SuperAwesome/Core (= 4.0.9)
+  - SuperAwesome/Core (4.0.9):
     - SAAdLoader
     - SAEvents
     - SAJsonParser
@@ -41,7 +41,7 @@ PODS:
     - SAVASTParser
     - SAVideoPlayer
     - SAWebPlayer
-  - SuperAwesome/Moat (4.0.8):
+  - SuperAwesome/Moat (4.0.9):
     - SAAdLoader
     - SAEvents
     - SAEvents/Moat
@@ -51,7 +51,7 @@ PODS:
     - SAVideoPlayer
     - SAWebPlayer
     - SuperAwesome/Core
-  - SuperAwesome/MoPub (4.0.8):
+  - SuperAwesome/MoPub (4.0.9):
     - mopub-ios-sdk
     - SAAdLoader
     - SAEvents
@@ -61,7 +61,7 @@ PODS:
     - SAVideoPlayer
     - SAWebPlayer
     - SuperAwesome/Core
-  - SuperAwesome/Unity (4.0.8):
+  - SuperAwesome/Unity (4.0.9):
     - SAAdLoader
     - SAEvents
     - SAJsonParser
@@ -90,6 +90,6 @@ SPEC CHECKSUMS:
   SAVASTParser: 41f220c09bef312d810473c15c9fd5d5c321930a
   SAVideoPlayer: dba919a10db3119059c393b249d614e165d4a599
   SAWebPlayer: a592e62b276a904ded2bd298c1072b2d75cfd17c
-  SuperAwesome: 15a2df0e38276a31f602dd703a66ec57b312676a
+  SuperAwesome: 7661314e33ae4bed72e8f77415be918567c542a3
 
 COCOAPODS: 0.38.2
