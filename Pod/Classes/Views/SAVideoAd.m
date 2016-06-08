@@ -46,6 +46,10 @@
 @property (nonatomic, strong) SAVideoPlayer *player;
 @property (nonatomic, strong) SAVASTManager *manager;
 
+@property (nonatomic, strong) NSTimer *viewabilityTimer;
+@property (nonatomic, assign) NSInteger ticks;
+@property (nonatomic, assign) NSInteger viewabilityCount;
+
 @end
 
 @implementation SAVideoAd
@@ -55,6 +59,7 @@
 - (id) init {
     if (self = [super init]){
         _isParentalGateEnabled = false;
+        _viewabilityCount = _ticks = 0;
     }
     return self;
 }
@@ -62,6 +67,7 @@
 - (id) initWithCoder:(NSCoder *)aDecoder {
     if (self = [super initWithCoder:aDecoder]) {
         _isParentalGateEnabled = false;
+        _viewabilityCount = _ticks = 0;
     }
     return self;
 }
@@ -69,6 +75,7 @@
 - (id) initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]){
         _isParentalGateEnabled = false;
+        _viewabilityCount = _ticks = 0;
     }
     return self;
 }
@@ -173,11 +180,8 @@
 
 - (void) didStartAd {
     // send viewable impression
-    if ([SAUtils isRect:self.frame inRect:[UIScreen mainScreen].bounds] && [SAUtils isRect:self.frame inRect:self.superview.frame]) {
-        [SAEvents sendEventToURL:_ad.creative.viewableImpressionUrl];
-    } else {
-        NSLog(@"[AA :: Error] Did not send viewable impression");
-    }
+    _viewabilityTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(viewableImpressionFunc) userInfo:nil repeats:YES];
+    [_viewabilityTimer fire];
     
     // moat
     if ([[SAEvents class] respondsToSelector:@selector(sendVideoMoatEvent:andLayer:andView:andAdDictionary:)]) {
@@ -205,6 +209,25 @@
     
     if (_internalVideoAdProto && [_internalVideoAdProto respondsToSelector:@selector(adStarted:)]) {
         [_internalVideoAdProto adStarted:_ad.placementId];
+    }
+}
+
+- (void) viewableImpressionFunc {
+    
+    if (_ticks >= 5) {
+        [_viewabilityTimer invalidate];
+        _viewabilityTimer = nil;
+        
+        if (_viewabilityCount == 5) {
+            [SAEvents sendEventToURL:_ad.creative.viewableImpressionUrl];
+        } else {
+            NSLog(@"[AA :: Error] Did not send viewable impression");
+        }
+    } else {
+        _ticks++;
+        if ([SAUtils isRect:self.frame inRect:[UIScreen mainScreen].bounds] && [SAUtils isRect:self.frame inRect:self.superview.frame]) {
+            _viewabilityCount++;
+        }
     }
 }
 
