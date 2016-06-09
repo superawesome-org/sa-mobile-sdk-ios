@@ -205,7 +205,8 @@
 }
 
 + (NSString*) findBaseURLFromResourceURL:(NSString*)resourceURL {
-    if (!resourceURL) return resourceURL;
+    if (!resourceURL) return nil;
+    if (![self isValidURL:resourceURL]) return nil;
     NSString *workString = [resourceURL stringByReplacingOccurrencesOfString:@"\\" withString:@""];
     NSArray *components = [workString componentsSeparatedByString:@"/"];
     NSMutableArray *newComponents = [@[] mutableCopy];
@@ -213,12 +214,8 @@
         [newComponents addObject:components[i]];
     }
     NSMutableString *result = [[newComponents componentsJoinedByString:@"/"] mutableCopy];
-    
-    if ([self isValidURL:result]) {
-        return [result stringByAppendingString:@"/"];
-    } else {
-        return nil;
-    }
+    if ([self isValidURL:result]) return [result stringByAppendingString:@"/"];
+    return nil;
 }
 
 + (BOOL) isValidURL:(NSObject *)urlObject {
