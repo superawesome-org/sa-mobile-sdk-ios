@@ -58,6 +58,7 @@ typedef void (^failure)();
 + (NSString*) encodeURI:(NSString*)stringToEncode;
 + (NSString*) encodeJSONDictionaryFromNSDictionary:(NSDictionary*)dict;
 + (NSString*) decodeHTMLEntitiesFrom:(NSString*)string;
++ (NSString*) findBaseURLFromResourceURL:(NSString*)resourceURL;
 + (BOOL) isValidURL:(NSObject*) urlObject;
 
 ////////////////////////////////////////////////////////////////////////////////

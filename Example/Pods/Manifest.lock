@@ -2,7 +2,7 @@ PODS:
   - mopub-ios-sdk (4.7.0):
     - mopub-ios-sdk/MoPubSDK (= 4.7.0)
   - mopub-ios-sdk/MoPubSDK (4.7.0)
-  - SAAdLoader (0.1.2):
+  - SAAdLoader (0.1.5):
     - SAJsonParser
     - SAUtils
     - SAVASTParser
@@ -15,7 +15,7 @@ PODS:
     - SAEvents/Core
     - SAUtils
   - SAJsonParser (1.2.0)
-  - SAUtils (1.1.7)
+  - SAUtils (1.1.9)
   - SAVASTParser (1.2.9):
     - SAEvents
     - SAJsonParser
@@ -83,10 +83,10 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   mopub-ios-sdk: e46b277cdb77b1745567b419742f77fed6865262
-  SAAdLoader: 2129e74f0647b63f2cae2d173c942edc0f8433b5
+  SAAdLoader: e6b6dcfae7a7facac44cbb7d8436eddbb5adaab5
   SAEvents: a28d8337856900c2a5ef8389cf8f67d4144a175f
   SAJsonParser: b2ca75e9916c9f416adb1c75707ba776de760140
-  SAUtils: da75d7233b6b4c17fa7051c61add44ce38ac83a9
+  SAUtils: 8737b8ea656fecb2c955c6ed264eb114bf523b14
   SAVASTParser: 41f220c09bef312d810473c15c9fd5d5c321930a
   SAVideoPlayer: dba919a10db3119059c393b249d614e165d4a599
   SAWebPlayer: a592e62b276a904ded2bd298c1072b2d75cfd17c

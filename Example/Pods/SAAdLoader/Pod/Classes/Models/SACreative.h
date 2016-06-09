@@ -44,6 +44,9 @@ typedef enum SACreativeFormat {
 // the impression URL; not really useful because it's used server-side
 @property (nonatomic, strong) NSString *impressionUrl;
 
+// the custom payload
+@property (nonatomic, strong) NSString *customPayload;
+
 // the click URL - taken from the ad server; it's the direct target to
 // which the ad points, if it exists
 @property (nonatomic, strong) NSString *clickUrl;

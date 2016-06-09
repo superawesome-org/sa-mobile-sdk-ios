@@ -67,6 +67,9 @@
 // as of now, it's kind of useless
 @property (nonatomic, strong) NSString *placementFormat;
 
+// the CDN url
+@property (nonatomic, strong) NSString *cdnUrl;
+
 // the ad's data (either HTML, or video, etc)
 @property (nonatomic, strong) SAData *data;
 

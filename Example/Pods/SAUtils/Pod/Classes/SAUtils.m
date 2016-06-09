@@ -204,6 +204,23 @@
     return [string stringByDecodingHTMLEntities];
 }
 
++ (NSString*) findBaseURLFromResourceURL:(NSString*)resourceURL {
+    if (!resourceURL) return resourceURL;
+    NSString *workString = [resourceURL stringByReplacingOccurrencesOfString:@"\\" withString:@""];
+    NSArray *components = [workString componentsSeparatedByString:@"/"];
+    NSMutableArray *newComponents = [@[] mutableCopy];
+    for (int i = 0; i < components.count - 1; i++){
+        [newComponents addObject:components[i]];
+    }
+    NSMutableString *result = [[newComponents componentsJoinedByString:@"/"] mutableCopy];
+    
+    if ([self isValidURL:result]) {
+        return [result stringByAppendingString:@"/"];
+    } else {
+        return nil;
+    }
+}
+
 + (BOOL) isValidURL:(NSObject *)urlObject {
     if (![urlObject isKindOfClass:[NSString class]] || urlObject == nil) return false;
     NSURL *candidateURL = [NSURL URLWithString:(NSString*)urlObject];

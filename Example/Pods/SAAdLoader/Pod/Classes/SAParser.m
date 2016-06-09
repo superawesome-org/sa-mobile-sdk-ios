@@ -85,9 +85,28 @@
                                         [[SALoaderSession getInstance] getVersion],
                                         [SAUtils formGetQueryFromDict:pgjson]];
     
+    // get the cdn URL
+    switch (ad.creative.creativeFormat) {
+        case image: {
+            ad.creative.details.cdnUrl = [SAUtils findBaseURLFromResourceURL:ad.creative.details.image];
+            break;
+        }
+        case video: {
+            ad.creative.details.cdnUrl = [SAUtils findBaseURLFromResourceURL:ad.creative.details.video];
+            break;
+        }
+        case rich: {
+            ad.creative.details.cdnUrl = [SAUtils findBaseURLFromResourceURL:ad.creative.details.url];
+            break;
+        }
+        case invalid:
+        case tag: {break;}
+    }
+    
     // valdate ad
-     if ([ad isValid]) return ad;
+    if ([ad isValid]) return ad;
     return nil;
+
 }
 
 @end

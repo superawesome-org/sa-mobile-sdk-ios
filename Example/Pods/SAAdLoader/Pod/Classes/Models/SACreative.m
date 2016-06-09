@@ -29,6 +29,7 @@
         _cpm = [[jsonDictionary safeObjectForKey:@"cpm"] integerValue];
         _format = [jsonDictionary safeObjectForKey:@"format"];
         _impressionUrl = [jsonDictionary safeObjectForKey:@"impression_url"];
+        _customPayload = [jsonDictionary safeObjectForKey:@"customPayload"];
         _clickUrl = [jsonDictionary safeObjectForKey:@"click_url"];
         _live = [[jsonDictionary safeObjectForKey:@"live"] boolValue];
         _approved = [[jsonDictionary safeObjectForKey:@"approved"] boolValue];
@@ -48,6 +49,7 @@
         @"cpm": @(_cpm),
         @"format": nullSafe(_format),
         @"impression_url": nullSafe(_impressionUrl),
+        @"customPayload": nullSafe(_customPayload),
         @"click_url": nullSafe(_clickUrl),
         @"live": @(_live),
         @"approved": @(_approved),
