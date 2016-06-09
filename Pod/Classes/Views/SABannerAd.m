@@ -201,9 +201,16 @@
         }
     } else {
         _ticks++;
-        if ([SAUtils isRect:self.frame inRect:[UIScreen mainScreen].bounds] && [SAUtils isRect:self.frame inRect:self.superview.frame]) {
+        
+        CGRect childR = self.frame;
+        CGRect superR = CGRectMake(0, 0, self.superview.frame.size.width, self.superview.frame.size.height);
+        CGRect screenR = [UIScreen mainScreen].bounds;
+        
+        if ([SAUtils isRect:childR inRect:screenR] && [SAUtils isRect:childR inRect:superR]) {
             _viewabilityCount++;
         }
+        
+        NSLog(@"[AA :: Info] Tick %ld/5 - Viewability Count %ld/5", _ticks, _viewabilityCount);
     }
 }
 
