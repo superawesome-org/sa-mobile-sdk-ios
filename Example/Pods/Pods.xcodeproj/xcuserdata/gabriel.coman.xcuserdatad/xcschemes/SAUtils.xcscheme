@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7D691033AE67926A0C2088CD"
+               BlueprintIdentifier = "AF7A48C60C5510A7EB97102F"
                BuildableName = "libSAUtils.a"
                BlueprintName = "SAUtils"
                ReferencedContainer = "container:Pods.xcodeproj">

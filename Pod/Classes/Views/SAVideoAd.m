@@ -59,7 +59,6 @@
 - (id) init {
     if (self = [super init]){
         _isParentalGateEnabled = false;
-        _viewabilityCount = _ticks = 0;
     }
     return self;
 }
@@ -67,7 +66,6 @@
 - (id) initWithCoder:(NSCoder *)aDecoder {
     if (self = [super initWithCoder:aDecoder]) {
         _isParentalGateEnabled = false;
-        _viewabilityCount = _ticks = 0;
     }
     return self;
 }
@@ -75,7 +73,6 @@
 - (id) initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]){
         _isParentalGateEnabled = false;
-        _viewabilityCount = _ticks = 0;
     }
     return self;
 }
@@ -91,6 +88,10 @@
 }
 
 - (void) play {
+    
+    // setup
+    _viewabilityCount = _ticks = 0;
+    
     // check for incorrect placement
     if (_ad.creative.creativeFormat != video || _ad == nil) {
         if (_adDelegate != NULL && [_adDelegate respondsToSelector:@selector(adHasIncorrectPlacement:)]){
@@ -128,6 +129,13 @@
     [_player destroy];
     _player = NULL;
     _ad = NULL;
+    [_padlock removeFromSuperview];
+    _padlock = nil;
+    _gate = nil;
+    if (_viewabilityTimer != nil) {
+        [_viewabilityTimer invalidate];
+        _viewabilityTimer = nil;
+    }
 }
 
 - (void) pause {

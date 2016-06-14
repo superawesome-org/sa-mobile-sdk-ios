@@ -19,7 +19,7 @@
 // This model class contains all information that is received from the server
 // when an Ad is requested, as well as some aux fields that will be generated
 // by the SDK
-@interface SAAd : NSObject <SASerializationProtocol, SADeserializationProtocol>
+@interface SAAd : SABaseObject <SASerializationProtocol, SADeserializationProtocol>
 
 // the SA server can send an error; if that's the case, this field will not be nill
 @property (nonatomic, assign) NSInteger error;

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FE93DCDDA1D06E47B9B10370"
+               BlueprintIdentifier = "6C9A54E63DECF5AD73519DB6"
                BuildableName = "libmopub-ios-sdk.a"
                BlueprintName = "mopub-ios-sdk"
                ReferencedContainer = "container:Pods.xcodeproj">

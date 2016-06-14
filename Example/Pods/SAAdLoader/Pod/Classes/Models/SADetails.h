@@ -22,7 +22,7 @@
 // and some are optional
 //
 // This dependency is regulated by SAValidator.h
-@interface SADetails : NSObject <SASerializationProtocol, SADeserializationProtocol>
+@interface SADetails : SABaseObject <SASerializationProtocol, SADeserializationProtocol>
 
 // the width & height of the creative; can be applied to images, banners,
 // rich-media, etc

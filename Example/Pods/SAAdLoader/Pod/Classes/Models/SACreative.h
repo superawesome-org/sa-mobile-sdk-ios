@@ -26,7 +26,7 @@ typedef enum SACreativeFormat {
 // @brief:
 // The creative contains essential ad information like format, click url
 // and such
-@interface SACreative : NSObject <SADeserializationProtocol, SASerializationProtocol>
+@interface SACreative : SABaseObject <SADeserializationProtocol, SASerializationProtocol>
 
 // the creative ID is a unique ID associated by the server with this Ad
 @property (nonatomic, assign) NSInteger _id;

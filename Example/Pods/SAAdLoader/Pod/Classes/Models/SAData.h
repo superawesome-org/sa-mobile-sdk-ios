@@ -13,7 +13,7 @@
 // forward declarations
 @class SAVASTAd;
 
-@interface SAData : NSObject <SADeserializationProtocol, SASerializationProtocol>
+@interface SAData : SABaseObject <SADeserializationProtocol, SASerializationProtocol>
 
 //
 // the HTML string

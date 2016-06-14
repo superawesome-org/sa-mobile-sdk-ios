@@ -52,7 +52,6 @@
     if (self = [super init]){
         _isParentalGateEnabled = false;
         self.backgroundColor = BG_COLOR;
-        _viewabilityCount = _ticks = 0;
     }
     return self;
 }
@@ -61,7 +60,6 @@
     if (self = [super initWithCoder:aDecoder]) {
         _isParentalGateEnabled = false;
         self.backgroundColor = BG_COLOR;
-        _viewabilityCount = _ticks = 0;
     }
     return self;
 }
@@ -70,7 +68,6 @@
     if (self = [super initWithFrame:frame]){
         _isParentalGateEnabled = false;
         self.backgroundColor = BG_COLOR;
-        _viewabilityCount = _ticks = 0;
     }
     return self;
 }
@@ -86,6 +83,10 @@
 }
 
 - (void) play {
+    
+    // reset
+    _viewabilityCount = _ticks = 0;
+    
     // check for incorrect placement
     if (_ad.creative.creativeFormat == video || _ad == nil) {
         if (_adDelegate != NULL && [_adDelegate respondsToSelector:@selector(adHasIncorrectPlacement:)]){
@@ -124,7 +125,15 @@
 }
 
 - (void) close {
-    // do nothing
+    [_webplayer removeFromSuperview];
+    _webplayer = nil;
+    [_padlock removeFromSuperview];
+    _padlock = nil;
+    _gate = nil;
+    if (_viewabilityCount != nil) {
+        [_viewabilityTimer invalidate];
+        _viewabilityCount = nil;
+    }
 }
 
 - (void) advanceToClick {

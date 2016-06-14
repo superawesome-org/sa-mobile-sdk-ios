@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "SuperAwesome.h"
 
-@interface ViewController () <SALoaderProtocol>
+@interface ViewController () <SALoaderProtocol, SAAdProtocol>
 @property (weak, nonatomic) IBOutlet SABannerAd *bannerAd;
 // @property (nonatomic, strong) SALoader *loader;
 @property (nonatomic, retain) SAAd *bannerData;
@@ -26,19 +26,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [[SuperAwesome getInstance] setConfigurationStaging];
-    [[SuperAwesome getInstance] disableTestMode];
+    [[SuperAwesome getInstance] setConfigurationProduction];
+    [[SuperAwesome getInstance] enableTestMode];
 
     SALoader *loader = [[SALoader alloc] init];
     loader.delegate = self;
+    [loader loadAdForPlacementId:30471];
 //    [loader loadAdForPlacementId:113];
-    [loader loadAdForPlacementId:114];
-    [loader loadAdForPlacementId:115];
-    [loader loadAdForPlacementId:116];
-    [loader loadAdForPlacementId:117];
-    [loader loadAdForPlacementId:118];
-    [loader loadAdForPlacementId:200];
-//    [loader loadAdForPlacementId:201];
+//    [loader loadAdForPlacementId:114];
+//    [loader loadAdForPlacementId:115];
+//    [loader loadAdForPlacementId:116];
+//    [loader loadAdForPlacementId:117];
+//    [loader loadAdForPlacementId:118];
+//    [loader loadAdForPlacementId:200];
+//    [loader loadAdForPlacementId:204];
+//    [loader loadAdForPlacementId:28000];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -58,6 +60,9 @@
         case 116: _video1Data = ad; break;
         case 117: _video2Data = ad; break;
         case 200: _bannerData = ad; break;
+        case 30471: _bannerData = ad; break;
+//        case 204: _interstitial1Data = ad; break;
+//        case 28000: _video2Data = ad; break;
 //        case 201: _video1Data = ad; break;
 //        case 130: _interstitial4Data = ad; break;
 //        case 28000: _video1Data = ad; break;
@@ -92,7 +97,10 @@
     if (_interstitial2Data != NULL) {
         SAInterstitialAd *fvad = [[SAInterstitialAd alloc] init];
         [fvad setAd:_interstitial2Data];
-        [fvad setIsParentalGateEnabled:true];
+        [fvad setIsParentalGateEnabled:false];
+        
+        [fvad setAdDelegate:self];
+        
         [self presentViewController:fvad animated:YES completion:^{
             [fvad play];
         }];
