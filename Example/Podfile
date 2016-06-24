@@ -1,8 +1,9 @@
 # Uncomment this line to define a global platform for your project
 platform :ios, '6.0'
+install! 'cocoapods', :deterministic_uuids => false
 
 target 'SuperAwesome' do
-pod 'SuperAwesome', :path => '../'
+pod 'SuperAwesome/Core', :path => '../'
 pod 'SuperAwesome/Moat', :path => '../'
 pod 'SuperAwesome/MoPub', :path => '../'
 pod 'SuperAwesome/Unity', :path => '../'

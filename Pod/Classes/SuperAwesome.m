@@ -45,6 +45,7 @@
 
 - (instancetype) init {
     if (self = [super init]) {
+        NSLog(@"What's up?");
         // by default configuration is set to production
         // and test mode is disabled
         [self setConfigurationProduction];

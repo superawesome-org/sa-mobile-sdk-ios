@@ -9,27 +9,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>SAAdLoader-SAAdLoader.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>SAAdLoader.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>SAEvents-SuperAwesome.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>SAEvents.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>SAJsonParser-SAJsonParser.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -49,17 +34,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>SAVASTParser-SAVASTParser.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>SAVASTParser.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>SAVideoPlayer-SAVideoPlayer.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -79,11 +54,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>SuperAwesome-SuperAwesome.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>SuperAwesome.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -97,92 +67,62 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>061ABB0AAFB41286AAD9A1A71B818128</key>
+		<key>11E31A7224689B0C326F3A96</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>11E64F73E0D4BE17F29036AF4CC5D5F3</key>
+		<key>1D3B436DA52E81132C2B979B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1D114A435F29A750830668F20A35BCCA</key>
+		<key>21032478E4B6CE321A5DDAFD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4B50260DE6EC14713CF9A0656FF668FD</key>
+		<key>42F881E8B50F2C02D8AB53FF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5953AE5F5459618FC519EC177A684C74</key>
+		<key>53993BFF1157F944772E48F5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>59F865988154EB16CF1E68C9BA57F189</key>
+		<key>53DEA07EC2B3502F3F8DD068</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5AE1F9FB2E48D78A50E2C92BE6C5E3B3</key>
+		<key>5E3274B8ABB0AD0005F4C982</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>602BABA2AF4F572A93A24AC4386F61EF</key>
+		<key>BA660232D6B85FE1E1C18BE5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>72A52DCE91B0C66D46280F5494A569AC</key>
+		<key>BC07F41874D4878B935BD36B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>81C6C4427F1B48C4DF4B23DCE770FAE9</key>
+		<key>C5341639171A50686830FD90</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9BAA0598F96E5C133E42429E35D8352A</key>
+		<key>D2BCFF35EA28707ACF5DF0A6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A20809FF3C9E0446E29B846B6BC1DAF6</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C4634F435AE382A1064827BFEF3A7CF3</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C7CA6CC041D9BCE2425B1FB562C13DC2</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>CB5EAA8A8E0E01551A53F97F6FC95C61</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D52A3403C45197A9EEE64B0ED1BB7EF9</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E1BEF9950753F033889A14C5CE581255</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E5EDFC4D22F1773ABA2DA11A01E5C3A2</key>
+		<key>D47AB57E07EF71D6F7FEEAA2</key>
 		<dict>
 			<key>primary</key>
 			<true/>

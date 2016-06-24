@@ -39,8 +39,8 @@
     ad.creative.creativeFormat = invalid;
     if ([ad.creative.format isEqualToString:@"image_with_link"]) ad.creative.creativeFormat = image;
     else if ([ad.creative.format isEqualToString:@"video"]) ad.creative.creativeFormat = video;
-    else if ([ad.creative.format containsString:@"rich_media"]) ad.creative.creativeFormat = rich;
-    else if ([ad.creative.format containsString:@"tag"]) ad.creative.creativeFormat = tag;
+    if ([ad.creative.format rangeOfString:@"rich_media"].location != NSNotFound) { ad.creative.creativeFormat = rich; }
+    if ([ad.creative.format rangeOfString:@"tag"].location != NSNotFound) { ad.creative.creativeFormat = tag; }
     
     // create the tracking URL
     NSDictionary *trackjson = @{
@@ -82,7 +82,7 @@
         } jsonCompactStringRepresentation]]
     };
     ad.creative.parentalGateClickUrl = [NSString stringWithFormat:@"%@/event?%@",
-                                        [[SALoaderSession getInstance] getVersion],
+                                        [[SALoaderSession getInstance] getBaseUrl],
                                         [SAUtils formGetQueryFromDict:pgjson]];
     
     // get the cdn URL

@@ -31,6 +31,7 @@
 #import "SAVASTManager.h"
 
 #define SMALL_PAD_FRAME CGRectMake(0, 0, 67, 25)
+#define VIDEO_VIEWABILITY_COUNT 2
 
 @interface SAVideoAd () <SAVASTManagerProtocol>
 
@@ -208,11 +209,11 @@
 
 - (void) viewableImpressionFunc {
     
-    if (_ticks >= 5) {
+    if (_ticks >= VIDEO_VIEWABILITY_COUNT) {
         [_viewabilityTimer invalidate];
         _viewabilityTimer = nil;
         
-        if (_viewabilityCount == 5) {
+        if (_viewabilityCount == VIDEO_VIEWABILITY_COUNT) {
             [SAEvents sendEventToURL:_ad.creative.viewableImpressionUrl];
         } else {
             NSLog(@"[AA :: Error] Did not send viewable impression");
@@ -228,7 +229,7 @@
             _viewabilityCount++;
         }
         
-        NSLog(@"[AA :: Info] Tick %ld/5 - Viewability Count %ld/5", _ticks, _viewabilityCount);
+        NSLog(@"[AA :: Info] Tick %ld/%ld - Viewability Count %ld/%ld", _ticks, VIDEO_VIEWABILITY_COUNT, _viewabilityCount, VIDEO_VIEWABILITY_COUNT);
     }
 }
 

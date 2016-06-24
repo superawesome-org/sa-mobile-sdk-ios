@@ -27,6 +27,7 @@
 // defines
 #define BG_COLOR [UIColor colorWithRed:0.75 green:0.75 blue:0.75 alpha:1]
 #define BIG_PAD_FRAME CGRectMake(0, 0, 67, 25)
+#define DISPLAY_VIEWABILITY_COUNT 1
 
 @interface SABannerAd () <SAWebPlayerProtocol>
 
@@ -130,9 +131,9 @@
     [_padlock removeFromSuperview];
     _padlock = nil;
     _gate = nil;
-    if (_viewabilityCount != nil) {
+    if (_viewabilityTimer != nil) {
         [_viewabilityTimer invalidate];
-        _viewabilityCount = nil;
+        _viewabilityTimer = nil;
     }
 }
 
@@ -183,7 +184,6 @@
                                    @"app":@(_ad.app),
                                    @"placement":@(_ad.placementId)
                                    };
-        
         [SAEvents sendDisplayMoatEvent:self andAdDictionary:moatDict];
     }
     
@@ -199,11 +199,11 @@
 
 - (void) viewableImpressionFunc {
     
-    if (_ticks >= 5) {
+    if (_ticks >= DISPLAY_VIEWABILITY_COUNT) {
         [_viewabilityTimer invalidate];
         _viewabilityTimer = nil;
         
-        if (_viewabilityCount == 5) {
+        if (_viewabilityCount == DISPLAY_VIEWABILITY_COUNT) {
             [SAEvents sendEventToURL:_ad.creative.viewableImpressionUrl];
         } else {
             NSLog(@"[AA :: Error] Did not send viewable impression");
@@ -219,7 +219,7 @@
             _viewabilityCount++;
         }
         
-        NSLog(@"[AA :: Info] Tick %ld/5 - Viewability Count %ld/5", _ticks, _viewabilityCount);
+        NSLog(@"[AA :: Info] Tick %ld/%ld - Viewability Count %ld/%ld", _ticks, DISPLAY_VIEWABILITY_COUNT, _viewabilityCount, DISPLAY_VIEWABILITY_COUNT);
     }
 }
 
