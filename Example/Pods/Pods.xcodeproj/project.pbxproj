@@ -322,7 +322,6 @@
 		9D36C7DE131745BDCD56F856 /* SAURLClicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC6C42BE5D3E86A55E0FAAB /* SAURLClicker.m */; };
 		9D805A04D6A68B54DFD780D2 /* MPMRAIDInterstitialCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = FFE2F29EEDF506B12F5EA356 /* MPMRAIDInterstitialCustomEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9DBD1640FD8487BB524B44F9 /* SAVASTCreative.h in Headers */ = {isa = PBXBuildFile; fileRef = 2399369BA561780DD61AE681 /* SAVASTCreative.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9EC8D6CFEC70A1EE7BF6D5FA /* SAUnity.mm in Sources */ = {isa = PBXBuildFile; fileRef = 42A7863A7B45E1559B672828 /* SAUnity.mm */; };
 		9F1925E8277FFD1D88B68FFE /* NSDictionary+SafeHandling.h in Headers */ = {isa = PBXBuildFile; fileRef = 137EC5502812D2C88BF78962 /* NSDictionary+SafeHandling.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9F1D63296052646F98257C66 /* SAVASTMediaFile.h in Headers */ = {isa = PBXBuildFile; fileRef = C7F887026D10A71BDA9FB92B /* SAVASTMediaFile.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9F8CF9240EE7E05374E6E551 /* MPVASTResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 409B699C16B6E7D468438763 /* MPVASTResponse.m */; };
@@ -828,7 +827,6 @@
 		3FE66BCB5A71E944E20A560E /* SAVASTParser.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SAVASTParser.m; path = Pod/Classes/SAVASTParser.m; sourceTree = "<group>"; };
 		409B699C16B6E7D468438763 /* MPVASTResponse.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPVASTResponse.m; path = MoPubSDK/Internal/VAST/MPVASTResponse.m; sourceTree = "<group>"; };
 		4205514E58524640CF1DAA2D /* MRAID.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = MRAID.bundle; path = MoPubSDK/Resources/MRAID.bundle; sourceTree = "<group>"; };
-		42A7863A7B45E1559B672828 /* SAUnity.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; path = SAUnity.mm; sourceTree = "<group>"; };
 		42FE0DB8719BC31EF5236C9F /* MPAdAlertManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPAdAlertManager.m; path = MoPubSDK/Internal/Common/AdAlerts/MPAdAlertManager.m; sourceTree = "<group>"; };
 		4356A1AAD148389AA4778E32 /* MPDAAIcon@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "MPDAAIcon@2x.png"; path = "MoPubSDK/Resources/MPDAAIcon@2x.png"; sourceTree = "<group>"; };
 		43861E7F97C2A3B2F0CC3CC3 /* MPRewardedVideoReward.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPRewardedVideoReward.h; path = MoPubSDK/RewardedVideo/MPRewardedVideoReward.h; sourceTree = "<group>"; };
@@ -1717,7 +1715,6 @@
 		CD6D6B2E01B1E5B72AFD2398 /* Unity */ = {
 			isa = PBXGroup;
 			children = (
-				42A7863A7B45E1559B672828 /* SAUnity.mm */,
 				D18925F2F8F496BBBCEE2011 /* SAUnityExtension.h */,
 				9C3E2D31EDF1FA4A5C8BD6F0 /* SAUnityExtension.m */,
 				6DFD7929B2834A1FBDA56246 /* SAUnityExtensionContext.h */,
@@ -3081,7 +3078,6 @@
 				7DFC12D9CECB1B45249F5FD8 /* SAFullscreenVideoAd.m in Sources */,
 				2385EFA1AB9A287F873E6AA9 /* SAInterstitialAd.m in Sources */,
 				ED9541FA810916B90AA5924E /* SAParentalGate.m in Sources */,
-				9EC8D6CFEC70A1EE7BF6D5FA /* SAUnity.mm in Sources */,
 				268D191AE296F02AE426BEE2 /* SAUnityExtension.m in Sources */,
 				E8A86FE23C7FDCBE61ED93E2 /* SAUnityExtensionContext.m in Sources */,
 				7C08BED40A85A63E0F3C85A8 /* SAUnityLoadAd.m in Sources */,
