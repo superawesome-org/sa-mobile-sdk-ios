@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '8F11ABABA9D1E2A2E40D5404'
-               BlueprintName = 'SAUtils'
+               BlueprintIdentifier = 'CB093C35A834384294009971'
+               BlueprintName = 'SAModelSpace'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libSAUtils.a'>
+               BuildableName = 'libSAModelSpace.a'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

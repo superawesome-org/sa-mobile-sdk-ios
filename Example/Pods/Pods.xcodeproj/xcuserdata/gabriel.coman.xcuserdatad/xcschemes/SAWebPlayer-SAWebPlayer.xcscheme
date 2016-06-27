@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '5E3274B8ABB0AD0005F4C982'
+               BlueprintIdentifier = '2EE8346993824F96EC25F065'
                BlueprintName = 'SAWebPlayer-SAWebPlayer'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'SAWebPlayer.bundle'>

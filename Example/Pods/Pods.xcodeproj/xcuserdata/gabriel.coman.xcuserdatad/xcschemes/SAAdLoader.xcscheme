@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'D2BCFF35EA28707ACF5DF0A6'
+               BlueprintIdentifier = 'FAB93AAFF69413B894995B48'
                BlueprintName = 'SAAdLoader'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libSAAdLoader.a'>
