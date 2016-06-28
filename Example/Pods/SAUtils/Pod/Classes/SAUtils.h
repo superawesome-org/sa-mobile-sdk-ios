@@ -19,6 +19,16 @@ typedef enum SASystemSize {
     size_tablet = 1
 }SASystemSize;
 
+typedef enum SAConnectionType {
+    unknown = 0,
+    ethernet = 1,
+    wifi = 2,
+    cellular_unknown = 3,
+    cellular_2g = 4,
+    cellular_3g = 5,
+    cellular_4g = 6
+}SAConnectionType;
+
 // callback for iOS's own [NSURLConnection sendAsynchronousRequest:]
 typedef void (^netresponse)(NSData * data, NSURLResponse * response, NSError * error);
 
@@ -78,6 +88,9 @@ UIColor *UIColorFromRGB (NSInteger red, NSInteger green, NSInteger blue);
 ////////////////////////////////////////////////////////////////////////////////
 // Aux network functions
 ////////////////////////////////////////////////////////////////////////////////
+
+// network connectivity
++ (SAConnectionType) getNetworkConnectivity;
 
 + (void) sendGETtoEndpoint:(NSString*)endpoint withQueryDict:(NSDictionary*)GETDict andSuccess:(success)success orFailure:(failure)failure;
 

@@ -47,6 +47,7 @@
         @"placement":@(ad.placementId),
         @"line_item":@(ad.lineItemId),
         @"creative":@(ad.creative._id),
+        @"ct":@([SAUtils getNetworkConnectivity]),
         @"sdkVersion":[[SALoaderSession getInstance] getVersion],
         @"rnd":@([SAUtils getCachebuster])
     };
@@ -59,6 +60,7 @@
     NSDictionary *imprjson = @{
         @"sdkVersion":[[SALoaderSession getInstance] getVersion],
         @"rnd":@([SAUtils getCachebuster]),
+        @"ct":@([SAUtils getNetworkConnectivity]),
         @"data":[SAUtils encodeURI:[@{
             @"placement":@(ad.placementId),
             @"line_item":@(ad.lineItemId),
@@ -74,6 +76,7 @@
     NSDictionary *pgjson = @{
         @"sdkVersion":[[SALoaderSession getInstance] getVersion],
         @"rnd":@([SAUtils getCachebuster]),
+        @"ct":@([SAUtils getNetworkConnectivity]),
         @"data":[SAUtils encodeURI:[@{
             @"placement":@(ad.placementId),
             @"line_item":@(ad.lineItemId),

@@ -41,6 +41,7 @@
         @"test": [[SALoaderSession getInstance] getTest],
         @"sdkVersion":[[SALoaderSession getInstance] getVersion],
         @"rnd":@([SAUtils getCachebuster]),
+        @"ct":@([SAUtils getNetworkConnectivity]),
         @"bundle":[[NSBundle mainBundle] bundleIdentifier],
         @"name":[SAUtils encodeURI:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"]],
         @"dauid":[[SALoaderSession getInstance] getDauId]

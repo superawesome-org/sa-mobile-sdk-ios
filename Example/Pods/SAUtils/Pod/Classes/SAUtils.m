@@ -9,6 +9,9 @@
 #import "SAUtils.h"
 #import "SAExtensions.h"
 #import "NSString+HTML.h"
+#import <SystemConfiguration/SystemConfiguration.h>
+#import <sys/socket.h>
+#import <netinet/in.h>
 
 // constants with user agents
 #define iOS_Mobile_UserAgent @"Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_4 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10B350 Safari/8536.25";
@@ -526,6 +529,37 @@ UIColor *UIColorFromRGB(NSInteger red, NSInteger green, NSInteger blue) {
 ////////////////////////////////////////////////////////////////////////////////
 // Aux network functions
 ////////////////////////////////////////////////////////////////////////////////
+
++ (SAConnectionType) getNetworkConnectivity {
+    
+    struct sockaddr_in zeroAddress;
+    bzero(&zeroAddress, sizeof(zeroAddress));
+    zeroAddress.sin_len = sizeof(zeroAddress);
+    zeroAddress.sin_family = AF_INET;
+    
+    SCNetworkReachabilityRef reachability = SCNetworkReachabilityCreateWithAddress(kCFAllocatorDefault, (const struct sockaddr*)&zeroAddress);
+    
+    if (reachability != NULL) {
+        SCNetworkReachabilityFlags flags;
+        if (SCNetworkReachabilityGetFlags(reachability, &flags)) {
+            
+            // release
+            CFRelease(reachability);
+            
+            // handle
+            if ((flags & kSCNetworkReachabilityFlagsReachable) == 0) return unknown;
+            if ((flags & kSCNetworkReachabilityFlagsConnectionRequired) == 0) return wifi;
+            if ((((flags & kSCNetworkReachabilityFlagsConnectionOnDemand ) != 0) || (flags & kSCNetworkReachabilityFlagsConnectionOnTraffic) != 0)) {
+                if ((flags & kSCNetworkReachabilityFlagsInterventionRequired) == 0) return wifi;
+            }
+            
+            if ((flags & kSCNetworkReachabilityFlagsIsWWAN) == kSCNetworkReachabilityFlagsIsWWAN) return cellular_unknown;
+        }
+    }
+    
+    // unknown
+    return unknown;
+}
 
 + (void) sendGETtoEndpoint:(NSString*)endpoint
              withQueryDict:(NSDictionary*)GETDict

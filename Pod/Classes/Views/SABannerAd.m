@@ -184,7 +184,7 @@
                                    @"app":@(_ad.app),
                                    @"placement":@(_ad.placementId)
                                    };
-        [SAEvents sendDisplayMoatEvent:self andAdDictionary:moatDict];
+        [SAEvents sendDisplayMoatEvent:_webplayer andAdDictionary:moatDict];
     }
     
     // if the banner has a separate impression URL, send that as well for 3rd party tracking
@@ -219,7 +219,7 @@
             _viewabilityCount++;
         }
         
-        NSLog(@"[AA :: Info] Tick %ld/%ld - Viewability Count %ld/%ld", _ticks, DISPLAY_VIEWABILITY_COUNT, _viewabilityCount, DISPLAY_VIEWABILITY_COUNT);
+        NSLog(@"[AA :: Info] Tick %ld/%d - Viewability Count %ld/%d", _ticks, DISPLAY_VIEWABILITY_COUNT, _viewabilityCount, DISPLAY_VIEWABILITY_COUNT);
     }
 }
 

@@ -15,7 +15,7 @@ static bool isSATrackingEnabled = true;
 
 + (void) sendEventToURL:(NSString *)url {
     if (!isSATrackingEnabled) return;
-    [SAUtils sendGETtoEndpoint:url withQueryDict:NULL andSuccess:NULL orFailure:NULL];
+    [SAUtils sendGETtoEndpoint:url withQueryDict:@{@"ct" : @([SAUtils getNetworkConnectivity])} andSuccess:NULL orFailure:NULL];
 }
 
 + (void) sendCustomEvent:(NSString*) baseUrl
@@ -35,6 +35,7 @@ static bool isSATrackingEnabled = true;
     };
     NSDictionary *cjson = @{
         @"rnd": @([SAUtils getCachebuster]),
+        @"ct": @([SAUtils getNetworkConnectivity]),
         @"data": [SAUtils encodeJSONDictionaryFromNSDictionary:data]
     };
     
@@ -42,7 +43,7 @@ static bool isSATrackingEnabled = true;
     [self sendEventToURL:url];
 }
  
-+ (void) sendDisplayMoatEvent:(UIView*)adView andAdDictionary:(NSDictionary*)adDict {
++ (void) sendDisplayMoatEvent:(UIWebView*)webView andAdDictionary:(NSDictionary*)adDict {
     // do nothing
 }
 
