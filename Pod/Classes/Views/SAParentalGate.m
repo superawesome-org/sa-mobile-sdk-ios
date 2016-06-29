@@ -25,6 +25,7 @@
 // aux stuff
 #import "SAExtensions.h"
 #import "SAUtils.h"
+#import "SAEvents.h"
 
 // parental gate defines
 #define SA_CHALLANGE_ALERTVIEW 0
@@ -89,6 +90,9 @@
 - (void) show {
     [self newQuestion];
     
+    // send event
+    [SAEvents sendEventToURL:_ad.creative.parentalGateOpenUrl];
+    
     // resume video
     if ([_weakAdView isKindOfClass:[SAVideoAd class]]) {
         [(SAVideoAd*)_weakAdView pause];
@@ -115,6 +119,9 @@
 - (void) showWithAlertController {
     // action block #1
     actionBlock cancelBlock = ^(UIAlertAction *action) {
+        
+        // send event
+        [SAEvents sendEventToURL:_ad.creative.parentalGateCloseUrl];
         
         // resume video
         if ([_weakAdView isKindOfClass:[SAVideoAd class]]) {
@@ -220,6 +227,9 @@
     }
     // cancel
     else if (buttonIndex == 0){
+        // send event
+        [SAEvents sendEventToURL:_ad.creative.parentalGateCloseUrl];
+        
         // resume video
         if ([_weakAdView isKindOfClass:[SAVideoAd class]]) {
             [(SAVideoAd*)_weakAdView resume];
@@ -230,6 +240,10 @@
 #pragma mark General Functions
 
 - (void) handlePGSuccess {
+    
+    // send data
+    [SAEvents sendEventToURL:_ad.creative.parentalGateSuccessUrl];
+    
     // call to delegate
     if(_delegate && [_delegate respondsToSelector:@selector(parentalGateWasSucceded:)]){
         [_delegate parentalGateWasSucceded:_ad.placementId];
@@ -247,6 +261,10 @@
 }
 
 - (void) handlePGError {
+    
+    // send data
+    [SAEvents sendEventToURL:_ad.creative.parentalGateFailUrl];
+    
     // ERROR
     _wrongAnswerAlertView = [[UIAlertView alloc] initWithTitle:SA_ERROR_ALERTVIEW_TITLE
                                                        message:SA_ERROR_ALERTVIEW_MESSAGE

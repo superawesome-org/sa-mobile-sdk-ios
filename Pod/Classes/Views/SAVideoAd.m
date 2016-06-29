@@ -229,7 +229,7 @@
             _viewabilityCount++;
         }
         
-        NSLog(@"[AA :: Info] Tick %ld/%ld - Viewability Count %ld/%ld", _ticks, VIDEO_VIEWABILITY_COUNT, _viewabilityCount, VIDEO_VIEWABILITY_COUNT);
+        NSLog(@"[AA :: Info] Tick %ld/%d - Viewability Count %ld/%d", _ticks, VIDEO_VIEWABILITY_COUNT, _viewabilityCount, VIDEO_VIEWABILITY_COUNT);
     }
 }
 
@@ -307,9 +307,6 @@
     _destinationURL = [url absoluteString];
     
     if (_isParentalGateEnabled) {
-        // send an event
-        [SAEvents sendEventToURL:_ad.creative.parentalGateClickUrl];
-        
         // show the gate
         [_gate show];
     } else {

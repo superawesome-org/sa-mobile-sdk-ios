@@ -234,10 +234,6 @@
     _destinationURL = [url absoluteString];
     
     if (_isParentalGateEnabled) {
-        // send an event
-        [SAEvents sendEventToURL:_ad.creative.parentalGateClickUrl];
-        
-        // show the gate
         [_gate show];
     } else {
         [self advanceToClick];
