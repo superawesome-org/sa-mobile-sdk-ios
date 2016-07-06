@@ -46,7 +46,9 @@
                             @"ct":@([SAUtils getNetworkConnectivity]),
                             @"bundle":[[NSBundle mainBundle] bundleIdentifier],
                             @"name":[SAUtils encodeURI:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"]],
-                            @"dauid":[[SALoaderSession getInstance] getDauId]};
+                            @"dauid":[[SALoaderSession getInstance] getDauId],
+                            @"lang": [[NSLocale preferredLanguages] objectAtIndex:0]
+                            };
     
     // form the header
     NSDictionary *header = @{@"Content-Type":@"application/json",
