@@ -29,6 +29,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SANetworking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SAUtils.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -67,62 +72,67 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1CD4E7E93803EA19708C3FCF</key>
+		<key>1D89155EE7C6FCE9DB7232E8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3C898E54F620DF6FE06BF63B</key>
+		<key>1E8563888CAF2DD8DB8BDA98</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4C1723511E547948E4C4DBCE</key>
+		<key>1EF505EA5507F119B9F3C7A1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>749DDBB7508963E6014E3D13</key>
+		<key>5E9E9BC7282FDBB2EB479D9D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7F643C447F980CED7F7AE88C</key>
+		<key>81151CFA54B5B238FF4DE039</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>98E35784A8A1ACECCB5AA552</key>
+		<key>9E0B6BE580A117A40FA6D31F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9E98EF73645CB95C314B522E</key>
+		<key>BC0791BC92B080FB92D91F20</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A4D1A801AF05DD9A8DD24714</key>
+		<key>C21F0649E500308421F3781D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B8A3A21085368808A736219A</key>
+		<key>D8B422932E5BAB06404AEBAF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DE3DC02FCB9E5B35F64A36C4</key>
+		<key>DA4D8E88A99F623535D9E2EC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DF23C3ECD859E0BBAAA20B39</key>
+		<key>DD6F5C972FFFBEE0D5B019EA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F2693073A22AF61B97BA2241</key>
+		<key>DF780E47A5B16108C5D0A47C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E6CF7BA70740BDD6B95F289A</key>
 		<dict>
 			<key>primary</key>
 			<true/>

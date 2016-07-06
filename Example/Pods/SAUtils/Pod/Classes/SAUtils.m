@@ -561,61 +561,6 @@ UIColor *UIColorFromRGB(NSInteger red, NSInteger green, NSInteger blue) {
     return unknown;
 }
 
-+ (void) sendGETtoEndpoint:(NSString*)endpoint
-             withQueryDict:(NSDictionary*)GETDict
-                andSuccess:(success)success
-                 orFailure:(failure)failure {
-    
-    // prepare the URL
-    __block NSMutableString *_surl = [endpoint mutableCopy];
-    
-    [_surl appendString:(GETDict.allKeys.count > 0 ? @"?" : @"")];
-    [_surl appendString:[self formGetQueryFromDict:GETDict]];
-    
-    NSURL *url = [NSURL URLWithString:_surl];
-    
-    // create the request
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:url];
-    [request setValue:[self getUserAgent] forHTTPHeaderField:@"User-Agent"];
-    [request setHTTPMethod:@"GET"];
-    
-    // form the response block to the POST
-    netresponse resp = ^(NSData * data, NSURLResponse * response, NSError * error) {
-        
-        NSInteger status = ((NSHTTPURLResponse*)response).statusCode;
-        
-        if (error || status != 200) {
-            // logging
-            NSLog(@"Network error for %@ - %@", _surl, error);
-            
-            // send message
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (failure) {
-                    failure();
-                }
-            });
-        }
-        else {
-            
-            // logging
-            NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            if (str.length >= 10){  str = [[str substringToIndex:9] stringByAppendingString:@" ... /truncated"]; }
-            NSLog(@"Success: %@ ==> %@", _surl, str);
-            
-            // send message
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (success){
-                    success(data);
-                }
-            });
-        }
-    };
-    
-    NSURLSession *session = [NSURLSession sharedSession];
-    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:resp];
-    [task resume];
-}
 
 
 @end

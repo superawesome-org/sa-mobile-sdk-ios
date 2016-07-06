@@ -29,15 +29,6 @@ typedef enum SAConnectionType {
     cellular_4g = 6
 }SAConnectionType;
 
-// callback for iOS's own [NSURLConnection sendAsynchronousRequest:]
-typedef void (^netresponse)(NSData * data, NSURLResponse * response, NSError * error);
-
-// callback for generic success with data
-typedef void (^success)(NSData *data);
-
-// callback for generic failure with no data
-typedef void (^failure)();
-
 @interface SAUtils : NSObject
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -91,7 +82,5 @@ UIColor *UIColorFromRGB (NSInteger red, NSInteger green, NSInteger blue);
 
 // network connectivity
 + (SAConnectionType) getNetworkConnectivity;
-
-+ (void) sendGETtoEndpoint:(NSString*)endpoint withQueryDict:(NSDictionary*)GETDict andSuccess:(success)success orFailure:(failure)failure;
 
 @end

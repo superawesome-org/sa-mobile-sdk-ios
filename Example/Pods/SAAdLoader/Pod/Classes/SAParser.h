@@ -34,6 +34,6 @@ typedef void (^parsedad)(SAAd *parsedAd);
  *
  *  @return either an SAAd object or nil
  */
-- (SAAd*) parseInitialAdFromNetwork:(NSData*)jsonData withPlacementId:(NSInteger)placementId;
+- (SAAd*) parseInitialAdFromNetwork:(NSString*)jsonString withPlacementId:(NSInteger)placementId;
 
 @end

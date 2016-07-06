@@ -31,9 +31,9 @@
 // parser implementation
 @implementation SAParser
 
-- (SAAd*) parseInitialAdFromNetwork:(NSData*)jsonData withPlacementId:(NSInteger)placementId {
+- (SAAd*) parseInitialAdFromNetwork:(NSString*)jsonString withPlacementId:(NSInteger)placementId {
     
-    SAAd *ad = [[SAAd alloc] initWithJsonData:jsonData];
+    SAAd *ad = [[SAAd alloc] initWithJsonString:jsonString];
     ad.placementId = placementId;
     
     ad.creative.creativeFormat = invalid;

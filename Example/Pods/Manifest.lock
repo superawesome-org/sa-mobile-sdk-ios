@@ -2,57 +2,62 @@ PODS:
   - mopub-ios-sdk (4.7.0):
     - mopub-ios-sdk/MoPubSDK (= 4.7.0)
   - mopub-ios-sdk/MoPubSDK (4.7.0)
-  - SAAdLoader (0.2.5):
-    - SAModelSpace
-    - SAUtils
-    - SAVASTParser
-  - SAEvents (1.1.2):
-    - SAEvents/Core (= 1.1.2)
-    - SAUtils
-  - SAEvents/Core (1.1.2):
-    - SAUtils
-  - SAEvents/Moat (1.1.2):
+  - SAAdLoader (0.2.6):
+    - SAModelSpace (= 0.1.2)
+    - SANetworking (= 0.1.1)
+    - SAUtils (= 1.2.3)
+    - SAVASTParser (= 1.3.3)
+  - SAEvents (1.1.3):
+    - SAEvents/Core (= 1.1.3)
+    - SANetworking (= 0.1.1)
+    - SAUtils (= 1.2.3)
+  - SAEvents/Core (1.1.3):
+    - SANetworking (= 0.1.1)
+    - SAUtils (= 1.2.3)
+  - SAEvents/Moat (1.1.3):
     - SAEvents/Core
-    - SAUtils
+    - SANetworking (= 0.1.1)
+    - SAUtils (= 1.2.3)
   - SAJsonParser (1.2.3)
-  - SAModelSpace (0.1.1):
-    - SAJsonParser
-  - SAUtils (1.2.2)
-  - SAVASTParser (1.3.2):
-    - SAEvents
-    - SAModelSpace
-    - SAUtils
-    - SAVideoPlayer
+  - SAModelSpace (0.1.2):
+    - SAJsonParser (= 1.2.3)
+  - SANetworking (0.1.1)
+  - SAUtils (1.2.3)
+  - SAVASTParser (1.3.3):
+    - SAEvents (= 1.1.3)
+    - SAModelSpace (= 0.1.2)
+    - SAUtils (= 1.2.3)
+    - SAVideoPlayer (= 1.1.1)
   - SAVideoPlayer (1.1.1)
   - SAWebPlayer (1.0.0)
-  - SuperAwesome/Core (4.1.8):
-    - SAAdLoader
-    - SAEvents
-    - SAUtils
-    - SAVideoPlayer
-    - SAWebPlayer
-  - SuperAwesome/Moat (4.1.8):
-    - SAAdLoader
-    - SAEvents
+  - SuperAwesome/Core (4.2.1):
+    - SAAdLoader (= 0.2.6)
+    - SAEvents (= 1.1.3)
+    - SAUtils (= 1.2.3)
+    - SAVideoPlayer (= 1.1.1)
+    - SAWebPlayer (= 1.0.0)
+  - SuperAwesome/Moat (4.2.1):
+    - SAAdLoader (= 0.2.6)
+    - SAEvents (= 1.1.3)
     - SAEvents/Moat
-    - SAUtils
-    - SAVideoPlayer
-    - SAWebPlayer
+    - SAUtils (= 1.2.3)
+    - SAVideoPlayer (= 1.1.1)
+    - SAWebPlayer (= 1.0.0)
     - SuperAwesome/Core
-  - SuperAwesome/MoPub (4.1.8):
+  - SuperAwesome/MoPub (4.2.1):
     - mopub-ios-sdk
-    - SAAdLoader
-    - SAEvents
-    - SAUtils
-    - SAVideoPlayer
-    - SAWebPlayer
+    - SAAdLoader (= 0.2.6)
+    - SAEvents (= 1.1.3)
+    - SAUtils (= 1.2.3)
+    - SAVideoPlayer (= 1.1.1)
+    - SAWebPlayer (= 1.0.0)
     - SuperAwesome/Core
-  - SuperAwesome/Unity (4.1.8):
-    - SAAdLoader
-    - SAEvents
-    - SAUtils
-    - SAVideoPlayer
-    - SAWebPlayer
+  - SuperAwesome/Unity (4.2.1):
+    - SAAdLoader (= 0.2.6)
+    - SAEvents (= 1.1.3)
+    - SAUtils (= 1.2.3)
+    - SAVideoPlayer (= 1.1.1)
+    - SAWebPlayer (= 1.0.0)
     - SuperAwesome/Core
 
 DEPENDENCIES:
@@ -67,15 +72,16 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   mopub-ios-sdk: e46b277cdb77b1745567b419742f77fed6865262
-  SAAdLoader: 758b25c35a469b09978c9157f09a5de0345228f9
-  SAEvents: 71e700832d5313926c079029c6330c4950477193
+  SAAdLoader: 5f645146b9e4c750f483906fc3aef1615ec49a55
+  SAEvents: 75d754f6b655cd701af7060cfe7059f0db2a66c5
   SAJsonParser: c0a5ace5d143bc50d5318a4981ebaf79858e4af8
-  SAModelSpace: 9a61bda6a3f7c5a56fa1a62e773429270a883aae
-  SAUtils: a6d0ad03c8a25c03a6a2a7c153793f2c916ec869
-  SAVASTParser: 6897bb66246f9e55872596bd236f8213ff993673
+  SAModelSpace: d3055296a8063924c11027035b6bf4457d05fafd
+  SANetworking: 13aa56fd53c5b7f5a1a362044cce0d03bd4c3a12
+  SAUtils: 713238d41568a54722737ca66f08096199e37c17
+  SAVASTParser: edd9af7ea9fd7c6e8a81f3e6597fec6197ac63cd
   SAVideoPlayer: 8170dd123632bade010d9ae930d84ce4753f3d13
   SAWebPlayer: a592e62b276a904ded2bd298c1072b2d75cfd17c
-  SuperAwesome: 82eb34cd1fb8dda17943da3cfb2f0c8932e99bcf
+  SuperAwesome: 0fb760ec55e516f5929b61a2437bcba6a08b2c2e
 
 PODFILE CHECKSUM: 2dd89689c13eb059ca942243b55731b617a306ca
 
