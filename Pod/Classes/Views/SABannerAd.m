@@ -112,7 +112,22 @@
     _webplayer = [[SAWebPlayer alloc] initWithFrame:frame];
     _webplayer.sadelegate = self;
     [_webplayer setAdSize:CGSizeMake(_ad.creative.details.width, _ad.creative.details.height)];
-    [_webplayer loadAdHTML:_ad.creative.details.data.adHTML];
+    
+    // moat tracking
+    NSString *moatString = @"";
+    if ([[SAEvents class] respondsToSelector:@selector(sendDisplayMoatEvent:andAdDictionary:)]) {
+        
+        NSDictionary *moatDict = @{
+                                   @"campaign":@(_ad.campaignId),
+                                   @"line_item":@(_ad.lineItemId),
+                                   @"creative":@(_ad.creative._id),
+                                   @"app":@(_ad.app),
+                                   @"placement":@(_ad.placementId)
+                                   };
+        moatString = [SAEvents sendDisplayMoatEvent:_webplayer andAdDictionary:moatDict];
+    }
+    NSString *fullHTML = [_ad.creative.details.data.adHTML stringByReplacingOccurrencesOfString:@"_MOAT_" withString:moatString];
+    [_webplayer loadAdHTML:fullHTML];
     
     // add the subview
     [self addSubview:_webplayer];
@@ -173,19 +188,6 @@
     // send viewable impression
     _viewabilityTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(viewableImpressionFunc) userInfo:nil repeats:YES];
     [_viewabilityTimer fire];
-    
-    // moat tracking
-    if ([[SAEvents class] respondsToSelector:@selector(sendDisplayMoatEvent:andAdDictionary:)]) {
-        
-        NSDictionary *moatDict = @{
-                                   @"campaign":@(_ad.campaignId),
-                                   @"line_item":@(_ad.lineItemId),
-                                   @"creative":@(_ad.creative._id),
-                                   @"app":@(_ad.app),
-                                   @"placement":@(_ad.placementId)
-                                   };
-        [SAEvents sendDisplayMoatEvent:_webplayer andAdDictionary:moatDict];
-    }
     
     // if the banner has a separate impression URL, send that as well for 3rd party tracking
     if (_ad.creative.impressionUrl && [_ad.creative.impressionUrl rangeOfString:[[SuperAwesome getInstance] getBaseURL]].location == NSNotFound) {

@@ -34,10 +34,10 @@
 //    [loader loadAdForPlacementId:30471];
     [loader loadAdForPlacementId:113];
     [loader loadAdForPlacementId:114];
-    [loader loadAdForPlacementId:115];
-    [loader loadAdForPlacementId:116];
+//    [loader loadAdForPlacementId:115];
+//    [loader loadAdForPlacementId:116];
     [loader loadAdForPlacementId:117];
-    [loader loadAdForPlacementId:118];
+//    [loader loadAdForPlacementId:118];
 //    [loader loadAdForPlacementId:200];
 //    [loader loadAdForPlacementId:204];
 //    [loader loadAdForPlacementId:28000];

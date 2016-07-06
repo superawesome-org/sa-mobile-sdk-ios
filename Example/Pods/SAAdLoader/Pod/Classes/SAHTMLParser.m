@@ -19,9 +19,6 @@
 // import juciy aux functions
 #import "SAUtils.h"
 
-// import SA class
-// #import "SuperAwesome.h"
-
 @implementation SAHTMLParser
 
 + (NSString*) formatCreativeDataIntoAdHTML:(SAAd*)ad {
@@ -58,7 +55,13 @@
     [htmlString appendString:@"<meta name='viewport' content='width=device-width, initial-scale=_PARAM_SCALE_, maximum-scale=_PARAM_SCALE_, user-scalable=no' />"];
     [htmlString appendString:@"<title>SuperAwesome Image Template</title>"];
     [htmlString appendString:@"<style>html, body, div { margin: 0px; padding: 0px; width: 100%; height: 100%; overflow: hidden; background-color: #efefef; }</style>"];
-    [htmlString appendString:@"</head><body><a href='hrefURL'><img id='image' src='imageURL'/></a></body></html>"];
+    [htmlString appendString:@"</head>"];
+    [htmlString appendString:@"<body>"];
+    [htmlString appendString:@"<a href='hrefURL'>"];
+    [htmlString appendString:@"<img id='image' src='imageURL'/>"];
+    [htmlString appendString:@"</a>"];
+    [htmlString appendString:@"_MOAT_"];
+    [htmlString appendString:@"</body></html>"];
     
     // return the parametrized template
     NSString *click = (ad.creative.clickUrl ? ad.creative.clickUrl : ad.creative.trackingUrl);
@@ -74,7 +77,12 @@
     [htmlString appendString:@"<meta name='viewport' content='width=device-width, initial-scale=_PARAM_SCALE_, maximum-scale=_PARAM_SCALE_, user-scalable=no, target-densitydpi=device-dpi'/>"];
     [htmlString appendString:@"<title>SuperAwesome Rich Media Template</title>"];
     [htmlString appendString:@"<style>html, body, iframe { width: 100%; height: 100%; padding: 0; margin: 0; border: 0; background-color: #efefef; overflow: hidden; }</style>"];
-    [htmlString appendString:@"</head><body><iframe src='richMediaURL'></iframe></body></html>"];
+    [htmlString appendString:@"</head>"];
+    [htmlString appendString:@"<body>"];
+    [htmlString appendString:@"<iframe src='richMediaURL'></iframe>"];
+    [htmlString appendString:@"_MOAT_"];
+    [htmlString appendString:@"</body>"];
+    [htmlString appendString:@"</html>"];
     
     // format template parameters
     NSMutableString *richMediaString = [[NSMutableString alloc] init];
@@ -107,7 +115,12 @@
     [htmlString appendString:@"html, body { width: _WIDTH_px; height: _HEIGHT_px; padding: 0; margin: 0; border: 0; background-color: #efefef; }"];
     [htmlString appendString:@"* { width: 100%; height: 100%; }"];
     [htmlString appendString:@"</style>"];
-    [htmlString appendString:@"</head><body>tagdata</body></html>"];
+    [htmlString appendString:@"</head>"];
+    [htmlString appendString:@"<body>"];
+    [htmlString appendString:@"tagdata"];
+    [htmlString appendString:@"_MOAT_"];
+    [htmlString appendString:@"</body>"];
+    [htmlString appendString:@"</html>"];
     
     // format template parameters
     NSString *tagString = ad.creative.details.tag;
