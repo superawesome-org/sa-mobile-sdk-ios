@@ -39,6 +39,12 @@
     // First thing to do is format the AA URL to get an ad, based on specs
     NSString *endpoint = [NSString stringWithFormat:@"%@/ad/%ld", [[SALoaderSession getInstance] getBaseUrl], (long)placementId];
     
+    NSString *lang = @"none";
+    NSArray *languages = [NSLocale preferredLanguages];
+    if ([languages count] > 0) {
+        lang = [[languages firstObject] stringByReplacingOccurrencesOfString:@"-" withString:@"_"];;
+    }
+    
     // form the query
     NSDictionary *query = @{@"test": [[SALoaderSession getInstance] getTest],
                             @"sdkVersion":[[SALoaderSession getInstance] getVersion],
@@ -47,7 +53,7 @@
                             @"bundle":[[NSBundle mainBundle] bundleIdentifier],
                             @"name":[SAUtils encodeURI:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"]],
                             @"dauid":[[SALoaderSession getInstance] getDauId],
-                            @"lang": [[NSLocale preferredLanguages] objectAtIndex:0]
+                            @"lang": lang
                             };
     
     // form the header
