@@ -17,17 +17,6 @@
 
 @implementation SAEvents (Moat)
 
-+ (NSDictionary*) mapSADictoToMoatDict:(NSDictionary*)dict {
-    return @{
-             @"level1": [dict objectForKey:@"advertiser"],
-             @"level2": [dict objectForKey:@"campaign"],
-             @"level3": [dict objectForKey:@"line_item"],
-             @"level4": [dict objectForKey:@"creative"],
-             @"slicer1": [dict objectForKey:@"app"],
-             @"slider2": [dict objectForKey:@"placement"]
-             };
-}
-
 + (NSString*) sendDisplayMoatEvent:(UIWebView*)webView andAdDictionary:(NSDictionary*)adDict{
     
     // make only 1 in 5 moat events OK
@@ -45,8 +34,8 @@
     [moatQuery appendFormat:@"&moatClientLevel2=%@", [adDict objectForKey:@"campaign"]];
     [moatQuery appendFormat:@"&moatClientLevel3=%@", [adDict objectForKey:@"line_item"]];
     [moatQuery appendFormat:@"&moatClientLevel4=%@", [adDict objectForKey:@"creative"]];
-    [moatQuery appendFormat:@"&moatSlicerLevel1=%@", [adDict objectForKey:@"app"]];
-    [moatQuery appendFormat:@"&moatSlicerLevel2=%@", [adDict objectForKey:@"placement"]];
+    [moatQuery appendFormat:@"&moatClientSlicer1=%@", [adDict objectForKey:@"app"]];
+    [moatQuery appendFormat:@"&moatClientSlicer2=%@", [adDict objectForKey:@"placement"]];
     
     return [NSString stringWithFormat:@"<script src=\"%@/%@/%@?%@\" type=\"text/javascript\"></script>", MOAT_SERVER, MOAT_DISPLAY_PARTNER_CODE, MOAT_URL, moatQuery];
 }
@@ -60,9 +49,18 @@
         return;
     }
     
+    NSDictionary *moatDictionary = @{
+                                     @"level1": [adDict objectForKey:@"advertiser"],
+                                     @"level2": [adDict objectForKey:@"campaign"],
+                                     @"level3": [adDict objectForKey:@"line_item"],
+                                     @"level4": [adDict objectForKey:@"creative"],
+                                     @"slicer1": [adDict objectForKey:@"app"],
+                                     @"slider2": [adDict objectForKey:@"placement"]
+                                     };
+    
     // go ahead
     SUPMoatVideoTracker *tracker = [SUPMoatVideoTracker trackerWithPartnerCode:MOAT_VIDEO_PARTNER_CODE];
-    [tracker trackVideoAd:[self mapSADictoToMoatDict:adDict]
+    [tracker trackVideoAd:moatDictionary
        usingAVMoviePlayer:player
                 withLayer:layer
        withContainingView:adView];
