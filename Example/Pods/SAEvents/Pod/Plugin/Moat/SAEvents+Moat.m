@@ -19,7 +19,7 @@
 
 + (NSDictionary*) mapSADictoToMoatDict:(NSDictionary*)dict {
     return @{
-             @"level1": @"SuperAwesome",
+             @"level1": [dict objectForKey:@"advertiser"],
              @"level2": [dict objectForKey:@"campaign"],
              @"level3": [dict objectForKey:@"line_item"],
              @"level4": [dict objectForKey:@"creative"],
@@ -41,7 +41,7 @@
     BOOL allOK = [SUPMoatBootstrap injectDelegateWrapper:webView];
     
     NSMutableString *moatQuery = [[NSMutableString alloc] init];
-    [moatQuery appendFormat:@"moatClientLevel1=%@", @"SuperAwesome"];
+    [moatQuery appendFormat:@"moatClientLevel1=%@", [adDict objectForKey:@"advertiser"]];
     [moatQuery appendFormat:@"&moatClientLevel2=%@", [adDict objectForKey:@"campaign"]];
     [moatQuery appendFormat:@"&moatClientLevel3=%@", [adDict objectForKey:@"line_item"]];
     [moatQuery appendFormat:@"&moatClientLevel4=%@", [adDict objectForKey:@"creative"]];

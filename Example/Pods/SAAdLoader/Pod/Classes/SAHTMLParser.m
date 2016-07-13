@@ -65,8 +65,8 @@
     
     // return the parametrized template
     NSString *click = (ad.creative.clickUrl ? ad.creative.clickUrl : ad.creative.trackingUrl);
-    htmlString = [htmlString stringByReplacingOccurrencesOfString:@"hrefURL" withString:click];
-    htmlString = [htmlString stringByReplacingOccurrencesOfString:@"imageURL" withString:ad.creative.details.image];
+    htmlString = [[htmlString stringByReplacingOccurrencesOfString:@"hrefURL" withString:click] mutableCopy];
+    htmlString = [[htmlString stringByReplacingOccurrencesOfString:@"imageURL" withString:ad.creative.details.image] mutableCopy];
     return htmlString;
 }
 
@@ -137,6 +137,7 @@
     
     NSString *html = [htmlString stringByReplacingOccurrencesOfString:@"tagdata" withString:tagString];
     html = [html stringByReplacingOccurrencesOfString:@"\/" withString:@"/"];
+    html = [html stringByReplacingOccurrencesOfString:@"\\/" withString:@"/"];
     html = [html stringByReplacingOccurrencesOfString:@"\"" withString:@"'"];
     
     // return the parametrized template

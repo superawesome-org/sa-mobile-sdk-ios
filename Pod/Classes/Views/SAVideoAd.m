@@ -239,6 +239,7 @@
     if ([[SAEvents class] respondsToSelector:@selector(sendVideoMoatEvent:andLayer:andView:andAdDictionary:)]) {
         
         NSDictionary *moatDict = @{
+                                   @"advertiser":@(_ad.advertiserId),
                                    @"campaign":@(_ad.campaignId),
                                    @"line_item":@(_ad.lineItemId),
                                    @"creative":@(_ad.creative._id),
