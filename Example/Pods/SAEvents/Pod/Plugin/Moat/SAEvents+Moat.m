@@ -55,7 +55,7 @@
                                      @"level3": [adDict objectForKey:@"line_item"],
                                      @"level4": [adDict objectForKey:@"creative"],
                                      @"slicer1": [adDict objectForKey:@"app"],
-                                     @"slider2": [adDict objectForKey:@"placement"]
+                                     @"slicer2": [adDict objectForKey:@"placement"]
                                      };
     
     // go ahead
