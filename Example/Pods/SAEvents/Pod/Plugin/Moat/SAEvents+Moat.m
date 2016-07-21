@@ -7,7 +7,14 @@
 //
 
 #import "SAEvents+Moat.h"
-#import <SUPMoatMobileAppKit/SUPMoatMobileAppKit.h>
+#if defined(__has_include)
+#if __has_include("SUPMoatMobileAppKit/SUPMoatMobileAppKit.h")
+    #import "SUPMoatMobileAppKit/SUPMoatMobileAppKit.h"
+    #define HAS_MOAT true
+#else 
+    #define HAS_MOAT false
+#endif
+#endif
 #import "SAUtils.h"
 
 #define MOAT_SERVER @"https://z.moatads.com"
@@ -26,6 +33,8 @@
         return @"";
     }
     
+#if HAS_MOAT
+    NSLog(@"MOAT can be triggered");
     // go ahead
     BOOL allOK = [SUPMoatBootstrap injectDelegateWrapper:webView];
     
@@ -36,8 +45,13 @@
     [moatQuery appendFormat:@"&moatClientLevel4=%@", [adDict objectForKey:@"creative"]];
     [moatQuery appendFormat:@"&moatClientSlicer1=%@", [adDict objectForKey:@"app"]];
     [moatQuery appendFormat:@"&moatClientSlicer2=%@", [adDict objectForKey:@"placement"]];
+    [moatQuery appendFormat:@"&moatClientSlicer3=%@", [adDict objectForKey:@"publisher"]];
     
     return [NSString stringWithFormat:@"<script src=\"%@/%@/%@?%@\" type=\"text/javascript\"></script>", MOAT_SERVER, MOAT_DISPLAY_PARTNER_CODE, MOAT_URL, moatQuery];
+#else
+    NSLog(@"No moat present!");
+    return @"";
+#endif
 }
 
 + (void) sendVideoMoatEvent:(AVPlayer*)player andLayer:(AVPlayerLayer*)layer andView:(UIView*)adView andAdDictionary:(NSDictionary*)adDict {
@@ -49,13 +63,16 @@
         return;
     }
     
+#if HAS_MOAT
+    
     NSDictionary *moatDictionary = @{
                                      @"level1": [adDict objectForKey:@"advertiser"],
                                      @"level2": [adDict objectForKey:@"campaign"],
                                      @"level3": [adDict objectForKey:@"line_item"],
                                      @"level4": [adDict objectForKey:@"creative"],
                                      @"slicer1": [adDict objectForKey:@"app"],
-                                     @"slicer2": [adDict objectForKey:@"placement"]
+                                     @"slicer2": [adDict objectForKey:@"placement"],
+                                     @"slicer3": [adDict objectForKey:@"publisher"]
                                      };
     
     // go ahead
@@ -66,6 +83,7 @@
        withContainingView:adView];
     
     NSLog(@"[AA :: Info] Sending Video Event to Moat");
+#endif
 }
 
 @end

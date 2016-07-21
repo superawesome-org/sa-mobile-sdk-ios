@@ -14,21 +14,10 @@
 // import the SACapper part
 #import "SACapper.h"
 #import "SAEvents.h"
-#import "SALoaderSession.h"
-
-// define the three URL constants
-#define BASE_URL_STAGING @"https://ads.staging.superawesome.tv/v2"
-#define BASE_URL_DEVELOPMENT @"https://ads.dev.superawesome.tv/v2"
-#define BASE_URL_PRODUCTION @"https://ads.superawesome.tv/v2"
+#import "SASession.h"
 
 @interface SuperAwesome ()
-
-// private vars
-@property (nonatomic, strong) NSString *baseURL;
-@property (nonatomic, assign) BOOL isTestEnabled;
-@property (nonatomic, assign) NSUInteger dauID;
 @property (nonatomic, assign) SAConfiguration config;
-
 @end
 
 @implementation SuperAwesome
@@ -45,19 +34,17 @@
 
 - (instancetype) init {
     if (self = [super init]) {
-        NSLog(@"What's up?");
         // by default configuration is set to production
         // and test mode is disabled
         [self setConfigurationProduction];
         [self disableTestMode];
         [SAEvents enableSATracking];
         [SACapper enableCapping:^(NSUInteger dauId) {
-            _dauID = dauId;
+            [[SASession getInstance] setDauId:dauId];
         }];
         
         // set loader session instance
-        [[SALoaderSession getInstance] setVersion:[self getSdkVersion]];
-        [[SALoaderSession getInstance] setDauId:_dauID];
+        [[SASession getInstance] setVersion:[self getSdkVersion]];
     }
     
     return self;
@@ -77,20 +64,12 @@
 
 - (void) setConfigurationProduction {
     _config = PRODUCTION;
-    _baseURL = BASE_URL_PRODUCTION;
-    [[SALoaderSession getInstance] setBaseUrl:_baseURL];
+    [[SASession getInstance] setConfigurationProduction];
 }
 
 - (void) setConfigurationStaging {
     _config = STAGING;
-    _baseURL = BASE_URL_STAGING;
-    [[SALoaderSession getInstance] setBaseUrl:_baseURL];
-}
-
-- (void) setConfigurationDevelopment {
-    _config = DEVELOPMENT;
-    _baseURL = BASE_URL_DEVELOPMENT;
-    [[SALoaderSession getInstance] setBaseUrl:_baseURL];
+    [[SASession getInstance] setConfigurationStaging];
 }
 
 - (SAConfiguration) getConfiguration {
@@ -98,30 +77,27 @@
 }
 
 - (NSString*) getBaseURL {
-    return _baseURL;
+    return [[SASession getInstance] getBaseUrl];
 }
 
 - (void) enableTestMode {
-    _isTestEnabled = true;
-    [[SALoaderSession getInstance] setTest:_isTestEnabled];
+    [[SASession getInstance] setTest:true];
 }
 
 - (void) disableTestMode {
-    _isTestEnabled = false;
-    [[SALoaderSession getInstance] setTest:_isTestEnabled];
+    [[SASession getInstance] setTest:false];
 }
 
 - (void) setTesting:(BOOL)enabled {
-    _isTestEnabled = enabled;
-    [[SALoaderSession getInstance] setTest:_isTestEnabled];
+    [[SASession getInstance] setTest:enabled];
 }
 
 - (BOOL) isTestingEnabled {
-    return _isTestEnabled;
+    return [[SASession getInstance] isTestEnabled];
 }
 
 - (NSUInteger) getDAUID {
-    return _dauID;
+    return [[SASession getInstance] getDauId];
 }
 
 @end

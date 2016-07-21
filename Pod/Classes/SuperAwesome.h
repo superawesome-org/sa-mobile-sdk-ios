@@ -54,7 +54,6 @@ typedef enum SAConfiguration {
 // @development: https://ads.dev.superawesome.tv
 - (void) setConfigurationProduction;
 - (void) setConfigurationStaging;
-- (void) setConfigurationDevelopment;
 - (NSString*) getBaseURL;
 - (SAConfiguration) getConfiguration;
 

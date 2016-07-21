@@ -17,7 +17,7 @@
 #import "SADetails.h"
 
 // import SuperAwesome main header
- #import "SALoaderSession.h"
+ #import "SASession.h"
 
 // import SAAux library of goodies
 #import "SAUtils.h"
@@ -48,17 +48,17 @@
         @"line_item":@(ad.lineItemId),
         @"creative":@(ad.creative._id),
         @"ct":@([SAUtils getNetworkConnectivity]),
-        @"sdkVersion":[[SALoaderSession getInstance] getVersion],
+        @"sdkVersion":[[SASession getInstance] getVersion],
         @"rnd":@([SAUtils getCachebuster])
     };
     ad.creative.trackingUrl = [NSString stringWithFormat:@"%@/%@click?%@",
-                               [[SALoaderSession getInstance] getBaseUrl],
+                               [[SASession getInstance] getBaseUrl],
                                (ad.creative.creativeFormat == video ? @"video/" : @""),
                                [SAUtils formGetQueryFromDict:trackjson]];
     
     // get the viewbale impression URL
     NSDictionary *imprjson = @{
-        @"sdkVersion":[[SALoaderSession getInstance] getVersion],
+        @"sdkVersion":[[SASession getInstance] getVersion],
         @"rnd":@([SAUtils getCachebuster]),
         @"ct":@([SAUtils getNetworkConnectivity]),
         @"data":[SAUtils encodeURI:[@{
@@ -69,12 +69,12 @@
         } jsonCompactStringRepresentation]]
     };
     ad.creative.viewableImpressionUrl = [NSString stringWithFormat:@"%@/event?%@",
-                                         [[SALoaderSession getInstance] getBaseUrl],
+                                         [[SASession getInstance] getBaseUrl],
                                          [SAUtils formGetQueryFromDict:imprjson]];
     
     // get the parental gate URL
     NSDictionary *pgjsonfail = @{
-        @"sdkVersion":[[SALoaderSession getInstance] getVersion],
+        @"sdkVersion":[[SASession getInstance] getVersion],
         @"rnd":@([SAUtils getCachebuster]),
         @"ct":@([SAUtils getNetworkConnectivity]),
         @"data":[SAUtils encodeURI:[@{
@@ -85,11 +85,11 @@
         } jsonCompactStringRepresentation]]
     };
     ad.creative.parentalGateFailUrl = [NSString stringWithFormat:@"%@/event?%@",
-                                        [[SALoaderSession getInstance] getBaseUrl],
+                                        [[SASession getInstance] getBaseUrl],
                                         [SAUtils formGetQueryFromDict:pgjsonfail]];
     
     NSDictionary *pgjsonclose = @{
-                                 @"sdkVersion":[[SALoaderSession getInstance] getVersion],
+                                 @"sdkVersion":[[SASession getInstance] getVersion],
                                  @"rnd":@([SAUtils getCachebuster]),
                                  @"ct":@([SAUtils getNetworkConnectivity]),
                                  @"data":[SAUtils encodeURI:[@{
@@ -100,11 +100,11 @@
                                                                } jsonCompactStringRepresentation]]
                                  };
     ad.creative.parentalGateCloseUrl = [NSString stringWithFormat:@"%@/event?%@",
-                                       [[SALoaderSession getInstance] getBaseUrl],
+                                       [[SASession getInstance] getBaseUrl],
                                        [SAUtils formGetQueryFromDict:pgjsonclose]];
     
     NSDictionary *pgjsonopen = @{
-                                 @"sdkVersion":[[SALoaderSession getInstance] getVersion],
+                                 @"sdkVersion":[[SASession getInstance] getVersion],
                                  @"rnd":@([SAUtils getCachebuster]),
                                  @"ct":@([SAUtils getNetworkConnectivity]),
                                  @"data":[SAUtils encodeURI:[@{
@@ -115,11 +115,11 @@
                                                                } jsonCompactStringRepresentation]]
                                  };
     ad.creative.parentalGateOpenUrl = [NSString stringWithFormat:@"%@/event?%@",
-                                       [[SALoaderSession getInstance] getBaseUrl],
+                                       [[SASession getInstance] getBaseUrl],
                                        [SAUtils formGetQueryFromDict:pgjsonopen]];
     
     NSDictionary *pgjsonsuccess = @{
-                                 @"sdkVersion":[[SALoaderSession getInstance] getVersion],
+                                 @"sdkVersion":[[SASession getInstance] getVersion],
                                  @"rnd":@([SAUtils getCachebuster]),
                                  @"ct":@([SAUtils getNetworkConnectivity]),
                                  @"data":[SAUtils encodeURI:[@{
@@ -130,7 +130,7 @@
                                                                } jsonCompactStringRepresentation]]
                                  };
     ad.creative.parentalGateSuccessUrl = [NSString stringWithFormat:@"%@/event?%@",
-                                       [[SALoaderSession getInstance] getBaseUrl],
+                                       [[SASession getInstance] getBaseUrl],
                                        [SAUtils formGetQueryFromDict:pgjsonsuccess]];
     
     // get the cdn URL

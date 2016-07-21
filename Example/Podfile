@@ -3,9 +3,7 @@ platform :ios, '6.0'
 install! 'cocoapods', :deterministic_uuids => false
 
 target 'SuperAwesome' do
-pod 'SuperAwesome/Core', :path => '../'
-pod 'SuperAwesome/Moat', :path => '../'
+pod 'SuperAwesome/Full', :path => '../'
 pod 'SuperAwesome/MoPub', :path => '../'
 pod 'SuperAwesome/Unity', :path => '../'
 end
-

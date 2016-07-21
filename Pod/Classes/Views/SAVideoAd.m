@@ -244,7 +244,8 @@
                                    @"line_item":@(_ad.lineItemId),
                                    @"creative":@(_ad.creative._id),
                                    @"app":@(_ad.app),
-                                   @"placement":@(_ad.placementId)
+                                   @"placement":@(_ad.placementId),
+                                   @"publisher":@(_ad.publisherId)
                                    };
         
         [SAEvents sendVideoMoatEvent:[_player getPlayer] andLayer:[_player getPlayerLayer] andView:self andAdDictionary:moatDict];

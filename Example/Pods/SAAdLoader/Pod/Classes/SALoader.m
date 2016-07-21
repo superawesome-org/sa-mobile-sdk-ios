@@ -23,7 +23,7 @@
 #import "SAData.h"
 
 // import SA main Singleton
-#import "SALoaderSession.h"
+#import "SASession.h"
 #import "SANetwork.h"
 
 // import Aux class
@@ -37,7 +37,7 @@
 - (void) loadAdForPlacementId:(NSInteger)placementId {
     
     // First thing to do is format the AA URL to get an ad, based on specs
-    NSString *endpoint = [NSString stringWithFormat:@"%@/ad/%ld", [[SALoaderSession getInstance] getBaseUrl], (long)placementId];
+    NSString *endpoint = [NSString stringWithFormat:@"%@/ad/%ld", [[SASession getInstance] getBaseUrl], (long)placementId];
     
     NSString *lang = @"none";
     NSArray *languages = [NSLocale preferredLanguages];
@@ -46,13 +46,13 @@
     }
     
     // form the query
-    NSDictionary *query = @{@"test": [[SALoaderSession getInstance] getTest],
-                            @"sdkVersion":[[SALoaderSession getInstance] getVersion],
+    NSDictionary *query = @{@"test": @([[SASession getInstance] isTestEnabled]),
+                            @"sdkVersion":[[SASession getInstance] getVersion],
                             @"rnd":@([SAUtils getCachebuster]),
                             @"ct":@([SAUtils getNetworkConnectivity]),
                             @"bundle":[[NSBundle mainBundle] bundleIdentifier],
                             @"name":[SAUtils encodeURI:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"]],
-                            @"dauid":[[SALoaderSession getInstance] getDauId],
+                            @"dauid":@([[SASession getInstance] getDauId]),
                             @"lang": lang
                             };
     

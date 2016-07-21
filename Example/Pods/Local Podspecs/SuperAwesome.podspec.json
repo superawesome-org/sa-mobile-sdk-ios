@@ -21,59 +21,37 @@
     "branch": "master",
     "tag": "4.3.0"
   },
-  "frameworks": "AdSupport",
-  "dependencies": {
-    "SAUtils": [
-      "1.2.5"
-    ],
-    "SAVideoPlayer": [
-      "1.1.1"
-    ],
-    "SAWebPlayer": [
-      "1.0.0"
-    ],
-    "SAEvents": [
-      "1.2.0"
-    ],
-    "SAAdLoader": [
-      "0.3.5"
-    ]
-  },
-  "default_subspecs": "Core",
+  "default_subspecs": "Full",
   "subspecs": [
     {
-      "name": "Core",
-      "source_files": "Pod/Classes/**/*"
-    },
-    {
-      "name": "Moat",
+      "name": "Base",
+      "source_files": "Pod/Classes/**/*",
+      "frameworks": "AdSupport",
       "dependencies": {
-        "SuperAwesome/Core": [
-
+        "SAUtils": [
+          "1.2.6"
         ],
-        "SAEvents/Moat": [
-
+        "SAVideoPlayer": [
+          "1.1.1"
+        ],
+        "SAWebPlayer": [
+          "1.0.0"
+        ],
+        "SAEvents": [
+          "1.2.3"
+        ],
+        "SAAdLoader": [
+          "0.3.8"
+        ],
+        "SASession": [
+          "0.1.0"
         ]
       }
     },
     {
-      "name": "Unity",
+      "name": "Full",
       "dependencies": {
-        "SuperAwesome/Core": [
-
-        ]
-      },
-      "source_files": "Pod/Plugin/Unity/*",
-      "pod_target_xcconfig": {
-        "OTHER_LDFLAGS": "$(inherited)",
-        "OTHER_CFLAGS": "$(inherited)",
-        "HEADER_SEARCH_PATHS": "$(inherited)"
-      }
-    },
-    {
-      "name": "Unity+Moat",
-      "dependencies": {
-        "SuperAwesome/Unity": [
+        "SuperAwesome/Base": [
 
         ],
         "SAEvents/Moat": [
@@ -84,25 +62,24 @@
     {
       "name": "MoPub",
       "dependencies": {
-        "mopub-ios-sdk": [
+        "SuperAwesome/Base": [
 
         ],
-        "SuperAwesome/Core": [
+        "mopub-ios-sdk": [
 
         ]
       },
       "source_files": "Pod/Plugin/MoPub/*"
     },
     {
-      "name": "MoPub+Moat",
+      "name": "Unity",
       "dependencies": {
-        "SuperAwesome/MoPub": [
-
-        ],
-        "SAEvents/Moat": [
+        "SuperAwesome/Base": [
 
         ]
-      }
+      },
+      "source_files": "Pod/Plugin/Unity/*",
+      "exclude_files": "Pod/Plugin/Unity/SAUnity.mm"
     }
   ]
 }

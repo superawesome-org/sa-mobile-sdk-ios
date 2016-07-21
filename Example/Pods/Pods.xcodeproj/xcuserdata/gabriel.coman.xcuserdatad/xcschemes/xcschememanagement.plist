@@ -34,6 +34,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SASession.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SAUtils.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -72,67 +77,72 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>11A2DD636876907FE473D4FF</key>
+		<key>18D184358F81EE0AF10F070B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>60A442FA6D3DC3EE2E5A004B</key>
+		<key>33B16D860A1EE9F5E819BB37</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>662539EC3032C0EABC328081</key>
+		<key>62C8BAA85914AB1AFF435B4A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>75F32218862D818BBBB1AB89</key>
+		<key>674E013556D0E9ED9CE0B79F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7C97242CB54F53BD9AE1A3AD</key>
+		<key>6CE4BBAF802DC7A76850ED84</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7D5C4DA9610EBF049C60EF3C</key>
+		<key>6DBB7BD1AA413A5131FE51C6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8D49B3B410F47479737A3466</key>
+		<key>7A536779DF075ECA472BD278</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C1B808B746437FB9BECF7031</key>
+		<key>7BBEECEEA1F6690377351E60</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C598933C187220A867EFD9E3</key>
+		<key>8050D4A85DB69395309EA0F2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C8E1D8C3FC66C98A0144F523</key>
+		<key>921EBD7C8D65035A0CABC9C6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F1217D87326FAFC9485C72F8</key>
+		<key>B6DC587CB317FE04CE9ABC31</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FA8D16421E1C316AA8C80AFB</key>
+		<key>D9204CB34ABA06E22BEB1408</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FA977ECB5AD98C74BF42D9C7</key>
+		<key>E8E7FB33B41FF6F6B7466AFC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F5C2E01E1EAAAD623B94ECF1</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "SuperAwesome"
-  s.version      = "4.3.0"
+  s.version      = "4.3.1"
   s.summary      = "SuperAwesome Mobile SDK for iOS"
   s.description  = <<-DESC
                    The SuperAwesome Mobile SDK lets you to easily add COPPA compliant advertisements and other platform features, like user authentication and registration, to your apps. We try to make integration as easy as possible, so we provide all the necessary tools such as this guide, API documentation, screencasts and demo apps.
@@ -13,47 +13,34 @@ Pod::Spec.new do |s|
   s.platform     = :ios, "6.0"
   s.ios.deployment_target = "6.0"
   s.requires_arc = true
-  s.source       = { :git => "https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git", :branch => "master" ,:tag => "4.3.0" }
-  s.frameworks = 'AdSupport'
-  s.dependency 'SAUtils', '1.2.5'
-  s.dependency 'SAVideoPlayer', '1.1.1'
-  s.dependency 'SAWebPlayer', '1.0.0'
-  s.dependency 'SAEvents', '1.2.0'
-  s.dependency 'SAAdLoader', '0.3.5'
-  s.default_subspec = 'Core'
+  s.source       = { :git => "https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git", :branch => "master" ,:tag => "4.3.1" }
+  s.default_subspec = 'Full'
 
-  s.subspec 'Core' do |c|
-    c.source_files = 'Pod/Classes/**/*'
+  s.subspec 'Base' do |b|
+    b.source_files = 'Pod/Classes/**/*'
+    b.frameworks = 'AdSupport'
+    b.dependency 'SAUtils', '1.2.6'
+    b.dependency 'SAVideoPlayer', '1.1.1'
+    b.dependency 'SAWebPlayer', '1.0.0'
+    b.dependency 'SAEvents', '1.2.3'
+    b.dependency 'SAAdLoader', '0.3.8'
+    b.dependency 'SASession', '0.1.0'
   end
 
-  s.subspec 'Moat' do |cmo|
-    cmo.dependency 'SuperAwesome/Core'
-    cmo.dependency 'SAEvents/Moat'
+  s.subspec 'Full' do |f|
+    f.dependency 'SuperAwesome/Base'
+    f.dependency 'SAEvents/Moat'
   end
 
-  s.subspec 'Unity' do |un|
-    un.dependency 'SuperAwesome/Core'
-    un.source_files = "Pod/Plugin/Unity/*"
-    un.pod_target_xcconfig = {
-	'OTHER_LDFLAGS' => '$(inherited)',
-  	'OTHER_CFLAGS' => '$(inherited)',
-  	'HEADER_SEARCH_PATHS' => '$(inherited)'
-  }
+  s.subspec 'MoPub' do |m|
+    m.dependency 'SuperAwesome/Base'
+    m.dependency 'mopub-ios-sdk'
+    m.source_files = 'Pod/Plugin/MoPub/*'
   end
 
-  s.subspec 'Unity+Moat' do |unmo|
-    unmo.dependency 'SuperAwesome/Unity'
-    unmo.dependency 'SAEvents/Moat'
-  end
-
-  s.subspec 'MoPub' do |mp|
-    mp.dependency 'mopub-ios-sdk'
-    mp.dependency 'SuperAwesome/Core'
-    mp.source_files = 'Pod/Plugin/MoPub/*'
-  end
-
-  s.subspec 'MoPub+Moat' do |mpmo|
-    mpmo.dependency 'SuperAwesome/MoPub'
-    mpmo.dependency 'SAEvents/Moat'
+  s.subspec 'Unity' do |u|
+    u.dependency 'SuperAwesome/Base'
+    u.source_files = "Pod/Plugin/Unity/*"
+    u.exclude_files = "Pod/Plugin/Unity/SAUnity.mm"
   end
 end

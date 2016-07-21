@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '62C8BAA85914AB1AFF435B4A'
-               BlueprintName = 'Pods-SuperAwesome'
+               BlueprintIdentifier = '18D184358F81EE0AF10F070B'
+               BlueprintName = 'SASession'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libPods-SuperAwesome.a'>
+               BuildableName = 'libSASession.a'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

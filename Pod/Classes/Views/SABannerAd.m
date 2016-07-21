@@ -123,7 +123,8 @@
                                    @"line_item":@(_ad.lineItemId),
                                    @"creative":@(_ad.creative._id),
                                    @"app":@(_ad.app),
-                                   @"placement":@(_ad.placementId)
+                                   @"placement":@(_ad.placementId),
+                                   @"publisher":@(_ad.publisherId)
                                    };
         moatString = [SAEvents sendDisplayMoatEvent:_webplayer andAdDictionary:moatDict];
     }
