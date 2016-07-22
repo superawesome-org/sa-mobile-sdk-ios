@@ -8,8 +8,8 @@
 
 #import "SAEvents+Moat.h"
 #if defined(__has_include)
-#if __has_include("SUPMoatMobileAppKit/SUPMoatMobileAppKit.h")
-    #import "SUPMoatMobileAppKit/SUPMoatMobileAppKit.h"
+#if __has_include("SUPMoatMobileAppKit.h")
+    #import "SUPMoatMobileAppKit.h"
     #define HAS_MOAT true
 #else 
     #define HAS_MOAT false

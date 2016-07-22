@@ -10,21 +10,21 @@
 #import <Foundation/Foundation.h>
 
 typedef enum SUPMoatAdEventType : NSUInteger {
-    MOAT_AD_EVT_COMPLETE
-    , MOAT_AD_EVT_START
-    , MOAT_AD_EVT_FIRST_QUARTILE
-    , MOAT_AD_EVT_MID_POINT
-    , MOAT_AD_EVT_THIRD_QUARTILE
-    , MOAT_AD_EVT_SKIPPED
-    , MOAT_AD_EVT_STOPPED
-    , MOAT_AD_EVT_PAUSED
-    , MOAT_AD_EVT_PLAYING
-    , MOAT_AD_EVT_VOLUME_CHANGE
-    , MOAT_AD_EVT_NONE
+    SUPMoatAdEventComplete
+    , SUPMoatAdEventStart
+    , SUPMoatAdEventFirstQuartile
+    , SUPMoatAdEventMidPoint
+    , SUPMoatAdEventThirdQuartile
+    , SUPMoatAdEventSkipped
+    , SUPMoatAdEventStopped
+    , SUPMoatAdEventPaused
+    , SUPMoatAdEventPlaying
+    , SUPMoatAdEventVolumeChange
+    , SUPMoatAdEventNone
 } SUPMoatAdEventType;
 
-static NSTimeInterval const MOAT_TIME_UNAVAILABLE = NAN;
-static float const MOAT_VOLUME_UNAVAILABLE = NAN;
+static NSTimeInterval const SUPMoatTimeUnavailable = NAN;
+static float const SUPMoatVolumeUnavailable = NAN;
 
 @interface SUPMoatAdEvent : NSObject
 
