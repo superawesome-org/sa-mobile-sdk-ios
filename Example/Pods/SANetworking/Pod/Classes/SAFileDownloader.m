@@ -7,6 +7,7 @@
 //
 
 #import "SAFileDownloader.h"
+#import "SAUtils.h"
 
 // callback for iOS's own [NSURLConnection sendAsynchronousRequest:]
 typedef void (^downloadresponse)(NSURL * location, NSURLResponse * response, NSError * error);
@@ -68,8 +69,8 @@ typedef void (^downloadresponse)(NSURL * location, NSURLResponse * response, NSE
 
 - (void) downloadFileFrom:(NSString*)url to:(NSString*)fpath withSuccess:(downloadFinish)success orFailure:(failure)failure {
     
-    // form the URL & request
     NSURL *URL = [NSURL URLWithString:url];
+    
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:URL];
     [request setHTTPMethod:@"GET"];
