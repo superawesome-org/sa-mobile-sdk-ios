@@ -137,9 +137,16 @@
     // add the padlick
     _padlock = [[UIImageView alloc] initWithFrame:BIG_PAD_FRAME];
     _padlock.image = [SAUtils padlockImage];
-    if (!_ad.isFallback && !_ad.isHouse) {
+    if ([self shouldShowPadlock]) {
         [_webplayer addSubview:_padlock];
     }
+}
+
+- (BOOL) shouldShowPadlock {
+    if (_ad.creative.creativeFormat == tag) return false;
+    if (_ad.isFallback) return false;
+    if (_ad.isHouse && !_ad.safeAdApproved) return false;
+    return true;
 }
 
 - (void) close {

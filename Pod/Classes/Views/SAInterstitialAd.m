@@ -186,6 +186,10 @@
     [_banner play];
 }
 
+- (BOOL) shouldShowPadlock {
+    return [_banner shouldShowPadlock];
+}
+
 - (void) close {
     [self dismissViewControllerAnimated:YES completion:^{
         if ([_banner.adDelegate respondsToSelector:@selector(adWasClosed:)]) {

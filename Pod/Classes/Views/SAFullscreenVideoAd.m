@@ -207,6 +207,10 @@
     [_video play];
 }
 
+- (BOOL) shouldShowPadlock {
+    return [_video shouldShowPadlock];
+}
+
 - (void) close {
     
     [_video close];
