@@ -26,18 +26,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [[SuperAwesome getInstance] setConfigurationStaging];
-    [[SuperAwesome getInstance] disableTestMode];
+    [[SuperAwesome getInstance] setConfigurationProduction];
+    [[SuperAwesome getInstance] enableTestMode];
     
     SALoader *loader = [[SALoader alloc] init];
     loader.delegate = self;
-//    [loader loadAdForPlacementId:30471];
-    [loader loadAdForPlacementId:113];
-    [loader loadAdForPlacementId:114];
-    [loader loadAdForPlacementId:115];
-    [loader loadAdForPlacementId:116];
-    [loader loadAdForPlacementId:117];
-    [loader loadAdForPlacementId:118];
+    [loader loadAdForPlacementId:30260];
+//    [loader loadAdForPlacementId:113];
+//    [loader loadAdForPlacementId:114];
+//    [loader loadAdForPlacementId:115];
+//    [loader loadAdForPlacementId:116];
+//    [loader loadAdForPlacementId:117];
+//    [loader loadAdForPlacementId:118];
 //    [loader loadAdForPlacementId:233];
 //    [loader loadAdForPlacementId:200];
 //    [loader loadAdForPlacementId:204];
@@ -54,6 +54,7 @@
     NSLog(@"%@", [ad jsonPreetyStringRepresentation]);
     
     switch (ad.placementId) {
+        case 30260: _video1Data = ad; break;
         case 113: _bannerData = ad; break;
         case 114: _interstitial1Data = ad; break;
         case 115: _interstitial2Data = ad; break;
