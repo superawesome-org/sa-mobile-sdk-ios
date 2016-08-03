@@ -17,7 +17,6 @@
 #import "SASession.h"
 
 @interface SuperAwesome ()
-@property (nonatomic, assign) SAConfiguration config;
 @end
 
 @implementation SuperAwesome
@@ -49,8 +48,33 @@
     return self;
 }
 
+- (void) setConfiguration:(NSInteger)configuration {
+    [[SASession getInstance] setConfiguration:configuration];
+}
+
+- (void) setConfigurationProduction {
+    [[SASession getInstance] setConfigurationProduction];
+}
+
+- (void) setConfigurationStaging {
+    [[SASession getInstance] setConfigurationStaging];
+}
+
+- (void) setTesting:(BOOL)enabled {
+    [[SASession getInstance] setTest:enabled];
+}
+
+- (void) disableTestMode {
+    [[SASession getInstance] setTestEnabled];
+}
+
+- (void) enableTestMode {
+    [[SASession getInstance] setTestDisabled];
+}
+
+
 - (NSString*) getVersion {
-    return @"4.3.8";
+    return @"4.3.9";
 }
 
 - (NSString*) getSdk {
@@ -60,41 +84,15 @@
 - (NSString*) getSdkVersion {
     return [NSString stringWithFormat:@"%@_%@", [self getSdk], [self getVersion]];
 }
-
-- (void) setConfigurationProduction {
-    _config = PRODUCTION;
-    [[SASession getInstance] setConfigurationProduction];
-}
-
-- (void) setConfigurationStaging {
-    _config = STAGING;
-    [[SASession getInstance] setConfigurationStaging];
-}
-
-- (SAConfiguration) getConfiguration {
-    return _config;
-}
-
 - (NSString*) getBaseURL {
     return [[SASession getInstance] getBaseUrl];
 }
-
-- (void) enableTestMode {
-    [[SASession getInstance] setTest:true];
-}
-
-- (void) disableTestMode {
-    [[SASession getInstance] setTest:false];
-}
-
-- (void) setTesting:(BOOL)enabled {
-    [[SASession getInstance] setTest:enabled];
-}
-
 - (BOOL) isTestingEnabled {
     return [[SASession getInstance] isTestEnabled];
 }
-
+- (NSInteger) getConfiguration {
+    return [[SASession getInstance] getConfiguration];
+}
 - (NSUInteger) getDAUID {
     return [[SASession getInstance] getDauId];
 }

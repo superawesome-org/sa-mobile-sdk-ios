@@ -25,7 +25,8 @@
 
 - (void) loadAd:(NSInteger)placementId
      forUnityAd:(NSString *)unityAd
-   withTestMode:(BOOL)isTestEnabled {
+   withTestMode:(BOOL)isTestEnabled
+withConfiguration:(NSInteger)config {
     
     // get external vars
     _unityAd = unityAd;
@@ -33,6 +34,7 @@
     
     // enable or disable test mode
     [[SuperAwesome getInstance] setTesting:_isTestingEnabled];
+    [[SuperAwesome getInstance] setConfiguration:config];
     
     // start loading
     SALoader *loader = [[SALoader alloc] init];
