@@ -54,11 +54,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>SAWebPlayer-SAWebPlayer.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>SAWebPlayer.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -77,72 +72,67 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>01EFB6F127CD061534837643</key>
+		<key>02F079E29227B72E1E3BD675</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>051CF754E614A99428F6304F</key>
+		<key>10ABBF276594A421E84F3D84</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>082528BB17EBA0D39D82B1FB</key>
+		<key>3A20EBD1B17579FF387C657D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>21E1EB201F218CD5ACA36659</key>
+		<key>430A474D9D445647C96341C1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>47C4F463B0490BEA8ACFA3BA</key>
+		<key>44CC1DDD22480E9D8B620008</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4E3D0DB934321F7742B26321</key>
+		<key>48FBAB6DF7CCFD408B3D39EB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4FCFD3AAB8CCEF293D1C8F05</key>
+		<key>4E3ACB418AD2A05D91B57262</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5277A825FEBC571CA1B97AA2</key>
+		<key>830FA7662A25048A30CFEB9E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>57D106B77E6733DA57ED3BA4</key>
+		<key>8FD43C1774564E1770AC444C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9F9B2EF3932C01B5C5FC7854</key>
+		<key>96E3182D88057F4E4D311907</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C36FCFB077DB8676E7CDA79B</key>
+		<key>B80D0D841BF6BFD127E6E6A9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D66D403A26203A835B61E83D</key>
+		<key>B8529834B141B4D65BB24A71</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E236E9F74E05D35055F3E773</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>EBB264B8B3E1F0D28F5C320D</key>
+		<key>C39845C94F5E0D9301F7AF08</key>
 		<dict>
 			<key>primary</key>
 			<true/>

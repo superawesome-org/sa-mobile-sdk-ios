@@ -64,59 +64,59 @@
     [network sendGET:endpoint
            withQuery:query
            andHeader:header
-          andSuccess:^(NSInteger status, NSString *payload) {
-        
-              // create parser & extra
-              SAParser *parser = [[SAParser alloc] init];
-              __block SAAd *parsedAd = [parser parseInitialAdFromNetwork:payload withPlacementId:placementId];
-              
-              if (!parsedAd) {
-                  if (_delegate != NULL && [_delegate respondsToSelector:@selector(didFailToLoadAdForPlacementId:)]){
-                      [_delegate didFailToLoadAdForPlacementId:placementId];
-                  }
-              }
-              // and get extra data
-              else {
-                  
-                  parsedAd.creative.details.data = [[SAData alloc] init];
-                  SACreativeFormat type = parsedAd.creative.creativeFormat;
-                  
-                  switch (type) {
-                          // parse video
-                      case video: {
-                          SAVASTParser *vastParser = [[SAVASTParser alloc] init];
-                          [vastParser parseVASTURL:parsedAd.creative.details.vast done:^(SAVASTAd *ad) {
-                              
-                              if (ad) {
-                                  parsedAd.creative.details.data.vastAd = ad;
-                                  if (_delegate != NULL && [_delegate respondsToSelector:@selector(didLoadAd:)]) {
-                                      [_delegate didLoadAd:parsedAd];
-                                  }
-                              } else {
-                                  [_delegate didFailToLoadAdForPlacementId:parsedAd.placementId];
-                              }
-                          }];
-                          break;
-                      }
-                          // parse HTML data
-                      case image:
-                      case rich:
-                      case tag:
-                      case invalid: {
-                          parsedAd.creative.details.data.adHTML = [SAHTMLParser formatCreativeDataIntoAdHTML:parsedAd];
-                          if (_delegate != NULL && [_delegate respondsToSelector:@selector(didLoadAd:)]) {
-                              [_delegate didLoadAd:parsedAd];
-                          }
-                          break;
-                      }
-                  }
-              }
-              
-    } andFailure:^{
-        if (_delegate != NULL && [_delegate respondsToSelector:@selector(didFailToLoadAdForPlacementId:)]) {
-            [_delegate didFailToLoadAdForPlacementId:placementId];
-        }
-    }];
+        withResponse:^(NSInteger status, NSString *payload, BOOL success) {
+               if (!success) {
+                   if (_delegate != NULL && [_delegate respondsToSelector:@selector(didFailToLoadAdForPlacementId:)]) {
+                       [_delegate didFailToLoadAdForPlacementId:placementId];
+                   }
+               } else {
+                   // create parser & extra
+                   SAParser *parser = [[SAParser alloc] init];
+                   __block SAAd *parsedAd = [parser parseInitialAdFromNetwork:payload withPlacementId:placementId];
+                   
+                   if (!parsedAd) {
+                       if (_delegate != NULL && [_delegate respondsToSelector:@selector(didFailToLoadAdForPlacementId:)]){
+                           [_delegate didFailToLoadAdForPlacementId:placementId];
+                       }
+                   }
+                   // and get extra data
+                   else {
+                       
+                       parsedAd.creative.details.data = [[SAData alloc] init];
+                       SACreativeFormat type = parsedAd.creative.creativeFormat;
+                       
+                       switch (type) {
+                               // parse video
+                           case video: {
+                               SAVASTParser *vastParser = [[SAVASTParser alloc] init];
+                               [vastParser parseVASTURL:parsedAd.creative.details.vast done:^(SAVASTAd *ad) {
+                                   
+                                   if (ad) {
+                                       parsedAd.creative.details.data.vastAd = ad;
+                                       if (_delegate != NULL && [_delegate respondsToSelector:@selector(didLoadAd:)]) {
+                                           [_delegate didLoadAd:parsedAd];
+                                       }
+                                   } else {
+                                       [_delegate didFailToLoadAdForPlacementId:parsedAd.placementId];
+                                   }
+                               }];
+                               break;
+                           }
+                               // parse HTML data
+                           case image:
+                           case rich:
+                           case tag:
+                           case invalid: {
+                               parsedAd.creative.details.data.adHTML = [SAHTMLParser formatCreativeDataIntoAdHTML:parsedAd];
+                               if (_delegate != NULL && [_delegate respondsToSelector:@selector(didLoadAd:)]) {
+                                   [_delegate didLoadAd:parsedAd];
+                               }
+                               break;
+                           }
+                       }
+                   }
+               }
+           }];
 }
 
 @end

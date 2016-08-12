@@ -115,8 +115,9 @@
     
     // moat tracking
     NSString *moatString = @"";
-    if ([[SAEvents class] respondsToSelector:@selector(sendDisplayMoatEvent:andAdDictionary:)]) {
-        
+    Class class = NSClassFromString(@"SAEvents");
+    SEL selector = NSSelectorFromString(@"sendDisplayMoatEvent:andAdDictionary:");
+    if ([class instancesRespondToSelector:selector]) {
         NSDictionary *moatDict = @{
                                    @"advertiser":@(_ad.advertiserId),
                                    @"campaign":@(_ad.campaignId),
@@ -126,8 +127,21 @@
                                    @"placement":@(_ad.placementId),
                                    @"publisher":@(_ad.publisherId)
                                    };
-        moatString = [SAEvents sendDisplayMoatEvent:_webplayer andAdDictionary:moatDict];
+        
+        NSMethodSignature *signature = [class methodSignatureForSelector:selector];
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
+        [invocation setTarget:class];
+        [invocation setSelector:selector];
+        [invocation setArgument:&_webplayer atIndex:2];
+        [invocation setArgument:&moatDict atIndex:3];
+        [invocation retainArguments];
+        [invocation invoke];
+        void *tmpResult;
+        [invocation getReturnValue:&tmpResult];
+        moatString = (__bridge NSString*)tmpResult;
     }
+    
+    // form the full HTML string and play it!
     NSString *fullHTML = [_ad.creative.details.data.adHTML stringByReplacingOccurrencesOfString:@"_MOAT_" withString:moatString];
     [_webplayer loadAdHTML:fullHTML];
     

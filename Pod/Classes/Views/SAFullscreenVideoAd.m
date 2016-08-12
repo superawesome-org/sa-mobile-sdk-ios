@@ -107,7 +107,8 @@
     // setup coordinates
     CGSize scrSize = [UIScreen mainScreen].bounds.size;
     CGSize currentSize = CGSizeZero;
-    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+//    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
     CGFloat bigDimension = MAX(scrSize.width, scrSize.height);
     CGFloat smallDimension = MIN(scrSize.width, scrSize.height);
     
@@ -174,7 +175,7 @@
     }
 }
 
-- (NSUInteger) supportedInterfaceOrientations {
+- (UIInterfaceOrientationMask) supportedInterfaceOrientations {
     if (_shouldLockOrientation) {
         return _lockOrientation;
     }

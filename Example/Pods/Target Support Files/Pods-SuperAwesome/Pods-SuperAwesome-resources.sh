@@ -80,7 +80,6 @@ EOM
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_resource "$PODS_CONFIGURATION_BUILD_DIR/SAWebPlayer/SAWebPlayer.bundle"
   install_resource "mopub-ios-sdk/MoPubSDK/Internal/Common/MPAdBrowserController.xib"
   install_resource "mopub-ios-sdk/MoPubSDK/Resources/MPCloseBtn.png"
   install_resource "mopub-ios-sdk/MoPubSDK/Resources/MPCloseBtn@2x.png"
@@ -103,7 +102,6 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "mopub-ios-sdk/MoPubSDK/Resources/MRAID.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_resource "$PODS_CONFIGURATION_BUILD_DIR/SAWebPlayer/SAWebPlayer.bundle"
   install_resource "mopub-ios-sdk/MoPubSDK/Internal/Common/MPAdBrowserController.xib"
   install_resource "mopub-ios-sdk/MoPubSDK/Resources/MPCloseBtn.png"
   install_resource "mopub-ios-sdk/MoPubSDK/Resources/MPCloseBtn@2x.png"

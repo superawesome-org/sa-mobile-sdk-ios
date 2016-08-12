@@ -136,7 +136,7 @@
     tagString = [tagString stringByReplacingOccurrencesOfString:@"“" withString:@"\""];
     
     NSString *html = [htmlString stringByReplacingOccurrencesOfString:@"tagdata" withString:tagString];
-    html = [html stringByReplacingOccurrencesOfString:@"\/" withString:@"/"];
+    // html = [html stringByReplacingOccurrencesOfString:@"\/" withString:@"/"];
     html = [html stringByReplacingOccurrencesOfString:@"\\/" withString:@"/"];
     html = [html stringByReplacingOccurrencesOfString:@"\"" withString:@"'"];
     

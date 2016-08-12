@@ -36,7 +36,6 @@
         // and test mode is disabled
         [self setConfigurationProduction];
         [self disableTestMode];
-        [SAEvents enableSATracking];
         [SACapper enableCapping:^(NSUInteger dauId) {
             [[SASession getInstance] setDauId:dauId];
         }];
@@ -65,16 +64,16 @@
 }
 
 - (void) disableTestMode {
-    [[SASession getInstance] setTestEnabled];
+    [[SASession getInstance] setTestDisabled];
 }
 
 - (void) enableTestMode {
-    [[SASession getInstance] setTestDisabled];
+    [[SASession getInstance] setTestEnabled];
 }
 
 
 - (NSString*) getVersion {
-    return @"4.3.9";
+    return @"4.3.10";
 }
 
 - (NSString*) getSdk {

@@ -244,7 +244,9 @@
 - (void) didStartCreative {
     
     // moat
-    if ([[SAEvents class] respondsToSelector:@selector(sendVideoMoatEvent:andLayer:andView:andAdDictionary:)]) {
+    Class class = NSClassFromString(@"SAEvents");
+    SEL selector = NSSelectorFromString(@"sendVideoMoatEvent:andLayer:andView:andAdDictionary:");
+    if ([class respondsToSelector:selector]) {
         
         NSDictionary *moatDict = @{
                                    @"advertiser":@(_ad.advertiserId),
@@ -256,7 +258,19 @@
                                    @"publisher":@(_ad.publisherId)
                                    };
         
-        [SAEvents sendVideoMoatEvent:[_player getPlayer] andLayer:[_player getPlayerLayer] andView:self andAdDictionary:moatDict];
+        AVPlayer *player = [_player getPlayer];
+        AVPlayerLayer *layer = [_player getPlayerLayer];
+        id weakSelf = self;
+        NSMethodSignature *signature = [class methodSignatureForSelector:selector];
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
+        [invocation setTarget:class];
+        [invocation setSelector:selector];
+        [invocation setArgument:&player atIndex:2];
+        [invocation setArgument:&layer atIndex:3];
+        [invocation setArgument:&weakSelf atIndex:4];
+        [invocation setArgument:&moatDict atIndex:5];
+        [invocation retainArguments];
+        [invocation invoke];
     }
     
     if (_videoDelegate && [_videoDelegate respondsToSelector:@selector(videoStarted:)]) {
