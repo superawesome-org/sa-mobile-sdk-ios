@@ -45,6 +45,10 @@
         lang = [[languages firstObject] stringByReplacingOccurrencesOfString:@"-" withString:@"_"];;
     }
     
+    NSString *userAgent = [[[UIWebView alloc] initWithFrame:CGRectZero] stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
+    NSLog(@"UA1 %@", userAgent);
+    NSLog(@"UA2 %@", [SAUtils getUserAgent]);
+    
     // form the query
     NSDictionary *query = @{@"test": @([[SASession getInstance] isTestEnabled]),
                             @"sdkVersion":[[SASession getInstance] getVersion],
@@ -53,7 +57,8 @@
                             @"bundle":[[NSBundle mainBundle] bundleIdentifier],
                             @"name":[SAUtils encodeURI:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"]],
                             @"dauid":@([[SASession getInstance] getDauId]),
-                            @"lang": lang
+                            @"lang": lang,
+                            @"device": ([SAUtils getSystemSize] == size_mobile ? @"mobile" : @"tablet")
                             };
     
     // form the header
