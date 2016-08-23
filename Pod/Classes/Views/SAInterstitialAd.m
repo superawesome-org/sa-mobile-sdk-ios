@@ -15,7 +15,7 @@
 // defines
 #define INTER_BG_COLOR [UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1]
 
-@interface SABannerAd () <SAWebPlayerProtocol>
+@interface SABannerAd () /*<SAWebPlayerProtocol>*/
 @property (nonatomic, weak) id<SAAdProtocol> internalAdProto;
 @end
 
@@ -155,10 +155,7 @@
 }
 
 - (UIInterfaceOrientationMask) supportedInterfaceOrientations {
-    if (_shouldLockOrientation) {
-        return _lockOrientation;
-    }
-    return UIInterfaceOrientationMaskAll;
+    return _shouldLockOrientation ? _lockOrientation : UIInterfaceOrientationMaskAll;
 }
 
 - (void) didReceiveMemoryWarning {
@@ -192,11 +189,12 @@
 }
 
 - (void) close {
-    [self dismissViewControllerAnimated:YES completion:^{
-        if ([_banner.adDelegate respondsToSelector:@selector(adWasClosed:)]) {
-            [_banner.adDelegate adWasClosed:_ad.placementId];
-        }
-    }];
+    
+    if ([_banner.adDelegate respondsToSelector:@selector(adWasClosed:)]) {
+        [_banner.adDelegate adWasClosed:_ad.placementId];
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 
 }
 

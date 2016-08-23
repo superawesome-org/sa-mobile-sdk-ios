@@ -31,7 +31,7 @@ SAParentalGateProtocol>
 @property (nonatomic, assign) NSUInteger lockOrientation;
 @property (nonatomic, strong) SAAd *cAd;
 @property (nonatomic, strong) SALoader *loader;
-@property (nonatomic, strong) SAFullscreenVideoAd *fvad;
+@property (nonatomic, strong) SAVideoAd *fvad;
 @property (nonatomic, strong) MPRewardedVideoReward *reward;
 
 @end
@@ -138,7 +138,7 @@ SAParentalGateProtocol>
     _reward = [[MPRewardedVideoReward alloc] initWithCurrencyType:kMPRewardedVideoRewardCurrencyTypeUnspecified amount:@(0)];
     
     // init video
-    _fvad = [[SAFullscreenVideoAd alloc] init];
+    _fvad = [[SAVideoAd alloc] init];
     
     // set delegates
     [_fvad setVideoDelegate:self];

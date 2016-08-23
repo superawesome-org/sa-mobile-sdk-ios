@@ -31,16 +31,18 @@
     
     SALoader *loader = [[SALoader alloc] init];
     loader.delegate = self;
-//    [loader loadAdForPlacementId:242];
+    [loader loadAdForPlacementId:247];
 //    [loader loadAdForPlacementId:30260];
 //    [loader loadAdForPlacementId:30260];
 //    [loader loadAdForPlacementId:223];
-    [loader loadAdForPlacementId:113];
-    [loader loadAdForPlacementId:114];
-    [loader loadAdForPlacementId:115];
-    [loader loadAdForPlacementId:116];
-    [loader loadAdForPlacementId:117];
-    [loader loadAdForPlacementId:118];
+//    [loader loadAdForPlacementId:113];
+//    [loader loadAdForPlacementId:114];
+//    [loader loadAdForPlacementId:115];
+    [loader loadAdForPlacementId:249];
+//    [loader loadAdForPlacementId:116];
+//    [loader loadAdForPlacementId:117];
+//    [loader loadAdForPlacementId:118];
+//    [loader loadAdForPlacementId:247];
 //    [loader loadAdForPlacementId:233];
 //    [loader loadAdForPlacementId:200];
 //    [loader loadAdForPlacementId:204];
@@ -57,17 +59,19 @@
     NSLog(@"%@", [ad jsonPreetyStringRepresentation]);
     
     switch (ad.placementId) {
+        case 247: _interstitial1Data = ad; break;
 //        case 242: _video1Data = ad; break;
 //            case 30260: _video1Data = ad; break;
 //        case 223: _video1Data = ad; break;
 //        case 30260: _video1Data = ad; break;
-        case 113: _bannerData = ad; break;
-        case 114: _interstitial1Data = ad; break;
-        case 115: _interstitial2Data = ad; break;
-        case 118: _interstitial3Data = ad; break;
-//        case 230: _video1Data = ad; break;
-        case 116: _video1Data = ad; break;
-        case 117: _video2Data = ad; break;
+//        case 113: _bannerData = ad; break;
+//        case 114: _interstitial1Data = ad; break;
+//        case 115: _interstitial2Data = ad; break;
+//        case 118: _interstitial3Data = ad; break;
+////        case 230: _video1Data = ad; break;
+        case 249: _video1Data = ad; break;
+//        case 116: _video1Data = ad; break;
+//        case 117: _video2Data = ad; break;
 //        case 233: _interstitial3Data = ad; break;
 //        case 200: _bannerData = ad; break;
 //        case 30471: _bannerData = ad; break;
@@ -140,7 +144,8 @@
 
 - (IBAction)playVideo1:(id)sender {
     if (_video1Data != NULL) {
-        SAFullscreenVideoAd *fvad = [[SAFullscreenVideoAd alloc] init];
+        
+        SAVideoAd *fvad = [[SAVideoAd alloc] init];
         [fvad setAd:_video1Data];
         [fvad setShouldShowCloseButton:true];
         [fvad setIsParentalGateEnabled:true];
@@ -152,7 +157,7 @@
 
 - (IBAction)playVideo2:(id)sender {
     if (_video2Data != NULL) {
-        SAFullscreenVideoAd *fvad = [[SAFullscreenVideoAd alloc] init];
+        SAVideoAd *fvad = [[SAVideoAd alloc] init];
         [fvad setAd:_video2Data];
         [fvad setShouldShowCloseButton:true];
         [fvad setShouldLockOrientation:YES];

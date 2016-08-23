@@ -18,9 +18,16 @@
 @property (nonatomic, assign) CGFloat scalingFactor;
 @property (nonatomic, assign) BOOL loadedOnce;
 
+@property (nonatomic, strong) sawebplayerEventHandler eventHandler;
+@property (nonatomic, strong) sawebplayerClickHandler clickHandler;
+
 @end
 
 @implementation SAWebPlayer
+
+////////////////////////////////////////////////////////////////////////////////
+// MARK: Init function
+////////////////////////////////////////////////////////////////////////////////
 
 - (id) initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -36,10 +43,16 @@
         self.scrollView.bounces = NO;
         self.allowsInlineMediaPlayback = NO;
         self.mediaPlaybackRequiresUserAction = YES;
+        _eventHandler = ^(SAWebPlayerEvent event) {};
+        _clickHandler = ^(NSURL *url) {};
     }
     
     return self;
 }
+
+////////////////////////////////////////////////////////////////////////////////
+// MARK: Functions specific to SAWebPlayer
+////////////////////////////////////////////////////////////////////////////////
 
 - (void) setAdSize:(CGSize)adSize {
     _adSize = adSize;
@@ -49,8 +62,10 @@
     _scalingFactor = MIN(xscale, yscale);
 }
 
-- (void) loadAdHTML:(NSString *)adHtml {
-    _adHtml = adHtml;
+- (void) loadAdHTML:(NSString*)html {
+    
+    _adHtml = html;
+    
 #pragma mark SA_SDK_SPECIFIC
     _adHtml = [_adHtml stringByReplacingOccurrencesOfString:@"_WIDTH_" withString:[NSString stringWithFormat:@"%ld", (long)_adSize.width]];
     _adHtml = [_adHtml stringByReplacingOccurrencesOfString:@"_HEIGHT_" withString:[NSString stringWithFormat:@"%ld", (long)_adSize.height]];
@@ -76,9 +91,23 @@
     [self stringByEvaluatingJavaScriptFromString:script];
 }
 
-#pragma mark <UIWebViewDelegate>
+////////////////////////////////////////////////////////////////////////////////
+// MARK: Setters
+////////////////////////////////////////////////////////////////////////////////
 
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+- (void) setEventHandler:(sawebplayerEventHandler)eventHandler {
+    _eventHandler = eventHandler != NULL ? eventHandler : ^(SAWebPlayerEvent event) {};
+}
+
+- (void) setClickHandler:(sawebplayerClickHandler)clickHandler {
+    _clickHandler = clickHandler != NULL ? clickHandler : ^(NSURL *url) {};
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// MARK: UIWebViewDelegate
+////////////////////////////////////////////////////////////////////////////////
+
+- (BOOL) webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     
     BOOL shouldContinue = true;
     
@@ -95,38 +124,35 @@
     
     if (!shouldContinue) {
         
-        // send a click message
         NSURL *url = [request URL];
-        if (_sadelegate != NULL && [_sadelegate respondsToSelector:@selector(webPlayerWillNavigate:)]) {
-            [_sadelegate webPlayerWillNavigate:url];
-        }
-        
+        _clickHandler(url);
         return false;
     }
     
     return true;
 }
 
-- (void)webViewDidStartLoad:(UIWebView *)webView {
+- (void) webViewDidStartLoad:(UIWebView *)webView {
     // do nothing
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
-    
-    // call delegate
-    if (_sadelegate != NULL && [_sadelegate respondsToSelector:@selector(webPlayerDidLoad)] && !_loadedOnce) {
-        [_sadelegate webPlayerDidLoad];
+- (void) webViewDidFinishLoad:(UIWebView *)webView {
+    if (!_loadedOnce) {
         _loadedOnce = true;
+        _eventHandler(Web_Start);
     }
 }
 
 - (void) webView:(UIWebView*) webView didFailLoadWithError:(NSError *)error {
-    if (_sadelegate != NULL && [_sadelegate respondsToSelector:@selector(webPlayerDidFail)]) {
-        [_sadelegate webPlayerDidFail];
+    if (!_loadedOnce) {
+        _loadedOnce = true;
+        _eventHandler(Web_Error);
     }
 }
 
-#pragma mark <UIScrollViewDelegate>
+////////////////////////////////////////////////////////////////////////////////
+// MARK: UIScrollViewDelegate
+////////////////////////////////////////////////////////////////////////////////
 
 - (UIView*) viewForZoomingInScrollView:(UIScrollView *)scrollView {
     return nil;

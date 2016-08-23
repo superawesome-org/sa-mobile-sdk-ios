@@ -26,7 +26,6 @@
 #import "SABannerAd.h"
 #import "SAInterstitialAd.h"
 #import "SAVideoAd.h"
-#import "SAFullscreenVideoAd.h"
 
 // load protocols
 #import "SAProtocols.h"

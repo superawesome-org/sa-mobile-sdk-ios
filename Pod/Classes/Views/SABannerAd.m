@@ -29,7 +29,7 @@
 #define BIG_PAD_FRAME CGRectMake(0, 0, 67, 25)
 #define DISPLAY_VIEWABILITY_COUNT 1
 
-@interface SABannerAd () <SAWebPlayerProtocol>
+@interface SABannerAd ()
 
 @property (nonatomic, weak) id<SAAdProtocol> internalAdProto;
 
@@ -110,7 +110,8 @@
     
     // add the sawebview
     _webplayer = [[SAWebPlayer alloc] initWithFrame:frame];
-    _webplayer.sadelegate = self;
+    
+    // setup the ad size
     [_webplayer setAdSize:CGSizeMake(_ad.creative.details.width, _ad.creative.details.height)];
     
     // moat tracking
@@ -143,12 +144,61 @@
     
     // form the full HTML string and play it!
     NSString *fullHTML = [_ad.creative.details.data.adHTML stringByReplacingOccurrencesOfString:@"_MOAT_" withString:moatString];
-    [_webplayer loadAdHTML:fullHTML];
     
-    // add the subview
+    // get a weak self reference
+    __weak typeof (self) weakSelf = self;
+    
+    // add callbacks for web player events
+    [_webplayer setEventHandler:^(SAWebPlayerEvent event) {
+        switch (event) {
+            case Web_Start: {
+                // send viewable impression
+                weakSelf.viewabilityTimer = [NSTimer scheduledTimerWithTimeInterval:1
+                                                                     target:weakSelf
+                                                                   selector:@selector(viewableImpressionFunc)
+                                                                   userInfo:nil
+                                                                    repeats:YES];
+                [weakSelf.viewabilityTimer fire];
+                
+                // if the banner has a separate impression URL, send that as well for 3rd party tracking
+                if (weakSelf.ad.creative.impressionUrl && [weakSelf.ad.creative.impressionUrl rangeOfString:[[SuperAwesome getInstance] getBaseURL]].location == NSNotFound) {
+                    [SAEvents sendEventToURL:weakSelf.ad.creative.impressionUrl];
+                }
+                
+                if ([weakSelf.adDelegate respondsToSelector:@selector(adWasShown:)]) {
+                    [weakSelf.adDelegate adWasShown:weakSelf.ad.placementId];
+                }
+                break;
+            }
+            case Web_Error: {
+                if ([weakSelf.adDelegate respondsToSelector:@selector(adFailedToShow:)]) {
+                    [weakSelf.adDelegate adFailedToShow:weakSelf.ad.placementId];
+                }
+                break;
+            }
+        }
+    }];
+    
+    // add callbacks for clicks
+    [_webplayer setClickHandler:^(NSURL *url) {
+        // get the going to URL
+        weakSelf.destinationURL = [url absoluteString];
+        
+        if (weakSelf.isParentalGateEnabled) {
+            [weakSelf.gate show];
+        } else {
+            [weakSelf advanceToClick];
+        }
+    }];
+    
+    
+    // add it as a subview
     [self addSubview:_webplayer];
     
-    // add the padlick
+    // finally load the ad HTML data
+    [_webplayer loadAdHTML:fullHTML];
+    
+    // add the padlock
     _padlock = [[UIImageView alloc] initWithFrame:BIG_PAD_FRAME];
     _padlock.image = [SAUtils padlockImage];
     if ([self shouldShowPadlock]) {
@@ -205,23 +255,6 @@
     _padlock.frame = BIG_PAD_FRAME;
 }
 
-#pragma mark <SAWebViewProtocol> functions
-
-- (void) webPlayerDidLoad {
-    // send viewable impression
-    _viewabilityTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(viewableImpressionFunc) userInfo:nil repeats:YES];
-    [_viewabilityTimer fire];
-    
-    // if the banner has a separate impression URL, send that as well for 3rd party tracking
-    if (_ad.creative.impressionUrl && [_ad.creative.impressionUrl rangeOfString:[[SuperAwesome getInstance] getBaseURL]].location == NSNotFound) {
-        [SAEvents sendEventToURL:_ad.creative.impressionUrl];
-    }
-    
-    if ([_adDelegate respondsToSelector:@selector(adWasShown:)]) {
-        [_adDelegate adWasShown:_ad.placementId];
-    }
-}
-
 - (void) viewableImpressionFunc {
     
     if (_ticks >= DISPLAY_VIEWABILITY_COUNT) {
@@ -244,25 +277,9 @@
             _viewabilityCount++;
         }
         
-        NSLog(@"[AA :: Info] Tick %ld/%d - Viewability Count %ld/%d", _ticks, DISPLAY_VIEWABILITY_COUNT, _viewabilityCount, DISPLAY_VIEWABILITY_COUNT);
+        NSLog(@"[AA :: Info] Tick %ld/%d - Viewability Count %ld/%d", (long)_ticks, DISPLAY_VIEWABILITY_COUNT, (long)_viewabilityCount, DISPLAY_VIEWABILITY_COUNT);
     }
 }
 
-- (void) webPlayerDidFail {
-    if ([_adDelegate respondsToSelector:@selector(adFailedToShow:)]) {
-        [_adDelegate adFailedToShow:_ad.placementId];
-    }
-}
-
-- (void) webPlayerWillNavigate:(NSURL *)url {
-    // get the going to URL
-    _destinationURL = [url absoluteString];
-    
-    if (_isParentalGateEnabled) {
-        [_gate show];
-    } else {
-        [self advanceToClick];
-    }
-}
 
 @end

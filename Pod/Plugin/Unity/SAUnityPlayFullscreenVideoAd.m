@@ -57,7 +57,7 @@
     
     if (parsedAd != NULL) {
         // create fvad
-        SAFullscreenVideoAd *fvad = [[SAFullscreenVideoAd alloc] init];
+        SAVideoAd *fvad = [[SAVideoAd alloc] init];
         [fvad setAd:parsedAd];
         
         // parametrize
@@ -93,8 +93,8 @@
 - (void) closeFullscreenVideoForUnityName:(NSString *)unityAd {
     NSObject * temp = [[SAUnityExtensionContext getInstance] getAdForKey:unityAd];
     if (temp != NULL){
-        if ([temp isKindOfClass:[SAFullscreenVideoAd class]]){
-            SAFullscreenVideoAd *fvad = (SAFullscreenVideoAd*)temp;
+        if ([temp isKindOfClass:[SAVideoAd class]]){
+            SAVideoAd *fvad = (SAVideoAd*)temp;
             [fvad close];
         }
     }

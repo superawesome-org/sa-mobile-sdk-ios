@@ -59,9 +59,6 @@
         } else if ([obj isKindOfClass:[SAVideoAd class]]) {
             SAVideoAd *video = (SAVideoAd*)obj;
             p = [video getAd].placementId;
-        } else if ([obj isKindOfClass:[SAFullscreenVideoAd class]]) {
-            SAFullscreenVideoAd *fvideo = (SAFullscreenVideoAd*)obj;
-            p = [fvideo getAd].placementId;
         }
         
         if (p == placementId) {
