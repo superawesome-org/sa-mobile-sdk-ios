@@ -17,7 +17,7 @@
 // implements two important ad protocols
 // - SALoaderProtocol (of SALoader class)
 // - SAAdProtocol (common to all SAViews)
-@interface SuperAwesomeBannerCustomEvent () <SALoaderProtocol, SAAdProtocol, SAParentalGateProtocol>
+@interface SuperAwesomeBannerCustomEvent () <SALoaderProtocol, SAAdProtocol>
 
 @property (nonatomic, assign) CGRect bannerFrame;
 @property (nonatomic, assign) NSInteger placementId;
@@ -89,7 +89,6 @@
     
     // set delegates
     [_banner setAdDelegate:self];
-    [_banner setParentalGateDelegate:self];
     
     // customize
     [_banner setIsParentalGateEnabled:_isParentalGateEnabled];

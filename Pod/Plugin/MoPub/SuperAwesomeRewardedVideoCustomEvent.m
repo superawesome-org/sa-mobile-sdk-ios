@@ -14,11 +14,7 @@
 #import "MPRewardedVideoReward.h"
 #import "SuperAwesomeMoPub.h"
 
-@interface SuperAwesomeRewardedVideoCustomEvent ()
-<SALoaderProtocol,
-SAAdProtocol,
-SAVideoAdProtocol,
-SAParentalGateProtocol>
+@interface SuperAwesomeRewardedVideoCustomEvent () <SALoaderProtocol, SAAdProtocol>
 
 // SA objects
 @property (nonatomic, assign) NSInteger placementId;
@@ -141,8 +137,6 @@ SAParentalGateProtocol>
     _fvad = [[SAVideoAd alloc] init];
     
     // set delegates
-    [_fvad setVideoDelegate:self];
-    [_fvad setParentalGateDelegate:self];
     [_fvad setAdDelegate:self];
     
     // set parameters

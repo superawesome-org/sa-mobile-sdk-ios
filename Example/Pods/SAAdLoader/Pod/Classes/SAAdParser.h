@@ -24,7 +24,7 @@ typedef void (^parsedad)(SAAd *parsedAd);
 // @param - adDict: A NSDictionary parser by ObjC from a JSON
 // @param - placementId - the placement id of the ad that's been requested
 // @param - parse - a callback that actually returns the ad
-@interface SAParser : NSObject
+@interface SAAdParser : NSObject
 
 /**
  *  Parse ad data from jetwork

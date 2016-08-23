@@ -11,9 +11,9 @@
 #import "SuperAwesome.h"
 #import "SAUnityExtensionContext.h"
 #import "SAJsonParser.h"
-#import "SAParser.h"
+#import "SAAdParser.h"
 
-@interface SAUnityPlayInterstitialAd () <SAAdProtocol, SAParentalGateProtocol>
+@interface SAUnityPlayInterstitialAd () <SAAdProtocol>
 
 @property (nonatomic, strong) NSString *unityAd;
 @property (nonatomic, strong) NSString *adJson;
@@ -55,7 +55,6 @@
         
         // set delegates
         [iad setAdDelegate:self];
-        [iad setParentalGateDelegate:self];
         [iad setShouldLockOrientation:_shouldLockOrientation];
         [iad setLockOrientation:_lockOrientation];
         

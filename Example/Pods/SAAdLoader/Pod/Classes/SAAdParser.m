@@ -9,12 +9,14 @@
 //
 
 // import header file
-#import "SAParser.h"
+#import "SAAdParser.h"
 
 // import modelspace
 #import "SAAd.h"
 #import "SACreative.h"
 #import "SADetails.h"
+#import "SAMedia.h"
+#import "SATracking.h"
 
 // import SuperAwesome main header
  #import "SASession.h"
@@ -23,13 +25,8 @@
 #import "SAUtils.h"
 #import "SAJsonParser.h"
 
-// modelspace for vast parsing
-#import "SAVASTAd.h"
-#import "SAVASTCreative.h"
-#import "SAVASTTracking.h"
-
 // parser implementation
-@implementation SAParser
+@implementation SAAdParser
 
 - (SAAd*) parseInitialAdFromNetwork:(NSString*)jsonString withPlacementId:(NSInteger)placementId {
     
@@ -51,10 +48,19 @@
         @"sdkVersion":[[SASession getInstance] getVersion],
         @"rnd":@([SAUtils getCachebuster])
     };
-    ad.creative.trackingUrl = [NSString stringWithFormat:@"%@/%@click?%@",
-                               [[SASession getInstance] getBaseUrl],
-                               (ad.creative.creativeFormat == video ? @"video/" : @""),
-                               [SAUtils formGetQueryFromDict:trackjson]];
+    SATracking *trackingEvt = [[SATracking alloc] init];
+    trackingEvt.event = @"sa_tracking";
+    trackingEvt.URL = [NSString stringWithFormat:@"%@/%@click?%@",
+                       [[SASession getInstance] getBaseUrl],
+                       (ad.creative.creativeFormat == video ? @"video/" : @""),
+                       [SAUtils formGetQueryFromDict:trackjson]];
+    
+    // get the impression
+    SATracking *impr = [[SATracking alloc] init];
+    if (ad.creative.impressionUrl) {
+        impr.URL = ad.creative.impressionUrl;
+        impr.event = @"impression";
+    }
     
     // get the viewbale impression URL
     NSDictionary *imprjson = @{
@@ -68,9 +74,11 @@
             @"type":@"viewable_impression"
         } jsonCompactStringRepresentation]]
     };
-    ad.creative.viewableImpressionUrl = [NSString stringWithFormat:@"%@/event?%@",
-                                         [[SASession getInstance] getBaseUrl],
-                                         [SAUtils formGetQueryFromDict:imprjson]];
+    SATracking *viewableImpression = [[SATracking alloc] init];
+    viewableImpression.event = @"viewable_impr";
+    viewableImpression.URL = [NSString stringWithFormat:@"%@/event?%@",
+                                [[SASession getInstance] getBaseUrl],
+                                [SAUtils formGetQueryFromDict:imprjson]];
     
     // get the parental gate URL
     NSDictionary *pgjsonfail = @{
@@ -84,7 +92,9 @@
             @"type": @"parentalGateFail"
         } jsonCompactStringRepresentation]]
     };
-    ad.creative.parentalGateFailUrl = [NSString stringWithFormat:@"%@/event?%@",
+    SATracking *parentalGateFail = [[SATracking alloc] init];
+    parentalGateFail.event = @"pg_fail";
+    parentalGateFail.URL = [NSString stringWithFormat:@"%@/event?%@",
                                         [[SASession getInstance] getBaseUrl],
                                         [SAUtils formGetQueryFromDict:pgjsonfail]];
     
@@ -99,7 +109,9 @@
                                                                @"type": @"parentalGateClose"
                                                                } jsonCompactStringRepresentation]]
                                  };
-    ad.creative.parentalGateCloseUrl = [NSString stringWithFormat:@"%@/event?%@",
+    SATracking *parentalGateClose = [[SATracking alloc] init];
+    parentalGateClose.event = @"pg_close";
+    parentalGateClose.URL = [NSString stringWithFormat:@"%@/event?%@",
                                        [[SASession getInstance] getBaseUrl],
                                        [SAUtils formGetQueryFromDict:pgjsonclose]];
     
@@ -114,7 +126,9 @@
                                                                @"type": @"parentalGateOpen"
                                                                } jsonCompactStringRepresentation]]
                                  };
-    ad.creative.parentalGateOpenUrl = [NSString stringWithFormat:@"%@/event?%@",
+    SATracking *parentalGateOpen = [[SATracking alloc] init];
+    parentalGateOpen.event = @"pg_open";
+    parentalGateOpen.URL = [NSString stringWithFormat:@"%@/event?%@",
                                        [[SASession getInstance] getBaseUrl],
                                        [SAUtils formGetQueryFromDict:pgjsonopen]];
     
@@ -129,9 +143,19 @@
                                                                @"type": @"parentalGateSuccess"
                                                                } jsonCompactStringRepresentation]]
                                  };
-    ad.creative.parentalGateSuccessUrl = [NSString stringWithFormat:@"%@/event?%@",
+    SATracking *parentalGateSuccess = [[SATracking alloc] init];
+    parentalGateSuccess.event = @"pg_success";
+    parentalGateSuccess.URL = [NSString stringWithFormat:@"%@/event?%@",
                                        [[SASession getInstance] getBaseUrl],
                                        [SAUtils formGetQueryFromDict:pgjsonsuccess]];
+    
+    [ad.creative.events addObject:trackingEvt];
+    [ad.creative.events addObject:viewableImpression];
+    [ad.creative.events addObject:parentalGateSuccess];
+    [ad.creative.events addObject:parentalGateOpen];
+    [ad.creative.events addObject:parentalGateClose];
+    [ad.creative.events addObject:parentalGateFail];
+    [ad.creative.events addObject:impr];
     
     // get the cdn URL
     switch (ad.creative.creativeFormat) {

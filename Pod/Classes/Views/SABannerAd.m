@@ -14,7 +14,7 @@
 #import "SAAd.h"
 #import "SACreative.h"
 #import "SADetails.h"
-#import "SAData.h"
+#import "SAMedia.h"
 
 #import "SAEvents.h"
 #if defined(__has_include)
@@ -51,26 +51,28 @@
 
 - (id) init {
     if (self = [super init]){
-        _isParentalGateEnabled = false;
-        self.backgroundColor = BG_COLOR;
+        [self initialize];
     }
     return self;
 }
 
 - (id) initWithCoder:(NSCoder *)aDecoder {
     if (self = [super initWithCoder:aDecoder]) {
-        _isParentalGateEnabled = false;
-        self.backgroundColor = BG_COLOR;
+        [self initialize];
     }
     return self;
 }
 
 - (id) initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]){
-        _isParentalGateEnabled = false;
-        self.backgroundColor = BG_COLOR;
+        [self initialize];
     }
     return self;
+}
+
+- (void) initialize {
+    _isParentalGateEnabled = false;
+    self.backgroundColor = BG_COLOR;
 }
 
 #pragma mark <SAViewProtocol> functions
@@ -90,11 +92,11 @@
     
     // check for incorrect placement
     if (_ad.creative.creativeFormat == video || _ad == nil) {
-        if (_adDelegate != NULL && [_adDelegate respondsToSelector:@selector(adHasIncorrectPlacement:)]){
-            [_adDelegate adHasIncorrectPlacement:_ad.placementId];
+        if (_adDelegate != NULL && [_adDelegate respondsToSelector:@selector(adFailedToShow:)]){
+            [_adDelegate adFailedToShow:_ad.placementId];
         }
-        if (_internalAdProto != NULL && [_internalAdProto respondsToSelector:@selector(adHasIncorrectPlacement:)]){
-            [_internalAdProto adHasIncorrectPlacement:_ad.placementId];
+        if (_internalAdProto != NULL && [_internalAdProto respondsToSelector:@selector(adFailedToShow:)]){
+            [_internalAdProto adFailedToShow:_ad.placementId];
         }
         
         return;
@@ -102,7 +104,6 @@
     
     // start creating the banner ad
     _gate = [[SAParentalGate alloc] initWithWeakRefToView:self];
-    _gate.delegate = _parentalGateDelegate;
     
     // calc correctly scaled frame
     CGRect frame = [SAUtils mapOldFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
@@ -120,13 +121,13 @@
     SEL selector = NSSelectorFromString(@"sendDisplayMoatEvent:andAdDictionary:");
     if ([class instancesRespondToSelector:selector]) {
         NSDictionary *moatDict = @{
-                                   @"advertiser":@(_ad.advertiserId),
-                                   @"campaign":@(_ad.campaignId),
-                                   @"line_item":@(_ad.lineItemId),
-                                   @"creative":@(_ad.creative._id),
-                                   @"app":@(_ad.app),
-                                   @"placement":@(_ad.placementId),
-                                   @"publisher":@(_ad.publisherId)
+                                   @"advertiser": @(_ad.advertiserId),
+                                   @"campaign": @(_ad.campaignId),
+                                   @"line_item": @(_ad.lineItemId),
+                                   @"creative": @(_ad.creative._id),
+                                   @"app": @(_ad.app),
+                                   @"placement": @(_ad.placementId),
+                                   @"publisher": @(_ad.publisherId)
                                    };
         
         NSMethodSignature *signature = [class methodSignatureForSelector:selector];
@@ -143,7 +144,7 @@
     }
     
     // form the full HTML string and play it!
-    NSString *fullHTML = [_ad.creative.details.data.adHTML stringByReplacingOccurrencesOfString:@"_MOAT_" withString:moatString];
+    NSString *fullHTML = [_ad.creative.details.media.html stringByReplacingOccurrencesOfString:@"_MOAT_" withString:moatString];
     
     // get a weak self reference
     __weak typeof (self) weakSelf = self;
@@ -161,9 +162,7 @@
                 [weakSelf.viewabilityTimer fire];
                 
                 // if the banner has a separate impression URL, send that as well for 3rd party tracking
-                if (weakSelf.ad.creative.impressionUrl && [weakSelf.ad.creative.impressionUrl rangeOfString:[[SuperAwesome getInstance] getBaseURL]].location == NSNotFound) {
-                    [SAEvents sendEventToURL:weakSelf.ad.creative.impressionUrl];
-                }
+                [SAEvents sendAllEventsFor:weakSelf.ad.creative.events withKey:@"impression"];
                 
                 if ([weakSelf.adDelegate respondsToSelector:@selector(adWasShown:)]) {
                     [weakSelf.adDelegate adWasShown:weakSelf.ad.placementId];
@@ -229,8 +228,7 @@
     NSLog(@"[AA :: INFO] Going to %@", _destinationURL);
     
     if ([_destinationURL rangeOfString:[[SuperAwesome getInstance] getBaseURL]].location == NSNotFound) {
-        NSLog(@"Sending click event to %@", _ad.creative.trackingUrl);
-        [SAEvents sendEventToURL:_ad.creative.trackingUrl];
+        [SAEvents sendAllEventsFor:_ad.creative.events withKey:@"sa_tracking"];
     }
     
     // call delegate
@@ -262,7 +260,7 @@
         _viewabilityTimer = nil;
         
         if (_viewabilityCount == DISPLAY_VIEWABILITY_COUNT) {
-            [SAEvents sendEventToURL:_ad.creative.viewableImpressionUrl];
+            [SAEvents sendAllEventsFor:_ad.creative.events withKey:@"viewable_impr"];
         } else {
             NSLog(@"[AA :: Error] Did not send viewable impression");
         }

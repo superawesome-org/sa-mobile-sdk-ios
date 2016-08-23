@@ -12,7 +12,7 @@
 #import "SALoader.h"
 
 // import other headers
-#import "SAParser.h"
+#import "SAAdParser.h"
 #import "SAHTMLParser.h"
 #import "SAVASTParser.h"
 
@@ -20,7 +20,8 @@
 #import "SAAd.h"
 #import "SACreative.h"
 #import "SADetails.h"
-#import "SAData.h"
+#import "SAMedia.h"
+#import "SATracking.h"
 
 // import SA main Singleton
 #import "SASession.h"
@@ -45,10 +46,6 @@
         lang = [[languages firstObject] stringByReplacingOccurrencesOfString:@"-" withString:@"_"];;
     }
     
-    NSString *userAgent = [[[UIWebView alloc] initWithFrame:CGRectZero] stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
-    NSLog(@"UA1 %@", userAgent);
-    NSLog(@"UA2 %@", [SAUtils getUserAgent]);
-    
     // form the query
     NSDictionary *query = @{@"test": @([[SASession getInstance] isTestEnabled]),
                             @"sdkVersion":[[SASession getInstance] getVersion],
@@ -70,13 +67,14 @@
            withQuery:query
            andHeader:header
         withResponse:^(NSInteger status, NSString *payload, BOOL success) {
-               if (!success) {
+            
+                if (!success) {
                    if (_delegate != NULL && [_delegate respondsToSelector:@selector(didFailToLoadAdForPlacementId:)]) {
                        [_delegate didFailToLoadAdForPlacementId:placementId];
                    }
                } else {
                    // create parser & extra
-                   SAParser *parser = [[SAParser alloc] init];
+                   SAAdParser *parser = [[SAAdParser alloc] init];
                    __block SAAd *parsedAd = [parser parseInitialAdFromNetwork:payload withPlacementId:placementId];
                    
                    if (!parsedAd) {
@@ -87,32 +85,28 @@
                    // and get extra data
                    else {
                        
-                       parsedAd.creative.details.data = [[SAData alloc] init];
                        SACreativeFormat type = parsedAd.creative.creativeFormat;
                        
                        switch (type) {
-                               // parse video
+                           // parse video
                            case video: {
                                SAVASTParser *vastParser = [[SAVASTParser alloc] init];
-                               [vastParser parseVASTURL:parsedAd.creative.details.vast done:^(SAVASTAd *ad) {
+                               [vastParser parseVASTURL:parsedAd.creative.details.vast done:^(SAAd *vastAd) {
                                    
-                                   if (ad) {
-                                       parsedAd.creative.details.data.vastAd = ad;
-                                       if (_delegate != NULL && [_delegate respondsToSelector:@selector(didLoadAd:)]) {
-                                           [_delegate didLoadAd:parsedAd];
-                                       }
-                                   } else {
-                                       [_delegate didFailToLoadAdForPlacementId:parsedAd.placementId];
+                                   [parsedAd sumAd:vastAd];
+                                   if (_delegate != NULL && [_delegate respondsToSelector:@selector(didLoadAd:)]) {
+                                       [_delegate didLoadAd:parsedAd];
                                    }
                                }];
                                break;
                            }
-                               // parse HTML data
+                           // parse HTML data
                            case image:
                            case rich:
                            case tag:
                            case invalid: {
-                               parsedAd.creative.details.data.adHTML = [SAHTMLParser formatCreativeDataIntoAdHTML:parsedAd];
+                               parsedAd.creative.details.media = [[SAMedia alloc] init];
+                               parsedAd.creative.details.media.html = [SAHTMLParser formatCreativeDataIntoAdHTML:parsedAd];
                                if (_delegate != NULL && [_delegate respondsToSelector:@selector(didLoadAd:)]) {
                                    [_delegate didLoadAd:parsedAd];
                                }

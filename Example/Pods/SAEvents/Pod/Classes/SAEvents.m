@@ -9,6 +9,7 @@
 #import "SAEvents.h"
 #import "SAUtils.h"
 #import "SANetwork.h"
+#import "SAExtensions.h"
 
 @implementation SAEvents
 
@@ -25,6 +26,21 @@
                 NSLog(@"Event sent NOK!");
             }
         }];
+}
+
++ (void) sendAllEventsFor:(NSArray*)events withKey:(NSString*)key {
+    NSArray *tracks = [events filterBy:@"event" withValue:key];
+    NSMutableArray *urls = [@[] mutableCopy];
+    for (id track in tracks) {
+        NSString *url = [track valueForKey:@"URL"];
+        if (url) {
+            [urls addObject:url];
+        }
+    }
+    
+    for (NSString *url in urls) {
+        [self sendEventToURL:url];
+    }
 }
 
 + (void) sendCustomEvent:(NSString*) baseUrl

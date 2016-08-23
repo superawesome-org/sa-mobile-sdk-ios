@@ -26,6 +26,14 @@
 + (void) sendEventToURL:(NSString*)url;
 
 /**
+ *  Method that sends all events for a particular key, for objects of type SATracking
+ *
+ *  @param events events array
+ *  @param key    key to send for
+ */
++ (void) sendAllEventsFor:(NSArray*)events withKey:(NSString*)key;
+
+/**
  *  Send custom event
  *
  *  @param baseUrl     baseUrl of the request

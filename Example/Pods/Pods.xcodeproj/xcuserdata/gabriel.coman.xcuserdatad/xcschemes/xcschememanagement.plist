@@ -44,11 +44,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>SAVASTParser.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>SAVideoPlayer.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -72,67 +67,62 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>08AA7A5E35834453D84F2ABB</key>
+		<key>21A3CA6B583034B70606CF94</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>13476585908A655D4E1048FD</key>
+		<key>26462AB62315A4EC5274E87E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>38567199EE91FC82845D829F</key>
+		<key>342104ADE230C1957682D165</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4DBD3E51BB57CB32FEC2F72D</key>
+		<key>3B34163D66522AC117A7B53E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6E20BFA56F59AE6D74EA26D6</key>
+		<key>54BD284BF0836C5B86204E17</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>77493236701F6EA471FA2A6E</key>
+		<key>5C586DD88E39A05A27875E29</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>85E7E94A1387D8670ECB9596</key>
+		<key>9BCC316AD4B6D212FDF22678</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>935287AD074FD2A34856B4EC</key>
+		<key>C115F5BACF975F8F3D50FC06</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>96A8BE779BD3170A0B165E41</key>
+		<key>CC6D35084CFFA530B31C19F8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9823D8A243213B61409AD437</key>
+		<key>E2E3D7A8B59D8D18B2F911FA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AEFA29B4F9FCCA7796B0AA31</key>
+		<key>F7D61B1FEDB648EF67ED01D7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BC0A2FACA3E3AB0833A83957</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C8633B18F289C214B12E588F</key>
+		<key>F833BDBE07EE7CD6654D34DA</key>
 		<dict>
 			<key>primary</key>
 			<true/>

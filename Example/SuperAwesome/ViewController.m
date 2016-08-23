@@ -31,14 +31,14 @@
     
     SALoader *loader = [[SALoader alloc] init];
     loader.delegate = self;
-    [loader loadAdForPlacementId:247];
+    [loader loadAdForPlacementId:251];
 //    [loader loadAdForPlacementId:30260];
 //    [loader loadAdForPlacementId:30260];
 //    [loader loadAdForPlacementId:223];
 //    [loader loadAdForPlacementId:113];
 //    [loader loadAdForPlacementId:114];
 //    [loader loadAdForPlacementId:115];
-    [loader loadAdForPlacementId:249];
+//    [loader loadAdForPlacementId:249];
 //    [loader loadAdForPlacementId:116];
 //    [loader loadAdForPlacementId:117];
 //    [loader loadAdForPlacementId:118];
@@ -59,7 +59,7 @@
     NSLog(@"%@", [ad jsonPreetyStringRepresentation]);
     
     switch (ad.placementId) {
-        case 247: _interstitial1Data = ad; break;
+        case 251: _interstitial1Data = ad; break;
 //        case 242: _video1Data = ad; break;
 //            case 30260: _video1Data = ad; break;
 //        case 223: _video1Data = ad; break;
@@ -69,7 +69,7 @@
 //        case 115: _interstitial2Data = ad; break;
 //        case 118: _interstitial3Data = ad; break;
 ////        case 230: _video1Data = ad; break;
-        case 249: _video1Data = ad; break;
+//        case 249: _video1Data = ad; break;
 //        case 116: _video1Data = ad; break;
 //        case 117: _video2Data = ad; break;
 //        case 233: _interstitial3Data = ad; break;

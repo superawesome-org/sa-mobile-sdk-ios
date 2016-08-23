@@ -11,9 +11,9 @@
 #import "SuperAwesome.h"
 #import "SAUnityExtensionContext.h"
 #import "SAJsonParser.h"
-#import "SAParser.h"
+#import "SAAdParser.h"
 
-@interface SAUnityPlayFullscreenVideoAd () <SAAdProtocol, SAVideoAdProtocol, SAParentalGateProtocol>
+@interface SAUnityPlayFullscreenVideoAd () <SAAdProtocol>
 
 @property (nonatomic, strong) NSString *unityAd;
 @property (nonatomic, strong) NSString *adJson;
@@ -70,8 +70,6 @@
         
         // set delegates
         [fvad setAdDelegate:self];
-        [fvad setParentalGateDelegate:self];
-        [fvad setVideoDelegate:self];
         
         // get root vc, show fvad and then play it
         UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;

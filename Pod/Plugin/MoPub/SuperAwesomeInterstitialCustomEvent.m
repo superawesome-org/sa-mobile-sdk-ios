@@ -17,7 +17,7 @@
 // implements two important ad protocols
 // - SALoaderProtocol (of SALoader class)
 // - SAAdProtocol (common to all SAViews)
-@interface SuperAwesomeInterstitialCustomEvent () <SALoaderProtocol, SAAdProtocol, SAParentalGateProtocol>
+@interface SuperAwesomeInterstitialCustomEvent () <SALoaderProtocol, SAAdProtocol>
 
 @property (nonatomic, assign) NSInteger placementId;
 @property (nonatomic, assign) BOOL isTestEnabled;
@@ -114,7 +114,6 @@
     
     // set delegate
     [_interstitial setAdDelegate:self];
-    [_interstitial setParentalGateDelegate: self];
     [_interstitial setShouldLockOrientation:_shouldLockOrientation];
     [_interstitial setLockOrientation:_lockOrientation];
     

@@ -21,7 +21,6 @@
 @interface SABannerAd : UIView <SAViewProtocol>
 
 @property (nonatomic, weak) id<SAAdProtocol> adDelegate;
-@property (nonatomic, weak) id<SAParentalGateProtocol> parentalGateDelegate;
 @property (nonatomic, assign) IBInspectable BOOL isParentalGateEnabled;
 
 @end

@@ -59,14 +59,14 @@
 @property (nonatomic, retain) SAAd *ad;
 
 // weak ref to view
-@property (nonatomic, weak) UIView *weakAdView;
+@property (nonatomic, weak) id weakAdView;
 
 @end
 
 @implementation SAParentalGate
 
 // custom init functions
-- (id) initWithWeakRefToView:(UIView *)weakRef {
+- (id) initWithWeakRefToView:(id)weakRef {
     if (self = [super init]) {
         _weakAdView = weakRef;
         if ([_weakAdView isKindOfClass:[SABannerAd class]]) {
@@ -91,7 +91,7 @@
     [self newQuestion];
     
     // send event
-    [SAEvents sendEventToURL:_ad.creative.parentalGateOpenUrl];
+    [SAEvents sendAllEventsFor:_ad.creative.events withKey:@"pg_open"];
     
     // resume video
     if ([_weakAdView isKindOfClass:[SAVideoAd class]]) {
@@ -121,16 +121,11 @@
     actionBlock cancelBlock = ^(UIAlertAction *action) {
         
         // send event
-        [SAEvents sendEventToURL:_ad.creative.parentalGateCloseUrl];
+        [SAEvents sendAllEventsFor:_ad.creative.events withKey:@"pg_close"];
         
         // resume video
         if ([_weakAdView isKindOfClass:[SAVideoAd class]]) {
             [(SAVideoAd*)_weakAdView resume];
-        }
-        
-        // calls to delegate or blocks
-        if(_delegate && [_delegate respondsToSelector:@selector(parentalGateWasCanceled:)]){
-            [_delegate parentalGateWasCanceled:_ad.placementId];
         }
     };
     
@@ -228,7 +223,7 @@
     // cancel
     else if (buttonIndex == 0){
         // send event
-        [SAEvents sendEventToURL:_ad.creative.parentalGateCloseUrl];
+        [SAEvents sendAllEventsFor:_ad.creative.events withKey:@"pg_close"];
         
         // resume video
         if ([_weakAdView isKindOfClass:[SAVideoAd class]]) {
@@ -242,12 +237,7 @@
 - (void) handlePGSuccess {
     
     // send data
-    [SAEvents sendEventToURL:_ad.creative.parentalGateSuccessUrl];
-    
-    // call to delegate
-    if(_delegate && [_delegate respondsToSelector:@selector(parentalGateWasSucceded:)]){
-        [_delegate parentalGateWasSucceded:_ad.placementId];
-    }
+    [SAEvents sendAllEventsFor:_ad.creative.events withKey:@"pg_success"];
     
     // finally advance to URL
     if ([_weakAdView respondsToSelector:@selector(advanceToClick)]) {
@@ -263,7 +253,7 @@
 - (void) handlePGError {
     
     // send data
-    [SAEvents sendEventToURL:_ad.creative.parentalGateFailUrl];
+    [SAEvents sendAllEventsFor:_ad.creative.events withKey:@"pg_fail"];
     
     // ERROR
     _wrongAnswerAlertView = [[UIAlertView alloc] initWithTitle:SA_ERROR_ALERTVIEW_TITLE
@@ -273,11 +263,6 @@
                                              otherButtonTitles:nil];
     _wrongAnswerAlertView.alertViewStyle = UIAlertViewStyleDefault;
     [_wrongAnswerAlertView show];
-    
-    // call to delegate
-    if(_delegate && [_delegate respondsToSelector:@selector(parentalGateWasFailed:)]){
-        [_delegate parentalGateWasFailed:_ad.placementId];
-    }
 }
 
 @end

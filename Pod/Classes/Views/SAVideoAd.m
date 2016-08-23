@@ -18,13 +18,11 @@
 #import "SAAd.h"
 #import "SACreative.h"
 #import "SADetails.h"
-#import "SAData.h"
+#import "SAMedia.h"
+#import "SATracking.h"
 #import "SAUtils.h"
 #import "SAVideoPlayer.h"
-#import "SAVASTManager.h"
 #import "SAEvents.h"
-#import "SAVASTAd.h"
-#import "SAVASTCreative.h"
 #import "SuperAwesome.h"
 #import "SAExtensions.h"
 
@@ -46,15 +44,12 @@
 @property (nonatomic, strong) UIButton *closeBtn;
 
 @property (nonatomic, strong) SAAd *ad;
-@property (nonatomic, strong) SAVASTAd *vastAd;
-@property (nonatomic, strong) SAVASTCreative *vastCreative;
 @property (nonatomic, strong) NSString *destinationURL;
 @property (nonatomic, strong) NSArray *trackingArray;
 
 @property (nonatomic, strong) SAParentalGate *gate;
 @property (nonatomic, strong) UIImageView *padlock;
 @property (nonatomic, strong) SAVideoPlayer *player;
-@property (nonatomic, strong) SAVASTManager *manager;
 
 @property (nonatomic, strong) NSTimer *viewabilityTimer;
 @property (nonatomic, assign) NSInteger ticks;
@@ -110,15 +105,14 @@
     
     // check for incorrect placement
     if (_ad.creative.creativeFormat != video || _ad == nil) {
-        if (_adDelegate != NULL && [_adDelegate respondsToSelector:@selector(adHasIncorrectPlacement:)]){
-            [_adDelegate adHasIncorrectPlacement:_ad.placementId];
+        if (_adDelegate != NULL && [_adDelegate respondsToSelector:@selector(adFailedToShow:)]){
+            [_adDelegate adFailedToShow:_ad.placementId];
         }
         return;
     }
     
     // start creating the banner ad
     _gate = [[SAParentalGate alloc] initWithWeakRefToView:self];
-    _gate.delegate = _parentalGateDelegate;
     
     // get a weak self reference
     __weak typeof (self) weakSelf = self;
@@ -138,24 +132,17 @@
                 _isOKToClose = true;
                 
                 // send vast ad impressions
-                for (NSString *impression in _vastAd.Impressions) {
-                    [SAEvents sendEventToURL:impression];
-                }
-                
-                // send other impression
-                if (_ad.creative.impressionUrl && [_ad.creative.impressionUrl rangeOfString:[[SuperAwesome getInstance] getBaseURL]].location == NSNotFound) {
-                    [SAEvents sendEventToURL:_ad.creative.impressionUrl];
-                }
-                
-                // send start event
-                [self sendCurrentCreativeTrackersFor:@"start"];
-                
-                // send creative view event
-                [self sendCurrentCreativeTrackersFor:@"creativeView"];
+                [SAEvents sendAllEventsFor:weakSelf.ad.creative.events withKey:@"impression"];
+                [SAEvents sendAllEventsFor:weakSelf.ad.creative.events withKey:@"start"];
+                [SAEvents sendAllEventsFor:weakSelf.ad.creative.events withKey:@"creativeView"];
 
                 // send viewable impression
-                _viewabilityTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(viewableImpressionFunc) userInfo:nil repeats:YES];
-                [_viewabilityTimer fire];
+                weakSelf.viewabilityTimer = [NSTimer scheduledTimerWithTimeInterval:1
+                                                                             target:weakSelf
+                                                                           selector:@selector(viewableImpressionFunc)
+                                                                           userInfo:nil
+                                                                            repeats:YES];
+                [weakSelf.viewabilityTimer fire];
                 
                 // moat
                 Class class = NSClassFromString(@"SAEvents");
@@ -163,18 +150,18 @@
                 if ([class respondsToSelector:selector]) {
                     
                     NSDictionary *moatDict = @{
-                                               @"advertiser":@(_ad.advertiserId),
-                                               @"campaign":@(_ad.campaignId),
-                                               @"line_item":@(_ad.lineItemId),
-                                               @"creative":@(_ad.creative._id),
-                                               @"app":@(_ad.app),
-                                               @"placement":@(_ad.placementId),
-                                               @"publisher":@(_ad.publisherId)
+                                               @"advertiser":@(weakSelf.ad.advertiserId),
+                                               @"campaign":@(weakSelf.ad.campaignId),
+                                               @"line_item":@(weakSelf.ad.lineItemId),
+                                               @"creative":@(weakSelf.ad.creative._id),
+                                               @"app":@(weakSelf.ad.app),
+                                               @"placement":@(weakSelf.ad.placementId),
+                                               @"publisher":@(weakSelf.ad.publisherId)
                                                };
                     
-                    AVPlayer *player = [_player getPlayer];
-                    AVPlayerLayer *layer = [_player getPlayerLayer];
-                    id weakSelfView = self.view;
+                    AVPlayer *player = [weakSelf.player getPlayer];
+                    AVPlayerLayer *layer = [weakSelf.player getPlayerLayer];
+                    id weakSelfView = weakSelf.view;
                     NSMethodSignature *signature = [class methodSignatureForSelector:selector];
                     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
                     [invocation setTarget:class];
@@ -188,77 +175,35 @@
                 }
                 
                 // send delegate
-                if (_adDelegate && [_adDelegate respondsToSelector:@selector(adWasShown:)]) {
-                    [_adDelegate adWasShown:_ad.placementId];
-                }
-                
-                // ad started
-                if (_videoDelegate && [_videoDelegate respondsToSelector:@selector(videoStarted:)]) {
-                    [_videoDelegate videoStarted:_ad.placementId];
+                if (weakSelf.adDelegate && [weakSelf.adDelegate respondsToSelector:@selector(adWasShown:)]) {
+                    [weakSelf.adDelegate adWasShown:weakSelf.ad.placementId];
                 }
                 
                 break;
             }
             case Video_1_4: {
-                
-                // send 1/4 events
-                [self sendCurrentCreativeTrackersFor:@"firstQuartile"];
-                
-                // send delegate
-                if (_videoDelegate && [_videoDelegate respondsToSelector:@selector(videoReachedFirstQuartile:)]) {
-                    [_videoDelegate videoReachedFirstQuartile:_ad.placementId];
-                }
-                
+                [SAEvents sendAllEventsFor:weakSelf.ad.creative.events withKey:@"firstQuartile"];
                 break;
             }
             case Video_1_2: {
-                
-                // send 1/2 events
-                [self sendCurrentCreativeTrackersFor:@"midpoint"];
-                
-                // send delegate
-                if (_videoDelegate && [_videoDelegate respondsToSelector:@selector(videoReachedMidpoint:)]) {
-                    [_videoDelegate videoReachedMidpoint:_ad.placementId];
-                }
-                
+                [SAEvents sendAllEventsFor:weakSelf.ad.creative.events withKey:@"midpoint"];
                 break;
             }
             case Video_3_4: {
-                
-                // send 3/4 events
-                [self sendCurrentCreativeTrackersFor:@"thirdQuartile"];
-                
-                // send delegate
-                if (_videoDelegate && [_videoDelegate respondsToSelector:@selector(videoReachedThirdQuartile:)]) {
-                    [_videoDelegate videoReachedThirdQuartile:_ad.placementId];
-                }
-                
+                [SAEvents sendAllEventsFor:weakSelf.ad.creative.events withKey:@"thirdQuartile"];
                 break;
             }
             case Video_End: {
                 
                 // close the Pg
-                [_gate close];
+                [weakSelf.gate close];
                 
                 // send complete events
-                [self sendCurrentCreativeTrackersFor:@"complete"];
-                
-                // send delegates
-                if (_videoDelegate && [_videoDelegate respondsToSelector:@selector(videoEnded:)]) {
-                    [_videoDelegate videoEnded:_ad.placementId];
-                }
-                
-                if (_videoDelegate && [_videoDelegate respondsToSelector:@selector(adEnded:)]) {
-                    [_videoDelegate adEnded:_ad.placementId];
-                }
-                
-                if (_videoDelegate && [_videoDelegate respondsToSelector:@selector(allAdsEnded:)]) {
-                    [_videoDelegate allAdsEnded:_ad.placementId];
-                }
+                [SAEvents sendAllEventsFor:weakSelf.ad.creative.events withKey:@"complete"];
                 
                 // close video
-                if (_shouldAutomaticallyCloseAtEnd) {
-                    [self close];
+                if (weakSelf.shouldAutomaticallyCloseAtEnd) {
+                    [weakSelf close];
                 }
                 
                 break;
@@ -266,9 +211,7 @@
             case Video_Error: {
                 
                 // send errors
-                for (NSString *error in _vastAd.Errors) {
-                    [SAEvents sendEventToURL:error];
-                }
+                [SAEvents sendAllEventsFor:weakSelf.ad.creative.events withKey:@"error"];
 
                 break;
             }
@@ -404,8 +347,6 @@
 
 - (void) setAd:(SAAd*)ad {
     _ad = ad;
-    _vastAd = _ad.creative.details.data.vastAd;
-    _vastCreative = _vastAd.creative;
 }
 
 - (SAAd*) getAd {
@@ -420,15 +361,15 @@
 }
 
 - (void) play {
-    if (_vastCreative.isOnDisk) {
-        NSString *finalDiskURL = [SAUtils filePathInDocuments:_vastCreative.playableDiskURL];
-        NSLog(@"Playing from Disk %@", finalDiskURL);
+    
+    if (_ad.creative.details.media.isOnDisk) {
+        NSString *finalDiskURL = [SAUtils filePathInDocuments:_ad.creative.details.media.playableDiskUrl];
         [_player playWithMediaFile:finalDiskURL];
     } else {
-        NSURL *url = [NSURL URLWithString:_vastCreative.playableMediaURL];
-        NSLog(@"Playing from Remte %@", _vastCreative.playableMediaURL);
+        NSURL *url = [NSURL URLWithString:_ad.creative.details.media.playableMediaUrl];
         [_player playWithMediaURL:url];
     }
+
 }
 
 - (void) close {
@@ -463,15 +404,12 @@
     }
     
     // call trackers
-    for (NSString *ctracking in _vastCreative.ClickTracking) {
-        [SAEvents sendEventToURL:ctracking];
-    }
+    [SAEvents sendAllEventsFor:_ad.creative.events withKey:@"click_tracking"];
+    [SAEvents sendAllEventsFor:_ad.creative.events withKey:@"custom_clicks"];
     
     // setup the current click URL
-    _destinationURL = @"";
-    if (_vastCreative.ClickThrough != NULL && [SAUtils isValidURL:_vastCreative.ClickThrough]) {
-        _destinationURL = _vastCreative.ClickThrough;
-    }
+    _destinationURL = _ad.creative.clickUrl;
+    
     NSURL *url = [NSURL URLWithString:_destinationURL];
     [[UIApplication sharedApplication] openURL:url];
     
@@ -520,7 +458,7 @@
         _viewabilityTimer = nil;
         
         if (_viewabilityCount == VIDEO_VIEWABILITY_COUNT) {
-            [SAEvents sendEventToURL:_ad.creative.viewableImpressionUrl];
+            [SAEvents sendAllEventsFor:_ad.creative.events withKey:@"viewable_impr"];
         } else {
             NSLog(@"[AA :: Error] Did not send viewable impression");
         }
@@ -531,13 +469,5 @@
         NSLog(@"[AA :: Info] Tick %ld/%d - Viewability Count %ld/%d", (long)_ticks, VIDEO_VIEWABILITY_COUNT, (long)_viewabilityCount, VIDEO_VIEWABILITY_COUNT);
     }
 }
-
-- (void) sendCurrentCreativeTrackersFor:(NSString*)event {
-    NSArray *trackers = [_vastCreative.TrackingEvents filterBy:@"event" withValue:event];
-    for (SAVASTTracking *tracker in trackers) {
-        [SAEvents sendEventToURL:tracker.URL];
-    }
-}
-
 
 @end

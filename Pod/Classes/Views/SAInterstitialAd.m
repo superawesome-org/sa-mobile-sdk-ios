@@ -64,7 +64,6 @@
     
     _banner = [[SABannerAd alloc] initWithFrame:_adviewFrame];
     _banner.adDelegate = _adDelegate;
-    _banner.parentalGateDelegate = _parentalGateDelegate;
     _banner.isParentalGateEnabled = _isParentalGateEnabled;
     _banner.internalAdProto = self;
     [_banner setAd:_ad];
@@ -86,7 +85,6 @@
     // setup coordinates
     CGSize scrSize = [UIScreen mainScreen].bounds.size;
     CGSize currentSize = CGSizeZero;
-//    UIDeviceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
     UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
     CGFloat bigDimension = MAX(scrSize.width, scrSize.height);
     CGFloat smallDimension = MIN(scrSize.width, scrSize.height);
@@ -225,10 +223,6 @@
 #pragma mark <SAAdProtocol> - internal
 
 - (void) adFailedToShow:(NSInteger)placementId {
-    [self close];
-}
-
-- (void) adHasIncorrectPlacement:(NSInteger)placementId {
     [self close];
 }
 

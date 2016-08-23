@@ -23,10 +23,7 @@ typedef void(^actionBlock) (UIAlertAction *action);
 @interface SAParentalGate : NSObject <UIAlertViewDelegate>
 
 // custom init functions
-- (id) initWithWeakRefToView:(UIView*)weakRef;
-
-// delegate
-@property (nonatomic, weak) id<SAParentalGateProtocol> delegate;
+- (id) initWithWeakRefToView:(id)weakRef;
 
 // show function
 - (void) show;

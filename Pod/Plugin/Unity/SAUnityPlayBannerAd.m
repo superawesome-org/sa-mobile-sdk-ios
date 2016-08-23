@@ -11,9 +11,9 @@
 #import "SuperAwesome.h"
 #import "SAUnityExtensionContext.h"
 #import "SAJsonParser.h"
-#import "SAParser.h"
+#import "SAAdParser.h"
 
-@interface SAUnityPlayBannerAd () <SAAdProtocol, SAParentalGateProtocol>
+@interface SAUnityPlayBannerAd () <SAAdProtocol>
 
 @property (nonatomic, strong) NSString *unityAd;
 @property (nonatomic, strong) NSString *adJson;
@@ -73,7 +73,6 @@
         SABannerAd *bad = [[SABannerAd alloc] initWithFrame:CGRectMake(realPos.x, realPos.y, realSize.width, realSize.height)];
         [bad setAd:parsedAd];
         [bad setIsParentalGateEnabled:_isParentalGateEnabled];
-        [bad setParentalGateDelegate:self];
         [bad setAdDelegate:self];
         
         if (color == 0){
