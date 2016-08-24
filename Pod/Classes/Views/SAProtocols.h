@@ -41,22 +41,28 @@
 
 @protocol SAViewProtocol <NSObject>
 
-// return an Ad
+// load the ad
+- (void) load:(NSInteger) placementId;
+
+// set the ad
+- (void) setAd:(SAAd*)ad;
+
+// get the ad
 - (SAAd*) getAd;
 
 // show padlock
 - (BOOL) shouldShowPadlock;
 
-// play the ad
-- (void) play:(NSInteger)placementId;
+// play ad
+- (void) play;
 
 // close the ad
 - (void) close;
 
 // second pass at trying to go to URL
-- (void) advanceToClick;
+- (void) click;
 
 // resize view or view controller
-- (void) resizeToFrame:(CGRect)frame;
+- (void) resize:(CGRect)frame;
 
 @end

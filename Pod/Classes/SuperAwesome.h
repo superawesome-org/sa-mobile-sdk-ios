@@ -54,9 +54,4 @@
 - (NSInteger) getConfiguration;
 - (NSUInteger) getDAUID;
 
-// load ad function
-- (void) loadAd:(NSInteger) placementId;
-- (BOOL) hasAdForPlacement: (NSInteger) placementId;
-- (SAAd*) getAdForPlacement:(NSInteger) placementId;
-
 @end

@@ -38,6 +38,8 @@
 
 @interface SAVideoAd ()
 
+@property (nonatomic, strong) SALoader *loader;
+
 @property (nonatomic, assign) CGRect adviewFrame;
 @property (nonatomic, assign) CGRect buttonFrame;
 @property (nonatomic, assign) BOOL isOKToClose;
@@ -86,6 +88,7 @@
 }
 
 - (void) initialize {
+    _loader = [[SALoader alloc] init];
     _shouldAutomaticallyCloseAtEnd = YES;
     _shouldShowCloseButton = NO;
     _shouldLockOrientation = NO;
@@ -136,7 +139,7 @@
         }
     }
     
-    [self resizeToFrame:CGRectMake(0, 0, currentSize.width, currentSize.height)];
+    [self resize:CGRectMake(0, 0, currentSize.width, currentSize.height)];
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
 }
@@ -148,7 +151,7 @@
 
 - (void) viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-    [self resizeToFrame:CGRectMake(0, 0, size.width, size.height)];
+    [self resize:CGRectMake(0, 0, size.width, size.height)];
 }
 
 - (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
@@ -159,14 +162,14 @@
     switch (toInterfaceOrientation) {
         case UIInterfaceOrientationLandscapeLeft:
         case UIInterfaceOrientationLandscapeRight: {
-            [self resizeToFrame:CGRectMake(0, 0, bigDimension, smallDimension)];
+            [self resize:CGRectMake(0, 0, bigDimension, smallDimension)];
             break;
         }
         case UIInterfaceOrientationPortrait:
         case UIInterfaceOrientationPortraitUpsideDown:
         case UIInterfaceOrientationUnknown:
         default: {
-            [self resizeToFrame:CGRectMake(0, 0, smallDimension, bigDimension)];
+            [self resize:CGRectMake(0, 0, smallDimension, bigDimension)];
             break;
         }
     }
@@ -196,42 +199,26 @@
 // MARK: View protocol implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-- (BOOL) shouldShowPadlock {
-    if (_ad.creative.creativeFormat == tag) return false;
-    if (_ad.isFallback) return false;
-    if (_ad.isHouse && !_ad.safeAdApproved) return false;
-    return true;
+
+- (void) load:(NSInteger)placementId {
+    // get a weak self reference
+    __weak typeof (self) weakSelf = self;
+    
+    // load ad
+    [_loader loadAd:placementId withResult:^(SAAd *ad) {
+        weakSelf.ad = ad;
+    }];
 }
 
-- (void) play:(NSInteger)placementId {
-    // release previous ad (just in case)
-    _ad = NULL;
+- (void) play {
     
-    // get the new ad
-    _ad = [[SuperAwesome getInstance] getAdForPlacement:placementId];
-    
-    // check for incorrect placement
-    if (_ad == nil || _ad.creative.creativeFormat != video) {
-        _isOKToClose = true;
-        [self close];
-        
-        if (_adDelegate != NULL && [_adDelegate respondsToSelector:@selector(adFailedToShow:)]){
-            [_adDelegate adFailedToShow:_ad.placementId];
-        }
-        return;
-    }
-    
-    UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
-    [root presentViewController:self animated:YES completion:^{
-        
-        // setup
-        _viewabilityCount = _ticks = 0;
-        
-        // start creating the banner ad
-        _gate = [[SAParentalGate alloc] initWithWeakRefToView:self];
+    if (_ad && _ad.creative.creativeFormat == video) {
         
         // get a weak self reference
         __weak typeof (self) weakSelf = self;
+        
+        // start creating the banner ad
+        _gate = [[SAParentalGate alloc] initWithWeakRefToView:self];
         
         // create the player
         _player = [[SAVideoPlayer alloc] initWithFrame:_adviewFrame];
@@ -253,6 +240,7 @@
                     [SAEvents sendAllEventsFor:weakSelf.ad.creative.events withKey:@"creativeView"];
                     
                     // send viewable impression
+                    weakSelf.viewabilityCount = weakSelf.ticks = 0;
                     weakSelf.viewabilityTimer = [NSTimer scheduledTimerWithTimeInterval:1
                                                                                  target:weakSelf
                                                                                selector:@selector(viewableImpressionFunc)
@@ -340,7 +328,7 @@
             if (weakSelf.isParentalGateEnabled) {
                 [weakSelf.gate show];
             } else {
-                [weakSelf advanceToClick];
+                [weakSelf click];
             }
             
         }];
@@ -363,15 +351,32 @@
         [self.view addSubview:_closeBtn];
         [self.view bringSubviewToFront:_closeBtn];
         
-        if (_ad.creative.details.media.isOnDisk) {
-            NSString *finalDiskURL = [SAUtils filePathInDocuments:_ad.creative.details.media.playableDiskUrl];
-            [_player playWithMediaFile:finalDiskURL];
-        } else {
-            NSURL *url = [NSURL URLWithString:_ad.creative.details.media.playableMediaUrl];
-            [_player playWithMediaURL:url];
-        }
+        // actually start playing the video
+        UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
+        [root presentViewController:self animated:YES completion:^{
+            if (weakSelf.ad.creative.details.media.isOnDisk) {
+                NSString *finalDiskURL = [SAUtils filePathInDocuments:weakSelf.ad.creative.details.media.playableDiskUrl];
+                [weakSelf.player playWithMediaFile:finalDiskURL];
+            } else {
+                NSURL *url = [NSURL URLWithString:weakSelf.ad.creative.details.media.playableMediaUrl];
+                [weakSelf.player playWithMediaURL:url];
+            }
+        }];
         
-    }];
+    } else {
+        // don't handle
+    }
+}
+
+- (BOOL) shouldShowPadlock {
+    if (_ad.creative.creativeFormat == tag) return false;
+    if (_ad.isFallback) return false;
+    if (_ad.isHouse && !_ad.safeAdApproved) return false;
+    return true;
+}
+
+- (void) setAd:(SAAd *)ad {
+    _ad = ad;
 }
 
 - (SAAd*) getAd {
@@ -381,13 +386,21 @@
 - (void) close {
     if (_isOKToClose) {
         
+        // null the ad
+        _ad = NULL;
+        
         // destroy the player
         [_player destroy];
         _player = NULL;
-        _ad = NULL;
+        
+        // destroy the padlock
         [_padlock removeFromSuperview];
         _padlock = nil;
+        
+        // destroy the gate
         _gate = nil;
+        
+        // destroy the timer
         if (_viewabilityTimer != nil) {
             [_viewabilityTimer invalidate];
             _viewabilityTimer = nil;
@@ -403,7 +416,7 @@
     }
 }
 
-- (void) advanceToClick {
+- (void) click {
     // call delegate
     if (_adDelegate && [_adDelegate respondsToSelector:@selector(adWasClicked:)]) {
         [_adDelegate adWasClicked:_ad.placementId];
@@ -422,7 +435,7 @@
     NSLog(@"[AA :: INFO] Going to %@", _destinationURL);
 }
 
-- (void) resizeToFrame:(CGRect)frame {
+- (void) resize:(CGRect)frame {
     // setup frame
     _adviewFrame = frame;
     

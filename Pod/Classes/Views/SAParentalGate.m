@@ -240,12 +240,12 @@
     [SAEvents sendAllEventsFor:_ad.creative.events withKey:@"pg_success"];
     
     // finally advance to URL
-    if ([_weakAdView respondsToSelector:@selector(advanceToClick)]) {
+    if ([_weakAdView respondsToSelector:@selector(click)]) {
         if ([_weakAdView isKindOfClass:[SABannerAd class]]) {
-            [(SABannerAd*)_weakAdView advanceToClick];
+            [(SABannerAd*)_weakAdView click];
         }
         if ([_weakAdView isKindOfClass:[SAVideoAd class]]){
-            [(SAVideoAd*)_weakAdView advanceToClick];
+            [(SAVideoAd*)_weakAdView click];
         }
     }
 }

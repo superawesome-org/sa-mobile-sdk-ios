@@ -14,6 +14,7 @@
 #import "SACreative.h"
 #import "SADetails.h"
 #import "SAMedia.h"
+#import "SALoader.h"
 
 #import "SAEvents.h"
 #if defined(__has_include)
@@ -30,8 +31,9 @@
 
 @interface SABannerAd ()
 
+@property (nonatomic, strong) SALoader *loader;
+
 @property (nonatomic, strong) SAAd *ad;
-@property (nonatomic, strong) NSString *destinationURL;
 @property (nonatomic, strong) SAWebPlayer *webplayer;
 @property (nonatomic, strong) SAParentalGate *gate;
 @property (nonatomic, strong) UIImageView *padlock;
@@ -39,6 +41,10 @@
 @property (nonatomic, strong) NSTimer *viewabilityTimer;
 @property (nonatomic, assign) NSInteger ticks;
 @property (nonatomic, assign) NSInteger viewabilityCount;
+
+@property (nonatomic, strong) NSString *fullHTMLToLoad;
+@property (nonatomic, strong) NSString *destinationURL;
+@property (nonatomic, assign) BOOL canPlay;
 
 @end
 
@@ -68,135 +74,150 @@
 }
 
 - (void) initialize {
+    _canPlay = true;
+    _loader = [[SALoader alloc] init];
     _isParentalGateEnabled = false;
     self.backgroundColor = BG_COLOR;
 }
 
 #pragma mark <SAViewProtocol> functions
 
-- (void) play:(NSInteger)placementId {
+- (void) load:(NSInteger)placementId {
     
-    // release previous ad (just in case)
-    _ad = NULL;
-    
-    // remove everything else
-    [self close];
-    
-    // get the new ad
-    _ad = [[SuperAwesome getInstance] getAdForPlacement:placementId];
-    
-    // check for incorrect ad or placement
-    if (_ad == nil || _ad.creative.creativeFormat == video) {
-        if (_adDelegate != NULL && [_adDelegate respondsToSelector:@selector(adFailedToShow:)]){
-            [_adDelegate adFailedToShow:placementId];
-        }
-        return;
-    }
-    
-    // reset
-    _viewabilityCount = _ticks = 0;
-    
-    // start creating the banner ad
-    _gate = [[SAParentalGate alloc] initWithWeakRefToView:self];
-    
-    // calc correctly scaled frame
-    CGRect frame = [SAUtils mapOldFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
-                             toNewFrame:CGRectMake(0, 0, _ad.creative.details.width, _ad.creative.details.height)];
-    
-    // add the sawebview
-    _webplayer = [[SAWebPlayer alloc] initWithFrame:frame];
-    
-    // setup the ad size
-    [_webplayer setAdSize:CGSizeMake(_ad.creative.details.width, _ad.creative.details.height)];
-    
-    // moat tracking
-    NSString *moatString = @"";
-    Class class = NSClassFromString(@"SAEvents");
-    SEL selector = NSSelectorFromString(@"sendDisplayMoatEvent:andAdDictionary:");
-    if ([class instancesRespondToSelector:selector]) {
-        NSDictionary *moatDict = @{
-                                   @"advertiser": @(_ad.advertiserId),
-                                   @"campaign": @(_ad.campaignId),
-                                   @"line_item": @(_ad.lineItemId),
-                                   @"creative": @(_ad.creative._id),
-                                   @"app": @(_ad.app),
-                                   @"placement": @(_ad.placementId),
-                                   @"publisher": @(_ad.publisherId)
-                                   };
-        
-        NSMethodSignature *signature = [class methodSignatureForSelector:selector];
-        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
-        [invocation setTarget:class];
-        [invocation setSelector:selector];
-        [invocation setArgument:&_webplayer atIndex:2];
-        [invocation setArgument:&moatDict atIndex:3];
-        [invocation retainArguments];
-        [invocation invoke];
-        void *tmpResult;
-        [invocation getReturnValue:&tmpResult];
-        moatString = (__bridge NSString*)tmpResult;
-    }
-    
-    // form the full HTML string and play it!
-    NSString *fullHTML = [_ad.creative.details.media.html stringByReplacingOccurrencesOfString:@"_MOAT_" withString:moatString];
+    // reset playability
+    _canPlay = false;
     
     // get a weak self reference
     __weak typeof (self) weakSelf = self;
     
-    // add callbacks for web player events
-    [_webplayer setEventHandler:^(SAWebPlayerEvent event) {
-        switch (event) {
-            case Web_Start: {
-                // send viewable impression
-                weakSelf.viewabilityTimer = [NSTimer scheduledTimerWithTimeInterval:1
-                                                                             target:weakSelf
-                                                                           selector:@selector(viewableImpressionFunc)
-                                                                           userInfo:nil
-                                                                            repeats:YES];
-                [weakSelf.viewabilityTimer fire];
-                
-                // if the banner has a separate impression URL, send that as well for 3rd party tracking
-                [SAEvents sendAllEventsFor:weakSelf.ad.creative.events withKey:@"impression"];
-                
-                if ([weakSelf.adDelegate respondsToSelector:@selector(adWasShown:)]) {
-                    [weakSelf.adDelegate adWasShown:weakSelf.ad.placementId];
-                }
-                break;
-            }
-            case Web_Error: {
-                if ([weakSelf.adDelegate respondsToSelector:@selector(adFailedToShow:)]) {
-                    [weakSelf.adDelegate adFailedToShow:weakSelf.ad.placementId];
-                }
-                break;
-            }
-        }
-    }];
-    
-    // add callbacks for clicks
-    [_webplayer setClickHandler:^(NSURL *url) {
-        // get the going to URL
-        weakSelf.destinationURL = [url absoluteString];
+    // load ad
+    [_loader loadAd:placementId withResult:^(SAAd *ad) {
         
-        if (weakSelf.isParentalGateEnabled) {
-            [weakSelf.gate show];
-        } else {
-            [weakSelf advanceToClick];
-        }
+        // assign new ad
+        weakSelf.ad = ad;
+        
+        // set can play
+        weakSelf.canPlay = true;
     }];
+}
+
+- (void) play {
     
-    
-    // add it as a subview
-    [self addSubview:_webplayer];
-    
-    // finally load the ad HTML data
-    [_webplayer loadAdHTML:fullHTML];
-    
-    // add the padlock
-    _padlock = [[UIImageView alloc] initWithFrame:BIG_PAD_FRAME];
-    _padlock.image = [SAUtils padlockImage];
-    if ([self shouldShowPadlock]) {
-        [_webplayer addSubview:_padlock];
+    if (_ad && _ad.creative.creativeFormat != video && _canPlay) {
+        
+        // get a weak self reference
+        __weak typeof (self) weakSelf = self;
+        
+        // reset play-ability
+        _canPlay = false;
+        
+        // start creating the banner ad
+        _gate = [[SAParentalGate alloc] initWithWeakRefToView:self];
+        
+        // calc correctly scaled frame
+        CGRect frame = [SAUtils mapOldFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
+                                 toNewFrame:CGRectMake(0, 0, _ad.creative.details.width, _ad.creative.details.height)];
+        
+        // add the sawebview
+        _webplayer = [[SAWebPlayer alloc] initWithFrame:frame];
+        
+        // setup the ad size
+        [_webplayer setAdSize:CGSizeMake(_ad.creative.details.width, _ad.creative.details.height)];
+        
+        // moat tracking
+        NSString *moatString = @"";
+        Class class = NSClassFromString(@"SAEvents");
+        SEL selector = NSSelectorFromString(@"sendDisplayMoatEvent:andAdDictionary:");
+        if ([class instancesRespondToSelector:selector]) {
+            NSDictionary *moatDict = @{
+                                       @"advertiser": @(_ad.advertiserId),
+                                       @"campaign": @(_ad.campaignId),
+                                       @"line_item": @(_ad.lineItemId),
+                                       @"creative": @(_ad.creative._id),
+                                       @"app": @(_ad.app),
+                                       @"placement": @(_ad.placementId),
+                                       @"publisher": @(_ad.publisherId)
+                                       };
+            
+            NSMethodSignature *signature = [class methodSignatureForSelector:selector];
+            NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
+            [invocation setTarget:class];
+            [invocation setSelector:selector];
+            [invocation setArgument:&_webplayer atIndex:2];
+            [invocation setArgument:&moatDict atIndex:3];
+            [invocation retainArguments];
+            [invocation invoke];
+            void *tmpResult;
+            [invocation getReturnValue:&tmpResult];
+            moatString = (__bridge NSString*)tmpResult;
+        }
+        
+        // form the full HTML string and play it!
+        _fullHTMLToLoad = [_ad.creative.details.media.html stringByReplacingOccurrencesOfString:@"_MOAT_" withString:moatString];
+        
+        // add callbacks for web player events
+        [_webplayer setEventHandler:^(SAWebPlayerEvent event) {
+            switch (event) {
+                case Web_Start: {
+                    // send viewable impression
+                    weakSelf.viewabilityCount = weakSelf.ticks = 0;
+                    weakSelf.viewabilityTimer = [NSTimer scheduledTimerWithTimeInterval:1
+                                                                                 target:weakSelf
+                                                                               selector:@selector(viewableImpressionFunc)
+                                                                               userInfo:nil
+                                                                                repeats:YES];
+                    [weakSelf.viewabilityTimer fire];
+                    
+                    // if the banner has a separate impression URL, send that as well for 3rd party tracking
+                    [SAEvents sendAllEventsFor:weakSelf.ad.creative.events withKey:@"impression"];
+                    
+                    if ([weakSelf.adDelegate respondsToSelector:@selector(adWasShown:)]) {
+                        [weakSelf.adDelegate adWasShown:weakSelf.ad.placementId];
+                    }
+                    break;
+                }
+                case Web_Error: {
+                    if ([weakSelf.adDelegate respondsToSelector:@selector(adFailedToShow:)]) {
+                        [weakSelf.adDelegate adFailedToShow:weakSelf.ad.placementId];
+                    }
+                    break;
+                }
+            }
+        }];
+        
+        // add callbacks for clicks
+        [_webplayer setClickHandler:^(NSURL *url) {
+            // get the going to URL
+            weakSelf.destinationURL = [url absoluteString];
+            
+            if (weakSelf.isParentalGateEnabled) {
+                [weakSelf.gate show];
+            } else {
+                [weakSelf click];
+            }
+        }];
+        
+        
+        // add it as a subview
+        [self addSubview:_webplayer];
+        
+        // add the padlock
+        _padlock = [[UIImageView alloc] initWithFrame:BIG_PAD_FRAME];
+        _padlock.image = [SAUtils padlockImage];
+        if ([self shouldShowPadlock]) {
+            [_webplayer addSubview:_padlock];
+        }
+        
+        // finally play!
+        [_webplayer loadAdHTML:_fullHTMLToLoad];
+        
+    } else {
+        // handle failure
     }
+}
+
+- (void) setAd:(SAAd *)ad {
+    _ad = ad;
 }
 
 - (SAAd*) getAd {
@@ -228,7 +249,7 @@
     }
 }
 
-- (void) advanceToClick {
+- (void) click {
     NSLog(@"[AA :: INFO] Going to %@", _destinationURL);
     
     if ([_destinationURL rangeOfString:[[SuperAwesome getInstance] getBaseURL]].location == NSNotFound) {
@@ -244,7 +265,7 @@
     [[UIApplication sharedApplication] openURL:url];
 }
 
-- (void) resizeToFrame:(CGRect)toframe {
+- (void) resize:(CGRect)toframe {
     self.frame = toframe;
     
     CGRect frame = [SAUtils mapOldFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)

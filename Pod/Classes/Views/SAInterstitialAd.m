@@ -19,19 +19,24 @@
 @interface SAInterstitialAd ()
 @property (nonatomic, assign) CGRect adviewFrame;
 @property (nonatomic, assign) CGRect buttonFrame;
-@property (nonatomic, strong) SAAd *ad;
+@property (nonatomic, assign) NSInteger placementId;
 @property (nonatomic, strong) SABannerAd *banner;
 @property (nonatomic, strong) UIButton *closeBtn;
+
+@property (nonatomic, strong) SAAd *ad;
+@property (nonatomic, strong) SALoader *loader;
+
 @end
 
 @implementation SAInterstitialAd
 
-#pragma mark <ViewController> functions
+////////////////////////////////////////////////////////////////////////////////
+// MARK: View Controller functions
+////////////////////////////////////////////////////////////////////////////////
 
 - (id) init {
     if (self = [super init]) {
-        _shouldLockOrientation = NO;
-        _lockOrientation = UIInterfaceOrientationMaskAll;
+        [self initialize];
     }
     
     return self;
@@ -39,39 +44,27 @@
 
 - (id) initWithCoder:(NSCoder *)aDecoder {
     if (self = [super initWithCoder:aDecoder]) {
-        _shouldLockOrientation = NO;
-        _lockOrientation = UIInterfaceOrientationMaskAll;
+        [self initialize];
     }
     return self;
 }
 
 - (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        _shouldLockOrientation = NO;
-        _lockOrientation = UIInterfaceOrientationMaskAll;
+        [self initialize];
     }
     return self;
 }
 
+- (void) initialize {
+    _loader = [[SALoader alloc] init];
+    _shouldLockOrientation = NO;
+    _lockOrientation = UIInterfaceOrientationMaskAll;
+}
+
 - (void) viewDidLoad {
     [super viewDidLoad];
-    
-    // set bg color
     self.view.backgroundColor = INTER_BG_COLOR;
-    
-    _banner = [[SABannerAd alloc] initWithFrame:_adviewFrame];
-    _banner.adDelegate = _adDelegate;
-    _banner.isParentalGateEnabled = _isParentalGateEnabled;
-    _banner.backgroundColor = INTER_BG_COLOR;
-    [self.view addSubview:_banner];
-    
-    // create close button
-    _closeBtn = [[UIButton alloc] initWithFrame:_buttonFrame];
-    [_closeBtn setTitle:@"" forState:UIControlStateNormal];
-    [_closeBtn setImage:[SAUtils closeImage] forState:UIControlStateNormal];
-    [_closeBtn addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_closeBtn];
-    [self.view bringSubviewToFront:_closeBtn];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -111,7 +104,7 @@
         }
     }
     
-    [self resizeToFrame:CGRectMake(0, 0, currentSize.width, currentSize.height)];
+    [self resize:CGRectMake(0, 0, currentSize.width, currentSize.height)];
 
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
 }
@@ -123,7 +116,7 @@
 
 - (void) viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-    [self resizeToFrame:CGRectMake(0, 0, size.width, size.height)];
+    [self resize:CGRectMake(0, 0, size.width, size.height)];
 }
 
 - (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
@@ -134,14 +127,14 @@
     switch (toInterfaceOrientation) {
         case UIInterfaceOrientationLandscapeLeft:
         case UIInterfaceOrientationLandscapeRight: {
-            [self resizeToFrame:CGRectMake(0, 0, bigDimension, smallDimension)];
+            [self resize:CGRectMake(0, 0, bigDimension, smallDimension)];
             break;
         }
         case UIInterfaceOrientationPortrait:
         case UIInterfaceOrientationPortraitUpsideDown:
         case UIInterfaceOrientationUnknown:
         default: {
-            [self resizeToFrame:CGRectMake(0, 0, smallDimension, bigDimension)];
+            [self resize:CGRectMake(0, 0, smallDimension, bigDimension)];
             break;
         }
     }
@@ -163,23 +156,56 @@
     return true;
 }
 
-#pragma mark <SAViewProtocol> functions
+////////////////////////////////////////////////////////////////////////////////
+// MARK: View protocol implementation
+////////////////////////////////////////////////////////////////////////////////
 
-- (void) play:(NSInteger)placementId {
+- (void) load:(NSInteger)placementId {
     
-    // ad case
-    if ([[SuperAwesome getInstance] hasAdForPlacement:placementId]) {
+    // get a weak self reference
+    __weak typeof (self) weakSelf = self;
+    
+    // load ad
+    [_loader loadAd:placementId withResult:^(SAAd *ad) {
+        weakSelf.ad = ad;
+    }];
+}
+
+- (void) play {
+    
+    if (_ad && _ad.creative.creativeFormat != video) {
+        
+        // get a weak self reference
+        __weak typeof (self) weakSelf = self;
+        
+        // create banner
+        _banner = [[SABannerAd alloc] initWithFrame:_adviewFrame];
+        _banner.adDelegate = _adDelegate;
+        _banner.isParentalGateEnabled = _isParentalGateEnabled;
+        _banner.backgroundColor = INTER_BG_COLOR;
+        [_banner setAd:_ad];
+        [self.view addSubview:_banner];
+        
+        // create close button
+        _closeBtn = [[UIButton alloc] initWithFrame:_buttonFrame];
+        [_closeBtn setTitle:@"" forState:UIControlStateNormal];
+        [_closeBtn setImage:[SAUtils closeImage] forState:UIControlStateNormal];
+        [_closeBtn addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:_closeBtn];
+        [self.view bringSubviewToFront:_closeBtn];
+        
         UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
         [root presentViewController:self animated:YES completion:^{
-            [_banner play:placementId];
+            [weakSelf.banner play];
         }];
+        
+    } else {
+        // do nothing
     }
-    // no ad case
-    else {
-        [_banner close];
-    }
-    
-    
+}
+
+- (void) setAd:(SAAd *)ad {
+    _ad = ad;
 }
 
 - (SAAd*) getAd {
@@ -191,15 +217,22 @@
 }
 
 - (void) close {
+    
+    // null ad
+    _ad = NULL;
+    
+    // close the banner
     [_banner close];
+    
+    // dismiss the current VC
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void) advanceToClick {
+- (void) click {
     // do nothing
 }
 
-- (void) resizeToFrame:(CGRect)frame {
+- (void) resize:(CGRect)frame {
     CGFloat tW = frame.size.width;
     CGFloat tH = frame.size.height;
     CGFloat tX = ( frame.size.width - tW ) / 2;
@@ -216,7 +249,7 @@
     
     // actually resize stuff
     _closeBtn.frame = _buttonFrame;
-    [_banner resizeToFrame:_adviewFrame];
+    [_banner resize:_adviewFrame];
 }
 
 
