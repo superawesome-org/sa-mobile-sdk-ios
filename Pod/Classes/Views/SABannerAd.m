@@ -8,7 +8,6 @@
 
 #import "SABannerAd.h"
 
-// import Parental Gate
 #import "SuperAwesome.h"
 #import "SAParentalGate.h"
 #import "SAAd.h"
@@ -30,8 +29,6 @@
 #define DISPLAY_VIEWABILITY_COUNT 1
 
 @interface SABannerAd ()
-
-@property (nonatomic, weak) id<SAAdProtocol> internalAdProto;
 
 @property (nonatomic, strong) SAAd *ad;
 @property (nonatomic, strong) NSString *destinationURL;
@@ -77,30 +74,27 @@
 
 #pragma mark <SAViewProtocol> functions
 
-- (void) setAd:(SAAd*)__ad {
-    _ad = __ad;
-}
-
-- (SAAd*) getAd {
-    return _ad;
-}
-
-- (void) play {
+- (void) play:(NSInteger)placementId {
+    
+    // release previous ad (just in case)
+    _ad = NULL;
+    
+    // remove everything else
+    [self close];
+    
+    // get the new ad
+    _ad = [[SuperAwesome getInstance] getAdForPlacement:placementId];
+    
+    // check for incorrect ad or placement
+    if (_ad == nil || _ad.creative.creativeFormat == video) {
+        if (_adDelegate != NULL && [_adDelegate respondsToSelector:@selector(adFailedToShow:)]){
+            [_adDelegate adFailedToShow:placementId];
+        }
+        return;
+    }
     
     // reset
     _viewabilityCount = _ticks = 0;
-    
-    // check for incorrect placement
-    if (_ad.creative.creativeFormat == video || _ad == nil) {
-        if (_adDelegate != NULL && [_adDelegate respondsToSelector:@selector(adFailedToShow:)]){
-            [_adDelegate adFailedToShow:_ad.placementId];
-        }
-        if (_internalAdProto != NULL && [_internalAdProto respondsToSelector:@selector(adFailedToShow:)]){
-            [_internalAdProto adFailedToShow:_ad.placementId];
-        }
-        
-        return;
-    }
     
     // start creating the banner ad
     _gate = [[SAParentalGate alloc] initWithWeakRefToView:self];
@@ -155,10 +149,10 @@
             case Web_Start: {
                 // send viewable impression
                 weakSelf.viewabilityTimer = [NSTimer scheduledTimerWithTimeInterval:1
-                                                                     target:weakSelf
-                                                                   selector:@selector(viewableImpressionFunc)
-                                                                   userInfo:nil
-                                                                    repeats:YES];
+                                                                             target:weakSelf
+                                                                           selector:@selector(viewableImpressionFunc)
+                                                                           userInfo:nil
+                                                                            repeats:YES];
                 [weakSelf.viewabilityTimer fire];
                 
                 // if the banner has a separate impression URL, send that as well for 3rd party tracking
@@ -205,6 +199,10 @@
     }
 }
 
+- (SAAd*) getAd {
+    return _ad;
+}
+
 - (BOOL) shouldShowPadlock {
     if (_ad.creative.creativeFormat == tag) return false;
     if (_ad.isFallback) return false;
@@ -213,6 +211,7 @@
 }
 
 - (void) close {
+    // remove all stuffs
     [_webplayer removeFromSuperview];
     _webplayer = nil;
     [_padlock removeFromSuperview];
@@ -221,6 +220,11 @@
     if (_viewabilityTimer != nil) {
         [_viewabilityTimer invalidate];
         _viewabilityTimer = nil;
+    }
+    
+    // call delegate
+    if (_adDelegate && [_adDelegate respondsToSelector:@selector(adWasClosed:)]) {
+        [_adDelegate adWasClosed:_ad.placementId];
     }
 }
 

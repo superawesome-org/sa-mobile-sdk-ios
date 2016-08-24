@@ -11,15 +11,12 @@
 #import "SAUtils.h"
 #import "SAAd.h"
 #import "SACreative.h"
+#import "SuperAwesome.h"
 
 // defines
 #define INTER_BG_COLOR [UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1]
 
-@interface SABannerAd () /*<SAWebPlayerProtocol>*/
-@property (nonatomic, weak) id<SAAdProtocol> internalAdProto;
-@end
-
-@interface SAInterstitialAd () <SAAdProtocol>
+@interface SAInterstitialAd ()
 @property (nonatomic, assign) CGRect adviewFrame;
 @property (nonatomic, assign) CGRect buttonFrame;
 @property (nonatomic, strong) SAAd *ad;
@@ -65,8 +62,6 @@
     _banner = [[SABannerAd alloc] initWithFrame:_adviewFrame];
     _banner.adDelegate = _adDelegate;
     _banner.isParentalGateEnabled = _isParentalGateEnabled;
-    _banner.internalAdProto = self;
-    [_banner setAd:_ad];
     _banner.backgroundColor = INTER_BG_COLOR;
     [self.view addSubview:_banner];
     
@@ -170,16 +165,25 @@
 
 #pragma mark <SAViewProtocol> functions
 
-- (void) setAd:(SAAd*)__ad {
-    _ad = __ad;
+- (void) play:(NSInteger)placementId {
+    
+    // ad case
+    if ([[SuperAwesome getInstance] hasAdForPlacement:placementId]) {
+        UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
+        [root presentViewController:self animated:YES completion:^{
+            [_banner play:placementId];
+        }];
+    }
+    // no ad case
+    else {
+        [_banner close];
+    }
+    
+    
 }
 
 - (SAAd*) getAd {
-    return _ad;
-}
-
-- (void) play {
-    [_banner play];
+    return [_banner getAd];
 }
 
 - (BOOL) shouldShowPadlock {
@@ -187,13 +191,8 @@
 }
 
 - (void) close {
-    
-    if ([_banner.adDelegate respondsToSelector:@selector(adWasClosed:)]) {
-        [_banner.adDelegate adWasClosed:_ad.placementId];
-    }
-    
+    [_banner close];
     [self dismissViewControllerAnimated:YES completion:nil];
-
 }
 
 - (void) advanceToClick {
@@ -201,8 +200,8 @@
 }
 
 - (void) resizeToFrame:(CGRect)frame {
-    CGFloat tW = frame.size.width;// * 0.85;
-    CGFloat tH = frame.size.height;// * 0.85;
+    CGFloat tW = frame.size.width;
+    CGFloat tH = frame.size.height;
     CGFloat tX = ( frame.size.width - tW ) / 2;
     CGFloat tY = ( frame.size.height - tH) / 2;
     CGRect newR = [SAUtils mapOldFrame:CGRectMake(tX, tY, tW, tH) toNewFrame:frame];
@@ -220,10 +219,5 @@
     [_banner resizeToFrame:_adviewFrame];
 }
 
-#pragma mark <SAAdProtocol> - internal
-
-- (void) adFailedToShow:(NSInteger)placementId {
-    [self close];
-}
 
 @end

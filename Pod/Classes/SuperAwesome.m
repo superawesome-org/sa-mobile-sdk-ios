@@ -15,8 +15,11 @@
 #import "SACapper.h"
 #import "SAEvents.h"
 #import "SASession.h"
+#import "SALoader.h"
 
 @interface SuperAwesome ()
+@property (nonatomic, strong) NSMutableArray *loadedAds;
+@property (nonatomic, strong) SALoader *loader;
 @end
 
 @implementation SuperAwesome
@@ -32,15 +35,15 @@
 
 - (id) init {
     if (self = [super init]) {
-        // by default configuration is set to production
-        // and test mode is disabled
         [self setConfigurationProduction];
         [self disableTestMode];
         [SACapper enableCapping:^(NSUInteger dauId) {
             [[SASession getInstance] setDauId:dauId];
         }];
         
-        // set loader session instance
+        _loadedAds = [@[] mutableCopy];
+        _loader = [[SALoader alloc] init];
+        
         [[SASession getInstance] setVersion:[self getSdkVersion]];
     }
     
@@ -71,7 +74,6 @@
     [[SASession getInstance] setTestEnabled];
 }
 
-
 - (NSString*) getVersion {
     return @"4.3.10";
 }
@@ -94,6 +96,39 @@
 }
 - (NSUInteger) getDAUID {
     return [[SASession getInstance] getDauId];
+}
+
+- (void) loadAd:(NSInteger) placementId {
+    
+    [_loader loadAd:placementId withResult:^(SAAd *ad) {
+        if (ad != NULL) {
+            [_loadedAds addObject:ad];
+        }
+    }];
+    
+}
+
+- (BOOL) hasAdForPlacement: (NSInteger) placementId {
+    for (SAAd *ad in _loadedAds) {
+        if (ad.placementId == placementId) {
+            return true;
+        }
+    }
+    
+    return false;
+}
+
+- (SAAd*) getAdForPlacement:(NSInteger) placementId {
+    SAAd *returnedAd = NULL;
+    for (SAAd* ad in _loadedAds) {
+        if (ad.placementId == placementId) {
+            returnedAd = ad;
+        }
+    }
+    if (returnedAd) {
+        [_loadedAds removeObject:returnedAd];
+    }
+    return returnedAd;
 }
 
 @end

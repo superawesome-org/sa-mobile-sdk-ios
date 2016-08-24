@@ -41,9 +41,6 @@
 
 @protocol SAViewProtocol <NSObject>
 
-// sets the ad for a SABannerAd, SAInterstitialAd, etc type class
-- (void) setAd:(SAAd*)ad;
-
 // return an Ad
 - (SAAd*) getAd;
 
@@ -51,7 +48,7 @@
 - (BOOL) shouldShowPadlock;
 
 // play the ad
-- (void) play;
+- (void) play:(NSInteger)placementId;
 
 // close the ad
 - (void) close;

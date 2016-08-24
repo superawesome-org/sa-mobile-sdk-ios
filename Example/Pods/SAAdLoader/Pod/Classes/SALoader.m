@@ -35,7 +35,10 @@
 
 @implementation SALoader
 
-- (void) loadAdForPlacementId:(NSInteger)placementId {
+- (void) loadAd:(NSInteger)placementId withResult:(adLoadingResult)result {
+    
+    // get a reference to the result callback
+    adLoadingResult res = result != NULL ? result : ^(SAAd*ad){};
     
     // First thing to do is format the AA URL to get an ad, based on specs
     NSString *endpoint = [NSString stringWithFormat:@"%@/ad/%ld", [[SASession getInstance] getBaseUrl], (long)placementId];
@@ -69,18 +72,14 @@
         withResponse:^(NSInteger status, NSString *payload, BOOL success) {
             
                 if (!success) {
-                   if (_delegate != NULL && [_delegate respondsToSelector:@selector(didFailToLoadAdForPlacementId:)]) {
-                       [_delegate didFailToLoadAdForPlacementId:placementId];
-                   }
+                    res(NULL);
                } else {
                    // create parser & extra
                    SAAdParser *parser = [[SAAdParser alloc] init];
                    __block SAAd *parsedAd = [parser parseInitialAdFromNetwork:payload withPlacementId:placementId];
                    
                    if (!parsedAd) {
-                       if (_delegate != NULL && [_delegate respondsToSelector:@selector(didFailToLoadAdForPlacementId:)]){
-                           [_delegate didFailToLoadAdForPlacementId:placementId];
-                       }
+                       res(NULL);
                    }
                    // and get extra data
                    else {
@@ -92,11 +91,8 @@
                            case video: {
                                SAVASTParser *vastParser = [[SAVASTParser alloc] init];
                                [vastParser parseVASTURL:parsedAd.creative.details.vast done:^(SAAd *vastAd) {
-                                   
                                    [parsedAd sumAd:vastAd];
-                                   if (_delegate != NULL && [_delegate respondsToSelector:@selector(didLoadAd:)]) {
-                                       [_delegate didLoadAd:parsedAd];
-                                   }
+                                   res(parsedAd);
                                }];
                                break;
                            }
@@ -107,9 +103,7 @@
                            case invalid: {
                                parsedAd.creative.details.media = [[SAMedia alloc] init];
                                parsedAd.creative.details.media.html = [SAHTMLParser formatCreativeDataIntoAdHTML:parsedAd];
-                               if (_delegate != NULL && [_delegate respondsToSelector:@selector(didLoadAd:)]) {
-                                   [_delegate didLoadAd:parsedAd];
-                               }
+                               res(parsedAd);
                                break;
                            }
                        }
