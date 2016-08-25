@@ -18,7 +18,7 @@
 
 @interface SAVideoAd : UIViewController <SAViewProtocol>
 
-@property (nonatomic, weak) id<SAAdProtocol> adDelegate;
+@property (nonatomic, weak) id<SAProtocol> delegate;
 
 @property (nonatomic, assign) BOOL isParentalGateEnabled;
 @property (nonatomic, assign) BOOL shouldAutomaticallyCloseAtEnd;

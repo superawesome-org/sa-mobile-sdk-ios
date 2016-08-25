@@ -20,7 +20,7 @@
 // class declaration for SABannerAd
 @interface SABannerAd : UIView <SAViewProtocol>
 
-@property (nonatomic, weak) id<SAAdProtocol> adDelegate;
+@property (nonatomic, weak) id<SAProtocol> delegate;
 @property (nonatomic, assign) IBInspectable BOOL isParentalGateEnabled;
 
 @end

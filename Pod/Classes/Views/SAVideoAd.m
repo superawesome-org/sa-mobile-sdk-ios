@@ -201,12 +201,26 @@
 
 
 - (void) load:(NSInteger)placementId {
+    
     // get a weak self reference
     __weak typeof (self) weakSelf = self;
     
     // load ad
     [_loader loadAd:placementId withResult:^(SAAd *ad) {
+        
+        // get the ad
         weakSelf.ad = ad;
+        
+        // call delegate
+        if (ad != NULL) {
+            if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(SADidLoadAd:forPlacementId:)]) {
+                [weakSelf.delegate SADidLoadAd:weakSelf forPlacementId:placementId];
+            }
+        } else {
+            if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(SADidNotLoadAd:forPlacementId:)]) {
+                [weakSelf.delegate SADidNotLoadAd:weakSelf forPlacementId:placementId];
+            }
+        }
     }];
 }
 
@@ -279,8 +293,8 @@
                     }
                     
                     // send delegate
-                    if (weakSelf.adDelegate && [weakSelf.adDelegate respondsToSelector:@selector(adWasShown:)]) {
-                        [weakSelf.adDelegate adWasShown:weakSelf.ad.placementId];
+                    if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(SADidShowAd:)]) {
+                        [weakSelf.delegate SADidShowAd:weakSelf];
                     }
                     
                     break;
@@ -316,6 +330,14 @@
                     
                     // send errors
                     [SAEvents sendAllEventsFor:weakSelf.ad.creative.events withKey:@"error"];
+                    
+                    // close
+                    [weakSelf close];
+                    
+                    // send delegate
+                    if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(SADidNotShowAd:)]) {
+                        [weakSelf.delegate SADidNotShowAd:weakSelf];
+                    }
                     
                     break;
                 }
@@ -364,7 +386,9 @@
         }];
         
     } else {
-        // don't handle
+        if (_delegate && [_delegate respondsToSelector:@selector(SADidNotShowAd:)]) {
+            [_delegate SADidNotShowAd:self];
+        }
     }
 }
 
@@ -407,8 +431,8 @@
         }
         
         // call delegate
-        if ([_adDelegate respondsToSelector:@selector(adWasClosed:)]) {
-            [_adDelegate adWasClosed:_ad.placementId];
+        if ([_delegate respondsToSelector:@selector(SADidCloseAd:)]) {
+            [_delegate SADidCloseAd:self];
         }
         
         // dismiss VC
@@ -418,8 +442,8 @@
 
 - (void) click {
     // call delegate
-    if (_adDelegate && [_adDelegate respondsToSelector:@selector(adWasClicked:)]) {
-        [_adDelegate adWasClicked:_ad.placementId];
+    if (_delegate && [_delegate respondsToSelector:@selector(SADidClickAd:)]) {
+        [_delegate SADidClickAd:self];
     }
     
     // call trackers

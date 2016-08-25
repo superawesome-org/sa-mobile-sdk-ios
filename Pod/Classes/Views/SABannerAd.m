@@ -98,6 +98,17 @@
         
         // set can play
         weakSelf.canPlay = true;
+        
+        // call delegate
+        if (ad != NULL) {
+            if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(SADidLoadAd:forPlacementId:)]) {
+                [weakSelf.delegate SADidLoadAd:weakSelf forPlacementId:placementId];
+            }
+        } else {
+            if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(SADidNotLoadAd:forPlacementId:)]) {
+                [weakSelf.delegate SADidNotLoadAd:weakSelf forPlacementId:placementId];
+            }
+        }
     }];
 }
 
@@ -171,14 +182,14 @@
                     // if the banner has a separate impression URL, send that as well for 3rd party tracking
                     [SAEvents sendAllEventsFor:weakSelf.ad.creative.events withKey:@"impression"];
                     
-                    if ([weakSelf.adDelegate respondsToSelector:@selector(adWasShown:)]) {
-                        [weakSelf.adDelegate adWasShown:weakSelf.ad.placementId];
+                    if ([weakSelf.delegate respondsToSelector:@selector(SADidShowAd:)]) {
+                        [weakSelf.delegate SADidShowAd:weakSelf];
                     }
                     break;
                 }
                 case Web_Error: {
-                    if ([weakSelf.adDelegate respondsToSelector:@selector(adFailedToShow:)]) {
-                        [weakSelf.adDelegate adFailedToShow:weakSelf.ad.placementId];
+                    if ([weakSelf.delegate respondsToSelector:@selector(SADidNotShowAd:)]) {
+                        [weakSelf.delegate SADidNotShowAd:weakSelf];
                     }
                     break;
                 }
@@ -197,8 +208,7 @@
             }
         }];
         
-        
-        // add it as a subview
+        // add the webplayer as a subview
         [self addSubview:_webplayer];
         
         // add the padlock
@@ -212,7 +222,9 @@
         [_webplayer loadAdHTML:_fullHTMLToLoad];
         
     } else {
-        // handle failure
+        if (_delegate && [_delegate respondsToSelector:@selector(SADidNotShowAd:)]) {
+            [_delegate SADidNotShowAd:self];
+        }
     }
 }
 
@@ -244,8 +256,8 @@
     }
     
     // call delegate
-    if (_adDelegate && [_adDelegate respondsToSelector:@selector(adWasClosed:)]) {
-        [_adDelegate adWasClosed:_ad.placementId];
+    if (_delegate && [_delegate respondsToSelector:@selector(SADidCloseAd:)]) {
+        [_delegate SADidCloseAd:self];
     }
 }
 
@@ -257,8 +269,8 @@
     }
     
     // call delegate
-    if (_adDelegate && [_adDelegate respondsToSelector:@selector(adWasClicked:)]) {
-        [_adDelegate adWasClicked:_ad.placementId];
+    if (_delegate && [_delegate respondsToSelector:@selector(SADidClickAd:)]) {
+        [_delegate SADidClickAd:self];
     }
     
     NSURL *url = [NSURL URLWithString:_destinationURL];

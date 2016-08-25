@@ -11,34 +11,7 @@
 // useful imports
 @class SAAd;
 
-////////////////////////////////////////////////////////////////////////////////
-
-// @brief:
-// This protocol informs the user about different events in the lifecylce
-// of a normal Ad;
-// It has to be implemented as a delegate object by any child of
-// SAView, meaning any Ad type is valid
-@protocol SAAdProtocol <NSObject>
-
-@optional
-
-// this function is called when the ad is shown on the screen
-- (void) adWasShown:(NSInteger)placementId;
-
-// this function is called when the ad failed to show
-- (void) adFailedToShow:(NSInteger)placementId;
-
-// this function is called when an ad is closed;
-// only applies to fullscreen ads like interstitials and fullscreen videos
-- (void) adWasClosed:(NSInteger)placementId;
-
-// this function is called when an ad is clicked
-- (void) adWasClicked:(NSInteger)placementId;
-
-@end
-
-////////////////////////////////////////////////////////////////////////////////
-
+// internal protocol that all ad view objects need to respect
 @protocol SAViewProtocol <NSObject>
 
 // load the ad
@@ -64,5 +37,20 @@
 
 // resize view or view controller
 - (void) resize:(CGRect)frame;
+
+@end
+
+// external protocol for ad view objects to communicate w/ user
+@protocol SAProtocol <NSObject>
+
+@optional
+
+// all functions are optional here
+- (void) SADidLoadAd:(id) sender forPlacementId: (NSInteger) placementId;
+- (void) SADidNotLoadAd:(id) sender forPlacementId: (NSInteger) placementId;
+- (void) SADidShowAd:(id) sender;
+- (void) SADidNotShowAd:(id) sender;
+- (void) SADidCloseAd:(id) sender;
+- (void) SADidClickAd:(id) sender;
 
 @end

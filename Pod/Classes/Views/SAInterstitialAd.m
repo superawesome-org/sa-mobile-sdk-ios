@@ -167,7 +167,20 @@
     
     // load ad
     [_loader loadAd:placementId withResult:^(SAAd *ad) {
+        
+        // get the ad
         weakSelf.ad = ad;
+        
+        // call delegate
+        if (ad != NULL) {
+            if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(SADidLoadAd:forPlacementId:)]) {
+                [weakSelf.delegate SADidLoadAd:weakSelf forPlacementId:placementId];
+            }
+        } else {
+            if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(SADidNotLoadAd:forPlacementId:)]) {
+                [weakSelf.delegate SADidNotLoadAd:weakSelf forPlacementId:placementId];
+            }
+        }
     }];
 }
 
@@ -180,7 +193,7 @@
         
         // create banner
         _banner = [[SABannerAd alloc] initWithFrame:_adviewFrame];
-        _banner.adDelegate = _adDelegate;
+        _banner.delegate = _delegate;
         _banner.isParentalGateEnabled = _isParentalGateEnabled;
         _banner.backgroundColor = INTER_BG_COLOR;
         [_banner setAd:_ad];

@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "SuperAwesome.h"
 
-@interface ViewController () <SAAdProtocol>
+@interface ViewController () <SAProtocol>
 @property (weak, nonatomic) IBOutlet SABannerAd *bannerAd;
 @property (nonatomic, strong) SAVideoAd *fvad;
 @property (nonatomic, strong) SAInterstitialAd *iad;
@@ -32,13 +32,17 @@
     [[SuperAwesome getInstance] disableTestMode];
     
     [_bannerAd load:250];
+    _bannerAd.tag = 0;
+    _bannerAd.delegate = self;
     
     _fvad = [[SAVideoAd alloc] init];
     [_fvad setShouldShowCloseButton:YES];
+    _fvad.delegate = self;
     [_fvad load:252];
     
     _iad = [[SAInterstitialAd alloc] init];
-    [_iad load:251];
+    _iad.delegate = self;
+    [_iad load:247];
     
 //    SALoader *loader = [[SALoader alloc] init];
 //    loader.delegate = self;
@@ -89,6 +93,22 @@
 
 - (IBAction)playVideo2:(id)sender {
 
+}
+
+- (void) SADidLoadAd:(id)sender forPlacementId:(NSInteger)placementId {
+    NSLog(@"Did load for %@ - %ld", sender, (long) placementId);
+}
+
+- (void) SADidNotLoadAd:(id)sender forPlacementId:(NSInteger)placementId {
+    NSLog(@"Did fail to load for %ld", (long) placementId);
+}
+
+- (void) SADidClickAd:(id)sender {
+    NSLog(@"Did click on ad for %@", sender);
+}
+
+- (void) SADidCloseAd:(id)sender {
+    NSLog(@"Did close %@", sender);
 }
 
 @end
