@@ -13,6 +13,7 @@
 
 // import the SACapper part
 #import "SACapper.h"
+#import "SACPI.h"
 #import "SAEvents.h"
 #import "SASession.h"
 
@@ -34,7 +35,7 @@
         [SACapper enableCapping:^(NSUInteger dauId) {
             [[SASession getInstance] setDauId:dauId];
         }];
-        
+        [SACPI sendCPIEvent];
         [[SASession getInstance] setVersion:[self getSdkVersion]];
     }
     

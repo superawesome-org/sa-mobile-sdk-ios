@@ -35,10 +35,10 @@
 
 @implementation SALoader
 
-- (void) loadAd:(NSInteger)placementId withResult:(adLoadingResult)result {
+- (void) loadAd:(NSInteger)placementId withResult:(didLoadAd)result {
     
     // get a reference to the result callback
-    adLoadingResult res = result != NULL ? result : ^(SAAd*ad){};
+    didLoadAd res = result != NULL ? result : ^(SAAd*ad){};
     
     // First thing to do is format the AA URL to get an ad, based on specs
     NSString *endpoint = [NSString stringWithFormat:@"%@/ad/%ld", [[SASession getInstance] getBaseUrl], (long)placementId];

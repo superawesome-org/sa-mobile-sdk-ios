@@ -43,7 +43,7 @@ typedef void (^netResponse)(NSData * data, NSURLResponse * response, NSError * e
     }
     
     // set body, if post
-    if ([method isEqualToString:@"POST"] && body != NULL && body.allKeys.count > 0) {
+    if (([method isEqualToString:@"POST"] || [method isEqualToString:@"PUT"]) && body != NULL && body.allKeys.count > 0) {
         request.HTTPBody = [NSJSONSerialization dataWithJSONObject:body options:NSJSONWritingPrettyPrinted error:nil];
     }
     
@@ -93,6 +93,14 @@ typedef void (^netResponse)(NSData * data, NSURLResponse * response, NSError * e
           andBody:(NSDictionary*)body
      withResponse:(response)response {
     [self sendRequestTo:endpoint withMethod:@"POST" andQuery:query andHeader:header andBody:body withResponse:response];
+}
+
+- (void) sendPUT:(NSString *)endpoint
+       withQuery:(NSDictionary *)query
+       andHeader:(NSDictionary *)header
+         andBody:(NSDictionary *)body
+    withResponse:(response)response {
+    [self sendRequestTo:endpoint withMethod:@"PUT" andQuery:query andHeader:header andBody:body withResponse:response];
 }
 
 // MARK: Private

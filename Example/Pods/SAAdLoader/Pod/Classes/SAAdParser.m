@@ -155,8 +155,10 @@
     [ad.creative.events addObject:parentalGateOpen];
     [ad.creative.events addObject:parentalGateClose];
     [ad.creative.events addObject:parentalGateFail];
-    [ad.creative.events addObject:impr];
-    
+    if (ad.creative.impressionUrl) {
+        [ad.creative.events addObject:impr];
+    }
+
     // get the cdn URL
     switch (ad.creative.creativeFormat) {
         case image: {

@@ -15,7 +15,7 @@
 @class SAAd;
 
 // callback
-typedef void (^adLoadingResult)(SAAd *ad);
+typedef void (^didLoadAd)(SAAd *ad);
 
 // class
 @interface SALoader : NSObject
@@ -26,6 +26,6 @@ typedef void (^adLoadingResult)(SAAd *ad);
  *  @param placementId the placement id
  *  @param result      the result callback
  */
-- (void) loadAd:(NSInteger)placementId withResult:(adLoadingResult)result;
+- (void) loadAd:(NSInteger)placementId withResult:(didLoadAd)result;
 
 @end

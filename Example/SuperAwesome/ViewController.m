@@ -31,7 +31,7 @@
     [[SuperAwesome getInstance] setConfigurationStaging];
     [[SuperAwesome getInstance] disableTestMode];
     
-    [_bannerAd load:250];
+    [_bannerAd load:257];
     _bannerAd.tag = 0;
     _bannerAd.delegate = self;
     

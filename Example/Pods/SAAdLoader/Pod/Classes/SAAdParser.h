@@ -12,11 +12,6 @@
 
 // forward declarations
 @class SAAd;
-@class SACreative;
-@class SADetails;
-
-// callback for generic success with data
-typedef void (^parsedad)(SAAd *parsedAd);
 
 // @brief:
 // The SAParser class acts contains one static function that parses a

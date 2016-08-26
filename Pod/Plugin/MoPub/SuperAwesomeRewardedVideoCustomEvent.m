@@ -14,22 +14,10 @@
 #import "MPRewardedVideoReward.h"
 #import "SuperAwesomeMoPub.h"
 
-@interface SuperAwesomeRewardedVideoCustomEvent () <SALoaderProtocol, SAAdProtocol>
-
-// SA objects
-@property (nonatomic, assign) NSInteger placementId;
-@property (nonatomic, assign) BOOL isTestEnabled;
-@property (nonatomic, assign) BOOL isParentalGateEnabled;
-@property (nonatomic, assign) BOOL shouldShowCloseButton;
-@property (nonatomic, assign) BOOL shouldAutomaticallyCloseAtEnd;
-@property (nonatomic, assign) BOOL shouldLockOrientation;
-@property (nonatomic, assign) BOOL shouldShowSmallClickButton;
-@property (nonatomic, assign) NSUInteger lockOrientation;
-@property (nonatomic, strong) SAAd *cAd;
-@property (nonatomic, strong) SALoader *loader;
+@interface SuperAwesomeRewardedVideoCustomEvent () <SAProtocol>
 @property (nonatomic, strong) SAVideoAd *fvad;
 @property (nonatomic, strong) MPRewardedVideoReward *reward;
-
+@property (nonatomic, assign) BOOL hasAdAvailable;
 @end
 
 @implementation SuperAwesomeRewardedVideoCustomEvent
@@ -60,50 +48,48 @@
     }
     
     // assign values, because they exist
-    _isTestEnabled = [isTestEnabledObj boolValue];
-    _placementId = [placementIdObj integerValue];
-    _isParentalGateEnabled = (isParentalGateEnabledObj != NULL ? [isParentalGateEnabledObj boolValue] : true);
-    _shouldShowCloseButton = (shouldShowCloseButtonObj != NULL ? [shouldShowCloseButtonObj boolValue] : false);
-    _shouldAutomaticallyCloseAtEnd = (shouldAutomaticallyCloseAtEndObj != NULL ? [shouldAutomaticallyCloseAtEndObj boolValue] : true);
-    _shouldLockOrientation = (shouldLockOrientationObj != NULL ? [shouldLockOrientationObj boolValue] : false);
-    _shouldShowSmallClickButton = (shouldShowSmallClickButtonObj != NULL ? [shouldShowSmallClickButtonObj boolValue] : false);
-    
+    NSInteger placementId = [placementIdObj integerValue];
+    BOOL isTestEnabled = [isTestEnabledObj boolValue];
+    BOOL isParentalGateEnabled = (isParentalGateEnabledObj != NULL ? [isParentalGateEnabledObj boolValue] : true);
+    BOOL shouldShowCloseButton = (shouldShowCloseButtonObj != NULL ? [shouldShowCloseButtonObj boolValue] : false);
+    BOOL shouldAutomaticallyCloseAtEnd = (shouldAutomaticallyCloseAtEndObj != NULL ? [shouldAutomaticallyCloseAtEndObj boolValue] : true);
+    BOOL shouldLockOrientation = (shouldLockOrientationObj != NULL ? [shouldLockOrientationObj boolValue] : false);
+    BOOL shouldShowSmallClickButton = (shouldShowSmallClickButtonObj != NULL ? [shouldShowSmallClickButtonObj boolValue] : false);
+    BOOL lockOrientation = UIInterfaceOrientationMaskAll;
     if (lockOrientationObj != NULL) {
         NSString *orient = (NSString*)lockOrientationObj;
         if ([orient isEqualToString:@"LANDSCAPE"]){
-            _lockOrientation = UIInterfaceOrientationMaskLandscape;
+            lockOrientation = UIInterfaceOrientationMaskLandscape;
         } else if ([orient isEqualToString:@"PORTRAIT"]){
-            _lockOrientation = UIInterfaceOrientationMaskPortrait;
+            lockOrientation = UIInterfaceOrientationMaskPortrait;
         } else {
-            _shouldLockOrientation = NO;
-            _lockOrientation = UIInterfaceOrientationMaskAll;
+            shouldLockOrientation = NO;
+            lockOrientation = UIInterfaceOrientationMaskAll;
         }
     }
     
-    // enable or disable test mode
-    [[SuperAwesome getInstance] setTesting:_isTestEnabled];
+    _hasAdAvailable = false;
     
-    // start the loader
-    _loader = [[SALoader alloc] init];
-    [_loader setDelegate:self];
-    [_loader loadAdForPlacementId:_placementId];
+    // enable or disable test mode
+    [[SuperAwesome getInstance] setTesting:isTestEnabled];
+    
+    _fvad = [[SAVideoAd alloc] init];
+    _fvad.isParentalGateEnabled = isParentalGateEnabled;
+    _fvad.shouldShowCloseButton = shouldShowCloseButton;
+    _fvad.shouldAutomaticallyCloseAtEnd = shouldAutomaticallyCloseAtEnd;
+    _fvad.shouldLockOrientation = shouldLockOrientation;
+    _fvad.lockOrientation = lockOrientation;
+    _fvad.shouldShowSmallClickButton = shouldShowSmallClickButton;
+    [_fvad load:placementId];
 }
 
 - (void) presentRewardedVideoFromViewController:(UIViewController *)viewController {
-    
-    __weak typeof (self) weakSelf = self;
-    
-    [viewController presentViewController:_fvad animated:YES completion:^{
-        // play
-        [weakSelf.fvad play];
-        
-        // call delegate
-        [weakSelf.delegate rewardedVideoWillAppearForCustomEvent:weakSelf];
-    }];
+    [_fvad play];
+    [self.delegate rewardedVideoWillAppearForCustomEvent:self];
 }
 
 - (BOOL) hasAdAvailable {
-    return (_cAd ? true : false);
+    return _hasAdAvailable;
 }
 
 - (void) handleCustomEventInvalidated {
@@ -113,8 +99,6 @@
 - (void) handleAdPlayedForCustomEventNetwork {
     // do nothing
 }
-
-#pragma mark Custom Functions
 
 - (NSError*) createErrorWith:(NSString*)description andReason:(NSString*)reaason andSuggestion:(NSString*)suggestion {
     NSDictionary *userInfo = @{
@@ -126,105 +110,50 @@
     return [NSError errorWithDomain:ERROR_DOMAIN code:ERROR_CODE userInfo:userInfo];
 }
 
-#pragma mark <SALoaderDelegate>
+// MARK: SAProtocol implementation
 
-- (void) didLoadAd:(SAAd *)ad {
-    // assign current ad
-    _cAd = ad;
+- (void) SADidLoadAd:(id) sender forPlacementId: (NSInteger) placementId {
+    _hasAdAvailable = true;
     _reward = [[MPRewardedVideoReward alloc] initWithCurrencyType:kMPRewardedVideoRewardCurrencyTypeUnspecified amount:@(0)];
-    
-    // init video
-    _fvad = [[SAVideoAd alloc] init];
-    
-    // set delegates
-    [_fvad setAdDelegate:self];
-    
-    // set parameters
-    [_fvad setIsParentalGateEnabled:_isParentalGateEnabled];
-    [_fvad setShouldAutomaticallyCloseAtEnd:_shouldAutomaticallyCloseAtEnd];
-    [_fvad setShouldShowCloseButton:_shouldShowCloseButton];
-    [_fvad setShouldLockOrientation:_shouldLockOrientation];
-    [_fvad setShouldShowSmallClickButton:_shouldShowSmallClickButton];
-    [_fvad setLockOrientation:_lockOrientation];
-    
-    // set ad
-    [_fvad setAd:_cAd];
-    
-    // call events
     [self.delegate rewardedVideoDidLoadAdForCustomEvent:self];
 }
 
-- (void) didFailToLoadAdForPlacementId:(NSInteger)placementId {
+- (void) SADidNotLoadAd:(id) sender forPlacementId: (NSInteger) placementId {
     [self.delegate rewardedVideoDidFailToLoadAdForCustomEvent:self
                                                         error:[self createErrorWith:ERROR_LOAD_TITLE(@"Video Ad", placementId)
                                                                           andReason:ERROR_LOAD_MESSAGE
                                                                       andSuggestion:ERROR_LOAD_SUGGESTION]];
 }
 
-#pragma mark <SAAdProtocol>
-
-- (void) adWasShown:(NSInteger)placementId {
-    // do nothing
+- (void) SADidShowAd:(id) sender {
     [self.delegate rewardedVideoDidAppearForCustomEvent:self];
 }
 
-- (void) adFailedToShow:(NSInteger)placementId {
-    
-    [_fvad close];
-    
-    // then send this to bannerCustomEvent:didFailToLoadAdWithError:
+- (void) SADidNotShowAd:(id) sender {
     [self.delegate rewardedVideoDidFailToPlayForCustomEvent:self
-                                                      error:[self createErrorWith:ERROR_SHOW_TITLE(@"Video Ad", placementId)
+                                                      error:[self createErrorWith:ERROR_SHOW_TITLE(@"Video Ad", 0)
                                                                         andReason:ERROR_SHOW_MESSAGE
                                                                     andSuggestion:ERROR_SHOW_SUGGESTION]];
-    
 }
 
-- (void) adWasClicked:(NSInteger)placementId {
-    // call required event
+- (void) SADidClickAd:(id) sender {
     [self.delegate rewardedVideoDidReceiveTapEventForCustomEvent:self];
-    
-    // only show this directly if PG is not enabled
-    // if it is, it will be called when PG is successfull
-    if (!_isParentalGateEnabled) {
-        [self.delegate rewardedVideoWillLeaveApplicationForCustomEvent:self];
-    }
+    [self.delegate rewardedVideoWillLeaveApplicationForCustomEvent:self];
 }
 
-- (void) adWasClosed:(NSInteger)placementId {
+- (void) SADidCloseAd:(id) sender {
+    // reward
+    [self.delegate rewardedVideoShouldRewardUserForCustomEvent:self reward:_reward];
+    
     // call required events
     [self.delegate rewardedVideoWillDisappearForCustomEvent:self];
     [self.delegate rewardedVideoDidDisappearForCustomEvent:self];
     
     // also null this so no references remain and memory is freed correctly
     _fvad = NULL;
-    _cAd = NULL;
-    _loader = NULL;
     _reward = NULL;
 }
 
-- (void) adHasIncorrectPlacement:(NSInteger)placementId {
-    [_fvad close];
-}
 
-#pragma mark <SAParentalGateProtocol>
-
-- (void) parentalGateWasCanceled:(NSInteger)placementId {
-    // do nothing here
-}
-
-- (void) parentalGateWasSucceded:(NSInteger)placementId {
-    [self.delegate rewardedVideoWillLeaveApplicationForCustomEvent:self];
-}
-
-- (void) parentalGateWasFailed:(NSInteger)placementId {
-    // do nothing here
-}
-
-#pragma mark <SAVideoProtocol>
-
-- (void) videoEnded:(NSInteger)placementId {
-    [self.delegate rewardedVideoShouldRewardUserForCustomEvent:self reward:_reward];
-}
 
 @end

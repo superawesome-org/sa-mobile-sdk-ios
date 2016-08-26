@@ -213,7 +213,9 @@
         }];
         
     } else {
-        // do nothing
+        if (_delegate && [_delegate respondsToSelector:@selector(SADidNotShowAd:)]) {
+            [_delegate SADidNotShowAd:self];
+        }
     }
 }
 

@@ -17,15 +17,8 @@
 // implements two important ad protocols
 // - SALoaderProtocol (of SALoader class)
 // - SAAdProtocol (common to all SAViews)
-@interface SuperAwesomeBannerCustomEvent () <SALoaderProtocol, SAAdProtocol>
-
-@property (nonatomic, assign) CGRect bannerFrame;
-@property (nonatomic, assign) NSInteger placementId;
-@property (nonatomic, assign) BOOL isTestEnabled;
-@property (nonatomic, assign) BOOL isParentalGateEnabled;
-@property (nonatomic, strong) SALoader *loader;
+@interface SuperAwesomeBannerCustomEvent () <SAProtocol>
 @property (nonatomic, strong) SABannerAd *banner;
-
 @end
 
 // actual implementation
@@ -52,24 +45,19 @@
     }
     
     // assign values, because they exist
-    _isTestEnabled = [isTestEnabledObj boolValue];
-    _placementId = [placementIdObj integerValue];
-    _isParentalGateEnabled = (isParentalGateEnabledObj != NULL ? [isParentalGateEnabledObj boolValue] : true);
-    
-    // code from SA to load ad
-    _bannerFrame = CGRectMake(0, 0, size.width, size.height);
+    BOOL isTestEnabled = [isTestEnabledObj boolValue];
+    NSInteger placementId = [placementIdObj integerValue];
+    BOOL isParentalGateEnabled = (isParentalGateEnabledObj != NULL ? [isParentalGateEnabledObj boolValue] : true);
     
     // enable or disable test mode
-    [[SuperAwesome getInstance] setTesting:_isTestEnabled];
+    [[SuperAwesome getInstance] setTesting:isTestEnabled];
     
-    // start the loader
-    _loader = [[SALoader alloc] init];
-    [_loader setDelegate:self];
-    [_loader loadAdForPlacementId:_placementId];
-
+    // create a new banner
+    _banner = [[SABannerAd alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
+    [_banner setIsParentalGateEnabled:isParentalGateEnabled];
+    _banner.delegate = self;
+    [_banner load:placementId];
 }
-
-#pragma mark Custom Functions
 
 - (NSError*) createErrorWith:(NSString*)description andReason:(NSString*)reaason andSuggestion:(NSString*)suggestion {
     NSDictionary *userInfo = @{
@@ -81,29 +69,18 @@
     return [NSError errorWithDomain:ERROR_DOMAIN code:ERROR_CODE userInfo:userInfo];
 }
 
-#pragma mark <SALoaderProtocol>
+// MARK: SAProtocol
 
-- (void) didLoadAd:(SAAd *)ad {
-    // first step is to actually create the Ad View, as defined by SuperAwesome
-    _banner = [[SABannerAd alloc] initWithFrame:_bannerFrame];
-    
-    // set delegates
-    [_banner setAdDelegate:self];
-    
-    // customize
-    [_banner setIsParentalGateEnabled:_isParentalGateEnabled];
-    
-    // set ad
-    [_banner setAd:ad];
-    
-    // play
-    [_banner play];
+- (void) SADidLoadAd:(id)sender forPlacementId:(NSInteger)placementId {
     
     // and then send it to bannerCustomEvent:didLoadAd:
     [self.delegate bannerCustomEvent:self didLoadAd:_banner];
+    
+    // play the ad
+    [_banner play];
 }
 
-- (void) didFailToLoadAdForPlacementId:(NSInteger)placementId {
+- (void) SADidNotLoadAd:(id)sender forPlacementId:(NSInteger)placementId {
     // then send this to bannerCustomEvent:didFailToLoadAdWithError:
     [self.delegate bannerCustomEvent:self
             didFailToLoadAdWithError:[self createErrorWith:ERROR_LOAD_TITLE(@"Banner Ad", placementId)
@@ -111,44 +88,24 @@
                                              andSuggestion:ERROR_LOAD_SUGGESTION]];
 }
 
-#pragma mark <SAAdProtocol>
-
-- (void) adWasShown:(NSInteger)placementId {
+- (void) SADidShowAd:(id)sender {
     // do nothing
 }
 
-- (void) adFailedToShow:(NSInteger)placementId {
-    
+- (void) SADidNotShowAd:(id)sender {
     // then send this to bannerCustomEvent:didFailToLoadAdWithError:
     [self.delegate bannerCustomEvent:self
-            didFailToLoadAdWithError:[self createErrorWith:ERROR_SHOW_TITLE(@"Banner Ad", placementId)
+            didFailToLoadAdWithError:[self createErrorWith:ERROR_SHOW_TITLE(@"Banner Ad", 0)
                                                  andReason:ERROR_SHOW_MESSAGE
                                              andSuggestion:ERROR_SHOW_SUGGESTION]];
 }
 
-- (void) adWasClicked:(NSInteger)placementId {
-    // this must be called to log clicks to MoPub
-    if (!_isParentalGateEnabled){
-        [self.delegate bannerCustomEventWillLeaveApplication:self];
-    }
-}
-
-- (void) adWasClosed:(NSInteger)placementId {
-    // do nothing
-}
-
-#pragma mark <SAParentalGateProtocol>
-
-- (void) parentalGateWasCanceled:(NSInteger)placementId {
-    // do nothing here
-}
-
-- (void) parentalGateWasSucceded:(NSInteger)placementId {
+- (void) SADidClickAd:(id)sender {
     [self.delegate bannerCustomEventWillLeaveApplication:self];
 }
 
-- (void) parentalGateWasFailed:(NSInteger)placementId {
-    // do nothing here
+- (void) SADidCloseAd:(id)sender {
+    // do nothing
 }
 
 
