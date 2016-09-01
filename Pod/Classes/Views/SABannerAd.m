@@ -32,15 +32,12 @@
 @interface SABannerAd ()
 
 @property (nonatomic, strong) SALoader *loader;
+@property (nonatomic, strong) SAEvents *events;
 
 @property (nonatomic, strong) SAAd *ad;
 @property (nonatomic, strong) SAWebPlayer *webplayer;
 @property (nonatomic, strong) SAParentalGate *gate;
 @property (nonatomic, strong) UIImageView *padlock;
-
-@property (nonatomic, strong) NSTimer *viewabilityTimer;
-@property (nonatomic, assign) NSInteger ticks;
-@property (nonatomic, assign) NSInteger viewabilityCount;
 
 @property (nonatomic, strong) NSString *fullHTMLToLoad;
 @property (nonatomic, strong) NSString *destinationURL;
@@ -116,6 +113,10 @@
     
     if (_ad && _ad.creative.creativeFormat != video && _canPlay) {
         
+        // start events
+        _events = [[SAEvents alloc] init];
+        [_events setAd:_ad];
+        
         // get a weak self reference
         __weak typeof (self) weakSelf = self;
         
@@ -171,16 +172,10 @@
             switch (event) {
                 case Web_Start: {
                     // send viewable impression
-                    weakSelf.viewabilityCount = weakSelf.ticks = 0;
-                    weakSelf.viewabilityTimer = [NSTimer scheduledTimerWithTimeInterval:1
-                                                                                 target:weakSelf
-                                                                               selector:@selector(viewableImpressionFunc)
-                                                                               userInfo:nil
-                                                                                repeats:YES];
-                    [weakSelf.viewabilityTimer fire];
+                    [weakSelf.events sendViewableForInScreen:weakSelf];
                     
                     // if the banner has a separate impression URL, send that as well for 3rd party tracking
-                    [SAEvents sendAllEventsFor:weakSelf.ad.creative.events withKey:@"impression"];
+                    [weakSelf.events sendAllEventsForKey:@"impression"];
                     
                     if ([weakSelf.delegate respondsToSelector:@selector(SADidShowAd:)]) {
                         [weakSelf.delegate SADidShowAd:weakSelf];
@@ -250,10 +245,6 @@
     [_padlock removeFromSuperview];
     _padlock = nil;
     _gate = nil;
-    if (_viewabilityTimer != nil) {
-        [_viewabilityTimer invalidate];
-        _viewabilityTimer = nil;
-    }
     
     // call delegate
     if (_delegate && [_delegate respondsToSelector:@selector(SADidCloseAd:)]) {
@@ -264,15 +255,17 @@
 - (void) click {
     NSLog(@"[AA :: INFO] Going to %@", _destinationURL);
     
-    if ([_destinationURL rangeOfString:[[SuperAwesome getInstance] getBaseURL]].location == NSNotFound) {
-        [SAEvents sendAllEventsFor:_ad.creative.events withKey:@"sa_tracking"];
-    }
-    
     // call delegate
     if (_delegate && [_delegate respondsToSelector:@selector(SADidClickAd:)]) {
         [_delegate SADidClickAd:self];
     }
     
+    // call events
+    if ([_destinationURL rangeOfString:[[SuperAwesome getInstance] getBaseURL]].location == NSNotFound) {
+        [_events sendAllEventsForKey:@"sa_tracking"];
+    }
+    
+    // open URL
     NSURL *url = [NSURL URLWithString:_destinationURL];
     [[UIApplication sharedApplication] openURL:url];
 }
@@ -288,32 +281,6 @@
     
     // rearrange the padlock
     _padlock.frame = BIG_PAD_FRAME;
-}
-
-- (void) viewableImpressionFunc {
-    
-    if (_ticks >= DISPLAY_VIEWABILITY_COUNT) {
-        [_viewabilityTimer invalidate];
-        _viewabilityTimer = nil;
-        
-        if (_viewabilityCount == DISPLAY_VIEWABILITY_COUNT) {
-            [SAEvents sendAllEventsFor:_ad.creative.events withKey:@"viewable_impr"];
-        } else {
-            NSLog(@"[AA :: Error] Did not send viewable impression");
-        }
-    } else {
-        _ticks++;
-        
-        CGRect childR = self.frame;
-        CGRect superR = CGRectMake(0, 0, self.superview.frame.size.width, self.superview.frame.size.height);
-        CGRect screenR = [UIScreen mainScreen].bounds;
-        
-        if ([SAUtils isRect:childR inRect:screenR] && [SAUtils isRect:childR inRect:superR]) {
-            _viewabilityCount++;
-        }
-        
-        NSLog(@"[AA :: Info] Tick %ld/%d - Viewability Count %ld/%d", (long)_ticks, DISPLAY_VIEWABILITY_COUNT, (long)_viewabilityCount, DISPLAY_VIEWABILITY_COUNT);
-    }
 }
 
 

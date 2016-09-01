@@ -38,6 +38,7 @@
 
 @interface SAVideoAd ()
 
+@property (nonatomic, strong) SAEvents *events;
 @property (nonatomic, strong) SALoader *loader;
 
 @property (nonatomic, assign) CGRect adviewFrame;
@@ -52,10 +53,6 @@
 @property (nonatomic, strong) SAParentalGate *gate;
 @property (nonatomic, strong) UIImageView *padlock;
 @property (nonatomic, strong) SAVideoPlayer *player;
-
-@property (nonatomic, strong) NSTimer *viewabilityTimer;
-@property (nonatomic, assign) NSInteger ticks;
-@property (nonatomic, assign) NSInteger viewabilityCount;
 
 @end
 
@@ -228,6 +225,10 @@
     
     if (_ad && _ad.creative.creativeFormat == video) {
         
+        // start events
+        _events = [[SAEvents alloc] init];
+        [_events setAd:_ad];
+        
         // get a weak self reference
         __weak typeof (self) weakSelf = self;
         
@@ -249,18 +250,12 @@
                     _isOKToClose = true;
                     
                     // send vast ad impressions
-                    [SAEvents sendAllEventsFor:weakSelf.ad.creative.events withKey:@"impression"];
-                    [SAEvents sendAllEventsFor:weakSelf.ad.creative.events withKey:@"start"];
-                    [SAEvents sendAllEventsFor:weakSelf.ad.creative.events withKey:@"creativeView"];
+                    [weakSelf.events sendAllEventsForKey:@"impression"];
+                    [weakSelf.events sendAllEventsForKey:@"start"];
+                    [weakSelf.events sendAllEventsForKey:@"creativeView"];
                     
                     // send viewable impression
-                    weakSelf.viewabilityCount = weakSelf.ticks = 0;
-                    weakSelf.viewabilityTimer = [NSTimer scheduledTimerWithTimeInterval:1
-                                                                                 target:weakSelf
-                                                                               selector:@selector(viewableImpressionFunc)
-                                                                               userInfo:nil
-                                                                                repeats:YES];
-                    [weakSelf.viewabilityTimer fire];
+                    [weakSelf.events sendViewableForFullscreen];
                     
                     // moat
                     Class class = NSClassFromString(@"SAEvents");
@@ -300,15 +295,15 @@
                     break;
                 }
                 case Video_1_4: {
-                    [SAEvents sendAllEventsFor:weakSelf.ad.creative.events withKey:@"firstQuartile"];
+                    [weakSelf.events sendAllEventsForKey:@"firstQuartile"];
                     break;
                 }
                 case Video_1_2: {
-                    [SAEvents sendAllEventsFor:weakSelf.ad.creative.events withKey:@"midpoint"];
+                    [weakSelf.events sendAllEventsForKey:@"midpoint"];
                     break;
                 }
                 case Video_3_4: {
-                    [SAEvents sendAllEventsFor:weakSelf.ad.creative.events withKey:@"thirdQuartile"];
+                    [weakSelf.events sendAllEventsForKey:@"thirdQuartile"];
                     break;
                 }
                 case Video_End: {
@@ -317,7 +312,7 @@
                     [weakSelf.gate close];
                     
                     // send complete events
-                    [SAEvents sendAllEventsFor:weakSelf.ad.creative.events withKey:@"complete"];
+                    [weakSelf.events sendAllEventsForKey:@"complete"];
                     
                     // close video
                     if (weakSelf.shouldAutomaticallyCloseAtEnd) {
@@ -329,7 +324,7 @@
                 case Video_Error: {
                     
                     // send errors
-                    [SAEvents sendAllEventsFor:weakSelf.ad.creative.events withKey:@"error"];
+                    [weakSelf.events sendAllEventsForKey:@"error"];
                     
                     // close
                     [weakSelf close];
@@ -424,12 +419,6 @@
         // destroy the gate
         _gate = nil;
         
-        // destroy the timer
-        if (_viewabilityTimer != nil) {
-            [_viewabilityTimer invalidate];
-            _viewabilityTimer = nil;
-        }
-        
         // call delegate
         if ([_delegate respondsToSelector:@selector(SADidCloseAd:)]) {
             [_delegate SADidCloseAd:self];
@@ -447,8 +436,8 @@
     }
     
     // call trackers
-    [SAEvents sendAllEventsFor:_ad.creative.events withKey:@"click_tracking"];
-    [SAEvents sendAllEventsFor:_ad.creative.events withKey:@"custom_clicks"];
+    [_events sendAllEventsForKey:@"click_tracking"];
+    [_events sendAllEventsForKey:@"custom_clicks"];
     
     // setup the current click URL
     _destinationURL = _ad.creative.clickUrl;
@@ -488,29 +477,6 @@
 
 - (void) resume {
     [_player resume];
-}
-
-////////////////////////////////////////////////////////////////////////////////
-// MARK: Aux functions
-////////////////////////////////////////////////////////////////////////////////
-
-- (void) viewableImpressionFunc {
-    
-    if (_ticks >= VIDEO_VIEWABILITY_COUNT) {
-        [_viewabilityTimer invalidate];
-        _viewabilityTimer = nil;
-        
-        if (_viewabilityCount == VIDEO_VIEWABILITY_COUNT) {
-            [SAEvents sendAllEventsFor:_ad.creative.events withKey:@"viewable_impr"];
-        } else {
-            NSLog(@"[AA :: Error] Did not send viewable impression");
-        }
-    } else {
-        _ticks++;
-        _viewabilityCount++;
-        
-        NSLog(@"[AA :: Info] Tick %ld/%d - Viewability Count %ld/%d", (long)_ticks, VIDEO_VIEWABILITY_COUNT, (long)_viewabilityCount, VIDEO_VIEWABILITY_COUNT);
-    }
 }
 
 @end

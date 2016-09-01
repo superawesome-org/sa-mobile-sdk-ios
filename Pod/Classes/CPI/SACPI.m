@@ -23,7 +23,8 @@
         [cpiURL appendString:@"/install?bundle="];
         [cpiURL appendFormat:@"%@", [[NSBundle mainBundle] bundleIdentifier]];
         NSLog(@"CPI URL: %@", cpiURL);
-        [SAEvents sendEventToURL:cpiURL];
+        SAEvents *events = [[SAEvents alloc] init];
+        [events sendEventToURL:cpiURL];
         [def setObject:@(true) forKey:CPI_INSTALL];
         
     } else {

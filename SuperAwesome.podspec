@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
     b.dependency 'SAUtils', '1.3.4'
     b.dependency 'SAVideoPlayer', '1.1.5'
     b.dependency 'SAWebPlayer', '1.0.8'
-    b.dependency 'SAEvents', '1.3.3'
+    b.dependency 'SAEvents', '1.3.4'
     b.dependency 'SAAdLoader', '0.5.4'
     b.dependency 'SASession', '0.1.2'
   end

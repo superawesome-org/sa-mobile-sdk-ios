@@ -211,7 +211,6 @@
         [root presentViewController:self animated:YES completion:^{
             [weakSelf.banner play];
         }];
-        
     } else {
         if (_delegate && [_delegate respondsToSelector:@selector(SADidNotShowAd:)]) {
             [_delegate SADidNotShowAd:self];

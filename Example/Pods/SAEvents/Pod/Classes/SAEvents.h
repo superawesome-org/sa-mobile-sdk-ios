@@ -10,6 +10,7 @@
 
 //
 // forward declarations
+@class SAAd;
 @class AVPlayer;
 @class AVPlayerLayer;
 //
@@ -18,20 +19,23 @@
 // such as viewable impression, ad rating, etc
 @interface SAEvents : NSObject
 
+// custom init
+//
+- (void) setAd:(SAAd*)ad;
+
 //
 // This is just a "dumb" function that sends a GET request to the
 // specified URL; it's a thing wrapper for SANetwork.sendGetToEndpoint() so that
 // it's fire-and-forget
 // @param: the URL to make the event request to
-+ (void) sendEventToURL:(NSString*)url;
+- (void) sendEventToURL:(NSString*)url;
 
 /**
  *  Method that sends all events for a particular key, for objects of type SATracking
  *
- *  @param events events array
  *  @param key    key to send for
  */
-+ (void) sendAllEventsFor:(NSArray*)events withKey:(NSString*)key;
+- (void) sendAllEventsForKey:(NSString*)key;
 
 /**
  *  Send custom event
@@ -42,10 +46,22 @@
  *  @param creative    creative id
  *  @param event       custom event
  */
-+ (void) sendCustomEvent:(NSString*) baseUrl
+- (void) sendCustomEvent:(NSString*) baseUrl
            withPlacement:(NSInteger) placementId
             withLineItem:(NSInteger) lineItem
              andCreative:(NSInteger) creative
                 andEvent:(NSString*) event;
+
+/**
+ *  Send viewable impression for fullscreen ad
+ */
+- (void) sendViewableForFullscreen;
+
+/**
+ *  Send viewable impresison for in-screen
+ *
+ *  @param view <#view description#>
+ */
+- (void) sendViewableForInScreen:(UIView*) view;
 
 @end

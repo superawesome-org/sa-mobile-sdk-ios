@@ -47,6 +47,8 @@
 // anonymous extension of SAParentalGate
 @interface SAParentalGate ()
 
+@property (nonatomic, strong) SAEvents *events;
+
 @property (nonatomic,assign) NSInteger number1;
 @property (nonatomic,assign) NSInteger number2;
 @property (nonatomic,assign) NSInteger solution;
@@ -75,6 +77,9 @@
         if ([_weakAdView isKindOfClass:[SAVideoAd class]]){
             _ad = [(SAVideoAd*)_weakAdView getAd];
         }
+        
+        _events = [[SAEvents alloc] init];
+        [_events setAd:_ad];
     }
     
     return self;
@@ -91,7 +96,7 @@
     [self newQuestion];
     
     // send event
-    [SAEvents sendAllEventsFor:_ad.creative.events withKey:@"pg_open"];
+    [_events sendAllEventsForKey:@"pg_open"];
     
     // resume video
     if ([_weakAdView isKindOfClass:[SAVideoAd class]]) {
@@ -121,7 +126,7 @@
     actionBlock cancelBlock = ^(UIAlertAction *action) {
         
         // send event
-        [SAEvents sendAllEventsFor:_ad.creative.events withKey:@"pg_close"];
+        [_events sendAllEventsForKey:@"pg_close"];
         
         // resume video
         if ([_weakAdView isKindOfClass:[SAVideoAd class]]) {
@@ -223,7 +228,7 @@
     // cancel
     else if (buttonIndex == 0){
         // send event
-        [SAEvents sendAllEventsFor:_ad.creative.events withKey:@"pg_close"];
+        [_events sendAllEventsForKey:@"pg_close"];
         
         // resume video
         if ([_weakAdView isKindOfClass:[SAVideoAd class]]) {
@@ -237,7 +242,7 @@
 - (void) handlePGSuccess {
     
     // send data
-    [SAEvents sendAllEventsFor:_ad.creative.events withKey:@"pg_success"];
+    [_events sendAllEventsForKey:@"pg_success"];
     
     // finally advance to URL
     if ([_weakAdView respondsToSelector:@selector(click)]) {
@@ -253,7 +258,7 @@
 - (void) handlePGError {
     
     // send data
-    [SAEvents sendAllEventsFor:_ad.creative.events withKey:@"pg_fail"];
+    [_events sendAllEventsForKey:@"pg_fail"];
     
     // ERROR
     _wrongAnswerAlertView = [[UIAlertView alloc] initWithTitle:SA_ERROR_ALERTVIEW_TITLE
