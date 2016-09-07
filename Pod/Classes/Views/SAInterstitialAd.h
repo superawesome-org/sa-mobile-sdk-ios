@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+
+// helper headers
 #import "SAProtocol.h"
+#import "SASession.h"
 
 @interface SAInterstitialAd : UIViewController
 
@@ -21,5 +24,9 @@
 + (void) setIsParentalGateEnabled: (BOOL) value;
 + (void) setShouldLockOrientation: (BOOL) value;
 + (void) setLockOrientation: (NSUInteger) value;
++ (void) setTestEnabled;
++ (void) setTestDisabled;
++ (void) setConfigurationProduction;
++ (void) setConfigurationStaging;
 
 @end

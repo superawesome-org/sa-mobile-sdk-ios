@@ -28,7 +28,9 @@
 // parser implementation
 @implementation SAAdParser
 
-- (SAAd*) parseInitialAdFromNetwork:(NSString*)jsonString withPlacementId:(NSInteger)placementId {
+- (SAAd*) parseInitialAdFromNetwork:(NSString*)jsonString
+                    withPlacementId:(NSInteger)placementId
+                         andSession:(SASession *)session {
     
     SAAd *ad = [[SAAd alloc] initWithJsonString:jsonString];
     ad.placementId = placementId;
@@ -45,13 +47,13 @@
         @"line_item":@(ad.lineItemId),
         @"creative":@(ad.creative._id),
         @"ct":@([SAUtils getNetworkConnectivity]),
-        @"sdkVersion":[[SASession getInstance] getVersion],
+        @"sdkVersion":[session getVersion],
         @"rnd":@([SAUtils getCachebuster])
     };
     SATracking *trackingEvt = [[SATracking alloc] init];
     trackingEvt.event = @"sa_tracking";
     trackingEvt.URL = [NSString stringWithFormat:@"%@/%@click?%@",
-                       [[SASession getInstance] getBaseUrl],
+                       [session getBaseUrl],
                        (ad.creative.creativeFormat == video ? @"video/" : @""),
                        [SAUtils formGetQueryFromDict:trackjson]];
     
@@ -64,7 +66,7 @@
     
     // get the viewbale impression URL
     NSDictionary *imprjson = @{
-        @"sdkVersion":[[SASession getInstance] getVersion],
+        @"sdkVersion":[session getVersion],
         @"rnd":@([SAUtils getCachebuster]),
         @"ct":@([SAUtils getNetworkConnectivity]),
         @"data":[SAUtils encodeURI:[@{
@@ -77,12 +79,12 @@
     SATracking *viewableImpression = [[SATracking alloc] init];
     viewableImpression.event = @"viewable_impr";
     viewableImpression.URL = [NSString stringWithFormat:@"%@/event?%@",
-                                [[SASession getInstance] getBaseUrl],
+                                [session getBaseUrl],
                                 [SAUtils formGetQueryFromDict:imprjson]];
     
     // get the parental gate URL
     NSDictionary *pgjsonfail = @{
-        @"sdkVersion":[[SASession getInstance] getVersion],
+        @"sdkVersion":[session getVersion],
         @"rnd":@([SAUtils getCachebuster]),
         @"ct":@([SAUtils getNetworkConnectivity]),
         @"data":[SAUtils encodeURI:[@{
@@ -95,11 +97,11 @@
     SATracking *parentalGateFail = [[SATracking alloc] init];
     parentalGateFail.event = @"pg_fail";
     parentalGateFail.URL = [NSString stringWithFormat:@"%@/event?%@",
-                                        [[SASession getInstance] getBaseUrl],
+                                        [session getBaseUrl],
                                         [SAUtils formGetQueryFromDict:pgjsonfail]];
     
     NSDictionary *pgjsonclose = @{
-                                 @"sdkVersion":[[SASession getInstance] getVersion],
+                                 @"sdkVersion":[session getVersion],
                                  @"rnd":@([SAUtils getCachebuster]),
                                  @"ct":@([SAUtils getNetworkConnectivity]),
                                  @"data":[SAUtils encodeURI:[@{
@@ -112,11 +114,11 @@
     SATracking *parentalGateClose = [[SATracking alloc] init];
     parentalGateClose.event = @"pg_close";
     parentalGateClose.URL = [NSString stringWithFormat:@"%@/event?%@",
-                                       [[SASession getInstance] getBaseUrl],
+                                       [session getBaseUrl],
                                        [SAUtils formGetQueryFromDict:pgjsonclose]];
     
     NSDictionary *pgjsonopen = @{
-                                 @"sdkVersion":[[SASession getInstance] getVersion],
+                                 @"sdkVersion":[session getVersion],
                                  @"rnd":@([SAUtils getCachebuster]),
                                  @"ct":@([SAUtils getNetworkConnectivity]),
                                  @"data":[SAUtils encodeURI:[@{
@@ -129,11 +131,11 @@
     SATracking *parentalGateOpen = [[SATracking alloc] init];
     parentalGateOpen.event = @"pg_open";
     parentalGateOpen.URL = [NSString stringWithFormat:@"%@/event?%@",
-                                       [[SASession getInstance] getBaseUrl],
+                                       [session getBaseUrl],
                                        [SAUtils formGetQueryFromDict:pgjsonopen]];
     
     NSDictionary *pgjsonsuccess = @{
-                                 @"sdkVersion":[[SASession getInstance] getVersion],
+                                 @"sdkVersion":[session getVersion],
                                  @"rnd":@([SAUtils getCachebuster]),
                                  @"ct":@([SAUtils getNetworkConnectivity]),
                                  @"data":[SAUtils encodeURI:[@{
@@ -146,7 +148,7 @@
     SATracking *parentalGateSuccess = [[SATracking alloc] init];
     parentalGateSuccess.event = @"pg_success";
     parentalGateSuccess.URL = [NSString stringWithFormat:@"%@/event?%@",
-                                       [[SASession getInstance] getBaseUrl],
+                                       [session getBaseUrl],
                                        [SAUtils formGetQueryFromDict:pgjsonsuccess]];
     
     [ad.creative.events addObject:trackingEvt];

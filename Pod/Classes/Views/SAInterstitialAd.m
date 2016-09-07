@@ -40,12 +40,14 @@ static id<SAProtocol> delegate;
 static BOOL isParentalGateEnabled = true;
 static BOOL shouldLockOrientation = false;
 static NSUInteger lockOrientation = UIInterfaceOrientationMaskAll;
+static BOOL isTestingEnabled = false;
+static NSInteger configuration = 0;
 
 ////////////////////////////////////////////////////////////////////////////////
 // MARK: VC lifecycle
 ////////////////////////////////////////////////////////////////////////////////
 
-- (void)viewDidLoad {
+- (void) viewDidLoad {
     [super viewDidLoad];
 
     // get local versions of the static module vars
@@ -73,7 +75,7 @@ static NSUInteger lockOrientation = UIInterfaceOrientationMaskAll;
     [self.view addSubview:_banner];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void) didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
@@ -211,9 +213,14 @@ static NSUInteger lockOrientation = UIInterfaceOrientationMaskAll;
     // get a weak self reference
     __weak typeof (self) weakSelf = self;
     
+    // form a new session
+    SASession *session = [[SASession alloc] init];
+    [session setTest:isTestingEnabled];
+    [session setConfiguration:configuration];
+    
     // get the loader
     SALoader *loader = [[SALoader alloc] init];
-    [loader loadAd:placementId withResult:^(SAAd *saAd) {
+    [loader loadAd:placementId withSession:session andResult:^(SAAd *saAd) {
         
         // get the ad
         ad = saAd;
@@ -257,6 +264,22 @@ static NSUInteger lockOrientation = UIInterfaceOrientationMaskAll;
 
 + (void) nullAd {
     ad = NULL;
+}
+
++ (void) setTestEnabled {
+    isTestingEnabled = true;
+}
+
++ (void) setTestDisabled {
+    isTestingEnabled = false;
+}
+
++ (void) setConfigurationProduction {
+    configuration = 0;
+}
+
++ (void) setConfigurationStaging {
+    configuration = 1;
 }
 
 ////////////////////////////////////////////////////////////////////////////////

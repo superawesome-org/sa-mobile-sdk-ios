@@ -10,6 +10,7 @@
 
 // useful imports
 #import "SAProtocol.h"
+#import "SASession.h"
 
 // class declaration for SABannerAd
 @interface SABannerAd : UIView
@@ -24,5 +25,9 @@
 // public "state" setters
 - (void) setDelegate:(id<SAProtocol>)delegate;
 - (void) setIsParentalGateEnabled:(BOOL)isParentalGateEnabled;
+- (void) setTestEnabled;
+- (void) setTestDisabled;
+- (void) setConfigurationProduction;
+- (void) setConfigurationStaging;
 
 @end

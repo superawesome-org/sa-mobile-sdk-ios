@@ -30,18 +30,17 @@
 // import Aux class
 #import "SAUtils.h"
 
-@interface SALoader ()
-@end
-
 @implementation SALoader
 
-- (void) loadAd:(NSInteger)placementId withResult:(didLoadAd)result {
+- (void) loadAd:(NSInteger)placementId
+    withSession:(SASession *)session
+      andResult:(didLoadAd)result  {
     
     // get a reference to the result callback
     didLoadAd res = result != NULL ? result : ^(SAAd*ad){};
     
     // First thing to do is format the AA URL to get an ad, based on specs
-    NSString *endpoint = [NSString stringWithFormat:@"%@/ad/%ld", [[SASession getInstance] getBaseUrl], (long)placementId];
+    NSString *endpoint = [NSString stringWithFormat:@"%@/ad/%ld", [session getBaseUrl], (long)placementId];
     
     NSString *lang = @"none";
     NSArray *languages = [NSLocale preferredLanguages];
@@ -50,13 +49,13 @@
     }
     
     // form the query
-    NSDictionary *query = @{@"test": @([[SASession getInstance] isTestEnabled]),
-                            @"sdkVersion":[[SASession getInstance] getVersion],
+    NSDictionary *query = @{@"test": @([session isTestEnabled]),
+                            @"sdkVersion":[session getVersion],
                             @"rnd":@([SAUtils getCachebuster]),
                             @"ct":@([SAUtils getNetworkConnectivity]),
                             @"bundle":[[NSBundle mainBundle] bundleIdentifier],
                             @"name":[SAUtils encodeURI:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"]],
-                            @"dauid":@([[SASession getInstance] getDauId]),
+                            @"dauid":@([session getDauId]),
                             @"lang": lang,
                             @"device": ([SAUtils getSystemSize] == size_mobile ? @"mobile" : @"tablet")
                             };
@@ -76,7 +75,9 @@
                } else {
                    // create parser & extra
                    SAAdParser *parser = [[SAAdParser alloc] init];
-                   __block SAAd *parsedAd = [parser parseInitialAdFromNetwork:payload withPlacementId:placementId];
+                   __block SAAd *parsedAd = [parser parseInitialAdFromNetwork:payload
+                                                              withPlacementId:placementId
+                                                                   andSession:session];
                    
                    if (!parsedAd) {
                        res(NULL);

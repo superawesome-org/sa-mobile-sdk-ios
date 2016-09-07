@@ -12,6 +12,7 @@
 
 // forward declarations
 @class SAAd;
+@class SASession;
 
 // @brief:
 // The SAParser class acts contains one static function that parses a
@@ -26,9 +27,12 @@
  *
  *  @param jsonData    a NSData object with json contents
  *  @param placementId the placement Id
+ *  @param session     the current session
  *
  *  @return either an SAAd object or nil
  */
-- (SAAd*) parseInitialAdFromNetwork:(NSString*)jsonString withPlacementId:(NSInteger)placementId;
+- (SAAd*) parseInitialAdFromNetwork:(NSString*)jsonString
+                    withPlacementId:(NSInteger)placementId
+                         andSession:(SASession*)session;
 
 @end

@@ -27,6 +27,7 @@
 @property (nonatomic, assign) IBInspectable BOOL isParentalGateEnabled;
 
 // events
+@property (nonatomic, strong) SASession *session;
 @property (nonatomic, strong) SAEvents *events;
 
 // current ad
@@ -73,6 +74,7 @@
 - (void) initialize {
     _canPlay = true;
     _isParentalGateEnabled = true;
+    _session = [[SASession alloc] init];
     self.backgroundColor = [UIColor colorWithRed:0.75 green:0.75 blue:0.75 alpha:1];
 }
 
@@ -168,7 +170,7 @@
     
     // load ad
     SALoader *loader = [[SALoader alloc] init];
-    [loader loadAd:placementId withResult:^(SAAd *ad) {
+    [loader loadAd:placementId withSession:_session andResult:^(SAAd *ad) {
         
         // assign new ad
         weakSelf.ad = ad;
@@ -289,6 +291,22 @@
 
 - (void) setIsParentalGateEnabled:(BOOL)isParentalGateEnabled {
     _isParentalGateEnabled = isParentalGateEnabled;
+}
+
+- (void) setTestEnabled {
+    [_session setTestEnabled];
+}
+
+- (void) setTestDisabled {
+    [_session setTestDisabled];
+}
+
+- (void) setConfigurationProduction {
+    [_session setConfigurationProduction];
+}
+
+- (void) setConfigurationStaging {
+    [_session setConfigurationStaging];
 }
 
 

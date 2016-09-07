@@ -10,9 +10,6 @@
 
 @interface SASession : NSObject
 
-// singleton instance (instead of init)
-+ (instancetype) getInstance;
-
 // setters
 - (void) setConfiguration:(NSInteger) configuration;
 - (void) setConfigurationProduction;

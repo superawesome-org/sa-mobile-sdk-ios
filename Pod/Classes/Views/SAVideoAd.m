@@ -46,6 +46,8 @@ static BOOL shouldShowCloseButton = true;
 static BOOL shouldShowSmallClickButton = false;
 static BOOL shouldLockOrientation = false;
 static NSUInteger lockOrientation = UIInterfaceOrientationMaskAll;
+static BOOL isTestingEnabled = false;
+static NSInteger configuration = 0;
 
 ////////////////////////////////////////////////////////////////////////////////
 // MARK: VC lifecycle
@@ -429,6 +431,13 @@ static NSUInteger lockOrientation = UIInterfaceOrientationMaskAll;
 
 + (void) nullAd {
     ad = NULL;
+}
+
++ (void) setTestEnabled;
++ (void) setTestDisabled;
++ (void) setConfigurationProduction;
++ (void) setConfigurationStaging {
+    
 }
 
 ////////////////////////////////////////////////////////////////////////////////

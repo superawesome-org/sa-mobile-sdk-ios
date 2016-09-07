@@ -24,5 +24,9 @@
 + (void) setShouldLockOrientation: (BOOL) value;
 + (void) setShouldShowSmallClickButton: (BOOL) value;
 + (void) setLockOrientation: (NSUInteger) value;
++ (void) setTestEnabled;
++ (void) setTestDisabled;
++ (void) setConfigurationProduction;
++ (void) setConfigurationStaging;
 
 @end

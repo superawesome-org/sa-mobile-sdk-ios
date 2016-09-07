@@ -24,22 +24,12 @@
 
 @implementation SASession
 
-+ (instancetype) getInstance {
-    static SASession *sharedMyManager = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedMyManager = [[self alloc] init];
-    });
-    return sharedMyManager;
-}
-
 - (id) init {
     if (self = [super init]) {
-        _baseUrl = PRODUCTION_URL;
-        _testEnabled = false;
-        _version = @"0.0.0";
-        _dauId = 0;
-        _configuration = CONFIGURATION_PRODUCTION;
+        [self setConfigurationProduction];
+        [self setTestDisabled];
+        [self setDauId:0];
+        [self setVersion:@"0.0.0"];
     }
     return self;
 }
