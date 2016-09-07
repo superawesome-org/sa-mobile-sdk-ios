@@ -25,8 +25,10 @@
 // public "state" setters
 - (void) setDelegate:(id<SAProtocol>)delegate;
 - (void) setIsParentalGateEnabled:(BOOL)isParentalGateEnabled;
+- (void) setTest:(BOOL) isTest;
 - (void) setTestEnabled;
 - (void) setTestDisabled;
+- (void) setConfiguration: (NSInteger) config;
 - (void) setConfigurationProduction;
 - (void) setConfigurationStaging;
 

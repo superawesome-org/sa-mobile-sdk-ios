@@ -56,10 +56,9 @@
         }
     }
     
-    // enable or disable test mode
-    [[SuperAwesome getInstance] setTesting:isTestEnabled];
-    
     // start the loader
+    [SAInterstitialAd setTest:isTestEnabled];
+    [SAInterstitialAd setConfigurationProduction];
     [SAInterstitialAd setDelegate:self];
     [SAInterstitialAd setIsParentalGateEnabled:isParentalGateEnabled];
     [SAInterstitialAd setShouldLockOrientation:shouldLockOrientation];

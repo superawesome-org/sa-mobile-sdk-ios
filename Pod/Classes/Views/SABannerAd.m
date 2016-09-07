@@ -168,6 +168,10 @@
     // get a weak self reference
     __weak typeof (self) weakSelf = self;
     
+    // change session
+    [_session setDauId:[[SuperAwesome getInstance] getDAUID]];
+    [_session setVersion:[[SuperAwesome getInstance] getSdkVersion]];
+    
     // load ad
     SALoader *loader = [[SALoader alloc] init];
     [loader loadAd:placementId withSession:_session andResult:^(SAAd *ad) {
@@ -255,7 +259,8 @@
     }
     
     // call events
-    if ([_destinationURL rangeOfString:[[SuperAwesome getInstance] getBaseURL]].location == NSNotFound) {
+    
+    if ([_destinationURL rangeOfString:[_session getBaseUrl]].location == NSNotFound) {
         [_events sendAllEventsForKey:@"sa_tracking"];
     }
     
@@ -293,12 +298,20 @@
     _isParentalGateEnabled = isParentalGateEnabled;
 }
 
+- (void) setTest:(BOOL) isTest {
+    [_session setTest:isTest];
+}
+
 - (void) setTestEnabled {
     [_session setTestEnabled];
 }
 
 - (void) setTestDisabled {
     [_session setTestDisabled];
+}
+
+- (void) setConfiguration: (NSInteger) config {
+    [_session setConfiguration:config];
 }
 
 - (void) setConfigurationProduction {

@@ -18,6 +18,7 @@
 #import "SATracking.h"
 #import "SAMedia.h"
 #import "SAEvents.h"
+#import "SuperAwesome.h"
 
 @interface SAInterstitialAd ()
 
@@ -217,6 +218,8 @@ static NSInteger configuration = 0;
     SASession *session = [[SASession alloc] init];
     [session setTest:isTestingEnabled];
     [session setConfiguration:configuration];
+    [session setDauId:[[SuperAwesome getInstance] getDAUID]];
+    [session setVersion:[[SuperAwesome getInstance] getSdkVersion]];
     
     // get the loader
     SALoader *loader = [[SALoader alloc] init];
@@ -266,22 +269,6 @@ static NSInteger configuration = 0;
     ad = NULL;
 }
 
-+ (void) setTestEnabled {
-    isTestingEnabled = true;
-}
-
-+ (void) setTestDisabled {
-    isTestingEnabled = false;
-}
-
-+ (void) setConfigurationProduction {
-    configuration = 0;
-}
-
-+ (void) setConfigurationStaging {
-    configuration = 1;
-}
-
 ////////////////////////////////////////////////////////////////////////////////
 // MARK: Setters & getters
 // Some are exposed externally (mainly setters) but some are only internally
@@ -319,6 +306,30 @@ static NSInteger configuration = 0;
 
 + (NSUInteger) getLockOrientation {
     return lockOrientation;
+}
+
++ (void) setTest:(BOOL) isTest {
+    isTestingEnabled = isTest;
+}
+
++ (void) setTestEnabled {
+    isTestingEnabled = true;
+}
+
++ (void) setTestDisabled {
+    isTestingEnabled = false;
+}
+
++ (void) setConfiguration: (NSInteger) config {
+    configuration = config;
+}
+
++ (void) setConfigurationProduction {
+    configuration = [SASession getProductionConfigurationID];
+}
+
++ (void) setConfigurationStaging {
+    configuration = [SASession getStatingConfigurationID];
 }
 
 @end

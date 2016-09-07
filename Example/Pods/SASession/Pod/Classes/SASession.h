@@ -10,6 +10,10 @@
 
 @interface SASession : NSObject
 
+// static "constant-like" functions
++ (NSInteger) getProductionConfigurationID;
++ (NSInteger) getStatingConfigurationID;
+
 // setters
 - (void) setConfiguration:(NSInteger) configuration;
 - (void) setConfigurationProduction;

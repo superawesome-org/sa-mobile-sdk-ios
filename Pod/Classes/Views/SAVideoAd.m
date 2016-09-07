@@ -15,6 +15,8 @@
 #import "SAVideoPlayer.h"
 #import "SAParentalGate.h"
 #import "SAEvents.h"
+#import "SASession.h"
+#import "SuperAwesome.h"
 
 @interface SAVideoAd ()
 
@@ -378,9 +380,16 @@ static NSInteger configuration = 0;
     // get a weak self reference
     __weak typeof (self) weakSelf = self;
     
+    // form a new session
+    SASession *session = [[SASession alloc] init];
+    [session setConfiguration:configuration];
+    [session setTest:isTestingEnabled];
+    [session setDauId:[[SuperAwesome getInstance] getDAUID]];
+    [session setVersion:[[SuperAwesome getInstance] getSdkVersion]];
+    
     // get the loader
     SALoader *loader = [[SALoader alloc] init];
-    [loader loadAd:placementId withResult:^(SAAd *saAd) {
+    [loader loadAd:placementId withSession:session andResult:^(SAAd *saAd) {
         
         // get the ad
         ad = saAd;
@@ -431,13 +440,6 @@ static NSInteger configuration = 0;
 
 + (void) nullAd {
     ad = NULL;
-}
-
-+ (void) setTestEnabled;
-+ (void) setTestDisabled;
-+ (void) setConfigurationProduction;
-+ (void) setConfigurationStaging {
-    
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -502,5 +504,30 @@ static NSInteger configuration = 0;
 + (NSUInteger) getLockOrientation {
     return lockOrientation;
 }
+
++ (void) setTest:(BOOL) isTest {
+    isTestingEnabled = isTest;
+}
+
++ (void) setTestEnabled {
+    isTestingEnabled = true;
+}
+
++ (void) setTestDisabled {
+    isTestingEnabled = false;
+}
+
++ (void) setConfiguration: (NSInteger) config {
+    configuration = config;
+}
+
++ (void) setConfigurationProduction {
+    configuration = [SASession getProductionConfigurationID];
+}
+
++ (void) setConfigurationStaging {
+    configuration = [SASession getStatingConfigurationID];
+}
+
 
 @end

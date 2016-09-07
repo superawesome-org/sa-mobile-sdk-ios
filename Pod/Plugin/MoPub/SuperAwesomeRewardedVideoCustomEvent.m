@@ -70,8 +70,8 @@
     _hasAdAvailable = false;
     
     // enable or disable test mode
-    [[SuperAwesome getInstance] setTesting:isTestEnabled];
-    
+    [SAVideoAd setTest:isTestEnabled];
+    [SAVideoAd setConfigurationProduction];
     [SAVideoAd setIsParentalGateEnabled:isParentalGateEnabled];
     [SAVideoAd setDelegate:self];
     [SAVideoAd setShouldShowCloseButton:shouldShowCloseButton];

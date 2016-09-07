@@ -39,19 +39,8 @@
 // singleton instance (instead of init)
 + (instancetype)getInstance;
 
-// setters
-- (void) setConfiguration:(NSInteger)configuration;
-- (void) setConfigurationProduction;
-- (void) setConfigurationStaging;
-- (void) setTesting:(BOOL)enabled;
-- (void) disableTestMode;
-- (void) enableTestMode;
-
-// getters
+// get the dau id and the version
 - (NSString*) getSdkVersion;
-- (NSString*) getBaseURL;
-- (BOOL) isTestingEnabled;
-- (NSInteger) getConfiguration;
 - (NSUInteger) getDAUID;
 
 @end

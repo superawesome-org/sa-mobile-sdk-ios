@@ -48,12 +48,11 @@
     BOOL isTestEnabled = [isTestEnabledObj boolValue];
     NSInteger placementId = [placementIdObj integerValue];
     BOOL isParentalGateEnabled = (isParentalGateEnabledObj != NULL ? [isParentalGateEnabledObj boolValue] : true);
-    
-    // enable or disable test mode
-    [[SuperAwesome getInstance] setTesting:isTestEnabled];
-    
+
     // create a new banner
     _banner = [[SABannerAd alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
+    [_banner setTest:isTestEnabled];
+    [_banner setConfigurationProduction];
     [_banner setIsParentalGateEnabled:isParentalGateEnabled];
     _banner.delegate = self;
     [_banner load:placementId];

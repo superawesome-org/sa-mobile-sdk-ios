@@ -34,6 +34,14 @@
     return self;
 }
 
++ (NSInteger) getProductionConfigurationID {
+    return 0;
+}
+
++ (NSInteger) getStatingConfigurationID {
+    return 1;
+}
+
 // setters
 
 - (void) setConfiguration:(NSInteger) configuration {

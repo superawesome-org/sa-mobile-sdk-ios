@@ -17,6 +17,10 @@
 #import "SAEvents.h"
 #import "SASession.h"
 
+@interface SuperAwesome ()
+@property (nonatomic, assign) NSInteger dauId;
+@end
+
 @implementation SuperAwesome
 
 + (instancetype) getInstance {
@@ -30,40 +34,13 @@
 
 - (id) init {
     if (self = [super init]) {
-        [self setConfigurationProduction];
-        [self disableTestMode];
         [SACapper enableCapping:^(NSUInteger dauId) {
-            [[SASession getInstance] setDauId:dauId];
+            _dauId = dauId;
         }];
         [SACPI sendCPIEvent];
-        [[SASession getInstance] setVersion:[self getSdkVersion]];
     }
     
     return self;
-}
-
-- (void) setConfiguration:(NSInteger)configuration {
-    [[SASession getInstance] setConfiguration:configuration];
-}
-
-- (void) setConfigurationProduction {
-    [[SASession getInstance] setConfigurationProduction];
-}
-
-- (void) setConfigurationStaging {
-    [[SASession getInstance] setConfigurationStaging];
-}
-
-- (void) setTesting:(BOOL)enabled {
-    [[SASession getInstance] setTest:enabled];
-}
-
-- (void) disableTestMode {
-    [[SASession getInstance] setTestDisabled];
-}
-
-- (void) enableTestMode {
-    [[SASession getInstance] setTestEnabled];
 }
 
 - (NSString*) getVersion {
@@ -77,17 +54,9 @@
 - (NSString*) getSdkVersion {
     return [NSString stringWithFormat:@"%@_%@", [self getSdk], [self getVersion]];
 }
-- (NSString*) getBaseURL {
-    return [[SASession getInstance] getBaseUrl];
-}
-- (BOOL) isTestingEnabled {
-    return [[SASession getInstance] isTestEnabled];
-}
-- (NSInteger) getConfiguration {
-    return [[SASession getInstance] getConfiguration];
-}
+
 - (NSUInteger) getDAUID {
-    return [[SASession getInstance] getDauId];
+    return _dauId;
 }
 
 @end

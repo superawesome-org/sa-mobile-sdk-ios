@@ -20,17 +20,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [[SuperAwesome getInstance] setConfigurationStaging];
-    [[SuperAwesome getInstance] disableTestMode];
-    
+    [_bannerAd setConfigurationStaging];
     [_bannerAd load:257];
+    [_bannerAd setTestEnabled];
     _bannerAd.tag = 0;
     _bannerAd.delegate = self;
     
+    [SAVideoAd setConfigurationStaging];
+    [SAVideoAd setDelegate:self];
+    [SAVideoAd setTestDisabled];
     [SAVideoAd load:252];
     [SAVideoAd load:116];
+    [SAInterstitialAd setConfigurationStaging];
+    [SAInterstitialAd setTestDisabled];
     [SAInterstitialAd load:247];
-    [SAVideoAd setDelegate:self];
 }
 
 - (void)didReceiveMemoryWarning {
