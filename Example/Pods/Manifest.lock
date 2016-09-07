@@ -1,7 +1,7 @@
 PODS:
-  - mopub-ios-sdk (4.7.0):
-    - mopub-ios-sdk/MoPubSDK (= 4.7.0)
-  - mopub-ios-sdk/MoPubSDK (4.7.0)
+  - mopub-ios-sdk (4.9.0):
+    - mopub-ios-sdk/MoPubSDK (= 4.9.0)
+  - mopub-ios-sdk/MoPubSDK (4.9.0)
   - SAAdLoader (0.4.5):
     - SAModelSpace (= 0.1.6)
     - SANetworking (= 0.1.4)
@@ -59,7 +59,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  mopub-ios-sdk: e46b277cdb77b1745567b419742f77fed6865262
+  mopub-ios-sdk: 6d7695ba64649e1676a66e4bd9e10dc3364858eb
   SAAdLoader: f22e7275e19712508176884eabd36f600f5c62f8
   SAEvents: 2619764b9d174f551dc5b7d2c3b2c505550bc5eb
   SAJsonParser: c933541162c2977992bdf866cfc66c14375645c0

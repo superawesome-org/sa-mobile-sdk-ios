@@ -15,6 +15,7 @@
 #import "SACapper.h"
 #import "SAEvents.h"
 #import "SASession.h"
+#import "SACPI.h"
 
 @interface SuperAwesome ()
 @end
@@ -39,6 +40,9 @@
         [SACapper enableCapping:^(NSUInteger dauId) {
             [[SASession getInstance] setDauId:dauId];
         }];
+        
+        // send cpi event
+        [SACPI sendCPIEvent];
         
         // set loader session instance
         [[SASession getInstance] setVersion:[self getSdkVersion]];
