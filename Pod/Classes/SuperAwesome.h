@@ -29,7 +29,7 @@
 #import "SAVideoAd.h"
 
 // load protocols
-#import "SAProtocols.h"
+#import "SAProtocol.h"
 
 // @brief:
 // This is the main SuperAwesome class that handles the Ad Session

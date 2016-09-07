@@ -71,11 +71,11 @@
 - (id) initWithWeakRefToView:(id)weakRef {
     if (self = [super init]) {
         _weakAdView = weakRef;
-        if ([_weakAdView isKindOfClass:[SABannerAd class]]) {
-            _ad = [(SABannerAd*)_weakAdView getAd];
-        }
-        if ([_weakAdView isKindOfClass:[SAVideoAd class]]){
-            _ad = [(SAVideoAd*)_weakAdView getAd];
+        
+        // get ad
+        NSValue *adVal = [SAUtils invoke:@"getAd" onTarget:_weakAdView];
+        if (adVal) {
+            [adVal getValue:&_ad];
         }
         
         _events = [[SAEvents alloc] init];
@@ -98,10 +98,8 @@
     // send event
     [_events sendAllEventsForKey:@"pg_open"];
     
-    // resume video
-    if ([_weakAdView isKindOfClass:[SAVideoAd class]]) {
-        [(SAVideoAd*)_weakAdView pause];
-    }
+    // pause video
+    [SAUtils invoke:@"pause" onTarget:_weakAdView];
     
     if (NSClassFromString(@"UIAlertController")) {
         [self showWithAlertController];
@@ -129,9 +127,7 @@
         [_events sendAllEventsForKey:@"pg_close"];
         
         // resume video
-        if ([_weakAdView isKindOfClass:[SAVideoAd class]]) {
-            [(SAVideoAd*)_weakAdView resume];
-        }
+        [SAUtils invoke:@"resume" onTarget:_weakAdView];
     };
     
     // action block #2
@@ -152,9 +148,7 @@
         else{
             
             // resume video
-            if ([_weakAdView isKindOfClass:[SAVideoAd class]]) {
-                [(SAVideoAd*)_weakAdView resume];
-            }
+            [SAUtils invoke:@"resume" onTarget:_weakAdView];
             
             [self handlePGError];
         }
@@ -218,9 +212,7 @@
         } else {
             
             // resume video
-            if ([_weakAdView isKindOfClass:[SAVideoAd class]]) {
-                [(SAVideoAd*)_weakAdView resume];
-            }
+            [SAUtils invoke:@"resume" onTarget:_weakAdView];
             
             [self handlePGError];
         }
@@ -231,9 +223,7 @@
         [_events sendAllEventsForKey:@"pg_close"];
         
         // resume video
-        if ([_weakAdView isKindOfClass:[SAVideoAd class]]) {
-            [(SAVideoAd*)_weakAdView resume];
-        }
+        [SAUtils invoke:@"resume" onTarget:_weakAdView];
     }
 }
 
@@ -245,14 +235,7 @@
     [_events sendAllEventsForKey:@"pg_success"];
     
     // finally advance to URL
-    if ([_weakAdView respondsToSelector:@selector(click)]) {
-        if ([_weakAdView isKindOfClass:[SABannerAd class]]) {
-            [(SABannerAd*)_weakAdView click];
-        }
-        if ([_weakAdView isKindOfClass:[SAVideoAd class]]){
-            [(SAVideoAd*)_weakAdView click];
-        }
-    }
+    [SAUtils invoke:@"click" onTarget:_weakAdView];
 }
 
 - (void) handlePGError {

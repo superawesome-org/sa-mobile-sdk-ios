@@ -14,7 +14,7 @@
 @class SAView;
 
 // import the parentla gate protocol
-#import "SAProtocols.h"
+#import "SAProtocol.h"
 
 // define a block used by UIAlertActions
 typedef void(^actionBlock) (UIAlertAction *action);

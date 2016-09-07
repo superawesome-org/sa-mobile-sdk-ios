@@ -2,33 +2,27 @@
 //  SAVideoAd2.h
 //  Pods
 //
-//  Created by Gabriel Coman on 22/08/2016.
+//  Created by Gabriel Coman on 01/09/2016.
 //
 //
 
 #import <UIKit/UIKit.h>
+#import "SAProtocol.h"
 
-// useful imports
-#import "SAProtocols.h"
-#import "SAVideoPlayer.h"
+@interface SAVideoAd : UIViewController
 
-// forward declarations
-@class SAParentalGate;
-@class SAAd;
+// static "action" methods
++ (void) load:(NSInteger) placementId;
++ (void) play;
++ (BOOL) hasAdAvailable;
 
-@interface SAVideoAd : UIViewController <SAViewProtocol>
-
-@property (nonatomic, weak) id<SAProtocol> delegate;
-
-@property (nonatomic, assign) BOOL isParentalGateEnabled;
-@property (nonatomic, assign) BOOL shouldAutomaticallyCloseAtEnd;
-@property (nonatomic, assign) BOOL shouldShowCloseButton;
-@property (nonatomic, assign) BOOL shouldLockOrientation;
-@property (nonatomic, assign) BOOL shouldShowSmallClickButton;
-@property (nonatomic, assign) NSUInteger lockOrientation;
-
-// functions
-- (void) pause;
-- (void) resume;
+// static "state" methods
++ (void) setDelegate:(id<SAProtocol>) del;
++ (void) setIsParentalGateEnabled: (BOOL) value;
++ (void) setShouldAutomaticallyCloseAtEnd: (BOOL) value;
++ (void) setShouldShowCloseButton: (BOOL) value;
++ (void) setShouldLockOrientation: (BOOL) value;
++ (void) setShouldShowSmallClickButton: (BOOL) value;
++ (void) setLockOrientation: (NSUInteger) value;
 
 @end

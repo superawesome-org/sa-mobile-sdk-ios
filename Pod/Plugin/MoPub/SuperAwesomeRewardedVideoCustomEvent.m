@@ -15,7 +15,6 @@
 #import "SuperAwesomeMoPub.h"
 
 @interface SuperAwesomeRewardedVideoCustomEvent () <SAProtocol>
-@property (nonatomic, strong) SAVideoAd *fvad;
 @property (nonatomic, strong) MPRewardedVideoReward *reward;
 @property (nonatomic, assign) BOOL hasAdAvailable;
 @end
@@ -73,18 +72,18 @@
     // enable or disable test mode
     [[SuperAwesome getInstance] setTesting:isTestEnabled];
     
-    _fvad = [[SAVideoAd alloc] init];
-    _fvad.isParentalGateEnabled = isParentalGateEnabled;
-    _fvad.shouldShowCloseButton = shouldShowCloseButton;
-    _fvad.shouldAutomaticallyCloseAtEnd = shouldAutomaticallyCloseAtEnd;
-    _fvad.shouldLockOrientation = shouldLockOrientation;
-    _fvad.lockOrientation = lockOrientation;
-    _fvad.shouldShowSmallClickButton = shouldShowSmallClickButton;
-    [_fvad load:placementId];
+    [SAVideoAd setIsParentalGateEnabled:isParentalGateEnabled];
+    [SAVideoAd setDelegate:self];
+    [SAVideoAd setShouldShowCloseButton:shouldShowCloseButton];
+    [SAVideoAd setShouldAutomaticallyCloseAtEnd:shouldAutomaticallyCloseAtEnd];
+    [SAVideoAd setShouldLockOrientation:shouldLockOrientation];
+    [SAVideoAd setLockOrientation:lockOrientation];
+    [SAVideoAd setShouldShowSmallClickButton:shouldShowSmallClickButton];
+    [SAVideoAd load:placementId];
 }
 
 - (void) presentRewardedVideoFromViewController:(UIViewController *)viewController {
-    [_fvad play];
+    [SAVideoAd play];
     [self.delegate rewardedVideoWillAppearForCustomEvent:self];
 }
 
@@ -150,7 +149,6 @@
     [self.delegate rewardedVideoDidDisappearForCustomEvent:self];
     
     // also null this so no references remain and memory is freed correctly
-    _fvad = NULL;
     _reward = NULL;
 }
 

@@ -565,6 +565,150 @@ UIColor *UIColorFromRGB(NSInteger red, NSInteger green, NSInteger blue) {
     return unknown;
 }
 
+////////////////////////////////////////////////////////////////////////////////
+// Invoke functions
+////////////////////////////////////////////////////////////////////////////////
 
++ (NSValue*) invoke:(NSString*)method onTarget:(id) target, ... {
+    
+    // get selector
+    SEL selector = NSSelectorFromString(method);
+    
+    if (selector != NULL && [target respondsToSelector:selector]) {
+        
+        // get arg list
+        va_list args;
+        va_start(args, target);
+        
+        // start
+        NSMethodSignature * signature = [target methodSignatureForSelector:selector];
+        NSInvocation * invocation = [NSInvocation invocationWithMethodSignature:signature];
+        
+        // preliminary
+        [invocation setTarget: target];
+        [invocation setSelector:selector];
+        
+        // go through arguments and add them
+        NSUInteger arg_count = [signature numberOfArguments];
+        
+        
+        for (NSInteger i = 0; i < arg_count - 2; i++) {
+            
+            // get current arg
+            id arg = va_arg(args, id);
+            
+            // value is special
+            if([arg isKindOfClass:[NSValue class]]) {
+                
+                NSUInteger arg_size;
+                NSGetSizeAndAlignment([arg objCType], &arg_size, NULL);
+                void * arg_buffer = malloc(arg_size);
+                [arg getValue:arg_buffer];
+                [invocation setArgument:arg_buffer atIndex: 2 + i ];
+                free(arg_buffer);
+            }
+            // just copy val
+            else {
+                [invocation setArgument:&arg atIndex: 2 + i];
+            }
+        }
+        
+        // end
+        va_end(args);
+        
+        // invoke
+        [invocation invoke];
+        
+        
+        // get result
+        NSValue *ret_val  = nil;
+        NSUInteger ret_size = [signature methodReturnLength];
+        
+        if(ret_size > 0) {
+            
+            void * ret_buffer = malloc( ret_size );
+            [invocation getReturnValue:ret_buffer];
+            ret_val = [NSValue valueWithBytes:ret_buffer objCType:[signature methodReturnType]];
+            free(ret_buffer);
+        }
+        
+        // return value
+        return ret_val;
+    }
+    
+    return nil;
+    
+}
+
++ (NSValue*) invoke:(NSString*)method onClass:(NSString*) name, ... {
+    
+    Class classy = NSClassFromString(name);
+    SEL selector = NSSelectorFromString(method);
+    
+    if (classy != NULL && selector != NULL && [classy respondsToSelector:selector]) {
+        
+        // get arg list
+        va_list args;
+        va_start(args, name);
+        
+        // start
+        NSMethodSignature * signature = [classy methodSignatureForSelector:selector];
+        NSInvocation * invocation = [NSInvocation invocationWithMethodSignature:signature];
+        
+        // preliminary
+        [invocation setTarget: classy];
+        [invocation setSelector:selector];
+        
+        // go through arguments and add them
+        NSUInteger arg_count = [signature numberOfArguments];
+        
+        
+        for (NSInteger i = 0; i < arg_count - 2; i++) {
+            
+            // get current arg
+            id arg = va_arg(args, id);
+            
+            // value is special
+            if([arg isKindOfClass:[NSValue class]]) {
+                
+                NSUInteger arg_size;
+                NSGetSizeAndAlignment([arg objCType], &arg_size, NULL);
+                void * arg_buffer = malloc(arg_size);
+                [arg getValue:arg_buffer];
+                [invocation setArgument:arg_buffer atIndex: 2 + i ];
+                free(arg_buffer);
+            }
+            // just copy val
+            else {
+                [invocation setArgument:&arg atIndex: 2 + i];
+            }
+        }
+        
+        // end
+        va_end(args);
+        
+        // invoke
+        [invocation invoke];
+        
+        
+        // get result
+        NSValue *ret_val  = nil;
+        NSUInteger ret_size = [signature methodReturnLength];
+        
+        if(ret_size > 0) {
+        
+            void * ret_buffer = malloc( ret_size );
+            [invocation getReturnValue:ret_buffer];
+            ret_val = [NSValue valueWithBytes:ret_buffer objCType:[signature methodReturnType]];
+            free(ret_buffer);
+        }
+        
+        // return value
+        return ret_val;
+    }
+    
+    return nil;
+    
+}
 
 @end

@@ -38,21 +38,6 @@
 - (void) sendAllEventsForKey:(NSString*)key;
 
 /**
- *  Send custom event
- *
- *  @param baseUrl     baseUrl of the request
- *  @param placementId placementId integer
- *  @param lineItem    lineItemId integer
- *  @param creative    creative id
- *  @param event       custom event
- */
-- (void) sendCustomEvent:(NSString*) baseUrl
-           withPlacement:(NSInteger) placementId
-            withLineItem:(NSInteger) lineItem
-             andCreative:(NSInteger) creative
-                andEvent:(NSString*) event;
-
-/**
  *  Send viewable impression for fullscreen ad
  */
 - (void) sendViewableForFullscreen;
@@ -63,5 +48,23 @@
  *  @param view <#view description#>
  */
 - (void) sendViewableForInScreen:(UIView*) view;
+
+/**
+ *  Method that returns a MOAT string
+ *
+ *  @param webplayer a SAWebPlayer object
+ *
+ *  @return moat web
+ */
+- (NSString*) moatEventForWebPlayer:(id)webplayer;
+
+/**
+ *  Method that starts MOAT tracking for video
+ *
+ *  @param player the video player
+ *  @param layer  the video layer
+ *  @param view   the containing view
+ */
+- (void) moatEventForVideoPlayer:(AVPlayer*)player withLayer:(AVPlayerLayer*)layer andView:(UIView*)view;
 
 @end

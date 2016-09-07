@@ -14,7 +14,6 @@
 #import "SuperAwesomeMoPub.h"
 
 @interface SuperAwesomeInterstitialCustomEvent () <SAProtocol>
-@property (nonatomic, strong) SAInterstitialAd *interstitial;
 @end
 
 @implementation SuperAwesomeInterstitialCustomEvent
@@ -61,16 +60,15 @@
     [[SuperAwesome getInstance] setTesting:isTestEnabled];
     
     // start the loader
-    _interstitial = [[SAInterstitialAd alloc] init];
-    _interstitial.delegate = self;
-    _interstitial.isParentalGateEnabled = isParentalGateEnabled;
-    _interstitial.shouldLockOrientation = shouldLockOrientation;
-    _interstitial.lockOrientation = lockOrientation;
-    [_interstitial load:placementId];
+    [SAInterstitialAd setDelegate:self];
+    [SAInterstitialAd setIsParentalGateEnabled:isParentalGateEnabled];
+    [SAInterstitialAd setShouldLockOrientation:shouldLockOrientation];
+    [SAInterstitialAd setLockOrientation:lockOrientation];
+    [SAInterstitialAd load:placementId];
 }
 
 - (void) showInterstitialFromRootViewController:(UIViewController *)rootViewController {
-    [_interstitial play];
+    [SAInterstitialAd play];
     [self.delegate interstitialCustomEventWillAppear:self];
 }
 
@@ -89,7 +87,7 @@
 // MARK: SAProtocol functions
 
 - (void) SADidLoadAd:(id) sender forPlacementId: (NSInteger) placementId {
-    [self.delegate interstitialCustomEvent:self didLoadAd:_interstitial];
+    [self.delegate interstitialCustomEvent:self didLoadAd:[SAInterstitialAd self]];
 }
 
 - (void) SADidNotLoadAd:(id) sender forPlacementId: (NSInteger) placementId {
@@ -119,9 +117,6 @@
     // call required events
     [self.delegate interstitialCustomEventWillDisappear:self];
     [self.delegate interstitialCustomEventDidDisappear:self];
-    
-    // null these so no references remain and memory is freed
-    _interstitial = NULL;
 }
 
 @end

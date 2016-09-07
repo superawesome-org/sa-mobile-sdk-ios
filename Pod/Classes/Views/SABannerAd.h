@@ -9,18 +9,20 @@
 #import <UIKit/UIKit.h>
 
 // useful imports
-#import "SAProtocols.h"
-#import "SAWebPlayer.h"
-
-// forward declarations
-@class SAParentalGate;
-@class SAAd;
-@class SAWebPlayer;
+#import "SAProtocol.h"
 
 // class declaration for SABannerAd
-@interface SABannerAd : UIView <SAViewProtocol>
+@interface SABannerAd : UIView
 
-@property (nonatomic, weak) id<SAProtocol> delegate;
-@property (nonatomic, assign) IBInspectable BOOL isParentalGateEnabled;
+// "action" methods
+- (void) load:(NSInteger)placementId;
+- (void) play;
+- (BOOL) hasAdAvailable;
+- (void) close;
+- (void) resize:(CGRect)toframe;
+
+// public "state" setters
+- (void) setDelegate:(id<SAProtocol>)delegate;
+- (void) setIsParentalGateEnabled:(BOOL)isParentalGateEnabled;
 
 @end

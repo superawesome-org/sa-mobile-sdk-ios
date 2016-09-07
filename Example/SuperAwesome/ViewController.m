@@ -8,19 +8,11 @@
 
 #import "ViewController.h"
 #import "SuperAwesome.h"
+#import "SAVideoAd.h"
+#import "SAInterstitialAd.h"
 
 @interface ViewController () <SAProtocol>
 @property (weak, nonatomic) IBOutlet SABannerAd *bannerAd;
-@property (nonatomic, strong) SAVideoAd *fvad;
-@property (nonatomic, strong) SAInterstitialAd *iad;
-// @property (nonatomic, strong) SALoader *loader;
-//@property (nonatomic, retain) SAAd *bannerData;
-//@property (nonatomic, retain) SAAd *interstitial1Data;
-//@property (nonatomic, retain) SAAd *interstitial2Data;
-//@property (nonatomic, retain) SAAd *interstitial3Data;
-//@property (nonatomic, retain) SAAd *interstitial4Data;
-//@property (nonatomic, retain) SAAd *video1Data;
-//@property (nonatomic, retain) SAAd *video2Data;
 @end
 
 @implementation ViewController
@@ -35,33 +27,10 @@
     _bannerAd.tag = 0;
     _bannerAd.delegate = self;
     
-    _fvad = [[SAVideoAd alloc] init];
-    [_fvad setShouldShowCloseButton:YES];
-    _fvad.delegate = self;
-    [_fvad load:252];
-    
-    _iad = [[SAInterstitialAd alloc] init];
-    _iad.delegate = self;
-    [_iad load:247];
-    
-//    SALoader *loader = [[SALoader alloc] init];
-//    loader.delegate = self;
-//    [loader loadAdForPlacementId:251];
-//    [loader loadAdForPlacementId:30260];
-//    [loader loadAdForPlacementId:30260];
-//    [loader loadAdForPlacementId:223];
-//    [loader loadAdForPlacementId:113];
-//    [loader loadAdForPlacementId:114];
-//    [loader loadAdForPlacementId:115];
-//    [loader loadAdForPlacementId:249];
-//    [loader loadAdForPlacementId:116];
-//    [loader loadAdForPlacementId:117];
-//    [loader loadAdForPlacementId:118];
-//    [loader loadAdForPlacementId:247];
-//    [loader loadAdForPlacementId:233];
-//    [loader loadAdForPlacementId:200];
-//    [loader loadAdForPlacementId:204];
-//    [loader loadAdForPlacementId:28000];
+    [SAVideoAd load:252];
+    [SAVideoAd load:116];
+    [SAInterstitialAd load:247];
+    [SAVideoAd setDelegate:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -73,7 +42,7 @@
 }
 
 - (IBAction)playInterstitial1:(id)sender {
-    [_iad play];
+    [SAInterstitialAd play];
 }
 
 - (IBAction)playInterstitial2:(id)sender {
@@ -88,7 +57,7 @@
 }
 
 - (IBAction)playVideo1:(id)sender {
-    [_fvad play];
+    [SAVideoAd play];
 }
 
 - (IBAction)playVideo2:(id)sender {

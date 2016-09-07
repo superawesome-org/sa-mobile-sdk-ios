@@ -18,14 +18,17 @@
     NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
     if (![def objectForKey:CPI_INSTALL]) {
 
-        NSMutableString *cpiURL = [@"" mutableCopy]; // [[[SASession getInstance] getBaseUrl] mutableCopy];
+        // form the URL
+        NSMutableString *cpiURL = [@"" mutableCopy];
         [cpiURL appendFormat:@"https://ads.staging.superawesome.tv/v2"];
         [cpiURL appendString:@"/install?bundle="];
         [cpiURL appendFormat:@"%@", [[NSBundle mainBundle] bundleIdentifier]];
-        NSLog(@"CPI URL: %@", cpiURL);
+        
+        // use saevent to send CPI event
         SAEvents *events = [[SAEvents alloc] init];
         [events sendEventToURL:cpiURL];
         [def setObject:@(true) forKey:CPI_INSTALL];
+        [def synchronize];
         
     } else {
         // already sent this event

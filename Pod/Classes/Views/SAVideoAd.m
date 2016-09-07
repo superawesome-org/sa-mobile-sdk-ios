@@ -2,105 +2,199 @@
 //  SAVideoAd2.m
 //  Pods
 //
-//  Created by Gabriel Coman on 22/08/2016.
+//  Created by Gabriel Coman on 01/09/2016.
 //
 //
 
-////////////////////////////////////////////////////////////////////////////////
-// Imports
-////////////////////////////////////////////////////////////////////////////////
-
-// import header
 #import "SAVideoAd.h"
-
-// import other libs
-#import "SAParentalGate.h"
+#import "SALoader.h"
 #import "SAAd.h"
 #import "SACreative.h"
 #import "SADetails.h"
 #import "SAMedia.h"
-#import "SATracking.h"
-#import "SAUtils.h"
 #import "SAVideoPlayer.h"
+#import "SAParentalGate.h"
 #import "SAEvents.h"
-#import "SuperAwesome.h"
-#import "SAExtensions.h"
-
-// try to import SAEvents+Moat
-#if defined(__has_include)
-#if __has_include("SAEvents+Moat.h")
-#import "SAEvents+Moat.h"
-#endif
-#endif
-
-#define SMALL_PAD_FRAME CGRectMake(0, 0, 67, 25)
-#define VIDEO_VIEWABILITY_COUNT 2
 
 @interface SAVideoAd ()
 
-@property (nonatomic, strong) SAEvents *events;
-@property (nonatomic, strong) SALoader *loader;
-
-@property (nonatomic, assign) CGRect adviewFrame;
-@property (nonatomic, assign) CGRect buttonFrame;
+// aux
 @property (nonatomic, assign) BOOL isOKToClose;
-@property (nonatomic, strong) UIButton *closeBtn;
-
-@property (nonatomic, strong) SAAd *ad;
 @property (nonatomic, strong) NSString *destinationURL;
-@property (nonatomic, strong) NSArray *trackingArray;
 
+// views
+@property (nonatomic, strong) UIButton *closeBtn;
 @property (nonatomic, strong) SAParentalGate *gate;
 @property (nonatomic, strong) UIImageView *padlock;
 @property (nonatomic, strong) SAVideoPlayer *player;
+
+// events
+@property (nonatomic, strong) SAEvents *events;
 
 @end
 
 @implementation SAVideoAd
 
+// current loaded ad
+static SAAd *ad;
+
+// other vars that need to be set statically
+static id<SAProtocol> delegate;
+static BOOL isParentalGateEnabled = true;
+static BOOL shouldAutomaticallyCloseAtEnd = true;
+static BOOL shouldShowCloseButton = true;
+static BOOL shouldShowSmallClickButton = false;
+static BOOL shouldLockOrientation = false;
+static NSUInteger lockOrientation = UIInterfaceOrientationMaskAll;
+
 ////////////////////////////////////////////////////////////////////////////////
-// MARK: VC Lifecycle
+// MARK: VC lifecycle
 ////////////////////////////////////////////////////////////////////////////////
-
-- (id) init {
-    if (self = [super init]) {
-        [self initialize];
-    }
-    
-    return self;
-}
-
-- (id) initWithCoder:(NSCoder *)aDecoder {
-    if (self = [super initWithCoder:aDecoder]) {
-        [self initialize];
-    }
-    return self;
-}
-
-- (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        [self initialize];
-    }
-    return self;
-}
-
-- (void) initialize {
-    _loader = [[SALoader alloc] init];
-    _shouldAutomaticallyCloseAtEnd = YES;
-    _shouldShowCloseButton = NO;
-    _shouldLockOrientation = NO;
-    _lockOrientation = UIInterfaceOrientationMaskAll;
-    _isOKToClose = NO;
-    _closeBtn.hidden = YES;
-}
 
 - (void) viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor blackColor];
+    
+    // get main static vars into local ones
+    __block SAAd *_adL = [SAVideoAd getAd];
+    __block id <SAProtocol> _delegateL = [SAVideoAd getDelegate];
+    __block BOOL _isParentalGateEnabledL = [SAVideoAd getIsParentalGateEnabled];
+    __block BOOL _shouldAutomaticallyCloseAtEndL = [SAVideoAd getShouldAutomaticallyCloseAtEnd];
+    __block BOOL _shouldShowCloseButtonL = [SAVideoAd getShouldShowCloseButton];
+    __block BOOL _shouldShowSmallClickButtonL = [SAVideoAd getShouldShowSmallClickButton];
+    __block BOOL _shouldShowPadlockL = [SAVideoAd shouldShowPadlock];
+    
+    // start events
+    _events = [[SAEvents alloc] init];
+    [_events setAd:_adL];
+    
+    // get a weak self reference
+    __weak typeof (self) weakSelf = self;
+    
+    // start creating the banner ad
+    _gate = [[SAParentalGate alloc] initWithWeakRefToView:self];
+    
+    // create the player
+    _player = [[SAVideoPlayer alloc] initWithFrame:CGRectZero];
+    if (_shouldShowSmallClickButtonL) {
+        [_player showSmallClickButton];
+    }
+    
+    // set event handler for player
+    [_player setEventHandler:^(SAVideoPlayerEvent event) {
+        switch (event) {
+            case Video_Start: {
+                
+                // is OK to close
+                _isOKToClose = true;
+                
+                // send vast ad impressions
+                [weakSelf.events sendAllEventsForKey:@"impression"];
+                [weakSelf.events sendAllEventsForKey:@"start"];
+                [weakSelf.events sendAllEventsForKey:@"creativeView"];
+                
+                // send viewable impression
+                [weakSelf.events sendViewableForFullscreen];
+                
+                // moat
+                [weakSelf.events moatEventForVideoPlayer:[weakSelf.player getPlayer]
+                                               withLayer:[weakSelf.player getPlayerLayer]
+                                                 andView:[weakSelf view]];
+                
+                // send delegate
+                if (_delegateL && [_delegateL respondsToSelector:@selector(SADidShowAd:)]) {
+                    [_delegateL SADidShowAd:weakSelf];
+                }
+                
+                break;
+            }
+            case Video_1_4: {
+                [weakSelf.events sendAllEventsForKey:@"firstQuartile"];
+                break;
+            }
+            case Video_1_2: {
+                [weakSelf.events sendAllEventsForKey:@"midpoint"];
+                break;
+            }
+            case Video_3_4: {
+                [weakSelf.events sendAllEventsForKey:@"thirdQuartile"];
+                break;
+            }
+            case Video_End: {
+                
+                // close the Pg
+                [weakSelf.gate close];
+                
+                // send complete events
+                [weakSelf.events sendAllEventsForKey:@"complete"];
+                
+                // close video
+                if (_shouldAutomaticallyCloseAtEndL) {
+                    [weakSelf close];
+                }
+                
+                break;
+            }
+            case Video_Error: {
+                
+                // send errors
+                [weakSelf.events sendAllEventsForKey:@"error"];
+                
+                // close
+                [weakSelf close];
+                
+                // send delegate
+                if (_delegateL && [_delegateL respondsToSelector:@selector(SADidNotShowAd:)]) {
+                    [_delegateL SADidNotShowAd:weakSelf];
+                }
+                
+                break;
+            }
+        }
+    }];
+    
+    // set click handler for player
+    [_player setClickHandler:^{
+        
+        if (_isParentalGateEnabledL) {
+            [weakSelf.gate show];
+        } else {
+            [weakSelf click];
+        }
+        
+    }];
+    
+    // add subview
+    [self.view addSubview:_player];
+    
+    // add the padlock
+    _padlock = [[UIImageView alloc] initWithFrame:CGRectZero];
+    _padlock.image = [SAUtils padlockImage];
+    if (_shouldShowPadlockL) {
+        [self.view addSubview:_padlock];
+    }
+    
+    // create close button
+    _closeBtn = [[UIButton alloc] initWithFrame:CGRectZero];
+    [_closeBtn setHidden:!_shouldShowCloseButtonL];
+    [_closeBtn setTitle:@"" forState:UIControlStateNormal];
+    [_closeBtn setImage:[SAUtils closeImage] forState:UIControlStateNormal];
+    [_closeBtn addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_closeBtn];
+    [self.view bringSubviewToFront:_closeBtn];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    // get the ad from static
+    SAAd *_adL = [SAVideoAd getAd];
+    
+    // set status bar hidden
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
     
     // setup coordinates
     CGSize scrSize = [UIScreen mainScreen].bounds.size;
@@ -136,9 +230,17 @@
         }
     }
     
+    // apply the resize
     [self resize:CGRectMake(0, 0, currentSize.width, currentSize.height)];
     
-    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
+    // actually start playing the video
+    if (_adL.creative.details.media.isOnDisk) {
+        NSString *finalDiskURL = [SAUtils filePathInDocuments:_adL.creative.details.media.playableDiskUrl];
+        [_player playWithMediaFile:finalDiskURL];
+    } else {
+        NSURL *url = [NSURL URLWithString:_adL.creative.details.media.playableMediaUrl];
+        [_player playWithMediaURL:url];
+    }
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
@@ -173,11 +275,9 @@
 }
 
 - (UIInterfaceOrientationMask) supportedInterfaceOrientations {
-    return _shouldLockOrientation ? _lockOrientation : UIInterfaceOrientationMaskAll;
-}
-
-- (void) didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+    BOOL _shouldLockOrientationL = [SAVideoAd getShouldLockOrientation];
+    NSUInteger _lockOrientationL = [SAVideoAd getLockOrientation];
+    return _shouldLockOrientationL ? _lockOrientationL : UIInterfaceOrientationMaskAll;
 }
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -188,225 +288,16 @@
     return true;
 }
 
-- (void) dealloc {
-     NSLog(@"SAVideoAd2 dealloc");
-}
-
 ////////////////////////////////////////////////////////////////////////////////
-// MARK: View protocol implementation
+// MARK: Aux Instance method
 ////////////////////////////////////////////////////////////////////////////////
-
-
-- (void) load:(NSInteger)placementId {
-    
-    // get a weak self reference
-    __weak typeof (self) weakSelf = self;
-    
-    // load ad
-    [_loader loadAd:placementId withResult:^(SAAd *ad) {
-        
-        // get the ad
-        weakSelf.ad = ad;
-        
-        // call delegate
-        if (ad != NULL) {
-            if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(SADidLoadAd:forPlacementId:)]) {
-                [weakSelf.delegate SADidLoadAd:weakSelf forPlacementId:placementId];
-            }
-        } else {
-            if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(SADidNotLoadAd:forPlacementId:)]) {
-                [weakSelf.delegate SADidNotLoadAd:weakSelf forPlacementId:placementId];
-            }
-        }
-    }];
-}
-
-- (void) play {
-    
-    if (_ad && _ad.creative.creativeFormat == video) {
-        
-        // start events
-        _events = [[SAEvents alloc] init];
-        [_events setAd:_ad];
-        
-        // get a weak self reference
-        __weak typeof (self) weakSelf = self;
-        
-        // start creating the banner ad
-        _gate = [[SAParentalGate alloc] initWithWeakRefToView:self];
-        
-        // create the player
-        _player = [[SAVideoPlayer alloc] initWithFrame:_adviewFrame];
-        if (_shouldShowSmallClickButton) {
-            [_player showSmallClickButton];
-        }
-        
-        // set event handler for player
-        [_player setEventHandler:^(SAVideoPlayerEvent event) {
-            switch (event) {
-                case Video_Start: {
-                    
-                    // is OK to close
-                    _isOKToClose = true;
-                    
-                    // send vast ad impressions
-                    [weakSelf.events sendAllEventsForKey:@"impression"];
-                    [weakSelf.events sendAllEventsForKey:@"start"];
-                    [weakSelf.events sendAllEventsForKey:@"creativeView"];
-                    
-                    // send viewable impression
-                    [weakSelf.events sendViewableForFullscreen];
-                    
-                    // moat
-                    Class class = NSClassFromString(@"SAEvents");
-                    SEL selector = NSSelectorFromString(@"sendVideoMoatEvent:andLayer:andView:andAdDictionary:");
-                    if ([class respondsToSelector:selector]) {
-                        
-                        NSDictionary *moatDict = @{
-                                                   @"advertiser":@(weakSelf.ad.advertiserId),
-                                                   @"campaign":@(weakSelf.ad.campaignId),
-                                                   @"line_item":@(weakSelf.ad.lineItemId),
-                                                   @"creative":@(weakSelf.ad.creative._id),
-                                                   @"app":@(weakSelf.ad.app),
-                                                   @"placement":@(weakSelf.ad.placementId),
-                                                   @"publisher":@(weakSelf.ad.publisherId)
-                                                   };
-                        
-                        AVPlayer *player = [weakSelf.player getPlayer];
-                        AVPlayerLayer *layer = [weakSelf.player getPlayerLayer];
-                        id weakSelfView = weakSelf.view;
-                        NSMethodSignature *signature = [class methodSignatureForSelector:selector];
-                        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
-                        [invocation setTarget:class];
-                        [invocation setSelector:selector];
-                        [invocation setArgument:&player atIndex:2];
-                        [invocation setArgument:&layer atIndex:3];
-                        [invocation setArgument:&weakSelfView atIndex:4];
-                        [invocation setArgument:&moatDict atIndex:5];
-                        [invocation retainArguments];
-                        [invocation invoke];
-                    }
-                    
-                    // send delegate
-                    if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(SADidShowAd:)]) {
-                        [weakSelf.delegate SADidShowAd:weakSelf];
-                    }
-                    
-                    break;
-                }
-                case Video_1_4: {
-                    [weakSelf.events sendAllEventsForKey:@"firstQuartile"];
-                    break;
-                }
-                case Video_1_2: {
-                    [weakSelf.events sendAllEventsForKey:@"midpoint"];
-                    break;
-                }
-                case Video_3_4: {
-                    [weakSelf.events sendAllEventsForKey:@"thirdQuartile"];
-                    break;
-                }
-                case Video_End: {
-                    
-                    // close the Pg
-                    [weakSelf.gate close];
-                    
-                    // send complete events
-                    [weakSelf.events sendAllEventsForKey:@"complete"];
-                    
-                    // close video
-                    if (weakSelf.shouldAutomaticallyCloseAtEnd) {
-                        [weakSelf close];
-                    }
-                    
-                    break;
-                }
-                case Video_Error: {
-                    
-                    // send errors
-                    [weakSelf.events sendAllEventsForKey:@"error"];
-                    
-                    // close
-                    [weakSelf close];
-                    
-                    // send delegate
-                    if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(SADidNotShowAd:)]) {
-                        [weakSelf.delegate SADidNotShowAd:weakSelf];
-                    }
-                    
-                    break;
-                }
-            }
-        }];
-        
-        // set click handler for player
-        [_player setClickHandler:^{
-            
-            if (weakSelf.isParentalGateEnabled) {
-                [weakSelf.gate show];
-            } else {
-                [weakSelf click];
-            }
-            
-        }];
-        
-        // add subview
-        [self.view addSubview:_player];
-        
-        // add the padlock
-        _padlock = [[UIImageView alloc] initWithFrame:SMALL_PAD_FRAME];
-        _padlock.image = [SAUtils padlockImage];
-        if ([self shouldShowPadlock]) {
-            [self.view addSubview:_padlock];
-        }
-        
-        // create close button
-        _closeBtn = [[UIButton alloc] initWithFrame:_buttonFrame];
-        [_closeBtn setTitle:@"" forState:UIControlStateNormal];
-        [_closeBtn setImage:[SAUtils closeImage] forState:UIControlStateNormal];
-        [_closeBtn addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:_closeBtn];
-        [self.view bringSubviewToFront:_closeBtn];
-        
-        // actually start playing the video
-        UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
-        [root presentViewController:self animated:YES completion:^{
-            if (weakSelf.ad.creative.details.media.isOnDisk) {
-                NSString *finalDiskURL = [SAUtils filePathInDocuments:weakSelf.ad.creative.details.media.playableDiskUrl];
-                [weakSelf.player playWithMediaFile:finalDiskURL];
-            } else {
-                NSURL *url = [NSURL URLWithString:weakSelf.ad.creative.details.media.playableMediaUrl];
-                [weakSelf.player playWithMediaURL:url];
-            }
-        }];
-        
-    } else {
-        if (_delegate && [_delegate respondsToSelector:@selector(SADidNotShowAd:)]) {
-            [_delegate SADidNotShowAd:self];
-        }
-    }
-}
-
-- (BOOL) shouldShowPadlock {
-    if (_ad.creative.creativeFormat == tag) return false;
-    if (_ad.isFallback) return false;
-    if (_ad.isHouse && !_ad.safeAdApproved) return false;
-    return true;
-}
-
-- (void) setAd:(SAAd *)ad {
-    _ad = ad;
-}
-
-- (SAAd*) getAd {
-    return _ad;
-}
 
 - (void) close {
     if (_isOKToClose) {
         
         // null the ad
-        _ad = NULL;
+        // @warn: static
+        [SAVideoAd nullAd];
         
         // destroy the player
         [_player destroy];
@@ -420,8 +311,9 @@
         _gate = nil;
         
         // call delegate
-        if ([_delegate respondsToSelector:@selector(SADidCloseAd:)]) {
-            [_delegate SADidCloseAd:self];
+        id<SAProtocol> _delegateL = [SAVideoAd getDelegate];
+        if ([_delegateL respondsToSelector:@selector(SADidCloseAd:)]) {
+            [_delegateL SADidCloseAd:self];
         }
         
         // dismiss VC
@@ -429,10 +321,29 @@
     }
 }
 
+- (void) resize: (CGRect) frame {
+    // get locl vars from static
+    BOOL _shouldShowCloseButtonL = [SAVideoAd getShouldShowCloseButton];
+    
+    // setup close button
+    _closeBtn.frame = _shouldShowCloseButtonL ? CGRectMake(frame.size.width - 40.0f, 0, 40.0f, 40.0f) : CGRectZero;
+    [self.view bringSubviewToFront:_closeBtn];
+    
+    // rearrange the player frame
+    [_player updateToFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
+    
+    // rearrange the padlock
+    _padlock.frame = CGRectMake(0, 0, 67, 25);
+}
+
 - (void) click {
+    // get delegate
+    id<SAProtocol> _delegateL = [SAVideoAd getDelegate];
+    SAAd *_adL = [SAVideoAd getAd];
+    
     // call delegate
-    if (_delegate && [_delegate respondsToSelector:@selector(SADidClickAd:)]) {
-        [_delegate SADidClickAd:self];
+    if (_delegateL && [_delegateL respondsToSelector:@selector(SADidClickAd:)]) {
+        [_delegateL SADidClickAd:self];
     }
     
     // call trackers
@@ -440,35 +351,12 @@
     [_events sendAllEventsForKey:@"custom_clicks"];
     
     // setup the current click URL
-    _destinationURL = _ad.creative.clickUrl;
+    _destinationURL = _adL.creative.clickUrl;
     
     NSURL *url = [NSURL URLWithString:_destinationURL];
     [[UIApplication sharedApplication] openURL:url];
     
     NSLog(@"[AA :: INFO] Going to %@", _destinationURL);
-}
-
-- (void) resize:(CGRect)frame {
-    // setup frame
-    _adviewFrame = frame;
-    
-    if (_shouldShowCloseButton){
-        CGFloat cs = 40.0f;
-        _buttonFrame = CGRectMake(frame.size.width - cs, 0, cs, cs);
-        _closeBtn.hidden = NO;
-        [self.view bringSubviewToFront:_closeBtn];
-    } else {
-        _closeBtn.hidden = YES;
-        _buttonFrame = CGRectZero;
-    }
-    
-    _closeBtn.frame = _buttonFrame;
-    
-    CGRect playerFrame = CGRectMake(0, 0, _adviewFrame.size.width, _adviewFrame.size.height);
-    [_player updateToFrame:playerFrame];
-    
-    // rearrange the padlock
-    _padlock.frame = SMALL_PAD_FRAME;
 }
 
 - (void) pause {
@@ -477,6 +365,133 @@
 
 - (void) resume {
     [_player resume];
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// MARK: Class public interface
+////////////////////////////////////////////////////////////////////////////////
+
++ (void) load:(NSInteger) placementId {
+    
+    // get a weak self reference
+    __weak typeof (self) weakSelf = self;
+    
+    // get the loader
+    SALoader *loader = [[SALoader alloc] init];
+    [loader loadAd:placementId withResult:^(SAAd *saAd) {
+        
+        // get the ad
+        ad = saAd;
+        
+        // call delegate
+        if (ad != NULL) {
+            if (delegate && [delegate respondsToSelector:@selector(SADidLoadAd:forPlacementId:)]) {
+                [delegate SADidLoadAd:weakSelf forPlacementId:placementId];
+            }
+        } else {
+            if (delegate && [delegate respondsToSelector:@selector(SADidNotLoadAd:forPlacementId:)]) {
+                [delegate SADidNotLoadAd:weakSelf forPlacementId:placementId];
+            }
+        }
+        
+    }];
+}
+
++ (void) play {
+    
+    if (ad && ad.creative.creativeFormat == video) {
+        
+        UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
+        UIViewController *newVC = [[SAVideoAd alloc] init];
+        [root presentViewController:newVC animated:YES completion:nil];
+        
+    } else {
+        if (delegate && [delegate respondsToSelector:@selector(SADidNotShowAd:)]) {
+            [delegate SADidNotShowAd:self];
+        }
+    }
+}
+
++ (BOOL) shouldShowPadlock {
+    if (ad.creative.creativeFormat == tag) return false;
+    if (ad.isFallback) return false;
+    if (ad.isHouse && !ad.safeAdApproved) return false;
+    return true;
+}
+
++ (BOOL) hasAdAvailable {
+    return ad != NULL;
+}
+
++ (SAAd*) getAd {
+    return ad;
+}
+
++ (void) nullAd {
+    ad = NULL;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// MARK: Setters & getters
+// Some are exposed externally (mainly setters) but some are only internally
+// Main role for them is to handle working with static variables inside this
+// module.
+////////////////////////////////////////////////////////////////////////////////
+
++ (void) setDelegate:(id<SAProtocol>)del {
+    delegate = del;
+}
+
++ (void) setIsParentalGateEnabled: (BOOL) value {
+    isParentalGateEnabled = value;
+}
+
++ (void) setShouldAutomaticallyCloseAtEnd: (BOOL) value {
+    shouldAutomaticallyCloseAtEnd = value;
+}
+
++ (void) setShouldShowCloseButton: (BOOL) value {
+    shouldShowCloseButton = value;
+}
+
++ (void) setShouldShowSmallClickButton: (BOOL) value {
+    shouldShowSmallClickButton = value;
+}
+
++ (void) setShouldLockOrientation: (BOOL) value {
+    shouldLockOrientation = value;
+}
+
++ (void) setLockOrientation: (NSUInteger) value {
+    lockOrientation = value;
+}
+
++ (id<SAProtocol>) getDelegate {
+    return delegate;
+}
+
++ (BOOL) getIsParentalGateEnabled {
+    return isParentalGateEnabled;
+}
+
++ (BOOL) getShouldAutomaticallyCloseAtEnd {
+    return shouldAutomaticallyCloseAtEnd;
+}
+
++ (BOOL) getShouldShowCloseButton {
+    return shouldShowCloseButton;
+}
+
++ (BOOL) getShouldShowSmallClickButton {
+    return shouldShowSmallClickButton;
+}
+
++ (BOOL) getShouldLockOrientation {
+    return shouldLockOrientation;
+}
+
++ (NSUInteger) getLockOrientation {
+    return lockOrientation;
 }
 
 @end
