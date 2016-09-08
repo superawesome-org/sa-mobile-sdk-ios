@@ -29,11 +29,11 @@
     [SAVideoAd setConfigurationStaging];
     [SAVideoAd setDelegate:self];
     [SAVideoAd setTestDisabled];
-    [SAVideoAd load:252];
+//    [SAVideoAd load:252];
     [SAVideoAd load:116];
-    [SAInterstitialAd setConfigurationStaging];
-    [SAInterstitialAd setTestDisabled];
-    [SAInterstitialAd load:247];
+//    [SAInterstitialAd setConfigurationStaging];
+//    [SAInterstitialAd setTestDisabled];
+//    [SAInterstitialAd load:247];
 }
 
 - (void)didReceiveMemoryWarning {

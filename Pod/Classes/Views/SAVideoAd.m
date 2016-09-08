@@ -355,10 +355,17 @@ static NSInteger configuration = 0;
     [_events sendAllEventsForKey:@"custom_clicks"];
     
     // setup the current click URL
-    _destinationURL = _adL.creative.clickUrl;
+    for (SATracking *tracking in _adL.creative.events) {
+        if ([tracking.event rangeOfString:@"click_through"].location != NSNotFound) {
+            _destinationURL = tracking.URL;
+        }
+    }
     
-    NSURL *url = [NSURL URLWithString:_destinationURL];
-    [[UIApplication sharedApplication] openURL:url];
+    // go to URL
+    if (_destinationURL) {
+        NSURL *url = [NSURL URLWithString:_destinationURL];
+        [[UIApplication sharedApplication] openURL:url];
+    }
     
     NSLog(@"[AA :: INFO] Going to %@", _destinationURL);
 }

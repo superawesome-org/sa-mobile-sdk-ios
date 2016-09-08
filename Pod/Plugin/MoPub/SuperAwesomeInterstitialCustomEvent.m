@@ -113,7 +113,6 @@
 }
 
 - (void) SADidCloseAd:(id) sender {
-    // call required events
     [self.delegate interstitialCustomEventWillDisappear:self];
     [self.delegate interstitialCustomEventDidDisappear:self];
 }
