@@ -14,8 +14,6 @@
 // import the SACapper part
 #import "SACapper.h"
 #import "SACPI.h"
-#import "SAEvents.h"
-#import "SASession.h"
 
 @interface SuperAwesome ()
 @property (nonatomic, assign) NSInteger dauId;

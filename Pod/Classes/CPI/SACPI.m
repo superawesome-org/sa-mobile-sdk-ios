@@ -22,7 +22,7 @@
         NSMutableString *cpiURL = [@"" mutableCopy];
         [cpiURL appendFormat:@"https://ads.staging.superawesome.tv/v2"];
         [cpiURL appendString:@"/install?bundle="];
-        [cpiURL appendFormat:@"%@", [[NSBundle mainBundle] bundleIdentifier]];
+        [cpiURL appendString:[[NSBundle mainBundle] bundleIdentifier]];
         
         // use saevent to send CPI event
         SAEvents *events = [[SAEvents alloc] init];

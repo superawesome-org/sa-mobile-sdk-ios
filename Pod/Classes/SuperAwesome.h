@@ -10,8 +10,7 @@
 
 #import <Foundation/Foundation.h>
 
-// import system
-#import "SAUtils.h"
+/// also works as public headers
 
 // import model header files
 #import "SAAd.h"
@@ -19,9 +18,6 @@
 #import "SADetails.h"
 #import "SAMedia.h"
 #import "SATracking.h"
-
-// import load
-#import "SALoader.h"
 
 // import views
 #import "SABannerAd.h"
@@ -37,7 +33,7 @@
 @interface SuperAwesome : NSObject
 
 // singleton instance (instead of init)
-+ (instancetype)getInstance;
++ (instancetype) getInstance;
 
 // get the dau id and the version
 - (NSString*) getSdkVersion;
