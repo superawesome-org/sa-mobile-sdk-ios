@@ -24,8 +24,8 @@
 #import "SAInterstitialAd.h"
 #import "SAVideoAd.h"
 
-// load protocols
-#import "SAProtocol.h"
+// load callback header
+#import "SACallback.h"
 
 // @brief:
 // This is the main SuperAwesome class that handles the Ad Session

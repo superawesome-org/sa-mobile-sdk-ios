@@ -67,4 +67,9 @@
  */
 - (void) moatEventForVideoPlayer:(AVPlayer*)player withLayer:(AVPlayerLayer*)layer andView:(UIView*)view;
 
+/**
+ *  Close method
+ */
+- (void) close;
+
 @end

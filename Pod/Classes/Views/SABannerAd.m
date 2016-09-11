@@ -23,7 +23,7 @@
 @interface SABannerAd ()
 
 // main state vars
-@property (nonatomic, weak) id<SAProtocol> delegate;
+@property (nonatomic, strong) sacallback callback;
 @property (nonatomic, assign) IBInspectable BOOL isParentalGateEnabled;
 
 // events
@@ -74,7 +74,9 @@
 - (void) initialize {
     _canPlay = true;
     _isParentalGateEnabled = true;
+    _events = [[SAEvents alloc] init];
     _session = [[SASession alloc] init];
+    _callback = ^(NSInteger placement, SAEvent event) {};
     self.backgroundColor = [UIColor colorWithRed:0.75 green:0.75 blue:0.75 alpha:1];
 }
 
@@ -84,11 +86,10 @@
     __weak typeof (self) weakSelf = self;
     
     // start events
-    _events = [[SAEvents alloc] init];
     [_events setAd:_ad];
     
     // start creating the banner ad
-    _gate = [[SAParentalGate alloc] initWithWeakRefToView:self];
+    _gate = [[SAParentalGate alloc] initWithWeakRefToView:self andAd:_ad];
     
     // add the sawebview
     _webplayer = [[SAWebPlayer alloc] initWithFrame:CGRectZero];
@@ -97,7 +98,7 @@
     [_webplayer setAdSize:CGSizeMake(_ad.creative.details.width, _ad.creative.details.height)];
     
     // moat tracking
-    NSString *moatString = [_events moatEventForWebPlayer:_webplayer];
+    NSString *moatString = @""; // [_events moatEventForWebPlayer:_webplayer];
     
     // form the full HTML string and play it!
     NSString *fullHTMLToLoad = [_ad.creative.details.media.html stringByReplacingOccurrencesOfString:@"_MOAT_" withString:moatString];
@@ -106,21 +107,20 @@
     [_webplayer setEventHandler:^(SAWebPlayerEvent event) {
         switch (event) {
             case Web_Start: {
-                // send viewable impression
-                [weakSelf.events sendViewableForInScreen:weakSelf];
+                // send callback
+                weakSelf.callback(weakSelf.ad.placementId, adShown);
                 
                 // if the banner has a separate impression URL, send that as well for 3rd party tracking
                 [weakSelf.events sendAllEventsForKey:@"impression"];
                 
-                if ([weakSelf.delegate respondsToSelector:@selector(SADidShowAd:)]) {
-                    [weakSelf.delegate SADidShowAd:weakSelf];
-                }
+                // send viewable impression
+                [weakSelf.events sendViewableForInScreen:weakSelf];
+                
                 break;
             }
             case Web_Error: {
-                if ([weakSelf.delegate respondsToSelector:@selector(SADidNotShowAd:)]) {
-                    [weakSelf.delegate SADidNotShowAd:weakSelf];
-                }
+                // send callback
+                weakSelf.callback(weakSelf.ad.placementId, adFailedToShow);
                 break;
             }
         }
@@ -149,7 +149,7 @@
     }
     
     // resize
-    [self resize:self.bounds];
+    [self resize:self.frame];
     
     // finally play!
     [_webplayer loadAdHTML:fullHTMLToLoad];
@@ -182,16 +182,8 @@
         // set can play
         weakSelf.canPlay = true;
         
-        // call delegate
-        if (ad != NULL) {
-            if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(SADidLoadAd:forPlacementId:)]) {
-                [weakSelf.delegate SADidLoadAd:weakSelf forPlacementId:placementId];
-            }
-        } else {
-            if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(SADidNotLoadAd:forPlacementId:)]) {
-                [weakSelf.delegate SADidNotLoadAd:weakSelf forPlacementId:placementId];
-            }
-        }
+        // call the callback
+        weakSelf.callback (placementId, ad != NULL ? adLoaded : adFailedToLoad);
     }];
 }
 
@@ -206,9 +198,8 @@
         [self loadSubviews];
         
     } else {
-        if (_delegate && [_delegate respondsToSelector:@selector(SADidNotShowAd:)]) {
-            [_delegate SADidNotShowAd:self];
-        }
+        // failure callback
+        _callback (0, adFailedToShow);
     }
 }
 
@@ -236,6 +227,12 @@
 }
 
 - (void) close {
+    // callback
+    _callback (_ad.placementId, adClosed);
+    
+    // close events
+    [_events close];
+    
     // remove all stuffs
     [_webplayer removeFromSuperview];
     _webplayer = nil;
@@ -243,23 +240,15 @@
     _padlock = nil;
     _gate = nil;
     [self nullAd];
-    
-    // call delegate
-    if (_delegate && [_delegate respondsToSelector:@selector(SADidCloseAd:)]) {
-        [_delegate SADidCloseAd:self];
-    }
 }
 
 - (void) click {
     NSLog(@"[AA :: INFO] Going to %@", _destinationURL);
     
-    // call delegate
-    if (_delegate && [_delegate respondsToSelector:@selector(SADidClickAd:)]) {
-        [_delegate SADidClickAd:self];
-    }
+    // callback
+    _callback (_ad.placementId, adClicked);
     
-    // call events
-    
+    // events
     if ([_destinationURL rangeOfString:[_session getBaseUrl]].location == NSNotFound) {
         [_events sendAllEventsForKey:@"sa_tracking"];
     }
@@ -290,8 +279,8 @@
 // MARK: Setters & getters
 ////////////////////////////////////////////////////////////////////////////////
 
-- (void) setDelegate:(id<SAProtocol>)delegate {
-    _delegate = delegate;
+- (void) setCallback:(sacallback)callback {
+    _callback = callback ? callback : ^(NSInteger placement, SAEvent event) {};
 }
 
 - (void) setIsParentalGateEnabled:(BOOL)isParentalGateEnabled {

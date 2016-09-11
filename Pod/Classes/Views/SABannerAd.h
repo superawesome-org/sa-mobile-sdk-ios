@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class SAAd;
+
 // useful imports
-#import "SAProtocol.h"
+#import "SACallback.h"
 #import "SASession.h"
 
 // class declaration for SABannerAd
@@ -23,7 +25,7 @@
 - (void) resize:(CGRect)toframe;
 
 // public "state" setters
-- (void) setDelegate:(id<SAProtocol>)delegate;
+- (void) setCallback:(sacallback)callback;
 - (void) setIsParentalGateEnabled:(BOOL)isParentalGateEnabled;
 - (void) setTest:(BOOL) isTest;
 - (void) setTestEnabled;

@@ -7,17 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SAProtocol.h"
+#import "SACallback.h"
 
 @interface SAVideoAd : UIViewController
 
 // static "action" methods
 + (void) load:(NSInteger) placementId;
-+ (void) play;
++ (void) play:(UIViewController*)parent;
 + (BOOL) hasAdAvailable;
 
 // static "state" methods
-+ (void) setDelegate:(id<SAProtocol>) del;
++ (void) setCallback:(sacallback)call;
 + (void) setIsParentalGateEnabled: (BOOL) value;
 + (void) setShouldAutomaticallyCloseAtEnd: (BOOL) value;
 + (void) setShouldShowCloseButton: (BOOL) value;

@@ -17,7 +17,7 @@
 // implements two important ad protocols
 // - SALoaderProtocol (of SALoader class)
 // - SAAdProtocol (common to all SAViews)
-@interface SuperAwesomeBannerCustomEvent () <SAProtocol>
+@interface SuperAwesomeBannerCustomEvent ()
 @property (nonatomic, strong) SABannerAd *banner;
 @end
 
@@ -49,12 +49,49 @@
     NSInteger placementId = [placementIdObj integerValue];
     BOOL isParentalGateEnabled = (isParentalGateEnabledObj != NULL ? [isParentalGateEnabledObj boolValue] : true);
 
+    // get a weak self reference
+    __weak typeof (self) weakSelf = self;
+    
     // create a new banner
     _banner = [[SABannerAd alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
     [_banner setTest:isTestEnabled];
     [_banner setConfigurationProduction];
     [_banner setIsParentalGateEnabled:isParentalGateEnabled];
-    _banner.delegate = self;
+//    [_banner setCallback:^(NSInteger placementId, SAEvent event) {
+//        switch (event) {
+//            case adLoaded: {
+//                [weakSelf.delegate bannerCustomEvent:weakSelf didLoadAd:weakSelf.banner];
+//                [weakSelf.banner play];
+//                break;
+//            }
+//            case adFailedToLoad: {
+//                [weakSelf.delegate bannerCustomEvent:weakSelf
+//                            didFailToLoadAdWithError:[weakSelf createErrorWith:ERROR_LOAD_TITLE(@"Banner Ad", placementId)
+//                                                                     andReason:ERROR_LOAD_MESSAGE
+//                                                                 andSuggestion:ERROR_LOAD_SUGGESTION]];
+//                break;
+//            }
+//            case adShown: {
+//                break;
+//            }
+//            case adFailedToShow: {
+//                [weakSelf.delegate bannerCustomEvent:weakSelf
+//                            didFailToLoadAdWithError:[weakSelf createErrorWith:ERROR_SHOW_TITLE(@"Banner Ad", 0)
+//                                                                     andReason:ERROR_SHOW_MESSAGE
+//                                                                 andSuggestion:ERROR_SHOW_SUGGESTION]];
+//                break;
+//            }
+//            case adClicked: {
+//                [weakSelf.delegate bannerCustomEventWillLeaveApplication:weakSelf];
+//                break;
+//            }
+//            case adClosed: {
+//                break;
+//            }
+//        }
+//    }];
+    
+    // load
     [_banner load:placementId];
 }
 
@@ -67,45 +104,5 @@
     
     return [NSError errorWithDomain:ERROR_DOMAIN code:ERROR_CODE userInfo:userInfo];
 }
-
-// MARK: SAProtocol
-
-- (void) SADidLoadAd:(id)sender forPlacementId:(NSInteger)placementId {
-    
-    // and then send it to bannerCustomEvent:didLoadAd:
-    [self.delegate bannerCustomEvent:self didLoadAd:_banner];
-    
-    // play the ad
-    [_banner play];
-}
-
-- (void) SADidNotLoadAd:(id)sender forPlacementId:(NSInteger)placementId {
-    // then send this to bannerCustomEvent:didFailToLoadAdWithError:
-    [self.delegate bannerCustomEvent:self
-            didFailToLoadAdWithError:[self createErrorWith:ERROR_LOAD_TITLE(@"Banner Ad", placementId)
-                                                 andReason:ERROR_LOAD_MESSAGE
-                                             andSuggestion:ERROR_LOAD_SUGGESTION]];
-}
-
-- (void) SADidShowAd:(id)sender {
-    // do nothing
-}
-
-- (void) SADidNotShowAd:(id)sender {
-    // then send this to bannerCustomEvent:didFailToLoadAdWithError:
-    [self.delegate bannerCustomEvent:self
-            didFailToLoadAdWithError:[self createErrorWith:ERROR_SHOW_TITLE(@"Banner Ad", 0)
-                                                 andReason:ERROR_SHOW_MESSAGE
-                                             andSuggestion:ERROR_SHOW_SUGGESTION]];
-}
-
-- (void) SADidClickAd:(id)sender {
-    [self.delegate bannerCustomEventWillLeaveApplication:self];
-}
-
-- (void) SADidCloseAd:(id)sender {
-    // do nothing
-}
-
 
 @end

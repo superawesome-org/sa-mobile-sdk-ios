@@ -11,10 +11,7 @@
 #import <UIKit/UIKit.h>
 
 // forward declarations
-@class SAView;
-
-// import the parentla gate protocol
-#import "SAProtocol.h"
+@class SAAd;
 
 // define a block used by UIAlertActions
 typedef void(^actionBlock) (UIAlertAction *action);
@@ -23,7 +20,7 @@ typedef void(^actionBlock) (UIAlertAction *action);
 @interface SAParentalGate : NSObject <UIAlertViewDelegate>
 
 // custom init functions
-- (id) initWithWeakRefToView:(id)weakRef;
+- (id) initWithWeakRefToView:(id)weakRef andAd:(SAAd*)ad;
 
 // show function
 - (void) show;

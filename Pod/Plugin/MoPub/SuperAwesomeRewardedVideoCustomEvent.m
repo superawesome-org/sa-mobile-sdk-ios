@@ -14,7 +14,7 @@
 #import "MPRewardedVideoReward.h"
 #import "SuperAwesomeMoPub.h"
 
-@interface SuperAwesomeRewardedVideoCustomEvent () <SAProtocol>
+@interface SuperAwesomeRewardedVideoCustomEvent ()
 @property (nonatomic, strong) MPRewardedVideoReward *reward;
 @property (nonatomic, assign) BOOL hasAdAvailable;
 @end
@@ -69,21 +69,69 @@
     
     _hasAdAvailable = false;
     
+    // get a weak self reference
+    __weak typeof (self) weakSelf = self;
+    
     // enable or disable test mode
     [SAVideoAd setTest:isTestEnabled];
     [SAVideoAd setConfigurationProduction];
     [SAVideoAd setIsParentalGateEnabled:isParentalGateEnabled];
-    [SAVideoAd setDelegate:self];
     [SAVideoAd setShouldShowCloseButton:shouldShowCloseButton];
     [SAVideoAd setShouldAutomaticallyCloseAtEnd:shouldAutomaticallyCloseAtEnd];
     [SAVideoAd setShouldLockOrientation:shouldLockOrientation];
     [SAVideoAd setLockOrientation:lockOrientation];
     [SAVideoAd setShouldShowSmallClickButton:shouldShowSmallClickButton];
+//    [SAVideoAd setCallback:^(NSInteger placementId, SAEvent event) {
+//        switch (event) {
+//            case adLoaded: {
+//                weakSelf.hasAdAvailable = true;
+//                weakSelf.reward = [[MPRewardedVideoReward alloc] initWithCurrencyType:kMPRewardedVideoRewardCurrencyTypeUnspecified amount:@(0)];
+//                [weakSelf.delegate rewardedVideoDidLoadAdForCustomEvent:weakSelf];
+//                break;
+//            }
+//            case adFailedToLoad: {
+//                [weakSelf.delegate rewardedVideoDidFailToLoadAdForCustomEvent:weakSelf
+//                                                                        error:[weakSelf createErrorWith:ERROR_LOAD_TITLE(@"Video Ad", placementId)
+//                                                                                              andReason:ERROR_LOAD_MESSAGE
+//                                                                                          andSuggestion:ERROR_LOAD_SUGGESTION]];
+//                break;
+//            }
+//            case adShown: {
+//                [weakSelf.delegate rewardedVideoDidAppearForCustomEvent:weakSelf];
+//                break;
+//            }
+//            case adFailedToShow: {
+//                [weakSelf.delegate rewardedVideoDidFailToPlayForCustomEvent:weakSelf
+//                                                                      error:[weakSelf createErrorWith:ERROR_SHOW_TITLE(@"Video Ad", 0)
+//                                                                                            andReason:ERROR_SHOW_MESSAGE
+//                                                                                        andSuggestion:ERROR_SHOW_SUGGESTION]];
+//                break;
+//            }
+//            case adClicked: {
+//                [weakSelf.delegate rewardedVideoDidReceiveTapEventForCustomEvent:weakSelf];
+//                [weakSelf.delegate rewardedVideoWillLeaveApplicationForCustomEvent:weakSelf];
+//                break;
+//            }
+//            case adClosed: {
+//                // reward
+//                [weakSelf.delegate rewardedVideoShouldRewardUserForCustomEvent:weakSelf reward:_reward];
+//                
+//                // call required events
+//                [weakSelf.delegate rewardedVideoWillDisappearForCustomEvent:weakSelf];
+//                [weakSelf.delegate rewardedVideoDidDisappearForCustomEvent:weakSelf];
+//                
+//                // also null this so no references remain and memory is freed correctly
+//                weakSelf.reward = NULL;
+//                break;
+//            }
+//        }
+//    }];
     [SAVideoAd load:placementId];
 }
 
 - (void) presentRewardedVideoFromViewController:(UIViewController *)viewController {
-    [SAVideoAd play];
+    // play
+    [SAVideoAd play: viewController];
     [self.delegate rewardedVideoWillAppearForCustomEvent:self];
 }
 
@@ -108,50 +156,5 @@
     
     return [NSError errorWithDomain:ERROR_DOMAIN code:ERROR_CODE userInfo:userInfo];
 }
-
-// MARK: SAProtocol implementation
-
-- (void) SADidLoadAd:(id) sender forPlacementId: (NSInteger) placementId {
-    _hasAdAvailable = true;
-    _reward = [[MPRewardedVideoReward alloc] initWithCurrencyType:kMPRewardedVideoRewardCurrencyTypeUnspecified amount:@(0)];
-    [self.delegate rewardedVideoDidLoadAdForCustomEvent:self];
-}
-
-- (void) SADidNotLoadAd:(id) sender forPlacementId: (NSInteger) placementId {
-    [self.delegate rewardedVideoDidFailToLoadAdForCustomEvent:self
-                                                        error:[self createErrorWith:ERROR_LOAD_TITLE(@"Video Ad", placementId)
-                                                                          andReason:ERROR_LOAD_MESSAGE
-                                                                      andSuggestion:ERROR_LOAD_SUGGESTION]];
-}
-
-- (void) SADidShowAd:(id) sender {
-    [self.delegate rewardedVideoDidAppearForCustomEvent:self];
-}
-
-- (void) SADidNotShowAd:(id) sender {
-    [self.delegate rewardedVideoDidFailToPlayForCustomEvent:self
-                                                      error:[self createErrorWith:ERROR_SHOW_TITLE(@"Video Ad", 0)
-                                                                        andReason:ERROR_SHOW_MESSAGE
-                                                                    andSuggestion:ERROR_SHOW_SUGGESTION]];
-}
-
-- (void) SADidClickAd:(id) sender {
-    [self.delegate rewardedVideoDidReceiveTapEventForCustomEvent:self];
-    [self.delegate rewardedVideoWillLeaveApplicationForCustomEvent:self];
-}
-
-- (void) SADidCloseAd:(id) sender {
-    // reward
-    [self.delegate rewardedVideoShouldRewardUserForCustomEvent:self reward:_reward];
-    
-    // call required events
-    [self.delegate rewardedVideoWillDisappearForCustomEvent:self];
-    [self.delegate rewardedVideoDidDisappearForCustomEvent:self];
-    
-    // also null this so no references remain and memory is freed correctly
-    _reward = NULL;
-}
-
-
 
 @end

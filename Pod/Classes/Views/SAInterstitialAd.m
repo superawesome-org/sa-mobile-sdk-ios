@@ -26,9 +26,6 @@
 @property (nonatomic, strong) SABannerAd *banner;
 @property (nonatomic, strong) UIButton *closeBtn;
 
-// events
-@property (nonatomic, strong) SAEvents *events;
-
 @end
 
 @implementation SAInterstitialAd
@@ -37,7 +34,7 @@
 static SAAd *ad;
 
 // other vars that need to be set statically
-static id<SAProtocol> delegate;
+static sacallback callback = ^(NSInteger placementId, SAEvent event) {};
 static BOOL isParentalGateEnabled = true;
 static BOOL shouldLockOrientation = false;
 static NSUInteger lockOrientation = UIInterfaceOrientationMaskAll;
@@ -52,7 +49,7 @@ static NSInteger configuration = 0;
     [super viewDidLoad];
 
     // get local versions of the static module vars
-    id<SAProtocol> _delegateL    = [SAInterstitialAd getDelegate];
+    sacallback _callbackL    = [SAInterstitialAd getCallback];
     SAAd *_adL = [SAInterstitialAd getAd];
     BOOL _isParentalGateEnabledL = [SAInterstitialAd getIsParentalGateEnabled];
     
@@ -69,7 +66,7 @@ static NSInteger configuration = 0;
     
     // create & play banner
     _banner = [[SABannerAd alloc] initWithFrame:CGRectZero];
-    [_banner setDelegate:_delegateL];
+     [_banner setCallback:callback];
     [_banner setIsParentalGateEnabled:_isParentalGateEnabledL];
     _banner.backgroundColor = self.view.backgroundColor;
     [SAUtils invoke:@"setAd:" onTarget:_banner, _adL];
@@ -228,32 +225,20 @@ static NSInteger configuration = 0;
         // get the ad
         ad = saAd;
         
-        // call delegate
-        if (ad != NULL) {
-            if (delegate && [delegate respondsToSelector:@selector(SADidLoadAd:forPlacementId:)]) {
-                [delegate SADidLoadAd:weakSelf forPlacementId:placementId];
-            }
-        } else {
-            if (delegate && [delegate respondsToSelector:@selector(SADidNotLoadAd:forPlacementId:)]) {
-                [delegate SADidNotLoadAd:weakSelf forPlacementId:placementId];
-            }
-        }
-        
+        // callback
+        callback(placementId, ad != NULL ? adLoaded : adFailedToLoad);
     }];
     
 }
 
-+ (void) play {
++ (void) play:(UIViewController*) parent {
     if (ad && ad.creative.creativeFormat != video) {
         
-        UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
         UIViewController *newVC = [[SAInterstitialAd alloc] init];
-        [root presentViewController:newVC animated:YES completion:nil];
+        [parent presentViewController:newVC animated:YES completion:nil];
         
     } else {
-        if (delegate && [delegate respondsToSelector:@selector(SADidNotShowAd:)]) {
-            [delegate SADidNotShowAd:self];
-        }
+        callback(0, adFailedToShow);
     }
 }
 
@@ -276,8 +261,8 @@ static NSInteger configuration = 0;
 // module.
 ////////////////////////////////////////////////////////////////////////////////
 
-+ (void) setDelegate:(id<SAProtocol>) del {
-    delegate = del;
++ (void) setCallback:(sacallback)call {
+    callback = call ? call : ^(NSInteger placementId, SAEvent event) {};
 }
 
 + (void) setIsParentalGateEnabled: (BOOL) value {
@@ -292,16 +277,16 @@ static NSInteger configuration = 0;
     lockOrientation = value;
 }
 
-+ (id<SAProtocol>) getDelegate {
-    return delegate;
-}
-
 + (BOOL) getIsParentalGateEnabled {
     return isParentalGateEnabled;
 }
 
 + (BOOL) getShouldLockOrientation {
     return shouldLockOrientation;
+}
+
++ (sacallback) getCallback {
+    return callback;
 }
 
 + (NSUInteger) getLockOrientation {

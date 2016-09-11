@@ -57,9 +57,6 @@
 @property (nonatomic, retain) UIAlertController *challangeAlertController;
 @property (nonatomic, retain) UIAlertView *wrongAnswerAlertView;
 
-// the ad response
-@property (nonatomic, retain) SAAd *ad;
-
 // weak ref to view
 @property (nonatomic, weak) id weakAdView;
 
@@ -68,18 +65,11 @@
 @implementation SAParentalGate
 
 // custom init functions
-- (id) initWithWeakRefToView:(id)weakRef {
+- (id) initWithWeakRefToView:(id)weakRef andAd:(SAAd *)ad {
     if (self = [super init]) {
         _weakAdView = weakRef;
-        
-        // get ad
-        NSValue *adVal = [SAUtils invoke:@"getAd" onTarget:_weakAdView];
-        if (adVal) {
-            [adVal getValue:&_ad];
-        }
-        
         _events = [[SAEvents alloc] init];
-        [_events setAd:_ad];
+        [_events setAd:ad];
     }
     
     return self;

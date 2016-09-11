@@ -9,18 +9,18 @@
 #import <UIKit/UIKit.h>
 
 // helper headers
-#import "SAProtocol.h"
 #import "SASession.h"
+#import "SACallback.h"
 
 @interface SAInterstitialAd : UIViewController
 
 // static "action" methods
 + (void) load:(NSInteger) placementId;
-+ (void) play;
++ (void) play:(UIViewController*) parent;
 + (BOOL) hasAdAvailable;
 
 // static "state" methods
-+ (void) setDelegate:(id<SAProtocol>) del;
++ (void) setCallback:(sacallback)call;
 + (void) setIsParentalGateEnabled: (BOOL) value;
 + (void) setShouldLockOrientation: (BOOL) value;
 + (void) setLockOrientation: (NSUInteger) value;

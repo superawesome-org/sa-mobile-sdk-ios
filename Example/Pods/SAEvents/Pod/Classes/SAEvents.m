@@ -27,10 +27,19 @@
 
 @interface SAEvents ()
 @property (nonatomic, strong) SAAd *ad;
+@property (nonatomic, strong) SANetwork *network;
 @property (nonatomic, strong) NSTimer *viewabilityTimer;
 @end
 
 @implementation SAEvents
+
+- (id) init {
+    if (self = [super init]) {
+        _network = [[SANetwork alloc] init];
+    }
+    
+    return self;
+}
 
 - (void) setAd:(SAAd *)ad {
     _ad = ad;
@@ -41,8 +50,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 - (void) sendEventToURL:(NSString *)url {
-    SANetwork *network = [[SANetwork alloc] init];
-    [network sendGET:url
+    [_network sendGET:url
            withQuery:@{}
            andHeader:@{@"Content-Type":@"application/json",
                        @"User-Agent":[SAUtils getUserAgent]}
@@ -64,7 +72,7 @@
     NSMutableArray *urls = [@[] mutableCopy];
     for (id track in tracks) {
         NSString *url = [track valueForKey:@"URL"];
-        if (url) {
+        if (url != NULL && url != [NSNull null] && ![url isEqualToString:@""]) {
             [urls addObject:url];
         }
     }
@@ -83,15 +91,18 @@
     // safety check
     if (_ad == NULL) return;
     
+    // get a weak self reference
+    __weak typeof (self) weakSelf = self;
+    
     // start timer
     __block NSInteger ticks = 0;
     _viewabilityTimer = [NSTimer scheduledTimerWithTimeInterval:1
                                                          target:[NSBlockOperation blockOperationWithBlock:^{
         
         if (ticks >= MAX_TICKS) {
-            [_viewabilityTimer invalidate];
-            _viewabilityTimer = nil;
-            [self sendAllEventsForKey:@"viewable_impr"];
+            [weakSelf.viewabilityTimer invalidate];
+            weakSelf.viewabilityTimer = nil;
+            [weakSelf sendAllEventsForKey:@"viewable_impr"];
         } else {
             ticks++;
             NSLog(@"[AA :: Info] Tick %ld/%d", (long)ticks, MAX_TICKS);
@@ -109,6 +120,9 @@
     // safety check
     if (_ad == NULL) return;
     
+    // get a weak self reference
+    __weak typeof (self) weakSelf = self;
+    
     // start timer
     __block NSInteger ticks = 0;
     __block NSInteger cticks = 0;
@@ -116,11 +130,11 @@
                                                          target:[NSBlockOperation blockOperationWithBlock:^{
         
         if (ticks >= MAX_TICKS) {
-            [_viewabilityTimer invalidate];
-            _viewabilityTimer = nil;
+            [weakSelf.viewabilityTimer invalidate];
+            weakSelf.viewabilityTimer = nil;
             
             if (cticks == MAX_TICKS) {
-                [self sendAllEventsForKey:@"viewable_impr"];
+                [weakSelf sendAllEventsForKey:@"viewable_impr"];
             } else {
                 NSLog(@"[AA :: Error] Did not send viewable impression");
             }
@@ -143,6 +157,15 @@
     // fire the timer
     [_viewabilityTimer fire];
     
+}
+
+- (void) close {
+    if (_viewabilityTimer != NULL) {
+        [_viewabilityTimer invalidate];
+    }
+    
+    _viewabilityTimer = NULL;
+    _network = NULL;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -169,28 +192,6 @@
         [moatValue getValue:&moatString];
     }
     
-//    // get the selector
-//    SEL selector = NSSelectorFromString(@"sendDisplayMoatEvent:andAdDictionary:");
-//    
-//    // try to see if it responds
-//    if ([self respondsToSelector:selector]){
-//        
-//        // form the invocation
-//        NSMethodSignature *signature = [self methodSignatureForSelector:selector];
-//        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
-//        [invocation setTarget:self];
-//        [invocation setSelector:selector];
-//        [invocation setArgument:&webplayer atIndex:2];
-//        [invocation setArgument:&moatDict atIndex:3];
-//        [invocation retainArguments];
-//        [invocation invoke];
-//        void* tmpResult;
-//        [invocation getReturnValue:&tmpResult];
-//        
-//        // get the result
-//        moatString = (__bridge NSString*)tmpResult;
-//    }
-    
     // return the moat-ified string
     return moatString;
 }
@@ -210,27 +211,6 @@
     
     // invoke the moat event
     [SAUtils invoke:@"sendVideoMoatEvent:andLayer:andView:andAdDictionary:" onTarget:self, player, layer, view, moatDict];
-    
-//    // get the selector
-//    SEL selector = NSSelectorFromString(@"sendVideoMoatEvent:andLayer:andView:andAdDictionary:");
-//    
-//    // try to see if the class responds to the selector
-//    if ([self respondsToSelector:selector]) {
-//        
-//        // create the invocation
-//        NSMethodSignature *signature = [self methodSignatureForSelector:selector];
-//        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
-//        [invocation setTarget:self];
-//        [invocation setSelector:selector];
-//        [invocation setArgument:&player atIndex:2];
-//        [invocation setArgument:&layer atIndex:3];
-//        [invocation setArgument:&view atIndex:4];
-//        [invocation setArgument:&moatDict atIndex:5];
-//        [invocation retainArguments];
-//        
-//        // finally invoke
-//        [invocation invoke];
-//    }
     
 }
 

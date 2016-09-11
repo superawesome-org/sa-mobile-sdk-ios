@@ -41,7 +41,7 @@
 static SAAd *ad;
 
 // other vars that need to be set statically
-static id<SAProtocol> delegate;
+static sacallback callback = ^(NSInteger placementId, SAEvent event) {};
 static BOOL isParentalGateEnabled = true;
 static BOOL shouldAutomaticallyCloseAtEnd = true;
 static BOOL shouldShowCloseButton = true;
@@ -60,7 +60,7 @@ static NSInteger configuration = 0;
     
     // get main static vars into local ones
     __block SAAd *_adL = [SAVideoAd getAd];
-    __block id <SAProtocol> _delegateL = [SAVideoAd getDelegate];
+    __block sacallback _callbackL = [SAVideoAd getCallback];
     __block BOOL _isParentalGateEnabledL = [SAVideoAd getIsParentalGateEnabled];
     __block BOOL _shouldAutomaticallyCloseAtEndL = [SAVideoAd getShouldAutomaticallyCloseAtEnd];
     __block BOOL _shouldShowCloseButtonL = [SAVideoAd getShouldShowCloseButton];
@@ -75,7 +75,7 @@ static NSInteger configuration = 0;
     __weak typeof (self) weakSelf = self;
     
     // start creating the banner ad
-    _gate = [[SAParentalGate alloc] initWithWeakRefToView:self];
+    _gate = [[SAParentalGate alloc] initWithWeakRefToView:self andAd:_adL];
     
     // create the player
     _player = [[SAVideoPlayer alloc] initWithFrame:CGRectZero];
@@ -104,10 +104,8 @@ static NSInteger configuration = 0;
                                                withLayer:[weakSelf.player getPlayerLayer]
                                                  andView:[weakSelf view]];
                 
-                // send delegate
-                if (_delegateL && [_delegateL respondsToSelector:@selector(SADidShowAd:)]) {
-                    [_delegateL SADidShowAd:weakSelf];
-                }
+                // callback
+                _callbackL(_adL.placementId, adShown);
                 
                 break;
             }
@@ -146,10 +144,8 @@ static NSInteger configuration = 0;
                 // close
                 [weakSelf close];
                 
-                // send delegate
-                if (_delegateL && [_delegateL respondsToSelector:@selector(SADidNotShowAd:)]) {
-                    [_delegateL SADidNotShowAd:weakSelf];
-                }
+                // send callback
+                _callbackL(_adL.placementId, adFailedToShow);
                 
                 break;
             }
@@ -299,6 +295,14 @@ static NSInteger configuration = 0;
 - (void) close {
     if (_isOKToClose) {
         
+        // call delegate
+        sacallback _callbackL = [SAVideoAd getCallback];
+        SAAd *_adL = [SAVideoAd getAd];
+        _callbackL(_adL.placementId, adClosed);
+        
+        // close
+        [_events close];
+        
         // null the ad
         // @warn: static
         [SAVideoAd nullAd];
@@ -313,12 +317,6 @@ static NSInteger configuration = 0;
         
         // destroy the gate
         _gate = nil;
-        
-        // call delegate
-        id<SAProtocol> _delegateL = [SAVideoAd getDelegate];
-        if ([_delegateL respondsToSelector:@selector(SADidCloseAd:)]) {
-            [_delegateL SADidCloseAd:self];
-        }
         
         // dismiss VC
         [self dismissViewControllerAnimated:YES completion:nil];
@@ -342,13 +340,11 @@ static NSInteger configuration = 0;
 
 - (void) click {
     // get delegate
-    id<SAProtocol> _delegateL = [SAVideoAd getDelegate];
+    sacallback _callbackL = [SAVideoAd getCallback];
     SAAd *_adL = [SAVideoAd getAd];
     
     // call delegate
-    if (_delegateL && [_delegateL respondsToSelector:@selector(SADidClickAd:)]) {
-        [_delegateL SADidClickAd:self];
-    }
+    _callbackL(_adL.placementId, adClicked);
     
     // call trackers
     [_events sendAllEventsForKey:@"click_tracking"];
@@ -402,31 +398,21 @@ static NSInteger configuration = 0;
         ad = saAd;
         
         // call delegate
-        if (ad != NULL) {
-            if (delegate && [delegate respondsToSelector:@selector(SADidLoadAd:forPlacementId:)]) {
-                [delegate SADidLoadAd:weakSelf forPlacementId:placementId];
-            }
-        } else {
-            if (delegate && [delegate respondsToSelector:@selector(SADidNotLoadAd:forPlacementId:)]) {
-                [delegate SADidNotLoadAd:weakSelf forPlacementId:placementId];
-            }
-        }
+        callback(placementId, ad != NULL ? adLoaded : adFailedToLoad);
         
     }];
 }
 
-+ (void) play {
++ (void) play:(UIViewController*)parent {
     
     if (ad && ad.creative.creativeFormat == video) {
         
-        UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
         UIViewController *newVC = [[SAVideoAd alloc] init];
-        [root presentViewController:newVC animated:YES completion:nil];
+        [parent presentViewController:newVC animated:YES completion:nil];
         
     } else {
-        if (delegate && [delegate respondsToSelector:@selector(SADidNotShowAd:)]) {
-            [delegate SADidNotShowAd:self];
-        }
+        // callback for failure
+        callback(0, adFailedToShow);
     }
 }
 
@@ -456,8 +442,8 @@ static NSInteger configuration = 0;
 // module.
 ////////////////////////////////////////////////////////////////////////////////
 
-+ (void) setDelegate:(id<SAProtocol>)del {
-    delegate = del;
++ (void) setCallback:(sacallback)call {
+    callback = call ? call : ^(NSInteger placementId, SAEvent event) {};
 }
 
 + (void) setIsParentalGateEnabled: (BOOL) value {
@@ -484,8 +470,8 @@ static NSInteger configuration = 0;
     lockOrientation = value;
 }
 
-+ (id<SAProtocol>) getDelegate {
-    return delegate;
++ (sacallback) getCallback {
+    return callback;
 }
 
 + (BOOL) getIsParentalGateEnabled {

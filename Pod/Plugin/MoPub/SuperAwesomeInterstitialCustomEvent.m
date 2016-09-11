@@ -13,7 +13,7 @@
 #import "SuperAwesome.h"
 #import "SuperAwesomeMoPub.h"
 
-@interface SuperAwesomeInterstitialCustomEvent () <SAProtocol>
+@interface SuperAwesomeInterstitialCustomEvent ()
 @end
 
 @implementation SuperAwesomeInterstitialCustomEvent
@@ -39,6 +39,9 @@
         return;
     }
     
+    // get a weak self reference
+    __weak typeof (self) weakSelf = self;
+    
     // assign values, because they exist
     BOOL isTestEnabled = [isTestEnabledObj boolValue];
     NSInteger placementId = [placementIdObj integerValue];
@@ -59,15 +62,53 @@
     // start the loader
     [SAInterstitialAd setTest:isTestEnabled];
     [SAInterstitialAd setConfigurationProduction];
-    [SAInterstitialAd setDelegate:self];
     [SAInterstitialAd setIsParentalGateEnabled:isParentalGateEnabled];
     [SAInterstitialAd setShouldLockOrientation:shouldLockOrientation];
     [SAInterstitialAd setLockOrientation:lockOrientation];
+//    [SAInterstitialAd setCallback:^(NSInteger placementId, SAEvent event) {
+//        switch (event) {
+//            case adLoaded: {
+//                [weakSelf.delegate interstitialCustomEvent:weakSelf didLoadAd:[SAInterstitialAd self]];
+//                break;
+//            }
+//            case adFailedToLoad: {
+//                [weakSelf.delegate interstitialCustomEvent:weakSelf
+//                                  didFailToLoadAdWithError:[weakSelf createErrorWith:ERROR_LOAD_TITLE(@"Interstitial Ad", placementId)
+//                                                                           andReason:ERROR_LOAD_MESSAGE
+//                                                                       andSuggestion:ERROR_LOAD_SUGGESTION]];
+//                break;
+//            }
+//            case adShown: {
+//                [weakSelf.delegate interstitialCustomEventDidAppear:weakSelf];
+//                break;
+//            }
+//            case adFailedToShow: {
+//                [weakSelf.delegate interstitialCustomEvent:weakSelf
+//                                  didFailToLoadAdWithError:[weakSelf createErrorWith:ERROR_SHOW_TITLE(@"Interstitial Ad", 0)
+//                                                                           andReason:ERROR_SHOW_MESSAGE
+//                                                                       andSuggestion:ERROR_SHOW_SUGGESTION]];
+//                break;
+//            }
+//            case adClicked: {
+//                [weakSelf.delegate interstitialCustomEventDidReceiveTapEvent:weakSelf];
+//                [weakSelf.delegate interstitialCustomEventWillLeaveApplication:weakSelf];
+//                break;
+//            }
+//            case adClosed: {
+//                [weakSelf.delegate interstitialCustomEventWillDisappear:weakSelf];
+//                [weakSelf.delegate interstitialCustomEventDidDisappear:weakSelf];
+//                break;
+//            }
+//        }
+//    }];
+    
+    // load
     [SAInterstitialAd load:placementId];
 }
 
 - (void) showInterstitialFromRootViewController:(UIViewController *)rootViewController {
-    [SAInterstitialAd play];
+    // play
+    [SAInterstitialAd play:rootViewController];
     [self.delegate interstitialCustomEventWillAppear:self];
 }
 
@@ -79,42 +120,6 @@
                                };
     
     return [NSError errorWithDomain:ERROR_DOMAIN code:ERROR_CODE userInfo:userInfo];
-}
-
-
-
-// MARK: SAProtocol functions
-
-- (void) SADidLoadAd:(id) sender forPlacementId: (NSInteger) placementId {
-    [self.delegate interstitialCustomEvent:self didLoadAd:[SAInterstitialAd self]];
-}
-
-- (void) SADidNotLoadAd:(id) sender forPlacementId: (NSInteger) placementId {
-    [self.delegate interstitialCustomEvent:self
-                  didFailToLoadAdWithError:[self createErrorWith:ERROR_LOAD_TITLE(@"Interstitial Ad", placementId)
-                                                       andReason:ERROR_LOAD_MESSAGE
-                                                   andSuggestion:ERROR_LOAD_SUGGESTION]];
-}
-
-- (void) SADidShowAd:(id) sender {
-    [self.delegate interstitialCustomEventDidAppear:self];
-}
-
-- (void) SADidNotShowAd:(id) sender {
-    [self.delegate interstitialCustomEvent:self
-                  didFailToLoadAdWithError:[self createErrorWith:ERROR_SHOW_TITLE(@"Interstitial Ad", 0)
-                                                       andReason:ERROR_SHOW_MESSAGE
-                                                   andSuggestion:ERROR_SHOW_SUGGESTION]];
-}
-
-- (void) SADidClickAd:(id) sender {
-    [self.delegate interstitialCustomEventDidReceiveTapEvent:self];
-    [self.delegate interstitialCustomEventWillLeaveApplication:self];
-}
-
-- (void) SADidCloseAd:(id) sender {
-    [self.delegate interstitialCustomEventWillDisappear:self];
-    [self.delegate interstitialCustomEventDidDisappear:self];
 }
 
 @end

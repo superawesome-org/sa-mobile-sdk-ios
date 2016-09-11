@@ -57,13 +57,6 @@
                        (ad.creative.creativeFormat == video ? @"video/" : @""),
                        [SAUtils formGetQueryFromDict:trackjson]];
     
-    // get the impression
-    SATracking *impr = [[SATracking alloc] init];
-    if (ad.creative.impressionUrl) {
-        impr.URL = ad.creative.impressionUrl;
-        impr.event = @"impression";
-    }
-    
     // get the viewbale impression URL
     NSDictionary *imprjson = @{
         @"sdkVersion":[session getVersion],
@@ -157,10 +150,15 @@
     [ad.creative.events addObject:parentalGateOpen];
     [ad.creative.events addObject:parentalGateClose];
     [ad.creative.events addObject:parentalGateFail];
-    if (ad.creative.impressionUrl) {
-        [ad.creative.events addObject:impr];
+    
+    // get the impression
+    if (ad.creative.impressionUrl != NULL && ad.creative.impressionUrl != [NSNull null]) {
+        SATracking *impression = [[SATracking alloc] init];
+        impression.URL = ad.creative.impressionUrl;
+        impression.event = @"impression";
+        [ad.creative.events addObject:impression];
     }
-
+    
     // get the cdn URL
     switch (ad.creative.creativeFormat) {
         case image: {
