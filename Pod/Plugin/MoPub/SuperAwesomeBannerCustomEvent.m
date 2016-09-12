@@ -57,39 +57,39 @@
     [_banner setTest:isTestEnabled];
     [_banner setConfigurationProduction];
     [_banner setIsParentalGateEnabled:isParentalGateEnabled];
-//    [_banner setCallback:^(NSInteger placementId, SAEvent event) {
-//        switch (event) {
-//            case adLoaded: {
-//                [weakSelf.delegate bannerCustomEvent:weakSelf didLoadAd:weakSelf.banner];
-//                [weakSelf.banner play];
-//                break;
-//            }
-//            case adFailedToLoad: {
-//                [weakSelf.delegate bannerCustomEvent:weakSelf
-//                            didFailToLoadAdWithError:[weakSelf createErrorWith:ERROR_LOAD_TITLE(@"Banner Ad", placementId)
-//                                                                     andReason:ERROR_LOAD_MESSAGE
-//                                                                 andSuggestion:ERROR_LOAD_SUGGESTION]];
-//                break;
-//            }
-//            case adShown: {
-//                break;
-//            }
-//            case adFailedToShow: {
-//                [weakSelf.delegate bannerCustomEvent:weakSelf
-//                            didFailToLoadAdWithError:[weakSelf createErrorWith:ERROR_SHOW_TITLE(@"Banner Ad", 0)
-//                                                                     andReason:ERROR_SHOW_MESSAGE
-//                                                                 andSuggestion:ERROR_SHOW_SUGGESTION]];
-//                break;
-//            }
-//            case adClicked: {
-//                [weakSelf.delegate bannerCustomEventWillLeaveApplication:weakSelf];
-//                break;
-//            }
-//            case adClosed: {
-//                break;
-//            }
-//        }
-//    }];
+    [_banner setCallback:^(NSInteger placementId, SAEvent event) {
+        switch (event) {
+            case adLoaded: {
+                [weakSelf.delegate bannerCustomEvent:weakSelf didLoadAd:weakSelf.banner];
+                [weakSelf.banner play];
+                break;
+            }
+            case adFailedToLoad: {
+                [weakSelf.delegate bannerCustomEvent:weakSelf
+                            didFailToLoadAdWithError:[weakSelf createErrorWith:ERROR_LOAD_TITLE(@"Banner Ad", placementId)
+                                                                     andReason:ERROR_LOAD_MESSAGE
+                                                                 andSuggestion:ERROR_LOAD_SUGGESTION]];
+                break;
+            }
+            case adShown: {
+                break;
+            }
+            case adFailedToShow: {
+                [weakSelf.delegate bannerCustomEvent:weakSelf
+                            didFailToLoadAdWithError:[weakSelf createErrorWith:ERROR_SHOW_TITLE(@"Banner Ad", 0)
+                                                                     andReason:ERROR_SHOW_MESSAGE
+                                                                 andSuggestion:ERROR_SHOW_SUGGESTION]];
+                break;
+            }
+            case adClicked: {
+                [weakSelf.delegate bannerCustomEventWillLeaveApplication:weakSelf];
+                break;
+            }
+            case adClosed: {
+                break;
+            }
+        }
+    }];
     
     // load
     [_banner load:placementId];

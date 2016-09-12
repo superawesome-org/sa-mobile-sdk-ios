@@ -66,7 +66,7 @@ static NSInteger configuration = 0;
     
     // create & play banner
     _banner = [[SABannerAd alloc] initWithFrame:CGRectZero];
-     [_banner setCallback:callback];
+     [_banner setCallback:_callbackL];
     [_banner setIsParentalGateEnabled:_isParentalGateEnabledL];
     _banner.backgroundColor = self.view.backgroundColor;
     [SAUtils invoke:@"setAd:" onTarget:_banner, _adL];
@@ -207,9 +207,6 @@ static NSInteger configuration = 0;
 ////////////////////////////////////////////////////////////////////////////////
 
 + (void) load:(NSInteger) placementId {
-    
-    // get a weak self reference
-    __weak typeof (self) weakSelf = self;
     
     // form a new session
     SASession *session = [[SASession alloc] init];

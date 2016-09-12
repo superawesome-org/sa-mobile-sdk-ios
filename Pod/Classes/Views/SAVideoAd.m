@@ -380,9 +380,6 @@ static NSInteger configuration = 0;
 
 + (void) load:(NSInteger) placementId {
     
-    // get a weak self reference
-    __weak typeof (self) weakSelf = self;
-    
     // form a new session
     SASession *session = [[SASession alloc] init];
     [session setConfiguration:configuration];

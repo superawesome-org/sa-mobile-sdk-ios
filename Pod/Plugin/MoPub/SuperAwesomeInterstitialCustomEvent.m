@@ -65,42 +65,42 @@
     [SAInterstitialAd setIsParentalGateEnabled:isParentalGateEnabled];
     [SAInterstitialAd setShouldLockOrientation:shouldLockOrientation];
     [SAInterstitialAd setLockOrientation:lockOrientation];
-//    [SAInterstitialAd setCallback:^(NSInteger placementId, SAEvent event) {
-//        switch (event) {
-//            case adLoaded: {
-//                [weakSelf.delegate interstitialCustomEvent:weakSelf didLoadAd:[SAInterstitialAd self]];
-//                break;
-//            }
-//            case adFailedToLoad: {
-//                [weakSelf.delegate interstitialCustomEvent:weakSelf
-//                                  didFailToLoadAdWithError:[weakSelf createErrorWith:ERROR_LOAD_TITLE(@"Interstitial Ad", placementId)
-//                                                                           andReason:ERROR_LOAD_MESSAGE
-//                                                                       andSuggestion:ERROR_LOAD_SUGGESTION]];
-//                break;
-//            }
-//            case adShown: {
-//                [weakSelf.delegate interstitialCustomEventDidAppear:weakSelf];
-//                break;
-//            }
-//            case adFailedToShow: {
-//                [weakSelf.delegate interstitialCustomEvent:weakSelf
-//                                  didFailToLoadAdWithError:[weakSelf createErrorWith:ERROR_SHOW_TITLE(@"Interstitial Ad", 0)
-//                                                                           andReason:ERROR_SHOW_MESSAGE
-//                                                                       andSuggestion:ERROR_SHOW_SUGGESTION]];
-//                break;
-//            }
-//            case adClicked: {
-//                [weakSelf.delegate interstitialCustomEventDidReceiveTapEvent:weakSelf];
-//                [weakSelf.delegate interstitialCustomEventWillLeaveApplication:weakSelf];
-//                break;
-//            }
-//            case adClosed: {
-//                [weakSelf.delegate interstitialCustomEventWillDisappear:weakSelf];
-//                [weakSelf.delegate interstitialCustomEventDidDisappear:weakSelf];
-//                break;
-//            }
-//        }
-//    }];
+    [SAInterstitialAd setCallback:^(NSInteger placementId, SAEvent event) {
+        switch (event) {
+            case adLoaded: {
+                [weakSelf.delegate interstitialCustomEvent:weakSelf didLoadAd:[SAInterstitialAd self]];
+                break;
+            }
+            case adFailedToLoad: {
+                [weakSelf.delegate interstitialCustomEvent:weakSelf
+                                  didFailToLoadAdWithError:[weakSelf createErrorWith:ERROR_LOAD_TITLE(@"Interstitial Ad", placementId)
+                                                                           andReason:ERROR_LOAD_MESSAGE
+                                                                       andSuggestion:ERROR_LOAD_SUGGESTION]];
+                break;
+            }
+            case adShown: {
+                [weakSelf.delegate interstitialCustomEventDidAppear:weakSelf];
+                break;
+            }
+            case adFailedToShow: {
+                [weakSelf.delegate interstitialCustomEvent:weakSelf
+                                  didFailToLoadAdWithError:[weakSelf createErrorWith:ERROR_SHOW_TITLE(@"Interstitial Ad", 0)
+                                                                           andReason:ERROR_SHOW_MESSAGE
+                                                                       andSuggestion:ERROR_SHOW_SUGGESTION]];
+                break;
+            }
+            case adClicked: {
+                [weakSelf.delegate interstitialCustomEventDidReceiveTapEvent:weakSelf];
+                [weakSelf.delegate interstitialCustomEventWillLeaveApplication:weakSelf];
+                break;
+            }
+            case adClosed: {
+                [weakSelf.delegate interstitialCustomEventWillDisappear:weakSelf];
+                [weakSelf.delegate interstitialCustomEventDidDisappear:weakSelf];
+                break;
+            }
+        }
+    }];
     
     // load
     [SAInterstitialAd load:placementId];

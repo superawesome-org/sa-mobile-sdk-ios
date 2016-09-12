@@ -52,43 +52,11 @@
 //        }
 //    }];
     
-    [SAVideoAd setConfigurationStaging];
-    [SAVideoAd setTestDisabled];
-    [SAVideoAd load:252];
-    [SAVideoAd load:116];
-    [SAVideoAd setCallback:^(NSInteger placementId, SAEvent event) {
-        switch (event) {
-            case adLoaded: {
-                NSLog(@"==> %ld - %@", (long) placementId, @"adLoaded");
-                break;
-            }
-            case adFailedToLoad: {
-                NSLog(@"==> %ld - %@", (long) placementId, @"adFailedToLoad");
-                break;
-            }
-            case adShown: {
-                NSLog(@"==> %ld - %@", (long) placementId, @"adShown");
-                break;
-            }
-            case adFailedToShow: {
-                NSLog(@"==> %ld - %@", (long) placementId, @"adFailedToShow");
-                break;
-            }
-            case adClicked: {
-                NSLog(@"==> %ld - %@", (long) placementId, @"adClicked");
-                break;
-            }
-            case adClosed: {
-                NSLog(@"==> %ld - %@", (long) placementId, @"adClosed");
-                break;
-            }
-        }
-    }];
-    
-    
-//    [SAInterstitialAd setConfigurationStaging];
-//    [SAInterstitialAd setTestDisabled];
-//    [SAInterstitialAd setCallback:^(NSInteger placementId, SAEvent event) {
+//    [SAVideoAd setConfigurationStaging];
+//    [SAVideoAd setTestDisabled];
+//    [SAVideoAd load:252];
+//    [SAVideoAd load:116];
+//    [SAVideoAd setCallback:^(NSInteger placementId, SAEvent event) {
 //        switch (event) {
 //            case adLoaded: {
 //                NSLog(@"==> %ld - %@", (long) placementId, @"adLoaded");
@@ -116,8 +84,39 @@
 //            }
 //        }
 //    }];
-//    [SAInterstitialAd load:247];
-//    [SAInterstitialAd load:117];
+    
+    
+    [SAInterstitialAd setConfigurationStaging];
+    [SAInterstitialAd setTestDisabled];
+    [SAInterstitialAd setCallback:^(NSInteger placementId, SAEvent event) {
+        switch (event) {
+            case adLoaded: {
+                NSLog(@"==> %ld - %@", (long) placementId, @"adLoaded");
+                break;
+            }
+            case adFailedToLoad: {
+                NSLog(@"==> %ld - %@", (long) placementId, @"adFailedToLoad");
+                break;
+            }
+            case adShown: {
+                NSLog(@"==> %ld - %@", (long) placementId, @"adShown");
+                break;
+            }
+            case adFailedToShow: {
+                NSLog(@"==> %ld - %@", (long) placementId, @"adFailedToShow");
+                break;
+            }
+            case adClicked: {
+                NSLog(@"==> %ld - %@", (long) placementId, @"adClicked");
+                break;
+            }
+            case adClosed: {
+                NSLog(@"==> %ld - %@", (long) placementId, @"adClosed");
+                break;
+            }
+        }
+    }];
+    [SAInterstitialAd load:247];
 }
 
 - (void)didReceiveMemoryWarning {
