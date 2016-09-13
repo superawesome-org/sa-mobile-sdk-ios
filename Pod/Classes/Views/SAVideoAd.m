@@ -33,14 +33,15 @@
 // events
 @property (nonatomic, strong) SAEvents *events;
 
+// the ad
+@property (nonatomic, strong) SAAd *ad;
+
 @end
 
 @implementation SAVideoAd
 
-// current loaded ad
-static SAAd *ad;
-
 // other vars that need to be set statically
+static NSMutableArray <SAAd*> *ads;
 static sacallback callback = ^(NSInteger placementId, SAEvent event) {};
 static BOOL isParentalGateEnabled = true;
 static BOOL shouldAutomaticallyCloseAtEnd = true;
@@ -59,23 +60,22 @@ static NSInteger configuration = 0;
     [super viewDidLoad];
     
     // get main static vars into local ones
-    __block SAAd *_adL = [SAVideoAd getAd];
     __block sacallback _callbackL = [SAVideoAd getCallback];
     __block BOOL _isParentalGateEnabledL = [SAVideoAd getIsParentalGateEnabled];
     __block BOOL _shouldAutomaticallyCloseAtEndL = [SAVideoAd getShouldAutomaticallyCloseAtEnd];
     __block BOOL _shouldShowCloseButtonL = [SAVideoAd getShouldShowCloseButton];
     __block BOOL _shouldShowSmallClickButtonL = [SAVideoAd getShouldShowSmallClickButton];
-    __block BOOL _shouldShowPadlockL = [SAVideoAd shouldShowPadlock];
+    __block BOOL _shouldShowPadlockL = [self shouldShowPadlock];
     
     // start events
     _events = [[SAEvents alloc] init];
-    [_events setAd:_adL];
+    [_events setAd:_ad];
     
     // get a weak self reference
     __weak typeof (self) weakSelf = self;
     
     // start creating the banner ad
-    _gate = [[SAParentalGate alloc] initWithWeakRefToView:self andAd:_adL];
+    _gate = [[SAParentalGate alloc] initWithWeakRefToView:self andAd:_ad];
     
     // create the player
     _player = [[SAVideoPlayer alloc] initWithFrame:CGRectZero];
@@ -89,7 +89,7 @@ static NSInteger configuration = 0;
             case Video_Start: {
                 
                 // is OK to close
-                _isOKToClose = true;
+                weakSelf.isOKToClose = true;
                 
                 // send vast ad impressions
                 [weakSelf.events sendAllEventsForKey:@"impression"];
@@ -105,7 +105,7 @@ static NSInteger configuration = 0;
                                                  andView:[weakSelf view]];
                 
                 // callback
-                _callbackL(_adL.placementId, adShown);
+                _callbackL(weakSelf.ad.placementId, adShown);
                 
                 break;
             }
@@ -145,7 +145,7 @@ static NSInteger configuration = 0;
                 [weakSelf close];
                 
                 // send callback
-                _callbackL(_adL.placementId, adFailedToShow);
+                _callbackL(weakSelf.ad.placementId, adFailedToShow);
                 
                 break;
             }
@@ -190,9 +190,6 @@ static NSInteger configuration = 0;
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    // get the ad from static
-    SAAd *_adL = [SAVideoAd getAd];
-    
     // set status bar hidden
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
     
@@ -234,11 +231,11 @@ static NSInteger configuration = 0;
     [self resize:CGRectMake(0, 0, currentSize.width, currentSize.height)];
     
     // actually start playing the video
-    if (_adL.creative.details.media.isOnDisk) {
-        NSString *finalDiskURL = [SAUtils filePathInDocuments:_adL.creative.details.media.playableDiskUrl];
+    if (_ad.creative.details.media.isOnDisk) {
+        NSString *finalDiskURL = [SAUtils filePathInDocuments:_ad.creative.details.media.playableDiskUrl];
         [_player playWithMediaFile:finalDiskURL];
     } else {
-        NSURL *url = [NSURL URLWithString:_adL.creative.details.media.playableMediaUrl];
+        NSURL *url = [NSURL URLWithString:_ad.creative.details.media.playableMediaUrl];
         [_player playWithMediaURL:url];
     }
 }
@@ -297,15 +294,14 @@ static NSInteger configuration = 0;
         
         // call delegate
         sacallback _callbackL = [SAVideoAd getCallback];
-        SAAd *_adL = [SAVideoAd getAd];
-        _callbackL(_adL.placementId, adClosed);
+        _callbackL(_ad.placementId, adClosed);
         
         // close
         [_events close];
         
         // null the ad
         // @warn: static
-        [SAVideoAd nullAd];
+        [SAVideoAd removeAdFromLoadedAds:_ad];
         
         // destroy the player
         [_player destroy];
@@ -341,17 +337,16 @@ static NSInteger configuration = 0;
 - (void) click {
     // get delegate
     sacallback _callbackL = [SAVideoAd getCallback];
-    SAAd *_adL = [SAVideoAd getAd];
     
     // call delegate
-    _callbackL(_adL.placementId, adClicked);
+    _callbackL(_ad.placementId, adClicked);
     
     // call trackers
     [_events sendAllEventsForKey:@"click_tracking"];
     [_events sendAllEventsForKey:@"custom_clicks"];
     
     // setup the current click URL
-    for (SATracking *tracking in _adL.creative.events) {
+    for (SATracking *tracking in _ad.creative.events) {
         if ([tracking.event rangeOfString:@"click_through"].location != NSNotFound) {
             _destinationURL = tracking.URL;
         }
@@ -364,6 +359,13 @@ static NSInteger configuration = 0;
     }
     
     NSLog(@"[AA :: INFO] Going to %@", _destinationURL);
+}
+
+- (BOOL) shouldShowPadlock {
+    if (_ad.creative.creativeFormat == tag) return false;
+    if (_ad.isFallback) return false;
+    if (_ad.isHouse && !_ad.safeAdApproved) return false;
+    return true;
 }
 
 - (void) pause {
@@ -391,45 +393,57 @@ static NSInteger configuration = 0;
     SALoader *loader = [[SALoader alloc] init];
     [loader loadAd:placementId withSession:session andResult:^(SAAd *saAd) {
         
-        // get the ad
-        ad = saAd;
+        // create ads array
+        if (ads == NULL) {
+            ads = [@[] mutableCopy];
+        }
         
-        // call delegate
-        callback(placementId, ad != NULL ? adLoaded : adFailedToLoad);
+        // add to the array queue
+        if (saAd != NULL) {
+            [ads addObject:saAd];
+        }
+        
+        // callback
+        callback(placementId, saAd != NULL ? adLoaded : adFailedToLoad);
         
     }];
 }
 
-+ (void) play:(UIViewController*)parent {
++ (void) play:(NSInteger) placementId fromVC:(UIViewController*)parent {
     
-    if (ad && ad.creative.creativeFormat == video) {
+    // find out if the ad is loaded
+    SAAd *adL = NULL;
+    for (SAAd *ad in ads) {
+        if (ad.placementId == placementId) {
+            adL = ad;
+        }
+    }
+    
+    // try to start the view controller (if there is one ad that's OK)
+    if (adL && adL.creative.creativeFormat == video) {
         
-        UIViewController *newVC = [[SAVideoAd alloc] init];
+        SAVideoAd *newVC = [[SAVideoAd alloc] init];
+        newVC.ad = adL;
         [parent presentViewController:newVC animated:YES completion:nil];
         
     } else {
-        // callback for failure
-        callback(0, adFailedToShow);
+        callback(placementId, adFailedToShow);
     }
 }
 
-+ (BOOL) shouldShowPadlock {
-    if (ad.creative.creativeFormat == tag) return false;
-    if (ad.isFallback) return false;
-    if (ad.isHouse && !ad.safeAdApproved) return false;
-    return true;
++ (BOOL) hasAdAvailable: (NSInteger) placementId {
+    BOOL hasAd = false;
+    for (SAAd *ad in ads) {
+        if (ad.placementId == placementId) {
+            hasAd = true;
+            break;
+        }
+    }
+    return hasAd;
 }
 
-+ (BOOL) hasAdAvailable {
-    return ad != NULL;
-}
-
-+ (SAAd*) getAd {
-    return ad;
-}
-
-+ (void) nullAd {
-    ad = NULL;
++ (void) removeAdFromLoadedAds:(SAAd*)ad {
+    [ads removeObject:ad];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -440,7 +454,7 @@ static NSInteger configuration = 0;
 ////////////////////////////////////////////////////////////////////////////////
 
 + (void) setCallback:(sacallback)call {
-    callback = call ? call : ^(NSInteger placementId, SAEvent event) {};
+    callback = call ? call : callback;
 }
 
 + (void) setIsParentalGateEnabled: (BOOL) value {

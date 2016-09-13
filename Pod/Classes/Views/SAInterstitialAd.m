@@ -24,6 +24,7 @@
 
 // views
 @property (nonatomic, strong) SABannerAd *banner;
+@property (nonatomic, strong) SAAd *ad;
 @property (nonatomic, strong) UIButton *closeBtn;
 
 @end
@@ -31,7 +32,7 @@
 @implementation SAInterstitialAd
 
 // current loaded ad
-static SAAd *ad;
+static NSMutableArray<SAAd*> *ads;
 
 // other vars that need to be set statically
 static sacallback callback = ^(NSInteger placementId, SAEvent event) {};
@@ -50,7 +51,6 @@ static NSInteger configuration = 0;
 
     // get local versions of the static module vars
     sacallback _callbackL    = [SAInterstitialAd getCallback];
-    SAAd *_adL = [SAInterstitialAd getAd];
     BOOL _isParentalGateEnabledL = [SAInterstitialAd getIsParentalGateEnabled];
     
     // set bg color
@@ -69,7 +69,7 @@ static NSInteger configuration = 0;
      [_banner setCallback:_callbackL];
     [_banner setIsParentalGateEnabled:_isParentalGateEnabledL];
     _banner.backgroundColor = self.view.backgroundColor;
-    [SAUtils invoke:@"setAd:" onTarget:_banner, _adL];
+    [SAUtils invoke:@"setAd:" onTarget:_banner, _ad];
     [self.view addSubview:_banner];
 }
 
@@ -175,7 +175,7 @@ static NSInteger configuration = 0;
 
 - (void) close {
     // null ad
-    [SAInterstitialAd nullAd];
+    [SAInterstitialAd removeAdFromLoadedAds:_ad];
     
     // close the banner
     [_banner close];
@@ -219,36 +219,57 @@ static NSInteger configuration = 0;
     SALoader *loader = [[SALoader alloc] init];
     [loader loadAd:placementId withSession:session andResult:^(SAAd *saAd) {
         
-        // get the ad
-        ad = saAd;
+        // create ads array
+        if (ads == NULL) {
+            ads = [@[] mutableCopy];
+        }
+        
+        // add to the array queue
+        if (saAd != NULL) {
+            [ads addObject:saAd];
+        }
         
         // callback
-        callback(placementId, ad != NULL ? adLoaded : adFailedToLoad);
+        callback(placementId, saAd != NULL ? adLoaded : adFailedToLoad);
     }];
     
 }
 
-+ (void) play:(UIViewController*) parent {
-    if (ad && ad.creative.creativeFormat != video) {
++ (void) play:(NSInteger) placementId fromVC:(UIViewController*)parent {
+    
+    // find out if the ad is loaded
+    SAAd *adL = NULL;
+    for (SAAd *ad in ads) {
+        if (ad.placementId == placementId) {
+            adL = ad;
+        }
+    }
+    
+    // try to start the view controller (if there is one ad that's OK)
+    if (adL && adL.creative.creativeFormat != video) {
         
-        UIViewController *newVC = [[SAInterstitialAd alloc] init];
+        SAInterstitialAd *newVC = [[SAInterstitialAd alloc] init];
+        newVC.ad = adL;
         [parent presentViewController:newVC animated:YES completion:nil];
         
     } else {
-        callback(0, adFailedToShow);
+        callback(placementId, adFailedToShow);
     }
 }
 
-+ (BOOL) hasAdAvailable {
-    return ad != NULL;
++ (BOOL) hasAdAvailable: (NSInteger) placementId {
+    BOOL hasAd = false;
+    for (SAAd *ad in ads) {
+        if (ad.placementId == placementId) {
+            hasAd = true;
+            break;
+        }
+    }
+    return hasAd;
 }
 
-+ (SAAd*) getAd {
-    return ad;
-}
-
-+ (void) nullAd {
-    ad = NULL;
++ (void) removeAdFromLoadedAds:(SAAd*)ad {
+    [ads removeObject:ad];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -259,7 +280,7 @@ static NSInteger configuration = 0;
 ////////////////////////////////////////////////////////////////////////////////
 
 + (void) setCallback:(sacallback)call {
-    callback = call ? call : ^(NSInteger placementId, SAEvent event) {};
+    callback = call ? call : callback;
 }
 
 + (void) setIsParentalGateEnabled: (BOOL) value {

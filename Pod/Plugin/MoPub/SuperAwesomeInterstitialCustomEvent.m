@@ -14,6 +14,7 @@
 #import "SuperAwesomeMoPub.h"
 
 @interface SuperAwesomeInterstitialCustomEvent ()
+@property (nonatomic, assign) NSInteger placementId;
 @end
 
 @implementation SuperAwesomeInterstitialCustomEvent
@@ -44,7 +45,7 @@
     
     // assign values, because they exist
     BOOL isTestEnabled = [isTestEnabledObj boolValue];
-    NSInteger placementId = [placementIdObj integerValue];
+    _placementId = [placementIdObj integerValue];
     BOOL isParentalGateEnabled = (isParentalGateEnabledObj != NULL ? [isParentalGateEnabledObj boolValue] : true);
     BOOL shouldLockOrientation = (shouldLockOrientationObj != NULL ? [shouldLockOrientationObj boolValue] : false);
     NSInteger lockOrientation = UIInterfaceOrientationMaskAll;
@@ -103,12 +104,12 @@
     }];
     
     // load
-    [SAInterstitialAd load:placementId];
+    [SAInterstitialAd load:_placementId];
 }
 
 - (void) showInterstitialFromRootViewController:(UIViewController *)rootViewController {
     // play
-    [SAInterstitialAd play:rootViewController];
+    [SAInterstitialAd play:_placementId fromVC:rootViewController];
     [self.delegate interstitialCustomEventWillAppear:self];
 }
 

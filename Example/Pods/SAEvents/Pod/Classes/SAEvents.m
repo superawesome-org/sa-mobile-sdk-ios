@@ -55,11 +55,7 @@
            andHeader:@{@"Content-Type":@"application/json",
                        @"User-Agent":[SAUtils getUserAgent]}
         withResponse:^(NSInteger status, NSString *payload, BOOL success) {
-            if (success) {
-                NSLog(@"Event sent OK!");
-            } else {
-                NSLog(@"Event sent NOK!");
-            }
+            NSLog(@"Event [%d] | [%ld] | %@", success, (long) status, payload);
         }];
 }
 
@@ -91,18 +87,15 @@
     // safety check
     if (_ad == NULL) return;
     
-    // get a weak self reference
-    __weak typeof (self) weakSelf = self;
-    
     // start timer
     __block NSInteger ticks = 0;
     _viewabilityTimer = [NSTimer scheduledTimerWithTimeInterval:1
                                                          target:[NSBlockOperation blockOperationWithBlock:^{
         
         if (ticks >= MAX_TICKS) {
-            [weakSelf.viewabilityTimer invalidate];
-            weakSelf.viewabilityTimer = nil;
-            [weakSelf sendAllEventsForKey:@"viewable_impr"];
+            [_viewabilityTimer invalidate];
+            _viewabilityTimer = nil;
+            [self sendAllEventsForKey:@"viewable_impr"];
         } else {
             ticks++;
             NSLog(@"[AA :: Info] Tick %ld/%d", (long)ticks, MAX_TICKS);
@@ -120,9 +113,6 @@
     // safety check
     if (_ad == NULL) return;
     
-    // get a weak self reference
-    __weak typeof (self) weakSelf = self;
-    
     // start timer
     __block NSInteger ticks = 0;
     __block NSInteger cticks = 0;
@@ -130,11 +120,11 @@
                                                          target:[NSBlockOperation blockOperationWithBlock:^{
         
         if (ticks >= MAX_TICKS) {
-            [weakSelf.viewabilityTimer invalidate];
-            weakSelf.viewabilityTimer = nil;
+            [_viewabilityTimer invalidate];
+            _viewabilityTimer = nil;
             
             if (cticks == MAX_TICKS) {
-                [weakSelf sendAllEventsForKey:@"viewable_impr"];
+                [self sendAllEventsForKey:@"viewable_impr"];
             } else {
                 NSLog(@"[AA :: Error] Did not send viewable impression");
             }

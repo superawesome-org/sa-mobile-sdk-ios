@@ -207,10 +207,6 @@
     _ad = ad;
 }
 
-- (SAAd*) getAd {
-    return _ad;
-}
-
 - (void) nullAd {
     _ad = NULL;
 }
@@ -280,7 +276,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 - (void) setCallback:(sacallback)callback {
-    _callback = callback ? callback : ^(NSInteger placement, SAEvent event) {};
+    _callback = callback ? callback : _callback;
 }
 
 - (void) setIsParentalGateEnabled:(BOOL)isParentalGateEnabled {

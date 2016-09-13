@@ -17,6 +17,7 @@
 @interface SuperAwesomeRewardedVideoCustomEvent ()
 @property (nonatomic, strong) MPRewardedVideoReward *reward;
 @property (nonatomic, assign) BOOL hasAdAvailable;
+@property (nonatomic, assign) NSInteger placementId;
 @end
 
 @implementation SuperAwesomeRewardedVideoCustomEvent
@@ -47,7 +48,7 @@
     }
     
     // assign values, because they exist
-    NSInteger placementId = [placementIdObj integerValue];
+    _placementId = [placementIdObj integerValue];
     BOOL isTestEnabled = [isTestEnabledObj boolValue];
     BOOL isParentalGateEnabled = (isParentalGateEnabledObj != NULL ? [isParentalGateEnabledObj boolValue] : true);
     BOOL shouldShowCloseButton = (shouldShowCloseButtonObj != NULL ? [shouldShowCloseButtonObj boolValue] : false);
@@ -126,12 +127,12 @@
             }
         }
     }];
-    [SAVideoAd load:placementId];
+    [SAVideoAd load:_placementId];
 }
 
 - (void) presentRewardedVideoFromViewController:(UIViewController *)viewController {
     // play
-    [SAVideoAd play: viewController];
+    [SAVideoAd play:_placementId fromVC:viewController];
     [self.delegate rewardedVideoWillAppearForCustomEvent:self];
 }
 
