@@ -457,29 +457,69 @@ static NSInteger configuration = 0;
     callback = call ? call : callback;
 }
 
-+ (void) setIsParentalGateEnabled: (BOOL) value {
-    isParentalGateEnabled = value;
++ (void) enableTestMode {
+    isTestingEnabled = true;
 }
 
-+ (void) setShouldAutomaticallyCloseAtEnd: (BOOL) value {
-    shouldAutomaticallyCloseAtEnd = value;
++ (void) disableTestMode {
+    isTestingEnabled = false;
 }
 
-+ (void) setShouldShowCloseButton: (BOOL) value {
-    shouldShowCloseButton = value;
++ (void) enableParentalGate {
+    isParentalGateEnabled = true;
 }
 
-+ (void) setShouldShowSmallClickButton: (BOOL) value {
-    shouldShowSmallClickButton = value;
++ (void) disableParentalGate {
+    isParentalGateEnabled = false;
 }
 
-+ (void) setShouldLockOrientation: (BOOL) value {
-    shouldLockOrientation = value;
++ (void) setConfigurationProduction {
+    configuration = [SASession getProductionConfigurationID];
 }
 
-+ (void) setLockOrientation: (NSUInteger) value {
-    lockOrientation = value;
++ (void) setConfigurationStaging {
+    configuration = [SASession getStatingConfigurationID];
 }
+
++ (void) setOrientationAny {
+    shouldLockOrientation = false;
+    lockOrientation = UIInterfaceOrientationMaskAll;
+}
++ (void) setOrientationPortrait {
+    shouldLockOrientation = true;
+    lockOrientation = UIInterfaceOrientationMaskPortrait;
+}
+
++ (void) setOrientationLandscape {
+    shouldLockOrientation = true;
+    lockOrientation = UIInterfaceOrientationMaskLandscape;
+}
+
++ (void) enableCloseButton {
+    shouldShowCloseButton = true;
+}
+
++ (void) disableCloseButton {
+    shouldShowCloseButton = false;
+}
+
++ (void) enableSmallClickButton {
+    shouldShowSmallClickButton = true;
+}
+
++ (void) disableSmallClickButton {
+    shouldShowSmallClickButton = false;
+}
+
++ (void) enableCloseAtEnd {
+    shouldAutomaticallyCloseAtEnd = true;
+}
+
++ (void) disableCloseAtEnd {
+    shouldAutomaticallyCloseAtEnd = false;
+}
+
+// private static getters
 
 + (sacallback) getCallback {
     return callback;
@@ -508,30 +548,5 @@ static NSInteger configuration = 0;
 + (NSUInteger) getLockOrientation {
     return lockOrientation;
 }
-
-+ (void) setTest:(BOOL) isTest {
-    isTestingEnabled = isTest;
-}
-
-+ (void) setTestEnabled {
-    isTestingEnabled = true;
-}
-
-+ (void) setTestDisabled {
-    isTestingEnabled = false;
-}
-
-+ (void) setConfiguration: (NSInteger) config {
-    configuration = config;
-}
-
-+ (void) setConfigurationProduction {
-    configuration = [SASession getProductionConfigurationID];
-}
-
-+ (void) setConfigurationStaging {
-    configuration = [SASession getStatingConfigurationID];
-}
-
 
 @end

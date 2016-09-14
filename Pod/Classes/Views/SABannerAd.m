@@ -279,24 +279,20 @@
     _callback = callback ? callback : _callback;
 }
 
-- (void) setIsParentalGateEnabled:(BOOL)isParentalGateEnabled {
-    _isParentalGateEnabled = isParentalGateEnabled;
+- (void) enableParentalGate {
+    _isParentalGateEnabled = true;
 }
 
-- (void) setTest:(BOOL) isTest {
-    [_session setTest:isTest];
+- (void) disableParentalGate {
+    _isParentalGateEnabled = false;
 }
 
-- (void) setTestEnabled {
+- (void) enableTestMode {
     [_session setTestEnabled];
 }
 
-- (void) setTestDisabled {
+- (void) disableTestMode {
     [_session setTestDisabled];
-}
-
-- (void) setConfiguration: (NSInteger) config {
-    [_session setConfiguration:config];
 }
 
 - (void) setConfigurationProduction {
@@ -305,6 +301,14 @@
 
 - (void) setConfigurationStaging {
     [_session setConfigurationStaging];
+}
+
+- (void) setColorTransparent {
+    self.backgroundColor = [UIColor clearColor];
+}
+
+- (void) setColorGray {
+    self.backgroundColor = [UIColor colorWithRed:191.0/255.0f green:191.0/255.0f blue:191.0/255.0f alpha:1];
 }
 
 

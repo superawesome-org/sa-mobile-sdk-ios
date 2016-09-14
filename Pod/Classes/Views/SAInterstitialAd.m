@@ -67,7 +67,11 @@ static NSInteger configuration = 0;
     // create & play banner
     _banner = [[SABannerAd alloc] initWithFrame:CGRectZero];
      [_banner setCallback:_callbackL];
-    [_banner setIsParentalGateEnabled:_isParentalGateEnabledL];
+    if (_isParentalGateEnabledL) {
+        [_banner enableParentalGate];
+    } else {
+        [_banner disableParentalGate];
+    }
     _banner.backgroundColor = self.view.backgroundColor;
     [SAUtils invoke:@"setAd:" onTarget:_banner, _ad];
     [self.view addSubview:_banner];
@@ -283,17 +287,45 @@ static NSInteger configuration = 0;
     callback = call ? call : callback;
 }
 
-+ (void) setIsParentalGateEnabled: (BOOL) value {
-    isParentalGateEnabled = value;
++ (void) enableTestMode {
+    isTestingEnabled = true;
 }
 
-+ (void) setShouldLockOrientation: (BOOL) value {
-    shouldLockOrientation = value;
++ (void) disableTestMode {
+    isTestingEnabled = false;
 }
 
-+ (void) setLockOrientation: (NSUInteger) value {
-    lockOrientation = value;
++ (void) enableParentalGate {
+    isParentalGateEnabled = true;
 }
+
++ (void) disableParentalGate {
+    isParentalGateEnabled = false;
+}
+
++ (void) setConfigurationProduction {
+    configuration = [SASession getProductionConfigurationID];
+}
+
++ (void) setConfigurationStaging {
+    configuration = [SASession getStatingConfigurationID];
+}
+
++ (void) setOrientationAny {
+    shouldLockOrientation = false;
+    lockOrientation = UIInterfaceOrientationMaskAll;
+}
++ (void) setOrientationPortrait {
+    shouldLockOrientation = true;
+    lockOrientation = UIInterfaceOrientationMaskPortrait;
+}
+
++ (void) setOrientationLandscape {
+    shouldLockOrientation = true;
+    lockOrientation = UIInterfaceOrientationMaskLandscape;
+}
+
+// private methods
 
 + (BOOL) getIsParentalGateEnabled {
     return isParentalGateEnabled;
@@ -311,28 +343,5 @@ static NSInteger configuration = 0;
     return lockOrientation;
 }
 
-+ (void) setTest:(BOOL) isTest {
-    isTestingEnabled = isTest;
-}
-
-+ (void) setTestEnabled {
-    isTestingEnabled = true;
-}
-
-+ (void) setTestDisabled {
-    isTestingEnabled = false;
-}
-
-+ (void) setConfiguration: (NSInteger) config {
-    configuration = config;
-}
-
-+ (void) setConfigurationProduction {
-    configuration = [SASession getProductionConfigurationID];
-}
-
-+ (void) setConfigurationStaging {
-    configuration = [SASession getStatingConfigurationID];
-}
 
 @end

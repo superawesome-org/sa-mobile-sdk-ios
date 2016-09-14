@@ -74,14 +74,48 @@
     __weak typeof (self) weakSelf = self;
     
     // enable or disable test mode
-    [SAVideoAd setTest:isTestEnabled];
     [SAVideoAd setConfigurationProduction];
-    [SAVideoAd setIsParentalGateEnabled:isParentalGateEnabled];
-    [SAVideoAd setShouldShowCloseButton:shouldShowCloseButton];
-    [SAVideoAd setShouldAutomaticallyCloseAtEnd:shouldAutomaticallyCloseAtEnd];
-    [SAVideoAd setShouldLockOrientation:shouldLockOrientation];
-    [SAVideoAd setLockOrientation:lockOrientation];
-    [SAVideoAd setShouldShowSmallClickButton:shouldShowSmallClickButton];
+    
+    if (isTestEnabled) {
+        [SAVideoAd enableTestMode];
+    } else {
+        [SAVideoAd disableTestMode];
+    }
+    
+    if (isParentalGateEnabled) {
+        [SAVideoAd enableParentalGate];
+    } else {
+        [SAVideoAd disableParentalGate];
+    }
+    
+    if (shouldShowCloseButton) {
+        [SAVideoAd enableCloseButton];
+    } else {
+        [SAVideoAd disableCloseButton];
+    }
+    
+    if (shouldAutomaticallyCloseAtEnd) {
+        [SAVideoAd enableCloseAtEnd];
+    } else {
+        [SAVideoAd disableCloseAtEnd];
+    }
+    
+    if (shouldShowSmallClickButton) {
+        [SAVideoAd enableSmallClickButton];
+    } else {
+        [SAVideoAd disableSmallClickButton];
+    }
+    
+    if (shouldLockOrientation) {
+        if (lockOrientation == UIInterfaceOrientationMaskPortrait) {
+            [SAVideoAd setOrientationPortrait];
+        } else {
+            [SAVideoAd setOrientationLandscape];
+        }
+    } else {
+        [SAVideoAd setOrientationAny];
+    }
+    
     [SAVideoAd setCallback:^(NSInteger placementId, SAEvent event) {
         switch (event) {
             case adLoaded: {

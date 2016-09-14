@@ -54,9 +54,21 @@
     
     // create a new banner
     _banner = [[SABannerAd alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
-    [_banner setTest:isTestEnabled];
+    
     [_banner setConfigurationProduction];
-    [_banner setIsParentalGateEnabled:isParentalGateEnabled];
+    
+    if (isTestEnabled) {
+        [_banner enableTestMode];
+    } else {
+        [_banner disableTestMode];
+    }
+    
+    if (isParentalGateEnabled) {
+        [_banner enableParentalGate];
+    } else {
+        [_banner disableParentalGate];
+    }
+
     [_banner setCallback:^(NSInteger placementId, SAEvent event) {
         switch (event) {
             case adLoaded: {

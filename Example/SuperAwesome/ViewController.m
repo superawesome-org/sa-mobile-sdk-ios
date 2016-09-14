@@ -52,11 +52,11 @@
 //        }
 //    }];
     
-    [SAVideoAd setConfigurationStaging];
-    [SAVideoAd setTestDisabled];
-    [SAVideoAd load:252];
-    [SAVideoAd load:116];
-    [SAVideoAd load:224];
+    [SAVideoAd setConfigurationProduction];
+    [SAVideoAd enableTestMode];
+    [SAVideoAd load:30260];
+//    [SAVideoAd load:116];
+//    [SAVideoAd load:224];
     [SAVideoAd setCallback:^(NSInteger placementId, SAEvent event) {
         switch (event) {
             case adLoaded: {
@@ -145,11 +145,11 @@
 }
 
 - (IBAction)playVideo1:(id)sender {
-    [SAVideoAd play: 252 fromVC:self];
+    [SAVideoAd play: 30260 fromVC:self];
 }
 
 - (IBAction)playVideo2:(id)sender {
-    [SAVideoAd play:224 fromVC:self];
+//    [SAVideoAd play:224 fromVC:self];
 }
 
 @end

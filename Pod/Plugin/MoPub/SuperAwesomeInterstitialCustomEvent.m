@@ -61,11 +61,30 @@
     }
     
     // start the loader
-    [SAInterstitialAd setTest:isTestEnabled];
     [SAInterstitialAd setConfigurationProduction];
-    [SAInterstitialAd setIsParentalGateEnabled:isParentalGateEnabled];
-    [SAInterstitialAd setShouldLockOrientation:shouldLockOrientation];
-    [SAInterstitialAd setLockOrientation:lockOrientation];
+    
+    if (isTestEnabled) {
+        [SAInterstitialAd enableTestMode];
+    } else {
+        [SAInterstitialAd disableTestMode];
+    }
+    
+    if (isParentalGateEnabled) {
+        [SAInterstitialAd enableParentalGate];
+    } else {
+        [SAInterstitialAd disableParentalGate];
+    }
+    
+    if (shouldLockOrientation) {
+        if (lockOrientation == UIInterfaceOrientationPortrait) {
+            [SAInterstitialAd setOrientationPortrait];
+        } else {
+            [SAInterstitialAd setOrientationLandscape];
+        }
+    } else {
+        [SAInterstitialAd setOrientationAny];
+    }
+    
     [SAInterstitialAd setCallback:^(NSInteger placementId, SAEvent event) {
         switch (event) {
             case adLoaded: {
