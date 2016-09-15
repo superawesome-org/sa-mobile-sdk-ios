@@ -18,6 +18,7 @@
 
 // import juciy aux functions
 #import "SAUtils.h"
+#import "SAExtensions.h"
 
 @implementation SAHTMLParser
 
@@ -63,8 +64,16 @@
     [htmlString appendString:@"_MOAT_"];
     [htmlString appendString:@"</body></html>"];
     
-    // return the parametrized template
-    NSString *click = (ad.creative.clickUrl ? ad.creative.clickUrl : ad.creative.trackingUrl);
+    // determine the Click URL
+    NSString *click = ad.creative.clickUrl;
+    
+    if (!click) {
+        NSArray *potentialClicks = [ad.creative.events filterBy:@"event" withValue:@"sa_tracking"];
+        if ([potentialClicks count] > 1) {
+            click = [potentialClicks objectAtIndex:0];
+        }
+    }
+    
     htmlString = [[htmlString stringByReplacingOccurrencesOfString:@"hrefURL" withString:click] mutableCopy];
     htmlString = [[htmlString stringByReplacingOccurrencesOfString:@"imageURL" withString:ad.creative.details.image] mutableCopy];
     return htmlString;
@@ -124,8 +133,18 @@
     
     // format template parameters
     NSString *tagString = ad.creative.details.tag;
-    tagString = [tagString stringByReplacingOccurrencesOfString:@"[click]" withString:[NSString stringWithFormat:@"%@&redir=",ad.creative.trackingUrl]];
-    tagString = [tagString stringByReplacingOccurrencesOfString:@"[click_enc]" withString:[SAUtils encodeURI:ad.creative.trackingUrl]];
+    
+    NSString *click = ad.creative.clickUrl;
+    
+    if (!click) {
+        NSArray *potentialClicks = [ad.creative.events filterBy:@"event" withValue:@"sa_tracking"];
+        if ([potentialClicks count] > 1) {
+            click = [potentialClicks objectAtIndex:0];
+        }
+    }
+    
+    tagString = [tagString stringByReplacingOccurrencesOfString:@"[click]" withString:[NSString stringWithFormat:@"%@&redir=",click]];
+    tagString = [tagString stringByReplacingOccurrencesOfString:@"[click_enc]" withString:[SAUtils encodeURI:click]];
     tagString = [tagString stringByReplacingOccurrencesOfString:@"[keywords]" withString:@""];
     tagString = [tagString stringByReplacingOccurrencesOfString:@"[timestamp]" withString:[NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970]]];
     tagString = [tagString stringByReplacingOccurrencesOfString:@"target=\"_blank\"" withString:@""];

@@ -24,7 +24,7 @@
 
 @implementation SAEvents (Moat)
 
-+ (NSString*) sendDisplayMoatEvent:(UIWebView*)webView andAdDictionary:(NSDictionary*)adDict{
+- (NSString*) sendDisplayMoatEvent:(UIWebView*)webView andAdDictionary:(NSDictionary*)adDict{
     
     // make only 1 in 5 moat events OK
     NSInteger rand = [SAUtils randomNumberBetween:0 maxNumber:100];
@@ -54,7 +54,7 @@
 #endif
 }
 
-+ (void) sendVideoMoatEvent:(AVPlayer*)player andLayer:(AVPlayerLayer*)layer andView:(UIView*)adView andAdDictionary:(NSDictionary*)adDict {
+- (void) sendVideoMoatEvent:(AVPlayer*)player andLayer:(AVPlayerLayer*)layer andView:(UIView*)adView andAdDictionary:(NSDictionary*)adDict {
     
     // make only 1 in 5 moat events OK
     NSInteger rand = [SAUtils randomNumberBetween:0 maxNumber:100];

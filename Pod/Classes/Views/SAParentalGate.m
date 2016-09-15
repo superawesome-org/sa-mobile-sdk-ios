@@ -47,6 +47,8 @@
 // anonymous extension of SAParentalGate
 @interface SAParentalGate ()
 
+@property (nonatomic, strong) SAEvents *events;
+
 @property (nonatomic,assign) NSInteger number1;
 @property (nonatomic,assign) NSInteger number2;
 @property (nonatomic,assign) NSInteger solution;
@@ -55,26 +57,19 @@
 @property (nonatomic, retain) UIAlertController *challangeAlertController;
 @property (nonatomic, retain) UIAlertView *wrongAnswerAlertView;
 
-// the ad response
-@property (nonatomic, retain) SAAd *ad;
-
 // weak ref to view
-@property (nonatomic, weak) UIView *weakAdView;
+@property (nonatomic, weak) id weakAdView;
 
 @end
 
 @implementation SAParentalGate
 
 // custom init functions
-- (id) initWithWeakRefToView:(UIView *)weakRef {
+- (id) initWithWeakRefToView:(id)weakRef andAd:(SAAd *)ad {
     if (self = [super init]) {
         _weakAdView = weakRef;
-        if ([_weakAdView isKindOfClass:[SABannerAd class]]) {
-            _ad = [(SABannerAd*)_weakAdView getAd];
-        }
-        if ([_weakAdView isKindOfClass:[SAVideoAd class]]){
-            _ad = [(SAVideoAd*)_weakAdView getAd];
-        }
+        _events = [[SAEvents alloc] init];
+        [_events setAd:ad];
     }
     
     return self;
@@ -91,12 +86,10 @@
     [self newQuestion];
     
     // send event
-    [SAEvents sendEventToURL:_ad.creative.parentalGateOpenUrl];
+    [_events sendAllEventsForKey:@"pg_open"];
     
-    // resume video
-    if ([_weakAdView isKindOfClass:[SAVideoAd class]]) {
-        [(SAVideoAd*)_weakAdView pause];
-    }
+    // pause video
+    [SAUtils invoke:@"pause" onTarget:_weakAdView];
     
     if (NSClassFromString(@"UIAlertController")) {
         [self showWithAlertController];
@@ -121,17 +114,10 @@
     actionBlock cancelBlock = ^(UIAlertAction *action) {
         
         // send event
-        [SAEvents sendEventToURL:_ad.creative.parentalGateCloseUrl];
+        [_events sendAllEventsForKey:@"pg_close"];
         
         // resume video
-        if ([_weakAdView isKindOfClass:[SAVideoAd class]]) {
-            [(SAVideoAd*)_weakAdView resume];
-        }
-        
-        // calls to delegate or blocks
-        if(_delegate && [_delegate respondsToSelector:@selector(parentalGateWasCanceled:)]){
-            [_delegate parentalGateWasCanceled:_ad.placementId];
-        }
+        [SAUtils invoke:@"resume" onTarget:_weakAdView];
     };
     
     // action block #2
@@ -152,9 +138,7 @@
         else{
             
             // resume video
-            if ([_weakAdView isKindOfClass:[SAVideoAd class]]) {
-                [(SAVideoAd*)_weakAdView resume];
-            }
+            [SAUtils invoke:@"resume" onTarget:_weakAdView];
             
             [self handlePGError];
         }
@@ -218,9 +202,7 @@
         } else {
             
             // resume video
-            if ([_weakAdView isKindOfClass:[SAVideoAd class]]) {
-                [(SAVideoAd*)_weakAdView resume];
-            }
+            [SAUtils invoke:@"resume" onTarget:_weakAdView];
             
             [self handlePGError];
         }
@@ -228,12 +210,10 @@
     // cancel
     else if (buttonIndex == 0){
         // send event
-        [SAEvents sendEventToURL:_ad.creative.parentalGateCloseUrl];
+        [_events sendAllEventsForKey:@"pg_close"];
         
         // resume video
-        if ([_weakAdView isKindOfClass:[SAVideoAd class]]) {
-            [(SAVideoAd*)_weakAdView resume];
-        }
+        [SAUtils invoke:@"resume" onTarget:_weakAdView];
     }
 }
 
@@ -242,28 +222,16 @@
 - (void) handlePGSuccess {
     
     // send data
-    [SAEvents sendEventToURL:_ad.creative.parentalGateSuccessUrl];
-    
-    // call to delegate
-    if(_delegate && [_delegate respondsToSelector:@selector(parentalGateWasSucceded:)]){
-        [_delegate parentalGateWasSucceded:_ad.placementId];
-    }
+    [_events sendAllEventsForKey:@"pg_success"];
     
     // finally advance to URL
-    if ([_weakAdView respondsToSelector:@selector(advanceToClick)]) {
-        if ([_weakAdView isKindOfClass:[SABannerAd class]]) {
-            [(SABannerAd*)_weakAdView advanceToClick];
-        }
-        if ([_weakAdView isKindOfClass:[SAVideoAd class]]){
-            [(SAVideoAd*)_weakAdView advanceToClick];
-        }
-    }
+    [SAUtils invoke:@"click" onTarget:_weakAdView];
 }
 
 - (void) handlePGError {
     
     // send data
-    [SAEvents sendEventToURL:_ad.creative.parentalGateFailUrl];
+    [_events sendAllEventsForKey:@"pg_fail"];
     
     // ERROR
     _wrongAnswerAlertView = [[UIAlertView alloc] initWithTitle:SA_ERROR_ALERTVIEW_TITLE
@@ -273,11 +241,6 @@
                                              otherButtonTitles:nil];
     _wrongAnswerAlertView.alertViewStyle = UIAlertViewStyleDefault;
     [_wrongAnswerAlertView show];
-    
-    // call to delegate
-    if(_delegate && [_delegate respondsToSelector:@selector(parentalGateWasFailed:)]){
-        [_delegate parentalGateWasFailed:_ad.placementId];
-    }
 }
 
 @end

@@ -13,11 +13,10 @@
 
 // import the SACapper part
 #import "SACapper.h"
-#import "SAEvents.h"
-#import "SASession.h"
 #import "SACPI.h"
 
 @interface SuperAwesome ()
+@property (nonatomic, assign) NSInteger dauId;
 @end
 
 @implementation SuperAwesome
@@ -33,48 +32,14 @@
 
 - (id) init {
     if (self = [super init]) {
-        // by default configuration is set to production
-        // and test mode is disabled
-        [self setConfigurationProduction];
-        [self disableTestMode];
         [SACapper enableCapping:^(NSUInteger dauId) {
-            [[SASession getInstance] setDauId:dauId];
+            _dauId = dauId;
         }];
-        
-        // send cpi event
         [SACPI sendCPIEvent];
-        
-        // set loader session instance
-        [[SASession getInstance] setVersion:[self getSdkVersion]];
     }
     
     return self;
 }
-
-- (void) setConfiguration:(NSInteger)configuration {
-    [[SASession getInstance] setConfiguration:configuration];
-}
-
-- (void) setConfigurationProduction {
-    [[SASession getInstance] setConfigurationProduction];
-}
-
-- (void) setConfigurationStaging {
-    [[SASession getInstance] setConfigurationStaging];
-}
-
-- (void) setTesting:(BOOL)enabled {
-    [[SASession getInstance] setTest:enabled];
-}
-
-- (void) disableTestMode {
-    [[SASession getInstance] setTestDisabled];
-}
-
-- (void) enableTestMode {
-    [[SASession getInstance] setTestEnabled];
-}
-
 
 - (NSString*) getVersion {
     return @"4.3.10";
@@ -87,17 +52,9 @@
 - (NSString*) getSdkVersion {
     return [NSString stringWithFormat:@"%@_%@", [self getSdk], [self getVersion]];
 }
-- (NSString*) getBaseURL {
-    return [[SASession getInstance] getBaseUrl];
-}
-- (BOOL) isTestingEnabled {
-    return [[SASession getInstance] isTestEnabled];
-}
-- (NSInteger) getConfiguration {
-    return [[SASession getInstance] getConfiguration];
-}
+
 - (NSUInteger) getDAUID {
-    return [[SASession getInstance] getDauId];
+    return _dauId;
 }
 
 @end

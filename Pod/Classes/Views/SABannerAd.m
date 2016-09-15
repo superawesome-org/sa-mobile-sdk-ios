@@ -8,152 +8,211 @@
 
 #import "SABannerAd.h"
 
-// import Parental Gate
+// import other
 #import "SuperAwesome.h"
 #import "SAParentalGate.h"
 #import "SAAd.h"
 #import "SACreative.h"
 #import "SADetails.h"
-#import "SAData.h"
-
-#import "SAEvents.h"
-#if defined(__has_include)
-#if __has_include("SAEvents+Moat.h")
-#import "SAEvents+Moat.h"
-#endif
-#endif
+#import "SAMedia.h"
+#import "SALoader.h"
+#import "SAWebPlayer.h"
 #import "SAUtils.h"
+#import "SAEvents.h"
 
-// defines
-#define BG_COLOR [UIColor colorWithRed:0.75 green:0.75 blue:0.75 alpha:1]
-#define BIG_PAD_FRAME CGRectMake(0, 0, 67, 25)
-#define DISPLAY_VIEWABILITY_COUNT 1
+@interface SABannerAd ()
 
-@interface SABannerAd () <SAWebPlayerProtocol>
+// main state vars
+@property (nonatomic, strong) sacallback callback;
+@property (nonatomic, assign) IBInspectable BOOL isParentalGateEnabled;
 
-@property (nonatomic, weak) id<SAAdProtocol> internalAdProto;
+// events
+@property (nonatomic, strong) SASession *session;
+@property (nonatomic, strong) SAEvents *events;
 
+// current ad
 @property (nonatomic, strong) SAAd *ad;
-@property (nonatomic, strong) NSString *destinationURL;
+
+// subviews
 @property (nonatomic, strong) SAWebPlayer *webplayer;
 @property (nonatomic, strong) SAParentalGate *gate;
 @property (nonatomic, strong) UIImageView *padlock;
 
-@property (nonatomic, strong) NSTimer *viewabilityTimer;
-@property (nonatomic, assign) NSInteger ticks;
-@property (nonatomic, assign) NSInteger viewabilityCount;
+// aux state vats
+@property (nonatomic, strong) NSString *destinationURL;
+@property (nonatomic, assign) BOOL canPlay;
 
 @end
 
 @implementation SABannerAd
 
-#pragma mark <INIT> functions
+////////////////////////////////////////////////////////////////////////////////
+// MARK: View lifecycle
+////////////////////////////////////////////////////////////////////////////////
 
 - (id) init {
     if (self = [super init]){
-        _isParentalGateEnabled = false;
-        self.backgroundColor = BG_COLOR;
+        [self initialize];
     }
     return self;
 }
 
 - (id) initWithCoder:(NSCoder *)aDecoder {
     if (self = [super initWithCoder:aDecoder]) {
-        _isParentalGateEnabled = false;
-        self.backgroundColor = BG_COLOR;
+        [self initialize];
     }
     return self;
 }
 
 - (id) initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]){
-        _isParentalGateEnabled = false;
-        self.backgroundColor = BG_COLOR;
+        [self initialize];
     }
     return self;
 }
 
-#pragma mark <SAViewProtocol> functions
-
-- (void) setAd:(SAAd*)__ad {
-    _ad = __ad;
+- (void) initialize {
+    _canPlay = true;
+    _isParentalGateEnabled = true;
+    _events = [[SAEvents alloc] init];
+    _session = [[SASession alloc] init];
+    _callback = ^(NSInteger placement, SAEvent event) {};
+    self.backgroundColor = [UIColor colorWithRed:0.75 green:0.75 blue:0.75 alpha:1];
 }
 
-- (SAAd*) getAd {
-    return _ad;
-}
-
-- (void) play {
+- (void) loadSubviews {
     
-    // reset
-    _viewabilityCount = _ticks = 0;
+    // get a weak self reference
+    __weak typeof (self) weakSelf = self;
     
-    // check for incorrect placement
-    if (_ad.creative.creativeFormat == video || _ad == nil) {
-        if (_adDelegate != NULL && [_adDelegate respondsToSelector:@selector(adHasIncorrectPlacement:)]){
-            [_adDelegate adHasIncorrectPlacement:_ad.placementId];
-        }
-        if (_internalAdProto != NULL && [_internalAdProto respondsToSelector:@selector(adHasIncorrectPlacement:)]){
-            [_internalAdProto adHasIncorrectPlacement:_ad.placementId];
-        }
-        
-        return;
-    }
+    // start events
+    [_events setAd:_ad];
     
     // start creating the banner ad
-    _gate = [[SAParentalGate alloc] initWithWeakRefToView:self];
-    _gate.delegate = _parentalGateDelegate;
-    
-    // calc correctly scaled frame
-    CGRect frame = [SAUtils mapOldFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
-                             toNewFrame:CGRectMake(0, 0, _ad.creative.details.width, _ad.creative.details.height)];
+    _gate = [[SAParentalGate alloc] initWithWeakRefToView:self andAd:_ad];
     
     // add the sawebview
-    _webplayer = [[SAWebPlayer alloc] initWithFrame:frame];
-    _webplayer.sadelegate = self;
+    _webplayer = [[SAWebPlayer alloc] initWithFrame:CGRectZero];
+    
+    // setup the ad size
     [_webplayer setAdSize:CGSizeMake(_ad.creative.details.width, _ad.creative.details.height)];
     
     // moat tracking
-    NSString *moatString = @"";
-    Class class = NSClassFromString(@"SAEvents");
-    SEL selector = NSSelectorFromString(@"sendDisplayMoatEvent:andAdDictionary:");
-    if ([class instancesRespondToSelector:selector]) {
-        NSDictionary *moatDict = @{
-                                   @"advertiser":@(_ad.advertiserId),
-                                   @"campaign":@(_ad.campaignId),
-                                   @"line_item":@(_ad.lineItemId),
-                                   @"creative":@(_ad.creative._id),
-                                   @"app":@(_ad.app),
-                                   @"placement":@(_ad.placementId),
-                                   @"publisher":@(_ad.publisherId)
-                                   };
-        
-        NSMethodSignature *signature = [class methodSignatureForSelector:selector];
-        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
-        [invocation setTarget:class];
-        [invocation setSelector:selector];
-        [invocation setArgument:&_webplayer atIndex:2];
-        [invocation setArgument:&moatDict atIndex:3];
-        [invocation retainArguments];
-        [invocation invoke];
-        void *tmpResult;
-        [invocation getReturnValue:&tmpResult];
-        moatString = (__bridge NSString*)tmpResult;
-    }
+    NSString *moatString = @""; // [_events moatEventForWebPlayer:_webplayer];
     
     // form the full HTML string and play it!
-    NSString *fullHTML = [_ad.creative.details.data.adHTML stringByReplacingOccurrencesOfString:@"_MOAT_" withString:moatString];
-    [_webplayer loadAdHTML:fullHTML];
+    NSString *fullHTMLToLoad = [_ad.creative.details.media.html stringByReplacingOccurrencesOfString:@"_MOAT_" withString:moatString];
     
-    // add the subview
+    // add callbacks for web player events
+    [_webplayer setEventHandler:^(SAWebPlayerEvent event) {
+        switch (event) {
+            case Web_Start: {
+                // send callback
+                weakSelf.callback(weakSelf.ad.placementId, adShown);
+                
+                // if the banner has a separate impression URL, send that as well for 3rd party tracking
+                [weakSelf.events sendAllEventsForKey:@"impression"];
+                
+                // send viewable impression
+                [weakSelf.events sendViewableForInScreen:weakSelf];
+                
+                break;
+            }
+            case Web_Error: {
+                // send callback
+                weakSelf.callback(weakSelf.ad.placementId, adFailedToShow);
+                break;
+            }
+        }
+    }];
+    
+    // add callbacks for clicks
+    [_webplayer setClickHandler:^(NSURL *url) {
+        // get the going to URL
+        weakSelf.destinationURL = [url absoluteString];
+        
+        if (weakSelf.isParentalGateEnabled) {
+            [weakSelf.gate show];
+        } else {
+            [weakSelf click];
+        }
+    }];
+    
+    // add the webplayer as a subview
     [self addSubview:_webplayer];
     
-    // add the padlick
-    _padlock = [[UIImageView alloc] initWithFrame:BIG_PAD_FRAME];
+    // add the padlock
+    _padlock = [[UIImageView alloc] initWithFrame:CGRectZero];
     _padlock.image = [SAUtils padlockImage];
     if ([self shouldShowPadlock]) {
         [_webplayer addSubview:_padlock];
     }
+    
+    // resize
+    [self resize:self.frame];
+    
+    // finally play!
+    [_webplayer loadAdHTML:fullHTMLToLoad];
+    
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// MARK: Class public interface
+////////////////////////////////////////////////////////////////////////////////
+
+- (void) load:(NSInteger)placementId {
+    
+    // reset playability
+    _canPlay = false;
+    
+    // get a weak self reference
+    __weak typeof (self) weakSelf = self;
+    
+    // change session
+    [_session setDauId:[[SuperAwesome getInstance] getDAUID]];
+    [_session setVersion:[[SuperAwesome getInstance] getSdkVersion]];
+    
+    // load ad
+    SALoader *loader = [[SALoader alloc] init];
+    [loader loadAd:placementId withSession:_session andResult:^(SAAd *ad) {
+        
+        // assign new ad
+        weakSelf.ad = ad;
+        
+        // set can play
+        weakSelf.canPlay = true;
+        
+        // call the callback
+        weakSelf.callback (placementId, ad != NULL ? adLoaded : adFailedToLoad);
+    }];
+}
+
+- (void) play {
+    
+    if (_ad && _ad.creative.creativeFormat != video && _canPlay) {
+        
+        // reset play-ability
+        _canPlay = false;
+        
+        // load subviews
+        [self loadSubviews];
+        
+    } else {
+        // failure callback
+        _callback (0, adFailedToShow);
+    }
+}
+
+- (void) setAd:(SAAd *)ad {
+    _ad = ad;
+}
+
+- (void) nullAd {
+    _ad = NULL;
+}
+
+- (BOOL) hasAdAvailable {
+    return _ad != NULL;
 }
 
 - (BOOL) shouldShowPadlock {
@@ -164,37 +223,43 @@
 }
 
 - (void) close {
+    // callback
+    _callback (_ad.placementId, adClosed);
+    
+    // close events
+    [_events close];
+    
+    // remove all stuffs
     [_webplayer removeFromSuperview];
     _webplayer = nil;
     [_padlock removeFromSuperview];
     _padlock = nil;
     _gate = nil;
-    if (_viewabilityTimer != nil) {
-        [_viewabilityTimer invalidate];
-        _viewabilityTimer = nil;
-    }
+    [self nullAd];
 }
 
-- (void) advanceToClick {
+- (void) click {
     NSLog(@"[AA :: INFO] Going to %@", _destinationURL);
     
-    if ([_destinationURL rangeOfString:[[SuperAwesome getInstance] getBaseURL]].location == NSNotFound) {
-        NSLog(@"Sending click event to %@", _ad.creative.trackingUrl);
-        [SAEvents sendEventToURL:_ad.creative.trackingUrl];
+    // callback
+    _callback (_ad.placementId, adClicked);
+    
+    // events
+    if ([_destinationURL rangeOfString:[_session getBaseUrl]].location == NSNotFound) {
+        [_events sendAllEventsForKey:@"sa_tracking"];
     }
     
-    // call delegate
-    if (_adDelegate && [_adDelegate respondsToSelector:@selector(adWasClicked:)]) {
-        [_adDelegate adWasClicked:_ad.placementId];
-    }
-    
+    // open URL
     NSURL *url = [NSURL URLWithString:_destinationURL];
     [[UIApplication sharedApplication] openURL:url];
 }
 
-- (void) resizeToFrame:(CGRect)toframe {
+- (void) resize:(CGRect)toframe {
+    
+    // new frame
     self.frame = toframe;
     
+    // new webplayer frame
     CGRect frame = [SAUtils mapOldFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
                              toNewFrame:CGRectMake(0, 0, _ad.creative.details.width, _ad.creative.details.height)];
     
@@ -202,67 +267,49 @@
     [_webplayer updateToFrame:frame];
     
     // rearrange the padlock
-    _padlock.frame = BIG_PAD_FRAME;
+    _padlock.frame = CGRectMake(0, 0, 67, 25);
+    [self bringSubviewToFront:_padlock];
 }
 
-#pragma mark <SAWebViewProtocol> functions
+////////////////////////////////////////////////////////////////////////////////
+// MARK: Setters & getters
+////////////////////////////////////////////////////////////////////////////////
 
-- (void) webPlayerDidLoad {
-    // send viewable impression
-    _viewabilityTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(viewableImpressionFunc) userInfo:nil repeats:YES];
-    [_viewabilityTimer fire];
-    
-    // if the banner has a separate impression URL, send that as well for 3rd party tracking
-    if (_ad.creative.impressionUrl && [_ad.creative.impressionUrl rangeOfString:[[SuperAwesome getInstance] getBaseURL]].location == NSNotFound) {
-        [SAEvents sendEventToURL:_ad.creative.impressionUrl];
-    }
-    
-    if ([_adDelegate respondsToSelector:@selector(adWasShown:)]) {
-        [_adDelegate adWasShown:_ad.placementId];
-    }
+- (void) setCallback:(sacallback)callback {
+    _callback = callback ? callback : _callback;
 }
 
-- (void) viewableImpressionFunc {
-    
-    if (_ticks >= DISPLAY_VIEWABILITY_COUNT) {
-        [_viewabilityTimer invalidate];
-        _viewabilityTimer = nil;
-        
-        if (_viewabilityCount == DISPLAY_VIEWABILITY_COUNT) {
-            [SAEvents sendEventToURL:_ad.creative.viewableImpressionUrl];
-        } else {
-            NSLog(@"[AA :: Error] Did not send viewable impression");
-        }
-    } else {
-        _ticks++;
-        
-        CGRect childR = self.frame;
-        CGRect superR = CGRectMake(0, 0, self.superview.frame.size.width, self.superview.frame.size.height);
-        CGRect screenR = [UIScreen mainScreen].bounds;
-        
-        if ([SAUtils isRect:childR inRect:screenR] && [SAUtils isRect:childR inRect:superR]) {
-            _viewabilityCount++;
-        }
-        
-        NSLog(@"[AA :: Info] Tick %ld/%d - Viewability Count %ld/%d", _ticks, DISPLAY_VIEWABILITY_COUNT, _viewabilityCount, DISPLAY_VIEWABILITY_COUNT);
-    }
+- (void) enableParentalGate {
+    _isParentalGateEnabled = true;
 }
 
-- (void) webPlayerDidFail {
-    if ([_adDelegate respondsToSelector:@selector(adFailedToShow:)]) {
-        [_adDelegate adFailedToShow:_ad.placementId];
-    }
+- (void) disableParentalGate {
+    _isParentalGateEnabled = false;
 }
 
-- (void) webPlayerWillNavigate:(NSURL *)url {
-    // get the going to URL
-    _destinationURL = [url absoluteString];
-    
-    if (_isParentalGateEnabled) {
-        [_gate show];
-    } else {
-        [self advanceToClick];
-    }
+- (void) enableTestMode {
+    [_session enableTestMode];
 }
+
+- (void) disableTestMode {
+    [_session disableTestMode];
+}
+
+- (void) setConfigurationProduction {
+    [_session setConfigurationProduction];
+}
+
+- (void) setConfigurationStaging {
+    [_session setConfigurationStaging];
+}
+
+- (void) setColorTransparent {
+    self.backgroundColor = [UIColor clearColor];
+}
+
+- (void) setColorGray {
+    self.backgroundColor = [UIColor colorWithRed:191.0/255.0f green:191.0/255.0f blue:191.0/255.0f alpha:1];
+}
+
 
 @end

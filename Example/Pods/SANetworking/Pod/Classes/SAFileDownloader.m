@@ -11,16 +11,14 @@
 // callback for iOS's own [NSURLConnection sendAsynchronousRequest:]
 typedef void (^locationResponse)(NSURL * location, NSURLResponse * response, NSError * error);
 
-// defines
-#define SA_FILE_STORE @"SA_FILE_STORE"
-#define PAIR_KEY @"Key"
-#define PAIR_PATH @"FPath"
+
+static BOOL runOnce = false;
 
 //
 // private vars for SAFileDownloader
 @interface SAFileDownloader ()
 // dictionary that holds all the files currently saved on disk as part of the SDK
-@property (nonatomic, strong) NSMutableDictionary *fileStore;
+//@property (nonatomic, strong) NSMutableDictionary *fileStore;
 @property (nonatomic, strong) NSFileManager *fileManager;
 @property (nonatomic, strong) NSUserDefaults *defs;
 @end
@@ -37,15 +35,11 @@ typedef void (^locationResponse)(NSURL * location, NSURLResponse * response, NSE
         _defs = [NSUserDefaults standardUserDefaults];
         _fileManager = [NSFileManager defaultManager];
         
-        // get the file store
-        if ([_defs objectForKey:SA_FILE_STORE]) {
-            _fileStore = [[_defs objectForKey:SA_FILE_STORE] mutableCopy];
-        } else {
-            _fileStore = [[NSMutableDictionary alloc] init];
-        }
-        
         // do a preliminary cleanup
-        [self cleanup];
+        if (!runOnce) {
+            runOnce = true;
+            [self cleanup];
+        }
     }
     
     return self;
@@ -80,15 +74,14 @@ typedef void (^locationResponse)(NSURL * location, NSURLResponse * response, NSE
         // goto success
         else {
             NSString *fullFilePath = [self filePathInDocuments:fpath];
-            NSString *key = [self getKeyFromLocation:fpath];
+            NSString *key = [NSString stringWithFormat:@"sasdkkey_%@", [self getKeyFromLocation:fpath]];
             NSError *fileError = NULL;
             NSURL *destURL = [NSURL fileURLWithPath:fullFilePath];
             [_fileManager moveItemAtURL:location toURL:destURL error:&fileError];
             
             if (fileError == NULL || key == NULL) {
                 // save
-                [_fileStore setObject:fpath forKey:key];
-                [_defs setObject:_fileStore forKey:SA_FILE_STORE];
+                [_defs setObject:fpath forKey:key];
                 [_defs synchronize];
                 
                 // call success
@@ -132,20 +125,26 @@ typedef void (^locationResponse)(NSURL * location, NSURLResponse * response, NSE
 
 - (void) cleanup {
     
-    for (NSString *key in _fileStore.allKeys) {
-        NSString *filePath = [_fileStore objectForKey:key];
-        NSString *fullFilePath = [self filePathInDocuments:filePath];
-        if ([_fileManager fileExistsAtPath:fullFilePath] && [_fileManager isDeletableFileAtPath:fullFilePath]) {
-            [_fileManager removeItemAtPath:fullFilePath error:nil];
-            NSLog(@"[true] | DEL | %@", filePath);
-        } else {
-            NSLog(@"[false] | DEL | %@", filePath);
+    NSMutableArray<NSString*> *keysToDel = [@[] mutableCopy];
+    
+    for (NSString *key in [[_defs dictionaryRepresentation] allKeys]) {
+        if ([key rangeOfString:@"sasdkkey_"].location != NSNotFound) {
+            NSString *filePath = [_defs objectForKey:key];
+            NSString *fullFilePath = [self filePathInDocuments:filePath];
+            if ([_fileManager fileExistsAtPath:fullFilePath] && [_fileManager isDeletableFileAtPath:fullFilePath]) {
+                [_fileManager removeItemAtPath:fullFilePath error:nil];
+                NSLog(@"[true] | DEL | %@", filePath);
+            } else {
+                NSLog(@"[false] | DEL | %@", filePath);
+            }
+            
+            [keysToDel addObject:key];
         }
     }
     
-    // remove
-    [_fileStore removeAllObjects];
-    [_defs removeObjectForKey:SA_FILE_STORE];
+    for (NSString* key in keysToDel) {
+        [_defs removeObjectForKey:key];
+    }
     [_defs synchronize];
 }
 

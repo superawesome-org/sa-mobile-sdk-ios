@@ -2,92 +2,95 @@
 //  SAInterstitialAd2.m
 //  Pods
 //
-//  Created by Gabriel Coman on 13/02/2016.
+//  Created by Gabriel Coman on 02/09/2016.
 //
 //
 
+// load header
 #import "SAInterstitialAd.h"
+
+// load others
 #import "SABannerAd.h"
-#import "SAUtils.h"
+#import "SALoader.h"
 #import "SAAd.h"
 #import "SACreative.h"
+#import "SADetails.h"
+#import "SATracking.h"
+#import "SAMedia.h"
+#import "SAEvents.h"
+#import "SuperAwesome.h"
+#import "SAOrientation.h"
 
-// defines
-#define INTER_BG_COLOR [UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1]
+@interface SAInterstitialAd ()
 
-@interface SABannerAd () <SAWebPlayerProtocol>
-@property (nonatomic, weak) id<SAAdProtocol> internalAdProto;
-@end
-
-@interface SAInterstitialAd () <SAAdProtocol>
-@property (nonatomic, assign) CGRect adviewFrame;
-@property (nonatomic, assign) CGRect buttonFrame;
-@property (nonatomic, strong) SAAd *ad;
+// views
 @property (nonatomic, strong) SABannerAd *banner;
+@property (nonatomic, strong) SAAd *ad;
 @property (nonatomic, strong) UIButton *closeBtn;
+
 @end
 
 @implementation SAInterstitialAd
 
-#pragma mark <ViewController> functions
+// current loaded ad
+static NSMutableArray<SAAd*> *ads;
 
-- (id) init {
-    if (self = [super init]) {
-        _shouldLockOrientation = NO;
-        _lockOrientation = UIInterfaceOrientationMaskAll;
-    }
-    
-    return self;
-}
+// other vars that need to be set statically
+static sacallback callback = ^(NSInteger placementId, SAEvent event) {};
+static BOOL isParentalGateEnabled = true;
+static BOOL isTestingEnabled = false;
+static SAOrientation orientation = ANY;
+static SAConfiguration configuration = PRODUCTION;
 
-- (id) initWithCoder:(NSCoder *)aDecoder {
-    if (self = [super initWithCoder:aDecoder]) {
-        _shouldLockOrientation = NO;
-        _lockOrientation = UIInterfaceOrientationMaskAll;
-    }
-    return self;
-}
-
-- (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        _shouldLockOrientation = NO;
-        _lockOrientation = UIInterfaceOrientationMaskAll;
-    }
-    return self;
-}
+////////////////////////////////////////////////////////////////////////////////
+// MARK: VC lifecycle
+////////////////////////////////////////////////////////////////////////////////
 
 - (void) viewDidLoad {
     [super viewDidLoad];
+
+    // get local versions of the static module vars
+    sacallback _callbackL    = [SAInterstitialAd getCallback];
+    BOOL _isParentalGateEnabledL = [SAInterstitialAd getIsParentalGateEnabled];
     
     // set bg color
-    self.view.backgroundColor = INTER_BG_COLOR;
-    
-    _banner = [[SABannerAd alloc] initWithFrame:_adviewFrame];
-    _banner.adDelegate = _adDelegate;
-    _banner.parentalGateDelegate = _parentalGateDelegate;
-    _banner.isParentalGateEnabled = _isParentalGateEnabled;
-    _banner.internalAdProto = self;
-    [_banner setAd:_ad];
-    _banner.backgroundColor = INTER_BG_COLOR;
-    [self.view addSubview:_banner];
+    self.view.backgroundColor = [UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1];
     
     // create close button
-    _closeBtn = [[UIButton alloc] initWithFrame:_buttonFrame];
+    _closeBtn = [[UIButton alloc] initWithFrame:CGRectZero];
     [_closeBtn setTitle:@"" forState:UIControlStateNormal];
     [_closeBtn setImage:[SAUtils closeImage] forState:UIControlStateNormal];
     [_closeBtn addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_closeBtn];
     [self.view bringSubviewToFront:_closeBtn];
+    
+    // create & play banner
+    _banner = [[SABannerAd alloc] initWithFrame:CGRectZero];
+     [_banner setCallback:_callbackL];
+    if (_isParentalGateEnabledL) {
+        [_banner enableParentalGate];
+    } else {
+        [_banner disableParentalGate];
+    }
+    _banner.backgroundColor = self.view.backgroundColor;
+    [SAUtils invoke:@"setAd:" onTarget:_banner, _ad];
+    [self.view addSubview:_banner];
+}
+
+- (void) didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    // status bar hidden
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
+    
     // setup coordinates
     CGSize scrSize = [UIScreen mainScreen].bounds.size;
     CGSize currentSize = CGSizeZero;
-//    UIDeviceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+    UIDeviceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
     CGFloat bigDimension = MAX(scrSize.width, scrSize.height);
     CGFloat smallDimension = MIN(scrSize.width, scrSize.height);
     
@@ -118,9 +121,11 @@
         }
     }
     
-    [self resizeToFrame:CGRectMake(0, 0, currentSize.width, currentSize.height)];
-
-    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
+    // resize
+    [self resize:CGRectMake(0, 0, currentSize.width, currentSize.height)];
+    
+    // play the ad
+    [_banner play];
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
@@ -130,7 +135,7 @@
 
 - (void) viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-    [self resizeToFrame:CGRectMake(0, 0, size.width, size.height)];
+    [self resize:CGRectMake(0, 0, size.width, size.height)];
 }
 
 - (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
@@ -141,28 +146,26 @@
     switch (toInterfaceOrientation) {
         case UIInterfaceOrientationLandscapeLeft:
         case UIInterfaceOrientationLandscapeRight: {
-            [self resizeToFrame:CGRectMake(0, 0, bigDimension, smallDimension)];
+            [self resize:CGRectMake(0, 0, bigDimension, smallDimension)];
             break;
         }
         case UIInterfaceOrientationPortrait:
         case UIInterfaceOrientationPortraitUpsideDown:
         case UIInterfaceOrientationUnknown:
         default: {
-            [self resizeToFrame:CGRectMake(0, 0, smallDimension, bigDimension)];
+            [self resize:CGRectMake(0, 0, smallDimension, bigDimension)];
             break;
         }
     }
 }
 
 - (UIInterfaceOrientationMask) supportedInterfaceOrientations {
-    if (_shouldLockOrientation) {
-        return _lockOrientation;
+    SAOrientation orientationL = [SAInterstitialAd getOrientation];
+    switch (orientationL) {
+        case ANY: return UIInterfaceOrientationMaskAll;
+        case PORTRAIT: return UIInterfaceOrientationMaskPortrait;
+        case LANDSCAPE: return UIInterfaceOrientationMaskLandscape;
     }
-    return UIInterfaceOrientationMaskAll;
-}
-
-- (void) didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -173,65 +176,169 @@
     return true;
 }
 
-#pragma mark <SAViewProtocol> functions
-
-- (void) setAd:(SAAd*)__ad {
-    _ad = __ad;
-}
-
-- (SAAd*) getAd {
-    return _ad;
-}
-
-- (void) play {
-    [_banner play];
-}
-
-- (BOOL) shouldShowPadlock {
-    return [_banner shouldShowPadlock];
-}
+////////////////////////////////////////////////////////////////////////////////
+// MARK: Aux Instance method
+////////////////////////////////////////////////////////////////////////////////
 
 - (void) close {
-    [self dismissViewControllerAnimated:YES completion:^{
-        if ([_banner.adDelegate respondsToSelector:@selector(adWasClosed:)]) {
-            [_banner.adDelegate adWasClosed:_ad.placementId];
-        }
-    }];
-
+    // null ad
+    [SAInterstitialAd removeAdFromLoadedAds:_ad];
+    
+    // close the banner
+    [_banner close];
+    
+    // dismiss the current VC
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void) advanceToClick {
-    // do nothing
-}
-
-- (void) resizeToFrame:(CGRect)frame {
-    CGFloat tW = frame.size.width;// * 0.85;
-    CGFloat tH = frame.size.height;// * 0.85;
+- (void) resize: (CGRect) frame {
+    // calc proper new frame
+    CGFloat tW = frame.size.width;
+    CGFloat tH = frame.size.height;
     CGFloat tX = ( frame.size.width - tW ) / 2;
     CGFloat tY = ( frame.size.height - tH) / 2;
     CGRect newR = [SAUtils mapOldFrame:CGRectMake(tX, tY, tW, tH) toNewFrame:frame];
     newR.origin.x += tX;
     newR.origin.y += tY;
+
+    // invoke private banner method
+    [_banner resize:newR];
     
-    CGFloat cs = 40.0f;
-    
-    // final frames
-    _adviewFrame = newR;
-    _buttonFrame = CGRectMake(frame.size.width - cs, 0, cs, cs);
-    
-    // actually resize stuff
-    _closeBtn.frame = _buttonFrame;
-    [_banner resizeToFrame:_adviewFrame];
+    // assign new frames & resize
+    [_closeBtn setFrame:CGRectMake(frame.size.width - 40.0f, 0, 40.0f, 40.0f)];
+    [self.view bringSubviewToFront:_closeBtn];
 }
 
-#pragma mark <SAAdProtocol> - internal
+////////////////////////////////////////////////////////////////////////////////
+// MARK: Class public interface
+////////////////////////////////////////////////////////////////////////////////
 
-- (void) adFailedToShow:(NSInteger)placementId {
-    [self close];
++ (void) load:(NSInteger) placementId {
+    
+    // form a new session
+    SASession *session = [[SASession alloc] init];
+    [session setTestMode:isTestingEnabled];
+    [session setConfiguration:configuration];
+    [session setDauId:[[SuperAwesome getInstance] getDAUID]];
+    [session setVersion:[[SuperAwesome getInstance] getSdkVersion]];
+    
+    // get the loader
+    SALoader *loader = [[SALoader alloc] init];
+    [loader loadAd:placementId withSession:session andResult:^(SAAd *saAd) {
+        
+        // create ads array
+        if (ads == NULL) {
+            ads = [@[] mutableCopy];
+        }
+        
+        // add to the array queue
+        if (saAd != NULL) {
+            [ads addObject:saAd];
+        }
+        
+        // callback
+        callback(placementId, saAd != NULL ? adLoaded : adFailedToLoad);
+    }];
+    
 }
 
-- (void) adHasIncorrectPlacement:(NSInteger)placementId {
-    [self close];
++ (void) play:(NSInteger) placementId fromVC:(UIViewController*)parent {
+    
+    // find out if the ad is loaded
+    SAAd *adL = NULL;
+    for (SAAd *ad in ads) {
+        if (ad.placementId == placementId) {
+            adL = ad;
+        }
+    }
+    
+    // try to start the view controller (if there is one ad that's OK)
+    if (adL && adL.creative.creativeFormat != video) {
+        
+        SAInterstitialAd *newVC = [[SAInterstitialAd alloc] init];
+        newVC.ad = adL;
+        [parent presentViewController:newVC animated:YES completion:nil];
+        
+    } else {
+        callback(placementId, adFailedToShow);
+    }
 }
+
++ (BOOL) hasAdAvailable: (NSInteger) placementId {
+    BOOL hasAd = false;
+    for (SAAd *ad in ads) {
+        if (ad.placementId == placementId) {
+            hasAd = true;
+            break;
+        }
+    }
+    return hasAd;
+}
+
++ (void) removeAdFromLoadedAds:(SAAd*)ad {
+    [ads removeObject:ad];
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// MARK: Setters & getters
+// Some are exposed externally (mainly setters) but some are only internally
+// Main role for them is to handle working with static variables inside this
+// module.
+////////////////////////////////////////////////////////////////////////////////
+
++ (void) setCallback:(sacallback)call {
+    callback = call ? call : callback;
+}
+
++ (void) enableTestMode {
+    isTestingEnabled = true;
+}
+
++ (void) disableTestMode {
+    isTestingEnabled = false;
+}
+
++ (void) enableParentalGate {
+    isParentalGateEnabled = true;
+}
+
++ (void) disableParentalGate {
+    isParentalGateEnabled = false;
+}
+
++ (void) setConfigurationProduction {
+    configuration = PRODUCTION;
+}
+
++ (void) setConfigurationStaging {
+    configuration = STAGING;
+}
+
++ (void) setOrientationAny {
+    orientation = ANY;
+}
+
++ (void) setOrientationPortrait {
+    orientation = PORTRAIT;
+}
+
++ (void) setOrientationLandscape {
+    orientation = LANDSCAPE;
+}
+
+// private methods
+
++ (BOOL) getIsParentalGateEnabled {
+    return isParentalGateEnabled;
+}
+
++ (sacallback) getCallback {
+    return callback;
+}
+
++ (SAOrientation) getOrientation {
+    return orientation;
+}
+
 
 @end
