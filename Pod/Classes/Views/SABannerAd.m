@@ -288,11 +288,11 @@
 }
 
 - (void) enableTestMode {
-    [_session setTestEnabled];
+    [_session enableTestMode];
 }
 
 - (void) disableTestMode {
-    [_session setTestDisabled];
+    [_session disableTestMode];
 }
 
 - (void) setConfigurationProduction {

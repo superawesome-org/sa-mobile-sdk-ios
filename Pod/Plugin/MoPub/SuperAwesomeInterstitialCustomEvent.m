@@ -12,6 +12,7 @@
 #import "SuperAwesomeInterstitialCustomEvent.h"
 #import "SuperAwesome.h"
 #import "SuperAwesomeMoPub.h"
+#import "SAOrientation.h"
 
 @interface SuperAwesomeInterstitialCustomEvent ()
 @property (nonatomic, assign) NSInteger placementId;
@@ -25,14 +26,13 @@
     id _Nullable placementIdObj = [info objectForKey:PLACEMENT_ID];
     id _Nullable isTestEnabledObj = [info objectForKey:TEST_ENABLED];
     id _Nullable isParentalGateEnabledObj = [info objectForKey:PARENTAL_GATE];
-    id _Nullable shouldLockOrientationObj = [info objectForKey:SHOULD_LOCK];
     id _Nullable lockOrientationObj = [info objectForKey:LOCK_ORIENTATION];
+    id _Nullable orientationObj = [info objectForKey:ORIENTATION];
     
     NSInteger placementId = 0;
     BOOL isTestEnabled = false;
     BOOL isParentalGateEnabled = true;
-    BOOL shouldLockOrientation = false;
-    NSInteger lockOrientation = 0;
+    SAOrientation orientation = ANY;
     
     if (placementIdObj) {
         placementId = [placementIdObj integerValue];
@@ -43,16 +43,22 @@
     if (isParentalGateEnabledObj) {
         isParentalGateEnabled = [isParentalGateEnabledObj boolValue];
     }
-    if (shouldLockOrientationObj) {
-        shouldLockOrientation = [shouldLockOrientationObj boolValue];
-    }
     if (lockOrientationObj) {
         NSString *lockOrientationStr = (NSString*)lockOrientationObj;
         if (lockOrientationStr && [lockOrientationStr isEqualToString:@"PORTRAIT"]) {
-            lockOrientation = 1;
+            orientation = PORTRAIT;
         }
         if (lockOrientationStr && [lockOrientationStr isEqualToString:@"LANDSCAPE"]) {
-            lockOrientation = 2;
+            orientation = LANDSCAPE;
+        }
+    }
+    if (orientationObj) {
+        NSString *orientationStr = (NSString*)orientationObj;
+        if (orientationStr && [orientationStr isEqualToString:@"PORTRAIT"]) {
+            orientation = PORTRAIT;
+        }
+        if (orientationStr && [orientationStr isEqualToString:@"LANDSCAPE"]) {
+            orientation = LANDSCAPE;
         }
     }
     
@@ -74,12 +80,10 @@
         [SAInterstitialAd disableParentalGate];
     }
     
-    if (shouldLockOrientation) {
-        if (lockOrientation == 1) {
-            [SAInterstitialAd setOrientationPortrait];
-        } else {
-            [SAInterstitialAd setOrientationLandscape];
-        }
+    if (orientation == LANDSCAPE) {
+        [SAInterstitialAd setOrientationLandscape];
+    } else if (orientation == PORTRAIT) {
+        [SAInterstitialAd setOrientationPortrait];
     } else {
         [SAInterstitialAd setOrientationAny];
     }

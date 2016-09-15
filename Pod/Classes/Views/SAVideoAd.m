@@ -17,6 +17,7 @@
 #import "SAEvents.h"
 #import "SASession.h"
 #import "SuperAwesome.h"
+#import "SAOrientation.h"
 
 @interface SAVideoAd ()
 
@@ -47,10 +48,9 @@ static BOOL isParentalGateEnabled = true;
 static BOOL shouldAutomaticallyCloseAtEnd = true;
 static BOOL shouldShowCloseButton = true;
 static BOOL shouldShowSmallClickButton = false;
-static BOOL shouldLockOrientation = false;
-static NSUInteger lockOrientation = UIInterfaceOrientationMaskAll;
 static BOOL isTestingEnabled = false;
-static NSInteger configuration = 0;
+static SAOrientation orientation = ANY;
+static SAConfiguration configuration = PRODUCTION;
 
 ////////////////////////////////////////////////////////////////////////////////
 // MARK: VC lifecycle
@@ -272,9 +272,12 @@ static NSInteger configuration = 0;
 }
 
 - (UIInterfaceOrientationMask) supportedInterfaceOrientations {
-    BOOL _shouldLockOrientationL = [SAVideoAd getShouldLockOrientation];
-    NSUInteger _lockOrientationL = [SAVideoAd getLockOrientation];
-    return _shouldLockOrientationL ? _lockOrientationL : UIInterfaceOrientationMaskAll;
+    SAOrientation orientationL = [SAVideoAd getOrientation];
+    switch (orientationL) {
+        case ANY: return UIInterfaceOrientationMaskAll;
+        case PORTRAIT: return UIInterfaceOrientationMaskPortrait;
+        case LANDSCAPE: return UIInterfaceOrientationMaskLandscape;
+    }
 }
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -385,7 +388,7 @@ static NSInteger configuration = 0;
     // form a new session
     SASession *session = [[SASession alloc] init];
     [session setConfiguration:configuration];
-    [session setTest:isTestingEnabled];
+    [session setTestMode:isTestingEnabled];
     [session setDauId:[[SuperAwesome getInstance] getDAUID]];
     [session setVersion:[[SuperAwesome getInstance] getSdkVersion]];
     
@@ -474,25 +477,23 @@ static NSInteger configuration = 0;
 }
 
 + (void) setConfigurationProduction {
-    configuration = [SASession getProductionConfigurationID];
+    configuration = PRODUCTION;
 }
 
 + (void) setConfigurationStaging {
-    configuration = [SASession getStatingConfigurationID];
+    configuration = STAGING;
 }
 
 + (void) setOrientationAny {
-    shouldLockOrientation = false;
-    lockOrientation = UIInterfaceOrientationMaskAll;
+    orientation = ANY;
 }
+
 + (void) setOrientationPortrait {
-    shouldLockOrientation = true;
-    lockOrientation = UIInterfaceOrientationMaskPortrait;
+    orientation = PORTRAIT;
 }
 
 + (void) setOrientationLandscape {
-    shouldLockOrientation = true;
-    lockOrientation = UIInterfaceOrientationMaskLandscape;
+    orientation = LANDSCAPE;
 }
 
 + (void) enableCloseButton {
@@ -541,12 +542,8 @@ static NSInteger configuration = 0;
     return shouldShowSmallClickButton;
 }
 
-+ (BOOL) getShouldLockOrientation {
-    return shouldLockOrientation;
-}
-
-+ (NSUInteger) getLockOrientation {
-    return lockOrientation;
++ (SAOrientation) getOrientation {
+    return orientation;
 }
 
 @end

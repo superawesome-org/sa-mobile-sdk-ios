@@ -19,6 +19,7 @@
 #import "SAMedia.h"
 #import "SAEvents.h"
 #import "SuperAwesome.h"
+#import "SAOrientation.h"
 
 @interface SAInterstitialAd ()
 
@@ -37,10 +38,9 @@ static NSMutableArray<SAAd*> *ads;
 // other vars that need to be set statically
 static sacallback callback = ^(NSInteger placementId, SAEvent event) {};
 static BOOL isParentalGateEnabled = true;
-static BOOL shouldLockOrientation = false;
-static NSUInteger lockOrientation = UIInterfaceOrientationMaskAll;
 static BOOL isTestingEnabled = false;
-static NSInteger configuration = 0;
+static SAOrientation orientation = ANY;
+static SAConfiguration configuration = PRODUCTION;
 
 ////////////////////////////////////////////////////////////////////////////////
 // MARK: VC lifecycle
@@ -160,9 +160,12 @@ static NSInteger configuration = 0;
 }
 
 - (UIInterfaceOrientationMask) supportedInterfaceOrientations {
-    BOOL _shouldLockOrientationL = [SAInterstitialAd getShouldLockOrientation];
-    NSUInteger _lockOrientationL = [SAInterstitialAd getLockOrientation];
-    return _shouldLockOrientationL ? _lockOrientationL : UIInterfaceOrientationMaskAll;
+    SAOrientation orientationL = [SAInterstitialAd getOrientation];
+    switch (orientationL) {
+        case ANY: return UIInterfaceOrientationMaskAll;
+        case PORTRAIT: return UIInterfaceOrientationMaskPortrait;
+        case LANDSCAPE: return UIInterfaceOrientationMaskLandscape;
+    }
 }
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -214,7 +217,7 @@ static NSInteger configuration = 0;
     
     // form a new session
     SASession *session = [[SASession alloc] init];
-    [session setTest:isTestingEnabled];
+    [session setTestMode:isTestingEnabled];
     [session setConfiguration:configuration];
     [session setDauId:[[SuperAwesome getInstance] getDAUID]];
     [session setVersion:[[SuperAwesome getInstance] getSdkVersion]];
@@ -304,25 +307,23 @@ static NSInteger configuration = 0;
 }
 
 + (void) setConfigurationProduction {
-    configuration = [SASession getProductionConfigurationID];
+    configuration = PRODUCTION;
 }
 
 + (void) setConfigurationStaging {
-    configuration = [SASession getStatingConfigurationID];
+    configuration = STAGING;
 }
 
 + (void) setOrientationAny {
-    shouldLockOrientation = false;
-    lockOrientation = UIInterfaceOrientationMaskAll;
+    orientation = ANY;
 }
+
 + (void) setOrientationPortrait {
-    shouldLockOrientation = true;
-    lockOrientation = UIInterfaceOrientationMaskPortrait;
+    orientation = PORTRAIT;
 }
 
 + (void) setOrientationLandscape {
-    shouldLockOrientation = true;
-    lockOrientation = UIInterfaceOrientationMaskLandscape;
+    orientation = LANDSCAPE;
 }
 
 // private methods
@@ -331,16 +332,12 @@ static NSInteger configuration = 0;
     return isParentalGateEnabled;
 }
 
-+ (BOOL) getShouldLockOrientation {
-    return shouldLockOrientation;
-}
-
 + (sacallback) getCallback {
     return callback;
 }
 
-+ (NSUInteger) getLockOrientation {
-    return lockOrientation;
++ (SAOrientation) getOrientation {
+    return orientation;
 }
 
 

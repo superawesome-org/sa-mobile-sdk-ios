@@ -49,7 +49,7 @@
     }
     
     // form the query
-    NSDictionary *query = @{@"test": @([session isTestEnabled]),
+    NSDictionary *query = @{@"test": @([session getTestMode]),
                             @"sdkVersion":[session getVersion],
                             @"rnd":@([SAUtils getCachebuster]),
                             @"ct":@([SAUtils getNetworkConnectivity]),

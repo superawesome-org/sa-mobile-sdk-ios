@@ -8,9 +8,6 @@
 
 #import "SASession.h"
 
-#define CONFIGURATION_PRODUCTION 0
-#define CONFIGURATION_STAGING 1
-
 #define PRODUCTION_URL @"https://ads.superawesome.tv/v2"
 #define STAGING_URL @"https://ads.staging.superawesome.tv/v2"
 
@@ -19,7 +16,7 @@
 @property (nonatomic, assign) BOOL testEnabled;
 @property (nonatomic, strong) NSString *version;
 @property (nonatomic, assign) NSInteger dauId;
-@property (nonatomic, assign) NSInteger configuration;
+@property (nonatomic, assign) SAConfiguration configuration;
 @end
 
 @implementation SASession
@@ -27,52 +24,43 @@
 - (id) init {
     if (self = [super init]) {
         [self setConfigurationProduction];
-        [self setTestDisabled];
+        [self disableTestMode];
         [self setDauId:0];
         [self setVersion:@"0.0.0"];
     }
     return self;
 }
 
-+ (NSInteger) getProductionConfigurationID {
-    return 0;
-}
-
-+ (NSInteger) getStatingConfigurationID {
-    return 1;
-}
-
-// setters
-
-- (void) setConfiguration:(NSInteger) configuration {
-    if (configuration == CONFIGURATION_PRODUCTION) {
-        [self setConfigurationProduction];
+- (void) setConfiguration:(SAConfiguration) configuration {
+    if (configuration == PRODUCTION) {
+        _configuration = PRODUCTION;
+        _baseUrl = PRODUCTION_URL;
     } else {
-        [self setConfigurationStaging];
+        _configuration = STAGING;
+        _baseUrl = STAGING_URL;
     }
 }
 
 - (void) setConfigurationProduction {
-    _configuration = CONFIGURATION_PRODUCTION;
-    _baseUrl = PRODUCTION_URL;
+    [self setConfiguration:PRODUCTION];
 }
 
 - (void) setConfigurationStaging {
-    _configuration = CONFIGURATION_STAGING;
-    _baseUrl = STAGING_URL;
+    [self setConfiguration:STAGING];
 }
 
-- (void) setTestEnabled {
-    _testEnabled = true;
-}
-
-- (void) setTestDisabled {
-    _testEnabled = false;
-}
-
-- (void) setTest:(BOOL) testEnabled {
+- (void) setTestMode:(BOOL)testEnabled {
     _testEnabled = testEnabled;
 }
+
+- (void) enableTestMode {
+    [self setTestMode:true];
+}
+
+- (void) disableTestMode {
+    [self setTestMode:false];
+}
+
 
 - (void) setDauId:(NSInteger)dauId {
     _dauId = dauId;
@@ -88,7 +76,7 @@
     return _baseUrl;
 }
 
-- (BOOL) isTestEnabled {
+- (BOOL) getTestMode {
     return _testEnabled;
 }
 
@@ -100,7 +88,7 @@
     return _version;
 }
 
-- (NSInteger) getConfiguration {
+- (SAConfiguration) getConfiguration {
     return _configuration;
 }
 

@@ -13,6 +13,7 @@
 #import "SuperAwesome.h"
 #import "MPRewardedVideoReward.h"
 #import "SuperAwesomeMoPub.h"
+#import "SAOrientation.h"
 
 @interface SuperAwesomeRewardedVideoCustomEvent ()
 @property (nonatomic, strong) MPRewardedVideoReward *reward;
@@ -30,9 +31,9 @@
     id _Nullable isParentalGateEnabledObj = [info objectForKey:PARENTAL_GATE];
     id _Nullable shouldShowCloseButtonObj = [info objectForKey:SHOULD_SHOW_CLOSE];
     id _Nullable shouldAutomaticallyCloseAtEndObj = [info objectForKey:SHOULD_AUTO_CLOSE];
-    id _Nullable shouldLockOrientationObj = [info objectForKey:SHOULD_LOCK];
-    id _Nullable lockOrientationObj = [info objectForKey:LOCK_ORIENTATION];
     id _Nullable shouldShowSmallClickButtonObj = [info objectForKey:VIDEO_BUTTON_STYLE];
+    id _Nullable lockOrientationObj = [info objectForKey:LOCK_ORIENTATION];
+    id _Nullable orientationObj = [info objectForKey:ORIENTATION];
     
     // assign values
     BOOL isTestEnabled = false;
@@ -40,8 +41,7 @@
     BOOL shouldShowCloseButton = true;
     BOOL shouldShowSmallClickButton = false;
     BOOL shouldAutomaticallyCloseAtEnd = true;
-    BOOL shouldLockOrientation = false;
-    NSInteger lockOrientation = 0;
+    SAOrientation orientation = ANY;
     
     if (placementIdObj) {
         _placementId = [placementIdObj integerValue];
@@ -53,7 +53,7 @@
         isParentalGateEnabled = [isParentalGateEnabledObj boolValue];
     }
     if (shouldShowCloseButtonObj) {
-        shouldShowCloseButton = [shouldLockOrientationObj boolValue];
+        shouldShowCloseButton = [shouldShowCloseButtonObj boolValue];
     }
     if (shouldShowSmallClickButtonObj) {
         shouldShowSmallClickButton = [shouldShowSmallClickButtonObj boolValue];
@@ -61,16 +61,22 @@
     if (shouldAutomaticallyCloseAtEndObj) {
         shouldAutomaticallyCloseAtEnd = [shouldAutomaticallyCloseAtEndObj boolValue];
     }
-    if (shouldLockOrientationObj) {
-        shouldLockOrientation = [shouldLockOrientationObj boolValue];
-    }
     if (lockOrientationObj) {
         NSString *lockOrientationStr = (NSString*)lockOrientationObj;
         if (lockOrientationStr && [lockOrientationStr isEqualToString:@"PORTRAIT"]) {
-            lockOrientation = 1;
+            orientation = PORTRAIT;
         }
         if (lockOrientationStr && [lockOrientationStr isEqualToString:@"LANDSCAPE"]) {
-            lockOrientation = 2;
+            orientation = LANDSCAPE;
+        }
+    }
+    if (orientationObj) {
+        NSString *orientationStr = (NSString*)orientationObj;
+        if (orientationStr && [orientationStr isEqualToString:@"PORTRAIT"]) {
+            orientation = PORTRAIT;
+        }
+        if (orientationStr && [orientationStr isEqualToString:@"LANDSCAPE"]) {
+            orientation = LANDSCAPE;
         }
     }
     
@@ -112,12 +118,10 @@
         [SAVideoAd disableSmallClickButton];
     }
     
-    if (shouldLockOrientation) {
-        if (lockOrientation == 1) {
-            [SAVideoAd setOrientationPortrait];
-        } else {
-            [SAVideoAd setOrientationLandscape];
-        }
+    if (orientation == LANDSCAPE) {
+        [SAVideoAd setOrientationLandscape];
+    } else if (orientation == PORTRAIT) {
+        [SAVideoAd setOrientationPortrait];
     } else {
         [SAVideoAd setOrientationAny];
     }
