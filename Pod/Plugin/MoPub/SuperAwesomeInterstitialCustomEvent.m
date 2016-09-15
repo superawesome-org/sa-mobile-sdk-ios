@@ -28,35 +28,36 @@
     id _Nullable shouldLockOrientationObj = [info objectForKey:SHOULD_LOCK];
     id _Nullable lockOrientationObj = [info objectForKey:LOCK_ORIENTATION];
     
-    if (isTestEnabledObj == NULL || placementIdObj == NULL) {
-        
-        // then send this to bannerCustomEvent:didFailToLoadAdWithError:
-        [self.delegate interstitialCustomEvent:self
-                      didFailToLoadAdWithError:[self createErrorWith:ERROR_JSON_TITLE
-                                                           andReason:ERROR_JSON_MESSAGE
-                                                       andSuggestion:ERROR_JSON_SUGGESTION]];
-        
-        // return
-        return;
+    NSInteger placementId = 0;
+    BOOL isTestEnabled = false;
+    BOOL isParentalGateEnabled = true;
+    BOOL shouldLockOrientation = false;
+    NSInteger lockOrientation = 0;
+    
+    if (placementIdObj) {
+        placementId = [placementIdObj integerValue];
+    }
+    if (isTestEnabledObj) {
+        isTestEnabled = [isTestEnabledObj boolValue];
+    }
+    if (isParentalGateEnabledObj) {
+        isParentalGateEnabled = [isParentalGateEnabledObj boolValue];
+    }
+    if (shouldLockOrientationObj) {
+        shouldLockOrientation = [shouldLockOrientationObj boolValue];
+    }
+    if (lockOrientationObj) {
+        NSString *lockOrientationStr = (NSString*)lockOrientationObj;
+        if (lockOrientationStr && [lockOrientationStr isEqualToString:@"PORTRAIT"]) {
+            lockOrientation = 1;
+        }
+        if (lockOrientationStr && [lockOrientationStr isEqualToString:@"LANDSCAPE"]) {
+            lockOrientation = 2;
+        }
     }
     
     // get a weak self reference
     __weak typeof (self) weakSelf = self;
-    
-    // assign values, because they exist
-    BOOL isTestEnabled = [isTestEnabledObj boolValue];
-    _placementId = [placementIdObj integerValue];
-    BOOL isParentalGateEnabled = (isParentalGateEnabledObj != NULL ? [isParentalGateEnabledObj boolValue] : true);
-    BOOL shouldLockOrientation = (shouldLockOrientationObj != NULL ? [shouldLockOrientationObj boolValue] : false);
-    NSString *lockOrientationStr = (lockOrientationObj != NULL ? (NSString*)lockOrientationObj : NULL);
-    NSInteger lockOrientation = 0;
-    if (lockOrientationStr != NULL) {
-        if ([lockOrientationStr isEqualToString:@"PORTRAIT"]) {
-            lockOrientation = 1;
-        } else {
-            lockOrientation = 2;
-        }
-    }
     
     // start the loader
     [SAInterstitialAd setConfigurationProduction];

@@ -34,33 +34,42 @@
     id _Nullable lockOrientationObj = [info objectForKey:LOCK_ORIENTATION];
     id _Nullable shouldShowSmallClickButtonObj = [info objectForKey:VIDEO_BUTTON_STYLE];
     
-    if (isTestEnabledObj == NULL || placementIdObj == NULL) {
-        
-        // then send this to bannerCustomEvent:didFailToLoadAdWithError:
-        [self.delegate rewardedVideoDidFailToLoadAdForCustomEvent:self
-                                                            error:[self createErrorWith:ERROR_JSON_TITLE
-                                                                              andReason:ERROR_JSON_MESSAGE
-                                                                          andSuggestion:ERROR_JSON_SUGGESTION]];
-        
-        
-        // return
-        return;
-    }
-    
-    // assign values, because they exist
-    _placementId = [placementIdObj integerValue];
-    BOOL isTestEnabled = [isTestEnabledObj boolValue];
-    BOOL isParentalGateEnabled = (isParentalGateEnabledObj != NULL ? [isParentalGateEnabledObj boolValue] : true);
-    BOOL shouldShowCloseButton = (shouldShowCloseButtonObj != NULL ? [shouldShowCloseButtonObj boolValue] : false);
-    BOOL shouldAutomaticallyCloseAtEnd = (shouldAutomaticallyCloseAtEndObj != NULL ? [shouldAutomaticallyCloseAtEndObj boolValue] : true);
-    BOOL shouldShowSmallClickButton = (shouldShowSmallClickButtonObj != NULL ? [shouldShowSmallClickButtonObj boolValue] : false);
-    BOOL shouldLockOrientation = (shouldLockOrientationObj != NULL ? [shouldLockOrientationObj boolValue] : false);
-    NSString *lockOrientationStr = (lockOrientationObj != NULL ? (NSString*)lockOrientationObj : NULL);
+    // assign values
+    BOOL isTestEnabled = false;
+    BOOL isParentalGateEnabled = true;
+    BOOL shouldShowCloseButton = true;
+    BOOL shouldShowSmallClickButton = false;
+    BOOL shouldAutomaticallyCloseAtEnd = true;
+    BOOL shouldLockOrientation = false;
     NSInteger lockOrientation = 0;
-    if (lockOrientationStr != NULL) {
-        if ([lockOrientationStr isEqualToString:@"PORTRAIT"]) {
+    
+    if (placementIdObj) {
+        _placementId = [placementIdObj integerValue];
+    }
+    if (isTestEnabledObj) {
+        isTestEnabled = [isTestEnabledObj boolValue];
+    }
+    if (isParentalGateEnabledObj) {
+        isParentalGateEnabled = [isParentalGateEnabledObj boolValue];
+    }
+    if (shouldShowCloseButtonObj) {
+        shouldShowCloseButton = [shouldLockOrientationObj boolValue];
+    }
+    if (shouldShowSmallClickButtonObj) {
+        shouldShowSmallClickButton = [shouldShowSmallClickButtonObj boolValue];
+    }
+    if (shouldAutomaticallyCloseAtEndObj) {
+        shouldAutomaticallyCloseAtEnd = [shouldAutomaticallyCloseAtEndObj boolValue];
+    }
+    if (shouldLockOrientationObj) {
+        shouldLockOrientation = [shouldLockOrientationObj boolValue];
+    }
+    if (lockOrientationObj) {
+        NSString *lockOrientationStr = (NSString*)lockOrientationObj;
+        if (lockOrientationStr && [lockOrientationStr isEqualToString:@"PORTRAIT"]) {
             lockOrientation = 1;
-        } else {
+        }
+        if (lockOrientationStr && [lockOrientationStr isEqualToString:@"LANDSCAPE"]) {
             lockOrientation = 2;
         }
     }

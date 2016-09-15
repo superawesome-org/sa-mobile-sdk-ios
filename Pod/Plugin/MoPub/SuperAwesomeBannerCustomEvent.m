@@ -32,23 +32,21 @@
     id _Nullable isTestEnabledObj = [info objectForKey:TEST_ENABLED];
     id _Nullable isParentalGateEnabledObj = [info objectForKey:PARENTAL_GATE];
     
-    if (isTestEnabledObj == NULL || placementIdObj == NULL) {
-        
-        // then send this to bannerCustomEvent:didFailToLoadAdWithError:
-        [self.delegate bannerCustomEvent:self
-                didFailToLoadAdWithError:[self createErrorWith:ERROR_JSON_TITLE
-                                                     andReason:ERROR_JSON_MESSAGE
-                                                 andSuggestion:ERROR_JSON_SUGGESTION]];
-        
-        // return
-        return;
+    // get values
+    BOOL placementId = 0;
+    BOOL isTestEnabled = false;
+    BOOL isPrentalGateEnabled = true;
+    
+    if (placementIdObj) {
+        placementId = [placementIdObj integerValue];
+    }
+    if (isTestEnabledObj) {
+        isTestEnabled = [isTestEnabledObj boolValue];
+    }
+    if (isParentalGateEnabledObj) {
+        isPrentalGateEnabled = [isParentalGateEnabledObj boolValue];
     }
     
-    // assign values, because they exist
-    BOOL isTestEnabled = [isTestEnabledObj boolValue];
-    NSInteger placementId = [placementIdObj integerValue];
-    BOOL isParentalGateEnabled = (isParentalGateEnabledObj != NULL ? [isParentalGateEnabledObj boolValue] : true);
-
     // get a weak self reference
     __weak typeof (self) weakSelf = self;
     
@@ -63,7 +61,7 @@
         [_banner disableTestMode];
     }
     
-    if (isParentalGateEnabled) {
+    if (isPrentalGateEnabled) {
         [_banner enableParentalGate];
     } else {
         [_banner disableParentalGate];
