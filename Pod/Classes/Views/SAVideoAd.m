@@ -196,7 +196,7 @@ static NSInteger configuration = 0;
     // setup coordinates
     CGSize scrSize = [UIScreen mainScreen].bounds.size;
     CGSize currentSize = CGSizeZero;
-    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+    UIDeviceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
     CGFloat bigDimension = MAX(scrSize.width, scrSize.height);
     CGFloat smallDimension = MIN(scrSize.width, scrSize.height);
     

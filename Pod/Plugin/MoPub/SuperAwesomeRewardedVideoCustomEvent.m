@@ -53,18 +53,15 @@
     BOOL isParentalGateEnabled = (isParentalGateEnabledObj != NULL ? [isParentalGateEnabledObj boolValue] : true);
     BOOL shouldShowCloseButton = (shouldShowCloseButtonObj != NULL ? [shouldShowCloseButtonObj boolValue] : false);
     BOOL shouldAutomaticallyCloseAtEnd = (shouldAutomaticallyCloseAtEndObj != NULL ? [shouldAutomaticallyCloseAtEndObj boolValue] : true);
-    BOOL shouldLockOrientation = (shouldLockOrientationObj != NULL ? [shouldLockOrientationObj boolValue] : false);
     BOOL shouldShowSmallClickButton = (shouldShowSmallClickButtonObj != NULL ? [shouldShowSmallClickButtonObj boolValue] : false);
-    BOOL lockOrientation = UIInterfaceOrientationMaskAll;
-    if (lockOrientationObj != NULL) {
-        NSString *orient = (NSString*)lockOrientationObj;
-        if ([orient isEqualToString:@"LANDSCAPE"]){
-            lockOrientation = UIInterfaceOrientationMaskLandscape;
-        } else if ([orient isEqualToString:@"PORTRAIT"]){
-            lockOrientation = UIInterfaceOrientationMaskPortrait;
+    BOOL shouldLockOrientation = (shouldLockOrientationObj != NULL ? [shouldLockOrientationObj boolValue] : false);
+    NSString *lockOrientationStr = (lockOrientationObj != NULL ? (NSString*)lockOrientationObj : NULL);
+    NSInteger lockOrientation = 0;
+    if (lockOrientationStr != NULL) {
+        if ([lockOrientationStr isEqualToString:@"PORTRAIT"]) {
+            lockOrientation = 1;
         } else {
-            shouldLockOrientation = NO;
-            lockOrientation = UIInterfaceOrientationMaskAll;
+            lockOrientation = 2;
         }
     }
     
@@ -107,7 +104,7 @@
     }
     
     if (shouldLockOrientation) {
-        if (lockOrientation == UIInterfaceOrientationMaskPortrait) {
+        if (lockOrientation == 1) {
             [SAVideoAd setOrientationPortrait];
         } else {
             [SAVideoAd setOrientationLandscape];

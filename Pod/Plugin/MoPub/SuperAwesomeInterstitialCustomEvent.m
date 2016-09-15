@@ -48,15 +48,13 @@
     _placementId = [placementIdObj integerValue];
     BOOL isParentalGateEnabled = (isParentalGateEnabledObj != NULL ? [isParentalGateEnabledObj boolValue] : true);
     BOOL shouldLockOrientation = (shouldLockOrientationObj != NULL ? [shouldLockOrientationObj boolValue] : false);
-    NSInteger lockOrientation = UIInterfaceOrientationMaskAll;
-    if (lockOrientationObj != NULL) {
-        NSString *orient = (NSString*)lockOrientationObj;
-        if ([orient isEqualToString:@"LANDSCAPE"]){
-            lockOrientation = UIInterfaceOrientationMaskLandscape;
-        } else if ([orient isEqualToString:@"PORTRAIT"]){
-            lockOrientation = UIInterfaceOrientationMaskPortrait;
+    NSString *lockOrientationStr = (lockOrientationObj != NULL ? (NSString*)lockOrientationObj : NULL);
+    NSInteger lockOrientation = 0;
+    if (lockOrientationStr != NULL) {
+        if ([lockOrientationStr isEqualToString:@"PORTRAIT"]) {
+            lockOrientation = 1;
         } else {
-            shouldLockOrientation = NO;
+            lockOrientation = 2;
         }
     }
     
@@ -76,7 +74,7 @@
     }
     
     if (shouldLockOrientation) {
-        if (lockOrientation == UIInterfaceOrientationPortrait) {
+        if (lockOrientation == 1) {
             [SAInterstitialAd setOrientationPortrait];
         } else {
             [SAInterstitialAd setOrientationLandscape];
