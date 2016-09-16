@@ -444,10 +444,7 @@ static SAConfiguration configuration = PRODUCTION;
 
 + (BOOL) hasAdAvailable: (NSInteger) placementId {
     id object = [ads objectForKey:@(placementId)];
-    if (object == NULL) return false;
-    if ([object isKindOfClass:[NSNumber class]]) return false;
-    if ([object isKindOfClass:[SAAd class]]) return true;
-    return false;
+    return object != NULL && [object isKindOfClass:[SAAd class]];
 }
 
 + (void) removeAdFromLoadedAds:(SAAd*)ad {
