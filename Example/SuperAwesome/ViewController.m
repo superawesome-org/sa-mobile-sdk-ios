@@ -24,28 +24,58 @@
     [_bannerAd setConfigurationStaging];
     [_bannerAd disableTestMode];
     [_bannerAd disableParentalGate];
-    [_bannerAd load:414];
+    [_bannerAd setCallback:^(NSInteger placementId, SAEvent event) {
+        if (event == adLoaded) {
+            NSLog(@"adLoaded ==> %ld", (long) placementId);
+        } else if (event == adFailedToLoad) {
+            NSLog(@"adFailedToLoad ==> %ld", (long) placementId);
+        }
+    }];
     
     // load interstitials
     [SAInterstitialAd setConfigurationStaging];
     [SAInterstitialAd disableTestMode];
     [SAInterstitialAd enableParentalGate];
     [SAInterstitialAd setOrientationPortrait];
-    [SAInterstitialAd load:415];
-    [SAInterstitialAd load:418];
+    [SAInterstitialAd setCallback:^(NSInteger placementId, SAEvent event) {
+        if (event == adLoaded) {
+            NSLog(@"adLoaded ==> %ld", (long) placementId);
+        } else if (event == adFailedToLoad) {
+            NSLog(@"adFailedToLoad ==> %ld", (long) placementId);
+        }
+    }];
     
     // load video
     [SAVideoAd setConfigurationStaging];
     [SAVideoAd disableParentalGate];
     [SAVideoAd setOrientationLandscape];
-    [SAVideoAd disableCloseButton];
-    [SAVideoAd enableSmallClickButton];
-    [SAVideoAd load:416];
-    [SAVideoAd load:417];
+//    [SAVideoAd disableCloseButton];
+//    [SAVideoAd enableSmallClickButton];
+    [SAVideoAd setCallback:^(NSInteger placementId, SAEvent event) {
+        if (event == adLoaded) {
+            NSLog(@"adLoaded ==> %ld", (long) placementId);
+        } else if (event == adFailedToLoad) {
+            NSLog(@"adFailedToLoad ==> %ld", (long) placementId);
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (IBAction)loadAction:(id)sender {
+    [_bannerAd load:414];
+    [SAInterstitialAd load:415];
+    [SAInterstitialAd load:415];
+    [SAInterstitialAd load:415];
+    [SAInterstitialAd load:418];
+    [SAInterstitialAd load:418];
+    [SAInterstitialAd load:418];
+    [SAVideoAd load:416];
+    [SAVideoAd load:416];
+    [SAVideoAd load:416];
+    [SAVideoAd load:417];
 }
 
 - (IBAction)playBanner:(id)sender {

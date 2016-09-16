@@ -42,7 +42,7 @@
 @implementation SAVideoAd
 
 // other vars that need to be set statically
-static NSMutableArray <SAAd*> *ads;
+static NSMutableDictionary *ads;
 static sacallback callback = ^(NSInteger placementId, SAEvent event) {};
 static BOOL isParentalGateEnabled = true;
 static BOOL shouldAutomaticallyCloseAtEnd = true;
@@ -385,42 +385,50 @@ static SAConfiguration configuration = PRODUCTION;
 
 + (void) load:(NSInteger) placementId {
     
-    // form a new session
-    SASession *session = [[SASession alloc] init];
-    [session setConfiguration:configuration];
-    [session setTestMode:isTestingEnabled];
-    [session setDauId:[[SuperAwesome getInstance] getDAUID]];
-    [session setVersion:[[SuperAwesome getInstance] getSdkVersion]];
+    // create dictionary
+    if (ads == NULL) {
+        ads = [@{} mutableCopy];
+    }
     
-    // get the loader
-    SALoader *loader = [[SALoader alloc] init];
-    [loader loadAd:placementId withSession:session andResult:^(SAAd *saAd) {
+    // if  there's no object around
+    if ([ads objectForKey:@(placementId)] == NULL) {
         
-        // create ads array
-        if (ads == NULL) {
-            ads = [@[] mutableCopy];
-        }
+        // set a placeholder
+        [ads setObject:@(true) forKey:@(placementId)];
         
-        // add to the array queue
-        if (saAd != NULL) {
-            [ads addObject:saAd];
-        }
+        // form a new session
+        SASession *session = [[SASession alloc] init];
+        [session setTestMode:isTestingEnabled];
+        [session setConfiguration:configuration];
+        [session setDauId:[[SuperAwesome getInstance] getDAUID]];
+        [session setVersion:[[SuperAwesome getInstance] getSdkVersion]];
         
-        // callback
-        callback(placementId, saAd != NULL ? adLoaded : adFailedToLoad);
+        // get the loader
+        SALoader *loader = [[SALoader alloc] init];
+        [loader loadAd:placementId withSession:session andResult:^(SAAd *saAd) {
+            
+            // add to the array queue
+            if (saAd != NULL) {
+                [ads setObject:saAd forKey:@(placementId)];
+            }
+            // remove
+            else {
+                [ads removeObjectForKey:@(placementId)];
+            }
+            
+            // callback
+            callback(placementId, saAd != NULL ? adLoaded : adFailedToLoad);
+        }];
         
-    }];
+    } else {
+        callback (placementId, adFailedToLoad);
+    }
 }
 
 + (void) play:(NSInteger) placementId fromVC:(UIViewController*)parent {
     
     // find out if the ad is loaded
-    SAAd *adL = NULL;
-    for (SAAd *ad in ads) {
-        if (ad.placementId == placementId) {
-            adL = ad;
-        }
-    }
+    SAAd *adL = [ads objectForKey:@(placementId)];
     
     // try to start the view controller (if there is one ad that's OK)
     if (adL && adL.creative.creativeFormat == video) {
@@ -435,18 +443,15 @@ static SAConfiguration configuration = PRODUCTION;
 }
 
 + (BOOL) hasAdAvailable: (NSInteger) placementId {
-    BOOL hasAd = false;
-    for (SAAd *ad in ads) {
-        if (ad.placementId == placementId) {
-            hasAd = true;
-            break;
-        }
-    }
-    return hasAd;
+    id object = [ads objectForKey:@(placementId)];
+    if (object == NULL) return false;
+    if ([object isKindOfClass:[NSNumber class]]) return false;
+    if ([object isKindOfClass:[SAAd class]]) return true;
+    return false;
 }
 
 + (void) removeAdFromLoadedAds:(SAAd*)ad {
-    [ads removeObject:ad];
+    [ads removeObjectForKey:@(ad.placementId)];
 }
 
 ////////////////////////////////////////////////////////////////////////////////

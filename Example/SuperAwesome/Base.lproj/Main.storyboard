@@ -76,13 +76,25 @@
                                     <action selector="playVideo2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Pff-Gs-l99"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ZP-wb-iww">
+                                <rect key="frame" x="20" y="34" width="560" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="D5a-J1-RKm"/>
+                                </constraints>
+                                <state key="normal" title="Load"/>
+                                <connections>
+                                    <action selector="loadAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="I99-fh-tdx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="2ZP-wb-iww" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="14" id="0lE-x8-DYq"/>
                             <constraint firstItem="3Ip-nJ-7SI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="50D-4X-ape"/>
                             <constraint firstItem="j1d-qs-TPY" firstAttribute="top" secondItem="3mH-9c-17k" secondAttribute="bottom" constant="8" id="Bpl-uD-igH"/>
                             <constraint firstAttribute="trailing" secondItem="3Ip-nJ-7SI" secondAttribute="trailing" constant="20" id="C6j-dY-um4"/>
                             <constraint firstItem="xIh-8h-hcJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="DFi-rC-zzM"/>
+                            <constraint firstAttribute="trailing" secondItem="2ZP-wb-iww" secondAttribute="trailing" constant="20" id="Igi-FW-C2b"/>
                             <constraint firstItem="xIh-8h-hcJ" firstAttribute="top" secondItem="n5q-jS-QqV" secondAttribute="bottom" constant="8" id="JNT-BK-DAg"/>
                             <constraint firstItem="n5q-jS-QqV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="Nn7-hm-Y2W"/>
                             <constraint firstAttribute="trailing" secondItem="3mH-9c-17k" secondAttribute="trailing" constant="20" id="OYZ-sP-9cw"/>
@@ -90,11 +102,12 @@
                             <constraint firstAttribute="trailing" secondItem="n5q-jS-QqV" secondAttribute="trailing" constant="20" id="UZK-kG-MmG"/>
                             <constraint firstItem="j1d-qs-TPY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="cmm-7W-Jbb"/>
                             <constraint firstItem="n5q-jS-QqV" firstAttribute="top" secondItem="3Ip-nJ-7SI" secondAttribute="bottom" constant="8" symbolic="YES" id="dCc-F9-DBa"/>
-                            <constraint firstItem="3mH-9c-17k" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="52" id="jjR-Wk-lUV"/>
+                            <constraint firstItem="3mH-9c-17k" firstAttribute="top" secondItem="2ZP-wb-iww" secondAttribute="bottom" constant="8" id="guQ-p6-8LK"/>
                             <constraint firstAttribute="bottomMargin" secondItem="NQl-2B-YWd" secondAttribute="bottom" id="mvT-Bm-26o"/>
                             <constraint firstItem="3Ip-nJ-7SI" firstAttribute="top" secondItem="j1d-qs-TPY" secondAttribute="bottom" constant="8" id="nPN-NP-cCU"/>
                             <constraint firstItem="NQl-2B-YWd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="t4c-ji-0jO"/>
                             <constraint firstItem="3mH-9c-17k" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="wiI-HZ-K8T"/>
+                            <constraint firstItem="2ZP-wb-iww" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="wkd-5I-eab"/>
                             <constraint firstAttribute="trailing" secondItem="xIh-8h-hcJ" secondAttribute="trailing" constant="20" id="ym3-f2-jxn"/>
                         </constraints>
                     </view>
