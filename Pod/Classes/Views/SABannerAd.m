@@ -98,7 +98,7 @@
     [_webplayer setAdSize:CGSizeMake(_ad.creative.details.width, _ad.creative.details.height)];
     
     // moat tracking
-    NSString *moatString = @""; // [_events moatEventForWebPlayer:_webplayer];
+    NSString *moatString = [_events moatEventForWebPlayer:_webplayer];
     
     // form the full HTML string and play it!
     NSString *fullHTMLToLoad = [_ad.creative.details.media.html stringByReplacingOccurrencesOfString:@"_MOAT_" withString:moatString];
