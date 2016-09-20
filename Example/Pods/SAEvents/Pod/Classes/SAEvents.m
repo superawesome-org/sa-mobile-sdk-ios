@@ -23,7 +23,8 @@
 #endif
 #endif
 
-#define MAX_TICKS 2
+#define MAX_DISPLAY_TICKS 1
+#define MAX_VIDEO_TICKS 2
 
 @interface SAEvents ()
 @property (nonatomic, strong) SAAd *ad;
@@ -83,35 +84,16 @@
 // MARK: Viewable Impression
 ////////////////////////////////////////////////////////////////////////////////
 
-- (void) sendViewableForFullscreen {
-    // safety check
-    if (_ad == NULL) return;
-    
-    // start timer
-    __block NSInteger ticks = 0;
-    _viewabilityTimer = [NSTimer scheduledTimerWithTimeInterval:1
-                                                         target:[NSBlockOperation blockOperationWithBlock:^{
-        
-        if (ticks >= MAX_TICKS) {
-            [_viewabilityTimer invalidate];
-            _viewabilityTimer = nil;
-            [self sendAllEventsForKey:@"viewable_impr"];
-        } else {
-            ticks++;
-            NSLog(@"[AA :: Info] Tick %ld/%d", (long)ticks, MAX_TICKS);
-        }
-        
-    }] selector:@selector(main) userInfo:nil repeats:YES];
-    
-    // fire timer
-    [_viewabilityTimer fire];
-    
-}
-
-- (void) sendViewableForInScreen:(UIView *)view {
+- (void) sendViewableImpressionForView:(UIView*) view andTicks:(NSInteger) maxTicks {
     
     // safety check
     if (_ad == NULL) return;
+    
+    // destroy previosus timer, if it exists
+    if (_viewabilityTimer != NULL) {
+        [_viewabilityTimer invalidate];
+        _viewabilityTimer = NULL;
+    }
     
     // start timer
     __block NSInteger ticks = 0;
@@ -119,11 +101,11 @@
     _viewabilityTimer = [NSTimer scheduledTimerWithTimeInterval:1
                                                          target:[NSBlockOperation blockOperationWithBlock:^{
         
-        if (ticks >= MAX_TICKS) {
+        if (ticks >= maxTicks) {
             [_viewabilityTimer invalidate];
             _viewabilityTimer = nil;
             
-            if (cticks == MAX_TICKS) {
+            if (cticks == maxTicks) {
                 [self sendAllEventsForKey:@"viewable_impr"];
             } else {
                 NSLog(@"[AA :: Error] Did not send viewable impression");
@@ -139,7 +121,7 @@
                 cticks++;
             }
             
-            NSLog(@"[AA :: Info] Tick %ld/%d - Viewability Count %ld/%d", (long)ticks, MAX_TICKS, (long)cticks, MAX_TICKS);
+            NSLog(@"[AA :: Info] Tick %ld/%ld - Viewability Count %ld/%ld", (long)ticks, (long)maxTicks, (long)cticks, (long)maxTicks);
         }
         
     }] selector:@selector(main) userInfo:nil repeats:YES];
@@ -147,6 +129,14 @@
     // fire the timer
     [_viewabilityTimer fire];
     
+}
+
+- (void) sendViewableImpressionForDisplay:(UIView*) view {
+    [self sendViewableImpressionForView:view andTicks:MAX_DISPLAY_TICKS];
+}
+
+- (void) sendViewableImpressionForVideo:(UIView*) view {
+    [self sendViewableImpressionForView:view andTicks:MAX_VIDEO_TICKS];    
 }
 
 - (void) close {

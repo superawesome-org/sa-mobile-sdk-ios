@@ -114,7 +114,7 @@
                 [weakSelf.events sendAllEventsForKey:@"impression"];
                 
                 // send viewable impression
-                [weakSelf.events sendViewableForInScreen:weakSelf];
+                [weakSelf.events sendViewableImpressionForDisplay:weakSelf];
                 
                 break;
             }

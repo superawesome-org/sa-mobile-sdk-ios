@@ -97,7 +97,7 @@ static SAConfiguration configuration = PRODUCTION;
                 [weakSelf.events sendAllEventsForKey:@"creativeView"];
                 
                 // send viewable impression
-                [weakSelf.events sendViewableForFullscreen];
+                [weakSelf.events sendViewableImpressionForVideo:_player];
                 
                 // moat
                 [weakSelf.events moatEventForVideoPlayer:[weakSelf.player getPlayer]
