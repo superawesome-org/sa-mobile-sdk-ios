@@ -14,9 +14,21 @@
 // this thing right here imports AdSupport framework
 @import AdSupport;
 
+@interface SACapper ()
+@property (nonatomic, strong) NSUserDefaults *defs;
+@end
+
 @implementation SACapper
 
-+ (void) enableCapping:(didFindDAUId)callback {
+- (id) init {
+    if (self = [super init]) {
+        _defs = [NSUserDefaults standardUserDefaults];
+    }
+    
+    return self;
+}
+
+- (void) enableCapping:(didFindDAUId)callback {
     // get if the user has an advertising enabled
     BOOL canTrack = [[ASIdentifierManager sharedManager] isAdvertisingTrackingEnabled];
     
@@ -26,17 +38,14 @@
         return;
     }
     
-    // get user defaults
-    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
-    
     // continue as if  user has Ad Tracking enabled and all ...
     NSString *firstPartOfDAU = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
-    NSString *secondPartOfDAU = [def objectForKey:SUPER_AWESOME_FIRST_PART_DAU];
+    NSString *secondPartOfDAU = [_defs objectForKey:SUPER_AWESOME_FIRST_PART_DAU];
     
     if (!secondPartOfDAU || [secondPartOfDAU isEqualToString:@""]){
         secondPartOfDAU = [SAUtils generateUniqueKey];
-        [def setObject:secondPartOfDAU forKey:SUPER_AWESOME_FIRST_PART_DAU];
-        [def synchronize];
+        [_defs setObject:secondPartOfDAU forKey:SUPER_AWESOME_FIRST_PART_DAU];
+        [_defs synchronize];
     }
     
     NSUInteger hash1 = [firstPartOfDAU hash];

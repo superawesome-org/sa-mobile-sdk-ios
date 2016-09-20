@@ -12,26 +12,37 @@
 
 #define CPI_INSTALL @"CPI_INSTALL"
 
+@interface SACPI ()
+@property (nonatomic, strong) NSUserDefaults *defs;
+@end
+
 @implementation SACPI
 
-+ (void) sendCPIEvent {
-    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
-    if (![def objectForKey:CPI_INSTALL]) {
+- (id) init {
+    if (self = [super init]) {
+        _defs = [NSUserDefaults standardUserDefaults];
+    }
+    
+    return self;
+}
 
+- (void) sendCPIEvent {
+    
+    if (![_defs objectForKey:CPI_INSTALL]) {
+
+        NSLog(@"[AA :: Events] Sending CPI event");
+        
         // form the URL
-        NSMutableString *cpiURL = [@"" mutableCopy];
-        [cpiURL appendFormat:@"https://ads.staging.superawesome.tv/v2"];
-        [cpiURL appendString:@"/install?bundle="];
-        [cpiURL appendString:[[NSBundle mainBundle] bundleIdentifier]];
+        NSString *cpiURL = [NSString stringWithFormat:@"https://ads.staging.superawesome.tv/v2/install?bundle=%@",
+                            [[NSBundle mainBundle] bundleIdentifier]];
         
         // use saevent to send CPI event
         SAEvents *events = [[SAEvents alloc] init];
         [events sendEventToURL:cpiURL];
-        [def setObject:@(true) forKey:CPI_INSTALL];
-        [def synchronize];
-        
+        [_defs setObject:@(true) forKey:CPI_INSTALL];
+        [_defs synchronize];
     } else {
-        // already sent this event
+        NSLog(@"[AA :: Events] Already sent CPI event");
     }
 }
 
