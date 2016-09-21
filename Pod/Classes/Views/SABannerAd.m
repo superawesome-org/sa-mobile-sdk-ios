@@ -172,7 +172,6 @@
     __weak typeof (self) weakSelf = self;
     
     // change session
-    [_session setDauId:[[SuperAwesome getInstance] getDAUID]];
     [_session setVersion:[[SuperAwesome getInstance] getSdkVersion]];
     
     // load ad

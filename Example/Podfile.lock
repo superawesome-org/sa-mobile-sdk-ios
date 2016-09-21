@@ -2,10 +2,10 @@ PODS:
   - mopub-ios-sdk (4.9.1):
     - mopub-ios-sdk/MoPubSDK (= 4.9.1)
   - mopub-ios-sdk/MoPubSDK (4.9.1)
-  - SAAdLoader (0.6.4):
+  - SAAdLoader (0.6.5):
     - SAModelSpace (= 0.2.3)
     - SANetworking (= 0.1.6)
-    - SASession (= 0.1.6)
+    - SASession (= 0.1.8)
     - SAUtils (= 1.3.6)
   - SAEvents (1.4.8):
     - SAEvents/Core (= 1.4.8)
@@ -25,23 +25,24 @@ PODS:
   - SAModelSpace (0.2.3):
     - SAJsonParser (= 1.2.5)
   - SANetworking (0.1.6)
-  - SASession (0.1.6)
+  - SASession (0.1.8):
+    - SAUtils (= 1.3.6)
   - SAUtils (1.3.6)
   - SAVideoPlayer (1.1.5)
   - SAWebPlayer (1.0.8)
-  - SuperAwesome/Base (5.0.6):
-    - SAAdLoader (= 0.6.4)
+  - SuperAwesome/Base (5.0.7):
+    - SAAdLoader (= 0.6.5)
     - SAEvents (= 1.4.8)
     - SAUtils (= 1.3.6)
     - SAVideoPlayer (= 1.1.5)
     - SAWebPlayer (= 1.0.8)
-  - SuperAwesome/Full (5.0.6):
+  - SuperAwesome/Full (5.0.7):
     - SAEvents/Moat
     - SuperAwesome/Base
-  - SuperAwesome/MoPub (5.0.6):
+  - SuperAwesome/MoPub (5.0.7):
     - mopub-ios-sdk
     - SuperAwesome/Base
-  - SuperAwesome/Unity (5.0.6):
+  - SuperAwesome/Unity (5.0.7):
     - SuperAwesome/Base
 
 DEPENDENCIES:
@@ -55,16 +56,16 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   mopub-ios-sdk: a2fc16e924c1c17f8cff26b3d50f9e88a34d1f06
-  SAAdLoader: 3be8776670013f475f6ff4558840ed5cae798e90
+  SAAdLoader: 85052e1f0923611cb991bab598d8d3cdda99b9a1
   SAEvents: e894893655c8b3da2493349b38142be1c354b596
   SAJsonParser: c933541162c2977992bdf866cfc66c14375645c0
   SAModelSpace: 19edb07e793ac39f0817f222b3c93bc5f0ca0d07
   SANetworking: 15eb1256d81ec0f032ee3c76515ee721a5dbd241
-  SASession: c2285f515d00c578a6c7ccb5cf33908365abe46b
+  SASession: 2cf4c5e3012320793c907f5e6e6f2cc120a0ff89
   SAUtils: 4240827aade373be1216b3ac732c821333817bad
   SAVideoPlayer: 841d567e0cdfa0003fa4b152463a6dcbb5a4fa92
   SAWebPlayer: f6b521349a82cee14ee7863e8261645a0086c37f
-  SuperAwesome: 6e48b8bfc058ff88b9ee87f8549b39dbb928c64d
+  SuperAwesome: b638103e05d1e5e370e8eda836bd9d408d69276e
 
 PODFILE CHECKSUM: 773d0f0090ee60a7f664a6c86310c1f6a7a4f997
 

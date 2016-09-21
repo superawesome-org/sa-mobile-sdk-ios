@@ -401,7 +401,6 @@ static SAConfiguration configuration = PRODUCTION;
         SASession *session = [[SASession alloc] init];
         [session setTestMode:isTestingEnabled];
         [session setConfiguration:configuration];
-        [session setDauId:[[SuperAwesome getInstance] getDAUID]];
         [session setVersion:[[SuperAwesome getInstance] getSdkVersion]];
         
         // get the loader

@@ -11,14 +11,10 @@
 // import header
 #import "SuperAwesome.h"
 
-// import the SACapper part
-#import "SACapper.h"
 #import "SACPI.h"
 
 @interface SuperAwesome ()
-@property (nonatomic, assign) NSInteger dauId;
 @property (nonatomic, strong) SACPI *cpi;
-@property (nonatomic, strong) SACapper *capper;
 @end
 
 @implementation SuperAwesome
@@ -34,10 +30,6 @@
 
 - (id) init {
     if (self = [super init]) {
-        _capper = [[SACapper alloc] init];
-        [_capper enableCapping:^(NSUInteger dauId) {
-            _dauId = dauId;
-        }];
         _cpi = [[SACPI alloc] init];
     }
     
@@ -45,7 +37,7 @@
 }
 
 - (NSString*) getVersion {
-    return @"5.0.6";
+    return @"5.1.0";
 }
 
 - (NSString*) getSdk {
@@ -54,10 +46,6 @@
 
 - (NSString*) getSdkVersion {
     return [NSString stringWithFormat:@"%@_%@", [self getSdk], [self getVersion]];
-}
-
-- (NSUInteger) getDAUID {
-    return _dauId;
 }
 
 - (void) handleCPI {

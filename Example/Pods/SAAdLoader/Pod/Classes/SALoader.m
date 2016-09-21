@@ -42,27 +42,21 @@
     // First thing to do is format the AA URL to get an ad, based on specs
     NSString *endpoint = [NSString stringWithFormat:@"%@/ad/%ld", [session getBaseUrl], (long)placementId];
     
-    NSString *lang = @"none";
-    NSArray *languages = [NSLocale preferredLanguages];
-    if ([languages count] > 0) {
-        lang = [[languages firstObject] stringByReplacingOccurrencesOfString:@"-" withString:@"_"];;
-    }
-    
     // form the query
     NSDictionary *query = @{@"test": @([session getTestMode]),
                             @"sdkVersion":[session getVersion],
-                            @"rnd":@([SAUtils getCachebuster]),
-                            @"ct":@([SAUtils getNetworkConnectivity]),
-                            @"bundle":[[NSBundle mainBundle] bundleIdentifier],
-                            @"name":[SAUtils encodeURI:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"]],
+                            @"rnd":@([session getCachebuster]),
+                            @"ct":@([session getConnectivityType]),
+                            @"bundle":[session getBundleId],
+                            @"name":[session getAppName],
                             @"dauid":@([session getDauId]),
-                            @"lang": lang,
-                            @"device": ([SAUtils getSystemSize] == size_mobile ? @"mobile" : @"tablet")
+                            @"lang": [session getLang],
+                            @"device": [session getDevice]
                             };
     
     // form the header
     NSDictionary *header = @{@"Content-Type":@"application/json",
-                             @"User-Agent":[SAUtils getUserAgent]};
+                             @"User-Agent":[session getUserAgent]};
     
     SANetwork *network = [[SANetwork alloc] init];
     [network sendGET:endpoint

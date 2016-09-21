@@ -28,14 +28,13 @@
     return self;
 }
 
-- (void) enableCapping:(didFindDAUId)callback {
+- (NSInteger) getDauId {
     // get if the user has an advertising enabled
     BOOL canTrack = [[ASIdentifierManager sharedManager] isAdvertisingTrackingEnabled];
     
     // if user had disabled tracking --> that's it
     if (!canTrack) {
-        callback(0);
-        return;
+        return 0 ;
     }
     
     // continue as if  user has Ad Tracking enabled and all ...
@@ -52,7 +51,7 @@
     NSUInteger hash2 = [secondPartOfDAU hash];
     NSUInteger dauHash = hash1 ^ hash2;
     
-    callback(dauHash);
+    return dauHash;
 }
 
 @end

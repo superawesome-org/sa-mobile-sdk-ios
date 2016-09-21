@@ -46,9 +46,9 @@
         @"placement":@(ad.placementId),
         @"line_item":@(ad.lineItemId),
         @"creative":@(ad.creative._id),
-        @"ct":@([SAUtils getNetworkConnectivity]),
+        @"ct":@([session getConnectivityType]),
         @"sdkVersion":[session getVersion],
-        @"rnd":@([SAUtils getCachebuster])
+        @"rnd":@([session getCachebuster])
     };
     SATracking *trackingEvt = [[SATracking alloc] init];
     trackingEvt.event = @"sa_tracking";
@@ -60,8 +60,8 @@
     // get the viewbale impression URL
     NSDictionary *imprjson = @{
         @"sdkVersion":[session getVersion],
-        @"rnd":@([SAUtils getCachebuster]),
-        @"ct":@([SAUtils getNetworkConnectivity]),
+        @"rnd":@([session getCachebuster]),
+        @"ct":@([session getConnectivityType]),
         @"data":[SAUtils encodeURI:[@{
             @"placement":@(ad.placementId),
             @"line_item":@(ad.lineItemId),
@@ -78,8 +78,8 @@
     // get the parental gate URL
     NSDictionary *pgjsonfail = @{
         @"sdkVersion":[session getVersion],
-        @"rnd":@([SAUtils getCachebuster]),
-        @"ct":@([SAUtils getNetworkConnectivity]),
+        @"rnd":@([session getCachebuster]),
+        @"ct":@([session getConnectivityType]),
         @"data":[SAUtils encodeURI:[@{
             @"placement":@(ad.placementId),
             @"line_item":@(ad.lineItemId),
@@ -95,8 +95,8 @@
     
     NSDictionary *pgjsonclose = @{
                                  @"sdkVersion":[session getVersion],
-                                 @"rnd":@([SAUtils getCachebuster]),
-                                 @"ct":@([SAUtils getNetworkConnectivity]),
+                                 @"rnd":@([session getCachebuster]),
+                                 @"ct":@([session getConnectivityType]),
                                  @"data":[SAUtils encodeURI:[@{
                                                                @"placement":@(ad.placementId),
                                                                @"line_item":@(ad.lineItemId),
@@ -112,8 +112,8 @@
     
     NSDictionary *pgjsonopen = @{
                                  @"sdkVersion":[session getVersion],
-                                 @"rnd":@([SAUtils getCachebuster]),
-                                 @"ct":@([SAUtils getNetworkConnectivity]),
+                                 @"rnd":@([session getCachebuster]),
+                                 @"ct":@([session getConnectivityType]),
                                  @"data":[SAUtils encodeURI:[@{
                                                                @"placement":@(ad.placementId),
                                                                @"line_item":@(ad.lineItemId),
@@ -129,8 +129,8 @@
     
     NSDictionary *pgjsonsuccess = @{
                                  @"sdkVersion":[session getVersion],
-                                 @"rnd":@([SAUtils getCachebuster]),
-                                 @"ct":@([SAUtils getNetworkConnectivity]),
+                                 @"rnd":@([session getCachebuster]),
+                                 @"ct":@([session getConnectivityType]),
                                  @"data":[SAUtils encodeURI:[@{
                                                                @"placement":@(ad.placementId),
                                                                @"line_item":@(ad.lineItemId),
