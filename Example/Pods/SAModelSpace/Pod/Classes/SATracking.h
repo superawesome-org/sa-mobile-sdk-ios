@@ -6,7 +6,7 @@
 //
 //
 
-#import <SAJsonParser/SAJsonParser.h>
+#import "SAJsonParser.h"
 
 @interface SATracking : SABaseObject <SADeserializationProtocol, SASerializationProtocol>
 @property (nonatomic, strong) NSString *event;

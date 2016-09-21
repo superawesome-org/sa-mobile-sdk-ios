@@ -151,12 +151,20 @@
     [ad.creative.events addObject:parentalGateClose];
     [ad.creative.events addObject:parentalGateFail];
     
-    // get the impression
+    // add the impression
     if (ad.creative.impressionUrl != NULL && ad.creative.impressionUrl != [NSNull null]) {
         SATracking *impression = [[SATracking alloc] init];
         impression.URL = ad.creative.impressionUrl;
         impression.event = @"impression";
         [ad.creative.events addObject:impression];
+    }
+    
+    // add the install
+    if (ad.creative.installUrl != NULL && ad.creative.installUrl != [NSNull null]) {
+        SATracking *install = [[SATracking alloc] init];
+        install.URL = ad.creative.installUrl;
+        install.event = @"install";
+        [ad.creative.events addObject:install];
     }
     
     // get the cdn URL

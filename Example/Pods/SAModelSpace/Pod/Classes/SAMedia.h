@@ -6,7 +6,7 @@
 //
 //
 
-#import <SAJsonParser/SAJsonParser.h>
+#import "SAJsonParser.h"
 
 @interface SAMedia : SABaseObject <SASerializationProtocol, SADeserializationProtocol>
 @property (nonatomic, strong) NSString *html;

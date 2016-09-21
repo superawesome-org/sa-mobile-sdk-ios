@@ -35,6 +35,8 @@
         _approved = [[jsonDictionary safeObjectForKey:@"approved"] boolValue];
         _clickUrl = [jsonDictionary safeObjectForKey:@"click_url"];
         _impressionUrl = [jsonDictionary objectForKey:@"impression_url"];
+        _installUrl = [jsonDictionary objectForKey:@"installUrl"];
+        _bundleId = [jsonDictionary objectForKey:@"bundleId"];
         _events = [[[NSArray alloc] initWithJsonArray:[jsonDictionary safeObjectForKey:@"events"] andIterator:^id(id item) {
             return [[SATracking alloc] initWithJsonDictionary:(NSDictionary*)item];
         }] mutableCopy];
@@ -56,6 +58,8 @@
              @"approved": @(_approved),
              @"click_url": nullSafe(_clickUrl),
              @"impression_url": nullSafe(_impressionUrl),
+             @"installUrl": nullSafe(_installUrl),
+             @"bundleId": nullSafe(_bundleId),
              @"events": nullSafe([_events dictionaryRepresentation]),
              @"details": nullSafe([_details dictionaryRepresentation])
              };

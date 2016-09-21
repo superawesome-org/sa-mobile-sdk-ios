@@ -95,9 +95,10 @@ static SAConfiguration configuration = PRODUCTION;
                 [weakSelf.events sendAllEventsForKey:@"impression"];
                 [weakSelf.events sendAllEventsForKey:@"start"];
                 [weakSelf.events sendAllEventsForKey:@"creativeView"];
+                [weakSelf.events sendAllEventsForKey:@"install"];
                 
                 // send viewable impression
-                [weakSelf.events sendViewableImpressionForVideo:_player];
+                [weakSelf.events sendViewableImpressionForVideo:weakSelf.player];
                 
                 // moat
                 [weakSelf.events moatEventForVideoPlayer:[weakSelf.player getPlayer]

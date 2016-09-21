@@ -113,6 +113,9 @@
                 // if the banner has a separate impression URL, send that as well for 3rd party tracking
                 [weakSelf.events sendAllEventsForKey:@"impression"];
                 
+                // send the install e vent (if this is a CPI campaign)
+                [weakSelf.events sendAllEventsForKey:@"install"];
+                
                 // send viewable impression
                 [weakSelf.events sendViewableImpressionForDisplay:weakSelf];
                 
