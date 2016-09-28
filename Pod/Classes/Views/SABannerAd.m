@@ -11,6 +11,7 @@
 // import other
 #import "SuperAwesome.h"
 #import "SAParentalGate.h"
+#import "SAResponse.h"
 #import "SAAd.h"
 #import "SACreative.h"
 #import "SADetails.h"
@@ -18,6 +19,7 @@
 #import "SALoader.h"
 #import "SAWebPlayer.h"
 #import "SAUtils.h"
+#import "SAImageUtils.h"
 #import "SAEvents.h"
 
 @interface SABannerAd ()
@@ -113,9 +115,6 @@
                 // if the banner has a separate impression URL, send that as well for 3rd party tracking
                 [weakSelf.events sendAllEventsForKey:@"impression"];
                 
-                // send the install e vent (if this is a CPI campaign)
-                [weakSelf.events sendAllEventsForKey:@"install"];
-                
                 // send viewable impression
                 [weakSelf.events sendViewableImpressionForDisplay:weakSelf];
                 
@@ -146,7 +145,7 @@
     
     // add the padlock
     _padlock = [[UIImageView alloc] initWithFrame:CGRectZero];
-    _padlock.image = [SAUtils padlockImage];
+    _padlock.image = [SAImageUtils padlockImage];
     if ([self shouldShowPadlock]) {
         [_webplayer addSubview:_padlock];
     }
@@ -176,16 +175,17 @@
     
     // load ad
     SALoader *loader = [[SALoader alloc] init];
-    [loader loadAd:placementId withSession:_session andResult:^(SAAd *ad) {
-        
-        // assign new ad
-        weakSelf.ad = ad;
-        
+    [loader loadAd:placementId withSession:_session andResult:^(SAResponse *response) {
+
         // set can play
-        weakSelf.canPlay = true;
+        weakSelf.canPlay = [response isValid];
+
+        // assign new ad
+        weakSelf.ad = [response isValid] ? [response.ads objectAtIndex:0] : nil;
+        
         
         // call the callback
-        weakSelf.callback (placementId, ad != NULL ? adLoaded : adFailedToLoad);
+        weakSelf.callback (placementId, [response isValid] ? adLoaded : adFailedToLoad);
     }];
 }
 
@@ -250,6 +250,9 @@
     if ([_destinationURL rangeOfString:[_session getBaseUrl]].location == NSNotFound) {
         [_events sendAllEventsForKey:@"sa_tracking"];
     }
+    
+    // send the install e vent (if this is a CPI campaign)
+    [_events sendAllEventsForKey:@"install"];
     
     // open URL
     NSURL *url = [NSURL URLWithString:_destinationURL];

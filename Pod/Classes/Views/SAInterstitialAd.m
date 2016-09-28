@@ -12,6 +12,7 @@
 // load others
 #import "SABannerAd.h"
 #import "SALoader.h"
+#import "SAResponse.h"
 #import "SAAd.h"
 #import "SACreative.h"
 #import "SADetails.h"
@@ -19,6 +20,7 @@
 #import "SAMedia.h"
 #import "SAEvents.h"
 #import "SuperAwesome.h"
+#import "SAImageUtils.h"
 #import "SAOrientation.h"
 
 @interface SAInterstitialAd ()
@@ -59,7 +61,7 @@ static SAConfiguration configuration = PRODUCTION;
     // create close button
     _closeBtn = [[UIButton alloc] initWithFrame:CGRectZero];
     [_closeBtn setTitle:@"" forState:UIControlStateNormal];
-    [_closeBtn setImage:[SAUtils closeImage] forState:UIControlStateNormal];
+    [_closeBtn setImage:[SAImageUtils closeImage] forState:UIControlStateNormal];
     [_closeBtn addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_closeBtn];
     [self.view bringSubviewToFront:_closeBtn];
@@ -234,11 +236,11 @@ static SAConfiguration configuration = PRODUCTION;
         
         // get the loader
         SALoader *loader = [[SALoader alloc] init];
-        [loader loadAd:placementId withSession:session andResult:^(SAAd *saAd) {
+        [loader loadAd:placementId withSession:session andResult:^(SAResponse *response) {
             
             // add to the array queue
-            if (saAd != NULL) {
-                [ads setObject:saAd forKey:@(placementId)];
+            if ([response isValid]) {
+                [ads setObject:[response.ads objectAtIndex:0] forKey:@(placementId)];
             }
             // remove
             else {
@@ -246,7 +248,7 @@ static SAConfiguration configuration = PRODUCTION;
             }
             
             // callback
-            callback(placementId, saAd != NULL ? adLoaded : adFailedToLoad);
+            callback(placementId, [response isValid] ? adLoaded : adFailedToLoad);
         }];
         
     } else {

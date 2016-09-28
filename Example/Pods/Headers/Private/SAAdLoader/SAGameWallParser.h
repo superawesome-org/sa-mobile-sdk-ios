@@ -1,0 +1,1 @@
+../../../SAAdLoader/Pod/Classes/SAGameWallParser.h

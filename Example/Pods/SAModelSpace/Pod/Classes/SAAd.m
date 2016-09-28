@@ -101,6 +101,10 @@
             if (_creative.details.url == NULL) return false;
             break;
         }
+        case gamewall: {
+            return true;
+            break;
+        }
     }
     
     return true;

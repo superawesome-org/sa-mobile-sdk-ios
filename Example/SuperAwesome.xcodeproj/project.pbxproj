@@ -192,7 +192,7 @@
 					1B76D2321C91EEB1000AE8F3 = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = K79XEZP48K;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -451,16 +451,16 @@
 			baseConfigurationReference = 14F469BEF49A99DE54D2592C /* Pods-SuperAwesome.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Gabriel Coman (AWY9H4HC9C)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Gabriel Coman (AWY9H4HC9C)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: LIVIU COMAN (K79XEZP48K)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = K79XEZP48K;
 				INFOPLIST_FILE = SuperAwesome/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tv.superawesome.SuperAwesome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "bb8728a4-7b90-4de8-a229-9dbe9d5961a1";
-				PROVISIONING_PROFILE_SPECIFIER = "XC Ad Hoc: *";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -470,8 +470,8 @@
 			baseConfigurationReference = D777F0D9ED341B573DF8D95B /* Pods-SuperAwesome.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Gabriel Coman (AWY9H4HC9C)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Gabriel Coman (AWY9H4HC9C)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SuperAwesome/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;

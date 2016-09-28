@@ -231,7 +231,7 @@
     SAMedia *media = [[SAMedia alloc] init];
     media.type = [element getAttribute:@"type"];
     media.playableMediaUrl = [[element value] stringByReplacingOccurrencesOfString:@" " withString:@""];
-    media.playableDiskUrl = [SAFileDownloader getDiskLocation];
+    media.playableDiskUrl = [SAFileDownloader getDiskLocation:@"mp4"];
     return media;
 }
 

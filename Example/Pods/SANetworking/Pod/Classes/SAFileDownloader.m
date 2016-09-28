@@ -47,8 +47,8 @@ static BOOL runOnce = false;
 
 #pragma mark Main Public functions
 
-+ (NSString*) getDiskLocation {
-    return [NSString stringWithFormat:@"samov_%d.mp4", arc4random_uniform((uint32_t)(65536))];
++ (NSString*) getDiskLocation: (NSString*)extension {
+    return [NSString stringWithFormat:@"samov_%d.%@", arc4random_uniform((uint32_t)(65536)), extension];
 }
 
 - (void) downloadFileFrom:(NSString*)url to:(NSString*)fpath withResponse:(downloadResponse)response {

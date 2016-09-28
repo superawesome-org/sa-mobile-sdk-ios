@@ -8,6 +8,7 @@
 
 #import "SAVideoAd.h"
 #import "SALoader.h"
+#import "SAResponse.h"
 #import "SAAd.h"
 #import "SACreative.h"
 #import "SADetails.h"
@@ -16,6 +17,7 @@
 #import "SAParentalGate.h"
 #import "SAEvents.h"
 #import "SASession.h"
+#import "SAImageUtils.h"
 #import "SuperAwesome.h"
 #import "SAOrientation.h"
 
@@ -41,8 +43,10 @@
 
 @implementation SAVideoAd
 
-// other vars that need to be set statically
+// dictionary of ads
 static NSMutableDictionary *ads;
+
+// other static vars needed for state 
 static sacallback callback = ^(NSInteger placementId, SAEvent event) {};
 static BOOL isParentalGateEnabled = true;
 static BOOL shouldAutomaticallyCloseAtEnd = true;
@@ -95,7 +99,6 @@ static SAConfiguration configuration = PRODUCTION;
                 [weakSelf.events sendAllEventsForKey:@"impression"];
                 [weakSelf.events sendAllEventsForKey:@"start"];
                 [weakSelf.events sendAllEventsForKey:@"creativeView"];
-                [weakSelf.events sendAllEventsForKey:@"install"];
                 
                 // send viewable impression
                 [weakSelf.events sendViewableImpressionForVideo:weakSelf.player];
@@ -169,7 +172,7 @@ static SAConfiguration configuration = PRODUCTION;
     
     // add the padlock
     _padlock = [[UIImageView alloc] initWithFrame:CGRectZero];
-    _padlock.image = [SAUtils padlockImage];
+    _padlock.image = [SAImageUtils padlockImage];
     if (_shouldShowPadlockL) {
         [self.view addSubview:_padlock];
     }
@@ -178,7 +181,7 @@ static SAConfiguration configuration = PRODUCTION;
     _closeBtn = [[UIButton alloc] initWithFrame:CGRectZero];
     [_closeBtn setHidden:!_shouldShowCloseButtonL];
     [_closeBtn setTitle:@"" forState:UIControlStateNormal];
-    [_closeBtn setImage:[SAUtils closeImage] forState:UIControlStateNormal];
+    [_closeBtn setImage:[SAImageUtils closeImage] forState:UIControlStateNormal];
     [_closeBtn addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_closeBtn];
     [self.view bringSubviewToFront:_closeBtn];
@@ -348,6 +351,7 @@ static SAConfiguration configuration = PRODUCTION;
     // call trackers
     [_events sendAllEventsForKey:@"click_tracking"];
     [_events sendAllEventsForKey:@"custom_clicks"];
+    [_events sendAllEventsForKey:@"install"];
     
     // setup the current click URL
     for (SATracking *tracking in _ad.creative.events) {
@@ -405,11 +409,11 @@ static SAConfiguration configuration = PRODUCTION;
         
         // get the loader
         SALoader *loader = [[SALoader alloc] init];
-        [loader loadAd:placementId withSession:session andResult:^(SAAd *saAd) {
+        [loader loadAd:placementId withSession:session andResult:^(SAResponse *response) {
             
             // add to the array queue
-            if (saAd != NULL) {
-                [ads setObject:saAd forKey:@(placementId)];
+            if ([response isValid]) {
+                [ads setObject:[response.ads objectAtIndex:0] forKey:@(placementId)];
             }
             // remove
             else {
@@ -417,7 +421,7 @@ static SAConfiguration configuration = PRODUCTION;
             }
             
             // callback
-            callback(placementId, saAd != NULL ? adLoaded : adFailedToLoad);
+            callback(placementId, [response isValid] ? adLoaded : adFailedToLoad);
         }];
         
     } else {
