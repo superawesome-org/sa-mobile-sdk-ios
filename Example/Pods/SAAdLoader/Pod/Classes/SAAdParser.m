@@ -152,7 +152,7 @@
     [ad.creative.events addObject:parentalGateFail];
     
     // add the impression
-    if (ad.creative.impressionUrl != NULL && ad.creative.impressionUrl != [NSNull null]) {
+    if (ad.creative.impressionUrl != NULL && (NSNull*)ad.creative.impressionUrl != [NSNull null]) {
         SATracking *impression = [[SATracking alloc] init];
         impression.URL = ad.creative.impressionUrl;
         impression.event = @"impression";
@@ -160,7 +160,7 @@
     }
     
     // add the install
-    if (ad.creative.installUrl != NULL && ad.creative.installUrl != [NSNull null]) {
+    if (ad.creative.installUrl != NULL && (NSNull*)ad.creative.installUrl != [NSNull null]) {
         SATracking *install = [[SATracking alloc] init];
         install.URL = ad.creative.installUrl;
         install.event = @"install";
@@ -181,6 +181,7 @@
             ad.creative.details.cdnUrl = [SAUtils findBaseURLFromResourceURL:ad.creative.details.url];
             break;
         }
+        case gamewall:
         case invalid:
         case tag: {break;}
     }

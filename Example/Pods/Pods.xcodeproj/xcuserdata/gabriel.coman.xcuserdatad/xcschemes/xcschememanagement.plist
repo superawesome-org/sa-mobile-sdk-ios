@@ -2,87 +2,9 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>SchemeUserState</key>
-	<dict>
-		<key>Pods-SuperAwesome.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>SAAdLoader.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>SAEvents.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>SAJsonParser.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>SAModelSpace.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>SANetworking.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>SASession.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>SAUtils.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>SAVideoPlayer.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>SAWebPlayer.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>SuperAwesome.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>mopub-ios-sdk.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>10E1AD5E8B2BEEBE4332BCEA</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>2230B98AA95C4412BB4D90D2</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>271ADED1C19E44B4AAD9405A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>2DE48276304389F0C184110F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,22 +19,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>457C80018855DD04EBE95E80</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>4EB031DBA04AE8F9D20D28E1</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>540EB38EAAFD780D94F7AB92</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>6215542843B1FE175BC505E2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -122,27 +29,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>972947AAB0A10E44E018C783</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>98C6E684243C29F6004ACCCB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A4A50D60FA02FD1D1B529029</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>A9D200239B2FBC203132BD44</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>AAA55A6503DCB21F9D2D768D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -167,22 +59,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D0BBCA575BEE748602426528</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D158FF920DD6491F60A8DE1F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>D6780EF1F17DF9BB549CB54A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E4267383A0595540F2B0E405</key>
 		<dict>
 			<key>primary</key>
 			<true/>

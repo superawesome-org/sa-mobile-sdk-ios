@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '4EB031DBA04AE8F9D20D28E1'
+               BlueprintIdentifier = '98C6E684243C29F6004ACCCB'
                BlueprintName = 'SAModelSpace'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libSAModelSpace.a'>

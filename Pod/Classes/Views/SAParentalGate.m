@@ -59,6 +59,7 @@
 
 // weak ref to view
 @property (nonatomic, weak) id weakAdView;
+@property (nonatomic, assign) NSInteger gameWallPosition;
 
 @end
 
@@ -70,6 +71,15 @@
         _weakAdView = weakRef;
         _events = [[SAEvents alloc] init];
         [_events setAd:ad];
+    }
+    
+    return self;
+}
+
+
+- (id) initWithWeakRefToView:(id)weakRef andAd:(SAAd *)ad andPosition:(NSInteger)position {
+    if (self = [self initWithWeakRefToView:weakRef andAd:ad]) {
+        _gameWallPosition = position;
     }
     
     return self;
@@ -225,7 +235,11 @@
     [_events sendAllEventsForKey:@"pg_success"];
     
     // finally advance to URL
-    [SAUtils invoke:@"click" onTarget:_weakAdView];
+    if ([_weakAdView isKindOfClass:[SAGameWall class]]) {
+        [SAUtils invoke:@"click:" onTarget:_weakAdView, @(_gameWallPosition)];
+    } else {
+        [SAUtils invoke:@"click" onTarget:_weakAdView];
+    }
 }
 
 - (void) handlePGError {
