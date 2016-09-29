@@ -32,9 +32,13 @@
 
         NSLog(@"[AA :: Events] Sending CPI event");
         
+        SASession *session = [[SASession alloc] init];
+        [session setConfigurationProduction];
+        
         // form the URL
-        NSString *cpiURL = [NSString stringWithFormat:@"https://ads.staging.superawesome.tv/v2/install?bundle=%@",
-                            [[NSBundle mainBundle] bundleIdentifier]];
+        NSString *cpiURL = [NSString stringWithFormat:@"%@/install?bundle=%@",
+                            [session getBaseUrl],
+                            [session getBundleId]];
         
         // use saevent to send CPI event
         SAEvents *events = [[SAEvents alloc] init];
