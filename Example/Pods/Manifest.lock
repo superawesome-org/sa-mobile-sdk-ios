@@ -2,46 +2,46 @@ PODS:
   - mopub-ios-sdk (4.9.1):
     - mopub-ios-sdk/MoPubSDK (= 4.9.1)
   - mopub-ios-sdk/MoPubSDK (4.9.1)
-  - SAAdLoader (0.6.8):
+  - SAAdLoader (0.7.5):
     - SAModelSpace (= 0.2.7)
-    - SANetworking (= 0.1.7)
+    - SANetworking (= 0.2.1)
     - SASession (= 0.2.0)
     - SAUtils (= 1.3.9)
-  - SAEvents (1.5.3):
-    - SAEvents/Core (= 1.5.3)
+  - SAEvents (1.5.7):
+    - SAEvents/Core (= 1.5.7)
     - SAModelSpace (= 0.2.7)
-    - SANetworking (= 0.1.7)
+    - SANetworking (= 0.2.1)
     - SAUtils (= 1.3.9)
-  - SAEvents/Core (1.5.3):
+  - SAEvents/Core (1.5.7):
     - SAModelSpace (= 0.2.7)
-    - SANetworking (= 0.1.7)
+    - SANetworking (= 0.2.1)
     - SAUtils (= 1.3.9)
-  - SAEvents/Moat (1.5.3):
+  - SAEvents/Moat (1.5.7):
     - SAEvents/Core
     - SAModelSpace (= 0.2.7)
-    - SANetworking (= 0.1.7)
+    - SANetworking (= 0.2.1)
     - SAUtils (= 1.3.9)
   - SAJsonParser (1.2.5)
   - SAModelSpace (0.2.7):
     - SAJsonParser (= 1.2.5)
-  - SANetworking (0.1.7)
+  - SANetworking (0.2.1)
   - SASession (0.2.0):
     - SAUtils (= 1.3.9)
   - SAUtils (1.3.9)
   - SAVideoPlayer (1.1.5)
   - SAWebPlayer (1.0.8)
-  - SuperAwesome/Base (5.1.0):
-    - SAAdLoader (= 0.6.8)
-    - SAEvents (= 1.5.3)
+  - SuperAwesome/Base (5.2.3):
+    - SAAdLoader (= 0.7.5)
+    - SAEvents (= 1.5.7)
     - SAVideoPlayer (= 1.1.5)
     - SAWebPlayer (= 1.0.8)
-  - SuperAwesome/Full (5.1.0):
+  - SuperAwesome/Full (5.2.3):
     - SAEvents/Moat
     - SuperAwesome/Base
-  - SuperAwesome/MoPub (5.1.0):
+  - SuperAwesome/MoPub (5.2.3):
     - mopub-ios-sdk
     - SuperAwesome/Base
-  - SuperAwesome/Unity (5.1.0):
+  - SuperAwesome/Unity (5.2.3):
     - SuperAwesome/Base
 
 DEPENDENCIES:
@@ -55,16 +55,16 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   mopub-ios-sdk: a2fc16e924c1c17f8cff26b3d50f9e88a34d1f06
-  SAAdLoader: 0f9374016788f3de710a3ce33326386ad5579974
-  SAEvents: 5fe2f875cfb1ff93cdb4768778a1bb5f81fcbeb9
+  SAAdLoader: 8cc8636ddcf8d3d5b991b10e98aab1d8230c9e7d
+  SAEvents: c621ce9c88699e50492859c63ffe4bee7a30b7d8
   SAJsonParser: c933541162c2977992bdf866cfc66c14375645c0
   SAModelSpace: c036cd57df07c14897c05d27dc2135d095c03e2c
-  SANetworking: bd6e8696ddec0d6b34ac57cc2456c7ed80cd89a5
+  SANetworking: 6f3a4d0f7589a98ff206cb1a7fe6e968997344f4
   SASession: 78a0aafbd1f63dcf7645e408c9d0fccff5c260b2
   SAUtils: 683ea4e7dbb126ff6757bad99ca994865213c345
   SAVideoPlayer: 841d567e0cdfa0003fa4b152463a6dcbb5a4fa92
   SAWebPlayer: f6b521349a82cee14ee7863e8261645a0086c37f
-  SuperAwesome: 148a8da8a362103e2c8fad06191e809dcbb44a7a
+  SuperAwesome: d0de72be6d44a2b29a5a2902192c8ad56a27e10e
 
 PODFILE CHECKSUM: 773d0f0090ee60a7f664a6c86310c1f6a7a4f997
 

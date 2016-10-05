@@ -2,64 +2,127 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>Pods-SuperAwesome.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SAAdLoader.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SAEvents.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SAJsonParser.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SAModelSpace.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SANetworking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SASession.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SAUtils.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SAVideoPlayer.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SAWebPlayer.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SuperAwesome.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>mopub-ios-sdk.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>271ADED1C19E44B4AAD9405A</key>
+		<key>1AC62AAD3DF5CC954CDA7223</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>33703E5DE29E94A41790C331</key>
+		<key>4EDA6C2BC256989CE179F42B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3BEB775649AD2AFF42281B27</key>
+		<key>579060342FA74CD9B1F132D2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>540EB38EAAFD780D94F7AB92</key>
+		<key>602D3D06C1E130B820B0E631</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>628A15C900768FD8A47FBFF5</key>
+		<key>7F1EB4F367DF149E1BCF8051</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>98C6E684243C29F6004ACCCB</key>
+		<key>A9C31026538918984EA48505</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A9D200239B2FBC203132BD44</key>
+		<key>AE90AE2754410AD9604ABB3E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AE307B2002B771EE1379566E</key>
+		<key>B40831C8717F2361B2E39CF8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B32264DE7DB8E2DC7006BD48</key>
+		<key>B650187F42F23FF62A6A6B89</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BBC78DBD940A88B258BDBCCC</key>
+		<key>C38B7202707CD2418FB20F38</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CA7AFDC352A44E28C10B9D4F</key>
+		<key>EEBB5BEA87D21492870281A1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D6780EF1F17DF9BB549CB54A</key>
+		<key>F9BB7C00B76C55115C6B449F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -246,6 +246,7 @@ static SAConfiguration configuration = PRODUCTION;
     // send events
     for (SAEvents *event in _events) {
         [event sendAllEventsForKey:@"impression"];
+        [event sendAllEventsForKey:@"sa_impr"];
         [event sendViewableImpressionForDisplay:self.view];
     }
 }

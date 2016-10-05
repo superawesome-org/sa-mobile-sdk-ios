@@ -37,9 +37,10 @@
     
     ad.creative.creativeFormat = invalid;
     if ([ad.creative.format isEqualToString:@"image_with_link"]) ad.creative.creativeFormat = image;
-    else if ([ad.creative.format isEqualToString:@"video"]) ad.creative.creativeFormat = video;
+    if ([ad.creative.format isEqualToString:@"video"]) ad.creative.creativeFormat = video;
     if ([ad.creative.format rangeOfString:@"rich_media"].location != NSNotFound) { ad.creative.creativeFormat = rich; }
     if ([ad.creative.format rangeOfString:@"tag"].location != NSNotFound) { ad.creative.creativeFormat = tag; }
+    if ([ad.creative.format rangeOfString:@"gamewall"].location != NSNotFound) { ad.creative.creativeFormat = gamewall; }
     
     // create the tracking URL
     NSDictionary *trackjson = @{
@@ -56,6 +57,21 @@
                        [session getBaseUrl],
                        (ad.creative.creativeFormat == video ? @"video/" : @""),
                        [SAUtils formGetQueryFromDict:trackjson]];
+    
+    NSDictionary *saimprjson = @{
+        @"placement": @(ad.placementId),
+        @"creative": @(ad.creative._id),
+        @"line_item": @(ad.lineItemId),
+        @"sdkVersion": [session getVersion],
+        @"rnd": @([session getCachebuster]),
+        @"no_image": @(true)
+    };
+    
+    SATracking *saImpressionEvt = [[SATracking alloc] init];
+    saImpressionEvt.event = @"sa_impr";
+    saImpressionEvt.URL = [NSString stringWithFormat:@"%@/impression?%@",
+                           [session getBaseUrl],
+                           [SAUtils formGetQueryFromDict:saimprjson]];
     
     // get the viewbale impression URL
     NSDictionary *imprjson = @{
@@ -150,6 +166,7 @@
     [ad.creative.events addObject:parentalGateOpen];
     [ad.creative.events addObject:parentalGateClose];
     [ad.creative.events addObject:parentalGateFail];
+    [ad.creative.events addObject:saImpressionEvt];
     
     // add the impression
     if (ad.creative.impressionUrl != NULL && (NSNull*)ad.creative.impressionUrl != [NSNull null]) {
@@ -169,6 +186,7 @@
     
     // get the cdn URL
     switch (ad.creative.creativeFormat) {
+        case gamewall:
         case image: {
             ad.creative.details.cdnUrl = [SAUtils findBaseURLFromResourceURL:ad.creative.details.image];
             break;
@@ -181,7 +199,6 @@
             ad.creative.details.cdnUrl = [SAUtils findBaseURLFromResourceURL:ad.creative.details.url];
             break;
         }
-        case gamewall:
         case invalid:
         case tag: {break;}
     }

@@ -42,11 +42,10 @@
             NSLog(@"adFailedToLoad ==> %ld", (long) placementId);
         }
     }];
-    
+
     // load video
-    [SAVideoAd setConfigurationStaging];
+    [SAVideoAd setConfigurationProduction];
     [SAVideoAd disableParentalGate];
-    [SAVideoAd setOrientationLandscape];
     [SAVideoAd setCallback:^(NSInteger placementId, SAEvent event) {
         if (event == adLoaded) {
             NSLog(@"adLoaded ==> %ld", (long) placementId);
@@ -54,7 +53,7 @@
             NSLog(@"adFailedToLoad ==> %ld", (long) placementId);
         }
     }];
-    
+
     // load gamewall
     [SAGameWall setConfigurationStaging];
     [SAGameWall setCallback:^(NSInteger placementId, SAEvent event) {
@@ -78,8 +77,16 @@
 
 - (IBAction)loadAction:(id)sender {
     [_bannerAd load:446];
-    [SAVideoAd load:447];
+//    [SAVideoAd load:447];
     [SAGameWall load:470];
+    [SAInterstitialAd load:415];
+    [SAInterstitialAd load:418];
+//    [SAVideoAd setConfigurationProduction];
+//    [SAVideoAd load:31718];
+//    [SAVideoAd load:31721];
+    [SAVideoAd setConfigurationStaging];
+    [SAVideoAd load:480];
+    [SAVideoAd load:481];
 }
 
 - (IBAction)playBanner:(id)sender {
@@ -89,20 +96,24 @@
 }
 
 - (IBAction)playInterstitial1:(id)sender {
-//    if ([SAInterstitialAd hasAdAvailable:415]) {
-//        [SAInterstitialAd play: 415 fromVC:self];
-//    }
+    if ([SAInterstitialAd hasAdAvailable:415]) {
+        [SAInterstitialAd play: 415 fromVC:self];
+    }
 }
 
 - (IBAction)playInterstitial2:(id)sender {
-//    if ([SAInterstitialAd hasAdAvailable:418]) {
-//        [SAInterstitialAd play: 418 fromVC:self];
-//    }
+    if ([SAInterstitialAd hasAdAvailable:418]) {
+        [SAInterstitialAd play: 418 fromVC:self];
+    }
 }
 
 - (IBAction)playVideo1:(id)sender {
-    if ([SAVideoAd hasAdAvailable:447]) {
-        [SAVideoAd play: 447 fromVC:self];
+//    if ([SAVideoAd hasAdAvailable:31718]) {
+//        [SAVideoAd play: 31718 fromVC:self];
+//    }
+    
+    if ([SAVideoAd hasAdAvailable:480]) {
+        [SAVideoAd play:480 fromVC:self];
     }
 }
 
@@ -110,8 +121,12 @@
     if ([SAGameWall hasAdAvailable:470]) {
         [SAGameWall play:470  fromVC:self];
     }
-//    if ([SAVideoAd hasAdAvailable:417]) {
-//        [SAVideoAd play:417 fromVC:self];
+//    if ([SAVideoAd hasAdAvailable:31721]) {
+//        [SAVideoAd play:31721 fromVC:self];
+//    }
+    
+//    if ([SAVideoAd hasAdAvailable:481]) {
+//        [SAVideoAd play:481 fromVC:self];
 //    }
 }
 
