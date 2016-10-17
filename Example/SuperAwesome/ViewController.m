@@ -78,14 +78,17 @@
 - (IBAction)loadAction:(id)sender {
     [_bannerAd load:446];
 //    [SAVideoAd load:447];
-    [SAGameWall load:470];
-    [SAInterstitialAd load:415];
+//    [SAGameWall load:470];
+    [SAInterstitialAd setConfigurationProduction];
+    [SAInterstitialAd load:32569];
+    [SAInterstitialAd setConfigurationStaging];
     [SAInterstitialAd load:418];
 //    [SAVideoAd setConfigurationProduction];
 //    [SAVideoAd load:31718];
 //    [SAVideoAd load:31721];
-    [SAVideoAd setConfigurationStaging];
-    [SAVideoAd load:480];
+//    [SAVideoAd setConfigurationStaging];
+//    [SAVideoAd setOrientationLandscape];
+//    [SAVideoAd load:480];
     [SAVideoAd load:481];
 }
 
@@ -96,8 +99,8 @@
 }
 
 - (IBAction)playInterstitial1:(id)sender {
-    if ([SAInterstitialAd hasAdAvailable:415]) {
-        [SAInterstitialAd play: 415 fromVC:self];
+    if ([SAInterstitialAd hasAdAvailable:32569]) {
+        [SAInterstitialAd play: 32569 fromVC:self];
     }
 }
 
@@ -112,15 +115,15 @@
 //        [SAVideoAd play: 31718 fromVC:self];
 //    }
     
-    if ([SAVideoAd hasAdAvailable:480]) {
-        [SAVideoAd play:480 fromVC:self];
-    }
+//    if ([SAVideoAd hasAdAvailable:480]) {
+//        [SAVideoAd play:480 fromVC:self];
+//    }
 }
 
 - (IBAction)playVideo2:(id)sender {
-    if ([SAGameWall hasAdAvailable:470]) {
-        [SAGameWall play:470  fromVC:self];
-    }
+//    if ([SAGameWall hasAdAvailable:470]) {
+//        [SAGameWall play:470  fromVC:self];
+//    }
 //    if ([SAVideoAd hasAdAvailable:31721]) {
 //        [SAVideoAd play:31721 fromVC:self];
 //    }

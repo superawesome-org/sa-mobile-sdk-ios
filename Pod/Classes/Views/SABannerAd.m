@@ -101,6 +101,7 @@
     
     // moat tracking
     NSString *moatString = [_events moatEventForWebPlayer:_webplayer];
+    NSLog(@"%@", moatString);
     
     // form the full HTML string and play it!
     NSString *fullHTMLToLoad = [_ad.creative.details.media.html stringByReplacingOccurrencesOfString:@"_MOAT_" withString:moatString];

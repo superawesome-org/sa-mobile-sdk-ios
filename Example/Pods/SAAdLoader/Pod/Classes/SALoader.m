@@ -67,8 +67,8 @@
                             @"name":[session getAppName],
                             @"dauid":@([session getDauId]),
                             @"lang": [session getLang],
-                            @"device": [session getDevice],
-                            @"preload": @(true)
+                            @"device": [session getDevice]
+                            // @"preload": @(true)
                             };
     
     // form the header

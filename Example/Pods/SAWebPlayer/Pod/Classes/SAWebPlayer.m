@@ -35,7 +35,7 @@
         _adSize = frame.size;
         
         // customize look
-         self.delegate = self;
+        self.delegate = self;
         self.scalesPageToFit = YES;
         self.contentMode = UIViewContentModeScaleAspectFit;
         self.scrollView.delegate = self;
@@ -48,11 +48,6 @@
     }
     
     return self;
-}
-
-- (void) dealloc {
-    self.delegate = NULL;
-    self.scrollView.delegate = NULL;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
