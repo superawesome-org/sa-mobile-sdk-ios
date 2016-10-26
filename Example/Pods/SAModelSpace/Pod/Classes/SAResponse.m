@@ -14,22 +14,36 @@
 
 - (id) init {
     if (self = [super init]){
-        _ads = [@[] mutableCopy];
+        [self initDefaults];
     }
     return self;
 }
 
 - (id) initWithJsonDictionary:(NSDictionary *)jsonDictionary {
     if (self = [super initWithJsonDictionary:jsonDictionary]) {
-        _placementId = [[jsonDictionary objectForKey:@"placementId"] integerValue];
-        _status = [[jsonDictionary objectForKey:@"status"] integerValue];
-        _format = (SACreativeFormat) [[jsonDictionary objectForKey:@"format"] integerValue];
-        _ads = [[[NSArray alloc] initWithJsonArray:[jsonDictionary safeObjectForKey:@"ads"] andIterator:^id(id item) {
+        
+        // init defaults
+        [self initDefaults];
+        
+        // take from json
+        _placementId = [jsonDictionary safeIntForKey:@"placementId" orDefault:_placementId];
+        _status = [jsonDictionary safeIntForKey:@"status" orDefault:_status];
+        _format = [jsonDictionary safeIntForKey:@"format" orDefault:_format];
+        
+        NSArray *adsArray = [jsonDictionary safeArrayForKey:@"ads" orDefault:@[]];
+        _ads = [[[NSArray alloc] initWithJsonArray:adsArray andIterator:^id(id item) {
             return [[SAAd alloc] initWithJsonDictionary:(NSDictionary*)item];
         }] mutableCopy];
     }
     
     return self;
+}
+
+- (void) initDefaults {
+    _placementId = 0;
+    _status = 0;
+    _format = invalid;
+    _ads = [@[] mutableCopy];
 }
 
 - (NSDictionary*) dictionaryRepresentation {

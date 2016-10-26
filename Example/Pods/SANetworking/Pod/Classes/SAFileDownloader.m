@@ -10,7 +10,6 @@
 #import "SADownloadItem.h"
 #import "SADownloadQueue.h"
 
-#define MAX_RETRIES 3
 #define TIMEOUT_INTERVAL 10
 
 @interface SAFileDownloader () <NSURLSessionDataDelegate, NSURLSessionDelegate, NSURLSessionTaskDelegate>
@@ -48,6 +47,7 @@
 
 - (id) init {
     if (self = [super init]) {
+        
         // set defs & file manager
         _defs = [NSUserDefaults standardUserDefaults];
         _fileManager = [NSFileManager defaultManager];
@@ -78,12 +78,7 @@
 // MARK: Public methods
 ////////////////////////////////////////////////////////////////////////////////
 
-- (NSString*) getDiskLocation: (NSString*)extension {
-    return [NSString stringWithFormat:@"samov_%d.%@", arc4random_uniform((uint32_t)(65536)), extension];
-}
-
 - (void) downloadFileFrom:(NSString*)url
-            withExtension:(NSString*)ext
               andResponse:(seqDownloadResponse)response {
     
     // if File is already in queue
@@ -100,14 +95,12 @@
         // if File is already downloaded
         if (isOnDisk) {
             if (response != nil) {
-                response (true, [item diskUrl]);
+                response (true, [item diskName]);
             }
         }
         // if File is not already downloaded
         else {
-            if (response != nil) {
-                [item addResponse:response];
-            }
+            [item addResponse:response];
         }
     }
     // if File is not already in queue
@@ -116,16 +109,25 @@
         NSLog(@"Adding new URL to queue %@", url);
         
         // create a new item
-        SADownloadItem *newItem = [[SADownloadItem alloc] init];
-        [newItem setUrlKey:url];
-        [newItem setExt:ext];
-        [newItem addResponse:response];
+        SADownloadItem *newItem = [[SADownloadItem alloc] initWithUrl:url
+                                                   andInitialResponse:response];
         
-        // add the new item to queue
-        [_queue addToQueue:newItem];
-        
-        // check on queue
-        [self checkOnQueue];
+        // if the new item is valid (e.g. valid url, disk path, key, etc)
+        // then proceed with the operation
+        if ([newItem isValid]) {
+            
+            // add the new item to queue
+            [_queue addToQueue:newItem];
+            
+            // check on queue
+            [self checkOnQueue];
+        }
+        // if it's not ok (e.g. invalid url) then respond w/ false
+        else {
+            if (response != nil) {
+                response (false, nil);
+            }
+        }
     }
 }
 
@@ -140,14 +142,9 @@
         // if I could find a "next" item
         if (_currentItem != nil) {
             
-            // set a disk URL is it does not exist
-            if ([_currentItem diskUrl] == nil) {
-                [_currentItem setDiskUrl:[self getDiskLocation:[_currentItem ext]]];
-            }
-            
             // if the current selected item's nr of retires is less than 3, then
             // try to download it
-            if ([_currentItem nrRetries] < MAX_RETRIES) {
+            if ([_currentItem hasRetriesRemaining]) {
                 
                 NSLog(@"Start work on queue for %@ Try %ld / 3", [_currentItem diskUrl], (long)([_currentItem nrRetries] + 1));
                 
@@ -227,30 +224,24 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
        downloadTask:(nonnull NSURLSessionDownloadTask *)downloadTask
 didFinishDownloadingToURL:(nonnull NSURL *)location {
     
-    NSLog(@"Finished %@ ==> %@", [_currentItem urlKey] , [_currentItem diskUrl]);
-    
-    // get the full file path
-    NSString *fullFilePath = [self filePathInDocuments:[_currentItem diskUrl]];
+    NSLog(@"Finished %@ ==> %@", [_currentItem urlKey] , [_currentItem diskName]);
     
     // and a destinationURL
-    NSURL *destURL = [NSURL fileURLWithPath:fullFilePath];
-    
-    // add a custom key for that
-    NSString *key = [NSString stringWithFormat:@"sasdkkey_%@", [self getKeyFromLocation:[_currentItem diskUrl]]];
+    NSURL *destURL = [NSURL fileURLWithPath:[_currentItem diskUrl]];
     
     // move the file
-    NSError *fileError = NULL;
+    NSError *fileError = nil;
     [_fileManager moveItemAtURL:location toURL:destURL error:&fileError];
     
     // save to be able to delete afterwards
-    if (fileError == NULL || key == NULL) {
-        [_defs setObject:[_currentItem diskUrl] forKey:key];
+    if (fileError == nil) {
+        [_defs setObject:[_currentItem diskName] forKey:[_currentItem key]];
         [_defs synchronize];
     }
     
     // send responses
     for (seqDownloadResponse response in [_currentItem responses]) {
-        response (true, [_currentItem diskUrl]);
+        response (true, [_currentItem diskName]);
     }
     
     // set on disk
@@ -279,8 +270,7 @@ didCompleteWithError:(NSError *)error {
         // add the current item again at the back of the queue
         [_currentItem incrementNrRetries];
         [_currentItem setIsOnDisk:false];
-        [_queue removeFromQueue:_currentItem];
-        [_queue addToQueue:_currentItem];
+        [_queue moveToBackOfQueue:_currentItem];
         
         // check on queue again
         [self checkOnQueue];
@@ -291,14 +281,11 @@ didCompleteWithError:(NSError *)error {
 // MARK: Private methods to cleanup, etc
 ////////////////////////////////////////////////////////////////////////////////
 
-- (NSString*) getKeyFromLocation:(NSString*)location {
-    if (!location) return NULL;
-    NSArray *c1 = [location componentsSeparatedByString:@"_"];
-    if ([c1 count] < 2) return NULL;
-    NSString *key1 = [c1 objectAtIndex:1];
-    NSArray *c2 = [key1 componentsSeparatedByString:@"."];
-    if ([c2 count] < 1) return NULL;
-    return [c2 firstObject];
+
+- (NSString*) filePathInDocuments:(NSString*)fpath {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *basePath = paths.firstObject;
+    return [basePath stringByAppendingPathComponent:fpath];
 }
 
 - (void) cleanup {
@@ -306,9 +293,12 @@ didCompleteWithError:(NSError *)error {
     NSMutableArray<NSString*> *keysToDel = [@[] mutableCopy];
     
     for (NSString *key in [[_defs dictionaryRepresentation] allKeys]) {
-        if ([key rangeOfString:@"sasdkkey_"].location != NSNotFound) {
+        
+        if ([key rangeOfString:SA_KEY_PREFIX].location != NSNotFound) {
+            
             NSString *filePath = [_defs objectForKey:key];
             NSString *fullFilePath = [self filePathInDocuments:filePath];
+            
             if ([_fileManager fileExistsAtPath:fullFilePath] && [_fileManager isDeletableFileAtPath:fullFilePath]) {
                 [_fileManager removeItemAtPath:fullFilePath error:nil];
                 NSLog(@"[true] | DEL | %@", filePath);
@@ -326,14 +316,6 @@ didCompleteWithError:(NSError *)error {
     [_defs synchronize];
 }
 
-- (NSString *) getDocumentsDirectory {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *basePath = paths.firstObject;
-    return basePath;
-}
 
-- (NSString*) filePathInDocuments:(NSString*)fpath {
-    return [[self getDocumentsDirectory] stringByAppendingPathComponent:fpath];
-}
 
 @end

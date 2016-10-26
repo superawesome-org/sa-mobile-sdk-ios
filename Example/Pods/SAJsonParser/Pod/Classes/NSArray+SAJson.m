@@ -21,6 +21,8 @@
             if (result != NULL && ![result isEqualToDictionary:@{}]) {
                 [array addObject:result];
             }
+        } else {
+            [array addObject:item];
         }
     }
     
@@ -75,10 +77,22 @@
 }
 
 - (id) initWithJsonString:(NSString*)json andIterator:(SAArrayIterator)iterator {
-    NSData *data = [json dataUsingEncoding:NSUTF8StringEncoding];
-    if (self = [self initWithJsonData:data andIterator:iterator]) {
-        
+    
+    // case when the json is utterly invalid (nill, null, etc)
+    // just return an empty array
+    if (json == nil || [json isEqual:[NSNull null]]) {
+        if (self = [self init]) {
+            
+        }
     }
+    // case when json is decent enough and can actually form an array
+    else {
+        NSData *data = [json dataUsingEncoding:NSUTF8StringEncoding];
+        if (self = [self initWithJsonData:data andIterator:iterator]) {
+            
+        }
+    }
+    
     return self;
 }
 
@@ -88,9 +102,19 @@
 
 - (id) initWithJsonData:(NSData*)json andIterator:(SAArrayIterator)iterator {
     
-    NSArray* array = [NSJSONSerialization JSONObjectWithData:json options:kNilOptions error:nil];
-    if (self = [self initWithJsonArray:array andIterator:iterator]){
-        
+    id result = [NSJSONSerialization JSONObjectWithData:json options:kNilOptions error:nil];
+    
+    // case when result actually is an array
+    if ([result isKindOfClass:[NSArray class]]) {
+        if (self = [self initWithJsonArray:result andIterator:iterator]){
+            
+        }
+    }
+    // case when result is not array
+    else {
+        if (self = [self init]) {
+            
+        }
     }
     return self;
 }

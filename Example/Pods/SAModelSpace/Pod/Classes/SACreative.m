@@ -16,8 +16,7 @@
 
 - (id) init {
     if (self = [super init]) {
-        _details = [[SADetails alloc] init];
-        _events = [@[] mutableCopy];
+        [self initDefaults];
     }
     return self;
 }
@@ -25,25 +24,56 @@
 - (id) initWithJsonDictionary:(NSDictionary *)jsonDictionary {
     if (self = [super initWithJsonDictionary:jsonDictionary]) {
         
-        __id = [[jsonDictionary safeObjectForKey:@"id"] integerValue];
-        _name = [jsonDictionary safeObjectForKey:@"name"];
-        _cpm = [[jsonDictionary safeObjectForKey:@"cpm"] integerValue];
-        _format = [jsonDictionary safeObjectForKey:@"format"];
-        _creativeFormat = (SACreativeFormat)[[jsonDictionary safeObjectForKey:@"creativeFormat"] integerValue];
-        _customPayload = [jsonDictionary safeObjectForKey:@"customPayload"];
-        _live = [[jsonDictionary safeObjectForKey:@"live"] boolValue];
-        _approved = [[jsonDictionary safeObjectForKey:@"approved"] boolValue];
-        _clickUrl = [jsonDictionary safeObjectForKey:@"click_url"];
-        _impressionUrl = [jsonDictionary objectForKey:@"impression_url"];
-        _installUrl = [jsonDictionary objectForKey:@"installUrl"];
-        _bundleId = [jsonDictionary objectForKey:@"bundleId"];
-        _events = [[[NSArray alloc] initWithJsonArray:[jsonDictionary safeObjectForKey:@"events"] andIterator:^id(id item) {
+        // init defaults
+        [self initDefaults];
+        
+        // take from json
+        __id = [jsonDictionary safeIntForKey:@"id" orDefault:__id];
+        _name = [jsonDictionary safeStringForKey:@"name" orDefault:_name];
+        _cpm = [jsonDictionary safeIntForKey:@"cpm" orDefault:_cpm];
+        _format = [jsonDictionary safeStringForKey:@"format" orDefault:_format];
+        _creativeFormat = [jsonDictionary safeIntForKey:@"creativeFormat" orDefault:_creativeFormat];
+        _customPayload = [jsonDictionary safeStringForKey:@"customPayload" orDefault:_customPayload];
+        _live = [jsonDictionary safeBoolForKey:@"live" orDefault:_live];
+        _approved = [jsonDictionary safeBoolForKey:@"approved" orDefault:_approved];
+        _clickUrl = [jsonDictionary safeStringForKey:@"click_url" orDefault:_clickUrl];
+        _impressionUrl = [jsonDictionary safeStringForKey:@"impression_url" orDefault:_impressionUrl];
+        _installUrl = [jsonDictionary safeStringForKey:@"installUrl" orDefault:_installUrl];
+        _bundleId = [jsonDictionary safeStringForKey:@"bundleId" orDefault:_bundleId];
+        
+        NSArray *eventsArr = [jsonDictionary safeArrayForKey:@"events" orDefault:@[]];
+        _events = [[[NSArray alloc] initWithJsonArray:eventsArr andIterator:^id(id item) {
             return [[SATracking alloc] initWithJsonDictionary:(NSDictionary*)item];
         }] mutableCopy];
-        _details = [[SADetails alloc] initWithJsonDictionary:[jsonDictionary safeObjectForKey:@"details"]];
         
+        
+        NSDictionary *detailsDict = [jsonDictionary safeDictionaryForKey:@"details" orDefault:nil];
+        if (detailsDict) {
+            _details = [[SADetails alloc] initWithJsonDictionary:detailsDict];
+        }
     }
     return self;
+}
+
+- (void) initDefaults {
+    
+    // setup defaults
+    __id = 0;
+    _name = nil;
+    _cpm = 0;
+    _format = nil;
+    _creativeFormat = invalid;
+    _live = true;
+    _approved = true;
+    _customPayload = nil;
+    _clickUrl = nil;
+    _installUrl = nil;
+    _impressionUrl = nil;
+    _bundleId = nil;
+    
+    // details & events
+    _details = [[SADetails alloc] init];
+    _events = [@[] mutableCopy];
 }
 
 - (NSDictionary*) dictionaryRepresentation {

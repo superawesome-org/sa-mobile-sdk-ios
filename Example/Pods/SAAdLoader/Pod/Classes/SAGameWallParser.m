@@ -44,7 +44,6 @@
         
         // download the image
         [[SAFileDownloader getInstance] downloadFileFrom:ad.creative.details.media.playableMediaUrl
-                                           withExtension:ext
                                              andResponse:^(BOOL success, NSString *diskPath) {
         
                                                  ad.creative.details.media.isOnDisk = success;

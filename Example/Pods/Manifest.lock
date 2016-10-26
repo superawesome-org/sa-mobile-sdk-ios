@@ -1,39 +1,39 @@
 PODS:
-  - mopub-ios-sdk (4.9.1):
-    - mopub-ios-sdk/MoPubSDK (= 4.9.1)
-  - mopub-ios-sdk/MoPubSDK (4.9.1)
-  - SAAdLoader (0.7.6):
-    - SAModelSpace (= 0.2.7)
-    - SANetworking (= 0.2.1)
-    - SASession (= 0.2.0)
-    - SAUtils (= 1.3.9)
-  - SAEvents (1.5.7):
-    - SAEvents/Core (= 1.5.7)
-    - SAModelSpace (= 0.2.7)
-    - SANetworking (= 0.2.1)
-    - SAUtils (= 1.3.9)
-  - SAEvents/Core (1.5.7):
-    - SAModelSpace (= 0.2.7)
-    - SANetworking (= 0.2.1)
-    - SAUtils (= 1.3.9)
-  - SAEvents/Moat (1.5.7):
+  - mopub-ios-sdk (4.10.0):
+    - mopub-ios-sdk/MoPubSDK (= 4.10.0)
+  - mopub-ios-sdk/MoPubSDK (4.10.0)
+  - SAAdLoader (0.7.7):
+    - SAModelSpace (= 0.2.9)
+    - SANetworking (= 0.2.4)
+    - SASession (= 0.2.3)
+    - SAUtils (= 1.4.3)
+  - SAEvents (1.5.9):
+    - SAEvents/Core (= 1.5.9)
+    - SAModelSpace (= 0.2.9)
+    - SANetworking (= 0.2.4)
+    - SAUtils (= 1.4.3)
+  - SAEvents/Core (1.5.9):
+    - SAModelSpace (= 0.2.9)
+    - SANetworking (= 0.2.4)
+    - SAUtils (= 1.4.3)
+  - SAEvents/Moat (1.5.9):
     - SAEvents/Core
-    - SAModelSpace (= 0.2.7)
-    - SANetworking (= 0.2.1)
-    - SAUtils (= 1.3.9)
-  - SAJsonParser (1.2.5)
-  - SAModelSpace (0.2.7):
-    - SAJsonParser (= 1.2.5)
-  - SANetworking (0.2.1)
-  - SASession (0.2.0):
-    - SAUtils (= 1.3.9)
-  - SAUtils (1.3.9)
-  - SAVideoPlayer (1.1.5)
+    - SAModelSpace (= 0.2.9)
+    - SANetworking (= 0.2.4)
+    - SAUtils (= 1.4.3)
+  - SAJsonParser (1.2.8)
+  - SAModelSpace (0.2.9):
+    - SAJsonParser (= 1.2.8)
+  - SANetworking (0.2.4)
+  - SASession (0.2.3):
+    - SAUtils (= 1.4.3)
+  - SAUtils (1.4.3)
+  - SAVideoPlayer (1.1.6)
   - SAWebPlayer (1.0.8)
   - SuperAwesome/Base (5.2.4):
-    - SAAdLoader (= 0.7.6)
-    - SAEvents (= 1.5.7)
-    - SAVideoPlayer (= 1.1.5)
+    - SAAdLoader (= 0.7.7)
+    - SAEvents (= 1.5.9)
+    - SAVideoPlayer (= 1.1.6)
     - SAWebPlayer (= 1.0.8)
   - SuperAwesome/Full (5.2.4):
     - SAEvents/Moat
@@ -54,17 +54,17 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  mopub-ios-sdk: a2fc16e924c1c17f8cff26b3d50f9e88a34d1f06
-  SAAdLoader: 789474dad6042fa23c578cada709206138306f2e
-  SAEvents: c621ce9c88699e50492859c63ffe4bee7a30b7d8
-  SAJsonParser: c933541162c2977992bdf866cfc66c14375645c0
-  SAModelSpace: c036cd57df07c14897c05d27dc2135d095c03e2c
-  SANetworking: 6f3a4d0f7589a98ff206cb1a7fe6e968997344f4
-  SASession: 78a0aafbd1f63dcf7645e408c9d0fccff5c260b2
-  SAUtils: 683ea4e7dbb126ff6757bad99ca994865213c345
-  SAVideoPlayer: 841d567e0cdfa0003fa4b152463a6dcbb5a4fa92
+  mopub-ios-sdk: 2e46581805d709c3fc3129051b0cb9fde24421a7
+  SAAdLoader: 5234c71a5caec84b2b1d52b5f8ce841471d9783a
+  SAEvents: 5e33f46a4c0b3d9ba4ce78f24363cc8478e6a634
+  SAJsonParser: 288884703a9e3cfbbb966f4ad33aa31b7a6138c1
+  SAModelSpace: 27de393ff4114189f718745e508680274e0943ea
+  SANetworking: 5c6e711877c44227dece9304d7bd242bde019d31
+  SASession: eda44d60ce0e9d1b0d08f5dab9850616a63435e0
+  SAUtils: 287f4a9eaf42897fb6b5f42e40948ae572be2c5f
+  SAVideoPlayer: 703ff103e6578add615aec8872396ef1d826fea5
   SAWebPlayer: f6b521349a82cee14ee7863e8261645a0086c37f
-  SuperAwesome: c10d28796d65e23f0310054d0859ccca78c20bf2
+  SuperAwesome: 1a69fb95026b277db1fb25453c48105934b28938
 
 PODFILE CHECKSUM: 773d0f0090ee60a7f664a6c86310c1f6a7a4f997
 

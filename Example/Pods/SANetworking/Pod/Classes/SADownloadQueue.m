@@ -29,11 +29,20 @@
 }
 
 - (void) addToQueue:(SADownloadItem *)item {
-    [_queue addObject:item];
+    if (item != nil && item != (SADownloadItem*)[NSNull null]) {
+        [_queue addObject:item];
+    }
 }
 
 - (void) removeFromQueue:(SADownloadItem *)item {
-    [_queue removeObject:item];
+    if (item != nil && item != (SADownloadItem*)[NSNull null]) {
+        [_queue removeObject:item];
+    }
+}
+
+- (void) moveToBackOfQueue:(SADownloadItem *)item {
+    [self removeFromQueue:item];
+    [self addToQueue:item];
 }
 
 - (NSInteger) getLength {

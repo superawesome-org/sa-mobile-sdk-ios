@@ -52,7 +52,6 @@
         if (ad.creative.details.media) {
             
             [[SAFileDownloader getInstance] downloadFileFrom:ad.creative.details.media.playableMediaUrl
-                                               withExtension:@"mp4"
                                                  andResponse:^(BOOL success, NSString *diskPath) {
                                                                
                                                      ad.creative.details.media.playableDiskUrl = diskPath;

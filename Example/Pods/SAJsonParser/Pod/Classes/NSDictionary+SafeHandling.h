@@ -23,14 +23,29 @@ __attribute__((unused)) static _Nullable id nullSafe(_Nullable id object) {
 
 @interface NSDictionary (SafeHandling)
 
-/**
- *  Function that safely gets an object's value (or returns nil - which is safe
- *  when trying to apply functions to it)
- *
- *  @param aKey the key
- *
- *  @return the return value or nil
- */
--  (_Nullable id) safeObjectForKey:(_Nullable id)aKey;
+- (_Nullable id) safeObjectForKey:(_Nullable id)aKey;
+- (_Nullable id) safeObjectForKey:(_Nullable id)aKey orDefault:(_Nullable id)def;
+
+- (NSInteger) safeIntForKey:(_Nonnull id)aKey;
+- (NSInteger) safeIntForKey:(_Nonnull id)aKey orDefault:(NSInteger) def;
+
+- (BOOL) safeBoolForKey:(_Nonnull id)aKey;
+- (BOOL) safeBoolForKey:(_Nonnull id)aKey orDefault:(BOOL) def;
+
+- (NSString*) safeStringForKey:(_Nonnull id)aKey;
+- (NSString*) safeStringForKey:(_Nonnull id)aKey orDefault:(NSString*)def;
+
+- (float) safeFloatForKey:(_Nonnull id)aKey;
+- (float) safeFloatForKey:(_Nonnull id)aKey orDefault:(CGFloat)def;
+
+- (double) safeDoubleForKey:(_Nonnull id)aKey;
+- (double) safeDoubleForKey:(_Nonnull id)aKey orDefault:(CGFloat)def;
+
+- (NSDictionary*) safeDictionaryForKey:(_Nonnull id)aKey;
+- (NSDictionary*) safeDictionaryForKey:(_Nonnull id)aKey orDefault:(NSDictionary*)def;
+
+- (NSArray*) safeArrayForKey:(_Nonnull id)aKey;
+- (NSArray*) safeArrayForKey:(_Nonnull id)aKey orDefault:(NSArray*)def;
+
 
 @end

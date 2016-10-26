@@ -267,8 +267,8 @@
     self.frame = toframe;
     
     // new webplayer frame
-    CGRect frame = [SAUtils mapOldFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
-                             toNewFrame:CGRectMake(0, 0, _ad.creative.details.width, _ad.creative.details.height)];
+    CGRect frame = [SAUtils mapOldFrame:CGRectMake(0, 0, _ad.creative.details.width, _ad.creative.details.height)
+                             toNewFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
     
     // rearrange the webview
     [_webplayer updateToFrame:frame];

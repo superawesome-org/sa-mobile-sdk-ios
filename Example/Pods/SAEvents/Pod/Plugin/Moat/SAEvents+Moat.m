@@ -26,15 +26,9 @@
 
 - (NSString*) sendDisplayMoatEvent:(UIWebView*)webView andAdDictionary:(NSDictionary*)adDict{
     
-    // make only 1 in 5 moat events OK
-    NSInteger rand = [SAUtils randomNumberBetween:0 maxNumber:100];
-    if (rand > 20) {
-        NSLog(@"[AA:: Info] Moat Display Event not triggered this time");
-        return @"";
-    }
-    
 #if HAS_MOAT
-    NSLog(@"MOAT can be triggered");
+    NSLog(@"MOAT Display can be triggered");
+    
     // go ahead
     [SUPMoatBootstrap injectDelegateWrapper:webView];
     
@@ -56,15 +50,10 @@
 
 - (void) sendVideoMoatEvent:(AVPlayer*)player andLayer:(AVPlayerLayer*)layer andView:(UIView*)adView andAdDictionary:(NSDictionary*)adDict {
     
-    // make only 1 in 5 moat events OK
-    NSInteger rand = [SAUtils randomNumberBetween:0 maxNumber:100];
-    if (rand > 20) {
-        NSLog(@"[AA:: Info] Moat Video Event not triggered this time");
-        return;
-    }
-    
 #if HAS_MOAT
-    
+    NSLog(@"MOAT Video can be triggered");
+
+    // go ahead
     NSDictionary *moatDictionary = @{
                                      @"level1": [adDict objectForKey:@"advertiser"],
                                      @"level2": [adDict objectForKey:@"campaign"],
@@ -83,6 +72,8 @@
        withContainingView:adView];
     
     NSLog(@"[AA :: Info] Sending Video Event to Moat");
+#else
+    NSLog(@"No moat present!");
 #endif
 }
 

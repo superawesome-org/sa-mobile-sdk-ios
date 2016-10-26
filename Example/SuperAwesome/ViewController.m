@@ -86,9 +86,9 @@
 //    [SAVideoAd setConfigurationProduction];
 //    [SAVideoAd load:31718];
 //    [SAVideoAd load:31721];
-//    [SAVideoAd setConfigurationStaging];
-//    [SAVideoAd setOrientationLandscape];
-//    [SAVideoAd load:480];
+    [SAVideoAd setConfigurationStaging];
+    [SAVideoAd setOrientationLandscape];
+    [SAVideoAd load:480];
     [SAVideoAd load:481];
 }
 
@@ -115,9 +115,9 @@
 //        [SAVideoAd play: 31718 fromVC:self];
 //    }
     
-//    if ([SAVideoAd hasAdAvailable:480]) {
-//        [SAVideoAd play:480 fromVC:self];
-//    }
+    if ([SAVideoAd hasAdAvailable:480]) {
+        [SAVideoAd play:480 fromVC:self];
+    }
 }
 
 - (IBAction)playVideo2:(id)sender {

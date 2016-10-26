@@ -23,8 +23,8 @@
     
     if (json != nil) {
         NSError *error = nil;
-        NSDictionary *temp = [NSJSONSerialization JSONObjectWithData:json options:NSJSONReadingMutableContainers error:&error];
-        if (error == nil) {
+        id temp = [NSJSONSerialization JSONObjectWithData:json options:NSJSONReadingMutableContainers error:&error];
+        if (error == nil && [temp isKindOfClass:[NSDictionary class]]) {
             return temp;
         }
     }
@@ -56,25 +56,44 @@
 
 - (id) initWithJsonDictionary:(NSDictionary *)jsonDictionary {
     if (self = [self initWithDictionary:jsonDictionary]) {
-    
+        // this is just the normal init w/ dictionary
     }
     return self;
 }
 
 - (id) initWithJsonData:(NSData *)jsonData {
     NSDictionary *temp = [self dictionaryFromData:jsonData];
-    if (!temp) return NULL;
-    if (self = [self initWithJsonDictionary:temp]){
-        
+    
+    if (temp) {
+        if (self = [self initWithJsonDictionary:temp]) {
+            // operation successfull and I could init w/ a valid dict
+        }
+    } else {
+        if (self = [self init]) {
+            // operation failed so I revert back to a normal dictionary
+        }
     }
+    
     return self;
 }
 
 - (id) initWithJsonString:(NSString *)jsonString {
-    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
-    if (self = [self initWithJsonData:jsonData]){
+    if (jsonString != nil && ![jsonString isEqual:[NSNull null]]) {
         
+        // get the json data
+        NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+        
+        if (self = [self initWithJsonData:jsonData]){
+            // init w/ json data
+        }
     }
+    else {
+        if (self = [self init]) {
+            // make sure that whatever the scenario I return a type of dictionary
+            // (even an empty one)
+        }
+    }
+    
     return self;
 }
 

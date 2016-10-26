@@ -12,17 +12,27 @@
 
 - (id) init{
     if (self = [super init]){
-        
+        [self initDefaults];
     }
     return self;
 }
 
 - (id) initWithJsonDictionary:(NSDictionary *)jsonDictionary {
     if (self = [super initWithJsonDictionary:jsonDictionary]) {
-        _event = [jsonDictionary safeObjectForKey:@"event"];
-        _URL = [jsonDictionary safeObjectForKey:@"URL"];
+        
+        // init defs
+        [self initDefaults];
+        
+        // take from json
+        _event = [jsonDictionary safeStringForKey:@"event" orDefault:_event];
+        _URL = [jsonDictionary safeStringForKey:@"URL" orDefault:_URL];
     }
     return self;
+}
+
+- (void) initDefaults {
+    _event = nil;
+    _URL = nil;
 }
 
 - (NSDictionary*) dictionaryRepresentation {

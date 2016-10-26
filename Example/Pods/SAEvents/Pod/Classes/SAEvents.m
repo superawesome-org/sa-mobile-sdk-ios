@@ -16,6 +16,7 @@
 #import "SAMedia.h"
 #import "SATracking.h"
 
+
 // try to import moat
 #if defined(__has_include)
 #if __has_include("SAEvents+Moat.h")
@@ -30,6 +31,7 @@
 @property (nonatomic, strong) SAAd *ad;
 @property (nonatomic, strong) SANetwork *network;
 @property (nonatomic, strong) NSTimer *viewabilityTimer;
+@property (nonatomic, assign) BOOL moatLimiting;
 @end
 
 @implementation SAEvents
@@ -37,6 +39,7 @@
 - (id) init {
     if (self = [super init]) {
         _network = [[SANetwork alloc] init];
+        _moatLimiting = true;
     }
     
     return self;
@@ -50,19 +53,30 @@
 // MARK: Normal events
 ////////////////////////////////////////////////////////////////////////////////
 
-- (void) sendEventToURL:(NSString *)url {
+- (void) sendEventToURL:(NSString *)url withResponse:(saEventResponse)response {
     [_network sendGET:url
-           withQuery:@{}
-           andHeader:@{@"Content-Type":@"application/json",
-                       @"User-Agent":[SAUtils getUserAgent]}
-        withResponse:^(NSInteger status, NSString *payload, BOOL success) {
-            NSLog(@"Event [%d] | [%ld] | %@", success, (long) status, payload);
-        }];
+            withQuery:@{}
+            andHeader:@{@"Content-Type":@"application/json",
+                        @"User-Agent":[SAUtils getUserAgent]}
+         withResponse:^(NSInteger status, NSString *payload, BOOL success) {
+             if (response != nil) {
+                 response(success, status);
+             }
+         }];
 }
 
-- (void) sendAllEventsForKey:(NSString*)key {
+- (void) sendEventToURL:(NSString *)url {
+    [self sendEventToURL:url withResponse:nil];
+}
+
+- (void) sendAllEventsForKey:(NSString*)key withResponse:(saEventResponse)response {
     // safety check
-    if (_ad == NULL) return;
+    if (_ad == NULL || key == nil || key == (NSString*)[NSNull null]) {
+        if (response != nil) {
+            response(false, 0);
+        }
+        return;
+    }
     
     // get the necessary events
     NSArray *tracks = [_ad.creative.events filterBy:@"event" withValue:key];
@@ -74,20 +88,49 @@
         }
     }
     
+    // some vars to keep track of events
+    __block NSInteger max = [urls count];
+    __block NSInteger successful = 0;
+    __block NSInteger current = 0;
+    
     // send events
-    for (NSString *url in urls) {
-        [self sendEventToURL:url];
+    if (max > 0) {
+        for (NSString *url in urls) {
+            [self sendEventToURL:url withResponse:^(BOOL success, NSInteger status) {
+                // increment
+                successful += success ? 1 : 0;
+                current += 1;
+                
+                // once you reach the end
+                if (current == max && response != nil) {
+                    response (current == successful ? true : false, current == successful ? 200 : 0);
+                }
+            }];
+        }
+    } else {
+        if (response != nil) {
+            response (false, 0);
+        }
     }
+}
+
+- (void) sendAllEventsForKey:(NSString*)key {
+    [self sendAllEventsForKey:key withResponse:nil];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // MARK: Viewable Impression
 ////////////////////////////////////////////////////////////////////////////////
 
-- (void) sendViewableImpressionForView:(UIView*) view andTicks:(NSInteger) maxTicks {
+- (void) sendViewableImpressionForView:(UIView*) view andTicks:(NSInteger) maxTicks withResponse:(saEventResponse)response {
     
     // safety check
-    if (_ad == NULL) return;
+    if (_ad == nil || view == nil) {
+        if (response != nil) {
+            response (false, 0);
+        }
+        return;
+    }
     
     // destroy previosus timer, if it exists
     if (_viewabilityTimer != NULL) {
@@ -105,10 +148,15 @@
             [_viewabilityTimer invalidate];
             _viewabilityTimer = nil;
             
+            // success case
             if (cticks == maxTicks) {
-                [self sendAllEventsForKey:@"viewable_impr"];
-            } else {
-                NSLog(@"[AA :: Error] Did not send viewable impression");
+                [self sendAllEventsForKey:@"viewable_impr" withResponse:response];
+            }
+            // error case
+            else {
+                if (response != nil) {
+                    response (false, 0);
+                }
             }
         } else {
             ticks++;
@@ -132,11 +180,11 @@
 }
 
 - (void) sendViewableImpressionForDisplay:(UIView*) view {
-    [self sendViewableImpressionForView:view andTicks:MAX_DISPLAY_TICKS];
+    [self sendViewableImpressionForView:view andTicks:MAX_DISPLAY_TICKS withResponse:nil];
 }
 
 - (void) sendViewableImpressionForVideo:(UIView*) view {
-    [self sendViewableImpressionForView:view andTicks:MAX_VIDEO_TICKS];    
+    [self sendViewableImpressionForView:view andTicks:MAX_VIDEO_TICKS withResponse:nil];
 }
 
 - (void) close {
@@ -153,6 +201,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 - (NSString*) moatEventForWebPlayer:(id)webplayer {
+    
+    if (_moatLimiting && [SAUtils randomNumberBetween:0 maxNumber:100] >= 80){
+        return @"";
+    }
     
     // form the moat dictionary
     NSDictionary *moatDict = @{
@@ -178,6 +230,10 @@
 
 - (void) moatEventForVideoPlayer:(AVPlayer*)player withLayer:(AVPlayerLayer*)layer andView:(UIView*)view {
     
+    if (_moatLimiting && [SAUtils randomNumberBetween:0 maxNumber:100] >= 80) {
+        return;
+    }
+    
     // also get the moat dict, another needed parameter
     NSDictionary *moatDict = @{
                                @"advertiser":@(_ad.advertiserId),
@@ -192,6 +248,10 @@
     // invoke the moat event
     [SAUtils invoke:@"sendVideoMoatEvent:andLayer:andView:andAdDictionary:" onTarget:self, player, layer, view, moatDict];
     
+}
+
+- (void) disableMoatLimiting {
+    _moatLimiting = false;
 }
 
 @end

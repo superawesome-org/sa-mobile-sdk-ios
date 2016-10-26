@@ -13,6 +13,9 @@
 #define PRODUCTION_URL @"https://ads.superawesome.tv/v2"
 #define STAGING_URL @"https://ads.staging.superawesome.tv/v2"
 
+#define DEVICE_PHONE @"phone"
+#define DEVICE_TABLET @"tablet";
+
 @interface SASession ()
 @property (nonatomic, strong) NSString *baseUrl;
 @property (nonatomic, assign) BOOL testEnabled;
@@ -39,7 +42,7 @@
         // get the bundle id, app name, etc, things that might not change
         _bundleId = [[NSBundle mainBundle] bundleIdentifier];
         _appName = [SAUtils encodeURI:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"]];
-        _device = [SAUtils getSystemSize] == size_mobile ? @"mobile" : @"tablet";
+        _device = [SAUtils getSystemSize] == size_phone ? DEVICE_PHONE : DEVICE_TABLET;
         _userAgent = [SAUtils getUserAgent];
         
         _lang = @"none";

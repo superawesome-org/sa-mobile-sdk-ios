@@ -29,16 +29,16 @@
       "frameworks": "AdSupport",
       "dependencies": {
         "SAVideoPlayer": [
-          "1.1.5"
+          "1.1.6"
         ],
         "SAWebPlayer": [
           "1.0.8"
         ],
         "SAEvents": [
-          "1.5.7"
+          "1.5.9"
         ],
         "SAAdLoader": [
-          "0.7.6"
+          "0.7.7"
         ]
       }
     },

@@ -418,6 +418,7 @@ static SAConfiguration configuration = PRODUCTION;
             
             // add to the array queue
             if (isValid) {
+                NSLog(@"%@", [first jsonPreetyStringRepresentation]);
                 [ads setObject:first forKey:@(placementId)];
             }
             // remove

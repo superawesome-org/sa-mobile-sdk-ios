@@ -249,6 +249,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 - (void) playWithMediaURL:(NSURL *)url {
+    
+    // handle error case
+    if (url == nil || url == (NSString*)[NSNull null] || [[url absoluteString] isEqualToString:@""]) {
+        _eventHandler(Video_Error);
+        return;
+    }
+    
+    // if file isn't nil, then go forward and play it
+    
     [self setup];
     _mediaURL = url;
     _playerItem = [AVPlayerItem playerItemWithURL:_mediaURL];
@@ -263,6 +272,15 @@
 }
 
 - (void) playWithMediaFile:(NSString *)file {
+    
+    // handle error case
+    if (file == nil || file == (NSString*)[NSNull null] || [file isEqualToString:@""]) {
+        _eventHandler(Video_Error);
+        return;
+    }
+    
+    // if file isn't nil, then go forward and play it
+    
     [self setup];
     NSURL *url = [[NSURL alloc] initFileURLWithPath:file isDirectory:false];
     AVAsset *asset = [AVURLAsset URLAssetWithURL:url options:nil];
@@ -370,6 +388,7 @@
 }
 
 - (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary*)change context:(void *)context {
+    
     if (object == _player && [keyPath isEqualToString:AV_RATE]){
         NSLog(@"[KVO] %@ %f", AV_RATE, _player.rate);
     }

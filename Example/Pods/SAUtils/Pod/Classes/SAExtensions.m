@@ -29,15 +29,71 @@
 @implementation NSArray (SAExtensions)
 
 - (NSArray*) filterBy:(NSString*) member withValue:(NSString*) value {
-    NSMutableArray *_mutableSelf = [self mutableCopy];
-    NSPredicate *searchPred = [NSPredicate predicateWithFormat:@"%K CONTAINS[c] %@", member, value];
-    return [_mutableSelf filteredArrayUsingPredicate:searchPred];
+    
+    // create a result array to add to if all goes well
+    NSMutableArray *result = [@[] mutableCopy];
+    
+    for (id item in self) {
+        
+        // get the selector
+        SEL sel = NSSelectorFromString(member);
+        
+        // check if item responds to selector
+        if ([item respondsToSelector:sel]) {
+            
+            // find out return type
+            Method m = class_getInstanceMethod([item class], sel);
+            char ret[256];
+            method_getReturnType(m, ret, 256);
+            NSString *type = [NSString stringWithCString:ret encoding:NSUTF8StringEncoding];
+            
+            // only if it's an object
+            if ([type isEqualToString:@"@"]) {
+                id testVal = [item performSelector:sel];
+                // and if the value is a string (only comparison that makes sense)
+                if ([testVal isKindOfClass:[NSString class]]) {
+                    if ([testVal isEqualToString:value]) {
+                        [result addObject:item];
+                    }
+                }
+            }
+        }
+    }
+    
+    return result;
 }
 
-- (NSArray*) filterBy:(NSString *)member withBool:(BOOL)value {
-    NSMutableArray *_mutableSelf = [self mutableCopy];
-    NSPredicate *searchPref = [NSPredicate predicateWithFormat:@"%K == %d", member, value];
-    return [_mutableSelf filteredArrayUsingPredicate:searchPref];
+- (NSArray*) filterBy:(NSString*) member withBool:(BOOL) value {
+    
+    // create a result array to add to if all goes well
+    NSMutableArray *result = [@[] mutableCopy];
+    
+    for (id item in self) {
+        
+        // get the selector
+        SEL sel = NSSelectorFromString(member);
+        
+        // check if item responds to selector
+        if ([item respondsToSelector:sel]) {
+            
+            // find out return type
+            Method m = class_getInstanceMethod([item class], sel);
+            char ret[256];
+            method_getReturnType(m, ret, 256);
+            NSString *type = [NSString stringWithCString:ret encoding:NSUTF8StringEncoding];
+            
+            // only if it's a bool
+            if ([type isEqualToString:@"B"]) {
+                if ((BOOL)[item performSelector:sel] == value) {
+                    [result addObject:item];
+                }
+            }
+            
+        }
+        
+    }
+    
+    return result;
 }
 
 - (NSArray*) removeAllButFirstElement {
@@ -65,11 +121,11 @@
 
 @dynamic alertWindow;
 
-- (void) setAlertWindow:(UIWindow *)alertWindow {
+- (void) setAlertWindow:(UIWindow*) alertWindow {
     objc_setAssociatedObject(self, @selector(alertWindow), alertWindow, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (UIWindow *)alertWindow {
+- (UIWindow*) alertWindow {
     return objc_getAssociatedObject(self, @selector(alertWindow));
 }
 

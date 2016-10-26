@@ -199,7 +199,7 @@ static SAConfiguration configuration = PRODUCTION;
     CGFloat tH = frame.size.height;
     CGFloat tX = ( frame.size.width - tW ) / 2;
     CGFloat tY = ( frame.size.height - tH) / 2;
-    CGRect newR = [SAUtils mapOldFrame:CGRectMake(tX, tY, tW, tH) toNewFrame:frame];
+    CGRect newR = [SAUtils mapOldFrame:frame toNewFrame:CGRectMake(tX, tY, tW, tH)];
     newR.origin.x += tX;
     newR.origin.y += tY;
 
