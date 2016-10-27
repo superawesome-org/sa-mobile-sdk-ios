@@ -28,20 +28,20 @@ PODS:
   - SASession (0.2.4):
     - SAUtils (= 1.4.4)
   - SAUtils (1.4.4)
-  - SAVideoPlayer (1.1.7)
+  - SAVideoPlayer (1.1.8)
   - SAWebPlayer (1.1.0)
-  - SuperAwesome/Base (5.2.5):
+  - SuperAwesome/Base (5.2.6):
     - SAAdLoader (= 0.7.8)
     - SAEvents (= 1.6.0)
-    - SAVideoPlayer (= 1.1.7)
+    - SAVideoPlayer (= 1.1.8)
     - SAWebPlayer (= 1.1.0)
-  - SuperAwesome/Full (5.2.5):
+  - SuperAwesome/Full (5.2.6):
     - SAEvents/Moat
     - SuperAwesome/Base
-  - SuperAwesome/MoPub (5.2.5):
+  - SuperAwesome/MoPub (5.2.6):
     - mopub-ios-sdk
     - SuperAwesome/Base
-  - SuperAwesome/Unity (5.2.5):
+  - SuperAwesome/Unity (5.2.6):
     - SuperAwesome/Base
 
 DEPENDENCIES:
@@ -62,9 +62,9 @@ SPEC CHECKSUMS:
   SANetworking: e70cffed7d4b1f910bf24cd8bae72bf98caee253
   SASession: c13af694f099b6d16943416c7799bb59b57f00af
   SAUtils: a310518f2dc25f710fbd6de23e467c9f35644916
-  SAVideoPlayer: 76f7784e406137141c3357b84d5158009d211400
+  SAVideoPlayer: 4f5c89a524c331eb3d2ff2b670de271a80bb97f1
   SAWebPlayer: 0eb52c8d0fd47136534c3391043c18f969c6170f
-  SuperAwesome: 27623ea75908484c3565ec17d244f93b89c34f0b
+  SuperAwesome: 59b33febe4d7b21633a07ce81d410c905992faf3
 
 PODFILE CHECKSUM: 773d0f0090ee60a7f664a6c86310c1f6a7a4f997
 

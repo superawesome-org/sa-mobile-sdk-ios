@@ -296,8 +296,8 @@
 
 - (void) setObservers {
     
-    NSError *setCategoryErr;
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&setCategoryErr];
+//    NSError *setCategoryErr;
+//    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&setCategoryErr];
     
     [_notif addObserver:self selector:@selector(playerItemDidReachEnd:) name:AV_END object:nil];
     [_notif addObserver:self selector:@selector(playerItemFailedToPlayEndTime:) name:AV_NOEND object:nil];
