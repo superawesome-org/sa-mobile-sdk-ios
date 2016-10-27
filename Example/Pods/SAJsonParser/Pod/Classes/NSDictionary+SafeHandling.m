@@ -12,7 +12,7 @@
 
 // safe get
 
-- (_Nullable id) safeObjectForKey:(_Nullable id)aKey {
+- (id _Nullable) safeObjectForKey:(id _Nullable)aKey {
     if (aKey == nil || aKey == [NSNull null]) {
         return nil;
     } else {
@@ -29,7 +29,7 @@
     }
 }
 
-- (_Nullable id) safeObjectForKey:(_Nullable id)aKey orDefault:(_Nullable id)def {
+- (id _Nullable) safeObjectForKey:(id _Nullable)aKey orDefault:(id _Nullable)def {
     id object = [self safeObjectForKey:aKey];
     if (object) {
         return object;
@@ -38,7 +38,7 @@
     }
 }
 
-- (NSInteger) safeIntForKey:(_Nonnull id)aKey {
+- (NSInteger) safeIntForKey:(id _Nullable)aKey {
     id object = [self safeObjectForKey:aKey];
     if (object && [object isKindOfClass:[NSNumber class]] && [object respondsToSelector:@selector(integerValue)]) {
         return [object integerValue];
@@ -47,7 +47,7 @@
     }
 }
 
-- (NSInteger) safeIntForKey:(_Nonnull id)aKey orDefault:(NSInteger) def {
+- (NSInteger) safeIntForKey:(id _Nullable)aKey orDefault:(NSInteger) def {
     id object = [self safeObjectForKey:aKey];
     if (object && [object isKindOfClass:[NSNumber class]] && [object respondsToSelector:@selector(integerValue)]) {
         return [object integerValue];
@@ -56,7 +56,7 @@
     }
 }
 
-- (BOOL) safeBoolForKey:(_Nonnull id)aKey {
+- (BOOL) safeBoolForKey:(id _Nullable)aKey {
     id object = [self safeObjectForKey:aKey];
     if (object && [object isKindOfClass:[NSNumber class]] && [object respondsToSelector:@selector(boolValue)]) {
         return [object boolValue];
@@ -65,7 +65,7 @@
     }
 }
 
-- (BOOL) safeBoolForKey:(_Nonnull id)aKey orDefault:(BOOL) def {
+- (BOOL) safeBoolForKey:(id _Nullable)aKey orDefault:(BOOL) def {
     id object = [self safeObjectForKey:aKey];
     if (object && [object isKindOfClass:[NSNumber class]] && [object respondsToSelector:@selector(boolValue)]) {
         return [object boolValue];
@@ -75,25 +75,7 @@
 
 }
 
-- (NSString*) safeStringForKey:(_Nonnull id)aKey {
-    id object = [self safeObjectForKey:aKey];
-    if (object && [object isKindOfClass:[NSString class]]) {
-        return object;
-    } else {
-        return nil;
-    }
-}
-
-- (NSString*) safeStringForKey:(_Nonnull id)aKey orDefault:(NSString*)def {
-    id object = [self safeObjectForKey:aKey];
-    if (object && [object isKindOfClass:[NSString class]]) {
-        return object;
-    } else {
-        return def;
-    }
-}
-
-- (float) safeFloatForKey:(_Nonnull id)aKey {
+- (float) safeFloatForKey:(id _Nullable)aKey {
     id object = [self safeObjectForKey:aKey];
     if (object && [object isKindOfClass:[NSNumber class]] && [object respondsToSelector:@selector(floatValue)]) {
         return [object floatValue];
@@ -102,7 +84,7 @@
     }
 }
 
-- (float) safeFloatForKey:(_Nonnull id)aKey orDefault:(CGFloat)def {
+- (float) safeFloatForKey:(id _Nullable)aKey orDefault:(float)def {
     id object = [self safeObjectForKey:aKey];
     if (object && [object isKindOfClass:[NSNumber class]] && [object respondsToSelector:@selector(floatValue)]) {
         return [object floatValue];
@@ -111,7 +93,7 @@
     }
 }
 
-- (double) safeDoubleForKey:(_Nonnull id)aKey {
+- (double) safeDoubleForKey:(id _Nullable)aKey {
     id object = [self safeObjectForKey:aKey];
     if (object && [object isKindOfClass:[NSNumber class]] && [object respondsToSelector:@selector(doubleValue)]) {
         return [object doubleValue];
@@ -120,7 +102,7 @@
     }
 }
 
-- (double) safeDoubleForKey:(_Nonnull id)aKey orDefault:(CGFloat)def {
+- (double) safeDoubleForKey:(id _Nullable)aKey orDefault:(double)def {
     id object = [self safeObjectForKey:aKey];
     if (object && [object isKindOfClass:[NSNumber class]] && [object respondsToSelector:@selector(doubleValue)]) {
         return [object doubleValue];
@@ -129,7 +111,25 @@
     }
 }
 
-- (NSDictionary*) safeDictionaryForKey:(_Nonnull id)aKey {
+- (NSString* _Nullable) safeStringForKey:(id _Nullable)aKey {
+    id object = [self safeObjectForKey:aKey];
+    if (object && [object isKindOfClass:[NSString class]]) {
+        return object;
+    } else {
+        return nil;
+    }
+}
+
+- (NSString* _Nullable) safeStringForKey:(id _Nullable)aKey orDefault:(NSString* _Nullable)def {
+    id object = [self safeObjectForKey:aKey];
+    if (object && [object isKindOfClass:[NSString class]]) {
+        return object;
+    } else {
+        return def;
+    }
+}
+
+- (NSDictionary* _Nullable) safeDictionaryForKey:(id _Nullable)aKey {
     id object = [self safeObjectForKey:aKey];
     if (object && [object isKindOfClass:[NSDictionary class]]) {
         return (NSDictionary*)object;
@@ -138,7 +138,7 @@
     }
 }
 
-- (NSDictionary*) safeDictionaryForKey:(_Nonnull id)aKey orDefault:(NSDictionary*)def {
+- (NSDictionary* _Nullable) safeDictionaryForKey:(id _Nullable)aKey orDefault:(NSDictionary* _Nullable)def {
     id object = [self safeObjectForKey:aKey];
     if (object && [object isKindOfClass:[NSDictionary class]]) {
         return (NSDictionary*)object;
@@ -147,7 +147,7 @@
     }
 }
 
-- (NSArray*) safeArrayForKey:(_Nonnull id)aKey {
+- (NSArray* _Nullable) safeArrayForKey:(id _Nullable)aKey {
     id object = [self safeObjectForKey:aKey];
     if (object && [object isKindOfClass:[NSArray class]]) {
         return (NSArray*)object;
@@ -156,7 +156,7 @@
     }
 }
 
-- (NSArray*) safeArrayForKey:(_Nonnull id)aKey orDefault:(NSArray*)def {
+- (NSArray* _Nullable) safeArrayForKey:(id _Nullable)aKey orDefault:(NSArray* _Nullable)def {
     id object = [self safeObjectForKey:aKey];
     if (object && [object isKindOfClass:[NSArray class]]) {
         return (NSArray*)object;

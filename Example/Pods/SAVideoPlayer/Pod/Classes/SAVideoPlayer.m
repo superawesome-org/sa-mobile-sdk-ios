@@ -251,7 +251,7 @@
 - (void) playWithMediaURL:(NSURL *)url {
     
     // handle error case
-    if (url == nil || url == (NSString*)[NSNull null] || [[url absoluteString] isEqualToString:@""]) {
+    if (url == nil || url == (NSURL*)[NSNull null] || [[url absoluteString] isEqualToString:@""]) {
         _eventHandler(Video_Error);
         return;
     }

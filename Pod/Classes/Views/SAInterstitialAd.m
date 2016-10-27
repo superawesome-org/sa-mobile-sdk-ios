@@ -92,7 +92,7 @@ static SAConfiguration configuration = PRODUCTION;
     // setup coordinates
     CGSize scrSize = [UIScreen mainScreen].bounds.size;
     CGSize currentSize = CGSizeZero;
-    UIDeviceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    UIDeviceOrientation orientation = (NSInteger)[[UIApplication sharedApplication] statusBarOrientation];
     CGFloat bigDimension = MAX(scrSize.width, scrSize.height);
     CGFloat smallDimension = MIN(scrSize.width, scrSize.height);
     

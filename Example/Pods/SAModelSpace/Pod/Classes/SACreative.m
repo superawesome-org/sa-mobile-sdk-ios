@@ -10,7 +10,6 @@
 
 // import this model's header
 #import "SACreative.h"
-#import "SADetails.h"
 
 @implementation SACreative
 

@@ -35,13 +35,6 @@
         __block SAAd *ad = (SAAd*)[ads objectAtIndex:index];
         ad.creative.details.media.playableMediaUrl = ad.creative.details.image;
         
-        // create the image
-        NSArray *components = [ad.creative.details.media.playableMediaUrl componentsSeparatedByString:@"."];
-        NSString *ext = @"png";
-        if ([components count] > 0) {
-            ext = [components lastObject];
-        }
-        
         // download the image
         [[SAFileDownloader getInstance] downloadFileFrom:ad.creative.details.media.playableMediaUrl
                                              andResponse:^(BOOL success, NSString *diskPath) {

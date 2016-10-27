@@ -23,29 +23,29 @@ __attribute__((unused)) static _Nullable id nullSafe(_Nullable id object) {
 
 @interface NSDictionary (SafeHandling)
 
-- (_Nullable id) safeObjectForKey:(_Nullable id)aKey;
-- (_Nullable id) safeObjectForKey:(_Nullable id)aKey orDefault:(_Nullable id)def;
+- (id _Nullable) safeObjectForKey:(id _Nullable)aKey;
+- (id _Nullable) safeObjectForKey:(id _Nullable)aKey orDefault:(id _Nullable)def;
 
-- (NSInteger) safeIntForKey:(_Nonnull id)aKey;
-- (NSInteger) safeIntForKey:(_Nonnull id)aKey orDefault:(NSInteger) def;
+- (NSInteger) safeIntForKey:(id _Nullable)aKey;
+- (NSInteger) safeIntForKey:(id _Nullable)aKey orDefault:(NSInteger) def;
 
-- (BOOL) safeBoolForKey:(_Nonnull id)aKey;
-- (BOOL) safeBoolForKey:(_Nonnull id)aKey orDefault:(BOOL) def;
+- (BOOL) safeBoolForKey:(id _Nullable)aKey;
+- (BOOL) safeBoolForKey:(id _Nullable)aKey orDefault:(BOOL) def;
 
-- (NSString*) safeStringForKey:(_Nonnull id)aKey;
-- (NSString*) safeStringForKey:(_Nonnull id)aKey orDefault:(NSString*)def;
+- (float) safeFloatForKey:(id _Nullable)aKey;
+- (float) safeFloatForKey:(id _Nullable)aKey orDefault:(float)def;
 
-- (float) safeFloatForKey:(_Nonnull id)aKey;
-- (float) safeFloatForKey:(_Nonnull id)aKey orDefault:(CGFloat)def;
+- (double) safeDoubleForKey:(id _Nullable)aKey;
+- (double) safeDoubleForKey:(id _Nullable)aKey orDefault:(double)def;
 
-- (double) safeDoubleForKey:(_Nonnull id)aKey;
-- (double) safeDoubleForKey:(_Nonnull id)aKey orDefault:(CGFloat)def;
+- ( NSString* _Nullable) safeStringForKey:(id _Nullable)aKey;
+- ( NSString* _Nullable) safeStringForKey:(id _Nullable)aKey orDefault:(NSString* _Nullable)def;
 
-- (NSDictionary*) safeDictionaryForKey:(_Nonnull id)aKey;
-- (NSDictionary*) safeDictionaryForKey:(_Nonnull id)aKey orDefault:(NSDictionary*)def;
+- (NSDictionary* _Nullable) safeDictionaryForKey:(id _Nullable)aKey;
+- (NSDictionary* _Nullable) safeDictionaryForKey:(id _Nullable)aKey orDefault:(NSDictionary* _Nullable)def;
 
-- (NSArray*) safeArrayForKey:(_Nonnull id)aKey;
-- (NSArray*) safeArrayForKey:(_Nonnull id)aKey orDefault:(NSArray*)def;
+- (NSArray* _Nullable) safeArrayForKey:(id _Nullable)aKey;
+- (NSArray* _Nullable) safeArrayForKey:(id _Nullable)aKey orDefault:(NSArray* _Nullable)def;
 
 
 @end

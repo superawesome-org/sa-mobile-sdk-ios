@@ -49,7 +49,11 @@
             
             // only if it's an object
             if ([type isEqualToString:@"@"]) {
-                id testVal = [item performSelector:sel];
+                
+                IMP imp = [item methodForSelector:sel];
+                id (*func)(id, SEL) = (void *)imp;
+                id testVal = func(item, sel);
+                
                 // and if the value is a string (only comparison that makes sense)
                 if ([testVal isKindOfClass:[NSString class]]) {
                     if ([testVal isEqualToString:value]) {
@@ -84,7 +88,12 @@
             
             // only if it's a bool
             if ([type isEqualToString:@"B"]) {
-                if ((BOOL)[item performSelector:sel] == value) {
+                
+                IMP imp = [item methodForSelector:sel];
+                BOOL (*func)(id, SEL) = (void *)imp;
+                BOOL testVal = func(item, sel);
+                
+                if (testVal == value) {
                     [result addObject:item];
                 }
             }

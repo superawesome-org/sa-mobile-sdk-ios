@@ -221,7 +221,9 @@
     NSString *moatString = @"";
     SEL selector = NSSelectorFromString(@"sendDisplayMoatEvent:andAdDictionary:");
     if ([self respondsToSelector:selector]) {
-        moatString = [self performSelector:selector withObject:webplayer withObject:moatDict];
+        IMP imp = [self methodForSelector:selector];
+        NSString* (*func)(id, SEL, id, NSDictionary*) = (void *)imp;
+        moatString = func(self, selector, webplayer, moatDict);
     }
     
         // return the moat-ified string
