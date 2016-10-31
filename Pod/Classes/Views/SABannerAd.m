@@ -38,7 +38,7 @@
 // subviews
 @property (nonatomic, strong) SAWebPlayer *webplayer;
 @property (nonatomic, strong) SAParentalGate *gate;
-@property (nonatomic, strong) UIImageView *padlock;
+@property (nonatomic, strong) UIButton *padlock;
 
 // aux state vats
 @property (nonatomic, strong) NSString *destinationURL;
@@ -146,8 +146,9 @@
     [self addSubview:_webplayer];
     
     // add the padlock
-    _padlock = [[UIImageView alloc] initWithFrame:CGRectZero];
-    _padlock.image = [SAImageUtils padlockImage];
+    _padlock = [[UIButton alloc] initWithFrame:CGRectZero];
+    [_padlock setImage:[SAImageUtils padlockImage] forState:UIControlStateNormal];
+    [_padlock addTarget:self action:@selector(padlockAction) forControlEvents:UIControlEventTouchUpInside];
     if ([self shouldShowPadlock]) {
         [_webplayer addSubview:_padlock];
     }
@@ -276,6 +277,10 @@
     // rearrange the padlock
     _padlock.frame = CGRectMake(0, 0, 67, 25);
     [self bringSubviewToFront:_padlock];
+}
+
+- (void) padlockAction {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://ads.superawesome.tv/v2/safead"]];
 }
 
 ////////////////////////////////////////////////////////////////////////////////

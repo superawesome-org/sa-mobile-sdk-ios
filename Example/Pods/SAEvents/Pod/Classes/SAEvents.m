@@ -202,7 +202,7 @@
 
 - (NSString*) moatEventForWebPlayer:(id)webplayer {
     
-    if (_moatLimiting && [SAUtils randomNumberBetween:0 maxNumber:100] >= 80){
+    if ((_moatLimiting && [SAUtils randomNumberBetween:0 maxNumber:100] >= 80) || _ad == nil){
         return @"";
     }
     
@@ -232,7 +232,7 @@
 
 - (void) moatEventForVideoPlayer:(AVPlayer*)player withLayer:(AVPlayerLayer*)layer andView:(UIView*)view {
     
-    if (_moatLimiting && [SAUtils randomNumberBetween:0 maxNumber:100] >= 80) {
+    if ((_moatLimiting && [SAUtils randomNumberBetween:0 maxNumber:100] >= 80) || _ad == nil) {
         return;
     }
     

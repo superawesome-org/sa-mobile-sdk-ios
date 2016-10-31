@@ -1,22 +1,22 @@
 PODS:
-  - mopub-ios-sdk (4.10.0):
-    - mopub-ios-sdk/MoPubSDK (= 4.10.0)
-  - mopub-ios-sdk/MoPubSDK (4.10.0)
+  - mopub-ios-sdk (4.10.1):
+    - mopub-ios-sdk/MoPubSDK (= 4.10.1)
+  - mopub-ios-sdk/MoPubSDK (4.10.1)
   - SAAdLoader (0.7.8):
     - SAModelSpace (= 0.3.0)
     - SANetworking (= 0.2.5)
     - SASession (= 0.2.4)
     - SAUtils (= 1.4.4)
-  - SAEvents (1.6.0):
-    - SAEvents/Core (= 1.6.0)
+  - SAEvents (1.6.1):
+    - SAEvents/Core (= 1.6.1)
     - SAModelSpace (= 0.3.0)
     - SANetworking (= 0.2.5)
     - SAUtils (= 1.4.4)
-  - SAEvents/Core (1.6.0):
+  - SAEvents/Core (1.6.1):
     - SAModelSpace (= 0.3.0)
     - SANetworking (= 0.2.5)
     - SAUtils (= 1.4.4)
-  - SAEvents/Moat (1.6.0):
+  - SAEvents/Moat (1.6.1):
     - SAEvents/Core
     - SAModelSpace (= 0.3.0)
     - SANetworking (= 0.2.5)
@@ -30,18 +30,18 @@ PODS:
   - SAUtils (1.4.4)
   - SAVideoPlayer (1.1.8)
   - SAWebPlayer (1.1.0)
-  - SuperAwesome/Base (5.2.6):
+  - SuperAwesome/Base (5.2.7):
     - SAAdLoader (= 0.7.8)
-    - SAEvents (= 1.6.0)
+    - SAEvents (= 1.6.1)
     - SAVideoPlayer (= 1.1.8)
     - SAWebPlayer (= 1.1.0)
-  - SuperAwesome/Full (5.2.6):
+  - SuperAwesome/Full (5.2.7):
     - SAEvents/Moat
     - SuperAwesome/Base
-  - SuperAwesome/MoPub (5.2.6):
+  - SuperAwesome/MoPub (5.2.7):
     - mopub-ios-sdk
     - SuperAwesome/Base
-  - SuperAwesome/Unity (5.2.6):
+  - SuperAwesome/Unity (5.2.7):
     - SuperAwesome/Base
 
 DEPENDENCIES:
@@ -54,9 +54,9 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  mopub-ios-sdk: 2e46581805d709c3fc3129051b0cb9fde24421a7
+  mopub-ios-sdk: 54b3b9cb41118202eb69653b0ac1d011c9e2bce1
   SAAdLoader: a938ed3edd0e6f9d1106cf188530ff990c418e05
-  SAEvents: 13fad8a51847871ba53a48f520528c53c9b59232
+  SAEvents: 425820bf876960d4d763a1fc4dd65c43b4bcf1f5
   SAJsonParser: 82e10833541da2efe6f558ab3de327a597235ce4
   SAModelSpace: 5dd978d30ee22c620038aabdb9e2f803f9256151
   SANetworking: e70cffed7d4b1f910bf24cd8bae72bf98caee253
@@ -64,7 +64,7 @@ SPEC CHECKSUMS:
   SAUtils: a310518f2dc25f710fbd6de23e467c9f35644916
   SAVideoPlayer: 4f5c89a524c331eb3d2ff2b670de271a80bb97f1
   SAWebPlayer: 0eb52c8d0fd47136534c3391043c18f969c6170f
-  SuperAwesome: 59b33febe4d7b21633a07ce81d410c905992faf3
+  SuperAwesome: 23992f72bf90ca8c8071564c3aa977b3a04fccb1
 
 PODFILE CHECKSUM: 773d0f0090ee60a7f664a6c86310c1f6a7a4f997
 

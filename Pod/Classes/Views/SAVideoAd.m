@@ -30,7 +30,7 @@
 // views
 @property (nonatomic, strong) UIButton *closeBtn;
 @property (nonatomic, strong) SAParentalGate *gate;
-@property (nonatomic, strong) UIImageView *padlock;
+@property (nonatomic, strong) UIButton *padlock;
 @property (nonatomic, strong) SAVideoPlayer *player;
 
 // events
@@ -171,8 +171,9 @@ static SAConfiguration configuration = PRODUCTION;
     [self.view addSubview:_player];
     
     // add the padlock
-    _padlock = [[UIImageView alloc] initWithFrame:CGRectZero];
-    _padlock.image = [SAImageUtils padlockImage];
+    _padlock = [[UIButton alloc] initWithFrame:CGRectZero];
+    [_padlock setImage:[SAImageUtils padlockImage] forState:UIControlStateNormal];
+    [_padlock addTarget:self action:@selector(padlockAction) forControlEvents:UIControlEventTouchUpInside];
     if (_shouldShowPadlockL) {
         [self.view addSubview:_padlock];
     }
@@ -382,6 +383,10 @@ static SAConfiguration configuration = PRODUCTION;
 
 - (void) resume {
     [_player resume];
+}
+
+- (void) padlockAction {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://ads.superawesome.tv/v2/safead"]];
 }
 
 ////////////////////////////////////////////////////////////////////////////////

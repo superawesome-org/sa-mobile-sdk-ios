@@ -138,7 +138,7 @@
 @property (nonatomic, strong) UIImageView *backgroundImage;
 @property (nonatomic, strong) UIButton *closeButton;
 @property (nonatomic, strong) UIImageView *titleImgView;
-@property (nonatomic, strong) UIImageView *padlock;
+@property (nonatomic, strong) UIButton *padlock;
 @property (nonatomic, strong) UIImageView *header;
 @property (nonatomic, strong) UICollectionView *gamewall;
 @property (nonatomic, strong) UICollectionViewFlowLayout *layout;
@@ -218,8 +218,9 @@ static SAConfiguration configuration = PRODUCTION;
     [self.view addSubview:_titleImgView];
     
     // add the padlock
-    _padlock = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 67, 25)];
-    _padlock.image = [SAImageUtils padlockImage];
+    _padlock = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 67, 25)];
+    [_padlock setImage:[SAImageUtils padlockImage] forState:UIControlStateNormal];
+    [_padlock addTarget:self action:@selector(padlockAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_padlock];
     
     // add the close button
@@ -410,6 +411,10 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     }
     
     NSLog(@"Going to %@", _destinationURL);
+}
+
+- (void) padlockAction {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://ads.superawesome.tv/v2/safead"]];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
