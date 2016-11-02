@@ -105,6 +105,43 @@
     return result;
 }
 
+- (nonnull NSArray*) filterBy:(nonnull NSString*) member withInt:(NSInteger) value {
+    // create a result array to add to if all goes well
+    NSMutableArray *result = [@[] mutableCopy];
+    
+    for (id item in self) {
+        
+        // get the selector
+        SEL sel = NSSelectorFromString(member);
+        
+        // check if item responds to selector
+        if ([item respondsToSelector:sel]) {
+            
+            // find out return type
+            Method m = class_getInstanceMethod([item class], sel);
+            char ret[256];
+            method_getReturnType(m, ret, 256);
+            NSString *type = [NSString stringWithCString:ret encoding:NSUTF8StringEncoding];
+            
+            // only if it's a bool
+            if ([type isEqualToString:@"q"]) {
+                
+                IMP imp = [item methodForSelector:sel];
+                NSInteger (*func)(id, SEL) = (void *)imp;
+                NSInteger testVal = func(item, sel);
+                
+                if (testVal == value) {
+                    [result addObject:item];
+                }
+            }
+            
+        }
+        
+    }
+    
+    return result;
+}
+
 - (NSArray*) removeAllButFirstElement {
     NSMutableArray *_mutableSelf = [self mutableCopy];
     

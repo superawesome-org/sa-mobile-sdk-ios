@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "SuperAwesome.h"
+#import "SAUtils.h"
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet SABannerAd *bannerAd;
@@ -83,11 +84,14 @@
     [SAInterstitialAd load:32569];
     [SAInterstitialAd setConfigurationStaging];
     [SAInterstitialAd load:418];
-//    [SAVideoAd setConfigurationProduction];
-//    [SAVideoAd load:31718];
-//    [SAVideoAd load:31721];
+    [SAVideoAd setConfigurationProduction];
+    [SAVideoAd enableTestMode];
+    [SAVideoAd load:31718];
+    [SAVideoAd load:31721];
     [SAVideoAd setConfigurationStaging];
     [SAVideoAd setOrientationLandscape];
+    [SAVideoAd disableTestMode];
+    [SAVideoAd load:544];
     [SAVideoAd load:480];
     [SAVideoAd load:481];
 }
@@ -115,8 +119,8 @@
 //        [SAVideoAd play: 31718 fromVC:self];
 //    }
     
-    if ([SAVideoAd hasAdAvailable:480]) {
-        [SAVideoAd play:480 fromVC:self];
+    if ([SAVideoAd hasAdAvailable:544]) {
+        [SAVideoAd play:544 fromVC:self];
     }
 }
 
@@ -128,9 +132,9 @@
 //        [SAVideoAd play:31721 fromVC:self];
 //    }
     
-//    if ([SAVideoAd hasAdAvailable:481]) {
-//        [SAVideoAd play:481 fromVC:self];
-//    }
+    if ([SAVideoAd hasAdAvailable:31721]) {
+        [SAVideoAd play:31721 fromVC:self];
+    }
 }
 
 @end

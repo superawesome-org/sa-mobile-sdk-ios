@@ -42,9 +42,6 @@
         _url = [jsonDictionary safeStringForKey:@"url" orDefault:_url];
         _cdnUrl = [jsonDictionary safeStringForKey:@"cdnUrl" orDefault:_cdnUrl];
         
-        _transcodedVideos = [jsonDictionary safeStringForKey:@"transcodedVideos" orDefault:_transcodedVideos];
-        
-        
         NSDictionary *mediaDict = [jsonDictionary safeDictionaryForKey:@"media" orDefault:nil];
         if (mediaDict) {
             _media = [[SAMedia alloc] initWithJsonDictionary:mediaDict];
@@ -70,7 +67,6 @@
     _url = nil;
     _cdnUrl = nil;
     _vast = nil;
-    _transcodedVideos = nil;
     
     // media
     _media = [[SAMedia alloc] init];
@@ -92,7 +88,6 @@
              @"zipFile": nullSafe(_zipFile),
              @"url": nullSafe(_url),
              @"cdnUrl": nullSafe(_cdnUrl),
-             @"transcodedVideos": nullSafe(_transcodedVideos),
              @"media": nullSafe([_media dictionaryRepresentation])
              };
 }

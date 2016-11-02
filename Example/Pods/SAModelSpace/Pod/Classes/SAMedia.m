@@ -28,6 +28,7 @@
         _playableDiskUrl = [jsonDictionary safeStringForKey:@"playableDiskUrl" orDefault:_playableDiskUrl];
         _playableMediaUrl = [jsonDictionary safeStringForKey:@"playableMediaUrl" orDefault:_playableMediaUrl];
         _type = [jsonDictionary safeStringForKey:@"type" orDefault:_type];
+        _bitrate = [jsonDictionary safeIntForKey:@"bitrate" orDefault:_bitrate];
         _isOnDisk = [jsonDictionary safeBoolForKey:@"isOnDisk" orDefault:_isOnDisk];
     }
     return self;
@@ -39,6 +40,7 @@
     _playableDiskUrl = nil;
     _playableMediaUrl = nil;
     _type = nil;
+    _bitrate = 0;
     _isOnDisk = false;
 }
 
@@ -48,6 +50,7 @@
              @"playableDiskUrl": nullSafe(_playableDiskUrl),
              @"playableMediaUrl": nullSafe(_playableMediaUrl),
              @"type": nullSafe(_type),
+             @"bitrate": @(_bitrate),
              @"isOnDisk": @(_isOnDisk)
              };
 }

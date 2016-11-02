@@ -127,7 +127,9 @@
                             // parse video
                             case video: {
                                 SAVASTParser *vastParser = [[SAVASTParser alloc] init];
-                                [vastParser parseVASTURL:parsedAd.creative.details.vast done:^(SAAd *vastAd) {
+                                [vastParser parseVASTURL:parsedAd.creative.details.vast
+                                             withSession:session
+                                                    done:^(SAAd *vastAd) {
                                     [parsedAd sumAd:vastAd];
                                     res(response);
                                 }];

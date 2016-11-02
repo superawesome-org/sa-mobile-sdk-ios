@@ -20,9 +20,14 @@
 
 // import Utils
 #import "SAUtils.h"
+#import "SASession.h"
 #import "SANetwork.h"
 #import "SAExtensions.h"
 #import "SAFileDownloader.h"
+
+@interface SAVASTParser ()
+@property (nonatomic, assign) SAConnectionType connection;
+@end
 
 @implementation SAVASTParser
 
@@ -45,19 +50,26 @@
 // MARK: Parsing public function
 ////////////////////////////////////////////////////////////////////////////////
 
-- (void) parseVASTURL:(NSString *)url done:(vastParsingDone)vastParsing {
+- (void) parseVASTURL:(NSString *)url
+          withSession:(SASession*)session
+                 done:(vastParsingDone)vastParsing {
     
+    // get connectivity
+    _connection = (SAConnectionType)[session getConnectivityType];
+    
+    // parse the vast ad
     [self parseVASTAds:url withResult:^(SAAd *ad) {
         
+        // download an ad
         if (ad.creative.details.media) {
             
             [[SAFileDownloader getInstance] downloadFileFrom:ad.creative.details.media.playableMediaUrl
-                                                 andResponse:^(BOOL success, NSString *diskPath) {
-                                                               
-                                                     ad.creative.details.media.playableDiskUrl = diskPath;
-                                                     ad.creative.details.media.isOnDisk = success;
-                                                     vastParsing (ad);
-                                                 }];
+                                                 andResponse:^(BOOL success, NSString *diskPath)
+            {
+                ad.creative.details.media.playableDiskUrl = diskPath;
+                ad.creative.details.media.isOnDisk = success;
+                vastParsing (ad);
+            }];
         } else {
             vastParsing(ad);
         }
@@ -218,13 +230,57 @@
     creative.details = [[SADetails alloc] init];
     
     // populate media files
+    __block SAMedia *defaultMedia = nil;
+    NSMutableArray<SAMedia*> *mediaFiles = [@[] mutableCopy];
+    
     [SAXMLParser searchSiblingsAndChildrenOf:element forName:@"MediaFile" andInterate:^(SAXMLElement *cMediaElement) {
         SAMedia *media = [self parseMediaXML:cMediaElement];
         if ([media.type rangeOfString:@"mp4"].location != NSNotFound ||
             [media.type rangeOfString:@".mp4"].location != NSNotFound) {
-            creative.details.media = media;
+            [mediaFiles addObject:media];
+            defaultMedia = media;
         }
     }];
+    
+    // if there is at least one element in the array
+    if (mediaFiles.count >= 1 && defaultMedia != nil) {
+        // get the videos at different bitrates
+        NSArray *bitrate360 = [mediaFiles filterBy:@"bitrate" withInt:360];
+        NSArray *bitrate540 = [mediaFiles filterBy:@"bitrate" withInt:540];
+        NSArray *bitrate720 = [mediaFiles filterBy:@"bitrate" withInt:720];
+        SAMedia *media360 = bitrate360.count >= 1 ? [bitrate360 firstObject] : nil;
+        SAMedia *media540 = bitrate540.count >= 1 ? [bitrate540 firstObject] : nil;
+        SAMedia *media720 = bitrate720.count >= 1 ? [bitrate720 firstObject] : nil;
+        
+        // when connection is:
+        //  1) cellular unknown
+        //  2) 2g
+        // try to get the lowest media possible
+        if (_connection == cellular_unknown || _connection == cellular_2g) {
+            creative.details.media = media360;
+        }
+        // when connection is:
+        //  1) 3g
+        // try to get the medium media
+        else if (_connection == cellular_3g) {
+            creative.details.media = media540;
+        }
+        // when connection is:
+        //  1) unknown
+        //  2) 4g
+        //  3) wifi
+        //  4) ethernet
+        // try to get the best media available
+        else {
+            creative.details.media = media720;
+        }
+    }
+    
+    // if somehow no media was added (because of legacy VAST)
+    // then just add the default media (which should be the 720 one)
+    if (creative.details.media == nil) {
+        creative.details.media = defaultMedia;
+    }
     
     // return creative
     return creative;
@@ -233,8 +289,11 @@
 - (SAMedia*) parseMediaXML:(SAXMLElement*)element {
     SAMedia *media = [[SAMedia alloc] init];
     media.type = [element getAttribute:@"type"];
+    NSString *bitstr = [element getAttribute:@"bitrate"];
+    if (bitstr != nil) {
+        media.bitrate = [bitstr integerValue];
+    }
     media.playableMediaUrl = [[element value] stringByReplacingOccurrencesOfString:@" " withString:@""];
-    // media.playableDiskUrl = [SAFileDownloader getDiskLocation:@"mp4"];
     return media;
 }
 
