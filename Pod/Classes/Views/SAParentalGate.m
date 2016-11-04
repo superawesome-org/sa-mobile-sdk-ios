@@ -235,7 +235,7 @@
     [_events sendAllEventsForKey:@"pg_success"];
     
     // finally advance to URL
-    if ([_weakAdView isKindOfClass:[SAGameWall class]]) {
+    if ([_weakAdView isKindOfClass:[SAAppWall class]]) {
         [SAUtils invoke:@"click:" onTarget:_weakAdView, @(_gameWallPosition)];
     } else {
         [SAUtils invoke:@"click" onTarget:_weakAdView];

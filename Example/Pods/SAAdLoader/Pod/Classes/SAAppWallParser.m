@@ -6,7 +6,7 @@
 //
 //
 
-#import "SAGameWallParser.h"
+#import "SAAppWallParser.h"
 
 // import headers
 #import "SAAd.h"
@@ -17,9 +17,9 @@
 // get the file downloader
 #import "SAFileDownloader.h"
 
-@implementation SAGameWallParser
+@implementation SAAppWallParser
 
-- (void) getGameWallResourcesForAds:(NSArray *)ads andCallback:(gotAllImages)callback {
+- (void) getAppWallResourcesForAds:(NSArray *)ads andCallback:(gotAllImages)callback {
     NSInteger max = [ads count];
     NSInteger first = 0;
     [self getImages:first max:max ads:ads callback:callback];

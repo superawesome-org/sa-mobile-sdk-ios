@@ -56,18 +56,18 @@
     }];
 
     // load gamewall
-    [SAGameWall setConfigurationStaging];
-    [SAGameWall setCallback:^(NSInteger placementId, SAEvent event) {
+    [SAAppWall setConfigurationStaging];
+    [SAAppWall setCallback:^(NSInteger placementId, SAEvent event) {
         if (event == adLoaded) {
-            NSLog(@"[GameWall] adLoaded ==> %ld", (long) placementId);
+            NSLog(@"[AppWall] adLoaded ==> %ld", (long) placementId);
         } else if (event == adFailedToLoad){
-            NSLog(@"[GameWall] adFailedToLoad ==> %ld", (long) placementId);
+            NSLog(@"[AppWall] adFailedToLoad ==> %ld", (long) placementId);
         } else if (event == adShown) {
-            NSLog(@"[GameWall] adShown ==> %ld", (long) placementId);
+            NSLog(@"[AppWall] adShown ==> %ld", (long) placementId);
         } else if (event == adClosed) {
-            NSLog(@"[GameWall] adClosed ==> %ld", (long) placementId);
+            NSLog(@"[AppWall] adClosed ==> %ld", (long) placementId);
         } else if (event == adClicked) {
-            NSLog(@"[GameWall] adClicked ==> %ld", (long) placementId);
+            NSLog(@"[AppWall] adClicked ==> %ld", (long) placementId);
         }
     }];
 }
@@ -79,7 +79,7 @@
 - (IBAction)loadAction:(id)sender {
     [_bannerAd load:446];
 //    [SAVideoAd load:447];
-//    [SAGameWall load:470];
+    [SAAppWall load:470];
     [SAInterstitialAd setConfigurationProduction];
     [SAInterstitialAd load:32569];
     [SAInterstitialAd setConfigurationStaging];
@@ -125,16 +125,16 @@
 }
 
 - (IBAction)playVideo2:(id)sender {
-//    if ([SAGameWall hasAdAvailable:470]) {
-//        [SAGameWall play:470  fromVC:self];
-//    }
+    if ([SAAppWall hasAdAvailable:470]) {
+        [SAAppWall play:470  fromVC:self];
+    }
 //    if ([SAVideoAd hasAdAvailable:31721]) {
 //        [SAVideoAd play:31721 fromVC:self];
 //    }
     
-    if ([SAVideoAd hasAdAvailable:31721]) {
-        [SAVideoAd play:31721 fromVC:self];
-    }
+//    if ([SAVideoAd hasAdAvailable:31721]) {
+  //      [SAVideoAd play:31721 fromVC:self];
+    //}
 }
 
 @end

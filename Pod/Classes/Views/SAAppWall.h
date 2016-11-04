@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SACallback.h"
 
-@interface SAGameWall : UIViewController
+@interface SAAppWall : UIViewController
 
 // static "action" methods
 + (void) load:(NSInteger) placementId;

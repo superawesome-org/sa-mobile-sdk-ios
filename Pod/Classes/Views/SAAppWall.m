@@ -6,7 +6,7 @@
 //
 //
 
-#import "SAGameWall.h"
+#import "SAAppWall.h"
 
 // other imports
 #import "SASession.h"
@@ -23,21 +23,21 @@
 // The actual GameWall Cell (UICollectionViewCell)
 ////////////////////////////////////////////////////////////////////////////////
 
-@interface SAGameWallCell : UICollectionViewCell
+@interface SAAppWallCell : UICollectionViewCell
 - (void) setupForBigLayoutWithImagePath:(NSString*)imagePath
                                andTitle:(NSString*)title;
 - (void) setupForSmallLayoutWithImagePath:(NSString*)imagePath
                                  andTitle:(NSString*)title;
 @end
 
-@interface SAGameWallCell ()
+@interface SAAppWallCell ()
 @property (nonatomic, strong) NSString *imagePath;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) UIImageView *appIcon;
 @property (nonatomic, strong) UILabel *appTitle;
 @end
 
-@implementation SAGameWallCell
+@implementation SAAppWallCell
 
 - (void) setupForSmallLayoutWithImagePath:(NSString*)imagePath
                                  andTitle:(NSString*)title {
@@ -131,7 +131,7 @@
 // The actual GameWall (ViewController)
 ////////////////////////////////////////////////////////////////////////////////
 
-@interface SAGameWall () <UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource>
+@interface SAAppWall () <UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource>
 @property (nonatomic, strong) SAResponse *response;
 @property (nonatomic, strong) NSMutableArray <SAEvents*> *events;
 
@@ -147,7 +147,7 @@
 
 @end
 
-@implementation SAGameWall
+@implementation SAAppWall
 
 // dictionary of responses
 static NSMutableDictionary *responses;
@@ -165,7 +165,7 @@ static SAConfiguration configuration = PRODUCTION;
     self.view.backgroundColor = [UIColor whiteColor];
     
     // get main static vars into local ones
-    __block sacallback _callbackL = [SAGameWall getCallback];
+    __block sacallback _callbackL = [SAAppWall getCallback];
     
     // create events array
     _events = [@[] mutableCopy];
@@ -197,7 +197,7 @@ static SAConfiguration configuration = PRODUCTION;
     [_gamewall setAlwaysBounceVertical:true];
     _gamewall.showsVerticalScrollIndicator = false;
     _gamewall.showsHorizontalScrollIndicator = false;
-    [_gamewall registerClass:[SAGameWallCell class] forCellWithReuseIdentifier:@"cellIdentifier"];
+    [_gamewall registerClass:[SAAppWallCell class] forCellWithReuseIdentifier:@"cellIdentifier"];
     [_gamewall setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview:_gamewall];
     [_gamewall reloadData];
@@ -286,7 +286,7 @@ static SAConfiguration configuration = PRODUCTION;
     SAAd *ad = [_response.ads objectAtIndex:[indexPath row]];
     
     // get the actuall cell
-    SAGameWallCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cellIdentifier"
+    SAAppWallCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cellIdentifier"
                                                                      forIndexPath:indexPath];
     
     // case for big layout (small nr of cells)
@@ -343,7 +343,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger pos = [indexPath row];
     
     // get local var from static
-    __block BOOL _isParentalGateEnabledL = [SAGameWall getIsParentalGateEnabled];
+    __block BOOL _isParentalGateEnabledL = [SAAppWall getIsParentalGateEnabled];
     
     // get the current ad
     SAAd *ad = [_response.ads objectAtIndex:pos];
@@ -365,11 +365,11 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 - (void) close {
     
     // call delegate
-    sacallback _callbackL = [SAGameWall getCallback];
+    sacallback _callbackL = [SAAppWall getCallback];
     _callbackL(_response.placementId, adClosed);
     
     // remove current response
-    [SAGameWall removeResponseFromLoadedResponses:_response];
+    [SAAppWall removeResponseFromLoadedResponses:_response];
     
     // destroy the gate
     if (_gate != nil) {
@@ -388,7 +388,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     SAEvents *event = [_events objectAtIndex:position];
     
     // get local
-    sacallback callbackL = [SAGameWall getCallback];
+    sacallback callbackL = [SAAppWall getCallback];
     
     callbackL(_response.placementId, adClicked);
     
@@ -470,7 +470,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     // try to start the view controller (if there is one ad that's OK)
     if (responseL && responseL.format == gamewall) {
         
-        SAGameWall *newVC = [[SAGameWall alloc] init];
+        SAAppWall *newVC = [[SAAppWall alloc] init];
         newVC.response = responseL;
         [parent presentViewController:newVC animated:YES completion:nil];
         

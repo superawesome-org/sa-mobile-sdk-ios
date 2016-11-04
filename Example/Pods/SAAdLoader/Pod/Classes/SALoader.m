@@ -15,7 +15,7 @@
 #import "SAAdParser.h"
 #import "SAHTMLParser.h"
 #import "SAVASTParser.h"
-#import "SAGameWallParser.h"
+#import "SAAppWallParser.h"
 
 // import model headers
 #import "SAResponse.h"
@@ -178,8 +178,8 @@
                     }
                     
                     // now download the results
-                    SAGameWallParser *gameWallParser = [[SAGameWallParser alloc] init];
-                    [gameWallParser getGameWallResourcesForAds:response.ads andCallback:^{
+                    SAAppWallParser *aooWallParser = [[SAAppWallParser alloc] init];
+                    [aooWallParser getAppWallResourcesForAds:response.ads andCallback:^{
                         res(response);
                     }];
                     

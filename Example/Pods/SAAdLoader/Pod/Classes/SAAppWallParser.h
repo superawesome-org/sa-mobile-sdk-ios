@@ -13,8 +13,8 @@
 // callback
 typedef void (^gotAllImages)();
 
-@interface SAGameWallParser : NSObject
+@interface SAAppWallParser : NSObject
 
-- (void) getGameWallResourcesForAds:(NSArray <SAAd*> *) ads andCallback:(gotAllImages) callback;
+- (void) getAppWallResourcesForAds:(NSArray <SAAd*> *) ads andCallback:(gotAllImages) callback;
 
 @end
