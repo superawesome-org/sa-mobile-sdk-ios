@@ -1,11 +1,11 @@
 PODS:
-  - mopub-ios-sdk (4.10.1):
-    - mopub-ios-sdk/MoPubSDK (= 4.10.1)
-  - mopub-ios-sdk/MoPubSDK (4.10.1)
-  - SAAdLoader (0.8.1):
+  - mopub-ios-sdk (4.11.0):
+    - mopub-ios-sdk/MoPubSDK (= 4.11.0)
+  - mopub-ios-sdk/MoPubSDK (4.11.0)
+  - SAAdLoader (0.8.2):
     - SAModelSpace (= 0.3.2)
     - SANetworking (= 0.2.5)
-    - SASession (= 0.2.5)
+    - SASession (= 0.2.7)
     - SAUtils (= 1.4.5)
   - SAEvents (1.6.3):
     - SAEvents/Core (= 1.6.3)
@@ -25,23 +25,23 @@ PODS:
   - SAModelSpace (0.3.2):
     - SAJsonParser (= 1.2.9)
   - SANetworking (0.2.5)
-  - SASession (0.2.5):
+  - SASession (0.2.7):
     - SAUtils (= 1.4.5)
   - SAUtils (1.4.5)
   - SAVideoPlayer (1.1.8)
   - SAWebPlayer (1.1.0)
-  - SuperAwesome/Base (5.3.1):
-    - SAAdLoader (= 0.8.1)
+  - SuperAwesome/Base (5.3.2):
+    - SAAdLoader (= 0.8.2)
     - SAEvents (= 1.6.3)
     - SAVideoPlayer (= 1.1.8)
     - SAWebPlayer (= 1.1.0)
-  - SuperAwesome/Full (5.3.1):
+  - SuperAwesome/Full (5.3.2):
     - SAEvents/Moat
     - SuperAwesome/Base
-  - SuperAwesome/MoPub (5.3.1):
+  - SuperAwesome/MoPub (5.3.2):
     - mopub-ios-sdk
     - SuperAwesome/Base
-  - SuperAwesome/Unity (5.3.1):
+  - SuperAwesome/Unity (5.3.2):
     - SuperAwesome/Base
 
 DEPENDENCIES:
@@ -54,17 +54,17 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  mopub-ios-sdk: 54b3b9cb41118202eb69653b0ac1d011c9e2bce1
-  SAAdLoader: 1dfc180d0c643396944919459c997e273cb60a61
+  mopub-ios-sdk: 5eb11389c025ca283a646389f35b6a6fd27b2ce5
+  SAAdLoader: 0e9d4cf99a5da589991f147ae8cd536b3c02e683
   SAEvents: 89d04c71ac4b889f520ba2cc429c1713cc1ea950
   SAJsonParser: 82e10833541da2efe6f558ab3de327a597235ce4
   SAModelSpace: 1649aa86baaf0bdf8f7123fde7eca2773ae233c6
   SANetworking: e70cffed7d4b1f910bf24cd8bae72bf98caee253
-  SASession: d20ce3b94bd492889b550a3db21da6bd72d6ce2b
+  SASession: eab3fae9c7b2c8aa02917f4569a631ef1d9fea36
   SAUtils: 4deab5b36d72a15f04e9c26ae2b96ac94bb028b4
   SAVideoPlayer: 4f5c89a524c331eb3d2ff2b670de271a80bb97f1
   SAWebPlayer: 0eb52c8d0fd47136534c3391043c18f969c6170f
-  SuperAwesome: deef3c0fec45434ffcd8e874a41edff76a9df7fe
+  SuperAwesome: dec486219a3c759bb3701676a77de32233adfadd
 
 PODFILE CHECKSUM: 773d0f0090ee60a7f664a6c86310c1f6a7a4f997
 

@@ -20,7 +20,7 @@
 @property (nonatomic, strong) NSString *baseUrl;
 @property (nonatomic, assign) BOOL testEnabled;
 @property (nonatomic, strong) NSString *version;
-@property (nonatomic, assign) NSInteger dauId;
+@property (nonatomic, assign) NSUInteger dauId;
 @property (nonatomic, assign) SAConfiguration configuration;
 @property (nonatomic, strong) NSString *bundleId;
 @property (nonatomic, strong) NSString *appName;
@@ -46,11 +46,25 @@
         _userAgent = [SAUtils getUserAgent];
         
         _lang = @"none";
-        NSArray *languages = [NSLocale preferredLanguages];
-        if ([languages count] > 0) {
-            _lang = [[languages firstObject] stringByReplacingOccurrencesOfString:@"-" withString:@"_"];;
+        
+        NSString *shortLang = nil;
+        NSString *locale = nil;
+        
+        NSBundle *main = [NSBundle mainBundle];
+        if (main != nil) {
+            NSArray *localizations = [main preferredLocalizations];
+            if ([localizations count] > 0) {
+                shortLang = [localizations objectAtIndex:0];
+            }
+        }
+        NSLocale *cLocale = [NSLocale currentLocale];
+        if (cLocale != nil) {
+            locale = [[cLocale objectForKey:NSLocaleCountryCode] uppercaseString];
         }
         
+        if (shortLang && locale) {
+            _lang = [NSString stringWithFormat:@"%@_%@", shortLang, locale];
+        }
         
         // get the Dau Id
         SACapper *capper = [[SACapper alloc] init];
@@ -90,7 +104,7 @@
 }
 
 
-- (void) setDauId:(NSInteger)dauId {
+- (void) setDauId:(NSUInteger)dauId {
     _dauId = dauId;
 }
 
@@ -108,7 +122,7 @@
     return _testEnabled;
 }
 
-- (NSInteger) getDauId {
+- (NSUInteger) getDauId {
     return _dauId;
 }
 
