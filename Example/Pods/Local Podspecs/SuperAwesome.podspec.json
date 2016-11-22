@@ -38,7 +38,7 @@
           "1.6.3"
         ],
         "SAAdLoader": [
-          "0.8.2"
+          "0.8.3"
         ]
       }
     },
@@ -52,6 +52,15 @@
 
         ]
       }
+    },
+    {
+      "name": "AIR",
+      "dependencies": {
+        "SuperAwesome/Base": [
+
+        ]
+      },
+      "source_files": "Pod/Plugin/AIR/*"
     },
     {
       "name": "MoPub",
@@ -72,7 +81,7 @@
 
         ]
       },
-      "exclude_files": "Pod/Plugin/Unity/SAUnity.mm"
+      "source_files": "Pod/Plugin/Unity/*"
     }
   ]
 }

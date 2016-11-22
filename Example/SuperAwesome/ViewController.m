@@ -79,7 +79,7 @@
 - (IBAction)loadAction:(id)sender {
     [_bannerAd load:446];
 //    [SAVideoAd load:447];
-    [SAAppWall load:470];
+    [SAAppWall load:437];
 //    [SAInterstitialAd setConfigurationProduction];
 //    [SAInterstitialAd load:32569];
     [SAInterstitialAd setConfigurationStaging];

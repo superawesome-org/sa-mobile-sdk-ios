@@ -28,6 +28,7 @@
 
 // load callback header
 #import "SACallback.h"
+#import "SAOrientation.h"
 
 // @brief:
 // This is the main SuperAwesome class that handles the Ad Session

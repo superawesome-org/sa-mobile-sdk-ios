@@ -238,6 +238,8 @@ static SAConfiguration configuration = PRODUCTION;
         SALoader *loader = [[SALoader alloc] init];
         [loader loadAd:placementId withSession:session andResult:^(SAResponse *response) {
             
+            NSLog(@"%@", [response jsonPreetyStringRepresentation]);
+            
             // add to the array queue
             if ([response isValid]) {
                 [ads setObject:[response.ads objectAtIndex:0] forKey:@(placementId)];

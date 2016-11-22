@@ -123,7 +123,12 @@
                         response.format = type;
                         
                         switch (type) {
-                            case gamewall:break;
+                            // empty gamewall will also be a dictionary!
+                            case gamewall:{
+                                [response.ads removeAllObjects];
+                                res(response);
+                                break;
+                            }
                             // parse video
                             case video: {
                                 SAVASTParser *vastParser = [[SAVASTParser alloc] init];
