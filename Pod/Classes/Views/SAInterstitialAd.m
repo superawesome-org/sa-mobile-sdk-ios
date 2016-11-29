@@ -21,7 +21,6 @@
 #import "SAEvents.h"
 #import "SuperAwesome.h"
 #import "SAImageUtils.h"
-#import "SAOrientation.h"
 
 @interface SAInterstitialAd ()
 
@@ -296,39 +295,57 @@ static SAConfiguration configuration = PRODUCTION;
 }
 
 + (void) enableTestMode {
-    isTestingEnabled = true;
+    [self setTestMode:true];
 }
 
 + (void) disableTestMode {
-    isTestingEnabled = false;
+    [self setTestMode:false];
 }
 
 + (void) enableParentalGate {
-    isParentalGateEnabled = true;
+    [self setParentalGate:true];
 }
 
 + (void) disableParentalGate {
-    isParentalGateEnabled = false;
+    [self setParentalGate:false];;
 }
 
 + (void) setConfigurationProduction {
-    configuration = PRODUCTION;
+    [self setConfiguration:PRODUCTION];
 }
 
 + (void) setConfigurationStaging {
-    configuration = STAGING;
+    [self setConfiguration:STAGING];
 }
 
 + (void) setOrientationAny {
-    orientation = ANY;
+    [self setOrientation:ANY];
 }
 
 + (void) setOrientationPortrait {
-    orientation = PORTRAIT;
+    [self setOrientation:PORTRAIT];
 }
 
 + (void) setOrientationLandscape {
-    orientation = LANDSCAPE;
+    [self setOrientation:LANDSCAPE];
+}
+
+// generic method
+
++ (void) setTestMode: (BOOL) value {
+    isTestingEnabled = value;
+}
+
++ (void) setParentalGate: (BOOL) value {
+    isParentalGateEnabled = value;
+}
+
++ (void) setConfiguration: (SAConfiguration) value {
+    configuration = value;
+}
+
++ (void) setOrientation: (SAOrientation) value {
+    orientation = value;
 }
 
 // private methods
@@ -344,6 +361,8 @@ static SAConfiguration configuration = PRODUCTION;
 + (SAOrientation) getOrientation {
     return orientation;
 }
+
+
 
 
 @end

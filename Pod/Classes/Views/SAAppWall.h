@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SACallback.h"
+#import "SASession.h"
 
 @interface SAAppWall : UIViewController
 
@@ -24,5 +25,10 @@
 + (void) disableParentalGate;
 + (void) setConfigurationProduction;
 + (void) setConfigurationStaging;
+
++ (void) setTestMode: (BOOL) value;
++ (void) setParentalGate: (BOOL) value;
++ (void) setConfiguration: (SAConfiguration) value;
+
 
 @end

@@ -67,26 +67,9 @@
     
     // start the loader
     [SAInterstitialAd setConfigurationProduction];
-    
-    if (isTestEnabled) {
-        [SAInterstitialAd enableTestMode];
-    } else {
-        [SAInterstitialAd disableTestMode];
-    }
-    
-    if (isParentalGateEnabled) {
-        [SAInterstitialAd enableParentalGate];
-    } else {
-        [SAInterstitialAd disableParentalGate];
-    }
-    
-    if (orientation == LANDSCAPE) {
-        [SAInterstitialAd setOrientationLandscape];
-    } else if (orientation == PORTRAIT) {
-        [SAInterstitialAd setOrientationPortrait];
-    } else {
-        [SAInterstitialAd setOrientationAny];
-    }
+    [SAInterstitialAd setTestMode:isTestEnabled];
+    [SAInterstitialAd setParentalGate:isParentalGateEnabled];
+    [SAInterstitialAd setOrientation:orientation];
     
     [SAInterstitialAd setCallback:^(NSInteger placementId, SAEvent event) {
         switch (event) {

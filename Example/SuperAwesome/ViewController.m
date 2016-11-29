@@ -78,22 +78,22 @@
 
 - (IBAction)loadAction:(id)sender {
     [_bannerAd load:446];
-//    [SAVideoAd load:447];
+    [SAVideoAd load:447];
     [SAAppWall load:437];
-//    [SAInterstitialAd setConfigurationProduction];
-//    [SAInterstitialAd load:32569];
+    [SAInterstitialAd setConfigurationProduction];
+    [SAInterstitialAd load:32569];
     [SAInterstitialAd setConfigurationStaging];
     [SAInterstitialAd load:556];
-//    [SAVideoAd setConfigurationProduction];
-//    [SAVideoAd enableTestMode];
-//    [SAVideoAd load:31718];
-//    [SAVideoAd load:31721];
-//    [SAVideoAd setConfigurationStaging];
-//    [SAVideoAd setOrientationLandscape];
-//    [SAVideoAd disableTestMode];
-//    [SAVideoAd load:544];
-//    [SAVideoAd load:480];
-//    [SAVideoAd load:481];
+    [SAVideoAd setConfigurationProduction];
+    [SAVideoAd enableTestMode];
+    [SAVideoAd load:31718];
+    [SAVideoAd load:31721];
+    [SAVideoAd setConfigurationStaging];
+    [SAVideoAd setOrientationLandscape];
+    [SAVideoAd disableTestMode];
+    [SAVideoAd load:544];
+    [SAVideoAd load:480];
+    [SAVideoAd load:481];
 }
 
 - (IBAction)playBanner:(id)sender {

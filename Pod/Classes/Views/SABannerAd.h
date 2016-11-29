@@ -35,4 +35,9 @@
 - (void) setColorTransparent;
 - (void) setColorGray;
 
+- (void) setTestMode: (BOOL) value;
+- (void) setParentalGate: (BOOL) value;
+- (void) setConfiguration: (SAConfiguration) value;
+- (void) setColor: (BOOL) value;
+
 @end

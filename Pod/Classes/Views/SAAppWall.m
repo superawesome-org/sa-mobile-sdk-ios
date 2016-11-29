@@ -9,7 +9,6 @@
 #import "SAAppWall.h"
 
 // other imports
-#import "SASession.h"
 
 #import "SAResponse.h"
 #import "SAAd.h"
@@ -500,27 +499,41 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 }
 
 + (void) enableTestMode {
-    isTestingEnabled = true;
+    [self setTestMode:true];
 }
 
 + (void) disableTestMode {
-    isTestingEnabled = false;
+    [self setTestMode:false];
 }
 
 + (void) enableParentalGate {
-    isParentalGateEnabled = true;
+    [self setParentalGate:true];
 }
 
 + (void) disableParentalGate {
-    isParentalGateEnabled = false;
+    [self setParentalGate:false];
 }
 
 + (void) setConfigurationProduction {
-    configuration = PRODUCTION;
+    [self setConfiguration:PRODUCTION];
 }
 
 + (void) setConfigurationStaging {
-    configuration = STAGING;
+    [self setConfiguration:STAGING];
+}
+
+// generic method
+
++ (void) setTestMode: (BOOL) value {
+    isTestingEnabled = value;
+}
+
++ (void) setParentalGate: (BOOL) value {
+    isParentalGateEnabled = value;
+}
+
++ (void) setConfiguration: (SAConfiguration) value {
+    configuration = value;
 }
 
 // private static getters

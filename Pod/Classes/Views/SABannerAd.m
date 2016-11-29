@@ -292,35 +292,57 @@
 }
 
 - (void) enableParentalGate {
-    _isParentalGateEnabled = true;
+    [self setParentalGate:true];
 }
 
 - (void) disableParentalGate {
-    _isParentalGateEnabled = false;
+    [self setParentalGate:false];
 }
 
 - (void) enableTestMode {
-    [_session enableTestMode];
+    [self setTestMode:true];
 }
 
 - (void) disableTestMode {
-    [_session disableTestMode];
+    [self setTestMode:false];
 }
 
 - (void) setConfigurationProduction {
-    [_session setConfigurationProduction];
+    [self setConfiguration:PRODUCTION];
 }
 
 - (void) setConfigurationStaging {
-    [_session setConfigurationStaging];
+    [self setConfiguration:STAGING];
 }
 
 - (void) setColorTransparent {
-    self.backgroundColor = [UIColor clearColor];
+    [self setColor:true];
 }
 
 - (void) setColorGray {
-    self.backgroundColor = [UIColor colorWithRed:191.0/255.0f green:191.0/255.0f blue:191.0/255.0f alpha:1];
+    [self setColor:false];
+}
+
+// generic method
+
+- (void) setTestMode: (BOOL) value {
+    [_session setTestMode:value];
+}
+
+- (void) setParentalGate: (BOOL) value {
+    _isParentalGateEnabled = value;
+}
+
+- (void) setConfiguration: (SAConfiguration) value {
+    [_session setConfiguration:value];
+}
+
+- (void) setColor: (BOOL) value {
+    if (value) {
+        self.backgroundColor = [UIColor clearColor];
+    } else {
+        self.backgroundColor = [UIColor colorWithRed:191.0/255.0f green:191.0/255.0f blue:191.0/255.0f alpha:1];
+    }
 }
 
 

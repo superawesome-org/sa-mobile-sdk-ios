@@ -98,19 +98,10 @@ FREObject SuperAwesomeAIRSABannerAdLoad (FREContext ctx, void* funcData, uint32_
     if ([bannerDictionary objectForKey:key]) {
         SABannerAd *banner = [bannerDictionary objectForKey:key];
         
-        if (test) {
-            [banner enableTestMode];
-        } else {
-            [banner disableTestMode];
-        }
-        
-        if (configuration == 0) {
-            [banner setConfigurationProduction];
-        } else {
-            [banner setConfigurationStaging];
-        }
-        
+        [banner setTestMode:test];
+        [banner setConfiguration:configuration == 0 ? PRODUCTION : STAGING];
         [banner load:placementId];
+        
     } else {
         // handle failure
     }
@@ -187,19 +178,8 @@ FREObject SuperAwesomeAIRSABannerAdPlay (FREContext ctx, void* funcData, uint32_
         
         // get banner
         SABannerAd *banner = [bannerDictionary objectForKey:key];
-        
-        if (isParentalGateEnabled) {
-            [banner enableParentalGate];
-        } else {
-            [banner disableParentalGate];
-        }
-        
-        if (color == 0) {
-            [banner setColorTransparent];
-        } else {
-            [banner setColorGray];
-        }
-        
+        [banner setParentalGate:isParentalGateEnabled];
+        [banner setColor:color == 0 ? true : false];
         [root.view addSubview:banner];
         [banner resize:CGRectMake(realPos.x, realPos.y, realSize.width, realSize.height)];
         
@@ -291,21 +271,9 @@ FREObject SuperAwesomeAIRSAInterstitialAdLoad (FREContext ctx, void* funcData, u
     FREGetObjectAsInt32(argv[1], &configuration);
     FREGetObjectAsBool(argv[2], &test);
     
-    // enable test mode
-    if (test) {
-        [SAInterstitialAd enableTestMode];
-    } else {
-        [SAInterstitialAd disableTestMode];
-    }
-    
-    // set configuration
-    if (configuration == 0) {
-        [SAInterstitialAd setConfigurationProduction];
-    } else {
-        [SAInterstitialAd setConfigurationStaging];
-    }
-    
-    // finally load
+    // setup & load
+    [SAInterstitialAd setTestMode:test];
+    [SAInterstitialAd setConfiguration:configuration == 0 ? PRODUCTION : STAGING];
     [SAInterstitialAd load:placementId];
     
     return NULL;
@@ -340,21 +308,9 @@ FREObject SuperAwesomeAIRSAInterstitialAdPlay (FREContext ctx, void* funcData, u
     FREGetObjectAsInt32(argv[2], &orientation);
     FREGetObjectAsBool(argv[3], &isBackButtonEnabled);
     
-    if (isParentalGateEnabled) {
-        [SAInterstitialAd enableParentalGate];
-    } else {
-        [SAInterstitialAd disableParentalGate];
-    }
-    
-    if (orientation == LANDSCAPE) {
-        [SAInterstitialAd setOrientationLandscape];
-    } else if (orientation == PORTRAIT) {
-        [SAInterstitialAd setOrientationPortrait];
-    } else {
-        [SAInterstitialAd setOrientationAny];
-    }
-    
-    // finally play it!
+    // configure & play
+    [SAInterstitialAd setParentalGate:isParentalGateEnabled];
+    [SAInterstitialAd setOrientation:orientation == 2 ? LANDSCAPE : orientation == 1 ? PORTRAIT : ANY];
     UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
     [SAInterstitialAd play: placementId fromVC: root];
     
@@ -395,21 +351,9 @@ FREObject SuperAwesomeAIRSAVideoAdLoad (FREContext ctx, void* funcData, uint32_t
     FREGetObjectAsInt32(argv[1], &configuration);
     FREGetObjectAsBool(argv[2], &test);
 
-    // enable test mode
-    if (test) {
-        [SAVideoAd enableTestMode];
-    } else {
-        [SAVideoAd disableTestMode];
-    }
-    
-    // set configuration
-    if (configuration == 0) {
-        [SAVideoAd setConfigurationProduction];
-    } else {
-        [SAVideoAd setConfigurationStaging];
-    }
-    
-    // finally load
+    // configure & load
+    [SAVideoAd setTestMode:test];
+    [SAVideoAd setConfiguration:configuration == 0 ? PRODUCTION : STAGING];
     [SAVideoAd load:placementId];
     
     return NULL;
@@ -451,39 +395,12 @@ FREObject SuperAwesomeAIRSAVideoAdPlay (FREContext ctx, void* funcData, uint32_t
     FREGetObjectAsInt32(argv[5], &orientation);
     FREGetObjectAsBool(argv[6], &isBackButtonEnabled);
     
-    if (isParentalGateEnabled) {
-        [SAVideoAd enableParentalGate];
-    } else {
-        [SAVideoAd disableParentalGate];
-    }
+    [SAVideoAd setParentalGate:isParentalGateEnabled];
+    [SAVideoAd setCloseButton:shouldShowCloseButton];
+    [SAVideoAd setSmallClick:shouldShowSmallClickButton];
+    [SAVideoAd setCloseAtEnd:shouldAutomaticallyCloseAtEnd];
+    [SAVideoAd setOrientation:orientation == 2 ? LANDSCAPE : orientation == 1 ? PORTRAIT : ANY];
     
-    if (shouldShowCloseButton) {
-        [SAVideoAd enableCloseButton];
-    } else {
-        [SAVideoAd disableCloseButton];
-    }
-    
-    if (shouldShowSmallClickButton) {
-        [SAVideoAd enableSmallClickButton];
-    } else {
-        [SAVideoAd disableSmallClickButton];
-    }
-    
-    if (shouldAutomaticallyCloseAtEnd) {
-        [SAVideoAd enableCloseAtEnd];
-    } else {
-        [SAVideoAd disableCloseAtEnd];
-    }
-    
-    if (orientation == LANDSCAPE) {
-        [SAVideoAd setOrientationLandscape];
-    } else if (orientation == PORTRAIT) {
-        [SAVideoAd setOrientationPortrait];
-    } else {
-        [SAVideoAd setOrientationAny];
-    }
-    
-    // finally play it!
     UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
     [SAVideoAd play: placementId fromVC: root];
     
@@ -522,21 +439,9 @@ FREObject SuperAwesomeAIRSAAppWallLoad (FREContext ctx, void* funcData, uint32_t
     FREGetObjectAsInt32(argv[1], &configuration);
     FREGetObjectAsBool(argv[2], &test);
     
-    // enable test mode
-    if (test) {
-        [SAAppWall enableTestMode];
-    } else {
-        [SAAppWall disableTestMode];
-    }
-    
-    // set configuration
-    if (configuration == 0) {
-        [SAAppWall setConfigurationProduction];
-    } else {
-        [SAAppWall setConfigurationStaging];
-    }
-    
-    // finally load
+    // configure & load
+    [SAAppWall setTestMode:test];
+    [SAAppWall setConfiguration:configuration == 0 ? PRODUCTION : STAGING];
     [SAAppWall load:placementId];
     
     return NULL;
@@ -570,13 +475,8 @@ FREObject SuperAwesomeAIRSAAppWallPlay (FREContext ctx, void* funcData, uint32_t
     FREGetObjectAsBool(argv[1], &isParentalGateEnabled);
     FREGetObjectAsBool(argv[2], &isBackButtonEnabled);
     
-    if (isParentalGateEnabled) {
-        [SAAppWall enableParentalGate];
-    } else {
-        [SAAppWall disableParentalGate];
-    }
-    
-    // finally play it!
+    // configure & play
+    [SAAppWall setParentalGate:isParentalGateEnabled];
     UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
     [SAAppWall play: placementId fromVC: root];
     

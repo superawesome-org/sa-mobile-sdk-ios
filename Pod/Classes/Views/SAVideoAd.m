@@ -16,10 +16,8 @@
 #import "SAVideoPlayer.h"
 #import "SAParentalGate.h"
 #import "SAEvents.h"
-#import "SASession.h"
 #import "SAImageUtils.h"
 #import "SuperAwesome.h"
-#import "SAOrientation.h"
 
 @interface SAVideoAd ()
 
@@ -478,63 +476,93 @@ static SAConfiguration configuration = PRODUCTION;
 }
 
 + (void) enableTestMode {
-    isTestingEnabled = true;
+    [self setTestMode:true];
 }
 
 + (void) disableTestMode {
-    isTestingEnabled = false;
+    [self setTestMode:false];
 }
 
 + (void) enableParentalGate {
-    isParentalGateEnabled = true;
+    [self setParentalGate:true];
 }
 
 + (void) disableParentalGate {
-    isParentalGateEnabled = false;
+    [self setParentalGate:false];
 }
 
 + (void) setConfigurationProduction {
-    configuration = PRODUCTION;
+    [self setConfiguration:PRODUCTION];
 }
 
 + (void) setConfigurationStaging {
-    configuration = STAGING;
+    [self setConfiguration:STAGING];
 }
 
 + (void) setOrientationAny {
-    orientation = ANY;
+    [self setOrientation:ANY];
 }
 
 + (void) setOrientationPortrait {
-    orientation = PORTRAIT;
+    [self setOrientation:PORTRAIT];
 }
 
 + (void) setOrientationLandscape {
-    orientation = LANDSCAPE;
+    [self setOrientation:LANDSCAPE];
 }
 
 + (void) enableCloseButton {
-    shouldShowCloseButton = true;
+    [self setCloseButton:true];
 }
 
 + (void) disableCloseButton {
-    shouldShowCloseButton = false;
+    [self setCloseButton:false];
 }
 
 + (void) enableSmallClickButton {
-    shouldShowSmallClickButton = true;
+    [self setSmallClick:true];
 }
 
 + (void) disableSmallClickButton {
-    shouldShowSmallClickButton = false;
+    [self setSmallClick:false];
 }
 
 + (void) enableCloseAtEnd {
-    shouldAutomaticallyCloseAtEnd = true;
+    [self setCloseAtEnd:true];
 }
 
 + (void) disableCloseAtEnd {
-    shouldAutomaticallyCloseAtEnd = false;
+    [self setCloseAtEnd:false];
+}
+
+// generic methods
+
++ (void) setTestMode: (BOOL) value {
+    isTestingEnabled = value;
+}
+
++ (void) setParentalGate: (BOOL) value {
+    isParentalGateEnabled = value;
+}
+
++ (void) setConfiguration: (SAConfiguration) value {
+    configuration = value;
+}
+
++ (void) setOrientation: (SAOrientation) value {
+    orientation = value;
+}
+
++ (void) setCloseButton: (BOOL) value {
+    shouldShowCloseButton = value;
+}
+
++ (void) setSmallClick: (BOOL) value {
+    shouldShowSmallClickButton = value;
+}
+
++ (void) setCloseAtEnd: (BOOL) value {
+    shouldAutomaticallyCloseAtEnd = value;
 }
 
 // private static getters

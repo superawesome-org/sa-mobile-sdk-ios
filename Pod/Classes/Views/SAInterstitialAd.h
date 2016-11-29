@@ -11,6 +11,7 @@
 // helper headers
 #import "SASession.h"
 #import "SACallback.h"
+#import "SAOrientation.h"
 
 @interface SAInterstitialAd : UIViewController
 
@@ -30,5 +31,10 @@
 + (void) setOrientationAny;
 + (void) setOrientationPortrait;
 + (void) setOrientationLandscape;
+
++ (void) setTestMode: (BOOL) value;
++ (void) setParentalGate: (BOOL) value;
++ (void) setConfiguration: (SAConfiguration) value;
++ (void) setOrientation: (SAOrientation) value;
 
 @end

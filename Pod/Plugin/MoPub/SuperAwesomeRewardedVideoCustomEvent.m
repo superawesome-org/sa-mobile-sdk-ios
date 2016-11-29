@@ -87,44 +87,12 @@
     
     // enable or disable test mode
     [SAVideoAd setConfigurationProduction];
-    
-    if (isTestEnabled) {
-        [SAVideoAd enableTestMode];
-    } else {
-        [SAVideoAd disableTestMode];
-    }
-    
-    if (isParentalGateEnabled) {
-        [SAVideoAd enableParentalGate];
-    } else {
-        [SAVideoAd disableParentalGate];
-    }
-    
-    if (shouldShowCloseButton) {
-        [SAVideoAd enableCloseButton];
-    } else {
-        [SAVideoAd disableCloseButton];
-    }
-    
-    if (shouldAutomaticallyCloseAtEnd) {
-        [SAVideoAd enableCloseAtEnd];
-    } else {
-        [SAVideoAd disableCloseAtEnd];
-    }
-    
-    if (shouldShowSmallClickButton) {
-        [SAVideoAd enableSmallClickButton];
-    } else {
-        [SAVideoAd disableSmallClickButton];
-    }
-    
-    if (orientation == LANDSCAPE) {
-        [SAVideoAd setOrientationLandscape];
-    } else if (orientation == PORTRAIT) {
-        [SAVideoAd setOrientationPortrait];
-    } else {
-        [SAVideoAd setOrientationAny];
-    }
+    [SAVideoAd setTestMode:isTestEnabled];
+    [SAVideoAd setParentalGate:isParentalGateEnabled];
+    [SAVideoAd setCloseButton:shouldShowCloseButton];
+    [SAVideoAd setCloseAtEnd:shouldAutomaticallyCloseAtEnd];
+    [SAVideoAd setSmallClick:shouldShowSmallClickButton];
+    [SAVideoAd setOrientation:orientation];
     
     [SAVideoAd setCallback:^(NSInteger placementId, SAEvent event) {
         switch (event) {
