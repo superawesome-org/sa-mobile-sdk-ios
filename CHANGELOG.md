@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+5.3.6
+ - Updted the SALoader dependency to (0.8.4)
+ - This fixes a bug that casued all invalid ads (empty, null, etc) to have gamewall type by default, instead of invalid
+
 5.3.5
  - Added generic setters for each of the properties needed to configure loading & playing for banners, interstitials, videos and app wall
  - Banners: 
