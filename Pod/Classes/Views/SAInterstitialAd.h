@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 // helper headers
-#import "SASession.h"
 #import "SACallback.h"
 #import "SAOrientation.h"
 
@@ -34,7 +33,7 @@
 
 + (void) setTestMode: (BOOL) value;
 + (void) setParentalGate: (BOOL) value;
-+ (void) setConfiguration: (SAConfiguration) value;
++ (void) setConfiguration: (NSInteger) value;
 + (void) setOrientation: (SAOrientation) value;
 
 @end

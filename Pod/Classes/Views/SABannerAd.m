@@ -21,6 +21,7 @@
 #import "SAUtils.h"
 #import "SAImageUtils.h"
 #import "SAEvents.h"
+#import "SASession.h"
 
 @interface SABannerAd ()
 
@@ -333,7 +334,7 @@
     _isParentalGateEnabled = value;
 }
 
-- (void) setConfiguration: (SAConfiguration) value {
+- (void) setConfiguration: (NSInteger) value {
     [_session setConfiguration:value];
 }
 

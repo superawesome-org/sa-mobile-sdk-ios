@@ -12,7 +12,6 @@
 
 // useful imports
 #import "SACallback.h"
-#import "SASession.h"
 
 // class declaration for SABannerAd
 @interface SABannerAd : UIView
@@ -37,7 +36,7 @@
 
 - (void) setTestMode: (BOOL) value;
 - (void) setParentalGate: (BOOL) value;
-- (void) setConfiguration: (SAConfiguration) value;
+- (void) setConfiguration: (NSInteger) value;
 - (void) setColor: (BOOL) value;
 
 @end

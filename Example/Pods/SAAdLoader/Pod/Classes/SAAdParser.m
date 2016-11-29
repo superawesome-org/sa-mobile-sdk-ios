@@ -36,11 +36,21 @@
     ad.placementId = placementId;
     
     ad.creative.creativeFormat = invalid;
-    if ([ad.creative.format isEqualToString:@"image_with_link"]) ad.creative.creativeFormat = image;
-    if ([ad.creative.format isEqualToString:@"video"]) ad.creative.creativeFormat = video;
-    if ([ad.creative.format rangeOfString:@"rich_media"].location != NSNotFound) { ad.creative.creativeFormat = rich; }
-    if ([ad.creative.format rangeOfString:@"tag"].location != NSNotFound) { ad.creative.creativeFormat = tag; }
-    if ([ad.creative.format rangeOfString:@"gamewall"].location != NSNotFound) { ad.creative.creativeFormat = gamewall; }
+    if (ad.creative.format != nil && [ad.creative.format isEqualToString:@"image_with_link"]) {
+        ad.creative.creativeFormat = image;
+    }
+    if (ad.creative.format != nil && [ad.creative.format isEqualToString:@"video"]) {
+        ad.creative.creativeFormat = video;
+    }
+    if (ad.creative.format != nil && [ad.creative.format rangeOfString:@"rich_media"].location != NSNotFound) {
+        ad.creative.creativeFormat = rich;
+    }
+    if (ad.creative.format != nil && [ad.creative.format rangeOfString:@"tag"].location != NSNotFound) {
+        ad.creative.creativeFormat = tag;
+    }
+    if (ad.creative.format != nil && [ad.creative.format rangeOfString:@"gamewall"].location != NSNotFound) {
+        ad.creative.creativeFormat = gamewall;
+    }
     
     // create the tracking URL
     NSDictionary *trackjson = @{

@@ -27,12 +27,10 @@
 
 // import session data
 #import "SASession.h"
+#import "SAUtils.h"
 
 // import network classes
 #import "SANetwork.h"
-
-// import aux classes
-#import "SAUtils.h"
 
 @interface SALoader ()
 @property (nonatomic, strong) SAAdParser *adParser;

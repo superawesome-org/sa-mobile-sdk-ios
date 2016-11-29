@@ -1,8 +1,14 @@
 CHANGELOG
 =========
 
+5.3.7
+ - Updated the SALoader dependency to 0.8.5
+ - This moves SAUtils.h header imports from SALoader.h to SALoader.m; 
+ - Moved more external .h imports from SuperAwesome header files to .m files;
+ - These moves will make the SDK be able to be correctly imported in projects that have both Swift and Objective-C and are integrated via CocoaPods (with use_frmeworks!)
+
 5.3.6
- - Updted the SALoader dependency to (0.8.4)
+ - Updted the SALoader dependency to 0.8.4
  - This fixes a bug that casued all invalid ads (empty, null, etc) to have gamewall type by default, instead of invalid
 
 5.3.5

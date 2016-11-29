@@ -5,8 +5,10 @@
 #if defined(__has_include)
 #if __has_include(<SuperAwesomeSDK/SuperAwesomeSDK.h>)
 #import <SuperAwesomeSDK/SuperAwesomeSDK.h>
+#import "SASession.h"
 #else
 #import "SuperAwesome.h"
+#import "SASession.h"
 #endif
 #endif
 

@@ -11,8 +11,10 @@
 #if defined(__has_include)
 #if __has_include("SuperAwesomeSDKUnity.h")
 #import "SuperAwesomeSDKUnity.h"
+#import "SASession.h"
 #else 
 #import "SuperAwesome.h"
+#import "SASession.h"
 #endif
 #endif
 

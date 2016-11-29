@@ -18,6 +18,8 @@
 #import "SAEvents.h"
 #import "SAImageUtils.h"
 #import "SuperAwesome.h"
+#import "SASession.h"
+#import "SAUtils.h"
 
 @interface SAVideoAd ()
 
@@ -545,7 +547,7 @@ static SAConfiguration configuration = PRODUCTION;
     isParentalGateEnabled = value;
 }
 
-+ (void) setConfiguration: (SAConfiguration) value {
++ (void) setConfiguration: (NSInteger) value {
     configuration = value;
 }
 

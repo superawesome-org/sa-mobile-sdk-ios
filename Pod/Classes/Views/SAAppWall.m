@@ -17,6 +17,8 @@
 #import "SALoader.h"
 #import "SAImageUtils.h"
 #import "SAParentalGate.h"
+#import "SASession.h"
+#import "SAUtils.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // The actual GameWall Cell (UICollectionViewCell)
@@ -532,7 +534,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     isParentalGateEnabled = value;
 }
 
-+ (void) setConfiguration: (SAConfiguration) value {
++ (void) setConfiguration: (NSInteger) value {
     configuration = value;
 }
 
