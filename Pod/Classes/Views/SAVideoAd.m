@@ -39,6 +39,9 @@
 // the ad
 @property (nonatomic, strong) SAAd *ad;
 
+// hold the prev status bar hidden or not
+@property (nonatomic, assign) BOOL previousStatusBarHiddenValue;
+
 @end
 
 @implementation SAVideoAd
@@ -62,6 +65,9 @@ static SAConfiguration configuration = PRODUCTION;
 
 - (void) viewDidLoad {
     [super viewDidLoad];
+    
+    // get the status bar value
+    _previousStatusBarHiddenValue = [[UIApplication sharedApplication] isStatusBarHidden];
     
     // get main static vars into local ones
     __block sacallback _callbackL = [SAVideoAd getCallback];
@@ -247,7 +253,8 @@ static SAConfiguration configuration = PRODUCTION;
 
 - (void) viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
+    [[UIApplication sharedApplication] setStatusBarHidden:_previousStatusBarHiddenValue
+                                            withAnimation:UIStatusBarAnimationNone];
 }
 
 - (void) viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {

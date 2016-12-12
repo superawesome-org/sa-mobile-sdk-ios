@@ -77,11 +77,13 @@
 }
 
 - (IBAction)loadAction:(id)sender {
-    [_bannerAd load:446];
+    [_bannerAd setConfigurationProduction];
+    [_bannerAd disableTestMode];
+    [_bannerAd load:33342];
     [SAVideoAd load:447];
     [SAAppWall load:437];
     [SAInterstitialAd setConfigurationProduction];
-    [SAInterstitialAd load:32569];
+    [SAInterstitialAd load:7189];
     [SAInterstitialAd setConfigurationStaging];
     [SAInterstitialAd load:556];
     [SAVideoAd setConfigurationProduction];
@@ -103,8 +105,8 @@
 }
 
 - (IBAction)playInterstitial1:(id)sender {
-    if ([SAInterstitialAd hasAdAvailable:556]) {
-        [SAInterstitialAd play: 556 fromVC:self];
+    if ([SAInterstitialAd hasAdAvailable:7189]) {
+        [SAInterstitialAd play: 7189 fromVC:self];
     }
 }
 
@@ -115,9 +117,9 @@
 }
 
 - (IBAction)playVideo1:(id)sender {
-//    if ([SAVideoAd hasAdAvailable:31718]) {
-//        [SAVideoAd play: 31718 fromVC:self];
-//    }
+    if ([SAVideoAd hasAdAvailable:31718]) {
+        [SAVideoAd play: 31718 fromVC:self];
+    }
     
     if ([SAVideoAd hasAdAvailable:544]) {
         [SAVideoAd play:544 fromVC:self];
@@ -125,8 +127,8 @@
 }
 
 - (IBAction)playVideo2:(id)sender {
-    if ([SAAppWall hasAdAvailable:470]) {
-        [SAAppWall play:470  fromVC:self];
+    if ([SAVideoAd hasAdAvailable:31721]) {
+        [SAVideoAd play:31721  fromVC:self];
     }
 //    if ([SAVideoAd hasAdAvailable:31721]) {
 //        [SAVideoAd play:31721 fromVC:self];
@@ -136,5 +138,9 @@
   //      [SAVideoAd play:31721 fromVC:self];
     //}
 }
+
+//- (BOOL) prefersStatusBarHidden {
+//    return false;
+//}
 
 @end

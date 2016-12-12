@@ -31,6 +31,9 @@
 @property (nonatomic, strong) SAAd *ad;
 @property (nonatomic, strong) UIButton *closeBtn;
 
+// hold the prev status bar hidden or not
+@property (nonatomic, assign) BOOL previousStatusBarHiddenValue;
+
 @end
 
 @implementation SAInterstitialAd
@@ -52,12 +55,15 @@ static SAConfiguration configuration = PRODUCTION;
 - (void) viewDidLoad {
     [super viewDidLoad];
 
+    // get the status bar value
+    _previousStatusBarHiddenValue = [[UIApplication sharedApplication] isStatusBarHidden];
+    
     // get local versions of the static module vars
     sacallback _callbackL    = [SAInterstitialAd getCallback];
     BOOL _isParentalGateEnabledL = [SAInterstitialAd getIsParentalGateEnabled];
     
     // set bg color
-    self.view.backgroundColor = [UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1];
+    self.view.backgroundColor = [UIColor colorWithRed:224.0/255.0f green:224.0/255.0f blue:224.0/255.0f alpha:1];
     
     // create close button
     _closeBtn = [[UIButton alloc] initWithFrame:CGRectZero];
@@ -69,13 +75,8 @@ static SAConfiguration configuration = PRODUCTION;
     
     // create & play banner
     _banner = [[SABannerAd alloc] initWithFrame:CGRectZero];
-     [_banner setCallback:_callbackL];
-    if (_isParentalGateEnabledL) {
-        [_banner enableParentalGate];
-    } else {
-        [_banner disableParentalGate];
-    }
-    _banner.backgroundColor = self.view.backgroundColor;
+    [_banner setCallback:_callbackL];
+    [_banner setParentalGate:_isParentalGateEnabledL];
     [SAUtils invoke:@"setAd:" onTarget:_banner, _ad];
     [self.view addSubview:_banner];
 }
@@ -133,7 +134,8 @@ static SAConfiguration configuration = PRODUCTION;
 
 - (void) viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
+    [[UIApplication sharedApplication] setStatusBarHidden:_previousStatusBarHiddenValue
+                                            withAnimation:UIStatusBarAnimationNone];
 }
 
 - (void) viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
@@ -238,8 +240,6 @@ static SAConfiguration configuration = PRODUCTION;
         // get the loader
         SALoader *loader = [[SALoader alloc] init];
         [loader loadAd:placementId withSession:session andResult:^(SAResponse *response) {
-            
-            NSLog(@"%@", [response jsonPreetyStringRepresentation]);
             
             // add to the array queue
             if ([response isValid]) {

@@ -133,18 +133,27 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 @interface SAAppWall () <UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource>
+
+// hold the current ad response and array of associated events
 @property (nonatomic, strong) SAResponse *response;
 @property (nonatomic, strong) NSMutableArray <SAEvents*> *events;
 
+// different UI elements: background iamge, close ,padlock, etc
 @property (nonatomic, strong) UIImageView *backgroundImage;
 @property (nonatomic, strong) UIButton *closeButton;
 @property (nonatomic, strong) UIImageView *titleImgView;
 @property (nonatomic, strong) UIButton *padlock;
 @property (nonatomic, strong) UIImageView *header;
+
+// collection view & associated flow layout
 @property (nonatomic, strong) UICollectionView *gamewall;
 @property (nonatomic, strong) UICollectionViewFlowLayout *layout;
 
+// the parental gate
 @property (nonatomic, strong) SAParentalGate *gate;
+
+// hold the prev status bar hidden or not
+@property (nonatomic, assign) BOOL previousStatusBarHiddenValue;
 
 @end
 
@@ -161,6 +170,9 @@ static SAConfiguration configuration = PRODUCTION;
 
 - (void) viewDidLoad {
     [super viewDidLoad];
+    
+    // get the status bar value
+    _previousStatusBarHiddenValue = [[UIApplication sharedApplication] isStatusBarHidden];
     
     // set bg color
     self.view.backgroundColor = [UIColor whiteColor];
@@ -255,7 +267,8 @@ static SAConfiguration configuration = PRODUCTION;
 
 - (void) viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
+    [[UIApplication sharedApplication] setStatusBarHidden:_previousStatusBarHiddenValue
+                                            withAnimation:UIStatusBarAnimationNone];
 }
 
 - (UIInterfaceOrientationMask) supportedInterfaceOrientations {

@@ -80,7 +80,7 @@
     _events = [[SAEvents alloc] init];
     _session = [[SASession alloc] init];
     _callback = ^(NSInteger placement, SAEvent event) {};
-    self.backgroundColor = [UIColor colorWithRed:0.75 green:0.75 blue:0.75 alpha:1];
+    self.backgroundColor = [UIColor colorWithRed:224.0/255.0f green:224.0/255.0f blue:224.0/255.0f alpha:1];
 }
 
 - (void) loadSubviews {
@@ -187,6 +187,8 @@
         // assign new ad
         weakSelf.ad = [response isValid] ? [response.ads objectAtIndex:0] : nil;
         
+        
+        NSLog(@"%@", [response jsonPreetyStringRepresentation]);
         
         // call the callback
         weakSelf.callback (placementId, [response isValid] ? adLoaded : adFailedToLoad);
@@ -342,7 +344,7 @@
     if (value) {
         self.backgroundColor = [UIColor clearColor];
     } else {
-        self.backgroundColor = [UIColor colorWithRed:191.0/255.0f green:191.0/255.0f blue:191.0/255.0f alpha:1];
+        self.backgroundColor = [UIColor colorWithRed:224.0/255.0f green:224.0/255.0f blue:224.0/255.0f alpha:1];
     }
 }
 
