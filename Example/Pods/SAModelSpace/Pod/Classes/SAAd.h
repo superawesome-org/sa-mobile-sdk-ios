@@ -26,8 +26,8 @@
 #endif
 
 #if defined(__has_include)
-#if __has_include(<SABaseObject/SABaseObject.h>)
-#import <SABaseObject/SABaseObject.h>
+#if __has_include(<SAJsonParser/SABaseObject.h>)
+#import <SAJsonParser/SABaseObject.h>
 #else
 #import "SABaseObject.h"
 #endif

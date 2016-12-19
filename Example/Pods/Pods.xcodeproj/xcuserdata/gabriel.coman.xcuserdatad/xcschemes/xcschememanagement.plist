@@ -8,150 +8,121 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>2</integer>
 		</dict>
 		<key>SAAdLoader.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>3</integer>
 		</dict>
 		<key>SAEvents.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>4</integer>
 		</dict>
 		<key>SAJsonParser.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>5</integer>
 		</dict>
 		<key>SAModelSpace.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>6</integer>
 		</dict>
 		<key>SANetworking.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>7</integer>
 		</dict>
 		<key>SASession.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>8</integer>
 		</dict>
 		<key>SAUtils.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>9</integer>
 		</dict>
 		<key>SAVideoPlayer.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>10</integer>
 		</dict>
 		<key>SAWebPlayer.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>11</integer>
-		</dict>
-		<key>SuperAwesome 2.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>13</integer>
 		</dict>
 		<key>SuperAwesome.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>12</integer>
 		</dict>
 		<key>mopub-ios-sdk.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>1</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>00DE2BD3FF294FCBD9D5F660</key>
+		<key>109A614BF7AD5D5144B31C72</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>030E3F0BC6032F239E52DDCF</key>
+		<key>112F36AC143AB6087BF4E29B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>06B5E53319746C6A3A8F3696</key>
+		<key>1E1254A8ABF731C53EDD07EC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>0CB39D8ADA5A74602468E907</key>
+		<key>382D413E40C9543D43285A40</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1816D830313444E954398D0A</key>
+		<key>3EB2BB578B7FD12AED09EEAA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5A8E94298F4D5A3F8C252EAA</key>
+		<key>3FEF22D3E0E21E8DD70B03B3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>60332521A86CC8265E8587E2</key>
+		<key>4B77E41A6CE9CA26FAB31DF9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A184E760A610950C4F8E32C4</key>
+		<key>6197BE04E01137DD90941D74</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B2442D3C19F840D0E43AABE9</key>
+		<key>67D9C266441EA14F1C8C7F18</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C770F6E26D7B69D87FA854A6</key>
+		<key>A24BBE45EFAD3376962572F5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C984CC338549DB4C36983D74</key>
+		<key>A30C235669E9C6EB83B79E3E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CC87DDAC70DFCCBD0B056532</key>
+		<key>CA483553E105C9B535DA9344</key>
 		<dict>
 			<key>primary</key>
 			<true/>
