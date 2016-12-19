@@ -15,7 +15,14 @@
     #define HAS_MOAT false
 #endif
 #endif
+
+#if defined(__has_include)
+#if __has_include(<SAUtils/SAUtils.h>)
+#import <SAUtils/SAUtils.h>
+#else
 #import "SAUtils.h"
+#endif
+#endif
 
 #define MOAT_SERVER @"https://z.moatads.com"
 #define MOAT_URL @"moatad.js"

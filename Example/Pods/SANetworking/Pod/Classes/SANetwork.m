@@ -6,12 +6,13 @@
 //
 //
 
-#import "SARequest.h"
+// file header
+#import "SANetwork.h"
 
 // callback for iOS's own [NSURLConnection sendAsynchronousRequest:]
 typedef void (^netResponse)(NSData *data, NSURLResponse *response, NSError *error);
 
-@implementation SARequest
+@implementation SANetwork
 
 - (void) sendRequestTo:(NSString*)endpoint
             withMethod:(NSString*)method

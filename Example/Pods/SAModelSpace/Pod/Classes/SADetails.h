@@ -19,6 +19,14 @@
 #endif
 #endif
 
+#if defined(__has_include)
+#if __has_include(<SABaseObject/SABaseObject.h>)
+#import <SABaseObject/SABaseObject.h>
+#else
+#import "SABaseObject.h"
+#endif
+#endif
+
 // local import
 #import "SAMedia.h"
 

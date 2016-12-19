@@ -7,7 +7,6 @@
 //
 
 #import "SABaseObject.h"
-#import "NSDictionary+SAJson.h"
 
 @implementation SABaseObject
 @end
