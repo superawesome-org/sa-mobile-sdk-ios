@@ -45,6 +45,7 @@ void sendToAIR (FREContext context, NSString *name, int placementId, NSString *c
 
 FREObject SuperAwesomeAIRSuperAwesomeHandleCPI (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]) {
     [[SuperAwesome getInstance] handleCPI];
+    return NULL;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
