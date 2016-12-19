@@ -7,8 +7,17 @@
 //
 
 #import "SASession.h"
+
+// import capper
 #import "SACapper.h"
+
+#if defined(__has_include)
+#if __has_include(<SAUtils/SAUtils.h>)
+#import <SAUtils/SAUtils.h>
+#else 
 #import "SAUtils.h"
+#endif
+#endif
 
 #define PRODUCTION_URL @"https://ads.superawesome.tv/v2"
 #define STAGING_URL @"https://ads.staging.superawesome.tv/v2"
@@ -41,9 +50,9 @@
         
         // get the bundle id, app name, etc, things that might not change
         _bundleId = [[NSBundle mainBundle] bundleIdentifier];
-        _appName = [SAUtils encodeURI:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"]];
-        _device = [SAUtils getSystemSize] == size_phone ? DEVICE_PHONE : DEVICE_TABLET;
-        _userAgent = [SAUtils getUserAgent];
+        _appName = [SAAux encodeURI:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"]];
+        _device = [SAAux getSystemSize] == size_phone ? DEVICE_PHONE : DEVICE_TABLET;
+        _userAgent = [SAAux getUserAgent];
         
         _lang = @"none";
         
@@ -155,7 +164,7 @@
 }
 
 - (NSInteger) getCachebuster {
-    return [SAUtils getCachebuster];
+    return [SAAux getCachebuster];
 }
 
 - (NSString*) getUserAgent {

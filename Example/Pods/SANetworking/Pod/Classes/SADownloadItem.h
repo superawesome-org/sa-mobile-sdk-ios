@@ -11,7 +11,6 @@
 
 #define SA_KEY_PREFIX @"sasdkkey_"
 
-
 @interface SADownloadItem : NSObject
 
 @property (nonatomic, strong) NSString *urlKey;

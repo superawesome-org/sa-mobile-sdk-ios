@@ -9,20 +9,50 @@
 // load header
 #import "SAInterstitialAd.h"
 
+// guarded imports
+#if defined(__has_include)
+#if __has_include(<SAModelSpace/SAModelSpace.h>)
+#import <SAModelSpace/SAModelSpace.h>
+#else
+#import "SAModelSpace.h"
+#endif
+#endif
+
+#if defined(__has_include)
+#if __has_include(<SAUtils/SAUtils.h>)
+#import <SAUtils/SAUtils.h>
+#else
+#import "SAUtils.h"
+#endif
+#endif
+
+#if defined(__has_include)
+#if __has_include(<SASession/SASession.h>)
+#import <SASession/SASession.h>
+#else
+#import "SASession.h"
+#endif
+#endif
+
+#if defined(__has_include)
+#if __has_include(<SAEvents/SAEvents.h>)
+#import <SAEvents/SAEvents.h>
+#else
+#import "SAEvents.h"
+#endif
+#endif
+
+#if defined(__has_include)
+#if __has_include(<SAAdLoader/SAAdLoader.h>)
+#import <SAAdLoader/SAAdLoader.h>
+#else
+#import "SAAdLoader.h"
+#endif
+#endif
+
 // load others
 #import "SABannerAd.h"
-#import "SALoader.h"
-#import "SAResponse.h"
-#import "SAAd.h"
-#import "SACreative.h"
-#import "SADetails.h"
-#import "SATracking.h"
-#import "SAMedia.h"
-#import "SAEvents.h"
 #import "SuperAwesome.h"
-#import "SAImageUtils.h"
-#import "SASession.h"
-#import "SAUtils.h"
 
 @interface SAInterstitialAd ()
 
@@ -77,7 +107,7 @@ static SAConfiguration configuration = PRODUCTION;
     _banner = [[SABannerAd alloc] initWithFrame:CGRectZero];
     [_banner setCallback:_callbackL];
     [_banner setParentalGate:_isParentalGateEnabledL];
-    [SAUtils invoke:@"setAd:" onTarget:_banner, _ad];
+    [SAAux invoke:@"setAd:" onTarget:_banner, _ad];
     [self.view addSubview:_banner];
 }
 
@@ -202,7 +232,7 @@ static SAConfiguration configuration = PRODUCTION;
     CGFloat tH = frame.size.height;
     CGFloat tX = ( frame.size.width - tW ) / 2;
     CGFloat tY = ( frame.size.height - tH) / 2;
-    CGRect newR = [SAUtils mapOldFrame:frame toNewFrame:CGRectMake(tX, tY, tW, tH)];
+    CGRect newR = [SAAux mapOldFrame:frame toNewFrame:CGRectMake(tX, tY, tW, tH)];
     newR.origin.x += tX;
     newR.origin.y += tY;
 

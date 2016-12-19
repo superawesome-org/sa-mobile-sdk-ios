@@ -8,20 +8,58 @@
 
 #import "SABannerAd.h"
 
-// import other
+// guarded imports
+#if defined(__has_include)
+#if __has_include(<SAModelSpace/SAModelSpace.h>)
+#import <SAModelSpace/SAModelSpace.h>
+#else
+#import "SAModelSpace.h"
+#endif
+#endif
+
+#if defined(__has_include)
+#if __has_include(<SAUtils/SAUtils.h>)
+#import <SAUtils/SAUtils.h>
+#else
+#import "SAUtils.h"
+#endif
+#endif
+
+#if defined(__has_include)
+#if __has_include(<SASession/SASession.h>)
+#import <SASession/SASession.h>
+#else
+#import "SASession.h"
+#endif
+#endif
+
+#if defined(__has_include)
+#if __has_include(<SAEvents/SAEvents.h>)
+#import <SAEvents/SAEvents.h>
+#else
+#import "SAEvents.h"
+#endif
+#endif
+
+#if defined(__has_include)
+#if __has_include(<SAWebPlayer/SAWebPlayer.h>)
+#import <SAWebPlayer/SAWebPlayer.h>
+#else
+#import "SAWebPlayer.h"
+#endif
+#endif
+
+#if defined(__has_include)
+#if __has_include(<SAAdLoader/SAAdLoader.h>)
+#import <SAAdLoader/SAAdLoader.h>
+#else
+#import "SAAdLoader.h"
+#endif
+#endif
+
+// local imports
 #import "SuperAwesome.h"
 #import "SAParentalGate.h"
-#import "SAResponse.h"
-#import "SAAd.h"
-#import "SACreative.h"
-#import "SADetails.h"
-#import "SAMedia.h"
-#import "SALoader.h"
-#import "SAWebPlayer.h"
-#import "SAUtils.h"
-#import "SAImageUtils.h"
-#import "SAEvents.h"
-#import "SASession.h"
 
 @interface SABannerAd ()
 
@@ -271,7 +309,7 @@
     self.frame = toframe;
     
     // new webplayer frame
-    CGRect frame = [SAUtils mapOldFrame:CGRectMake(0, 0, _ad.creative.details.width, _ad.creative.details.height)
+    CGRect frame = [SAAux mapOldFrame:CGRectMake(0, 0, _ad.creative.details.width, _ad.creative.details.height)
                              toNewFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
     
     // rearrange the webview

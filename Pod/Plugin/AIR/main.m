@@ -5,12 +5,20 @@
 #if defined(__has_include)
 #if __has_include(<SuperAwesomeSDK/SuperAwesomeSDK.h>)
 #import <SuperAwesomeSDK/SuperAwesomeSDK.h>
-#import "SASession.h"
 #else
 #import "SuperAwesome.h"
+#endif
+#endif
+
+// guarded imports
+#if defined(__has_include)
+#if __has_include(<SASession/SASession.h>)
+#import <SASession/SASession.h>
+#else
 #import "SASession.h"
 #endif
 #endif
+
 
 /**
  *  A dictionary that holds Unity banners

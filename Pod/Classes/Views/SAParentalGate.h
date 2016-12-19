@@ -20,7 +20,7 @@ typedef void(^actionBlock) (UIAlertAction *action);
 @interface SAParentalGate : NSObject <UIAlertViewDelegate>
 
 // custom init functions
-- (id) initWithWeakRefToView:(id)weakRef andAd:(SAAd*)ad;
+- (id) initWithWeakRefToView:(id)weakRef andAd:(SAAd *)ad;
 - (id) initWithWeakRefToView:(id)weakRef andAd:(SAAd *)ad andPosition:(NSInteger)position;
 
 // show function

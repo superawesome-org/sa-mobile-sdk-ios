@@ -7,19 +7,60 @@
 //
 
 #import "SAVideoAd.h"
-#import "SALoader.h"
-#import "SAResponse.h"
-#import "SAAd.h"
-#import "SACreative.h"
-#import "SADetails.h"
-#import "SAMedia.h"
-#import "SAVideoPlayer.h"
+
+// local imports
 #import "SAParentalGate.h"
-#import "SAEvents.h"
-#import "SAImageUtils.h"
 #import "SuperAwesome.h"
-#import "SASession.h"
+
+// guarded imports
+#if defined(__has_include)
+#if __has_include(<SAModelSpace/SAModelSpace.h>)
+#import <SAModelSpace/SAModelSpace.h>
+#else
+#import "SAModelSpace.h"
+#endif
+#endif
+
+#if defined(__has_include)
+#if __has_include(<SAUtils/SAUtils.h>)
+#import <SAUtils/SAUtils.h>
+#else
 #import "SAUtils.h"
+#endif
+#endif
+
+#if defined(__has_include)
+#if __has_include(<SAAdLoader/SAAdLoader.h>)
+#import <SAAdLoader/SAAdLoader.h>
+#else
+#import "SAAdLoader.h"
+#endif
+#endif
+
+#if defined(__has_include)
+#if __has_include(<SASession/SASession.h>)
+#import <SASession/SASession.h>
+#else
+#import "SASession.h"
+#endif
+#endif
+
+#if defined(__has_include)
+#if __has_include(<SAEvents/SAEvents.h>)
+#import <SAEvents/SAEvents.h>
+#else
+#import "SAEvents.h"
+#endif
+#endif
+
+#if defined(__has_include)
+#if __has_include(<SAVideoPlayer/SAVideoPlayer.h>)
+#import <SAVideoPlayer/SAVideoPlayer.h>
+#else
+#import "SAVideoPlayer.h"
+#endif
+#endif
+
 
 @interface SAVideoAd ()
 
@@ -243,7 +284,7 @@ static SAConfiguration configuration = PRODUCTION;
     
     // actually start playing the video
     if (_ad.creative.details.media.isOnDisk) {
-        NSString *finalDiskURL = [SAUtils filePathInDocuments:_ad.creative.details.media.playableDiskUrl];
+        NSString *finalDiskURL = [SAAux filePathInDocuments:_ad.creative.details.media.playableDiskUrl];
         [_player playWithMediaFile:finalDiskURL];
     } else {
         NSURL *url = [NSURL URLWithString:_ad.creative.details.media.playableMediaUrl];

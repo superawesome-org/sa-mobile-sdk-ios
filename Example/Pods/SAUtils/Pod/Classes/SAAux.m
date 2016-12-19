@@ -6,14 +6,16 @@
 //
 //
 
-#import "SAUtils.h"
+#import "SAAux.h"
+
 #import "SAExtensions.h"
 #import "NSString+HTML.h"
+
 #import <SystemConfiguration/SystemConfiguration.h>
 #import <sys/socket.h>
 #import <netinet/in.h>
 
-@implementation SAUtils
+@implementation SAAux
 
 ////////////////////////////////////////////////////////////////////////////////
 // Trully aux functions

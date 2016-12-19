@@ -8,6 +8,8 @@
 
 #import "SAResponse.h"
 
+#import "SAAd.h"
+
 @implementation SAResponse
 
 - (id) init {

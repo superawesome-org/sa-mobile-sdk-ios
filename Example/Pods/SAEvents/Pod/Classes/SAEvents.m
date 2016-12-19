@@ -7,15 +7,31 @@
 //
 
 #import "SAEvents.h"
-#import "SAUtils.h"
-#import "SANetwork.h"
-#import "SAExtensions.h"
-#import "SAAd.h"
-#import "SADetails.h"
-#import "SACreative.h"
-#import "SAMedia.h"
-#import "SATracking.h"
 
+// guarded imports
+#if defined(__has_include)
+#if __has_include(<SAUtils/SAUtils.h>)
+#import <SAUtils/SAUtils.h>
+#else
+#import "SAUtils.h"
+#endif
+#endif
+
+#if defined(__has_include)
+#if __has_include(<SANetwork/SANetwork.h>)
+#import <SANetwork/SANetwork.h>
+#else
+#import "SANetwork.h"
+#endif
+#endif
+
+#if defined(__has_include)
+#if __has_include(<SANetwork/SANetwork.h>)
+#import <SAModelSpace/SAModelSpace.h>
+#else
+#import "SAModelSpace.h"
+#endif
+#endif
 
 // try to import moat
 #if defined(__has_include)
@@ -29,7 +45,7 @@
 
 @interface SAEvents ()
 @property (nonatomic, strong) SAAd *ad;
-@property (nonatomic, strong) SANetwork *network;
+@property (nonatomic, strong) SARequest *request;
 @property (nonatomic, strong) NSTimer *viewabilityTimer;
 @property (nonatomic, assign) BOOL moatLimiting;
 @end
@@ -38,7 +54,7 @@
 
 - (id) init {
     if (self = [super init]) {
-        _network = [[SANetwork alloc] init];
+        _request = [[SARequest alloc] init];
         _moatLimiting = true;
     }
     
@@ -54,10 +70,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 - (void) sendEventToURL:(NSString *)url withResponse:(saEventResponse)response {
-    [_network sendGET:url
+    [_request sendGET:url
             withQuery:@{}
             andHeader:@{@"Content-Type":@"application/json",
-                        @"User-Agent":[SAUtils getUserAgent]}
+                        @"User-Agent":[SAAux getUserAgent]}
          withResponse:^(NSInteger status, NSString *payload, BOOL success) {
              if (response != nil) {
                  response(success, status);
@@ -165,7 +181,7 @@
             CGRect superR = CGRectMake(0, 0, view.superview.frame.size.width, view.superview.frame.size.height);
             CGRect screenR = [UIScreen mainScreen].bounds;
             
-            if ([SAUtils isRect:childR inRect:screenR] && [SAUtils isRect:childR inRect:superR]) {
+            if ([SAAux isRect:childR inRect:screenR] && [SAAux isRect:childR inRect:superR]) {
                 cticks++;
             }
             
@@ -193,7 +209,7 @@
     }
     
     _viewabilityTimer = NULL;
-    _network = NULL;
+    _request = NULL;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -202,7 +218,7 @@
 
 - (NSString*) moatEventForWebPlayer:(id)webplayer {
     
-    if ((_moatLimiting && [SAUtils randomNumberBetween:0 maxNumber:100] >= 80) || _ad == nil){
+    if ((_moatLimiting && [SAAux randomNumberBetween:0 maxNumber:100] >= 80) || _ad == nil){
         return @"";
     }
     
@@ -232,7 +248,7 @@
 
 - (void) moatEventForVideoPlayer:(AVPlayer*)player withLayer:(AVPlayerLayer*)layer andView:(UIView*)view {
     
-    if ((_moatLimiting && [SAUtils randomNumberBetween:0 maxNumber:100] >= 80) || _ad == nil) {
+    if ((_moatLimiting && [SAAux randomNumberBetween:0 maxNumber:100] >= 80) || _ad == nil) {
         return;
     }
     
@@ -248,7 +264,7 @@
                                };
     
     // invoke the moat event
-    [SAUtils invoke:@"sendVideoMoatEvent:andLayer:andView:andAdDictionary:" onTarget:self, player, layer, view, moatDict];
+    [SAAux invoke:@"sendVideoMoatEvent:andLayer:andView:andAdDictionary:" onTarget:self, player, layer, view, moatDict];
     
 }
 

@@ -8,14 +8,21 @@
 
 #import "SAAppWallParser.h"
 
-// import headers
-#import "SAAd.h"
-#import "SACreative.h"
-#import "SADetails.h"
-#import "SAMedia.h"
+#if defined(__has_include)
+#if __has_include(<SAModelSpace/SAModelSpace.h>)
+#import <SAModelSpace/SAModelSpace.h>
+#else
+#import "SAModelSpace.h"
+#endif
+#endif
 
-// get the file downloader
-#import "SAFileDownloader.h"
+#if defined(__has_include)
+#if __has_include(<SANetwork/SANetwork.h>)
+#import <SANetwork/SANetwork.h>
+#else
+#import "SANetwork.h"
+#endif
+#endif
 
 @implementation SAAppWallParser
 

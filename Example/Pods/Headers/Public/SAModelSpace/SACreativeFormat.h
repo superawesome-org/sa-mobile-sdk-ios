@@ -1,1 +1,0 @@
-../../../SAModelSpace/Pod/Classes/SACreativeFormat.h

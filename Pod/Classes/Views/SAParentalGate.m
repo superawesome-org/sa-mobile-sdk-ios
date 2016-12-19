@@ -11,21 +11,43 @@
 // import main header
 #import "SAParentalGate.h"
 
-// import needed modelspace
-#import "SAAd.h"
-#import "SACreative.h"
-
 // import other headers
-#import "SuperAwesome.h"
-
-// import views
 #import "SABannerAd.h"
 #import "SAVideoAd.h"
+#import "SAAppWall.h"
 
-// aux stuff
-#import "SAExtensions.h"
+// guarded imports
+#if defined(__has_include)
+#if __has_include(<SAModelSpace/SAModelSpace.h>)
+#import <SAModelSpace/SAModelSpace.h>
+#else
+#import "SAModelSpace.h"
+#endif
+#endif
+
+#if defined(__has_include)
+#if __has_include(<SAUtils/SAUtils.h>)
+#import <SAUtils/SAUtils.h>
+#else
 #import "SAUtils.h"
+#endif
+#endif
+
+#if defined(__has_include)
+#if __has_include(<SASession/SASession.h>)
+#import <SASession/SASession.h>
+#else
+#import "SASession.h"
+#endif
+#endif
+
+#if defined(__has_include)
+#if __has_include(<SAEvents/SAEvents.h>)
+#import <SAEvents/SAEvents.h>
+#else
 #import "SAEvents.h"
+#endif
+#endif
 
 // parental gate defines
 #define SA_CHALLANGE_ALERTVIEW 0
@@ -87,8 +109,8 @@
 
 // init a new question
 - (void) newQuestion {
-    _number1 = [SAUtils randomNumberBetween:SA_RAND_MIN maxNumber:SA_RAND_MAX];
-    _number2 = [SAUtils randomNumberBetween:SA_RAND_MIN maxNumber:SA_RAND_MAX];
+    _number1 = [SAAux randomNumberBetween:SA_RAND_MIN maxNumber:SA_RAND_MAX];
+    _number2 = [SAAux randomNumberBetween:SA_RAND_MIN maxNumber:SA_RAND_MAX];
     _solution = _number1 + _number2;
 }
 
@@ -99,7 +121,7 @@
     [_events sendAllEventsForKey:@"pg_open"];
     
     // pause video
-    [SAUtils invoke:@"pause" onTarget:_weakAdView];
+    [SAAux invoke:@"pause" onTarget:_weakAdView];
     
     if (NSClassFromString(@"UIAlertController")) {
         [self showWithAlertController];
@@ -127,7 +149,7 @@
         [_events sendAllEventsForKey:@"pg_close"];
         
         // resume video
-        [SAUtils invoke:@"resume" onTarget:_weakAdView];
+        [SAAux invoke:@"resume" onTarget:_weakAdView];
     };
     
     // action block #2
@@ -148,7 +170,7 @@
         else{
             
             // resume video
-            [SAUtils invoke:@"resume" onTarget:_weakAdView];
+            [SAAux invoke:@"resume" onTarget:_weakAdView];
             
             [self handlePGError];
         }
@@ -212,7 +234,7 @@
         } else {
             
             // resume video
-            [SAUtils invoke:@"resume" onTarget:_weakAdView];
+            [SAAux invoke:@"resume" onTarget:_weakAdView];
             
             [self handlePGError];
         }
@@ -223,7 +245,7 @@
         [_events sendAllEventsForKey:@"pg_close"];
         
         // resume video
-        [SAUtils invoke:@"resume" onTarget:_weakAdView];
+        [SAAux invoke:@"resume" onTarget:_weakAdView];
     }
 }
 
@@ -236,9 +258,9 @@
     
     // finally advance to URL
     if ([_weakAdView isKindOfClass:[SAAppWall class]]) {
-        [SAUtils invoke:@"click:" onTarget:_weakAdView, @(_gameWallPosition)];
+        [SAAux invoke:@"click:" onTarget:_weakAdView, @(_gameWallPosition)];
     } else {
-        [SAUtils invoke:@"click" onTarget:_weakAdView];
+        [SAAux invoke:@"click" onTarget:_weakAdView];
     }
 }
 

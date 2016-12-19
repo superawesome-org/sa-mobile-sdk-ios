@@ -9,7 +9,17 @@
 //
 
 #import <Foundation/Foundation.h>
+
+// guarded import
+#if defined(__has_include)
+#if __has_include(<SAJsonParser/SAJsonParser.h>)
+#import <SAJsonParser/SAJsonParser.h>
+#else
 #import "SAJsonParser.h"
+#endif
+#endif
+
+// local import
 #import "SAMedia.h"
 
 @interface SADetails : SABaseObject <SASerializationProtocol, SADeserializationProtocol>

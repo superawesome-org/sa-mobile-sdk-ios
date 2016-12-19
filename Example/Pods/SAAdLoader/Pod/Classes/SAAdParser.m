@@ -11,19 +11,37 @@
 // import header file
 #import "SAAdParser.h"
 
-// import modelspace
-#import "SAAd.h"
-#import "SACreative.h"
-#import "SADetails.h"
-#import "SAMedia.h"
-#import "SATracking.h"
+#if defined(__has_include)
+#if __has_include(<SAModelSpace/SAModelSpace.h>)
+#import <SAModelSpace/SAModelSpace.h>
+#else
+#import "SAModelSpace.h"
+#endif
+#endif
 
-// import SuperAwesome main header
- #import "SASession.h"
-
-// import SAAux library of goodies
+#if defined(__has_include)
+#if __has_include(<SAUtils/SAUtils.h>)
+#import <SAUtils/SAUtils.h>
+#else
 #import "SAUtils.h"
+#endif
+#endif
+
+#if defined(__has_include)
+#if __has_include(<SASession/SASession.h>)
+#import <SASession/SASession.h>
+#else
+#import "SASession.h"
+#endif
+#endif
+
+#if defined(__has_include)
+#if __has_include(<SAJsonParser/SAJsonParser.h>)
+#import <SAJsonParser/SAJsonParser.h>
+#else
 #import "SAJsonParser.h"
+#endif
+#endif
 
 // parser implementation
 @implementation SAAdParser
@@ -66,7 +84,7 @@
     trackingEvt.URL = [NSString stringWithFormat:@"%@/%@click?%@",
                        [session getBaseUrl],
                        (ad.creative.creativeFormat == video ? @"video/" : @""),
-                       [SAUtils formGetQueryFromDict:trackjson]];
+                       [SAAux formGetQueryFromDict:trackjson]];
     
     NSDictionary *saimprjson = @{
         @"placement": @(ad.placementId),
@@ -81,14 +99,14 @@
     saImpressionEvt.event = @"sa_impr";
     saImpressionEvt.URL = [NSString stringWithFormat:@"%@/impression?%@",
                            [session getBaseUrl],
-                           [SAUtils formGetQueryFromDict:saimprjson]];
+                           [SAAux formGetQueryFromDict:saimprjson]];
     
     // get the viewbale impression URL
     NSDictionary *imprjson = @{
         @"sdkVersion":[session getVersion],
         @"rnd":@([session getCachebuster]),
         @"ct":@([session getConnectivityType]),
-        @"data":[SAUtils encodeURI:[@{
+        @"data":[SAAux encodeURI:[@{
             @"placement":@(ad.placementId),
             @"line_item":@(ad.lineItemId),
             @"creative":@(ad.creative._id),
@@ -99,14 +117,14 @@
     viewableImpression.event = @"viewable_impr";
     viewableImpression.URL = [NSString stringWithFormat:@"%@/event?%@",
                                 [session getBaseUrl],
-                                [SAUtils formGetQueryFromDict:imprjson]];
+                                [SAAux formGetQueryFromDict:imprjson]];
     
     // get the parental gate URL
     NSDictionary *pgjsonfail = @{
         @"sdkVersion":[session getVersion],
         @"rnd":@([session getCachebuster]),
         @"ct":@([session getConnectivityType]),
-        @"data":[SAUtils encodeURI:[@{
+        @"data":[SAAux encodeURI:[@{
             @"placement":@(ad.placementId),
             @"line_item":@(ad.lineItemId),
             @"creative":@(ad.creative._id),
@@ -117,13 +135,13 @@
     parentalGateFail.event = @"pg_fail";
     parentalGateFail.URL = [NSString stringWithFormat:@"%@/event?%@",
                                         [session getBaseUrl],
-                                        [SAUtils formGetQueryFromDict:pgjsonfail]];
+                                        [SAAux formGetQueryFromDict:pgjsonfail]];
     
     NSDictionary *pgjsonclose = @{
                                  @"sdkVersion":[session getVersion],
                                  @"rnd":@([session getCachebuster]),
                                  @"ct":@([session getConnectivityType]),
-                                 @"data":[SAUtils encodeURI:[@{
+                                 @"data":[SAAux encodeURI:[@{
                                                                @"placement":@(ad.placementId),
                                                                @"line_item":@(ad.lineItemId),
                                                                @"creative":@(ad.creative._id),
@@ -134,13 +152,13 @@
     parentalGateClose.event = @"pg_close";
     parentalGateClose.URL = [NSString stringWithFormat:@"%@/event?%@",
                                        [session getBaseUrl],
-                                       [SAUtils formGetQueryFromDict:pgjsonclose]];
+                                       [SAAux formGetQueryFromDict:pgjsonclose]];
     
     NSDictionary *pgjsonopen = @{
                                  @"sdkVersion":[session getVersion],
                                  @"rnd":@([session getCachebuster]),
                                  @"ct":@([session getConnectivityType]),
-                                 @"data":[SAUtils encodeURI:[@{
+                                 @"data":[SAAux encodeURI:[@{
                                                                @"placement":@(ad.placementId),
                                                                @"line_item":@(ad.lineItemId),
                                                                @"creative":@(ad.creative._id),
@@ -151,13 +169,13 @@
     parentalGateOpen.event = @"pg_open";
     parentalGateOpen.URL = [NSString stringWithFormat:@"%@/event?%@",
                                        [session getBaseUrl],
-                                       [SAUtils formGetQueryFromDict:pgjsonopen]];
+                                       [SAAux formGetQueryFromDict:pgjsonopen]];
     
     NSDictionary *pgjsonsuccess = @{
                                  @"sdkVersion":[session getVersion],
                                  @"rnd":@([session getCachebuster]),
                                  @"ct":@([session getConnectivityType]),
-                                 @"data":[SAUtils encodeURI:[@{
+                                 @"data":[SAAux encodeURI:[@{
                                                                @"placement":@(ad.placementId),
                                                                @"line_item":@(ad.lineItemId),
                                                                @"creative":@(ad.creative._id),
@@ -168,7 +186,7 @@
     parentalGateSuccess.event = @"pg_success";
     parentalGateSuccess.URL = [NSString stringWithFormat:@"%@/event?%@",
                                        [session getBaseUrl],
-                                       [SAUtils formGetQueryFromDict:pgjsonsuccess]];
+                                       [SAAux formGetQueryFromDict:pgjsonsuccess]];
     
     [ad.creative.events addObject:trackingEvt];
     [ad.creative.events addObject:viewableImpression];
@@ -198,15 +216,15 @@
     switch (ad.creative.creativeFormat) {
         case gamewall:
         case image: {
-            ad.creative.details.cdnUrl = [SAUtils findBaseURLFromResourceURL:ad.creative.details.image];
+            ad.creative.details.cdnUrl = [SAAux findBaseURLFromResourceURL:ad.creative.details.image];
             break;
         }
         case video: {
-            ad.creative.details.cdnUrl = [SAUtils findBaseURLFromResourceURL:ad.creative.details.video];
+            ad.creative.details.cdnUrl = [SAAux findBaseURLFromResourceURL:ad.creative.details.video];
             break;
         }
         case rich: {
-            ad.creative.details.cdnUrl = [SAUtils findBaseURLFromResourceURL:ad.creative.details.url];
+            ad.creative.details.cdnUrl = [SAAux findBaseURLFromResourceURL:ad.creative.details.url];
             break;
         }
         case invalid:

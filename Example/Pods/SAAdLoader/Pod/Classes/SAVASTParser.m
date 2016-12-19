@@ -8,22 +8,41 @@
 
 #import "SAVASTParser.h"
 
-// import new SAXML
-#import "SAXMLParser.h"
+// guard external imports
+#if defined(__has_include)
+#if __has_include(<SAModelSpace/SAModelSpace.h>)
+#import <SAModelSpace/SAModelSpace.h>
+#else
+#import "SAModelSpace.h"
+#endif
+#endif
 
-// import helpers
-#import "SAAd.h"
-#import "SACreative.h"
-#import "SADetails.h"
-#import "SAMedia.h"
-#import "SATracking.h"
-
-// import Utils
+#if defined(__has_include)
+#if __has_include(<SAUtils/SAUtils.h>)
+#import <SAUtils/SAUtils.h>
+#else
 #import "SAUtils.h"
-#import "SASession.h"
+#endif
+#endif
+
+#if defined(__has_include)
+#if __has_include(<SANetwork/SANetwork.h>)
+#import <SANetwork/SANetwork.h>
+#else
 #import "SANetwork.h"
-#import "SAExtensions.h"
-#import "SAFileDownloader.h"
+#endif
+#endif
+
+#if defined(__has_include)
+#if __has_include(<SASession/SASession.h>)
+#import <SASession/SASession.h>
+#else
+#import "SASession.h"
+#endif
+#endif
+
+// local imports
+#import "SAXMLParser.h"
 
 @interface SAVASTParser ()
 @property (nonatomic, assign) SAConnectionType connection;
@@ -83,11 +102,11 @@
 
 - (void) parseVASTAds:(NSString*)vastURL withResult:(vastParsingDone)done {
     
-    SANetwork *network = [[SANetwork alloc] init];
-    [network sendGET:vastURL
+    SARequest *request = [[SARequest alloc] init];
+    [request sendGET:vastURL
            withQuery:@{}
            andHeader:@{@"Content-Type":@"application/json",
-                       @"User-Agent":[SAUtils getUserAgent]}
+                       @"User-Agent":[SAAux getUserAgent]}
         withResponse:^(NSInteger status, NSString *payload, BOOL success) {
             
             // create empty ad
@@ -154,7 +173,7 @@
     
     // get errors
     [SAXMLParser searchSiblingsAndChildrenOf:adElement forName:@"Error" andInterate:^(SAXMLElement *errElement) {
-        NSString *error = [SAUtils decodeHTMLEntitiesFrom:[errElement getValue]];
+        NSString *error = [SAAux decodeHTMLEntitiesFrom:[errElement getValue]];
         error = [error stringByReplacingOccurrencesOfString:@" " withString:@""];
         SATracking *tracking = [[SATracking alloc] init];
         tracking.URL = error;
@@ -164,7 +183,7 @@
     
     // get impressions
     [SAXMLParser searchSiblingsAndChildrenOf:adElement forName:@"Impression" andInterate:^(SAXMLElement *impElement) {
-        NSString *impression = [SAUtils decodeHTMLEntitiesFrom:[impElement value]];
+        NSString *impression = [SAAux decodeHTMLEntitiesFrom:[impElement value]];
         SATracking *tracking = [[SATracking alloc] init];
         tracking.URL = impression;
         tracking.event = @"impression";
@@ -193,7 +212,7 @@
     // populate clickthrough
     [SAXMLParser searchSiblingsAndChildrenOf:element forName:@"ClickThrough" andInterate:^(SAXMLElement *clickElement) {
         NSString *clickUrl = [clickElement value];
-        clickUrl = [SAUtils decodeHTMLEntitiesFrom:clickUrl];
+        clickUrl = [SAAux decodeHTMLEntitiesFrom:clickUrl];
         clickUrl = [clickUrl stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
         clickUrl = [clickUrl stringByReplacingOccurrencesOfString:@"%3A" withString:@":"];
         clickUrl = [clickUrl stringByReplacingOccurrencesOfString:@"%2F" withString:@"/"];
@@ -206,7 +225,7 @@
     // populate click tracking array
     [SAXMLParser searchSiblingsAndChildrenOf:element forName:@"ClickTracking" andInterate:^(SAXMLElement *ctrackElement) {
         SATracking *tracking = [[SATracking alloc] init];
-        tracking.URL = [SAUtils decodeHTMLEntitiesFrom:[ctrackElement value]];
+        tracking.URL = [SAAux decodeHTMLEntitiesFrom:[ctrackElement value]];
         tracking.event = @"click_tracking";
         [creative.events addObject:tracking];
     }];
@@ -214,14 +233,14 @@
     // populate custom clicks array
     [SAXMLParser searchSiblingsAndChildrenOf:element forName:@"CustomClicks" andInterate:^(SAXMLElement *cclickElement) {
         SATracking *tracking = [[SATracking alloc] init];
-        tracking.URL = [SAUtils decodeHTMLEntitiesFrom:[cclickElement value]];
+        tracking.URL = [SAAux decodeHTMLEntitiesFrom:[cclickElement value]];
         tracking.event = @"custom_clicks";
     }];
     
     // populate tracking
     [SAXMLParser searchSiblingsAndChildrenOf:element forName:@"Tracking" andInterate:^(SAXMLElement *cTrackingElement) {
         SATracking *tracking = [[SATracking alloc] init];
-        tracking.URL = [SAUtils decodeHTMLEntitiesFrom:[cTrackingElement value]];
+        tracking.URL = [SAAux decodeHTMLEntitiesFrom:[cTrackingElement value]];
         tracking.event = [cTrackingElement getAttribute:@"event"];
         [creative.events addObject:tracking];
     }];

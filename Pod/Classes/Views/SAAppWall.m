@@ -8,17 +8,50 @@
 
 #import "SAAppWall.h"
 
-// other imports
-
-#import "SAResponse.h"
-#import "SAAd.h"
-#import "SAEvents.h"
+// local imports
 #import "SuperAwesome.h"
-#import "SALoader.h"
-#import "SAImageUtils.h"
 #import "SAParentalGate.h"
-#import "SASession.h"
+
+// guarded imports
+#if defined(__has_include)
+#if __has_include(<SAModelSpace/SAModelSpace.h>)
+#import <SAModelSpace/SAModelSpace.h>
+#else
+#import "SAModelSpace.h"
+#endif
+#endif
+
+#if defined(__has_include)
+#if __has_include(<SAUtils/SAUtils.h>)
+#import <SAUtils/SAUtils.h>
+#else
 #import "SAUtils.h"
+#endif
+#endif
+
+#if defined(__has_include)
+#if __has_include(<SAAdLoader/SAAdLoader.h>)
+#import <SAAdLoader/SAAdLoader.h>
+#else
+#import "SAAdLoader.h"
+#endif
+#endif
+
+#if defined(__has_include)
+#if __has_include(<SASession/SASession.h>)
+#import <SASession/SASession.h>
+#else
+#import "SASession.h"
+#endif
+#endif
+
+#if defined(__has_include)
+#if __has_include(<SAEvents/SAEvents.h>)
+#import <SAEvents/SAEvents.h>
+#else
+#import "SAEvents.h"
+#endif
+#endif
 
 ////////////////////////////////////////////////////////////////////////////////
 // The actual GameWall Cell (UICollectionViewCell)
@@ -78,7 +111,7 @@
 
 - (void) arrangeSubviewsForSmallLayout {
     
-    NSString *imageUrl = [SAUtils filePathInDocuments:_imagePath];
+    NSString *imageUrl = [SAAux filePathInDocuments:_imagePath];
     CGRect iconFrame = CGRectMake(15, 15, self.frame.size.width - 30, self.frame.size.width - 30);
     CGRect titleFrame = CGRectMake(0, self.frame.size.width, self.frame.size.width, self.frame.size.height - self.frame.size.width);
     
@@ -103,7 +136,7 @@
 
 - (void) arrangeSubviewsForBigLayout {
     
-    NSString *imageUrl = [SAUtils filePathInDocuments:_imagePath];
+    NSString *imageUrl = [SAAux filePathInDocuments:_imagePath];
     CGRect iconFrame = CGRectMake(25, 25, self.frame.size.height - 50, self.frame.size.height - 50);
     CGRect titleFrame = CGRectMake(self.frame.size.height, 0, self.frame.size.width - self.frame.size.height - 10, self.frame.size.height);
     

@@ -11,14 +11,22 @@
 // import header
 #import "SAHTMLParser.h"
 
-// import modelspace
-#import "SAAd.h"
-#import "SACreative.h"
-#import "SADetails.h"
+#if defined(__has_include)
+#if __has_include(<SAModelSpace/SAModelSpace.h>)
+#import <SAModelSpace/SAModelSpace.h>
+#else
+#import "SAModelSpace.h"
+#endif
+#endif
 
-// import juciy aux functions
+#if defined(__has_include)
+#if __has_include(<SAUtils/SAUtils.h>)
+#import <SAUtils/SAUtils.h>
+#else
 #import "SAUtils.h"
-#import "SAExtensions.h"
+#endif
+#endif
+
 
 @implementation SAHTMLParser
 
@@ -101,10 +109,10 @@
         @"placement":[NSNumber numberWithInteger:ad.placementId],
         @"line_item":[NSNumber numberWithInteger:ad.lineItemId],
         @"creative":[NSNumber numberWithInteger:ad.creative._id],
-        @"rnd":[NSNumber numberWithInteger:[SAUtils getCachebuster]]
+        @"rnd":[NSNumber numberWithInteger:[SAAux getCachebuster]]
     };
     [richMediaString appendString:@"?"];
-    [richMediaString appendString:[SAUtils formGetQueryFromDict:richMediaDict]];
+    [richMediaString appendString:[SAAux formGetQueryFromDict:richMediaDict]];
     
     // return the parametrized template
     NSString *richString = [htmlString stringByReplacingOccurrencesOfString:@"richMediaURL" withString:richMediaString];
@@ -144,7 +152,7 @@
     }
     
     tagString = [tagString stringByReplacingOccurrencesOfString:@"[click]" withString:[NSString stringWithFormat:@"%@&redir=",click]];
-    tagString = [tagString stringByReplacingOccurrencesOfString:@"[click_enc]" withString:[SAUtils encodeURI:click]];
+    tagString = [tagString stringByReplacingOccurrencesOfString:@"[click_enc]" withString:[SAAux encodeURI:click]];
     tagString = [tagString stringByReplacingOccurrencesOfString:@"[keywords]" withString:@""];
     tagString = [tagString stringByReplacingOccurrencesOfString:@"[timestamp]" withString:[NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970]]];
     tagString = [tagString stringByReplacingOccurrencesOfString:@"target=\"_blank\"" withString:@""];

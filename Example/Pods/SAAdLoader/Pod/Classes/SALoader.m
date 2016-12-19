@@ -11,26 +11,44 @@
 // import header
 #import "SALoader.h"
 
-// import other aux parsers
+// guard external imports
+#if defined(__has_include)
+#if __has_include(<SAModelSpace/SAModelSpace.h>)
+#import <SAModelSpace/SAModelSpace.h>
+#else
+#import "SAModelSpace.h"
+#endif
+#endif
+
+#if defined(__has_include)
+#if __has_include(<SASession/SASession.h>)
+#import <SASession/SASession.h>
+#else
+#import "SASession.h"
+#endif
+#endif
+
+#if defined(__has_include)
+#if __has_include(<SAUtils/SAUtils.h>)
+#import <SAUtils/SAUtils.h>
+#else
+#import "SAUtils.h"
+#endif
+#endif
+
+#if defined(__has_include)
+#if __has_include(<SANetwork/SANetwork.h>)
+#import <SANetwork/SANetwork.h>
+#else
+#import "SANetwork.h"
+#endif
+#endif
+
+// import from local
 #import "SAAdParser.h"
 #import "SAHTMLParser.h"
 #import "SAVASTParser.h"
 #import "SAAppWallParser.h"
-
-// import model headers
-#import "SAResponse.h"
-#import "SAAd.h"
-#import "SACreative.h"
-#import "SADetails.h"
-#import "SAMedia.h"
-#import "SATracking.h"
-
-// import session data
-#import "SASession.h"
-#import "SAUtils.h"
-
-// import network classes
-#import "SANetwork.h"
 
 @interface SALoader ()
 @property (nonatomic, strong) SAAdParser *adParser;
@@ -73,8 +91,8 @@
     NSDictionary *header = @{@"Content-Type":@"application/json",
                              @"User-Agent":[session getUserAgent]};
     
-    SANetwork *network = [[SANetwork alloc] init];
-    [network sendGET:endpoint
+    SARequest *request= [[SARequest alloc] init];
+    [request sendGET:endpoint
            withQuery:query
            andHeader:header
         withResponse:^(NSInteger status, NSString *payload, BOOL success) {

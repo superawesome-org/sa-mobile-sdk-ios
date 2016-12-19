@@ -7,8 +7,23 @@
 //
 
 #import "SACPI.h"
-#import "SAEvents.h"
+
+// guarded imports
+#if defined(__has_include)
+#if __has_include(<SASession/SASession.h>)
+#import <SASession/SASession.h>
+#else
 #import "SASession.h"
+#endif
+#endif
+
+#if defined(__has_include)
+#if __has_include(<SAEvents/SAEvents.h>)
+#import <SAEvents/SAEvents.h>
+#else
+#import "SAEvents.h"
+#endif
+#endif
 
 #define CPI_INSTALL @"CPI_INSTALL"
 

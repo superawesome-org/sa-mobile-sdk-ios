@@ -11,6 +11,11 @@
 // import this model's header
 #import "SAAd.h"
 
+#import "SACreative.h"
+#import "SADetails.h"
+#import "SAMedia.h"
+#import "SATracking.h"
+
 @implementation SAAd
 
 - (id) init {

@@ -7,7 +7,14 @@
 //
 
 #import "SACapper.h"
+
+#if defined(__has_include)
+#if __has_include(<SAUtils/SAUtils.h>)
+#import <SAUtils/SAUtils.h>
+#else
 #import "SAUtils.h"
+#endif
+#endif
 
 #define SUPER_AWESOME_FIRST_PART_DAU @"SUPER_AWESOME_FIRST_PART_DAU"
 
@@ -43,7 +50,7 @@
     NSString *thirdPartOfDAU = [[NSBundle mainBundle] bundleIdentifier];
     
     if (!secondPartOfDAU || [secondPartOfDAU isEqualToString:@""]){
-        secondPartOfDAU = [SAUtils generateUniqueKey];
+        secondPartOfDAU = [SAAux generateUniqueKey];
         [_defs setObject:secondPartOfDAU forKey:SUPER_AWESOME_FIRST_PART_DAU];
         [_defs synchronize];
     }

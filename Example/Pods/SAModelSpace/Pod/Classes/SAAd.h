@@ -10,13 +10,32 @@
 
 #import <Foundation/Foundation.h>
 
+// forward declarations
+@class SACreative;
+@class SADetails;
+@class SAMedia;
+@class SATracking;
+
+// guarded import
+#if defined(__has_include)
+#if __has_include(<SAJsonParser/SAJsonParser.h>)
+#import <SAJsonParser/SAJsonParser.h>
+#else
 #import "SAJsonParser.h"
-#import "SAVASTAdType.h"
-#import "SACampaignType.h"
-#import "SACreative.h"
-#import "SADetails.h"
-#import "SAMedia.h"
-#import "SATracking.h"
+#endif
+#endif
+
+// enum sacampaign type
+typedef NS_ENUM(NSInteger, SACampaignType) {
+    cpm = 0,
+    cpi = 1
+};
+
+// enum vast ad type
+typedef NS_ENUM(NSInteger, SAVASTAdType) {
+    InLine = 0,
+    Wrapper = 1
+};
 
 @interface SAAd : SABaseObject <SASerializationProtocol, SADeserializationProtocol>
 

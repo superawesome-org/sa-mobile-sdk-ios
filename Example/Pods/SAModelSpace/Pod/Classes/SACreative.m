@@ -11,6 +11,10 @@
 // import this model's header
 #import "SACreative.h"
 
+// imports
+#import "SATracking.h"
+#import "SADetails.h"
+
 @implementation SACreative
 
 - (id) init {

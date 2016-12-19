@@ -21,8 +21,8 @@ Pod::Spec.new do |s|
     b.frameworks = 'AdSupport'
     b.dependency 'SAVideoPlayer', '1.1.8'
     b.dependency 'SAWebPlayer', '1.1.0'
-    b.dependency 'SAEvents', '1.6.3'
-    b.dependency 'SAAdLoader', '0.8.5'
+    b.dependency 'SAEvents', '1.6.4'
+    b.dependency 'SAAdLoader', '0.8.6'
   end
 
   s.subspec 'Full' do |f|
