@@ -1,6 +1,7 @@
 CHANGELOG
 =========
 
+5.3.10
 5.3.9
  - Updated dependencies
  - Now all depdnencies should have "safe" imports, meaning that it will work with static libs or frameworks and it won't break
