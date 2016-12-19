@@ -1,6 +1,7 @@
 CHANGELOG
 =========
 
+5.3.11
 5.3.10
 5.3.9
  - Updated dependencies
