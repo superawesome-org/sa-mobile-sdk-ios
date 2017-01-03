@@ -172,3 +172,9 @@
 }
 
 @end
+
+
+SAConfiguration getConfigurationFromInt (int configuration) {
+    if (configuration == 0) return PRODUCTION;
+    return STAGING;
+}

@@ -72,8 +72,6 @@ extern "C" {
      *  @param unityName the name of the banner in unity
      */
     void SuperAwesomeUnitySABannerAdCreate (const char *unityName) {
-        
-        
         // get the key
         __block NSString *key = [NSString stringWithUTF8String:unityName];
         
@@ -104,11 +102,7 @@ extern "C" {
      *  @param configuration production = 0 / staging = 1
      *  @param test          true / false
      */
-    void SuperAwesomeUnitySABannerAdLoad (const char *unityName,
-                                          int placementId,
-                                          int configuration,
-                                          bool test) {
-        
+    void SuperAwesomeUnitySABannerAdLoad (const char *unityName, int placementId, int configuration, bool test) {
         // get the key
         NSString *key = [NSString stringWithUTF8String:unityName];
         
@@ -116,7 +110,7 @@ extern "C" {
             
             SABannerAd *banner = [bannerDictionary objectForKey:key];
             [banner setTestMode:test];
-            [banner setConfiguration:configuration == 0 ? PRODUCTION : STAGING];
+            [banner setConfiguration:getConfigurationFromInt(configuration)];
             [banner load:placementId];
         
         } else {
@@ -132,7 +126,6 @@ extern "C" {
      *  @return true of false
      */
     bool SuperAwesomeUnitySABannerAdHasAdAvailable (const char *unityName) {
-        
         // get the key
         NSString *key = [NSString stringWithUTF8String:unityName];
         
@@ -151,14 +144,10 @@ extern "C" {
      *  @param isParentalGateEnabled true / false
      *  @param position              TOP = 0 / BOTTOM = 1
      *  @param size                  BANNER_320_50 = 0 / BANNER_300_50 = 1 / BANNER_728_90 = 2 / BANNER_300_250 = 3
-     *  @param color                 BANNER_TRANSPARENT = 0 / BANNER_GRAY = 1
+     *  @param color                 true = transparent / false = gray
      */
-    void SuperAwesomeUnitySABannerAdPlay (const char *unityName,
-                                          bool isParentalGateEnabled,
-                                          int position,
-                                          int size,
-                                          int color) {
-        
+    void SuperAwesomeUnitySABannerAdPlay (const char *unityName, bool isParentalGateEnabled, int position, int width, int height, bool color)
+    {
         // get the key
         NSString *key = [NSString stringWithUTF8String:unityName];
         
@@ -168,11 +157,7 @@ extern "C" {
             UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
             
             // calculate the size of the ad
-            __block CGSize realSize = CGSizeZero;
-            if (size == 1) realSize = CGSizeMake(300, 50);
-            else if (size == 2) realSize = CGSizeMake(728, 90);
-            else if (size == 3) realSize = CGSizeMake(300, 250);
-            else realSize = CGSizeMake(320, 50);
+            __block CGSize realSize = CGSizeMake(width, height);
             
             // get the screen size
             __block CGSize screen = [UIScreen mainScreen].bounds.size;
@@ -190,7 +175,7 @@ extern "C" {
             // get banner
             SABannerAd *banner = [bannerDictionary objectForKey:key];
             [banner setParentalGate:isParentalGateEnabled];
-            [banner setColor:color == 0 ? true : false];
+            [banner setColor:color];
             [root.view addSubview:banner];
             [banner resize:CGRectMake(realPos.x, realPos.y, realSize.width, realSize.height)];
             
@@ -202,10 +187,7 @@ extern "C" {
              ^(NSNotification * note) {
                  screen = [UIScreen mainScreen].bounds.size;
                  
-                 if (size == 1) realSize = CGSizeMake(300, 50);
-                 else if (size == 2) realSize = CGSizeMake(728, 90);
-                 else if (size == 3) realSize = CGSizeMake(300, 250);
-                 else realSize = CGSizeMake(320, 50);
+                 realSize = CGSizeMake(width, height);
                  
                  if (realSize.width > screen.width) {
                      realSize.height = (screen.width * realSize.height) / realSize.width;
@@ -233,7 +215,6 @@ extern "C" {
      *  @param unityName the unique name of the banner in unity
      */
     void SuperAwesomeUnitySABannerAdClose (const char *unityName) {
-        
         // get the key
         NSString *key = [NSString stringWithUTF8String:unityName];
         
@@ -255,7 +236,6 @@ extern "C" {
      *  Methid that adds a callback to the SAInterstitialAd static method class
      */
     void SuperAwesomeUnitySAInterstitialAdCreate () {
-
         [SAInterstitialAd setCallback:^(NSInteger placementId, SAEvent event) {
             switch (event) {
                 case adLoaded: sendToUnity(@"SAInterstitialAd", placementId, @"adLoaded"); break;
@@ -276,12 +256,9 @@ extern "C" {
      *  @param configuration production = 0 / staging = 1
      *  @param test          true / false
      */
-    void SuperAwesomeUnitySAInterstitialAdLoad (int placementId,
-                                                int configuration,
-                                                bool test) {
-        
+    void SuperAwesomeUnitySAInterstitialAdLoad (int placementId, int configuration, bool test) {
         [SAInterstitialAd setTestMode:test];
-        [SAInterstitialAd setConfiguration:configuration == 0 ? PRODUCTION : STAGING];
+        [SAInterstitialAd setConfiguration:getConfigurationFromInt(configuration)];
         [SAInterstitialAd load: placementId];
     }
     
@@ -301,16 +278,11 @@ extern "C" {
      *  @param shouldLockOrientation true / false
      *  @param lockOrientation       ANY = 0 / PORTRAIT = 1 / LANDSCAPE = 2
      */
-    void SuperAwesomeUnitySAInterstitialAdPlay (int placementId,
-                                                bool isParentalGateEnabled,
-                                                int orientation) {
-        
-        [SAInterstitialAd setParentalGate:isParentalGateEnabled];
-        [SAInterstitialAd setOrientation:orientation == 2 ? LANDSCAPE : orientation == 1 ? PORTRAIT : ANY];
-        
+    void SuperAwesomeUnitySAInterstitialAdPlay (int placementId, bool isParentalGateEnabled, int orientation) {
         UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
+        [SAInterstitialAd setParentalGate:isParentalGateEnabled];
+        [SAInterstitialAd setOrientation:getOrientationFromInt (orientation)];
         [SAInterstitialAd play: placementId fromVC: root];
-        
     }
     
     ////////////////////////////////////////////////////////////////////////////
@@ -321,7 +293,6 @@ extern "C" {
      *  Add a callback to the SAVideoAd static class
      */
     void SuperAwesomeUnitySAVideoAdCreate () {
-        
         [SAVideoAd setCallback:^(NSInteger placementId, SAEvent event) {
             switch (event) {
                 case adLoaded: sendToUnity(@"SAVideoAd", placementId, @"adLoaded"); break;
@@ -341,14 +312,10 @@ extern "C" {
      *  @param configuration production = 0 / staging = 1
      *  @param test          true / false
      */
-    void SuperAwesomeUnitySAVideoAdLoad(int placementId,
-                                        int configuration,
-                                        bool test) {
-        
+    void SuperAwesomeUnitySAVideoAdLoad(int placementId, int configuration, bool test) {
         [SAVideoAd setTestMode:test];
-        [SAVideoAd setConfiguration:configuration == 0 ? PRODUCTION : STAGING];
+        [SAVideoAd setConfiguration:getConfigurationFromInt(configuration)];
         [SAVideoAd load: placementId];
-        
     }
     
     /**
@@ -370,20 +337,13 @@ extern "C" {
      *  @param shouldLockOrientation         true / falsr
      *  @param lockOrientation               ANY = 0 / PORTRAIT = 1 / LANDSCAPE = 2
      */
-    void SuperAwesomeUnitySAVideoAdPlay(int placementId,
-                                        bool isParentalGateEnabled,
-                                        bool shouldShowCloseButton,
-                                        bool shouldShowSmallClickButton,
-                                        bool shouldAutomaticallyCloseAtEnd,
-                                        int orientation) {
-        
+    void SuperAwesomeUnitySAVideoAdPlay(int placementId, bool isParentalGateEnabled, bool shouldShowCloseButton, bool shouldShowSmallClickButton, bool shouldAutomaticallyCloseAtEnd, int orientation) {
+        UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
         [SAVideoAd setParentalGate:isParentalGateEnabled];
         [SAVideoAd setCloseButton:shouldShowCloseButton];
         [SAVideoAd setSmallClick:shouldShowSmallClickButton];
         [SAVideoAd setCloseAtEnd:shouldAutomaticallyCloseAtEnd];
-        [SAVideoAd setOrientation:orientation == 2 ? LANDSCAPE : orientation == 1 ? PORTRAIT : ANY];
-        
-        UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
+        [SAVideoAd setOrientation: getOrientationFromInt (orientation)];
         [SAVideoAd play: placementId fromVC: root];
     }
     
@@ -395,7 +355,6 @@ extern "C" {
      *  Methid that adds a callback to the SAGameWall static method class
      */
     void SuperAwesomeUnitySAAppWallCreate () {
-        
         [SAAppWall setCallback:^(NSInteger placementId, SAEvent event) {
             switch (event) {
                 case adLoaded: sendToUnity(@"SAAppWall", placementId, @"adLoaded"); break;
@@ -406,7 +365,6 @@ extern "C" {
                 case adClosed: sendToUnity(@"SAAppWall", placementId, @"adClosed"); break;
             }
         }];
-        
     }
     
     /**
@@ -416,12 +374,9 @@ extern "C" {
      *  @param configuration production = 0 / staging = 1
      *  @param test          true / false
      */
-    void SuperAwesomeUnitySAAppWallLoad (int placementId,
-                                         int configuration,
-                                         bool test) {
-        
+    void SuperAwesomeUnitySAAppWallLoad (int placementId, int configuration, bool test) {
         [SAAppWall setTestMode:test];
-        [SAAppWall setConfiguration:configuration == 0 ? PRODUCTION : STAGING];
+        [SAAppWall setConfiguration:getConfigurationFromInt(configuration)];
         [SAAppWall load: placementId];
     }
     
@@ -440,12 +395,9 @@ extern "C" {
      *  @param isParentalGateEnabled true / false
      *  @param shouldLockOrientation true / false
      */
-    void SuperAwesomeUnitySAAppWallPlay (int placementId,
-                                         bool isParentalGateEnabled) {
-        
-        [SAAppWall setParentalGate:isParentalGateEnabled];
+    void SuperAwesomeUnitySAAppWallPlay (int placementId, bool isParentalGateEnabled) {
         UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
+        [SAAppWall setParentalGate:isParentalGateEnabled];
         [SAAppWall play: placementId fromVC: root];
-        
     }
 }

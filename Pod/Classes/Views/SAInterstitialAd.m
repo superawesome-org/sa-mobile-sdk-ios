@@ -89,10 +89,10 @@ static NSMutableDictionary *ads;
 
 // other vars that need to be set statically
 static sacallback callback = ^(NSInteger placementId, SAEvent event) {};
-static BOOL isParentalGateEnabled = true;
-static BOOL isTestingEnabled = false;
-static SAOrientation orientation = ANY;
-static SAConfiguration configuration = PRODUCTION;
+static BOOL isParentalGateEnabled = SA_DEFAULT_PARENTALGATE;
+static BOOL isTestingEnabled = SA_DEFAULT_TESTMODE;
+static SAOrientation orientation = SA_DEFAULT_ORIENTATION;
+static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
 
 ////////////////////////////////////////////////////////////////////////////////
 // MARK: VC lifecycle
@@ -409,8 +409,5 @@ static SAConfiguration configuration = PRODUCTION;
 + (SAOrientation) getOrientation {
     return orientation;
 }
-
-
-
 
 @end

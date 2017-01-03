@@ -13,7 +13,6 @@
 #import "SuperAwesome.h"
 #import "MPRewardedVideoReward.h"
 #import "SuperAwesomeMoPub.h"
-#import "SAOrientation.h"
 
 @interface SuperAwesomeRewardedVideoCustomEvent ()
 @property (nonatomic, strong) MPRewardedVideoReward *reward;
@@ -36,12 +35,13 @@
     id _Nullable orientationObj = [info objectForKey:ORIENTATION];
     
     // assign values
-    BOOL isTestEnabled = false;
-    BOOL isParentalGateEnabled = true;
-    BOOL shouldShowCloseButton = true;
-    BOOL shouldShowSmallClickButton = false;
-    BOOL shouldAutomaticallyCloseAtEnd = true;
-    SAOrientation orientation = ANY;
+    _placementId = SA_DEFAULT_PLACEMENTID;
+    BOOL isTestEnabled = SA_DEFAULT_TESTMODE;
+    BOOL isParentalGateEnabled = SA_DEFAULT_PARENTALGATE;
+    BOOL shouldShowCloseButton = SA_DEFAULT_CLOSEBUTTON;
+    BOOL shouldShowSmallClickButton = SA_DEFAULT_SMALLCLICK;
+    BOOL shouldAutomaticallyCloseAtEnd = SA_DEFAULT_CLOSEATEND;
+    SAOrientation orientation = SA_DEFAULT_ORIENTATION;
     
     if (placementIdObj) {
         _placementId = [placementIdObj integerValue];

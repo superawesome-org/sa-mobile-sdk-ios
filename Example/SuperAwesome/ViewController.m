@@ -21,7 +21,6 @@
     
     // load banner
     [_bannerAd setConfigurationStaging];
-    [_bannerAd disableTestMode];
     [_bannerAd disableParentalGate];
     [_bannerAd setCallback:^(NSInteger placementId, SAEvent event) {
         if (event == adLoaded) {
@@ -33,9 +32,8 @@
     
     // load interstitials
     [SAInterstitialAd setConfigurationStaging];
-    [SAInterstitialAd disableTestMode];
-    [SAInterstitialAd enableParentalGate];
-    [SAInterstitialAd setOrientationPortrait];
+    [SAInterstitialAd disableParentalGate];
+    [SAInterstitialAd setOrientationLandscape];
     [SAInterstitialAd setCallback:^(NSInteger placementId, SAEvent event) {
         if (event == adLoaded) {
             NSLog(@"adLoaded ==> %ld", (long) placementId);
@@ -45,7 +43,7 @@
     }];
 
     // load video
-    [SAVideoAd setConfigurationProduction];
+    [SAVideoAd setConfigurationStaging];
     [SAVideoAd disableParentalGate];
     [SAVideoAd setCallback:^(NSInteger placementId, SAEvent event) {
         if (event == adLoaded) {
@@ -56,20 +54,20 @@
     }];
 
     // load gamewall
-    [SAAppWall setConfigurationStaging];
-    [SAAppWall setCallback:^(NSInteger placementId, SAEvent event) {
-        if (event == adLoaded) {
-            NSLog(@"[AppWall] adLoaded ==> %ld", (long) placementId);
-        } else if (event == adFailedToLoad){
-            NSLog(@"[AppWall] adFailedToLoad ==> %ld", (long) placementId);
-        } else if (event == adShown) {
-            NSLog(@"[AppWall] adShown ==> %ld", (long) placementId);
-        } else if (event == adClosed) {
-            NSLog(@"[AppWall] adClosed ==> %ld", (long) placementId);
-        } else if (event == adClicked) {
-            NSLog(@"[AppWall] adClicked ==> %ld", (long) placementId);
-        }
-    }];
+//    [SAAppWall setConfigurationStaging];
+//    [SAAppWall setCallback:^(NSInteger placementId, SAEvent event) {
+//        if (event == adLoaded) {
+//            NSLog(@"[AppWall] adLoaded ==> %ld", (long) placementId);
+//        } else if (event == adFailedToLoad){
+//            NSLog(@"[AppWall] adFailedToLoad ==> %ld", (long) placementId);
+//        } else if (event == adShown) {
+//            NSLog(@"[AppWall] adShown ==> %ld", (long) placementId);
+//        } else if (event == adClosed) {
+//            NSLog(@"[AppWall] adClosed ==> %ld", (long) placementId);
+//        } else if (event == adClicked) {
+//            NSLog(@"[AppWall] adClicked ==> %ld", (long) placementId);
+//        }
+//    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -77,25 +75,9 @@
 }
 
 - (IBAction)loadAction:(id)sender {
-    [_bannerAd setConfigurationProduction];
-    [_bannerAd disableTestMode];
-    [_bannerAd load:33342];
-    [SAVideoAd load:447];
-    [SAAppWall load:437];
-    [SAInterstitialAd setConfigurationProduction];
-    [SAInterstitialAd load:7189];
-    [SAInterstitialAd setConfigurationStaging];
-    [SAInterstitialAd load:556];
-    [SAVideoAd setConfigurationProduction];
-    [SAVideoAd enableTestMode];
-    [SAVideoAd load:31718];
-    [SAVideoAd load:31721];
-    [SAVideoAd setConfigurationStaging];
-    [SAVideoAd setOrientationLandscape];
-    [SAVideoAd disableTestMode];
-    [SAVideoAd load:544];
-    [SAVideoAd load:480];
-    [SAVideoAd load:481];
+    [_bannerAd load:584];
+    [SAInterstitialAd load:585];
+    [SAVideoAd load:586];
 }
 
 - (IBAction)playBanner:(id)sender {
@@ -105,42 +87,24 @@
 }
 
 - (IBAction)playInterstitial1:(id)sender {
-    if ([SAInterstitialAd hasAdAvailable:7189]) {
-        [SAInterstitialAd play: 7189 fromVC:self];
+    if ([SAInterstitialAd hasAdAvailable:585]) {
+        [SAInterstitialAd play: 585 fromVC:self];
     }
 }
 
 - (IBAction)playInterstitial2:(id)sender {
-    if ([SAInterstitialAd hasAdAvailable:418]) {
-        [SAInterstitialAd play: 418 fromVC:self];
-    }
+    //
 }
 
 - (IBAction)playVideo1:(id)sender {
-    if ([SAVideoAd hasAdAvailable:31718]) {
-        [SAVideoAd play: 31718 fromVC:self];
-    }
-    
-    if ([SAVideoAd hasAdAvailable:544]) {
-        [SAVideoAd play:544 fromVC:self];
+    if ([SAVideoAd hasAdAvailable:586]) {
+        [SAVideoAd play: 586 fromVC:self];
     }
 }
 
 - (IBAction)playVideo2:(id)sender {
-    if ([SAVideoAd hasAdAvailable:31721]) {
-        [SAVideoAd play:31721  fromVC:self];
-    }
-//    if ([SAVideoAd hasAdAvailable:31721]) {
-//        [SAVideoAd play:31721 fromVC:self];
-//    }
-    
-//    if ([SAVideoAd hasAdAvailable:31721]) {
-  //      [SAVideoAd play:31721 fromVC:self];
-    //}
+    //
 }
 
-//- (BOOL) prefersStatusBarHidden {
-//    return false;
-//}
 
 @end

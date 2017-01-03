@@ -36,6 +36,7 @@
 + (void) enableCloseAtEnd;
 + (void) disableCloseAtEnd;
 
+// one-line setters
 + (void) setTestMode: (BOOL) value;
 + (void) setParentalGate: (BOOL) value;
 + (void) setConfiguration: (NSInteger) value;
@@ -43,6 +44,5 @@
 + (void) setCloseButton: (BOOL) value;
 + (void) setSmallClick: (BOOL) value;
 + (void) setCloseAtEnd: (BOOL) value;
-
 
 @end

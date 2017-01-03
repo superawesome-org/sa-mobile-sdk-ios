@@ -237,9 +237,9 @@ static NSMutableDictionary *responses;
 
 // other static variables needed for state
 static sacallback callback = ^(NSInteger placementId, SAEvent event) {};
-static BOOL isParentalGateEnabled = true;
-static BOOL isTestingEnabled = false;
-static SAConfiguration configuration = PRODUCTION;
+static BOOL isParentalGateEnabled = SA_DEFAULT_PARENTALGATE;
+static BOOL isTestingEnabled = SA_DEFAULT_TESTMODE;
+static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
 
 - (void) viewDidLoad {
     [super viewDidLoad];

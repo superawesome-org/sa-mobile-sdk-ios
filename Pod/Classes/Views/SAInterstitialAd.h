@@ -31,6 +31,7 @@
 + (void) setOrientationPortrait;
 + (void) setOrientationLandscape;
 
+// one-line setters
 + (void) setTestMode: (BOOL) value;
 + (void) setParentalGate: (BOOL) value;
 + (void) setConfiguration: (NSInteger) value;

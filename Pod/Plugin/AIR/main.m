@@ -93,9 +93,10 @@ FREObject SuperAwesomeAIRSABannerAdLoad (FREContext ctx, void* funcData, uint32_
     // needed paramters
     uint32_t airNameLength;
     const uint8_t *airName;
-    int placementId = 0;
-    int configuration = 0;
-    uint32_t test = false; // boolean
+    
+    int placementId = SA_DEFAULT_PLACEMENTID;
+    int configuration = SA_DEFAULT_CONFIGURATION;
+    uint32_t test = SA_DEFAULT_TESTMODE; // boolean
     
     // populate fields
     FREGetObjectAsUTF8(argv[0], &airNameLength, &airName);
@@ -110,7 +111,7 @@ FREObject SuperAwesomeAIRSABannerAdLoad (FREContext ctx, void* funcData, uint32_
         SABannerAd *banner = [bannerDictionary objectForKey:key];
         
         [banner setTestMode:test];
-        [banner setConfiguration:configuration == 0 ? PRODUCTION : STAGING];
+        [banner setConfiguration: getConfigurationFromInt(configuration)];
         [banner load:placementId];
         
     } else {
@@ -148,17 +149,19 @@ FREObject SuperAwesomeAIRSABannerAdPlay (FREContext ctx, void* funcData, uint32_
     // needed paramters
     uint32_t airNameLength;
     const uint8_t *airName;
-    uint32_t isParentalGateEnabled = false;
+    uint32_t isParentalGateEnabled = SA_DEFAULT_PARENTALGATE;
+    int width = 320;
+    int height = 50;
     int position = 0;
-    int size = 0;
-    int color = 0;
+    uint32_t color = SA_DEFAULT_BGCOLOR;
     
     // populate fields
     FREGetObjectAsUTF8(argv[0], &airNameLength, &airName);
     FREGetObjectAsBool(argv[1], &isParentalGateEnabled);
     FREGetObjectAsInt32(argv[2], &position);
-    FREGetObjectAsInt32(argv[3], &size);
-    FREGetObjectAsInt32(argv[4], &color);
+    FREGetObjectAsInt32(argv[3], &width);
+    FREGetObjectAsInt32(argv[4], &height);
+    FREGetObjectAsBool(argv[5], &color);
     
     // get the key
     NSString *key = [NSString stringWithUTF8String:(char*)airName];
@@ -168,11 +171,7 @@ FREObject SuperAwesomeAIRSABannerAdPlay (FREContext ctx, void* funcData, uint32_
         UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
         
         // calculate the size of the ad
-        __block CGSize realSize = CGSizeZero;
-        if (size == 1) realSize = CGSizeMake(300, 50);
-        else if (size == 2) realSize = CGSizeMake(728, 90);
-        else if (size == 3) realSize = CGSizeMake(300, 250);
-        else realSize = CGSizeMake(320, 50);
+        __block CGSize realSize = CGSizeMake(width, height);
         
         // get the screen size
         __block CGSize screen = [UIScreen mainScreen].bounds.size;
@@ -190,7 +189,7 @@ FREObject SuperAwesomeAIRSABannerAdPlay (FREContext ctx, void* funcData, uint32_
         // get banner
         SABannerAd *banner = [bannerDictionary objectForKey:key];
         [banner setParentalGate:isParentalGateEnabled];
-        [banner setColor:color == 0 ? true : false];
+        [banner setColor:color];
         [root.view addSubview:banner];
         [banner resize:CGRectMake(realPos.x, realPos.y, realSize.width, realSize.height)];
         
@@ -202,10 +201,7 @@ FREObject SuperAwesomeAIRSABannerAdPlay (FREContext ctx, void* funcData, uint32_
          ^(NSNotification * note) {
              screen = [UIScreen mainScreen].bounds.size;
              
-             if (size == 1) realSize = CGSizeMake(300, 50);
-             else if (size == 2) realSize = CGSizeMake(728, 90);
-             else if (size == 3) realSize = CGSizeMake(300, 250);
-             else realSize = CGSizeMake(320, 50);
+             realSize = CGSizeMake(width, height);
              
              if (realSize.width > screen.width) {
                  realSize.height = (screen.width * realSize.height) / realSize.width;
@@ -273,9 +269,9 @@ FREObject SuperAwesomeAIRSAInterstitialAdCreate (FREContext ctx, void* funcData,
 
 FREObject SuperAwesomeAIRSAInterstitialAdLoad (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]) {
     // needed paramters
-    int placementId = 0;
-    int configuration = 0;
-    uint32_t test = false; // boolean
+    int placementId = SA_DEFAULT_PLACEMENTID;
+    int configuration = SA_DEFAULT_CONFIGURATION;
+    uint32_t test = SA_DEFAULT_TESTMODE; // boolean
     
     // populate fields
     FREGetObjectAsInt32(argv[0], &placementId);
@@ -284,7 +280,7 @@ FREObject SuperAwesomeAIRSAInterstitialAdLoad (FREContext ctx, void* funcData, u
     
     // setup & load
     [SAInterstitialAd setTestMode:test];
-    [SAInterstitialAd setConfiguration:configuration == 0 ? PRODUCTION : STAGING];
+    [SAInterstitialAd setConfiguration: getConfigurationFromInt(configuration)];
     [SAInterstitialAd load:placementId];
     
     return NULL;
@@ -292,7 +288,7 @@ FREObject SuperAwesomeAIRSAInterstitialAdLoad (FREContext ctx, void* funcData, u
 
 FREObject SuperAwesomeAIRSAInterstitialAdHasAdAvailable (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]) {
     // needed paramters
-    int placementId = 0;
+    int placementId = SA_DEFAULT_PLACEMENTID;
     
     // populate fields
     FREGetObjectAsInt32(argv[0], &placementId);
@@ -308,10 +304,10 @@ FREObject SuperAwesomeAIRSAInterstitialAdHasAdAvailable (FREContext ctx, void* f
 FREObject SuperAwesomeAIRSAInterstitialAdPlay (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]) {
     
     // needed paramters
-    int placementId = 0;
-    uint32_t isParentalGateEnabled = false;
-    int orientation = 0;
-    uint32_t isBackButtonEnabled = false;
+    int placementId = SA_DEFAULT_PLACEMENTID;
+    uint32_t isParentalGateEnabled = SA_DEFAULT_PARENTALGATE;
+    int orientation = SA_DEFAULT_ORIENTATION;
+    uint32_t isBackButtonEnabled = SA_DEFAULT_BACKBUTTON;
     
     // populate fields
     FREGetObjectAsInt32(argv[0], &placementId);
@@ -321,7 +317,7 @@ FREObject SuperAwesomeAIRSAInterstitialAdPlay (FREContext ctx, void* funcData, u
     
     // configure & play
     [SAInterstitialAd setParentalGate:isParentalGateEnabled];
-    [SAInterstitialAd setOrientation:orientation == 2 ? LANDSCAPE : orientation == 1 ? PORTRAIT : ANY];
+    [SAInterstitialAd setOrientation:getOrientationFromInt(orientation)];
     UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
     [SAInterstitialAd play: placementId fromVC: root];
     
@@ -353,9 +349,9 @@ FREObject SuperAwesomeAIRSAVideoAdCreate (FREContext ctx, void* funcData, uint32
 
 FREObject SuperAwesomeAIRSAVideoAdLoad (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]) {
     // needed paramters
-    int placementId = 0;
-    int configuration = 0;
-    uint32_t test = false; // boolean
+    int placementId = SA_DEFAULT_PLACEMENTID;
+    int configuration = SA_DEFAULT_CONFIGURATION;
+    uint32_t test = SA_DEFAULT_TESTMODE; // boolean
     
     // populate fields
     FREGetObjectAsInt32(argv[0], &placementId);
@@ -364,7 +360,7 @@ FREObject SuperAwesomeAIRSAVideoAdLoad (FREContext ctx, void* funcData, uint32_t
 
     // configure & load
     [SAVideoAd setTestMode:test];
-    [SAVideoAd setConfiguration:configuration == 0 ? PRODUCTION : STAGING];
+    [SAVideoAd setConfiguration: getConfigurationFromInt(configuration)];
     [SAVideoAd load:placementId];
     
     return NULL;
@@ -372,7 +368,7 @@ FREObject SuperAwesomeAIRSAVideoAdLoad (FREContext ctx, void* funcData, uint32_t
 
 FREObject SuperAwesomeAIRSAVideoAdHasAdAvailable (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]) {
     // needed paramters
-    int placementId = 0;
+    int placementId = SA_DEFAULT_PLACEMENTID;
     
     // populate fields
     FREGetObjectAsInt32(argv[0], &placementId);
@@ -389,13 +385,13 @@ FREObject SuperAwesomeAIRSAVideoAdHasAdAvailable (FREContext ctx, void* funcData
 FREObject SuperAwesomeAIRSAVideoAdPlay (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]) {
     
     // needed paramters
-    int placementId = 0;
-    uint32_t isParentalGateEnabled = false;
-    uint32_t shouldShowCloseButton = true;
-    uint32_t shouldShowSmallClickButton = false;
-    uint32_t shouldAutomaticallyCloseAtEnd = true;
-    int orientation = 0;
-    uint32_t isBackButtonEnabled = false;
+    int placementId = SA_DEFAULT_PLACEMENTID;
+    uint32_t isParentalGateEnabled = SA_DEFAULT_PARENTALGATE;
+    uint32_t shouldShowCloseButton = SA_DEFAULT_CLOSEBUTTON;
+    uint32_t shouldShowSmallClickButton = SA_DEFAULT_SMALLCLICK;
+    uint32_t shouldAutomaticallyCloseAtEnd = SA_DEFAULT_CLOSEATEND;
+    int orientation = SA_DEFAULT_ORIENTATION;
+    uint32_t isBackButtonEnabled = SA_DEFAULT_BACKBUTTON;
     
     // populate fields
     FREGetObjectAsInt32(argv[0], &placementId);
@@ -410,7 +406,7 @@ FREObject SuperAwesomeAIRSAVideoAdPlay (FREContext ctx, void* funcData, uint32_t
     [SAVideoAd setCloseButton:shouldShowCloseButton];
     [SAVideoAd setSmallClick:shouldShowSmallClickButton];
     [SAVideoAd setCloseAtEnd:shouldAutomaticallyCloseAtEnd];
-    [SAVideoAd setOrientation:orientation == 2 ? LANDSCAPE : orientation == 1 ? PORTRAIT : ANY];
+    [SAVideoAd setOrientation:getOrientationFromInt(orientation)];
     
     UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
     [SAVideoAd play: placementId fromVC: root];
@@ -441,9 +437,9 @@ FREObject SuperAwesomeAIRSAAppWallCreate (FREContext ctx, void* funcData, uint32
 FREObject SuperAwesomeAIRSAAppWallLoad (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]) {
     
     // needed paramters
-    int placementId = 0;
-    int configuration = 0;
-    uint32_t test = false; // boolean
+    int placementId = SA_DEFAULT_PLACEMENTID;
+    int configuration = SA_DEFAULT_CONFIGURATION;
+    uint32_t test = SA_DEFAULT_TESTMODE; // boolean
     
     // populate fields
     FREGetObjectAsInt32(argv[0], &placementId);
@@ -452,7 +448,7 @@ FREObject SuperAwesomeAIRSAAppWallLoad (FREContext ctx, void* funcData, uint32_t
     
     // configure & load
     [SAAppWall setTestMode:test];
-    [SAAppWall setConfiguration:configuration == 0 ? PRODUCTION : STAGING];
+    [SAAppWall setConfiguration: getConfigurationFromInt(configuration)];
     [SAAppWall load:placementId];
     
     return NULL;
@@ -461,7 +457,7 @@ FREObject SuperAwesomeAIRSAAppWallLoad (FREContext ctx, void* funcData, uint32_t
 
 FREObject SuperAwesomeAIRSAAppWallHasAdAvailable (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]) {
     // needed paramters
-    int placementId = 0;
+    int placementId = SA_DEFAULT_PLACEMENTID;
     
     // populate fields
     FREGetObjectAsInt32(argv[0], &placementId);
@@ -477,9 +473,9 @@ FREObject SuperAwesomeAIRSAAppWallHasAdAvailable (FREContext ctx, void* funcData
 FREObject SuperAwesomeAIRSAAppWallPlay (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]) {
     
     // needed paramters
-    int placementId = 0;
-    uint32_t isParentalGateEnabled = false;
-    uint32_t isBackButtonEnabled = false;
+    int placementId = SA_DEFAULT_PLACEMENTID;
+    uint32_t isParentalGateEnabled = SA_DEFAULT_PARENTALGATE;
+    uint32_t isBackButtonEnabled = SA_DEFAULT_BACKBUTTON;
     
     // populate fields
     FREGetObjectAsInt32(argv[0], &placementId);

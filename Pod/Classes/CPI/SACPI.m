@@ -50,6 +50,10 @@
         SASession *session = [[SASession alloc] init];
         [session setConfigurationProduction];
         
+        // /check?sourceBundle=lego --> 123.123_lego ==> [pj, disney]
+        // if and ===> /install?bundle=lego&target=pj
+        // if iod ===> /install?bundle=lego
+        
         // form the URL
         NSString *cpiURL = [NSString stringWithFormat:@"%@/install?bundle=%@",
                             [session getBaseUrl],

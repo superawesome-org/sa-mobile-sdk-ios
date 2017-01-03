@@ -33,9 +33,9 @@
     id _Nullable isParentalGateEnabledObj = [info objectForKey:PARENTAL_GATE];
     
     // get values
-    BOOL placementId = 0;
-    BOOL isTestEnabled = false;
-    BOOL isPrentalGateEnabled = true;
+    BOOL placementId = SA_DEFAULT_PLACEMENTID;
+    BOOL isTestEnabled = SA_DEFAULT_TESTMODE;
+    BOOL isPrentalGateEnabled = SA_DEFAULT_PARENTALGATE;
     
     if (placementIdObj) {
         placementId = [placementIdObj integerValue];

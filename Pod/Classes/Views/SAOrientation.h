@@ -13,3 +13,5 @@ typedef NS_ENUM(NSInteger, SAOrientation) {
     PORTRAIT = 1,
     LANDSCAPE = 2
 };
+
+SAOrientation getOrientationFromInt (int orientation);

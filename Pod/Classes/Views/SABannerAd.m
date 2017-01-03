@@ -145,12 +145,22 @@
 }
 
 - (void) initialize {
+    // set "canPlay" to true when building the first banner
     _canPlay = true;
-    _isParentalGateEnabled = true;
+    
+    // init the events and session obkects
     _events = [[SAEvents alloc] init];
     _session = [[SASession alloc] init];
+    
+    // set a default callback, so that it's never null and I don't have to
+    // do a null check everytime I want to call it
     _callback = ^(NSInteger placement, SAEvent event) {};
-    self.backgroundColor = [UIColor colorWithRed:224.0/255.0f green:224.0/255.0f blue:224.0/255.0f alpha:1];
+    
+    // set default banner parameters
+    _isParentalGateEnabled = SA_DEFAULT_PARENTALGATE;
+    [self setTestMode:SA_DEFAULT_TESTMODE];
+    [self setConfiguration:SA_DEFAULT_CONFIGURATION];
+    [self setColor:SA_DEFAULT_BGCOLOR];
 }
 
 - (void) loadSubviews {
@@ -172,7 +182,6 @@
     
     // moat tracking
     NSString *moatString = [_events moatEventForWebPlayer:_webplayer];
-    NSLog(@"%@", moatString);
     
     // form the full HTML string and play it!
     NSString *fullHTMLToLoad = [_ad.creative.details.media.html stringByReplacingOccurrencesOfString:@"_MOAT_" withString:moatString];
@@ -257,8 +266,6 @@
         // assign new ad
         weakSelf.ad = [response isValid] ? [response.ads objectAtIndex:0] : nil;
         
-        
-        NSLog(@"%@", [response jsonPreetyStringRepresentation]);
         
         // call the callback
         weakSelf.callback (placementId, [response isValid] ? adLoaded : adFailedToLoad);

@@ -109,7 +109,6 @@
 #endif
 #endif
 
-
 @interface SAVideoAd ()
 
 // aux
@@ -139,14 +138,14 @@
 static NSMutableDictionary *ads;
 
 // other static vars needed for state 
-static sacallback callback = ^(NSInteger placementId, SAEvent event) {};
-static BOOL isParentalGateEnabled = true;
-static BOOL shouldAutomaticallyCloseAtEnd = true;
-static BOOL shouldShowCloseButton = true;
-static BOOL shouldShowSmallClickButton = false;
-static BOOL isTestingEnabled = false;
-static SAOrientation orientation = ANY;
-static SAConfiguration configuration = PRODUCTION;
+static sacallback callback                  = ^(NSInteger placementId, SAEvent event) {};
+static BOOL isTestingEnabled                = SA_DEFAULT_TESTMODE;
+static BOOL isParentalGateEnabled           = SA_DEFAULT_PARENTALGATE;
+static BOOL shouldAutomaticallyCloseAtEnd   = SA_DEFAULT_CLOSEATEND;
+static BOOL shouldShowCloseButton           = SA_DEFAULT_CLOSEBUTTON;
+static BOOL shouldShowSmallClickButton      = SA_DEFAULT_SMALLCLICK;
+static SAOrientation orientation            = SA_DEFAULT_ORIENTATION;
+static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
 
 ////////////////////////////////////////////////////////////////////////////////
 // MARK: VC lifecycle

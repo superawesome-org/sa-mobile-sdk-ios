@@ -13,6 +13,8 @@ typedef NS_ENUM(NSInteger, SAConfiguration) {
     STAGING = 1
 };
 
+SAConfiguration getConfigurationFromInt (int configuration);
+
 @interface SASession : NSObject
 
 // setters

@@ -10,9 +10,9 @@
 
 // import useful headers
 #import "SuperAwesomeInterstitialCustomEvent.h"
+
 #import "SuperAwesome.h"
 #import "SuperAwesomeMoPub.h"
-#import "SAOrientation.h"
 
 @interface SuperAwesomeInterstitialCustomEvent ()
 @property (nonatomic, assign) NSInteger placementId;
@@ -29,10 +29,10 @@
     id _Nullable lockOrientationObj = [info objectForKey:LOCK_ORIENTATION];
     id _Nullable orientationObj = [info objectForKey:ORIENTATION];
     
-    NSInteger placementId = 0;
-    BOOL isTestEnabled = false;
-    BOOL isParentalGateEnabled = true;
-    SAOrientation orientation = ANY;
+    NSInteger placementId = SA_DEFAULT_PLACEMENTID;
+    BOOL isTestEnabled = SA_DEFAULT_TESTMODE;
+    BOOL isParentalGateEnabled = SA_DEFAULT_PARENTALGATE;
+    SAOrientation orientation = SA_DEFAULT_ORIENTATION;
     
     if (placementIdObj) {
         placementId = [placementIdObj integerValue];

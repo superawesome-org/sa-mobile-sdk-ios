@@ -20,6 +20,18 @@
 #import "SACallback.h"
 #import "SAOrientation.h"
 
+// define constants to lock the default / initial state
+#define SA_DEFAULT_PLACEMENTID 0
+#define SA_DEFAULT_TESTMODE false
+#define SA_DEFAULT_PARENTALGATE true
+#define SA_DEFAULT_CONFIGURATION 0
+#define SA_DEFAULT_ORIENTATION 0
+#define SA_DEFAULT_CLOSEBUTTON false
+#define SA_DEFAULT_SMALLCLICK false
+#define SA_DEFAULT_CLOSEATEND true
+#define SA_DEFAULT_BGCOLOR false
+#define SA_DEFAULT_BACKBUTTON false
+
 // @brief:
 // This is the main SuperAwesome class that handles the Ad Session
 // as a singleton (enable / disable test mode, configuration, version, etc)
