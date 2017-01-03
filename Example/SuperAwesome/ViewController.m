@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "SuperAwesome.h"
 #import "SAUtils.h"
+#import "SASession.h"
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet SABannerAd *bannerAd;

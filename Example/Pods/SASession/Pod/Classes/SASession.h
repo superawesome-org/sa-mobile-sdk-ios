@@ -13,7 +13,10 @@ typedef NS_ENUM(NSInteger, SAConfiguration) {
     STAGING = 1
 };
 
-SAConfiguration getConfigurationFromInt (int configuration);
+static inline SAConfiguration getConfigurationFromInt (int configuration) {
+    if (configuration == 0) return PRODUCTION;
+    return STAGING;
+}
 
 @interface SASession : NSObject
 

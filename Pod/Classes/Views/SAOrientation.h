@@ -14,4 +14,8 @@ typedef NS_ENUM(NSInteger, SAOrientation) {
     LANDSCAPE = 2
 };
 
-SAOrientation getOrientationFromInt (int orientation);
+static inline SAOrientation getOrientationFromInt (int orientation) {
+    if (orientation == 2) return LANDSCAPE;
+    if (orientation == 1) return PORTRAIT;
+    return ANY;
+}
