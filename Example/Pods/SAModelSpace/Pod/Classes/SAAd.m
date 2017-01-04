@@ -47,6 +47,7 @@
         _isHouse = [jsonDictionary safeBoolForKey:@"is_house" orDefault:_isHouse];
         _safeAdApproved = [jsonDictionary safeBoolForKey:@"safe_ad_approved" orDefault:_safeAdApproved];
         _showPadlock = [jsonDictionary safeBoolForKey:@"show_padlock" orDefault:_showPadlock];
+        _moat = [jsonDictionary safeFloatForKey:@"moat" orDefault:_moat];
         
         _device = [jsonDictionary safeStringForKey:@"device" orDefault:_device];
         
@@ -74,6 +75,7 @@
     _campaignId = 0;
     _placementId = 0;
     _campaignType = cpm;
+    _moat = 0.2;
     _test = false;
     _isFallback = false;
     _isFill = false;
@@ -99,6 +101,7 @@
              @"campaign_id": @(_campaignId),
              @"placementId": @(_placementId),
              @"campaign_type": @(_campaignType),
+             @"moat": @(_moat),
              @"test": @(_test),
              @"is_fallback": @(_isFallback),
              @"is_fill": @(_isFill),

@@ -55,6 +55,7 @@ typedef NS_ENUM(NSInteger, SAVASTAdType) {
 @property (nonatomic, assign) NSInteger campaignId;
 @property (nonatomic, assign) NSInteger placementId;
 @property (nonatomic, assign) NSInteger campaignType;
+@property (nonatomic, assign) CGFloat moat;
 @property (nonatomic, assign) BOOL test;
 @property (nonatomic, assign) BOOL isFallback;
 @property (nonatomic, assign) BOOL isFill;

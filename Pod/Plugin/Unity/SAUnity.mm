@@ -47,9 +47,7 @@ extern "C" {
      *  @param placementId placement id
      *  @param callback    callback method to call
      */
-    void sendToUnity (NSString *unityName,
-                      NSInteger placementId,
-                      NSString *callback) {
+    void sendToUnity (NSString *unityName, NSInteger placementId, NSString *callback) {
         
         NSString *payload = [NSString stringWithFormat:@"{\"placementId\":\"%ld\", \"type\":\"sacallback_%@\"}", (long)placementId, callback];
         UnitySendMessage([unityName UTF8String], "nativeCallback", [payload UTF8String]);

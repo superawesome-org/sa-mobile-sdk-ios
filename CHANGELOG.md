@@ -1,6 +1,13 @@
 CHANGELOG
 =========
 
+5.3.15
+ - Made the Video ad close button invisible by default. Developers will now actively have to enable it in our SDK. In historical cases where this has been a problem it will mean an increased VCR rate.
+ - Refactored the way the SDK works with default values. A default "SDK state" is now stored by the main SuperAwesome singleton. This dictates banner background color, default orientation, whether the close button is visible or not on video and all types of default values for everything that is customizable.
+ - Refactored the AIR & Unity plugins to be more robust and do more error checking and to use default values in case any of the plugins don't somehow send values.
+ - Refactored the MoPub plugin to be more robust and do more error checking. 
+ - Updated dependencies
+
 5.3.11
 5.3.10
 5.3.9

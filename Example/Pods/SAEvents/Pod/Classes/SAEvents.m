@@ -234,7 +234,11 @@
 
 - (NSString*) moatEventForWebPlayer:(id)webplayer {
     
-    if ((_moatLimiting && [SAUtils randomNumberBetween:0 maxNumber:100] >= 80) || _ad == nil){
+    // here calc if moat should be displayed
+    NSInteger moatRandInt = [SAUtils randomNumberBetween:0 maxNumber:100];
+    CGFloat moatRand = (CGFloat) (moatRandInt / 100.0f);
+    
+    if (_ad == nil || (_moatLimiting && moatRand > _ad.moat)) {
         return @"";
     }
     
@@ -264,7 +268,11 @@
 
 - (void) moatEventForVideoPlayer:(AVPlayer*)player withLayer:(AVPlayerLayer*)layer andView:(UIView*)view {
     
-    if ((_moatLimiting && [SAUtils randomNumberBetween:0 maxNumber:100] >= 80) || _ad == nil) {
+    // here calc if moat should be displayed
+    NSInteger moatRandInt = [SAUtils randomNumberBetween:0 maxNumber:100];
+    CGFloat moatRand = (CGFloat) (moatRandInt / 100.0f);
+    
+    if (_ad == nil || (_moatLimiting && moatRand > _ad.moat)) {
         return;
     }
     
