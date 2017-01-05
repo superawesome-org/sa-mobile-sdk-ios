@@ -24,7 +24,7 @@ static inline void sendToUnity (NSString *unityName, NSInteger placementId, NSSt
     
     NSDictionary *data = @{
                            @"placementId": [NSString stringWithFormat:@"%ld", (long) placementId],
-                           @"callback": callback
+                           @"type": [NSString stringWithFormat:@"sacallback_%@", callback]
                            };
     
     NSString *payload = [data jsonCompactStringRepresentation];
