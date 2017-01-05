@@ -76,9 +76,11 @@
 }
 
 - (IBAction)loadAction:(id)sender {
-    [_bannerAd load:584];
-    [SAInterstitialAd load:585];
-    [SAVideoAd load:586];
+//    [_bannerAd load:584];
+//    [SAInterstitialAd load:585];
+//    [SAVideoAd load:586];
+    [SAInterstitialAd setConfigurationProduction];
+    [SAInterstitialAd load:31378];
 }
 
 - (IBAction)playBanner:(id)sender {
@@ -94,7 +96,9 @@
 }
 
 - (IBAction)playInterstitial2:(id)sender {
-    //
+    if ([SAInterstitialAd hasAdAvailable:31378]) {
+        [SAInterstitialAd play:31378 fromVC:self];
+    }
 }
 
 - (IBAction)playVideo1:(id)sender {
