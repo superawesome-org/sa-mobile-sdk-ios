@@ -23,7 +23,7 @@ static inline void sendToUnity (NSString *unityName, NSInteger placementId, NSSt
     const char *name = [unityName UTF8String];
     
     NSDictionary *data = @{
-                           @"placementId": @(placementId),
+                           @"placementId": [NSString stringWithFormat:@"%ld", (long) placementId],
                            @"callback": callback
                            };
     
