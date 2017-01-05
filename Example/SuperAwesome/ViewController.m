@@ -80,7 +80,7 @@
 //    [SAInterstitialAd load:585];
 //    [SAVideoAd load:586];
     [SAInterstitialAd setConfigurationProduction];
-    [SAInterstitialAd load:31378];
+    [SAInterstitialAd load:31380];
 }
 
 - (IBAction)playBanner:(id)sender {
@@ -96,8 +96,8 @@
 }
 
 - (IBAction)playInterstitial2:(id)sender {
-    if ([SAInterstitialAd hasAdAvailable:31378]) {
-        [SAInterstitialAd play:31378 fromVC:self];
+    if ([SAInterstitialAd hasAdAvailable:31380]) {
+        [SAInterstitialAd play:31380 fromVC:self];
     }
 }
 

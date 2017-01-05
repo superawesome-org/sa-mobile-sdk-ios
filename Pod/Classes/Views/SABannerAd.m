@@ -267,7 +267,6 @@
         // assign new ad
         weakSelf.ad = [response isValid] ? [response.ads objectAtIndex:0] : nil;
         
-        
         // call the callback
         weakSelf.callback (placementId, [response isValid] ? adLoaded : adFailedToLoad);
     }];
