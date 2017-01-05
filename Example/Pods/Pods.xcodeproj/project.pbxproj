@@ -64,6 +64,13 @@
 		1ACDAE6DA9C7627B07615DEB /* SAInterstitialAd.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F6E9AD2E94EF11E0E01C66E /* SAInterstitialAd.m */; };
 		1AE3F75214B29938771820E5 /* SASession-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EB2A4F29BA7CB0C57C1578 /* SASession-dummy.m */; };
 		1B1F107ADE04FE5936F77FFF /* SAVASTParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C48CAF41658362A6D3B61A4 /* SAVASTParser.m */; };
+		1BE280701E1EA5AB00B9711A /* SAUnityCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2806E1E1EA5AB00B9711A /* SAUnityCallback.m */; };
+		1BE280711E1EA5AB00B9711A /* SAUnityCallback.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BE2806F1E1EA5AB00B9711A /* SAUnityCallback.h */; };
+		1BE280731E1EA72F00B9711A /* SAUnityBannerAd.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1BE280721E1EA72F00B9711A /* SAUnityBannerAd.mm */; };
+		1BE280751E1EAC7C00B9711A /* SAUnityCPI.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1BE280741E1EAC7C00B9711A /* SAUnityCPI.mm */; };
+		1BE280771E1EACAD00B9711A /* SAUnityInterstitialAd.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1BE280761E1EACAD00B9711A /* SAUnityInterstitialAd.mm */; };
+		1BE2807A1E1EACBD00B9711A /* SAUnityVideoAd.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1BE280791E1EACBD00B9711A /* SAUnityVideoAd.mm */; };
+		1BE2807C1E1EACC900B9711A /* SAUnityAppWall.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2807B1E1EACC900B9711A /* SAUnityAppWall.mm */; };
 		1BEB7A562C646A860F83883A /* MOPUBPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9B045E15C457EA13C9F833 /* MOPUBPlayerView.m */; };
 		1C8E1058484D82F6640229AA /* MPRewardedVideoConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D6C9C99A2FBB9E0B3433BD5 /* MPRewardedVideoConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1CA9A743D99DE860B4803CAF /* SAOrientation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F6814EA80BDA6B20654DD82 /* SAOrientation.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -442,7 +449,6 @@
 		E7F725C1611689C009DCC99B /* MPAdConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = E4CF5B5EB7B5F8E383D4D22E /* MPAdConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E8969E9069D32C73B588EE0D /* MPNativeAd.h in Headers */ = {isa = PBXBuildFile; fileRef = C9B7A722EE2BD9C6D1860A52 /* MPNativeAd.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E90BCC61CDFA79ABB3F74996 /* MPVASTModel.h in Headers */ = {isa = PBXBuildFile; fileRef = ED2271D6579DD1A674A92B02 /* MPVASTModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E91ABB2191BA5080FFF6856E /* SAUnity.mm in Sources */ = {isa = PBXBuildFile; fileRef = CC83A5F911830F371C9F06B5 /* SAUnity.mm */; };
 		E974BAA7337E561F1C9BEF7F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D3CFAD680DF6EE175F2118 /* Foundation.framework */; };
 		E98E19BE7AE76DDB3D508FE7 /* SAExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = CA3FC31785884E53D495C030 /* SAExtensions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E9E431873A5E272D853BAA30 /* MPClosableView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E30D5A93ADE4F4DA719C867 /* MPClosableView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -724,7 +730,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00C6DCE3DDB30FC5202169BF /* libSAJsonParser.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libSAJsonParser.a; path = libSAJsonParser.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		00C6DCE3DDB30FC5202169BF /* libSAJsonParser.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSAJsonParser.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		00CA79BE22EA9FDB6E4E457E /* MPNativeAdConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPNativeAdConstants.h; path = "MoPubSDK/Native Ads/MPNativeAdConstants.h"; sourceTree = "<group>"; };
 		021A6C78D41571EB48EC4563 /* MPTableViewCellImpressionTracker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPTableViewCellImpressionTracker.h; path = "MoPubSDK/Native Ads/Internal/MPTableViewCellImpressionTracker.h"; sourceTree = "<group>"; };
 		023253DF8AE6255F4C39E120 /* MPReachability.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPReachability.m; path = MoPubSDK/Internal/Utility/MPReachability.m; sourceTree = "<group>"; };
@@ -751,7 +757,7 @@
 		0ACEDCF62595D7018318F01A /* MPIdentityProvider.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPIdentityProvider.h; path = MoPubSDK/Internal/Utility/MPIdentityProvider.h; sourceTree = "<group>"; };
 		0AF2AA307889BD97B731FEF6 /* MPVideoConfig.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPVideoConfig.m; path = MoPubSDK/Internal/Common/MPVideoConfig.m; sourceTree = "<group>"; };
 		0BEBF376D9BB05B57503A102 /* MPNativeAd+Internal.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "MPNativeAd+Internal.m"; path = "MoPubSDK/Native Ads/Internal/MPNativeAd+Internal.m"; sourceTree = "<group>"; };
-		0C0DF74084A499819761A144 /* MPDAAIcon@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; name = "MPDAAIcon@2x.png"; path = "MoPubSDK/Resources/MPDAAIcon@2x.png"; sourceTree = "<group>"; };
+		0C0DF74084A499819761A144 /* MPDAAIcon@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "MPDAAIcon@2x.png"; path = "MoPubSDK/Resources/MPDAAIcon@2x.png"; sourceTree = "<group>"; };
 		0C737D663D8F1F7EB1A573CC /* MPNativeAdUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPNativeAdUtils.m; path = "MoPubSDK/Native Ads/Internal/MPNativeAdUtils.m"; sourceTree = "<group>"; };
 		0C92178FA637F69D44044772 /* SADownloadItem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SADownloadItem.m; path = Pod/Classes/SADownloadItem.m; sourceTree = "<group>"; };
 		0CE82B285262494CCE3FDE00 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
@@ -778,18 +784,25 @@
 		16E61B211BF42F119936A600 /* SAAd.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SAAd.m; path = Pod/Classes/SAAd.m; sourceTree = "<group>"; };
 		171C01DCE5025AE5046463EB /* SADownloadItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SADownloadItem.h; path = Pod/Classes/SADownloadItem.h; sourceTree = "<group>"; };
 		17324BD4AABDE1DC5CD225F4 /* MOPUBActivityIndicatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MOPUBActivityIndicatorView.m; path = MoPubSDK/NativeVideo/Internal/MOPUBActivityIndicatorView.m; sourceTree = "<group>"; };
-		173EFD4829B45CBAC9FC1E16 /* MPCloseButtonX@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; name = "MPCloseButtonX@3x.png"; path = "MoPubSDK/Resources/MPCloseButtonX@3x.png"; sourceTree = "<group>"; };
-		19360625FC2848FC2031A988 /* MPPlayBtn.png */ = {isa = PBXFileReference; includeInIndex = 1; name = MPPlayBtn.png; path = MoPubSDK/Resources/MPPlayBtn.png; sourceTree = "<group>"; };
+		173EFD4829B45CBAC9FC1E16 /* MPCloseButtonX@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "MPCloseButtonX@3x.png"; path = "MoPubSDK/Resources/MPCloseButtonX@3x.png"; sourceTree = "<group>"; };
+		19360625FC2848FC2031A988 /* MPPlayBtn.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = MPPlayBtn.png; path = MoPubSDK/Resources/MPPlayBtn.png; sourceTree = "<group>"; };
 		19A9FDC7C9791D6CBFA89199 /* MPTableViewCellImpressionTracker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPTableViewCellImpressionTracker.m; path = "MoPubSDK/Native Ads/Internal/MPTableViewCellImpressionTracker.m"; sourceTree = "<group>"; };
 		19B1F4F1817BE8FAEB808213 /* MPActivityViewControllerHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPActivityViewControllerHelper.h; path = MoPubSDK/Internal/Common/MPActivityViewControllerHelper.h; sourceTree = "<group>"; };
 		19CACA61BAE8A71E62414361 /* MPClientAdPositioning.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPClientAdPositioning.h; path = "MoPubSDK/Native Ads/MPClientAdPositioning.h"; sourceTree = "<group>"; };
-		19D6A58DE87CB8A3503AC2EB /* libSAVideoPlayer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libSAVideoPlayer.a; path = libSAVideoPlayer.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		19D6A58DE87CB8A3503AC2EB /* libSAVideoPlayer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSAVideoPlayer.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BB87400DAD02765B07073B2 /* MPAPIEndpoints.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPAPIEndpoints.h; path = MoPubSDK/Internal/Common/MPAPIEndpoints.h; sourceTree = "<group>"; };
+		1BE2806E1E1EA5AB00B9711A /* SAUnityCallback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAUnityCallback.m; sourceTree = "<group>"; };
+		1BE2806F1E1EA5AB00B9711A /* SAUnityCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAUnityCallback.h; sourceTree = "<group>"; };
+		1BE280721E1EA72F00B9711A /* SAUnityBannerAd.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SAUnityBannerAd.mm; sourceTree = "<group>"; };
+		1BE280741E1EAC7C00B9711A /* SAUnityCPI.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SAUnityCPI.mm; sourceTree = "<group>"; };
+		1BE280761E1EACAD00B9711A /* SAUnityInterstitialAd.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SAUnityInterstitialAd.mm; sourceTree = "<group>"; };
+		1BE280791E1EACBD00B9711A /* SAUnityVideoAd.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SAUnityVideoAd.mm; sourceTree = "<group>"; };
+		1BE2807B1E1EACC900B9711A /* SAUnityAppWall.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SAUnityAppWall.mm; sourceTree = "<group>"; };
 		1C5A09BB9E6D05D8D9626854 /* SUPMoatBootstrap.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SUPMoatBootstrap.h; path = Pod/Plugin/Moat/SUPMoatBootstrap.h; sourceTree = "<group>"; };
 		1CBFAA509EEBE5FED85C9238 /* SAAIRBannerAd.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAAIRBannerAd.h; sourceTree = "<group>"; };
 		1D19B95965F354D6B8D8785C /* MPNetworkManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPNetworkManager.h; path = "MoPubSDK/Internal/Event Logging/MPNetworkManager.h"; sourceTree = "<group>"; };
 		1D525BC8015D5BA0AF571526 /* MPVASTStringUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPVASTStringUtilities.h; path = MoPubSDK/Internal/VAST/MPVASTStringUtilities.h; sourceTree = "<group>"; };
-		1DA70AFB766A28CCE9C7B96B /* MPMutedBtn@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; name = "MPMutedBtn@2x.png"; path = "MoPubSDK/Resources/MPMutedBtn@2x.png"; sourceTree = "<group>"; };
+		1DA70AFB766A28CCE9C7B96B /* MPMutedBtn@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "MPMutedBtn@2x.png"; path = "MoPubSDK/Resources/MPMutedBtn@2x.png"; sourceTree = "<group>"; };
 		1DFBBA4EDF9350FC84BB25E6 /* MPAdServerURLBuilder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPAdServerURLBuilder.m; path = MoPubSDK/Internal/Common/MPAdServerURLBuilder.m; sourceTree = "<group>"; };
 		1E2581B4391DCFB613DB5507 /* MPRetryingHTTPOperation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPRetryingHTTPOperation.m; path = "MoPubSDK/Internal/Event Logging/MPRetryingHTTPOperation.m"; sourceTree = "<group>"; };
 		1E3BFB27C51F0F7BA35C1975 /* MPVASTCreative.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPVASTCreative.h; path = MoPubSDK/Internal/VAST/MPVASTCreative.h; sourceTree = "<group>"; };
@@ -818,7 +831,7 @@
 		2A50C5C3B91C87EC91168E9B /* MPInterstitialAdManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPInterstitialAdManager.m; path = MoPubSDK/Internal/Interstitials/MPInterstitialAdManager.m; sourceTree = "<group>"; };
 		2BFAD1368D8D56B759BD9E4B /* MPError.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPError.m; path = MoPubSDK/Internal/Utility/MPError.m; sourceTree = "<group>"; };
 		2CFD6052D48FE88754DAECF3 /* SAHTMLParser.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SAHTMLParser.m; path = Pod/Classes/SAHTMLParser.m; sourceTree = "<group>"; };
-		2D2326590231FE12C94D4729 /* MPDAAIcon.png */ = {isa = PBXFileReference; includeInIndex = 1; name = MPDAAIcon.png; path = MoPubSDK/Resources/MPDAAIcon.png; sourceTree = "<group>"; };
+		2D2326590231FE12C94D4729 /* MPDAAIcon.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = MPDAAIcon.png; path = MoPubSDK/Resources/MPDAAIcon.png; sourceTree = "<group>"; };
 		2E744FCC7A073B8226153F53 /* MPStreamAdPlacementData.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPStreamAdPlacementData.m; path = "MoPubSDK/Native Ads/MPStreamAdPlacementData.m"; sourceTree = "<group>"; };
 		2EB16A22103585BEA367B282 /* Pods-SuperAwesome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SuperAwesome.release.xcconfig"; sourceTree = "<group>"; };
 		2EDF9EEFEFD3D60AAD624951 /* MPAdServerURLBuilder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPAdServerURLBuilder.h; path = MoPubSDK/Internal/Common/MPAdServerURLBuilder.h; sourceTree = "<group>"; };
@@ -869,14 +882,14 @@
 		41469B7B98FC5B668C03CC03 /* MPRewardedVideoAdapter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPRewardedVideoAdapter.h; path = MoPubSDK/RewardedVideo/Internal/MPRewardedVideoAdapter.h; sourceTree = "<group>"; };
 		42B525DECB85BA6033E636C2 /* MPEnhancedDeeplinkRequest.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPEnhancedDeeplinkRequest.h; path = MoPubSDK/Internal/Common/MPEnhancedDeeplinkRequest.h; sourceTree = "<group>"; };
 		42E6F63227A86C4CE5FE3263 /* MOPUBPlayerManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MOPUBPlayerManager.h; path = MoPubSDK/NativeVideo/Internal/MOPUBPlayerManager.h; sourceTree = "<group>"; };
-		43BF341DDFA5603344E125DF /* MPMutedBtn.png */ = {isa = PBXFileReference; includeInIndex = 1; name = MPMutedBtn.png; path = MoPubSDK/Resources/MPMutedBtn.png; sourceTree = "<group>"; };
+		43BF341DDFA5603344E125DF /* MPMutedBtn.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = MPMutedBtn.png; path = MoPubSDK/Resources/MPMutedBtn.png; sourceTree = "<group>"; };
 		43C1A310722755360C7ADF56 /* SuperAwesomeBannerCustomEvent.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SuperAwesomeBannerCustomEvent.m; sourceTree = "<group>"; };
 		44F6EE8A4774CB40BEC6050F /* MOPUBNativeVideoAdRenderer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MOPUBNativeVideoAdRenderer.h; path = MoPubSDK/NativeVideo/MOPUBNativeVideoAdRenderer.h; sourceTree = "<group>"; };
 		44F71A8DD1848B4EBE094BC1 /* SAParentalGate.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAParentalGate.m; sourceTree = "<group>"; };
 		451AE15728FEA3FE583010A8 /* SAMedia.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SAMedia.m; path = Pod/Classes/SAMedia.m; sourceTree = "<group>"; };
 		463A8F12FBB46849F0060124 /* MPNativeAdRequest+MPNativeAdSource.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "MPNativeAdRequest+MPNativeAdSource.h"; path = "MoPubSDK/Native Ads/Internal/Categories/MPNativeAdRequest+MPNativeAdSource.h"; sourceTree = "<group>"; };
 		4643863CBC8C334931408DFF /* MPNativeAdRendererSettings.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPNativeAdRendererSettings.h; path = "MoPubSDK/Native Ads/MPNativeAdRendererSettings.h"; sourceTree = "<group>"; };
-		46D2529DBED78E5F900D5843 /* MPCloseBtn@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; name = "MPCloseBtn@3x.png"; path = "MoPubSDK/Resources/MPCloseBtn@3x.png"; sourceTree = "<group>"; };
+		46D2529DBED78E5F900D5843 /* MPCloseBtn@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "MPCloseBtn@3x.png"; path = "MoPubSDK/Resources/MPCloseBtn@3x.png"; sourceTree = "<group>"; };
 		477449F9575535A9E4116665 /* NSString+HTML.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+HTML.h"; path = "Pod/Classes/NSString+HTML.h"; sourceTree = "<group>"; };
 		47EA5C7D1EA6B64286C5CAC6 /* SATracking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SATracking.h; path = Pod/Classes/SATracking.h; sourceTree = "<group>"; };
 		4855DBBFDAF77F61C578C178 /* MPTimer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPTimer.h; path = MoPubSDK/Internal/Utility/MPTimer.h; sourceTree = "<group>"; };
@@ -884,7 +897,7 @@
 		48CEBCD1455FB44007D81114 /* MPAdBrowserController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPAdBrowserController.m; path = MoPubSDK/Internal/Common/MPAdBrowserController.m; sourceTree = "<group>"; };
 		4967C63DC4F0EF96D5C02D16 /* MRCommand.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MRCommand.h; path = MoPubSDK/Internal/MRAID/MRCommand.h; sourceTree = "<group>"; };
 		49C3362DA34FEFF60D898F03 /* MPBannerAdManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPBannerAdManager.h; path = MoPubSDK/Internal/Banners/MPBannerAdManager.h; sourceTree = "<group>"; };
-		4A22A61122C5587DC4D780AD /* libSAAdLoader.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libSAAdLoader.a; path = libSAAdLoader.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A22A61122C5587DC4D780AD /* libSAAdLoader.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSAAdLoader.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A808D8D3DCF8F3EA5FE2B50 /* MPGeolocationProvider.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPGeolocationProvider.h; path = MoPubSDK/Internal/Utility/MPGeolocationProvider.h; sourceTree = "<group>"; };
 		4B6A10C8AB94A67E4FAD6F73 /* MPNativeAdSourceQueue.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPNativeAdSourceQueue.h; path = "MoPubSDK/Native Ads/Internal/MPNativeAdSourceQueue.h"; sourceTree = "<group>"; };
 		4B9F072FA6B222D3D8AFA01B /* libSUPMoatMobileAppKit.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libSUPMoatMobileAppKit.a; path = Pod/Libraries/libSUPMoatMobileAppKit.a; sourceTree = "<group>"; };
@@ -902,7 +915,7 @@
 		51C35A87A3F8F584CD0B3EEF /* MOPUBNativeVideoAdConfigValues.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MOPUBNativeVideoAdConfigValues.m; path = MoPubSDK/NativeVideo/Internal/MOPUBNativeVideoAdConfigValues.m; sourceTree = "<group>"; };
 		521E37913A897757551D4D75 /* MPIdentityProvider.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPIdentityProvider.m; path = MoPubSDK/Internal/Utility/MPIdentityProvider.m; sourceTree = "<group>"; };
 		52C497D9E4461CAAC5F44B91 /* SAModelSpace-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SAModelSpace-dummy.m"; sourceTree = "<group>"; };
-		5381E3ABC53833FDA5C67AEC /* libmopub-ios-sdk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libmopub-ios-sdk.a"; path = "libmopub-ios-sdk.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5381E3ABC53833FDA5C67AEC /* libmopub-ios-sdk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libmopub-ios-sdk.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		53AFA81B5DE3FDB3FF0BAEE4 /* mopub-ios-sdk-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "mopub-ios-sdk-prefix.pch"; sourceTree = "<group>"; };
 		53C8BB0878DC53F197DA4CC8 /* MPMoPubNativeAdAdapter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPMoPubNativeAdAdapter.m; path = "MoPubSDK/Native Ads/Internal/MPMoPubNativeAdAdapter.m"; sourceTree = "<group>"; };
 		5725BB7709D1105E1DD2AAB7 /* MPMoPubNativeCustomEvent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPMoPubNativeCustomEvent.h; path = "MoPubSDK/Native Ads/Internal/MPMoPubNativeCustomEvent.h"; sourceTree = "<group>"; };
@@ -916,7 +929,7 @@
 		5BBF1D9F934FB73D5C41EC61 /* MPGlobal.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPGlobal.m; path = MoPubSDK/Internal/Utility/MPGlobal.m; sourceTree = "<group>"; };
 		5CCD8E0540C57E2E2E4B78E6 /* MPNativeAdUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPNativeAdUtils.h; path = "MoPubSDK/Native Ads/Internal/MPNativeAdUtils.h"; sourceTree = "<group>"; };
 		5D1735E79DBC4C0F1693F18F /* MPVASTIndustryIcon.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPVASTIndustryIcon.h; path = MoPubSDK/Internal/VAST/MPVASTIndustryIcon.h; sourceTree = "<group>"; };
-		5D7BB8F6F0407CC92266E67A /* libSAModelSpace.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libSAModelSpace.a; path = libSAModelSpace.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D7BB8F6F0407CC92266E67A /* libSAModelSpace.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSAModelSpace.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D9D68933A37D9196FBD9030 /* MPBannerCustomEventDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPBannerCustomEventDelegate.h; path = MoPubSDK/MPBannerCustomEventDelegate.h; sourceTree = "<group>"; };
 		5DB6F601390FAD9D8CD9F5AE /* MPNativeAdRendererConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPNativeAdRendererConstants.h; path = "MoPubSDK/Native Ads/Internal/MPNativeAdRendererConstants.h"; sourceTree = "<group>"; };
 		5E26A01F45AAFD4DE49A0F32 /* MPLogEventRecorder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPLogEventRecorder.h; path = "MoPubSDK/Internal/Event Logging/MPLogEventRecorder.h"; sourceTree = "<group>"; };
@@ -947,7 +960,7 @@
 		6CC0F11729B5F4FBEA7CDBEF /* MPVASTTracking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPVASTTracking.m; path = MoPubSDK/Internal/MPVASTTracking.m; sourceTree = "<group>"; };
 		6D31EE15922162A11552A344 /* MPNativeAdDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPNativeAdDelegate.h; path = "MoPubSDK/Native Ads/MPNativeAdDelegate.h"; sourceTree = "<group>"; };
 		6E0FF40BA1256A720F6E4541 /* MPVASTTrackingEvent.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPVASTTrackingEvent.m; path = MoPubSDK/Internal/VAST/MPVASTTrackingEvent.m; sourceTree = "<group>"; };
-		6E72CD855B859DF6A4DA1659 /* MPUnmutedBtn.png */ = {isa = PBXFileReference; includeInIndex = 1; name = MPUnmutedBtn.png; path = MoPubSDK/Resources/MPUnmutedBtn.png; sourceTree = "<group>"; };
+		6E72CD855B859DF6A4DA1659 /* MPUnmutedBtn.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = MPUnmutedBtn.png; path = MoPubSDK/Resources/MPUnmutedBtn.png; sourceTree = "<group>"; };
 		6E9EAA3F2CD7B1A7DDB54A91 /* SAAd.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SAAd.h; path = Pod/Classes/SAAd.h; sourceTree = "<group>"; };
 		6EB7D5BA2B28D75249A847C7 /* SAJsonParser.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SAJsonParser.xcconfig; sourceTree = "<group>"; };
 		6FACADB03914A8310B6AC411 /* SuperAwesomeInterstitialCustomEvent.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SuperAwesomeInterstitialCustomEvent.m; sourceTree = "<group>"; };
@@ -984,7 +997,7 @@
 		78A9E4F6D0346EC4BC260B8D /* MPInterstitialAdManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPInterstitialAdManager.h; path = MoPubSDK/Internal/Interstitials/MPInterstitialAdManager.h; sourceTree = "<group>"; };
 		78D5B5A189E3597AE87EEF83 /* SAAIRAppWall.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAAIRAppWall.h; sourceTree = "<group>"; };
 		79062C91FF7552BD1610C90B /* MPAdConfiguration.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPAdConfiguration.m; path = MoPubSDK/Internal/Common/MPAdConfiguration.m; sourceTree = "<group>"; };
-		7941301FF00CDDFFC54AD541 /* libSuperAwesome.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libSuperAwesome.a; path = libSuperAwesome.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		7941301FF00CDDFFC54AD541 /* libSuperAwesome.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSuperAwesome.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		799B815F56EBF298705EA47F /* MRController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MRController.h; path = MoPubSDK/Internal/MRAID/MRController.h; sourceTree = "<group>"; };
 		79CDD08E25ACBF9B2DC57477 /* MPTableViewAdPlacerCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPTableViewAdPlacerCell.h; path = "MoPubSDK/Native Ads/Internal/MPTableViewAdPlacerCell.h"; sourceTree = "<group>"; };
 		79D4EB27CB9B901268036212 /* MPNativeCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPNativeCache.m; path = "MoPubSDK/Native Ads/Internal/MPNativeCache.m"; sourceTree = "<group>"; };
@@ -993,7 +1006,7 @@
 		7CDC75E02FD1623FC11F3C7D /* MPLogEvent.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPLogEvent.m; path = "MoPubSDK/Internal/Event Logging/MPLogEvent.m"; sourceTree = "<group>"; };
 		7D107E803F6B5790A2CA7E6D /* MPStaticNativeAdRendererSettings.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPStaticNativeAdRendererSettings.m; path = "MoPubSDK/Native Ads/MPStaticNativeAdRendererSettings.m"; sourceTree = "<group>"; };
 		7D93C5F1D05AA394A42E2240 /* MPStoreKitProvider.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPStoreKitProvider.m; path = MoPubSDK/Internal/Utility/MPStoreKitProvider.m; sourceTree = "<group>"; };
-		7DE49D14E20F82ADF909A114 /* MPCloseButtonX.png */ = {isa = PBXFileReference; includeInIndex = 1; name = MPCloseButtonX.png; path = MoPubSDK/Resources/MPCloseButtonX.png; sourceTree = "<group>"; };
+		7DE49D14E20F82ADF909A114 /* MPCloseButtonX.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = MPCloseButtonX.png; path = MoPubSDK/Resources/MPCloseButtonX.png; sourceTree = "<group>"; };
 		7E07E5B8E706B883A2E4F12B /* SAAIRCPI.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAAIRCPI.m; sourceTree = "<group>"; };
 		7E565A6DBEFEEE72FD5A52F9 /* MPNetworkManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPNetworkManager.m; path = "MoPubSDK/Internal/Event Logging/MPNetworkManager.m"; sourceTree = "<group>"; };
 		7EE2ED5C13612D2F45284B19 /* MPStaticNativeAdRenderer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPStaticNativeAdRenderer.m; path = "MoPubSDK/Native Ads/MPStaticNativeAdRenderer.m"; sourceTree = "<group>"; };
@@ -1011,7 +1024,7 @@
 		857A5B6F893FF810CB331E07 /* FlashRuntimeExtensions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = FlashRuntimeExtensions.h; sourceTree = "<group>"; };
 		85A0AA640AAC916EA81A8EBF /* MRBridge.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MRBridge.h; path = MoPubSDK/Internal/MRAID/MRBridge.h; sourceTree = "<group>"; };
 		863AEBDE0FF3F129C7C17D6D /* SAXMLParser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SAXMLParser.h; path = Pod/Classes/SAXMLParser.h; sourceTree = "<group>"; };
-		86E4BD109D011B946CC32872 /* libPods-SuperAwesome.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-SuperAwesome.a"; path = "libPods-SuperAwesome.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		86E4BD109D011B946CC32872 /* libPods-SuperAwesome.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SuperAwesome.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		87B42D809DE8416492623952 /* SACreative.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SACreative.h; path = Pod/Classes/SACreative.h; sourceTree = "<group>"; };
 		882E0E70F20686B24DE44CBA /* MPStoreKitProvider.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPStoreKitProvider.h; path = MoPubSDK/Internal/Utility/MPStoreKitProvider.h; sourceTree = "<group>"; };
 		8875497920FFBC603A09C2C3 /* MPInterstitialViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPInterstitialViewController.h; path = MoPubSDK/Internal/Interstitials/MPInterstitialViewController.h; sourceTree = "<group>"; };
@@ -1021,7 +1034,7 @@
 		8A7E80F735F34C52CCD3304B /* MPCoreInstanceProvider.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPCoreInstanceProvider.m; path = MoPubSDK/Internal/MPCoreInstanceProvider.m; sourceTree = "<group>"; };
 		8B036D8BF90B47D69BD402FC /* MPHTMLInterstitialViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPHTMLInterstitialViewController.m; path = MoPubSDK/Internal/HTML/MPHTMLInterstitialViewController.m; sourceTree = "<group>"; };
 		8B78F48F9F5EF5997AAD72BE /* SAAppWallParser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SAAppWallParser.h; path = Pod/Classes/SAAppWallParser.h; sourceTree = "<group>"; };
-		8B99DC04DDB9C99B28670A4B /* MPCloseBtn.png */ = {isa = PBXFileReference; includeInIndex = 1; name = MPCloseBtn.png; path = MoPubSDK/Resources/MPCloseBtn.png; sourceTree = "<group>"; };
+		8B99DC04DDB9C99B28670A4B /* MPCloseBtn.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = MPCloseBtn.png; path = MoPubSDK/Resources/MPCloseBtn.png; sourceTree = "<group>"; };
 		8DAAAE739FA33044B6E4A759 /* MPNativeAdRendererConfiguration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPNativeAdRendererConfiguration.h; path = "MoPubSDK/Native Ads/MPNativeAdRendererConfiguration.h"; sourceTree = "<group>"; };
 		8E7E77393F2FD89094CA6464 /* MPBaseInterstitialAdapter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPBaseInterstitialAdapter.m; path = MoPubSDK/Internal/Interstitials/MPBaseInterstitialAdapter.m; sourceTree = "<group>"; };
 		90F0FB833799B6472B3CE276 /* MOPUBNativeVideoCustomEvent.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MOPUBNativeVideoCustomEvent.m; path = MoPubSDK/NativeVideo/Internal/MOPUBNativeVideoCustomEvent.m; sourceTree = "<group>"; };
@@ -1031,14 +1044,14 @@
 		91A480BC29C25A1CCB7952E0 /* MPPrivateBannerCustomEventDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPPrivateBannerCustomEventDelegate.h; path = MoPubSDK/Internal/Banners/MPPrivateBannerCustomEventDelegate.h; sourceTree = "<group>"; };
 		91CD358A7EBE06CC7F757733 /* MOPUBAVPlayer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MOPUBAVPlayer.m; path = MoPubSDK/NativeVideo/Internal/MOPUBAVPlayer.m; sourceTree = "<group>"; };
 		92B2FC1753804C66D663CC45 /* MPNativePositionResponseDeserializer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPNativePositionResponseDeserializer.h; path = "MoPubSDK/Native Ads/Internal/MPNativePositionResponseDeserializer.h"; sourceTree = "<group>"; };
-		92BB6BF012767AB9927EF9B5 /* MPCloseBtn@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; name = "MPCloseBtn@2x.png"; path = "MoPubSDK/Resources/MPCloseBtn@2x.png"; sourceTree = "<group>"; };
+		92BB6BF012767AB9927EF9B5 /* MPCloseBtn@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "MPCloseBtn@2x.png"; path = "MoPubSDK/Resources/MPCloseBtn@2x.png"; sourceTree = "<group>"; };
 		92E2514707A87EB35C4C8F5F /* MPStaticNativeAdImpressionTimer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPStaticNativeAdImpressionTimer.m; path = "MoPubSDK/Native Ads/Internal/MPStaticNativeAdImpressionTimer.m"; sourceTree = "<group>"; };
 		936D034F44F1C604D9546D28 /* SAExtensions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SAExtensions.m; path = Pod/Classes/SAExtensions.m; sourceTree = "<group>"; };
 		94E3479CC92A504E39EFC7C9 /* MPHTMLBannerCustomEvent.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPHTMLBannerCustomEvent.m; path = MoPubSDK/Internal/HTML/MPHTMLBannerCustomEvent.m; sourceTree = "<group>"; };
 		955F7C6B2CDC252C61F920B6 /* MPVASTResponse.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPVASTResponse.m; path = MoPubSDK/Internal/VAST/MPVASTResponse.m; sourceTree = "<group>"; };
 		9581126F0E88ACCC05BA6F20 /* SAEvents-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SAEvents-dummy.m"; sourceTree = "<group>"; };
-		95FEF10F1E58C9B52FFFF465 /* libSAUtils.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libSAUtils.a; path = libSAUtils.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		9635B9812254F9D0ED3E2993 /* MPDAAIcon@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; name = "MPDAAIcon@3x.png"; path = "MoPubSDK/Resources/MPDAAIcon@3x.png"; sourceTree = "<group>"; };
+		95FEF10F1E58C9B52FFFF465 /* libSAUtils.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSAUtils.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9635B9812254F9D0ED3E2993 /* MPDAAIcon@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "MPDAAIcon@3x.png"; path = "MoPubSDK/Resources/MPDAAIcon@3x.png"; sourceTree = "<group>"; };
 		96B7822CE1353A87A8BB80D9 /* MPNativeAdSourceQueue.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPNativeAdSourceQueue.m; path = "MoPubSDK/Native Ads/Internal/MPNativeAdSourceQueue.m"; sourceTree = "<group>"; };
 		972E4B6EE588DB6331185BA4 /* MRVideoPlayerManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MRVideoPlayerManager.h; path = MoPubSDK/Internal/MRAID/MRVideoPlayerManager.h; sourceTree = "<group>"; };
 		979A450000BE90D054CBC794 /* MPUserInteractionGestureRecognizer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPUserInteractionGestureRecognizer.h; path = MoPubSDK/Internal/Utility/MPUserInteractionGestureRecognizer.h; sourceTree = "<group>"; };
@@ -1055,7 +1068,7 @@
 		9F4439998A0020DF26C42B54 /* MPRewardedVideo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPRewardedVideo.h; path = MoPubSDK/RewardedVideo/MPRewardedVideo.h; sourceTree = "<group>"; };
 		9F7F90602A6B1E1E15DD17B1 /* SAUtils-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SAUtils-prefix.pch"; sourceTree = "<group>"; };
 		9FC3A51A1BB33EB64F23C6B2 /* MPNativeAdSource.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPNativeAdSource.h; path = "MoPubSDK/Native Ads/MPNativeAdSource.h"; sourceTree = "<group>"; };
-		A0569D9CCDD62ADF0CA3FDAB /* MPMutedBtn@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; name = "MPMutedBtn@3x.png"; path = "MoPubSDK/Resources/MPMutedBtn@3x.png"; sourceTree = "<group>"; };
+		A0569D9CCDD62ADF0CA3FDAB /* MPMutedBtn@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "MPMutedBtn@3x.png"; path = "MoPubSDK/Resources/MPMutedBtn@3x.png"; sourceTree = "<group>"; };
 		A07F5669EF679AA825AC5E43 /* SUPMoatMobileAppKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SUPMoatMobileAppKit.h; path = Pod/Plugin/Moat/SUPMoatMobileAppKit.h; sourceTree = "<group>"; };
 		A1CF21F0D662F3A4B10E1CD3 /* MRAID.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = MRAID.bundle; path = MoPubSDK/Resources/MRAID.bundle; sourceTree = "<group>"; };
 		A2A70324B4F530309077F8A9 /* SAActivityView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SAActivityView.h; path = Pod/Classes/SAActivityView.h; sourceTree = "<group>"; };
@@ -1088,14 +1101,14 @@
 		B39ED6EBDAEFAB942BDB6457 /* SUPMoatTracker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SUPMoatTracker.h; path = Pod/Plugin/Moat/SUPMoatTracker.h; sourceTree = "<group>"; };
 		B422AAFB4A8DB88967DEC92F /* SAHTMLParser.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SAHTMLParser.h; path = Pod/Classes/SAHTMLParser.h; sourceTree = "<group>"; };
 		B4AF40B2A5842ED18BC03C53 /* MPVASTStringUtilities.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPVASTStringUtilities.m; path = MoPubSDK/Internal/VAST/MPVASTStringUtilities.m; sourceTree = "<group>"; };
-		B50887D5669B6C3D126BC3BB /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		B50887D5669B6C3D126BC3BB /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		B51E65F449465649493FC375 /* Pods-SuperAwesome-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SuperAwesome-resources.sh"; sourceTree = "<group>"; };
 		B53158F210827617DA83587C /* MPBannerAdManagerDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPBannerAdManagerDelegate.h; path = MoPubSDK/Internal/Banners/MPBannerAdManagerDelegate.h; sourceTree = "<group>"; };
 		B5D95BA611285C0C0C456103 /* MPRetryingHTTPOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPRetryingHTTPOperation.h; path = "MoPubSDK/Internal/Event Logging/MPRetryingHTTPOperation.h"; sourceTree = "<group>"; };
 		B766A5A1AA5741781578B0E6 /* MPLogging.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPLogging.h; path = MoPubSDK/Internal/Utility/MPLogging.h; sourceTree = "<group>"; };
 		B7E09578D95CD799B9622C4C /* MPGeolocationProvider.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPGeolocationProvider.m; path = MoPubSDK/Internal/Utility/MPGeolocationProvider.m; sourceTree = "<group>"; };
 		B840A21D5760A6060FBA8AF8 /* MRExpandModalViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MRExpandModalViewController.h; path = MoPubSDK/Internal/MRAID/MRExpandModalViewController.h; sourceTree = "<group>"; };
-		B884C273655D531F901B8ABF /* libSANetworking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libSANetworking.a; path = libSANetworking.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B884C273655D531F901B8ABF /* libSANetworking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSANetworking.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA419ABBF593817F541AFB3A /* MPAnalyticsTracker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPAnalyticsTracker.h; path = MoPubSDK/Internal/Utility/MPAnalyticsTracker.h; sourceTree = "<group>"; };
 		BB28DC231A1C6DE546E02D98 /* SAModelSpace.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SAModelSpace.xcconfig; sourceTree = "<group>"; };
 		BB533268B45394837C2BCF75 /* UIButton+MPAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIButton+MPAdditions.h"; path = "MoPubSDK/Internal/Utility/Categories/UIButton+MPAdditions.h"; sourceTree = "<group>"; };
@@ -1108,7 +1121,7 @@
 		BD429EBAC700C95117F7B825 /* MRError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MRError.h; path = MoPubSDK/Internal/MRAID/MRError.h; sourceTree = "<group>"; };
 		BDE3DAF0D6CE2C1507E78FED /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/MediaPlayer.framework; sourceTree = DEVELOPER_DIR; };
 		BE502E60323121428087D7A2 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/CoreMedia.framework; sourceTree = DEVELOPER_DIR; };
-		BE636992742D39CC5BF3C22F /* libSAEvents.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libSAEvents.a; path = libSAEvents.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE636992742D39CC5BF3C22F /* libSAEvents.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSAEvents.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE78B873FE35DA0AD0E9647A /* MPInterstitialAdController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPInterstitialAdController.m; path = MoPubSDK/MPInterstitialAdController.m; sourceTree = "<group>"; };
 		BE8496A8F0D2ED265F0B2F7D /* MPEnhancedDeeplinkRequest.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPEnhancedDeeplinkRequest.m; path = MoPubSDK/Internal/Common/MPEnhancedDeeplinkRequest.m; sourceTree = "<group>"; };
 		BEA523012DED976B878C86FC /* SAAIRInterstitialAd.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAAIRInterstitialAd.h; sourceTree = "<group>"; };
@@ -1150,7 +1163,6 @@
 		CBF1085D0022AE9CAAED583C /* MPAdBrowserController.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = MPAdBrowserController.xib; path = MoPubSDK/Internal/Common/MPAdBrowserController.xib; sourceTree = "<group>"; };
 		CC2CCA69B2C482DDCE0BBD70 /* SALoader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SALoader.m; path = Pod/Classes/SALoader.m; sourceTree = "<group>"; };
 		CC75821F8CA26471685FCFD0 /* MPRewardedVideoConnection.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPRewardedVideoConnection.m; path = MoPubSDK/RewardedVideo/Internal/MPRewardedVideoConnection.m; sourceTree = "<group>"; };
-		CC83A5F911830F371C9F06B5 /* SAUnity.mm */ = {isa = PBXFileReference; includeInIndex = 1; path = SAUnity.mm; sourceTree = "<group>"; };
 		CCDBBCC9F140BD4F89B98C4B /* UIView+MPAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+MPAdditions.m"; path = "MoPubSDK/Internal/Utility/Categories/UIView+MPAdditions.m"; sourceTree = "<group>"; };
 		CD6DB3C4F468F85BC5E8DFDA /* SASession.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SASession.m; path = Pod/Classes/SASession.m; sourceTree = "<group>"; };
 		CDDF12196D6A4ABD2A16EC0B /* MPLogEvent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPLogEvent.h; path = "MoPubSDK/Internal/Event Logging/MPLogEvent.h"; sourceTree = "<group>"; };
@@ -1174,7 +1186,7 @@
 		D7DC5378E1CEE21C57A2DEBF /* SAAppWall.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SAAppWall.m; sourceTree = "<group>"; };
 		D80000B5F527E6EAAFF32C23 /* MPNativeAdRequest.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPNativeAdRequest.m; path = "MoPubSDK/Native Ads/MPNativeAdRequest.m"; sourceTree = "<group>"; };
 		D84F768725D02D671C876EF3 /* SABaseObject.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SABaseObject.h; path = Pod/Classes/SABaseObject.h; sourceTree = "<group>"; };
-		D85386168D29AFD24DE57AEC /* MPPlayBtn@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; name = "MPPlayBtn@3x.png"; path = "MoPubSDK/Resources/MPPlayBtn@3x.png"; sourceTree = "<group>"; };
+		D85386168D29AFD24DE57AEC /* MPPlayBtn@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "MPPlayBtn@3x.png"; path = "MoPubSDK/Resources/MPPlayBtn@3x.png"; sourceTree = "<group>"; };
 		D888C2512C516363FED8039D /* MPNativePositionResponseDeserializer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPNativePositionResponseDeserializer.m; path = "MoPubSDK/Native Ads/Internal/MPNativePositionResponseDeserializer.m"; sourceTree = "<group>"; };
 		D97278C9307FBCC587EF6496 /* SADetails.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SADetails.m; path = Pod/Classes/SADetails.m; sourceTree = "<group>"; };
 		D9F30298CAA3664BF6E1187A /* MPInterstitialAdController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPInterstitialAdController.h; path = MoPubSDK/MPInterstitialAdController.h; sourceTree = "<group>"; };
@@ -1188,17 +1200,17 @@
 		DD36FCACA56802988F3488CD /* MPServerAdPositioning.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPServerAdPositioning.m; path = "MoPubSDK/Native Ads/MPServerAdPositioning.m"; sourceTree = "<group>"; };
 		DD4DECA88F33E0340A04AB44 /* MOPUBAVPlayer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MOPUBAVPlayer.h; path = MoPubSDK/NativeVideo/Internal/MOPUBAVPlayer.h; sourceTree = "<group>"; };
 		DE1D7FD6469253F15811A474 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
-		DE56CF0600D68C2FBB67E42F /* libSASession.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libSASession.a; path = libSASession.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE56CF0600D68C2FBB67E42F /* libSASession.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSASession.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF1A8DD194640568592F4342 /* SAVideoPlayer-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SAVideoPlayer-dummy.m"; sourceTree = "<group>"; };
 		DF3A8FB556003C34FF97ECC3 /* NSJSONSerialization+MPAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSJSONSerialization+MPAdditions.h"; path = "MoPubSDK/Internal/Utility/Categories/NSJSONSerialization+MPAdditions.h"; sourceTree = "<group>"; };
-		DF5AC47198FF5DE3FB8A350E /* libSAWebPlayer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libSAWebPlayer.a; path = libSAWebPlayer.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF5AC47198FF5DE3FB8A350E /* libSAWebPlayer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSAWebPlayer.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFDD4E94077AE14EFD9D2F60 /* MPLogEvent+NativeVideo.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "MPLogEvent+NativeVideo.m"; path = "MoPubSDK/Internal/Event Logging/MPLogEvent+NativeVideo.m"; sourceTree = "<group>"; };
 		E06DFD0382194132BC92A2F1 /* SAUtils.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SAUtils.xcconfig; sourceTree = "<group>"; };
-		E0DCB393184EE1C6F26950A2 /* MPPlayBtn@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; name = "MPPlayBtn@2x.png"; path = "MoPubSDK/Resources/MPPlayBtn@2x.png"; sourceTree = "<group>"; };
+		E0DCB393184EE1C6F26950A2 /* MPPlayBtn@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "MPPlayBtn@2x.png"; path = "MoPubSDK/Resources/MPPlayBtn@2x.png"; sourceTree = "<group>"; };
 		E0F4A08E9887EB7B2A87F112 /* SAVideoPlayer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SAVideoPlayer.m; path = Pod/Classes/SAVideoPlayer.m; sourceTree = "<group>"; };
 		E13F49D272F83B13C12B760C /* SACronograph.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SACronograph.m; path = Pod/Classes/SACronograph.m; sourceTree = "<group>"; };
 		E1C8C38AA4CE805E6FF7A93E /* SAAIRCallback.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAAIRCallback.h; sourceTree = "<group>"; };
-		E1E6584EBCFC102FDE00D590 /* MPCloseButtonX@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; name = "MPCloseButtonX@2x.png"; path = "MoPubSDK/Resources/MPCloseButtonX@2x.png"; sourceTree = "<group>"; };
+		E1E6584EBCFC102FDE00D590 /* MPCloseButtonX@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "MPCloseButtonX@2x.png"; path = "MoPubSDK/Resources/MPCloseButtonX@2x.png"; sourceTree = "<group>"; };
 		E1EC449993309A22600809AA /* MPDiskLRUCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPDiskLRUCache.h; path = "MoPubSDK/Native Ads/Internal/MPDiskLRUCache.h"; sourceTree = "<group>"; };
 		E1F98B78D3264BBBC9616A67 /* MPActivityViewControllerHelper+TweetShare.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "MPActivityViewControllerHelper+TweetShare.h"; path = "MoPubSDK/Internal/Common/MPActivityViewControllerHelper+TweetShare.h"; sourceTree = "<group>"; };
 		E2B5956326061C12165D1767 /* NSDictionary+SafeHandling.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+SafeHandling.h"; path = "Pod/Classes/NSDictionary+SafeHandling.h"; sourceTree = "<group>"; };
@@ -1213,7 +1225,7 @@
 		E67820AF8F630DC1F19C4DB6 /* MOPUBPlayerViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MOPUBPlayerViewController.h; path = MoPubSDK/NativeVideo/Internal/MOPUBPlayerViewController.h; sourceTree = "<group>"; };
 		E67EFB48D4FACDC7A544FE55 /* SAEvents-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SAEvents-prefix.pch"; sourceTree = "<group>"; };
 		E70955792F96975610FAD86D /* MPNativePositionSource.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPNativePositionSource.m; path = "MoPubSDK/Native Ads/Internal/MPNativePositionSource.m"; sourceTree = "<group>"; };
-		E731C96B7EC90C4948D7CD52 /* MPUnmutedBtn@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; name = "MPUnmutedBtn@2x.png"; path = "MoPubSDK/Resources/MPUnmutedBtn@2x.png"; sourceTree = "<group>"; };
+		E731C96B7EC90C4948D7CD52 /* MPUnmutedBtn@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "MPUnmutedBtn@2x.png"; path = "MoPubSDK/Resources/MPUnmutedBtn@2x.png"; sourceTree = "<group>"; };
 		E8829A1333D7714FB0E9A589 /* SAModelSpace-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SAModelSpace-prefix.pch"; sourceTree = "<group>"; };
 		E8DB60A4A6A9BBDADE2D4806 /* SuperAwesomeRewardedVideoCustomEvent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SuperAwesomeRewardedVideoCustomEvent.h; sourceTree = "<group>"; };
 		E9461A7E202075FB5CF75F9C /* SAEvents.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SAEvents.h; path = Pod/Classes/SAEvents.h; sourceTree = "<group>"; };
@@ -1245,7 +1257,7 @@
 		F6B60B5CF66F58754BAE4183 /* MPBannerCustomEvent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPBannerCustomEvent.h; path = MoPubSDK/MPBannerCustomEvent.h; sourceTree = "<group>"; };
 		F6B6C83D2A069351C1385F50 /* SAMedia.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SAMedia.h; path = Pod/Classes/SAMedia.h; sourceTree = "<group>"; };
 		F95618883F9866D6B275D9A7 /* MPKeywordProvider.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPKeywordProvider.h; path = MoPubSDK/Internal/Common/MPKeywordProvider.h; sourceTree = "<group>"; };
-		F965D062E3CAE2E092BBB373 /* MPUnmutedBtn@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; name = "MPUnmutedBtn@3x.png"; path = "MoPubSDK/Resources/MPUnmutedBtn@3x.png"; sourceTree = "<group>"; };
+		F965D062E3CAE2E092BBB373 /* MPUnmutedBtn@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "MPUnmutedBtn@3x.png"; path = "MoPubSDK/Resources/MPUnmutedBtn@3x.png"; sourceTree = "<group>"; };
 		F966D9D6B38720C7EB4BA475 /* MPNativeAd.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPNativeAd.m; path = "MoPubSDK/Native Ads/MPNativeAd.m"; sourceTree = "<group>"; };
 		F992DA60A9D06CB47595B461 /* SAResponse.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SAResponse.m; path = Pod/Classes/SAResponse.m; sourceTree = "<group>"; };
 		FA1D10508304DF1AEFBAB75D /* UIWebView+MPAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIWebView+MPAdditions.m"; path = "MoPubSDK/Internal/Utility/Categories/UIWebView+MPAdditions.m"; sourceTree = "<group>"; };
@@ -1386,7 +1398,6 @@
 			children = (
 				17406E32E5193ED30D4ABFD4 /* Classes */,
 			);
-			name = Pod;
 			path = Pod;
 			sourceTree = "<group>";
 		};
@@ -1395,7 +1406,6 @@
 			children = (
 				E6E56F85D2C826871093208E /* Plugin */,
 			);
-			name = Pod;
 			path = Pod;
 			sourceTree = "<group>";
 		};
@@ -1423,7 +1433,6 @@
 				BD90945D33B0AF5F34B4036F /* CPI */,
 				4A68385290C6F95DA4F4F755 /* Views */,
 			);
-			name = Classes;
 			path = Classes;
 			sourceTree = "<group>";
 		};
@@ -1452,7 +1461,6 @@
 				EB159707BA7F8924DB94B993 /* SANetwork.m */,
 				80C2C3B044AD209F49B9CA07 /* Support Files */,
 			);
-			name = SANetworking;
 			path = SANetworking;
 			sourceTree = "<group>";
 		};
@@ -1461,7 +1469,6 @@
 			children = (
 				C242D751BFEE5AC764C4304F /* MoPub */,
 			);
-			name = Plugin;
 			path = Plugin;
 			sourceTree = "<group>";
 		};
@@ -1482,7 +1489,6 @@
 				C6027971A87763D3D2B2F646 /* MoPubSDK */,
 				711F2FFEBAF3390C419D2FEB /* Support Files */,
 			);
-			name = "mopub-ios-sdk";
 			path = "mopub-ios-sdk";
 			sourceTree = "<group>";
 		};
@@ -1525,7 +1531,6 @@
 				FFCDD13299419ED1B26C06C6 /* SAXMLParser.m */,
 				4221709D3AE95258403F9A57 /* Support Files */,
 			);
-			name = SAAdLoader;
 			path = SAAdLoader;
 			sourceTree = "<group>";
 		};
@@ -1536,7 +1541,6 @@
 				9DB143647DB29D703E8B3496 /* SAWebPlayer.m */,
 				2BF4CC4EE64A9A3BF20484AA /* Support Files */,
 			);
-			name = SAWebPlayer;
 			path = SAWebPlayer;
 			sourceTree = "<group>";
 		};
@@ -1588,7 +1592,6 @@
 				C0ADCCF1D36F0638DBB1683E /* SAAIRVideoAd.h */,
 				BCAFD8AE2FCEC2F3AEA04002 /* SAAIRVideoAd.m */,
 			);
-			name = AIR;
 			path = AIR;
 			sourceTree = "<group>";
 		};
@@ -1608,7 +1611,6 @@
 				84AE2EDF92B137417BF80F49 /* SAVideoAd.h */,
 				917A8775D5069D703CD4A49D /* SAVideoAd.m */,
 			);
-			name = Views;
 			path = Views;
 			sourceTree = "<group>";
 		};
@@ -1617,7 +1619,6 @@
 			children = (
 				5AEE53915C35E544CFE8CD18 /* Plugin */,
 			);
-			name = Pod;
 			path = Pod;
 			sourceTree = "<group>";
 		};
@@ -1641,7 +1642,6 @@
 				7F42E4836810424A3E0F4916 /* SAUtils.m */,
 				33FB809E85EDBAFE8651B883 /* Support Files */,
 			);
-			name = SAUtils;
 			path = SAUtils;
 			sourceTree = "<group>";
 		};
@@ -1650,7 +1650,6 @@
 			children = (
 				49C9571E04B30B98F1C8E50F /* AIR */,
 			);
-			name = Plugin;
 			path = Plugin;
 			sourceTree = "<group>";
 		};
@@ -1668,7 +1667,6 @@
 				7494388C69C8C4F74A3F025F /* SAJsonParser.h */,
 				C6063FE1CE6FF24BE9274D1E /* Support Files */,
 			);
-			name = SAJsonParser;
 			path = SAJsonParser;
 			sourceTree = "<group>";
 		};
@@ -1683,9 +1681,14 @@
 		6FFC2AE65F69AE53EE9E50F1 /* Unity */ = {
 			isa = PBXGroup;
 			children = (
-				CC83A5F911830F371C9F06B5 /* SAUnity.mm */,
+				1BE2806F1E1EA5AB00B9711A /* SAUnityCallback.h */,
+				1BE2806E1E1EA5AB00B9711A /* SAUnityCallback.m */,
+				1BE280741E1EAC7C00B9711A /* SAUnityCPI.mm */,
+				1BE280721E1EA72F00B9711A /* SAUnityBannerAd.mm */,
+				1BE280761E1EACAD00B9711A /* SAUnityInterstitialAd.mm */,
+				1BE280791E1EACBD00B9711A /* SAUnityVideoAd.mm */,
+				1BE2807B1E1EACC900B9711A /* SAUnityAppWall.mm */,
 			);
-			name = Unity;
 			path = Unity;
 			sourceTree = "<group>";
 		};
@@ -1736,7 +1739,6 @@
 				CD6DB3C4F468F85BC5E8DFDA /* SASession.m */,
 				D0DAD5445E2C7418E9F34971 /* Support Files */,
 			);
-			name = SASession;
 			path = SASession;
 			sourceTree = "<group>";
 		};
@@ -1757,7 +1759,6 @@
 				61E3A5DF642198A0CD588523 /* SATracking.m */,
 				8DB66A2C4AE0CC189B85EB29 /* Support Files */,
 			);
-			name = SAModelSpace;
 			path = SAModelSpace;
 			sourceTree = "<group>";
 		};
@@ -1779,7 +1780,6 @@
 				D3734D0FF1A46C63D8DADBFC /* Moat */,
 				BDE12AFF560F9D67E4556AE7 /* Support Files */,
 			);
-			name = SAEvents;
 			path = SAEvents;
 			sourceTree = "<group>";
 		};
@@ -1816,7 +1816,6 @@
 				1EEA3A16AC963D60AF62F917 /* SACPI.h */,
 				ECAADB23D8C6E87FC1CDDBDB /* SACPI.m */,
 			);
-			name = CPI;
 			path = CPI;
 			sourceTree = "<group>";
 		};
@@ -1850,7 +1849,6 @@
 				E8DB60A4A6A9BBDADE2D4806 /* SuperAwesomeRewardedVideoCustomEvent.h */,
 				C203E096E6FDEDE8D9158970 /* SuperAwesomeRewardedVideoCustomEvent.m */,
 			);
-			name = MoPub;
 			path = MoPub;
 			sourceTree = "<group>";
 		};
@@ -2234,7 +2232,6 @@
 				E0F4A08E9887EB7B2A87F112 /* SAVideoPlayer.m */,
 				DE6699275FA105BAB78A352B /* Support Files */,
 			);
-			name = SAVideoPlayer;
 			path = SAVideoPlayer;
 			sourceTree = "<group>";
 		};
@@ -2302,7 +2299,6 @@
 			children = (
 				2B9A460FED83BF258E1ACA30 /* Plugin */,
 			);
-			name = Pod;
 			path = Pod;
 			sourceTree = "<group>";
 		};
@@ -2347,7 +2343,6 @@
 			children = (
 				6FFC2AE65F69AE53EE9E50F1 /* Unity */,
 			);
-			name = Plugin;
 			path = Plugin;
 			sourceTree = "<group>";
 		};
@@ -2672,6 +2667,7 @@
 				A65EC01EE66DA81FA3C903BA /* SABannerAd.h in Headers */,
 				F198D5771658ED56D9BB0985 /* SACallback.h in Headers */,
 				82FE77CAF4ABA2B037408E0D /* SACPI.h in Headers */,
+				1BE280711E1EA5AB00B9711A /* SAUnityCallback.h in Headers */,
 				89F921DCAC210ABFAC344C87 /* SAInterstitialAd.h in Headers */,
 				1CA9A743D99DE860B4803CAF /* SAOrientation.h in Headers */,
 				818CA9BAA0388F277C69E0C7 /* SAParentalGate.h in Headers */,
@@ -3031,16 +3027,21 @@
 				B577F8AB23DE4C59BBDBD2CB /* SAAIRAppWall.m in Sources */,
 				1ABA18B6B84378222B1FCBFE /* SAAIRBannerAd.m in Sources */,
 				9557722296F4120FF5AA941B /* SAAIRCallback.m in Sources */,
+				1BE2807C1E1EACC900B9711A /* SAUnityAppWall.mm in Sources */,
 				C4D8236E744104B38F27F513 /* SAAIRCPI.m in Sources */,
 				BB0D016F6616F66A52F45042 /* SAAIRInterstitialAd.m in Sources */,
 				4DD730BADE889912A2E538B3 /* SAAIRVideoAd.m in Sources */,
 				F1D602D77B9A6740AAA3D64A /* SAAppWall.m in Sources */,
+				1BE280701E1EA5AB00B9711A /* SAUnityCallback.m in Sources */,
 				9ABD700BEDCCD95A01A2996A /* SABannerAd.m in Sources */,
+				1BE280751E1EAC7C00B9711A /* SAUnityCPI.mm in Sources */,
 				B74A53C53151B9035903521C /* SACPI.m in Sources */,
 				1ACDAE6DA9C7627B07615DEB /* SAInterstitialAd.m in Sources */,
 				8154A419552533DE7CB9939A /* SAParentalGate.m in Sources */,
-				E91ABB2191BA5080FFF6856E /* SAUnity.mm in Sources */,
+				1BE280771E1EACAD00B9711A /* SAUnityInterstitialAd.mm in Sources */,
 				255FBE785511F5F2965B77AA /* SAVideoAd.m in Sources */,
+				1BE280731E1EA72F00B9711A /* SAUnityBannerAd.mm in Sources */,
+				1BE2807A1E1EACBD00B9711A /* SAUnityVideoAd.mm in Sources */,
 				CA41EAF613F78BA6932AB976 /* SuperAwesome-dummy.m in Sources */,
 				53B22A527B69031054016805 /* SuperAwesome.m in Sources */,
 				6519B2C013EDE59E627C0CB0 /* SuperAwesomeBannerCustomEvent.m in Sources */,
