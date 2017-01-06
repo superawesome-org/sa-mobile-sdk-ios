@@ -71,6 +71,8 @@
 		1BE2807A1E1EACBD00B9711A /* SAUnityVideoAd.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1BE280791E1EACBD00B9711A /* SAUnityVideoAd.mm */; };
 		1BE2807C1E1EACC900B9711A /* SAUnityAppWall.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2807B1E1EACC900B9711A /* SAUnityAppWall.mm */; };
 		1BE2807E1E1F9BA600B9711A /* SAUnityVersion.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2807D1E1F9BA600B9711A /* SAUnityVersion.mm */; };
+		1BE280811E1FA1AE00B9711A /* SAAIRVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2807F1E1FA1AE00B9711A /* SAAIRVersion.m */; };
+		1BE280821E1FA1AE00B9711A /* SAAIRVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BE280801E1FA1AE00B9711A /* SAAIRVersion.h */; };
 		1BEB7A562C646A860F83883A /* MOPUBPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9B045E15C457EA13C9F833 /* MOPUBPlayerView.m */; };
 		1C8E1058484D82F6640229AA /* MPRewardedVideoConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D6C9C99A2FBB9E0B3433BD5 /* MPRewardedVideoConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1CA9A743D99DE860B4803CAF /* SAOrientation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F6814EA80BDA6B20654DD82 /* SAOrientation.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -798,6 +800,8 @@
 		1BE280791E1EACBD00B9711A /* SAUnityVideoAd.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SAUnityVideoAd.mm; sourceTree = "<group>"; };
 		1BE2807B1E1EACC900B9711A /* SAUnityAppWall.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SAUnityAppWall.mm; sourceTree = "<group>"; };
 		1BE2807D1E1F9BA600B9711A /* SAUnityVersion.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SAUnityVersion.mm; sourceTree = "<group>"; };
+		1BE2807F1E1FA1AE00B9711A /* SAAIRVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAAIRVersion.m; sourceTree = "<group>"; };
+		1BE280801E1FA1AE00B9711A /* SAAIRVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAAIRVersion.h; sourceTree = "<group>"; };
 		1C5A09BB9E6D05D8D9626854 /* SUPMoatBootstrap.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SUPMoatBootstrap.h; path = Pod/Plugin/Moat/SUPMoatBootstrap.h; sourceTree = "<group>"; };
 		1CBFAA509EEBE5FED85C9238 /* SAAIRBannerAd.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAAIRBannerAd.h; sourceTree = "<group>"; };
 		1D19B95965F354D6B8D8785C /* MPNetworkManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPNetworkManager.h; path = "MoPubSDK/Internal/Event Logging/MPNetworkManager.h"; sourceTree = "<group>"; };
@@ -1591,6 +1595,8 @@
 				14C6F73E217909D170B4E163 /* SAAIRInterstitialAd.m */,
 				C0ADCCF1D36F0638DBB1683E /* SAAIRVideoAd.h */,
 				BCAFD8AE2FCEC2F3AEA04002 /* SAAIRVideoAd.m */,
+				1BE280801E1FA1AE00B9711A /* SAAIRVersion.h */,
+				1BE2807F1E1FA1AE00B9711A /* SAAIRVersion.m */,
 			);
 			path = AIR;
 			sourceTree = "<group>";
@@ -2666,6 +2672,7 @@
 				18131B1BB5353ED9F4AD6C76 /* SAAppWall.h in Headers */,
 				A65EC01EE66DA81FA3C903BA /* SABannerAd.h in Headers */,
 				F198D5771658ED56D9BB0985 /* SACallback.h in Headers */,
+				1BE280821E1FA1AE00B9711A /* SAAIRVersion.h in Headers */,
 				82FE77CAF4ABA2B037408E0D /* SACPI.h in Headers */,
 				1BE280711E1EA5AB00B9711A /* SAUnityCallback.h in Headers */,
 				89F921DCAC210ABFAC344C87 /* SAInterstitialAd.h in Headers */,
@@ -3042,6 +3049,7 @@
 				255FBE785511F5F2965B77AA /* SAVideoAd.m in Sources */,
 				1BE280731E1EA72F00B9711A /* SAUnityBannerAd.mm in Sources */,
 				1BE2807A1E1EACBD00B9711A /* SAUnityVideoAd.mm in Sources */,
+				1BE280811E1FA1AE00B9711A /* SAAIRVersion.m in Sources */,
 				CA41EAF613F78BA6932AB976 /* SuperAwesome-dummy.m in Sources */,
 				53B22A527B69031054016805 /* SuperAwesome.m in Sources */,
 				6519B2C013EDE59E627C0CB0 /* SuperAwesomeBannerCustomEvent.m in Sources */,
