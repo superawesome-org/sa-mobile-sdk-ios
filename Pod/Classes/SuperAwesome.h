@@ -44,4 +44,8 @@
 - (NSString*) getSdkVersion;
 - (void) handleCPI;
 
+// override methods
+- (void) overrideVersion: (NSString*) version;
+- (void) overrideSdk: (NSString*) sdk;
+
 @end

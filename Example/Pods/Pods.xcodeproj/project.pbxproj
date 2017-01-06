@@ -70,6 +70,7 @@
 		1BE280771E1EACAD00B9711A /* SAUnityInterstitialAd.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1BE280761E1EACAD00B9711A /* SAUnityInterstitialAd.mm */; };
 		1BE2807A1E1EACBD00B9711A /* SAUnityVideoAd.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1BE280791E1EACBD00B9711A /* SAUnityVideoAd.mm */; };
 		1BE2807C1E1EACC900B9711A /* SAUnityAppWall.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2807B1E1EACC900B9711A /* SAUnityAppWall.mm */; };
+		1BE2807E1E1F9BA600B9711A /* SAUnityVersion.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2807D1E1F9BA600B9711A /* SAUnityVersion.mm */; };
 		1BEB7A562C646A860F83883A /* MOPUBPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9B045E15C457EA13C9F833 /* MOPUBPlayerView.m */; };
 		1C8E1058484D82F6640229AA /* MPRewardedVideoConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D6C9C99A2FBB9E0B3433BD5 /* MPRewardedVideoConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1CA9A743D99DE860B4803CAF /* SAOrientation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F6814EA80BDA6B20654DD82 /* SAOrientation.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -796,6 +797,7 @@
 		1BE280761E1EACAD00B9711A /* SAUnityInterstitialAd.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SAUnityInterstitialAd.mm; sourceTree = "<group>"; };
 		1BE280791E1EACBD00B9711A /* SAUnityVideoAd.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SAUnityVideoAd.mm; sourceTree = "<group>"; };
 		1BE2807B1E1EACC900B9711A /* SAUnityAppWall.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SAUnityAppWall.mm; sourceTree = "<group>"; };
+		1BE2807D1E1F9BA600B9711A /* SAUnityVersion.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SAUnityVersion.mm; sourceTree = "<group>"; };
 		1C5A09BB9E6D05D8D9626854 /* SUPMoatBootstrap.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SUPMoatBootstrap.h; path = Pod/Plugin/Moat/SUPMoatBootstrap.h; sourceTree = "<group>"; };
 		1CBFAA509EEBE5FED85C9238 /* SAAIRBannerAd.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SAAIRBannerAd.h; sourceTree = "<group>"; };
 		1D19B95965F354D6B8D8785C /* MPNetworkManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPNetworkManager.h; path = "MoPubSDK/Internal/Event Logging/MPNetworkManager.h"; sourceTree = "<group>"; };
@@ -1681,6 +1683,7 @@
 			children = (
 				1BE2806F1E1EA5AB00B9711A /* SAUnityCallback.h */,
 				1BE280741E1EAC7C00B9711A /* SAUnityCPI.mm */,
+				1BE2807D1E1F9BA600B9711A /* SAUnityVersion.mm */,
 				1BE280721E1EA72F00B9711A /* SAUnityBannerAd.mm */,
 				1BE280761E1EACAD00B9711A /* SAUnityInterstitialAd.mm */,
 				1BE280791E1EACBD00B9711A /* SAUnityVideoAd.mm */,
@@ -3024,6 +3027,7 @@
 				B577F8AB23DE4C59BBDBD2CB /* SAAIRAppWall.m in Sources */,
 				1ABA18B6B84378222B1FCBFE /* SAAIRBannerAd.m in Sources */,
 				9557722296F4120FF5AA941B /* SAAIRCallback.m in Sources */,
+				1BE2807E1E1F9BA600B9711A /* SAUnityVersion.mm in Sources */,
 				1BE2807C1E1EACC900B9711A /* SAUnityAppWall.mm in Sources */,
 				C4D8236E744104B38F27F513 /* SAAIRCPI.m in Sources */,
 				BB0D016F6616F66A52F45042 /* SAAIRInterstitialAd.m in Sources */,

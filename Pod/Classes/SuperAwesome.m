@@ -13,9 +13,10 @@
 
 #import "SACPI.h"
 
-
 @interface SuperAwesome ()
 @property (nonatomic, strong) SACPI *cpi;
+@property (nonatomic, strong) NSString *version;
+@property (nonatomic, strong) NSString *sdk;
 @end
 
 @implementation SuperAwesome
@@ -32,17 +33,19 @@
 - (id) init {
     if (self = [super init]) {
         _cpi = [[SACPI alloc] init];
+        _version = @"5.3.15";
+        _sdk = @"ios";
     }
     
     return self;
 }
 
 - (NSString*) getVersion {
-    return @"5.3.15";
+    return _version;
 }
 
 - (NSString*) getSdk {
-    return @"ios";
+    return _sdk;
 }
 
 - (NSString*) getSdkVersion {
@@ -51,6 +54,14 @@
 
 - (void) handleCPI {
     [_cpi sendCPIEvent];
+}
+
+- (void) overrideVersion: (NSString*) version {
+    _version = version;
+}
+
+- (void) overrideSdk: (NSString*) sdk {
+    _sdk = sdk;
 }
 
 @end
