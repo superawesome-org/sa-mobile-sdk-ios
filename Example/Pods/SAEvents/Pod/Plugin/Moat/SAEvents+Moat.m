@@ -1,12 +1,10 @@
-//
-//  SAEvents+Moat.m
-//  Pods
-//
-//  Created by Gabriel Coman on 01/06/2016.
-//
-//
+/**
+ * @Copyright:   SuperAwesome Trading Limited 2017
+ * @Author:      Gabriel Coman (gabriel.coman@superawesome.tv)
+ */
 
 #import "SAEvents+Moat.h"
+
 #if defined(__has_include)
 #if __has_include("SUPMoatMobileAppKit.h")
     #import "SUPMoatMobileAppKit.h"
@@ -24,18 +22,27 @@
 #endif
 #endif
 
-#define MOAT_SERVER @"https://z.moatads.com"
-#define MOAT_URL @"moatad.js"
-#define MOAT_DISPLAY_PARTNER_CODE @"superawesomeinappdisplay731223424656"
-#define MOAT_VIDEO_PARTNER_CODE @"superawesomeinappvideo467548716573"
+#define MOAT_SERVER                 @"https://z.moatads.com"
+#define MOAT_URL                    @"moatad.js"
+#define MOAT_DISPLAY_PARTNER_CODE   @"superawesomeinappdisplay731223424656"
+#define MOAT_VIDEO_PARTNER_CODE     @"superawesomeinappvideo467548716573"
 
 @implementation SAEvents (Moat)
 
-- (NSString*) sendDisplayMoatEvent:(UIWebView*)webView andAdDictionary:(NSDictionary*)adDict{
+/**
+ * Method that takes a view and some details and starts 
+ * the Moat tracking process
+ *
+ * @param webView the WebView to register the moat event for
+ * @param adDict  ad details (placement id, campaign id, etc)
+ * @return        a string containing the proper Moat javascript code to 
+ *                execute in the web view, or an empty string 
+ *                if there was an error
+ */
+- (NSString*) sendDisplayMoatEvent:(UIWebView*)webView
+                   andAdDictionary:(NSDictionary*)adDict {
     
 #if HAS_MOAT
-    NSLog(@"MOAT Display can be triggered");
-    
     // go ahead
     [SUPMoatBootstrap injectDelegateWrapper:webView];
     
@@ -48,18 +55,33 @@
     [moatQuery appendFormat:@"&moatClientSlicer2=%@", [adDict objectForKey:@"placement"]];
     [moatQuery appendFormat:@"&moatClientSlicer3=%@", [adDict objectForKey:@"publisher"]];
     
-    return [NSString stringWithFormat:@"<script src=\"%@/%@/%@?%@\" type=\"text/javascript\"></script>", MOAT_SERVER, MOAT_DISPLAY_PARTNER_CODE, MOAT_URL, moatQuery];
+    return [NSString stringWithFormat:
+             @"<script src=\"%@/%@/%@?%@\" type=\"text/javascript\"></script>",
+             MOAT_SERVER,
+             MOAT_DISPLAY_PARTNER_CODE,
+             MOAT_URL,
+             moatQuery];
 #else
-    NSLog(@"No moat present!");
     return @"";
 #endif
 }
 
-- (void) sendVideoMoatEvent:(AVPlayer*)player andLayer:(AVPlayerLayer*)layer andView:(UIView*)adView andAdDictionary:(NSDictionary*)adDict {
+/**
+ * Method that registers a new native video tracker and 
+ * starts tracking the video ad
+ *
+ * @param player the AVPlayer instance
+ * @param layer  the AVPlayerLayer intance
+ * @param view   the parent UIView
+ * @param adDict ad data to send
+ * @return       true or false, depending if the tracker is OK
+ */
+- (BOOL) registerVideoMoatEvent:(AVPlayer*)player
+                       andLayer:(AVPlayerLayer*)layer
+                        andView:(UIView*)view
+                andAdDictionary:(NSDictionary*)adDict {
     
 #if HAS_MOAT
-    NSLog(@"MOAT Video can be triggered");
-
     // go ahead
     NSDictionary *moatDictionary = @{
                                      @"level1": [adDict objectForKey:@"advertiser"],
@@ -73,15 +95,23 @@
     
     // go ahead
     SUPMoatVideoTracker *tracker = [SUPMoatVideoTracker trackerWithPartnerCode:MOAT_VIDEO_PARTNER_CODE];
-    [tracker trackVideoAd:moatDictionary
-       usingAVMoviePlayer:player
-                withLayer:layer
-       withContainingView:adView];
-    
-    NSLog(@"[AA :: Info] Sending Video Event to Moat");
+    return [tracker trackVideoAd:moatDictionary
+              usingAVMoviePlayer:player
+                       withLayer:layer
+              withContainingView:view];
 #else
-    NSLog(@"No moat present!");
+    return false;
 #endif
+}
+
+- (BOOL) unregisterVideoMoatEvent {
+    
+#if HAS_MOAT
+    return true;
+#else 
+    return false;
+#endif
+
 }
 
 @end

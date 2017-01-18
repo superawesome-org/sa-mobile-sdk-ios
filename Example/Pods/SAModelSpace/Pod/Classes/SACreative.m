@@ -1,22 +1,20 @@
-//
-//  SACreative.m
-//  Pods
-//
-//  Copyright (c) 2015 SuperAwesome Ltd. All rights reserved.
-//
-//  Created by Gabriel Coman on 28/09/2015.
-//
-//
+/**
+ * @Copyright:   SuperAwesome Trading Limited 2017
+ * @Author:      Gabriel Coman (gabriel.coman@superawesome.tv)
+ */
 
 // import this model's header
 #import "SACreative.h"
-
-// imports
 #import "SATracking.h"
 #import "SADetails.h"
 
 @implementation SACreative
 
+/**
+ * Base init method
+ *
+ * @return a new instance of the object
+ */
 - (id) init {
     if (self = [super init]) {
         [self initDefaults];
@@ -24,6 +22,14 @@
     return self;
 }
 
+/**
+ * Overridden "initWithJsonDictionary" init method from the
+ * SADeserializationProtocol protocol that describes how this model gets
+ * initialised from the fields of a NSDictionary object (create from a
+ * JSON string)
+ *
+ * @return a new instance of the object
+ */
 - (id) initWithJsonDictionary:(NSDictionary *)jsonDictionary {
     if (self = [super initWithJsonDictionary:jsonDictionary]) {
         
@@ -34,8 +40,10 @@
         __id = [jsonDictionary safeIntForKey:@"id" orDefault:__id];
         _name = [jsonDictionary safeStringForKey:@"name" orDefault:_name];
         _cpm = [jsonDictionary safeIntForKey:@"cpm" orDefault:_cpm];
-        _format = [jsonDictionary safeStringForKey:@"format" orDefault:_format];
-        _creativeFormat = [jsonDictionary safeIntForKey:@"creativeFormat" orDefault:_creativeFormat];
+        
+        NSString *format = [jsonDictionary safeStringForKey:@"format" orDefault:nil];
+        _format = getSACreativeFormatFromString(format);
+        
         _customPayload = [jsonDictionary safeStringForKey:@"customPayload" orDefault:_customPayload];
         _live = [jsonDictionary safeBoolForKey:@"live" orDefault:_live];
         _approved = [jsonDictionary safeBoolForKey:@"approved" orDefault:_approved];
@@ -58,14 +66,50 @@
     return self;
 }
 
+/**
+ * Overridden "isValid" method from the SADeserializationProtocol protocol
+ *
+ * @return true or false
+ */
+- (BOOL) isValid {
+    return true;
+}
+
+/**
+ * Overridden "dictionaryRepresentation" method from the
+ * SADeserializationProtocol protocol that describes how this model is
+ * going to get translated to a dictionary
+ *
+ * @return a NSDictionary object representing all the members of this object
+ */
+- (NSDictionary*) dictionaryRepresentation {
+    return @{
+             @"id": @(__id),
+             @"name": nullSafe(_name),
+             @"cpm": @(_cpm),
+             @"format": getStringFromSACreativeFormat(_format),
+             @"customPayload": nullSafe(_customPayload),
+             @"live": @(_live),
+             @"approved": @(_approved),
+             @"click_url": nullSafe(_clickUrl),
+             @"impression_url": nullSafe(_impressionUrl),
+             @"installUrl": nullSafe(_installUrl),
+             @"bundleId": nullSafe(_bundleId),
+             @"events": nullSafe([_events dictionaryRepresentation]),
+             @"details": nullSafe([_details dictionaryRepresentation])
+             };
+}
+
+/**
+ * Method that initializes all the values for the model
+ */
 - (void) initDefaults {
     
     // setup defaults
     __id = 0;
     _name = nil;
     _cpm = 0;
-    _format = nil;
-    _creativeFormat = invalid;
+    _format = SA_Invalid;
     _live = true;
     _approved = true;
     _customPayload = nil;
@@ -77,25 +121,6 @@
     // details & events
     _details = [[SADetails alloc] init];
     _events = [@[] mutableCopy];
-}
-
-- (NSDictionary*) dictionaryRepresentation {
-    return @{
-             @"id": @(__id),
-             @"name": nullSafe(_name),
-             @"cpm": @(_cpm),
-             @"format": nullSafe(_format),
-             @"creativeFormat": @(_creativeFormat),
-             @"customPayload": nullSafe(_customPayload),
-             @"live": @(_live),
-             @"approved": @(_approved),
-             @"click_url": nullSafe(_clickUrl),
-             @"impression_url": nullSafe(_impressionUrl),
-             @"installUrl": nullSafe(_installUrl),
-             @"bundleId": nullSafe(_bundleId),
-             @"events": nullSafe([_events dictionaryRepresentation]),
-             @"details": nullSafe([_details dictionaryRepresentation])
-             };
 }
 
 @end

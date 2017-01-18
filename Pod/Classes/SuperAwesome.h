@@ -20,6 +20,10 @@
 #import "SACallback.h"
 #import "SAOrientation.h"
 
+// import SACPI
+#import "SACPI.h"
+
+
 // define constants to lock the default / initial state
 #define SA_DEFAULT_PLACEMENTID 0
 #define SA_DEFAULT_TESTMODE false
@@ -42,7 +46,8 @@
 
 // get the dau id and the version
 - (NSString*) getSdkVersion;
-- (void) handleCPI;
+- (void) handleCPI:(didCountAnInstall)didCountAnInstall;
+- (void) handleStagingCPI:(didCountAnInstall)didCountAnInstall;
 
 // override methods
 - (void) overrideVersion: (NSString*) version;

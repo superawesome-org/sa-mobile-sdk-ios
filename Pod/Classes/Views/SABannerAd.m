@@ -42,6 +42,14 @@
 #endif
 
 #if defined(__has_include)
+#if __has_include(<SAModelSpace/SAMedia.h>)
+#import <SAModelSpace/SAMedia.h>
+#else
+#import "SAMedia.h"
+#endif
+#endif
+
+#if defined(__has_include)
 #if __has_include(<SAUtils/SAUtils.h>)
 #import <SAUtils/SAUtils.h>
 #else
@@ -274,7 +282,7 @@
 
 - (void) play {
     
-    if (_ad && _ad.creative.creativeFormat != video && _canPlay) {
+    if (_ad && _ad.creative.format != SA_Video && _canPlay) {
         
         // reset play-ability
         _canPlay = false;
@@ -301,7 +309,7 @@
 }
 
 - (BOOL) shouldShowPadlock {
-    if (_ad.creative.creativeFormat == tag) return false;
+    if (_ad.creative.format == SA_Tag) return false;
     if (_ad.isFallback) return false;
     if (_ad.isHouse && !_ad.safeAdApproved) return false;
     return true;
@@ -348,8 +356,8 @@
     self.frame = toframe;
     
     // new webplayer frame
-    CGRect frame = [SAUtils mapOldFrame:CGRectMake(0, 0, _ad.creative.details.width, _ad.creative.details.height)
-                             toNewFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+    CGRect frame = [SAUtils map:CGRectMake(0, 0, _ad.creative.details.width, _ad.creative.details.height)
+                           into:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
     
     // rearrange the webview
     [_webplayer updateToFrame:frame];

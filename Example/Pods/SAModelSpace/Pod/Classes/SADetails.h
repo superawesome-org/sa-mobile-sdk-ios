@@ -1,16 +1,12 @@
-//
-//  SADetails.h
-//  Pods
-//
-//  Copyright (c) 2015 SuperAwesome Ltd. All rights reserved.
-//
-//  Created by Gabriel Coman on 28/09/2015.
-//
-//
+/**
+ * @Copyright:   SuperAwesome Trading Limited 2017
+ * @Author:      Gabriel Coman (gabriel.coman@superawesome.tv)
+ */
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-// guarded import
+@class SAMedia;
+
 #if defined(__has_include)
 #if __has_include(<SAJsonParser/SAJsonParser.h>)
 #import <SAJsonParser/SAJsonParser.h>
@@ -27,26 +23,34 @@
 #endif
 #endif
 
-// local import
-#import "SAMedia.h"
-
+/**
+ * Class that contains details about a creative, such as:
+ *  - width, height
+ *  - name
+ *  - format
+ *  - bitrate, duration, value (for video; not really used)
+ *  - image, video, tag, url, vast - needed to describe the location of the creative (whether
+ *    rich media, video, 3rd party tag, etc)
+ *  - cdnUrl & zipFile (not really used)
+ *  - a SAMedia object
+ *
+ */
 @interface SADetails : SABaseObject <SASerializationProtocol, SADeserializationProtocol>
 
 @property (nonatomic, assign) NSInteger width;
 @property (nonatomic, assign) NSInteger height;
-@property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSString *placementFormat;
+@property (nonatomic, strong) NSString  *name;
+@property (nonatomic, strong) NSString  *placementFormat;
 @property (nonatomic, assign) NSInteger bitrate;
 @property (nonatomic, assign) NSInteger duration;
 @property (nonatomic, assign) NSInteger value;
-@property (nonatomic, strong) NSString *image;
-@property (nonatomic, strong) NSString *video;
-@property (nonatomic, strong) NSString *tag;
-@property (nonatomic, strong) NSString *zipFile;
-@property (nonatomic, strong) NSString *url;
-@property (nonatomic, strong) NSString *cdnUrl;
-@property (nonatomic, strong) NSString *vast;
-
-@property (nonatomic, strong) SAMedia *media;
+@property (nonatomic, strong) NSString  *image;
+@property (nonatomic, strong) NSString  *video;
+@property (nonatomic, strong) NSString  *tag;
+@property (nonatomic, strong) NSString  *zipFile;
+@property (nonatomic, strong) NSString  *url;
+@property (nonatomic, strong) NSString  *cdnUrl;
+@property (nonatomic, strong) NSString  *vast;
+@property (nonatomic, strong) SAMedia   *media;
 
 @end

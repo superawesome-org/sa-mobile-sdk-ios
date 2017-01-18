@@ -1,93 +1,123 @@
-//
-//  SAEvents.h
-//  Pods
-//
-//  Created by Gabriel Coman on 26/02/2016.
-//
-//
+/**
+ * @Copyright:   SuperAwesome Trading Limited 2017
+ * @Author:      Gabriel Coman (gabriel.coman@superawesome.tv)
+ */
 
 #import <UIKit/UIKit.h>
 
-// typical event response (used mostly for testing purposes atm)
-typedef void (^saEventResponse)(BOOL success, NSInteger status);
-
-//
-// forward declarations
 @class SAAd;
 @class AVPlayer;
 @class AVPlayerLayer;
 
-//
-// SAEvents is a class that contains a multitude of functions used to send
-// messages to the server in case some event gets triggered regarding an Ad
-// such as viewable impression, ad rating, etc
+// typical event response (used mostly for testing purposes atm)
+typedef void (^saDidGetEventResponse) (BOOL success, NSInteger status);
+
+/**
+ * Class that abstracts away the sending of events to the ad server. 
+ * It also handles triggering and disabling Moat Events
+ */
 @interface SAEvents : NSObject
 
-// custom init
-//
-- (void) setAd:(SAAd*)ad;
-
 /**
- * 
- * Send an event to an URL
+ * Important setter that adds an ad to a SAEvents instance
  *
- * @param url endpoint to send the event to
+ * @param ad a new (hopefully valid) ad
  */
-- (void) sendEventToURL:(NSString*)url;
+- (void) setAd:(SAAd*) ad;
 
 /**
+ * Basic method to send events to an URL using the network object
  *
- * Send an event to an URL
- *
- * @param url endpoint to send the event to
- * @param response callback from the event
+ * @param url      URL to send an event to
+ * @param response an instance of the saDidGetEventResponse to 
+ *                 receive the answer on
  */
-- (void) sendEventToURL:(NSString*)url withResponse:(saEventResponse)response;
+- (void) sendEventToURL:(NSString*) url
+           withResponse:(saDidGetEventResponse) response;
 
 /**
- *  Method that sends all events for a particular key, for objects of type SATracking
+ * Shorthand send event method that has no callback
  *
- *  @param key    key to send for
+ * @param url URL to send an event to
  */
-- (void) sendAllEventsForKey:(NSString*)key withResponse:(saEventResponse)response;
-- (void) sendAllEventsForKey:(NSString*)key;
+- (void) sendEventToURL:(NSString*) url;
 
 /**
- *  Send viewable impresison event launchers
+ * Method that sends all events for a particular "key" in 
+ * the "events" list of an ad
  *
- *  @param view     the view that will need to be measured
- *  @param ticks    number of ticks to test against before a viewable 
-                    impression can be launched
+ * @param key      the key to search events for in the "events" list
+ * @param response an instance of the saDidGetEventResponse to
+ *                 receive the answer on
  */
-- (void) sendViewableImpressionForView:(UIView*)view andTicks:(NSInteger)maxTicks withResponse:(saEventResponse)response;
-- (void) sendViewableImpressionForDisplay:(UIView*)view;
-- (void) sendViewableImpressionForVideo:(UIView*)view;
+- (void) sendAllEventsForKey:(NSString*) key
+                withResponse:(saDidGetEventResponse) response;
 
 /**
- *  Method that returns a MOAT string
+ * Shorthand version of the previous method, without a listener
  *
- *  @param webplayer a SAWebPlayer object
- *
- *  @return moat web
+ * @param key the key to search events for in the "events" list
  */
-- (NSString*) moatEventForWebPlayer:(id)webplayer;
+- (void) sendAllEventsForKey:(NSString*) key;
 
 /**
- *  Method that starts MOAT tracking for video
+ * Method that sends a viewable impression for a view. 
+ * SuperAwesome calculates viewable impression conditions for banner, 
+ * interstitial, etc, ads using IAB standards
  *
- *  @param player the video player
- *  @param layer  the video layer
- *  @param view   the containing view
+ * @param child    the child view
+ * @param maxTicks max ticks to check the view is visible on the screen 
+ *                 before triggering the viewable impression event
+ * @param response an instance of the saDidGetEventResponse to
  */
-- (void) moatEventForVideoPlayer:(AVPlayer*)player withLayer:(AVPlayerLayer*)layer andView:(UIView*)view;
+- (void) sendViewableImpressionForView:(UIView*) view
+                              andTicks:(NSInteger) maxTicks
+                          withResponse:(saDidGetEventResponse) response;
 
 /**
- *  Close method
+ * Shorthand method to send a viewable impression for a Display ad
+ *
+ * @param view the child view
+ */
+- (void) sendViewableImpressionForDisplay:(UIView*) view;
+
+/**
+ * Shorthand method to send a viewable impression for a Video ad
+ *
+ * @param view the child view
+ */
+- (void) sendViewableImpressionForVideo:(UIView*) view;
+
+/**
+ * Method that closes the event object (and disables timers, etc)
  */
 - (void) close;
 
 /**
- *  Disable moat limiting
+ * Method that registers a Moat event object, 
+ * according to the moat specifications
+ *
+ * @param webplayer the web view used by Moat to register events on 
+ *                  (and that will contain an ad at runtime)
+ * @return          returns a MOAT specific string that will need to be 
+ *                  inserted in the web view so that the JS moat stuff works
+ */
+- (NSString*) moatEventForWebPlayer:(id)webplayer;
+
+/**
+ * Method that registers a Video Moat event
+ *
+ * @param video     the current AVPlayer needed by Moat to do video tracking
+ * @param layer     the current Player layer associated with the video view
+ * @return          whether the video moat event started OK
+ */
+- (BOOL) moatEventForVideoPlayer:(AVPlayer*) player
+                       withLayer:(AVPlayerLayer*) layer
+                         andView:(UIView*) view;
+
+/**
+ * Method by which Moat can be fully enforced by disabling 
+ * any limiting applied to it
  */
 - (void) disableMoatLimiting;
 

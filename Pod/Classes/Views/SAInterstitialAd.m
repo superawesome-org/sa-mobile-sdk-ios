@@ -248,7 +248,7 @@ static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
     CGFloat tH = frame.size.height;
     CGFloat tX = ( frame.size.width - tW ) / 2;
     CGFloat tY = ( frame.size.height - tH) / 2;
-    CGRect newR = [SAUtils mapOldFrame:frame toNewFrame:CGRectMake(tX, tY, tW, tH)];
+    CGRect newR = [SAUtils map:frame into:CGRectMake(tX, tY, tW, tH)];;
     newR.origin.x += tX;
     newR.origin.y += tY;
 
@@ -314,7 +314,7 @@ static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
     SAAd *adL = [ads objectForKey:@(placementId)];
     
     // try to start the view controller (if there is one ad that's OK)
-    if (adL && adL.creative.creativeFormat != video) {
+    if (adL && adL.creative.format != SA_Video) {
         
         SAInterstitialAd *newVC = [[SAInterstitialAd alloc] init];
         newVC.ad = adL;

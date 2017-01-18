@@ -11,7 +11,14 @@
 // import header
 #import "SuperAwesome.h"
 
-#import "SACPI.h"
+// guarded imports
+#if defined(__has_include)
+#if __has_include(<SASession/SASession.h>)
+#import <SASession/SASession.h>
+#else
+#import "SASession.h"
+#endif
+#endif
 
 @interface SuperAwesome ()
 @property (nonatomic, strong) SACPI *cpi;
@@ -52,8 +59,16 @@
     return [NSString stringWithFormat:@"%@_%@", [self getSdk], [self getVersion]];
 }
 
-- (void) handleCPI {
-    [_cpi sendCPIEvent];
+- (void) handleCPI:(didCountAnInstall)didCountAnInstall {
+    SASession *session = [[SASession alloc] init];
+    [session setConfigurationProduction];
+    [_cpi sendInstallEvent:session withCallback:didCountAnInstall];
+}
+
+- (void) handleStagingCPI:(didCountAnInstall)didCountAnInstall {
+    SASession *session = [[SASession alloc] init];
+    [session setConfigurationStaging];
+    [_cpi sendInstallEvent:session withCallback:didCountAnInstall];
 }
 
 - (void) overrideVersion: (NSString*) version {

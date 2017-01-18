@@ -1,14 +1,9 @@
-//
-//  SASession.m
-//  Pods
-//
-//  Created by Gabriel Coman on 15/07/2016.
-//
-//
+/**
+ * @Copyright:   SuperAwesome Trading Limited 2017
+ * @Author:      Gabriel Coman (gabriel.coman@superawesome.tv)
+ */
 
 #import "SASession.h"
-
-// import capper
 #import "SACapper.h"
 
 #if defined(__has_include)
@@ -19,30 +14,36 @@
 #endif
 #endif
 
-#define PRODUCTION_URL @"https://ads.superawesome.tv/v2"
-#define STAGING_URL @"https://ads.staging.superawesome.tv/v2"
+// define the production & staging URLs
+#define PRODUCTION_URL  @"https://ads.superawesome.tv/v2"
+#define STAGING_URL     @"https://ads.staging.superawesome.tv/v2"
 
-#define DEVICE_PHONE @"phone"
-#define DEVICE_TABLET @"tablet";
+// define the type of device to be sent to the ad server
+#define DEVICE_PHONE    @"phone"
+#define DEVICE_TABLET   @"tablet"
 
 @interface SASession ()
-@property (nonatomic, strong) NSString *baseUrl;
-@property (nonatomic, assign) BOOL testEnabled;
-@property (nonatomic, strong) NSString *version;
-@property (nonatomic, assign) NSUInteger dauId;
-@property (nonatomic, assign) SAConfiguration configuration;
-@property (nonatomic, strong) NSString *bundleId;
-@property (nonatomic, strong) NSString *appName;
-@property (nonatomic, strong) NSString *lang;
-@property (nonatomic, strong) NSString *device;
-@property (nonatomic, assign) NSInteger connectivityType;
-@property (nonatomic, strong) NSString *userAgent;
+
+// member variables representing the state of the session
+@property (nonatomic, strong) NSString          *baseUrl;
+@property (nonatomic, assign) BOOL              testEnabled;
+@property (nonatomic, strong) NSString          *version;
+@property (nonatomic, assign) NSUInteger        dauId;
+@property (nonatomic, assign) SAConfiguration   configuration;
+@property (nonatomic, strong) NSString          *bundleId;
+@property (nonatomic, strong) NSString          *appName;
+@property (nonatomic, strong) NSString          *lang;
+@property (nonatomic, strong) NSString          *device;
+@property (nonatomic, assign) NSInteger         connectivityType;
+@property (nonatomic, strong) NSString          *userAgent;
+
 @end
 
 @implementation SASession
 
 - (id) init {
     if (self = [super init]) {
+        
         // set config, testing, version - things that may change
         [self setConfigurationProduction];
         [self disableTestMode];
@@ -53,7 +54,9 @@
         _appName = [SAUtils encodeURI:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"]];
         _device = [SAUtils getSystemSize] == size_phone ? DEVICE_PHONE : DEVICE_TABLET;
         _userAgent = [SAUtils getUserAgent];
+        _connectivityType = [SAUtils getNetworkConnectivity];
         
+        // get the language
         _lang = @"none";
         
         NSString *shortLang = nil;
@@ -120,8 +123,6 @@
 - (void) setVersion:(NSString *)version {
     _version = version;
 }
-
-// getters
 
 - (NSString*) getBaseUrl {
     return _baseUrl;

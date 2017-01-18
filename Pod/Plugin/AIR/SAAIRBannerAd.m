@@ -49,12 +49,12 @@ FREObject SuperAwesomeAIRSABannerAdCreate (FREContext ctx, void* funcData, uint3
     // set banner callback
     [banner setCallback:^(NSInteger placementId, SAEvent event) {
         switch (event) {
-            case adLoaded:          sendToAIR(ctx, key, (int)placementId, @"adLoaded"); break;
-            case adFailedToLoad:    sendToAIR(ctx, key, (int)placementId, @"adFailedToLoad"); break;
-            case adShown:           sendToAIR(ctx, key, (int)placementId, @"adShown"); break;
-            case adFailedToShow:    sendToAIR(ctx, key, (int)placementId, @"adFailedToShow"); break;
-            case adClicked:         sendToAIR(ctx, key, (int)placementId, @"adClicked"); break;
-            case adClosed:          sendToAIR(ctx, key, (int)placementId, @"adClosed"); break;
+            case adLoaded:          sendAdCallback(ctx, key, (int)placementId, @"adLoaded"); break;
+            case adFailedToLoad:    sendAdCallback(ctx, key, (int)placementId, @"adFailedToLoad"); break;
+            case adShown:           sendAdCallback(ctx, key, (int)placementId, @"adShown"); break;
+            case adFailedToShow:    sendAdCallback(ctx, key, (int)placementId, @"adFailedToShow"); break;
+            case adClicked:         sendAdCallback(ctx, key, (int)placementId, @"adClicked"); break;
+            case adClosed:          sendAdCallback(ctx, key, (int)placementId, @"adClosed"); break;
         }
     }];
     

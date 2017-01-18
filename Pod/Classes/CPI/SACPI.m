@@ -17,56 +17,17 @@
 #endif
 #endif
 
-#if defined(__has_include)
-#if __has_include(<SAEvents/SAEvents.h>)
-#import <SAEvents/SAEvents.h>
-#else
-#import "SAEvents.h"
-#endif
-#endif
-
-#define CPI_INSTALL @"CPI_INSTALL"
-
 @interface SACPI ()
-@property (nonatomic, strong) NSUserDefaults *defs;
 @end
 
 @implementation SACPI
 
-- (id) init {
-    if (self = [super init]) {
-        _defs = [NSUserDefaults standardUserDefaults];
-    }
+- (void) sendInstallEvent: (SASession*) session
+             withCallback: (didCountAnInstall) didCountAnInstall {
     
-    return self;
-}
-
-- (void) sendCPIEvent {
+    SAInstallEvent *installEvent = [[SAInstallEvent alloc] init];
+    [installEvent sendEvent:session withCallback:didCountAnInstall];
     
-    if (![_defs objectForKey:CPI_INSTALL]) {
-
-        NSLog(@"[AA :: Events] Sending CPI event");
-        
-        SASession *session = [[SASession alloc] init];
-        [session setConfigurationProduction];
-        
-        // /check?sourceBundle=lego --> 123.123_lego ==> [pj, disney]
-        // if and ===> /install?bundle=lego&target=pj
-        // if iod ===> /install?bundle=lego
-        
-        // form the URL
-        NSString *cpiURL = [NSString stringWithFormat:@"%@/install?bundle=%@",
-                            [session getBaseUrl],
-                            [session getBundleId]];
-        
-        // use saevent to send CPI event
-        SAEvents *events = [[SAEvents alloc] init];
-        [events sendEventToURL:cpiURL];
-        [_defs setObject:@(true) forKey:CPI_INSTALL];
-        [_defs synchronize];
-    } else {
-        NSLog(@"[AA :: Events] Already sent CPI event");
-    }
 }
 
 @end

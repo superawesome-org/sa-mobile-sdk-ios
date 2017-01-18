@@ -76,11 +76,9 @@
 }
 
 - (IBAction)loadAction:(id)sender {
-//    [_bannerAd load:584];
-//    [SAInterstitialAd load:585];
-//    [SAVideoAd load:586];
-    [SAInterstitialAd setConfigurationProduction];
-    [SAInterstitialAd load:31380];
+    [_bannerAd load:584];
+    [SAInterstitialAd load:585];
+    [SAVideoAd load:586];
 }
 
 - (IBAction)playBanner:(id)sender {

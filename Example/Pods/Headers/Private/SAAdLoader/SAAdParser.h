@@ -1,1 +1,0 @@
-../../../SAAdLoader/Pod/Classes/SAAdParser.h

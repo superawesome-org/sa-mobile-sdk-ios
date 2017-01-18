@@ -1,15 +1,9 @@
-//
-//  NSDictionary+SAJsonExtension.h
-//  Pods
-//
-//  Created by Gabriel Coman on 27/05/2016.
-//
-//
+/**
+ * @Copyright:   SuperAwesome Trading Limited 2017
+ * @Author:      Gabriel Coman (gabriel.coman@superawesome.tv)
+ */
 
-// import foundation
-#import <Foundation/Foundation.h>
-
-// import protocols
+#import <UIKit/UIKit.h>
 #import "SAJsonParser.h"
 
 /**

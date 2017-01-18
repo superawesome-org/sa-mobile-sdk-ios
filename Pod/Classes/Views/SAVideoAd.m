@@ -466,7 +466,7 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
 }
 
 - (BOOL) shouldShowPadlock {
-    if (_ad.creative.creativeFormat == tag) return false;
+    if (_ad.creative.format == SA_Tag) return false;
     if (_ad.isFallback) return false;
     if (_ad.isHouse && !_ad.safeAdApproved) return false;
     return true;
@@ -541,7 +541,7 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
     SAAd *adL = [ads objectForKey:@(placementId)];
     
     // try to start the view controller (if there is one ad that's OK)
-    if (adL && adL.creative.creativeFormat == video) {
+    if (adL && adL.creative.format == SA_Video) {
         
         SAVideoAd *newVC = [[SAVideoAd alloc] init];
         newVC.ad = adL;

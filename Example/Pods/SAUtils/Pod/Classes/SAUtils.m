@@ -1,51 +1,41 @@
-//
-//  SAUtils.m
-//  Pods
-//
-//  Created by Gabriel Coman on 09/03/2016.
-//
-//
+/**
+ * @Copyright:   SuperAwesome Trading Limited 2017
+ * @Author:      Gabriel Coman (gabriel.coman@superawesome.tv)
+ */
 
 #import "SAUtils.h"
-
 #import "SAExtensions.h"
-#import "NSString+HTML.h"
-
 #import <SystemConfiguration/SystemConfiguration.h>
 #import <sys/socket.h>
 #import <netinet/in.h>
 
 @implementation SAUtils
 
-////////////////////////////////////////////////////////////////////////////////
-// Trully aux functions
-////////////////////////////////////////////////////////////////////////////////
-
-+ (CGRect) mapOldFrame:(CGRect)oldframe toNewFrame:(CGRect)frame {
++ (CGRect) map:(CGRect)sourceFrame into:(CGRect)boundingFrame {
     
-    CGFloat oldW = oldframe.size.width;
-    CGFloat oldH = oldframe.size.height;
-    CGFloat newW = frame.size.width;
-    CGFloat newH = frame.size.height;
+    CGFloat sourceW = sourceFrame.size.width;
+    CGFloat sourceH = sourceFrame.size.height;
+    CGFloat boundingW = boundingFrame.size.width;
+    CGFloat boundingH = boundingFrame.size.height;
     
-    if (oldW == 1 || oldW == 0) { oldW = newW; }
-    if (oldH == 1 || oldH == 0) { oldH = newH; }
+    if (sourceW == 1 || sourceW == 0) { sourceW = boundingW; }
+    if (sourceH == 1 || sourceH == 0) { sourceH = boundingH; }
     
-    CGFloat oldR = oldW / oldH;
-    CGFloat newR = newW / newH;
+    CGFloat sourceRatio = sourceW / sourceH;
+    CGFloat boundingRatio = boundingW / boundingH;
+    
     CGFloat X = 0, Y = 0, W = 0, H = 0;
     
-    if (oldR > newR) {
-        W = newW;
-        H = W / oldR;
+    if (sourceRatio > boundingRatio) {
+        W = boundingW;
+        H = W / sourceRatio;
         X = 0;
-        Y = (newH - H) / 2.0f;
-    }
-    else {
-        H = newH;
-        W = H * oldR;
+        Y = (boundingH - H) / 2.0f;
+    } else {
+        H = boundingH;
+        W = H * sourceRatio;
         Y = 0;
-        X = (newW - W) / 2.0f;
+        X = (boundingW - W) / 2.0f;
     }
     
     return CGRectMake((NSInteger)X, (NSInteger)Y, (NSInteger)W, (NSInteger)H);
@@ -83,7 +73,7 @@
     return min + arc4random_uniform((uint32_t)(max - min + 1));
 }
 
-+ (NSString*) findSubstringFrom:(NSString*)source betweenStart:(NSString*)start andEnd:(NSString*)end {
++ (NSString*) substringIn:(NSString*)source from:(NSString*)start to:(NSString*)end {
     // do a nil check at the start
     if (source == nil || start == nil || end == nil) return nil;
     
@@ -121,10 +111,6 @@
     return s;
 }
 
-////////////////////////////////////////////////////////////////////////////////
-// System type functions
-////////////////////////////////////////////////////////////////////////////////
-
 + (SASystemSize) getSystemSize {
     BOOL isIpad = [(NSString*)[UIDevice currentDevice].model hasPrefix:@"iPad"];
     return (isIpad ? size_tablet : size_phone);
@@ -146,10 +132,6 @@
 + (NSString*) filePathInDocuments:(NSString*)fpath {
     return [[self getDocumentsDirectory] stringByAppendingPathComponent:fpath];
 }
-
-////////////////////////////////////////////////////////////////////////////////
-// URL and Network request helper classes
-////////////////////////////////////////////////////////////////////////////////
 
 + (NSString*) getUserAgent {
     return [[[UIWebView alloc] initWithFrame:CGRectZero] stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
@@ -242,10 +224,6 @@
     return result;
 }
 
-////////////////////////////////////////////////////////////////////////////////
-// Colors
-////////////////////////////////////////////////////////////////////////////////
-
 UIColor *UIColorFromHex(int rgbValue) {
     return [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
                            green:((float)((rgbValue & 0x00FF00) >>  8))/255.0 \
@@ -259,10 +237,6 @@ UIColor *UIColorFromRGB(NSInteger red, NSInteger green, NSInteger blue) {
                             blue:(CGFloat)((CGFloat)blue / 255.0f)
                            alpha:1.0f];
 }
-
-////////////////////////////////////////////////////////////////////////////////
-// Aux network functions
-////////////////////////////////////////////////////////////////////////////////
 
 + (SAConnectionType) getNetworkConnectivity {
     
@@ -295,10 +269,6 @@ UIColor *UIColorFromRGB(NSInteger red, NSInteger green, NSInteger blue) {
     }
     return unknown;
 }
-
-////////////////////////////////////////////////////////////////////////////////
-// Invoke functions
-////////////////////////////////////////////////////////////////////////////////
 
 + (NSValue*) invoke:(NSString*)method onTarget:(id) target, ... {
     

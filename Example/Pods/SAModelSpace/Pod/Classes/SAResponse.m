@@ -1,17 +1,18 @@
-//
-//  SAResponse.m
-//  Pods
-//
-//  Created by Gabriel Coman on 27/09/2016.
-//
-//
+/**
+ * @Copyright:   SuperAwesome Trading Limited 2017
+ * @Author:      Gabriel Coman (gabriel.coman@superawesome.tv)
+ */
 
 #import "SAResponse.h"
-
 #import "SAAd.h"
 
 @implementation SAResponse
 
+/**
+ * Base init method
+ *
+ * @return a new instance of the object
+ */
 - (id) init {
     if (self = [super init]){
         [self initDefaults];
@@ -19,6 +20,14 @@
     return self;
 }
 
+/**
+ * Overridden "initWithJsonDictionary" init method from the
+ * SADeserializationProtocol protocol that describes how this model gets
+ * initialised from the fields of a NSDictionary object (create from a
+ * JSON string)
+ *
+ * @return a new instance of the object
+ */
 - (id) initWithJsonDictionary:(NSDictionary *)jsonDictionary {
     if (self = [super initWithJsonDictionary:jsonDictionary]) {
         
@@ -28,7 +37,9 @@
         // take from json
         _placementId = [jsonDictionary safeIntForKey:@"placementId" orDefault:_placementId];
         _status = [jsonDictionary safeIntForKey:@"status" orDefault:_status];
-        _format = [jsonDictionary safeIntForKey:@"format" orDefault:_format];
+        
+        NSInteger format = [jsonDictionary safeIntForKey:@"format" orDefault:0];
+        _format = getSACreativeFormatFromInt(format);
         
         NSArray *adsArray = [jsonDictionary safeArrayForKey:@"ads" orDefault:@[]];
         _ads = [[[NSArray alloc] initWithJsonArray:adsArray andIterator:^id(id item) {
@@ -39,13 +50,22 @@
     return self;
 }
 
-- (void) initDefaults {
-    _placementId = 0;
-    _status = 0;
-    _format = invalid;
-    _ads = [@[] mutableCopy];
+/**
+ * Overridden "isValid" method from the SADeserializationProtocol protocol
+ *
+ * @return true or false
+ */
+- (BOOL) isValid {
+    return [_ads count] > 0;
 }
 
+/**
+ * Overridden "dictionaryRepresentation" method from the
+ * SADeserializationProtocol protocol that describes how this model is
+ * going to get translated to a dictionary
+ *
+ * @return a NSDictionary object representing all the members of this object
+ */
 - (NSDictionary*) dictionaryRepresentation {
     return @{
              @"placementId": @(_placementId),
@@ -55,8 +75,14 @@
              };
 }
 
-- (BOOL) isValid {
-    return [_ads count] > 0;
+/**
+ * Method that initializes all the values for the model
+ */
+- (void) initDefaults {
+    _placementId = 0;
+    _status = 0;
+    _format = SA_Invalid;
+    _ads = [@[] mutableCopy];
 }
 
 @end

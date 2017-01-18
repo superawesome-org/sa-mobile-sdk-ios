@@ -16,21 +16,28 @@
 #endif
 #endif
 
-#if defined(__has_include)
-#if __has_include(<SASession/SASession.h>)
-#import <SASession/SASession.h>
-#else
-#import "SASession.h"
-#endif
-#endif
+#import "SAUnityCallback.h"
 
 extern "C" {
     
-    /**
-     *  Handle CPI
-     */
     void SuperAwesomeUnitySuperAwesomeHandleCPI () {
-        [[SuperAwesome getInstance] handleCPI];
+        
+        [[SuperAwesome getInstance] handleCPI:^(BOOL success) {
+            
+            sendCPICallback(@"SuperAwesomeCPI", success, @"HandleCPI");
+            
+        }];
+        
+    }
+    
+    void SuperAwesomeUnitySuperAwesomeHandleStagingCPI () {
+        
+        [[SuperAwesome getInstance] handleStagingCPI:^(BOOL success) {
+            
+            sendCPICallback(@"SuperAwesomeCPI", success, @"HandleStagingCPI");
+            
+        }];
+        
     }
     
 }

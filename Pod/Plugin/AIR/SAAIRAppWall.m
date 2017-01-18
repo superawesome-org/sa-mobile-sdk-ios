@@ -30,12 +30,12 @@ FREObject SuperAwesomeAIRSAAppWallCreate (FREContext ctx, void* funcData, uint32
     
     [SAAppWall setCallback:^(NSInteger placementId, SAEvent event) {
         switch (event) {
-            case adLoaded:          sendToAIR(ctx, @"SAAppWall", (int)placementId, @"adLoaded"); break;
-            case adFailedToLoad:    sendToAIR(ctx, @"SAAppWall", (int)placementId, @"adFailedToLoad"); break;
-            case adShown:           sendToAIR(ctx, @"SAAppWall", (int)placementId, @"adShown"); break;
-            case adFailedToShow:    sendToAIR(ctx, @"SAAppWall", (int)placementId, @"adFailedToShow"); break;
-            case adClicked:         sendToAIR(ctx, @"SAAppWall", (int)placementId, @"adClicked"); break;
-            case adClosed:          sendToAIR(ctx, @"SAAppWall", (int)placementId, @"adClosed"); break;
+            case adLoaded:          sendAdCallback(ctx, @"SAAppWall", (int)placementId, @"adLoaded"); break;
+            case adFailedToLoad:    sendAdCallback(ctx, @"SAAppWall", (int)placementId, @"adFailedToLoad"); break;
+            case adShown:           sendAdCallback(ctx, @"SAAppWall", (int)placementId, @"adShown"); break;
+            case adFailedToShow:    sendAdCallback(ctx, @"SAAppWall", (int)placementId, @"adFailedToShow"); break;
+            case adClicked:         sendAdCallback(ctx, @"SAAppWall", (int)placementId, @"adClicked"); break;
+            case adClosed:          sendAdCallback(ctx, @"SAAppWall", (int)placementId, @"adClosed"); break;
         }
     }];
     

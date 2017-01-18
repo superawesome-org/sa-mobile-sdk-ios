@@ -16,7 +16,26 @@
 #endif
 #endif
 
+#import "SAAIRCallback.h"
+
 FREObject SuperAwesomeAIRSuperAwesomeHandleCPI (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]) {
-    [[SuperAwesome getInstance] handleCPI];
+    
+    [[SuperAwesome getInstance] handleCPI:^(BOOL success) {
+        
+        sendCPICallback(ctx, @"SuperAwesomeCPI", success, @"HandleCPI");
+        
+    }];
+    
+    return NULL;
+}
+
+FREObject SuperAwesomeAIRSuperAwesomeHandleStagingCPI (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]) {
+    
+    [[SuperAwesome getInstance] handleStagingCPI:^(BOOL success) {
+        
+        sendCPICallback(ctx, @"SuperAwesomeCPI", success, @"HandleStagingCPI");
+        
+    }];
+    
     return NULL;
 }

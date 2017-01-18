@@ -12,7 +12,7 @@
 
 void SAContextInitializer(void* extData, const uint8_t* ctxType, FREContext ctx, uint32_t* numFunctionsToTest, const FRENamedFunction** functionsToSet) {
     
-    *numFunctionsToTest = 19;
+    *numFunctionsToTest = 20;
     
     FRENamedFunction* func = (FRENamedFunction*) malloc(sizeof(FRENamedFunction) * *numFunctionsToTest);
     
@@ -88,9 +88,13 @@ void SAContextInitializer(void* extData, const uint8_t* ctxType, FREContext ctx,
     func[17].functionData = NULL;
     func[17].function = &SuperAwesomeAIRSuperAwesomeHandleCPI;
     
-    func[18].name = (const uint8_t*) "SuperAwesomeAIRSetVersion";
+    func[18].name = (const uint8_t*) "SuperAwesomeAIRSuperAwesomeHandleStagingCPI";
     func[18].functionData = NULL;
-    func[18].function = &SuperAwesomeAIRSetVersion;
+    func[18].function = &SuperAwesomeAIRSuperAwesomeHandleStagingCPI;
+    
+    func[19].name = (const uint8_t*) "SuperAwesomeAIRSetVersion";
+    func[19].functionData = NULL;
+    func[19].function = &SuperAwesomeAIRSetVersion;
     
     *functionsToSet = func;
 }

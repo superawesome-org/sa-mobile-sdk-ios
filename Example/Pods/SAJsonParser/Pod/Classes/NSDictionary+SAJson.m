@@ -1,17 +1,15 @@
-//
-//  NSDictionary+SAJsonExtension.m
-//  Pods
-//
-//  Created by Gabriel Coman on 27/05/2016.
-//
-//
+/**
+ * @Copyright:   SuperAwesome Trading Limited 2017
+ * @Author:      Gabriel Coman (gabriel.coman@superawesome.tv)
+ */
 
 #import "NSDictionary+SAJson.h"
 
 @implementation NSDictionary (SAJson)
 
-// private common functions
-
+/**
+ * Extension method that gets a NSData object out of a NSDictionary object
+ */
 - (NSData*) jsonData:(NSJSONWritingOptions) options {
     if ([NSJSONSerialization isValidJSONObject:self]) {
         return [NSJSONSerialization dataWithJSONObject:self options:kNilOptions error:nil];
@@ -19,6 +17,9 @@
     return nil;
 }
 
+/**
+ * Extension method that gets a NSDictionary object out of a NSData object
+ */
 - (NSDictionary*) dictionaryFromData:(NSData*) json {
     
     if (json != nil) {
@@ -32,28 +33,58 @@
     return nil;
 }
 
-// deserialization
-
+/**
+ * Implementation of SASerialization "dictionaryRepresentation" method 
+ * for a dictionary object
+ *
+ * @return the same dictionary object
+ */
 - (NSDictionary*) dictionaryRepresentation {
     return self;
 }
 
+/**
+ * Implementation of SASerialization "jsonPreetyStringRepresentation" method 
+ * for a dictionary object
+ *
+ * @return a valid string containing the fields of the dictionary 
+           as a valid JSON string
+ */
 - (NSString*) jsonPreetyStringRepresentation {
     NSData *json = [self jsonData:NSJSONWritingPrettyPrinted];
     return [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding];
 }
 
+/**
+ * Implementation of SASerialization "jsonCompactStringRepresentation" method
+ * for a dictionary object
+ *
+ * @return a valid string containing the fields of the dictionary
+ *         as a valid JSON string
+ */
 - (NSString*) jsonCompactStringRepresentation {
     NSData *json = [self jsonData:kNilOptions];
     return [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding];
 }
 
+/**
+ * Implementation of SASerialization "jsonDataRepresentation" method
+ * for a dictionary object
+ *
+ * @return a valid NSData object containing the fields of the dictionary
+ *         as a valid JSON string (encoded)
+ */
 - (NSData*) jsonDataRepresentation {
     return [self jsonData:kNilOptions];
 }
 
-// serialization
-
+/**
+ * Implementation of SADeserialization "initWithJsonDictionary" method
+ * for a dictionary object
+ *
+ * @param jsonDictionary    a valid NSDictionary object
+ * @return                  a new instance of a NSDictionary object
+ */
 - (id) initWithJsonDictionary:(NSDictionary *)jsonDictionary {
     if (self = [self initWithDictionary:jsonDictionary]) {
         // this is just the normal init w/ dictionary
@@ -61,7 +92,14 @@
     return self;
 }
 
-- (id) initWithJsonData:(NSData *)jsonData {
+/**
+ * Implementation of SADeserialization "initWithJsonData" method
+ * for a dictionary object
+ *
+ * @param jsonDictionary    a NSData object containing JSON data
+ * @return                  a new instance of a NSDictionary object
+ */
+- (id) initWithJsonData:(NSData*) jsonData {
     NSDictionary *temp = [self dictionaryFromData:jsonData];
     
     if (temp) {
@@ -77,7 +115,14 @@
     return self;
 }
 
-- (id) initWithJsonString:(NSString *)jsonString {
+/**
+ * Implementation of SADeserialization "initWithJsonString" method
+ * for a dictionary object
+ *
+ * @param jsonDictionary    a string containing JSON data
+ * @return                  a new instance of a NSDictionary object
+ */
+- (id) initWithJsonString:(NSString*) jsonString {
     if (jsonString != nil && ![jsonString isEqual:[NSNull null]]) {
         
         // get the json data
@@ -97,6 +142,12 @@
     return self;
 }
 
+/**
+ * Implementation of SADeserialization "isValid" method
+ * for a dictionary object
+ *
+ * @return by default, true
+ */
 - (BOOL) isValid {
     return true;
 }

@@ -10,3 +10,4 @@
 #import "FlashRuntimeExtensions.h"
 
 FREObject SuperAwesomeAIRSuperAwesomeHandleCPI (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]);
+FREObject SuperAwesomeAIRSuperAwesomeHandleStagingCPI (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]);

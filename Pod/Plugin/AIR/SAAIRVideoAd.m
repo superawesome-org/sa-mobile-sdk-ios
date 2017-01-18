@@ -31,12 +31,12 @@ FREObject SuperAwesomeAIRSAVideoAdCreate (FREContext ctx, void* funcData, uint32
     // native video code
     [SAVideoAd setCallback:^(NSInteger placementId, SAEvent event) {
         switch (event) {
-            case adLoaded:          sendToAIR(ctx, @"SAVideoAd", (int)placementId, @"adLoaded"); break;
-            case adFailedToLoad:    sendToAIR(ctx, @"SAVideoAd", (int)placementId, @"adFailedToLoad"); break;
-            case adShown:           sendToAIR(ctx, @"SAVideoAd", (int)placementId, @"adShown"); break;
-            case adFailedToShow:    sendToAIR(ctx, @"SAVideoAd", (int)placementId, @"adFailedToShow"); break;
-            case adClicked:         sendToAIR(ctx, @"SAVideoAd", (int)placementId, @"adClicked"); break;
-            case adClosed:          sendToAIR(ctx, @"SAVideoAd", (int)placementId, @"adClosed"); break;
+            case adLoaded:          sendAdCallback(ctx, @"SAVideoAd", (int)placementId, @"adLoaded"); break;
+            case adFailedToLoad:    sendAdCallback(ctx, @"SAVideoAd", (int)placementId, @"adFailedToLoad"); break;
+            case adShown:           sendAdCallback(ctx, @"SAVideoAd", (int)placementId, @"adShown"); break;
+            case adFailedToShow:    sendAdCallback(ctx, @"SAVideoAd", (int)placementId, @"adFailedToShow"); break;
+            case adClicked:         sendAdCallback(ctx, @"SAVideoAd", (int)placementId, @"adClicked"); break;
+            case adClosed:          sendAdCallback(ctx, @"SAVideoAd", (int)placementId, @"adClosed"); break;
         }
     }];
     

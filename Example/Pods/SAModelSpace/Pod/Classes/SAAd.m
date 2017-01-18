@@ -1,16 +1,9 @@
-//
-//  SAAd.m
-//  Pods
-//
-//  Copyright (c) 2015 SuperAwesome Ltd. All rights reserved.
-//
-//  Created by Gabriel Coman on 28/09/2015.
-//
-//
+/**
+ * @Copyright:   SuperAwesome Trading Limited 2017
+ * @Author:      Gabriel Coman (gabriel.coman@superawesome.tv)
+ */
 
-// import this model's header
 #import "SAAd.h"
-
 #import "SACreative.h"
 #import "SADetails.h"
 #import "SAMedia.h"
@@ -18,6 +11,11 @@
 
 @implementation SAAd
 
+/**
+ * Base init method
+ *
+ * @return a new instance of the object
+ */
 - (id) init {
     if (self = [super init]){
         [self initDefaults];
@@ -25,6 +23,14 @@
     return self;
 }
 
+/**
+ * Overridden "initWithJsonDictionary" init method from the
+ * SADeserializationProtocol protocol that describes how this model gets
+ * initialised from the fields of a NSDictionary object (create from a
+ * JSON string)
+ *
+ * @return a new instance of the object
+ */
 - (id) initWithJsonDictionary:(NSDictionary *)jsonDictionary {
     if (self = [super initWithJsonDictionary:jsonDictionary]) {
         
@@ -39,7 +45,9 @@
         _lineItemId = [jsonDictionary safeIntForKey:@"line_item_id" orDefault:_lineItemId];
         _campaignId = [jsonDictionary safeIntForKey:@"campaign_id" orDefault:_campaignId];
         _placementId = [jsonDictionary safeIntForKey:@"placementId" orDefault:_placementId];
-        _campaignType = [jsonDictionary safeIntForKey:@"campaign_type" orDefault:_campaignType];
+        
+        NSInteger campaignType = [jsonDictionary safeIntForKey:@"campaign_type" orDefault:0];
+        _campaignType = getSACampaignTypeFromInt(campaignType);
         
         _test = [jsonDictionary safeBoolForKey:@"test" orDefault:_test];
         _isFallback = [jsonDictionary safeBoolForKey:@"is_fallback" orDefault:_isFallback];
@@ -51,10 +59,6 @@
         
         _device = [jsonDictionary safeStringForKey:@"device" orDefault:_device];
         
-        _isVAST = [jsonDictionary safeBoolForKey:@"isVAST" orDefault:_isVAST];
-        _vastType = [jsonDictionary safeIntForKey:@"vastType" orDefault:_vastType];
-        _vastRedirect = [jsonDictionary safeStringForKey:@"vastRedirect" orDefault:_vastRedirect];
-        
         NSDictionary *creativeDict = [jsonDictionary safeDictionaryForKey:@"creative" orDefault:nil];
         if (creativeDict) {
             _creative = [[SACreative alloc] initWithJsonDictionary:creativeDict];
@@ -64,33 +68,44 @@
     return self;
 }
 
-- (void) initDefaults {
+/**
+ * Overridden "isValid" method from the SADeserializationProtocol protocol
+ *
+ * @return true or false
+ */
+- (BOOL) isValid {
     
-    // init w/ defaults
-    _error = 0;
-    _advertiserId = 0;
-    _publisherId = 0;
-    _app = 0;
-    _lineItemId = 0;
-    _campaignId = 0;
-    _placementId = 0;
-    _campaignType = cpm;
-    _moat = 0.2;
-    _test = false;
-    _isFallback = false;
-    _isFill = false;
-    _isHouse = false;
-    _safeAdApproved = false;
-    _showPadlock = false;
-    _isVAST = false;
-    _vastType = InLine;
-    _vastRedirect = nil;
-    _device = nil;
+    switch (_creative.format) {
+        case SA_Invalid:
+            return false;
+        case SA_Image:
+            return _creative.details.image != nil && _creative.details.media.html != nil;
+        case SA_Rich:
+            return _creative.details.url != nil && _creative.details.media.html != nil;
+        case SA_Video:
+            return _creative.details.vast != nil &&
+                    _creative.details.media.playableMediaUrl != nil &&
+                    _creative.details.media.playableDiskUrl != nil &&
+                    _creative.details.media.isOnDisk;
+        case SA_Tag:
+            return _creative.details.tag != nil && _creative.details.media.html != nil;
+        case SA_Appwall:
+            return _creative.details.image != nil &&
+                    _creative.details.media.playableMediaUrl != nil &&
+                    _creative.details.media.playableDiskUrl != nil &&
+                    _creative.details.media.isOnDisk;
+    }
     
-    // create creative
-    _creative = [[SACreative alloc] init];
+    return true;
 }
 
+/**
+ * Overridden "dictionaryRepresentation" method from the
+ * SADeserializationProtocol protocol that describes how this model is
+ * going to get translated to a dictionary
+ *
+ * @return a NSDictionary object representing all the members of this object
+ */
 - (NSDictionary*) dictionaryRepresentation {
     return @{
              @"error": @(_error),
@@ -108,60 +123,35 @@
              @"is_house": @(_isHouse),
              @"safe_ad_approved": @(_safeAdApproved),
              @"show_padlock": @(_showPadlock),
-             @"isVAST": @(_isVAST),
-             @"vastType": @(_vastType),
-             @"vastRedirect": nullSafe(_vastRedirect),
              @"creative": nullSafe([_creative dictionaryRepresentation]),
              @"device": nullSafe(_device)
              };
 }
 
-- (BOOL) isValid {
+/**
+ * Method that initializes all the values for the model
+ */
+- (void) initDefaults {
     
-    if (_creative == NULL) return false;
-    if (_creative.creativeFormat == invalid) return false;
-    if (_creative.details == NULL) return false;
+    _error = 0;
+    _advertiserId = 0;
+    _publisherId = 0;
+    _app = 0;
+    _lineItemId = 0;
+    _campaignId = 0;
+    _placementId = 0;
+    _campaignType = SA_CPM;
+    _moat = 0.2;
+    _test = false;
+    _isFallback = false;
+    _isFill = false;
+    _isHouse = false;
+    _safeAdApproved = false;
+    _showPadlock = false;
+    _device = nil;
     
-    switch (_creative.creativeFormat) {
-        case image: {
-            if (_creative.details.image == NULL) return false;
-            break;
-        }
-        case video:{
-            if (_creative.details.vast == NULL) return false;
-            break;
-        }
-        case invalid:{
-            return false;
-            break;
-        }
-        case tag:{
-            if (_creative.details.tag == NULL) return false;
-            break;
-        }
-        case rich:{
-            if (_creative.details.url == NULL) return false;
-            break;
-        }
-        case gamewall: {
-            return true;
-            break;
-        }
-    }
-    
-    return true;
-}
-
-- (void) sumAd:(SAAd*) dest {
-    if (dest.creative.clickUrl != NULL) {
-        self.creative.clickUrl = dest.creative.clickUrl;
-    }
-    
-    [self.creative.events addObjectsFromArray:dest.creative.events];
-    
-    if (dest.creative.details.media) {
-        self.creative.details.media = dest.creative.details.media;
-    }
+    // create creative
+    _creative = [[SACreative alloc] init];
 }
 
 @end

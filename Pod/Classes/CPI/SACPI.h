@@ -8,11 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+// import local files
+#import "SAInstallEvent.h"
+
 @interface SACPI : NSObject
 
-/**
- *  Send CPI event
- */
-- (void) sendCPIEvent;
+- (void) sendInstallEvent: (SASession*) session
+             withCallback: (didCountAnInstall) didCountAnInstall;
 
 @end

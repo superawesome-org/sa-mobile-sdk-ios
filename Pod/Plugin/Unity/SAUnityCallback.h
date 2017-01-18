@@ -18,19 +18,33 @@
 
 void UnitySendMessage(const char *identifier, const char *function, const char *payload);
 
-static inline void sendToUnity (NSString *unityName, NSInteger placementId, NSString *callback) {
 
-    const char *name = [unityName UTF8String];
+static inline void sendToUnity (NSString *unityName, NSDictionary *data) {
     
+    const char *name = [unityName UTF8String];
+    NSString *payload = [data jsonCompactStringRepresentation];
+    const char *payloadUTF8 = [payload UTF8String];
+    UnitySendMessage (name, "nativeCallback", payloadUTF8);
+    
+}
+
+static inline void sendAdCallback (NSString *unityName, NSInteger placementId, NSString *callback) {
+
     NSDictionary *data = @{
                            @"placementId": [NSString stringWithFormat:@"%ld", (long) placementId],
                            @"type": [NSString stringWithFormat:@"sacallback_%@", callback]
                            };
     
-    NSString *payload = [data jsonCompactStringRepresentation];
+    sendToUnity(unityName, data);
     
-    const char *payloadUTF8 = [payload UTF8String];
+}
+
+static inline void sendCPICallback (NSString *unityName, BOOL success, NSString *callback) {
     
-    UnitySendMessage(name, "nativeCallback", payloadUTF8);
+    NSDictionary *data = @{
+                           @"boolean": [NSString stringWithFormat:@"%d", success],
+                           @"type": [NSString stringWithFormat:@"sacallback_%@", callback]
+                           };
+    sendToUnity(unityName, data);
     
 }

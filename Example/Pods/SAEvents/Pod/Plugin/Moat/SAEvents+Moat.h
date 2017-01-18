@@ -1,12 +1,9 @@
-//
-//  SAEvents+Moat.h
-//  Pods
-//
-//  Created by Gabriel Coman on 01/06/2016.
-//
-//
+/**
+ * @Copyright:   SuperAwesome Trading Limited 2017
+ * @Author:      Gabriel Coman (gabriel.coman@superawesome.tv)
+ */
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "SAEvents.h"
 
 @interface SAEvents (Moat)

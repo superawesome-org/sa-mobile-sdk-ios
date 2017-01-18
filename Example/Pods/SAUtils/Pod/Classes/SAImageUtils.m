@@ -1,10 +1,7 @@
-//
-//  SAImageUtils.m
-//  Pods
-//
-//  Created by Gabriel Coman on 28/09/2016.
-//
-//
+/**
+ * @Copyright:   SuperAwesome Trading Limited 2017
+ * @Author:      Gabriel Coman (gabriel.coman@superawesome.tv)
+ */
 
 #import "SAImageUtils.h"
 

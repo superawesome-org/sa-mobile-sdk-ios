@@ -1,16 +1,11 @@
-//
-//  NSDictionary+SafeHandling.m
-//  Pods
-//
-//  Created by Gabriel Coman on 31/05/2016.
-//
-//
+/**
+ * @Copyright:   SuperAwesome Trading Limited 2017
+ * @Author:      Gabriel Coman (gabriel.coman@superawesome.tv)
+ */
 
 #import "NSDictionary+SafeHandling.h"
 
 @implementation NSDictionary (SafeHandling)
-
-// safe get
 
 - (id _Nullable) safeObjectForKey:(id _Nullable)aKey {
     if (aKey == nil || aKey == [NSNull null]) {

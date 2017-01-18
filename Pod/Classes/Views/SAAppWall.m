@@ -555,7 +555,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     SAResponse *responseL = [responses objectForKey:@(placementId)];
     
     // try to start the view controller (if there is one ad that's OK)
-    if (responseL && responseL.format == gamewall) {
+    if (responseL && responseL.format == SA_Appwall) {
         
         SAAppWall *newVC = [[SAAppWall alloc] init];
         newVC.response = responseL;

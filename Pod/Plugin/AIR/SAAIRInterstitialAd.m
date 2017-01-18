@@ -31,12 +31,12 @@ FREObject SuperAwesomeAIRSAInterstitialAdCreate (FREContext ctx, void* funcData,
     // native interstitial code
     [SAInterstitialAd setCallback:^(NSInteger placementId, SAEvent event) {
         switch (event) {
-            case adLoaded:          sendToAIR(ctx, @"SAInterstitialAd", (int)placementId, @"adLoaded"); break;
-            case adFailedToLoad:    sendToAIR(ctx, @"SAInterstitialAd", (int)placementId, @"adFailedToLoad"); break;
-            case adShown:           sendToAIR(ctx, @"SAInterstitialAd", (int)placementId, @"adShown"); break;
-            case adFailedToShow:    sendToAIR(ctx, @"SAInterstitialAd", (int)placementId, @"adFailedToShow"); break;
-            case adClicked:         sendToAIR(ctx, @"SAInterstitialAd", (int)placementId, @"adClicked"); break;
-            case adClosed:          sendToAIR(ctx, @"SAInterstitialAd", (int)placementId, @"adClosed"); break;
+            case adLoaded:          sendAdCallback(ctx, @"SAInterstitialAd", (int)placementId, @"adLoaded"); break;
+            case adFailedToLoad:    sendAdCallback(ctx, @"SAInterstitialAd", (int)placementId, @"adFailedToLoad"); break;
+            case adShown:           sendAdCallback(ctx, @"SAInterstitialAd", (int)placementId, @"adShown"); break;
+            case adFailedToShow:    sendAdCallback(ctx, @"SAInterstitialAd", (int)placementId, @"adFailedToShow"); break;
+            case adClicked:         sendAdCallback(ctx, @"SAInterstitialAd", (int)placementId, @"adClicked"); break;
+            case adClosed:          sendAdCallback(ctx, @"SAInterstitialAd", (int)placementId, @"adClosed"); break;
         }
     }];
     

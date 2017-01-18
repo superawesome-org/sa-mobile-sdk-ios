@@ -1,12 +1,10 @@
-//
-//  SATracking.h
-//  Pods
-//
-//  Created by Gabriel Coman on 22/08/2016.
-//
-//
+/**
+ * @Copyright:   SuperAwesome Trading Limited 2017
+ * @Author:      Gabriel Coman (gabriel.coman@superawesome.tv)
+ */
 
-// guarded import
+#import <UIKit/UIKit.h>
+
 #if defined(__has_include)
 #if __has_include(<SAJsonParser/SAJsonParser.h>)
 #import <SAJsonParser/SAJsonParser.h>
@@ -23,7 +21,15 @@
 #endif
 #endif
 
+/**
+ * Class that defines a tracking element in AwesomeAds.
+ * Each tracking element contains an:
+ *  - event name (a string)
+ *  - an URL to be hit
+ */
 @interface SATracking : SABaseObject <SADeserializationProtocol, SASerializationProtocol>
+
 @property (nonatomic, strong) NSString *event;
 @property (nonatomic, strong) NSString *URL;
+
 @end

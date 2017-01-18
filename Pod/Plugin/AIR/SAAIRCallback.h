@@ -9,4 +9,5 @@
 #import <UIKit/UIKit.h>
 #import "FlashRuntimeExtensions.h"
 
-void sendToAIR (FREContext context, NSString *name, int placementId, NSString *callback);
+void sendAdCallback (FREContext context, NSString *name, int placementId, NSString *callback);
+void sendCPICallback (FREContext context, NSString *name, BOOL success, NSString *callack);

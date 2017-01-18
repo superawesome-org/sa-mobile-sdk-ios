@@ -34,12 +34,12 @@ extern "C" {
     void SuperAwesomeUnitySAVideoAdCreate () {
         [SAVideoAd setCallback:^(NSInteger placementId, SAEvent event) {
             switch (event) {
-                case adLoaded: sendToUnity(@"SAVideoAd", placementId, @"adLoaded"); break;
-                case adFailedToLoad: sendToUnity(@"SAVideoAd", placementId, @"adFailedToLoad"); break;
-                case adShown: sendToUnity(@"SAVideoAd", placementId, @"adShown"); break;
-                case adFailedToShow: sendToUnity(@"SAVideoAd", placementId, @"adFailedToShow"); break;
-                case adClicked: sendToUnity(@"SAVideoAd", placementId, @"adClicked"); break;
-                case adClosed: sendToUnity(@"SAVideoAd", placementId, @"adClosed"); break;
+                case adLoaded: sendAdCallback(@"SAVideoAd", placementId, @"adLoaded"); break;
+                case adFailedToLoad: sendAdCallback(@"SAVideoAd", placementId, @"adFailedToLoad"); break;
+                case adShown: sendAdCallback(@"SAVideoAd", placementId, @"adShown"); break;
+                case adFailedToShow: sendAdCallback(@"SAVideoAd", placementId, @"adFailedToShow"); break;
+                case adClicked: sendAdCallback(@"SAVideoAd", placementId, @"adClicked"); break;
+                case adClosed: sendAdCallback(@"SAVideoAd", placementId, @"adClosed"); break;
             }
         }];
     }

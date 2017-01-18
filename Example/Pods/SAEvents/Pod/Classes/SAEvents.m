@@ -1,14 +1,10 @@
-//
-//  SAEvents.m
-//  Pods
-//
-//  Created by Gabriel Coman on 26/02/2016.
-//
-//
+/**
+ * @Copyright:   SuperAwesome Trading Limited 2017
+ * @Author:      Gabriel Coman (gabriel.coman@superawesome.tv)
+ */
 
 #import "SAEvents.h"
 
-// guarded imports
 #if defined(__has_include)
 #if __has_include(<SAUtils/SAUtils.h>)
 #import <SAUtils/SAUtils.h>
@@ -49,7 +45,6 @@
 #endif
 #endif
 
-// try to import moat
 #if defined(__has_include)
 #if __has_include("SAEvents+Moat.h")
 #import "SAEvents+Moat.h"
@@ -68,6 +63,10 @@
 
 @implementation SAEvents
 
+/**
+ * Overridden init method that initializes the network and sets
+ * moatLimiting to true
+ */
 - (id) init {
     if (self = [super init]) {
         _network = [[SANetwork alloc] init];
@@ -81,15 +80,19 @@
     _ad = ad;
 }
 
-////////////////////////////////////////////////////////////////////////////////
-// MARK: Normal events
-////////////////////////////////////////////////////////////////////////////////
-
-- (void) sendEventToURL:(NSString *)url withResponse:(saEventResponse)response {
+- (void) sendEventToURL:(NSString *) url
+           withResponse:(saDidGetEventResponse) response {
+    
+    // create the header for any GET request to the ad server
+    NSDictionary *header = @{
+                             @"Content-Type":@"application/json",
+                             @"User-Agent":[SAUtils getUserAgent]
+                             };
+    
+    // send a GET request for the event
     [_network sendGET:url
             withQuery:@{}
-            andHeader:@{@"Content-Type":@"application/json",
-                        @"User-Agent":[SAUtils getUserAgent]}
+            andHeader:header
          withResponse:^(NSInteger status, NSString *payload, BOOL success) {
              if (response != nil) {
                  response(success, status);
@@ -97,11 +100,13 @@
          }];
 }
 
-- (void) sendEventToURL:(NSString *)url {
+- (void) sendEventToURL:(NSString*) url {
     [self sendEventToURL:url withResponse:nil];
 }
 
-- (void) sendAllEventsForKey:(NSString*)key withResponse:(saEventResponse)response {
+- (void) sendAllEventsForKey:(NSString*) key
+                withResponse:(saDidGetEventResponse) response {
+    
     // safety check
     if (_ad == NULL || key == nil || key == (NSString*)[NSNull null]) {
         if (response != nil) {
@@ -146,15 +151,14 @@
     }
 }
 
-- (void) sendAllEventsForKey:(NSString*)key {
-    [self sendAllEventsForKey:key withResponse:nil];
+- (void) sendAllEventsForKey:(NSString*) key {
+    [self sendAllEventsForKey:key
+                 withResponse:nil];
 }
 
-////////////////////////////////////////////////////////////////////////////////
-// MARK: Viewable Impression
-////////////////////////////////////////////////////////////////////////////////
-
-- (void) sendViewableImpressionForView:(UIView*) view andTicks:(NSInteger) maxTicks withResponse:(saEventResponse)response {
+- (void) sendViewableImpressionForView:(UIView*) view
+                              andTicks:(NSInteger) maxTicks
+                          withResponse:(saDidGetEventResponse) response {
     
     // safety check
     if (_ad == nil || view == nil) {
@@ -212,11 +216,15 @@
 }
 
 - (void) sendViewableImpressionForDisplay:(UIView*) view {
-    [self sendViewableImpressionForView:view andTicks:MAX_DISPLAY_TICKS withResponse:nil];
+    [self sendViewableImpressionForView:view
+                               andTicks:MAX_DISPLAY_TICKS
+                           withResponse:nil];
 }
 
 - (void) sendViewableImpressionForVideo:(UIView*) view {
-    [self sendViewableImpressionForView:view andTicks:MAX_VIDEO_TICKS withResponse:nil];
+    [self sendViewableImpressionForView:view
+                               andTicks:MAX_VIDEO_TICKS
+                           withResponse:nil];
 }
 
 - (void) close {
@@ -228,68 +236,81 @@
     _network = NULL;
 }
 
-////////////////////////////////////////////////////////////////////////////////
-// MARK: Handle Moat events
-////////////////////////////////////////////////////////////////////////////////
-
-- (NSString*) moatEventForWebPlayer:(id)webplayer {
-    
-    // here calc if moat should be displayed
+/**
+ * Method that determines is Moat can be triggered at this point
+ *
+ * @return true or false
+ */
+- (BOOL) isMoatAllowed {
     NSInteger moatRandInt = [SAUtils randomNumberBetween:0 maxNumber:100];
     CGFloat moatRand = (CGFloat) (moatRandInt / 100.0f);
-    
-    if (_ad == nil || (_moatLimiting && moatRand > _ad.moat)) {
-        return @"";
-    }
-    
-    // form the moat dictionary
-    NSDictionary *moatDict = @{
-                               @"advertiser": @(_ad.advertiserId),
-                               @"campaign": @(_ad.campaignId),
-                               @"line_item": @(_ad.lineItemId),
-                               @"creative": @(_ad.creative._id),
-                               @"app": @(_ad.app),
-                               @"placement": @(_ad.placementId),
-                               @"publisher": @(_ad.publisherId)
-                               };
-    
-    // invoke the Moat event
-    NSString *moatString = @"";
-    SEL selector = NSSelectorFromString(@"sendDisplayMoatEvent:andAdDictionary:");
-    if ([self respondsToSelector:selector]) {
-        IMP imp = [self methodForSelector:selector];
-        NSString* (*func)(id, SEL, id, NSDictionary*) = (void *)imp;
-        moatString = func(self, selector, webplayer, moatDict);
-    }
-    
-        // return the moat-ified string
-    return moatString;
+    return _ad != nil && ((moatRand < _ad.moat && _moatLimiting) || !_moatLimiting);
 }
 
-- (void) moatEventForVideoPlayer:(AVPlayer*)player withLayer:(AVPlayerLayer*)layer andView:(UIView*)view {
+
+- (NSString*) moatEventForWebPlayer:(id) webplayer {
     
-    // here calc if moat should be displayed
-    NSInteger moatRandInt = [SAUtils randomNumberBetween:0 maxNumber:100];
-    CGFloat moatRand = (CGFloat) (moatRandInt / 100.0f);
-    
-    if (_ad == nil || (_moatLimiting && moatRand > _ad.moat)) {
-        return;
+    if ([self isMoatAllowed]) {
+        
+        // form the moat dictionary
+        NSDictionary *moatDict = @{
+                                   @"advertiser": @(_ad.advertiserId),
+                                   @"campaign": @(_ad.campaignId),
+                                   @"line_item": @(_ad.lineItemId),
+                                   @"creative": @(_ad.creative._id),
+                                   @"app": @(_ad.app),
+                                   @"placement": @(_ad.placementId),
+                                   @"publisher": @(_ad.publisherId)
+                                   };
+        
+        // invoke the Moat event
+        NSString *moatString = @"";
+        SEL selector = NSSelectorFromString(@"sendDisplayMoatEvent:andAdDictionary:");
+        if ([self respondsToSelector:selector]) {
+            IMP imp = [self methodForSelector:selector];
+            NSString* (*func)(id, SEL, id, NSDictionary*) = (void *)imp;
+            moatString = func(self, selector, webplayer, moatDict);
+        }
+        
+        // return the moat-ified string
+        return moatString;
+        
+    } else {
+        return @"";
     }
+}
+
+- (BOOL) moatEventForVideoPlayer:(AVPlayer*)player
+                       withLayer:(AVPlayerLayer*)layer
+                         andView:(UIView*)view {
     
-    // also get the moat dict, another needed parameter
-    NSDictionary *moatDict = @{
-                               @"advertiser":@(_ad.advertiserId),
-                               @"campaign":@(_ad.campaignId),
-                               @"line_item":@(_ad.lineItemId),
-                               @"creative":@(_ad.creative._id),
-                               @"app":@(_ad.app),
-                               @"placement":@(_ad.placementId),
-                               @"publisher":@(_ad.publisherId)
-                               };
-    
-    // invoke the moat event
-    [SAUtils invoke:@"sendVideoMoatEvent:andLayer:andView:andAdDictionary:" onTarget:self, player, layer, view, moatDict];
-    
+    if ([self isMoatAllowed]) {
+        
+        // also get the moat dict, another needed parameter
+        NSDictionary *moatDict = @{
+                                   @"advertiser":@(_ad.advertiserId),
+                                   @"campaign":@(_ad.campaignId),
+                                   @"line_item":@(_ad.lineItemId),
+                                   @"creative":@(_ad.creative._id),
+                                   @"app":@(_ad.app),
+                                   @"placement":@(_ad.placementId),
+                                   @"publisher":@(_ad.publisherId)
+                                   };
+        
+        // invoke the moat event
+        BOOL moatResponse = false;
+        SEL selector = NSSelectorFromString(@"registerVideoMoatEvent:andLayer:andView:andAdDictionary:");
+        if ([self respondsToSelector:selector]) {
+            IMP imp = [self methodForSelector:selector];
+            BOOL (*func)(id, SEL, AVPlayer*, AVPlayerLayer*, UIView*, NSDictionary*) = (void *)imp;
+            moatResponse = func(self, selector, player, layer, view, moatDict);
+        }
+        return moatResponse;
+        
+    }
+    else {
+        return false;
+    }
 }
 
 - (void) disableMoatLimiting {

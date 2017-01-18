@@ -48,12 +48,12 @@ extern "C" {
         // set banner callback
         [banner setCallback:^(NSInteger placementId, SAEvent event) {
             switch (event) {
-                case adLoaded: sendToUnity(key, placementId, @"adLoaded"); break;
-                case adFailedToLoad: sendToUnity(key, placementId, @"adFailedToLoad"); break;
-                case adShown: sendToUnity(key, placementId, @"adShown"); break;
-                case adFailedToShow: sendToUnity(key, placementId, @"adFailedToShow"); break;
-                case adClicked: sendToUnity(key, placementId, @"adClicked"); break;
-                case adClosed: sendToUnity(key, placementId, @"adClosed"); break;
+                case adLoaded: sendAdCallback(key, placementId, @"adLoaded"); break;
+                case adFailedToLoad: sendAdCallback(key, placementId, @"adFailedToLoad"); break;
+                case adShown: sendAdCallback(key, placementId, @"adShown"); break;
+                case adFailedToShow: sendAdCallback(key, placementId, @"adFailedToShow"); break;
+                case adClicked: sendAdCallback(key, placementId, @"adClicked"); break;
+                case adClosed: sendAdCallback(key, placementId, @"adClosed"); break;
             }
         }];
         

@@ -34,12 +34,12 @@ extern "C" {
     void SuperAwesomeUnitySAAppWallCreate () {
         [SAAppWall setCallback:^(NSInteger placementId, SAEvent event) {
             switch (event) {
-                case adLoaded: sendToUnity(@"SAAppWall", placementId, @"adLoaded"); break;
-                case adFailedToLoad: sendToUnity(@"SAAppWall", placementId, @"adFailedToLoad"); break;
-                case adShown: sendToUnity(@"SAAppWall", placementId, @"adShown"); break;
-                case adFailedToShow: sendToUnity(@"SAAppWall", placementId, @"adFailedToShow"); break;
-                case adClicked: sendToUnity(@"SAAppWall", placementId, @"adClicked"); break;
-                case adClosed: sendToUnity(@"SAAppWall", placementId, @"adClosed"); break;
+                case adLoaded: sendAdCallback(@"SAAppWall", placementId, @"adLoaded"); break;
+                case adFailedToLoad: sendAdCallback(@"SAAppWall", placementId, @"adFailedToLoad"); break;
+                case adShown: sendAdCallback(@"SAAppWall", placementId, @"adShown"); break;
+                case adFailedToShow: sendAdCallback(@"SAAppWall", placementId, @"adFailedToShow"); break;
+                case adClicked: sendAdCallback(@"SAAppWall", placementId, @"adClicked"); break;
+                case adClosed: sendAdCallback(@"SAAppWall", placementId, @"adClosed"); break;
             }
         }];
     }
