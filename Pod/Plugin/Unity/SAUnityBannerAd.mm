@@ -1,12 +1,10 @@
-//
-//  SAUnityBannerAd.c
-//  Pods
-//
-//  Created by Gabriel Coman on 05/01/2017.
-//
-//
+/**
+ * @Copyright:   SuperAwesome Trading Limited 2017
+ * @Author:      Gabriel Coman (gabriel.coman@superawesome.tv)
+ */
 
 #import <UIKit/UIKit.h>
+#import "SAUnityCallback.h"
 
 #if defined(__has_include)
 #if __has_include("SuperAwesomeSDKUnity.h")
@@ -24,19 +22,17 @@
 #endif
 #endif
 
-#import "SAUnityCallback.h"
 
 extern "C" {
     
-    /**
-     *  A dictionary that holds Unity banners
-     */
+    // A dictionary that holds Unity banners
     NSMutableDictionary *bannerDictionary = [@{} mutableCopy];
     
     /**
-     *  Function that creates a new SABannerAd instance
+     * Native method called from Unity.
+     * Function that creates a new SABannerAd instance
      *
-     *  @param unityName the name of the banner in unity
+     * @param unityName the name of the banner in unity
      */
     void SuperAwesomeUnitySABannerAdCreate (const char *unityName) {
         // get the key
@@ -62,12 +58,13 @@ extern "C" {
     }
     
     /**
-     *  Function that loads an ad for a banner
+     * Native method called from Unity.
+     * Function that loads an ad for a banner
      *
-     *  @param unityName     the unique name of the banner in unity
-     *  @param placementId   placement id to load the ad for
-     *  @param configuration production = 0 / staging = 1
-     *  @param test          true / false
+     * @param unityName     the unique name of the banner in unity
+     * @param placementId   placement id to load the ad for
+     * @param configuration production = 0 / staging = 1
+     * @param test          true / false
      */
     void SuperAwesomeUnitySABannerAdLoad (const char *unityName, int placementId, int configuration, bool test) {
         // get the key
@@ -86,11 +83,12 @@ extern "C" {
     }
     
     /**
-     *  Function that checks wheter a banner has a loaded ad available or not
+     * Native method called from Unity.
+     * Function that checks wheter a banner has a loaded ad available or not
      *
-     *  @param unityName the unique name of the banner in unity
+     * @param unityName the unique name of the banner in unity
      *
-     *  @return true of false
+     * @return          true of false
      */
     bool SuperAwesomeUnitySABannerAdHasAdAvailable (const char *unityName) {
         // get the key
@@ -105,13 +103,14 @@ extern "C" {
     }
     
     /**
-     *  Function that plays a banner ad in unity
+     * Native method called from Unity.
+     * Function that plays a banner ad in unity
      *
-     *  @param unityName             the unique name of the banner in unity
-     *  @param isParentalGateEnabled true / false
-     *  @param position              TOP = 0 / BOTTOM = 1
-     *  @param size                  BANNER_320_50 = 0 / BANNER_300_50 = 1 / BANNER_728_90 = 2 / BANNER_300_250 = 3
-     *  @param color                 true = transparent / false = gray
+     * @param unityName             the unique name of the banner in unity
+     * @param isParentalGateEnabled true / false
+     * @param position              TOP = 0 / BOTTOM = 1
+     * @param size                  BANNER_320_50 = 0 / BANNER_300_50 = 1 / BANNER_728_90 = 2 / BANNER_300_250 = 3
+     * @param color                 true = transparent / false = gray
      */
     void SuperAwesomeUnitySABannerAdPlay (const char *unityName, bool isParentalGateEnabled, int position, int width, int height, bool color)
     {
@@ -177,9 +176,10 @@ extern "C" {
     }
     
     /**
-     *  Function that closes and removes a banner from view
+     * Native method called from Unity.
+     * Function that closes and removes a banner from view
      *
-     *  @param unityName the unique name of the banner in unity
+     * @param unityName the unique name of the banner in unity
      */
     void SuperAwesomeUnitySABannerAdClose (const char *unityName) {
         // get the key

@@ -18,13 +18,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [[SuperAwesome getInstance] handleStagingCPI:^(BOOL success) {
-        NSLog(@"Handled CPI with %d", success);
-    }];
     
     [[SuperAwesome getInstance] handleCPI:^(BOOL success) {
         NSLog(@"Handled CPI with %d", success);
     }];
+    
     return YES;
 }
 

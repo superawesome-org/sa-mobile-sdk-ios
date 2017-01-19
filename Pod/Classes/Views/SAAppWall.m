@@ -1,18 +1,12 @@
-//
-//  SAGameWall.m
-//  Pods
-//
-//  Created by Gabriel Coman on 27/09/2016.
-//
-//
+/**
+ * @Copyright:   SuperAwesome Trading Limited 2017
+ * @Author:      Gabriel Coman (gabriel.coman@superawesome.tv)
+ */
 
 #import "SAAppWall.h"
-
-// local imports
 #import "SuperAwesome.h"
 #import "SAParentalGate.h"
 
-// guarded imports
 #if defined(__has_include)
 #if __has_include(<SAModelSpace/SAResponse.h>)
 #import <SAModelSpace/SAResponse.h>
@@ -93,22 +87,42 @@
 #endif
 #endif
 
-////////////////////////////////////////////////////////////////////////////////
-// The actual GameWall Cell (UICollectionViewCell)
-////////////////////////////////////////////////////////////////////////////////
-
+/**
+ * Internal class representing an app wall cell.
+ * Subclass of UICollectionViewCell
+ */
 @interface SAAppWallCell : UICollectionViewCell
-- (void) setupForBigLayoutWithImagePath:(NSString*)imagePath
-                               andTitle:(NSString*)title;
-- (void) setupForSmallLayoutWithImagePath:(NSString*)imagePath
-                                 andTitle:(NSString*)title;
+
+/**
+ * Method to setup a cell in case a "big" layout is needed.
+ * That's when the number of cells in the app wall is low and I need to fill
+ * the space with something.
+ *
+ * @param imagePath the path, on disk, of where the image is
+ * @param title     the associated title of the image (the ad's / app's name)
+ */
+- (void) setupForBigLayoutWithImagePath:(NSString*) imagePath
+                               andTitle:(NSString*) title;
+
+/**
+ * Method to setup a cell in case a "small" layout is needed.
+ * That's when the number of cells in the app wall is hight and I don't
+ * need to fill in empty space.
+ *
+ * @param imagePath the path, on disk, of where the image is
+ * @param title     the associated title of the image (the ad's / app's name)
+ */
+- (void) setupForSmallLayoutWithImagePath:(NSString*) imagePath
+                                 andTitle:(NSString*) title;
 @end
 
 @interface SAAppWallCell ()
-@property (nonatomic, strong) NSString *imagePath;
-@property (nonatomic, strong) NSString *title;
-@property (nonatomic, strong) UIImageView *appIcon;
-@property (nonatomic, strong) UILabel *appTitle;
+
+// private app wall cell variables
+@property (nonatomic, strong) NSString      *imagePath;
+@property (nonatomic, strong) NSString      *title;
+@property (nonatomic, strong) UIImageView   *appIcon;
+@property (nonatomic, strong) UILabel       *appTitle;
 @end
 
 @implementation SAAppWallCell
@@ -137,6 +151,9 @@
     [self arrangeSubviewsForBigLayout];
 }
 
+/**
+ * Method that clears subviews from an app wall cell
+ */
 - (void) clearSubviews {
     if (_appIcon) {
         [_appIcon removeFromSuperview];
@@ -149,6 +166,10 @@
     }
 }
 
+/**
+ * This method does the actual arrangement of a cell's layout in case of a 
+ * small layout is needed.
+ */
 - (void) arrangeSubviewsForSmallLayout {
     
     NSString *imageUrl = [SAUtils filePathInDocuments:_imagePath];
@@ -174,6 +195,10 @@
     [self addSubview:_appTitle];
 }
 
+/**
+ * This method does the actual arrangement of a cell's layout in case of a
+ * big layout is needed.
+ */
 - (void) arrangeSubviewsForBigLayout {
     
     NSString *imageUrl = [SAUtils filePathInDocuments:_imagePath];
@@ -201,32 +226,28 @@
 
 @end
 
-////////////////////////////////////////////////////////////////////////////////
-// The actual GameWall (ViewController)
-////////////////////////////////////////////////////////////////////////////////
-
 @interface SAAppWall () <UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource>
 
 // hold the current ad response and array of associated events
-@property (nonatomic, strong) SAResponse *response;
-@property (nonatomic, strong) NSMutableArray <SAEvents*> *events;
+@property (nonatomic, strong) SAResponse                    *response;
+@property (nonatomic, strong) NSMutableArray <SAEvents*>    *events;
 
 // different UI elements: background iamge, close ,padlock, etc
-@property (nonatomic, strong) UIImageView *backgroundImage;
-@property (nonatomic, strong) UIButton *closeButton;
-@property (nonatomic, strong) UIImageView *titleImgView;
-@property (nonatomic, strong) UIButton *padlock;
-@property (nonatomic, strong) UIImageView *header;
+@property (nonatomic, strong) UIImageView                   *backgroundImage;
+@property (nonatomic, strong) UIButton                      *closeButton;
+@property (nonatomic, strong) UIImageView                   *titleImgView;
+@property (nonatomic, strong) UIButton                      *padlock;
+@property (nonatomic, strong) UIImageView                   *header;
 
 // collection view & associated flow layout
-@property (nonatomic, strong) UICollectionView *gamewall;
-@property (nonatomic, strong) UICollectionViewFlowLayout *layout;
+@property (nonatomic, strong) UICollectionView              *gamewall;
+@property (nonatomic, strong) UICollectionViewFlowLayout    *layout;
 
 // the parental gate
-@property (nonatomic, strong) SAParentalGate *gate;
+@property (nonatomic, strong) SAParentalGate                *gate;
 
 // hold the prev status bar hidden or not
-@property (nonatomic, assign) BOOL previousStatusBarHiddenValue;
+@property (nonatomic, assign) BOOL                          previousStatusBarHiddenValue;
 
 @end
 
@@ -236,11 +257,15 @@
 static NSMutableDictionary *responses;
 
 // other static variables needed for state
-static sacallback callback = ^(NSInteger placementId, SAEvent event) {};
-static BOOL isParentalGateEnabled = SA_DEFAULT_PARENTALGATE;
-static BOOL isTestingEnabled = SA_DEFAULT_TESTMODE;
+static sacallback callback           = ^(NSInteger placementId, SAEvent event) {};
+static BOOL isParentalGateEnabled    = SA_DEFAULT_PARENTALGATE;
+static BOOL isTestingEnabled         = SA_DEFAULT_TESTMODE;
 static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
 
+/**
+ * Overridden UIViewController "viewDidLoad" method in which the ad is setup
+ * and redrawn to look good.
+ */
 - (void) viewDidLoad {
     [super viewDidLoad];
     
@@ -317,16 +342,31 @@ static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
     [self.view addSubview:_closeButton];
 }
 
+/**
+ * Overridden UIViewController "didReceiveMemoryWarning" method
+ */
 - (void) didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+/**
+ * Overridden UIViewController "viewWillAppear" method in which the status bar 
+ * is set to hidden.
+ *
+ * @param animated whether the view will appear animated or not
+ */
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
 }
 
+/**
+ * Overridden UIViewController "viewDidAppear" method in which I send out all
+ * neeeded events for the ad.
+ * 
+ * @param aniamted whether the view has appeared animated or not
+ */
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
@@ -338,34 +378,70 @@ static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
     }
 }
 
+/**
+ * Overridden UIViewController "viewWillDisappear" method in which I reset the
+ * status bar state
+ *
+ * @param aniamted whether the view will disappeared animated or not
+ */
 - (void) viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [[UIApplication sharedApplication] setStatusBarHidden:_previousStatusBarHiddenValue
                                             withAnimation:UIStatusBarAnimationNone];
 }
 
+/**
+ * Overridden UIViewController "supportedInterfaceOrientations" method in which 
+ * I set the supported orientations
+ *
+ * @return valid orientations for this view controller
+ */
 - (UIInterfaceOrientationMask) supportedInterfaceOrientations {
     return UIInterfaceOrientationMaskPortrait;
 }
 
+/**
+ * Overridden UIViewController "shouldAutorotateToInterfaceOrientation" method 
+ * in which I set that the view controller should auto rotate
+ *
+ * @return true or false
+ */
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return YES;
 }
 
+/**
+ * Overridden UIViewController "prefersStatusBarHidden" method
+ * in which I set that the view controller prefers a hidden status bar
+ *
+ * @return true or false
+ */
 - (BOOL) prefersStatusBarHidden {
     return true;
 }
 
-////////////////////////////////////////////////////////////////////////////////
-// MARK: UICollectionView delegate methods
-////////////////////////////////////////////////////////////////////////////////
-
+/**
+ * Overridden UICollectionViewDelegate method that returns the number of
+ * cells in the collection view.
+ *
+ * @param collectionView    the current instance of the calling collection view
+ * @param section           current section to return the number of cells for
+ * @return                  number of cells, equal to number of ads
+ */
 - (NSInteger) collectionView:(UICollectionView*) collectionView
       numberOfItemsInSection:(NSInteger) section {
     
     return [_response.ads count];
 }
 
+/**
+ * Overridden UICollectionViewDelegate method that sets up a cell in the
+ * collection view
+ *
+ * @param collectionView    the current instance of the calling collection view
+ * @param indexPath         current index path to setup
+ * @return                  a valid, setup, instance of a cell
+ */
 - (UICollectionViewCell*) collectionView:(UICollectionView*) collectionView
                   cellForItemAtIndexPath:(NSIndexPath*) indexPath {
     
@@ -394,6 +470,17 @@ static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
     return cell;
 }
 
+/**
+ * Overridden UICollectionViewDelegate method that returns the layout to be
+ * appliead for the collection view, based on the number of cells / ads to
+ * be displayed
+ *
+ * @param collectionView       the current instance of the calling 
+ *                             collection view
+ * @param collectionViewLayout the current layout for the collection view
+ * @param indexPath            current index path to setup
+ * @return                     the CGSize used to setup the layout
+ */
 - (CGSize) collectionView:(UICollectionView*) collectionView
                    layout:(UICollectionViewLayout*) collectionViewLayout
    sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -410,12 +497,34 @@ static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
     }
 }
 
+/**
+ * Overridden UICollectionViewDelegate method that returns the edge
+ * inset needed. Usually zero.
+ *
+ * @param collectionView       the current instance of the calling
+ *                             collection view
+ * @param collectionViewLayout the current layout for the collection view
+ * @param section              current section to return the number
+ *                             of cells for
+ * @return                     a zeroed inset
+ */
 - (UIEdgeInsets) collectionView:(UICollectionView *)collectionView
                          layout:(UICollectionViewLayout *)collectionViewLayout
          insetForSectionAtIndex:(NSInteger)section {
     return UIEdgeInsetsMake(0, 0, 0, 0);
 }
 
+/**
+ * Overridden UICollectionViewDelegate method that the min inter item
+ * spacing. It's zero.
+ *
+ * @param collectionView       the current instance of the calling
+ *                             collection view
+ * @param collectionViewLayout the current layout for the collection view
+ * @param section              current section to return the number 
+ *                             of cells for
+ * @return                     always zero
+ */
 - (CGFloat)collectionView:(UICollectionView *)collectionView
                    layout:(UICollectionViewLayout*)collectionViewLayout
 minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
@@ -423,6 +532,13 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
     return 0.0;
 }
 
+/**
+ * Overridden UICollectionViewDelegate method that handles selecting a 
+ * cell at an index path
+ *
+ * @param collectionView    the current instance of the calling
+ * @param indexPath         current index path to setup
+ */
 - (void) collectionView:(UICollectionView *)collectionView
 didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -445,10 +561,9 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
 }
 
-////////////////////////////////////////////////////////////////////////////////
-// MARK: Aux Instance method
-////////////////////////////////////////////////////////////////////////////////
-
+/**
+ * Method that is called to close the ad
+ */
 - (void) close {
     
     // call delegate
@@ -467,6 +582,12 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+/**
+ * Method that is called when a user clicks / taps on an ad
+ *
+ * @param position  sent in by the collection view so I know which events to
+ *                  send back to the ad server
+ */
 - (void) click: (NSInteger) position {
     
     // get ad
@@ -500,13 +621,12 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"Going to %@", _destinationURL);
 }
 
+/**
+ * Method called when the user clicks on a padlock
+ */
 - (void) padlockAction {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://ads.superawesome.tv/v2/safead"]];
 }
-
-////////////////////////////////////////////////////////////////////////////////
-// MARK: Class public interface
-////////////////////////////////////////////////////////////////////////////////
 
 + (void) load:(NSInteger) placementId {
     
@@ -571,16 +691,14 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     return object != NULL && [object isKindOfClass:[SAResponse class]];
 }
 
+/**
+ * Method that clears an ad from the dictionary of ads, once it has been played
+ *
+ * @param response the SAResponse object to be cleared
+ */
 + (void) removeResponseFromLoadedResponses:(SAResponse*)response {
     [responses removeObjectForKey:@(response.placementId)];
 }
-
-////////////////////////////////////////////////////////////////////////////////
-// MARK: Setters & getters
-// Some are exposed externally (mainly setters) but some are only internally
-// Main role for them is to handle working with static variables inside this
-// module.
-////////////////////////////////////////////////////////////////////////////////
 
 + (void) setCallback:(sacallback)call {
     callback = call ? call : callback;
@@ -610,8 +728,6 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [self setConfiguration:STAGING];
 }
 
-// generic method
-
 + (void) setTestMode: (BOOL) value {
     isTestingEnabled = value;
 }
@@ -624,8 +740,6 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     configuration = value;
 }
 
-// private static getters
-
 + (sacallback) getCallback {
     return callback;
 }
@@ -633,6 +747,5 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 + (BOOL) getIsParentalGateEnabled {
     return isParentalGateEnabled;
 }
-
 
 @end

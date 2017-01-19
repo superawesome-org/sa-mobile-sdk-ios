@@ -1,10 +1,7 @@
-//
-//  SAUnityCallback.h
-//  Pods
-//
-//  Created by Gabriel Coman on 05/01/2017.
-//
-//
+/**
+ * @Copyright:   SuperAwesome Trading Limited 2017
+ * @Author:      Gabriel Coman (gabriel.coman@superawesome.tv)
+ */
 
 #import <UIKit/UIKit.h>
 
@@ -16,9 +13,16 @@
 #endif
 #endif
 
+// forward declaration of this method - which is part of the Unity C
+// libray, so it would be available there
 void UnitySendMessage(const char *identifier, const char *function, const char *payload);
 
-
+/**
+ * Generic method used to send messages back to unity
+ *
+ * @param unityName the name of the unity ad to send the message back to
+ * @param data      a dictionary of data to send back
+ */
 static inline void sendToUnity (NSString *unityName, NSDictionary *data) {
     
     const char *name = [unityName UTF8String];
@@ -28,6 +32,13 @@ static inline void sendToUnity (NSString *unityName, NSDictionary *data) {
     
 }
 
+/**
+ * Method that sends back ad data to Unity
+ *
+ * @param unityName     the name of the unity ad to send the message back to
+ * @param placementId   placement id of the ad that called this
+ * @param callback      callback method
+ */
 static inline void sendAdCallback (NSString *unityName, NSInteger placementId, NSString *callback) {
 
     NSDictionary *data = @{
@@ -39,6 +50,13 @@ static inline void sendAdCallback (NSString *unityName, NSInteger placementId, N
     
 }
 
+/**
+ * Method that sends back CPU data to Unity
+ *
+ * @param unityName     the name of the unity ad to send the message back to
+ * @param succes        whether the /install event was sent OK
+ * @param callback      callback method
+ */
 static inline void sendCPICallback (NSString *unityName, BOOL success, NSString *callback) {
     
     NSDictionary *data = @{

@@ -1,16 +1,9 @@
-//
-//  SuperAwesome.h
-//  Pods
-//
-//  Copyright (c) 2015 SuperAwesome Ltd. All rights reserved.
-//
-//  Created by Gabriel Coman on 28/09/2015.
-//
-//
+/**
+ * @Copyright:   SuperAwesome Trading Limited 2017
+ * @Author:      Gabriel Coman (gabriel.coman@superawesome.tv)
+ */
 
-// import useful headers
 #import "SuperAwesomeInterstitialCustomEvent.h"
-
 #import "SuperAwesome.h"
 #import "SuperAwesomeMoPub.h"
 
@@ -20,6 +13,12 @@
 
 @implementation SuperAwesomeInterstitialCustomEvent
 
+/**
+ * Overridden MoPub method that requests a new interstitial.
+ *
+ * @param info a dictionary of extra information passed down from MoPub to the
+ *             SDK that help with loading the ad
+ */
 - (void) requestInterstitialWithCustomEventInfo:(NSDictionary *)info {
     
     // variables received from the MoPub server
@@ -112,16 +111,31 @@
     [SAInterstitialAd load:_placementId];
 }
 
+/**
+ * Overridden MoPub method that actually displays an interstitial ad.
+ *
+ * @param rootViewController the view controller from which the ad will spring
+ */
 - (void) showInterstitialFromRootViewController:(UIViewController *)rootViewController {
-    // play
-    [SAInterstitialAd play:_placementId fromVC:rootViewController];
+    [SAInterstitialAd play:_placementId
+                    fromVC:rootViewController];
     [self.delegate interstitialCustomEventWillAppear:self];
 }
 
-- (NSError*) createErrorWith:(NSString*)description andReason:(NSString*)reaason andSuggestion:(NSString*)suggestion {
+/**
+ * MoPub method that creates a new error obkect
+ *
+ * @param description   the description text of the error
+ * @param reason        a reason for why it might have happened
+ * @param suggestion    a suggestion of how to fix it
+ */
+- (NSError*) createErrorWith:(NSString*) description
+                   andReason:(NSString*) reason
+               andSuggestion:(NSString*) suggestion {
+    
     NSDictionary *userInfo = @{
                                NSLocalizedDescriptionKey: NSLocalizedString(description, nil),
-                               NSLocalizedFailureReasonErrorKey: NSLocalizedString(reaason, nil),
+                               NSLocalizedFailureReasonErrorKey: NSLocalizedString(reason, nil),
                                NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(suggestion, nil)
                                };
     

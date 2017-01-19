@@ -1,31 +1,28 @@
-//
-//  SuperAwesome.h
-//  Pods
-//
-//  Copyright (c) 2015 SuperAwesome Ltd. All rights reserved.
-//
-//  Created by Gabriel Coman on 28/09/2015.
-//
-//
+/**
+ * @Copyright:   SuperAwesome Trading Limited 2017
+ * @Author:      Gabriel Coman (gabriel.coman@superawesome.tv)
+ */
 
-// import useful headers
 #import "SuperAwesomeBannerCustomEvent.h"
 #import "SuperAwesomeMoPub.h"
 #import "SuperAwesome.h"
 
-// private anonymous category of SuperAwesomeBannerCustomEvent, that
-// implements two important ad protocols
-// - SALoaderProtocol (of SALoader class)
-// - SAAdProtocol (common to all SAViews)
 @interface SuperAwesomeBannerCustomEvent ()
 @property (nonatomic, strong) SABannerAd *banner;
 @end
 
-// actual implementation
 @implementation SuperAwesomeBannerCustomEvent
 
-// main CustomEvent call function
-- (void) requestAdWithSize:(CGSize)size customEventInfo:(NSDictionary *)info {
+/**
+ * Overridden MoPub method that requests a banner ad of a certain size, with
+ * additional info from the network.
+ *
+ * @param size a CGSize value detailing the size of the ad
+ * @param info a dictionary of extra information passed down from MoPub to the
+ *             SDK that help with loading the ad
+ */
+- (void) requestAdWithSize:(CGSize) size
+           customEventInfo:(NSDictionary*) info {
     
     // variables received from the MoPub server
     id _Nullable placementIdObj = [info objectForKey:PLACEMENT_ID];
@@ -94,10 +91,20 @@
     [_banner load:placementId];
 }
 
-- (NSError*) createErrorWith:(NSString*)description andReason:(NSString*)reaason andSuggestion:(NSString*)suggestion {
+/**
+ * MoPub method that creates a new error obkect
+ * 
+ * @param description   the description text of the error
+ * @param reason        a reason for why it might have happened
+ * @param suggestion    a suggestion of how to fix it
+ */
+- (NSError*) createErrorWith:(NSString*) description
+                   andReason:(NSString*) reason
+               andSuggestion:(NSString*) suggestion {
+    
     NSDictionary *userInfo = @{
                                NSLocalizedDescriptionKey: NSLocalizedString(description, nil),
-                               NSLocalizedFailureReasonErrorKey: NSLocalizedString(reaason, nil),
+                               NSLocalizedFailureReasonErrorKey: NSLocalizedString(reason, nil),
                                NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(suggestion, nil)
                                };
     

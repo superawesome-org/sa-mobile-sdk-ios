@@ -1,12 +1,10 @@
-//
-//  SAUnityInterstitialAd.c
-//  Pods
-//
-//  Created by Gabriel Coman on 05/01/2017.
-//
-//
+/**
+ * @Copyright:   SuperAwesome Trading Limited 2017
+ * @Author:      Gabriel Coman (gabriel.coman@superawesome.tv)
+ */
 
 #import <UIKit/UIKit.h>
+#import "SAUnityCallback.h"
 
 #if defined(__has_include)
 #if __has_include("SuperAwesomeSDKUnity.h")
@@ -24,12 +22,11 @@
 #endif
 #endif
 
-#import "SAUnityCallback.h"
-
 extern "C" {
     
     /**
-     *  Methid that adds a callback to the SAInterstitialAd static method class
+     * Native method called from Unity.
+     * Method that adds a callback to the SAInterstitialAd static method class
      */
     void SuperAwesomeUnitySAInterstitialAdCreate () {
         [SAInterstitialAd setCallback:^(NSInteger placementId, SAEvent event) {
@@ -46,11 +43,12 @@ extern "C" {
     }
     
     /**
-     *  Load an interstitial ad
+     * Native method called from Unity.
+     * Load an interstitial ad
      *
-     *  @param placementId   the placement id to try to load an ad for
-     *  @param configuration production = 0 / staging = 1
-     *  @param test          true / false
+     * @param placementId   the placement id to try to load an ad for
+     * @param configuration production = 0 / staging = 1
+     * @param test          true / false
      */
     void SuperAwesomeUnitySAInterstitialAdLoad (int placementId, int configuration, bool test) {
         [SAInterstitialAd setTestMode:test];
@@ -59,20 +57,22 @@ extern "C" {
     }
     
     /**
-     *  Check to see if there's an ad available
+     * Native method called from Unity.
+     * Check to see if there's an ad available
      *
-     *  @return true / false
+     * @return true / false
      */
     bool SuperAwesomeUnitySAInterstitialAdHasAdAvailable(int placementId) {
         return [SAInterstitialAd hasAdAvailable: placementId];
     }
     
     /**
-     *  Play an interstitial ad
+     * Native method called from Unity.
+     * Play an interstitial ad
      *
-     *  @param isParentalGateEnabled true / false
-     *  @param shouldLockOrientation true / false
-     *  @param lockOrientation       ANY = 0 / PORTRAIT = 1 / LANDSCAPE = 2
+     * @param isParentalGateEnabled true / false
+     * @param shouldLockOrientation true / false
+     * @param lockOrientation       ANY = 0 / PORTRAIT = 1 / LANDSCAPE = 2
      */
     void SuperAwesomeUnitySAInterstitialAdPlay (int placementId, bool isParentalGateEnabled, int orientation) {
         UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;

@@ -1,12 +1,10 @@
-//
-//  SAAIRVersion.c
-//  Pods
-//
-//  Created by Gabriel Coman on 06/01/2017.
-//
-//
+/**
+ * @Copyright:   SuperAwesome Trading Limited 2017
+ * @Author:      Gabriel Coman (gabriel.coman@superawesome.tv)
+ */
 
-#include "SAAIRVersion.h"
+#include "SAAIRSuperAwesome.h"
+#import "SAAIRCallback.h"
 
 #if defined(__has_include)
 #if __has_include(<SuperAwesomeSDK/SuperAwesomeSDK.h>)
@@ -16,7 +14,18 @@
 #endif
 #endif
 
-FREObject SuperAwesomeAIRSetVersion (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]) {
+FREObject SuperAwesomeAIRSuperAwesomeHandleCPI (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]) {
+    
+    [[SuperAwesome getInstance] handleCPI:^(BOOL success) {
+        
+        sendCPICallback(ctx, @"SAAIRSuperAwesome", success, @"HandleCPI");
+        
+    }];
+    
+    return NULL;
+}
+
+FREObject SuperAwesomeAIRSuperAwesomeSetVersion (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]) {
     
     // needed paramters
     uint32_t versionLength;

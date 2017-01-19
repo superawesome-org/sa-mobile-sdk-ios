@@ -1,21 +1,15 @@
-//
-//  SuperAwesomeRewardedVideoCustomEvent.h
-//  SAMoPubIntegrationDemo
-//
-//  Created by Gabriel Coman on 17/12/2015.
-//  Copyright © 2015 Gabriel Coman. All rights reserved.
-//
+/**
+ * @Copyright:   SuperAwesome Trading Limited 2017
+ * @Author:      Gabriel Coman (gabriel.coman@superawesome.tv)
+ */
 
 #import "MPRewardedVideoCustomEvent.h"
 
-// This class extends MoPub's own MPRewardedVideoCustomEvent and is used
-// as a seamless bridge between SuperAwesome and MoPub
-//
-// Using this bridge Super Awesome Banner Ads can be displayed in your app,
-// using MoPub's SDK (so you don't have to use SuperAwesome ad sdk)
-//
-// Visit documentation at https://dev.twitter.com/mopub/network-mediation/custom-unsupported-ios
-// to learn more about integrating this into your iOS App
+/**
+ * Class that abstracts away communication with MoPub in order to display
+ * video ads.
+ * Visit documentation at
+ * https://dev.twitter.com/mopub/network-mediation/custom-unsupported-ios
+ */
 @interface SuperAwesomeRewardedVideoCustomEvent : MPRewardedVideoCustomEvent
-
 @end

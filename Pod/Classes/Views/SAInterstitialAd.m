@@ -1,15 +1,12 @@
-//
-//  SAInterstitialAd2.m
-//  Pods
-//
-//  Created by Gabriel Coman on 02/09/2016.
-//
-//
+/**
+ * @Copyright:   SuperAwesome Trading Limited 2017
+ * @Author:      Gabriel Coman (gabriel.coman@superawesome.tv)
+ */
 
-// load header
 #import "SAInterstitialAd.h"
+#import "SABannerAd.h"
+#import "SuperAwesome.h"
 
-// guarded imports
 #if defined(__has_include)
 #if __has_include(<SAModelSpace/SAResponse.h>)
 #import <SAModelSpace/SAResponse.h>
@@ -66,38 +63,35 @@
 #endif
 #endif
 
-// load others
-#import "SABannerAd.h"
-#import "SuperAwesome.h"
 
 @interface SAInterstitialAd ()
 
 // views
 @property (nonatomic, strong) SABannerAd *banner;
-@property (nonatomic, strong) SAAd *ad;
-@property (nonatomic, strong) UIButton *closeBtn;
+@property (nonatomic, strong) SAAd       *ad;
+@property (nonatomic, strong) UIButton   *closeBtn;
 
 // hold the prev status bar hidden or not
-@property (nonatomic, assign) BOOL previousStatusBarHiddenValue;
+@property (nonatomic, assign) BOOL       previousStatusBarHiddenValue;
 
 @end
 
 @implementation SAInterstitialAd
 
 // current loaded ad
-static NSMutableDictionary *ads;
+static NSMutableDictionary           *ads;
 
 // other vars that need to be set statically
-static sacallback callback = ^(NSInteger placementId, SAEvent event) {};
-static BOOL isParentalGateEnabled = SA_DEFAULT_PARENTALGATE;
-static BOOL isTestingEnabled = SA_DEFAULT_TESTMODE;
-static SAOrientation orientation = SA_DEFAULT_ORIENTATION;
+static sacallback callback           = ^(NSInteger placementId, SAEvent event) {};
+static BOOL isParentalGateEnabled    = SA_DEFAULT_PARENTALGATE;
+static BOOL isTestingEnabled         = SA_DEFAULT_TESTMODE;
+static SAOrientation orientation     = SA_DEFAULT_ORIENTATION;
 static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
 
-////////////////////////////////////////////////////////////////////////////////
-// MARK: VC lifecycle
-////////////////////////////////////////////////////////////////////////////////
-
+/**
+ * Overridden UIViewController "viewDidLoad" method in which the ad is setup
+ * and redrawn to look good.
+ */
 - (void) viewDidLoad {
     [super viewDidLoad];
 
@@ -127,10 +121,20 @@ static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
     [self.view addSubview:_banner];
 }
 
+/**
+ * Overridden UIViewController "didReceiveMemoryWarning" method
+ */
 - (void) didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
+/**
+ * Overridden UIViewController "viewWillAppear" method in which the status bar
+ * is set to hidden and further math is applied to get the correct size
+ * to resize the ad to
+ *
+ * @param animated whether the view will appear animated or not
+ */
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
@@ -178,17 +182,38 @@ static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
     [_banner play];
 }
 
+/**
+ * Overridden UIViewController "viewWillDisappear" method in which I reset the
+ * status bar state
+ *
+ * @param aniamted whether the view will disappeared animated or not
+ */
 - (void) viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [[UIApplication sharedApplication] setStatusBarHidden:_previousStatusBarHiddenValue
                                             withAnimation:UIStatusBarAnimationNone];
 }
 
+/**
+ * Overridden UIViewController "viewWillTransitionToSize:withTransitionCoordinator:"
+ * in which I resize the ad and it's HTML content to fit the new screen layout.
+ * 
+ * @param size          the new size to transition to
+ * @param coordinator   the coordinator used to transition
+ */
 - (void) viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
     [self resize:CGRectMake(0, 0, size.width, size.height)];
 }
 
+/**
+ * Overridden UIViewController "willRotateToInterfaceOrientation:duration:"
+ * in which I get the message that the view will rotate and try to help with
+ * maths in order to resize the ad
+ *
+ * @param toInterfaceOrientation the new interface orientation enum value
+ * @param duration               duration of the transition
+ */
 - (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     CGSize scrSize = [UIScreen mainScreen].bounds.size;
     CGFloat bigDimension = MAX(scrSize.width, scrSize.height);
@@ -210,6 +235,12 @@ static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
     }
 }
 
+/**
+ * Overridden UIViewController "supportedInterfaceOrientations" method in which
+ * I set the supported orientations
+ *
+ * @return valid orientations for this view controller
+ */
 - (UIInterfaceOrientationMask) supportedInterfaceOrientations {
     SAOrientation orientationL = [SAInterstitialAd getOrientation];
     switch (orientationL) {
@@ -219,18 +250,29 @@ static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
     }
 }
 
+/**
+ * Overridden UIViewController "shouldAutorotateToInterfaceOrientation" method
+ * in which I set that the view controller should auto rotate
+ *
+ * @return true or false
+ */
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return YES;
 }
 
+/**
+ * Overridden UIViewController "prefersStatusBarHidden" method
+ * in which I set that the view controller prefers a hidden status bar
+ *
+ * @return true or false
+ */
 - (BOOL) prefersStatusBarHidden {
     return true;
 }
 
-////////////////////////////////////////////////////////////////////////////////
-// MARK: Aux Instance method
-////////////////////////////////////////////////////////////////////////////////
-
+/**
+ * Method that is called to close the ad
+ */
 - (void) close {
     // null ad
     [SAInterstitialAd removeAdFromLoadedAds:_ad];
@@ -242,6 +284,11 @@ static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+/**
+ * Method that resizes the ad and it's banner SABannerAd object
+ * 
+ * @param frame the new frame to resize to
+ */
 - (void) resize: (CGRect) frame {
     // calc proper new frame
     CGFloat tW = frame.size.width;
@@ -259,10 +306,6 @@ static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
     [_closeBtn setFrame:CGRectMake(frame.size.width - 40.0f, 0, 40.0f, 40.0f)];
     [self.view bringSubviewToFront:_closeBtn];
 }
-
-////////////////////////////////////////////////////////////////////////////////
-// MARK: Class public interface
-////////////////////////////////////////////////////////////////////////////////
 
 + (void) load:(NSInteger) placementId {
     
@@ -330,16 +373,14 @@ static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
     return object != NULL && [object isKindOfClass:[SAAd class]];
 }
 
+/**
+ * Method that clears an ad from the dictionary of ads, once it has been played
+ *
+ * @param ad the SAAd object to be cleared
+ */
 + (void) removeAdFromLoadedAds:(SAAd*)ad {
     [ads removeObjectForKey:@(ad.placementId)];
 }
-
-////////////////////////////////////////////////////////////////////////////////
-// MARK: Setters & getters
-// Some are exposed externally (mainly setters) but some are only internally
-// Main role for them is to handle working with static variables inside this
-// module.
-////////////////////////////////////////////////////////////////////////////////
 
 + (void) setCallback:(sacallback)call {
     callback = call ? call : callback;
@@ -381,8 +422,6 @@ static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
     [self setOrientation:LANDSCAPE];
 }
 
-// generic method
-
 + (void) setTestMode: (BOOL) value {
     isTestingEnabled = value;
 }
@@ -398,8 +437,6 @@ static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
 + (void) setOrientation: (SAOrientation) value {
     orientation = value;
 }
-
-// private methods
 
 + (BOOL) getIsParentalGateEnabled {
     return isParentalGateEnabled;

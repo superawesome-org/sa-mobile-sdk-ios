@@ -1,12 +1,10 @@
-//
-//  SAUnityVideoAd.c
-//  Pods
-//
-//  Created by Gabriel Coman on 05/01/2017.
-//
-//
+/**
+ * @Copyright:   SuperAwesome Trading Limited 2017
+ * @Author:      Gabriel Coman (gabriel.coman@superawesome.tv)
+ */
 
 #import <UIKit/UIKit.h>
+#import "SAUnityCallback.h"
 
 #if defined(__has_include)
 #if __has_include("SuperAwesomeSDKUnity.h")
@@ -24,12 +22,11 @@
 #endif
 #endif
 
-#import "SAUnityCallback.h"
-
 extern "C" {
     
     /**
-     *  Add a callback to the SAVideoAd static class
+     * Native method called from Unity.
+     * Add a callback to the SAVideoAd static class
      */
     void SuperAwesomeUnitySAVideoAdCreate () {
         [SAVideoAd setCallback:^(NSInteger placementId, SAEvent event) {
@@ -45,11 +42,12 @@ extern "C" {
     }
     
     /**
-     *  Load a video ad
+     * Native method called from Unity.
+     * Load a video ad
      *
-     *  @param placementId   placement id
-     *  @param configuration production = 0 / staging = 1
-     *  @param test          true / false
+     * @param placementId   placement id
+     * @param configuration production = 0 / staging = 1
+     * @param test          true / false
      */
     void SuperAwesomeUnitySAVideoAdLoad(int placementId, int configuration, bool test) {
         [SAVideoAd setTestMode:test];
@@ -58,23 +56,25 @@ extern "C" {
     }
     
     /**
-     *  Check to see if there is an video ad available
+     * Native method called from Unity.
+     * Check to see if there is an video ad available
      *
-     *  @return true / false
+     * @return true / false
      */
     bool SuperAwesomeUnitySAVideoAdHasAdAvailable(int placementId) {
         return [SAVideoAd hasAdAvailable: placementId];
     }
     
     /**
-     *  Play a video ad
+     * Native method called from Unity.
+     * Play a video ad
      *
-     *  @param isParentalGateEnabled         true / false
-     *  @param shouldShowCloseButton         true / false
-     *  @param shouldShowSmallClickButton    true / false
-     *  @param shouldAutomaticallyCloseAtEnd true / false
-     *  @param shouldLockOrientation         true / falsr
-     *  @param lockOrientation               ANY = 0 / PORTRAIT = 1 / LANDSCAPE = 2
+     * @param isParentalGateEnabled         true / false
+     * @param shouldShowCloseButton         true / false
+     * @param shouldShowSmallClickButton    true / false
+     * @param shouldAutomaticallyCloseAtEnd true / false
+     * @param shouldLockOrientation         true / falsr
+     * @param lockOrientation               ANY = 0 / PORTRAIT = 1 / LANDSCAPE = 2
      */
     void SuperAwesomeUnitySAVideoAdPlay(int placementId, bool isParentalGateEnabled, bool shouldShowCloseButton, bool shouldShowSmallClickButton, bool shouldAutomaticallyCloseAtEnd, int orientation) {
         UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;

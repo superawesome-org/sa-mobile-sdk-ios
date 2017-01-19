@@ -1,32 +1,48 @@
-//
-//  SAParentalGate2.h
-//  Pods
-//
-//  Copyright (c) 2015 SuperAwesome Ltd. All rights reserved.
-//
-//  Created by Gabriel Coman on 28/09/2015.
-//
-//
+/**
+ * @Copyright:   SuperAwesome Trading Limited 2017
+ * @Author:      Gabriel Coman (gabriel.coman@superawesome.tv)
+ */
 
 #import <UIKit/UIKit.h>
 
-// forward declarations
 @class SAAd;
 
-// define a block used by UIAlertActions
-typedef void(^actionBlock) (UIAlertAction *action);
-
-// interface
+/**
+ * Class that defines a parental gate - basically a pop-up that, when enables, forces users to
+ * respond to a mini-math quiz in order to proceed forward
+ */
 @interface SAParentalGate : NSObject <UIAlertViewDelegate>
 
-// custom init functions
-- (id) initWithWeakRefToView:(id)weakRef andAd:(SAAd *)ad;
-- (id) initWithWeakRefToView:(id)weakRef andAd:(SAAd *)ad andPosition:(NSInteger)position;
+/**
+ * Init method with a weak reference to the calling view (banner,
+ * interstitial or video ad and an reference to the ad that's being played)
+ * 
+ * @param weakRef a param of type "id"
+ * @param ad      the current SAAd object being played
+ */
+- (id) initWithWeakRefToView:(id) weakRef
+                       andAd:(SAAd*) ad;
 
-// show function
+/**
+ * Init method with a weak reference to the calling view (appwall) 
+ * and an reference to the ad that's being played)
+ *
+ * @param weakRef   a param of type "id"
+ * @param ad        the current SAAd object being played
+ * @param postiion  the current ad position in the appwall
+ */
+- (id) initWithWeakRefToView:(id) weakRef
+                       andAd:(SAAd*) ad
+                 andPosition:(NSInteger) position;
+
+/**
+ * Main show method
+ */
 - (void) show;
 
-// close function
+/**
+ * Main close method
+ */
 - (void) close;
 
 @end

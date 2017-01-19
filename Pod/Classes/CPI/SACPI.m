@@ -1,14 +1,10 @@
-//
-//  SACPI.m
-//  Pods
-//
-//  Created by Gabriel Coman on 25/08/2016.
-//
-//
+/**
+ * @Copyright:   SuperAwesome Trading Limited 2017
+ * @Author:      Gabriel Coman (gabriel.coman@superawesome.tv)
+ */
 
 #import "SACPI.h"
 
-// guarded imports
 #if defined(__has_include)
 #if __has_include(<SASession/SASession.h>)
 #import <SASession/SASession.h>
@@ -17,16 +13,16 @@
 #endif
 #endif
 
-@interface SACPI ()
-@end
-
 @implementation SACPI
 
 - (void) sendInstallEvent: (SASession*) session
-             withCallback: (didCountAnInstall) didCountAnInstall {
+             withCallback: (saDidCountAnInstall) response {
     
+    // create a new instance of the install event class
     SAInstallEvent *installEvent = [[SAInstallEvent alloc] init];
-    [installEvent sendEvent:session withCallback:didCountAnInstall];
+    
+    // send the event
+    [installEvent sendEvent:session withCallback:response];
     
 }
 

@@ -1,14 +1,10 @@
-//
-//  SABannerAd2.m
-//  Pods
-//
-//  Created by Gabriel Coman on 13/02/2016.
-//
-//
+/**
+ * @Copyright:   SuperAwesome Trading Limited 2017
+ * @Author:      Gabriel Coman (gabriel.coman@superawesome.tv)
+ */
 
 #import "SABannerAd.h"
 
-// guarded imports
 #if defined(__has_include)
 #if __has_include(<SAModelSpace/SAResponse.h>)
 #import <SAModelSpace/SAResponse.h>
@@ -104,33 +100,34 @@
 @interface SABannerAd ()
 
 // main state vars
-@property (nonatomic, strong) sacallback callback;
+@property (nonatomic, strong) sacallback         callback;
 @property (nonatomic, assign) IBInspectable BOOL isParentalGateEnabled;
 
 // events
-@property (nonatomic, strong) SASession *session;
-@property (nonatomic, strong) SAEvents *events;
+@property (nonatomic, strong) SASession          *session;
+@property (nonatomic, strong) SAEvents           *events;
 
 // current ad
-@property (nonatomic, strong) SAAd *ad;
+@property (nonatomic, strong) SAAd               *ad;
 
 // subviews
-@property (nonatomic, strong) SAWebPlayer *webplayer;
-@property (nonatomic, strong) SAParentalGate *gate;
-@property (nonatomic, strong) UIButton *padlock;
+@property (nonatomic, strong) SAWebPlayer        *webplayer;
+@property (nonatomic, strong) SAParentalGate     *gate;
+@property (nonatomic, strong) UIButton           *padlock;
 
 // aux state vats
-@property (nonatomic, strong) NSString *destinationURL;
-@property (nonatomic, assign) BOOL canPlay;
+@property (nonatomic, strong) NSString           *destinationURL;
+@property (nonatomic, assign) BOOL               canPlay;
 
 @end
 
 @implementation SABannerAd
 
-////////////////////////////////////////////////////////////////////////////////
-// MARK: View lifecycle
-////////////////////////////////////////////////////////////////////////////////
-
+/**
+ * Custom init for code-based initialization
+ *
+ * @return a new instance of SABannerAd
+ */
 - (id) init {
     if (self = [super init]){
         [self initialize];
@@ -138,6 +135,11 @@
     return self;
 }
 
+/**
+ * Custom init for XIB base initialization
+ *
+ * @return a new instance of SABannerAd
+ */
 - (id) initWithCoder:(NSCoder *)aDecoder {
     if (self = [super initWithCoder:aDecoder]) {
         [self initialize];
@@ -145,6 +147,11 @@
     return self;
 }
 
+/**
+ * Custom init for code-based initialization with a frame
+ *
+ * @return a new instance of SABannerAd
+ */
 - (id) initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]){
         [self initialize];
@@ -152,6 +159,10 @@
     return self;
 }
 
+/**
+ * Method that actually inits the banner, creates new obejcts and sets the
+ * default values.
+ */
 - (void) initialize {
     // set "canPlay" to true when building the first banner
     _canPlay = true;
@@ -171,6 +182,9 @@
     [self setColor:SA_DEFAULT_BGCOLOR];
 }
 
+/**
+ * Method that loads all the banner ad subviews.
+ */
 - (void) loadSubviews {
     
     // get a weak self reference
@@ -250,10 +264,6 @@
     
 }
 
-////////////////////////////////////////////////////////////////////////////////
-// MARK: Class public interface
-////////////////////////////////////////////////////////////////////////////////
-
 - (void) load:(NSInteger)placementId {
     
     // reset playability
@@ -296,10 +306,19 @@
     }
 }
 
-- (void) setAd:(SAAd *)ad {
+/**
+ * Internal setter for the "ad" object. This is very important because 
+ * based on the loaded ad, that's what's going to be displayed.
+ *
+ * @param ad a new, valid SAAd object
+ */
+- (void) setAd:(SAAd*) ad {
     _ad = ad;
 }
 
+/**
+ * Internal method that nulls the ad
+ */
 - (void) nullAd {
     _ad = NULL;
 }
@@ -308,6 +327,12 @@
     return _ad != NULL;
 }
 
+/**
+ * Method that returns, based on several conditions, if the ad should display
+ * the "safeAd" logo or not.
+ *
+ * @return true or false
+ */
 - (BOOL) shouldShowPadlock {
     if (_ad.creative.format == SA_Tag) return false;
     if (_ad.isFallback) return false;
@@ -331,6 +356,9 @@
     [self nullAd];
 }
 
+/**
+ * Method that is called when a user clicks / taps on an ad
+ */
 - (void) click {
     NSLog(@"[AA :: INFO] Going to %@", _destinationURL);
     
@@ -367,13 +395,12 @@
     [self bringSubviewToFront:_padlock];
 }
 
+/**
+ * Method called when the user clicks on a padlock
+ */
 - (void) padlockAction {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://ads.superawesome.tv/v2/safead"]];
 }
-
-////////////////////////////////////////////////////////////////////////////////
-// MARK: Setters & getters
-////////////////////////////////////////////////////////////////////////////////
 
 - (void) setCallback:(sacallback)callback {
     _callback = callback ? callback : _callback;
@@ -410,8 +437,6 @@
 - (void) setColorGray {
     [self setColor:false];
 }
-
-// generic method
 
 - (void) setTestMode: (BOOL) value {
     [_session setTestMode:value];

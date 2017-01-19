@@ -46,6 +46,8 @@
     // load video
     [SAVideoAd setConfigurationStaging];
     [SAVideoAd disableParentalGate];
+    [SAVideoAd setCloseAtEnd:false];
+    [SAVideoAd enableCloseButton];
     [SAVideoAd setCallback:^(NSInteger placementId, SAEvent event) {
         if (event == adLoaded) {
             NSLog(@"adLoaded ==> %ld", (long) placementId);
@@ -76,9 +78,13 @@
 }
 
 - (IBAction)loadAction:(id)sender {
-    [_bannerAd load:584];
-    [SAInterstitialAd load:585];
-    [SAVideoAd load:586];
+//    [_bannerAd load:584];
+//    [SAInterstitialAd load:585];
+//    [SAVideoAd load:586];
+    
+    [_bannerAd load:2];
+    [SAInterstitialAd load:2];
+    [SAVideoAd load:3];
 }
 
 - (IBAction)playBanner:(id)sender {

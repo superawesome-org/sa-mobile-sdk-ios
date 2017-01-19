@@ -1,17 +1,10 @@
-//
-//  SuperAwesome.h
-//  Pods
-//
-//  Copyright (c) 2015 SuperAwesome Ltd. All rights reserved.
-//
-//  Created by Gabriel Coman on 28/09/2015.
-//
-//
+/**
+ * @Copyright:   SuperAwesome Trading Limited 2017
+ * @Author:      Gabriel Coman (gabriel.coman@superawesome.tv)
+ */
 
-// import header
 #import "SuperAwesome.h"
 
-// guarded imports
 #if defined(__has_include)
 #if __has_include(<SASession/SASession.h>)
 #import <SASession/SASession.h>
@@ -37,6 +30,9 @@
     return sharedMyManager;
 }
 
+/**
+ * Private constructor that is only called once
+ */
 - (id) init {
     if (self = [super init]) {
         _cpi = [[SACPI alloc] init];
@@ -47,10 +43,20 @@
     return self;
 }
 
+/**
+ * Getter for the current version
+ *
+ * @return string representing the current version
+ */
 - (NSString*) getVersion {
     return _version;
 }
 
+/**
+ * Getter for the current SDK
+ *
+ * @return string representing the current SDK
+ */
 - (NSString*) getSdk {
     return _sdk;
 }
@@ -59,16 +65,10 @@
     return [NSString stringWithFormat:@"%@_%@", [self getSdk], [self getVersion]];
 }
 
-- (void) handleCPI:(didCountAnInstall)didCountAnInstall {
+- (void) handleCPI:(saDidCountAnInstall) response {
     SASession *session = [[SASession alloc] init];
     [session setConfigurationProduction];
-    [_cpi sendInstallEvent:session withCallback:didCountAnInstall];
-}
-
-- (void) handleStagingCPI:(didCountAnInstall)didCountAnInstall {
-    SASession *session = [[SASession alloc] init];
-    [session setConfigurationStaging];
-    [_cpi sendInstallEvent:session withCallback:didCountAnInstall];
+    [_cpi sendInstallEvent:session withCallback:response];
 }
 
 - (void) overrideVersion: (NSString*) version {

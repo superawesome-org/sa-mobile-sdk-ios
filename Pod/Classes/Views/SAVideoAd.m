@@ -1,18 +1,12 @@
-//
-//  SAVideoAd2.m
-//  Pods
-//
-//  Created by Gabriel Coman on 01/09/2016.
-//
-//
+/**
+ * @Copyright:   SuperAwesome Trading Limited 2017
+ * @Author:      Gabriel Coman (gabriel.coman@superawesome.tv)
+ */
 
 #import "SAVideoAd.h"
-
-// local imports
 #import "SAParentalGate.h"
 #import "SuperAwesome.h"
 
-// guarded imports
 #if defined(__has_include)
 #if __has_include(<SAModelSpace/SAAd.h>)
 #import <SAModelSpace/SAResponse.h>
@@ -112,30 +106,32 @@
 @interface SAVideoAd ()
 
 // aux
-@property (nonatomic, assign) BOOL isOKToClose;
-@property (nonatomic, strong) NSString *destinationURL;
+@property (nonatomic, assign) BOOL           isOKToClose;
+@property (nonatomic, strong) NSString       *destinationURL;
 
 // views
-@property (nonatomic, strong) UIButton *closeBtn;
+@property (nonatomic, strong) UIButton       *closeBtn;
 @property (nonatomic, strong) SAParentalGate *gate;
-@property (nonatomic, strong) UIButton *padlock;
-@property (nonatomic, strong) SAVideoPlayer *player;
+@property (nonatomic, strong) UIButton       *padlock;
+@property (nonatomic, strong) SAVideoPlayer  *player;
 
 // events
-@property (nonatomic, strong) SAEvents *events;
+@property (nonatomic, strong) SAEvents       *events;
 
 // the ad
-@property (nonatomic, strong) SAAd *ad;
+@property (nonatomic, strong) SAAd           *ad;
 
 // hold the prev status bar hidden or not
-@property (nonatomic, assign) BOOL previousStatusBarHiddenValue;
+@property (nonatomic, assign) BOOL           previousStatusBarHiddenValue;
+
+@property (nonatomic, assign) BOOL           videoEnded;
 
 @end
 
 @implementation SAVideoAd
 
 // dictionary of ads
-static NSMutableDictionary *ads;
+static NSMutableDictionary                  *ads;
 
 // other static vars needed for state 
 static sacallback callback                  = ^(NSInteger placementId, SAEvent event) {};
@@ -147,12 +143,15 @@ static BOOL shouldShowSmallClickButton      = SA_DEFAULT_SMALLCLICK;
 static SAOrientation orientation            = SA_DEFAULT_ORIENTATION;
 static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
 
-////////////////////////////////////////////////////////////////////////////////
-// MARK: VC lifecycle
-////////////////////////////////////////////////////////////////////////////////
-
+/**
+ * Overridden UIViewController "viewDidLoad" method in which the ad is setup
+ * and redrawn to look good.
+ */
 - (void) viewDidLoad {
     [super viewDidLoad];
+    
+    // here video is not yet loaded
+    _videoEnded = false;
     
     // get the status bar value
     _previousStatusBarHiddenValue = [[UIApplication sharedApplication] isStatusBarHidden];
@@ -162,6 +161,7 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
     __block BOOL _isParentalGateEnabledL = [SAVideoAd getIsParentalGateEnabled];
     __block BOOL _shouldAutomaticallyCloseAtEndL = [SAVideoAd getShouldAutomaticallyCloseAtEnd];
     __block BOOL _shouldShowCloseButtonL = [SAVideoAd getShouldShowCloseButton];
+    if (!_shouldShowCloseButtonL && _videoEnded) _shouldShowCloseButtonL = true;
     __block BOOL _shouldShowSmallClickButtonL = [SAVideoAd getShouldShowSmallClickButton];
     __block BOOL _shouldShowPadlockL = [self shouldShowPadlock];
     
@@ -227,6 +227,12 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
                 // send complete events
                 [weakSelf.events sendAllEventsForKey:@"complete"];
                 
+                // make btn visible
+                weakSelf.videoEnded = true;
+                [weakSelf.closeBtn setHidden:false];
+                [weakSelf.closeBtn setFrame:CGRectMake(weakSelf.view.frame.size.width - 40.0f, 0, 40.0f, 40.0f)];
+                [weakSelf.view bringSubviewToFront:weakSelf.closeBtn];
+                
                 // close video
                 if (_shouldAutomaticallyCloseAtEndL) {
                     [weakSelf close];
@@ -282,10 +288,20 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
     [self.view bringSubviewToFront:_closeBtn];
 }
 
+/**
+ * Overridden UIViewController "didReceiveMemoryWarning" method
+ */
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
+/**
+ * Overridden UIViewController "viewWillAppear" method in which the status bar
+ * is set to hidden and further math is applied to get the correct size
+ * to resize the ad to
+ *
+ * @param animated whether the view will appear animated or not
+ */
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
@@ -339,17 +355,38 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
     }
 }
 
+/**
+ * Overridden UIViewController "viewWillDisappear" method in which I reset the
+ * status bar state
+ *
+ * @param aniamted whether the view will disappeared animated or not
+ */
 - (void) viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [[UIApplication sharedApplication] setStatusBarHidden:_previousStatusBarHiddenValue
                                             withAnimation:UIStatusBarAnimationNone];
 }
 
+/**
+ * Overridden UIViewController "viewWillTransitionToSize:withTransitionCoordinator:"
+ * in which I resize the ad and it's HTML content to fit the new screen layout.
+ *
+ * @param size          the new size to transition to
+ * @param coordinator   the coordinator used to transition
+ */
 - (void) viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
     [self resize:CGRectMake(0, 0, size.width, size.height)];
 }
 
+/**
+ * Overridden UIViewController "willRotateToInterfaceOrientation:duration:"
+ * in which I get the message that the view will rotate and try to help with
+ * maths in order to resize the ad
+ *
+ * @param toInterfaceOrientation the new interface orientation enum value
+ * @param duration               duration of the transition
+ */
 - (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     CGSize scrSize = [UIScreen mainScreen].bounds.size;
     CGFloat bigDimension = MAX(scrSize.width, scrSize.height);
@@ -371,6 +408,12 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
     }
 }
 
+/**
+ * Overridden UIViewController "supportedInterfaceOrientations" method in which
+ * I set the supported orientations
+ *
+ * @return valid orientations for this view controller
+ */
 - (UIInterfaceOrientationMask) supportedInterfaceOrientations {
     SAOrientation orientationL = [SAVideoAd getOrientation];
     switch (orientationL) {
@@ -380,18 +423,29 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
     }
 }
 
+/**
+ * Overridden UIViewController "shouldAutorotateToInterfaceOrientation" method
+ * in which I set that the view controller should auto rotate
+ *
+ * @return true or false
+ */
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return YES;
 }
 
+/**
+ * Overridden UIViewController "prefersStatusBarHidden" method
+ * in which I set that the view controller prefers a hidden status bar
+ *
+ * @return true or false
+ */
 - (BOOL) prefersStatusBarHidden {
     return true;
 }
 
-////////////////////////////////////////////////////////////////////////////////
-// MARK: Aux Instance method
-////////////////////////////////////////////////////////////////////////////////
-
+/**
+ * Method that is called to close the ad
+ */
 - (void) close {
     if (_isOKToClose) {
         
@@ -422,9 +476,15 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
     }
 }
 
+/**
+ * Method that resizes the ad and it's banner SABannerAd object
+ *
+ * @param frame the new frame to resize to
+ */
 - (void) resize: (CGRect) frame {
     // get locl vars from static
     BOOL _shouldShowCloseButtonL = [SAVideoAd getShouldShowCloseButton];
+    if (!_shouldShowCloseButtonL && _videoEnded) _shouldShowCloseButtonL = true;
     
     // setup close button
     _closeBtn.frame = _shouldShowCloseButtonL ? CGRectMake(frame.size.width - 40.0f, 0, 40.0f, 40.0f) : CGRectZero;
@@ -437,6 +497,9 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
     _padlock.frame = CGRectMake(0, 0, 67, 25);
 }
 
+/**
+ * Method that is called when a user clicks / taps on an ad
+ */
 - (void) click {
     // get delegate
     sacallback _callbackL = [SAVideoAd getCallback];
@@ -465,6 +528,12 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
     NSLog(@"[AA :: INFO] Going to %@", _destinationURL);
 }
 
+/**
+ * Method that returns, based on several conditions, if the ad should display
+ * the "safeAd" logo or not.
+ * 
+ * @return true or false
+ */
 - (BOOL) shouldShowPadlock {
     if (_ad.creative.format == SA_Tag) return false;
     if (_ad.isFallback) return false;
@@ -472,21 +541,26 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
     return true;
 }
 
+/**
+ * Method that pauses the video
+ */
 - (void) pause {
     [_player pause];
 }
 
+/**
+ * Method that resumes the video
+ */
 - (void) resume {
     [_player resume];
 }
 
+/**
+ * Method called when the user clicks on a padlock
+ */
 - (void) padlockAction {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://ads.superawesome.tv/v2/safead"]];
 }
-
-////////////////////////////////////////////////////////////////////////////////
-// MARK: Class public interface
-////////////////////////////////////////////////////////////////////////////////
 
 + (void) load:(NSInteger) placementId {
     
@@ -557,16 +631,14 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
     return object != NULL && [object isKindOfClass:[SAAd class]];
 }
 
+/**
+ * Method that clears an ad from the dictionary of ads, once it has been played
+ *
+ * @param ad the SAAd object to be cleared
+ */
 + (void) removeAdFromLoadedAds:(SAAd*)ad {
     [ads removeObjectForKey:@(ad.placementId)];
 }
-
-////////////////////////////////////////////////////////////////////////////////
-// MARK: Setters & getters
-// Some are exposed externally (mainly setters) but some are only internally
-// Main role for them is to handle working with static variables inside this
-// module.
-////////////////////////////////////////////////////////////////////////////////
 
 + (void) setCallback:(sacallback)call {
     callback = call ? call : callback;
@@ -632,8 +704,6 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
     [self setCloseAtEnd:false];
 }
 
-// generic methods
-
 + (void) setTestMode: (BOOL) value {
     isTestingEnabled = value;
 }
@@ -661,8 +731,6 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
 + (void) setCloseAtEnd: (BOOL) value {
     shouldAutomaticallyCloseAtEnd = value;
 }
-
-// private static getters
 
 + (sacallback) getCallback {
     return callback;

@@ -1,13 +1,9 @@
-//
-//  SAAIRBannerAd.c
-//  Pods
-//
-//  Created by Gabriel Coman on 05/01/2017.
-//
-//
+/**
+ * @Copyright:   SuperAwesome Trading Limited 2017
+ * @Author:      Gabriel Coman (gabriel.coman@superawesome.tv)
+ */
 
 #include "SAAIRBannerAd.h"
-
 #import "SAAIRCallback.h"
 
 #if defined(__has_include)
@@ -26,6 +22,7 @@
 #endif
 #endif
 
+// dictionary holding all current banners
 NSMutableDictionary *bannerDictionary;
 
 FREObject SuperAwesomeAIRSABannerAdCreate (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]) {

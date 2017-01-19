@@ -1,18 +1,29 @@
-#import <Foundation/Foundation.h>
+/**
+ * @Copyright:   SuperAwesome Trading Limited 2017
+ * @Author:      Gabriel Coman (gabriel.coman@superawesome.tv)
+ */
 
+#import <UIKit/UIKit.h>
 #import "FlashRuntimeExtensions.h"
-
-// import other AIR header files
 #import "SAAIRBannerAd.h"
 #import "SAAIRInterstitialAd.h"
 #import "SAAIRVideoAd.h"
 #import "SAAIRAppWall.h"
-#import "SAAIRCPI.h"
-#import "SAAIRVersion.h"
+#import "SAAIRSuperAwesome.h"
 
+/**
+ * Method that initialzies an AIR Context by specifying all methods that should
+ * talk in the AIR-iOS relationship
+ * 
+ * @param extData
+ * @param ctxType
+ * @param ctx
+ * @param numFunctionsToTest
+ * @param functionsToSet
+ */
 void SAContextInitializer(void* extData, const uint8_t* ctxType, FREContext ctx, uint32_t* numFunctionsToTest, const FRENamedFunction** functionsToSet) {
     
-    *numFunctionsToTest = 20;
+    *numFunctionsToTest = 19;
     
     FRENamedFunction* func = (FRENamedFunction*) malloc(sizeof(FRENamedFunction) * *numFunctionsToTest);
     
@@ -88,18 +99,20 @@ void SAContextInitializer(void* extData, const uint8_t* ctxType, FREContext ctx,
     func[17].functionData = NULL;
     func[17].function = &SuperAwesomeAIRSuperAwesomeHandleCPI;
     
-    func[18].name = (const uint8_t*) "SuperAwesomeAIRSuperAwesomeHandleStagingCPI";
+    func[18].name = (const uint8_t*) "SuperAwesomeAIRSuperAwesomeSetVersion";
     func[18].functionData = NULL;
-    func[18].function = &SuperAwesomeAIRSuperAwesomeHandleStagingCPI;
-    
-    func[19].name = (const uint8_t*) "SuperAwesomeAIRSetVersion";
-    func[19].functionData = NULL;
-    func[19].function = &SuperAwesomeAIRSetVersion;
+    func[18].function = &SuperAwesomeAIRSuperAwesomeSetVersion;
     
     *functionsToSet = func;
 }
 
-// this should start the Extension (and also be present in the XML file)
+/**
+ * Main method that initializes the whole extension context
+ *
+ * @param extDataToSet
+ * @param ctxInitializerToSet
+ * @param ctxFinalizerToSet
+ */
 void SAExtensionInitializer(void** extDataToSet, FREContextInitializer* ctxInitializerToSet, FREContextFinalizer* ctxFinalizerToSet){
     *extDataToSet = NULL;
     *ctxInitializerToSet = &SAContextInitializer;

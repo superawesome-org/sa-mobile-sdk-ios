@@ -1,12 +1,10 @@
-//
-//  SAUnityAppWall.c
-//  Pods
-//
-//  Created by Gabriel Coman on 05/01/2017.
-//
-//
+/**
+ * @Copyright:   SuperAwesome Trading Limited 2017
+ * @Author:      Gabriel Coman (gabriel.coman@superawesome.tv)
+ */
 
 #import <UIKit/UIKit.h>
+#import "SAUnityCallback.h"
 
 #if defined(__has_include)
 #if __has_include("SuperAwesomeSDKUnity.h")
@@ -24,12 +22,11 @@
 #endif
 #endif
 
-#import "SAUnityCallback.h"
-
 extern "C" {
     
     /**
-     *  Methid that adds a callback to the SAGameWall static method class
+     * Native method called from Unity.
+     * Adds a callback to the SAGameWall static method class
      */
     void SuperAwesomeUnitySAAppWallCreate () {
         [SAAppWall setCallback:^(NSInteger placementId, SAEvent event) {
@@ -45,11 +42,12 @@ extern "C" {
     }
     
     /**
-     *  Load a gamewall ad
+     * Native method called from Unity.
+     * Load a gamewall ad.
      *
-     *  @param placementId   the placement id to try to load an ad for
-     *  @param configuration production = 0 / staging = 1
-     *  @param test          true / false
+     * @param placementId   the placement id to try to load an ad for
+     * @param configuration production = 0 / staging = 1
+     * @param test          true / false
      */
     void SuperAwesomeUnitySAAppWallLoad (int placementId, int configuration, bool test) {
         [SAAppWall setTestMode:test];
@@ -58,19 +56,21 @@ extern "C" {
     }
     
     /**
-     *  Check to see if there's an ad available for the GameWall
+     * Native method called from Unity.
+     * Check to see if there's an ad available for the GameWall
      *
-     *  @return true / false
+     * @return true / false
      */
     bool SuperAwesomeUnitySAAppWallHasAdAvailable(int placementId) {
         return [SAAppWall hasAdAvailable: placementId];
     }
     
     /**
-     *  Play a GameWall Ad
+     * Native method called from Unity.
+     * Play a GameWall Ad
      *
-     *  @param isParentalGateEnabled true / false
-     *  @param shouldLockOrientation true / false
+     * @param placementId           true / false
+     * @param isParentalGateEnabled true / false
      */
     void SuperAwesomeUnitySAAppWallPlay (int placementId, bool isParentalGateEnabled) {
         UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;

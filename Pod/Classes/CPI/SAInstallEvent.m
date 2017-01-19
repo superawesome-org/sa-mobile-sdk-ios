@@ -1,14 +1,10 @@
-//
-//  SAInstallEvent.m
-//  Pods
-//
-//  Created by Gabriel Coman on 10/01/2017.
-//
-//
+/**
+ * @Copyright:   SuperAwesome Trading Limited 2017
+ * @Author:      Gabriel Coman (gabriel.coman@superawesome.tv)
+ */
 
 #import "SAInstallEvent.h"
 
-// guarded imports
 #if defined(__has_include)
 #if __has_include(<SASession/SASession.h>)
 #import <SASession/SASession.h>
@@ -49,6 +45,7 @@
 #endif
 #endif
 
+// define a key to save data to in user defaults
 #define CPI_INSTALL @"CPI_INSTALL"
 
 @interface SAInstallEvent ()
@@ -57,6 +54,9 @@
 
 @implementation SAInstallEvent
 
+/**
+ * Custom overridden init that gets an instance of the standard user defaults
+ */
 - (id) init {
     if (self = [super init]) {
         _defs = [NSUserDefaults standardUserDefaults];
@@ -66,13 +66,14 @@
 }
 
 - (void) sendEvent:(SASession*) session
-      withCallback:(didCountAnInstall) didCountAnInstall {
+      withCallback:(saDidCountAnInstall) response {
     
     // get the key for production or staging
     NSString *key = [NSString stringWithFormat:@"%@_%@",
                      CPI_INSTALL,
                      [session getConfiguration] == PRODUCTION ? @"PROD" : @"STAG"];
     
+    // only if the event hasn't yet been sent
     if (![_defs objectForKey:key]) {
         
         // save this
@@ -94,8 +95,8 @@
                 
                 NSDictionary *eventResponse = [[NSDictionary alloc] initWithJsonString:payload];
                 BOOL eventSuccess = [eventResponse safeBoolForKey:@"success" orDefault:false];
-                if (didCountAnInstall) {
-                    didCountAnInstall (eventSuccess);
+                if (response) {
+                    response (eventSuccess);
                 }
                 
             }];

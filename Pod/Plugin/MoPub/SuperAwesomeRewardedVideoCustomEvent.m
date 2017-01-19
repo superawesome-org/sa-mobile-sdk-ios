@@ -1,15 +1,9 @@
-//
-//  SuperAwesomeRewardedVideoCustomEvent.m
-//  SAMoPubIntegrationDemo
-//
-//  Created by Gabriel Coman on 17/12/2015.
-//  Copyright © 2015 Gabriel Coman. All rights reserved.
-//
+/**
+ * @Copyright:   SuperAwesome Trading Limited 2017
+ * @Author:      Gabriel Coman (gabriel.coman@superawesome.tv)
+ */
 
-// import header
 #import "SuperAwesomeRewardedVideoCustomEvent.h"
-
-// import SuperAwesome
 #import "SuperAwesome.h"
 #import "MPRewardedVideoReward.h"
 #import "SuperAwesomeMoPub.h"
@@ -21,6 +15,13 @@
 @end
 
 @implementation SuperAwesomeRewardedVideoCustomEvent
+
+/**
+ * Overridden MoPub method that requests a new video.
+ *
+ * @param info a dictionary of extra information passed down from MoPub to the
+ *             SDK that help with loading the ad
+ */
 
 - (void) requestRewardedVideoWithCustomEventInfo:(NSDictionary *)info {
     
@@ -142,28 +143,53 @@
     [SAVideoAd load:_placementId];
 }
 
+/**
+ * Overridden MoPub method that actually displays an video ad.
+ *
+ * @param rootViewController the view controller from which the ad will spring
+ */
 - (void) presentRewardedVideoFromViewController:(UIViewController *)viewController {
-    // play
     [SAVideoAd play:_placementId fromVC:viewController];
     [self.delegate rewardedVideoWillAppearForCustomEvent:self];
 }
 
+/**
+ * Overridden MoPub method that returns whether there is any video ad present
+ * 
+ * @return true or false
+ */
 - (BOOL) hasAdAvailable {
     return _hasAdAvailable;
 }
 
+/**
+ * Unimplemented overridden MoPub method
+ */
 - (void) handleCustomEventInvalidated {
     // do nothing
 }
 
+/**
+ * Unimplemented overridden MoPub method
+ */
 - (void) handleAdPlayedForCustomEventNetwork {
     // do nothing
 }
 
-- (NSError*) createErrorWith:(NSString*)description andReason:(NSString*)reaason andSuggestion:(NSString*)suggestion {
+/**
+ * MoPub method that creates a new error obkect
+ *
+ * @param description   the description text of the error
+ * @param reason        a reason for why it might have happened
+ * @param suggestion    a suggestion of how to fix it
+ */
+- (NSError*) createErrorWith:(NSString*) description
+                   andReason:(NSString*) reason
+               andSuggestion:(NSString*) suggestion {
+    
     NSDictionary *userInfo = @{
                                NSLocalizedDescriptionKey: NSLocalizedString(description, nil),
-                               NSLocalizedFailureReasonErrorKey: NSLocalizedString(reaason, nil),
+                               NSLocalizedFailureReasonErrorKey: NSLocalizedString(reason, nil),
                                NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(suggestion, nil)
                                };
     

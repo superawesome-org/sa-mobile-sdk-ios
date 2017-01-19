@@ -1,13 +1,22 @@
-//
-//  SACallback.h
-//  Pods
-//
-//  Created by Gabriel Coman on 09/09/2016.
-//
-//
+/**
+ * @Copyright:   SuperAwesome Trading Limited 2017
+ * @Author:      Gabriel Coman (gabriel.coman@superawesome.tv)
+ */
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
+/**
+ * This enum holds all the possible callback values that an ad sends during its lifetime
+ *  - adLoaded:         ad was loaded successfully and is ready 
+ *                      to be displayed
+ *  - adFailedToLoad:   ad was not loaded successfully and will not be 
+ *                      able to play
+ *  - adShown:          triggered once when the ad first displays
+ *  - adFailedToShow:   for some reason the ad failed to show; technically
+ *                      this should never happen nowadays
+ *  - adClicked:        triggered every time the ad gets clicked
+ *  - adClosed:         triggered once when the ad is closed;
+ */
 typedef NS_ENUM(NSInteger, SAEvent) {
     adLoaded = 0,
     adFailedToLoad = 1,
@@ -17,4 +26,5 @@ typedef NS_ENUM(NSInteger, SAEvent) {
     adClosed = 5
 };
 
+// callback block to send back envets back to the SDK users
 typedef void (^sacallback)(NSInteger placementId, SAEvent event);

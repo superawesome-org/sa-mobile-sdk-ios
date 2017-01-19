@@ -1,13 +1,9 @@
-//
-//  SAAIRAppWall.c
-//  Pods
-//
-//  Created by Gabriel Coman on 05/01/2017.
-//
-//
+/**
+ * @Copyright:   SuperAwesome Trading Limited 2017
+ * @Author:      Gabriel Coman (gabriel.coman@superawesome.tv)
+ */
 
 #include "SAAIRAppWall.h"
-
 #import "SAAIRCallback.h"
 
 #if defined(__has_include)
