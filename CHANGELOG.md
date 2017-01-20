@@ -1,6 +1,31 @@
 CHANGELOG
 =========
 
+5.3.17
+ - Refactored the SuperAwesome CPI code to add a callback that informs the SDK user if an install was recognized as successful by the Ad Server.
+  - Made the Video ad close button appear at the end of the ad, if it's set to be invisible and the ad is set not to automatically close at the end. This removes an issue where if you disable both the close button and auto-close at end, the video would never be closed. This also improves the experience
+with regards to rewarded videos since now you can trigger your reward UI while still having the video
+ in the background.
+ - Refactored some of the SuperAwesome libraries that go in supporting the main SDK
+ 	- SANetworking added a new class that downloads files from a list, sequentially
+	- SAVASTParser was updated and now recursively parses VAST tags
+ 	- SAAdLoader had the VAST & AppWall loading classes removed. Now it depends on SAVASTParser to figure out a VAST tag and the sequential file list downloader to get AppWall data
+ 	- SAModelSpace added two classes needed for VAST parsing: SAVASTAd and SAVASTMedia
+    	- Removed VAST elements from the SAAd model class, since now they're contained in SAVASTAd and SAVASTMedia. SAAd models are not associated with VAST and the VAST parser will not try to produce a SAAd model, but a SAVASTAd model.
+	- Added static inline functions to parse integer or string values into enum values or vice-verse. This has taken the burden of getting correct enum values from JSON / Models to the enum (functions), not the parsers.
+ 	- SAEvents was simplified in relation to handling MOAT
+ 	- SAUtils now has SAAlert and SALoadingScreen as classes (same for Android)
+ 	- Small refactoring for the AIR, Unity & MoPub plugins
+	- Renamed a lot of callbacks used by the SDK to include the "sa" particle at the start (so as not to have conflicts with other block definitions) and follow the "saDidDoThisOrThat" pattern.
+	- Renamed a lot of enums to contain the "SA_" particle so as not to have conflicts with other C enum definitions.
+ - Added, updated or improved tests for:
+	- SANetworking
+	- SAModelSpace
+	- SAAdLoader 
+	- SAEvents
+	- SAUtils
+ - Added comments to each library and SDK file
+
 5.3.16
  - Updated the AIR & Unity plugins to be more modular. That means that in both of them the code is not bundled any more into one big class or file, but split into multiple classes / files, such as SAAIRBannerAd, SAUnityVideoAd, etc. This not only spearates concerns but also makes it more manageable and easier to spot errors.
  - The AIR & Unity plugins can now override the main SDK version & sdk type. Meaning that when bundled as part of any of those SDKs, the Android SDK will report as "air_x.y.z." or "unity_x.y.z" instead of "ios_x.y.z". This makes reporting so much more accurate.
