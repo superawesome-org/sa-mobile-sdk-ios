@@ -17,57 +17,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3mH-9c-17k">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="0ex-C7-tdr"/>
-                                </constraints>
-                                <state key="normal" title="Play Banner"/>
-                                <connections>
-                                    <action selector="playBanner:" destination="BYZ-38-t0r" eventType="touchUpInside" id="V3R-zH-oLV"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j1d-qs-TPY">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="5c8-aD-juF"/>
-                                </constraints>
-                                <state key="normal" title="Play Interstitial 1"/>
-                                <connections>
-                                    <action selector="playInterstitial1:" destination="BYZ-38-t0r" eventType="touchUpInside" id="enz-Om-ifB"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ip-nJ-7SI">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="7vW-Ld-Omb"/>
-                                </constraints>
-                                <state key="normal" title="Play Interstitial 2"/>
-                                <connections>
-                                    <action selector="playInterstitial2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JtI-8D-bQa"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NQl-2B-YWd" customClass="SABannerAd">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="DPH-zm-7T3"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n5q-jS-QqV">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="1hr-ci-4cP"/>
-                                </constraints>
-                                <state key="normal" title="Play Video 1"/>
-                                <connections>
-                                    <action selector="playVideo1:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3J8-UM-hHe"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xIh-8h-hcJ">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="3PB-6e-omL"/>
-                                </constraints>
-                                <state key="normal" title="Play Video 2"/>
-                                <connections>
-                                    <action selector="playVideo2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Pff-Gs-l99"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ZP-wb-iww">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="D5a-J1-RKm"/>
@@ -77,30 +32,119 @@
                                     <action selector="loadAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="I99-fh-tdx"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c1I-Bs-cLR">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Pef-XQ-Mej"/>
+                                </constraints>
+                                <state key="normal" title="Banner 1"/>
+                                <connections>
+                                    <action selector="playBanner1:" destination="BYZ-38-t0r" eventType="touchUpInside" id="om9-hY-LeD"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eec-AH-SZi">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="IQU-px-bg8"/>
+                                </constraints>
+                                <state key="normal" title="Banner 2"/>
+                                <connections>
+                                    <action selector="playBanner2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cHK-9S-p2v"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xjc-Tr-7bp">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="eSI-ZQ-h5p"/>
+                                </constraints>
+                                <state key="normal" title="Inter 1"/>
+                                <connections>
+                                    <action selector="playInter1:" destination="BYZ-38-t0r" eventType="touchUpInside" id="y1l-vs-GQr"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cdg-Et-oSY">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="2yi-F3-YZq"/>
+                                </constraints>
+                                <state key="normal" title="Inter 2"/>
+                                <connections>
+                                    <action selector="playInter2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ar1-DR-pmZ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="stx-iJ-qCE">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="DSi-70-amV"/>
+                                </constraints>
+                                <state key="normal" title="Inter 3"/>
+                                <connections>
+                                    <action selector="playInter3:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rzi-DR-KVe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GMY-pB-4Sc">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="V0U-Si-Emz"/>
+                                </constraints>
+                                <state key="normal" title="Inter 4"/>
+                                <connections>
+                                    <action selector="playInter4:" destination="BYZ-38-t0r" eventType="touchUpInside" id="f7S-lf-0TT"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YnQ-L8-55w">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="ObO-QL-whR"/>
+                                </constraints>
+                                <state key="normal" title="Video 1"/>
+                                <connections>
+                                    <action selector="playVideo1:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MVF-dz-NR9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="78G-de-3A0">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="5YE-gL-Hry"/>
+                                </constraints>
+                                <state key="normal" title="Video 2"/>
+                                <connections>
+                                    <action selector="playVideo2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mRV-tx-Lvs"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TZQ-cF-lfs">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="OVO-IN-6g4"/>
+                                </constraints>
+                                <state key="normal" title="App Wall"/>
+                                <connections>
+                                    <action selector="playAppWall:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZVT-me-oHA"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="stx-iJ-qCE" firstAttribute="leading" secondItem="cdg-Et-oSY" secondAttribute="trailing" constant="16" id="0cR-Rn-4UZ"/>
                             <constraint firstItem="2ZP-wb-iww" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="14" id="0lE-x8-DYq"/>
-                            <constraint firstItem="3Ip-nJ-7SI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="50D-4X-ape"/>
-                            <constraint firstItem="j1d-qs-TPY" firstAttribute="top" secondItem="3mH-9c-17k" secondAttribute="bottom" constant="8" id="Bpl-uD-igH"/>
-                            <constraint firstAttribute="trailing" secondItem="3Ip-nJ-7SI" secondAttribute="trailing" constant="20" id="C6j-dY-um4"/>
-                            <constraint firstItem="xIh-8h-hcJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="DFi-rC-zzM"/>
+                            <constraint firstAttribute="trailing" secondItem="GMY-pB-4Sc" secondAttribute="trailing" constant="16" id="9d7-0g-pns"/>
+                            <constraint firstItem="78G-de-3A0" firstAttribute="leading" secondItem="YnQ-L8-55w" secondAttribute="trailing" constant="16" id="Acv-45-xQv"/>
+                            <constraint firstItem="xjc-Tr-7bp" firstAttribute="top" secondItem="c1I-Bs-cLR" secondAttribute="bottom" constant="8" id="DJq-bv-WND"/>
+                            <constraint firstItem="TZQ-cF-lfs" firstAttribute="leading" secondItem="78G-de-3A0" secondAttribute="trailing" constant="16" id="DLQ-kB-AlY"/>
+                            <constraint firstItem="Eec-AH-SZi" firstAttribute="top" secondItem="2ZP-wb-iww" secondAttribute="bottom" constant="8" id="GLo-nd-txl"/>
                             <constraint firstAttribute="trailing" secondItem="2ZP-wb-iww" secondAttribute="trailing" constant="20" id="Igi-FW-C2b"/>
-                            <constraint firstItem="xIh-8h-hcJ" firstAttribute="top" secondItem="n5q-jS-QqV" secondAttribute="bottom" constant="8" id="JNT-BK-DAg"/>
-                            <constraint firstItem="n5q-jS-QqV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="Nn7-hm-Y2W"/>
-                            <constraint firstAttribute="trailing" secondItem="3mH-9c-17k" secondAttribute="trailing" constant="20" id="OYZ-sP-9cw"/>
-                            <constraint firstAttribute="trailing" secondItem="j1d-qs-TPY" secondAttribute="trailing" constant="20" id="TIz-bJ-uPh"/>
-                            <constraint firstAttribute="trailing" secondItem="n5q-jS-QqV" secondAttribute="trailing" constant="20" id="UZK-kG-MmG"/>
-                            <constraint firstItem="j1d-qs-TPY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="cmm-7W-Jbb"/>
-                            <constraint firstItem="n5q-jS-QqV" firstAttribute="top" secondItem="3Ip-nJ-7SI" secondAttribute="bottom" constant="8" symbolic="YES" id="dCc-F9-DBa"/>
-                            <constraint firstItem="3mH-9c-17k" firstAttribute="top" secondItem="2ZP-wb-iww" secondAttribute="bottom" constant="8" id="guQ-p6-8LK"/>
-                            <constraint firstItem="3Ip-nJ-7SI" firstAttribute="top" secondItem="j1d-qs-TPY" secondAttribute="bottom" constant="8" id="nPN-NP-cCU"/>
+                            <constraint firstItem="Eec-AH-SZi" firstAttribute="width" secondItem="c1I-Bs-cLR" secondAttribute="width" id="LZR-lX-oyn"/>
+                            <constraint firstItem="xjc-Tr-7bp" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="OYO-HW-Q5t"/>
+                            <constraint firstItem="cdg-Et-oSY" firstAttribute="top" secondItem="c1I-Bs-cLR" secondAttribute="bottom" constant="8" id="RKT-Ze-u3l"/>
+                            <constraint firstItem="GMY-pB-4Sc" firstAttribute="top" secondItem="Eec-AH-SZi" secondAttribute="bottom" constant="8" id="Rbu-14-4Ya"/>
+                            <constraint firstItem="TZQ-cF-lfs" firstAttribute="top" secondItem="GMY-pB-4Sc" secondAttribute="bottom" constant="8" id="U5Q-mu-J11"/>
+                            <constraint firstItem="GMY-pB-4Sc" firstAttribute="leading" secondItem="stx-iJ-qCE" secondAttribute="trailing" constant="16" id="U7G-6N-JIw"/>
+                            <constraint firstAttribute="trailing" secondItem="TZQ-cF-lfs" secondAttribute="trailing" constant="16" id="UWx-lu-Gap"/>
+                            <constraint firstItem="Eec-AH-SZi" firstAttribute="leading" secondItem="c1I-Bs-cLR" secondAttribute="trailing" constant="16" id="Vlg-Dc-rKo"/>
+                            <constraint firstAttribute="trailing" secondItem="Eec-AH-SZi" secondAttribute="trailing" constant="16" id="Yl4-NC-RyH"/>
+                            <constraint firstItem="78G-de-3A0" firstAttribute="top" secondItem="cdg-Et-oSY" secondAttribute="bottom" constant="8" id="dN6-XI-8KM"/>
+                            <constraint firstItem="YnQ-L8-55w" firstAttribute="top" secondItem="xjc-Tr-7bp" secondAttribute="bottom" constant="8" id="knC-SQ-Sut"/>
+                            <constraint firstItem="c1I-Bs-cLR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="lDy-oU-9oP"/>
+                            <constraint firstItem="YnQ-L8-55w" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="nGi-PI-4p1"/>
+                            <constraint firstItem="c1I-Bs-cLR" firstAttribute="top" secondItem="2ZP-wb-iww" secondAttribute="bottom" constant="8" id="qlF-oP-JXU"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="NQl-2B-YWd" secondAttribute="bottom" id="rA0-HB-nks"/>
+                            <constraint firstItem="78G-de-3A0" firstAttribute="width" secondItem="YnQ-L8-55w" secondAttribute="width" id="spr-A2-W34"/>
                             <constraint firstAttribute="trailing" secondItem="NQl-2B-YWd" secondAttribute="trailing" id="tch-4p-eZW"/>
-                            <constraint firstItem="3mH-9c-17k" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="wiI-HZ-K8T"/>
+                            <constraint firstItem="stx-iJ-qCE" firstAttribute="top" secondItem="Eec-AH-SZi" secondAttribute="bottom" constant="8" id="vWs-yo-NFL"/>
+                            <constraint firstItem="TZQ-cF-lfs" firstAttribute="width" secondItem="YnQ-L8-55w" secondAttribute="width" id="vcI-aE-hvX"/>
                             <constraint firstItem="2ZP-wb-iww" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="wkd-5I-eab"/>
                             <constraint firstItem="NQl-2B-YWd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="xi8-eq-OuI"/>
-                            <constraint firstAttribute="trailing" secondItem="xIh-8h-hcJ" secondAttribute="trailing" constant="20" id="ym3-f2-jxn"/>
                         </constraints>
                     </view>
                     <connections>

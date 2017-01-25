@@ -33,9 +33,11 @@ extern "C" {
             switch (event) {
                 case adLoaded: sendAdCallback(@"SAAppWall", placementId, @"adLoaded"); break;
                 case adFailedToLoad: sendAdCallback(@"SAAppWall", placementId, @"adFailedToLoad"); break;
+                case adAlreadyLoaded: sendAdCallback(@"SAAppWall", placementId, @"adAlreadyLoaded"); break;
                 case adShown: sendAdCallback(@"SAAppWall", placementId, @"adShown"); break;
                 case adFailedToShow: sendAdCallback(@"SAAppWall", placementId, @"adFailedToShow"); break;
                 case adClicked: sendAdCallback(@"SAAppWall", placementId, @"adClicked"); break;
+                case adEnded: sendAdCallback(@"SAAppWall", placementId, @"adEnded"); break;
                 case adClosed: sendAdCallback(@"SAAppWall", placementId, @"adClosed"); break;
             }
         }];

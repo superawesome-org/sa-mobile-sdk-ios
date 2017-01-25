@@ -46,9 +46,11 @@ extern "C" {
             switch (event) {
                 case adLoaded: sendAdCallback(key, placementId, @"adLoaded"); break;
                 case adFailedToLoad: sendAdCallback(key, placementId, @"adFailedToLoad"); break;
+                case adAlreadyLoaded: sendAdCallback(key, placementId, @"adAlreadyLoaded"); break;
                 case adShown: sendAdCallback(key, placementId, @"adShown"); break;
                 case adFailedToShow: sendAdCallback(key, placementId, @"adFailedToShow"); break;
                 case adClicked: sendAdCallback(key, placementId, @"adClicked"); break;
+                case adEnded: sendAdCallback(key, placementId, @"adEnded"); break;
                 case adClosed: sendAdCallback(key, placementId, @"adClosed"); break;
             }
         }];
@@ -164,8 +166,7 @@ extern "C" {
                  else realPos = CGPointMake((screen.width - realSize.width) / 2.0f, screen.height - realSize.height);
                  
                  [banner resize:CGRectMake(realPos.x, realPos.y, realSize.width, realSize.height)];
-             }];
-            
+             }];            
             
             // finally play
             [banner play];

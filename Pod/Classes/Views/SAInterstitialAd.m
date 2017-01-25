@@ -314,7 +314,8 @@ static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
         ads = [@{} mutableCopy];
     }
     
-    // if  there's no object around
+    // if the ad data for the placement id doesn't existing in the "ads"
+    // hash map, then proceed with loading it
     if ([ads objectForKey:@(placementId)] == NULL) {
         
         // set a placeholder
@@ -339,15 +340,15 @@ static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
                 [ads removeObjectForKey:@(placementId)];
             }
             
-             NSLog(@"%@", [response jsonPreetyStringRepresentation]);
-            
-            
             // callback
             callback(placementId, [response isValid] ? adLoaded : adFailedToLoad);
         }];
         
-    } else {
-        callback (placementId, adFailedToLoad);
+    }
+    // else if the ad data for the placement exists in the "ads" hash map,
+    // then notify the user that it already exists and he should just play it
+    else {
+        callback (placementId, adAlreadyLoaded);
     }
 }
 

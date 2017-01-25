@@ -221,6 +221,9 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
             }
             case Video_End: {
                 
+                // trigger ad ended
+                _callbackL(weakSelf.ad.placementId, adEnded);
+                
                 // close the Pg
                 [weakSelf.gate close];
                 
@@ -507,10 +510,14 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
     // call delegate
     _callbackL(_ad.placementId, adClicked);
     
-    // call trackers
+    // send all events for vast click tracking
     [_events sendAllEventsForKey:@"click_tracking"];
+    // send all events for vast custom clicks
     [_events sendAllEventsForKey:@"custom_clicks"];
+    // send all install events
     [_events sendAllEventsForKey:@"install"];
+    // send all external click counter events
+    [_events sendAllEventsForKey:@"clk_counter"];
     
     // setup the current click URL
     for (SATracking *tracking in _ad.creative.events) {
@@ -569,7 +576,8 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
         ads = [@{} mutableCopy];
     }
     
-    // if  there's no object around
+    // if the ad data for the placement id doesn't existing in the "ads"
+    // hash map, then proceed with loading it
     if ([ads objectForKey:@(placementId)] == NULL) {
         
         // set a placeholder
@@ -604,8 +612,11 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
             callback(placementId, isValid ? adLoaded : adFailedToLoad);
         }];
         
-    } else {
-        callback (placementId, adFailedToLoad);
+    }
+    // else if the ad data for the placement exists in the "ads" hash map,
+    // then notify the user that it already exists and he should just play it
+    else {
+        callback (placementId, adAlreadyLoaded);
     }
 }
 

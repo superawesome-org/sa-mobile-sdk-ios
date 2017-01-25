@@ -29,9 +29,11 @@ FREObject SuperAwesomeAIRSAInterstitialAdCreate (FREContext ctx, void* funcData,
         switch (event) {
             case adLoaded:          sendAdCallback(ctx, @"SAInterstitialAd", (int)placementId, @"adLoaded"); break;
             case adFailedToLoad:    sendAdCallback(ctx, @"SAInterstitialAd", (int)placementId, @"adFailedToLoad"); break;
+            case adAlreadyLoaded:   sendAdCallback(ctx, @"SAInterstitialAd", (int)placementId, @"adAlreadyLoaded"); break;
             case adShown:           sendAdCallback(ctx, @"SAInterstitialAd", (int)placementId, @"adShown"); break;
             case adFailedToShow:    sendAdCallback(ctx, @"SAInterstitialAd", (int)placementId, @"adFailedToShow"); break;
             case adClicked:         sendAdCallback(ctx, @"SAInterstitialAd", (int)placementId, @"adClicked"); break;
+            case adEnded:           sendAdCallback(ctx, @"SAInterstitialAd", (int)placementId, @"adEnded"); break;
             case adClosed:          sendAdCallback(ctx, @"SAInterstitialAd", (int)placementId, @"adClosed"); break;
         }
     }];

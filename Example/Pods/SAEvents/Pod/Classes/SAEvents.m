@@ -133,6 +133,7 @@
     // send events
     if (max > 0) {
         for (NSString *url in urls) {
+            
             [self sendEventToURL:url withResponse:^(BOOL success, NSInteger status) {
                 // increment
                 successful += success ? 1 : 0;

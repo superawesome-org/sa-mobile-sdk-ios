@@ -25,22 +25,17 @@
     [_bannerAd disableParentalGate];
     [_bannerAd setCallback:^(NSInteger placementId, SAEvent event) {
         if (event == adLoaded) {
-            NSLog(@"adLoaded ==> %ld", (long) placementId);
-        } else if (event == adFailedToLoad) {
-            NSLog(@"adFailedToLoad ==> %ld", (long) placementId);
+            [_bannerAd play];
+        } else {
+            NSLog(@"Banner %ld event %ld", placementId, event);
         }
     }];
     
     // load interstitials
     [SAInterstitialAd setConfigurationStaging];
     [SAInterstitialAd disableParentalGate];
-    [SAInterstitialAd setOrientationLandscape];
     [SAInterstitialAd setCallback:^(NSInteger placementId, SAEvent event) {
-        if (event == adLoaded) {
-            NSLog(@"adLoaded ==> %ld", (long) placementId);
-        } else if (event == adFailedToLoad) {
-            NSLog(@"adFailedToLoad ==> %ld", (long) placementId);
-        }
+        NSLog(@"Interstitial %ld event %ld", placementId, event);
     }];
 
     // load video
@@ -49,28 +44,17 @@
     [SAVideoAd setCloseAtEnd:false];
     [SAVideoAd enableCloseButton];
     [SAVideoAd setCallback:^(NSInteger placementId, SAEvent event) {
-        if (event == adLoaded) {
-            NSLog(@"adLoaded ==> %ld", (long) placementId);
-        } else if (event == adFailedToLoad) {
-            NSLog(@"adFailedToLoad ==> %ld", (long) placementId);
+        NSLog(@"Video %ld event %ld", placementId, event);
+        if (event == adEnded) {
+            NSLog(@"VIDEO ENDED!");
         }
     }];
 
     // load gamewall
-//    [SAAppWall setConfigurationStaging];
-//    [SAAppWall setCallback:^(NSInteger placementId, SAEvent event) {
-//        if (event == adLoaded) {
-//            NSLog(@"[AppWall] adLoaded ==> %ld", (long) placementId);
-//        } else if (event == adFailedToLoad){
-//            NSLog(@"[AppWall] adFailedToLoad ==> %ld", (long) placementId);
-//        } else if (event == adShown) {
-//            NSLog(@"[AppWall] adShown ==> %ld", (long) placementId);
-//        } else if (event == adClosed) {
-//            NSLog(@"[AppWall] adClosed ==> %ld", (long) placementId);
-//        } else if (event == adClicked) {
-//            NSLog(@"[AppWall] adClicked ==> %ld", (long) placementId);
-//        }
-//    }];
+    [SAAppWall setConfigurationStaging];
+    [SAAppWall setCallback:^(NSInteger placementId, SAEvent event) {
+        NSLog(@"App Wall %ld event %ld", placementId, event);
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -82,38 +66,59 @@
 //    [SAInterstitialAd load:585];
 //    [SAVideoAd load:586];
     
-    [_bannerAd load:2];
-    [SAInterstitialAd load:2];
-    [SAVideoAd load:3];
+//    [_bannerAd load:2];
+//    [SAInterstitialAd load:2];
+//    [SAVideoAd load:3];
+    
+    [SAInterstitialAd load:600];
+    [SAInterstitialAd load:32];
+    [SAInterstitialAd load:601];
+    [SAInterstitialAd load:605];
+    [SAInterstitialAd load:606];
+    [SAVideoAd load:603];
+    [SAVideoAd load:604];
+    [SAAppWall load:437];
+
 }
 
-- (IBAction)playBanner:(id)sender {
-    if ([_bannerAd hasAdAvailable]){
-        [_bannerAd play];
-    }
+- (IBAction)playBanner1:(id)sender {
+    [_bannerAd load:599];
 }
 
-- (IBAction)playInterstitial1:(id)sender {
-    if ([SAInterstitialAd hasAdAvailable:585]) {
-        [SAInterstitialAd play: 585 fromVC:self];
-    }
+- (IBAction)playBanner2:(id)sender {
+//    [_bannerAd load:602];
+    [_bannerAd load:32];
 }
 
-- (IBAction)playInterstitial2:(id)sender {
-    if ([SAInterstitialAd hasAdAvailable:31380]) {
-        [SAInterstitialAd play:31380 fromVC:self];
-    }
+- (IBAction)playInter1:(id)sender {
+    [SAInterstitialAd play:600 fromVC:self];
+}
+
+- (IBAction)playInter2:(id)sender {
+    [SAInterstitialAd play:601 fromVC:self];
+}
+
+- (IBAction)playInter3:(id)sender {
+    [SAInterstitialAd play:605 fromVC:self];
+}
+
+- (IBAction)playInter4:(id)sender {
+    [SAInterstitialAd play:606 fromVC:self];
 }
 
 - (IBAction)playVideo1:(id)sender {
-    if ([SAVideoAd hasAdAvailable:586]) {
-        [SAVideoAd play: 586 fromVC:self];
-    }
+    [SAVideoAd play:603 fromVC:self];
 }
 
 - (IBAction)playVideo2:(id)sender {
-    //
+    [SAVideoAd play:604 fromVC:self];
 }
+
+- (IBAction)playAppWall:(id)sender {
+    [SAAppWall play:437 fromVC:self];
+}
+
+
 
 
 @end

@@ -210,6 +210,10 @@
     install.URL = ad.creative.installUrl;
     install.event = @"install";
     
+    SATracking *clickCounter = [[SATracking alloc] init];
+    clickCounter.URL = ad.creative.clickCounterUrl;
+    clickCounter.event = @"clk_counter";
+    
     // add events to the ads events array
     [ad.creative.events addObject:clickEvt];
     [ad.creative.events addObject:viewableImpression];
@@ -220,6 +224,7 @@
     [ad.creative.events addObject:saImpressionEvt];
     [ad.creative.events addObject:impression];
     [ad.creative.events addObject:install];
+    [ad.creative.events addObject:clickCounter];
 }
 
 @end

@@ -4,39 +4,22 @@
  */
 
 #import <UIKit/UIKit.h>
-
-// types of events
-typedef NS_ENUM(NSInteger, SAWebPlayerEvent) {
-    Web_Start = 0,
-    Web_Error = 1
-};
-
-// callback for handling web view events
-typedef void (^saWebPlayerDidReceiveEvent)(SAWebPlayerEvent event);
-
-// callback for handling web view clicks
-typedef void (^saWebPlayerDidReceiveClick)(NSURL* url);
+#import "SAWebView.h"
 
 /**
  * Class that abstracts away the details of loading HTML into an iOS WebView
  */
-@interface SAWebPlayer : UIWebView <UIWebViewDelegate>
+@interface SAWebPlayer : UIView
 
 /**
- * Method that sets an ad size for the web player. On this ad size the
- * scaling method will be handled
+ * Web Player init method with an ad size and a parent rect
  *
- * @param adSize a CGSize struct holding an ad width & height that are
-                 supposed to be handle by the web view
+ * @param contentSize   the size of the ad that's going to be displayed
+ * @param parentRect    the frame of the parent frame
+ * @return              a new instance of the web player
  */
-- (void) setAdSize:(CGSize)adSize;
-
-/**
- * Method that loads a HTML string into the Web Player
- *
- * @param html a valid HTML string
- */
-- (void) loadAdHTML:(NSString*)html;
+- (id) initWithContentSize:(CGSize) contentSize
+            andParentFrame:(CGRect) parentRect;
 
 /*
  * Method that updates the content of the Web Player to a new frame it may
@@ -44,7 +27,14 @@ typedef void (^saWebPlayerDidReceiveClick)(NSURL* url);
  *
  * @param frame the new Web Player frame
  */
-- (void) updateToFrame:(CGRect)frame;
+- (void) updateParentFrame:(CGRect)frame;
+
+/**
+ * Method that loads a HTML string into the Web Player
+ *
+ * @param html a valid HTML string
+ */
+- (void) loadHTML:(NSString*)html;
 
 /*
  * Setter for the event handler
@@ -61,5 +51,12 @@ typedef void (^saWebPlayerDidReceiveClick)(NSURL* url);
  *                  saWebPlayerDidReceiveClick method callback
  */
 - (void) setClickHandler:(saWebPlayerDidReceiveClick)handler;
+
+/**
+ * Getter for the web view
+ *
+ * @return the current used instance of the web view
+ */
+- (UIWebView*) getWebView;
 
 @end

@@ -28,9 +28,11 @@ FREObject SuperAwesomeAIRSAAppWallCreate (FREContext ctx, void* funcData, uint32
         switch (event) {
             case adLoaded:          sendAdCallback(ctx, @"SAAppWall", (int)placementId, @"adLoaded"); break;
             case adFailedToLoad:    sendAdCallback(ctx, @"SAAppWall", (int)placementId, @"adFailedToLoad"); break;
+            case adAlreadyLoaded:   sendAdCallback(ctx, @"SAAppWall", (int)placementId, @"adAlreadyLoaded"); break;
             case adShown:           sendAdCallback(ctx, @"SAAppWall", (int)placementId, @"adShown"); break;
             case adFailedToShow:    sendAdCallback(ctx, @"SAAppWall", (int)placementId, @"adFailedToShow"); break;
             case adClicked:         sendAdCallback(ctx, @"SAAppWall", (int)placementId, @"adClicked"); break;
+            case adEnded:           sendAdCallback(ctx, @"SAAppWall", (int)placementId, @"adEnded"); break;
             case adClosed:          sendAdCallback(ctx, @"SAAppWall", (int)placementId, @"adClosed"); break;
         }
     }];

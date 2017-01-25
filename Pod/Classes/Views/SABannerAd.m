@@ -197,13 +197,11 @@
     _gate = [[SAParentalGate alloc] initWithWeakRefToView:self andAd:_ad];
     
     // add the sawebview
-    _webplayer = [[SAWebPlayer alloc] initWithFrame:CGRectZero];
-    
-    // setup the ad size
-    [_webplayer setAdSize:CGSizeMake(_ad.creative.details.width, _ad.creative.details.height)];
+    _webplayer = [[SAWebPlayer alloc] initWithContentSize:CGSizeMake(_ad.creative.details.width, _ad.creative.details.height)
+                                           andParentFrame:self.frame];
     
     // moat tracking
-    NSString *moatString = [_events moatEventForWebPlayer:_webplayer];
+    NSString *moatString = [_events moatEventForWebPlayer:[_webplayer getWebView]];
     NSLog(@"MOAT String is %@", moatString);
     
     // form the full HTML string and play it!
@@ -212,7 +210,7 @@
     // add callbacks for web player events
     [_webplayer setEventHandler:^(SAWebPlayerEvent event) {
         switch (event) {
-            case Web_Start: {
+            case saWeb_Start: {
                 // send callback
                 weakSelf.callback(weakSelf.ad.placementId, adShown);
                 
@@ -225,7 +223,7 @@
                 
                 break;
             }
-            case Web_Error: {
+            case saWeb_Error: {
                 // send callback
                 weakSelf.callback(weakSelf.ad.placementId, adFailedToShow);
                 break;
@@ -260,11 +258,25 @@
     [self resize:self.frame];
     
     // finally play!
-    [_webplayer loadAdHTML:fullHTMLToLoad];
+    [_webplayer loadHTML:fullHTMLToLoad];
+    
+    // add a notification of sorts
+    [[NSNotificationCenter defaultCenter] addObserverForName:@"UIDeviceOrientationDidChangeNotification"
+                                                      object:nil
+                                                       queue:nil
+                                                  usingBlock:
+     ^(NSNotification * note) {
+         
+         // resize
+         [weakSelf resize:weakSelf.frame];
+     }];
     
 }
 
 - (void) load:(NSInteger)placementId {
+    
+    // first close any existing ad
+    [self close];
     
     // reset playability
     _canPlay = false;
@@ -354,6 +366,11 @@
     _padlock = nil;
     _gate = nil;
     [self nullAd];
+    
+    // remove observers
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:@"UIDeviceOrientationDidChangeNotification"
+                                                  object:nil];
 }
 
 /**
@@ -364,6 +381,9 @@
     
     // callback
     _callback (_ad.placementId, adClicked);
+    
+    // send external click counter events
+    [_events sendAllEventsForKey:@"clk_counter"];
     
     // events
     if ([_destinationURL rangeOfString:[_session getBaseUrl]].location == NSNotFound) {
@@ -383,12 +403,8 @@
     // new frame
     self.frame = toframe;
     
-    // new webplayer frame
-    CGRect frame = [SAUtils map:CGRectMake(0, 0, _ad.creative.details.width, _ad.creative.details.height)
-                           into:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-    
     // rearrange the webview
-    [_webplayer updateToFrame:frame];
+    [_webplayer updateParentFrame:toframe];
     
     // rearrange the padlock
     _padlock.frame = CGRectMake(0, 0, 67, 25);

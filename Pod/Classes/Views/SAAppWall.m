@@ -598,6 +598,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     // get local
     sacallback callbackL = [SAAppWall getCallback];
     
+    // send callback
     callbackL(_response.placementId, adClicked);
     
     // call trackers
@@ -608,6 +609,9 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         [_destinationURL rangeOfString:@"ads.staging.superawesome"].location == NSNotFound) {
         [event sendAllEventsForKey:@"sa_tracking"];
     }
+    
+    // send for
+    [event sendAllEventsForKey:@"clk_counter"];
     
     // send aux install event, if exists
     [event sendAllEventsForKey:@"install"];
@@ -635,7 +639,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         responses = [@{} mutableCopy];
     }
     
-    // if  there's no object around
+    // if the ad data for the placement id doesn't existing in the "ads"
+    // hash map, then proceed with loading it
     if ([responses objectForKey:@(placementId)] == NULL) {
         
         // set a placeholder
@@ -664,8 +669,11 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
             callback(placementId, [response isValid] ? adLoaded : adFailedToLoad);
         }];
         
-    } else {
-        callback (placementId, adFailedToLoad);
+    }
+    // else if the ad data for the placement exists in the "ads" hash map,
+    // then notify the user that it already exists and he should just play it
+    else {
+        callback (placementId, adAlreadyLoaded);
     }
 }
 
