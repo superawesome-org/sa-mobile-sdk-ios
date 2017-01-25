@@ -35,14 +35,14 @@ PODS:
     - SANetworking (= 0.2.9)
     - SAUtils (= 1.5.0)
   - SAVideoPlayer (1.1.9)
-  - SAWebPlayer (1.1.5)
+  - SAWebPlayer (1.1.6)
   - SuperAwesome/AIR (5.3.17):
     - SuperAwesome/Base
   - SuperAwesome/Base (5.3.17):
     - SAAdLoader (= 1.0.0)
     - SAEvents (= 1.7.3)
     - SAVideoPlayer (= 1.1.9)
-    - SAWebPlayer (= 1.1.5)
+    - SAWebPlayer (= 1.1.6)
   - SuperAwesome/Full (5.3.17):
     - SAEvents/Moat
     - SuperAwesome/Base
@@ -73,8 +73,8 @@ SPEC CHECKSUMS:
   SAUtils: 1e8b881ca8c7fac2749c8fd9b851f0b344611035
   SAVASTParser: 32903ba388fe11bf706fa67c831a7de5c2fc4fb3
   SAVideoPlayer: 184e92d57c1b11e45534279649eb5b6a39b3c0d3
-  SAWebPlayer: 0c2503997a14f6dbecfbdf91fb5d9a47fc4971b9
-  SuperAwesome: d90cf6a11b9941870e8a6f767a4a8e478c8623c7
+  SAWebPlayer: bbc84726efcddbdb8912eb2105bd21809cfea4fb
+  SuperAwesome: 2fe4c588d4b9954fcde65c44b721a67058bc1aeb
 
 PODFILE CHECKSUM: d7dc34ed2a1143fdc9c2f8f0011f9a920e9b4011
 

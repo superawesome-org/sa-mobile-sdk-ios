@@ -680,13 +680,13 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 + (void) play:(NSInteger) placementId fromVC:(UIViewController*)parent {
     
     // find out if the ad is loaded
-    SAResponse *responseL = [responses objectForKey:@(placementId)];
+    id responseL = [responses objectForKey:@(placementId)];
     
     // try to start the view controller (if there is one ad that's OK)
-    if (responseL && responseL.format == SA_Appwall) {
+    if (responseL && [responseL isKindOfClass:[SAResponse class]] && ((SAResponse*)responseL).format == SA_Appwall) {
         
         SAAppWall *newVC = [[SAAppWall alloc] init];
-        newVC.response = responseL;
+        newVC.response = (SAResponse*)responseL;
         [parent presentViewController:newVC animated:YES completion:nil];
         
     } else {

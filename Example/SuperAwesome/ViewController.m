@@ -86,8 +86,8 @@
 }
 
 - (IBAction)playBanner2:(id)sender {
-//    [_bannerAd load:602];
-    [_bannerAd load:32];
+    [_bannerAd load:602];
+//    [_bannerAd load:32];
 }
 
 - (IBAction)playInter1:(id)sender {

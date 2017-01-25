@@ -355,13 +355,13 @@ static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
 + (void) play:(NSInteger) placementId fromVC:(UIViewController*)parent {
     
     // find out if the ad is loaded
-    SAAd *adL = [ads objectForKey:@(placementId)];
+    id adL = [ads objectForKey:@(placementId)];
     
     // try to start the view controller (if there is one ad that's OK)
-    if (adL && adL.creative.format != SA_Video) {
+    if (adL && [adL isKindOfClass:[SAAd class]] && ((SAAd*)adL).creative.format != SA_Video) {
         
         SAInterstitialAd *newVC = [[SAInterstitialAd alloc] init];
-        newVC.ad = adL;
+        newVC.ad = (SAAd*)adL;
         [parent presentViewController:newVC animated:YES completion:nil];
         
     } else {

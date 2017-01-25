@@ -1,9 +1,19 @@
 CHANGELOG
 =========
 
+5.4.0
+ - Refactored the SAWebPlayer class to load & display HTML content at a 1:1 ratio. Then that gets scaled using Matrix transforms to the desired width & height to fit a container properly. This means that ad scaling will not happen in HTML anymore, but in native code.
+ - Refactored the SABannerAd & SAInterstitialAd classes to use the new web player and to not reload data on screen rotations, etc.
+ - Refactored the SABannerAd class to close an existing ad if a subsequent "load" method is called so as to reset the ad and keep a consistent visiual & internal state.
+ - Refactored the SAWebPlayer click mechanism to be more simple and avoid a series of potential JavaScript issues. Now there are simply no briges between the underlining web view and native code.
+ - Refactored the ad loader SAProcessHTML class to output simple encapsulating HTML for image, rich media and tag ads.
+ - Added support for the adEnded event, fired when a video ad ends (but not necessarily closes)
+ - Added support for the adAlreadyLoaded event, fired when an Insterstial, Video or AppWall tries to load ad data for an already existing placement
+ - Added support for the clickCounterUrl; that's been added as part of the native Ad Creative model class and is now fired when a user clicks an ad.  
+
 5.3.17
  - Refactored the SuperAwesome CPI code to add a callback that informs the SDK user if an install was recognized as successful by the Ad Server.
-  - Made the Video ad close button appear at the end of the ad, if it's set to be invisible and the ad is set not to automatically close at the end. This removes an issue where if you disable both the close button and auto-close at end, the video would never be closed. This also improves the experience
+ - Made the Video ad close button appear at the end of the ad, if it's set to be invisible and the ad is set not to automatically close at the end. This removes an issue where if you disable both the close button and auto-close at end, the video would never be closed. This also improves the experience
 with regards to rewarded videos since now you can trigger your reward UI while still having the video
  in the background.
  - Refactored some of the SuperAwesome libraries that go in supporting the main SDK
