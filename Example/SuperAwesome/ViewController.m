@@ -70,14 +70,15 @@
 //    [SAInterstitialAd load:2];
 //    [SAVideoAd load:3];
     
-    [SAInterstitialAd load:600];
-    [SAInterstitialAd load:32];
-    [SAInterstitialAd load:601];
-    [SAInterstitialAd load:605];
-    [SAInterstitialAd load:606];
-    [SAVideoAd load:603];
-    [SAVideoAd load:604];
-    [SAAppWall load:437];
+//    [SAInterstitialAd load:600];
+//    [SAInterstitialAd load:32];
+//    [SAInterstitialAd load:601];
+//    [SAInterstitialAd load:605];
+//    [SAInterstitialAd load:606];
+    [SAVideoAd setConfigurationProduction];
+    [SAVideoAd load:33501];
+//    [SAVideoAd load:604];
+//    [SAAppWall load:437];
 
 }
 
@@ -107,7 +108,7 @@
 }
 
 - (IBAction)playVideo1:(id)sender {
-    [SAVideoAd play:603 fromVC:self];
+    [SAVideoAd play:33501 fromVC:self];
 }
 
 - (IBAction)playVideo2:(id)sender {
