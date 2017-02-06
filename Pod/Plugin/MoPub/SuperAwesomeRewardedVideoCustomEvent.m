@@ -103,6 +103,10 @@
                 [weakSelf.delegate rewardedVideoDidLoadAdForCustomEvent:weakSelf];
                 break;
             }
+            case adAlreadyLoaded: {
+                // do nothing
+                break;
+            }
             case adFailedToLoad: {
                 [weakSelf.delegate rewardedVideoDidFailToLoadAdForCustomEvent:weakSelf
                                                                         error:[weakSelf createErrorWith:ERROR_LOAD_TITLE(@"Video Ad", placementId)
@@ -126,16 +130,17 @@
                 [weakSelf.delegate rewardedVideoWillLeaveApplicationForCustomEvent:weakSelf];
                 break;
             }
-            case adClosed: {
+            case adEnded: {
                 // reward
                 [weakSelf.delegate rewardedVideoShouldRewardUserForCustomEvent:weakSelf reward:_reward];
-                
+                // also null this so no references remain and memory is freed correctly
+                weakSelf.reward = NULL;
+                break;
+            }
+            case adClosed: {
                 // call required events
                 [weakSelf.delegate rewardedVideoWillDisappearForCustomEvent:weakSelf];
                 [weakSelf.delegate rewardedVideoDidDisappearForCustomEvent:weakSelf];
-                
-                // also null this so no references remain and memory is freed correctly
-                weakSelf.reward = NULL;
                 break;
             }
         }

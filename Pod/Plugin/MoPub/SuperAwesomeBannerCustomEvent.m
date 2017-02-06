@@ -60,6 +60,10 @@
                 [weakSelf.banner play];
                 break;
             }
+            case adAlreadyLoaded:{
+                // do nothing
+                break;
+            }
             case adFailedToLoad: {
                 [weakSelf.delegate bannerCustomEvent:weakSelf
                             didFailToLoadAdWithError:[weakSelf createErrorWith:ERROR_LOAD_TITLE(@"Banner Ad", placementId)
@@ -79,6 +83,10 @@
             }
             case adClicked: {
                 [weakSelf.delegate bannerCustomEventWillLeaveApplication:weakSelf];
+                break;
+            }
+            case adEnded:{
+                // do nothing
                 break;
             }
             case adClosed: {

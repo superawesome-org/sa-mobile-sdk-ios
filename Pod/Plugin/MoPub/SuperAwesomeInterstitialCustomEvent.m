@@ -76,6 +76,10 @@
                 [weakSelf.delegate interstitialCustomEvent:weakSelf didLoadAd:[SAInterstitialAd self]];
                 break;
             }
+            case adAlreadyLoaded:{
+                // do nothing
+                break;
+            }
             case adFailedToLoad: {
                 [weakSelf.delegate interstitialCustomEvent:weakSelf
                                   didFailToLoadAdWithError:[weakSelf createErrorWith:ERROR_LOAD_TITLE(@"Interstitial Ad", placementId)
@@ -97,6 +101,10 @@
             case adClicked: {
                 [weakSelf.delegate interstitialCustomEventDidReceiveTapEvent:weakSelf];
                 [weakSelf.delegate interstitialCustomEventWillLeaveApplication:weakSelf];
+                break;
+            }
+            case adEnded: {
+                // do nothing
                 break;
             }
             case adClosed: {
