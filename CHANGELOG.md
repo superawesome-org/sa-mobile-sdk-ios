@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+5.4.1
+ - Fixed a bug that made interstitial, video & app wall ads cause problems when ordered to display strictly in landscape or portait mode but the app didn't actually support those orientation modes. Now the ads will just try to match the possible orientation modes offered by the app when they can't display in the desired way.
+ - Banner ads don't fire up an "adClosed" event on first load
+ - The video ad close button will appear by default after 15 seconds of content playing, meaning that disabling the close button will have effect only for the first 15 seconds of play, or for ads shorter than 15 seconds. The close button will appear once the ad has ended nonetheless in that scenario. 
+
 5.4.0
  - Refactored the SAWebPlayer class to load & display HTML content at a 1:1 ratio. Then that gets scaled using Matrix transforms to the desired width & height to fit a container properly. This means that ad scaling will not happen in HTML anymore, but in native code.
  - Refactored the SABannerAd & SAInterstitialAd classes to use the new web player and to not reload data on screen rotations, etc.

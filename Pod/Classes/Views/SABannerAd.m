@@ -118,6 +118,7 @@
 // aux state vats
 @property (nonatomic, strong) NSString           *destinationURL;
 @property (nonatomic, assign) BOOL               canPlay;
+@property (nonatomic, assign) BOOL               firstPlay;
 
 @end
 
@@ -166,6 +167,7 @@
 - (void) initialize {
     // set "canPlay" to true when building the first banner
     _canPlay = true;
+    _firstPlay = true;
     
     // init the events and session obkects
     _events = [[SAEvents alloc] init];
@@ -276,7 +278,9 @@
 - (void) load:(NSInteger)placementId {
     
     // first close any existing ad
-    [self close];
+    if (!_firstPlay) {
+        [self close];
+    }
     
     // reset playability
     _canPlay = false;
@@ -308,6 +312,7 @@
         
         // reset play-ability
         _canPlay = false;
+        _firstPlay = false;
         
         // load subviews
         [self loadSubviews];

@@ -397,7 +397,21 @@ static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
  * @return valid orientations for this view controller
  */
 - (UIInterfaceOrientationMask) supportedInterfaceOrientations {
-    return UIInterfaceOrientationMaskPortrait;
+    
+    NSArray *supportedOrientations = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"UISupportedInterfaceOrientations"];
+    
+    UIInterfaceOrientationMask mask = UIInterfaceOrientationMaskAll;
+    
+    BOOL isOK = false;
+    for (NSString *orientation in supportedOrientations) {
+        if ([orientation rangeOfString:@"Portrait"].location != NSNotFound) {
+            isOK = true;
+            break;
+        }
+    }
+    
+    return isOK ? UIInterfaceOrientationMaskPortrait : mask;
+
 }
 
 /**

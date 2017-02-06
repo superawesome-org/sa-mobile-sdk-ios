@@ -242,12 +242,40 @@ static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
  * @return valid orientations for this view controller
  */
 - (UIInterfaceOrientationMask) supportedInterfaceOrientations {
+    
+    
+    NSArray *supportedOrientations = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"UISupportedInterfaceOrientations"];
+
+    UIInterfaceOrientationMask mask = UIInterfaceOrientationMaskAll;
+    
     SAOrientation orientationL = [SAInterstitialAd getOrientation];
-    switch (orientationL) {
-        case ANY: return UIInterfaceOrientationMaskAll;
-        case PORTRAIT: return UIInterfaceOrientationMaskPortrait;
-        case LANDSCAPE: return UIInterfaceOrientationMaskLandscape;
+    
+    if (orientationL == PORTRAIT) {
+        BOOL isOK = false;
+        for (NSString *orientation in supportedOrientations) {
+            if ([orientation rangeOfString:@"Portrait"].location != NSNotFound) {
+                isOK = true;
+                break;
+            }
+        }
+        
+        return isOK ? UIInterfaceOrientationMaskPortrait : mask;
+        
+    } else if (orientationL == LANDSCAPE) {
+        
+        BOOL isOK = false;
+        for (NSString *orientation in supportedOrientations) {
+            if ([orientation rangeOfString:@"Landscape"].location != NSNotFound) {
+                isOK = true;
+                break;
+            }
+        }
+        
+        return isOK ? UIInterfaceOrientationMaskLandscape : mask;
+        
     }
+    
+    return mask;
 }
 
 /**

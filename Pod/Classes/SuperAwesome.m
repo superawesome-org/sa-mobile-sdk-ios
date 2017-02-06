@@ -36,7 +36,7 @@
 - (id) init {
     if (self = [super init]) {
         _cpi = [[SACPI alloc] init];
-        _version = @"5.4.0";
+        _version = @"5.4.1";
         _sdk = @"ios";
     }
     

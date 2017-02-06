@@ -125,6 +125,7 @@
 @property (nonatomic, assign) BOOL           previousStatusBarHiddenValue;
 
 @property (nonatomic, assign) BOOL           videoEnded;
+@property (nonatomic, assign) BOOL           video15s;
 
 @end
 
@@ -152,6 +153,7 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
     
     // here video is not yet loaded
     _videoEnded = false;
+    _video15s = false;
     
     // get the status bar value
     _previousStatusBarHiddenValue = [[UIApplication sharedApplication] isStatusBarHidden];
@@ -241,6 +243,14 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
                     [weakSelf close];
                 }
                 
+                break;
+            }
+            case Video_15s: {
+                // after 15s make the video visible again
+                weakSelf.video15s = true;
+                [weakSelf.closeBtn setHidden:false];
+                [weakSelf.closeBtn setFrame:CGRectMake(weakSelf.view.frame.size.width - 40.0f, 0, 40.0f, 40.0f)];
+                [weakSelf.view bringSubviewToFront:weakSelf.closeBtn];
                 break;
             }
             case Video_Error: {
@@ -418,12 +428,39 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
  * @return valid orientations for this view controller
  */
 - (UIInterfaceOrientationMask) supportedInterfaceOrientations {
+    
+    NSArray *supportedOrientations = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"UISupportedInterfaceOrientations"];
+    
+    UIInterfaceOrientationMask mask = UIInterfaceOrientationMaskAll;
+    
     SAOrientation orientationL = [SAVideoAd getOrientation];
-    switch (orientationL) {
-        case ANY: return UIInterfaceOrientationMaskAll;
-        case PORTRAIT: return UIInterfaceOrientationMaskPortrait;
-        case LANDSCAPE: return UIInterfaceOrientationMaskLandscape;
+    
+    if (orientationL == PORTRAIT) {
+        BOOL isOK = false;
+        for (NSString *orientation in supportedOrientations) {
+            if ([orientation rangeOfString:@"Portrait"].location != NSNotFound) {
+                isOK = true;
+                break;
+            }
+        }
+        
+        return isOK ? UIInterfaceOrientationMaskPortrait : mask;
+        
+    } else if (orientationL == LANDSCAPE) {
+        
+        BOOL isOK = false;
+        for (NSString *orientation in supportedOrientations) {
+            if ([orientation rangeOfString:@"Landscape"].location != NSNotFound) {
+                isOK = true;
+                break;
+            }
+        }
+        
+        return isOK ? UIInterfaceOrientationMaskLandscape : mask;
+        
     }
+    
+    return mask;
 }
 
 /**
@@ -487,7 +524,7 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
 - (void) resize: (CGRect) frame {
     // get locl vars from static
     BOOL _shouldShowCloseButtonL = [SAVideoAd getShouldShowCloseButton];
-    if (!_shouldShowCloseButtonL && _videoEnded) _shouldShowCloseButtonL = true;
+    if (!_shouldShowCloseButtonL && (_videoEnded || _video15s)) _shouldShowCloseButtonL = true;
     
     // setup close button
     _closeBtn.frame = _shouldShowCloseButtonL ? CGRectMake(frame.size.width - 40.0f, 0, 40.0f, 40.0f) : CGRectZero;
