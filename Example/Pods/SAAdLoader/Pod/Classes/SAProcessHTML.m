@@ -57,27 +57,20 @@
 
 + (NSString*) formatCreativeIntoImageHTML:(SAAd*) ad {
     
-    // the img string
     NSString *imgString = @"<a href='hrefURL'><img src='imageURL'/></a>_MOAT_";
     
-    // determine the Click URL
-    NSString *click = ad.creative.clickUrl;
-    
-    if (!click) {
-        NSArray *potentialClicks = [ad.creative.events filterBy:@"event" withValue:@"sa_tracking"];
-        if ([potentialClicks count] > 1) {
-            click = [potentialClicks objectAtIndex:0];
-        }
-    }
-    
-    // set click
-    if (click != nil) {
-        imgString = [imgString stringByReplacingOccurrencesOfString:@"hrefURL" withString:click];
-    }
-    // set image
     if (ad.creative.details.image) {
         imgString = [imgString stringByReplacingOccurrencesOfString:@"imageURL" withString:ad.creative.details.image];
     }
+
+    
+    if (ad.creative.clickUrl) {
+        return [imgString stringByReplacingOccurrencesOfString:@"hrefURL" withString:ad.creative.clickUrl];
+    } else {
+        return [[imgString stringByReplacingOccurrencesOfString:@"<a href='hrefURL'>" withString:@""]
+                stringByReplacingOccurrencesOfString:@"</a>" withString:@""];
+    }
+    
     return imgString;
 }
 
@@ -115,30 +108,27 @@
     // format template parameters
     NSString *tagString = ad.creative.details.tag;
     
-    NSString *click = ad.creative.clickUrl;
-    
-    if (!click) {
-        NSArray *potentialClicks = [ad.creative.events filterBy:@"event" withValue:@"sa_tracking"];
-        if ([potentialClicks count] > 1) {
-            click = [potentialClicks objectAtIndex:0];
-        }
+    if (ad.creative.clickUrl) {
+        tagString = [[tagString stringByReplacingOccurrencesOfString:@"[click]" withString:[NSString stringWithFormat:@"%@&redir=", ad.creative.clickUrl]]
+                     stringByReplacingOccurrencesOfString:@"[click_enc]" withString:[SAUtils encodeURI:ad.creative.clickUrl]];
+    } else {
+        tagString = [[tagString stringByReplacingOccurrencesOfString:@"[click]" withString:@""]
+                     stringByReplacingOccurrencesOfString:@"[click_enc]" withString:@""];
     }
     
-    tagString = [tagString stringByReplacingOccurrencesOfString:@"[click]" withString:[NSString stringWithFormat:@"%@&redir=", click]];
-    tagString = [tagString stringByReplacingOccurrencesOfString:@"[click_enc]" withString:[SAUtils encodeURI:click]];
     tagString = [tagString stringByReplacingOccurrencesOfString:@"[keywords]" withString:@""];
     tagString = [tagString stringByReplacingOccurrencesOfString:@"[timestamp]" withString:[NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970]]];
     tagString = [tagString stringByReplacingOccurrencesOfString:@"target=\"_blank\"" withString:@""];
     tagString = [tagString stringByReplacingOccurrencesOfString:@"\\t" withString:@""];
     tagString = [tagString stringByReplacingOccurrencesOfString:@"\\n" withString:@""];
     tagString = [tagString stringByReplacingOccurrencesOfString:@"\t" withString:@""];
-    tagString = [tagString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-    tagString = [tagString stringByReplacingOccurrencesOfString:@"“" withString:@"\""];
+    //    tagString = [tagString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    //    tagString = [tagString stringByReplacingOccurrencesOfString:@"“" withString:@"\""];
     
     NSString *html = [tagHtml stringByReplacingOccurrencesOfString:@"tagdata" withString:tagString];
-    // html = [html stringByReplacingOccurrencesOfString:@"\/" withString:@"/"];
-    html = [html stringByReplacingOccurrencesOfString:@"\\/" withString:@"/"];
-    html = [html stringByReplacingOccurrencesOfString:@"\"" withString:@"'"];
+    //    html = [html stringByReplacingOccurrencesOfString:@"\/" withString:@"/"];
+    //    html = [html stringByReplacingOccurrencesOfString:@"\\/" withString:@"/"];
+    //    html = [html stringByReplacingOccurrencesOfString:@"\"" withString:@"'"];
     
     // return the parametrized template
     return html;

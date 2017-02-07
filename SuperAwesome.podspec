@@ -20,9 +20,9 @@ Pod::Spec.new do |s|
     b.source_files = 'Pod/Classes/**/*'
     b.frameworks = 'AdSupport'
     b.dependency 'SAVideoPlayer', '1.2.1'
-    b.dependency 'SAWebPlayer', '1.1.6'
+    b.dependency 'SAWebPlayer', '1.1.7'
     b.dependency 'SAEvents', '1.7.3'
-    b.dependency 'SAAdLoader', '1.0.0'
+    b.dependency 'SAAdLoader', '1.0.2'
   end
 
   s.subspec 'Full' do |f|

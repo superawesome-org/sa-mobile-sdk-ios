@@ -226,7 +226,7 @@
 
 @end
 
-@interface SAAppWall () <UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource>
+@interface SAAppWall () <UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource, SAParentalGateProtocol>
 
 // hold the current ad response and array of associated events
 @property (nonatomic, strong) SAResponse                    *response;
@@ -565,14 +565,17 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     // get the current ad
     SAAd *ad = [_response.ads objectAtIndex:pos];
     
-    // either call the PG or goto click
-    if (_isParentalGateEnabledL) {
-        _gate = [[SAParentalGate alloc] initWithWeakRefToView:self andAd:ad andPosition:pos];
-        [_gate show];
-    } else {
-        [self click:[indexPath row]];
+    // only go forward if there is a valid click Url
+    if (ad.creative.clickUrl) {
+        if (_isParentalGateEnabledL) {
+            _gate = [[SAParentalGate alloc] initWithPosition:pos
+                                              andDestination:ad.creative.clickUrl];
+            _gate.delegate = self;
+            [_gate show];
+        } else {
+            [self click:pos withDestination:ad.creative.clickUrl];
+        }
     }
-    
 }
 
 /**
@@ -599,15 +602,14 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 /**
  * Method that is called when a user clicks / taps on an ad
  *
- * @param position  sent in by the collection view so I know which events to
- *                  send back to the ad server
+ * @param position    sent in by the collection view so I know which events to
+ *                    send back to the ad server
+ * @param destination the destination click url
  */
-- (void) click: (NSInteger) position {
+- (void) click: (NSInteger) position withDestination:(NSString*)destination {
     
-    // get ad
-    SAAd *ad = [_response.ads objectAtIndex:position];
-    // get event
-    SAEvents *event = [_events objectAtIndex:position];
+    // log
+    NSLog(@"[AA :: INFO] Trying to go to: %@", destination);
     
     // get local
     sacallback callbackL = [SAAppWall getCallback];
@@ -615,14 +617,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     // send callback
     callbackL(_response.placementId, adClicked);
     
-    // call trackers
-    NSString *_destinationURL = ad.creative.clickUrl;
-    
-    // send SA tracking evt
-    if ([_destinationURL rangeOfString:@"ads.superawesome"].location == NSNotFound ||
-        [_destinationURL rangeOfString:@"ads.staging.superawesome"].location == NSNotFound) {
-        [event sendAllEventsForKey:@"sa_tracking"];
-    }
+    // get event
+    SAEvents *event = [_events objectAtIndex:position];
     
     // send for
     [event sendAllEventsForKey:@"clk_counter"];
@@ -630,13 +626,14 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     // send aux install event, if exists
     [event sendAllEventsForKey:@"install"];
     
-    // go to URL
-    if (_destinationURL) {
-        NSURL *url = [NSURL URLWithString:_destinationURL];
-        [[UIApplication sharedApplication] openURL:url];
+    // send SA tracking evt
+    if ([destination rangeOfString:@"ads.superawesome"].location == NSNotFound ||
+        [destination rangeOfString:@"ads.staging.superawesome"].location == NSNotFound) {
+        [event sendAllEventsForKey:@"sa_tracking"];
     }
     
-    NSLog(@"Going to %@", _destinationURL);
+    // go to URL
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:destination]];
 }
 
 /**
@@ -644,6 +641,50 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
  */
 - (void) padlockAction {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://ads.superawesome.tv/v2/safead"]];
+}
+
+/**
+ * Method part of SAParentalGateProtocol called when the gate is opened
+ *
+ * @param position int representing the ad position in the ads response array
+ */
+- (void) parentalGateOpen:(NSInteger)position {
+    // send all events for parental gate open
+    [[_events objectAtIndex:position] sendAllEventsForKey:@"pg_open"];
+}
+
+/**
+ * Method part of SAParentalGateProtocol called when the gate is failed
+ *
+ * @param position int representing the ad position in the ads response array
+ */
+- (void) parentalGateFailure:(NSInteger)position {
+    // send all events for parental gate failure
+    [[_events objectAtIndex:position] sendAllEventsForKey:@"pg_fail"];
+}
+
+/**
+ * Method part of SAParentalGateProtocol called when the gate is successful
+ *
+ * @param position    int representing the ad position in the ads response array
+ * @param destination URL destination
+ */
+- (void) parentalGateSuccess:(NSInteger)position andDestination:(NSString *)destination {
+    // send success events
+    [[_events objectAtIndex:position] sendAllEventsForKey:@"pg_success"];
+    
+    // go to click
+    [self click:position withDestination:destination];
+}
+
+/**
+ * Method part of SAParentalGateProtocol called when the gate is closed
+ *
+ * @param position int representing the ad position in the ads response array
+ */
+- (void) parentalGateCancel:(NSInteger)position {
+    // send all events for parental gate close
+    [[_events objectAtIndex:position] sendAllEventsForKey:@"pg_close"];
 }
 
 + (void) load:(NSInteger) placementId {

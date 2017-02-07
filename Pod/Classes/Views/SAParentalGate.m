@@ -81,36 +81,24 @@ typedef void(^actionBlock) (UIAlertAction *action);
 @property (nonatomic, retain) UIAlertController     *challangeAlertController;
 @property (nonatomic, retain) UIAlertView           *wrongAnswerAlertView;
 
-// weak ref to view
-@property (nonatomic, weak) id                      weakAdView;
-@property (nonatomic, assign) NSInteger             gameWallPosition;
+// the position and destination
+@property (nonatomic, assign) NSInteger             position;
+@property (nonatomic, strong) NSString*             destination;
 
 @end
 
 @implementation SAParentalGate
 
-- (id) initWithWeakRefToView:(id)weakRef
-                       andAd:(SAAd *)ad {
+- (id) initWithPosition:(NSInteger)position
+         andDestination:(NSString *)destination {
     
     if (self = [super init]) {
-        _weakAdView = weakRef;
-        _events = [[SAEvents alloc] init];
-        [_events setAd:ad];
+        _position = position;
+        _destination = destination;
     }
     
     return self;
-}
-
-
-- (id) initWithWeakRefToView:(id)weakRef
-                       andAd:(SAAd *)ad
-                 andPosition:(NSInteger)position {
     
-    if (self = [self initWithWeakRefToView:weakRef andAd:ad]) {
-        _gameWallPosition = position;
-    }
-    
-    return self;
 }
 
 /**
@@ -125,11 +113,8 @@ typedef void(^actionBlock) (UIAlertAction *action);
 - (void) show {
     [self newQuestion];
     
-    // send event
-    [_events sendAllEventsForKey:@"pg_open"];
-    
-    // pause video
-    [SAUtils invoke:@"pause" onTarget:_weakAdView];
+    // send pg open delegate call
+    [_delegate parentalGateOpen:_position];
     
     if (NSClassFromString(@"UIAlertController")) {
         [self showWithAlertController];
@@ -151,14 +136,16 @@ typedef void(^actionBlock) (UIAlertAction *action);
  * Method that shows an alert controller
  */
 - (void) showWithAlertController {
+    
+    // get a weak self reference
+    __weak typeof (self) weakSelf = self;
+    
     // action block #1
     actionBlock cancelBlock = ^(UIAlertAction *action) {
         
-        // send event
-        [_events sendAllEventsForKey:@"pg_close"];
-        
-        // resume video
-        [SAUtils invoke:@"resume" onTarget:_weakAdView];
+        // send pg cancel delegate call
+        [weakSelf.delegate parentalGateCancel:weakSelf.position];
+    
     };
     
     // action block #2
@@ -177,10 +164,6 @@ typedef void(^actionBlock) (UIAlertAction *action);
         }
         // or a bad solution
         else{
-            
-            // resume video
-            [SAUtils invoke:@"resume" onTarget:_weakAdView];
-            
             [self handlePGError];
         }
     };
@@ -257,20 +240,14 @@ clickedButtonAtIndex:(NSInteger) buttonIndex {
         if ([input integerValue] == _solution) {
             [self handlePGSuccess];
         } else {
-            
-            // resume video
-            [SAUtils invoke:@"resume" onTarget:_weakAdView];
-            
             [self handlePGError];
         }
     }
     // cancel
     else if (buttonIndex == 0){
-        // send event
-        [_events sendAllEventsForKey:@"pg_close"];
-        
-        // resume video
-        [SAUtils invoke:@"resume" onTarget:_weakAdView];
+    
+        // send pg close delegate call
+        [_delegate parentalGateCancel:_position];
     }
 }
 
@@ -280,15 +257,9 @@ clickedButtonAtIndex:(NSInteger) buttonIndex {
  */
 - (void) handlePGSuccess {
     
-    // send data
-    [_events sendAllEventsForKey:@"pg_success"];
-    
-    // finally advance to URL
-    if ([_weakAdView isKindOfClass:[SAAppWall class]]) {
-        [SAUtils invoke:@"click:" onTarget:_weakAdView, @(_gameWallPosition)];
-    } else {
-        [SAUtils invoke:@"click" onTarget:_weakAdView];
-    }
+    //send pg success delegate call
+    [_delegate parentalGateSuccess:_position andDestination:_destination];
+
 }
 
 /**
@@ -296,9 +267,9 @@ clickedButtonAtIndex:(NSInteger) buttonIndex {
  * error. Mainly "close the alert view" and "present error message"
  */
 - (void) handlePGError {
-    
-    // send data
-    [_events sendAllEventsForKey:@"pg_fail"];
+
+    // send pg failure delegate call
+    [_delegate parentalGateFailure:_position];
     
     // ERROR
     _wrongAnswerAlertView = [[UIAlertView alloc] initWithTitle:SA_ERROR_ALERTVIEW_TITLE

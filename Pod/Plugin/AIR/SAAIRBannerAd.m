@@ -162,7 +162,7 @@ FREObject SuperAwesomeAIRSABannerAdPlay (FREContext ctx, void* funcData, uint32_
         CGPointMake((screen.width - realSize.width) / 2.0f, screen.height - realSize.height);
         
         // get banner
-        SABannerAd *banner = [bannerDictionary objectForKey:key];
+        __block SABannerAd *banner = [bannerDictionary objectForKey:key];
         [banner setParentalGate:isParentalGateEnabled];
         [banner setColor:color];
         [root.view addSubview:banner];

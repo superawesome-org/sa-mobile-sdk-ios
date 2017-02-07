@@ -103,11 +103,10 @@
 #endif
 #endif
 
-@interface SAVideoAd ()
+@interface SAVideoAd () <SAParentalGateProtocol>
 
 // aux
 @property (nonatomic, assign) BOOL           isOKToClose;
-@property (nonatomic, strong) NSString       *destinationURL;
 
 // views
 @property (nonatomic, strong) UIButton       *closeBtn;
@@ -174,9 +173,6 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
     // get a weak self reference
     __weak typeof (self) weakSelf = self;
     
-    // start creating the banner ad
-    _gate = [[SAParentalGate alloc] initWithWeakRefToView:self andAd:_ad];
-    
     // create the player
     _player = [[SAVideoPlayer alloc] initWithFrame:CGRectZero];
     if (_shouldShowSmallClickButtonL) {
@@ -226,9 +222,6 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
                 // trigger ad ended
                 _callbackL(weakSelf.ad.placementId, adEnded);
                 
-                // close the Pg
-                [weakSelf.gate close];
-                
                 // send complete events
                 [weakSelf.events sendAllEventsForKey:@"complete"];
                 
@@ -272,10 +265,24 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
     // set click handler for player
     [_player setClickHandler:^{
         
-        if (_isParentalGateEnabledL) {
-            [weakSelf.gate show];
-        } else {
-            [weakSelf click];
+        // get a potential destination
+        NSString *destination = nil;
+        for (SATracking *tracking in weakSelf.ad.creative.events) {
+            if ([tracking.event rangeOfString:@"click_through"].location != NSNotFound) {
+                destination = tracking.URL;
+            }
+        }
+        
+        // only go forward if the destination url is not null
+        if (destination) {
+            if (_isParentalGateEnabledL) {
+                weakSelf.gate = [[SAParentalGate alloc] initWithPosition:0
+                                                          andDestination:destination];
+                weakSelf.gate.delegate = weakSelf;
+                [weakSelf.gate show];
+            } else {
+                [weakSelf click: destination];
+            }
         }
         
     }];
@@ -497,8 +504,7 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
         [_events close];
         
         // null the ad
-        // @warn: static
-        [SAVideoAd removeAdFromLoadedAds:_ad];
+        [ads removeObjectForKey:@(_ad.placementId)];
         
         // destroy the player
         [_player destroy];
@@ -508,6 +514,10 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
         [_padlock removeFromSuperview];
         _padlock = nil;
         
+        // close the Pg
+        if (_gate) {
+            [_gate close];
+        }
         // destroy the gate
         _gate = nil;
         
@@ -540,7 +550,10 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
 /**
  * Method that is called when a user clicks / taps on an ad
  */
-- (void) click {
+- (void) click: (NSString*) destination {
+    
+    NSLog(@"[AA :: INFO] Trying to go to: %@", destination);
+    
     // get delegate
     sacallback _callbackL = [SAVideoAd getCallback];
     
@@ -549,27 +562,18 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
     
     // send all events for vast click tracking
     [_events sendAllEventsForKey:@"click_tracking"];
+    
     // send all events for vast custom clicks
     [_events sendAllEventsForKey:@"custom_clicks"];
+    
     // send all install events
     [_events sendAllEventsForKey:@"install"];
+    
     // send all external click counter events
     [_events sendAllEventsForKey:@"clk_counter"];
     
-    // setup the current click URL
-    for (SATracking *tracking in _ad.creative.events) {
-        if ([tracking.event rangeOfString:@"click_through"].location != NSNotFound) {
-            _destinationURL = tracking.URL;
-        }
-    }
-    
-    // go to URL
-    if (_destinationURL) {
-        NSURL *url = [NSURL URLWithString:_destinationURL];
-        [[UIApplication sharedApplication] openURL:url];
-    }
-    
-    NSLog(@"[AA :: INFO] Going to %@", _destinationURL);
+    // actually go to the URL
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:destination]];
 }
 
 /**
@@ -606,6 +610,62 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://ads.superawesome.tv/v2/safead"]];
 }
 
+/**
+ * Method part of SAParentalGateProtocol called when the gate is opened
+ *
+ * @param position int representing the ad position in the ads response array
+ */
+- (void) parentalGateOpen:(NSInteger)position {
+    // send all events for parental gate open
+    [_events sendAllEventsForKey:@"pg_open"];
+    
+    // pause the video
+    [self pause];
+}
+
+/**
+ * Method part of SAParentalGateProtocol called when the gate is failed
+ *
+ * @param position int representing the ad position in the ads response array
+ */
+- (void) parentalGateFailure:(NSInteger)position {
+    // send all events for parental gate failure
+    [_events sendAllEventsForKey:@"pg_fail"];
+    
+    // resume the video
+    [self resume];
+}
+
+/**
+ * Method part of SAParentalGateProtocol called when the gate is successful
+ *
+ * @param position    int representing the ad position in the ads response array
+ * @param destination URL destination
+ */
+- (void) parentalGateSuccess:(NSInteger)position andDestination:(NSString *)destination {
+    // send success events
+    [_events sendAllEventsForKey:@"pg_success"];
+    
+    // go to click
+    [self pause];
+    
+    // go to click
+    [self click:destination];
+}
+
+/**
+ * Method part of SAParentalGateProtocol called when the gate is closed
+ *
+ * @param position int representing the ad position in the ads response array
+ */
+- (void) parentalGateCancel:(NSInteger)position {
+    // send all events for parental gate close
+    [_events sendAllEventsForKey:@"pg_close"];
+    
+    // resume the video
+    [self resume];
+}
+
 + (void) load:(NSInteger) placementId {
     
     // create dictionary
@@ -637,7 +697,6 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
             
             // add to the array queue
             if (isValid) {
-                NSLog(@"%@", [first jsonPreetyStringRepresentation]);
                 [ads setObject:first forKey:@(placementId)];
             }
             // remove
@@ -677,15 +736,6 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
 + (BOOL) hasAdAvailable: (NSInteger) placementId {
     id object = [ads objectForKey:@(placementId)];
     return object != NULL && [object isKindOfClass:[SAAd class]];
-}
-
-/**
- * Method that clears an ad from the dictionary of ads, once it has been played
- *
- * @param ad the SAAd object to be cleared
- */
-+ (void) removeAdFromLoadedAds:(SAAd*)ad {
-    [ads removeObjectForKey:@(ad.placementId)];
 }
 
 + (void) setCallback:(sacallback)call {

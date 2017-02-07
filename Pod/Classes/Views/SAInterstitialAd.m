@@ -368,6 +368,8 @@ static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
                 [ads removeObjectForKey:@(placementId)];
             }
             
+            NSLog(@"My new ad is %@", [response jsonPreetyStringRepresentation]);
+            
             // callback
             callback(placementId, [response isValid] ? adLoaded : adFailedToLoad);
         }];

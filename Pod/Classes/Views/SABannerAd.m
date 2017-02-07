@@ -97,7 +97,7 @@
 #import "SuperAwesome.h"
 #import "SAParentalGate.h"
 
-@interface SABannerAd ()
+@interface SABannerAd () <SAParentalGateProtocol>
 
 // main state vars
 @property (nonatomic, strong) sacallback         callback;
@@ -116,7 +116,6 @@
 @property (nonatomic, strong) UIButton           *padlock;
 
 // aux state vats
-@property (nonatomic, strong) NSString           *destinationURL;
 @property (nonatomic, assign) BOOL               canPlay;
 @property (nonatomic, assign) BOOL               firstPlay;
 
@@ -184,97 +183,6 @@
     [self setColor:SA_DEFAULT_BGCOLOR];
 }
 
-/**
- * Method that loads all the banner ad subviews.
- */
-- (void) loadSubviews {
-    
-    // get a weak self reference
-    __weak typeof (self) weakSelf = self;
-    
-    // start events
-    [_events setAd:_ad];
-    
-    // start creating the banner ad
-    _gate = [[SAParentalGate alloc] initWithWeakRefToView:self andAd:_ad];
-    
-    // add the sawebview
-    _webplayer = [[SAWebPlayer alloc] initWithContentSize:CGSizeMake(_ad.creative.details.width, _ad.creative.details.height)
-                                           andParentFrame:self.frame];
-    
-    // moat tracking
-    NSString *moatString = [_events moatEventForWebPlayer:[_webplayer getWebView]];
-    NSLog(@"MOAT String is %@", moatString);
-    
-    // form the full HTML string and play it!
-    NSString *fullHTMLToLoad = [_ad.creative.details.media.html stringByReplacingOccurrencesOfString:@"_MOAT_" withString:moatString];
-    
-    // add callbacks for web player events
-    [_webplayer setEventHandler:^(SAWebPlayerEvent event) {
-        switch (event) {
-            case saWeb_Start: {
-                // send callback
-                weakSelf.callback(weakSelf.ad.placementId, adShown);
-                
-                // if the banner has a separate impression URL, send that as well for 3rd party tracking
-                [weakSelf.events sendAllEventsForKey:@"impression"];
-                // [weakSelf.events sendAllEventsForKey:@"sa_impr"];
-                
-                // send viewable impression
-                [weakSelf.events sendViewableImpressionForDisplay:weakSelf];
-                
-                break;
-            }
-            case saWeb_Error: {
-                // send callback
-                weakSelf.callback(weakSelf.ad.placementId, adFailedToShow);
-                break;
-            }
-        }
-    }];
-    
-    // add callbacks for clicks
-    [_webplayer setClickHandler:^(NSURL *url) {
-        // get the going to URL
-        weakSelf.destinationURL = [url absoluteString];
-        
-        if (weakSelf.isParentalGateEnabled) {
-            [weakSelf.gate show];
-        } else {
-            [weakSelf click];
-        }
-    }];
-    
-    // add the webplayer as a subview
-    [self addSubview:_webplayer];
-    
-    // add the padlock
-    _padlock = [[UIButton alloc] initWithFrame:CGRectZero];
-    [_padlock setImage:[SAImageUtils padlockImage] forState:UIControlStateNormal];
-    [_padlock addTarget:self action:@selector(padlockAction) forControlEvents:UIControlEventTouchUpInside];
-    if ([self shouldShowPadlock]) {
-        [_webplayer addSubview:_padlock];
-    }
-    
-    // resize
-    [self resize:self.frame];
-    
-    // finally play!
-    [_webplayer loadHTML:fullHTMLToLoad];
-    
-    // add a notification of sorts
-    [[NSNotificationCenter defaultCenter] addObserverForName:@"UIDeviceOrientationDidChangeNotification"
-                                                      object:nil
-                                                       queue:nil
-                                                  usingBlock:
-     ^(NSNotification * note) {
-         
-         // resize
-         [weakSelf resize:weakSelf.frame];
-     }];
-    
-}
-
 - (void) load:(NSInteger)placementId {
     
     // first close any existing ad
@@ -314,8 +222,91 @@
         _canPlay = false;
         _firstPlay = false;
         
-        // load subviews
-        [self loadSubviews];
+        // get a weak self reference
+        __weak typeof (self) weakSelf = self;
+        
+        // start events
+        [_events setAd:_ad];
+        
+        // add the sawebview
+        _webplayer = [[SAWebPlayer alloc] initWithContentSize:CGSizeMake(_ad.creative.details.width, _ad.creative.details.height)
+                                               andParentFrame:self.frame];
+        
+        // moat tracking
+        NSString *moatString = [_events moatEventForWebPlayer:[_webplayer getWebView]];
+        NSLog(@"MOAT String is %@", moatString);
+        
+        // form the full HTML string and play it!
+        NSString *fullHTMLToLoad = [_ad.creative.details.media.html stringByReplacingOccurrencesOfString:@"_MOAT_" withString:moatString];
+        
+        // add callbacks for web player events
+        [_webplayer setEventHandler:^(SAWebPlayerEvent event) {
+            switch (event) {
+                case saWeb_Start: {
+                    // send callback
+                    weakSelf.callback(weakSelf.ad.placementId, adShown);
+                    
+                    // if the banner has a separate impression URL, send that as well for 3rd party tracking
+                    [weakSelf.events sendAllEventsForKey:@"impression"];
+                    // [weakSelf.events sendAllEventsForKey:@"sa_impr"];
+                    
+                    // send viewable impression
+                    [weakSelf.events sendViewableImpressionForDisplay:weakSelf];
+                    
+                    break;
+                }
+                case saWeb_Error: {
+                    // send callback
+                    weakSelf.callback(weakSelf.ad.placementId, adFailedToShow);
+                    break;
+                }
+            }
+        }];
+        
+        // add callbacks for clicks
+        [_webplayer setClickHandler:^(NSURL *url) {
+            
+            // only call the next part (either pg or click) if the click
+            // url is valid, else do nothong
+            if (url && [url absoluteString]) {
+                if (weakSelf.isParentalGateEnabled) {
+                    weakSelf.gate = [[SAParentalGate alloc] initWithPosition:0 andDestination:[url absoluteString]];
+                    weakSelf.gate.delegate = weakSelf;
+                    [weakSelf.gate show];
+                } else {
+                    [weakSelf click: [url absoluteString]];
+                }
+            }
+        
+        }];
+        
+        // add the webplayer as a subview
+        [self addSubview:_webplayer];
+        
+        // add the padlock
+        _padlock = [[UIButton alloc] initWithFrame:CGRectZero];
+        [_padlock setImage:[SAImageUtils padlockImage] forState:UIControlStateNormal];
+        [_padlock addTarget:self action:@selector(padlockAction) forControlEvents:UIControlEventTouchUpInside];
+        if ([self shouldShowPadlock]) {
+            [_webplayer addSubview:_padlock];
+        }
+        
+        // resize
+        [self resize:self.frame];
+        
+        // finally play!
+        [_webplayer loadHTML:fullHTMLToLoad];
+        
+        // add a notification of sorts
+        [[NSNotificationCenter defaultCenter] addObserverForName:@"UIDeviceOrientationDidChangeNotification"
+                                                          object:nil
+                                                           queue:nil
+                                                      usingBlock:
+         ^(NSNotification * note) {
+             
+             // resize
+             [weakSelf resize:weakSelf.frame];
+         }];
         
     } else {
         // failure callback
@@ -381,8 +372,9 @@
 /**
  * Method that is called when a user clicks / taps on an ad
  */
-- (void) click {
-    NSLog(@"[AA :: INFO] Going to %@", _destinationURL);
+- (void) click: (NSString*) destination {
+    
+    NSLog(@"[AA :: INFO] Trying to go to: %@", destination);
     
     // callback
     _callback (_ad.placementId, adClicked);
@@ -390,17 +382,16 @@
     // send external click counter events
     [_events sendAllEventsForKey:@"clk_counter"];
     
-    // events
-    if ([_destinationURL rangeOfString:[_session getBaseUrl]].location == NSNotFound) {
-        [_events sendAllEventsForKey:@"sa_tracking"];
-    }
-    
     // send the install e vent (if this is a CPI campaign)
     [_events sendAllEventsForKey:@"install"];
     
+    // events
+    if ([destination rangeOfString:[_session getBaseUrl]].location == NSNotFound) {
+        [_events sendAllEventsForKey:@"sa_tracking"];
+    }
+    
     // open URL
-    NSURL *url = [NSURL URLWithString:_destinationURL];
-    [[UIApplication sharedApplication] openURL:url];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:destination]];
 }
 
 - (void) resize:(CGRect)toframe {
@@ -414,6 +405,50 @@
     // rearrange the padlock
     _padlock.frame = CGRectMake(0, 0, 67, 25);
     [self bringSubviewToFront:_padlock];
+}
+
+/**
+ * Method part of SAParentalGateProtocol called when the gate is opened
+ *
+ * @param position int representing the ad position in the ads response array
+ */
+- (void) parentalGateOpen:(NSInteger)position {
+    // send all events for parental gate open
+    [_events sendAllEventsForKey:@"pg_open"];
+}
+
+/**
+ * Method part of SAParentalGateProtocol called when the gate is failed
+ *
+ * @param position int representing the ad position in the ads response array
+ */
+- (void) parentalGateFailure:(NSInteger)position {
+    // send all events for parental gate failure
+    [_events sendAllEventsForKey:@"pg_fail"];
+}
+
+/**
+ * Method part of SAParentalGateProtocol called when the gate is successful
+ *
+ * @param position    int representing the ad position in the ads response array
+ * @param destination URL destination
+ */
+- (void) parentalGateSuccess:(NSInteger)position andDestination:(NSString *)destination {
+    // send success events
+    [_events sendAllEventsForKey:@"pg_success"];
+    
+    // go to click
+    [self click:destination];
+}
+
+/**
+ * Method part of SAParentalGateProtocol called when the gate is closed
+ *
+ * @param position int representing the ad position in the ads response array
+ */
+- (void) parentalGateCancel:(NSInteger)position {
+    // send all events for parental gate close
+    [_events sendAllEventsForKey:@"pg_close"];
 }
 
 /**

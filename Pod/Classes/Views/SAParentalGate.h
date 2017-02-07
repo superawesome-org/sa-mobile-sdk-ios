@@ -4,6 +4,7 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "SAParentalGateProtocol.h"
 
 @class SAAd;
 
@@ -13,27 +14,18 @@
  */
 @interface SAParentalGate : NSObject <UIAlertViewDelegate>
 
-/**
- * Init method with a weak reference to the calling view (banner,
- * interstitial or video ad and an reference to the ad that's being played)
- * 
- * @param weakRef a param of type "id"
- * @param ad      the current SAAd object being played
- */
-- (id) initWithWeakRefToView:(id) weakRef
-                       andAd:(SAAd*) ad;
 
 /**
- * Init method with a weak reference to the calling view (appwall) 
- * and an reference to the ad that's being played)
+ * Init method with the ad position and the final click destination
  *
- * @param weakRef   a param of type "id"
- * @param ad        the current SAAd object being played
- * @param postiion  the current ad position in the appwall
+ * @param position    position of the ad in the ads response array
+ * @param destination URL destination of the click
  */
-- (id) initWithWeakRefToView:(id) weakRef
-                       andAd:(SAAd*) ad
-                 andPosition:(NSInteger) position;
+- (id) initWithPosition:(NSInteger) position
+         andDestination:(NSString*) destination;
+
+// delegate of the parental gate
+@property (nonatomic, weak) id <SAParentalGateProtocol> delegate;
 
 /**
  * Main show method

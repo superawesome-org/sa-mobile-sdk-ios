@@ -22,7 +22,7 @@
     
     // load banner
     [_bannerAd setConfigurationStaging];
-    [_bannerAd disableParentalGate];
+    [_bannerAd enableParentalGate];
     [_bannerAd setCallback:^(NSInteger placementId, SAEvent event) {
         if (event == adLoaded) {
             [_bannerAd play];
@@ -33,8 +33,8 @@
     
     // load interstitials
     [SAInterstitialAd setConfigurationStaging];
-    [SAInterstitialAd disableParentalGate];
-    [SAInterstitialAd setOrientationLandscape];
+    [SAInterstitialAd enableParentalGate];
+//    [SAInterstitialAd setOrientationLandscape];
     [SAInterstitialAd setCallback:^(NSInteger placementId, SAEvent event) {
         NSLog(@"Interstitial %ld event %ld", (long)placementId, (long)event);
     }];
@@ -43,6 +43,7 @@
     [SAVideoAd setConfigurationStaging];
     [SAVideoAd disableParentalGate];
     [SAVideoAd setCloseAtEnd:false];
+    [SAVideoAd enableParentalGate];
 //    [SAVideoAd enableCloseButton];
 //    [SAVideoAd setOrientationLandscape];
     [SAVideoAd setCallback:^(NSInteger placementId, SAEvent event) {
@@ -65,13 +66,16 @@
 
 - (IBAction)loadAction:(id)sender {
     
-    [SAInterstitialAd load:600];
-    [SAInterstitialAd load:601];
-    [SAInterstitialAd load:605];
-    [SAInterstitialAd load:606];
-    [SAVideoAd load:604];
-    [SAVideoAd load:603];
-    [SAAppWall load:437];
+//    [SAInterstitialAd load:600];
+//    [SAInterstitialAd load:601];
+//    [SAInterstitialAd load:605];
+//    [SAInterstitialAd load:606];
+//    [SAInterstitialAd load:613];
+    [SAInterstitialAd load:614];
+//    [SAVideoAd load:604];
+//    [SAVideoAd load:603];
+//    [SAVideoAd load:612];
+//    [SAAppWall load:437];
 
 }
 
@@ -81,6 +85,7 @@
 
 - (IBAction)playBanner2:(id)sender {
     [_bannerAd load:602];
+//    [_bannerAd load:611];
 }
 
 - (IBAction)playInter1:(id)sender {
@@ -96,7 +101,9 @@
 }
 
 - (IBAction)playInter4:(id)sender {
-    [SAInterstitialAd play:606 fromVC:self];
+//    [SAInterstitialAd play:606 fromVC:self];
+//    [SAInterstitialAd play:613 fromVC:self];
+    [SAInterstitialAd play:614 fromVC:self];
 }
 
 - (IBAction)playVideo1:(id)sender {
@@ -104,7 +111,8 @@
 }
 
 - (IBAction)playVideo2:(id)sender {
-    [SAVideoAd play:604 fromVC:self];
+//    [SAVideoAd play:604 fromVC:self];
+    [SAVideoAd play:612 fromVC:self];
 }
 
 - (IBAction)playAppWall:(id)sender {
