@@ -38,7 +38,7 @@
     // assign values
     BOOL isTestEnabled = false;
     BOOL isParentalGateEnabled = true;
-    BOOL shouldShowCloseButton = true;
+    BOOL shouldShowCloseButton = false;
     BOOL shouldShowSmallClickButton = false;
     BOOL shouldAutomaticallyCloseAtEnd = true;
     SAOrientation orientation = ANY;
