@@ -39,6 +39,8 @@
 // the ad
 @property (nonatomic, strong) SAAd *ad;
 
+@property (nonatomic, assign) BOOL           videoEnded;
+
 @end
 
 @implementation SAVideoAd
@@ -50,7 +52,7 @@ static NSMutableDictionary *ads;
 static sacallback callback = ^(NSInteger placementId, SAEvent event) {};
 static BOOL isParentalGateEnabled = true;
 static BOOL shouldAutomaticallyCloseAtEnd = true;
-static BOOL shouldShowCloseButton = true;
+static BOOL shouldShowCloseButton = false;
 static BOOL shouldShowSmallClickButton = false;
 static BOOL isTestingEnabled = false;
 static SAOrientation orientation = ANY;
@@ -127,11 +129,20 @@ static SAConfiguration configuration = PRODUCTION;
             }
             case Video_End: {
                 
+                // trigger ad ended
+                _callbackL(weakSelf.ad.placementId, adEnded);
+                
                 // close the Pg
                 [weakSelf.gate close];
                 
                 // send complete events
                 [weakSelf.events sendAllEventsForKey:@"complete"];
+                
+                // make btn visible
+                weakSelf.videoEnded = true;
+                [weakSelf.closeBtn setHidden:false];
+                [weakSelf.closeBtn setFrame:CGRectMake(weakSelf.view.frame.size.width - 40.0f, 0, 40.0f, 40.0f)];
+                [weakSelf.view bringSubviewToFront:weakSelf.closeBtn];
                 
                 // close video
                 if (_shouldAutomaticallyCloseAtEndL) {
@@ -330,6 +341,7 @@ static SAConfiguration configuration = PRODUCTION;
 - (void) resize: (CGRect) frame {
     // get locl vars from static
     BOOL _shouldShowCloseButtonL = [SAVideoAd getShouldShowCloseButton];
+    if (!_shouldShowCloseButtonL && _videoEnded) _shouldShowCloseButtonL = true;
     
     // setup close button
     _closeBtn.frame = _shouldShowCloseButtonL ? CGRectMake(frame.size.width - 40.0f, 0, 40.0f, 40.0f) : CGRectZero;

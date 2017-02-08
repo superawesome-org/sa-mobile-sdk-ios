@@ -14,7 +14,8 @@ typedef NS_ENUM(NSInteger, SAEvent) {
     adShown = 2,
     adFailedToShow = 3,
     adClicked = 4,
-    adClosed = 5
+    adEnded = 5,
+    adClosed = 6
 };
 
 typedef void (^sacallback)(NSInteger placementId, SAEvent event);

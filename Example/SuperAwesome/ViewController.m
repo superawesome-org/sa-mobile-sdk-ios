@@ -45,13 +45,16 @@
     }];
 
     // load video
-    [SAVideoAd setConfigurationProduction];
+    [SAVideoAd setConfigurationStaging];
     [SAVideoAd disableParentalGate];
+//    [SAVideoAd disableCloseAtEnd];
     [SAVideoAd setCallback:^(NSInteger placementId, SAEvent event) {
         if (event == adLoaded) {
             NSLog(@"adLoaded ==> %ld", (long) placementId);
         } else if (event == adFailedToLoad) {
             NSLog(@"adFailedToLoad ==> %ld", (long) placementId);
+        } else if (event == adEnded) {
+            NSLog(@"adEnded ==> %ld", (long) placementId);
         }
     }];
 
@@ -94,6 +97,9 @@
 //    [SAVideoAd load:544];
 //    [SAVideoAd load:480];
 //    [SAVideoAd load:481];
+    [SAVideoAd load:604];
+    [SAVideoAd load:603];
+    [SAVideoAd load:612];
 }
 
 - (IBAction)playBanner:(id)sender {
@@ -119,18 +125,18 @@
 //        [SAVideoAd play: 31718 fromVC:self];
 //    }
     
-    if ([SAVideoAd hasAdAvailable:544]) {
-        [SAVideoAd play:544 fromVC:self];
+    if ([SAVideoAd hasAdAvailable:604]) {
+        [SAVideoAd play:604 fromVC:self];
     }
 }
 
 - (IBAction)playVideo2:(id)sender {
-    if ([SAAppWall hasAdAvailable:470]) {
-        [SAAppWall play:470  fromVC:self];
-    }
-//    if ([SAVideoAd hasAdAvailable:31721]) {
-//        [SAVideoAd play:31721 fromVC:self];
+//    if ([SAAppWall hasAdAvailable:470]) {
+//        [SAAppWall play:470  fromVC:self];
 //    }
+    if ([SAVideoAd hasAdAvailable:603]) {
+        [SAVideoAd play:603 fromVC:self];
+    }
     
 //    if ([SAVideoAd hasAdAvailable:31721]) {
   //      [SAVideoAd play:31721 fromVC:self];
