@@ -247,7 +247,7 @@
                     weakSelf.callback(weakSelf.ad.placementId, adShown);
                     
                     // if the banner has a separate impression URL, send that as well for 3rd party tracking
-                    [weakSelf.events sendAllEventsForKey:@"impression"];
+                    // [weakSelf.events sendAllEventsForKey:@"impression"];
                     // [weakSelf.events sendAllEventsForKey:@"sa_impr"];
                     
                     // send viewable impression

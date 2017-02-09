@@ -372,8 +372,8 @@ static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
     
     // send events
     for (SAEvents *event in _events) {
-        [event sendAllEventsForKey:@"impression"];
-        [event sendAllEventsForKey:@"sa_impr"];
+        // [event sendAllEventsForKey:@"impression"];
+        // [event sendAllEventsForKey:@"sa_impr"];
         [event sendViewableImpressionForDisplay:self.view];
     }
 }

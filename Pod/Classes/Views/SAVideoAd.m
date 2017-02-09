@@ -188,7 +188,7 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
                 weakSelf.isOKToClose = true;
                 
                 // send vast ad impressions
-                [weakSelf.events sendAllEventsForKey:@"impression"];
+                // [weakSelf.events sendAllEventsForKey:@"impression"];
                 [weakSelf.events sendAllEventsForKey:@"start"];
                 [weakSelf.events sendAllEventsForKey:@"creativeView"];
                 
