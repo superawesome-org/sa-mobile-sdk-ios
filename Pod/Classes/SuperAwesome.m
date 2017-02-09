@@ -37,7 +37,7 @@
 }
 
 - (NSString*) getVersion {
-    return @"5.3.4.2";
+    return @"5.3.4";
 }
 
 - (NSString*) getSdk {
