@@ -1,6 +1,23 @@
 CHANGELOG
 =========
 
+5.5.0
+ - Refactored click handlging to now ignore null click urls
+	- ads that now have a null click url won't fire either the parental gate or any associated click urls (for video, for example). 
+	- refactored the web processror (SAProcessHTML) to ignore null click urls
+	- improved the web view (SAWebView) to ignore urls like "about:blank"
+	- refactored the "click" method of banner, interstitial & video ads to now contain the ad index (from the ad resoonse) and the destination. Now all methods more or less do the same thing and have the same structure. It's up to either the web view or the vast part to provide a valid click url, if it's available.
+ - Refactored the CPI part in a separate library called SACPI (sa-mobile-lib-ios-cpi). 
+	- Created a SAOnce class to make sure the CPI events are fired just once in the application's lifetime.
+	- Created a SAInstall class that deals with sending the /install event to the ad server
+	- SACPI is now a singleton
+	- The library can be imported separately by advertisers if they just want to measure their installs, but don't want the full SDK
+	- The library has now become a dependency of the main SDK. All previous CPI classes in the SDK have been removed
+ - Improved the tag handling code to try to replace less characters in the tag so that more tags will work
+ - Removed firing of all "impression" events for banner, interstitial & app wall ads (these are fired by the server). For video the "impression" event is still fired, but that's taken from the VAST tag, so it's OK.
+ - The video ad close button will appear by default after 15 seconds of content playing, meaning that disabling the close button will have effect only for the first 15 seconds of play, or for ads shorter than 15 seconds. The close button will appear once the ad has ended nonetheless in that scenario. 
+ - In all events, the "sourceBundle" parameter was renamed to "bundle"
+
 5.4.2
 5.4.1
  - Fixed a bug that made interstitial, video & app wall ads cause problems when ordered to display strictly in landscape or portait mode but the app didn't actually support those orientation modes. Now the ads will just try to match the possible orientation modes offered by the app when they can't display in the desired way.

@@ -14,7 +14,6 @@
 #endif
 
 @interface SuperAwesome ()
-@property (nonatomic, strong) SACPI *cpi;
 @property (nonatomic, strong) NSString *version;
 @property (nonatomic, strong) NSString *sdk;
 @end
@@ -35,8 +34,7 @@
  */
 - (id) init {
     if (self = [super init]) {
-        _cpi = [[SACPI alloc] init];
-        _version = @"5.4.2";
+        _version = @"5.5.0";
         _sdk = @"ios";
     }
     

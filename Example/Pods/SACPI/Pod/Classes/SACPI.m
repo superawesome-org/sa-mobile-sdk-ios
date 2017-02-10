@@ -36,9 +36,11 @@
 
 - (void) sendInstallEvent:(SASession *)session
               andResponse:(saDidCountAnInstall)response {
+    
     [self sendInstallEvent:session
                 withTarget:[session getBundleId]
                andResponse:response];
+    
 }
 
 - (void) sendInstallEvent:(SASession *)session

@@ -233,7 +233,6 @@
     }
     
     _viewabilityTimer = NULL;
-    _network = NULL;
 }
 
 /**

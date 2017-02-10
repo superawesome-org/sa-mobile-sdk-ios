@@ -87,7 +87,7 @@
                                                     @"line_item":@(ad.lineItemId),
                                                     @"creative":@(ad.creative._id),
                                                     @"sdkVersion":[session getVersion],
-                                                    @"sourceBundle":[session getBundleId],
+                                                    @"bundle":[session getBundleId],
                                                     @"rnd":@([session getCachebuster]),
                                                     @"ct":@([session getConnectivityType])
                                                     }
@@ -104,7 +104,7 @@
                                                            @"creative": @(ad.creative._id),
                                                            @"line_item": @(ad.lineItemId),
                                                            @"sdkVersion": [session getVersion],
-                                                           @"sourceBundle":[session getBundleId],
+                                                           @"bundle":[session getBundleId],
                                                            @"rnd": @([session getCachebuster]),
                                                            @"no_image": @(true)
                                                            }
@@ -120,7 +120,7 @@
                                                               @"sdkVersion":[session getVersion],
                                                               @"rnd":@([session getCachebuster]),
                                                               @"ct":@([session getConnectivityType]),
-                                                              @"sourceBundle":[session getBundleId],
+                                                              @"bundle":[session getBundleId],
                                                               @"data":[SAUtils encodeURI:[@{
                                                                                             @"placement":@(ad.placementId),
                                                                                             @"line_item":@(ad.lineItemId),
@@ -138,7 +138,7 @@
                                                             @"sdkVersion":[session getVersion],
                                                             @"rnd":@([session getCachebuster]),
                                                             @"ct":@([session getConnectivityType]),
-                                                            @"sourceBundle":[session getBundleId],
+                                                            @"bundle":[session getBundleId],
                                                             @"data":[SAUtils encodeURI:[@{
                                                                                           @"placement":@(ad.placementId),
                                                                                           @"line_item":@(ad.lineItemId),
@@ -156,7 +156,7 @@
                                                              @"sdkVersion":[session getVersion],
                                                              @"rnd":@([session getCachebuster]),
                                                              @"ct":@([session getConnectivityType]),
-                                                             @"sourceBundle":[session getBundleId],
+                                                             @"bundle":[session getBundleId],
                                                              @"data":[SAUtils encodeURI:[@{
                                                                                            @"placement":@(ad.placementId),
                                                                                            @"line_item":@(ad.lineItemId),
@@ -174,7 +174,7 @@
                                                             @"sdkVersion":[session getVersion],
                                                             @"rnd":@([session getCachebuster]),
                                                             @"ct":@([session getConnectivityType]),
-                                                            @"sourceBundle":[session getBundleId],
+                                                            @"bundle":[session getBundleId],
                                                             @"data":[SAUtils encodeURI:[@{
                                                                                           @"placement":@(ad.placementId),
                                                                                           @"line_item":@(ad.lineItemId),
@@ -192,7 +192,7 @@
                                                                @"sdkVersion":[session getVersion],
                                                                @"rnd":@([session getCachebuster]),
                                                                @"ct":@([session getConnectivityType]),
-                                                               @"sourceBundle":[session getBundleId],
+                                                               @"bundle":[session getBundleId],
                                                                @"data":[SAUtils encodeURI:[@{
                                                                                              @"placement":@(ad.placementId),
                                                                                              @"line_item":@(ad.lineItemId),

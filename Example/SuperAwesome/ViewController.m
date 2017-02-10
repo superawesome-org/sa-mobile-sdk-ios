@@ -10,6 +10,7 @@
 #import "SuperAwesome.h"
 #import "SAUtils.h"
 #import "SASession.h"
+#import "SAOnce.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -21,6 +22,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    SAOnce *once = [[SAOnce alloc] init];
+    [once resetCPISent];
+    
+    SASession *session = [[SASession alloc] init];
+    [session setConfigurationStaging];
+    
+    [[SACPI getInstance] sendInstallEvent:session
+                               withTarget:[session getBundleId]
+                              andResponse:^(BOOL success) {
+                                  NSLog(@"CPI Operation is %d", success);
+                              }];
     
     [_bannerAd setConfigurationStaging];
     [_bannerAd setCallback:^(NSInteger placementId, SAEvent event) {
