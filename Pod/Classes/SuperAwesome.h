@@ -10,7 +10,14 @@
 #import "SAAppWall.h"
 #import "SACallback.h"
 #import "SAOrientation.h"
+
+#if defined(__has_include)
+#if __has_include(<SACPI/SACPI.h>)
+#import <SACPI/SACPI.h>
+#else
 #import "SACPI.h"
+#endif
+#endif
 
 // define constants to lock the default / initial state
 #define SA_DEFAULT_PLACEMENTID      0

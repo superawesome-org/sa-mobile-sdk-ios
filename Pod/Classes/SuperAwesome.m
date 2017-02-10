@@ -66,9 +66,7 @@
 }
 
 - (void) handleCPI:(saDidCountAnInstall) response {
-    SASession *session = [[SASession alloc] init];
-    [session setConfigurationProduction];
-    [_cpi sendInstallEvent:session withCallback:response];
+    [[SACPI getInstance] sendInstallEvent:response];
 }
 
 - (void) overrideVersion: (NSString*) version {
