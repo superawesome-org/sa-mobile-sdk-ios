@@ -26,7 +26,7 @@ extern "C" {
         
         [[SACPI getInstance] sendInstallEvent:^(BOOL success) {
             
-            sendCPICallback(@"SAUnityCPI", success, @"HandleCPI");
+            sendCPICallback(@"SACPI", success, @"HandleCPI");
             
         }];
         

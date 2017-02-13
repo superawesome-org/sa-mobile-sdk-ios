@@ -14,17 +14,6 @@
 #endif
 #endif
 
-FREObject SuperAwesomeAIRSuperAwesomeHandleCPI (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]) {
-    
-    [[SuperAwesome getInstance] handleCPI:^(BOOL success) {
-        
-        sendCPICallback(ctx, @"SAAIRSuperAwesome", success, @"HandleCPI");
-        
-    }];
-    
-    return NULL;
-}
-
 FREObject SuperAwesomeAIRSuperAwesomeSetVersion (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]) {
     
     // needed paramters

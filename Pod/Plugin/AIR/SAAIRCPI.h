@@ -7,8 +7,7 @@
 #import "FlashRuntimeExtensions.h"
 
 /**
- * Native method called from AIR that overrides the version sent by the SDK
- * with each request
+ * Native method called from AIR that handles CPI
  *
  * @param ctx       current FREContext object
  * @param funcData  pointer to extra data
@@ -16,5 +15,4 @@
  * @param argv[]    argv paramter
  * @return          a new FREObject instance with return data
  */
-FREObject SuperAwesomeAIRSuperAwesomeSetVersion (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]);
-
+FREObject SuperAwesomeAIRSACPIHandleCPI (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]);

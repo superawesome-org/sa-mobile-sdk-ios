@@ -71,6 +71,8 @@
 		1B533474BA44DB49B1F4010C /* MPHTMLInterstitialViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = DABCFAB51DF833156BDB4F77 /* MPHTMLInterstitialViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1B5F7E29AD8F0FA3012072CB /* MPNativeAdRendererConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F3DB168A2A58F21E2CE10C /* MPNativeAdRendererConfiguration.m */; };
 		1BE4A9C81E520C7000CE3247 /* SAUnityCPI.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1BE4A9C61E520C7000CE3247 /* SAUnityCPI.mm */; };
+		1BE4A9CB1E5211E300CE3247 /* SAAIRCPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BE4A9C91E5211E300CE3247 /* SAAIRCPI.h */; };
+		1BE4A9CC1E5211E300CE3247 /* SAAIRCPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BE4A9CA1E5211E300CE3247 /* SAAIRCPI.m */; };
 		1C9552D62E505AA9E34E506C /* SAMedia.h in Headers */ = {isa = PBXBuildFile; fileRef = 0361DCE4ABE5D5AC95B7203D /* SAMedia.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1D1867D86780AF634DC33B2D /* SAAIRSuperAwesome.h in Headers */ = {isa = PBXBuildFile; fileRef = F718CC3163E80D9D7E355670 /* SAAIRSuperAwesome.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1D1C2F7AFDE970271F57830B /* MPMoPubNativeCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E45D47A72F1714BB87DC527 /* MPMoPubNativeCustomEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -908,6 +910,8 @@
 		1B8173A7C7725E47D1095746 /* MPAdServerCommunicator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPAdServerCommunicator.h; path = MoPubSDK/Internal/Common/MPAdServerCommunicator.h; sourceTree = "<group>"; };
 		1B834D2F2C6340B78C04537A /* MPTableViewAdPlacer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MPTableViewAdPlacer.h; path = "MoPubSDK/Native Ads/MPTableViewAdPlacer.h"; sourceTree = "<group>"; };
 		1BE4A9C61E520C7000CE3247 /* SAUnityCPI.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SAUnityCPI.mm; sourceTree = "<group>"; };
+		1BE4A9C91E5211E300CE3247 /* SAAIRCPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAAIRCPI.h; sourceTree = "<group>"; };
+		1BE4A9CA1E5211E300CE3247 /* SAAIRCPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAAIRCPI.m; sourceTree = "<group>"; };
 		1BEAE6A79F3438B0EF86B0EA /* MPLogProvider.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPLogProvider.m; path = MoPubSDK/Internal/Utility/MPLogProvider.m; sourceTree = "<group>"; };
 		1C6074845489AC0990878CB8 /* MPNativeAdRequestTargeting.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPNativeAdRequestTargeting.m; path = "MoPubSDK/Native Ads/MPNativeAdRequestTargeting.m"; sourceTree = "<group>"; };
 		1D096A6021D7BAA0185C9B30 /* MPVASTAd.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MPVASTAd.m; path = MoPubSDK/Internal/VAST/MPVASTAd.m; sourceTree = "<group>"; };
@@ -2273,6 +2277,8 @@
 				D6B6287C461100D40C99E1DA /* SAAIRSuperAwesome.m */,
 				48837AE7D2E02186D172126D /* SAAIRVideoAd.h */,
 				4B88A70AB61BEAFC5F42B6A4 /* SAAIRVideoAd.m */,
+				1BE4A9C91E5211E300CE3247 /* SAAIRCPI.h */,
+				1BE4A9CA1E5211E300CE3247 /* SAAIRCPI.m */,
 			);
 			path = AIR;
 			sourceTree = "<group>";
@@ -2833,6 +2839,7 @@
 			files = (
 				B0985BDF3EAFE4A4B579FAAE /* FlashRuntimeExtensions.h in Headers */,
 				7D9FFB3A9B759E80F0D908B1 /* SAAIRAppWall.h in Headers */,
+				1BE4A9CB1E5211E300CE3247 /* SAAIRCPI.h in Headers */,
 				3AEC71648AEFC5BCB49CEC81 /* SAAIRBannerAd.h in Headers */,
 				5D37CCBBA1DF9889B27AD121 /* SAAIRCallback.h in Headers */,
 				8F8F30B33616B9D6BAC70F35 /* SAAIRInterstitialAd.h in Headers */,
@@ -3293,6 +3300,7 @@
 				CB56754AD3BEE0BCF9A8BB06 /* SAAIRVideoAd.m in Sources */,
 				2B3FA3343C127D22EFA5C5B4 /* SAAppWall.m in Sources */,
 				3BD089D9CC72F14C36E1242C /* SABannerAd.m in Sources */,
+				1BE4A9CC1E5211E300CE3247 /* SAAIRCPI.m in Sources */,
 				11FE0219C836D1E57D385101 /* SAInterstitialAd.m in Sources */,
 				04D72A608C73B172DC08F611 /* SAParentalGate.m in Sources */,
 				39D59F6043E2D12FD90BBBA5 /* SAUnityAppWall.mm in Sources */,

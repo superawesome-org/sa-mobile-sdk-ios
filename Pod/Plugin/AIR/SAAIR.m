@@ -10,6 +10,7 @@
 #import "SAAIRVideoAd.h"
 #import "SAAIRAppWall.h"
 #import "SAAIRSuperAwesome.h"
+#import "SAAIRCPI.h"
 
 /**
  * Method that initialzies an AIR Context by specifying all methods that should
@@ -95,9 +96,9 @@ void SAContextInitializer(void* extData, const uint8_t* ctxType, FREContext ctx,
     func[16].functionData = NULL;
     func[16].function = &SuperAwesomeAIRSABannerAdClose;
     
-    func[17].name = (const uint8_t*) "SuperAwesomeAIRSuperAwesomeHandleCPI";
+    func[17].name = (const uint8_t*) "SuperAwesomeAIRSACPIHandleCPI";
     func[17].functionData = NULL;
-    func[17].function = &SuperAwesomeAIRSuperAwesomeHandleCPI;
+    func[17].function = &SuperAwesomeAIRSACPIHandleCPI;
     
     func[18].name = (const uint8_t*) "SuperAwesomeAIRSuperAwesomeSetVersion";
     func[18].functionData = NULL;
