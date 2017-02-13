@@ -29,11 +29,11 @@
     SASession *session = [[SASession alloc] init];
     [session setConfigurationStaging];
     
-    [[SACPI getInstance] sendInstallEvent:session
-                               withTarget:[session getBundleId]
-                              andResponse:^(BOOL success) {
-                                  NSLog(@"CPI Operation is %d", success);
-                              }];
+    [[SACPI getInstance] handleInstall:session
+                            withTarget:[session getBundleId]
+                           andResponse:^(BOOL success) {
+                               NSLog(@"CPI Operation is %d", success);
+                           }];
     
     [_bannerAd setConfigurationStaging];
     [_bannerAd setCallback:^(NSInteger placementId, SAEvent event) {

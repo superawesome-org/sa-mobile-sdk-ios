@@ -63,10 +63,6 @@
     return [NSString stringWithFormat:@"%@_%@", [self getSdk], [self getVersion]];
 }
 
-- (void) handleCPI:(saDidCountAnInstall) response {
-    [[SACPI getInstance] sendInstallEvent:response];
-}
-
 - (void) overrideVersion: (NSString*) version {
     _version = version;
 }

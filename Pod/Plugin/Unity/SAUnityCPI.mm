@@ -24,7 +24,7 @@ extern "C" {
      */
     void SuperAwesomeUnitySACPIHandleCPI () {
         
-        [[SACPI getInstance] sendInstallEvent:^(BOOL success) {
+        [[SACPI getInstance] handleInstall:^(BOOL success) {
             
             sendCPICallback(@"SACPI", success, @"HandleCPI");
             

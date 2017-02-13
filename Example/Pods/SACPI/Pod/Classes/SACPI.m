@@ -28,24 +28,22 @@
     return self;
 }
 
-- (void) sendInstallEvent:(saDidCountAnInstall)response {
+- (void) handleInstall:(saDidCountAnInstall)response {
     SASession *session = [[SASession alloc] init];
     [session setConfigurationProduction];
-    [self sendInstallEvent:session andResponse:response];
+    [self handleInstall:session withResponse:response];
 }
 
-- (void) sendInstallEvent:(SASession *)session
-              andResponse:(saDidCountAnInstall)response {
-    
-    [self sendInstallEvent:session
-                withTarget:[session getBundleId]
-               andResponse:response];
-    
+- (void) handleInstall:(SASession *)session
+          withResponse:(saDidCountAnInstall)response {
+    [self handleInstall:session
+             withTarget:[session getBundleId]
+            andResponse:response];
 }
 
-- (void) sendInstallEvent:(SASession *)session
-               withTarget:(NSString *)target
-              andResponse:(saDidCountAnInstall)response {
+- (void) handleInstall:(SASession *)session
+            withTarget:(NSString *)target
+           andResponse:(saDidCountAnInstall)response {
     
     __block SAOnce    *once    = [[SAOnce alloc] init];
     SAInstall *install = [[SAInstall alloc] init];

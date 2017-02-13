@@ -23,7 +23,7 @@
  *
  * @param response a callback block of type saDidCountAnInstall
  */
-- (void) sendInstallEvent: (saDidCountAnInstall) response;
+- (void) handleInstall: (saDidCountAnInstall) response;
 
 /**
  * Main class method that handles all the aspects of properly sending
@@ -34,8 +34,8 @@
  * @param session  a current session
  * @param response a callback block of type saDidCountAnInstall
  */
-- (void) sendInstallEvent: (SASession*) session
-              andResponse: (saDidCountAnInstall) response;
+- (void) handleInstall: (SASession*) session
+          withResponse: (saDidCountAnInstall) response;
 
 
 /**
@@ -48,8 +48,8 @@
  * @param target   the app that's just been installed
  * @param response a callback block of type saDidCountAnInstall
  */
-- (void) sendInstallEvent: (SASession*) session
-               withTarget: (NSString*) target
-              andResponse: (saDidCountAnInstall) response;
+- (void) handleInstall: (SASession*) session
+            withTarget: (NSString*) target
+           andResponse: (saDidCountAnInstall) response;
 
 @end

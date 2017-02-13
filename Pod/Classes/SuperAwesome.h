@@ -51,13 +51,6 @@
 - (NSString*) getSdkVersion;
 
 /**
- * SuperAwesome SDK method handling CPI
- *
- * @param response  callback block
- */
-- (void) handleCPI:(saDidCountAnInstall) response;
-
-/**
  * Method that overrides the current version string. 
  * It's used by the AIR & Unity SDKs
  *

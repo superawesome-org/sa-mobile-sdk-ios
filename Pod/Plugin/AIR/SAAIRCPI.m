@@ -16,10 +16,8 @@
 
 FREObject SuperAwesomeAIRSACPIHandleCPI (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]) {
     
-    [[SACPI getInstance] sendInstallEvent:^(BOOL success) {
-        
+    [[SACPI getInstance] handleInstall:^(BOOL success) {
         sendCPICallback(ctx, @"SACPI", success, @"HandleCPI");
-        
     }];
     
     return NULL;
