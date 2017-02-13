@@ -60,7 +60,7 @@ static inline void sendAdCallback (NSString *unityName, NSInteger placementId, N
 static inline void sendCPICallback (NSString *unityName, BOOL success, NSString *callback) {
     
     NSDictionary *data = @{
-                           @"boolean": [NSString stringWithFormat:@"%d", success],
+                           @"success": [NSString stringWithFormat:@"%d", success],
                            @"type": [NSString stringWithFormat:@"sacallback_%@", callback]
                            };
     sendToUnity(unityName, data);

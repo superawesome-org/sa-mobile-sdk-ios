@@ -17,19 +17,6 @@
 extern "C" {
     
     /**
-     * Unity to native iOS method that sends a CPI event.
-     */
-    void SuperAwesomeUnitySuperAwesomeHandleCPI () {
-        
-        [[SuperAwesome getInstance] handleCPI:^(BOOL success) {
-            
-            sendCPICallback(@"SAUnitySuperAwesome", success, @"HandleCPI");
-            
-        }];
-        
-    }
-    
-    /**
      * Unity to native iOS method that overrides the current version & sdk
      * strings so that this will get reported correctly in the dashboard.
      *
