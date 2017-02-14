@@ -124,7 +124,6 @@
 @property (nonatomic, assign) BOOL           previousStatusBarHiddenValue;
 
 @property (nonatomic, assign) BOOL           videoEnded;
-@property (nonatomic, assign) BOOL           video15s;
 
 @end
 
@@ -132,6 +131,9 @@
 
 // dictionary of ads
 static NSMutableDictionary                  *ads;
+
+// current static session
+static SASession                            *session;
 
 // other static vars needed for state 
 static sacallback callback                  = ^(NSInteger placementId, SAEvent event) {};
@@ -152,7 +154,6 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
     
     // here video is not yet loaded
     _videoEnded = false;
-    _video15s = false;
     
     // get the status bar value
     _previousStatusBarHiddenValue = [[UIApplication sharedApplication] isStatusBarHidden];
@@ -164,7 +165,7 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
     __block BOOL _shouldShowCloseButtonL = [SAVideoAd getShouldShowCloseButton];
     if (!_shouldShowCloseButtonL && _videoEnded) _shouldShowCloseButtonL = true;
     __block BOOL _shouldShowSmallClickButtonL = [SAVideoAd getShouldShowSmallClickButton];
-    __block BOOL _shouldShowPadlockL = [self shouldShowPadlock];
+    __block BOOL _shouldShowPadlockL = _ad.showPadlock;
     
     // start events
     _events = [[SAEvents alloc] init];
@@ -188,9 +189,9 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
                 weakSelf.isOKToClose = true;
                 
                 // send vast ad impressions
-                [weakSelf.events sendAllEventsForKey:@"impression"];
-                [weakSelf.events sendAllEventsForKey:@"start"];
-                [weakSelf.events sendAllEventsForKey:@"creativeView"];
+                [weakSelf.events sendAllEventsForKey:@"vast_impression"];
+                [weakSelf.events sendAllEventsForKey:@"vast_start"];
+                [weakSelf.events sendAllEventsForKey:@"vast_creativeView"];
                 
                 // send viewable impression
                 [weakSelf.events sendViewableImpressionForVideo:weakSelf.player];
@@ -206,15 +207,15 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
                 break;
             }
             case Video_1_4: {
-                [weakSelf.events sendAllEventsForKey:@"firstQuartile"];
+                [weakSelf.events sendAllEventsForKey:@"vast_firstQuartile"];
                 break;
             }
             case Video_1_2: {
-                [weakSelf.events sendAllEventsForKey:@"midpoint"];
+                [weakSelf.events sendAllEventsForKey:@"vast_midpoint"];
                 break;
             }
             case Video_3_4: {
-                [weakSelf.events sendAllEventsForKey:@"thirdQuartile"];
+                [weakSelf.events sendAllEventsForKey:@"vast_thirdQuartile"];
                 break;
             }
             case Video_End: {
@@ -223,7 +224,7 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
                 _callbackL(weakSelf.ad.placementId, adEnded);
                 
                 // send complete events
-                [weakSelf.events sendAllEventsForKey:@"complete"];
+                [weakSelf.events sendAllEventsForKey:@"vast_complete"];
                 
                 // make btn visible
                 weakSelf.videoEnded = true;
@@ -239,17 +240,13 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
                 break;
             }
             case Video_15s: {
-                // after 15s make the video visible again
-                weakSelf.video15s = true;
-                [weakSelf.closeBtn setHidden:false];
-                [weakSelf.closeBtn setFrame:CGRectMake(weakSelf.view.frame.size.width - 40.0f, 0, 40.0f, 40.0f)];
-                [weakSelf.view bringSubviewToFront:weakSelf.closeBtn];
+                // do nothing
                 break;
             }
             case Video_Error: {
                 
                 // send errors
-                [weakSelf.events sendAllEventsForKey:@"error"];
+                [weakSelf.events sendAllEventsForKey:@"vast_error"];
                 
                 // close
                 [weakSelf close];
@@ -268,7 +265,7 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
         // get a potential destination
         NSString *destination = nil;
         for (SATracking *tracking in weakSelf.ad.creative.events) {
-            if ([tracking.event rangeOfString:@"click_through"].location != NSNotFound) {
+            if ([tracking.event rangeOfString:@"vast_click_through"].location != NSNotFound) {
                 destination = tracking.URL;
             }
         }
@@ -534,7 +531,7 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
 - (void) resize: (CGRect) frame {
     // get locl vars from static
     BOOL _shouldShowCloseButtonL = [SAVideoAd getShouldShowCloseButton];
-    if (!_shouldShowCloseButtonL && (_videoEnded || _video15s)) _shouldShowCloseButtonL = true;
+    if (!_shouldShowCloseButtonL && _videoEnded) _shouldShowCloseButtonL = true;
     
     // setup close button
     _closeBtn.frame = _shouldShowCloseButtonL ? CGRectMake(frame.size.width - 40.0f, 0, 40.0f, 40.0f) : CGRectZero;
@@ -561,32 +558,20 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
     _callbackL(_ad.placementId, adClicked);
     
     // send all events for vast click tracking
-    [_events sendAllEventsForKey:@"click_tracking"];
+    [_events sendAllEventsForKey:@"vast_click_tracking"];
     
     // send all events for vast custom clicks
-    [_events sendAllEventsForKey:@"custom_clicks"];
+    [_events sendAllEventsForKey:@"vast_custom_clicks"];
     
-    // send all install events
-    [_events sendAllEventsForKey:@"install"];
-    
-    // send all external click counter events
-    [_events sendAllEventsForKey:@"clk_counter"];
+    // in the off case of a tag that doesn't have a tracker of our own,
+    // write this
+    // events
+    if (session && [destination rangeOfString:[session getBaseUrl]].location == NSNotFound) {
+        [_events sendAllEventsForKey:@"superawesome_click"];
+    }
     
     // actually go to the URL
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:destination]];
-}
-
-/**
- * Method that returns, based on several conditions, if the ad should display
- * the "safeAd" logo or not.
- * 
- * @return true or false
- */
-- (BOOL) shouldShowPadlock {
-    if (_ad.creative.format == SA_Tag) return false;
-    if (_ad.isFallback) return false;
-    if (_ad.isHouse && !_ad.safeAdApproved) return false;
-    return true;
 }
 
 /**
@@ -617,7 +602,7 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
  */
 - (void) parentalGateOpen:(NSInteger)position {
     // send all events for parental gate open
-    [_events sendAllEventsForKey:@"pg_open"];
+    [_events sendAllEventsForKey:@"superawesome_pg_open"];
     
     // pause the video
     [self pause];
@@ -630,7 +615,7 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
  */
 - (void) parentalGateFailure:(NSInteger)position {
     // send all events for parental gate failure
-    [_events sendAllEventsForKey:@"pg_fail"];
+    [_events sendAllEventsForKey:@"superawesome_pg_fail"];
     
     // resume the video
     [self resume];
@@ -644,7 +629,7 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
  */
 - (void) parentalGateSuccess:(NSInteger)position andDestination:(NSString *)destination {
     // send success events
-    [_events sendAllEventsForKey:@"pg_success"];
+    [_events sendAllEventsForKey:@"superawesome_pg_success"];
     
     // go to click
     [self pause];
@@ -660,7 +645,7 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
  */
 - (void) parentalGateCancel:(NSInteger)position {
     // send all events for parental gate close
-    [_events sendAllEventsForKey:@"pg_close"];
+    [_events sendAllEventsForKey:@"superawesome_pg_close"];
     
     // resume the video
     [self resume];
@@ -681,7 +666,7 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
         [ads setObject:@(true) forKey:@(placementId)];
         
         // form a new session
-        SASession *session = [[SASession alloc] init];
+        session = [[SASession alloc] init];
         [session setTestMode:isTestingEnabled];
         [session setConfiguration:configuration];
         [session setVersion:[[SuperAwesome getInstance] getSdkVersion]];

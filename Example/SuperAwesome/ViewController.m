@@ -57,6 +57,8 @@
     }];
     
     [SAVideoAd setConfigurationStaging];
+    [SAVideoAd enableCloseButton];
+    [SAVideoAd disableCloseAtEnd];
     [SAVideoAd setCallback:^(NSInteger placementId, SAEvent event) {
         
         NSLog(@"SUPER-AWESOME: Video Ad %ld - Event %ld", placementId, event);

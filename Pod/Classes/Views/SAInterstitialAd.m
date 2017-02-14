@@ -115,6 +115,8 @@ static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
     
     // create & play banner
     _banner = [[SABannerAd alloc] initWithFrame:CGRectZero];
+    [_banner setConfiguration:configuration];
+    [_banner setTestMode:isTestingEnabled];
     [_banner setCallback:_callbackL];
     [_banner setParentalGate:_isParentalGateEnabledL];
     [SAUtils invoke:@"setAd:" onTarget:_banner, _ad];

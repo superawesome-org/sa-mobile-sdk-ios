@@ -78,7 +78,7 @@
     // create a new tracking event (click event), to be used if the ad's
     // click will not contain a SuperAwesome url at all
     SATracking *clickEvt = [[SATracking alloc] init];
-    clickEvt.event = @"sa_tracking";
+    clickEvt.event = @"superawesome_click";
     clickEvt.URL = [NSString stringWithFormat:@"%@/%@click?%@",
                     [session getBaseUrl],
                     (ad.creative.format == SA_Video ? @"video/" : @""),
@@ -96,7 +96,7 @@
     // create an impression event; this should be used by video ads
     // (for the moment), and sometime in the future by display ads
     SATracking *saImpressionEvt = [[SATracking alloc] init];
-    saImpressionEvt.event = @"sa_impr";
+    saImpressionEvt.event = @"superawesome_impression";
     saImpressionEvt.URL = [NSString stringWithFormat:@"%@/impression?%@",
                            [session getBaseUrl],
                            [SAUtils formGetQueryFromDict:@{
@@ -106,14 +106,15 @@
                                                            @"sdkVersion": [session getVersion],
                                                            @"bundle":[session getBundleId],
                                                            @"rnd": @([session getCachebuster]),
-                                                           @"no_image": @(true)
+                                                           @"no_image": @(true),
+                                                           @"ct":@([session getConnectivityType])
                                                            }
                             ]];
     
     // create a viewable impression event; this is triggered when the ad
     // first shown on screen
     SATracking *viewableImpression = [[SATracking alloc] init];
-    viewableImpression.event = @"viewable_impr";
+    viewableImpression.event = @"superawesome_viewable_impression";
     viewableImpression.URL = [NSString stringWithFormat:@"%@/event?%@",
                                 [session getBaseUrl],
                               [SAUtils formGetQueryFromDict:@{
@@ -131,7 +132,7 @@
     
     // create a parental gate fail event
     SATracking *parentalGateFail = [[SATracking alloc] init];
-    parentalGateFail.event = @"pg_fail";
+    parentalGateFail.event = @"superawesome_pg_fail";
     parentalGateFail.URL = [NSString stringWithFormat:@"%@/event?%@",
                                         [session getBaseUrl],
                             [SAUtils formGetQueryFromDict:@{
@@ -149,7 +150,7 @@
     
     // create a parental gate close event;
     SATracking *parentalGateClose = [[SATracking alloc] init];
-    parentalGateClose.event = @"pg_close";
+    parentalGateClose.event = @"superawesome_pg_close";
     parentalGateClose.URL = [NSString stringWithFormat:@"%@/event?%@",
                                        [session getBaseUrl],
                              [SAUtils formGetQueryFromDict:@{
@@ -167,7 +168,7 @@
     
     // create a parental gate open event
     SATracking *parentalGateOpen = [[SATracking alloc] init];
-    parentalGateOpen.event = @"pg_open";
+    parentalGateOpen.event = @"superawesome_pg_open";
     parentalGateOpen.URL = [NSString stringWithFormat:@"%@/event?%@",
                                        [session getBaseUrl],
                             [SAUtils formGetQueryFromDict:@{
@@ -185,7 +186,7 @@
     
     // create a parentla gate success event
     SATracking *parentalGateSuccess = [[SATracking alloc] init];
-    parentalGateSuccess.event = @"pg_success";
+    parentalGateSuccess.event = @"superawesome_pg_success";
     parentalGateSuccess.URL = [NSString stringWithFormat:@"%@/event?%@",
                                        [session getBaseUrl],
                                [SAUtils formGetQueryFromDict:@{
@@ -201,18 +202,6 @@
                                                                                              } jsonCompactStringRepresentation]]
                                                                }]];
     
-    // create the external impression
-    SATracking *impression = [[SATracking alloc] init];
-    impression.URL = ad.creative.impressionUrl;
-    impression.event = @"impression";
-    
-    SATracking *install = [[SATracking alloc] init];
-    install.URL = ad.creative.installUrl;
-    install.event = @"install";
-    
-    SATracking *clickCounter = [[SATracking alloc] init];
-    clickCounter.URL = ad.creative.clickCounterUrl;
-    clickCounter.event = @"clk_counter";
     
     // add events to the ads events array
     [ad.creative.events addObject:clickEvt];
@@ -222,9 +211,6 @@
     [ad.creative.events addObject:parentalGateClose];
     [ad.creative.events addObject:parentalGateFail];
     [ad.creative.events addObject:saImpressionEvt];
-    [ad.creative.events addObject:impression];
-    [ad.creative.events addObject:install];
-    [ad.creative.events addObject:clickCounter];
 }
 
 @end

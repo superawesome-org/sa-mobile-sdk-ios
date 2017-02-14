@@ -186,7 +186,7 @@
             
             // success case
             if (cticks == maxTicks) {
-                [self sendAllEventsForKey:@"viewable_impr" withResponse:response];
+                [self sendAllEventsForKey:@"superawesome_viewable_impression" withResponse:response];
             }
             // error case
             else {

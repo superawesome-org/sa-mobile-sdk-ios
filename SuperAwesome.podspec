@@ -10,8 +10,7 @@ Pod::Spec.new do |s|
   s.documentation_url = 'http://developers.superawesome.tv/docs/iossdk'
   s.license      = { :type => "GNU GENERAL PUBLIC LICENSE Version 3", :file => "LICENSE" }
   s.author             = { "Gabriel Coman" => "gabriel.coman@superawesome.tv" }
-  s.platform     = :ios, "7.0"
-  s.ios.deployment_target = "7.0"
+  s.platform     = :ios, "8.0"
   s.requires_arc = true
   s.source       = { :git => "https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git", :branch => "master" ,:tag => "5.4.2" }
   s.default_subspec = 'Full'
@@ -21,8 +20,8 @@ Pod::Spec.new do |s|
     b.frameworks = 'AdSupport'
     b.dependency 'SAVideoPlayer', '1.2.1'
     b.dependency 'SAWebPlayer', '1.1.7'
-    b.dependency 'SAEvents', '1.7.4'
-    b.dependency 'SAAdLoader', '1.0.3'
+    b.dependency 'SAEvents', '1.7.8'
+    b.dependency 'SAAdLoader', '1.0.4'
     b.dependency 'SACPI', '1.0.2'
   end
 

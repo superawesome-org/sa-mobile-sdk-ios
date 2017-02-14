@@ -246,10 +246,6 @@
                     // send callback
                     weakSelf.callback(weakSelf.ad.placementId, adShown);
                     
-                    // if the banner has a separate impression URL, send that as well for 3rd party tracking
-                    // [weakSelf.events sendAllEventsForKey:@"impression"];
-                    // [weakSelf.events sendAllEventsForKey:@"sa_impr"];
-                    
                     // send viewable impression
                     [weakSelf.events sendViewableImpressionForDisplay:weakSelf];
                     
@@ -287,7 +283,7 @@
         _padlock = [[UIButton alloc] initWithFrame:CGRectZero];
         [_padlock setImage:[SAImageUtils padlockImage] forState:UIControlStateNormal];
         [_padlock addTarget:self action:@selector(padlockAction) forControlEvents:UIControlEventTouchUpInside];
-        if ([self shouldShowPadlock]) {
+        if (_ad.showPadlock) {
             [_webplayer addSubview:_padlock];
         }
         
@@ -335,19 +331,6 @@
     return _ad != NULL;
 }
 
-/**
- * Method that returns, based on several conditions, if the ad should display
- * the "safeAd" logo or not.
- *
- * @return true or false
- */
-- (BOOL) shouldShowPadlock {
-    if (_ad.creative.format == SA_Tag) return false;
-    if (_ad.isFallback) return false;
-    if (_ad.isHouse && !_ad.safeAdApproved) return false;
-    return true;
-}
-
 - (void) close {
     // callback
     _callback (_ad.placementId, adClosed);
@@ -379,15 +362,9 @@
     // callback
     _callback (_ad.placementId, adClicked);
     
-    // send external click counter events
-    [_events sendAllEventsForKey:@"clk_counter"];
-    
-    // send the install e vent (if this is a CPI campaign)
-    [_events sendAllEventsForKey:@"install"];
-    
     // events
-    if ([destination rangeOfString:[_session getBaseUrl]].location == NSNotFound) {
-        [_events sendAllEventsForKey:@"sa_tracking"];
+    if (_session && [destination rangeOfString:[_session getBaseUrl]].location == NSNotFound) {
+        [_events sendAllEventsForKey:@"superawesome_click"];
     }
     
     // open URL
@@ -414,7 +391,7 @@
  */
 - (void) parentalGateOpen:(NSInteger)position {
     // send all events for parental gate open
-    [_events sendAllEventsForKey:@"pg_open"];
+    [_events sendAllEventsForKey:@"superawesome_pg_open"];
 }
 
 /**
@@ -424,7 +401,7 @@
  */
 - (void) parentalGateFailure:(NSInteger)position {
     // send all events for parental gate failure
-    [_events sendAllEventsForKey:@"pg_fail"];
+    [_events sendAllEventsForKey:@"superawesome_pg_fail"];
 }
 
 /**
@@ -435,7 +412,7 @@
  */
 - (void) parentalGateSuccess:(NSInteger)position andDestination:(NSString *)destination {
     // send success events
-    [_events sendAllEventsForKey:@"pg_success"];
+    [_events sendAllEventsForKey:@"superawesome_pg_success"];
     
     // go to click
     [self click:destination];
@@ -448,7 +425,7 @@
  */
 - (void) parentalGateCancel:(NSInteger)position {
     // send all events for parental gate close
-    [_events sendAllEventsForKey:@"pg_close"];
+    [_events sendAllEventsForKey:@"superawesome_pg_close"];
 }
 
 /**

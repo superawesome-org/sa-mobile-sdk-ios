@@ -2,27 +2,27 @@ PODS:
   - mopub-ios-sdk (4.12.0):
     - mopub-ios-sdk/MoPubSDK (= 4.12.0)
   - mopub-ios-sdk/MoPubSDK (4.12.0)
-  - SAAdLoader (1.0.3):
+  - SAAdLoader (1.0.4):
     - SAModelSpace (= 0.4.2)
     - SANetworking (= 0.2.9)
     - SASession (= 0.3.5)
     - SAUtils (= 1.5.0)
-    - SAVASTParser (= 1.6.0)
+    - SAVASTParser (= 1.6.1)
   - SACPI (1.0.2):
     - SAModelSpace (= 0.4.2)
     - SANetworking (= 0.2.9)
     - SASession (= 0.3.5)
     - SAUtils (= 1.5.0)
-  - SAEvents (1.7.4):
-    - SAEvents/Core (= 1.7.4)
+  - SAEvents (1.7.8):
+    - SAEvents/Core (= 1.7.8)
     - SAModelSpace (= 0.4.2)
     - SANetworking (= 0.2.9)
     - SAUtils (= 1.5.0)
-  - SAEvents/Core (1.7.4):
+  - SAEvents/Core (1.7.8):
     - SAModelSpace (= 0.4.2)
     - SANetworking (= 0.2.9)
     - SAUtils (= 1.5.0)
-  - SAEvents/Moat (1.7.4):
+  - SAEvents/Moat (1.7.8):
     - SAEvents/Core
     - SAModelSpace (= 0.4.2)
     - SANetworking (= 0.2.9)
@@ -35,7 +35,7 @@ PODS:
   - SASession (0.3.5):
     - SAUtils (= 1.5.0)
   - SAUtils (1.5.0)
-  - SAVASTParser (1.6.0):
+  - SAVASTParser (1.6.1):
     - SAModelSpace (= 0.4.2)
     - SANetworking (= 0.2.9)
     - SAUtils (= 1.5.0)
@@ -44,9 +44,9 @@ PODS:
   - SuperAwesome/AIR (5.4.2):
     - SuperAwesome/Base
   - SuperAwesome/Base (5.4.2):
-    - SAAdLoader (= 1.0.3)
+    - SAAdLoader (= 1.0.4)
     - SACPI (= 1.0.2)
-    - SAEvents (= 1.7.4)
+    - SAEvents (= 1.7.8)
     - SAVideoPlayer (= 1.2.1)
     - SAWebPlayer (= 1.1.7)
   - SuperAwesome/Full (5.4.2):
@@ -70,19 +70,19 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   mopub-ios-sdk: f1223e3f54a4ff68394f4fd9e42651801cf09704
-  SAAdLoader: cf7ccac17e7bd37a87d09053df66479e7838ebe2
+  SAAdLoader: 0eea425ab083b0b3dadf6899461b9bbedee75151
   SACPI: 8c2a300728785f43582449892ef0c2743d97e295
-  SAEvents: 22a998ef230ef6cc959421e06481a25fba3ab851
+  SAEvents: cdc5e3ce921b04cd4c0357654ff4190380f37692
   SAJsonParser: d0db6d8c737c04f8bf4e9474e82825347aa24f58
   SAModelSpace: eea2ad6ccb674f44951328b911864d377e4f07a7
   SANetworking: 40e2a8ffd5c680be57dfd91426f3c74933ad1d80
   SASession: 132766325ba7bf55d283bb3bfa4bc5a8c470347e
   SAUtils: 1e8b881ca8c7fac2749c8fd9b851f0b344611035
-  SAVASTParser: 32903ba388fe11bf706fa67c831a7de5c2fc4fb3
+  SAVASTParser: c9935b1aac722b10fba065239c413e832e6bf751
   SAVideoPlayer: ca3a28494337373e18cd00b51ada7549c701b579
   SAWebPlayer: 7f5053de3af757bee012380656c74c8b387c3524
-  SuperAwesome: eabccec0ed1de766a2c141c6af1b161d637ed448
+  SuperAwesome: cc4ec5305ed7bb5e61c4bd00156fda89e0a257b3
 
-PODFILE CHECKSUM: d7dc34ed2a1143fdc9c2f8f0011f9a920e9b4011
+PODFILE CHECKSUM: 237a5b78dc66e89faa90277d0d09d8e6aa252825
 
 COCOAPODS: 1.2.0.beta.1

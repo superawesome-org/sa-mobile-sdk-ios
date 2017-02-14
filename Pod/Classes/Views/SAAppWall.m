@@ -256,6 +256,8 @@
 // dictionary of responses
 static NSMutableDictionary *responses;
 
+static SASession           *session;
+
 // other static variables needed for state
 static sacallback callback           = ^(NSInteger placementId, SAEvent event) {};
 static BOOL isParentalGateEnabled    = SA_DEFAULT_PARENTALGATE;
@@ -372,8 +374,7 @@ static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
     
     // send events
     for (SAEvents *event in _events) {
-        // [event sendAllEventsForKey:@"impression"];
-        // [event sendAllEventsForKey:@"sa_impr"];
+        // send viewable impression
         [event sendViewableImpressionForDisplay:self.view];
     }
 }
@@ -620,16 +621,9 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     // get event
     SAEvents *event = [_events objectAtIndex:position];
     
-    // send for
-    [event sendAllEventsForKey:@"clk_counter"];
-    
-    // send aux install event, if exists
-    [event sendAllEventsForKey:@"install"];
-    
     // send SA tracking evt
-    if ([destination rangeOfString:@"ads.superawesome"].location == NSNotFound ||
-        [destination rangeOfString:@"ads.staging.superawesome"].location == NSNotFound) {
-        [event sendAllEventsForKey:@"sa_tracking"];
+    if (session && [destination rangeOfString:[session getBaseUrl]].location == NSNotFound) {
+        [event sendAllEventsForKey:@"superawesome_click"];
     }
     
     // go to URL
@@ -702,7 +696,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         [responses setObject:@(true) forKey:@(placementId)];
         
         // form a new session
-        SASession *session = [[SASession alloc] init];
+        session = [[SASession alloc] init];
         [session setTestMode:isTestingEnabled];
         [session setConfiguration:configuration];
         [session setVersion:[[SuperAwesome getInstance] getSdkVersion]];
