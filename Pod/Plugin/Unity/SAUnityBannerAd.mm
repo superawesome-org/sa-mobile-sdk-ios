@@ -119,7 +119,7 @@ extern "C" {
         // get the key
         NSString *key = [NSString stringWithUTF8String:unityName];
         
-        if ([bannerDictionary objectForKey:key]) {
+        if ([bannerDictionary objectForKey:key] && ![[bannerDictionary objectForKey:key] isClosed]) {
             
             // get the root vc
             UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
@@ -190,7 +190,7 @@ extern "C" {
             SABannerAd *banner = [bannerDictionary objectForKey:key];
             [banner close];
             [banner removeFromSuperview];
-            [bannerDictionary removeObjectForKey:key];
+            // [bannerDictionary removeObjectForKey:key];
         } else {
             // handle failure
         }

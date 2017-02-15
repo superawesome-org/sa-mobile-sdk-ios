@@ -118,6 +118,7 @@
 // aux state vats
 @property (nonatomic, assign) BOOL               canPlay;
 @property (nonatomic, assign) BOOL               firstPlay;
+@property (nonatomic, assign) BOOL               isClosed;
 
 @end
 
@@ -167,6 +168,7 @@
     // set "canPlay" to true when building the first banner
     _canPlay = true;
     _firstPlay = true;
+    _isClosed = false;
     
     // init the events and session obkects
     _events = [[SAEvents alloc] init];
@@ -192,6 +194,7 @@
     
     // reset playability
     _canPlay = false;
+    _isClosed = false;
     
     // get a weak self reference
     __weak typeof (self) weakSelf = self;
@@ -216,7 +219,7 @@
 
 - (void) play {
     
-    if (_ad && _ad.creative.format != SA_Video && _canPlay) {
+    if (_ad && _ad.creative.format != SA_Video && _canPlay && !_isClosed) {
         
         // reset play-ability
         _canPlay = false;
@@ -346,6 +349,9 @@
     _gate = nil;
     [self nullAd];
     
+    // can play
+    _isClosed = true;
+    
     // remove observers
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:@"UIDeviceOrientationDidChangeNotification"
@@ -433,6 +439,10 @@
  */
 - (void) padlockAction {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://ads.superawesome.tv/v2/safead"]];
+}
+
+- (BOOL) isClosed {
+    return _isClosed;
 }
 
 - (void) setCallback:(sacallback)callback {

@@ -50,6 +50,12 @@
  */
 - (void) resize:(CGRect)toframe;
 
+
+/**
+ * Method that gets whether the banner is closed or not
+ */
+- (BOOL) isClosed;
+
 /**
  * Group of methods that set ad configuration parameters
  */

@@ -141,7 +141,7 @@ FREObject SuperAwesomeAIRSABannerAdPlay (FREContext ctx, void* funcData, uint32_
     // get the key
     NSString *key = [NSString stringWithUTF8String:(char*)airName];
     
-    if ([bannerDictionary objectForKey:key]) {
+    if ([bannerDictionary objectForKey:key]  && ![[bannerDictionary objectForKey:key] isClosed]) {
         // get the root vc
         UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
         
@@ -212,7 +212,7 @@ FREObject SuperAwesomeAIRSABannerAdClose (FREContext ctx, void* funcData, uint32
         SABannerAd *banner = [bannerDictionary objectForKey:key];
         [banner close];
         [banner removeFromSuperview];
-        [bannerDictionary removeObjectForKey:key];
+        // [bannerDictionary removeObjectForKey:key];
     } else {
         // handle failure
     }

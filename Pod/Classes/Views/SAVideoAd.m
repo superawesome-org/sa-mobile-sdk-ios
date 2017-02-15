@@ -560,16 +560,6 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
     // send all events for vast click tracking
     [_events sendAllEventsForKey:@"vast_click_tracking"];
     
-    // send all events for vast custom clicks
-    [_events sendAllEventsForKey:@"vast_custom_clicks"];
-    
-    // in the off case of a tag that doesn't have a tracker of our own,
-    // write this
-    // events
-    if (session && [destination rangeOfString:[session getBaseUrl]].location == NSNotFound) {
-        [_events sendAllEventsForKey:@"superawesome_click"];
-    }
-    
     // actually go to the URL
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:destination]];
 }

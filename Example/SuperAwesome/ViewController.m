@@ -124,7 +124,7 @@
                             @{@"name": @"CPM Preroll 4 (Tag)",
                               @"pid": @(631)},
                             @{@"name": @"CPI Preroll 1 (Video)",
-                              @"pid": @(627)}
+                              @"pid": @(604)}
                             ]
                   },
                 @{
@@ -186,6 +186,7 @@
     if ([indexPath section] == 0) {
         
         [_bannerAd load:placementId];
+        [_bannerAd close];
         
     }
     // INTERSTITIALS
