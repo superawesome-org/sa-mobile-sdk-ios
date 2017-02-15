@@ -14,9 +14,17 @@ CHANGELOG
 	- The library can be imported separately by advertisers if they just want to measure their installs, but don't want the full SDK
 	- The library has now become a dependency of the main SDK. All previous CPI classes in the SDK have been removed
  - Improved the tag handling code to try to replace less characters in the tag so that more tags will work
- - Removed firing of all "impression" events for banner, interstitial & app wall ads (these are fired by the server). For video the "impression" event is still fired, but that's taken from the VAST tag, so it's OK.
- - The video ad close button will appear by default after 15 seconds of content playing, meaning that disabling the close button will have effect only for the first 15 seconds of play, or for ads shorter than 15 seconds. The close button will appear once the ad has ended nonetheless in that scenario. 
- - In all events, the "sourceBundle" parameter was renamed to "bundle"
+ - Reverted back the 15s close button change done in 5.4.2. Video ads have a hidden close button by default, that shows up at the end of the ad playing routine. It can be set to be visible from the start.
+ - Changes to event handling:
+    - Removed firing of all "impression" events for banner, interstitial & app wall ads (these are fired by the server). For video the "impression" event is still fired, but that's taken from the VAST tag, so it's OK.
+    - Removed firing of all "install" events for ads
+    - Removed firing of all "clickCounter" events for ads
+    - Removed the VAST "custom_clicks" events alltogether
+    - Renamed the "sourceBundle" query parameter to "bundle"
+    - Renamed events with either "superawesome_viewable_impression" or "vast_creativeView", etc. 
+ - Removed the method that determines whether to show a padlock or not. It's not controlled by an ad's "showPadlock" member 
+ - Fixed a bug in the Unity & AIR plugins that meant that loading and then quickly closing a banner would have unintended consequences.
+
 
 5.4.2
 5.4.1

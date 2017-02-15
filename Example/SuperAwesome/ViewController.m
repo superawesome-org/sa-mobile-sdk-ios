@@ -186,7 +186,6 @@
     if ([indexPath section] == 0) {
         
         [_bannerAd load:placementId];
-        [_bannerAd close];
         
     }
     // INTERSTITIALS
