@@ -286,7 +286,7 @@
         _padlock = [[UIButton alloc] initWithFrame:CGRectZero];
         [_padlock setImage:[SAImageUtils padlockImage] forState:UIControlStateNormal];
         [_padlock addTarget:self action:@selector(padlockAction) forControlEvents:UIControlEventTouchUpInside];
-        if (_ad.showPadlock) {
+        if (_ad.isPadlockVisible) {
             [_webplayer addSubview:_padlock];
         }
         

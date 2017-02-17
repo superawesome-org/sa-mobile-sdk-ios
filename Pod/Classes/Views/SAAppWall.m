@@ -469,12 +469,12 @@ static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
     
     // case for big layout (small nr of cells)
     if ([_response.ads count] <= 3) {
-        [cell setupForBigLayoutWithImagePath:ad.creative.details.media.playableDiskUrl
+        [cell setupForBigLayoutWithImagePath:ad.creative.details.media.path
                                     andTitle:ad.creative.name];
     }
     // case for small layout (large nr of cells)
     else {
-        [cell setupForSmallLayoutWithImagePath:ad.creative.details.media.playableDiskUrl
+        [cell setupForSmallLayoutWithImagePath:ad.creative.details.media.path
                                       andTitle:ad.creative.name];
     }
     

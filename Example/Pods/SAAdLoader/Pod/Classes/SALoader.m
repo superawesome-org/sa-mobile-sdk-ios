@@ -237,15 +237,15 @@
                         [parser parseVAST:ad.creative.details.vast withResponse:^(SAVASTAd *savastAd) {
                             
                             // copy the vast media
-                            ad.creative.details.media.playableMediaUrl = savastAd.mediaUrl;
+                            ad.creative.details.media.url = savastAd.url;
                             // copy the vast events
-                            [ad.creative.events addObjectsFromArray:savastAd.vastEvents];
+                            [ad.creative.events addObjectsFromArray:savastAd.events];
                             // download file
-                            [[SAFileDownloader getInstance] downloadFileFrom:ad.creative.details.media.playableMediaUrl andResponse:^(BOOL success, NSString *diskPath) {
+                            [[SAFileDownloader getInstance] downloadFileFrom:ad.creative.details.media.url andResponse:^(BOOL success, NSString *diskPath) {
                                 
                                 // add final details
-                                ad.creative.details.media.playableDiskUrl = diskPath;
-                                ad.creative.details.media.isOnDisk = diskPath != nil;
+                                ad.creative.details.media.path = diskPath;
+                                ad.creative.details.media.isDownloaded = diskPath != nil;
                                 
                                 // finally respond 
                                 localResult (response);
@@ -301,9 +301,9 @@
                         
                         NSString *diskUrl = [diskLocations objectAtIndex:i];
                         SAAd *cAd = [response.ads objectAtIndex:i];
-                        cAd.creative.details.media.playableMediaUrl = cAd.creative.details.image;
-                        cAd.creative.details.media.playableDiskUrl = diskUrl;
-                        cAd.creative.details.media.isOnDisk = diskUrl != nil;
+                        cAd.creative.details.media.url = cAd.creative.details.image;
+                        cAd.creative.details.media.path = diskUrl;
+                        cAd.creative.details.media.isDownloaded = diskUrl != nil;
                         
                     }
                     

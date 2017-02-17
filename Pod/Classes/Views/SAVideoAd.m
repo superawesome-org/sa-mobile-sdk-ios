@@ -165,7 +165,7 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
     __block BOOL _shouldShowCloseButtonL = [SAVideoAd getShouldShowCloseButton];
     if (!_shouldShowCloseButtonL && _videoEnded) _shouldShowCloseButtonL = true;
     __block BOOL _shouldShowSmallClickButtonL = [SAVideoAd getShouldShowSmallClickButton];
-    __block BOOL _shouldShowPadlockL = _ad.showPadlock;
+    __block BOOL _shouldShowPadlockL = _ad.isPadlockVisible;
     
     // start events
     _events = [[SAEvents alloc] init];
@@ -363,11 +363,11 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
     [self resize:CGRectMake(0, 0, currentSize.width, currentSize.height)];
     
     // actually start playing the video
-    if (_ad.creative.details.media.isOnDisk) {
-        NSString *finalDiskURL = [SAUtils filePathInDocuments:_ad.creative.details.media.playableDiskUrl];
+    if (_ad.creative.details.media.isDownloaded) {
+        NSString *finalDiskURL = [SAUtils filePathInDocuments:_ad.creative.details.media.path];
         [_player playWithMediaFile:finalDiskURL];
     } else {
-        NSURL *url = [NSURL URLWithString:_ad.creative.details.media.playableMediaUrl];
+        NSURL *url = [NSURL URLWithString:_ad.creative.details.media.url];
         [_player playWithMediaURL:url];
     }
 }
@@ -668,7 +668,7 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
             // perform more complex validity check
             BOOL isValid = [response isValid];
             SAAd *first = isValid ? [response.ads objectAtIndex:0] : nil;
-            isValid = first != nil && isValid && first.creative.details.media.isOnDisk;
+            isValid = first != nil && isValid && first.creative.details.media.isDownloaded;
             
             // add to the array queue
             if (isValid) {

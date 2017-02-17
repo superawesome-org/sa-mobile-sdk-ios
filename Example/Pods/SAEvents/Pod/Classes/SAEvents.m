@@ -257,7 +257,7 @@
                                    @"campaign": @(_ad.campaignId),
                                    @"line_item": @(_ad.lineItemId),
                                    @"creative": @(_ad.creative._id),
-                                   @"app": @(_ad.app),
+                                   @"app": @(_ad.appId),
                                    @"placement": @(_ad.placementId),
                                    @"publisher": @(_ad.publisherId)
                                    };
@@ -291,7 +291,7 @@
                                    @"campaign":@(_ad.campaignId),
                                    @"line_item":@(_ad.lineItemId),
                                    @"creative":@(_ad.creative._id),
-                                   @"app":@(_ad.app),
+                                   @"app":@(_ad.appId),
                                    @"placement":@(_ad.placementId),
                                    @"publisher":@(_ad.publisherId)
                                    };
