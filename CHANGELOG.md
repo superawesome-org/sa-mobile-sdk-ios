@@ -1,6 +1,24 @@
 CHANGELOG
 =========
 
+5.5.2
+ - Refactored the SAModelSpace library to:
+    - remove all Ad Events from the SACreative object
+    - add a SAVASTAdType object to SAMedia; for video ads this is where additional details will be stored from now on 
+    - renamed the SATracking model to SAVASTEvent
+    - added a new constructor for SAAd that takes placementId and JSON Dictionary
+ - Updated the VAST Parser library to take into account the new modelspace; added more tests
+ - Updated the SAAdLoader library:
+    - to take into account the new modelspace
+    - to not try to add events to the SAAd class; 
+    - added more tests
+ - Refactored the SAEvents library:
+    - each type of event (VAST events, click through, impression, etc) is now a separate class; that makes it easier to test 
+    - there are now for modules: VASTModule, ServerModule, ViewableModule and MoatModule that deal with these different things that need to be triggered
+    - added a lot more tests
+ - Updated the CPI library to work with the new modelspace
+ - Updated the Main SDK to work with the new modelspace & eventing system
+
 5.5.1
  - Small update to add bitcode support
  - Renamed internal SAAd object members to be shorter
