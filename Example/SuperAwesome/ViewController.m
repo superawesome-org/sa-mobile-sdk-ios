@@ -71,7 +71,7 @@
     [SAAppWall setConfigurationStaging];
     [SAAppWall setCallback:^(NSInteger placementId, SAEvent event) {
         
-        NSLog(@"SUPER-AWESOME: AppWall Ad %ld - Event %ld", placementId, event);
+        NSLog(@"SUPER-AWESOME: AppWall Ad %ld - Event %ld", (long) placementId, (long) event);
         
         if (event == adLoaded) {
             [SAAppWall play:placementId fromVC:self];
@@ -108,7 +108,9 @@
                               @"pid": @(624)},
                             @{@"name": @"CPM Interstitial 6 (Rich Media)",
                               @"pid": @(625)},
-                            @{@"name": @"CPM Interstitial 7 (Tag)",
+                            @{@"name": @"CPM Interstitial 7 (Scalable Rich Media)",
+                              @"pid": @(643)},
+                            @{@"name": @"CPM Interstitial 8 (Tag)",
                               @"pid": @(626)}
                             ]
                   },

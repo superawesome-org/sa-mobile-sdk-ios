@@ -48,14 +48,6 @@
 #endif
 
 #if defined(__has_include)
-#if __has_include(<SAModelSpace/SATracking.h>)
-#import <SAModelSpace/SATracking.h>
-#else
-#import "SATracking.h"
-#endif
-#endif
-
-#if defined(__has_include)
 #if __has_include(<SAUtils/SAUtils.h>)
 #import <SAUtils/SAUtils.h>
 #else
@@ -169,7 +161,7 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
     
     // start events
     _events = [[SAEvents alloc] init];
-    [_events setAd:_ad];
+    [_events setAd:_ad andSession:session];
     
     // get a weak self reference
     __weak typeof (self) weakSelf = self;
@@ -189,17 +181,21 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
                 weakSelf.isOKToClose = true;
                 
                 // send vast ad impressions
-                [weakSelf.events sendAllEventsForKey:@"vast_impression"];
-                [weakSelf.events sendAllEventsForKey:@"vast_start"];
-                [weakSelf.events sendAllEventsForKey:@"vast_creativeView"];
+                [weakSelf.events triggerVASTImpressionEvent];
+                [weakSelf.events triggerVASTCreativeViewEvent];
+                [weakSelf.events triggerVASTStartEvent];
                 
                 // send viewable impression
-                [weakSelf.events sendViewableImpressionForVideo:weakSelf.player];
+                [weakSelf.events checkViewableStatusForVideo:weakSelf.player andResponse:^(BOOL success) {
+                    if (success) {
+                        [weakSelf.events triggerViewableImpressionEvent];
+                    }
+                }];
                 
                 // moat
-                [weakSelf.events moatEventForVideoPlayer:[weakSelf.player getPlayer]
-                                               withLayer:[weakSelf.player getPlayerLayer]
-                                                 andView:[weakSelf view]];
+                [weakSelf.events registerVideoMoatEventForVideoPlayer:[weakSelf.player getPlayer]
+                                                            withLayer:[weakSelf.player getPlayerLayer]
+                                                              andView:[weakSelf view]];
                 
                 // callback
                 _callbackL(weakSelf.ad.placementId, adShown);
@@ -207,15 +203,15 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
                 break;
             }
             case Video_1_4: {
-                [weakSelf.events sendAllEventsForKey:@"vast_firstQuartile"];
+                [weakSelf.events triggerVASTFirstQuartileEvent];
                 break;
             }
             case Video_1_2: {
-                [weakSelf.events sendAllEventsForKey:@"vast_midpoint"];
+                [weakSelf.events triggerVASTMidpointEvent];
                 break;
             }
             case Video_3_4: {
-                [weakSelf.events sendAllEventsForKey:@"vast_thirdQuartile"];
+                [weakSelf.events triggerVASTThirdQuartileEvent];
                 break;
             }
             case Video_End: {
@@ -224,7 +220,7 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
                 _callbackL(weakSelf.ad.placementId, adEnded);
                 
                 // send complete events
-                [weakSelf.events sendAllEventsForKey:@"vast_complete"];
+                [weakSelf.events triggerVASTCompleteEvent];
                 
                 // make btn visible
                 weakSelf.videoEnded = true;
@@ -246,7 +242,7 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
             case Video_Error: {
                 
                 // send errors
-                [weakSelf.events sendAllEventsForKey:@"vast_error"];
+                [weakSelf.events triggerVASTErrorEvent];
                 
                 // close
                 [weakSelf close];
@@ -263,12 +259,7 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
     [_player setClickHandler:^{
         
         // get a potential destination
-        NSString *destination = nil;
-        for (SATracking *tracking in weakSelf.ad.creative.events) {
-            if ([tracking.event rangeOfString:@"vast_click_through"].location != NSNotFound) {
-                destination = tracking.URL;
-            }
-        }
+        NSString *destination = [_events getVASTClickThroughEvent];
         
         // only go forward if the destination url is not null
         if (destination) {
@@ -498,7 +489,7 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
         _callbackL(_ad.placementId, adClosed);
         
         // close
-        [_events close];
+        [_events unsetAd];
         
         // null the ad
         [ads removeObjectForKey:@(_ad.placementId)];
@@ -558,7 +549,7 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
     _callbackL(_ad.placementId, adClicked);
     
     // send all events for vast click tracking
-    [_events sendAllEventsForKey:@"vast_click_tracking"];
+    [_events triggerVASTClickTrackingEvent];
     
     // actually go to the URL
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:destination]];
@@ -592,7 +583,7 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
  */
 - (void) parentalGateOpen:(NSInteger)position {
     // send all events for parental gate open
-    [_events sendAllEventsForKey:@"superawesome_pg_open"];
+    [_events triggerPgOpenEvent];
     
     // pause the video
     [self pause];
@@ -605,7 +596,7 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
  */
 - (void) parentalGateFailure:(NSInteger)position {
     // send all events for parental gate failure
-    [_events sendAllEventsForKey:@"superawesome_pg_fail"];
+    [_events triggerPgFailEvent];
     
     // resume the video
     [self resume];
@@ -619,7 +610,7 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
  */
 - (void) parentalGateSuccess:(NSInteger)position andDestination:(NSString *)destination {
     // send success events
-    [_events sendAllEventsForKey:@"superawesome_pg_success"];
+    [_events triggerPgSuccessEvent];
     
     // go to click
     [self pause];
@@ -635,7 +626,7 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
  */
 - (void) parentalGateCancel:(NSInteger)position {
     // send all events for parental gate close
-    [_events sendAllEventsForKey:@"superawesome_pg_close"];
+    [_events triggerPgCloseEvent];
     
     // resume the video
     [self resume];

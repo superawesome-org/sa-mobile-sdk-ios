@@ -5,7 +5,6 @@
 
 #import "SALoader.h"
 #import "SAProcessHTML.h"
-#import "SAProcessEvents.h"
 
 #if defined(__has_include)
 #if __has_include(<SAModelSpace/SAResponse.h>)
@@ -130,22 +129,32 @@
 
 
 - (NSDictionary*) getAwesomeAdsQuery: (SASession*) session {
-    return @{@"test": @(session ? [session getTestMode] : false),
-             @"sdkVersion":session ? [session getVersion] : @"0.0.0",
-             @"rnd":@(session ? [session getCachebuster] : [SAUtils randomNumberBetween:1000000 maxNumber:1500000]),
-             @"ct":@(session ? [session getConnectivityType] : unknown),
-             @"bundle":session ? [session getBundleId] : @"unknown",
-             @"name":session ? [session getAppName] : @"unknown",
-             @"dauid":@(session ? [session getDauId] : 0),
-             @"lang": session ? [session getLang] : @"unknown",
-             @"device": session ? [session getDevice] : @"phone"
-             // @"preload": @(true)
-             };
+    
+    if (session) {
+        return @{@"test": @([session getTestMode]),
+          @"sdkVersion": [session getVersion],
+          @"rnd": @([session getCachebuster]),
+          @"ct": @([session getConnectivityType]),
+          @"bundle": [session getBundleId],
+          @"name": [session getAppName],
+          @"dauid": @([session getDauId]),
+          @"lang": [session getLang],
+          @"device": [session getDevice]
+          // @"preload": @(true)
+          };
+    } else {
+        return @{};
+    }
 }
 
 - (NSDictionary*) getAwesomeAdsHeader: (SASession*) session {
-    return @{@"Content-Type":@"application/json",
-             @"User-Agent":session ? [session getUserAgent] : @""};
+    if (session) {
+        return @{@"Content-Type":@"application/json",
+                 @"User-Agent": [session getUserAgent]
+                 };
+    } else {
+        return @{};
+    }
 }
 
 - (void) loadAd:(NSInteger) placementId
@@ -200,10 +209,8 @@
             if (jsonDict != nil && [jsonDict count] > 0) {
                 
                 // parse the final ad
-                __block SAAd *ad = [[SAAd alloc] initWithJsonDictionary:jsonDict];
-                ad.placementId = placementId;
-                // add events
-                [SAProcessEvents addAdEvents:ad forSession:session];
+                __block SAAd *ad = [[SAAd alloc] initWithPlacementId:placementId
+                                                   andJsonDictionary:jsonDict];
                 
                 // update type in response as well
                 response.format = ad.creative.format;
@@ -236,10 +243,10 @@
                         SAVASTParser *parser = [[SAVASTParser alloc] init];
                         [parser parseVAST:ad.creative.details.vast withResponse:^(SAVASTAd *savastAd) {
                             
+                            // add the vast ad
+                            ad.creative.details.media.vastAd = savastAd;
                             // copy the vast media
                             ad.creative.details.media.url = savastAd.url;
-                            // copy the vast events
-                            [ad.creative.events addObjectsFromArray:savastAd.events];
                             // download file
                             [[SAFileDownloader getInstance] downloadFileFrom:ad.creative.details.media.url andResponse:^(BOOL success, NSString *diskPath) {
                                 
@@ -273,9 +280,8 @@
                     // only if it's a valid dictionary
                     if ([dict isKindOfClass:[NSDictionary class]]) {
                         
-                        SAAd *ad = [[SAAd alloc] initWithJsonDictionary:dict];
-                        ad.placementId = placementId;
-                        [SAProcessEvents addAdEvents:ad forSession:session];
+                        SAAd *ad = [[SAAd alloc] initWithPlacementId:placementId
+                                                   andJsonDictionary:dict];
                         
                         // only add image type ads - no rich media or videos in the
                         // GameWall for now

@@ -284,7 +284,7 @@ static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
     _events = [@[] mutableCopy];
     for (SAAd *ad in _response.ads) {
         SAEvents *event = [[SAEvents alloc] init];
-        [event setAd:ad];
+        [event setAd:ad andSession:session];
         [_events addObject:event];
     }
     
@@ -375,7 +375,11 @@ static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
     // send events
     for (SAEvents *event in _events) {
         // send viewable impression
-        [event sendViewableImpressionForDisplay:self.view];
+        [event checkViewableStatusForDisplay:self.view andResponse:^(BOOL success) {
+            if (success) {
+                [event triggerViewableImpressionEvent];
+            }
+        }];
     }
 }
 
@@ -623,7 +627,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     // send SA tracking evt
     if (session && [destination rangeOfString:[session getBaseUrl]].location == NSNotFound) {
-        [event sendAllEventsForKey:@"superawesome_click"];
+        [event triggerClickEvent];
     }
     
     // go to URL
@@ -644,7 +648,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
  */
 - (void) parentalGateOpen:(NSInteger)position {
     // send all events for parental gate open
-    [[_events objectAtIndex:position] sendAllEventsForKey:@"pg_open"];
+    [_events[position] triggerPgOpenEvent];
 }
 
 /**
@@ -654,7 +658,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
  */
 - (void) parentalGateFailure:(NSInteger)position {
     // send all events for parental gate failure
-    [[_events objectAtIndex:position] sendAllEventsForKey:@"pg_fail"];
+    [_events[position] triggerPgFailEvent];
 }
 
 /**
@@ -665,7 +669,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
  */
 - (void) parentalGateSuccess:(NSInteger)position andDestination:(NSString *)destination {
     // send success events
-    [[_events objectAtIndex:position] sendAllEventsForKey:@"pg_success"];
+    [_events[position] triggerPgSuccessEvent];
     
     // go to click
     [self click:position withDestination:destination];
@@ -678,7 +682,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
  */
 - (void) parentalGateCancel:(NSInteger)position {
     // send all events for parental gate close
-    [[_events objectAtIndex:position] sendAllEventsForKey:@"pg_close"];
+    [_events[position] triggerPgCloseEvent];
 }
 
 + (void) load:(NSInteger) placementId {

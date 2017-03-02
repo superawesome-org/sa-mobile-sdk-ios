@@ -229,14 +229,14 @@
         __weak typeof (self) weakSelf = self;
         
         // start events
-        [_events setAd:_ad];
+        [_events setAd:_ad andSession:_session];
         
         // add the sawebview
         _webplayer = [[SAWebPlayer alloc] initWithContentSize:CGSizeMake(_ad.creative.details.width, _ad.creative.details.height)
                                                andParentFrame:self.frame];
         
         // moat tracking
-        NSString *moatString = [_events moatEventForWebPlayer:[_webplayer getWebView]];
+        NSString *moatString = [_events registerDisplayMoatEvent:[_webplayer getWebView]];
         NSLog(@"MOAT String is %@", moatString);
         
         // form the full HTML string and play it!
@@ -250,7 +250,13 @@
                     weakSelf.callback(weakSelf.ad.placementId, adShown);
                     
                     // send viewable impression
-                    [weakSelf.events sendViewableImpressionForDisplay:weakSelf];
+                    [weakSelf.events checkViewableStatusForDisplay:weakSelf andResponse:^(BOOL success) {
+                        
+                        // only in case of success trigger event
+                        if (success) {
+                            [weakSelf.events triggerViewableImpressionEvent];
+                        }
+                    }];
                     
                     break;
                 }
@@ -339,7 +345,7 @@
     _callback (_ad.placementId, adClosed);
     
     // close events
-    [_events close];
+    [_events unsetAd];
     
     // remove all stuffs
     [_webplayer removeFromSuperview];
@@ -370,7 +376,7 @@
     
     // events
     if (_session && [destination rangeOfString:[_session getBaseUrl]].location == NSNotFound) {
-        [_events sendAllEventsForKey:@"superawesome_click"];
+        [_events triggerClickEvent];
     }
     
     // open URL
@@ -397,7 +403,7 @@
  */
 - (void) parentalGateOpen:(NSInteger)position {
     // send all events for parental gate open
-    [_events sendAllEventsForKey:@"superawesome_pg_open"];
+    [_events triggerPgOpenEvent];
 }
 
 /**
@@ -407,7 +413,7 @@
  */
 - (void) parentalGateFailure:(NSInteger)position {
     // send all events for parental gate failure
-    [_events sendAllEventsForKey:@"superawesome_pg_fail"];
+    [_events triggerPgFailEvent];
 }
 
 /**
@@ -418,7 +424,7 @@
  */
 - (void) parentalGateSuccess:(NSInteger)position andDestination:(NSString *)destination {
     // send success events
-    [_events sendAllEventsForKey:@"superawesome_pg_success"];
+    [_events triggerPgSuccessEvent];
     
     // go to click
     [self click:destination];
@@ -431,7 +437,7 @@
  */
 - (void) parentalGateCancel:(NSInteger)position {
     // send all events for parental gate close
-    [_events sendAllEventsForKey:@"superawesome_pg_close"];
+    [_events triggerPgCloseEvent];
 }
 
 /**

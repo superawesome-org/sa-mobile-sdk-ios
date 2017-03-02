@@ -27,7 +27,7 @@
 #define MOAT_DISPLAY_PARTNER_CODE   @"superawesomeinappdisplay731223424656"
 #define MOAT_VIDEO_PARTNER_CODE     @"superawesomeinappvideo467548716573"
 
-@implementation SAEvents (Moat)
+@implementation SAMoatModule (Moat)
 
 /**
  * Method that takes a view and some details and starts 

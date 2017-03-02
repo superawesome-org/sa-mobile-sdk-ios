@@ -4,7 +4,7 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "SAEvents.h"
+#import "SAMoatModule.h"
 
-@interface SAEvents (Moat)
+@interface SAMoatModule (Moat)
 @end
