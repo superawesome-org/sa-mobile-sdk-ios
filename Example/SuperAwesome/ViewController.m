@@ -110,7 +110,9 @@
                               @"pid": @(625)},
                             @{@"name": @"CPM Interstitial 7 (Scalable Rich Media)",
                               @"pid": @(643)},
-                            @{@"name": @"CPM Interstitial 8 (Tag)",
+                            @{@"name": @"CPM Interstitial 8 (Scrollable Rich Media)",
+                              @"pid": @(653)},
+                            @{@"name": @"CPM Interstitial 9 (Tag)",
                               @"pid": @(626)}
                             ]
                   },

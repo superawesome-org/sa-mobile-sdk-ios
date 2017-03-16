@@ -34,7 +34,7 @@
  */
 - (id) init {
     if (self = [super init]) {
-        _version = @"5.5.2";
+        _version = @"5.5.3";
         _sdk = @"ios";
     }
     
