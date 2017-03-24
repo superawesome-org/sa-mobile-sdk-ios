@@ -7,6 +7,8 @@
 #import "SACallback.h"
 #import "SAOrientation.h"
 
+@class SAAd;
+
 /**
  * Class that abstracts away the process of loading & displaying
  * an Video type Ad.
@@ -40,6 +42,14 @@
  * @return              true or false
  */
 + (BOOL) hasAdAvailable: (NSInteger) placementId;
+
+/**
+ * Method used for testing purposes (and the AwesomeApp) to manually put 
+ * an ad in the video ads map
+ *
+ * @param ad an instance of SAAd
+ */
++ (void) setAd: (SAAd*) ad;
 
 /**
  * Group of methods that set ad configuration parameters

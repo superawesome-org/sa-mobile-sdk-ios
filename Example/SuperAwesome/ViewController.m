@@ -38,7 +38,7 @@
     [_bannerAd setConfigurationStaging];
     [_bannerAd setCallback:^(NSInteger placementId, SAEvent event) {
        
-        NSLog(@"SUPER-AWESOME: Banner Ad %ld - Event %ld", placementId, event);
+        NSLog(@"SUPER-AWESOME: Banner Ad %ld - Event %ld", (long)placementId, (long)event);
         
         if (event == adLoaded) {
             [_bannerAd play];
@@ -49,7 +49,7 @@
     [SAInterstitialAd setConfigurationStaging];
     [SAInterstitialAd setCallback:^(NSInteger placementId, SAEvent event) {
         
-        NSLog(@"SUPER-AWESOME: Interstitial Ad %ld - Event %ld", placementId, event);
+        NSLog(@"SUPER-AWESOME: Interstitial Ad %ld - Event %ld", (long)placementId, (long)event);
         
         if (event == adLoaded) {
             [SAInterstitialAd play:placementId fromVC:self];
@@ -61,7 +61,7 @@
     [SAVideoAd disableCloseAtEnd];
     [SAVideoAd setCallback:^(NSInteger placementId, SAEvent event) {
         
-        NSLog(@"SUPER-AWESOME: Video Ad %ld - Event %ld", placementId, event);
+        NSLog(@"SUPER-AWESOME: Video Ad %ld - Event %ld", (long)placementId, (long)event);
         
         if (event == adLoaded) {
             [SAVideoAd play:placementId fromVC:self];
@@ -113,7 +113,9 @@
                             @{@"name": @"CPM Interstitial 8 (Scrollable Rich Media)",
                               @"pid": @(653)},
                             @{@"name": @"CPM Interstitial 9 (Tag)",
-                              @"pid": @(626)}
+                              @"pid": @(626)},
+                            @{@"name": @"CPM Interstitial 10 (Rafa)",
+                              @"pid": @(657)}
                             ]
                   },
                 @{

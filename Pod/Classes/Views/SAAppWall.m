@@ -752,6 +752,12 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     return object != NULL && [object isKindOfClass:[SAResponse class]];
 }
 
++ (void) setResponse:(SAResponse *)response {
+    if (response != nil && [response isValid]) {
+        [responses setObject:response forKey:@(response.placementId)];
+    }
+}
+
 /**
  * Method that clears an ad from the dictionary of ads, once it has been played
  *

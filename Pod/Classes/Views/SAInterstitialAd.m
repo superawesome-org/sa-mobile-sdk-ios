@@ -119,7 +119,7 @@ static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
     [_banner setTestMode:isTestingEnabled];
     [_banner setCallback:_callbackL];
     [_banner setParentalGate:_isParentalGateEnabledL];
-    [SAUtils invoke:@"setAd:" onTarget:_banner, _ad];
+    [_banner setAd:_ad];
     [self.view addSubview:_banner];
 }
 
@@ -370,6 +370,8 @@ static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
                 [ads removeObjectForKey:@(placementId)];
             }
             
+            NSLog(@"%@", [response jsonPreetyStringRepresentation]);
+            
             // callback
             callback(placementId, [response isValid] ? adLoaded : adFailedToLoad);
         }];
@@ -402,6 +404,12 @@ static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
 + (BOOL) hasAdAvailable: (NSInteger) placementId {
     id object = [ads objectForKey:@(placementId)];
     return object != NULL && [object isKindOfClass:[SAAd class]];
+}
+
++ (void) setAd: (SAAd*) ad {
+    if (ad != nil && [ad isValid]) {
+        [ads setObject:ad forKey:@(ad.placementId)];
+    }
 }
 
 /**

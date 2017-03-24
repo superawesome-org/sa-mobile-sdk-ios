@@ -300,7 +300,7 @@
         [self resize:self.frame];
         
         // finally play!
-        [_webplayer loadHTML:fullHTMLToLoad];
+        [_webplayer loadHTML:fullHTMLToLoad witBase:_ad.creative.details.base];
         
         // add a notification of sorts
         [[NSNotificationCenter defaultCenter] addObserverForName:@"UIDeviceOrientationDidChangeNotification"
@@ -319,12 +319,6 @@
     }
 }
 
-/**
- * Internal setter for the "ad" object. This is very important because 
- * based on the loaded ad, that's what's going to be displayed.
- *
- * @param ad a new, valid SAAd object
- */
 - (void) setAd:(SAAd*) ad {
     _ad = ad;
 }

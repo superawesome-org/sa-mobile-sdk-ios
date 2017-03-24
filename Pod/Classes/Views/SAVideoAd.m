@@ -259,7 +259,7 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
     [_player setClickHandler:^{
         
         // get a potential destination
-        NSString *destination = [_events getVASTClickThroughEvent];
+        NSString *destination = [weakSelf.events getVASTClickThroughEvent];
         
         // only go forward if the destination url is not null
         if (destination) {
@@ -702,6 +702,12 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
 + (BOOL) hasAdAvailable: (NSInteger) placementId {
     id object = [ads objectForKey:@(placementId)];
     return object != NULL && [object isKindOfClass:[SAAd class]];
+}
+
++ (void) setAd: (SAAd*) ad {
+    if (ad != nil && [ad isValid]) {
+        [ads setObject:ad forKey:@(ad.placementId)];
+    }
 }
 
 + (void) setCallback:(sacallback)call {

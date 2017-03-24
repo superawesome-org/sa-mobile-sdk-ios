@@ -6,6 +6,8 @@
 #import <UIKit/UIKit.h>
 #import "SACallback.h"
 
+@class SAResponse;
+
 /**
  * Class that abstracts away the process of loading & displaying 
  * an App Wall type Ad.
@@ -39,6 +41,14 @@
  * @return              true or false
  */
 + (BOOL) hasAdAvailable: (NSInteger) placementId;
+
+/**
+ * Method used for testing purposes (and the AwesomeApp) to manually put 
+ * response (ad) in the appwall ads map
+ *
+ * @param response an instance of SAResponse
+ */
++ (void) setResponse: (SAResponse*) response;
 
 /**
  * Group of methods that set ad configuration parameters

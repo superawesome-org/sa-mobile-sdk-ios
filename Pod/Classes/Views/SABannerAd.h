@@ -50,6 +50,13 @@
  */
 - (void) resize:(CGRect)toframe;
 
+/**
+ * Internal setter for the "ad" object. This is very important because
+ * based on the loaded ad, that's what's going to be displayed.
+ *
+ * @param ad a new, valid SAAd object
+ */
+- (void) setAd:(SAAd*) ad;
 
 /**
  * Method that gets whether the banner is closed or not
