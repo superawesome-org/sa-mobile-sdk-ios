@@ -241,6 +241,9 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
             }
             case Video_Error: {
                 
+                // can close video
+                weakSelf.isOKToClose = true;
+                
                 // send errors
                 [weakSelf.events triggerVASTErrorEvent];
                 

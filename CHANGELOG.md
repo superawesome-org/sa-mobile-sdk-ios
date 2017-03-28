@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+5.5.5
+ - Set "isOKToClose" parameter to true in case of a video error (such as the creative not being able to play) so that when the happens video can actually be auto-closed
+
 5.5.4
  - Updated the Model space SADetails class to have a "base" string member to hold the base Url of the creative
  - Updated the Web Player to work with a base url and eliminate a series of minor bugs where 3rd party tags weren't rendered correctly
