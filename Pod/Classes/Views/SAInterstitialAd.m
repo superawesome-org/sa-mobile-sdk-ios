@@ -407,6 +407,11 @@ static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
 }
 
 + (void) setAd: (SAAd*) ad {
+    
+    if (ads == NULL) {
+        ads = [@{} mutableCopy];
+    }
+    
     if (ad != nil && [ad isValid]) {
         [ads setObject:ad forKey:@(ad.placementId)];
     }

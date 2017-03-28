@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+5.5.7
+ - Made the aux "setAd:" method create the static dict holding ads, just as "load:"
+
 5.5.6
  - Updated SAAdLoader dependency; it now contains load + local processing methods
 

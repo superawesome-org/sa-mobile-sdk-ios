@@ -753,6 +753,11 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 }
 
 + (void) setResponse:(SAResponse *)response {
+    
+    if (responses == NULL) {
+        responses = [@{} mutableCopy];
+    }
+    
     if (response != nil && [response isValid]) {
         [responses setObject:response forKey:@(response.placementId)];
     }
