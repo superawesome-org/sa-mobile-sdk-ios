@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+5.5.6
+ - Updated SAAdLoader dependency; it now contains load + local processing methods
+
 5.5.5
  - Set "isOKToClose" parameter to true in case of a video error (such as the creative not being able to play) so that when the happens video can actually be auto-closed
 

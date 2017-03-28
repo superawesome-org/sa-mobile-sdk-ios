@@ -93,4 +93,10 @@ typedef void (^saDidLoadAd)(SAResponse *response);
  andPlacementId:(NSInteger) placementId
      andSession:(SASession*) session
       andResult:(saDidLoadAd) result;
+
+- (void) processAd:(NSInteger) placementId
+           andData:(NSString*) data
+         andStatus:(NSInteger) status
+        andSession:(SASession*) session
+         andResult:(saDidLoadAd) result;
 @end

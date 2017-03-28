@@ -181,150 +181,163 @@
      andSession:(SASession*) session
       andResult:(saDidLoadAd) result {
     
-    // make sure the local result is never nil
-    __block saDidLoadAd localResult = result ? result : ^(SAResponse* response){};
+    
     
     // send a network request
     SANetwork *network = [[SANetwork alloc] init];
     [network sendGET:endpoint withQuery:query andHeader:header withResponse:^(NSInteger status, NSString *data, BOOL success) {
         
-        // create a new object of type SAResponse
-        __block SAResponse *response = [[SAResponse alloc] init];
-        response.placementId = placementId;
-        response.status = status;
+        [self processAd:placementId andData:data andStatus:status andSession:session andResult:result];
         
-        // error case, just bail out with a non-null invalid response
-        if (!success || data == nil) {
-            localResult (response);
-        }
-        // good case, continue trying to figure out what kind of ad this is
-        else {
+    }];
+}
+
+- (void) processAd:(NSInteger) placementId
+           andData:(NSString*) data
+         andStatus:(NSInteger) status
+        andSession:(SASession*) session
+         andResult:(saDidLoadAd) result {
+    
+    // make sure the local result is never nil
+    __block saDidLoadAd localResult = result ? result : ^(SAResponse* response){};
+    
+    // create a new object of type SAResponse
+    __block SAResponse *response = [[SAResponse alloc] init];
+    response.placementId = placementId;
+    response.status = status;
+    
+    // error case, just bail out with a non-null invalid response
+    if (data == nil) {
+        localResult (response);
+    }
+    // good case, continue trying to figure out what kind of ad this is
+    else {
+        
+        NSDictionary *jsonDict = [[NSDictionary alloc] initWithJsonString:data];
+        NSArray *jsonArray = [NSArray arrayWithJsonString:data andIterator:^id(id item) {
+            return item;
+        }];
+        
+        // Normal Ad case
+        if (jsonDict != nil && [jsonDict count] > 0) {
             
-            NSDictionary *jsonDict = [[NSDictionary alloc] initWithJsonString:data];
-            NSArray *jsonArray = [NSArray arrayWithJsonString:data andIterator:^id(id item) {
-                return item;
-            }];
+            // parse the final ad
+            __block SAAd *ad = [[SAAd alloc] initWithPlacementId:placementId
+                                               andJsonDictionary:jsonDict];
             
-            // Normal Ad case
-            if (jsonDict != nil && [jsonDict count] > 0) {
-                
-                // parse the final ad
-                __block SAAd *ad = [[SAAd alloc] initWithPlacementId:placementId
-                                                   andJsonDictionary:jsonDict];
-                
-                // update type in response as well
-                response.format = ad.creative.format;
-                [response.ads addObject:ad];
-                
-                switch (ad.creative.format) {
+            // update type in response as well
+            response.format = ad.creative.format;
+            [response.ads addObject:ad];
+            
+            switch (ad.creative.format) {
                     // in this case return whatever we have at this moment
-                    case SA_Appwall:
-                    case SA_Invalid: {
-                        localResult (response);
-                        break;
-                    }
+                case SA_Appwall:
+                case SA_Invalid: {
+                    localResult (response);
+                    break;
+                }
                     // in this case process the HTML and return the response
-                    case SA_Image: {
-                        ad.creative.details.media.html = [SAProcessHTML formatCreativeIntoImageHTML:ad];
-                        localResult (response);
-                        break;
-                    }
-                    case SA_Rich:{
-                        ad.creative.details.media.html = [SAProcessHTML formatCreativeIntoRichMediaHTML:ad];
-                        localResult (response);
-                        break;
-                    }
-                    case SA_Tag:{
-                        ad.creative.details.media.html = [SAProcessHTML formatCreativeIntoTagHTML:ad];
-                        localResult (response);
-                        break;
-                    }
-                    case SA_Video:{
-                        SAVASTParser *parser = [[SAVASTParser alloc] init];
-                        [parser parseVAST:ad.creative.details.vast withResponse:^(SAVASTAd *savastAd) {
+                case SA_Image: {
+                    ad.creative.details.media.html = [SAProcessHTML formatCreativeIntoImageHTML:ad];
+                    localResult (response);
+                    break;
+                }
+                case SA_Rich:{
+                    ad.creative.details.media.html = [SAProcessHTML formatCreativeIntoRichMediaHTML:ad];
+                    localResult (response);
+                    break;
+                }
+                case SA_Tag:{
+                    ad.creative.details.media.html = [SAProcessHTML formatCreativeIntoTagHTML:ad];
+                    localResult (response);
+                    break;
+                }
+                case SA_Video:{
+                    SAVASTParser *parser = [[SAVASTParser alloc] init];
+                    [parser parseVAST:ad.creative.details.vast withResponse:^(SAVASTAd *savastAd) {
+                        
+                        // add the vast ad
+                        ad.creative.details.media.vastAd = savastAd;
+                        // copy the vast media
+                        ad.creative.details.media.url = savastAd.url;
+                        // download file
+                        [[SAFileDownloader getInstance] downloadFileFrom:ad.creative.details.media.url andResponse:^(BOOL success, NSString *diskPath) {
                             
-                            // add the vast ad
-                            ad.creative.details.media.vastAd = savastAd;
-                            // copy the vast media
-                            ad.creative.details.media.url = savastAd.url;
-                            // download file
-                            [[SAFileDownloader getInstance] downloadFileFrom:ad.creative.details.media.url andResponse:^(BOOL success, NSString *diskPath) {
-                                
-                                // add final details
-                                ad.creative.details.media.path = diskPath;
-                                ad.creative.details.media.isDownloaded = diskPath != nil;
-                                
-                                // finally respond 
-                                localResult (response);
-                                
-                            }];
+                            // add final details
+                            ad.creative.details.media.path = diskPath;
+                            ad.creative.details.media.isDownloaded = diskPath != nil;
+                            
+                            // finally respond
+                            localResult (response);
                             
                         }];
-                        break;
-                    }
+                        
+                    }];
+                    break;
                 }
-                
             }
-            // ÅppWall case
-            else if (jsonArray != nil && [jsonArray count] > 0) {
-                
-                // set response correct format
-                response.format = SA_Appwall;
-                
-                // add ads to it
-                for (int i = 0; i < [jsonArray count]; i++) {
-                    
-                    // get the object at index "i"
-                    id dict = [jsonArray objectAtIndex:i];
-                    
-                    // only if it's a valid dictionary
-                    if ([dict isKindOfClass:[NSDictionary class]]) {
-                        
-                        SAAd *ad = [[SAAd alloc] initWithPlacementId:placementId
-                                                   andJsonDictionary:dict];
-                        
-                        // only add image type ads - no rich media or videos in the
-                        // GameWall for now
-                        if (ad.creative.format == SA_Image) {
-                            [response.ads addObject:ad];
-                            ad.creative.format = SA_Appwall;
-                        }
-                    }
-                }
-                
-                // add all the images that'll need to be downloaded
-                NSMutableArray<NSString*> *filesToDownload = [@[] mutableCopy];
-                for (SAAd *ad in response.ads) {
-                    [filesToDownload addObject:ad.creative.details.image];
-                }
-                
-                // use the file list downloader to download them in the same
-                // correct order
-                SAFileListDownloader *fileListDownloader = [[SAFileListDownloader alloc] init];
-                [fileListDownloader downloadListOfFiles:filesToDownload withResponse:^(NSArray<NSString *> *diskLocations) {
-                   
-                    for (int i = 0; i < [diskLocations count]; i++) {
-                        
-                        NSString *diskUrl = [diskLocations objectAtIndex:i];
-                        SAAd *cAd = [response.ads objectAtIndex:i];
-                        cAd.creative.details.media.url = cAd.creative.details.image;
-                        cAd.creative.details.media.path = diskUrl;
-                        cAd.creative.details.media.isDownloaded = diskUrl != nil;
-                        
-                    }
-                    
-                    // and finally send a response
-                    localResult (response);
-                    
-                }];
-                
-            }
-            // it's not a normal ad or an app wall, then return
-            else {
-                localResult (response);
-            }
+            
         }
-    }];
+        // AppWall case
+        else if (jsonArray != nil && [jsonArray count] > 0) {
+            
+            // set response correct format
+            response.format = SA_Appwall;
+            
+            // add ads to it
+            for (int i = 0; i < [jsonArray count]; i++) {
+                
+                // get the object at index "i"
+                id dict = [jsonArray objectAtIndex:i];
+                
+                // only if it's a valid dictionary
+                if ([dict isKindOfClass:[NSDictionary class]]) {
+                    
+                    SAAd *ad = [[SAAd alloc] initWithPlacementId:placementId
+                                               andJsonDictionary:dict];
+                    
+                    // only add image type ads - no rich media or videos in the
+                    // GameWall for now
+                    if (ad.creative.format == SA_Image) {
+                        [response.ads addObject:ad];
+                        ad.creative.format = SA_Appwall;
+                    }
+                }
+            }
+            
+            // add all the images that'll need to be downloaded
+            NSMutableArray<NSString*> *filesToDownload = [@[] mutableCopy];
+            for (SAAd *ad in response.ads) {
+                [filesToDownload addObject:ad.creative.details.image];
+            }
+            
+            // use the file list downloader to download them in the same
+            // correct order
+            SAFileListDownloader *fileListDownloader = [[SAFileListDownloader alloc] init];
+            [fileListDownloader downloadListOfFiles:filesToDownload withResponse:^(NSArray<NSString *> *diskLocations) {
+                
+                for (int i = 0; i < [diskLocations count]; i++) {
+                    
+                    NSString *diskUrl = [diskLocations objectAtIndex:i];
+                    SAAd *cAd = [response.ads objectAtIndex:i];
+                    cAd.creative.details.media.url = cAd.creative.details.image;
+                    cAd.creative.details.media.path = diskUrl;
+                    cAd.creative.details.media.isDownloaded = diskUrl != nil;
+                    
+                }
+                
+                // and finally send a response
+                localResult (response);
+                
+            }];
+            
+        }
+        // it's not a normal ad or an app wall, then return
+        else {
+            localResult (response);
+        }
+    }
+    
 }
 
 @end
