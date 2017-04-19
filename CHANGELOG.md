@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+5.5.8
+ - Added camel & snake case options when parsing the SACreative object - for click, impression and install
+ - Added the osTarget parameter to the SACreative
+ - Fixed tests in SACPI
+
 5.5.7
  - Made the aux "setAd:" method create the static dict holding ads, just as "load:"
 

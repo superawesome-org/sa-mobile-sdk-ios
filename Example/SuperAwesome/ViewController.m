@@ -115,7 +115,9 @@
                             @{@"name": @"CPM Interstitial 9 (Tag)",
                               @"pid": @(626)},
                             @{@"name": @"CPM Interstitial 10 (Rafa)",
-                              @"pid": @(657)}
+                              @"pid": @(657)},
+                            @{@"name": @"Sing Interstitial",
+                              @"pid": @(659)}
                             ]
                   },
                 @{
