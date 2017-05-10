@@ -77,5 +77,6 @@
 + (void) setCloseButton: (BOOL) value;
 + (void) setSmallClick: (BOOL) value;
 + (void) setCloseAtEnd: (BOOL) value;
++ (void) disableMoatLimiting;
 
 @end

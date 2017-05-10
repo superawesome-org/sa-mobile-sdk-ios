@@ -36,6 +36,7 @@
                            }];
     
     [_bannerAd setConfigurationStaging];
+    [_bannerAd disableMoatLimiting];
     [_bannerAd setCallback:^(NSInteger placementId, SAEvent event) {
        
         NSLog(@"SUPER-AWESOME: Banner Ad %ld - Event %ld", (long)placementId, (long)event);
@@ -47,6 +48,7 @@
     }];
     
     [SAInterstitialAd setConfigurationStaging];
+    [SAInterstitialAd disableMoatLimiting];
     [SAInterstitialAd setCallback:^(NSInteger placementId, SAEvent event) {
         
         NSLog(@"SUPER-AWESOME: Interstitial Ad %ld - Event %ld", (long)placementId, (long)event);
@@ -57,8 +59,10 @@
     }];
     
     [SAVideoAd setConfigurationStaging];
+    [SAVideoAd disableParentalGate];
     [SAVideoAd enableCloseButton];
     [SAVideoAd disableCloseAtEnd];
+    [SAVideoAd disableMoatLimiting];
     [SAVideoAd setCallback:^(NSInteger placementId, SAEvent event) {
         
         NSLog(@"SUPER-AWESOME: Video Ad %ld - Event %ld", (long)placementId, (long)event);
@@ -132,7 +136,9 @@
                             @{@"name": @"CPM Preroll 4 (Tag)",
                               @"pid": @(631)},
                             @{@"name": @"CPI Preroll 1 (Video)",
-                              @"pid": @(604)}
+                              @"pid": @(604)},
+                            @{@"name": @"Level 5 CPI",
+                              @"pid": @(33766)}
                             ]
                   },
                 @{

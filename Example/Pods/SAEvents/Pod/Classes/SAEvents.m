@@ -160,13 +160,22 @@
     
 }
 
-- (NSString*) registerDisplayMoatEvent:(id)webplayer {
-    return _moatModule ? [_moatModule moatEventForWebPlayer:webplayer] : @"";
+- (NSString*) startMoatTrackingForDisplay:(id)webplayer {
+    return _moatModule ? [_moatModule startMoatTrackingForDisplay:webplayer] : @"";
 }
-- (BOOL) registerVideoMoatEventForVideoPlayer:(AVPlayer*) player
-                                    withLayer:(AVPlayerLayer*) layer
-                                      andView:(UIView*) view {
-    return _moatModule ? [_moatModule moatEventForVideoPlayer:player withLayer:layer andView:view] : false;
+
+- (BOOL) stopMoatTrackingForDisplay {
+    return _moatModule ? [_moatModule stopMoatTrackingForDisplay] : false;
+}
+
+- (BOOL) startMoatTrackingForVideoPlayer:(AVPlayer*) player
+                               withLayer:(AVPlayerLayer*) layer
+                                 andView:(UIView*) view {
+    return _moatModule ? [_moatModule startMoatTrackingForVideoPlayer:player withLayer:layer andView:view] : false;
+}
+
+- (BOOL) stopMoatTrackingForVideoPlayer {
+    return _moatModule ? [_moatModule stopMoatTrackingForVideoPlayer] : false;
 }
 
 - (void) disableMoatLimiting {

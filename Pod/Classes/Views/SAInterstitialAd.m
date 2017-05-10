@@ -87,6 +87,7 @@ static BOOL isParentalGateEnabled    = SA_DEFAULT_PARENTALGATE;
 static BOOL isTestingEnabled         = SA_DEFAULT_TESTMODE;
 static SAOrientation orientation     = SA_DEFAULT_ORIENTATION;
 static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
+static BOOL isMoatLimitingEnabled    = SA_DEFAULT_MOAT_LIMITING_STATE;
 
 /**
  * Overridden UIViewController "viewDidLoad" method in which the ad is setup
@@ -101,6 +102,7 @@ static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
     // get local versions of the static module vars
     sacallback _callbackL    = [SAInterstitialAd getCallback];
     BOOL _isParentalGateEnabledL = [SAInterstitialAd getIsParentalGateEnabled];
+    BOOL _isMoatLimitingEnabledL = [SAInterstitialAd getMoatLimitingState];
     
     // set bg color
     self.view.backgroundColor = [UIColor colorWithRed:224.0/255.0f green:224.0/255.0f blue:224.0/255.0f alpha:1];
@@ -119,6 +121,9 @@ static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
     [_banner setTestMode:isTestingEnabled];
     [_banner setCallback:_callbackL];
     [_banner setParentalGate:_isParentalGateEnabledL];
+    if (!_isMoatLimitingEnabledL) {
+        [_banner disableMoatLimiting];
+    }
     [_banner setAd:_ad];
     [self.view addSubview:_banner];
 }
@@ -493,5 +498,14 @@ static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
 + (SAOrientation) getOrientation {
     return orientation;
 }
+
++ (void) disableMoatLimiting {
+    isMoatLimitingEnabled = false;
+}
+
++ (BOOL) getMoatLimitingState {
+    return isMoatLimitingEnabled;
+}
+                                    
 
 @end

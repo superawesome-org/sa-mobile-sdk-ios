@@ -136,6 +136,7 @@ static BOOL shouldShowCloseButton           = SA_DEFAULT_CLOSEBUTTON;
 static BOOL shouldShowSmallClickButton      = SA_DEFAULT_SMALLCLICK;
 static SAOrientation orientation            = SA_DEFAULT_ORIENTATION;
 static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
+static BOOL isMoatLimitingEnabled           = SA_DEFAULT_MOAT_LIMITING_STATE;
 
 /**
  * Overridden UIViewController "viewDidLoad" method in which the ad is setup
@@ -158,10 +159,14 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
     if (!_shouldShowCloseButtonL && _videoEnded) _shouldShowCloseButtonL = true;
     __block BOOL _shouldShowSmallClickButtonL = [SAVideoAd getShouldShowSmallClickButton];
     __block BOOL _shouldShowPadlockL = _ad.isPadlockVisible;
+    __block BOOL _isMoatLimitingEnabledL = [SAVideoAd getMoatLimitingState];
     
     // start events
     _events = [[SAEvents alloc] init];
     [_events setAd:_ad andSession:session];
+    if (!_isMoatLimitingEnabledL) {
+        [_events disableMoatLimiting];
+    }
     
     // get a weak self reference
     __weak typeof (self) weakSelf = self;
@@ -193,9 +198,9 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
                 }];
                 
                 // moat
-                [weakSelf.events registerVideoMoatEventForVideoPlayer:[weakSelf.player getPlayer]
-                                                            withLayer:[weakSelf.player getPlayerLayer]
-                                                              andView:[weakSelf view]];
+                [weakSelf.events startMoatTrackingForVideoPlayer:[weakSelf.player getPlayer]
+                                                       withLayer:[weakSelf.player getPlayerLayer]
+                                                         andView:[weakSelf view]];
                 
                 // callback
                 _callbackL(weakSelf.ad.placementId, adShown);
@@ -370,7 +375,7 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
  * Overridden UIViewController "viewWillDisappear" method in which I reset the
  * status bar state
  *
- * @param aniamted whether the view will disappeared animated or not
+ * @param animated whether the view will disappeared animated or not
  */
 - (void) viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
@@ -491,6 +496,9 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
         sacallback _callbackL = [SAVideoAd getCallback];
         _callbackL(_ad.placementId, adClosed);
         
+        // moat end
+        [_events stopMoatTrackingForVideoPlayer];
+    
         // close
         [_events unsetAd];
         
@@ -832,6 +840,14 @@ static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
 
 + (SAOrientation) getOrientation {
     return orientation;
+}
+
++ (void) disableMoatLimiting {
+    isMoatLimitingEnabled = false;
+}
+
++ (BOOL) getMoatLimitingState {
+    return isMoatLimitingEnabled;
 }
 
 @end

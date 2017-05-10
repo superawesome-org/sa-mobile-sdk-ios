@@ -8,8 +8,13 @@
 @class SAAd;
 @class AVPlayer;
 @class AVPlayerLayer;
+@class SUPMoatWebTracker;
+@class SUPMoatVideoTracker;
 
 @interface SAMoatModule : NSObject
+
+@property (nonatomic, strong) SUPMoatVideoTracker *videoTracker;
+@property (nonatomic, strong) SUPMoatWebTracker *webTracker;
 
 - (id) initWithAd: (SAAd*) ad;
 
@@ -22,18 +27,28 @@
  * @return          returns a MOAT specific string that will need to be
  *                  inserted in the web view so that the JS moat stuff works
  */
-- (NSString*) moatEventForWebPlayer:(id)webplayer;
+- (NSString*) startMoatTrackingForDisplay:(id)webplayer;
+
+/**
+ * Stop moat tracking for display (web view) ads
+ */
+- (BOOL) stopMoatTrackingForDisplay;
 
 /**
  * Method that registers a Video Moat event
  *
- * @param video     the current AVPlayer needed by Moat to do video tracking
+ * @param player    the current AVPlayer needed by Moat to do video tracking
  * @param layer     the current Player layer associated with the video view
  * @return          whether the video moat event started OK
  */
-- (BOOL) moatEventForVideoPlayer:(AVPlayer*) player
-                       withLayer:(AVPlayerLayer*) layer
-                         andView:(UIView*) view;
+- (BOOL) startMoatTrackingForVideoPlayer:(AVPlayer*) player
+                               withLayer:(AVPlayerLayer*) layer
+                                 andView:(UIView*) view;
+
+/**
+ * Stop moat tracking for video ads
+ */
+- (BOOL) stopMoatTrackingForVideoPlayer;
 
 /**
  * Method by which Moat can be fully enforced by disabling

@@ -68,5 +68,6 @@
 + (void) setParentalGate: (BOOL) value;
 + (void) setConfiguration: (NSInteger) value;
 + (void) setOrientation: (SAOrientation) value;
++ (void) disableMoatLimiting;
 
 @end

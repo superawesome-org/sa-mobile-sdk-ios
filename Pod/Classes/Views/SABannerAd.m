@@ -119,6 +119,7 @@
 @property (nonatomic, assign) BOOL               canPlay;
 @property (nonatomic, assign) BOOL               firstPlay;
 @property (nonatomic, assign) BOOL               isClosed;
+@property (nonatomic, assign) BOOL               moatLimiting;
 
 @end
 
@@ -169,6 +170,7 @@
     _canPlay = true;
     _firstPlay = true;
     _isClosed = false;
+    _moatLimiting = true;
     
     // init the events and session obkects
     _events = [[SAEvents alloc] init];
@@ -230,13 +232,16 @@
         
         // start events
         [_events setAd:_ad andSession:_session];
+        if (!_moatLimiting) {
+            [_events disableMoatLimiting];
+        }
         
         // add the sawebview
         _webplayer = [[SAWebPlayer alloc] initWithContentSize:CGSizeMake(_ad.creative.details.width, _ad.creative.details.height)
                                                andParentFrame:self.frame];
         
         // moat tracking
-        NSString *moatString = [_events registerDisplayMoatEvent:[_webplayer getWebView]];
+        NSString *moatString = [_events startMoatTrackingForDisplay:[_webplayer getWebView]];
         NSLog(@"MOAT String is %@", moatString);
         
         // form the full HTML string and play it!
@@ -337,6 +342,9 @@
 - (void) close {
     // callback
     _callback (_ad.placementId, adClosed);
+    
+    // stop moat
+    [_events stopMoatTrackingForDisplay];
     
     // close events
     [_events unsetAd];
@@ -499,6 +507,10 @@
     } else {
         self.backgroundColor = [UIColor colorWithRed:224.0/255.0f green:224.0/255.0f blue:224.0/255.0f alpha:1];
     }
+}
+
+- (void) disableMoatLimiting {
+    _moatLimiting = false;
 }
 
 

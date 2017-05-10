@@ -5,11 +5,52 @@
 
 #import <UIKit/UIKit.h>
 #import "SAWebView.h"
+#import "SAMRAID.h"
+#import "SAMRAIDCommand.h"
+
+@class SAExpandedWebPlayer;
+@class SAResizedWebPlayer;
+
+@protocol SAWebPlayerAuxProtocol <NSObject>
+- (void) didReceiveMessageFromJavaScript:(NSString*)message;
+- (void) didRotateScreen;
+@end
+
+/**
+ * WebPlayer event enum, containing two main events:
+ *  - saWeb_Start: happens when the web view content is fully loaded
+ *  - saWeb_Error: happens when something prevents the web view
+ *               from properly loading the content
+ */
+typedef NS_ENUM(NSInteger, SAWebPlayerEvent) {
+    saWeb_Start = 0,
+    saWeb_Error = 1
+};
+
+// callback for handling web view events
+typedef void (^saWebPlayerDidReceiveEvent)(SAWebPlayerEvent event);
+
+// callback for handling web view clicks
+typedef void (^saWebPlayerDidReceiveClick)(NSURL* url);
 
 /**
  * Class that abstracts away the details of loading HTML into an iOS WebView
  */
 @interface SAWebPlayer : UIView
+
+// the internal web view
+@property (nonatomic, strong) SAWebView                     *webView;
+@property (nonatomic, assign) CGSize                        contentSize;
+
+@property (nonatomic, strong) SAMRAID                       *mraid;
+
+@property (nonatomic, strong) SAExpandedWebPlayer           *expandedPlayer;
+@property (nonatomic, strong) SAResizedWebPlayer            *resizedPlayer;
+
+@property (nonatomic, assign) CGFloat                       scaleX;
+@property (nonatomic, assign) CGFloat                       scaleY;
+
+@property (nonatomic, assign) id<SAWebPlayerAuxProtocol>    delegate;
 
 /**
  * Web Player init method with an ad size and a parent rect
@@ -58,5 +99,11 @@
  * @return the current used instance of the web view
  */
 - (UIWebView*) getWebView;
+
+/**
+ * Mapping function
+ */
+- (CGRect) map:(CGRect)sourceFrame
+          into:(CGRect)boundingFrame;
 
 @end

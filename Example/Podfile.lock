@@ -2,63 +2,64 @@ PODS:
   - mopub-ios-sdk (4.13.1):
     - mopub-ios-sdk/MoPubSDK (= 4.13.1)
   - mopub-ios-sdk/MoPubSDK (4.13.1)
-  - SAAdLoader (1.1.0):
-    - SAModelSpace (= 0.4.7)
+  - SAAdLoader (1.1.2):
+    - SAModelSpace (= 0.4.9)
     - SANetworking (= 0.2.9)
-    - SASession (= 0.3.5)
-    - SAUtils (= 1.5.0)
-    - SAVASTParser (= 1.6.7)
-  - SACPI (1.0.6):
-    - SAModelSpace (= 0.4.7)
+    - SASession (= 0.3.6)
+    - SAUtils (= 1.5.2)
+    - SAVASTParser (= 1.6.9)
+  - SACPI (1.0.8):
+    - SAModelSpace (= 0.4.9)
     - SANetworking (= 0.2.9)
-    - SASession (= 0.3.5)
-    - SAUtils (= 1.5.0)
-  - SAEvents (1.8.6):
-    - SAEvents/Core (= 1.8.6)
-    - SAModelSpace (= 0.4.7)
+    - SASession (= 0.3.6)
+    - SAUtils (= 1.5.2)
+  - SAEvents (1.9.2):
+    - SAEvents/Core (= 1.9.2)
+    - SAModelSpace (= 0.4.9)
     - SANetworking (= 0.2.9)
-    - SASession (= 0.3.5)
-    - SAUtils (= 1.5.0)
-  - SAEvents/Core (1.8.6):
-    - SAModelSpace (= 0.4.7)
+    - SASession (= 0.3.6)
+    - SAUtils (= 1.5.2)
+  - SAEvents/Core (1.9.2):
+    - SAModelSpace (= 0.4.9)
     - SANetworking (= 0.2.9)
-    - SASession (= 0.3.5)
-    - SAUtils (= 1.5.0)
-  - SAEvents/Moat (1.8.6):
+    - SASession (= 0.3.6)
+    - SAUtils (= 1.5.2)
+  - SAEvents/Moat (1.9.2):
     - SAEvents/Core
-    - SAModelSpace (= 0.4.7)
+    - SAModelSpace (= 0.4.9)
     - SANetworking (= 0.2.9)
-    - SASession (= 0.3.5)
-    - SAUtils (= 1.5.0)
+    - SASession (= 0.3.6)
+    - SAUtils (= 1.5.2)
   - SAJsonParser (1.3.2)
-  - SAModelSpace (0.4.7):
+  - SAModelSpace (0.4.9):
     - SAJsonParser (= 1.3.2)
-    - SAUtils (= 1.5.0)
+    - SAUtils (= 1.5.2)
   - SANetworking (0.2.9)
-  - SASession (0.3.5):
-    - SAUtils (= 1.5.0)
-  - SAUtils (1.5.0)
-  - SAVASTParser (1.6.7):
-    - SAModelSpace (= 0.4.7)
+  - SASession (0.3.6):
+    - SAUtils (= 1.5.2)
+  - SAUtils (1.5.2)
+  - SAVASTParser (1.6.9):
+    - SAModelSpace (= 0.4.9)
     - SANetworking (= 0.2.9)
-    - SAUtils (= 1.5.0)
+    - SAUtils (= 1.5.2)
   - SAVideoPlayer (1.2.1)
-  - SAWebPlayer (1.1.9)
-  - SuperAwesome/AIR (5.5.7):
+  - SAWebPlayer (1.2.1):
+    - SANetworking (= 0.2.9)
+  - SuperAwesome/AIR (5.6.0):
     - SuperAwesome/Base
-  - SuperAwesome/Base (5.5.7):
-    - SAAdLoader (= 1.1.0)
-    - SACPI (= 1.0.6)
-    - SAEvents (= 1.8.6)
+  - SuperAwesome/Base (5.6.0):
+    - SAAdLoader (= 1.1.2)
+    - SACPI (= 1.0.8)
+    - SAEvents (= 1.9.2)
     - SAVideoPlayer (= 1.2.1)
-    - SAWebPlayer (= 1.1.9)
-  - SuperAwesome/Full (5.5.7):
+    - SAWebPlayer (= 1.2.1)
+  - SuperAwesome/Full (5.6.0):
     - SAEvents/Moat
     - SuperAwesome/Base
-  - SuperAwesome/MoPub (5.5.7):
+  - SuperAwesome/MoPub (5.6.0):
     - mopub-ios-sdk
     - SuperAwesome/Base
-  - SuperAwesome/Unity (5.5.7):
+  - SuperAwesome/Unity (5.6.0):
     - SuperAwesome/Base
 
 DEPENDENCIES:
@@ -73,19 +74,19 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   mopub-ios-sdk: 50741c2761878dc676d05e88d7718fca81089377
-  SAAdLoader: 36f1b633c5dfb0acf4b0b98c684c4722734294d3
-  SACPI: eadee4fdb0fdf34bfe99907fb8136d0871fb8262
-  SAEvents: 11a1a152bc85878075ee32494f5c288d1d2a3649
+  SAAdLoader: ca3d4021f27fb50c0dbd5eae73bd8043fdbc919c
+  SACPI: bc27c5a465b0ff8f0b110c2a31cb069ce6adac43
+  SAEvents: 0a7f4e94b47b18af1304cf598fd31e31bff5d006
   SAJsonParser: d0db6d8c737c04f8bf4e9474e82825347aa24f58
-  SAModelSpace: c0fceb7fdbc51bf3455864a9e73496630d801223
+  SAModelSpace: b1955fb6fe18f3fb51a72a93f9db49fdfbd3f4f0
   SANetworking: 40e2a8ffd5c680be57dfd91426f3c74933ad1d80
-  SASession: 132766325ba7bf55d283bb3bfa4bc5a8c470347e
-  SAUtils: 1e8b881ca8c7fac2749c8fd9b851f0b344611035
-  SAVASTParser: 5c2545171695d101d3218b4dea56f16f09730045
+  SASession: 4d3b3825661fdc741702203e68b9c4f08170144e
+  SAUtils: c0d6c68af97b4fdc18a1dcc613f9b5cde25b78f8
+  SAVASTParser: 4f1708b27551359565575ba1ca17786d84eeb3c2
   SAVideoPlayer: ca3a28494337373e18cd00b51ada7549c701b579
-  SAWebPlayer: 69f56d3e75f33b25992f060bf20a309b1d5a8ae5
-  SuperAwesome: bc71f191f5d0ed6564287ca8814bf7d69f123c8b
+  SAWebPlayer: d7ee083d0a8acb4dc9350156637c65fb286708ed
+  SuperAwesome: 75428c74fac3115208fa27bdb42e42a5e662828e
 
 PODFILE CHECKSUM: 237a5b78dc66e89faa90277d0d09d8e6aa252825
 
-COCOAPODS: 1.2.0.beta.1
+COCOAPODS: 1.2.1

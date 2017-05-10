@@ -23,7 +23,22 @@
 
 - (id) initWithAd:(SAAd *)ad {
     if (self = [super init]) {
+        
+        // init with true
+        _moatLimiting = true;
+        
+        // get the ad
         _ad = ad;
+        
+        // init MOAT, if available
+        SEL selector = NSSelectorFromString(@"initMoat");
+        if ([self respondsToSelector:selector]) {
+            
+            // init moat
+            IMP imp = [self methodForSelector:selector];
+            void (*func)(id, SEL) = (void*)imp;
+            func(self, selector);
+        }
     }
     
     return self;
@@ -49,77 +64,112 @@
  * @return          returns a MOAT specific string that will need to be
  *                  inserted in the web view so that the JS moat stuff works
  */
-- (NSString*) moatEventForWebPlayer:(id)webplayer {
+- (NSString*) startMoatTrackingForDisplay:(id)webplayer {
     
-    if ([self isMoatAllowed]) {
-        
-        // form the moat dictionary
-        NSDictionary *moatDict = @{
-                                   @"advertiser": @(_ad.advertiserId),
-                                   @"campaign": @(_ad.campaignId),
-                                   @"line_item": @(_ad.lineItemId),
-                                   @"creative": @(_ad.creative._id),
-                                   @"app": @(_ad.appId),
-                                   @"placement": @(_ad.placementId),
-                                   @"publisher": @(_ad.publisherId)
-                                   };
-        
-        // invoke the Moat event
-        NSString *moatString = @"";
-        SEL selector = NSSelectorFromString(@"sendDisplayMoatEvent:andAdDictionary:");
-        if ([self respondsToSelector:selector]) {
-            IMP imp = [self methodForSelector:selector];
-            NSString* (*func)(id, SEL, id, NSDictionary*) = (void *)imp;
-            moatString = func(self, selector, webplayer, moatDict);
-        }
-        
-        // return the moat-ified string
-        return moatString;
-        
-    } else {
-        return @"";
+    // ad data dictionary
+    NSDictionary *moatDict = @{
+                               @"advertiser": @(_ad.advertiserId),
+                               @"campaign": @(_ad.campaignId),
+                               @"line_item": @(_ad.lineItemId),
+                               @"creative": @(_ad.creative._id),
+                               @"app": @(_ad.appId),
+                               @"placement": @(_ad.placementId),
+                               @"publisher": @(_ad.publisherId)
+                               };
+    
+    // response variable
+    NSString *moatString = @"";
+    
+    // selector
+    SEL selector = NSSelectorFromString(@"internalStartMoatTrackingForDisplay:andAdDictionary:");
+    
+    // perform selector, if available
+    if ([self respondsToSelector:selector] && [self isMoatAllowed]) {
+        IMP imp = [self methodForSelector:selector];
+        NSString* (*func)(id, SEL, id, NSDictionary*) = (void *)imp;
+        moatString = func(self, selector, webplayer, moatDict);
     }
     
+    // return
+    return moatString;
+}
+
+- (BOOL) stopMoatTrackingForDisplay {
+    
+    // response variable
+    BOOL moatResponse = false;
+    
+    // selector
+    SEL selector = NSSelectorFromString(@"internalStopMoatTrackingForDisplay");
+    
+    // perform selector, if available
+    if ([self respondsToSelector:selector]) {
+        IMP imp = [self methodForSelector:selector];
+        BOOL (*func)(id, SEL) = (void*) imp;
+        moatResponse = func(self, selector);
+    }
+    
+    // return
+    return moatResponse;
 }
 
 /**
  * Method that registers a Video Moat event
  *
- * @param video     the current AVPlayer needed by Moat to do video tracking
+ * @param player    the current AVPlayer needed by Moat to do video tracking
  * @param layer     the current Player layer associated with the video view
  * @return          whether the video moat event started OK
  */
-- (BOOL) moatEventForVideoPlayer:(AVPlayer*) player
-                       withLayer:(AVPlayerLayer*) layer
-                         andView:(UIView*) view {
+- (BOOL) startMoatTrackingForVideoPlayer:(AVPlayer*) player
+                               withLayer:(AVPlayerLayer*) layer
+                                 andView:(UIView*) view {
     
-    if ([self isMoatAllowed]) {
-        
-        // also get the moat dict, another needed parameter
-        NSDictionary *moatDict = @{
-                                   @"advertiser":@(_ad.advertiserId),
-                                   @"campaign":@(_ad.campaignId),
-                                   @"line_item":@(_ad.lineItemId),
-                                   @"creative":@(_ad.creative._id),
-                                   @"app":@(_ad.appId),
-                                   @"placement":@(_ad.placementId),
-                                   @"publisher":@(_ad.publisherId)
-                                   };
-        
-        // invoke the moat event
-        BOOL moatResponse = false;
-        SEL selector = NSSelectorFromString(@"registerVideoMoatEvent:andLayer:andView:andAdDictionary:");
-        if ([self respondsToSelector:selector]) {
-            IMP imp = [self methodForSelector:selector];
-            BOOL (*func)(id, SEL, AVPlayer*, AVPlayerLayer*, UIView*, NSDictionary*) = (void *)imp;
-            moatResponse = func(self, selector, player, layer, view, moatDict);
-        }
-        return moatResponse;
-        
+    // ad data dictionary
+    NSDictionary *moatDict = @{
+                               @"advertiser":@(_ad.advertiserId),
+                               @"campaign":@(_ad.campaignId),
+                               @"line_item":@(_ad.lineItemId),
+                               @"creative":@(_ad.creative._id),
+                               @"app":@(_ad.appId),
+                               @"placement":@(_ad.placementId),
+                               @"publisher":@(_ad.publisherId)
+                               };
+    
+    // response variable
+    BOOL moatResponse = false;
+    
+    // selector
+    SEL selector = NSSelectorFromString(@"internalStartMoatTrackingForVideoPlayer:withLayer:andView:andAdDictionary:");
+    
+    // perform selector, if available
+    if ([self respondsToSelector:selector] && [self isMoatAllowed]) {
+        IMP imp = [self methodForSelector:selector];
+        BOOL (*func)(id, SEL, AVPlayer*, AVPlayerLayer*, UIView*, NSDictionary*) = (void *)imp;
+        moatResponse = func(self, selector, player, layer, view, moatDict);
     }
-    else {
-        return false;
+    
+    // return
+    return moatResponse;
+}
+
+- (BOOL) stopMoatTrackingForVideoPlayer {
+    
+    // response variable
+    BOOL moatResponse = false;
+    
+    // selector
+    SEL selector = NSSelectorFromString(@"internalStopMoatTrackingForVideoPlayer");
+    
+    // perform selector, if available
+    if ([self respondsToSelector:selector]) {
+        IMP imp = [self methodForSelector:selector];
+        BOOL (*func)(id, SEL) = (void*) imp;
+        moatResponse = func(self, selector);
     }
+    
+    // return
+    return moatResponse;
+    
 }
 
 /**

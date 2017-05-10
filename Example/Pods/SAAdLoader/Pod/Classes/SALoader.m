@@ -265,7 +265,7 @@
                             
                             // add final details
                             ad.creative.details.media.path = diskPath;
-                            ad.creative.details.media.isDownloaded = diskPath != nil;
+                            ad.creative.details.media.isDownloaded = diskPath != nil && diskPath != (NSString*)[NSNull null];
                             
                             // finally respond
                             localResult (response);
@@ -322,7 +322,7 @@
                     SAAd *cAd = [response.ads objectAtIndex:i];
                     cAd.creative.details.media.url = cAd.creative.details.image;
                     cAd.creative.details.media.path = diskUrl;
-                    cAd.creative.details.media.isDownloaded = diskUrl != nil;
+                    cAd.creative.details.media.isDownloaded = diskUrl != nil && diskUrl != (NSString*)[NSNull null];
                     
                 }
                 

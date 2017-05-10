@@ -49,14 +49,12 @@
 - (void) triggerVASTThirdQuartileEvent;
 - (void) triggerVASTCompleteEvent;
 - (void) triggerVASTClickTrackingEvent;
-- (void) checkViewableStatusForDisplay:(UIView*)view
-                           andResponse:(saDidFindViewOnScreen) response;
-- (void) checkViewableStatusForVideo:(UIView*)view
-                         andResponse:(saDidFindViewOnScreen) response;
-- (NSString*) registerDisplayMoatEvent:(id)webplayer;
-- (BOOL) registerVideoMoatEventForVideoPlayer:(AVPlayer*) player
-                                    withLayer:(AVPlayerLayer*) layer
-                                      andView:(UIView*) view;
+- (void) checkViewableStatusForDisplay:(UIView*)view andResponse:(saDidFindViewOnScreen) response;
+- (void) checkViewableStatusForVideo:(UIView*)view andResponse:(saDidFindViewOnScreen) response;
+- (NSString*) startMoatTrackingForDisplay:(id)webplayer;
+- (BOOL) stopMoatTrackingForDisplay;
+- (BOOL) startMoatTrackingForVideoPlayer:(AVPlayer*) player withLayer:(AVPlayerLayer*) layer andView:(UIView*) view;
+- (BOOL) stopMoatTrackingForVideoPlayer;
 - (void) disableMoatLimiting;
 
 

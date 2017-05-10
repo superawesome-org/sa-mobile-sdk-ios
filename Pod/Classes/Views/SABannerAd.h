@@ -46,7 +46,7 @@
 /**
  * Method that resizes the ad object
  *
- * @param frame the new frame to resize to
+ * @param toframe the new frame to resize to
  */
 - (void) resize:(CGRect)toframe;
 
@@ -79,5 +79,6 @@
 - (void) setParentalGate: (BOOL) value;
 - (void) setConfiguration: (NSInteger) value;
 - (void) setColor: (BOOL) value;
+- (void) disableMoatLimiting;
 
 @end

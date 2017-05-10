@@ -387,7 +387,7 @@ static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
  * Overridden UIViewController "viewWillDisappear" method in which I reset the
  * status bar state
  *
- * @param aniamted whether the view will disappeared animated or not
+ * @param animated whether the view will disappeared animated or not
  */
 - (void) viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
