@@ -1,4 +1,3 @@
 .travis.yml
-rdocs/build/*
-rdocs/source/themes/*
-rdocs/source/themeres/*
+Example/*
+Example/Pods/*

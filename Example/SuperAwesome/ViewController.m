@@ -121,7 +121,9 @@
                             @{@"name": @"CPM Interstitial 10 (Rafa)",
                               @"pid": @(657)},
                             @{@"name": @"Sing Interstitial",
-                              @"pid": @(659)}
+                              @"pid": @(659)},
+                            @{@"name": @"TinyPop Interstitial",
+                              @"pid": @(31093)}
                             ]
                   },
                 @{
@@ -138,7 +140,9 @@
                             @{@"name": @"CPI Preroll 1 (Video)",
                               @"pid": @(604)},
                             @{@"name": @"Level 5 CPI",
-                              @"pid": @(33766)}
+                              @"pid": @(31095)},
+                            @{@"name": @"Level 5 CPI",
+                              @"pid": @(31097)}
                             ]
                   },
                 @{

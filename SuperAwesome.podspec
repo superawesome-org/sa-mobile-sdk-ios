@@ -41,6 +41,12 @@ Pod::Spec.new do |s|
     m.source_files = 'Pod/Plugin/MoPub/*'
   end
 
+  s.subspec 'AdMob' do |am|
+    am.dependency 'SuperAwesome/Base'
+    am.dependency 'Google-Mobile-Ads-SDK'
+    am.source_files = 'Pod/Plugin/AdMob/*'
+  end
+
   s.subspec 'Unity' do |u|
     u.dependency 'SuperAwesome/Base'
     u.source_files = 'Pod/Plugin/Unity/*'

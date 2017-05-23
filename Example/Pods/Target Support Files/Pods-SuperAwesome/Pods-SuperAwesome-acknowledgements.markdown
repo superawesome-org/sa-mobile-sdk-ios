@@ -1,6 +1,10 @@
 # Acknowledgements
 This application makes use of the following third party libraries:
 
+## Google-Mobile-Ads-SDK
+
+Copyright 2017 Google
+
 ## SAAdLoader
 
 GNU LESSER GENERAL PUBLIC LICENSE

@@ -78,6 +78,18 @@
       "source_files": "Pod/Plugin/MoPub/*"
     },
     {
+      "name": "AdMob",
+      "dependencies": {
+        "SuperAwesome/Base": [
+
+        ],
+        "Google-Mobile-Ads-SDK": [
+
+        ]
+      },
+      "source_files": "Pod/Plugin/AdMob/*"
+    },
+    {
       "name": "Unity",
       "dependencies": {
         "SuperAwesome/Base": [
