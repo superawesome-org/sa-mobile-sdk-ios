@@ -121,9 +121,7 @@
                             @{@"name": @"CPM Interstitial 10 (Rafa)",
                               @"pid": @(657)},
                             @{@"name": @"Sing Interstitial",
-                              @"pid": @(659)},
-                            @{@"name": @"TinyPop Interstitial",
-                              @"pid": @(31093)}
+                              @"pid": @(659)}
                             ]
                   },
                 @{

@@ -14,6 +14,7 @@
 		1B76D2411C91EEB1000AE8F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B76D23F1C91EEB1000AE8F3 /* Main.storyboard */; };
 		1B76D2431C91EEB1000AE8F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B76D2421C91EEB1000AE8F3 /* Assets.xcassets */; };
 		1B76D2461C91EEB1000AE8F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B76D2441C91EEB1000AE8F3 /* LaunchScreen.storyboard */; };
+		1BB5F58B1ED6CC3400ACD72E /* AdMobController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB5F58A1ED6CC3400ACD72E /* AdMobController.m */; };
 		48911A6C6612BA3F64DD1BD7 /* libPods-SuperAwesome.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DF08CB80A6618D9AA69E83A0 /* libPods-SuperAwesome.a */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,8 @@
 		1B76D2421C91EEB1000AE8F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1B76D2451C91EEB1000AE8F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1B76D2471C91EEB1000AE8F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1BB5F5891ED6CC3400ACD72E /* AdMobController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdMobController.h; sourceTree = "<group>"; };
+		1BB5F58A1ED6CC3400ACD72E /* AdMobController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdMobController.m; sourceTree = "<group>"; };
 		6D41DC203B6EA6BE94DD9AA9 /* Pods-SuperAwesome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesome.release.xcconfig"; path = "Pods/Target Support Files/Pods-SuperAwesome/Pods-SuperAwesome.release.xcconfig"; sourceTree = "<group>"; };
 		AA5FF7087890FE62B71EF03F /* Pods-SuperAwesome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesome.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SuperAwesome/Pods-SuperAwesome.debug.xcconfig"; sourceTree = "<group>"; };
 		DF08CB80A6618D9AA69E83A0 /* libPods-SuperAwesome.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SuperAwesome.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,14 +100,9 @@
 		1B76D2351C91EEB1000AE8F3 /* SuperAwesome */ = {
 			isa = PBXGroup;
 			children = (
-				1B76D2391C91EEB1000AE8F3 /* AppDelegate.h */,
-				1B76D23A1C91EEB1000AE8F3 /* AppDelegate.m */,
-				1B76D23C1C91EEB1000AE8F3 /* ViewController.h */,
-				1B76D23D1C91EEB1000AE8F3 /* ViewController.m */,
-				1B76D23F1C91EEB1000AE8F3 /* Main.storyboard */,
-				1B76D2421C91EEB1000AE8F3 /* Assets.xcassets */,
-				1B76D2441C91EEB1000AE8F3 /* LaunchScreen.storyboard */,
-				1B76D2471C91EEB1000AE8F3 /* Info.plist */,
+				1BB5F58E1ED6CC4F00ACD72E /* Storyboards */,
+				1BB5F58D1ED6CC4300ACD72E /* Meta */,
+				1BB5F58C1ED6CC3900ACD72E /* Controllers */,
 				1B76D2361C91EEB1000AE8F3 /* Supporting Files */,
 			);
 			path = SuperAwesome;
@@ -116,6 +114,37 @@
 				1B76D2371C91EEB1000AE8F3 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1BB5F58C1ED6CC3900ACD72E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1B76D23C1C91EEB1000AE8F3 /* ViewController.h */,
+				1B76D23D1C91EEB1000AE8F3 /* ViewController.m */,
+				1BB5F5891ED6CC3400ACD72E /* AdMobController.h */,
+				1BB5F58A1ED6CC3400ACD72E /* AdMobController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		1BB5F58D1ED6CC4300ACD72E /* Meta */ = {
+			isa = PBXGroup;
+			children = (
+				1B76D2391C91EEB1000AE8F3 /* AppDelegate.h */,
+				1B76D23A1C91EEB1000AE8F3 /* AppDelegate.m */,
+				1B76D2421C91EEB1000AE8F3 /* Assets.xcassets */,
+				1B76D2471C91EEB1000AE8F3 /* Info.plist */,
+			);
+			name = Meta;
+			sourceTree = "<group>";
+		};
+		1BB5F58E1ED6CC4F00ACD72E /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				1B76D2441C91EEB1000AE8F3 /* LaunchScreen.storyboard */,
+				1B76D23F1C91EEB1000AE8F3 /* Main.storyboard */,
+			);
+			name = Storyboards;
 			sourceTree = "<group>";
 		};
 		4DC5FFBD9BA51170DC257BC6 /* Frameworks */ = {
@@ -299,6 +328,7 @@
 				1B76D23E1C91EEB1000AE8F3 /* ViewController.m in Sources */,
 				1B76D23B1C91EEB1000AE8F3 /* AppDelegate.m in Sources */,
 				1B76D2381C91EEB1000AE8F3 /* main.m in Sources */,
+				1BB5F58B1ED6CC3400ACD72E /* AdMobController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

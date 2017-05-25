@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "SuperAwesome.h"
+#import <GoogleMobileAds/GoogleMobileAds.h>
 
 @interface AppDelegate ()
 
@@ -18,6 +19,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    [GADMobileAds configureWithApplicationID:@"ca-app-pub-7706302691807937~3326320407"];
     
     return YES;
 }
