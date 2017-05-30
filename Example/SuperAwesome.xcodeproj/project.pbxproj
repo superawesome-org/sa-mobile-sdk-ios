@@ -15,6 +15,7 @@
 		1B76D2431C91EEB1000AE8F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B76D2421C91EEB1000AE8F3 /* Assets.xcassets */; };
 		1B76D2461C91EEB1000AE8F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B76D2441C91EEB1000AE8F3 /* LaunchScreen.storyboard */; };
 		1BB5F58B1ED6CC3400ACD72E /* AdMobController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB5F58A1ED6CC3400ACD72E /* AdMobController.m */; };
+		1BB5F5951ED82C2800ACD72E /* MoPubController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB5F5941ED82C2800ACD72E /* MoPubController.m */; };
 		48911A6C6612BA3F64DD1BD7 /* libPods-SuperAwesome.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DF08CB80A6618D9AA69E83A0 /* libPods-SuperAwesome.a */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +45,8 @@
 		1B76D2471C91EEB1000AE8F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1BB5F5891ED6CC3400ACD72E /* AdMobController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdMobController.h; sourceTree = "<group>"; };
 		1BB5F58A1ED6CC3400ACD72E /* AdMobController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdMobController.m; sourceTree = "<group>"; };
+		1BB5F5931ED82C2800ACD72E /* MoPubController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoPubController.h; sourceTree = "<group>"; };
+		1BB5F5941ED82C2800ACD72E /* MoPubController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoPubController.m; sourceTree = "<group>"; };
 		6D41DC203B6EA6BE94DD9AA9 /* Pods-SuperAwesome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesome.release.xcconfig"; path = "Pods/Target Support Files/Pods-SuperAwesome/Pods-SuperAwesome.release.xcconfig"; sourceTree = "<group>"; };
 		AA5FF7087890FE62B71EF03F /* Pods-SuperAwesome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesome.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SuperAwesome/Pods-SuperAwesome.debug.xcconfig"; sourceTree = "<group>"; };
 		DF08CB80A6618D9AA69E83A0 /* libPods-SuperAwesome.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SuperAwesome.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,6 +126,8 @@
 				1B76D23D1C91EEB1000AE8F3 /* ViewController.m */,
 				1BB5F5891ED6CC3400ACD72E /* AdMobController.h */,
 				1BB5F58A1ED6CC3400ACD72E /* AdMobController.m */,
+				1BB5F5931ED82C2800ACD72E /* MoPubController.h */,
+				1BB5F5941ED82C2800ACD72E /* MoPubController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -327,6 +332,7 @@
 			files = (
 				1B76D23E1C91EEB1000AE8F3 /* ViewController.m in Sources */,
 				1B76D23B1C91EEB1000AE8F3 /* AppDelegate.m in Sources */,
+				1BB5F5951ED82C2800ACD72E /* MoPubController.m in Sources */,
 				1B76D2381C91EEB1000AE8F3 /* main.m in Sources */,
 				1BB5F58B1ED6CC3400ACD72E /* AdMobController.m in Sources */,
 			);

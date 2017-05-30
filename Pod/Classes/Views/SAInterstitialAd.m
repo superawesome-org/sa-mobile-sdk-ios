@@ -375,8 +375,6 @@ static BOOL isMoatLimitingEnabled    = SA_DEFAULT_MOAT_LIMITING_STATE;
                 [ads removeObjectForKey:@(placementId)];
             }
             
-            NSLog(@"%@", [response jsonPreetyStringRepresentation]);
-            
             // callback
             callback(placementId, [response isValid] ? adLoaded : adFailedToLoad);
         }];

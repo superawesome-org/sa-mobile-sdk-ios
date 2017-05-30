@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'BBA6DAEEDC13CBF3BEA89C9A'
+               BlueprintIdentifier = '24C885E13377194CB1F10669'
                BlueprintName = 'SACPI'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libSACPI.a'>

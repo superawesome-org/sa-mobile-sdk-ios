@@ -1,1 +1,0 @@
-../../../../../Pod/Plugin/MoPub/SuperAwesomeRewardedVideoCustomEvent.h

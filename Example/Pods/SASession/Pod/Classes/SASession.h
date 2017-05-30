@@ -13,7 +13,8 @@
  */
 typedef NS_ENUM(NSInteger, SAConfiguration) {
     PRODUCTION  = 0,
-    STAGING     = 1
+    STAGING     = 1,
+    DEVELOP     = 2
 };
 
 /**

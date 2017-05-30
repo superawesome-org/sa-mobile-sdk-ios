@@ -3,15 +3,16 @@
  * @Author:      Gabriel Coman (gabriel.coman@superawesome.tv)
  */
 
-#import "SuperAwesomeInterstitialCustomEvent.h"
+#import "SAMoPubInterstitialCustomEvent.h"
 #import "SuperAwesome.h"
-#import "SuperAwesomeMoPub.h"
+#import "SAMoPub.h"
+#import "NSDictionary+SafeHandling.h"
 
-@interface SuperAwesomeInterstitialCustomEvent ()
+@interface SAMoPubInterstitialCustomEvent ()
 @property (nonatomic, assign) NSInteger placementId;
 @end
 
-@implementation SuperAwesomeInterstitialCustomEvent
+@implementation SAMoPubInterstitialCustomEvent
 
 /**
  * Overridden MoPub method that requests a new interstitial.
@@ -21,51 +22,31 @@
  */
 - (void) requestInterstitialWithCustomEventInfo:(NSDictionary *)info {
     
-    // variables received from the MoPub server
-    id _Nullable placementIdObj = [info objectForKey:PLACEMENT_ID];
-    id _Nullable isTestEnabledObj = [info objectForKey:TEST_ENABLED];
-    id _Nullable isParentalGateEnabledObj = [info objectForKey:PARENTAL_GATE];
-    id _Nullable lockOrientationObj = [info objectForKey:LOCK_ORIENTATION];
-    id _Nullable orientationObj = [info objectForKey:ORIENTATION];
-    
-    NSInteger placementId = SA_DEFAULT_PLACEMENTID;
-    BOOL isTestEnabled = SA_DEFAULT_TESTMODE;
-    BOOL isParentalGateEnabled = SA_DEFAULT_PARENTALGATE;
+    _placementId = [[info safeObjectForKey:PLACEMENT_ID orDefault:@(SA_DEFAULT_PLACEMENTID)] integerValue];
+    BOOL isTestEnabled = [[info safeObjectForKey:TEST_ENABLED orDefault:@(SA_DEFAULT_TESTMODE)] boolValue];
+    BOOL isParentalGateEnabled = [[info safeObjectForKey:PARENTAL_GATE orDefault:@(SA_DEFAULT_PARENTALGATE)] boolValue];
     SAOrientation orientation = SA_DEFAULT_ORIENTATION;
     
-    if (placementIdObj) {
-        placementId = [placementIdObj integerValue];
+    NSString *ori = [info safeStringForKey:ORIENTATION];
+    if (ori != nil && [ori isEqualToString:@"PORTRAIT"]) {
+        orientation = PORTRAIT;
     }
-    if (isTestEnabledObj) {
-        isTestEnabled = [isTestEnabledObj boolValue];
+    if (ori != nil && [ori isEqualToString:@"LANDSCAPE"]) {
+        orientation = LANDSCAPE;
     }
-    if (isParentalGateEnabledObj) {
-        isParentalGateEnabled = [isParentalGateEnabledObj boolValue];
-    }
-    if (lockOrientationObj) {
-        NSString *lockOrientationStr = (NSString*)lockOrientationObj;
-        if (lockOrientationStr && [lockOrientationStr isEqualToString:@"PORTRAIT"]) {
-            orientation = PORTRAIT;
-        }
-        if (lockOrientationStr && [lockOrientationStr isEqualToString:@"LANDSCAPE"]) {
-            orientation = LANDSCAPE;
-        }
-    }
-    if (orientationObj) {
-        NSString *orientationStr = (NSString*)orientationObj;
-        if (orientationStr && [orientationStr isEqualToString:@"PORTRAIT"]) {
-            orientation = PORTRAIT;
-        }
-        if (orientationStr && [orientationStr isEqualToString:@"LANDSCAPE"]) {
-            orientation = LANDSCAPE;
-        }
+    
+    SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
+    
+    NSString *conf = [info safeStringForKey:CONFIGURATION];
+    if (conf != nil && [conf isEqualToString:@"STAGING"]) {
+        configuration = STAGING;
     }
     
     // get a weak self reference
     __weak typeof (self) weakSelf = self;
     
     // start the loader
-    [SAInterstitialAd setConfigurationProduction];
+    [SAInterstitialAd setConfiguration:configuration];
     [SAInterstitialAd setTestMode:isTestEnabled];
     [SAInterstitialAd setParentalGate:isParentalGateEnabled];
     [SAInterstitialAd setOrientation:orientation];

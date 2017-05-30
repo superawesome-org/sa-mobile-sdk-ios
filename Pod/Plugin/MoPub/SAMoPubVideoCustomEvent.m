@@ -3,18 +3,19 @@
  * @Author:      Gabriel Coman (gabriel.coman@superawesome.tv)
  */
 
-#import "SuperAwesomeRewardedVideoCustomEvent.h"
+#import "SAMoPubVideoCustomEvent.h"
 #import "SuperAwesome.h"
 #import "MPRewardedVideoReward.h"
-#import "SuperAwesomeMoPub.h"
+#import "SAMoPub.h"
+#import "NSDictionary+SafeHandling.h"
 
-@interface SuperAwesomeRewardedVideoCustomEvent ()
+@interface SAMoPubVideoCustomEvent ()
 @property (nonatomic, strong) MPRewardedVideoReward *reward;
 @property (nonatomic, assign) BOOL hasAdAvailable;
 @property (nonatomic, assign) NSInteger placementId;
 @end
 
-@implementation SuperAwesomeRewardedVideoCustomEvent
+@implementation SAMoPubVideoCustomEvent
 
 /**
  * Overridden MoPub method that requests a new video.
@@ -25,60 +26,28 @@
 
 - (void) requestRewardedVideoWithCustomEventInfo:(NSDictionary *)info {
     
-    // get values from the info dictionary
-    id _Nullable placementIdObj = [info objectForKey:PLACEMENT_ID];
-    id _Nullable isTestEnabledObj = [info objectForKey:TEST_ENABLED];
-    id _Nullable isParentalGateEnabledObj = [info objectForKey:PARENTAL_GATE];
-    id _Nullable shouldShowCloseButtonObj = [info objectForKey:SHOULD_SHOW_CLOSE];
-    id _Nullable shouldAutomaticallyCloseAtEndObj = [info objectForKey:SHOULD_AUTO_CLOSE];
-    id _Nullable shouldShowSmallClickButtonObj = [info objectForKey:VIDEO_BUTTON_STYLE];
-    id _Nullable lockOrientationObj = [info objectForKey:LOCK_ORIENTATION];
-    id _Nullable orientationObj = [info objectForKey:ORIENTATION];
+    _placementId = [[info safeObjectForKey:PLACEMENT_ID orDefault:@(SA_DEFAULT_PLACEMENTID)] integerValue];
+    BOOL isTestEnabled = [[info safeObjectForKey:TEST_ENABLED orDefault:@(SA_DEFAULT_TESTMODE)] boolValue];
+    BOOL isParentalGateEnabled = [[info safeObjectForKey:PARENTAL_GATE orDefault:@(SA_DEFAULT_PARENTALGATE)] boolValue];
+    BOOL shouldShowCloseButton = [[info safeObjectForKey:SHOULD_SHOW_CLOSE orDefault:@(SA_DEFAULT_BACKBUTTON)] boolValue];
+    BOOL shouldShowSmallClickButton = [[info safeObjectForKey:VIDEO_BUTTON_STYLE orDefault:@(SA_DEFAULT_SMALLCLICK)] boolValue];
+    BOOL shouldAutomaticallyCloseAtEnd = [[info safeObjectForKey:SHOULD_AUTO_CLOSE orDefault:@(SA_DEFAULT_CLOSEATEND)] boolValue];
     
-    // assign values
-    _placementId = SA_DEFAULT_PLACEMENTID;
-    BOOL isTestEnabled = SA_DEFAULT_TESTMODE;
-    BOOL isParentalGateEnabled = SA_DEFAULT_PARENTALGATE;
-    BOOL shouldShowCloseButton = SA_DEFAULT_CLOSEBUTTON;
-    BOOL shouldShowSmallClickButton = SA_DEFAULT_SMALLCLICK;
-    BOOL shouldAutomaticallyCloseAtEnd = SA_DEFAULT_CLOSEATEND;
     SAOrientation orientation = SA_DEFAULT_ORIENTATION;
     
-    if (placementIdObj) {
-        _placementId = [placementIdObj integerValue];
+    NSString *ori = [info safeStringForKey:ORIENTATION];
+    if (ori != nil && [ori isEqualToString:@"PORTRAIT"]) {
+        orientation = PORTRAIT;
     }
-    if (isTestEnabledObj) {
-        isTestEnabled = [isTestEnabledObj boolValue];
+    if (ori != nil && [ori isEqualToString:@"LANDSCAPE"]) {
+        orientation = LANDSCAPE;
     }
-    if (isParentalGateEnabledObj) {
-        isParentalGateEnabled = [isParentalGateEnabledObj boolValue];
-    }
-    if (shouldShowCloseButtonObj) {
-        shouldShowCloseButton = [shouldShowCloseButtonObj boolValue];
-    }
-    if (shouldShowSmallClickButtonObj) {
-        shouldShowSmallClickButton = [shouldShowSmallClickButtonObj boolValue];
-    }
-    if (shouldAutomaticallyCloseAtEndObj) {
-        shouldAutomaticallyCloseAtEnd = [shouldAutomaticallyCloseAtEndObj boolValue];
-    }
-    if (lockOrientationObj) {
-        NSString *lockOrientationStr = (NSString*)lockOrientationObj;
-        if (lockOrientationStr && [lockOrientationStr isEqualToString:@"PORTRAIT"]) {
-            orientation = PORTRAIT;
-        }
-        if (lockOrientationStr && [lockOrientationStr isEqualToString:@"LANDSCAPE"]) {
-            orientation = LANDSCAPE;
-        }
-    }
-    if (orientationObj) {
-        NSString *orientationStr = (NSString*)orientationObj;
-        if (orientationStr && [orientationStr isEqualToString:@"PORTRAIT"]) {
-            orientation = PORTRAIT;
-        }
-        if (orientationStr && [orientationStr isEqualToString:@"LANDSCAPE"]) {
-            orientation = LANDSCAPE;
-        }
+    
+    SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
+    
+    NSString *conf = [info safeStringForKey:CONFIGURATION];
+    if (conf != nil && [conf isEqualToString:@"STAGING"]) {
+        configuration = STAGING;
     }
     
     _hasAdAvailable = false;
@@ -87,7 +56,7 @@
     __weak typeof (self) weakSelf = self;
     
     // enable or disable test mode
-    [SAVideoAd setConfigurationProduction];
+    [SAVideoAd setConfiguration:configuration];
     [SAVideoAd setTestMode:isTestEnabled];
     [SAVideoAd setParentalGate:isParentalGateEnabled];
     [SAVideoAd setCloseButton:shouldShowCloseButton];

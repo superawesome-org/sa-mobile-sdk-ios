@@ -3,13 +3,13 @@
  * @Author:      Gabriel Coman (gabriel.coman@superawesome.tv)
  */
 
-#import "MPInterstitialCustomEvent.h"
+#import "MPRewardedVideoCustomEvent.h"
 
 /**
  * Class that abstracts away communication with MoPub in order to display
- * interstitial ads.
+ * video ads.
  * Visit documentation at
  * https://dev.twitter.com/mopub/network-mediation/custom-unsupported-ios
  */
-@interface SuperAwesomeInterstitialCustomEvent : MPInterstitialCustomEvent
+@interface SAMoPubVideoCustomEvent : MPRewardedVideoCustomEvent
 @end

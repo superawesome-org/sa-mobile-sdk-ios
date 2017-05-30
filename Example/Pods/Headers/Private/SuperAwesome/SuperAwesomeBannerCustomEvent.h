@@ -1,1 +1,0 @@
-../../../../../Pod/Plugin/MoPub/SuperAwesomeBannerCustomEvent.h
