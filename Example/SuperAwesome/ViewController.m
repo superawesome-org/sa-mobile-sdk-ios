@@ -138,7 +138,9 @@
                             @{@"name": @"CPI Preroll 1 (Video)",
                               @"pid": @(604)},
                             @{@"name": @"Level 5 CPI",
-                              @"pid": @(33766)}
+                              @"pid": @(31095)},
+                            @{@"name": @"Level 5 CPI",
+                              @"pid": @(31097)}
                             ]
                   },
                 @{

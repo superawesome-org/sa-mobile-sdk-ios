@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+5.7.0
+ - Added AdMob support 
+ - Refactored MoPub classes to use the same naming convention as the AdMob, Unity and AIR plugins
+ - Made the padlock be positioned correctly over the main ad content
+ - Refactored MoPub classes to better read values form the MoPub configuration JSON
+
 5.6.0
  - Added MRAID capabilities to banner & interstitial ads
  - Updated the MOAT implementation to the latest one available

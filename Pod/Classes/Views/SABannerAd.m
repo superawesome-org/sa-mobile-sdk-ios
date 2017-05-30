@@ -393,8 +393,16 @@
     // rearrange the webview
     [_webplayer updateParentFrame:toframe];
     
+    CGRect contentRect = CGRectMake(0, 0, _ad.creative.details.width, _ad.creative.details.height);
+    CGRect result = [_webplayer map:contentRect into:toframe];
+    CGFloat scaleX = result.size.width / _ad.creative.details.width;
+    CGFloat scaleY = result.size.height / _ad.creative.details.height;
+    
     // rearrange the padlock
-    _padlock.frame = CGRectMake(0, 0, 67, 25);
+    CGFloat x = (toframe.size.width - _ad.creative.details.width * scaleX) / 2;
+    CGFloat y = (toframe.size.height - _ad.creative.details.height * scaleY) / 2;
+    
+    _padlock.frame = CGRectMake(x, y, 67, 25);
     [self bringSubviewToFront:_padlock];
 }
 

@@ -1,7 +1,8 @@
 PODS:
-  - mopub-ios-sdk (4.13.1):
-    - mopub-ios-sdk/MoPubSDK (= 4.13.1)
-  - mopub-ios-sdk/MoPubSDK (4.13.1)
+  - Google-Mobile-Ads-SDK (7.20.0)
+  - mopub-ios-sdk (4.14.0):
+    - mopub-ios-sdk/MoPubSDK (= 4.14.0)
+  - mopub-ios-sdk/MoPubSDK (4.14.0)
   - SAAdLoader (1.1.2):
     - SAModelSpace (= 0.4.9)
     - SANetworking (= 0.2.9)
@@ -45,6 +46,9 @@ PODS:
   - SAVideoPlayer (1.2.1)
   - SAWebPlayer (1.2.1):
     - SANetworking (= 0.2.9)
+  - SuperAwesome/AdMob (5.6.0):
+    - Google-Mobile-Ads-SDK
+    - SuperAwesome/Base
   - SuperAwesome/AIR (5.6.0):
     - SuperAwesome/Base
   - SuperAwesome/Base (5.6.0):
@@ -63,6 +67,7 @@ PODS:
     - SuperAwesome/Base
 
 DEPENDENCIES:
+  - SuperAwesome/AdMob (from `../`)
   - SuperAwesome/AIR (from `../`)
   - SuperAwesome/Full (from `../`)
   - SuperAwesome/MoPub (from `../`)
@@ -73,7 +78,8 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  mopub-ios-sdk: 50741c2761878dc676d05e88d7718fca81089377
+  Google-Mobile-Ads-SDK: 168312cdc167fa22746d4ea8e839fc4825dd2966
+  mopub-ios-sdk: 7f08192469c06842a9354d972db32acd18127ae0
   SAAdLoader: ca3d4021f27fb50c0dbd5eae73bd8043fdbc919c
   SACPI: bc27c5a465b0ff8f0b110c2a31cb069ce6adac43
   SAEvents: 0a7f4e94b47b18af1304cf598fd31e31bff5d006
@@ -85,8 +91,8 @@ SPEC CHECKSUMS:
   SAVASTParser: 4f1708b27551359565575ba1ca17786d84eeb3c2
   SAVideoPlayer: ca3a28494337373e18cd00b51ada7549c701b579
   SAWebPlayer: d7ee083d0a8acb4dc9350156637c65fb286708ed
-  SuperAwesome: 75428c74fac3115208fa27bdb42e42a5e662828e
+  SuperAwesome: 9640ce31b06295362c09d9346d6fe047d3e70de9
 
-PODFILE CHECKSUM: 237a5b78dc66e89faa90277d0d09d8e6aa252825
+PODFILE CHECKSUM: 0ebfb4d24d0eb045cbc754396f702739b78a6c73
 
 COCOAPODS: 1.2.1

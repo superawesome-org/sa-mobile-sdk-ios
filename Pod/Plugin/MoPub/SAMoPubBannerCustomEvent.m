@@ -3,15 +3,16 @@
  * @Author:      Gabriel Coman (gabriel.coman@superawesome.tv)
  */
 
-#import "SuperAwesomeBannerCustomEvent.h"
-#import "SuperAwesomeMoPub.h"
+#import "SAMoPubBannerCustomEvent.h"
+#import "SAMoPub.h"
 #import "SuperAwesome.h"
+#import "NSDictionary+SafeHandling.h"
 
-@interface SuperAwesomeBannerCustomEvent ()
+@interface SAMoPubBannerCustomEvent ()
 @property (nonatomic, strong) SABannerAd *banner;
 @end
 
-@implementation SuperAwesomeBannerCustomEvent
+@implementation SAMoPubBannerCustomEvent
 
 /**
  * Overridden MoPub method that requests a banner ad of a certain size, with
@@ -24,24 +25,15 @@
 - (void) requestAdWithSize:(CGSize) size
            customEventInfo:(NSDictionary*) info {
     
-    // variables received from the MoPub server
-    id _Nullable placementIdObj = [info objectForKey:PLACEMENT_ID];
-    id _Nullable isTestEnabledObj = [info objectForKey:TEST_ENABLED];
-    id _Nullable isParentalGateEnabledObj = [info objectForKey:PARENTAL_GATE];
+    NSInteger placementId = [[info safeObjectForKey:PLACEMENT_ID orDefault:@(SA_DEFAULT_PLACEMENTID)] integerValue];
+    BOOL isTestEnabled = [[info safeObjectForKey:TEST_ENABLED orDefault:@(SA_DEFAULT_TESTMODE)] boolValue];
+    BOOL isPrentalGateEnabled = [[info safeObjectForKey:PARENTAL_GATE orDefault:@(SA_DEFAULT_PARENTALGATE)] boolValue];
     
-    // get values
-    BOOL placementId = SA_DEFAULT_PLACEMENTID;
-    BOOL isTestEnabled = SA_DEFAULT_TESTMODE;
-    BOOL isPrentalGateEnabled = SA_DEFAULT_PARENTALGATE;
+    SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
     
-    if (placementIdObj) {
-        placementId = [placementIdObj integerValue];
-    }
-    if (isTestEnabledObj) {
-        isTestEnabled = [isTestEnabledObj boolValue];
-    }
-    if (isParentalGateEnabledObj) {
-        isPrentalGateEnabled = [isParentalGateEnabledObj boolValue];
+    NSString *conf = [info safeStringForKey:CONFIGURATION];
+    if (conf != nil && [conf isEqualToString:@"STAGING"]) {
+        configuration = STAGING;
     }
     
     // get a weak self reference
@@ -49,7 +41,7 @@
     
     // create a new banner
     _banner = [[SABannerAd alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
-    [_banner setConfigurationProduction];
+    [_banner setConfiguration:configuration];
     [_banner setTestMode:isTestEnabled];
     [_banner setParentalGate:isPrentalGateEnabled];
 
