@@ -193,7 +193,7 @@ static BOOL isMoatLimitingEnabled    = SA_DEFAULT_MOAT_LIMITING_STATE;
  * Overridden UIViewController "viewWillDisappear" method in which I reset the
  * status bar state
  *
- * @param aniamted whether the view will disappeared animated or not
+ * @param animated  whether the view will disappeared animated or not
  */
 - (void) viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
@@ -366,17 +366,22 @@ static BOOL isMoatLimitingEnabled    = SA_DEFAULT_MOAT_LIMITING_STATE;
         SALoader *loader = [[SALoader alloc] init];
         [loader loadAd:placementId withSession:session andResult:^(SAResponse *response) {
             
-            // add to the array queue
-            if ([response isValid]) {
-                [ads setObject:[response.ads objectAtIndex:0] forKey:@(placementId)];
+            if (response.status != 200) {
+                callback(placementId, adFailedToLoad);
             }
-            // remove
             else {
-                [ads removeObjectForKey:@(placementId)];
+                // add to the array queue
+                if ([response isValid]) {
+                    [ads setObject:[response.ads objectAtIndex:0] forKey:@(placementId)];
+                }
+                // remove
+                else {
+                    [ads removeObjectForKey:@(placementId)];
+                }
+                
+                // callback
+                callback(placementId, [response isValid] ? adLoaded : adEmpty);
             }
-            
-            // callback
-            callback(placementId, [response isValid] ? adLoaded : adFailedToLoad);
         }];
         
     }

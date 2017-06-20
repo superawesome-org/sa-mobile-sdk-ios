@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+5.7.1
+ - Added a new ad callback event called adEmpty. This will be forwarded when the ad server returns successfully (status code 200) but has no actual ad to serve.
+ - Added this event to the AIR and Unity plugins
+ - It is also handled by the AdMob/MoPub adapters in their own internal logic
+ - Fixed warnings from dependency libraries
+
 5.7.0
  - Added AdMob support 
  - Refactored MoPub classes to use the same naming convention as the AdMob, Unity and AIR plugins

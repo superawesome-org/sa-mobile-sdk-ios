@@ -27,6 +27,7 @@ FREObject SuperAwesomeAIRSAAppWallCreate (FREContext ctx, void* funcData, uint32
     [SAAppWall setCallback:^(NSInteger placementId, SAEvent event) {
         switch (event) {
             case adLoaded:          sendAdCallback(ctx, @"SAAppWall", (int)placementId, @"adLoaded"); break;
+            case adEmpty:           sendAdCallback(ctx, @"SAAppWall", (int)placementId, @"adEmpty"); break;
             case adFailedToLoad:    sendAdCallback(ctx, @"SAAppWall", (int)placementId, @"adFailedToLoad"); break;
             case adAlreadyLoaded:   sendAdCallback(ctx, @"SAAppWall", (int)placementId, @"adAlreadyLoaded"); break;
             case adShown:           sendAdCallback(ctx, @"SAAppWall", (int)placementId, @"adShown"); break;

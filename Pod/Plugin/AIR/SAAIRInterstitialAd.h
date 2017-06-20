@@ -13,7 +13,7 @@
  * @param ctx       current FREContext object
  * @param funcData  pointer to extra data
  * @param argc      argc paramter
- * @param argv[]    argv paramter
+ * @param argv      argv paramter
  * @return          a new FREObject instance with return data
  */
 FREObject SuperAwesomeAIRSAInterstitialAdCreate (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]);
@@ -24,7 +24,7 @@ FREObject SuperAwesomeAIRSAInterstitialAdCreate (FREContext ctx, void* funcData,
  * @param ctx       current FREContext object
  * @param funcData  pointer to extra data
  * @param argc      argc paramter
- * @param argv[]    argv paramter
+ * @param argv      argv paramter
  * @return          a new FREObject instance with return data
  */
 FREObject SuperAwesomeAIRSAInterstitialAdLoad (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]);
@@ -35,7 +35,7 @@ FREObject SuperAwesomeAIRSAInterstitialAdLoad (FREContext ctx, void* funcData, u
  * @param ctx       current FREContext object
  * @param funcData  pointer to extra data
  * @param argc      argc paramter
- * @param argv[]    argv paramter
+ * @param argv      argv paramter
  * @return          a new FREObject instance with return data
  */
 FREObject SuperAwesomeAIRSAInterstitialAdHasAdAvailable (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]);
@@ -46,7 +46,7 @@ FREObject SuperAwesomeAIRSAInterstitialAdHasAdAvailable (FREContext ctx, void* f
  * @param ctx       current FREContext object
  * @param funcData  pointer to extra data
  * @param argc      argc paramter
- * @param argv[]    argv paramter
+ * @param argv      argv paramter
  * @return          a new FREObject instance with return data
  */
 FREObject SuperAwesomeAIRSAInterstitialAdPlay (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]);

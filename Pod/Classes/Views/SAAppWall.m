@@ -367,7 +367,7 @@ static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
  * Overridden UIViewController "viewDidAppear" method in which I send out all
  * neeeded events for the ad.
  * 
- * @param aniamted whether the view has appeared animated or not
+ * @param animated  whether the view has appeared animated or not
  */
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -709,17 +709,22 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         SALoader *loader = [[SALoader alloc] init];
         [loader loadAd:placementId withSession:session andResult:^(SAResponse *response) {
             
-            // add to the array queue
-            if ([response isValid]) {
-                [responses setObject:response forKey:@(placementId)];
+            if (response.status != 200) {
+                callback(placementId, adFailedToLoad);
             }
-            // remove
             else {
-                [responses removeObjectForKey:@(placementId)];
+                // add to the array queue
+                if ([response isValid]) {
+                    [responses setObject:response forKey:@(placementId)];
+                }
+                // remove
+                else {
+                    [responses removeObjectForKey:@(placementId)];
+                }
+                
+                // callback
+                callback(placementId, [response isValid] ? adLoaded : adEmpty);
             }
-            
-            // callback
-            callback(placementId, [response isValid] ? adLoaded : adFailedToLoad);
         }];
         
     }

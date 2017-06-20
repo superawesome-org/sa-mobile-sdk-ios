@@ -54,7 +54,7 @@ static inline void sendAdCallback (NSString *unityName, NSInteger placementId, N
  * Method that sends back CPU data to Unity
  *
  * @param unityName     the name of the unity ad to send the message back to
- * @param succes        whether the /install event was sent OK
+ * @param success        whether the /install event was sent OK
  * @param callback      callback method
  */
 static inline void sendCPICallback (NSString *unityName, BOOL success, NSString *callback) {

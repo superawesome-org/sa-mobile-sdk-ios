@@ -32,6 +32,7 @@ extern "C" {
         [SAVideoAd setCallback:^(NSInteger placementId, SAEvent event) {
             switch (event) {
                 case adLoaded: sendAdCallback(@"SAVideoAd", placementId, @"adLoaded"); break;
+                case adEmpty: sendAdCallback(@"SAVideoAd", placementId, @"adEmpty"); break;
                 case adFailedToLoad: sendAdCallback(@"SAVideoAd", placementId, @"adFailedToLoad"); break;
                 case adAlreadyLoaded: sendAdCallback(@"SAVideoAd", placementId, @"adAlreadyLoaded"); break;
                 case adShown: sendAdCallback(@"SAVideoAd", placementId, @"adShown"); break;
@@ -75,8 +76,7 @@ extern "C" {
      * @param shouldShowCloseButton         true / false
      * @param shouldShowSmallClickButton    true / false
      * @param shouldAutomaticallyCloseAtEnd true / false
-     * @param shouldLockOrientation         true / falsr
-     * @param lockOrientation               ANY = 0 / PORTRAIT = 1 / LANDSCAPE = 2
+     * @param orientation                   ANY = 0 / PORTRAIT = 1 / LANDSCAPE = 2
      */
     void SuperAwesomeUnitySAVideoAdPlay(int placementId, bool isParentalGateEnabled, bool shouldShowCloseButton, bool shouldShowSmallClickButton, bool shouldAutomaticallyCloseAtEnd, int orientation) {
         UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;

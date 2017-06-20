@@ -76,11 +76,18 @@
                 // do nothing
                 break;
             }
-            case adFailedToLoad: {
+            case adEmpty: {
                 [weakSelf.delegate rewardedVideoDidFailToLoadAdForCustomEvent:weakSelf
                                                                         error:[weakSelf createErrorWith:ERROR_LOAD_TITLE(@"Video Ad", placementId)
                                                                                               andReason:ERROR_LOAD_MESSAGE
                                                                                           andSuggestion:ERROR_LOAD_SUGGESTION]];
+                break;
+            }
+            case adFailedToLoad: {
+                [weakSelf.delegate rewardedVideoDidFailToLoadAdForCustomEvent:weakSelf
+                                                                        error:[weakSelf createErrorWith:ERROR_LOAD_TITLE(@"Video Ad", placementId)
+                                                                                              andReason:ERROR_NETWORK_MESSAGE
+                                                                                          andSuggestion:ERROR_NETWORK_SUGGESTION]];
                 break;
             }
             case adShown: {
@@ -120,7 +127,7 @@
 /**
  * Overridden MoPub method that actually displays an video ad.
  *
- * @param rootViewController the view controller from which the ad will spring
+ * @param viewController the view controller from which the ad will spring
  */
 - (void) presentRewardedVideoFromViewController:(UIViewController *)viewController {
     [SAVideoAd play:_placementId fromVC:viewController];

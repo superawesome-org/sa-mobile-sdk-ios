@@ -13,7 +13,7 @@
  * @param ctx       current FREContext object
  * @param funcData  pointer to extra data
  * @param argc      argc paramter
- * @param argv[]    argv paramter
+ * @param argv      argv paramter
  * @return          a new FREObject instance with return data
  */
 FREObject SuperAwesomeAIRSAVideoAdCreate (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]);
@@ -24,7 +24,7 @@ FREObject SuperAwesomeAIRSAVideoAdCreate (FREContext ctx, void* funcData, uint32
  * @param ctx       current FREContext object
  * @param funcData  pointer to extra data
  * @param argc      argc paramter
- * @param argv[]    argv paramter
+ * @param argv      argv paramter
  * @return          a new FREObject instance with return data
  */
 FREObject SuperAwesomeAIRSAVideoAdLoad (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]);
@@ -35,7 +35,7 @@ FREObject SuperAwesomeAIRSAVideoAdLoad (FREContext ctx, void* funcData, uint32_t
  * @param ctx       current FREContext object
  * @param funcData  pointer to extra data
  * @param argc      argc paramter
- * @param argv[]    argv paramter
+ * @param argv      argv paramter
  * @return          a new FREObject instance with return data
  */
 FREObject SuperAwesomeAIRSAVideoAdHasAdAvailable (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]);
@@ -46,7 +46,7 @@ FREObject SuperAwesomeAIRSAVideoAdHasAdAvailable (FREContext ctx, void* funcData
  * @param ctx       current FREContext object
  * @param funcData  pointer to extra data
  * @param argc      argc paramter
- * @param argv[]    argv paramter
+ * @param argv      argv paramter
  * @return          a new FREObject instance with return data
  */
 FREObject SuperAwesomeAIRSAVideoAdPlay (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]);

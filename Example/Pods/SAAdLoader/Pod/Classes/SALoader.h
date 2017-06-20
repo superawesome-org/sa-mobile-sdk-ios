@@ -84,7 +84,7 @@ typedef void (^saDidLoadAd)(SAResponse *response);
  * @param header        request header
  * @param placementId   placement Id (bc it's not returned by the request)
  * @param session       current session
- * @param listener      listener copy so that the loader can return the response to the
+ * @param result        callback copy so that the loader can return the response to the
  *                      library user
  */
 - (void) loadAd:(NSString*) endpoint

@@ -56,11 +56,18 @@
                 // do nothing
                 break;
             }
-            case adFailedToLoad: {
+            case adEmpty: {
                 [weakSelf.delegate bannerCustomEvent:weakSelf
                             didFailToLoadAdWithError:[weakSelf createErrorWith:ERROR_LOAD_TITLE(@"Banner Ad", placementId)
                                                                      andReason:ERROR_LOAD_MESSAGE
                                                                  andSuggestion:ERROR_LOAD_SUGGESTION]];
+                break;
+            }
+            case adFailedToLoad: {
+                [weakSelf.delegate bannerCustomEvent:weakSelf
+                            didFailToLoadAdWithError:[weakSelf createErrorWith:ERROR_LOAD_TITLE(@"Banner Ad", placementId)
+                                                                     andReason:ERROR_NETWORK_MESSAGE
+                                                                 andSuggestion:ERROR_NETWORK_SUGGESTION]];
                 break;
             }
             case adShown: {

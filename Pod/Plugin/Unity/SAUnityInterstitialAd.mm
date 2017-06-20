@@ -32,6 +32,7 @@ extern "C" {
         [SAInterstitialAd setCallback:^(NSInteger placementId, SAEvent event) {
             switch (event) {
                 case adLoaded: sendAdCallback(@"SAInterstitialAd", placementId, @"adLoaded"); break;
+                case adEmpty: sendAdCallback(@"SAInterstitialAd", placementId, @"adEmpty"); break;
                 case adFailedToLoad: sendAdCallback(@"SAInterstitialAd", placementId, @"adFailedToLoad"); break;
                 case adAlreadyLoaded: sendAdCallback(@"SAInterstitialAd", placementId, @"adAlreadyLoaded"); break;
                 case adShown: sendAdCallback(@"SAInterstitialAd", placementId, @"adShown"); break;
@@ -73,8 +74,7 @@ extern "C" {
      * Play an interstitial ad
      *
      * @param isParentalGateEnabled true / false
-     * @param shouldLockOrientation true / false
-     * @param lockOrientation       ANY = 0 / PORTRAIT = 1 / LANDSCAPE = 2
+     * @param orientation           ANY = 0 / PORTRAIT = 1 / LANDSCAPE = 2
      */
     void SuperAwesomeUnitySAInterstitialAdPlay (int placementId, bool isParentalGateEnabled, int orientation) {
         UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;

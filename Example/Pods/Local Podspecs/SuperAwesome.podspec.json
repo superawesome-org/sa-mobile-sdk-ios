@@ -29,19 +29,19 @@
       "frameworks": "AdSupport",
       "dependencies": {
         "SAVideoPlayer": [
-          "1.2.1"
+          "1.2.2"
         ],
         "SAWebPlayer": [
-          "1.2.1"
+          "1.2.2"
         ],
         "SAEvents": [
-          "1.9.2"
+          "1.9.3"
         ],
         "SAAdLoader": [
-          "1.1.2"
+          "1.1.3"
         ],
         "SACPI": [
-          "1.0.8"
+          "1.0.9"
         ]
       }
     },

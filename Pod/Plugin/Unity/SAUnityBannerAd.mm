@@ -45,6 +45,7 @@ extern "C" {
         [banner setCallback:^(NSInteger placementId, SAEvent event) {
             switch (event) {
                 case adLoaded: sendAdCallback(key, placementId, @"adLoaded"); break;
+                case adEmpty: sendAdCallback(key, placementId, @"adEmpty"); break;
                 case adFailedToLoad: sendAdCallback(key, placementId, @"adFailedToLoad"); break;
                 case adAlreadyLoaded: sendAdCallback(key, placementId, @"adAlreadyLoaded"); break;
                 case adShown: sendAdCallback(key, placementId, @"adShown"); break;
@@ -111,7 +112,6 @@ extern "C" {
      * @param unityName             the unique name of the banner in unity
      * @param isParentalGateEnabled true / false
      * @param position              TOP = 0 / BOTTOM = 1
-     * @param size                  BANNER_320_50 = 0 / BANNER_300_50 = 1 / BANNER_728_90 = 2 / BANNER_300_250 = 3
      * @param color                 true = transparent / false = gray
      */
     void SuperAwesomeUnitySABannerAdPlay (const char *unityName, bool isParentalGateEnabled, int position, int width, int height, bool color)

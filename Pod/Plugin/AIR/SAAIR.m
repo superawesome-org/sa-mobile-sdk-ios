@@ -16,11 +16,11 @@
  * Method that initialzies an AIR Context by specifying all methods that should
  * talk in the AIR-iOS relationship
  * 
- * @param extData
- * @param ctxType
- * @param ctx
- * @param numFunctionsToTest
- * @param functionsToSet
+ * @param extData               context data
+ * @param ctxType               context type
+ * @param ctx                   actual context
+ * @param numFunctionsToTest    functions in program
+ * @param functionsToSet        functions to set
  */
 void SAContextInitializer(void* extData, const uint8_t* ctxType, FREContext ctx, uint32_t* numFunctionsToTest, const FRENamedFunction** functionsToSet) {
     
@@ -110,9 +110,9 @@ void SAContextInitializer(void* extData, const uint8_t* ctxType, FREContext ctx,
 /**
  * Main method that initializes the whole extension context
  *
- * @param extDataToSet
- * @param ctxInitializerToSet
- * @param ctxFinalizerToSet
+ * @param extDataToSet          data to set
+ * @param ctxInitializerToSet   context initializer function pointer
+ * @param ctxFinalizerToSet     context finalizer function pointer
  */
 void SAExtensionInitializer(void** extDataToSet, FREContextInitializer* ctxInitializerToSet, FREContextFinalizer* ctxFinalizerToSet){
     *extDataToSet = NULL;

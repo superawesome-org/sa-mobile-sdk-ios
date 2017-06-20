@@ -12,7 +12,7 @@
  * @param ctx       current FREContext object
  * @param funcData  pointer to extra data
  * @param argc      argc paramter
- * @param argv[]    argv paramter
+ * @param argv      argv paramter
  * @return          a new FREObject instance with return data
  */
 FREObject SuperAwesomeAIRSABannerAdCreate (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]);
@@ -23,7 +23,7 @@ FREObject SuperAwesomeAIRSABannerAdCreate (FREContext ctx, void* funcData, uint3
  * @param ctx       current FREContext object
  * @param funcData  pointer to extra data
  * @param argc      argc paramter
- * @param argv[]    argv paramter
+ * @param argv      argv paramter
  * @return          a new FREObject instance with return data
  */
 FREObject SuperAwesomeAIRSABannerAdLoad (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]);
@@ -35,7 +35,7 @@ FREObject SuperAwesomeAIRSABannerAdLoad (FREContext ctx, void* funcData, uint32_
  * @param ctx       current FREContext object
  * @param funcData  pointer to extra data
  * @param argc      argc paramter
- * @param argv[]    argv paramter
+ * @param argv      argv paramter
  * @return          a new FREObject instance with return data
  */
 FREObject SuperAwesomeAIRSABannerAdHasAdAvailable (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]);
@@ -46,7 +46,7 @@ FREObject SuperAwesomeAIRSABannerAdHasAdAvailable (FREContext ctx, void* funcDat
  * @param ctx       current FREContext object
  * @param funcData  pointer to extra data
  * @param argc      argc paramter
- * @param argv[]    argv paramter
+ * @param argv      argv paramter
  * @return          a new FREObject instance with return data
  */
 FREObject SuperAwesomeAIRSABannerAdPlay (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]);
@@ -57,7 +57,7 @@ FREObject SuperAwesomeAIRSABannerAdPlay (FREContext ctx, void* funcData, uint32_
  * @param ctx       current FREContext object
  * @param funcData  pointer to extra data
  * @param argc      argc paramter
- * @param argv[]    argv paramter
+ * @param argv      argv paramter
  * @return          a new FREObject instance with return data
  */
 FREObject SuperAwesomeAIRSABannerAdClose (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]);

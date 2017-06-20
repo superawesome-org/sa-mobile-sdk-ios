@@ -13,7 +13,7 @@
  * @param ctx       current FREContext object
  * @param funcData  pointer to extra data
  * @param argc      argc paramter
- * @param argv[]    argv paramter
+ * @param argv      argv paramter
  * @return          a new FREObject instance with return data
  */
 FREObject SuperAwesomeAIRSAAppWallCreate (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]);
@@ -24,7 +24,7 @@ FREObject SuperAwesomeAIRSAAppWallCreate (FREContext ctx, void* funcData, uint32
  * @param ctx       current FREContext object
  * @param funcData  pointer to extra data
  * @param argc      argc paramter
- * @param argv[]    argv paramter
+ * @param argv      argv paramter
  * @return          a new FREObject instance with return data
  */
 FREObject SuperAwesomeAIRSAAppWallLoad (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]);
@@ -36,7 +36,7 @@ FREObject SuperAwesomeAIRSAAppWallLoad (FREContext ctx, void* funcData, uint32_t
  * @param ctx       current FREContext object
  * @param funcData  pointer to extra data
  * @param argc      argc paramter
- * @param argv[]    argv paramter
+ * @param argv      argv paramter
  * @return          a new FREObject instance with return data
  */
 FREObject SuperAwesomeAIRSAAppWallHasAdAvailable (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]);
@@ -47,7 +47,7 @@ FREObject SuperAwesomeAIRSAAppWallHasAdAvailable (FREContext ctx, void* funcData
  * @param ctx       current FREContext object
  * @param funcData  pointer to extra data
  * @param argc      argc paramter
- * @param argv[]    argv paramter
+ * @param argv      argv paramter
  * @return          a new FREObject instance with return data
  */
 FREObject SuperAwesomeAIRSAAppWallPlay (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]);

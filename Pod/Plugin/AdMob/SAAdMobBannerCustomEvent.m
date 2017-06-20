@@ -71,6 +71,13 @@
                 [weakSelf.bannerAd play];
                 break;
             }
+            case adEmpty: {
+                //
+                // send error in this case
+                NSError *error = [NSError errorWithDomain:kERROR_DOMAIN code:0 userInfo:nil];
+                [weakSelf.delegate customEventBanner:weakSelf didFailAd:error];
+                break;
+            }
             case adFailedToLoad: {
                 //
                 // send error in this case

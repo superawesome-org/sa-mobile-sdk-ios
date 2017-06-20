@@ -13,7 +13,7 @@
  * @param ctx       current FREContext object
  * @param funcData  pointer to extra data
  * @param argc      argc paramter
- * @param argv[]    argv paramter
+ * @param argv      argv paramter
  * @return          a new FREObject instance with return data
  */
 FREObject SuperAwesomeAIRSuperAwesomeSetVersion (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]);

@@ -121,7 +121,9 @@
                             @{@"name": @"CPM Interstitial 10 (Rafa)",
                               @"pid": @(657)},
                             @{@"name": @"Sing Interstitial",
-                              @"pid": @(659)}
+                              @"pid": @(659)},
+                            @{@"name": @"400 Interstitial",
+                              @"pid": @(702)}
                             ]
                   },
                 @{

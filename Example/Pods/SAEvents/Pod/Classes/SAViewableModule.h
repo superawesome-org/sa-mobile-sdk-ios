@@ -15,10 +15,10 @@ typedef void (^saDidFindViewOnScreen) (BOOL success);
 * SuperAwesome calculates viewable impression conditions for banner,
 * interstitial, etc, ads using IAB standards
 *
-* @param child    the child view
-* @param maxTicks max ticks to check the view is visible on the screen
-*                 before triggering the viewable impression event
-* @param response an instance of the saDidGetEventResponse to
+* @param view       the child view
+* @param maxTicks   max ticks to check the view is visible on the screen
+*                   before triggering the viewable impression event
+* @param response   an instance of the saDidGetEventResponse to
 */
 - (void) checkViewableImpressionForView:(UIView*) view
                                andTicks:(NSInteger) maxTicks

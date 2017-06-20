@@ -32,6 +32,7 @@ extern "C" {
         [SAAppWall setCallback:^(NSInteger placementId, SAEvent event) {
             switch (event) {
                 case adLoaded: sendAdCallback(@"SAAppWall", placementId, @"adLoaded"); break;
+                case adEmpty: sendAdCallback(@"SAAppWall", placementId, @"adEmpty"); break;
                 case adFailedToLoad: sendAdCallback(@"SAAppWall", placementId, @"adFailedToLoad"); break;
                 case adAlreadyLoaded: sendAdCallback(@"SAAppWall", placementId, @"adAlreadyLoaded"); break;
                 case adShown: sendAdCallback(@"SAAppWall", placementId, @"adShown"); break;

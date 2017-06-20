@@ -667,22 +667,28 @@ static BOOL isMoatLimitingEnabled           = SA_DEFAULT_MOAT_LIMITING_STATE;
         SALoader *loader = [[SALoader alloc] init];
         [loader loadAd:placementId withSession:session andResult:^(SAResponse *response) {
             
-            // perform more complex validity check
-            BOOL isValid = [response isValid];
-            SAAd *first = isValid ? [response.ads objectAtIndex:0] : nil;
-            isValid = first != nil && isValid && first.creative.details.media.isDownloaded;
-            
-            // add to the array queue
-            if (isValid) {
-                [ads setObject:first forKey:@(placementId)];
+            if (response.status != 200) {
+                callback(placementId, adFailedToLoad);
             }
-            // remove
             else {
-                [ads removeObjectForKey:@(placementId)];
+                // perform more complex validity check
+                BOOL isValid = [response isValid];
+                SAAd *first = isValid ? [response.ads objectAtIndex:0] : nil;
+                isValid = first != nil && isValid && first.creative.details.media.isDownloaded;
+                
+                // add to the array queue
+                if (isValid) {
+                    [ads setObject:first forKey:@(placementId)];
+                }
+                // remove
+                else {
+                    [ads removeObjectForKey:@(placementId)];
+                }
+                
+                // callback
+                callback(placementId, isValid ? adLoaded : adEmpty);
+
             }
-            
-            // callback
-            callback(placementId, isValid ? adLoaded : adFailedToLoad);
         }];
         
     }

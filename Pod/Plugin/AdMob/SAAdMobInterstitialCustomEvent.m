@@ -61,6 +61,13 @@
                 [weakSelf.delegate customEventInterstitialDidReceiveAd:weakSelf];
                 break;
             }
+            case adEmpty: {
+                //
+                // send error info to AdMob
+                NSError *error = [NSError errorWithDomain:kERROR_DOMAIN code:0 userInfo:nil];
+                [weakSelf.delegate customEventInterstitial:weakSelf didFailAd:error];
+                break;
+            }
             case adFailedToLoad: {
                 //
                 // send error info to AdMob

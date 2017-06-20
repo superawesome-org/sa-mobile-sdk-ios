@@ -208,14 +208,18 @@
     SALoader *loader = [[SALoader alloc] init];
     [loader loadAd:placementId withSession:_session andResult:^(SAResponse *response) {
 
-        // set can play
-        weakSelf.canPlay = [response isValid];
-
-        // assign new ad
-        weakSelf.ad = [response isValid] ? [response.ads objectAtIndex:0] : nil;
-        
-        // call the callback
-        weakSelf.callback (placementId, [response isValid] ? adLoaded : adFailedToLoad);
+        if (response.status != 200) {
+            weakSelf.callback(placementId, adFailedToLoad);
+        } else {
+            // set can play
+            weakSelf.canPlay = [response isValid];
+            
+            // assign new ad
+            weakSelf.ad = [response isValid] ? [response.ads objectAtIndex:0] : nil;
+            
+            // call the callback
+            weakSelf.callback (placementId, [response isValid] ? adLoaded : adEmpty);
+        }
     }];
 }
 

@@ -9,6 +9,7 @@
  * This enum holds all the possible callback values that an ad sends during its lifetime
  *  - adLoaded:         ad was loaded successfully and is ready 
  *                      to be displayed
+ *  - adEmpty           the ad server returned an empty response
  *  - adFailedToLoad:   ad was not loaded successfully and will not be 
  *                      able to play
  *  - adAlreadyLoaded   ad was previously loaded in an interstitial, video or
@@ -21,14 +22,15 @@
  *  - adClosed:         triggered once when the ad is closed;
  */
 typedef NS_ENUM(NSInteger, SAEvent) {
-    adLoaded = 0,
-    adFailedToLoad = 1,
-    adAlreadyLoaded = 2,
-    adShown = 3,
-    adFailedToShow = 4,
-    adClicked = 5,
-    adEnded = 6,
-    adClosed = 7
+    adLoaded        = 0,
+    adEmpty         = 1,
+    adFailedToLoad  = 2,
+    adAlreadyLoaded = 3,
+    adShown         = 4,
+    adFailedToShow  = 5,
+    adClicked       = 6,
+    adEnded         = 7,
+    adClosed        = 8
 };
 
 // callback block to send back envets back to the SDK users

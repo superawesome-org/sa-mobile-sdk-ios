@@ -28,6 +28,7 @@ FREObject SuperAwesomeAIRSAVideoAdCreate (FREContext ctx, void* funcData, uint32
     [SAVideoAd setCallback:^(NSInteger placementId, SAEvent event) {
         switch (event) {
             case adLoaded:          sendAdCallback(ctx, @"SAVideoAd", (int)placementId, @"adLoaded"); break;
+            case adEmpty:           sendAdCallback(ctx, @"SAVideoAd", (int)placementId, @"adEmpty"); break;
             case adFailedToLoad:    sendAdCallback(ctx, @"SAVideoAd", (int)placementId, @"adFailedToLoad"); break;
             case adAlreadyLoaded:   sendAdCallback(ctx, @"SAVideoAd", (int)placementId, @"adAlreadyLoaded"); break;
             case adShown:           sendAdCallback(ctx, @"SAVideoAd", (int)placementId, @"adShown"); break;

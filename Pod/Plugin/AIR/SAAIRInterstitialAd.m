@@ -28,6 +28,7 @@ FREObject SuperAwesomeAIRSAInterstitialAdCreate (FREContext ctx, void* funcData,
     [SAInterstitialAd setCallback:^(NSInteger placementId, SAEvent event) {
         switch (event) {
             case adLoaded:          sendAdCallback(ctx, @"SAInterstitialAd", (int)placementId, @"adLoaded"); break;
+            case adEmpty:           sendAdCallback(ctx, @"SAInterstitialAd", (int)placementId, @"adEmpty"); break;
             case adFailedToLoad:    sendAdCallback(ctx, @"SAInterstitialAd", (int)placementId, @"adFailedToLoad"); break;
             case adAlreadyLoaded:   sendAdCallback(ctx, @"SAInterstitialAd", (int)placementId, @"adAlreadyLoaded"); break;
             case adShown:           sendAdCallback(ctx, @"SAInterstitialAd", (int)placementId, @"adShown"); break;
