@@ -367,6 +367,13 @@ static BOOL isMoatLimitingEnabled    = SA_DEFAULT_MOAT_LIMITING_STATE;
         [loader loadAd:placementId withSession:session andResult:^(SAResponse *response) {
             
             if (response.status != 200) {
+                
+                //
+                // make sure to remove this cause the ad load failed
+                [ads removeObjectForKey:@(placementId)];
+                
+                //
+                // send callback
                 callback(placementId, adFailedToLoad);
             }
             else {
