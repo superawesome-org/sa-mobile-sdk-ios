@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+5.7.2
+ - Fixed a bug that caused video & interstitial ads that failed to load once, sending the adFailedToLoad callback event, start always sending adAlreadyLoaded on subsequent failed loads
+
 5.7.1
  - Added a new ad callback event called adEmpty. This will be forwarded when the ad server returns successfully (status code 200) but has no actual ad to serve.
  - Added this event to the AIR and Unity plugins
