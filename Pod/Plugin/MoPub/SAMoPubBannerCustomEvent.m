@@ -5,6 +5,7 @@
 
 #import "SAMoPubBannerCustomEvent.h"
 #import "SAMoPub.h"
+#import "SASession.h"
 #import "SuperAwesome.h"
 #import "NSDictionary+SafeHandling.h"
 

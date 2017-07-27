@@ -10,7 +10,6 @@
 #import "SuperAwesome.h"
 #import "SAUtils.h"
 #import "SASession.h"
-#import "SAOnce.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -23,17 +22,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    SAOnce *once = [[SAOnce alloc] init];
-    [once resetCPISent];
-    
     SASession *session = [[SASession alloc] init];
     [session setConfigurationStaging];
     
-    [[SACPI getInstance] handleInstall:session
-                            withTarget:[session getBundleId]
-                           andResponse:^(BOOL success) {
-                               NSLog(@"CPI Operation is %d", success);
-                           }];
     
     [_bannerAd setConfigurationStaging];
     [_bannerAd disableMoatLimiting];
@@ -123,7 +114,9 @@
                             @{@"name": @"Sing Interstitial",
                               @"pid": @(659)},
                             @{@"name": @"400 Interstitial",
-                              @"pid": @(702)}
+                              @"pid": @(702)},
+                            @{@"name": @"Rich Media Video",
+                              @"pid": @(715)}
                             ]
                   },
                 @{

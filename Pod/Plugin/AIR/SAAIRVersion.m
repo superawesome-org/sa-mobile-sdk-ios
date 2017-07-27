@@ -3,18 +3,18 @@
  * @Author:      Gabriel Coman (gabriel.coman@superawesome.tv)
  */
 
-#include "SAAIRSuperAwesome.h"
+#include "SAAIRVersion.h"
 #import "SAAIRCallback.h"
 
 #if defined(__has_include)
-#if __has_include(<SuperAwesomeSDK/SuperAwesomeSDK.h>)
-#import <SuperAwesomeSDK/SuperAwesomeSDK.h>
+#if __has_include(<SuperAwesomeSDK/SAVersion.h>)
+#import <SuperAwesomeSDK/SAVersion.h>
 #else
-#import "SuperAwesome.h"
+#import "SAVersion.h"
 #endif
 #endif
 
-FREObject SuperAwesomeAIRSuperAwesomeSetVersion (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]) {
+FREObject SuperAwesomeAIRVersionSetVersion (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]) {
     
     // needed paramters
     uint32_t versionLength;
@@ -29,8 +29,8 @@ FREObject SuperAwesomeAIRSuperAwesomeSetVersion (FREContext ctx, void* funcData,
     NSString *version = [NSString stringWithUTF8String:(char*)versionUTF8];
     NSString *sdk = [NSString stringWithUTF8String:(char*)sdkUTF8];
     
-    [[SuperAwesome getInstance] overrideVersion:version];
-    [[SuperAwesome getInstance] overrideSdk:sdk];
+    [SAVersion overrideVersion:version];
+    [SAVersion overrideSdk:sdk];
     
     return NULL;
 }

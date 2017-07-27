@@ -1,1 +1,1 @@
-../../../../../Pod/Classes/Views/SAInterstitialAd.h
+../../../../../Pod/Classes/SAInterstitialAd.h

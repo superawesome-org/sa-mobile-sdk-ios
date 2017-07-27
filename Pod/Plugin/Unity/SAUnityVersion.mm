@@ -7,10 +7,10 @@
 #import "SAUnityCallback.h"
 
 #if defined(__has_include)
-#if __has_include("SuperAwesomeSDKUnity.h")
-#import "SuperAwesomeSDKUnity.h"
+#if __has_include(<SuperAwesomeSDK/SAVersion.h>)
+#import <SuperAwesomeSDK/SAVersion.h>
 #else
-#import "SuperAwesome.h"
+#import "SAVersion.h"
 #endif
 #endif
 
@@ -23,13 +23,13 @@ extern "C" {
      * @param versionString pointer to an array of chars containing the version
      * @param sdkString     pointer to an array of chars containing the sdk
      */
-    void SuperAwesomeUnitySuperAwesomeSetVersion (const char *versionString, const char *sdkString) {
+    void SuperAwesomeUnityVersionSetVersion (const char *versionString, const char *sdkString) {
         
         NSString *version = [NSString stringWithUTF8String:versionString];
         NSString *sdk = [NSString stringWithUTF8String:sdkString];
         
-        [[SuperAwesome getInstance] overrideVersion:version];
-        [[SuperAwesome getInstance] overrideSdk:sdk];
+        [SAVersion overrideVersion:version];
+        [SAVersion overrideSdk:sdk];
         
     }
 }

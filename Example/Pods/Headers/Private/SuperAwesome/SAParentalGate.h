@@ -1,1 +1,1 @@
-../../../../../Pod/Classes/Views/SAParentalGate.h
+../../../../../Pod/Classes/SAParentalGate.h

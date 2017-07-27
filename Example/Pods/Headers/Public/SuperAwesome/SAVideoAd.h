@@ -1,1 +1,1 @@
-../../../../../Pod/Classes/Views/SAVideoAd.h
+../../../../../Pod/Classes/SAVideoAd.h

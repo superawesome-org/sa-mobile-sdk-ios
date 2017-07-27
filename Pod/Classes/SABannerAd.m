@@ -95,6 +95,7 @@
 
 // local imports
 #import "SuperAwesome.h"
+#import "SAVersion.h"
 #import "SAParentalGate.h"
 
 @interface SABannerAd () <SAParentalGateProtocol>
@@ -202,7 +203,7 @@
     __weak typeof (self) weakSelf = self;
     
     // change session
-    [_session setVersion:[[SuperAwesome getInstance] getSdkVersion]];
+    [_session setVersion:[SAVersion getSdkVersion]];
     
     // load ad
     SALoader *loader = [[SALoader alloc] init];

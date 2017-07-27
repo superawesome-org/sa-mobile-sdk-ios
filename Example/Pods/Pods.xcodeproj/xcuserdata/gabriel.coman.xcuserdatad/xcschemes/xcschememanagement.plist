@@ -14,11 +14,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>SACPI.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>SAEvents.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -77,72 +72,67 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2EED260B382AEEB9161FA6DE</key>
+		<key>0AB0FA213E70DBC7CD96E86C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3217C0F409F9FEDD7399D48B</key>
+		<key>1756BD0E2C835588E3877B66</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4FB0D2D42C1B81F8A6761071</key>
+		<key>3A290DD260DD7FE175AAFF7E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>566A082D0799D2E2954A2379</key>
+		<key>3B9A09E172867F50D5909C99</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>612514AF757560492B7CF816</key>
+		<key>413F627E59EE4573811868A9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6A40113E12501B0EB7ADA227</key>
+		<key>4D85A235F88654F269B86E09</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7C8CA1FBEAC9A60AE2DCEB8D</key>
+		<key>7241F80260E50E7FFB1B9837</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>823B8EA5E8E43EFCE9541F86</key>
+		<key>BF825ADEE2701882385D5A9B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8A00C87E13FAC5D2A37D649C</key>
+		<key>CB182FA87E4EF875BDCB72A9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>970688667E296A5BCEAE27A1</key>
+		<key>CE75A9238F237FCDA15F0B1A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9B2E027AAA72069184BD9131</key>
+		<key>E79E2F0783FB6B86013697FC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A3C7B7115D9DD7F10DA1E47D</key>
+		<key>F1E4DA1659DC15EC455DA0D9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CE462C21DEBDE423284D0774</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E962AE2F1A7165897C933547</key>
+		<key>FDC44A3935A612FB58989B82</key>
 		<dict>
 			<key>primary</key>
 			<true/>

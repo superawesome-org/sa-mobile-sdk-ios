@@ -5,6 +5,7 @@
 
 #import "SAMoPubVideoCustomEvent.h"
 #import "SuperAwesome.h"
+#import "SASession.h"
 #import "MPRewardedVideoReward.h"
 #import "SAMoPub.h"
 #import "NSDictionary+SafeHandling.h"

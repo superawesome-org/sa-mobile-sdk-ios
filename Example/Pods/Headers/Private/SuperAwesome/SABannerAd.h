@@ -1,1 +1,1 @@
-../../../../../Pod/Classes/Views/SABannerAd.h
+../../../../../Pod/Classes/SABannerAd.h

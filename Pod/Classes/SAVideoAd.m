@@ -95,6 +95,8 @@
 #endif
 #endif
 
+#import "SAVersion.h"
+
 @interface SAVideoAd () <SAParentalGateProtocol>
 
 // aux
@@ -658,7 +660,7 @@ static BOOL isMoatLimitingEnabled           = SA_DEFAULT_MOAT_LIMITING_STATE;
         session = [[SASession alloc] init];
         [session setTestMode:isTestingEnabled];
         [session setConfiguration:configuration];
-        [session setVersion:[[SuperAwesome getInstance] getSdkVersion]];
+        [session setVersion:[SAVersion getSdkVersion]];
         
         // get the loader
         SALoader *loader = [[SALoader alloc] init];

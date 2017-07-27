@@ -87,6 +87,8 @@
 #endif
 #endif
 
+#import "SAVersion.h"
+
 /**
  * Internal class representing an app wall cell.
  * Subclass of UICollectionViewCell
@@ -703,7 +705,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         session = [[SASession alloc] init];
         [session setTestMode:isTestingEnabled];
         [session setConfiguration:configuration];
-        [session setVersion:[[SuperAwesome getInstance] getSdkVersion]];
+        [session setVersion:[SAVersion getSdkVersion]];
         
         // get the loader
         SALoader *loader = [[SALoader alloc] init];

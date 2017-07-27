@@ -35,14 +35,3 @@ void sendAdCallback (FREContext context, NSString *name, int placementId, NSStri
     sendToAIR(context, data);
     
 }
-
-void sendCPICallback (FREContext context, NSString *name, BOOL success, NSString *callack) {
-    
-    NSDictionary *data = @{
-                           @"name": name,
-                           @"success": @(success),
-                           @"callback": callack
-                           };
-    sendToAIR(context, data);
-    
-}

@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+6.0.0
+ - Removed CPI library dependancy
+ - Made this SDK focus in Publishers (as opposed to the new Advertisers SDK)
+ - Refactoring & renaming
+
 5.7.2
  - Fixed a bug that caused video & interstitial ads that failed to load once, sending the adFailedToLoad callback event, start always sending adAlreadyLoaded on subsequent failed loads
 
