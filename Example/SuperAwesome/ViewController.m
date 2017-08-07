@@ -50,6 +50,7 @@
     }];
     
     [SAVideoAd setConfigurationStaging];
+    [SAVideoAd enableTestMode];
     [SAVideoAd disableParentalGate];
     [SAVideoAd enableCloseButton];
     [SAVideoAd disableCloseAtEnd];

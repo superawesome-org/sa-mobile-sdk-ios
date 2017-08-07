@@ -129,8 +129,9 @@ static NSMutableDictionary                  *ads;
 // current static session
 static SASession                            *session;
 
-// other static vars needed for state 
+// other static vars needed for state
 static sacallback callback                  = ^(NSInteger placementId, SAEvent event) {};
+static sacallback forceloadcallback         = ^(NSInteger placementId, SAEvent event){};
 static BOOL isTestingEnabled                = SA_DEFAULT_TESTMODE;
 static BOOL isParentalGateEnabled           = SA_DEFAULT_PARENTALGATE;
 static BOOL shouldAutomaticallyCloseAtEnd   = SA_DEFAULT_CLOSEATEND;
@@ -692,6 +693,7 @@ static BOOL isMoatLimitingEnabled           = SA_DEFAULT_MOAT_LIMITING_STATE;
                 
                 // callback
                 callback(placementId, isValid ? adLoaded : adEmpty);
+                forceloadcallback(placementId, isValid ? adLoaded : adEmpty);
 
             }
         }];
@@ -714,7 +716,31 @@ static BOOL isMoatLimitingEnabled           = SA_DEFAULT_MOAT_LIMITING_STATE;
         
         SAVideoAd *newVC = [[SAVideoAd alloc] init];
         newVC.ad = (SAAd*)adL;
-        [parent presentViewController:newVC animated:YES completion:nil];
+        
+        NSTimeInterval current = [[NSDate date] timeIntervalSince1970];
+        NSInteger currentTime = current * 1000;
+        NSInteger minutes = 60;
+        NSInteger maxTime = minutes * 60 * 1000;
+        
+        if (currentTime > newVC.ad.loadTime + maxTime) {
+            
+            //
+            // remove
+            [ads removeObjectForKey:@(placementId)];
+            
+            forceloadcallback = ^(NSInteger placementId, SAEvent evt) {
+                if (evt == adLoaded) {
+                    [self play:placementId fromVC:parent];
+                }
+            };
+            
+            //
+            // load
+            [SAVideoAd load:placementId];
+            
+        } else {
+            [parent presentViewController:newVC animated:YES completion:nil];
+        }
         
     } else {
         callback(placementId, adFailedToShow);
