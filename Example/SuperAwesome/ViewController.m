@@ -10,6 +10,7 @@
 #import "SuperAwesome.h"
 #import "SAUtils.h"
 #import "SASession.h"
+#import "SABumperPage.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -25,9 +26,15 @@
     SASession *session = [[SASession alloc] init];
     [session setConfigurationStaging];
     
+    [SABumperPage overrideName:@"My app"];
+    [SABumperPage overrideLogo:[UIImage imageNamed:@"kws_700"]];
     
     [_bannerAd setConfigurationStaging];
+    [_bannerAd enableTestMode];
     [_bannerAd disableMoatLimiting];
+    [_bannerAd disableParentalGate];
+    [_bannerAd enableBumperPage];
+    [_bannerAd enableTestMode];
     [_bannerAd setCallback:^(NSInteger placementId, SAEvent event) {
        
         NSLog(@"SUPER-AWESOME: Banner Ad %ld - Event %ld", (long)placementId, (long)event);
@@ -35,10 +42,14 @@
         if (event == adLoaded) {
             [_bannerAd play];
         }
-        
     }];
     
-    [SAInterstitialAd setConfigurationStaging];
+    
+    
+    [SAInterstitialAd setConfigurationProduction];
+    [SAInterstitialAd enableTestMode];
+    [SAInterstitialAd enableParentalGate];
+    [SAInterstitialAd enableBumperPage];
     [SAInterstitialAd disableMoatLimiting];
     [SAInterstitialAd setCallback:^(NSInteger placementId, SAEvent event) {
         
@@ -51,7 +62,8 @@
     
     [SAVideoAd setConfigurationStaging];
     [SAVideoAd enableTestMode];
-    [SAVideoAd disableParentalGate];
+    [SAVideoAd enableParentalGate];
+    [SAVideoAd enableBumperPage];
     [SAVideoAd enableCloseButton];
     [SAVideoAd disableCloseAtEnd];
     [SAVideoAd disableMoatLimiting];
@@ -117,7 +129,9 @@
                             @{@"name": @"400 Interstitial",
                               @"pid": @(702)},
                             @{@"name": @"Rich Media Video",
-                              @"pid": @(715)}
+                              @"pid": @(715)},
+                            @{@"name": @"Rich Media Video",
+                              @"pid": @(30474)}
                             ]
                   },
                 @{

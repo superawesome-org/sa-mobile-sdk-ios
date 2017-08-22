@@ -57,8 +57,6 @@
 + (void) setCallback:(sacallback)call;
 + (void) enableTestMode;
 + (void) disableTestMode;
-+ (void) enableParentalGate;
-+ (void) disableParentalGate;
 + (void) setConfigurationProduction;
 + (void) setConfigurationStaging;
 + (void) setOrientationAny;
@@ -66,8 +64,15 @@
 + (void) setOrientationLandscape;
 + (void) setTestMode: (BOOL) value;
 + (void) setParentalGate: (BOOL) value;
++ (void) setBumperPage: (BOOL) value;
 + (void) setConfiguration: (NSInteger) value;
 + (void) setOrientation: (SAOrientation) value;
 + (void) disableMoatLimiting;
+
++ (void) enableBumperPage;
++ (void) disableBumperPage;
++ (void) enableParentalGate;
++ (void) disableParentalGate;
+
 
 @end

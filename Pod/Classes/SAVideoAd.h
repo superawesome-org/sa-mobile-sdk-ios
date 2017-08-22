@@ -57,8 +57,6 @@
 + (void) setCallback:(sacallback)call;
 + (void) enableTestMode;
 + (void) disableTestMode;
-+ (void) enableParentalGate;
-+ (void) disableParentalGate;
 + (void) setConfigurationProduction;
 + (void) setConfigurationStaging;
 + (void) setOrientationAny;
@@ -72,11 +70,18 @@
 + (void) disableCloseAtEnd;
 + (void) setTestMode: (BOOL) value;
 + (void) setParentalGate: (BOOL) value;
++ (void) setBumperPage: (BOOL) value;
 + (void) setConfiguration: (NSInteger) value;
 + (void) setOrientation: (SAOrientation) value;
 + (void) setCloseButton: (BOOL) value;
 + (void) setSmallClick: (BOOL) value;
 + (void) setCloseAtEnd: (BOOL) value;
 + (void) disableMoatLimiting;
+
++ (void) enableParentalGate;
++ (void) disableParentalGate;
++ (void) enableBumperPage;
++ (void) disableBumperPage;
+
 
 @end

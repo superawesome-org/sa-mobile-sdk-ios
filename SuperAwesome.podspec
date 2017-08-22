@@ -22,6 +22,8 @@ Pod::Spec.new do |s|
     b.dependency 'SAWebPlayer', '1.2.3'
     b.dependency 'SAEvents', '1.9.4'
     b.dependency 'SAAdLoader', '1.1.5'
+    b.dependency 'SABumperPage', '1.0.3'
+    b.dependency 'SAParentalGate', '1.0.1'
   end
 
   s.subspec 'Full' do |f|

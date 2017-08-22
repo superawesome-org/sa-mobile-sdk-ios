@@ -39,6 +39,12 @@
         ],
         "SAAdLoader": [
           "1.1.5"
+        ],
+        "SABumperPage": [
+          "1.0.3"
+        ],
+        "SAParentalGate": [
+          "1.0.1"
         ]
       }
     },

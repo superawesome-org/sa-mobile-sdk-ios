@@ -11,7 +11,8 @@
 
 #define SA_DEFAULT_PLACEMENTID          0
 #define SA_DEFAULT_TESTMODE             false
-#define SA_DEFAULT_PARENTALGATE         true
+#define SA_DEFAULT_PARENTALGATE         false
+#define SA_DEFAULT_BUMPERPAGE           false
 #define SA_DEFAULT_CONFIGURATION        0
 #define SA_DEFAULT_ORIENTATION          0
 #define SA_DEFAULT_CLOSEBUTTON          false

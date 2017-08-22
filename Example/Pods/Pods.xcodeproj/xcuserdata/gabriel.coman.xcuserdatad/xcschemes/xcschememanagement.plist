@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SABumperPage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SAEvents.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -30,6 +35,11 @@
 			<false/>
 		</dict>
 		<key>SANetworking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SAParentalGate.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -72,67 +82,77 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>238612C3438F2CBF7C0370BB</key>
+		<key>03DE8E0D09EC3610C9246E48</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>339F1C68C3F9CE446FDAEC6B</key>
+		<key>14E8271686263853085828E7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>518F1DC46F1E3203DC7B152B</key>
+		<key>1BCA5469CD1BBF03127382A4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5C6A82256A1F62DE7C8AB380</key>
+		<key>1CDDBFA2A796533F365C7382</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5C814E91BDA263BDA4A34E18</key>
+		<key>2ADC8B930975F807E52DF815</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>67AF5D99146975E3DE403B1C</key>
+		<key>2FB027A37AC85A19554A4EBB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7A110B02EE7EEF9172A2ECEA</key>
+		<key>366F361420CE387C070C96B5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8657ECA40273635EF7B549AC</key>
+		<key>5173CC3E900D6AE6301C0651</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9438C7F36FF70A99A52F8ADD</key>
+		<key>5AF27E0CA18F1892B238F16D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>99B48F1FF6944C8E70A029D1</key>
+		<key>90035335876AA838B431DFA0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A13B734722ECB1CD8A7EFD72</key>
+		<key>C17A09EA84A0B5DC46376C37</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BB0944844D2B2CA33FA251CA</key>
+		<key>CDA1D8AC6C5852F1D43C54B7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D539842A0D6D261995BFF663</key>
+		<key>E4A28944B201C1E6BED327EF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EF0C01BFA640CE497400A6E2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F984A62D19BD8D48EC7BF0B2</key>
 		<dict>
 			<key>primary</key>
 			<true/>

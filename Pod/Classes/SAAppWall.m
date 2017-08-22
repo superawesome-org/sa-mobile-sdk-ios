@@ -87,6 +87,22 @@
 #endif
 #endif
 
+#if defined(__has_include)
+#if __has_include(<SABumperPage/SABumperPage.h>)
+#import <SABumperPage/SABumperPage.h>
+#else
+#import "SABumperPage.h"
+#endif
+#endif
+
+#if defined(__has_include)
+#if __has_include(<SAParentalGate/SAParentalGate.h>)
+#import <SAParentalGate/SAParentalGate.h>
+#else
+#import "SAParentalGate.h"
+#endif
+#endif
+
 #import "SAVersion.h"
 
 /**
@@ -228,7 +244,7 @@
 
 @end
 
-@interface SAAppWall () <UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource, SAParentalGateProtocol>
+@interface SAAppWall () <UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource>
 
 // hold the current ad response and array of associated events
 @property (nonatomic, strong) SAResponse                    *response;
@@ -245,9 +261,6 @@
 @property (nonatomic, strong) UICollectionView              *gamewall;
 @property (nonatomic, strong) UICollectionViewFlowLayout    *layout;
 
-// the parental gate
-@property (nonatomic, strong) SAParentalGate                *gate;
-
 // hold the prev status bar hidden or not
 @property (nonatomic, assign) BOOL                          previousStatusBarHiddenValue;
 
@@ -263,6 +276,7 @@ static SASession           *session;
 // other static variables needed for state
 static sacallback callback           = ^(NSInteger placementId, SAEvent event) {};
 static BOOL isParentalGateEnabled    = SA_DEFAULT_PARENTALGATE;
+static BOOL isBumperPageEnabled      = SA_DEFAULT_BUMPERPAGE;
 static BOOL isTestingEnabled         = SA_DEFAULT_TESTMODE;
 static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
 
@@ -563,6 +577,9 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
 - (void) collectionView:(UICollectionView *)collectionView
 didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
+    // get a weak self reference
+    __weak typeof (self) weakSelf = self;
+    
     // get position
     NSInteger pos = [indexPath row];
     
@@ -575,10 +592,21 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     // only go forward if there is a valid click Url
     if (ad.creative.clickUrl) {
         if (_isParentalGateEnabledL) {
-            _gate = [[SAParentalGate alloc] initWithPosition:pos
-                                              andDestination:ad.creative.clickUrl];
-            _gate.delegate = self;
-            [_gate show];
+            
+            [SAParentalGate setPgOpenCallback:^{
+                [weakSelf.events[pos] triggerPgOpenEvent];
+            }];
+            [SAParentalGate setPgCanceledCallback:^{
+                [weakSelf.events[pos] triggerPgCloseEvent];
+            }];
+            [SAParentalGate setPgFailedCallback:^{
+                [weakSelf.events[pos] triggerPgFailEvent];
+            }];
+            [SAParentalGate setPgSuccessCallback:^{
+                [weakSelf.events[pos] triggerPgSuccessEvent];
+                [self click:pos withDestination:ad.creative.clickUrl];
+            }];
+            [SAParentalGate play];
         } else {
             [self click:pos withDestination:ad.creative.clickUrl];
         }
@@ -598,9 +626,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [SAAppWall removeResponseFromLoadedResponses:_response];
     
     // destroy the gate
-    if (_gate != nil) {
-        _gate = nil;
-    }
+    [SAParentalGate close];
     
     // dismiss VC
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -615,6 +641,24 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
  */
 - (void) click: (NSInteger) position withDestination:(NSString*)destination {
     
+    // get a weak self reference
+    __weak typeof (self) weakSelf = self;
+    
+    // get local var from static
+    BOOL _isBumperPageEnabledL = [SAAppWall getIsBumperPageEnabled];
+    
+    if (_isBumperPageEnabledL) {
+        [SABumperPage setCallback:^{
+            [weakSelf handleUrl:destination onPosition:position];
+        }];
+        [SABumperPage play];
+    } else {
+        [self handleUrl:destination onPosition:position];
+    }
+    
+}
+
+- (void) handleUrl: (NSString*) destination onPosition:(NSInteger) position {
     // log
     NSLog(@"[AA :: INFO] Trying to go to: %@", destination);
     
@@ -806,6 +850,14 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [self setParentalGate:false];
 }
 
++ (void) enableBumperPage {
+    [self setBumperPage:true];
+}
+
++ (void) disableBumperPage {
+    [self setBumperPage:false];
+}
+
 + (void) setConfigurationProduction {
     [self setConfiguration:PRODUCTION];
 }
@@ -822,6 +874,10 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     isParentalGateEnabled = value;
 }
 
++ (void) setBumperPage:(BOOL)value {
+    isBumperPageEnabled = value;
+}
+
 + (void) setConfiguration: (NSInteger) value {
     configuration = value;
 }
@@ -832,6 +888,10 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 + (BOOL) getIsParentalGateEnabled {
     return isParentalGateEnabled;
+}
+
++ (BOOL) getIsBumperPageEnabled {
+    return isBumperPageEnabled;
 }
 
 @end

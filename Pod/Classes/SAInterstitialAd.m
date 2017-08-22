@@ -86,6 +86,7 @@ static NSMutableDictionary           *ads;
 // other vars that need to be set statically
 static sacallback callback           = ^(NSInteger placementId, SAEvent event) {};
 static BOOL isParentalGateEnabled    = SA_DEFAULT_PARENTALGATE;
+static BOOL isBumperPageEnabled      = SA_DEFAULT_BUMPERPAGE;
 static BOOL isTestingEnabled         = SA_DEFAULT_TESTMODE;
 static SAOrientation orientation     = SA_DEFAULT_ORIENTATION;
 static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
@@ -105,6 +106,7 @@ static BOOL isMoatLimitingEnabled    = SA_DEFAULT_MOAT_LIMITING_STATE;
     sacallback _callbackL    = [SAInterstitialAd getCallback];
     BOOL _isParentalGateEnabledL = [SAInterstitialAd getIsParentalGateEnabled];
     BOOL _isMoatLimitingEnabledL = [SAInterstitialAd getMoatLimitingState];
+    BOOL _isBumperPageEnabledL = [SAInterstitialAd getIsBumperPageEnabled];
     
     // set bg color
     self.view.backgroundColor = [UIColor colorWithRed:224.0/255.0f green:224.0/255.0f blue:224.0/255.0f alpha:1];
@@ -122,6 +124,7 @@ static BOOL isMoatLimitingEnabled    = SA_DEFAULT_MOAT_LIMITING_STATE;
     [_banner setConfiguration:configuration];
     [_banner setTestMode:isTestingEnabled];
     [_banner setCallback:_callbackL];
+    [_banner setBumperPage:_isBumperPageEnabledL];
     [_banner setParentalGate:_isParentalGateEnabledL];
     if (!_isMoatLimitingEnabledL) {
         [_banner disableMoatLimiting];
@@ -463,6 +466,14 @@ static BOOL isMoatLimitingEnabled    = SA_DEFAULT_MOAT_LIMITING_STATE;
     [self setParentalGate:false];;
 }
 
++ (void) enableBumperPage {
+    [self setBumperPage:true];
+}
+
++ (void) disableBumperPage {
+    [self setBumperPage:false];
+}
+
 + (void) setConfigurationProduction {
     [self setConfiguration:PRODUCTION];
 }
@@ -491,6 +502,10 @@ static BOOL isMoatLimitingEnabled    = SA_DEFAULT_MOAT_LIMITING_STATE;
     isParentalGateEnabled = value;
 }
 
++ (void) setBumperPage: (BOOL) value {
+    isBumperPageEnabled = value;
+}
+
 + (void) setConfiguration: (NSInteger) value {
     configuration = value;
 }
@@ -501,6 +516,10 @@ static BOOL isMoatLimitingEnabled    = SA_DEFAULT_MOAT_LIMITING_STATE;
 
 + (BOOL) getIsParentalGateEnabled {
     return isParentalGateEnabled;
+}
+
++ (BOOL) getIsBumperPageEnabled {
+    return isBumperPageEnabled;
 }
 
 + (sacallback) getCallback {

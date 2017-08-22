@@ -93,16 +93,32 @@
 #endif
 #endif
 
+#if defined(__has_include)
+#if __has_include(<SABumperPage/SABumperPage.h>)
+#import <SABumperPage/SABumperPage.h>
+#else
+#import "SABumperPage.h"
+#endif
+#endif
+
+#if defined(__has_include)
+#if __has_include(<SAParentalGate/SAParentalGate.h>)
+#import <SAParentalGate/SAParentalGate.h>
+#else 
+#import "SAParentalGate.h"
+#endif
+#endif
+
 // local imports
 #import "SuperAwesome.h"
 #import "SAVersion.h"
-#import "SAParentalGate.h"
 
-@interface SABannerAd () <SAParentalGateProtocol>
+@interface SABannerAd ()
 
 // main state vars
 @property (nonatomic, strong) sacallback         callback;
 @property (nonatomic, assign) IBInspectable BOOL isParentalGateEnabled;
+@property (nonatomic, assign) IBInspectable BOOL isBumperPageEnabled;
 
 // events
 @property (nonatomic, strong) SASession          *session;
@@ -113,7 +129,6 @@
 
 // subviews
 @property (nonatomic, strong) SAWebPlayer        *webplayer;
-@property (nonatomic, strong) SAParentalGate     *gate;
 @property (nonatomic, strong) UIButton           *padlock;
 
 // aux state vats
@@ -182,7 +197,8 @@
     _callback = ^(NSInteger placement, SAEvent event) {};
     
     // set default banner parameters
-    _isParentalGateEnabled = SA_DEFAULT_PARENTALGATE;
+    [self setParentalGate:SA_DEFAULT_PARENTALGATE];
+    [self setBumperPage:SA_DEFAULT_BUMPERPAGE];
     [self setTestMode:SA_DEFAULT_TESTMODE];
     [self setConfiguration:SA_DEFAULT_CONFIGURATION];
     [self setColor:SA_DEFAULT_BGCOLOR];
@@ -285,9 +301,21 @@
             // url is valid, else do nothong
             if (url && [url absoluteString]) {
                 if (weakSelf.isParentalGateEnabled) {
-                    weakSelf.gate = [[SAParentalGate alloc] initWithPosition:0 andDestination:[url absoluteString]];
-                    weakSelf.gate.delegate = weakSelf;
-                    [weakSelf.gate show];
+                    
+                    [SAParentalGate setPgOpenCallback:^{
+                        [weakSelf.events triggerPgOpenEvent];
+                    }];
+                    [SAParentalGate setPgCanceledCallback:^{
+                        [weakSelf.events triggerPgCloseEvent];
+                    }];
+                    [SAParentalGate setPgFailedCallback:^{
+                        [weakSelf.events triggerPgFailEvent];
+                    }];
+                    [SAParentalGate setPgSuccessCallback:^{
+                        [weakSelf.events triggerPgSuccessEvent];
+                        [weakSelf click:[url absoluteString]];
+                    }];
+                    [SAParentalGate play];
                 } else {
                     [weakSelf click: [url absoluteString]];
                 }
@@ -359,7 +387,6 @@
     _webplayer = nil;
     [_padlock removeFromSuperview];
     _padlock = nil;
-    _gate = nil;
     [self nullAd];
     
     // can play
@@ -376,18 +403,39 @@
  */
 - (void) click: (NSString*) destination {
     
+    // get a weak self reference
+    __weak typeof (self) weakSelf = self;
+    
+    if (_isBumperPageEnabled) {
+        [SABumperPage setCallback:^{
+            [weakSelf handleUrl:destination];
+        }];
+        [SABumperPage play];
+    }
+    else {
+        [self handleUrl:destination];
+    }
+}
+
+- (void) handleUrl: (NSString*) destination {
+    //
+    // log this
     NSLog(@"[AA :: INFO] Trying to go to: %@", destination);
     
-    // callback
+    //
+    // send callback
     _callback (_ad.placementId, adClicked);
     
-    // events
+    //
+    // trigger click evt
     if (_session && [destination rangeOfString:[_session getBaseUrl]].location == NSNotFound) {
         [_events triggerClickEvent];
     }
     
-    // open URL
+    //
+    // open browser & goto url
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:destination]];
+    
 }
 
 - (void) resize:(CGRect)toframe {
@@ -412,50 +460,6 @@
 }
 
 /**
- * Method part of SAParentalGateProtocol called when the gate is opened
- *
- * @param position int representing the ad position in the ads response array
- */
-- (void) parentalGateOpen:(NSInteger)position {
-    // send all events for parental gate open
-    [_events triggerPgOpenEvent];
-}
-
-/**
- * Method part of SAParentalGateProtocol called when the gate is failed
- *
- * @param position int representing the ad position in the ads response array
- */
-- (void) parentalGateFailure:(NSInteger)position {
-    // send all events for parental gate failure
-    [_events triggerPgFailEvent];
-}
-
-/**
- * Method part of SAParentalGateProtocol called when the gate is successful
- *
- * @param position    int representing the ad position in the ads response array
- * @param destination URL destination
- */
-- (void) parentalGateSuccess:(NSInteger)position andDestination:(NSString *)destination {
-    // send success events
-    [_events triggerPgSuccessEvent];
-    
-    // go to click
-    [self click:destination];
-}
-
-/**
- * Method part of SAParentalGateProtocol called when the gate is closed
- *
- * @param position int representing the ad position in the ads response array
- */
-- (void) parentalGateCancel:(NSInteger)position {
-    // send all events for parental gate close
-    [_events triggerPgCloseEvent];
-}
-
-/**
  * Method called when the user clicks on a padlock
  */
 - (void) padlockAction {
@@ -476,6 +480,14 @@
 
 - (void) disableParentalGate {
     [self setParentalGate:false];
+}
+
+- (void) enableBumperPage {
+    [self setBumperPage:true];
+}
+
+- (void) disableBumperPage {
+    [self setBumperPage:false];
 }
 
 - (void) enableTestMode {
@@ -508,6 +520,10 @@
 
 - (void) setParentalGate: (BOOL) value {
     _isParentalGateEnabled = value;
+}
+
+- (void) setBumperPage: (BOOL) value {
+    _isBumperPageEnabled = value;
 }
 
 - (void) setConfiguration: (NSInteger) value {

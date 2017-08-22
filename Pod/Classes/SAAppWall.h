@@ -56,12 +56,16 @@
 + (void) setCallback:(sacallback)call;
 + (void) enableTestMode;
 + (void) disableTestMode;
-+ (void) enableParentalGate;
-+ (void) disableParentalGate;
 + (void) setConfigurationProduction;
 + (void) setConfigurationStaging;
 + (void) setTestMode: (BOOL) value;
 + (void) setParentalGate: (BOOL) value;
++ (void) setBumperPage: (BOOL) value;
 + (void) setConfiguration: (NSInteger) value;
+
++ (void) enableBumperPage;
++ (void) disableBumperPage;
++ (void) enableParentalGate;
++ (void) disableParentalGate;
 
 @end

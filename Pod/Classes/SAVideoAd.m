@@ -95,16 +95,32 @@
 #endif
 #endif
 
+#if defined(__has_include)
+#if __has_include(<SABumperPage/SABumperPage.h>)
+#import <SABumperPage/SABumperPage.h>
+#else
+#import "SABumperPage.h"
+#endif
+#endif
+
+#if defined(__has_include)
+#if __has_include(<SAParentalGate/SAParentalGate.h>)
+#import <SAParentalGate/SAParentalGate.h>
+#else
+#import "SAParentalGate.h"
+#endif
+#endif
+
 #import "SAVersion.h"
 
-@interface SAVideoAd () <SAParentalGateProtocol>
+
+@interface SAVideoAd ()
 
 // aux
 @property (nonatomic, assign) BOOL           isOKToClose;
 
 // views
 @property (nonatomic, strong) UIButton       *closeBtn;
-@property (nonatomic, strong) SAParentalGate *gate;
 @property (nonatomic, strong) UIButton       *padlock;
 @property (nonatomic, strong) SAVideoPlayer  *player;
 
@@ -134,6 +150,7 @@ static sacallback callback                  = ^(NSInteger placementId, SAEvent e
 static sacallback forceloadcallback         = ^(NSInteger placementId, SAEvent event){};
 static BOOL isTestingEnabled                = SA_DEFAULT_TESTMODE;
 static BOOL isParentalGateEnabled           = SA_DEFAULT_PARENTALGATE;
+static BOOL isBumperPageEnabled             = SA_DEFAULT_BUMPERPAGE;
 static BOOL shouldAutomaticallyCloseAtEnd   = SA_DEFAULT_CLOSEATEND;
 static BOOL shouldShowCloseButton           = SA_DEFAULT_CLOSEBUTTON;
 static BOOL shouldShowSmallClickButton      = SA_DEFAULT_SMALLCLICK;
@@ -275,10 +292,26 @@ static BOOL isMoatLimitingEnabled           = SA_DEFAULT_MOAT_LIMITING_STATE;
         // only go forward if the destination url is not null
         if (destination) {
             if (_isParentalGateEnabledL) {
-                weakSelf.gate = [[SAParentalGate alloc] initWithPosition:0
-                                                          andDestination:destination];
-                weakSelf.gate.delegate = weakSelf;
-                [weakSelf.gate show];
+                
+                [SAParentalGate setPgOpenCallback:^{
+                    [weakSelf pause];
+                    [weakSelf.events triggerPgOpenEvent];
+                }];
+                [SAParentalGate setPgCanceledCallback:^{
+                    [weakSelf resume];
+                    [weakSelf.events triggerPgCloseEvent];
+                }];
+                [SAParentalGate setPgFailedCallback:^{
+                    [weakSelf resume];
+                    [weakSelf.events triggerPgFailEvent];
+                }];
+                [SAParentalGate setPgSuccessCallback:^{
+                    [weakSelf pause];
+                    [weakSelf.events triggerPgSuccessEvent];
+                    [weakSelf click:destination];
+                }];
+                [SAParentalGate play];
+                
             } else {
                 [weakSelf click: destination];
             }
@@ -513,12 +546,8 @@ static BOOL isMoatLimitingEnabled           = SA_DEFAULT_MOAT_LIMITING_STATE;
         [_padlock removeFromSuperview];
         _padlock = nil;
         
-        // close the Pg
-        if (_gate) {
-            [_gate close];
-        }
-        // destroy the gate
-        _gate = nil;
+        // close the PG
+        [SAParentalGate close];
         
         // dismiss VC
         [self dismissViewControllerAnimated:YES completion:nil];
@@ -551,18 +580,39 @@ static BOOL isMoatLimitingEnabled           = SA_DEFAULT_MOAT_LIMITING_STATE;
  */
 - (void) click: (NSString*) destination {
     
+    // get a weak self reference
+    __weak typeof (self) weakSelf = self;
+    
+    BOOL _isBumperPageEnabledL = [SAVideoAd getIsBumperPageEnabled];
+    
+    if (_isBumperPageEnabledL) {
+        [SABumperPage setCallback:^{
+            [weakSelf handleUrl:destination];
+        }];
+        [SABumperPage play];
+    } else {
+        [self handleUrl:destination];
+    }
+}
+
+- (void) handleUrl: (NSString*) destination {
+    
     NSLog(@"[AA :: INFO] Trying to go to: %@", destination);
     
+    //
     // get delegate
     sacallback _callbackL = [SAVideoAd getCallback];
     
+    //
     // call delegate
     _callbackL(_ad.placementId, adClicked);
     
+    //
     // send all events for vast click tracking
     [_events triggerVASTClickTrackingEvent];
     
-    // actually go to the URL
+    //
+    // open browser & goto url
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:destination]];
 }
 
@@ -585,62 +635,6 @@ static BOOL isMoatLimitingEnabled           = SA_DEFAULT_MOAT_LIMITING_STATE;
  */
 - (void) padlockAction {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://ads.superawesome.tv/v2/safead"]];
-}
-
-/**
- * Method part of SAParentalGateProtocol called when the gate is opened
- *
- * @param position int representing the ad position in the ads response array
- */
-- (void) parentalGateOpen:(NSInteger)position {
-    // send all events for parental gate open
-    [_events triggerPgOpenEvent];
-    
-    // pause the video
-    [self pause];
-}
-
-/**
- * Method part of SAParentalGateProtocol called when the gate is failed
- *
- * @param position int representing the ad position in the ads response array
- */
-- (void) parentalGateFailure:(NSInteger)position {
-    // send all events for parental gate failure
-    [_events triggerPgFailEvent];
-    
-    // resume the video
-    [self resume];
-}
-
-/**
- * Method part of SAParentalGateProtocol called when the gate is successful
- *
- * @param position    int representing the ad position in the ads response array
- * @param destination URL destination
- */
-- (void) parentalGateSuccess:(NSInteger)position andDestination:(NSString *)destination {
-    // send success events
-    [_events triggerPgSuccessEvent];
-    
-    // go to click
-    [self pause];
-    
-    // go to click
-    [self click:destination];
-}
-
-/**
- * Method part of SAParentalGateProtocol called when the gate is closed
- *
- * @param position int representing the ad position in the ads response array
- */
-- (void) parentalGateCancel:(NSInteger)position {
-    // send all events for parental gate close
-    [_events triggerPgCloseEvent];
-    
-    // resume the video
-    [self resume];
 }
 
 + (void) load:(NSInteger) placementId {
@@ -783,6 +777,14 @@ static BOOL isMoatLimitingEnabled           = SA_DEFAULT_MOAT_LIMITING_STATE;
     [self setParentalGate:false];
 }
 
++ (void) enableBumperPage {
+    [self setBumperPage:true];
+}
+
++ (void) disableBumperPage {
+    [self setBumperPage:false];
+}
+
 + (void) setConfigurationProduction {
     [self setConfiguration:PRODUCTION];
 }
@@ -835,6 +837,10 @@ static BOOL isMoatLimitingEnabled           = SA_DEFAULT_MOAT_LIMITING_STATE;
     isParentalGateEnabled = value;
 }
 
++ (void) setBumperPage:(BOOL)value {
+    isBumperPageEnabled = value;
+}
+
 + (void) setConfiguration: (NSInteger) value {
     configuration = value;
 }
@@ -861,6 +867,10 @@ static BOOL isMoatLimitingEnabled           = SA_DEFAULT_MOAT_LIMITING_STATE;
 
 + (BOOL) getIsParentalGateEnabled {
     return isParentalGateEnabled;
+}
+
++ (BOOL) getIsBumperPageEnabled {
+    return isBumperPageEnabled;
 }
 
 + (BOOL) getShouldAutomaticallyCloseAtEnd {

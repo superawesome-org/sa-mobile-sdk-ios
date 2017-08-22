@@ -67,8 +67,7 @@
  * Group of methods that set ad configuration parameters
  */
 - (void) setCallback:(sacallback)callback;
-- (void) enableParentalGate;
-- (void) disableParentalGate;
+
 - (void) enableTestMode;
 - (void) disableTestMode;
 - (void) setConfigurationProduction;
@@ -77,8 +76,15 @@
 - (void) setColorGray;
 - (void) setTestMode: (BOOL) value;
 - (void) setParentalGate: (BOOL) value;
+- (void) setBumperPage: (BOOL) value;
 - (void) setConfiguration: (NSInteger) value;
 - (void) setColor: (BOOL) value;
 - (void) disableMoatLimiting;
+
+- (void) enableBumperPage;
+- (void) disableBumperPage;
+
+- (void) enableParentalGate;
+- (void) disableParentalGate;
 
 @end
