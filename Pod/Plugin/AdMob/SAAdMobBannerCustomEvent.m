@@ -53,6 +53,7 @@
         [_bannerAd setTestMode:[[params objectForKey:kKEY_TEST] boolValue]];
         [_bannerAd setConfiguration:[[params objectForKey:kKEY_CONFIGURATION] integerValue]];
         [_bannerAd setParentalGate:[[params objectForKey:kKEY_PARENTAL_GATE] boolValue]];
+        [_bannerAd setBumperPage:[[params objectForKey:kKEY_BUMPER_PAGE] boolValue]];
         [_bannerAd setColor:[[params objectForKey:kKEY_TRANSPARENT] boolValue]];
     }
     

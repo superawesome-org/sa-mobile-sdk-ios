@@ -29,6 +29,7 @@
     NSInteger placementId = [[info safeObjectForKey:PLACEMENT_ID orDefault:@(SA_DEFAULT_PLACEMENTID)] integerValue];
     BOOL isTestEnabled = [[info safeObjectForKey:TEST_ENABLED orDefault:@(SA_DEFAULT_TESTMODE)] boolValue];
     BOOL isPrentalGateEnabled = [[info safeObjectForKey:PARENTAL_GATE orDefault:@(SA_DEFAULT_PARENTALGATE)] boolValue];
+    BOOL isBumperPageEnabled = [[info safeObjectForKey:BUMPER_PAGE orDefault:@(SA_DEFAULT_BUMPERPAGE)] boolValue];
     
     SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
     
@@ -45,6 +46,7 @@
     [_banner setConfiguration:configuration];
     [_banner setTestMode:isTestEnabled];
     [_banner setParentalGate:isPrentalGateEnabled];
+    [_banner setBumperPage:isBumperPageEnabled];
 
     [_banner setCallback:^(NSInteger placementId, SAEvent event) {
         switch (event) {

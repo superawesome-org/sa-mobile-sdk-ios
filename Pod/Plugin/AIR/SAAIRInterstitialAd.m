@@ -82,17 +82,20 @@ FREObject SuperAwesomeAIRSAInterstitialAdPlay (FREContext ctx, void* funcData, u
     // needed paramters
     int placementId = SA_DEFAULT_PLACEMENTID;
     uint32_t isParentalGateEnabled = SA_DEFAULT_PARENTALGATE;
+    uint32_t isBumperPageEnabled = SA_DEFAULT_BUMPERPAGE;
     int orientation = SA_DEFAULT_ORIENTATION;
     uint32_t isBackButtonEnabled = SA_DEFAULT_BACKBUTTON;
     
     // populate fields
     FREGetObjectAsInt32(argv[0], &placementId);
     FREGetObjectAsBool(argv[1], &isParentalGateEnabled);
-    FREGetObjectAsInt32(argv[2], &orientation);
-    FREGetObjectAsBool(argv[3], &isBackButtonEnabled);
+    FREGetObjectAsBool(argv[2], &isBumperPageEnabled);
+    FREGetObjectAsInt32(argv[3], &orientation);
+    FREGetObjectAsBool(argv[4], &isBackButtonEnabled);
     
     // configure & play
     [SAInterstitialAd setParentalGate:isParentalGateEnabled];
+    [SAInterstitialAd setBumperPage:isBumperPageEnabled];
     [SAInterstitialAd setOrientation:getOrientationFromInt(orientation)];
     UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
     [SAInterstitialAd play: placementId fromVC: root];

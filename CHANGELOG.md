@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+6.1.0
+ - Added the Bumper Page as another option to overlap to each ad (video, interstitial, banner, app wall)
+ - Separated the parental gate into a separate library (and done some refactoring)
+
 6.0.0
  - Removed CPI library dependancy
  - Made this SDK focus in Publishers (as opposed to the new Advertisers SDK)

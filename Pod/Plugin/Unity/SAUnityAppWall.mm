@@ -74,10 +74,12 @@ extern "C" {
      *
      * @param placementId           true / false
      * @param isParentalGateEnabled true / false
+     * @param isBumperPageEnabled   true / false
      */
-    void SuperAwesomeUnitySAAppWallPlay (int placementId, bool isParentalGateEnabled) {
+    void SuperAwesomeUnitySAAppWallPlay (int placementId, bool isParentalGateEnabled, bool isBumperPageEnabled) {
         UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
         [SAAppWall setParentalGate:isParentalGateEnabled];
+        [SAAppWall setBumperPage:isBumperPageEnabled];
         [SAAppWall play: placementId fromVC: root];
     }
     

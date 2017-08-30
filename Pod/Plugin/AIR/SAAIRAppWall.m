@@ -82,15 +82,18 @@ FREObject SuperAwesomeAIRSAAppWallPlay (FREContext ctx, void* funcData, uint32_t
     // needed paramters
     int placementId = SA_DEFAULT_PLACEMENTID;
     uint32_t isParentalGateEnabled = SA_DEFAULT_PARENTALGATE;
+    uint32_t isBumperPageEnabled = SA_DEFAULT_BUMPERPAGE;
     uint32_t isBackButtonEnabled = SA_DEFAULT_BACKBUTTON;
     
     // populate fields
     FREGetObjectAsInt32(argv[0], &placementId);
     FREGetObjectAsBool(argv[1], &isParentalGateEnabled);
-    FREGetObjectAsBool(argv[2], &isBackButtonEnabled);
+    FREGetObjectAsBool(argv[2], &isBumperPageEnabled);
+    FREGetObjectAsBool(argv[3], &isBackButtonEnabled);
     
     // configure & play
     [SAAppWall setParentalGate:isParentalGateEnabled];
+    [SAVideoAd setBumperPage:isBumperPageEnabled];
     UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
     [SAAppWall play: placementId fromVC: root];
     

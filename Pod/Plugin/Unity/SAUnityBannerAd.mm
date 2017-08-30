@@ -111,10 +111,11 @@ extern "C" {
      *
      * @param unityName             the unique name of the banner in unity
      * @param isParentalGateEnabled true / false
+     * @param isBumperPageEnabled   true / false
      * @param position              TOP = 0 / BOTTOM = 1
      * @param color                 true = transparent / false = gray
      */
-    void SuperAwesomeUnitySABannerAdPlay (const char *unityName, bool isParentalGateEnabled, int position, int width, int height, bool color)
+    void SuperAwesomeUnitySABannerAdPlay (const char *unityName, bool isParentalGateEnabled, bool isBumperPageEnabled, int position, int width, int height, bool color)
     {
         // get the key
         NSString *key = [NSString stringWithUTF8String:unityName];
@@ -143,6 +144,7 @@ extern "C" {
             // get banner
             __block SABannerAd *banner = [bannerDictionary objectForKey:key];
             [banner setParentalGate:isParentalGateEnabled];
+            [banner setBumperPage:isBumperPageEnabled];
             [banner setColor:color];
             [root.view addSubview:banner];
             [banner resize:CGRectMake(realPos.x, realPos.y, realSize.width, realSize.height)];

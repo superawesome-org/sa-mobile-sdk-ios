@@ -74,6 +74,7 @@
         [SAVideoAd setTestMode:extras.testEnabled];
         [SAVideoAd setOrientation:extras.orientation];
         [SAVideoAd setParentalGate:extras.parentalGateEnabled];
+        [SAVideoAd setBumperPage:extras.bumperPageEnabled];
         [SAVideoAd setCloseButton:extras.closeButtonEnabled];
         [SAVideoAd setCloseAtEnd:extras.closeAtEndEnabled];
         [SAVideoAd setSmallClick:extras.smallCLickEnabled];

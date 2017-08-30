@@ -9,6 +9,7 @@
         _configuration = SA_DEFAULT_CONFIGURATION;
         _orientation = SA_DEFAULT_ORIENTATION;
         _parentalGateEnabled = SA_DEFAULT_PARENTALGATE;
+        _bumperPageEnabled = SA_DEFAULT_BUMPERPAGE;
         _closeButtonEnabled = SA_DEFAULT_CLOSEBUTTON;
         _closeAtEndEnabled = SA_DEFAULT_CLOSEATEND;
         _smallCLickEnabled = SA_DEFAULT_SMALLCLICK;
@@ -24,6 +25,7 @@
 @synthesize trasparentEnabled = _trasparentEnabled;
 @synthesize testEnabled = _testEnabled;
 @synthesize parentalGateEnabled = _parentalGateEnabled;
+@synthesize bumperPageEnabled = _bumperPageEnabled;
 @synthesize orientation = _orientation;
 @synthesize configuration = _configuration;
 
@@ -34,6 +36,7 @@
         _testEnabled = SA_DEFAULT_TESTMODE;
         _configuration = SA_DEFAULT_CONFIGURATION;
         _parentalGateEnabled = SA_DEFAULT_PARENTALGATE;
+        _bumperPageEnabled = SA_DEFAULT_BUMPERPAGE;
         _orientation = SA_DEFAULT_ORIENTATION;
         _trasparentEnabled = SA_DEFAULT_BGCOLOR;
     }
@@ -73,6 +76,11 @@
 - (void) setParentalGateEnabled:(BOOL)value  {
     _parentalGateEnabled = value;
     [_dict setObject:@(value) forKey:kKEY_PARENTAL_GATE];
+}
+
+- (void) setBumperPageEnabled:(BOOL)value {
+    _bumperPageEnabled = value;
+    [_dict setObject:@(value) forKey:kKEY_BUMPER_PAGE];
 }
 
 - (void) setOrientation:(SAOrientation)value {

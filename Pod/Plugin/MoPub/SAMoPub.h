@@ -9,6 +9,7 @@
 #define PLACEMENT_ID                        @"placementId"
 #define TEST_ENABLED                        @"isTestEnabled"
 #define PARENTAL_GATE                       @"isParentalGateEnabled"
+#define BUMPER_PAGE                         @"isBumperPageEnabled"
 #define ORIENTATION                         @"orientation"
 #define CONFIGURATION                       @"configuration"
 #define SHOULD_SHOW_CLOSE                   @"shouldShowCloseButton"

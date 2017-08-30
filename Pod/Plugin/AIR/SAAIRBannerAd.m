@@ -126,6 +126,7 @@ FREObject SuperAwesomeAIRSABannerAdPlay (FREContext ctx, void* funcData, uint32_
     uint32_t airNameLength;
     const uint8_t *airName;
     uint32_t isParentalGateEnabled = SA_DEFAULT_PARENTALGATE;
+    uint32_t isBumperPageEnabled = SA_DEFAULT_BUMPERPAGE;
     int width = 320;
     int height = 50;
     int position = 0;
@@ -134,10 +135,11 @@ FREObject SuperAwesomeAIRSABannerAdPlay (FREContext ctx, void* funcData, uint32_
     // populate fields
     FREGetObjectAsUTF8(argv[0], &airNameLength, &airName);
     FREGetObjectAsBool(argv[1], &isParentalGateEnabled);
-    FREGetObjectAsInt32(argv[2], &position);
-    FREGetObjectAsInt32(argv[3], &width);
-    FREGetObjectAsInt32(argv[4], &height);
-    FREGetObjectAsBool(argv[5], &color);
+    FREGetObjectAsBool(argv[2], &isBumperPageEnabled);
+    FREGetObjectAsInt32(argv[3], &position);
+    FREGetObjectAsInt32(argv[4], &width);
+    FREGetObjectAsInt32(argv[5], &height);
+    FREGetObjectAsBool(argv[6], &color);
     
     // get the key
     NSString *key = [NSString stringWithUTF8String:(char*)airName];
@@ -165,6 +167,7 @@ FREObject SuperAwesomeAIRSABannerAdPlay (FREContext ctx, void* funcData, uint32_
         // get banner
         __block SABannerAd *banner = [bannerDictionary objectForKey:key];
         [banner setParentalGate:isParentalGateEnabled];
+        [banner setBumperPage:isBumperPageEnabled];
         [banner setColor:color];
         [root.view addSubview:banner];
         [banner resize:CGRectMake(realPos.x, realPos.y, realSize.width, realSize.height)];

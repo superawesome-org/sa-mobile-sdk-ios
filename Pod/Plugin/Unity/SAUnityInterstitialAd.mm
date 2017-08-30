@@ -74,11 +74,13 @@ extern "C" {
      * Play an interstitial ad
      *
      * @param isParentalGateEnabled true / false
+     * @param isBumperPageEnabled   true / false
      * @param orientation           ANY = 0 / PORTRAIT = 1 / LANDSCAPE = 2
      */
-    void SuperAwesomeUnitySAInterstitialAdPlay (int placementId, bool isParentalGateEnabled, int orientation) {
+    void SuperAwesomeUnitySAInterstitialAdPlay (int placementId, bool isParentalGateEnabled, bool isBumperPageEnabled, int orientation) {
         UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
         [SAInterstitialAd setParentalGate:isParentalGateEnabled];
+        [SAInterstitialAd setBumperPage:isBumperPageEnabled];
         [SAInterstitialAd setOrientation:getOrientationFromInt (orientation)];
         [SAInterstitialAd play: placementId fromVC: root];
     }

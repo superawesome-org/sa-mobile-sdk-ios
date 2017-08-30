@@ -26,6 +26,7 @@
     _placementId = [[info safeObjectForKey:PLACEMENT_ID orDefault:@(SA_DEFAULT_PLACEMENTID)] integerValue];
     BOOL isTestEnabled = [[info safeObjectForKey:TEST_ENABLED orDefault:@(SA_DEFAULT_TESTMODE)] boolValue];
     BOOL isParentalGateEnabled = [[info safeObjectForKey:PARENTAL_GATE orDefault:@(SA_DEFAULT_PARENTALGATE)] boolValue];
+    BOOL isBumperPageEnabled = [[info safeObjectForKey:BUMPER_PAGE orDefault:@(SA_DEFAULT_BUMPERPAGE)] boolValue];
     SAOrientation orientation = SA_DEFAULT_ORIENTATION;
     
     NSString *ori = [info safeStringForKey:ORIENTATION];
@@ -50,6 +51,7 @@
     [SAInterstitialAd setConfiguration:configuration];
     [SAInterstitialAd setTestMode:isTestEnabled];
     [SAInterstitialAd setParentalGate:isParentalGateEnabled];
+    [SAInterstitialAd setBumperPage:isBumperPageEnabled];
     [SAInterstitialAd setOrientation:orientation];
     
     [SAInterstitialAd setCallback:^(NSInteger placementId, SAEvent event) {

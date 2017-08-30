@@ -30,6 +30,7 @@
     _placementId = [[info safeObjectForKey:PLACEMENT_ID orDefault:@(SA_DEFAULT_PLACEMENTID)] integerValue];
     BOOL isTestEnabled = [[info safeObjectForKey:TEST_ENABLED orDefault:@(SA_DEFAULT_TESTMODE)] boolValue];
     BOOL isParentalGateEnabled = [[info safeObjectForKey:PARENTAL_GATE orDefault:@(SA_DEFAULT_PARENTALGATE)] boolValue];
+    BOOL isBumperPageEnabled = [[info safeObjectForKey:BUMPER_PAGE orDefault:@(SA_DEFAULT_BUMPERPAGE)] boolValue];
     BOOL shouldShowCloseButton = [[info safeObjectForKey:SHOULD_SHOW_CLOSE orDefault:@(SA_DEFAULT_BACKBUTTON)] boolValue];
     BOOL shouldShowSmallClickButton = [[info safeObjectForKey:VIDEO_BUTTON_STYLE orDefault:@(SA_DEFAULT_SMALLCLICK)] boolValue];
     BOOL shouldAutomaticallyCloseAtEnd = [[info safeObjectForKey:SHOULD_AUTO_CLOSE orDefault:@(SA_DEFAULT_CLOSEATEND)] boolValue];
@@ -60,6 +61,7 @@
     [SAVideoAd setConfiguration:configuration];
     [SAVideoAd setTestMode:isTestEnabled];
     [SAVideoAd setParentalGate:isParentalGateEnabled];
+    [SAVideoAd setBumperPage:isBumperPageEnabled];
     [SAVideoAd setCloseButton:shouldShowCloseButton];
     [SAVideoAd setCloseAtEnd:shouldAutomaticallyCloseAtEnd];
     [SAVideoAd setSmallClick:shouldShowSmallClickButton];

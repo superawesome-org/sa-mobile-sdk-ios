@@ -73,14 +73,16 @@ extern "C" {
      * Play a video ad
      *
      * @param isParentalGateEnabled         true / false
+     * @param isBumperPageEnabled           true / false
      * @param shouldShowCloseButton         true / false
      * @param shouldShowSmallClickButton    true / false
      * @param shouldAutomaticallyCloseAtEnd true / false
      * @param orientation                   ANY = 0 / PORTRAIT = 1 / LANDSCAPE = 2
      */
-    void SuperAwesomeUnitySAVideoAdPlay(int placementId, bool isParentalGateEnabled, bool shouldShowCloseButton, bool shouldShowSmallClickButton, bool shouldAutomaticallyCloseAtEnd, int orientation) {
+    void SuperAwesomeUnitySAVideoAdPlay(int placementId, bool isParentalGateEnabled, bool isBumperPageEnabled, bool shouldShowCloseButton, bool shouldShowSmallClickButton, bool shouldAutomaticallyCloseAtEnd, int orientation) {
         UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
         [SAVideoAd setParentalGate:isParentalGateEnabled];
+        [SAVideoAd setBumperPage:isBumperPageEnabled];
         [SAVideoAd setCloseButton:shouldShowCloseButton];
         [SAVideoAd setSmallClick:shouldShowSmallClickButton];
         [SAVideoAd setCloseAtEnd:shouldAutomaticallyCloseAtEnd];

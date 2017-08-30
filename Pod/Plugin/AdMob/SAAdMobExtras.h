@@ -9,6 +9,7 @@
 @property (nonatomic, assign) SAOrientation orientation;
 @property (nonatomic, assign) SAConfiguration configuration;
 @property (nonatomic, assign) BOOL parentalGateEnabled;
+@property (nonatomic, assign) BOOL bumperPageEnabled;
 @property (nonatomic, assign) BOOL closeButtonEnabled;
 @property (nonatomic, assign) BOOL closeAtEndEnabled;
 @property (nonatomic, assign) BOOL smallCLickEnabled;
@@ -20,6 +21,7 @@
 #define kKEY_ORIENTATION    @"SA_ORIENTATION"
 #define kKEY_CONFIGURATION  @"SA_CONFIGURATION"
 #define kKEY_PARENTAL_GATE  @"SA_PG"
+#define kKEY_BUMPER_PAGE    @"SA_BUMPER"
 #define kKEY_BACK_BUTTON    @"SA_BACK_BUTTON"
 #define kKEY_CLOSE_BUTTON   @"SA_CLOSE_BUTTON"
 #define kKEY_CLOSE_AT_END   @"SA_CLOSE_AT_END"
@@ -33,6 +35,7 @@
 @property (nonatomic, assign) BOOL testEnabled;
 @property (nonatomic, assign) SAConfiguration configuration;
 @property (nonatomic, assign) BOOL parentalGateEnabled;
+@property (nonatomic, assign) BOOL bumperPageEnabled;
 @property (nonatomic, assign) SAOrientation orientation;
 
 @end

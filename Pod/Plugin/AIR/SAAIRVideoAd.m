@@ -82,6 +82,7 @@ FREObject SuperAwesomeAIRSAVideoAdPlay (FREContext ctx, void* funcData, uint32_t
     // needed paramters
     int placementId = SA_DEFAULT_PLACEMENTID;
     uint32_t isParentalGateEnabled = SA_DEFAULT_PARENTALGATE;
+    uint32_t isBumperPageEnabled = SA_DEFAULT_BUMPERPAGE;
     uint32_t shouldShowCloseButton = SA_DEFAULT_CLOSEBUTTON;
     uint32_t shouldShowSmallClickButton = SA_DEFAULT_SMALLCLICK;
     uint32_t shouldAutomaticallyCloseAtEnd = SA_DEFAULT_CLOSEATEND;
@@ -91,13 +92,15 @@ FREObject SuperAwesomeAIRSAVideoAdPlay (FREContext ctx, void* funcData, uint32_t
     // populate fields
     FREGetObjectAsInt32(argv[0], &placementId);
     FREGetObjectAsBool(argv[1], &isParentalGateEnabled);
-    FREGetObjectAsBool(argv[2], &shouldShowCloseButton);
-    FREGetObjectAsBool(argv[3], &shouldShowSmallClickButton);
-    FREGetObjectAsBool(argv[4], &shouldAutomaticallyCloseAtEnd);
-    FREGetObjectAsInt32(argv[5], &orientation);
-    FREGetObjectAsBool(argv[6], &isBackButtonEnabled);
+    FREGetObjectAsBool(argv[2], &isBumperPageEnabled);
+    FREGetObjectAsBool(argv[3], &shouldShowCloseButton);
+    FREGetObjectAsBool(argv[4], &shouldShowSmallClickButton);
+    FREGetObjectAsBool(argv[5], &shouldAutomaticallyCloseAtEnd);
+    FREGetObjectAsInt32(argv[6], &orientation);
+    FREGetObjectAsBool(argv[7], &isBackButtonEnabled);
     
     [SAVideoAd setParentalGate:isParentalGateEnabled];
+    [SAVideoAd setBumperPage:isBumperPageEnabled];
     [SAVideoAd setCloseButton:shouldShowCloseButton];
     [SAVideoAd setSmallClick:shouldShowSmallClickButton];
     [SAVideoAd setCloseAtEnd:shouldAutomaticallyCloseAtEnd];

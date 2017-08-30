@@ -1,8 +1,18 @@
 PODS:
   - Google-Mobile-Ads-SDK (7.22.0)
-  - mopub-ios-sdk (4.15.0):
-    - mopub-ios-sdk/MoPubSDK (= 4.15.0)
-  - mopub-ios-sdk/MoPubSDK (4.15.0)
+  - mopub-ios-sdk (4.16.0):
+    - mopub-ios-sdk/MoPubSDK (= 4.16.0)
+  - mopub-ios-sdk/Avid (4.16.0):
+    - mopub-ios-sdk/Core
+  - mopub-ios-sdk/Core (4.16.0)
+  - mopub-ios-sdk/Moat (4.16.0):
+    - mopub-ios-sdk/Core
+    - MPUBMoatMobileAppKit (= 3.2.1)
+  - mopub-ios-sdk/MoPubSDK (4.16.0):
+    - mopub-ios-sdk/Avid
+    - mopub-ios-sdk/Core
+    - mopub-ios-sdk/Moat
+  - MPUBMoatMobileAppKit (3.2.1)
   - SAAdLoader (1.1.5):
     - SAModelSpace (= 0.5.1)
     - SANetworking (= 0.3.0)
@@ -77,7 +87,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Google-Mobile-Ads-SDK: 1bdf1a4244d0553b1840239874c209c01aef055f
-  mopub-ios-sdk: 9eaa695db56e85e6c54e06981aff2c18f034527c
+  mopub-ios-sdk: d656c7b5ccecc309115ac1ea280de76c72a301f7
+  MPUBMoatMobileAppKit: f93733fbb17a5387228f4e29f1cd07c934d63cab
   SAAdLoader: 46e1f8500e6e97cd4c6d218c38da3715a1187e51
   SABumperPage: 6c66f215cc3c7d4156abdf393acb41d4d10023c3
   SAEvents: 3e885a1b2f1b0755e106e818ae166f8336077ad4
