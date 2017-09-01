@@ -1,6 +1,7 @@
 CHANGELOG
 =========
 
+6.1.2
 6.1.1
  - General small bug fixes
  - Added null checks for callbacks
