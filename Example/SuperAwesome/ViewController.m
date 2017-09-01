@@ -44,10 +44,8 @@
         }
     }];
     
-    
-    
     [SAInterstitialAd setConfigurationProduction];
-    [SAInterstitialAd enableTestMode];
+    [SAInterstitialAd disableTestMode];
     [SAInterstitialAd enableParentalGate];
     [SAInterstitialAd enableBumperPage];
     [SAInterstitialAd disableMoatLimiting];
@@ -131,7 +129,7 @@
                             @{@"name": @"Rich Media Video",
                               @"pid": @(715)},
                             @{@"name": @"Rich Media Video",
-                              @"pid": @(30474)}
+                              @"pid": @(34602)}
                             ]
                   },
                 @{

@@ -379,7 +379,11 @@ static BOOL isMoatLimitingEnabled    = SA_DEFAULT_MOAT_LIMITING_STATE;
                 
                 //
                 // send callback
-                callback(placementId, adFailedToLoad);
+                if (callback != NULL) {
+                    callback(placementId, adFailedToLoad);
+                } else {
+                    NSLog(@"Interstitial Ad callback not implemented. Event would have been adFailedToLoad");
+                }
             }
             else {
                 // add to the array queue
@@ -392,7 +396,11 @@ static BOOL isMoatLimitingEnabled    = SA_DEFAULT_MOAT_LIMITING_STATE;
                 }
                 
                 // callback
-                callback(placementId, [response isValid] ? adLoaded : adEmpty);
+                if (callback != NULL) {
+                    callback(placementId, [response isValid] ? adLoaded : adEmpty);
+                } else {
+                    NSLog(@"Interstitial Ad callback not implemented. Event would have been either adLoaded or adEmpty");
+                }
             }
         }];
         
@@ -400,7 +408,11 @@ static BOOL isMoatLimitingEnabled    = SA_DEFAULT_MOAT_LIMITING_STATE;
     // else if the ad data for the placement exists in the "ads" hash map,
     // then notify the user that it already exists and he should just play it
     else {
-        callback (placementId, adAlreadyLoaded);
+        if (callback != NULL) {
+            callback (placementId, adAlreadyLoaded);
+        } else {
+            NSLog(@"Interstitial Ad callback not implemented. Event would have been adAlreadyLoaded");
+        }
     }
 }
 
@@ -417,7 +429,11 @@ static BOOL isMoatLimitingEnabled    = SA_DEFAULT_MOAT_LIMITING_STATE;
         [parent presentViewController:newVC animated:YES completion:nil];
         
     } else {
-        callback(placementId, adFailedToShow);
+        if (callback != NULL) {
+            callback(placementId, adFailedToShow);
+        } else {
+            NSLog(@"Interstitial Ad callback not implemented. Event would have been adFailedToShow");
+        }
     }
 }
 

@@ -223,7 +223,11 @@ static BOOL isMoatLimitingEnabled           = SA_DEFAULT_MOAT_LIMITING_STATE;
                                                          andView:[weakSelf view]];
                 
                 // callback
-                _callbackL(weakSelf.ad.placementId, adShown);
+                if (_callbackL != NULL) {
+                    _callbackL(weakSelf.ad.placementId, adShown);
+                } else {
+                    NSLog(@"Video Ad callback not implemented. Event would have been adShown");
+                }
                 
                 break;
             }
@@ -242,7 +246,11 @@ static BOOL isMoatLimitingEnabled           = SA_DEFAULT_MOAT_LIMITING_STATE;
             case Video_End: {
                 
                 // trigger ad ended
-                _callbackL(weakSelf.ad.placementId, adEnded);
+                if (_callbackL != NULL) {
+                    _callbackL(weakSelf.ad.placementId, adEnded);
+                } else {
+                    NSLog(@"Video Ad callback not implemented. Event would have been adEnded");
+                }
                 
                 // send complete events
                 [weakSelf.events triggerVASTCompleteEvent];
@@ -276,7 +284,11 @@ static BOOL isMoatLimitingEnabled           = SA_DEFAULT_MOAT_LIMITING_STATE;
                 [weakSelf close];
                 
                 // send callback
-                _callbackL(weakSelf.ad.placementId, adFailedToShow);
+                if (_callbackL != NULL) {
+                    _callbackL(weakSelf.ad.placementId, adFailedToShow);
+                } else {
+                    NSLog(@"Video Ad callback not implemented. Event would have been adFailedToShow");
+                }
                 
                 break;
             }
@@ -527,7 +539,11 @@ static BOOL isMoatLimitingEnabled           = SA_DEFAULT_MOAT_LIMITING_STATE;
         
         // call delegate
         sacallback _callbackL = [SAVideoAd getCallback];
-        _callbackL(_ad.placementId, adClosed);
+        if (_callbackL != NULL) {
+            _callbackL(_ad.placementId, adClosed);
+        } else {
+            NSLog(@"Video Ad callback not implemented. Event would have been adClosed");
+        }
         
         // moat end
         [_events stopMoatTrackingForVideoPlayer];
@@ -585,7 +601,7 @@ static BOOL isMoatLimitingEnabled           = SA_DEFAULT_MOAT_LIMITING_STATE;
     
     BOOL _isBumperPageEnabledL = [SAVideoAd getIsBumperPageEnabled];
     
-    if (_isBumperPageEnabledL) {
+    if (_isBumperPageEnabledL || _ad.creative.bumper) {
         [SABumperPage setCallback:^{
             [weakSelf handleUrl:destination];
         }];
@@ -605,7 +621,11 @@ static BOOL isMoatLimitingEnabled           = SA_DEFAULT_MOAT_LIMITING_STATE;
     
     //
     // call delegate
-    _callbackL(_ad.placementId, adClicked);
+    if (_callbackL != NULL) {
+        _callbackL(_ad.placementId, adClicked);
+    } else {
+        NSLog(@"Video Ad callback not implemented. Event would have been adClicked");
+    }
     
     //
     // send all events for vast click tracking
@@ -668,7 +688,11 @@ static BOOL isMoatLimitingEnabled           = SA_DEFAULT_MOAT_LIMITING_STATE;
                 
                 //
                 // send callback
-                callback(placementId, adFailedToLoad);
+                if (callback != NULL) {
+                    callback(placementId, adFailedToLoad);
+                } else {
+                    NSLog(@"Video Ad callback not implemented. Event would have been adFailedToLoad");
+                }
             }
             else {
                 // perform more complex validity check
@@ -686,9 +710,15 @@ static BOOL isMoatLimitingEnabled           = SA_DEFAULT_MOAT_LIMITING_STATE;
                 }
                 
                 // callback
-                callback(placementId, isValid ? adLoaded : adEmpty);
-                forceloadcallback(placementId, isValid ? adLoaded : adEmpty);
-
+                if (callback != NULL) {
+                    callback(placementId, isValid ? adLoaded : adEmpty);
+                } else {
+                    NSLog(@"Video Ad callback not implemented. Event would have been either adLoaded or adEmpty");
+                }
+                
+                if (forceloadcallback != NULL) {
+                    forceloadcallback(placementId, isValid ? adLoaded : adEmpty);
+                }
             }
         }];
         
@@ -696,7 +726,11 @@ static BOOL isMoatLimitingEnabled           = SA_DEFAULT_MOAT_LIMITING_STATE;
     // else if the ad data for the placement exists in the "ads" hash map,
     // then notify the user that it already exists and he should just play it
     else {
-        callback (placementId, adAlreadyLoaded);
+        if (callback != NULL) {
+            callback (placementId, adAlreadyLoaded);
+        } else {
+            NSLog(@"Video Ad callback not implemented. Event would have been adAlreadyLoaded");
+        }
     }
 }
 
@@ -737,7 +771,11 @@ static BOOL isMoatLimitingEnabled           = SA_DEFAULT_MOAT_LIMITING_STATE;
         }
         
     } else {
-        callback(placementId, adFailedToShow);
+        if (callback != NULL) {
+            callback(placementId, adFailedToShow);
+        } else {
+            NSLog(@"Video Ad callback not implemented. Event would have been adFailedToShow");
+        }
     }
 }
 

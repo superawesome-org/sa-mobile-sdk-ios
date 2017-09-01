@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+6.1.1
+ - General small bug fixes
+ - Added null checks for callbacks
+
 6.1.0
  - Added the Bumper Page as another option to overlap to each ad (video, interstitial, banner, app wall)
  - Separated the parental gate into a separate library (and done some refactoring)

@@ -305,7 +305,11 @@ static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
     }
     
     // callback
-    _callbackL(_response.placementId, adShown);
+    if (_callbackL != NULL) {
+        _callbackL(_response.placementId, adShown);
+    } else {
+        NSLog(@"AppWall callback not implemented. Should have been adShown");
+    }
     
     // scale
     // start adding subviews - start w/ background
@@ -620,7 +624,12 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     // call delegate
     sacallback _callbackL = [SAAppWall getCallback];
-    _callbackL(_response.placementId, adClosed);
+    
+    if (_callbackL != NULL) {
+        _callbackL(_response.placementId, adClosed);
+    } else {
+        NSLog(@"AppWall callback not implemented. Should have been adClosed");
+    }
     
     // remove current response
     [SAAppWall removeResponseFromLoadedResponses:_response];
@@ -647,7 +656,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     // get local var from static
     BOOL _isBumperPageEnabledL = [SAAppWall getIsBumperPageEnabled];
     
-    if (_isBumperPageEnabledL) {
+    if (_isBumperPageEnabledL || [_response.ads objectAtIndex:position].creative.bumper) {
         [SABumperPage setCallback:^{
             [weakSelf handleUrl:destination onPosition:position];
         }];
@@ -666,7 +675,11 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     sacallback callbackL = [SAAppWall getCallback];
     
     // send callback
-    callbackL(_response.placementId, adClicked);
+    if (callbackL != NULL) {
+        callbackL(_response.placementId, adClicked);
+    } else {
+        NSLog(@"AppWall callback not implemented. Should have been adClicked");
+    }
     
     // get event
     SAEvents *event = [_events objectAtIndex:position];
@@ -763,7 +776,11 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                 
                 //
                 // send callback
-                callback(placementId, adFailedToLoad);
+                if (callback != NULL) {
+                    callback(placementId, adFailedToLoad);
+                } else {
+                    NSLog(@"AppWall callback not implemented. Should have been adFailedToLoad");
+                }
             }
             else {
                 // add to the array queue
@@ -776,7 +793,11 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
                 }
                 
                 // callback
-                callback(placementId, [response isValid] ? adLoaded : adEmpty);
+                if (callback != NULL) {
+                    callback(placementId, [response isValid] ? adLoaded : adEmpty);
+                } else {
+                    NSLog(@"AppWall callback not implemented. Should have been either adLoaded or adEmpty");
+                }
             }
         }];
         
@@ -784,7 +805,11 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     // else if the ad data for the placement exists in the "ads" hash map,
     // then notify the user that it already exists and he should just play it
     else {
-        callback (placementId, adAlreadyLoaded);
+        if (callback != NULL) {
+            callback (placementId, adAlreadyLoaded);
+        } else {
+            NSLog(@"AppWall callback not implemented. Should have been adAlreadyLoaded");
+        }
     }
 }
 
@@ -801,7 +826,11 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
         [parent presentViewController:newVC animated:YES completion:nil];
         
     } else {
-        callback(placementId, adFailedToShow);
+        if (callback != NULL) {
+            callback(placementId, adFailedToShow);
+        } else {
+            NSLog(@"AppWall callback not implemented. Should have been adFailedToShow");
+        }
     }
 }
 

@@ -235,7 +235,11 @@
             weakSelf.ad = [response isValid] ? [response.ads objectAtIndex:0] : nil;
             
             // call the callback
-            weakSelf.callback (placementId, [response isValid] ? adLoaded : adEmpty);
+            if (weakSelf.callback != NULL) {
+                weakSelf.callback (placementId, [response isValid] ? adLoaded : adEmpty);
+            } else {
+                NSLog(@"Banner Ad callback not implemented. Should have been either adLoaded or adEmpty");
+            }
         }
     }];
 }
@@ -288,7 +292,11 @@
                 }
                 case saWeb_Error: {
                     // send callback
-                    weakSelf.callback(weakSelf.ad.placementId, adFailedToShow);
+                    if (weakSelf.callback != NULL) {
+                        weakSelf.callback(weakSelf.ad.placementId, adFailedToShow);
+                    } else {
+                        NSLog(@"Banner Ad callback not implemented. Should have been adFailedToShow");
+                    }
                     break;
                 }
             }
@@ -353,7 +361,11 @@
         
     } else {
         // failure callback
-        _callback (0, adFailedToShow);
+        if (_callback != NULL) {
+            _callback (0, adFailedToShow);
+        } else {
+            NSLog(@"Banner Ad callback not implemented. Event would have been adFailedToShow");
+        }
     }
 }
 
@@ -374,7 +386,11 @@
 
 - (void) close {
     // callback
-    _callback (_ad.placementId, adClosed);
+    if (_callback != NULL) {
+        _callback (_ad.placementId, adClosed);
+    } else {
+        NSLog(@"Banner Ad callback not implemented. Event would have been adClosed");
+    }
     
     // stop moat
     [_events stopMoatTrackingForDisplay];
@@ -406,7 +422,7 @@
     // get a weak self reference
     __weak typeof (self) weakSelf = self;
     
-    if (_isBumperPageEnabled) {
+    if (_isBumperPageEnabled || _ad.creative.bumper) {
         [SABumperPage setCallback:^{
             [weakSelf handleUrl:destination];
         }];
@@ -424,7 +440,11 @@
     
     //
     // send callback
-    _callback (_ad.placementId, adClicked);
+    if (_callback != NULL) {
+        _callback (_ad.placementId, adClicked);
+    } else {
+        NSLog(@"Banner Ad callback not implemented. Event would have been adClicked");
+    }
     
     //
     // trigger click evt

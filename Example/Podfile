@@ -7,4 +7,5 @@ pod 'SuperAwesome/MoPub', :path => '../'
 pod 'SuperAwesome/Unity', :path => '../'
 pod 'SuperAwesome/AIR', :path => '../'
 pod 'SuperAwesome/AdMob', :path => '../'
+pod 'SAAgeGate'
 end

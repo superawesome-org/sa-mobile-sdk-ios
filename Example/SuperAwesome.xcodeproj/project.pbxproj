@@ -17,7 +17,8 @@
 		1BB132641F3485B60096B56C /* NewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB132631F3485B60096B56C /* NewVC.m */; };
 		1BB5F58B1ED6CC3400ACD72E /* AdMobController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB5F58A1ED6CC3400ACD72E /* AdMobController.m */; };
 		1BB5F5951ED82C2800ACD72E /* MoPubController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB5F5941ED82C2800ACD72E /* MoPubController.m */; };
-		C207893B144DC373D57A27DC /* libPods-SuperAwesome.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC5CAF390694281EE5099CA0 /* libPods-SuperAwesome.a */; };
+		1BE798EC1F584014009D26F6 /* AgeGateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BE798EB1F584014009D26F6 /* AgeGateController.m */; };
+		B9635931D27D332D3B296869 /* libPods-SuperAwesome.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C71551F9D7B7FB8562CAE69 /* libPods-SuperAwesome.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,7 +32,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		175C64D1B0BE5B1D81E3E72A /* Pods-SuperAwesome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesome.release.xcconfig"; path = "Pods/Target Support Files/Pods-SuperAwesome/Pods-SuperAwesome.release.xcconfig"; sourceTree = "<group>"; };
 		1B0D26CC1CF7186F00619C9C /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B0D26CE1CF7186F00619C9C /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		1B0D26D01CF7186F00619C9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -51,8 +51,11 @@
 		1BB5F58A1ED6CC3400ACD72E /* AdMobController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdMobController.m; sourceTree = "<group>"; };
 		1BB5F5931ED82C2800ACD72E /* MoPubController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoPubController.h; sourceTree = "<group>"; };
 		1BB5F5941ED82C2800ACD72E /* MoPubController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoPubController.m; sourceTree = "<group>"; };
-		55AA5FC653A75AA0FFF7B1A5 /* Pods-SuperAwesome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesome.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SuperAwesome/Pods-SuperAwesome.debug.xcconfig"; sourceTree = "<group>"; };
-		AC5CAF390694281EE5099CA0 /* libPods-SuperAwesome.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SuperAwesome.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1BE798EA1F584014009D26F6 /* AgeGateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgeGateController.h; sourceTree = "<group>"; };
+		1BE798EB1F584014009D26F6 /* AgeGateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgeGateController.m; sourceTree = "<group>"; };
+		2CD6D26DAED4E3F4873B1026 /* Pods-SuperAwesome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesome.release.xcconfig"; path = "Pods/Target Support Files/Pods-SuperAwesome/Pods-SuperAwesome.release.xcconfig"; sourceTree = "<group>"; };
+		5C71551F9D7B7FB8562CAE69 /* libPods-SuperAwesome.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SuperAwesome.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE2D517A602B2C2EBB6DFC84 /* Pods-SuperAwesome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesome.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SuperAwesome/Pods-SuperAwesome.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,7 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C207893B144DC373D57A27DC /* libPods-SuperAwesome.a in Frameworks */,
+				B9635931D27D332D3B296869 /* libPods-SuperAwesome.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,8 +92,8 @@
 				1B76D2351C91EEB1000AE8F3 /* SuperAwesome */,
 				1B0D26CD1CF7186F00619C9C /* Tests */,
 				1B76D2341C91EEB1000AE8F3 /* Products */,
-				F8FA0B703B3B755444D7F20B /* Pods */,
-				7E8003D44EFE0D360EF47E21 /* Frameworks */,
+				AFF0A754126AB0C357F91AD1 /* Pods */,
+				A3E7944596EE1DC548C6B386 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -125,6 +128,8 @@
 		1BB5F58C1ED6CC3900ACD72E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				1BE798EA1F584014009D26F6 /* AgeGateController.h */,
+				1BE798EB1F584014009D26F6 /* AgeGateController.m */,
 				1B76D23C1C91EEB1000AE8F3 /* ViewController.h */,
 				1B76D23D1C91EEB1000AE8F3 /* ViewController.m */,
 				1BB5F5891ED6CC3400ACD72E /* AdMobController.h */,
@@ -157,19 +162,19 @@
 			name = Storyboards;
 			sourceTree = "<group>";
 		};
-		7E8003D44EFE0D360EF47E21 /* Frameworks */ = {
+		A3E7944596EE1DC548C6B386 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AC5CAF390694281EE5099CA0 /* libPods-SuperAwesome.a */,
+				5C71551F9D7B7FB8562CAE69 /* libPods-SuperAwesome.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		F8FA0B703B3B755444D7F20B /* Pods */ = {
+		AFF0A754126AB0C357F91AD1 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				55AA5FC653A75AA0FFF7B1A5 /* Pods-SuperAwesome.debug.xcconfig */,
-				175C64D1B0BE5B1D81E3E72A /* Pods-SuperAwesome.release.xcconfig */,
+				FE2D517A602B2C2EBB6DFC84 /* Pods-SuperAwesome.debug.xcconfig */,
+				2CD6D26DAED4E3F4873B1026 /* Pods-SuperAwesome.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -199,12 +204,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1B76D24A1C91EEB1000AE8F3 /* Build configuration list for PBXNativeTarget "SuperAwesome" */;
 			buildPhases = (
-				80BE222FE2BAB94D6E43DF4A /* [CP] Check Pods Manifest.lock */,
+				EEF1F874F83026BA26261463 /* [CP] Check Pods Manifest.lock */,
 				1B76D22F1C91EEB1000AE8F3 /* Sources */,
 				1B76D2301C91EEB1000AE8F3 /* Frameworks */,
 				1B76D2311C91EEB1000AE8F3 /* Resources */,
-				447926EBC3FE04391CA5546E /* [CP] Embed Pods Frameworks */,
-				BB65A5103E118AD0D00F69C3 /* [CP] Copy Pods Resources */,
+				937C9B016AFDB296C21BB0B0 /* [CP] Embed Pods Frameworks */,
+				45ADA4555C47221FD1ECB450 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -275,7 +280,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		447926EBC3FE04391CA5546E /* [CP] Embed Pods Frameworks */ = {
+		45ADA4555C47221FD1ECB450 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SuperAwesome/Pods-SuperAwesome-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		937C9B016AFDB296C21BB0B0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -290,7 +310,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SuperAwesome/Pods-SuperAwesome-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		80BE222FE2BAB94D6E43DF4A /* [CP] Check Pods Manifest.lock */ = {
+		EEF1F874F83026BA26261463 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -303,21 +323,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		BB65A5103E118AD0D00F69C3 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SuperAwesome/Pods-SuperAwesome-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -337,6 +342,7 @@
 			files = (
 				1B76D23E1C91EEB1000AE8F3 /* ViewController.m in Sources */,
 				1B76D23B1C91EEB1000AE8F3 /* AppDelegate.m in Sources */,
+				1BE798EC1F584014009D26F6 /* AgeGateController.m in Sources */,
 				1BB5F5951ED82C2800ACD72E /* MoPubController.m in Sources */,
 				1BB132641F3485B60096B56C /* NewVC.m in Sources */,
 				1B76D2381C91EEB1000AE8F3 /* main.m in Sources */,
@@ -490,7 +496,7 @@
 		};
 		1B76D24B1C91EEB1000AE8F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 55AA5FC653A75AA0FFF7B1A5 /* Pods-SuperAwesome.debug.xcconfig */;
+			baseConfigurationReference = FE2D517A602B2C2EBB6DFC84 /* Pods-SuperAwesome.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: LIVIU COMAN (K79XEZP48K)";
@@ -509,7 +515,7 @@
 		};
 		1B76D24C1C91EEB1000AE8F3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 175C64D1B0BE5B1D81E3E72A /* Pods-SuperAwesome.release.xcconfig */;
+			baseConfigurationReference = 2CD6D26DAED4E3F4873B1026 /* Pods-SuperAwesome.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "";

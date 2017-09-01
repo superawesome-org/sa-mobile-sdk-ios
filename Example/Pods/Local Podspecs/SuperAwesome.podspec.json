@@ -1,6 +1,6 @@
 {
   "name": "SuperAwesome",
-  "version": "6.0.0",
+  "version": "6.1.0",
   "summary": "SuperAwesome Mobile SDK for iOS",
   "description": "The SuperAwesome Mobile SDK lets you to easily add COPPA compliant advertisements and other platform features, like user authentication and registration, to your apps. We try to make integration as easy as possible, so we provide all the necessary tools such as this guide, API documentation, screencasts and demo apps.",
   "homepage": "http://developers.superawesome.tv/docs/iossdk",
@@ -19,7 +19,7 @@
   "source": {
     "git": "https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git",
     "branch": "master",
-    "tag": "6.0.0"
+    "tag": "6.1.0"
   },
   "default_subspecs": "Full",
   "subspecs": [
@@ -35,10 +35,10 @@
           "1.2.3"
         ],
         "SAEvents": [
-          "1.9.4"
+          "1.9.5"
         ],
         "SAAdLoader": [
-          "1.1.5"
+          "1.1.6"
         ],
         "SABumperPage": [
           "1.0.3"
