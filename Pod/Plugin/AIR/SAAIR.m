@@ -10,6 +10,7 @@
 #import "SAAIRVideoAd.h"
 #import "SAAIRAppWall.h"
 #import "SAAIRVersion.h"
+#import "SAAIRBumperPage.h"
 
 /**
  * Method that initialzies an AIR Context by specifying all methods that should
@@ -23,7 +24,7 @@
  */
 void SAContextInitializer(void* extData, const uint8_t* ctxType, FREContext ctx, uint32_t* numFunctionsToTest, const FRENamedFunction** functionsToSet) {
     
-    *numFunctionsToTest = 18;
+    *numFunctionsToTest = 19;
     
     FRENamedFunction* func = (FRENamedFunction*) malloc(sizeof(FRENamedFunction) * *numFunctionsToTest);
     
@@ -98,6 +99,10 @@ void SAContextInitializer(void* extData, const uint8_t* ctxType, FREContext ctx,
     func[17].name = (const uint8_t*) "SuperAwesomeAIRVersionSetVersion";
     func[17].functionData = NULL;
     func[17].function = &SuperAwesomeAIRVersionSetVersion;
+    
+    func[18].name = (const uint8_t*) "SuperAwesomeAIRBumperOverrideName";
+    func[18].functionData = NULL;
+    func[18].function = &SuperAwesomeAIRBumperOverrideName;
     
     *functionsToSet = func;
 }

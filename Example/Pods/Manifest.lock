@@ -19,7 +19,9 @@ PODS:
     - SASession (= 0.3.6)
     - SAUtils (= 1.5.2)
     - SAVASTParser (= 1.7.2)
-  - SAAgeGate (1.0.4)
+  - SAAgeGate (1.0.7):
+    - SAAgeGate/Base (= 1.0.7)
+  - SAAgeGate/Base (1.0.7)
   - SABumperPage (1.0.3)
   - SAEvents (1.9.5):
     - SAEvents/Core (= 1.9.5)
@@ -54,25 +56,25 @@ PODS:
   - SAVideoPlayer (1.2.3)
   - SAWebPlayer (1.2.3):
     - SANetworking (= 0.3.0)
-  - SuperAwesome/AdMob (6.1.0):
+  - SuperAwesome/AdMob (6.1.2):
     - Google-Mobile-Ads-SDK
     - SuperAwesome/Base
-  - SuperAwesome/AIR (6.1.0):
+  - SuperAwesome/AIR (6.1.2):
     - SuperAwesome/Base
-  - SuperAwesome/Base (6.1.0):
+  - SuperAwesome/Base (6.1.2):
     - SAAdLoader (= 1.1.6)
     - SABumperPage (= 1.0.3)
     - SAEvents (= 1.9.5)
     - SAParentalGate (= 1.0.1)
     - SAVideoPlayer (= 1.2.3)
     - SAWebPlayer (= 1.2.3)
-  - SuperAwesome/Full (6.1.0):
+  - SuperAwesome/Full (6.1.2):
     - SAEvents/Moat
     - SuperAwesome/Base
-  - SuperAwesome/MoPub (6.1.0):
+  - SuperAwesome/MoPub (6.1.2):
     - mopub-ios-sdk
     - SuperAwesome/Base
-  - SuperAwesome/Unity (6.1.0):
+  - SuperAwesome/Unity (6.1.2):
     - SuperAwesome/Base
 
 DEPENDENCIES:
@@ -92,7 +94,7 @@ SPEC CHECKSUMS:
   mopub-ios-sdk: d656c7b5ccecc309115ac1ea280de76c72a301f7
   MPUBMoatMobileAppKit: f93733fbb17a5387228f4e29f1cd07c934d63cab
   SAAdLoader: 02019644af4c7c0996da8ff1241da7e9637e1fc4
-  SAAgeGate: 01eb17febdb843607b0efba614b3312687b6a0e9
+  SAAgeGate: fab6b773c5ea0b7d298698c5ee349f95df3d6414
   SABumperPage: 6c66f215cc3c7d4156abdf393acb41d4d10023c3
   SAEvents: 3b5e89e90474613f3ca70211e55a92b528cf586e
   SAJsonParser: 528ef25b7cf7f362164731a7aa8401bc89dc4cf5
@@ -104,7 +106,7 @@ SPEC CHECKSUMS:
   SAVASTParser: 14c7f38beb9299c4d2324d4c0d49380587ddcc34
   SAVideoPlayer: 61fa1c928b6712428d8513dbffad818e8132d0b0
   SAWebPlayer: 53311d0e14e87992b9c4cb6797639ff079d6d283
-  SuperAwesome: 28828897a1b1d8befc9a95918467e58aee43b82a
+  SuperAwesome: 05cb49e1a6924df3e7905befef6499a9bf9fd094
 
 PODFILE CHECKSUM: 639722ebb2e95feb601f8fd7b61796d6b5cdd417
 
