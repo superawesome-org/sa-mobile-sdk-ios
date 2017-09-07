@@ -17,11 +17,11 @@
     
     //
     // create & load banner
-    _banner = [[MPAdView alloc] initWithAdUnitId:BANNER_ID size:MOPUB_BANNER_SIZE];
-    _banner.frame = CGRectMake(0, 0, self.view.frame.size.width, 80);
-    _banner.delegate = self;
-    [self.view addSubview:_banner];
-    [_banner loadAd];
+//    _banner = [[MPAdView alloc] initWithAdUnitId:BANNER_ID size:MOPUB_BANNER_SIZE];
+//    _banner.frame = CGRectMake(0, 0, self.view.frame.size.width, 80);
+//    _banner.delegate = self;
+//    [self.view addSubview:_banner];
+//    [_banner loadAd];
     
     //
     // create & load interstitial
@@ -29,10 +29,10 @@
     _interstitial.delegate = self;
     [_interstitial loadAd];
     
-    //
-    // load video ads
-    [[MoPub sharedInstance] initializeRewardedVideoWithGlobalMediationSettings:nil delegate:self];
-    [MPRewardedVideo loadRewardedVideoAdWithAdUnitID:VIDEO_ID withMediationSettings:nil];
+//    //
+//    // load video ads
+//    [[MoPub sharedInstance] initializeRewardedVideoWithGlobalMediationSettings:nil delegate:self];
+//    [MPRewardedVideo loadRewardedVideoAdWithAdUnitID:VIDEO_ID withMediationSettings:nil];
 }
 
 ////////////////////////////////////////////////////////////////////////////////

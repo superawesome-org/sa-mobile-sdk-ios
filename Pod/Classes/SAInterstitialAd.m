@@ -442,6 +442,21 @@ static BOOL isMoatLimitingEnabled    = SA_DEFAULT_MOAT_LIMITING_STATE;
     return object != NULL && [object isKindOfClass:[SAAd class]];
 }
 
++ (SAAd*) getAd:(NSInteger) placementId {
+    
+    if ([ads objectForKey:@(placementId)] != NULL) {
+        NSObject *obj = [ads objectForKey:@(placementId)];
+        if (obj != NULL && [obj isKindOfClass:[SAAd class]]) {
+            return (SAAd*) obj;
+        } else {
+            return NULL;
+        }
+    }
+    else {
+        return NULL;
+    }
+}
+
 + (void) setAd: (SAAd*) ad {
     
     if (ads == NULL) {

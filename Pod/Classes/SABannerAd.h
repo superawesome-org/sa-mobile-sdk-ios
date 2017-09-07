@@ -38,6 +38,8 @@
  */
 - (BOOL) hasAdAvailable;
 
+- (SAAd*) getAd;
+
 /**
  * Method that is called to close the ad
  */

@@ -700,50 +700,6 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://ads.superawesome.tv/v2/safead"]];
 }
 
-/**
- * Method part of SAParentalGateProtocol called when the gate is opened
- *
- * @param position int representing the ad position in the ads response array
- */
-- (void) parentalGateOpen:(NSInteger)position {
-    // send all events for parental gate open
-    [_events[position] triggerPgOpenEvent];
-}
-
-/**
- * Method part of SAParentalGateProtocol called when the gate is failed
- *
- * @param position int representing the ad position in the ads response array
- */
-- (void) parentalGateFailure:(NSInteger)position {
-    // send all events for parental gate failure
-    [_events[position] triggerPgFailEvent];
-}
-
-/**
- * Method part of SAParentalGateProtocol called when the gate is successful
- *
- * @param position    int representing the ad position in the ads response array
- * @param destination URL destination
- */
-- (void) parentalGateSuccess:(NSInteger)position andDestination:(NSString *)destination {
-    // send success events
-    [_events[position] triggerPgSuccessEvent];
-    
-    // go to click
-    [self click:position withDestination:destination];
-}
-
-/**
- * Method part of SAParentalGateProtocol called when the gate is closed
- *
- * @param position int representing the ad position in the ads response array
- */
-- (void) parentalGateCancel:(NSInteger)position {
-    // send all events for parental gate close
-    [_events[position] triggerPgCloseEvent];
-}
-
 + (void) load:(NSInteger) placementId {
     
     // create dictionary
@@ -837,6 +793,21 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 + (BOOL) hasAdAvailable: (NSInteger) placementId {
     id object = [responses objectForKey:@(placementId)];
     return object != NULL && [object isKindOfClass:[SAResponse class]];
+}
+
++ (SAResponse*) getResponse:(NSInteger) placementId {
+    
+    if ([responses objectForKey:@(placementId)] != NULL) {
+        NSObject *obj = [responses objectForKey:@(placementId)];
+        if (obj != NULL && [obj isKindOfClass:[SAResponse class]]) {
+            return (SAResponse*) obj;
+        } else {
+            return NULL;
+        }
+    }
+    else {
+        return NULL;
+    }
 }
 
 + (void) setResponse:(SAResponse *)response {

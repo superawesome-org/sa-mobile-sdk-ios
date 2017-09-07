@@ -9,6 +9,11 @@
 #import "SAMoPub.h"
 #import "NSDictionary+SafeHandling.h"
 
+#import "SAAd.h"
+#import "SACreative.h"
+#import "SADetails.h"
+#import "SAMedia.h"
+
 @interface SAMoPubInterstitialCustomEvent ()
 @property (nonatomic, assign) NSInteger placementId;
 @end
@@ -57,7 +62,23 @@
     [SAInterstitialAd setCallback:^(NSInteger placementId, SAEvent event) {
         switch (event) {
             case adLoaded: {
-                [weakSelf.delegate interstitialCustomEvent:weakSelf didLoadAd:[SAInterstitialAd self]];
+                
+                SAAd *ad = [SAInterstitialAd getAd:placementId];
+                NSString *html = NULL;
+                if (ad != NULL) {
+                    html = ad.creative.details.media.html;
+                }
+                BOOL isEmpty = html != NULL && [html rangeOfString:@"mopub://failLoad"].location != NSNotFound;
+                
+                if (isEmpty) {
+                    [weakSelf.delegate interstitialCustomEvent:weakSelf
+                                      didFailToLoadAdWithError:[weakSelf createErrorWith:ERROR_LOAD_TITLE(@"Interstitial Ad", placementId)
+                                                                               andReason:ERROR_LOAD_MESSAGE
+                                                                           andSuggestion:ERROR_LOAD_SUGGESTION]];
+                } else {
+                    [weakSelf.delegate interstitialCustomEvent:weakSelf didLoadAd:[SAInterstitialAd self]];
+                }
+                
                 break;
             }
             case adAlreadyLoaded:{

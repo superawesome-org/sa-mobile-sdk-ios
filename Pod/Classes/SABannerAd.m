@@ -384,6 +384,10 @@
     return _ad != NULL;
 }
 
+- (SAAd*) getAd {
+    return _ad;
+}
+
 - (void) close {
     // callback
     if (_callback != NULL) {

@@ -42,6 +42,8 @@
  */
 + (BOOL) hasAdAvailable: (NSInteger) placementId;
 
++ (SAResponse*) getResponse: (NSInteger) placementId;
+
 /**
  * Method used for testing purposes (and the AwesomeApp) to manually put 
  * response (ad) in the appwall ads map

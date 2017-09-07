@@ -9,6 +9,11 @@
 #import "SuperAwesome.h"
 #import "NSDictionary+SafeHandling.h"
 
+#import "SAAd.h"
+#import "SACreative.h"
+#import "SADetails.h"
+#import "SAMedia.h"
+
 @interface SAMoPubBannerCustomEvent ()
 @property (nonatomic, strong) SABannerAd *banner;
 @end
@@ -51,8 +56,24 @@
     [_banner setCallback:^(NSInteger placementId, SAEvent event) {
         switch (event) {
             case adLoaded: {
-                [weakSelf.delegate bannerCustomEvent:weakSelf didLoadAd:weakSelf.banner];
-                [weakSelf.banner play];
+                
+                SAAd *ad = [weakSelf.banner getAd];
+                NSString *html = NULL;
+                if (ad != NULL) {
+                    html = ad.creative.details.media.html;
+                }
+                BOOL isEmpty = html != NULL && [html rangeOfString:@"mopub://failLoad"].location != NSNotFound;
+                
+                if (isEmpty) {
+                    [weakSelf.delegate bannerCustomEvent:weakSelf
+                                didFailToLoadAdWithError:[weakSelf createErrorWith:ERROR_LOAD_TITLE(@"Banner Ad", placementId)
+                                                                         andReason:ERROR_LOAD_MESSAGE
+                                                                     andSuggestion:ERROR_LOAD_SUGGESTION]];
+                } else {
+                    [weakSelf.delegate bannerCustomEvent:weakSelf didLoadAd:weakSelf.banner];
+                    [weakSelf.banner play];
+                }
+                
                 break;
             }
             case adAlreadyLoaded:{
