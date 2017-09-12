@@ -1,18 +1,16 @@
 PODS:
   - Google-Mobile-Ads-SDK (7.23.0)
-  - mopub-ios-sdk (4.16.0):
-    - mopub-ios-sdk/MoPubSDK (= 4.16.0)
-  - mopub-ios-sdk/Avid (4.16.0):
+  - mopub-ios-sdk (4.16.1):
+    - mopub-ios-sdk/MoPubSDK (= 4.16.1)
+  - mopub-ios-sdk/Avid (4.16.1):
     - mopub-ios-sdk/Core
-  - mopub-ios-sdk/Core (4.16.0)
-  - mopub-ios-sdk/Moat (4.16.0):
+  - mopub-ios-sdk/Core (4.16.1)
+  - mopub-ios-sdk/Moat (4.16.1):
     - mopub-ios-sdk/Core
-    - MPUBMoatMobileAppKit (= 3.2.1)
-  - mopub-ios-sdk/MoPubSDK (4.16.0):
+  - mopub-ios-sdk/MoPubSDK (4.16.1):
     - mopub-ios-sdk/Avid
     - mopub-ios-sdk/Core
     - mopub-ios-sdk/Moat
-  - MPUBMoatMobileAppKit (3.2.1)
   - SAAdLoader (1.1.6):
     - SAModelSpace (= 0.5.2)
     - SANetworking (= 0.3.0)
@@ -22,7 +20,7 @@ PODS:
   - SAAgeGate (1.0.7):
     - SAAgeGate/Base (= 1.0.7)
   - SAAgeGate/Base (1.0.7)
-  - SABumperPage (1.0.3)
+  - SABumperPage (1.0.4)
   - SAEvents (1.9.5):
     - SAEvents/Core (= 1.9.5)
     - SAModelSpace (= 0.5.2)
@@ -56,25 +54,25 @@ PODS:
   - SAVideoPlayer (1.2.3)
   - SAWebPlayer (1.2.3):
     - SANetworking (= 0.3.0)
-  - SuperAwesome/AdMob (6.1.2):
+  - SuperAwesome/AdMob (6.1.3):
     - Google-Mobile-Ads-SDK
     - SuperAwesome/Base
-  - SuperAwesome/AIR (6.1.2):
+  - SuperAwesome/AIR (6.1.3):
     - SuperAwesome/Base
-  - SuperAwesome/Base (6.1.2):
+  - SuperAwesome/Base (6.1.3):
     - SAAdLoader (= 1.1.6)
-    - SABumperPage (= 1.0.3)
+    - SABumperPage (= 1.0.4)
     - SAEvents (= 1.9.5)
     - SAParentalGate (= 1.0.1)
     - SAVideoPlayer (= 1.2.3)
     - SAWebPlayer (= 1.2.3)
-  - SuperAwesome/Full (6.1.2):
+  - SuperAwesome/Full (6.1.3):
     - SAEvents/Moat
     - SuperAwesome/Base
-  - SuperAwesome/MoPub (6.1.2):
+  - SuperAwesome/MoPub (6.1.3):
     - mopub-ios-sdk
     - SuperAwesome/Base
-  - SuperAwesome/Unity (6.1.2):
+  - SuperAwesome/Unity (6.1.3):
     - SuperAwesome/Base
 
 DEPENDENCIES:
@@ -91,11 +89,10 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Google-Mobile-Ads-SDK: a43dc8efdb566c74d00ac6934c781de969348d80
-  mopub-ios-sdk: d656c7b5ccecc309115ac1ea280de76c72a301f7
-  MPUBMoatMobileAppKit: f93733fbb17a5387228f4e29f1cd07c934d63cab
+  mopub-ios-sdk: a5b978f489e0d4016a3804f2f8e1aa4f1b1df391
   SAAdLoader: 02019644af4c7c0996da8ff1241da7e9637e1fc4
   SAAgeGate: fab6b773c5ea0b7d298698c5ee349f95df3d6414
-  SABumperPage: 6c66f215cc3c7d4156abdf393acb41d4d10023c3
+  SABumperPage: 5469654531f5e400299eeced6ee902921d1be708
   SAEvents: 3b5e89e90474613f3ca70211e55a92b528cf586e
   SAJsonParser: 528ef25b7cf7f362164731a7aa8401bc89dc4cf5
   SAModelSpace: 991b9e167f34ca7473b33e7e82eaae2428505c25
@@ -106,7 +103,7 @@ SPEC CHECKSUMS:
   SAVASTParser: 14c7f38beb9299c4d2324d4c0d49380587ddcc34
   SAVideoPlayer: 61fa1c928b6712428d8513dbffad818e8132d0b0
   SAWebPlayer: 53311d0e14e87992b9c4cb6797639ff079d6d283
-  SuperAwesome: 05cb49e1a6924df3e7905befef6499a9bf9fd094
+  SuperAwesome: a4c0abfb213adfec8709a885e4a53e5034d81b50
 
 PODFILE CHECKSUM: 639722ebb2e95feb601f8fd7b61796d6b5cdd417
 

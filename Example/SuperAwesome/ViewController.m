@@ -32,7 +32,7 @@
     [_bannerAd setConfigurationStaging];
     [_bannerAd enableTestMode];
     [_bannerAd disableMoatLimiting];
-    [_bannerAd disableParentalGate];
+    [_bannerAd enableParentalGate];
     [_bannerAd enableBumperPage];
     [_bannerAd enableTestMode];
     [_bannerAd setCallback:^(NSInteger placementId, SAEvent event) {
