@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+6.1.5
+ - Removed video auto-reload after an hour code
+
 6.1.4
  - Update BumperPage copy
 

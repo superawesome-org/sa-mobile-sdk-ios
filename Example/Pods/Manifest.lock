@@ -1,13 +1,13 @@
 PODS:
-  - Google-Mobile-Ads-SDK (7.23.0)
-  - mopub-ios-sdk (4.16.1):
-    - mopub-ios-sdk/MoPubSDK (= 4.16.1)
-  - mopub-ios-sdk/Avid (4.16.1):
+  - Google-Mobile-Ads-SDK (7.25.0)
+  - mopub-ios-sdk (4.18.0):
+    - mopub-ios-sdk/MoPubSDK (= 4.18.0)
+  - mopub-ios-sdk/Avid (4.18.0):
     - mopub-ios-sdk/Core
-  - mopub-ios-sdk/Core (4.16.1)
-  - mopub-ios-sdk/Moat (4.16.1):
+  - mopub-ios-sdk/Core (4.18.0)
+  - mopub-ios-sdk/Moat (4.18.0):
     - mopub-ios-sdk/Core
-  - mopub-ios-sdk/MoPubSDK (4.16.1):
+  - mopub-ios-sdk/MoPubSDK (4.18.0):
     - mopub-ios-sdk/Avid
     - mopub-ios-sdk/Core
     - mopub-ios-sdk/Moat
@@ -54,25 +54,25 @@ PODS:
   - SAVideoPlayer (1.2.3)
   - SAWebPlayer (1.2.3):
     - SANetworking (= 0.3.0)
-  - SuperAwesome/AdMob (6.1.3):
+  - SuperAwesome/AdMob (6.1.4):
     - Google-Mobile-Ads-SDK
     - SuperAwesome/Base
-  - SuperAwesome/AIR (6.1.3):
+  - SuperAwesome/AIR (6.1.4):
     - SuperAwesome/Base
-  - SuperAwesome/Base (6.1.3):
+  - SuperAwesome/Base (6.1.4):
     - SAAdLoader (= 1.1.6)
     - SABumperPage (= 1.0.4)
     - SAEvents (= 1.9.5)
     - SAParentalGate (= 1.0.1)
     - SAVideoPlayer (= 1.2.3)
     - SAWebPlayer (= 1.2.3)
-  - SuperAwesome/Full (6.1.3):
+  - SuperAwesome/Full (6.1.4):
     - SAEvents/Moat
     - SuperAwesome/Base
-  - SuperAwesome/MoPub (6.1.3):
+  - SuperAwesome/MoPub (6.1.4):
     - mopub-ios-sdk
     - SuperAwesome/Base
-  - SuperAwesome/Unity (6.1.3):
+  - SuperAwesome/Unity (6.1.4):
     - SuperAwesome/Base
 
 DEPENDENCIES:
@@ -88,8 +88,8 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  Google-Mobile-Ads-SDK: a43dc8efdb566c74d00ac6934c781de969348d80
-  mopub-ios-sdk: a5b978f489e0d4016a3804f2f8e1aa4f1b1df391
+  Google-Mobile-Ads-SDK: 113804f266381a30f982ad3c18063d4e0155414f
+  mopub-ios-sdk: 043a81e7e3ccd2b888fec35880b13e2876c16ff3
   SAAdLoader: 02019644af4c7c0996da8ff1241da7e9637e1fc4
   SAAgeGate: fab6b773c5ea0b7d298698c5ee349f95df3d6414
   SABumperPage: 5469654531f5e400299eeced6ee902921d1be708
@@ -103,7 +103,7 @@ SPEC CHECKSUMS:
   SAVASTParser: 14c7f38beb9299c4d2324d4c0d49380587ddcc34
   SAVideoPlayer: 61fa1c928b6712428d8513dbffad818e8132d0b0
   SAWebPlayer: 53311d0e14e87992b9c4cb6797639ff079d6d283
-  SuperAwesome: a4c0abfb213adfec8709a885e4a53e5034d81b50
+  SuperAwesome: 9f06310f3e2fa133ecab0c1a3c5a6655ca923195
 
 PODFILE CHECKSUM: 639722ebb2e95feb601f8fd7b61796d6b5cdd417
 

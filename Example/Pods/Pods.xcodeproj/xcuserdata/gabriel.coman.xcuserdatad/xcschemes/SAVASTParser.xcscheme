@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'A8FA01B4EEC2DFA77D0F1F8F'
+               BlueprintIdentifier = '0DBD467D2F79FA7C0B132F41'
                BlueprintName = 'SAVASTParser'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libSAVASTParser.a'>

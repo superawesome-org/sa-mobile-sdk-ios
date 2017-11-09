@@ -58,10 +58,10 @@
         }
     }];
     
-    [SAVideoAd setConfigurationStaging];
+    [SAVideoAd setConfigurationProduction];
     [SAVideoAd enableTestMode];
-    [SAVideoAd enableParentalGate];
-    [SAVideoAd enableBumperPage];
+//    [SAVideoAd enableParentalGate];
+//    [SAVideoAd enableBumperPage];
     [SAVideoAd enableCloseButton];
     [SAVideoAd disableCloseAtEnd];
     [SAVideoAd disableMoatLimiting];
@@ -74,7 +74,7 @@
         }
     }];
     
-    [SAAppWall setConfigurationStaging];
+    [SAAppWall setConfigurationProduction];
     [SAAppWall setCallback:^(NSInteger placementId, SAEvent event) {
         
         NSLog(@"SUPER-AWESOME: AppWall Ad %ld - Event %ld", (long) placementId, (long) event);
@@ -129,14 +129,14 @@
                             @{@"name": @"Rich Media Video",
                               @"pid": @(715)},
                             @{@"name": @"Rich Media Video",
-                              @"pid": @(34602)}
+                              @"pid": @(33615)}
                             ]
                   },
                 @{
                     @"name": @"Videos",
                     @"items": @[
                             @{@"name": @"CPM Preroll 1 (Video)",
-                              @"pid": @(628)},
+                              @"pid": @(30479)},
                             @{@"name": @"CPM Preroll 2 (Video)",
                               @"pid": @(629)},
                             @{@"name": @"CPM Preroll 3 (Video)",
@@ -148,7 +148,9 @@
                             @{@"name": @"Level 5 CPI",
                               @"pid": @(31095)},
                             @{@"name": @"Level 5 CPI",
-                              @"pid": @(31097)}
+                              @"pid": @(34685)},
+                            @{@"name": @"Level 5 CPI",
+                              @"pid": @(7)}
                             ]
                   },
                 @{
