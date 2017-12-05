@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+6.1.6
+ - Improved Bumper Page experience
+
 6.1.5
  - Removed video auto-reload after an hour code
 

@@ -23,10 +23,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+//    NSMutableArray *abc = @[@(13), @(25), @(88)];
+//    [abc removeLastObject];
+    
     SASession *session = [[SASession alloc] init];
     [session setConfigurationStaging];
     
-    [SABumperPage overrideName:@"My app"];
+    [SABumperPage overrideName:@"Test app"];
     [SABumperPage overrideLogo:[UIImage imageNamed:@"kws_700"]];
     
     [_bannerAd setConfigurationStaging];
@@ -61,7 +64,7 @@
     [SAVideoAd setConfigurationProduction];
     [SAVideoAd enableTestMode];
 //    [SAVideoAd enableParentalGate];
-//    [SAVideoAd enableBumperPage];
+    [SAVideoAd enableBumperPage];
     [SAVideoAd enableCloseButton];
     [SAVideoAd disableCloseAtEnd];
     [SAVideoAd disableMoatLimiting];
@@ -103,7 +106,7 @@
                     @"name": @"Interstitials",
                     @"items": @[
                             @{@"name": @"CPM Interstitial 1 (Image)",
-                              @"pid": @(620)},
+                              @"pid": @(35901)},
                             @{@"name": @"CPM Interstitial 2 (Rich Media)",
                               @"pid": @(621)},
                             @{@"name": @"CPM Interstitial 3 (Rich Media)",
