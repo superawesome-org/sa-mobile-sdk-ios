@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '36FDB07FB7E87DF5EE214AC7'
-               BlueprintName = 'SANetworking'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libSANetworking.a'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A030CE3094DCB44386B26498"
+               BlueprintName = "SANetworking"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "libSANetworking.a">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

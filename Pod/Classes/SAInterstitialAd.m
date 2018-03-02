@@ -424,8 +424,14 @@ static BOOL isMoatLimitingEnabled    = SA_DEFAULT_MOAT_LIMITING_STATE;
     // try to start the view controller (if there is one ad that's OK)
     if (adL && [adL isKindOfClass:[SAAd class]] && ((SAAd*)adL).creative.format != SA_Video) {
         
+        // prepare vc
         SAInterstitialAd *newVC = [[SAInterstitialAd alloc] init];
         newVC.ad = (SAAd*)adL;
+        
+        // remove ad (mark it as played)
+        [ads removeObjectForKey:@(placementId)];
+        
+        // present vc
         [parent presentViewController:newVC animated:YES completion:nil];
         
     } else {

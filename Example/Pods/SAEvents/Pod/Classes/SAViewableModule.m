@@ -40,8 +40,8 @@
                                                          target:[NSBlockOperation blockOperationWithBlock:^{
         
         if (ticks >= maxTicks) {
-            [_viewabilityTimer invalidate];
-            _viewabilityTimer = nil;
+            [self.viewabilityTimer invalidate];
+            self.viewabilityTimer = nil;
             
             // success case
             if (cticks == maxTicks) {

@@ -49,8 +49,8 @@
     
     [SAInterstitialAd setConfigurationProduction];
     [SAInterstitialAd disableTestMode];
-    [SAInterstitialAd enableParentalGate];
-    [SAInterstitialAd enableBumperPage];
+//    [SAInterstitialAd enableParentalGate];
+//    [SAInterstitialAd enableBumperPage];
     [SAInterstitialAd disableMoatLimiting];
     [SAInterstitialAd setCallback:^(NSInteger placementId, SAEvent event) {
         
@@ -62,7 +62,7 @@
     }];
     
     [SAVideoAd setConfigurationProduction];
-    [SAVideoAd enableTestMode];
+    [SAVideoAd disableTestMode];
 //    [SAVideoAd enableParentalGate];
     [SAVideoAd enableBumperPage];
     [SAVideoAd enableCloseButton];
@@ -74,19 +74,9 @@
         
         if (event == adLoaded) {
             [SAVideoAd play:placementId fromVC:self];
+            [SAVideoAd play:placementId fromVC:self];
         }
     }];
-    
-    [SAAppWall setConfigurationProduction];
-    [SAAppWall setCallback:^(NSInteger placementId, SAEvent event) {
-        
-        NSLog(@"SUPER-AWESOME: AppWall Ad %ld - Event %ld", (long) placementId, (long) event);
-        
-        if (event == adLoaded) {
-            [SAAppWall play:placementId fromVC:self];
-        }
-    }];
-    
     
     _data = [@[
                 @{
@@ -106,7 +96,7 @@
                     @"name": @"Interstitials",
                     @"items": @[
                             @{@"name": @"CPM Interstitial 1 (Image)",
-                              @"pid": @(35901)},
+                              @"pid": @(34052)},
                             @{@"name": @"CPM Interstitial 2 (Rich Media)",
                               @"pid": @(621)},
                             @{@"name": @"CPM Interstitial 3 (Rich Media)",
@@ -139,30 +129,9 @@
                     @"name": @"Videos",
                     @"items": @[
                             @{@"name": @"CPM Preroll 1 (Video)",
-                              @"pid": @(30479)},
-                            @{@"name": @"CPM Preroll 2 (Video)",
-                              @"pid": @(629)},
-                            @{@"name": @"CPM Preroll 3 (Video)",
-                              @"pid": @(630)},
-                            @{@"name": @"CPM Preroll 4 (Tag)",
-                              @"pid": @(631)},
-                            @{@"name": @"CPI Preroll 1 (Video)",
-                              @"pid": @(604)},
-                            @{@"name": @"Level 5 CPI",
-                              @"pid": @(31095)},
-                            @{@"name": @"Level 5 CPI",
-                              @"pid": @(34685)},
-                            @{@"name": @"Level 5 CPI",
-                              @"pid": @(7)}
+                              @"pid": @(36454)}
                             ]
-                  },
-                @{
-                    @"name": @"App Wall",
-                    @"items": @[
-                            @{@"name": @"CPI AppWall 1 (Images)",
-                              @"pid": @(633)}
-                            ]
-                    }
+                  }
               ] mutableCopy];
 }
 
@@ -227,12 +196,6 @@
     else if ([indexPath section] == 2) {
         
         [SAVideoAd load:placementId];
-        
-    }
-    // APP WALL
-    else if ([indexPath section] == 3) {
-        
-        [SAAppWall load:placementId];
         
     }
 }

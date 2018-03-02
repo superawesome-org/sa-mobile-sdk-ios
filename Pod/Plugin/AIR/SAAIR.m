@@ -8,7 +8,6 @@
 #import "SAAIRBannerAd.h"
 #import "SAAIRInterstitialAd.h"
 #import "SAAIRVideoAd.h"
-#import "SAAIRAppWall.h"
 #import "SAAIRVersion.h"
 #import "SAAIRBumperPage.h"
 
@@ -24,7 +23,7 @@
  */
 void SAContextInitializer(void* extData, const uint8_t* ctxType, FREContext ctx, uint32_t* numFunctionsToTest, const FRENamedFunction** functionsToSet) {
     
-    *numFunctionsToTest = 19;
+    *numFunctionsToTest = 15;
     
     FRENamedFunction* func = (FRENamedFunction*) malloc(sizeof(FRENamedFunction) * *numFunctionsToTest);
     
@@ -60,49 +59,33 @@ void SAContextInitializer(void* extData, const uint8_t* ctxType, FREContext ctx,
     func[7].functionData = NULL;
     func[7].function = &SuperAwesomeAIRSAInterstitialAdPlay;
     
-    func[8].name = (const uint8_t*) "SuperAwesomeAIRSAAppWallCreate";
+    func[8].name = (const uint8_t*) "SuperAwesomeAIRSABannerAdCreate";
     func[8].functionData = NULL;
-    func[8].function = &SuperAwesomeAIRSAAppWallCreate;
+    func[8].function = &SuperAwesomeAIRSABannerAdCreate;
     
-    func[9].name = (const uint8_t*) "SuperAwesomeAIRSAAppWallLoad";
+    func[9].name = (const uint8_t*) "SuperAwesomeAIRSABannerAdLoad";
     func[9].functionData = NULL;
-    func[9].function = &SuperAwesomeAIRSAAppWallLoad;
+    func[9].function = &SuperAwesomeAIRSABannerAdLoad;
     
-    func[10].name = (const uint8_t*) "SuperAwesomeAIRSAAppWallHasAdAvailable";
+    func[10].name = (const uint8_t*) "SuperAwesomeAIRSABannerAdHasAdAvailable";
     func[10].functionData = NULL;
-    func[10].function = &SuperAwesomeAIRSAAppWallHasAdAvailable;
+    func[10].function = &SuperAwesomeAIRSABannerAdHasAdAvailable;
     
-    func[11].name = (const uint8_t*) "SuperAwesomeAIRSAAppWallPlay";
+    func[11].name = (const uint8_t*) "SuperAwesomeAIRSABannerAdPlay";
     func[11].functionData = NULL;
-    func[11].function = &SuperAwesomeAIRSAAppWallPlay;
+    func[11].function = &SuperAwesomeAIRSABannerAdPlay;
     
-    func[12].name = (const uint8_t*) "SuperAwesomeAIRSABannerAdCreate";
+    func[12].name = (const uint8_t*) "SuperAwesomeAIRSABannerAdClose";
     func[12].functionData = NULL;
-    func[12].function = &SuperAwesomeAIRSABannerAdCreate;
+    func[12].function = &SuperAwesomeAIRSABannerAdClose;
     
-    func[13].name = (const uint8_t*) "SuperAwesomeAIRSABannerAdLoad";
+    func[13].name = (const uint8_t*) "SuperAwesomeAIRVersionSetVersion";
     func[13].functionData = NULL;
-    func[13].function = &SuperAwesomeAIRSABannerAdLoad;
+    func[13].function = &SuperAwesomeAIRVersionSetVersion;
     
-    func[14].name = (const uint8_t*) "SuperAwesomeAIRSABannerAdHasAdAvailable";
+    func[14].name = (const uint8_t*) "SuperAwesomeAIRBumperOverrideName";
     func[14].functionData = NULL;
-    func[14].function = &SuperAwesomeAIRSABannerAdHasAdAvailable;
-    
-    func[15].name = (const uint8_t*) "SuperAwesomeAIRSABannerAdPlay";
-    func[15].functionData = NULL;
-    func[15].function = &SuperAwesomeAIRSABannerAdPlay;
-    
-    func[16].name = (const uint8_t*) "SuperAwesomeAIRSABannerAdClose";
-    func[16].functionData = NULL;
-    func[16].function = &SuperAwesomeAIRSABannerAdClose;
-    
-    func[17].name = (const uint8_t*) "SuperAwesomeAIRVersionSetVersion";
-    func[17].functionData = NULL;
-    func[17].function = &SuperAwesomeAIRVersionSetVersion;
-    
-    func[18].name = (const uint8_t*) "SuperAwesomeAIRBumperOverrideName";
-    func[18].functionData = NULL;
-    func[18].function = &SuperAwesomeAIRBumperOverrideName;
+    func[14].function = &SuperAwesomeAIRBumperOverrideName;
     
     *functionsToSet = func;
 }

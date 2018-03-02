@@ -742,33 +742,15 @@ static BOOL isMoatLimitingEnabled           = SA_DEFAULT_MOAT_LIMITING_STATE;
     // try to start the view controller (if there is one ad that's OK)
     if (adL && [adL isKindOfClass:[SAAd class]] && ((SAAd*)adL).creative.format == SA_Video) {
         
+        // prepare vc
         SAVideoAd *newVC = [[SAVideoAd alloc] init];
         newVC.ad = (SAAd*)adL;
         
-//        NSTimeInterval current = [[NSDate date] timeIntervalSince1970];
-//        NSInteger currentTime = current * 1000;
-//        NSInteger minutes = 60;
-//        NSInteger maxTime = minutes * 60 * 1000;
-//
-//        if (currentTime > newVC.ad.loadTime + maxTime) {
-//
-//            //
-//            // remove
-//            [ads removeObjectForKey:@(placementId)];
-//
-//            forceloadcallback = ^(NSInteger placementId, SAEvent evt) {
-//                if (evt == adLoaded) {
-//                    [self play:placementId fromVC:parent];
-//                }
-//            };
-//
-//            //
-//            // load
-//            [SAVideoAd load:placementId];
-//
-//        } else {
-            [parent presentViewController:newVC animated:YES completion:nil];
-//        }
+        // remove ad (mark it as played)
+        [ads removeObjectForKey:@(placementId)];
+        
+        // present vc
+        [parent presentViewController:newVC animated:YES completion:nil];
         
     } else {
         if (callback != NULL) {

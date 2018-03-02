@@ -20,9 +20,9 @@ Pod::Spec.new do |s|
     b.frameworks = 'AdSupport'
     b.dependency 'SAVideoPlayer', '1.2.3'
     b.dependency 'SAWebPlayer', '1.2.3'
-    b.dependency 'SAEvents', '1.9.5'
-    b.dependency 'SAAdLoader', '1.1.6'
-    b.dependency 'SABumperPage', '1.0.5'
+    b.dependency 'SAEvents', '1.9.6'
+    b.dependency 'SAAdLoader', '1.1.7'
+    b.dependency 'SABumperPage', '1.0.6'
     b.dependency 'SAParentalGate', '1.0.1'
   end
 

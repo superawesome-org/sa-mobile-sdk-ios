@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '9CAE18851432C2085A4AC41C'
-               BlueprintName = 'SASession'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libSASession.a'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2E0051285EC461897FE41548"
+               BlueprintName = "SASession"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "libSASession.a">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

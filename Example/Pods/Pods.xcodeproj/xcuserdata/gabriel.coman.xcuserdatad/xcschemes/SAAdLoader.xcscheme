@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '49EE0F8C6F01B356C1C6B640'
-               BlueprintName = 'SAAdLoader'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libSAAdLoader.a'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "4807A673438D6499280EBAD7"
+               BlueprintName = "SAAdLoader"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "libSAAdLoader.a">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

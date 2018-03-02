@@ -7,7 +7,6 @@
 #import "SABannerAd.h"
 #import "SAInterstitialAd.h"
 #import "SAVideoAd.h"
-#import "SAAppWall.h"
 #import "SACallback.h"
 #import "SAOrientation.h"
 #import "SADefines.h"

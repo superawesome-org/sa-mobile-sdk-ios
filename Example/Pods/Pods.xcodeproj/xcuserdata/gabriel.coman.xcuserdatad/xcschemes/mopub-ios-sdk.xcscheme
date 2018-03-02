@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '27A986F5264BD90B4A4F6D8D'
-               BlueprintName = 'mopub-ios-sdk'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libmopub-ios-sdk.a'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "35E23F7F226E9C418F9D3915"
+               BlueprintName = "mopub-ios-sdk"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "libmopub-ios-sdk.a">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

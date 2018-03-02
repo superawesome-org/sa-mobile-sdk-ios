@@ -33,7 +33,7 @@ The MoPub SDK is distributed as source code that you can include in your applica
 
   Includes everything you need to serve HTML and MRAID advertisements.  Third party ad networks and Native MoPub advertisements are not included.
 
-The current version of the SDK is 4.18.0
+The current version of the SDK is 4.20.0
 
 ## Integrate
 
@@ -45,22 +45,11 @@ More detailed class documentation is available in the repo under the `ClassDocum
 
 Please view the [changelog](https://github.com/mopub/mopub-ios-sdk/blob/master/CHANGELOG.md) for details.
 
-- **Features**
-    - iPhone X compatibility improvements including moving the close button into safe area.
-
 - **Bug Fixes**
-	- Fixed a bug with unspecified rewarded video currencies.
-	- Fixed C99 compilation bug.
+	- Fixed ad expiration check for rewarded ad formats
 
 - **Ad Network Mediation Updates**
-	- AdColony 3.2.1
-	- AdMob 7.24.1
-	- AOL 6.6.0 (formerly Millennial)
-	- Chartboost 7.0
-	- Facebook Audience Network 4.26.0
-	- Tapjoy 11.11.0
-	- Unity Ads 2.1.1
-	- Vungle 5.3.0
+	- Network mediation adapters are now in a separate repository to enable an independent release cadence and faster updates to the adapters. Please find the new location [here](https://github.com/mopub/mopub-ios-mediation).
 
 See the [Getting Started Guide](https://github.com/mopub/mopub-ios-sdk/wiki/Getting-Started#app-transport-security-settings) for instructions on setting up ATS in your app.  
 
@@ -85,7 +74,8 @@ See our [upgrade document](https://github.com/mopub/mopub-ios-sdk/wiki/Upgrading
 
 ## Requirements
 
-iOS 8.0 and up
+- iOS 8.0 and up
+- Xcode 9.0 and up
 
 ## License
 
