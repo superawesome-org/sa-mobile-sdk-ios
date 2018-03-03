@@ -44,10 +44,11 @@
     return self;
 }
 
-- (id)initWithObjects:(const id [])objects forKeys:(const id [])keys count:(NSUInteger)cnt {
+- (id) initWithObjects:(id  _Nonnull const [])objects forKeys:(id<NSCopying>  _Nonnull const [])keys count:(NSUInteger)cnt {
     _dict = [NSMutableDictionary dictionaryWithObjects:objects forKeys:keys count:cnt];
     return self;
 }
+
 - (NSUInteger)count {
     return [_dict count];
 }

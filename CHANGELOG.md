@@ -1,6 +1,14 @@
 CHANGELOG
 =========
 
+6.1.8
+6.1.7 
+ - Fixed all warnings realted to SuperAwesome
+ - Descreased size of uncompiled files by about 1MB
+ - Removed unused code in SAUtils, AgeGate, etc
+ - Fixed a bug that meant that images bigger than 320x480 were not scaled properly
+ - Moved all dependency min. requirements to iOS 8.0 and removed deprecated code
+
 6.1.6
  - Improved Bumper Page experience
 

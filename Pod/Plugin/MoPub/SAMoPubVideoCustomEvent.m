@@ -111,7 +111,7 @@
             }
             case adEnded: {
                 // reward
-                [weakSelf.delegate rewardedVideoShouldRewardUserForCustomEvent:weakSelf reward:_reward];
+                [weakSelf.delegate rewardedVideoShouldRewardUserForCustomEvent:weakSelf reward:weakSelf.reward];
                 // also null this so no references remain and memory is freed correctly
                 weakSelf.reward = NULL;
                 break;

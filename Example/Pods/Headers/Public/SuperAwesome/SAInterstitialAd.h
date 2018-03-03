@@ -1,1 +1,0 @@
-../../../../../Pod/Classes/SAInterstitialAd.h

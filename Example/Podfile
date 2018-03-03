@@ -1,5 +1,4 @@
 platform :ios, '8.0'
-install! 'cocoapods', :deterministic_uuids => false
 
 target 'SuperAwesome' do
 pod 'SuperAwesome/Full', :path => '../'

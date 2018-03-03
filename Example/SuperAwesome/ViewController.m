@@ -32,8 +32,8 @@
     [SABumperPage overrideName:@"Test app"];
     [SABumperPage overrideLogo:[UIImage imageNamed:@"kws_700"]];
     
-    [_bannerAd setConfigurationStaging];
-    [_bannerAd enableTestMode];
+    [_bannerAd setConfigurationProduction];
+    [_bannerAd disableTestMode];
     [_bannerAd disableMoatLimiting];
     [_bannerAd enableParentalGate];
     [_bannerAd enableBumperPage];
@@ -49,8 +49,7 @@
     
     [SAInterstitialAd setConfigurationProduction];
     [SAInterstitialAd disableTestMode];
-//    [SAInterstitialAd enableParentalGate];
-//    [SAInterstitialAd enableBumperPage];
+    [SAInterstitialAd enableBumperPage];
     [SAInterstitialAd disableMoatLimiting];
     [SAInterstitialAd setCallback:^(NSInteger placementId, SAEvent event) {
         
@@ -63,7 +62,6 @@
     
     [SAVideoAd setConfigurationProduction];
     [SAVideoAd disableTestMode];
-//    [SAVideoAd enableParentalGate];
     [SAVideoAd enableBumperPage];
     [SAVideoAd enableCloseButton];
     [SAVideoAd disableCloseAtEnd];
@@ -83,53 +81,21 @@
                   @"name": @"Banners",
                   @"items": @[
                           @{@"name": @"CPM Banner 1 (Image)",
-                            @"pid": @(636)},
-                          @{@"name": @"CPM Banner 2 (Image)",
-                            @"pid": @(635)},
-                          @{@"name": @"CPI Banner 1 (Image)",
-                            @"pid": @(618)},
-                          @{@"name": @"CPM MPU 1 (Tag)",
-                            @"pid": @(619)}
+                            @"pid": @(36470)},
                           ]
                   },
                 @{
                     @"name": @"Interstitials",
                     @"items": @[
                             @{@"name": @"CPM Interstitial 1 (Image)",
-                              @"pid": @(34052)},
-                            @{@"name": @"CPM Interstitial 2 (Rich Media)",
-                              @"pid": @(621)},
-                            @{@"name": @"CPM Interstitial 3 (Rich Media)",
-                              @"pid": @(622)},
-                            @{@"name": @"CPM Interstitial 4 (Rich Media)",
-                              @"pid": @(637)},
-                            @{@"name": @"CPM Interstitial 5 (Rich Media)",
-                              @"pid": @(624)},
-                            @{@"name": @"CPM Interstitial 6 (Rich Media)",
-                              @"pid": @(625)},
-                            @{@"name": @"CPM Interstitial 7 (Scalable Rich Media)",
-                              @"pid": @(643)},
-                            @{@"name": @"CPM Interstitial 8 (Scrollable Rich Media)",
-                              @"pid": @(653)},
-                            @{@"name": @"CPM Interstitial 9 (Tag)",
-                              @"pid": @(626)},
-                            @{@"name": @"CPM Interstitial 10 (Rafa)",
-                              @"pid": @(657)},
-                            @{@"name": @"Sing Interstitial",
-                              @"pid": @(659)},
-                            @{@"name": @"400 Interstitial",
-                              @"pid": @(702)},
-                            @{@"name": @"Rich Media Video",
-                              @"pid": @(715)},
-                            @{@"name": @"Rich Media Video",
-                              @"pid": @(33615)}
+                              @"pid": @(36471)},
                             ]
                   },
                 @{
                     @"name": @"Videos",
                     @"items": @[
                             @{@"name": @"CPM Preroll 1 (Video)",
-                              @"pid": @(36454)}
+                              @"pid": @(36472)}
                             ]
                   }
               ] mutableCopy];

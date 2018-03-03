@@ -441,35 +441,6 @@ static BOOL isMoatLimitingEnabled           = SA_DEFAULT_MOAT_LIMITING_STATE;
 }
 
 /**
- * Overridden UIViewController "willRotateToInterfaceOrientation:duration:"
- * in which I get the message that the view will rotate and try to help with
- * maths in order to resize the ad
- *
- * @param toInterfaceOrientation the new interface orientation enum value
- * @param duration               duration of the transition
- */
-- (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    CGSize scrSize = [UIScreen mainScreen].bounds.size;
-    CGFloat bigDimension = MAX(scrSize.width, scrSize.height);
-    CGFloat smallDimension = MIN(scrSize.width, scrSize.height);
-    
-    switch (toInterfaceOrientation) {
-        case UIInterfaceOrientationLandscapeLeft:
-        case UIInterfaceOrientationLandscapeRight: {
-            [self resize:CGRectMake(0, 0, bigDimension, smallDimension)];
-            break;
-        }
-        case UIInterfaceOrientationPortrait:
-        case UIInterfaceOrientationPortraitUpsideDown:
-        case UIInterfaceOrientationUnknown:
-        default: {
-            [self resize:CGRectMake(0, 0, smallDimension, bigDimension)];
-            break;
-        }
-    }
-}
-
-/**
  * Overridden UIViewController "supportedInterfaceOrientations" method in which
  * I set the supported orientations
  *
@@ -517,7 +488,7 @@ static BOOL isMoatLimitingEnabled           = SA_DEFAULT_MOAT_LIMITING_STATE;
  *
  * @return true or false
  */
-- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+- (BOOL) shouldAutorotate {
     return YES;
 }
 
