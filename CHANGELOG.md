@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+6.1.9
+ - Added correct SDK version
+
 6.1.8
 6.1.7 
  - Fixed all warnings realted to SuperAwesome

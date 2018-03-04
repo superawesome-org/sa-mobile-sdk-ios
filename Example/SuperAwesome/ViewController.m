@@ -37,7 +37,6 @@
     [_bannerAd disableMoatLimiting];
     [_bannerAd enableParentalGate];
     [_bannerAd enableBumperPage];
-    [_bannerAd enableTestMode];
     [_bannerAd setCallback:^(NSInteger placementId, SAEvent event) {
        
         NSLog(@"SUPER-AWESOME: Banner Ad %ld - Event %ld", (long)placementId, (long)event);
