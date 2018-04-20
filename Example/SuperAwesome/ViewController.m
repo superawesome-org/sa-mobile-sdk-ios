@@ -87,7 +87,7 @@
                     @"name": @"Interstitials",
                     @"items": @[
                             @{@"name": @"CPM Interstitial 1 (Image)",
-                              @"pid": @(36471)},
+                              @"pid": @(36744)},
                             ]
                   },
                 @{

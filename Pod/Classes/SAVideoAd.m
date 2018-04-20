@@ -198,7 +198,7 @@ static BOOL isMoatLimitingEnabled           = SA_DEFAULT_MOAT_LIMITING_STATE;
     }
     
     // set event handler for player
-    [_player setEventHandler:^(SAVideoPlayerEvent event) {
+    [_player setEventHandler:^(SAVideoPlayerEvent event, CGFloat time, CGFloat duration) {
         switch (event) {
             case Video_Start: {
                 
@@ -211,11 +211,11 @@ static BOOL isMoatLimitingEnabled           = SA_DEFAULT_MOAT_LIMITING_STATE;
                 [weakSelf.events triggerVASTStartEvent];
                 
                 // send viewable impression
-                [weakSelf.events checkViewableStatusForVideo:weakSelf.player andResponse:^(BOOL success) {
-                    if (success) {
-                        [weakSelf.events triggerViewableImpressionEvent];
-                    }
-                }];
+//                [weakSelf.events checkViewableStatusForVideo:weakSelf.player andResponse:^(BOOL success) {
+//                    if (success) {
+//                        [weakSelf.events triggerViewableImpressionEvent];
+//                    }
+//                }];
                 
                 // moat
                 [weakSelf.events startMoatTrackingForVideoPlayer:[weakSelf.player getPlayer]
@@ -229,6 +229,12 @@ static BOOL isMoatLimitingEnabled           = SA_DEFAULT_MOAT_LIMITING_STATE;
                     NSLog(@"Video Ad callback not implemented. Event would have been adShown");
                 }
                 
+                break;
+            }
+            case Video_2s: {
+                if ([weakSelf.events isChildInViewableRect:weakSelf.player]) {
+                    [weakSelf.events triggerViewableImpressionEvent];
+                }
                 break;
             }
             case Video_1_4: {

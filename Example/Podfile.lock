@@ -1,13 +1,13 @@
 PODS:
-  - Google-Mobile-Ads-SDK (7.29.0)
-  - mopub-ios-sdk (4.20.0):
-    - mopub-ios-sdk/MoPubSDK (= 4.20.0)
-  - mopub-ios-sdk/Avid (4.20.0):
+  - Google-Mobile-Ads-SDK (7.30.0)
+  - mopub-ios-sdk (4.20.1):
+    - mopub-ios-sdk/MoPubSDK (= 4.20.1)
+  - mopub-ios-sdk/Avid (4.20.1):
     - mopub-ios-sdk/Core
-  - mopub-ios-sdk/Core (4.20.0)
-  - mopub-ios-sdk/Moat (4.20.0):
+  - mopub-ios-sdk/Core (4.20.1)
+  - mopub-ios-sdk/Moat (4.20.1):
     - mopub-ios-sdk/Core
-  - mopub-ios-sdk/MoPubSDK (4.20.0):
+  - mopub-ios-sdk/MoPubSDK (4.20.1):
     - mopub-ios-sdk/Avid
     - mopub-ios-sdk/Core
     - mopub-ios-sdk/Moat
@@ -21,18 +21,18 @@ PODS:
     - SAAgeGate/Base (= 1.0.8)
   - SAAgeGate/Base (1.0.8)
   - SABumperPage (1.0.6)
-  - SAEvents (1.9.7):
-    - SAEvents/Core (= 1.9.7)
+  - SAEvents (1.9.8):
+    - SAEvents/Core (= 1.9.8)
     - SAModelSpace (= 0.5.4)
     - SANetworking (= 0.3.1)
     - SASession (= 0.3.8)
     - SAUtils (= 1.5.4)
-  - SAEvents/Core (1.9.7):
+  - SAEvents/Core (1.9.8):
     - SAModelSpace (= 0.5.4)
     - SANetworking (= 0.3.1)
     - SASession (= 0.3.8)
     - SAUtils (= 1.5.4)
-  - SAEvents/Moat (1.9.7):
+  - SAEvents/Moat (1.9.8):
     - SAEvents/Core
     - SAModelSpace (= 0.5.4)
     - SANetworking (= 0.3.1)
@@ -51,28 +51,28 @@ PODS:
     - SAModelSpace (= 0.5.4)
     - SANetworking (= 0.3.1)
     - SAUtils (= 1.5.4)
-  - SAVideoPlayer (1.2.4)
+  - SAVideoPlayer (1.2.5)
   - SAWebPlayer (1.2.4):
     - SANetworking (= 0.3.1)
-  - SuperAwesome/AdMob (6.1.8):
+  - SuperAwesome/AdMob (6.1.9):
     - Google-Mobile-Ads-SDK
     - SuperAwesome/Base
-  - SuperAwesome/AIR (6.1.8):
+  - SuperAwesome/AIR (6.1.9):
     - SuperAwesome/Base
-  - SuperAwesome/Base (6.1.8):
+  - SuperAwesome/Base (6.1.9):
     - SAAdLoader (= 1.1.9)
     - SABumperPage (= 1.0.6)
-    - SAEvents (= 1.9.7)
+    - SAEvents (= 1.9.8)
     - SAParentalGate (= 1.0.2)
-    - SAVideoPlayer (= 1.2.4)
+    - SAVideoPlayer (= 1.2.5)
     - SAWebPlayer (= 1.2.4)
-  - SuperAwesome/Full (6.1.8):
+  - SuperAwesome/Full (6.1.9):
     - SAEvents/Moat
     - SuperAwesome/Base
-  - SuperAwesome/MoPub (6.1.8):
+  - SuperAwesome/MoPub (6.1.9):
     - mopub-ios-sdk
     - SuperAwesome/Base
-  - SuperAwesome/Unity (6.1.8):
+  - SuperAwesome/Unity (6.1.9):
     - SuperAwesome/Base
 
 DEPENDENCIES:
@@ -83,17 +83,35 @@ DEPENDENCIES:
   - SuperAwesome/MoPub (from `../`)
   - SuperAwesome/Unity (from `../`)
 
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Google-Mobile-Ads-SDK
+    - mopub-ios-sdk
+    - SAAdLoader
+    - SAAgeGate
+    - SABumperPage
+    - SAEvents
+    - SAJsonParser
+    - SAModelSpace
+    - SANetworking
+    - SAParentalGate
+    - SASession
+    - SAUtils
+    - SAVASTParser
+    - SAVideoPlayer
+    - SAWebPlayer
+
 EXTERNAL SOURCES:
   SuperAwesome:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
-  Google-Mobile-Ads-SDK: 375bbb821b3df2106c37b74f6b0a97576ddc5f6b
-  mopub-ios-sdk: 89c6ac9ca01d3b36e9fba16a6cfe31d3c290d354
+  Google-Mobile-Ads-SDK: 7404f68120ae8682afeb5af001fbf4aad731c78e
+  mopub-ios-sdk: 6220599bacc1c47f4117b7af5e9616f6779157a5
   SAAdLoader: 6171946075b8b60044a2da468383faf138ae7f39
   SAAgeGate: 49f4a27bd3afc5d740c2514e35d57c8bef7b7bd1
   SABumperPage: 59cb8525a68cc49a646a416977dbc0c963965eb7
-  SAEvents: c1a151b650fc8b23ba0033db3601550732e855ed
+  SAEvents: 97f7131c702a2fee68ecf3f34052e294df8f24ec
   SAJsonParser: f7c534c9e7bca38dfa4d254d2229122f562bd953
   SAModelSpace: 76e645798f653fcf84c4fe80b002737e47381d2d
   SANetworking: bd3fc423e108b09dbad94564af19de9ea6652ae7
@@ -101,10 +119,10 @@ SPEC CHECKSUMS:
   SASession: 3964576d8b15f97428d71c5f58f8873b50dcb4a9
   SAUtils: 225cdfaee9cb68184d5d27d7ff1119e1150d3398
   SAVASTParser: 69b07fe83e30e7ee3e8e7e2a2a56b4d81aa1774e
-  SAVideoPlayer: 999180c84dbe507db411dfc0f76f7c6e3b2eeb2d
+  SAVideoPlayer: cc118f17151dfd227a3115a9d266e1cae12c1f3c
   SAWebPlayer: 5f38c854fdbd677c74984746b355c5492bd83e1e
-  SuperAwesome: 52107d607589a183fd95cd35d1ab600fc30bf625
+  SuperAwesome: bc4e8b8de6281bbb8729fe7fcaf9fafd35487a12
 
 PODFILE CHECKSUM: f02f9bd7a9e11d45d0585b5baf35e51e61f28b30
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.0
