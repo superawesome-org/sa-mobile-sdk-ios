@@ -210,13 +210,6 @@ static BOOL isMoatLimitingEnabled           = SA_DEFAULT_MOAT_LIMITING_STATE;
                 [weakSelf.events triggerVASTCreativeViewEvent];
                 [weakSelf.events triggerVASTStartEvent];
                 
-                // send viewable impression
-//                [weakSelf.events checkViewableStatusForVideo:weakSelf.player andResponse:^(BOOL success) {
-//                    if (success) {
-//                        [weakSelf.events triggerViewableImpressionEvent];
-//                    }
-//                }];
-                
                 // moat
                 [weakSelf.events startMoatTrackingForVideoPlayer:[weakSelf.player getPlayer]
                                                        withLayer:[weakSelf.player getPlayerLayer]
