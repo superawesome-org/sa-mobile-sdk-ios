@@ -52,9 +52,10 @@ extern "C" {
      * @param configuration production = 0 / staging = 1
      * @param test          true / false
      */
-    void SuperAwesomeUnitySAVideoAdLoad(int placementId, int configuration, bool test) {
+    void SuperAwesomeUnitySAVideoAdLoad(int placementId, int configuration, bool test, int playback) {
         [SAVideoAd setTestMode:test];
         [SAVideoAd setConfiguration:getConfigurationFromInt(configuration)];
+        [SAVideoAd setPlaybackMode:getPlaybackModeFromInt(playback)];
         [SAVideoAd load: placementId];
     }
     

@@ -6,6 +6,7 @@
 #import <UIKit/UIKit.h>
 #import "SACallback.h"
 #import "SAOrientation.h"
+#import "SAPlaybackMode.h"
 
 @class SAAd;
 
@@ -79,6 +80,7 @@
 + (void) setSmallClick: (BOOL) value;
 + (void) setCloseAtEnd: (BOOL) value;
 + (void) disableMoatLimiting;
++ (void) setPlaybackMode: (SAPlaybackMode) mode;
 
 + (void) enableParentalGate;
 + (void) disableParentalGate;

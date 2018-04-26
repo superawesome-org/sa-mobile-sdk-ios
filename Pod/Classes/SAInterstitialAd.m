@@ -340,6 +340,16 @@ static BOOL isMoatLimitingEnabled    = SA_DEFAULT_MOAT_LIMITING_STATE;
         
         // get the loader
         SALoader *loader = [[SALoader alloc] init];
+        [loader setPos:7];
+        [loader setPlaybackMethod:5];
+        [loader setInstl:1];
+        [loader setSkip:1];
+        [loader setStartDelay:0];
+        
+        CGSize size = [UIScreen mainScreen].bounds.size;
+        [loader setWidth:size.width];
+        [loader setHeight:size.height];
+        
         [loader loadAd:placementId withSession:session andResult:^(SAResponse *response) {
             
             if (response.status != 200) {

@@ -223,6 +223,16 @@
     
     // load ad
     SALoader *loader = [[SALoader alloc] init];
+    [loader setPos:1];
+    [loader setPlaybackMethod:5];
+    [loader setInstl:0];
+    [loader setSkip:0];
+    [loader setStartDelay:0];
+    
+    CGSize size = self.frame.size;
+    [loader setWidth:size.width];
+    [loader setHeight:size.height];
+    
     [loader loadAd:placementId withSession:_session andResult:^(SAResponse *response) {
 
         if (response.status != 200) {

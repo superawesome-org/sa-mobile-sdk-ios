@@ -47,15 +47,18 @@ FREObject SuperAwesomeAIRSAVideoAdLoad (FREContext ctx, void* funcData, uint32_t
     int placementId = SA_DEFAULT_PLACEMENTID;
     int configuration = SA_DEFAULT_CONFIGURATION;
     uint32_t test = SA_DEFAULT_TESTMODE; // boolean
+    int playback = SA_DEFAULT_PLAYBACK_MODE;
     
     // populate fields
     FREGetObjectAsInt32(argv[0], &placementId);
     FREGetObjectAsInt32(argv[1], &configuration);
     FREGetObjectAsBool(argv[2], &test);
+    FREGetObjectAsInt32(argv[3], &playback);
     
     // configure & load
     [SAVideoAd setTestMode:test];
     [SAVideoAd setConfiguration: getConfigurationFromInt(configuration)];
+    [SAVideoAd setPlaybackMode:getPlaybackModeFromInt(playback)];
     [SAVideoAd load:placementId];
     
     return NULL;

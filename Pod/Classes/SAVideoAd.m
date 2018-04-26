@@ -6,6 +6,7 @@
 #import "SAVideoAd.h"
 #import "SAParentalGate.h"
 #import "SuperAwesome.h"
+#import "SAPlaybackMode.h"
 
 #if defined(__has_include)
 #if __has_include(<SAModelSpace/SAAd.h>)
@@ -157,6 +158,7 @@ static BOOL shouldShowSmallClickButton      = SA_DEFAULT_SMALLCLICK;
 static SAOrientation orientation            = SA_DEFAULT_ORIENTATION;
 static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
 static BOOL isMoatLimitingEnabled           = SA_DEFAULT_MOAT_LIMITING_STATE;
+static SAPlaybackMode playback              = SA_DEFAULT_PLAYBACK_MODE;
 
 /**
  * Overridden UIViewController "viewDidLoad" method in which the ad is setup
@@ -649,6 +651,16 @@ static BOOL isMoatLimitingEnabled           = SA_DEFAULT_MOAT_LIMITING_STATE;
         
         // get the loader
         SALoader *loader = [[SALoader alloc] init];
+        [loader setPos:7];
+        [loader setPlaybackMethod:5];
+        [loader setInstl:1];
+        [loader setSkip:shouldShowCloseButton ? 1 : 0];
+        [loader setStartDelay:playback];
+        
+        CGSize size = [UIScreen mainScreen].bounds.size;
+        [loader setWidth:size.width];
+        [loader setHeight:size.height];
+        
         [loader loadAd:placementId withSession:session andResult:^(SAResponse *response) {
             
             if (response.status != 200) {
@@ -866,6 +878,10 @@ static BOOL isMoatLimitingEnabled           = SA_DEFAULT_MOAT_LIMITING_STATE;
     shouldAutomaticallyCloseAtEnd = value;
 }
 
++ (void) setPlaybackMode: (SAPlaybackMode) mode {
+    playback = mode;
+}
+
 + (sacallback) getCallback {
     return callback;
 }
@@ -900,6 +916,10 @@ static BOOL isMoatLimitingEnabled           = SA_DEFAULT_MOAT_LIMITING_STATE;
 
 + (BOOL) getMoatLimitingState {
     return isMoatLimitingEnabled;
+}
+
++ (SAPlaybackMode) getPlaybackMode {
+    return playback;
 }
 
 @end
