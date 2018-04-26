@@ -80,7 +80,7 @@
                   @"name": @"Banners",
                   @"items": @[
                           @{@"name": @"CPM Banner 1 (Image)",
-                            @"pid": @(36470)},
+                            @"pid": @(36982)},
                           ]
                   },
                 @{
@@ -94,7 +94,7 @@
                     @"name": @"Videos",
                     @"items": @[
                             @{@"name": @"CPM Preroll 1 (Video)",
-                              @"pid": @(36472)}
+                              @"pid": @(36981)}
                             ]
                   }
               ] mutableCopy];

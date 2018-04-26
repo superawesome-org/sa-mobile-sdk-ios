@@ -21,18 +21,18 @@ PODS:
     - SAAgeGate/Base (= 1.0.8)
   - SAAgeGate/Base (1.0.8)
   - SABumperPage (1.0.6)
-  - SAEvents (1.9.8):
-    - SAEvents/Core (= 1.9.8)
+  - SAEvents (1.9.9):
+    - SAEvents/Core (= 1.9.9)
     - SAModelSpace (= 0.5.4)
     - SANetworking (= 0.3.1)
     - SASession (= 0.3.8)
     - SAUtils (= 1.5.4)
-  - SAEvents/Core (1.9.8):
+  - SAEvents/Core (1.9.9):
     - SAModelSpace (= 0.5.4)
     - SANetworking (= 0.3.1)
     - SASession (= 0.3.8)
     - SAUtils (= 1.5.4)
-  - SAEvents/Moat (1.9.8):
+  - SAEvents/Moat (1.9.9):
     - SAEvents/Core
     - SAModelSpace (= 0.5.4)
     - SANetworking (= 0.3.1)
@@ -62,7 +62,7 @@ PODS:
   - SuperAwesome/Base (6.1.9):
     - SAAdLoader (= 1.1.9)
     - SABumperPage (= 1.0.6)
-    - SAEvents (= 1.9.8)
+    - SAEvents (= 1.9.9)
     - SAParentalGate (= 1.0.2)
     - SAVideoPlayer (= 1.2.5)
     - SAWebPlayer (= 1.2.4)
@@ -111,7 +111,7 @@ SPEC CHECKSUMS:
   SAAdLoader: 6171946075b8b60044a2da468383faf138ae7f39
   SAAgeGate: 49f4a27bd3afc5d740c2514e35d57c8bef7b7bd1
   SABumperPage: 59cb8525a68cc49a646a416977dbc0c963965eb7
-  SAEvents: 97f7131c702a2fee68ecf3f34052e294df8f24ec
+  SAEvents: 62ece42cab437957eac7b2b1ad10f3bb732edaf6
   SAJsonParser: f7c534c9e7bca38dfa4d254d2229122f562bd953
   SAModelSpace: 76e645798f653fcf84c4fe80b002737e47381d2d
   SANetworking: bd3fc423e108b09dbad94564af19de9ea6652ae7
@@ -121,7 +121,7 @@ SPEC CHECKSUMS:
   SAVASTParser: 69b07fe83e30e7ee3e8e7e2a2a56b4d81aa1774e
   SAVideoPlayer: cc118f17151dfd227a3115a9d266e1cae12c1f3c
   SAWebPlayer: 5f38c854fdbd677c74984746b355c5492bd83e1e
-  SuperAwesome: bc4e8b8de6281bbb8729fe7fcaf9fafd35487a12
+  SuperAwesome: 1c50d8e064dda574504988994da27c5902df8a33
 
 PODFILE CHECKSUM: f02f9bd7a9e11d45d0585b5baf35e51e61f28b30
 
