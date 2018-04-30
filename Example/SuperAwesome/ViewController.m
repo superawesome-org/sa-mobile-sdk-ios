@@ -79,21 +79,21 @@
                 @{
                   @"name": @"Banners",
                   @"items": @[
-                          @{@"name": @"CPM Banner 1 (Image)",
+                          @{@"name": @"Moat Banner",
                             @"pid": @(36982)},
                           ]
                   },
-                @{
-                    @"name": @"Interstitials",
-                    @"items": @[
-                            @{@"name": @"CPM Interstitial 1 (Image)",
-                              @"pid": @(36744)},
-                            ]
-                  },
+//                @{
+//                    @"name": @"Interstitials",
+//                    @"items": @[
+//                            @{@"name": @"CPM Interstitial 1 (Image)",
+//                              @"pid": @(36744)},
+//                            ]
+//                  },
                 @{
                     @"name": @"Videos",
                     @"items": @[
-                            @{@"name": @"CPM Preroll 1 (Video)",
+                            @{@"name": @"Moat video",
                               @"pid": @(36981)}
                             ]
                   }
@@ -151,14 +151,14 @@
         [_bannerAd load:placementId];
         
     }
-    // INTERSTITIALS
-    else if ([indexPath section] == 1) {
-        
-        [SAInterstitialAd load:placementId];
-        
-    }
+//    // INTERSTITIALS
+//    else if ([indexPath section] == 1) {
+//        
+//        [SAInterstitialAd load:placementId];
+//        
+//    }
     // VIDEOS
-    else if ([indexPath section] == 2) {
+    else if ([indexPath section] == 1) {
         
         [SAVideoAd load:placementId];
         
