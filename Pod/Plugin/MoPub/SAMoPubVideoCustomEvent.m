@@ -52,6 +52,20 @@
         configuration = STAGING;
     }
     
+    SAPlaybackMode playback = SA_DEFAULT_PLAYBACK_MODE;
+    NSString *play = [info safeStringForKey:PLAYBACK_MODE];
+    if (play != nil) {
+        if ([play isEqualToString:@"POSTROLL"]) {
+            playback = POSTROLL;
+        } else if ([play isEqualToString:@"MIDROLL"]) {
+            playback = MIDROLL;
+        } else if ([play isEqualToString:@"PREROLL"]) {
+            playback = PREROLL;
+        } else if ([play isEqualToString:@"MIDROLL_WITH_DELAY"]) {
+            playback = MIDROLL_WITH_DELAY;
+        }
+    }
+    
     _hasAdAvailable = false;
     
     // get a weak self reference
@@ -66,6 +80,7 @@
     [SAVideoAd setCloseAtEnd:shouldAutomaticallyCloseAtEnd];
     [SAVideoAd setSmallClick:shouldShowSmallClickButton];
     [SAVideoAd setOrientation:orientation];
+    [SAVideoAd setPlaybackMode:playback];
     
     [SAVideoAd setCallback:^(NSInteger placementId, SAEvent event) {
         switch (event) {

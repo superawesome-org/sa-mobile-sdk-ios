@@ -79,6 +79,7 @@
         [SAVideoAd setCloseAtEnd:extras.closeAtEndEnabled];
         [SAVideoAd setSmallClick:extras.smallCLickEnabled];
         [SAVideoAd setConfiguration:extras.configuration];
+        [SAVideoAd setPlaybackMode:extras.playback];
     }
     
     //

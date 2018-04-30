@@ -21,5 +21,6 @@
 #define SA_DEFAULT_BGCOLOR              false
 #define SA_DEFAULT_BACKBUTTON           false
 #define SA_DEFAULT_MOAT_LIMITING_STATE  true
+#define SA_DEFAULT_PLAYBACK_MODE        0
 
 #endif /* SADefines_h */

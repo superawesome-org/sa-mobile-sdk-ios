@@ -15,6 +15,7 @@
 #define SHOULD_SHOW_CLOSE                   @"shouldShowCloseButton"
 #define SHOULD_AUTO_CLOSE                   @"shouldAutomaticallyCloseAtEnd"
 #define VIDEO_BUTTON_STYLE                  @"shouldShowSmallClickButton"
+#define PLAYBACK_MODE                       @"playbackMode"
 
 // SA MoPub error values
 #define ERROR_DOMAIN                        @"SuperAwesomeErrorDomain"

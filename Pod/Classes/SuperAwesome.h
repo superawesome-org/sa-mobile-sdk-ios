@@ -10,3 +10,4 @@
 #import "SACallback.h"
 #import "SAOrientation.h"
 #import "SADefines.h"
+#import "SAPlaybackMode.h"
