@@ -282,6 +282,9 @@
         // form the full HTML string and play it!
         NSString *fullHTMLToLoad = [_ad.creative.details.media.html stringByReplacingOccurrencesOfString:@"_MOAT_" withString:moatString];
         
+        // trigger local impression event
+        [_events triggerImpressionEvent];
+        
         // add callbacks for web player events
         [_webplayer setEventHandler:^(SAWebPlayerEvent event) {
             switch (event) {
