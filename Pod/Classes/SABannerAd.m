@@ -137,6 +137,8 @@
 @property (nonatomic, assign) BOOL               isClosed;
 @property (nonatomic, assign) BOOL               moatLimiting;
 
+@property (nonatomic, assign) long               currentClickThreshold;
+
 @end
 
 @implementation SABannerAd
@@ -187,6 +189,7 @@
     _firstPlay = true;
     _isClosed = false;
     _moatLimiting = true;
+    _currentClickThreshold = 0L;
     
     // init the events and session obkects
     _events = [[SAEvents alloc] init];
@@ -451,6 +454,19 @@
 }
 
 - (void) handleUrl: (NSString*) destination {
+    
+    long currentTime = (long)[[NSDate date] timeIntervalSince1970];
+    long diff = ABS(currentTime - _currentClickThreshold);
+    
+    NSLog(@"Current diff is %ld", diff);
+    
+    if (diff < SA_DEFAULT_CLICK_THRESHOLD) {
+        NSLog(@"Current diff is %ld", diff);
+        return;
+    }
+    
+    _currentClickThreshold = currentTime;
+    
     //
     // log this
     NSLog(@"[AA :: INFO] Trying to go to: %@", destination);

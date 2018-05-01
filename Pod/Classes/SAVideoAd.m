@@ -136,6 +136,9 @@
 
 @property (nonatomic, assign) BOOL           videoEnded;
 
+
+@property (nonatomic, assign) long           currentClickThreshold;
+
 @end
 
 @implementation SAVideoAd
@@ -169,6 +172,7 @@ static SAPlaybackMode playback              = SA_DEFAULT_PLAYBACK_MODE;
     
     // here video is not yet loaded
     _videoEnded = false;
+    _currentClickThreshold = 0L;
     
     // get the status bar value
     _previousStatusBarHiddenValue = [[UIApplication sharedApplication] isStatusBarHidden];
@@ -584,6 +588,18 @@ static SAPlaybackMode playback              = SA_DEFAULT_PLAYBACK_MODE;
 }
 
 - (void) handleUrl: (NSString*) destination {
+    
+    long currentTime = (long)[[NSDate date] timeIntervalSince1970];
+    long diff = ABS(currentTime - _currentClickThreshold);
+    
+    NSLog(@"Current diff is %ld", diff);
+    
+    if (diff < SA_DEFAULT_CLICK_THRESHOLD) {
+        NSLog(@"Current diff is %ld", diff);
+        return;
+    }
+    
+    _currentClickThreshold = currentTime;
     
     NSLog(@"[AA :: INFO] Trying to go to: %@", destination);
     
