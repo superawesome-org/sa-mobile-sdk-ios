@@ -38,6 +38,10 @@ PODS:
     - SANetworking (= 0.3.1)
     - SASession (= 0.3.8)
     - SAUtils (= 1.5.4)
+  - SAGDPRKisMinor (1.6.0):
+    - SAJsonParser (= 1.3.4)
+    - SANetworking (= 0.3.1)
+    - SAUtils (= 1.5.4)
   - SAJsonParser (1.3.4)
   - SAModelSpace (0.5.4):
     - SAJsonParser (= 1.3.4)
@@ -63,6 +67,7 @@ PODS:
     - SAAdLoader (= 1.2.0)
     - SABumperPage (= 1.0.6)
     - SAEvents (= 2.0.0)
+    - SAGDPRKisMinor (= 1.6.0)
     - SAParentalGate (= 1.0.2)
     - SAVideoPlayer (= 1.2.5)
     - SAWebPlayer (= 1.2.4)
@@ -91,6 +96,7 @@ SPEC REPOS:
     - SAAgeGate
     - SABumperPage
     - SAEvents
+    - SAGDPRKisMinor
     - SAJsonParser
     - SAModelSpace
     - SANetworking
@@ -112,6 +118,7 @@ SPEC CHECKSUMS:
   SAAgeGate: 49f4a27bd3afc5d740c2514e35d57c8bef7b7bd1
   SABumperPage: 59cb8525a68cc49a646a416977dbc0c963965eb7
   SAEvents: 908913d38955724c1be95f08be456e78083ee6d6
+  SAGDPRKisMinor: dd0d6f440c4948522d853ae717e676bb734d1394
   SAJsonParser: f7c534c9e7bca38dfa4d254d2229122f562bd953
   SAModelSpace: 76e645798f653fcf84c4fe80b002737e47381d2d
   SANetworking: bd3fc423e108b09dbad94564af19de9ea6652ae7
@@ -121,7 +128,7 @@ SPEC CHECKSUMS:
   SAVASTParser: 69b07fe83e30e7ee3e8e7e2a2a56b4d81aa1774e
   SAVideoPlayer: cc118f17151dfd227a3115a9d266e1cae12c1f3c
   SAWebPlayer: 5f38c854fdbd677c74984746b355c5492bd83e1e
-  SuperAwesome: 5cc9474d23614fc35f2782b68048fd1f16bb9e30
+  SuperAwesome: 56f2a8965f48c9733ef1842dc109b4253e0dddf4
 
 PODFILE CHECKSUM: f02f9bd7a9e11d45d0585b5baf35e51e61f28b30
 
