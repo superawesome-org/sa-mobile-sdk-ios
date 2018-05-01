@@ -32,6 +32,7 @@ Pod::Spec.new do |s|
     b.dependency 'SAAdLoader', '1.2.0'
     b.dependency 'SABumperPage', '1.0.6'
     b.dependency 'SAParentalGate', '1.0.2'
+    b.dependency 'SAGDPRKisMinor', '1.6.0'
   end
 
   s.subspec 'Full' do |f|
