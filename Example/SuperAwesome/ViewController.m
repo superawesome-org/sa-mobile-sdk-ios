@@ -11,11 +11,13 @@
 #import "SAUtils.h"
 #import "SASession.h"
 #import "SABumperPage.h"
+#import "SAAgeCheck.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet SABannerAd *bannerAd;
 @property (nonatomic, strong) NSMutableArray *data;
+@property (weak, nonatomic) IBOutlet UIButton *ageCheckButton;
 @end
 
 @implementation ViewController
@@ -23,8 +25,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    NSMutableArray *abc = @[@(13), @(25), @(88)];
-//    [abc removeLastObject];
+    //    NSMutableArray *abc = @[@(13), @(25), @(88)];
+    //    [abc removeLastObject];
     
     SASession *session = [[SASession alloc] init];
     [session setConfigurationStaging];
@@ -38,7 +40,7 @@
     [_bannerAd enableParentalGate];
     [_bannerAd enableBumperPage];
     [_bannerAd setCallback:^(NSInteger placementId, SAEvent event) {
-       
+        
         NSLog(@"SUPER-AWESOME: Banner Ad %ld - Event %ld", (long)placementId, (long)event);
         
         if (event == adLoaded) {
@@ -76,28 +78,34 @@
     }];
     
     _data = [@[
-                @{
-                  @"name": @"Banners",
-                  @"items": @[
-                          @{@"name": @"Moat Banner",
-                            @"pid": @(36982)},
-                          ]
-                  },
-//                @{
-//                    @"name": @"Interstitials",
-//                    @"items": @[
-//                            @{@"name": @"CPM Interstitial 1 (Image)",
-//                              @"pid": @(36744)},
-//                            ]
-//                  },
-                @{
-                    @"name": @"Videos",
-                    @"items": @[
-                            @{@"name": @"Moat video",
-                              @"pid": @(36981)}
-                            ]
-                  }
-              ] mutableCopy];
+               @{
+                   @"name": @"Banners",
+                   @"items": @[
+                           @{@"name": @"Moat Banner",
+                             @"pid": @(36982)},
+                           ]
+                   },
+               //                @{
+               //                    @"name": @"Interstitials",
+               //                    @"items": @[
+               //                            @{@"name": @"CPM Interstitial 1 (Image)",
+               //                              @"pid": @(36744)},
+               //                            ]
+               //                  },
+               @{
+                   @"name": @"Videos",
+                   @"items": @[
+                           @{@"name": @"Moat video",
+                             @"pid": @(36981)}
+                           ]
+                   }
+               ] mutableCopy];
+    
+    
+    // Age Check
+    [_ageCheckButton addTarget:self
+                        action:@selector(getIsMinorDetails)
+              forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -151,12 +159,12 @@
         [_bannerAd load:placementId];
         
     }
-//    // INTERSTITIALS
-//    else if ([indexPath section] == 1) {
-//        
-//        [SAInterstitialAd load:placementId];
-//        
-//    }
+    //    // INTERSTITIALS
+    //    else if ([indexPath section] == 1) {
+    //
+    //        [SAInterstitialAd load:placementId];
+    //
+    //    }
     // VIDEOS
     else if ([indexPath section] == 1) {
         
@@ -165,6 +173,57 @@
     }
 }
 
+- (void)getIsMinorDetails {
+    
+    NSString* dateOfBirth = @"2012-02-02";
+    __block NSString* message = nil;
+    
+    SAAgeCheck* sdk = [SAAgeCheck sdk];
+    
+    [sdk getIsMinor:dateOfBirth :^(GetIsMinorModel *model) {
+        
+        if (model != nil) {
+            NSString* country = [model country];
+            NSInteger consentAgeForCountry = [model consentAgeForCountry];
+            NSInteger age = [model age];
+            BOOL isMinor = [model isMinor];
+            
+            NSLog(@"Country: %@ | ConsentAgeForCountry %ld | Age: %ld | isMinor: %d", country, (long)consentAgeForCountry ,(long)age, isMinor);
+            
+            message = [NSString stringWithFormat:@"Success!\n\nCountry - '%@',\n\nConsentAgeForCountry - '%ld',\n\nAge - '%ld',\n\nisMinor - '%d'", country, (long)consentAgeForCountry ,(long)age, isMinor ];
+            
+        } else {
+            message =  @"\nSomething went wrong...\n";
+        }
+        
+        [self showMessage:message atPoint:CGPointMake(self.view.center.x, self.view.center.y)];
+    }];
+}
 
+- (void)showMessage:(NSString*)message atPoint:(CGPoint)point {
+    UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(self.view.center.x - 150 ,self.view.center.y + 100, 300, 200)];
+    label.numberOfLines = 0;
+    
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.headIndent = 5.0;
+    paragraphStyle.firstLineHeadIndent = 5.0;
+    paragraphStyle.tailIndent = -5.0;
+    NSDictionary *attrsDictionary = @{NSParagraphStyleAttributeName: paragraphStyle};
+    label.attributedText = [[NSAttributedString alloc] initWithString:message attributes:attrsDictionary];
+    
+    label.textColor=[UIColor whiteColor];
+    label.backgroundColor=[[UIColor blackColor] colorWithAlphaComponent:0.9];
+    label.font=[UIFont fontWithName:@"Helvetica" size:18];
+    label.layer.masksToBounds = YES;
+    label.layer.cornerRadius = 8;
+    [self.view addSubview:label];
+    
+    [UIView animateWithDuration:4 delay:1 options:0 animations:^{
+        label.alpha = 0;
+    } completion:^(BOOL finished) {
+        label.hidden = YES;
+        [label removeFromSuperview];
+    }];
+}
 
 @end
