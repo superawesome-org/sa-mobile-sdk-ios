@@ -11,66 +11,66 @@ PODS:
     - mopub-ios-sdk/Avid
     - mopub-ios-sdk/Core
     - mopub-ios-sdk/Moat
-  - SAAdLoader (1.2.0):
-    - SAModelSpace (= 0.5.4)
-    - SANetworking (= 0.3.1)
-    - SASession (= 0.3.8)
-    - SAUtils (= 1.5.4)
-    - SAVASTParser (= 1.7.4)
+  - SAAdLoader (1.4.0):
+    - SAModelSpace (= 1.0.0)
+    - SANetworking (= 1.0.0)
+    - SASession (= 1.1.2)
+    - SAUtils (= 1.5.5)
+    - SAVASTParser (= 1.7.5)
   - SAAgeGate (1.0.8):
     - SAAgeGate/Base (= 1.0.8)
   - SAAgeGate/Base (1.0.8)
   - SABumperPage (1.0.6)
-  - SAEvents (2.0.0):
-    - SAEvents/Core (= 2.0.0)
-    - SAModelSpace (= 0.5.4)
-    - SANetworking (= 0.3.1)
-    - SASession (= 0.3.8)
-    - SAUtils (= 1.5.4)
-  - SAEvents/Core (2.0.0):
-    - SAModelSpace (= 0.5.4)
-    - SANetworking (= 0.3.1)
-    - SASession (= 0.3.8)
-    - SAUtils (= 1.5.4)
-  - SAEvents/Moat (2.0.0):
+  - SAEvents (2.2.0):
+    - SAEvents/Core (= 2.2.0)
+    - SAModelSpace (= 1.0.0)
+    - SANetworking (= 1.0.0)
+    - SASession (= 1.1.2)
+    - SAUtils (= 1.5.5)
+  - SAEvents/Core (2.2.0):
+    - SAModelSpace (= 1.0.0)
+    - SANetworking (= 1.0.0)
+    - SASession (= 1.1.2)
+    - SAUtils (= 1.5.5)
+  - SAEvents/Moat (2.2.0):
     - SAEvents/Core
-    - SAModelSpace (= 0.5.4)
-    - SANetworking (= 0.3.1)
-    - SASession (= 0.3.8)
-    - SAUtils (= 1.5.4)
-  - SAGDPRKisMinor (1.6.0):
-    - SAJsonParser (= 1.3.4)
-    - SANetworking (= 0.3.1)
-    - SAUtils (= 1.5.4)
-  - SAJsonParser (1.3.4)
-  - SAModelSpace (0.5.4):
-    - SAJsonParser (= 1.3.4)
-    - SAUtils (= 1.5.4)
-  - SANetworking (0.3.1)
+    - SAModelSpace (= 1.0.0)
+    - SANetworking (= 1.0.0)
+    - SASession (= 1.1.2)
+    - SAUtils (= 1.5.5)
+  - SAGDPRKisMinor (1.6.1):
+    - SAJsonParser (= 1.3.5)
+    - SANetworking (= 1.0.0)
+    - SAUtils (= 1.5.5)
+  - SAJsonParser (1.3.5)
+  - SAModelSpace (1.0.0):
+    - SAJsonParser (= 1.3.5)
+    - SAUtils (= 1.5.5)
+  - SANetworking (1.0.0)
   - SAParentalGate (1.0.2)
-  - SASession (0.3.8):
-    - SAUtils (= 1.5.4)
-  - SAUtils (1.5.4)
-  - SAVASTParser (1.7.4):
-    - SAModelSpace (= 0.5.4)
-    - SANetworking (= 0.3.1)
-    - SAUtils (= 1.5.4)
+  - SASession (1.1.2):
+    - SAUtils (= 1.5.5)
+  - SAUtils (1.5.5)
+  - SAVASTParser (1.7.5):
+    - SAModelSpace (= 1.0.0)
+    - SANetworking (= 1.0.0)
+    - SAUtils (= 1.5.5)
   - SAVideoPlayer (1.2.5)
-  - SAWebPlayer (1.2.4):
-    - SANetworking (= 0.3.1)
+  - SAWebPlayer (1.2.5):
+    - SANetworking (= 1.0.0)
   - SuperAwesome/AdMob (6.1.9):
     - Google-Mobile-Ads-SDK
     - SuperAwesome/Base
   - SuperAwesome/AIR (6.1.9):
     - SuperAwesome/Base
   - SuperAwesome/Base (6.1.9):
-    - SAAdLoader (= 1.2.0)
+    - SAAdLoader (= 1.4.0)
     - SABumperPage (= 1.0.6)
-    - SAEvents (= 2.0.0)
-    - SAGDPRKisMinor (= 1.6.0)
+    - SAEvents (= 2.2.0)
+    - SAGDPRKisMinor (= 1.6.1)
     - SAParentalGate (= 1.0.2)
     - SAVideoPlayer (= 1.2.5)
-    - SAWebPlayer (= 1.2.4)
+    - SAWebPlayer (= 1.2.5)
   - SuperAwesome/Full (6.1.9):
     - SAEvents/Moat
     - SuperAwesome/Base
@@ -114,21 +114,21 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Google-Mobile-Ads-SDK: 7404f68120ae8682afeb5af001fbf4aad731c78e
   mopub-ios-sdk: 6220599bacc1c47f4117b7af5e9616f6779157a5
-  SAAdLoader: aff844be0da73add45fd9496e8b3a753cc4b1cdb
+  SAAdLoader: 15232a15595f9d7c9bdb4b946e61a315820eb184
   SAAgeGate: 49f4a27bd3afc5d740c2514e35d57c8bef7b7bd1
   SABumperPage: 59cb8525a68cc49a646a416977dbc0c963965eb7
-  SAEvents: 908913d38955724c1be95f08be456e78083ee6d6
-  SAGDPRKisMinor: dd0d6f440c4948522d853ae717e676bb734d1394
-  SAJsonParser: f7c534c9e7bca38dfa4d254d2229122f562bd953
-  SAModelSpace: 76e645798f653fcf84c4fe80b002737e47381d2d
-  SANetworking: bd3fc423e108b09dbad94564af19de9ea6652ae7
+  SAEvents: caed802034232b9f557bf997964a3028af9adda5
+  SAGDPRKisMinor: 7c30e58d9e7d35d0d4c9c74d119ee1f1fc8490f2
+  SAJsonParser: a9fac712c99b71e36997010413862866f8246d5a
+  SAModelSpace: 07140f87445b477fbb61e5016a51e9f4c02546c7
+  SANetworking: 672cec0782244c2d780c3c58867e58e8ed2917ee
   SAParentalGate: 5279fce38eac5fc49c93d99ed45cf86e8a08ec51
-  SASession: 3964576d8b15f97428d71c5f58f8873b50dcb4a9
-  SAUtils: 225cdfaee9cb68184d5d27d7ff1119e1150d3398
-  SAVASTParser: 69b07fe83e30e7ee3e8e7e2a2a56b4d81aa1774e
+  SASession: 05f174a62318b786ee36e4e34d97c2b96444d0ae
+  SAUtils: 95e06baec2636bfe494d9f8a43ec4def6fb28229
+  SAVASTParser: fa343296e3fd7103a5da210a7c41020a8f280a41
   SAVideoPlayer: cc118f17151dfd227a3115a9d266e1cae12c1f3c
-  SAWebPlayer: 5f38c854fdbd677c74984746b355c5492bd83e1e
-  SuperAwesome: 56f2a8965f48c9733ef1842dc109b4253e0dddf4
+  SAWebPlayer: 58745c01128e45a862cf13fdd545d9e1997b6ca4
+  SuperAwesome: 41ef2090fe589d0b5227b1353822f0101ef6ca53
 
 PODFILE CHECKSUM: f02f9bd7a9e11d45d0585b5baf35e51e61f28b30
 

@@ -6,6 +6,7 @@
 #import "SAMoPubVideoCustomEvent.h"
 #import "SuperAwesome.h"
 #import "SASession.h"
+#import "SASessionDefines.h"
 #import "MPRewardedVideoReward.h"
 #import "SAMoPub.h"
 #import "NSDictionary+SafeHandling.h"
@@ -52,17 +53,17 @@
         configuration = STAGING;
     }
     
-    SAPlaybackMode playback = SA_DEFAULT_PLAYBACK_MODE;
+    SARTBStartDelay playback = SA_DEFAULT_PLAYBACK_MODE;
     NSString *play = [info safeStringForKey:PLAYBACK_MODE];
     if (play != nil) {
-        if ([play isEqualToString:@"POSTROLL"]) {
-            playback = POSTROLL;
-        } else if ([play isEqualToString:@"MIDROLL"]) {
-            playback = MIDROLL;
-        } else if ([play isEqualToString:@"PREROLL"]) {
-            playback = PREROLL;
-        } else if ([play isEqualToString:@"MIDROLL_WITH_DELAY"]) {
-            playback = MIDROLL_WITH_DELAY;
+        if ([play isEqualToString:@"POST_ROLL"]) {
+            playback = DL_POST_ROLL;
+        } else if ([play isEqualToString:@"MID_ROLL"]) {
+            playback = DL_MID_ROLL;
+        } else if ([play isEqualToString:@"PRE_ROLL"]) {
+            playback = DL_PRE_ROLL;
+        } else if ([play isEqualToString:@"GENERIC_MID_ROLL"]) {
+            playback = DL_GENERIC_MID_ROLL;
         }
     }
     

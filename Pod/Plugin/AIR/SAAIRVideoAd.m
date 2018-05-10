@@ -22,6 +22,14 @@
 #endif
 #endif
 
+#if defined(__has_include)
+#if __has_include(<SASession/SASession.h>)
+#import <SASession/SASessionDefines.h>
+#else
+#import "SASessionDefines.h"
+#endif
+#endif
+
 FREObject SuperAwesomeAIRSAVideoAdCreate (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]) {
     
     // native video code
@@ -58,7 +66,7 @@ FREObject SuperAwesomeAIRSAVideoAdLoad (FREContext ctx, void* funcData, uint32_t
     // configure & load
     [SAVideoAd setTestMode:test];
     [SAVideoAd setConfiguration: getConfigurationFromInt(configuration)];
-    [SAVideoAd setPlaybackMode:getPlaybackModeFromInt(playback)];
+    [SAVideoAd setPlaybackMode:getRTBStartDelayFromInt(playback)];
     [SAVideoAd load:placementId];
     
     return NULL;

@@ -337,19 +337,18 @@ static BOOL isMoatLimitingEnabled    = SA_DEFAULT_MOAT_LIMITING_STATE;
         [session setTestMode:isTestingEnabled];
         [session setConfiguration:configuration];
         [session setVersion:[SAVersion getSdkVersion]];
+        [session setPos:POS_FULLSCREEN];
+        [session setPlaybackMethod:PB_WITH_SOUND_ON_SCREEN];
+        [session setInstl:IN_FULLSCREEN];
+        [session setSkip:SK_SKIP];
+        [session setStartDelay:DL_PRE_ROLL];
+        CGSize size = [UIScreen mainScreen].bounds.size;
+        [session setWidth:size.width];
+        [session setHeight:size.height];
         
         // get the loader
         SALoader *loader = [[SALoader alloc] init];
-        [loader setPos:7];
-        [loader setPlaybackMethod:5];
-        [loader setInstl:1];
-        [loader setSkip:1];
-        [loader setStartDelay:0];
-        
-        CGSize size = [UIScreen mainScreen].bounds.size;
-        [loader setWidth:size.width];
-        [loader setHeight:size.height];
-        
+    
         [loader loadAd:placementId withSession:session andResult:^(SAResponse *response) {
             
             if (response.status != 200) {

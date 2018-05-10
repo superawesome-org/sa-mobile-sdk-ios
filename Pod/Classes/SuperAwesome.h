@@ -10,8 +10,7 @@
 #import "SACallback.h"
 #import "SAOrientation.h"
 #import "SADefines.h"
-#import "SAPlaybackMode.h"
 
 @interface SuperAwesome: NSObject
-+ (void) initSDK;
++ (void) initSDK: (BOOL) loggingEnabled;
 @end

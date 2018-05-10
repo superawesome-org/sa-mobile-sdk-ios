@@ -21,7 +21,7 @@
     // Override point for customization after application launch.
     
     [GADMobileAds configureWithApplicationID:@"ca-app-pub-7706302691807937~3326320407"];
-    [SuperAwesome initSDK];
+    [SuperAwesome initSDK:true];
     
     return YES;
 }

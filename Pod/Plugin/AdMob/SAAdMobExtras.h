@@ -2,14 +2,14 @@
 #import <GoogleMobileAds/GoogleMobileAds.h>
 #import "SAOrientation.h"
 #import "SASession.h"
-#import "SAPlaybackMode.h"
+#import "SASessionDefines.h"
 
 @interface SAAdMobVideoExtra : NSObject <GADAdNetworkExtras>
 
 @property (nonatomic, assign) BOOL testEnabled;
 @property (nonatomic, assign) SAOrientation orientation;
 @property (nonatomic, assign) SAConfiguration configuration;
-@property (nonatomic, assign) SAPlaybackMode playback;
+@property (nonatomic, assign) SARTBStartDelay playback;
 @property (nonatomic, assign) BOOL parentalGateEnabled;
 @property (nonatomic, assign) BOOL bumperPageEnabled;
 @property (nonatomic, assign) BOOL closeButtonEnabled;

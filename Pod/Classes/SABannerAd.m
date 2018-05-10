@@ -223,19 +223,18 @@
     
     // change session
     [_session setVersion:[SAVersion getSdkVersion]];
+    [_session setPos:POS_ABOVE_THE_FOLD];
+    [_session setPlaybackMethod:PB_WITH_SOUND_ON_SCREEN];
+    [_session setInstl:IN_NOT_FULLSCREEN];
+    [_session setSkip:SK_NO_SKIP];
+    [_session setStartDelay:DL_PRE_ROLL];
+    CGSize size = self.frame.size;
+    [_session setWidth:size.width];
+    [_session setHeight:size.height];
+    
     
     // load ad
-    SALoader *loader = [[SALoader alloc] init];
-    [loader setPos:1];
-    [loader setPlaybackMethod:5];
-    [loader setInstl:0];
-    [loader setSkip:0];
-    [loader setStartDelay:0];
-    
-    CGSize size = self.frame.size;
-    [loader setWidth:size.width];
-    [loader setHeight:size.height];
-    
+    SALoader *loader = [[SALoader alloc] init];    
     [loader loadAd:placementId withSession:_session andResult:^(SAResponse *response) {
 
         if (response.status != 200) {

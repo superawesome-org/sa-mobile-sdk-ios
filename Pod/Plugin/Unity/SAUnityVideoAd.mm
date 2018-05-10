@@ -55,7 +55,7 @@ extern "C" {
     void SuperAwesomeUnitySAVideoAdLoad(int placementId, int configuration, bool test, int playback) {
         [SAVideoAd setTestMode:test];
         [SAVideoAd setConfiguration:getConfigurationFromInt(configuration)];
-        [SAVideoAd setPlaybackMode:getPlaybackModeFromInt(playback)];
+        [SAVideoAd setPlaybackMode:getRTBStartDelayFromInt(playback)];
         [SAVideoAd load: placementId];
     }
     
