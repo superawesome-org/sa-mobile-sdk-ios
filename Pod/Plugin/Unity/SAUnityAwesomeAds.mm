@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SAUnityCallback.h"
+#import "SAVideoAd.h"
 
 #if defined(__has_include)
 #if __has_include(<SuperAwesomeSDK/AwesomeAds.h>)
@@ -20,6 +21,7 @@ extern "C" {
     
     void SuperAwesomeUnityAwesomeAdsInit (bool loggingEnabled) {
         [AwesomeAds initSDK:loggingEnabled];
+        [SAVideoAd disableMoatLimiting];
     }
     
     void SuperAwesomeUnityAwesomeAdsTriggerAgeCheck (const char *age) {
