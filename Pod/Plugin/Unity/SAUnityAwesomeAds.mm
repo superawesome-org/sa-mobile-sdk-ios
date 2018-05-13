@@ -21,7 +21,6 @@ extern "C" {
     
     void SuperAwesomeUnityAwesomeAdsInit (bool loggingEnabled) {
         [AwesomeAds initSDK:loggingEnabled];
-        [SAVideoAd disableMoatLimiting];
     }
     
     void SuperAwesomeUnityAwesomeAdsTriggerAgeCheck (const char *age) {

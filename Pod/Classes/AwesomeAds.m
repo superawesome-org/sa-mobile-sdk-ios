@@ -3,11 +3,16 @@
 #import "SAEvents.h"
 #import "SAFileDownloader.h"
 
+static BOOL isInitialised = false;
+
 @implementation AwesomeAds
 
 + (void) initSDK: (BOOL) loggingEnabled {
-    [SAEvents initMoat: loggingEnabled];
-    [SAFileDownloader cleanup];
+    if (!isInitialised) {
+        [SAEvents initMoat: loggingEnabled];
+        [SAFileDownloader cleanup];
+        isInitialised = true;
+    }
 }
 
 + (void) triggerAgeCheck: (NSString*) age response:(GetIsMinorBlock)response {
