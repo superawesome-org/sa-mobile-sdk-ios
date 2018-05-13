@@ -10,6 +10,7 @@
 #import "SAAIRVideoAd.h"
 #import "SAAIRVersion.h"
 #import "SAAIRBumperPage.h"
+#import "SAAIRAwesomeAds.h"
 
 /**
  * Method that initialzies an AIR Context by specifying all methods that should
@@ -23,7 +24,7 @@
  */
 void SAContextInitializer(void* extData, const uint8_t* ctxType, FREContext ctx, uint32_t* numFunctionsToTest, const FRENamedFunction** functionsToSet) {
     
-    *numFunctionsToTest = 15;
+    *numFunctionsToTest = 17;
     
     FRENamedFunction* func = (FRENamedFunction*) malloc(sizeof(FRENamedFunction) * *numFunctionsToTest);
     
@@ -86,6 +87,14 @@ void SAContextInitializer(void* extData, const uint8_t* ctxType, FREContext ctx,
     func[14].name = (const uint8_t*) "SuperAwesomeAIRBumperOverrideName";
     func[14].functionData = NULL;
     func[14].function = &SuperAwesomeAIRBumperOverrideName;
+    
+    func[15].name = (const uint8_t*) "SuperAwesomeAIRAwesomeAdsInit";
+    func[15].functionData = NULL;
+    func[15].function = &SuperAwesomeAIRAwesomeAdsInit;
+    
+    func[16].name = (const uint8_t*) "SuperAwesomeAIRAwesomeAdsTriggerAgeCheck";
+    func[16].functionData = NULL;
+    func[16].function = &SuperAwesomeAIRAwesomeAdsTriggerAgeCheck;
     
     *functionsToSet = func;
 }

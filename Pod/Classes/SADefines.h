@@ -5,6 +5,7 @@
 //  Created by Gabriel Coman on 26/07/2017.
 //
 //
+#import "SASessionDefines.h"
 
 #ifndef SADefines_h
 #define SADefines_h
@@ -21,7 +22,7 @@
 #define SA_DEFAULT_BGCOLOR              false
 #define SA_DEFAULT_BACKBUTTON           false
 #define SA_DEFAULT_MOAT_LIMITING_STATE  true
-#define SA_DEFAULT_PLAYBACK_MODE        0
+#define SA_DEFAULT_PLAYBACK_MODE        DL_PRE_ROLL
 #define SA_DEFAULT_CLICK_THRESHOLD      5
 
 #endif /* SADefines_h */

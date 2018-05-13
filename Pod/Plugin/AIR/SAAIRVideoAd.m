@@ -10,7 +10,7 @@
 #if __has_include(<SuperAwesomeSDK/SuperAwesomeSDK.h>)
 #import <SuperAwesomeSDK/SuperAwesomeSDK.h>
 #else
-#import "SuperAwesome.h"
+#import "AwesomeAds.h"
 #endif
 #endif
 
@@ -19,6 +19,14 @@
 #import <SASession/SASession.h>
 #else
 #import "SASession.h"
+#endif
+#endif
+
+#if defined(__has_include)
+#if __has_include(<SASession/SASession.h>)
+#import <SASession/SASessionDefines.h>
+#else
+#import "SASessionDefines.h"
 #endif
 #endif
 
@@ -58,7 +66,7 @@ FREObject SuperAwesomeAIRSAVideoAdLoad (FREContext ctx, void* funcData, uint32_t
     // configure & load
     [SAVideoAd setTestMode:test];
     [SAVideoAd setConfiguration: getConfigurationFromInt(configuration)];
-    [SAVideoAd setPlaybackMode:getPlaybackModeFromInt(playback)];
+    [SAVideoAd setPlaybackMode:getRTBStartDelayFromInt(playback)];
     [SAVideoAd load:placementId];
     
     return NULL;

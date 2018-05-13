@@ -6,6 +6,8 @@
 #import <UIKit/UIKit.h>
 #import "FlashRuntimeExtensions.h"
 
+void sendToAIR (FREContext context, NSDictionary *data);
+
 /**
  * C method that sends a call back to the AIR SDK with data suitable for
  * an ad.

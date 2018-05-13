@@ -1,6 +1,6 @@
 #import "SAAdMobVideoMediationAdapter.h"
 #import "SAAdMobExtras.h"
-#import "SuperAwesome.h"
+#import "AwesomeAds.h"
 #import "SAVersion.h"
 
 #define kERROR_DOMAIN @"tv.superawesome.SAAdMobVideoMediationAdapter"

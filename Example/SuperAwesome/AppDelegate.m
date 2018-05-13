@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "SuperAwesome.h"
+#import "AwesomeAds.h"
 #import <GoogleMobileAds/GoogleMobileAds.h>
 
 @interface AppDelegate ()
@@ -21,7 +21,7 @@
     // Override point for customization after application launch.
     
     [GADMobileAds configureWithApplicationID:@"ca-app-pub-7706302691807937~3326320407"];
-    [SuperAwesome initSDK];
+    [AwesomeAds initSDK:true];
     
     return YES;
 }

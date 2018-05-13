@@ -5,8 +5,7 @@
 
 #import "SAVideoAd.h"
 #import "SAParentalGate.h"
-#import "SuperAwesome.h"
-#import "SAPlaybackMode.h"
+#import "AwesomeAds.h"
 
 #if defined(__has_include)
 #if __has_include(<SAModelSpace/SAAd.h>)
@@ -77,6 +76,14 @@
 #import <SASession/SASession.h>
 #else
 #import "SASession.h"
+#endif
+#endif
+
+#if defined(__has_include)
+#if __has_include(<SASession/SASession.h>)
+#import <SASession/SASessionDefines.h>
+#else
+#import "SASessionDefines.h"
 #endif
 #endif
 
@@ -161,7 +168,7 @@ static BOOL shouldShowSmallClickButton      = SA_DEFAULT_SMALLCLICK;
 static SAOrientation orientation            = SA_DEFAULT_ORIENTATION;
 static SAConfiguration configuration        = SA_DEFAULT_CONFIGURATION;
 static BOOL isMoatLimitingEnabled           = SA_DEFAULT_MOAT_LIMITING_STATE;
-static SAPlaybackMode playback              = SA_DEFAULT_PLAYBACK_MODE;
+static SARTBStartDelay playback             = SA_DEFAULT_PLAYBACK_MODE;
 
 /**
  * Overridden UIViewController "viewDidLoad" method in which the ad is setup
@@ -664,19 +671,17 @@ static SAPlaybackMode playback              = SA_DEFAULT_PLAYBACK_MODE;
         [session setTestMode:isTestingEnabled];
         [session setConfiguration:configuration];
         [session setVersion:[SAVersion getSdkVersion]];
+        [session setPos:POS_FULLSCREEN];
+        [session setPlaybackMethod:PB_WITH_SOUND_ON_SCREEN];
+        [session setInstl:IN_FULLSCREEN];
+        [session setSkip:shouldShowCloseButton ? SK_SKIP : SK_NO_SKIP];
+        [session setStartDelay:[self getPlaybackMode]];
+        CGSize size = [UIScreen mainScreen].bounds.size;
+        [session setWidth:size.width];
+        [session setHeight:size.height];
         
         // get the loader
         SALoader *loader = [[SALoader alloc] init];
-        [loader setPos:7];
-        [loader setPlaybackMethod:5];
-        [loader setInstl:1];
-        [loader setSkip:shouldShowCloseButton ? 1 : 0];
-        [loader setStartDelay:playback];
-        
-        CGSize size = [UIScreen mainScreen].bounds.size;
-        [loader setWidth:size.width];
-        [loader setHeight:size.height];
-        
         [loader loadAd:placementId withSession:session andResult:^(SAResponse *response) {
             
             if (response.status != 200) {
@@ -894,7 +899,7 @@ static SAPlaybackMode playback              = SA_DEFAULT_PLAYBACK_MODE;
     shouldAutomaticallyCloseAtEnd = value;
 }
 
-+ (void) setPlaybackMode: (SAPlaybackMode) mode {
++ (void) setPlaybackMode: (SARTBStartDelay) mode {
     playback = mode;
 }
 
@@ -934,7 +939,7 @@ static SAPlaybackMode playback              = SA_DEFAULT_PLAYBACK_MODE;
     return isMoatLimitingEnabled;
 }
 
-+ (SAPlaybackMode) getPlaybackMode {
++ (SARTBStartDelay) getPlaybackMode {
     return playback;
 }
 
