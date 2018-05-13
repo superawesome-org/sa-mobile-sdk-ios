@@ -10,7 +10,9 @@
 #import "SACallback.h"
 #import "SAOrientation.h"
 #import "SADefines.h"
+#import "SAAgeCheck.h"
 
 @interface SuperAwesome: NSObject
 + (void) initSDK: (BOOL) loggingEnabled;
++ (void) triggerAgeCheck: (NSString*) age response:(GetIsMinorBlock)response;
 @end

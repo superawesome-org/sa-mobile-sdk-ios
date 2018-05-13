@@ -180,10 +180,7 @@
     NSString* dateOfBirth = @"2012-02-02";
     __block NSString* message = nil;
     
-    SAAgeCheck* sdk = [SAAgeCheck sdk];
-    
-    [sdk getIsMinor:dateOfBirth :^(GetIsMinorModel *model) {
-        
+    [SuperAwesome triggerAgeCheck:dateOfBirth response:^(GetIsMinorModel *model) {
         if (model != nil) {
             NSString* country = [model country];
             NSInteger consentAgeForCountry = [model consentAgeForCountry];

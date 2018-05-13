@@ -10,4 +10,8 @@
     [SAFileDownloader cleanup];
 }
 
++ (void) triggerAgeCheck: (NSString*) age response:(GetIsMinorBlock)response {
+    [[SAAgeCheck sdk] getIsMinor:age :response];
+}
+
 @end
