@@ -110,7 +110,7 @@
 #endif
 
 // local imports
-#import "SuperAwesome.h"
+#import "AwesomeAds.h"
 #import "SAVersion.h"
 
 @interface SABannerAd ()

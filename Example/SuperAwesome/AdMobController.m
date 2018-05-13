@@ -1,6 +1,6 @@
 #import "AdMobController.h"
 #import <GoogleMobileAds/GoogleMobileAds.h>
-#import "SuperAwesome.h"
+#import "AwesomeAds.h"
 #import "SAAdMobExtras.h"
 
 @interface AdMobController () <GADBannerViewDelegate, GADInterstitialDelegate, GADRewardBasedVideoAdDelegate>

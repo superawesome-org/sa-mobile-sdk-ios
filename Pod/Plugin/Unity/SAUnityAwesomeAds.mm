@@ -9,29 +9,29 @@
 #import "SAUnityCallback.h"
 
 #if defined(__has_include)
-#if __has_include(<SuperAwesomeSDK/SuperAwesome.h>)
-#import <SuperAwesomeSDK/SuperAwesome.h>
+#if __has_include(<SuperAwesomeSDK/AwesomeAds.h>)
+#import <SuperAwesomeSDK/AwesomeAds.h>
 #else
-#import "SuperAwesome.h"
+#import "AwesomeAds.h"
 #endif
 #endif
 
 extern "C" {
     
-    void SuperAwesomeUnityInit (bool loggingEnabled) {
-        [SuperAwesome initSDK:loggingEnabled];
+    void SuperAwesomeUnityAwesomeAdsInit (bool loggingEnabled) {
+        [AwesomeAds initSDK:loggingEnabled];
     }
     
-    void SuperAwesomeUnityTriggerAgeCheck (const char *age) {
+    void SuperAwesomeUnityAwesomeAdsTriggerAgeCheck (const char *age) {
         
         NSString *ageString = [NSString stringWithUTF8String:age];
         
-        [SuperAwesome triggerAgeCheck:ageString response:^(GetIsMinorModel *model) {
+        [AwesomeAds triggerAgeCheck:ageString response:^(GetIsMinorModel *model) {
          
          if (model != nil) {
             NSDictionary *payload = [model dictionaryRepresentation];
             if (payload != nil) {
-                sendToUnity(@"SuperAwesome", payload);
+                sendToUnity(@"AwesomeAds", payload);
             }
          }
         }];

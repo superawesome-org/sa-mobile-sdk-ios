@@ -10,7 +10,7 @@
 #if __has_include(<SuperAwesomeSDK/SuperAwesomeSDK.h>)
 #import <SuperAwesomeSDK/SuperAwesomeSDK.h>
 #else
-#import "SuperAwesome.h"
+#import "AwesomeAds.h"
 #endif
 #endif
 

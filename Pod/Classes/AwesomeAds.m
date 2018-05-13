@@ -1,9 +1,9 @@
 
-#import "SuperAwesome.h"
+#import "AwesomeAds.h"
 #import "SAEvents.h"
 #import "SAFileDownloader.h"
 
-@implementation SuperAwesome
+@implementation AwesomeAds
 
 + (void) initSDK: (BOOL) loggingEnabled {
     [SAEvents initMoat: loggingEnabled];

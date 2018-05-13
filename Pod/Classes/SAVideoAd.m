@@ -5,7 +5,7 @@
 
 #import "SAVideoAd.h"
 #import "SAParentalGate.h"
-#import "SuperAwesome.h"
+#import "AwesomeAds.h"
 
 #if defined(__has_include)
 #if __has_include(<SAModelSpace/SAAd.h>)

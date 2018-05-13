@@ -7,7 +7,7 @@
 #import <UIKit/UIKit.h>
 #import "FlashRuntimeExtensions.h"
 
-FREObject SuperAwesomeAIRInit (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]);
+FREObject SuperAwesomeAIRAwesomeAdsInit (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]);
 
 /**
  * Native method called from AIR that loads a new video ad.
@@ -18,4 +18,4 @@ FREObject SuperAwesomeAIRInit (FREContext ctx, void* funcData, uint32_t argc, FR
  * @param argv      argv paramter
  * @return          a new FREObject instance with return data
  */
-FREObject SuperAwesomeAIRTriggerAgeCheck (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]);
+FREObject SuperAwesomeAIRAwesomeAdsTriggerAgeCheck (FREContext ctx, void* funcData, uint32_t argc, FREObject argv[]);

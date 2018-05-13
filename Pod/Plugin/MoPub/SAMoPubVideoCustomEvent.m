@@ -4,7 +4,7 @@
  */
 
 #import "SAMoPubVideoCustomEvent.h"
-#import "SuperAwesome.h"
+#import "AwesomeAds.h"
 #import "SASession.h"
 #import "SASessionDefines.h"
 #import "MPRewardedVideoReward.h"

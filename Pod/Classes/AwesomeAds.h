@@ -12,7 +12,7 @@
 #import "SADefines.h"
 #import "SAAgeCheck.h"
 
-@interface SuperAwesome: NSObject
+@interface AwesomeAds: NSObject
 + (void) initSDK: (BOOL) loggingEnabled;
 + (void) triggerAgeCheck: (NSString*) age response:(GetIsMinorBlock)response;
 @end
