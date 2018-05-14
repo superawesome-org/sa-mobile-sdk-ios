@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+7.0.0
+ - Prepare and improve SDK for GDPR Release
+ - Improved tests for a lot of sub-components (networking, parsing, etc)
+ - Added a module that dynamically checks a user's "isMinor" status based on country, etc
+ - Simplified a lot of the code in different sub-components (networking, parsing, etc)
+
 6.1.9
  - Added correct SDK version
 
