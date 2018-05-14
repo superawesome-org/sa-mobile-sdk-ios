@@ -320,6 +320,9 @@ static BOOL isMoatLimitingEnabled    = SA_DEFAULT_MOAT_LIMITING_STATE;
 
 + (void) load:(NSInteger) placementId {
     
+    // trying to init the SDK very late
+    [AwesomeAds initSDK:false];
+    
     // create dictionary
     if (ads == NULL) {
         ads = [@{} mutableCopy];

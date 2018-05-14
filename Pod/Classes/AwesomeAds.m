@@ -9,9 +9,12 @@ static BOOL isInitialised = false;
 
 + (void) initSDK: (BOOL) loggingEnabled {
     if (!isInitialised) {
+        NSLog(@"Initialising AwesomeAds");
         [SAEvents initMoat: loggingEnabled];
         [SAFileDownloader cleanup];
         isInitialised = true;
+    } else {
+        NSLog(@"Already initialised AwesomeAds");
     }
 }
 
