@@ -209,6 +209,9 @@
 
 - (void) load:(NSInteger)placementId {
     
+    // trying to init the SDK very late
+    [AwesomeAds initSDK:false];
+    
     // first close any existing ad
     if (!_firstPlay) {
         [self close];

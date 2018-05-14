@@ -654,6 +654,9 @@ static SARTBStartDelay playback             = SA_DEFAULT_PLAYBACK_MODE;
 
 + (void) load:(NSInteger) placementId {
     
+    // trying to init the SDK very late
+    [AwesomeAds initSDK:false];
+    
     // create dictionary
     if (ads == NULL) {
         ads = [@{} mutableCopy];
