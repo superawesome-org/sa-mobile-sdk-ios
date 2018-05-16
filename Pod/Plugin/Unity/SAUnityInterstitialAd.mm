@@ -31,15 +31,15 @@ extern "C" {
     void SuperAwesomeUnitySAInterstitialAdCreate () {
         [SAInterstitialAd setCallback:^(NSInteger placementId, SAEvent event) {
             switch (event) {
-                case adLoaded: sendAdCallback(@"SAInterstitialAd", placementId, @"adLoaded"); break;
-                case adEmpty: sendAdCallback(@"SAInterstitialAd", placementId, @"adEmpty"); break;
-                case adFailedToLoad: sendAdCallback(@"SAInterstitialAd", placementId, @"adFailedToLoad"); break;
-                case adAlreadyLoaded: sendAdCallback(@"SAInterstitialAd", placementId, @"adAlreadyLoaded"); break;
-                case adShown: sendAdCallback(@"SAInterstitialAd", placementId, @"adShown"); break;
-                case adFailedToShow: sendAdCallback(@"SAInterstitialAd", placementId, @"adFailedToShow"); break;
-                case adClicked: sendAdCallback(@"SAInterstitialAd", placementId, @"adClicked"); break;
-                case adEnded: sendAdCallback(@"SAInterstitialAd", placementId, @"adEnded"); break;
-                case adClosed: sendAdCallback(@"SAInterstitialAd", placementId, @"adClosed"); break;
+                case adLoaded: unitySendAdCallback(@"SAInterstitialAd", placementId, @"adLoaded"); break;
+                case adEmpty: unitySendAdCallback(@"SAInterstitialAd", placementId, @"adEmpty"); break;
+                case adFailedToLoad: unitySendAdCallback(@"SAInterstitialAd", placementId, @"adFailedToLoad"); break;
+                case adAlreadyLoaded: unitySendAdCallback(@"SAInterstitialAd", placementId, @"adAlreadyLoaded"); break;
+                case adShown: unitySendAdCallback(@"SAInterstitialAd", placementId, @"adShown"); break;
+                case adFailedToShow: unitySendAdCallback(@"SAInterstitialAd", placementId, @"adFailedToShow"); break;
+                case adClicked: unitySendAdCallback(@"SAInterstitialAd", placementId, @"adClicked"); break;
+                case adEnded: unitySendAdCallback(@"SAInterstitialAd", placementId, @"adEnded"); break;
+                case adClosed: unitySendAdCallback(@"SAInterstitialAd", placementId, @"adClosed"); break;
             }
         }];
         

@@ -25,7 +25,7 @@ void sendToAIR (FREContext context, NSDictionary *data) {
     
 }
 
-void sendAdCallback (FREContext context, NSString *name, int placementId, NSString *callback) {
+void airSendAdCallback (FREContext context, NSString *name, int placementId, NSString *callback) {
     
     NSDictionary *data = @{
                            @"name": name,

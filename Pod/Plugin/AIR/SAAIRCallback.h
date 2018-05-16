@@ -18,4 +18,4 @@ void sendToAIR (FREContext context, NSDictionary *data);
  * @param placementId   placement Id of the ad that sent the callback.
  * @param callback      callback method name
  */
-void sendAdCallback (FREContext context, NSString *name, int placementId, NSString *callback);
+void airSendAdCallback (FREContext context, NSString *name, int placementId, NSString *callback);

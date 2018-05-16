@@ -44,15 +44,15 @@ extern "C" {
         // set banner callback
         [banner setCallback:^(NSInteger placementId, SAEvent event) {
             switch (event) {
-                case adLoaded: sendAdCallback(key, placementId, @"adLoaded"); break;
-                case adEmpty: sendAdCallback(key, placementId, @"adEmpty"); break;
-                case adFailedToLoad: sendAdCallback(key, placementId, @"adFailedToLoad"); break;
-                case adAlreadyLoaded: sendAdCallback(key, placementId, @"adAlreadyLoaded"); break;
-                case adShown: sendAdCallback(key, placementId, @"adShown"); break;
-                case adFailedToShow: sendAdCallback(key, placementId, @"adFailedToShow"); break;
-                case adClicked: sendAdCallback(key, placementId, @"adClicked"); break;
-                case adEnded: sendAdCallback(key, placementId, @"adEnded"); break;
-                case adClosed: sendAdCallback(key, placementId, @"adClosed"); break;
+                case adLoaded: unitySendAdCallback(key, placementId, @"adLoaded"); break;
+                case adEmpty: unitySendAdCallback(key, placementId, @"adEmpty"); break;
+                case adFailedToLoad: unitySendAdCallback(key, placementId, @"adFailedToLoad"); break;
+                case adAlreadyLoaded: unitySendAdCallback(key, placementId, @"adAlreadyLoaded"); break;
+                case adShown: unitySendAdCallback(key, placementId, @"adShown"); break;
+                case adFailedToShow: unitySendAdCallback(key, placementId, @"adFailedToShow"); break;
+                case adClicked: unitySendAdCallback(key, placementId, @"adClicked"); break;
+                case adEnded: unitySendAdCallback(key, placementId, @"adEnded"); break;
+                case adClosed: unitySendAdCallback(key, placementId, @"adClosed"); break;
             }
         }];
         

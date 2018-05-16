@@ -35,15 +35,15 @@ FREObject SuperAwesomeAIRSAVideoAdCreate (FREContext ctx, void* funcData, uint32
     // native video code
     [SAVideoAd setCallback:^(NSInteger placementId, SAEvent event) {
         switch (event) {
-            case adLoaded:          sendAdCallback(ctx, @"SAVideoAd", (int)placementId, @"adLoaded"); break;
-            case adEmpty:           sendAdCallback(ctx, @"SAVideoAd", (int)placementId, @"adEmpty"); break;
-            case adFailedToLoad:    sendAdCallback(ctx, @"SAVideoAd", (int)placementId, @"adFailedToLoad"); break;
-            case adAlreadyLoaded:   sendAdCallback(ctx, @"SAVideoAd", (int)placementId, @"adAlreadyLoaded"); break;
-            case adShown:           sendAdCallback(ctx, @"SAVideoAd", (int)placementId, @"adShown"); break;
-            case adFailedToShow:    sendAdCallback(ctx, @"SAVideoAd", (int)placementId, @"adFailedToShow"); break;
-            case adClicked:         sendAdCallback(ctx, @"SAVideoAd", (int)placementId, @"adClicked"); break;
-            case adEnded:           sendAdCallback(ctx, @"SAVideoAd", (int)placementId, @"adEnded"); break;
-            case adClosed:          sendAdCallback(ctx, @"SAVideoAd", (int)placementId, @"adClosed"); break;
+            case adLoaded:          airSendAdCallback(ctx, @"SAVideoAd", (int)placementId, @"adLoaded"); break;
+            case adEmpty:           airSendAdCallback(ctx, @"SAVideoAd", (int)placementId, @"adEmpty"); break;
+            case adFailedToLoad:    airSendAdCallback(ctx, @"SAVideoAd", (int)placementId, @"adFailedToLoad"); break;
+            case adAlreadyLoaded:   airSendAdCallback(ctx, @"SAVideoAd", (int)placementId, @"adAlreadyLoaded"); break;
+            case adShown:           airSendAdCallback(ctx, @"SAVideoAd", (int)placementId, @"adShown"); break;
+            case adFailedToShow:    airSendAdCallback(ctx, @"SAVideoAd", (int)placementId, @"adFailedToShow"); break;
+            case adClicked:         airSendAdCallback(ctx, @"SAVideoAd", (int)placementId, @"adClicked"); break;
+            case adEnded:           airSendAdCallback(ctx, @"SAVideoAd", (int)placementId, @"adEnded"); break;
+            case adClosed:          airSendAdCallback(ctx, @"SAVideoAd", (int)placementId, @"adClosed"); break;
         }
     }];
     
