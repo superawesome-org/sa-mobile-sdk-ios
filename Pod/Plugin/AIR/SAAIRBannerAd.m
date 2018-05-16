@@ -46,15 +46,15 @@ FREObject SuperAwesomeAIRSABannerAdCreate (FREContext ctx, void* funcData, uint3
     // set banner callback
     [banner setCallback:^(NSInteger placementId, SAEvent event) {
         switch (event) {
-            case adLoaded:          sendAdCallback(ctx, key, (int)placementId, @"adLoaded"); break;
-            case adEmpty:           sendAdCallback(ctx, key, (int)placementId, @"adEmpty"); break;
-            case adFailedToLoad:    sendAdCallback(ctx, key, (int)placementId, @"adFailedToLoad"); break;
-            case adAlreadyLoaded:   sendAdCallback(ctx, key, (int)placementId, @"adAlreadyLoaded"); break;
-            case adShown:           sendAdCallback(ctx, key, (int)placementId, @"adShown"); break;
-            case adFailedToShow:    sendAdCallback(ctx, key, (int)placementId, @"adFailedToShow"); break;
-            case adClicked:         sendAdCallback(ctx, key, (int)placementId, @"adClicked"); break;
-            case adEnded:           sendAdCallback(ctx, key, (int)placementId, @"adEnded"); break;
-            case adClosed:          sendAdCallback(ctx, key, (int)placementId, @"adClosed"); break;
+            case adLoaded:          airSendAdCallback(ctx, key, (int)placementId, @"adLoaded"); break;
+            case adEmpty:           airSendAdCallback(ctx, key, (int)placementId, @"adEmpty"); break;
+            case adFailedToLoad:    airSendAdCallback(ctx, key, (int)placementId, @"adFailedToLoad"); break;
+            case adAlreadyLoaded:   airSendAdCallback(ctx, key, (int)placementId, @"adAlreadyLoaded"); break;
+            case adShown:           airSendAdCallback(ctx, key, (int)placementId, @"adShown"); break;
+            case adFailedToShow:    airSendAdCallback(ctx, key, (int)placementId, @"adFailedToShow"); break;
+            case adClicked:         airSendAdCallback(ctx, key, (int)placementId, @"adClicked"); break;
+            case adEnded:           airSendAdCallback(ctx, key, (int)placementId, @"adEnded"); break;
+            case adClosed:          airSendAdCallback(ctx, key, (int)placementId, @"adClosed"); break;
         }
     }];
     

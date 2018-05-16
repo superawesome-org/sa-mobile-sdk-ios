@@ -39,7 +39,7 @@ static inline void sendToUnity (NSString *unityName, NSDictionary *data) {
  * @param placementId   placement id of the ad that called this
  * @param callback      callback method
  */
-static inline void sendAdCallback (NSString *unityName, NSInteger placementId, NSString *callback) {
+static inline void unitySendAdCallback (NSString *unityName, NSInteger placementId, NSString *callback) {
 
     NSDictionary *data = @{
                            @"placementId": [NSString stringWithFormat:@"%ld", (long) placementId],

@@ -31,15 +31,15 @@ extern "C" {
     void SuperAwesomeUnitySAVideoAdCreate () {
         [SAVideoAd setCallback:^(NSInteger placementId, SAEvent event) {
             switch (event) {
-                case adLoaded: sendAdCallback(@"SAVideoAd", placementId, @"adLoaded"); break;
-                case adEmpty: sendAdCallback(@"SAVideoAd", placementId, @"adEmpty"); break;
-                case adFailedToLoad: sendAdCallback(@"SAVideoAd", placementId, @"adFailedToLoad"); break;
-                case adAlreadyLoaded: sendAdCallback(@"SAVideoAd", placementId, @"adAlreadyLoaded"); break;
-                case adShown: sendAdCallback(@"SAVideoAd", placementId, @"adShown"); break;
-                case adFailedToShow: sendAdCallback(@"SAVideoAd", placementId, @"adFailedToShow"); break;
-                case adClicked: sendAdCallback(@"SAVideoAd", placementId, @"adClicked"); break;
-                case adEnded: sendAdCallback(@"SAVideoAd", placementId, @"adEnded"); break;
-                case adClosed: sendAdCallback(@"SAVideoAd", placementId, @"adClosed"); break;
+                case adLoaded: unitySendAdCallback(@"SAVideoAd", placementId, @"adLoaded"); break;
+                case adEmpty: unitySendAdCallback(@"SAVideoAd", placementId, @"adEmpty"); break;
+                case adFailedToLoad: unitySendAdCallback(@"SAVideoAd", placementId, @"adFailedToLoad"); break;
+                case adAlreadyLoaded: unitySendAdCallback(@"SAVideoAd", placementId, @"adAlreadyLoaded"); break;
+                case adShown: unitySendAdCallback(@"SAVideoAd", placementId, @"adShown"); break;
+                case adFailedToShow: unitySendAdCallback(@"SAVideoAd", placementId, @"adFailedToShow"); break;
+                case adClicked: unitySendAdCallback(@"SAVideoAd", placementId, @"adClicked"); break;
+                case adEnded: unitySendAdCallback(@"SAVideoAd", placementId, @"adEnded"); break;
+                case adClosed: unitySendAdCallback(@"SAVideoAd", placementId, @"adClosed"); break;
             }
         }];
     }
