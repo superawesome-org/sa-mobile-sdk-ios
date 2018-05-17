@@ -34,16 +34,16 @@ FREObject SuperAwesomeAIRAwesomeAdsTriggerAgeCheck (FREContext ctx, void* funcDa
     
     [AwesomeAds triggerAgeCheck:age response:^(GetIsMinorModel *model) {
         
-        if (model != nil) {
-            NSDictionary *payload = @{
-                                      @"name": @"AwesomeAds",
-                                      @"isMinor": @(model.isMinor),
-                                      @"age": @(model.age),
-                                      @"consentAgeForCountry": @(model.consentAgeForCountry),
-                                      @"country": nullSafe(model.country)
-                                      };
-            sendToAIR(ctx, payload);
-        }
+        GetIsMinorModel *finalModel = model != nil ? model : [[GetIsMinorModel alloc] init];
+        
+        NSDictionary *payload = @{
+                                  @"name": @"AwesomeAds",
+                                  @"isMinor": @(finalModel.isMinor),
+                                  @"age": @(finalModel.age),
+                                  @"consentAgeForCountry": @(finalModel.consentAgeForCountry),
+                                  @"country": nullSafe(finalModel.country)
+                                  };
+        sendToAIR(ctx, payload);
         
     }];
     

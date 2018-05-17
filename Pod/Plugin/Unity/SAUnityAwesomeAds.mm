@@ -29,12 +29,11 @@ extern "C" {
         
         [AwesomeAds triggerAgeCheck:ageString response:^(GetIsMinorModel *model) {
          
-         if (model != nil) {
-            NSDictionary *payload = [model dictionaryRepresentation];
+            GetIsMinorModel *finalModel = model != nil ? model : [[GetIsMinorModel alloc] init];
+            NSDictionary *payload = [finalModel dictionaryRepresentation];
             if (payload != nil) {
                 sendToUnity(@"AwesomeAds", payload);
             }
-         }
         }];
     }
 }
