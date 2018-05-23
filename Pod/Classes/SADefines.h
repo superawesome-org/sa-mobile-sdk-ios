@@ -5,7 +5,13 @@
 //  Created by Gabriel Coman on 26/07/2017.
 //
 //
+#if defined(__has_include)
+#if __has_include(<SASession/SASessionDefines.h>)
+#import <SASession/SASessionDefines.h>
+#else
 #import "SASessionDefines.h"
+#endif
+#endif
 
 #ifndef SADefines_h
 #define SADefines_h

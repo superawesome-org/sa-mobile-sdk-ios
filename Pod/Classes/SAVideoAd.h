@@ -6,7 +6,14 @@
 #import <UIKit/UIKit.h>
 #import "SACallback.h"
 #import "SAOrientation.h"
+
+#if defined(__has_include)
+#if __has_include(<SASession/SASessionDefines.h>)
+#import <SASession/SASessionDefines.h>
+#else
 #import "SASessionDefines.h"
+#endif
+#endif
 
 @class SAAd;
 

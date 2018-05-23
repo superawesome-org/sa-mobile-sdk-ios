@@ -10,7 +10,14 @@
 #import "SACallback.h"
 #import "SAOrientation.h"
 #import "SADefines.h"
+
+#if defined(__has_include)
+#if __has_include(<SAGDPRKisMinor/SAAgeCheck.h>)
+#import <SAGDPRKisMinor/SAAgeCheck.h>
+#else
 #import "SAAgeCheck.h"
+#endif
+#endif
 
 @interface AwesomeAds: NSObject
 + (void) initSDK: (BOOL) loggingEnabled;
