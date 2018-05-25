@@ -56,7 +56,7 @@ PODS:
     - SANetworking (= 1.0.0)
     - SAUtils (= 1.5.5)
   - SAVideoPlayer (1.2.5)
-  - SAWebPlayer (1.2.5):
+  - SAWebPlayer (1.2.6):
     - SANetworking (= 1.0.0)
   - SuperAwesome/AdMob (7.0.0):
     - Google-Mobile-Ads-SDK
@@ -70,7 +70,7 @@ PODS:
     - SAGDPRKisMinor (= 2.0.0)
     - SAParentalGate (= 1.0.2)
     - SAVideoPlayer (= 1.2.5)
-    - SAWebPlayer (= 1.2.5)
+    - SAWebPlayer (= 1.2.6)
   - SuperAwesome/Full (7.0.0):
     - SAEvents/Moat2
     - SuperAwesome/Base
@@ -127,8 +127,8 @@ SPEC CHECKSUMS:
   SAUtils: 95e06baec2636bfe494d9f8a43ec4def6fb28229
   SAVASTParser: fa343296e3fd7103a5da210a7c41020a8f280a41
   SAVideoPlayer: cc118f17151dfd227a3115a9d266e1cae12c1f3c
-  SAWebPlayer: 58745c01128e45a862cf13fdd545d9e1997b6ca4
-  SuperAwesome: 83ed57e7d91ed5b2394109a97a84bec83df93597
+  SAWebPlayer: f5c7cefd8a7406b7f570831af90b167feff13dcd
+  SuperAwesome: 22610db2cd3e8de0be258a7332b9ec8b9fb54d18
 
 PODFILE CHECKSUM: f02f9bd7a9e11d45d0585b5baf35e51e61f28b30
 
