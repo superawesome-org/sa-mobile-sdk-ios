@@ -87,13 +87,13 @@
                              @"pid": @(36982)},
                            ]
                    },
-               //                @{
-               //                    @"name": @"Interstitials",
-               //                    @"items": @[
-               //                            @{@"name": @"CPM Interstitial 1 (Image)",
-               //                              @"pid": @(36744)},
-               //                            ]
-               //                  },
+               @{
+                   @"name": @"Interstitials",
+                   @"items": @[
+                           @{@"name": @"CPM Interstitial 1 (Image)",
+                             @"pid": @(37141)},
+                           ]
+                   },
                @{
                    @"name": @"Videos",
                    @"items": @[
@@ -161,14 +161,14 @@
         [_bannerAd load:placementId];
         
     }
-    //    // INTERSTITIALS
-    //    else if ([indexPath section] == 1) {
-    //
-    //        [SAInterstitialAd load:placementId];
-    //
-    //    }
-    // VIDEOS
+    // INTERSTITIALS
     else if ([indexPath section] == 1) {
+        
+        [SAInterstitialAd load:placementId];
+        
+    }
+    // VIDEOS
+    else if ([indexPath section] == 2) {
         
         [SAVideoAd load:placementId];
         
