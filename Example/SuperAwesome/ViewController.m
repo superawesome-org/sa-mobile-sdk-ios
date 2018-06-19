@@ -66,7 +66,7 @@
     [SAVideoAd disableTestMode];
     [SAVideoAd disableBumperPage];
     [SAVideoAd disableParentalGate];
-    [SAVideoAd enableCloseButton];
+    [SAVideoAd disableCloseButton];
     [SAVideoAd disableCloseAtEnd];
     [SAVideoAd disableMoatLimiting];
     [SAVideoAd setCallback:^(NSInteger placementId, SAEvent event) {
@@ -84,21 +84,33 @@
                    @"name": @"Banners",
                    @"items": @[
                            @{@"name": @"Moat Banner",
-                             @"pid": @(36982)},
+                             @"pid": @(37188)},
+                           @{@"name": @"Moat Banner",
+                             @"pid": @(37217)},
                            ]
                    },
                @{
                    @"name": @"Interstitials",
                    @"items": @[
-                           @{@"name": @"CPM Interstitial 1 (Image)",
-                             @"pid": @(37141)},
+                           @{@"name": @"CPM Interstitial 1 (Rich Media)",
+                             @"pid": @(37190)},
+                           @{@"name": @"CPM Interstitial 2 (3rd Party Tag)",
+                             @"pid": @(37192)},
+                           @{@"name": @"Image #1",
+                             @"pid": @(37218)},
+                           @{@"name": @"Rich Media #1",
+                             @"pid": @(37219)},
+                           @{@"name": @"Rich Media #2",
+                             @"pid": @(37220)},
+                           @{@"name": @"Rich Media #3",
+                             @"pid": @(37221)}
                            ]
                    },
                @{
                    @"name": @"Videos",
                    @"items": @[
                            @{@"name": @"Moat video",
-                             @"pid": @(36981)}
+                             @"pid": @(37186)}
                            ]
                    }
                ] mutableCopy];

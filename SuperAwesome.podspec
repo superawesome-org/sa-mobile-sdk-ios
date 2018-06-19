@@ -27,9 +27,9 @@ Pod::Spec.new do |s|
     b.source_files = 'Pod/Classes/**/*'
     b.frameworks = 'AdSupport'
     b.dependency 'SAVideoPlayer', '1.2.5'
-    b.dependency 'SAWebPlayer', '1.2.6'
-    b.dependency 'SAEvents', '2.2.2'
-    b.dependency 'SAAdLoader', '1.4.0'
+    b.dependency 'SAWebPlayer', '1.3.0'
+    b.dependency 'SAEvents', '2.2.4'
+    b.dependency 'SAAdLoader', '1.4.2'
     b.dependency 'SABumperPage', '1.0.6'
     b.dependency 'SAParentalGate', '1.0.2'
     b.dependency 'SAGDPRKisMinor', '2.0.0'
@@ -37,7 +37,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Full' do |f|
     f.dependency 'SuperAwesome/Base'
-    f.dependency 'SAEvents/Moat2'
+    f.dependency 'SAEvents/Moat'
   end
   
   s.subspec 'AIR' do |a|
