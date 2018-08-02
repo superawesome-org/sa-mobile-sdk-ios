@@ -85,8 +85,8 @@
                    @"items": @[
                            @{@"name": @"Moat Banner",
                              @"pid": @(37188)},
-                           @{@"name": @"Moat Banner",
-                             @"pid": @(37217)},
+//                           @{@"name": @"Banner",
+//                             @"pid": @(37217)},
                            ]
                    },
                @{
@@ -96,14 +96,14 @@
                              @"pid": @(37190)},
                            @{@"name": @"CPM Interstitial 2 (3rd Party Tag)",
                              @"pid": @(37192)},
-                           @{@"name": @"Image #1",
-                             @"pid": @(37218)},
-                           @{@"name": @"Rich Media #1",
-                             @"pid": @(37219)},
-                           @{@"name": @"Rich Media #2",
-                             @"pid": @(37220)},
-                           @{@"name": @"Rich Media #3",
-                             @"pid": @(37221)}
+//                           @{@"name": @"Image #1",
+//                             @"pid": @(37218)},
+//                           @{@"name": @"Rich Media #1",
+//                             @"pid": @(37219)},
+//                           @{@"name": @"Rich Media #2",
+//                             @"pid": @(37220)},
+//                           @{@"name": @"Rich Media #3",
+//                             @"pid": @(37221)}
                            ]
                    },
                @{
