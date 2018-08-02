@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+7.0.1
+ - Transitioned to a non-scaling WebView to display banner & interstitial type ads
+
 7.0.0
  - Prepare and improve SDK for GDPR Release
  - Improved tests for a lot of sub-components (networking, parsing, etc)

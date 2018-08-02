@@ -282,10 +282,11 @@
         
         // moat tracking
         NSString *moatString = [_events startMoatTrackingForDisplay:[_webplayer getWebView]];
-        NSLog(@"MOAT String is %@", moatString);
         
         // form the full HTML string and play it!
         NSString *fullHTMLToLoad = [_ad.creative.details.media.html stringByReplacingOccurrencesOfString:@"_MOAT_" withString:moatString];
+        
+        NSLog(@"HTML String is %@", fullHTMLToLoad);
         
         // trigger local impression event
         [_events triggerImpressionEvent];
@@ -483,7 +484,11 @@
     
     //
     // trigger click evt
-    if (_session && [destination rangeOfString:[_session getBaseUrl]].location == NSNotFound) {
+    if (_ad != nil &&
+        _ad.creative != nil &&
+        _ad.creative.format != SA_Rich &&
+        _session &&
+        [destination rangeOfString:[_session getBaseUrl]].location == NSNotFound) {
         [_events triggerClickEvent];
     }
     
