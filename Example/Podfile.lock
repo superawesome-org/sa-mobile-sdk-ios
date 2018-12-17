@@ -1,13 +1,12 @@
 PODS:
-  - Google-Mobile-Ads-SDK (7.31.0)
-  - mopub-ios-sdk (5.1.0):
-    - mopub-ios-sdk/MoPubSDK (= 5.1.0)
-  - mopub-ios-sdk/Avid (5.1.0):
+  - mopub-ios-sdk (5.4.1):
+    - mopub-ios-sdk/MoPubSDK (= 5.4.1)
+  - mopub-ios-sdk/Avid (5.4.1):
     - mopub-ios-sdk/Core
-  - mopub-ios-sdk/Core (5.1.0)
-  - mopub-ios-sdk/Moat (5.1.0):
+  - mopub-ios-sdk/Core (5.4.1)
+  - mopub-ios-sdk/Moat (5.4.1):
     - mopub-ios-sdk/Core
-  - mopub-ios-sdk/MoPubSDK (5.1.0):
+  - mopub-ios-sdk/MoPubSDK (5.4.1):
     - mopub-ios-sdk/Avid
     - mopub-ios-sdk/Core
     - mopub-ios-sdk/Moat
@@ -32,7 +31,7 @@ PODS:
     - SANetworking (= 1.0.0)
     - SASession (= 1.1.2)
     - SAUtils (= 1.5.5)
-  - SAEvents/Moat (2.2.4):
+  - SAEvents/Moat2 (2.2.4):
     - SAEvents/Core
     - SAModelSpace (= 1.0.0)
     - SANetworking (= 1.0.0)
@@ -58,11 +57,6 @@ PODS:
   - SAVideoPlayer (1.2.5)
   - SAWebPlayer (1.3.0):
     - SANetworking (= 1.0.0)
-  - SuperAwesome/AdMob (6.1.9):
-    - Google-Mobile-Ads-SDK
-    - SuperAwesome/Base
-  - SuperAwesome/AIR (6.1.9):
-    - SuperAwesome/Base
   - SuperAwesome/Base (6.1.9):
     - SAAdLoader (= 1.4.2)
     - SABumperPage (= 1.0.6)
@@ -72,25 +66,19 @@ PODS:
     - SAVideoPlayer (= 1.2.5)
     - SAWebPlayer (= 1.3.0)
   - SuperAwesome/Full (6.1.9):
-    - SAEvents/Moat
+    - SAEvents/Moat2
     - SuperAwesome/Base
   - SuperAwesome/MoPub (6.1.9):
     - mopub-ios-sdk
     - SuperAwesome/Base
-  - SuperAwesome/Unity (6.1.9):
-    - SuperAwesome/Base
 
 DEPENDENCIES:
   - SAAgeGate
-  - SuperAwesome/AdMob (from `../`)
-  - SuperAwesome/AIR (from `../`)
   - SuperAwesome/Full (from `../`)
   - SuperAwesome/MoPub (from `../`)
-  - SuperAwesome/Unity (from `../`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
-    - Google-Mobile-Ads-SDK
     - mopub-ios-sdk
     - SAAdLoader
     - SAAgeGate
@@ -112,8 +100,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Google-Mobile-Ads-SDK: 6e529e748b45507a2ca904e0b5a52669ba3920c4
-  mopub-ios-sdk: c6ea177f742fc14a174502f3092e89e6b016bb72
+  mopub-ios-sdk: 320de49dd0a352ac58d33104a23853e749a84a78
   SAAdLoader: c888a60d899a0e82289ac497ccef54fc4c68de6d
   SAAgeGate: 49f4a27bd3afc5d740c2514e35d57c8bef7b7bd1
   SABumperPage: 59cb8525a68cc49a646a416977dbc0c963965eb7
@@ -128,8 +115,8 @@ SPEC CHECKSUMS:
   SAVASTParser: fa343296e3fd7103a5da210a7c41020a8f280a41
   SAVideoPlayer: cc118f17151dfd227a3115a9d266e1cae12c1f3c
   SAWebPlayer: ee76faded1a79e05098cacde55b97e64a98deed2
-  SuperAwesome: 67938c3733a582cd7281fbb91dd13f02d49d97bc
+  SuperAwesome: d8d4466fa84ec965595a6a909e7faa0428de3322
 
-PODFILE CHECKSUM: f02f9bd7a9e11d45d0585b5baf35e51e61f28b30
+PODFILE CHECKSUM: 83c0e05ee8498e2db4f74cc3e3dd2247210b723f
 
 COCOAPODS: 1.5.0

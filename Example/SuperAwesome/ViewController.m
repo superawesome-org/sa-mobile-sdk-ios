@@ -12,6 +12,7 @@
 #import "SASession.h"
 #import "SABumperPage.h"
 #import "SAAgeCheck.h"
+@import SuperAwesome;
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -25,8 +26,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //    NSMutableArray *abc = @[@(13), @(25), @(88)];
-    //    [abc removeLastObject];
+    [SAVideoAd2 load:21821];
+    [SAVideoAd2 play:21211 fromVC:self];
     
     SASession *session = [[SASession alloc] init];
     [session setConfigurationStaging];
@@ -61,6 +62,8 @@
             [SAInterstitialAd play:placementId fromVC:self];
         }
     }];
+    
+    
     
     [SAVideoAd setConfigurationProduction];
     [SAVideoAd disableTestMode];
@@ -109,8 +112,8 @@
                @{
                    @"name": @"Videos",
                    @"items": @[
-                           @{@"name": @"Moat video",
-                             @"pid": @(37186)}
+                           @{@"name": @"Test video",
+                             @"pid": @(39521)}
                            ]
                    }
                ] mutableCopy];

@@ -1,5 +1,5 @@
 #import "MoPubController.h"
-#import <MoPub.h>
+#import "MoPub.h"
 
 #define BANNER_ID @"f6fcf45c734d4d3ebd7b7351c9d9758d"
 #define INTER_ID  @"5f2864bf19fb473fb0419e24c8671e24"

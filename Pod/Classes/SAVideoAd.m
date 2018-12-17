@@ -121,7 +121,6 @@
 
 #import "SAVersion.h"
 
-
 @interface SAVideoAd ()
 
 // aux
