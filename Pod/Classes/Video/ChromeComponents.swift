@@ -6,25 +6,45 @@
 //
 
 import UIKit
+import SAUtils
 
-@objc(SABlackMask) class BlackMask: UIView {
-    
-    override func didMoveToSuperview() {
-        backgroundColor = UIColor.clear
-        guard let parentFrame = superview?.frame else { return }
-        alpha = 0.75
-        frame = CGRect(x: 0, y: parentFrame.size.height - 40, width: parentFrame.size.width, height: 40)
-        let layer = getGradientLayer()
-        layer.addSublayer(layer)
-    }
-    
-    private func getGradientLayer() -> CAGradientLayer {
+extension CAGradientLayer {
+    static func darkGradient() -> CAGradientLayer {
         let layer = CAGradientLayer()
-        layer.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height)
         layer.colors = [UIColor.black.cgColor, UIColor.clear.cgColor]
         layer.startPoint = CGPoint(x: 1, y: 0.7)
         layer.endPoint = CGPoint(x: 1, y: 0)
         return layer
+    }
+}
+
+@objc(SABlackMask2) class BlackMask: UIView {
+    
+    private let gradient: CAGradientLayer = CAGradientLayer.darkGradient()
+    
+    init() {
+        super.init(frame: CGRect.zero)
+        setup()
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setup()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        gradient.frame = bounds
+    }
+    
+    private func setup() {
+        backgroundColor = UIColor.clear
+        alpha = 0.75
+        layer.addSublayer(gradient)
     }
 }
 
@@ -39,20 +59,33 @@ extension UILabel {
     }
 }
 
-@objc(SAChronograph) class Chronograph: UIView {
+@objc(SAChronograph2) class Chronograph: UIView {
     
     private let adLabel = UILabel.createChrono()
     
-    override func didMoveToSuperview() {
-        guard let parentFrame = superview?.frame else { return }
-        let H = 20, W = 50, X = 10
-        let Y = parentFrame.size.height - 30
-        frame = CGRect(x: X, y: Int(Y), width: W, height: H)
+    init() {
+        super.init(frame: CGRect.zero)
+        setup()
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setup()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setup() {
         backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.25)
         layer.cornerRadius = 5.0
-        
-        adLabel.frame = CGRect(x: 0, y: 0, width: 50, height: 20)
         addSubview(adLabel)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        adLabel.frame = bounds
     }
     
     @objc(setRemainingTime:)
@@ -61,6 +94,29 @@ extension UILabel {
     }
 }
 
-@objc(SAURLClicker) class URLClicker: UIButton {
+@objc(SAURLClicker2) class URLClicker: UIButton {
     
+    init(smallClick: Bool) {
+        super.init(frame: .zero)
+        if smallClick {
+            self.setTitle("Find out more »", for: .normal)
+            self.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+@objc(SAPadlock) class Padlock: UIButton {
+    
+    init() {
+        super.init(frame: CGRect.zero)
+        setImage(SAImageUtils.padlockImage(), for: .normal)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }

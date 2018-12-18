@@ -26,8 +26,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [SAVideoAd2 load:21821];
-    [SAVideoAd2 play:21211 fromVC:self];
+//    [SAVideoAd2 setCallback:^(NSInteger placementId, SAEvent event) {
+//        if (event == adLoaded) {
+//            [SAVideoAd2 play:placementId fromVC:self];
+//        }
+//    }];
+//    [SAVideoAd2 setSmallClick:true];
+//    [SAVideoAd2 load:39521];
     
     SASession *session = [[SASession alloc] init];
     [session setConfigurationStaging];
@@ -65,20 +70,19 @@
     
     
     
-    [SAVideoAd setConfigurationProduction];
-    [SAVideoAd disableTestMode];
-    [SAVideoAd disableBumperPage];
-    [SAVideoAd disableParentalGate];
-    [SAVideoAd disableCloseButton];
-    [SAVideoAd disableCloseAtEnd];
-    [SAVideoAd disableMoatLimiting];
-    [SAVideoAd setCallback:^(NSInteger placementId, SAEvent event) {
+    [SAVideoAd2 setConfigurationProduction];
+    [SAVideoAd2 disableTestMode];
+    [SAVideoAd2 disableBumperPage];
+    [SAVideoAd2 disableParentalGate];
+    [SAVideoAd2 disableCloseButton];
+    [SAVideoAd2 disableCloseAtEnd];
+//    [SAVideoAd2 disableMoatLimiting];
+    [SAVideoAd2 setCallback:^(NSInteger placementId, SAEvent event) {
         
         NSLog(@"SUPER-AWESOME: Video Ad %ld - Event %ld", (long)placementId, (long)event);
         
         if (event == adLoaded) {
-            [SAVideoAd play:placementId fromVC:self];
-            [SAVideoAd play:placementId fromVC:self];
+            [SAVideoAd2 play:placementId fromVC:self];
         }
     }];
     
@@ -185,7 +189,7 @@
     // VIDEOS
     else if ([indexPath section] == 2) {
         
-        [SAVideoAd load:placementId];
+        [SAVideoAd2 load:placementId];
         
     }
 }

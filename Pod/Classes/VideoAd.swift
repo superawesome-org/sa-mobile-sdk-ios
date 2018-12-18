@@ -16,7 +16,7 @@ enum AdState {
     case hasAd(ad: SAAd)
 }
 
-@objc(SAVideoAd2) public class VideoAd2: NSObject {
+@objc(SAVideoAd2) public class VideoAd: NSObject {
     
     static var isTestingEnabled: Bool = Bool(truncating: NSNumber(value: SA_DEFAULT_TESTMODE))
     static var isParentalGateEnabled: Bool = Bool(truncating: NSNumber(value: SA_DEFAULT_PARENTALGATE))
@@ -37,7 +37,7 @@ enum AdState {
     private static let session: SASession = SASession()
     
     private static let events: VideoEvents = VideoEvents()
-    private static let control: MediaControl = AwesomeMediaControl()
+    static let control: MediaControl = AwesomeMediaControl()
     
     @objc(load:)
     public static func load(placementId: Int) {
@@ -133,11 +133,12 @@ enum AdState {
     ////////////////////////////////////////////////////////////////////////////
     // setters
     ////////////////////////////////////////////////////////////////////////////
-    
-//    @objc(setCallback:)
-//    public static func setCallback(_ callback: @escaping sacallback) {
-//        self.callback = callback
-//    }
+
+    @objc(setCallback:)
+    public static func setCallback(_ callback: @escaping sacallback) {
+        self.callback = callback
+        events.setCallback(callback)
+    }
 
     @objc(setTestMode:)
     public static func setTestMode(_ testMode: Bool) {
