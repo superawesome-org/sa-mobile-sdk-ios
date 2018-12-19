@@ -12,7 +12,7 @@ import SASession
 
 @objc(SAVideoEvents) class VideoEvents: NSObject, MediaControlDelegate {
     
-    private var events: SAEvents?
+    private var events: SAEvents!
     
     private var placementId: Int = 0
     private var callback: sacallback? = nil
@@ -62,7 +62,7 @@ import SASession
     }
     
     @objc(events)
-    public func getEvents() -> SAEvents? {
+    public func getEvents() -> SAEvents {
         return events
     }
     

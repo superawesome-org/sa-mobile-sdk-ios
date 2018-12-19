@@ -139,6 +139,11 @@ enum AdState {
         self.callback = callback
         events.setCallback(callback)
     }
+    
+    @objc(callback)
+    public static func getCallbac() -> sacallback? {
+        return callback
+    }
 
     @objc(setTestMode:)
     public static func setTestMode(_ testMode: Bool) {
@@ -267,5 +272,10 @@ enum AdState {
     @objc(setPlaybackMode:)
     public static func setPlaybackMode(_ delay: SARTBStartDelay) {
         self.playback = delay
+    }
+    
+    @objc(videoEvents)
+    static func getVideoEvents() -> VideoEvents {
+        return events
     }
 }

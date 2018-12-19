@@ -30,7 +30,10 @@ import SAParentalGate
         view.layoutMargins = UIEdgeInsets.zero
         
         // setup tap delegate
-        tapDelegate = VideoClick()
+        tapDelegate = VideoClick(events: VideoAd.getVideoEvents().getEvents(),
+                                 placementId: ad.placementId,
+                                 isParentalGateEnabled: VideoAd.isParentalGateEnabled,
+                                 isBumperPageEnabled: VideoAd.isBumperPageEnabled)
         
         // setup video player
         videoPlayer = AwesomeVideoPlayer()
