@@ -36,7 +36,8 @@ enum AdState {
     
     private static let session: SASession = SASession()
     
-    private static let events: VideoEvents = VideoEvents()
+    private static let events: VideoEventsWithClick = VideoEventsWithClick()
+    
     static let control: MediaControl = AwesomeMediaControl()
     
     @objc(load:)
@@ -79,7 +80,12 @@ enum AdState {
                             return
                 }
                 
-                events.reset(placementId: placementId, ad: ad, session: session, isMoatLimitingEnabled: isMoatLimitingEnabled)
+                events.reset(placementId: placementId,
+                             ad: ad,
+                             session: session,
+                             isMoatLimitingEnabled: isMoatLimitingEnabled,
+                             isParentalGateEnabled: isParentalGateEnabled,
+                             isBumperPageEnabled: isBumperPageEnabled)
                 control.add(delegate: events)
             
                 ads[placementId] = .hasAd(ad: ad)
@@ -102,7 +108,13 @@ enum AdState {
         switch adState {
         case .hasAd(let ad):
             let adVc = VideoViewController()
+            adVc.events = events
+            adVc.control = control
             adVc.ad = ad
+            adVc.showSmallClick = shouldShowSmallClickButton
+            adVc.showCloseButton = shouldShowCloseButton
+            adVc.showSafeAdLogo = ad.isSafeAdApproved
+            adVc.shouldCloseAtEnd = shouldAutomaticallyCloseAtEnd
             viewController.present(adVc, animated: true)
             ads[placementId] = .none
             break
@@ -140,11 +152,6 @@ enum AdState {
         events.setCallback(callback)
     }
     
-    @objc(callback)
-    public static func getCallbac() -> sacallback? {
-        return callback
-    }
-
     @objc(setTestMode:)
     public static func setTestMode(_ testMode: Bool) {
         self.isTestingEnabled = testMode

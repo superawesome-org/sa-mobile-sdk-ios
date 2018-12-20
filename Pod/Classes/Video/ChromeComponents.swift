@@ -120,3 +120,15 @@ extension UILabel {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+@objc(CloseButton) class CloseButton: UIButton {
+    
+    init() {
+        super.init(frame: CGRect.zero)
+        setImage(SAImageUtils.closeImage(), for: .normal)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}

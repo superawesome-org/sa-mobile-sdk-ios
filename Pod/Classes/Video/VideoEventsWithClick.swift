@@ -1,37 +1,38 @@
 //
-//  VideoClick.swift
+//  VideoEventsWithClick.swift
 //  SuperAwesome
 //
-//  Created by Gabriel Coman on 18/12/2018.
+//  Created by Gabriel Coman on 19/12/2018.
 //
 
 import UIKit
+import SAModelSpace
 import SAEvents
 import SAParentalGate
 import SABumperPage
 
-@objc(SAVideoClick) class VideoClick: NSObject, AdChromeControlDelegate {
+@objc(VideoEventsWithClick) class VideoEventsWithClick: VideoEvents, AdChromeControlDelegate {
     
     private static let PADLOCK_URL = "https://ads.superawesome.tv/v2/safead"
     
-    private let events: SAEvents
-    private let isParentalGateEnabled: Bool
-    private let isBumperPageEnabled: Bool
+    private var isParentalGateEnabled: Bool = false
+    private var isBumperPageEnabled: Bool = false
     
     private var currentClickThreshold: TimeInterval = 0
     
-    private let placementId: Int
-    
-    @objc(initWithEvents:andPlacementId:andParentalGateEnabled:andBumperEnabled:)
-    init(events: SAEvents,
-         placementId: Int,
-         isParentalGateEnabled: Bool,
-         isBumperPageEnabled: Bool) {
-        self.placementId = placementId
+    @objc(resetWithPlacementId:andAd:andSession:andMoatLimiting:andParentalGate:andBumperPage:)
+    func reset(placementId: Int,
+               ad: SAAd,
+               session: SASession,
+               isMoatLimitingEnabled: Bool,
+               isParentalGateEnabled: Bool,
+               isBumperPageEnabled: Bool) {
+        super.reset(placementId: placementId,
+                    ad: ad,
+                    session: session,
+                    isMoatLimitingEnabled: isMoatLimitingEnabled)
         self.isParentalGateEnabled = isParentalGateEnabled
         self.isBumperPageEnabled = isBumperPageEnabled
-        self.events = events
-        super.init()
     }
     
     ////////////////////////////////////////////////////////////////////////////
@@ -39,7 +40,7 @@ import SABumperPage
     ////////////////////////////////////////////////////////////////////////////
     
     func didTapOnPadlock() {
-        if let url = URL(string: VideoClick.PADLOCK_URL) {
+        if let url = URL(string: VideoEventsWithClick.PADLOCK_URL) {
             UIApplication.shared.open(url, options: [:])
         }
     }
@@ -81,7 +82,7 @@ import SABumperPage
     }
     
     private func handleUrl(destination: String) {
-     
+        
         let currentTime = NSDate().timeIntervalSince1970
         let diff = abs(currentTime - currentClickThreshold)
         
@@ -91,11 +92,29 @@ import SABumperPage
         
         currentClickThreshold = currentTime
         
-        let callback: sacallback? = VideoAd.getCallbac()
         callback?(placementId, SAEvent.adClicked)
         events.triggerVASTClickTrackingEvent()
         if let url = URL(string: destination) {
             UIApplication.shared.open(url, options: [:])
         }
+    }
+    
+    func didStartProgressBarSeek() { /* N/A */ }
+    
+    func didEndProgressBarSeek(value: Float) { /* N/A */ }
+    
+    func didTapPlay()  { /* N/A */ }
+    
+    func didTapPause()  { /* N/A */ }
+    
+    func didTapReplay()  { /* N/A */ }
+    
+    func didTapMaximise()  { /* N/A */ }
+    
+    func didTapMinimise()  { /* N/A */ }
+    
+    func didTapClose() {
+        videoPlayer?.destroy()
+        SAParentalGate.close()
     }
 }

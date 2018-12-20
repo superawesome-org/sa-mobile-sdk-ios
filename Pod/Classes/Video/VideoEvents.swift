@@ -12,10 +12,10 @@ import SASession
 
 @objc(SAVideoEvents) class VideoEvents: NSObject, MediaControlDelegate {
     
-    private var events: SAEvents!
+    var events: SAEvents!
     
-    private var placementId: Int = 0
-    private var callback: sacallback? = nil
+    var placementId: Int = 0
+    var callback: sacallback? = nil
     
     private var isStartHandled: Bool = false
     private var is2SHandled: Bool = false
@@ -23,7 +23,7 @@ import SASession
     private var isMidpointHandled: Bool = false
     private var isThirdQuartileHandled: Bool = false
     
-    private weak var videoPlayer: AwesomeVideoPlayer?
+    weak var videoPlayer: AwesomeVideoPlayer?
     
     @objc(resetWithPlacementId:andAd:andSession:andMoatLimiting:)
     func reset(placementId: Int,
@@ -54,16 +54,6 @@ import SASession
     @objc(setCallback:)
     public func setCallback(_ callback: @escaping sacallback) {
         self.callback = callback
-    }
-    
-    @objc(callback)
-    public func getCallback() -> sacallback? {
-        return callback
-    }
-    
-    @objc(events)
-    public func getEvents() -> SAEvents {
-        return events
     }
     
     ////////////////////////////////////////////////////////////////////////////

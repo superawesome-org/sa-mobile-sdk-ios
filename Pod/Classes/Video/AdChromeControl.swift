@@ -8,7 +8,7 @@
 import UIKit
 import SAVideoPlayer
 
-@objc(SAAdChromeControlDelegate) protocol AdChromeControlDelegate {
+@objc(SAAdChromeControlDelegate) protocol AdChromeControlDelegate: ChromeControlDelegate {
     @objc func didTapOnPadlock()
     @objc func didTapOnSurface()
 }
@@ -19,27 +19,29 @@ import SAVideoPlayer
     private var chrono: Chronograph!
     private var clicker: URLClicker!
     private var padlock: Padlock!
+    private var closeButton: CloseButton!
     
     private var delegate: AdChromeControlDelegate? = nil
     
-    @objc(initWithSmallClick:)
-    init(smallClick: Bool) {
+    @objc(initWithSmallClick:andShowCloseButton:andShowSafeAdLogo:)
+    init(smallClick: Bool, showCloseButton: Bool, showSafeAdLogo: Bool) {
         super.init(frame: .zero)
-        initSubViews(smallClick)
+        initSubViews(smallClick, showCloseButton, showSafeAdLogo)
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        initSubViews(false)
+        initSubViews(false, true, true)
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        initSubViews(false)
+        initSubViews(false, true, true)
     }
     
-    private func initSubViews(_ smallClick: Bool) {
-        alpha = 0.75
+    private func initSubViews(_ smallClick: Bool,
+                              _ showCloseButton: Bool,
+                              _ showSafeAdLogo: Bool) {
         
         blackMask = BlackMask()
         addSubview(blackMask)
@@ -80,35 +82,45 @@ import SAVideoPlayer
             clicker.heightAnchor.constraint(equalToConstant: 20).isActive = true
         }
         
-        padlock = Padlock()
-        padlock.addTarget(self, action: #selector(didTapOnPadlock), for: .touchUpInside)
-        addSubview(padlock)
+        if showSafeAdLogo {
+            padlock = Padlock()
+            padlock.addTarget(self, action: #selector(didTapOnPadlock), for: .touchUpInside)
+            addSubview(padlock)
+            
+            padlock.translatesAutoresizingMaskIntoConstraints = false
+            padlock.topAnchor.constraint(equalTo: margins.topAnchor, constant: 0.0).isActive = true
+            padlock.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 0.0).isActive = true
+            padlock.widthAnchor.constraint(equalToConstant: 67.0).isActive = true
+            padlock.heightAnchor.constraint(equalToConstant: 25.0).isActive = true
+        }
         
-        padlock.translatesAutoresizingMaskIntoConstraints = false
-        padlock.topAnchor.constraint(equalTo: margins.topAnchor, constant: 0.0).isActive = true
-        padlock.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 0.0).isActive = true
-        padlock.widthAnchor.constraint(equalToConstant: 67.0).isActive = true
-        padlock.heightAnchor.constraint(equalToConstant: 25.0).isActive = true
+        closeButton = CloseButton()
+        closeButton.isHidden = !showCloseButton
+        closeButton.addTarget(self, action: #selector(close), for: .touchUpInside)
+        addSubview(closeButton)
+        LayoutUtils.bind(view: closeButton, toTopRightOf: self)
     }
     
     ////////////////////////////////////////////////////////////////////////////
-    // Setters for custom delegation
+    // custom methods
     ////////////////////////////////////////////////////////////////////////////
     
-    @objc(addTapDelegate:)
-    public func addTapDelegate(delegate: AdChromeControlDelegate) {
-        self.delegate = delegate
+    @objc(makeCloseButtonVisible)
+    public func makeCloseButtonVisible() {
+        self.closeButton.isHidden = false
     }
     
     ////////////////////////////////////////////////////////////////////////////
     // Private tap functions
     ////////////////////////////////////////////////////////////////////////////
     
-    @objc private func didTapOnPadlock() {
+    @objc
+    private func didTapOnPadlock() {
         delegate?.didTapOnPadlock()
     }
     
-    @objc private func didTapOnUrl() {
+    @objc
+    private func didTapOnUrl() {
         delegate?.didTapOnSurface()
     }
     
@@ -116,21 +128,13 @@ import SAVideoPlayer
     // ChromeControl
     ////////////////////////////////////////////////////////////////////////////
     
-    func setPlaying() {
-        // N/A
-    }
+    func setPlaying() { /* N/A */ }
     
-    func setPaused() {
-        // N/A
-    }
+    func setPaused() { /* N/A */ }
     
-    func setCompleted() {
-        // N/A
-    }
+    func setCompleted() { /* N/A */ }
     
-    func setError(error: Error) {
-        // N/A
-    }
+    func setError(error: Error) { /* N/A */ }
     
     func setTime(time: Int, duration: Int) {
         let ramaining = duration - time
@@ -141,35 +145,30 @@ import SAVideoPlayer
         return true
     }
     
-    func show() {
-        // N/A
-    }
+    func show() { /* N/A */ }
     
-    func hide() {
-        // N/A
-    }
+    func hide() { /* N/A */ }
     
-    func setMinimised() {
-        // N/A
-    }
+    func setMinimised() { /* N/A */ }
     
-    func setMaximised() {
-        // N/A
-    }
+    func setMaximised() { /* N/A */ }
     
     func isMaximised() -> Bool {
         return false
     }
     
     func close() {
-        // N/A
+        delegate?.didTapClose()
     }
     
+    @objc(addDelegate:)
     func add(delegate: ChromeControlDelegate) {
-        // N/A
+        if let del = delegate as? AdChromeControlDelegate {
+            self.delegate = del
+        }
     }
     
     func remove(delegate: ChromeControlDelegate) {
-        // N/A
+        self.delegate = nil
     }
 }
