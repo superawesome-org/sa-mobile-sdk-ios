@@ -8,9 +8,10 @@
 import UIKit
 import SAVideoPlayer
 
-@objc(SAAdChromeControlDelegate) protocol AdChromeControlDelegate: ChromeControlDelegate {
+@objc(SAAdChromeControlDelegate) protocol AdChromeControlDelegate {
     @objc func didTapOnPadlock()
     @objc func didTapOnSurface()
+    @objc func didTapOnClose()
 }
 
 @objc(SAAdChromeControl) class AdChromeControl: UIView, ChromeControl {
@@ -21,7 +22,7 @@ import SAVideoPlayer
     private var padlock: Padlock!
     private var closeButton: CloseButton!
     
-    private var delegate: AdChromeControlDelegate? = nil
+    private var adDelegate: AdChromeControlDelegate? = nil
     
     @objc(initWithSmallClick:andShowCloseButton:andShowSafeAdLogo:)
     init(smallClick: Bool, showCloseButton: Bool, showSafeAdLogo: Bool) {
@@ -116,12 +117,17 @@ import SAVideoPlayer
     
     @objc
     private func didTapOnPadlock() {
-        delegate?.didTapOnPadlock()
+        adDelegate?.didTapOnPadlock()
     }
     
     @objc
     private func didTapOnUrl() {
-        delegate?.didTapOnSurface()
+        adDelegate?.didTapOnSurface()
+    }
+    
+    @objc
+    func close() {
+        adDelegate?.didTapOnClose()
     }
     
     ////////////////////////////////////////////////////////////////////////////
@@ -157,18 +163,17 @@ import SAVideoPlayer
         return false
     }
     
-    func close() {
-        delegate?.didTapClose()
+    @objc(setAdDelegate:)
+    func set(adDelegate: AdChromeControlDelegate) {
+        self.adDelegate = adDelegate
     }
     
     @objc(addDelegate:)
     func add(delegate: ChromeControlDelegate) {
-        if let del = delegate as? AdChromeControlDelegate {
-            self.delegate = del
-        }
+        // N/A
     }
     
     func remove(delegate: ChromeControlDelegate) {
-        self.delegate = nil
+        // N/A
     }
 }

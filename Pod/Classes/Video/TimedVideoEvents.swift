@@ -10,12 +10,22 @@ import SAEvents
 import SAModelSpace
 import SASession
 
-@objc(SAVideoEvents) class VideoEvents: NSObject, MediaControlDelegate {
+@objc(SATimedVideoEventsDelegate) protocol TimedVideoEventsDelegate {
+    @objc(didStartWithPlacementId:)
+    func didStart(placementId: Int)
+    
+    @objc(didEndWithPlacementId:)
+    func didEnd(placementId: Int)
+    
+    @objc(didErrorForPlacementId:)
+    func didError(placementId: Int)
+}
+
+@objc(SATimedVideoEvents) class TimedVideoEvents: NSObject, MediaControlDelegate {
     
     var events: SAEvents!
     
     var placementId: Int = 0
-    var callback: sacallback? = nil
     
     private var isStartHandled: Bool = false
     private var is2SHandled: Bool = false
@@ -25,20 +35,18 @@ import SASession
     
     weak var videoPlayer: AwesomeVideoPlayer?
     
-    @objc(resetWithPlacementId:andAd:andSession:andMoatLimiting:)
-    func reset(placementId: Int,
-               ad: SAAd,
-               session: SASession,
-               isMoatLimitingEnabled: Bool) {
+    private let delegate: TimedVideoEventsDelegate
+    
+    @objc(initWithDelegate:)
+    init(delegate: TimedVideoEventsDelegate) {
+        self.delegate = delegate
+        super.init()
+    }
+    
+    @objc(resetWithPlacementId:andEvents:)
+    func reset(placementId: Int, events: SAEvents) {
         
         self.placementId = placementId
-        
-        events = SAEvents()
-        events?.setAd(ad, andSession: session)
-        if (!isMoatLimitingEnabled) {
-            events?.disableMoatLimiting()
-        }
-        
         isStartHandled = false
         is2SHandled = false
         isFirstQuartileHandled = false
@@ -49,11 +57,6 @@ import SASession
     @objc(setVideoPlayer:)
     public func setVideoPlayer(player: AwesomeVideoPlayer) {
         videoPlayer = player
-    }
-    
-    @objc(setCallback:)
-    public func setCallback(_ callback: @escaping sacallback) {
-        self.callback = callback
     }
     
     ////////////////////////////////////////////////////////////////////////////
@@ -76,7 +79,7 @@ import SASession
             events?.triggerVASTImpressionEvent()
             events?.triggerVASTCreativeViewEvent()
             events?.triggerVASTStartEvent()
-            callback?(placementId, SAEvent.adShown)
+            delegate.didStart(placementId: placementId)
         }
         if (time >= 2 && !is2SHandled) {
             is2SHandled = true
@@ -103,7 +106,7 @@ import SASession
     public func didCompleteMedia(control: MediaControl, time: Int, duration: Int) {
         events?.triggerVASTCompleteEvent()
         events?.stopMoatTrackingForVideoPlayer()
-        callback?(placementId, SAEvent.adEnded)
+        delegate.didEnd(placementId: placementId)
     }
     
     public func didCompleteSeek(control: MediaControl) {
@@ -111,6 +114,6 @@ import SASession
     }
     
     public func didError(control: MediaControl, error: Error, time: Int, duration: Int) {
-        // N/A
+        delegate.didError(placementId: placementId)
     }
 }

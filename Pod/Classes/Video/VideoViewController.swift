@@ -10,20 +10,13 @@ import SAModelSpace
 import SAUtils
 import SAParentalGate
 
-// todo:
-// - remove delegation on MediaControlDelegate | ChromeControlDelegate from VideoViewController
-// - have one abstract VideoEvents and two
-// - TimedVideoEvents
-// - ClickVideoEvents
-// that have their own delegates that abstract away the video player ones
-// - remove multi-delegation from AwesomeMediaControl cause maybe it won't be needed (maybe)
-
-@objc(SAVideoViewConroller) class VideoViewController: UIViewController, MediaControlDelegate, ChromeControlDelegate {
+@objc(SAVideoViewConroller) class VideoViewController: UIViewController, AdChromeControlDelegate {
     
     private var videoPlayer: AwesomeVideoPlayer!
     private var chrome: AdChromeControl!
     
-    var events: VideoEventsWithClick!
+    var timedVideoEvents: TimedVideoEvents!
+    var clickVideoEvents: ClickVideoEvents!
     var control: MediaControl!
     var showSmallClick: Bool = false
     var showSafeAdLogo: Bool = true
@@ -34,9 +27,6 @@ import SAParentalGate
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // preparation
-        control.add(delegate: self)
-        
         // initial view setup
         view.backgroundColor = UIColor.black
         view.layoutMargins = UIEdgeInsets.zero
@@ -45,6 +35,7 @@ import SAParentalGate
         videoPlayer = AwesomeVideoPlayer()
         videoPlayer.setControl(control: control)
         videoPlayer.layoutMargins = UIEdgeInsets.zero
+        timedVideoEvents.setVideoPlayer(player: videoPlayer)
         view.addSubview(videoPlayer)
         LayoutUtils.bind(view: videoPlayer, toTheEdgesOf: view)
         
@@ -53,8 +44,7 @@ import SAParentalGate
                                  showCloseButton: showCloseButton,
                                  showSafeAdLogo: showSafeAdLogo)
         chrome.layoutMargins = UIEdgeInsets.zero
-        chrome.add(delegate: events)
-        chrome.add(delegate: self)
+        chrome.set(adDelegate: self)
         videoPlayer.setChrome(chrome: chrome)
         LayoutUtils.bind(view: chrome, toTheEdgesOf: videoPlayer)
         
@@ -66,48 +56,32 @@ import SAParentalGate
     }
     
     ////////////////////////////////////////////////////////////////////////////
-    // ChromeControlDelegate
+    // AdChromeControlDelegate
     ////////////////////////////////////////////////////////////////////////////
     
-    func didStartProgressBarSeek()  { /* N/A */ }
+    func didTapOnPadlock() {
+        clickVideoEvents.didTapOnPadlock()
+    }
     
-    func didEndProgressBarSeek(value: Float)  { /* N/A */ }
+    func didTapOnSurface() {
+        clickVideoEvents.didTapOnSurface()
+    }
     
-    func didTapPlay()  { /* N/A */ }
-    
-    func didTapPause()  { /* N/A */ }
-    
-    func didTapReplay()  { /* N/A */ }
-    
-    func didTapMaximise()  { /* N/A */ }
-    
-    func didTapMinimise() { /* N/A */ }
-    
-    func didTapClose() {
+    func didTapOnClose() {
+        videoPlayer.destroy()
+        SAParentalGate.close()
         dismiss(animated: true)
     }
     
     ////////////////////////////////////////////////////////////////////////////
-    // MediaControlDelegate
+    // Custom VC methods
     ////////////////////////////////////////////////////////////////////////////
     
-    func didCompleteMedia(control: MediaControl, time: Int, duration: Int) {
+    func makeCloseButtonVisible() {
         chrome.makeCloseButtonVisible()
-        control.remove(delegate: self)
-        
-        if shouldCloseAtEnd {
-            chrome.close()
-        }
     }
     
-    func didError(control: MediaControl, error: Error, time: Int, duration: Int) {
-        control.remove(delegate: self)
+    func close() {
         chrome.close()
     }
-    
-    func didPrepare(control: MediaControl, item: AVPlayerItem) { /* N/A */ }
-    
-    func didUpdateTime(control: MediaControl, time: Int, duration: Int) { /* N/A */ }
-    
-    func didCompleteSeek(control: MediaControl) { /* N/A */ }
 }

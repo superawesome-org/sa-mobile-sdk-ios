@@ -68,8 +68,6 @@
         }
     }];
     
-    
-    
     [SAVideoAd2 setConfigurationProduction];
     [SAVideoAd2 disableTestMode];
     [SAVideoAd2 disableBumperPage];
@@ -78,9 +76,9 @@
     [SAVideoAd2 disableCloseAtEnd];
 //    [SAVideoAd2 disableMoatLimiting];
     [SAVideoAd2 setCallback:^(NSInteger placementId, SAEvent event) {
-        
+
         NSLog(@"SUPER-AWESOME: Video Ad %ld - Event %ld", (long)placementId, (long)event);
-        
+
         if (event == adLoaded) {
             [SAVideoAd2 play:placementId fromVC:self];
         }
