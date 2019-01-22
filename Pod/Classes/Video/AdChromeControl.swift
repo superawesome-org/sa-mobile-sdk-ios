@@ -8,12 +8,6 @@
 import UIKit
 import SAVideoPlayer
 
-@objc(SAAdChromeControlDelegate) protocol AdChromeControlDelegate {
-    @objc func didTapOnPadlock()
-    @objc func didTapOnSurface()
-    @objc func didTapOnClose()
-}
-
 @objc(SAAdChromeControl) class AdChromeControl: UIView, ChromeControl {
     
     private var blackMask: BlackMask!
@@ -22,7 +16,9 @@ import SAVideoPlayer
     private var padlock: Padlock!
     private var closeButton: CloseButton!
     
-    private var adDelegate: AdChromeControlDelegate? = nil
+    private var padlockAction: (() -> Void)? = nil
+    private var closeAction: (() -> Void)? = nil
+    private var clickAction: (() -> Void)? = nil
     
     @objc(initWithSmallClick:andShowCloseButton:andShowSafeAdLogo:)
     init(smallClick: Bool, showCloseButton: Bool, showSafeAdLogo: Bool) {
@@ -111,23 +107,35 @@ import SAVideoPlayer
         self.closeButton.isHidden = false
     }
     
+    public func setPadlockAction(action: @escaping () -> Void) {
+        padlockAction = action
+    }
+    
+    public func setClickAction(action: @escaping () -> Void) {
+        clickAction = action
+    }
+    
+    public func setCloseAction(action: @escaping () -> Void) {
+        closeAction = action
+    }
+    
     ////////////////////////////////////////////////////////////////////////////
     // Private tap functions
     ////////////////////////////////////////////////////////////////////////////
     
     @objc
     private func didTapOnPadlock() {
-        adDelegate?.didTapOnPadlock()
+        padlockAction?()
     }
     
     @objc
     private func didTapOnUrl() {
-        adDelegate?.didTapOnSurface()
+        clickAction?()
     }
     
     @objc
     func close() {
-        adDelegate?.didTapOnClose()
+        closeAction?()
     }
     
     ////////////////////////////////////////////////////////////////////////////
@@ -163,17 +171,6 @@ import SAVideoPlayer
         return false
     }
     
-    @objc(setAdDelegate:)
-    func set(adDelegate: AdChromeControlDelegate) {
-        self.adDelegate = adDelegate
-    }
-    
-    @objc(addDelegate:)
-    func add(delegate: ChromeControlDelegate) {
-        // N/A
-    }
-    
-    func remove(delegate: ChromeControlDelegate) {
-        // N/A
-    }
+    @objc(setDelegate:)
+    func set(delegate: ChromeControlDelegate) { /* N/A */ }
 }

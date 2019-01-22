@@ -17,73 +17,32 @@ enum AdState {
     case hasAd(ad: SAAd)
 }
 
-@objc(SAVideoAd2) public class VideoAd: NSObject, ClickVideoEventsDelegate, TimedVideoEventsDelegate {
+@objc(SAVideoAd2) public class VideoAd: NSObject {
     
-    static let shared = VideoAd()
+    static var isTestingEnabled: Bool = Bool(truncating: NSNumber(value: SA_DEFAULT_TESTMODE))
+    static var isParentalGateEnabled: Bool = Bool(truncating: NSNumber(value: SA_DEFAULT_PARENTALGATE))
+    static var isBumperPageEnabled: Bool = Bool(truncating: NSNumber(value: SA_DEFAULT_BUMPERPAGE))
+    static var shouldAutomaticallyCloseAtEnd: Bool = Bool(truncating: NSNumber(value: SA_DEFAULT_CLOSEATEND))
+    static var shouldShowCloseButton: Bool = Bool(truncating: NSNumber(value: SA_DEFAULT_CLOSEBUTTON))
     
-    var isTestingEnabled: Bool = Bool(truncating: NSNumber(value: SA_DEFAULT_TESTMODE))
-    var isParentalGateEnabled: Bool = Bool(truncating: NSNumber(value: SA_DEFAULT_PARENTALGATE))
-    var isBumperPageEnabled: Bool = Bool(truncating: NSNumber(value: SA_DEFAULT_BUMPERPAGE))
-    var shouldAutomaticallyCloseAtEnd: Bool = Bool(truncating: NSNumber(value: SA_DEFAULT_CLOSEATEND))
-    var shouldShowCloseButton: Bool = Bool(truncating: NSNumber(value: SA_DEFAULT_CLOSEBUTTON))
+    static var shouldShowSmallClickButton: Bool = Bool(truncating: NSNumber(value: SA_DEFAULT_SMALLCLICK))
+    static var orientation: SAOrientation = SAOrientation(rawValue: Int(SA_DEFAULT_ORIENTATION))!
+    static var configuration: SAConfiguration = SAConfiguration(rawValue: Int(SA_DEFAULT_CONFIGURATION))!
+    static var isMoatLimitingEnabled: Bool = Bool(truncating: NSNumber(value: SA_DEFAULT_MOAT_LIMITING_STATE))
+    static var playback: SARTBStartDelay = SARTBStartDelay(rawValue: Int(SA_DEFAULT_PLAYBACK_MODE))!
     
-    var shouldShowSmallClickButton: Bool = Bool(truncating: NSNumber(value: SA_DEFAULT_SMALLCLICK))
-    var orientation: SAOrientation = SAOrientation(rawValue: Int(SA_DEFAULT_ORIENTATION))!
-    var configuration: SAConfiguration = SAConfiguration(rawValue: Int(SA_DEFAULT_CONFIGURATION))!
-    var isMoatLimitingEnabled: Bool = Bool(truncating: NSNumber(value: SA_DEFAULT_MOAT_LIMITING_STATE))
-    var playback: SARTBStartDelay = SARTBStartDelay(rawValue: Int(SA_DEFAULT_PLAYBACK_MODE))!
+    private static var callback: sacallback? = nil
     
-    private var callback: sacallback? = nil
+    private static var ads = Dictionary<Int, AdState>()
     
-    private var ads = Dictionary<Int, AdState>()
-    
-    private let control: MediaControl = AwesomeMediaControl()
-    
-    private let timedVideoEvents: TimedVideoEvents = TimedVideoEvents(delegate: shared)
-    private let clickVideoEvents: ClickVideoEvents = ClickVideoEvents(withDelegate: shared)
-    
-    private var adViewController: VideoViewController? = nil
-    
-    private override init() {
-        super.init()
-        // trying to init the SDK very late
-        AwesomeAds.initSDK(false)
-    }
-    
-    ////////////////////////////////////////////////////////////////////////////
-    // TimedVideoEventsDelegate
-    ////////////////////////////////////////////////////////////////////////////
-    
-    func didStart(placementId: Int) {
-        callback?(placementId, SAEvent.adShown)
-    }
-    
-    func didEnd(placementId: Int) {
-        callback?(placementId, SAEvent.adEnded)
-        
-        adViewController?.makeCloseButtonVisible()
-        if shouldAutomaticallyCloseAtEnd {
-            adViewController?.close()
-        }
-    }
-    
-    func didError(placementId: Int) {
-        adViewController?.close()
-    }
-    
-    ////////////////////////////////////////////////////////////////////////////
-    // ClickVideoEventsDelegate
-    ////////////////////////////////////////////////////////////////////////////
-    
-    func didClickOn(placementId: Int) {
-        callback?(placementId, SAEvent.adClicked)
-    }
+    private static let events: SAEvents = SAEvents()
     
     ////////////////////////////////////////////////////////////////////////////
     // Internal control methods
     ////////////////////////////////////////////////////////////////////////////
     
-    private func load(withPlacementId placementId: Int) {
+    @objc(load:)
+    public static func load(withPlacementId placementId: Int) {
         let adState = ads[placementId] ?? .none
         
         switch adState {
@@ -121,21 +80,12 @@ enum AdState {
                 }
                 
                 // create events object
-                let events = SAEvents()
                 events.setAd(ad, andSession: session)
                 if (!self.isMoatLimitingEnabled) {
                     events.disableMoatLimiting()
                 }
                 
                 // reset video events
-                self.timedVideoEvents.reset(placementId: placementId,
-                                            events: events)
-                self.control.add(delegate: self.timedVideoEvents)
-                self.clickVideoEvents.reset(placementId: placementId,
-                                            events: events,
-                                            isParentalGateEnabled: self.isParentalGateEnabled,
-                                            isBumperPageEnabled: self.isBumperPageEnabled)
-                
                 self.ads[placementId] = .hasAd(ad: ad)
                 self.callback?(placementId, SAEvent.adLoaded)
             }
@@ -147,21 +97,23 @@ enum AdState {
         }
     }
     
-    private func play(withPlacementId placementId: Int, fromVc viewController: UIViewController) {
+    @objc(play:fromVC:)
+    public static func play(withPlacementId placementId: Int, fromVc viewController: UIViewController) {
         let adState = ads[placementId] ?? .none
         
         switch adState {
         case .hasAd(let ad):
-            adViewController = VideoViewController()
-            adViewController?.timedVideoEvents = timedVideoEvents
-            adViewController?.clickVideoEvents = clickVideoEvents
-            adViewController?.control = control
-            adViewController?.ad = ad
-            adViewController?.showSmallClick = shouldShowSmallClickButton
-            adViewController?.showCloseButton = shouldShowCloseButton
-            adViewController?.showSafeAdLogo = ad.isSafeAdApproved
-            adViewController?.shouldCloseAtEnd = shouldAutomaticallyCloseAtEnd
-            viewController.present(adViewController!, animated: true)
+            let config = VideoViewController.Config(showSmallClick: shouldShowSmallClickButton,
+                                                    showSafeAdLogo: ad.isSafeAdApproved,
+                                                    showCloseButton: shouldShowCloseButton,
+                                                    shouldCloseAtEnd: shouldAutomaticallyCloseAtEnd,
+                                                    isParentalGateEnabled: isParentalGateEnabled,
+                                                    isBumperPageEnabled: isBumperPageEnabled)
+            let adViewController = VideoViewController(withAd: ad,
+                                                       andEvents: events,
+                                                       andCallback: callback,
+                                                       andConfig: config)
+            viewController.present(adViewController, animated: true)
             ads[placementId] = .none
             break
         default:
@@ -170,7 +122,8 @@ enum AdState {
         }
     }
     
-    private func hasAdAvailable(placementId: Int) -> Bool {
+    @objc(hasAdAvailable:)
+    public static func hasAdAvailable(placementId: Int) -> Bool {
         let adState = ads[placementId] ?? .none
         switch adState {
         case .hasAd: return true
@@ -178,7 +131,8 @@ enum AdState {
         }
     }
     
-    private func getAd(placementId: Int) -> SAAd? {
+    @objc(getAd:)
+    public static func getAd(placementId: Int) -> SAAd? {
         let adState = ads[placementId] ?? .none
         switch adState {
         case .hasAd(let ad): return ad
@@ -187,42 +141,17 @@ enum AdState {
     }
     
     ////////////////////////////////////////////////////////////////////////////
-    // Control methods for backwards compatibility
-    ////////////////////////////////////////////////////////////////////////////
-    
-    @objc(load:)
-    public static func load(placementId: Int) {
-        shared.load(withPlacementId: placementId)
-    }
-    
-    @objc(play:fromVC:)
-    public static func play(withPlacementId placementId: Int,
-                            fromViewController viewController: UIViewController) {
-        shared.play(withPlacementId: placementId, fromVc: viewController)
-    }
-    
-    @objc(hasAdAvailable:)
-    public static func hasAdAvailable(placementId: Int) -> Bool {
-        return shared.hasAdAvailable(placementId: placementId)
-    }
-    
-    @objc(getAd:)
-    public static func getAd(placementId: Int) -> SAAd? {
-        return shared.getAd(placementId: placementId)
-    }
-    
-    ////////////////////////////////////////////////////////////////////////////
     // setters
     ////////////////////////////////////////////////////////////////////////////
     
     @objc(setCallback:)
     public static func setCallback(_ callback: @escaping sacallback) {
-        shared.callback = callback
+        self.callback = callback
     }
     
     @objc(setTestMode:)
     public static func setTestMode(_ testMode: Bool) {
-        shared.isTestingEnabled = testMode
+        isTestingEnabled = testMode
     }
     
     @objc(enableTestMode)
@@ -237,7 +166,7 @@ enum AdState {
     
     @objc(setParentalGate:)
     public static func setParentalGate(_ parentalGate: Bool) {
-        shared.isParentalGateEnabled = parentalGate
+        isParentalGateEnabled = parentalGate
     }
     
     @objc(enableParentalGate)
@@ -252,7 +181,7 @@ enum AdState {
     
     @objc(setBumperPage:)
     public static func setBumperPage(_ bumperPage: Bool) {
-        shared.isBumperPageEnabled = bumperPage
+        isBumperPageEnabled = bumperPage
     }
     
     @objc(enableBumperPage)
@@ -267,7 +196,7 @@ enum AdState {
     
     @objc(setConfiguration:)
     public static func setConfiguration(_ config: SAConfiguration) {
-        shared.configuration = config
+        configuration = config
     }
     
     @objc(setConfigurationProduction)
@@ -281,7 +210,7 @@ enum AdState {
     }
     
     static func setOriantation(_ orientation: SAOrientation) {
-        shared.orientation = orientation
+        self.orientation = orientation
     }
     
     @objc(setOrientationAny)
@@ -301,7 +230,7 @@ enum AdState {
     
     @objc(setCloseButton:)
     public static func setCloseButton(_ close: Bool) {
-        shared.shouldShowCloseButton = close
+        shouldShowCloseButton = close
     }
     
     @objc(enableCloseButton)
@@ -316,7 +245,7 @@ enum AdState {
     
     @objc(setSmallClick:)
     public static func setSmallClick(_ smallClick: Bool) {
-        shared.shouldShowSmallClickButton = smallClick
+        shouldShowSmallClickButton = smallClick
     }
     
     @objc(enableSmallClickButton)
@@ -331,7 +260,7 @@ enum AdState {
     
     @objc(setCloseAtEnd:)
     public static func setCloseAtEnd(_ close: Bool) {
-        shared.shouldAutomaticallyCloseAtEnd = close
+        shouldAutomaticallyCloseAtEnd = close
     }
     
     @objc(enableCloseAtEnd)
@@ -346,11 +275,10 @@ enum AdState {
     
     @objc(setPlaybackMode:)
     public static func setPlaybackMode(_ delay: SARTBStartDelay) {
-        shared.playback = delay
+        playback = delay
     }
     
-    @objc(videoEvents)
-    static func getVideoEvents() -> TimedVideoEvents {
-        return shared.timedVideoEvents
+    static func getCallback() -> sacallback? {
+        return callback
     }
 }

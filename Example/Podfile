@@ -7,7 +7,7 @@ target 'SuperAwesome' do
 #  pod 'SuperAwesome/Unity', :path => '../'
 #  pod 'SuperAwesome/AIR', :path => '../'
 #  pod 'SuperAwesome/AdMob', :path => '../'
-  pod 'SAAgeGate'
+#  pod 'SAAgeGate'
 
   post_install do |installer|
       installer.pods_project.targets.each do |target|
