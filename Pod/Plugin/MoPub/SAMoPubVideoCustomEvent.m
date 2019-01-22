@@ -73,74 +73,74 @@
     __weak typeof (self) weakSelf = self;
     
     // enable or disable test mode
-    [SAVideoAd setConfiguration:configuration];
-    [SAVideoAd setTestMode:isTestEnabled];
-    [SAVideoAd setParentalGate:isParentalGateEnabled];
-    [SAVideoAd setBumperPage:isBumperPageEnabled];
-    [SAVideoAd setCloseButton:shouldShowCloseButton];
-    [SAVideoAd setCloseAtEnd:shouldAutomaticallyCloseAtEnd];
-    [SAVideoAd setSmallClick:shouldShowSmallClickButton];
-    [SAVideoAd setOrientation:orientation];
-    [SAVideoAd setPlaybackMode:playback];
-    
-    [SAVideoAd setCallback:^(NSInteger placementId, SAEvent event) {
-        switch (event) {
-            case adLoaded: {
-                weakSelf.hasAdAvailable = true;
-                weakSelf.reward = [[MPRewardedVideoReward alloc] initWithCurrencyType:kMPRewardedVideoRewardCurrencyTypeUnspecified amount:@(0)];
-                [weakSelf.delegate rewardedVideoDidLoadAdForCustomEvent:weakSelf];
-                break;
-            }
-            case adAlreadyLoaded: {
-                // do nothing
-                break;
-            }
-            case adEmpty: {
-                [weakSelf.delegate rewardedVideoDidFailToLoadAdForCustomEvent:weakSelf
-                                                                        error:[weakSelf createErrorWith:ERROR_LOAD_TITLE(@"Video Ad", placementId)
-                                                                                              andReason:ERROR_LOAD_MESSAGE
-                                                                                          andSuggestion:ERROR_LOAD_SUGGESTION]];
-                break;
-            }
-            case adFailedToLoad: {
-                [weakSelf.delegate rewardedVideoDidFailToLoadAdForCustomEvent:weakSelf
-                                                                        error:[weakSelf createErrorWith:ERROR_LOAD_TITLE(@"Video Ad", placementId)
-                                                                                              andReason:ERROR_NETWORK_MESSAGE
-                                                                                          andSuggestion:ERROR_NETWORK_SUGGESTION]];
-                break;
-            }
-            case adShown: {
-                [weakSelf.delegate rewardedVideoDidAppearForCustomEvent:weakSelf];
-                break;
-            }
-            case adFailedToShow: {
-                [weakSelf.delegate rewardedVideoDidFailToPlayForCustomEvent:weakSelf
-                                                                      error:[weakSelf createErrorWith:ERROR_SHOW_TITLE(@"Video Ad", 0)
-                                                                                            andReason:ERROR_SHOW_MESSAGE
-                                                                                        andSuggestion:ERROR_SHOW_SUGGESTION]];
-                break;
-            }
-            case adClicked: {
-                [weakSelf.delegate rewardedVideoDidReceiveTapEventForCustomEvent:weakSelf];
-                [weakSelf.delegate rewardedVideoWillLeaveApplicationForCustomEvent:weakSelf];
-                break;
-            }
-            case adEnded: {
-                // reward
-                [weakSelf.delegate rewardedVideoShouldRewardUserForCustomEvent:weakSelf reward:weakSelf.reward];
-                // also null this so no references remain and memory is freed correctly
-                weakSelf.reward = NULL;
-                break;
-            }
-            case adClosed: {
-                // call required events
-                [weakSelf.delegate rewardedVideoWillDisappearForCustomEvent:weakSelf];
-                [weakSelf.delegate rewardedVideoDidDisappearForCustomEvent:weakSelf];
-                break;
-            }
-        }
-    }];
-    [SAVideoAd load:_placementId];
+//    [SAVideoAd setConfiguration:configuration];
+//    [SAVideoAd setTestMode:isTestEnabled];
+//    [SAVideoAd setParentalGate:isParentalGateEnabled];
+//    [SAVideoAd setBumperPage:isBumperPageEnabled];
+//    [SAVideoAd setCloseButton:shouldShowCloseButton];
+//    [SAVideoAd setCloseAtEnd:shouldAutomaticallyCloseAtEnd];
+//    [SAVideoAd setSmallClick:shouldShowSmallClickButton];
+//    [SAVideoAd setOrientation:orientation];
+//    [SAVideoAd setPlaybackMode:playback];
+//
+//    [SAVideoAd setCallback:^(NSInteger placementId, SAEvent event) {
+//        switch (event) {
+//            case adLoaded: {
+//                weakSelf.hasAdAvailable = true;
+//                weakSelf.reward = [[MPRewardedVideoReward alloc] initWithCurrencyType:kMPRewardedVideoRewardCurrencyTypeUnspecified amount:@(0)];
+//                [weakSelf.delegate rewardedVideoDidLoadAdForCustomEvent:weakSelf];
+//                break;
+//            }
+//            case adAlreadyLoaded: {
+//                // do nothing
+//                break;
+//            }
+//            case adEmpty: {
+//                [weakSelf.delegate rewardedVideoDidFailToLoadAdForCustomEvent:weakSelf
+//                                                                        error:[weakSelf createErrorWith:ERROR_LOAD_TITLE(@"Video Ad", placementId)
+//                                                                                              andReason:ERROR_LOAD_MESSAGE
+//                                                                                          andSuggestion:ERROR_LOAD_SUGGESTION]];
+//                break;
+//            }
+//            case adFailedToLoad: {
+//                [weakSelf.delegate rewardedVideoDidFailToLoadAdForCustomEvent:weakSelf
+//                                                                        error:[weakSelf createErrorWith:ERROR_LOAD_TITLE(@"Video Ad", placementId)
+//                                                                                              andReason:ERROR_NETWORK_MESSAGE
+//                                                                                          andSuggestion:ERROR_NETWORK_SUGGESTION]];
+//                break;
+//            }
+//            case adShown: {
+//                [weakSelf.delegate rewardedVideoDidAppearForCustomEvent:weakSelf];
+//                break;
+//            }
+//            case adFailedToShow: {
+//                [weakSelf.delegate rewardedVideoDidFailToPlayForCustomEvent:weakSelf
+//                                                                      error:[weakSelf createErrorWith:ERROR_SHOW_TITLE(@"Video Ad", 0)
+//                                                                                            andReason:ERROR_SHOW_MESSAGE
+//                                                                                        andSuggestion:ERROR_SHOW_SUGGESTION]];
+//                break;
+//            }
+//            case adClicked: {
+//                [weakSelf.delegate rewardedVideoDidReceiveTapEventForCustomEvent:weakSelf];
+//                [weakSelf.delegate rewardedVideoWillLeaveApplicationForCustomEvent:weakSelf];
+//                break;
+//            }
+//            case adEnded: {
+//                // reward
+//                [weakSelf.delegate rewardedVideoShouldRewardUserForCustomEvent:weakSelf reward:weakSelf.reward];
+//                // also null this so no references remain and memory is freed correctly
+//                weakSelf.reward = NULL;
+//                break;
+//            }
+//            case adClosed: {
+//                // call required events
+//                [weakSelf.delegate rewardedVideoWillDisappearForCustomEvent:weakSelf];
+//                [weakSelf.delegate rewardedVideoDidDisappearForCustomEvent:weakSelf];
+//                break;
+//            }
+//        }
+//    }];
+//    [SAVideoAd load:_placementId];
 }
 
 /**
@@ -149,7 +149,7 @@
  * @param viewController the view controller from which the ad will spring
  */
 - (void) presentRewardedVideoFromViewController:(UIViewController *)viewController {
-    [SAVideoAd play:_placementId fromVC:viewController];
+//    [SAVideoAd play:_placementId fromVC:viewController];
     [self.delegate rewardedVideoWillAppearForCustomEvent:self];
 }
 

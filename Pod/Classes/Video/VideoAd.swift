@@ -17,7 +17,7 @@ enum AdState {
     case hasAd(ad: SAAd)
 }
 
-@objc(SAVideoAd2) public class VideoAd: NSObject {
+@objc(SAVideoAd) public class VideoAd: NSObject {
     
     static var isTestingEnabled: Bool = Bool(truncating: NSNumber(value: SA_DEFAULT_TESTMODE))
     static var isParentalGateEnabled: Bool = Bool(truncating: NSNumber(value: SA_DEFAULT_PARENTALGATE))
