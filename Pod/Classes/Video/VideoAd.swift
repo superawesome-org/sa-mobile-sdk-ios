@@ -108,7 +108,8 @@ enum AdState {
                                                     showCloseButton: shouldShowCloseButton,
                                                     shouldCloseAtEnd: shouldAutomaticallyCloseAtEnd,
                                                     isParentalGateEnabled: isParentalGateEnabled,
-                                                    isBumperPageEnabled: isBumperPageEnabled)
+                                                    isBumperPageEnabled: isBumperPageEnabled,
+                                                    orientation: orientation)
             let adViewController = VideoViewController(withAd: ad,
                                                        andEvents: events,
                                                        andCallback: callback,

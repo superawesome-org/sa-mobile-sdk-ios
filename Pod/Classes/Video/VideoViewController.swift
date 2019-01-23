@@ -32,6 +32,7 @@ import SAEvents
         let shouldCloseAtEnd: Bool
         let isParentalGateEnabled: Bool
         let isBumperPageEnabled: Bool
+        let orientation: SAOrientation
     }
     
     private let ad: SAAd
@@ -43,7 +44,7 @@ import SAEvents
     
     private var callback: sacallback? = nil
     
-    init(withAd ad: SAAd,
+    init(withAd ad : SAAd,
          andEvents events: SAEvents,
          andCallback callback: sacallback?,
          andConfig config: Config) {
@@ -84,7 +85,7 @@ import SAEvents
         chrome.layoutMargins = UIEdgeInsets.zero
         chrome.setCloseAction(action: closeAction)
         chrome.setClickAction(action: clickAction)
-        chrome.setPadlockAction(action: clickEvents.didTapOnPadlock)
+        chrome.setPadlockAction(action: clickEvents.handleSafeAdTap)
         videoPlayer.setChrome(chrome: chrome)
         LayoutUtils.bind(view: chrome, toTheEdgesOf: videoPlayer)
         
@@ -130,7 +131,7 @@ import SAEvents
     
     private func clickAction() {
         callback?(ad.placementId, SAEvent.adClicked)
-        clickEvents.didTapOnSurface()
+        clickEvents.handleAdTap()
     }
     
     private func closeAction() {

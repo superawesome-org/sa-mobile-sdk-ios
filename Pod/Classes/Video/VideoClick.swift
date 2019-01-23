@@ -31,13 +31,13 @@ import SABumperPage
         self.isBumperPageEnabled = isBumperPageEnabled
     }
     
-    func didTapOnPadlock() {
+    func handleSafeAdTap() {
         if let url = URL(string: VideoClick.PADLOCK_URL) {
             UIApplication.shared.open(url, options: [:])
         }
     }
     
-    func didTapOnSurface() {
+    func handleAdTap() {
         if let destination = events.getVASTClickThroughEvent() {
             if isParentalGateEnabled {
                 SAParentalGate.setPgOpenCallback {
