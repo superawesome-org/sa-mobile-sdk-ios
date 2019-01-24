@@ -38,7 +38,7 @@ import SAEvents
     private let ad: SAAd
     private let events: SAEvents
     private let config: Config
-    private let control: MediaControl = AwesomeMediaControl()
+    private let control: VideoPlayerControls = VideoPlayerController()
     private let videoEvents: VideoEvents
     private let clickEvents: VideoClick
     
@@ -72,7 +72,7 @@ import SAEvents
         
         // setup video player
         videoPlayer = AwesomeVideoPlayer()
-        videoPlayer.setControl(control: control)
+        videoPlayer.setControls(control: control)
         videoPlayer.layoutMargins = UIEdgeInsets.zero
         videoPlayer.setDelegate(delegate: self)
         view.addSubview(videoPlayer)
@@ -86,7 +86,7 @@ import SAEvents
         chrome.setCloseAction(action: closeAction)
         chrome.setClickAction(action: clickAction)
         chrome.setPadlockAction(action: clickEvents.handleSafeAdTap)
-        videoPlayer.setChrome(chrome: chrome)
+        videoPlayer.setControlsView(chrome: chrome)
         LayoutUtils.bind(view: chrome, toTheEdgesOf: videoPlayer)
         
         // play ad
@@ -119,8 +119,8 @@ import SAEvents
         }
     }
     
-    func didError(videoPlauyer: VideoPlayer, error: Error, time: Int, duration: Int) {
-        videoEvents.error(player: videoPlauyer, time: time, duration: duration)
+    func didError(videoPlayer: VideoPlayer, error: Error, time: Int, duration: Int) {
+        videoEvents.error(player: videoPlayer, time: time, duration: duration)
         callback?(ad.placementId, SAEvent.adFailedToShow)
         closeAction()
     }

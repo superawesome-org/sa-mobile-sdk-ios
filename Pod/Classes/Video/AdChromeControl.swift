@@ -8,7 +8,7 @@
 import UIKit
 import SAVideoPlayer
 
-@objc(SAAdChromeControl) class AdChromeControl: UIView, ChromeControl {
+@objc(SAAdChromeControl) class AdChromeControl: UIView, VideoPlayerControlsView {
     
     private var blackMask: BlackMask!
     private var chrono: Chronograph!
@@ -172,5 +172,5 @@ import SAVideoPlayer
     }
     
     @objc(setDelegate:)
-    func set(delegate: ChromeControlDelegate) { /* N/A */ }
+    func set(delegate: VideoPlayerControlsViewDelegate) { /* N/A */ }
 }

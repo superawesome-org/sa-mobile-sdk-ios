@@ -210,7 +210,8 @@ enum AdState {
         setConfiguration(SAConfiguration.STAGING)
     }
     
-    static func setOriantation(_ orientation: SAOrientation) {
+    @objc(setOrientation:)
+    public static func setOriantation(_ orientation: SAOrientation) {
         self.orientation = orientation
     }
     
