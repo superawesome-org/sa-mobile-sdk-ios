@@ -7,6 +7,7 @@
 
 import Foundation
 import SAEvents
+import SAVideoPlayer
 
 @objc (SAVideoEvents) class VideoEvents: NSObject {
 

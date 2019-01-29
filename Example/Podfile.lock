@@ -1,12 +1,12 @@
 PODS:
-  - mopub-ios-sdk (5.4.1):
-    - mopub-ios-sdk/MoPubSDK (= 5.4.1)
-  - mopub-ios-sdk/Avid (5.4.1):
+  - mopub-ios-sdk (5.5.0):
+    - mopub-ios-sdk/MoPubSDK (= 5.5.0)
+  - mopub-ios-sdk/Avid (5.5.0):
     - mopub-ios-sdk/Core
-  - mopub-ios-sdk/Core (5.4.1)
-  - mopub-ios-sdk/Moat (5.4.1):
+  - mopub-ios-sdk/Core (5.5.0)
+  - mopub-ios-sdk/Moat (5.5.0):
     - mopub-ios-sdk/Core
-  - mopub-ios-sdk/MoPubSDK (5.4.1):
+  - mopub-ios-sdk/MoPubSDK (5.5.0):
     - mopub-ios-sdk/Avid
     - mopub-ios-sdk/Core
     - mopub-ios-sdk/Moat
@@ -51,7 +51,7 @@ PODS:
     - SAModelSpace (= 1.0.0)
     - SANetworking (= 1.0.0)
     - SAUtils (= 1.5.5)
-  - SAVideoPlayer (1.2.5)
+  - SAVideoPlayer (2.0.0-beta1)
   - SAWebPlayer (1.3.0):
     - SANetworking (= 1.0.0)
   - SuperAwesome/Base (6.1.9):
@@ -60,7 +60,7 @@ PODS:
     - SAEvents (= 2.2.4)
     - SAGDPRKisMinor (= 2.0.0)
     - SAParentalGate (= 1.0.2)
-    - SAVideoPlayer (= 1.2.5)
+    - SAVideoPlayer (= 2.0.0-beta1)
     - SAWebPlayer (= 1.3.0)
   - SuperAwesome/Full (6.1.9):
     - SAEvents/Moat2
@@ -95,7 +95,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  mopub-ios-sdk: 320de49dd0a352ac58d33104a23853e749a84a78
+  mopub-ios-sdk: 937b82dd76d8a396ba6a22ae005a1e24c61bf28b
   SAAdLoader: c888a60d899a0e82289ac497ccef54fc4c68de6d
   SABumperPage: 59cb8525a68cc49a646a416977dbc0c963965eb7
   SAEvents: ee2cb6b1ce57ec1ad49d7101cc6c50aba531ff5d
@@ -107,9 +107,9 @@ SPEC CHECKSUMS:
   SASession: 05f174a62318b786ee36e4e34d97c2b96444d0ae
   SAUtils: 95e06baec2636bfe494d9f8a43ec4def6fb28229
   SAVASTParser: fa343296e3fd7103a5da210a7c41020a8f280a41
-  SAVideoPlayer: cc118f17151dfd227a3115a9d266e1cae12c1f3c
+  SAVideoPlayer: 9a5d699926b7b86abd21c93a7b76c9cf05aaeb0e
   SAWebPlayer: ee76faded1a79e05098cacde55b97e64a98deed2
-  SuperAwesome: d8d4466fa84ec965595a6a909e7faa0428de3322
+  SuperAwesome: 6f9d2d5794bf4616ee5585b6995539407bf5dcb4
 
 PODFILE CHECKSUM: bd5f3d8935f7d468eb88cb14101d4a8127b4cd32
 

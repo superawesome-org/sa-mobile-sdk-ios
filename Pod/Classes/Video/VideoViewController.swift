@@ -11,6 +11,7 @@ import SAUtils
 import SAParentalGate
 import SABumperPage
 import SAEvents
+import SAVideoPlayer
 
 @objc(SAVideoViewConroller) class VideoViewController: UIViewController, VideoPlayerDelegate {
     
