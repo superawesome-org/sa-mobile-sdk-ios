@@ -54,8 +54,6 @@ PODS:
   - SAVideoPlayer (2.0.0-beta1)
   - SAWebPlayer (1.3.0):
     - SANetworking (= 1.0.0)
-  - SuperAwesome/AIR (6.1.9):
-    - SuperAwesome/Base
   - SuperAwesome/Base (6.1.9):
     - SAAdLoader (= 1.4.2)
     - SABumperPage (= 1.0.6)
@@ -72,7 +70,6 @@ PODS:
     - SuperAwesome/Base
 
 DEPENDENCIES:
-  - SuperAwesome/AIR (from `../`)
   - SuperAwesome/Full (from `../`)
   - SuperAwesome/MoPub (from `../`)
 
@@ -114,6 +111,6 @@ SPEC CHECKSUMS:
   SAWebPlayer: ee76faded1a79e05098cacde55b97e64a98deed2
   SuperAwesome: 6f9d2d5794bf4616ee5585b6995539407bf5dcb4
 
-PODFILE CHECKSUM: 98d02b8f5e1a076b41f90d0c80d197a864773bab
+PODFILE CHECKSUM: 6fb20fc739bf3f46283721ca7aec04a36a539bc7
 
 COCOAPODS: 1.5.3
