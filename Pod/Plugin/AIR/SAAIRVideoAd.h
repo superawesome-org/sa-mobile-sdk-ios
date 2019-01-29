@@ -5,6 +5,7 @@
 
 #import <UIKit/UIKit.h>
 #import "FlashRuntimeExtensions.h"
+#import <SuperAwesome/SuperAwesome-Swift.h>
 
 /**
  * Native method called from AIR that sets up a video ad.

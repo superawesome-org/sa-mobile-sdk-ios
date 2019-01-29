@@ -5,7 +5,7 @@ target 'SuperAwesome' do
   pod 'SuperAwesome/Full', :path => '../'
   pod 'SuperAwesome/MoPub', :path => '../'
 #  pod 'SuperAwesome/Unity', :path => '../'
-#  pod 'SuperAwesome/AIR', :path => '../'
+  pod 'SuperAwesome/AIR', :path => '../'
 #  pod 'SuperAwesome/AdMob', :path => '../'
 #  pod 'SAAgeGate'
 
@@ -16,5 +16,4 @@ target 'SuperAwesome' do
           end
       end
   end
-
 end
