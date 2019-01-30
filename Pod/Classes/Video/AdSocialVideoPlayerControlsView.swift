@@ -8,7 +8,7 @@
 import UIKit
 import SAVideoPlayer
 
-@objc(SAAdChromeControl) public class AdSocialVideoPlayerControlsView: UIView, VideoPlayerControlsView {
+@objc(SAAdSocialVideoPlayerControlsView) public class AdSocialVideoPlayerControlsView: UIView, VideoPlayerControlsView {
     
     private var blackMask: BlackMask!
     private var chrono: Chronograph!

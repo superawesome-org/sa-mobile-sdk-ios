@@ -9,7 +9,7 @@ import Foundation
 import SAEvents
 import SAVideoPlayer
 
-@objc (SAVideoEvents) class VideoEvents: NSObject {
+@objc (SAVideoEvents) public class VideoEvents: NSObject {
 
     private var isStartHandled: Bool = false
     private var is2SHandled: Bool = false

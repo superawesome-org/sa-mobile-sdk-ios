@@ -11,7 +11,7 @@ import SAEvents
 import SAParentalGate
 import SABumperPage
 
-@objc(SAVideoClick) class VideoClick: NSObject {
+@objc(SAVideoClick) public class VideoClick: NSObject {
     
     private static let PADLOCK_URL = "https://ads.superawesome.tv/v2/safead"
     
