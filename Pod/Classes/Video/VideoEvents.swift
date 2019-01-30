@@ -33,7 +33,7 @@ import SAVideoPlayer
     // public class interface
     //////////////////////////////////////////////////////////////////////////////
     
-    func prepare(player: VideoPlayer, time: Int, duration: Int) {
+    public func prepare(player: VideoPlayer, time: Int, duration: Int) {
         if let videoPlayer = player as? UIView,
            let avPlayer = player.getAVPlayer(),
            let avLayer = player.getAVPlayerLayer() {
@@ -43,17 +43,17 @@ import SAVideoPlayer
         }
     }
     
-    func complete(player: VideoPlayer, time: Int, duration: Int) {
+    public func complete(player: VideoPlayer, time: Int, duration: Int) {
         events.stopMoatTrackingForVideoPlayer()
         events.triggerVASTCompleteEvent()
     }
     
-    func error(player: VideoPlayer, time: Int, duration: Int) {
+    public func error(player: VideoPlayer, time: Int, duration: Int) {
         events.stopMoatTrackingForVideoPlayer()
         events.triggerVASTErrorEvent()
     }
     
-    func time(player: VideoPlayer, time: Int, duration: Int) {
+    public func time(player: VideoPlayer, time: Int, duration: Int) {
         if (time >= 1 && !isStartHandled) {
             isStartHandled = true
             events.triggerVASTImpressionEvent()
