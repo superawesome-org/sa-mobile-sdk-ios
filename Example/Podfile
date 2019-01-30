@@ -1,5 +1,6 @@
 platform :ios, '10.0'
 use_frameworks!
+use_modular_headers!
 
 target 'SuperAwesome' do
   pod 'SuperAwesome/Full', :path => '../'

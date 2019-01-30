@@ -41,10 +41,10 @@ Pod::Spec.new do |s|
     f.dependency 'SAEvents/Moat2'
   end
   
-  s.subspec 'AIR' do |a|
-    a.dependency 'SuperAwesome/Base'
-    a.source_files = 'Pod/Plugin/AIR/*'
-  end
+#  s.subspec 'AIR' do |a|
+#    a.dependency 'SuperAwesome/Base'
+#    a.source_files = 'Pod/Plugin/AIR/*'
+#  end
 
   s.subspec 'MoPub' do |m|
     m.dependency 'SuperAwesome/Base'
@@ -52,14 +52,14 @@ Pod::Spec.new do |s|
     m.source_files = 'Pod/Plugin/MoPub/*'
   end
 
-  s.subspec 'AdMob' do |am|
-    am.dependency 'SuperAwesome/Base'
-    am.dependency 'Google-Mobile-Ads-SDK', '7.28.0'
-    am.source_files = 'Pod/Plugin/AdMob/*'
-  end
+#  s.subspec 'AdMob' do |am|
+#    am.dependency 'SuperAwesome/Base'
+#    am.dependency 'Google-Mobile-Ads-SDK', '7.28.0'
+#    am.source_files = 'Pod/Plugin/AdMob/*'
+#  end
 
-  s.subspec 'Unity' do |u|
-    u.dependency 'SuperAwesome/Base'
-    u.source_files = 'Pod/Plugin/Unity/*'
-  end
+#  s.subspec 'Unity' do |u|
+#    u.dependency 'SuperAwesome/Base'
+#    u.source_files = 'Pod/Plugin/Unity/*'
+#  end
 end
