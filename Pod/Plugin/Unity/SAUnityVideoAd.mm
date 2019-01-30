@@ -22,6 +22,8 @@
 #endif
 #endif
 
+#import <SuperAwesome/SuperAwesome-Swift.h>
+
 extern "C" {
     
     /**

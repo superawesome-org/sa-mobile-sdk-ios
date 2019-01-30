@@ -12,6 +12,7 @@
 #import "SASession.h"
 #import "SABumperPage.h"
 #import "SAAgeCheck.h"
+@import SuperAwesome;
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -25,8 +26,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //    NSMutableArray *abc = @[@(13), @(25), @(88)];
-    //    [abc removeLastObject];
+//    [SAVideoAd2 setCallback:^(NSInteger placementId, SAEvent event) {
+//        if (event == adLoaded) {
+//            [SAVideoAd2 play:placementId fromVC:self];
+//        }
+//    }];
+//    [SAVideoAd2 setSmallClick:true];
+//    [SAVideoAd2 load:39521];
     
     SASession *session = [[SASession alloc] init];
     [session setConfigurationStaging];
@@ -68,13 +74,12 @@
     [SAVideoAd disableParentalGate];
     [SAVideoAd disableCloseButton];
     [SAVideoAd disableCloseAtEnd];
-    [SAVideoAd disableMoatLimiting];
+//    [SAVideoAd2 disableMoatLimiting];
     [SAVideoAd setCallback:^(NSInteger placementId, SAEvent event) {
-        
+
         NSLog(@"SUPER-AWESOME: Video Ad %ld - Event %ld", (long)placementId, (long)event);
-        
+
         if (event == adLoaded) {
-            [SAVideoAd play:placementId fromVC:self];
             [SAVideoAd play:placementId fromVC:self];
         }
     }];
@@ -109,8 +114,8 @@
                @{
                    @"name": @"Videos",
                    @"items": @[
-                           @{@"name": @"Moat video",
-                             @"pid": @(37186)}
+                           @{@"name": @"Test video",
+                             @"pid": @(39521)}
                            ]
                    }
                ] mutableCopy];
