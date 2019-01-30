@@ -287,4 +287,8 @@ public enum AdState {
     public static func getAds() -> Dictionary<Int, AdState> {
         return ads
     }
+    
+    public static func getEvents() -> SAEvents {
+        return events
+    }
 }
