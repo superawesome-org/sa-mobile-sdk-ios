@@ -5,12 +5,11 @@
 //  Created by Gabriel Coman on 17/12/2018.
 //
 
-//#ifndef SuperAwesome_h
-//#define SuperAwesome_h
+#ifndef SuperAwesome_h
+#define SuperAwesome_h
 
 #import "SABannerAd.h"
 #import "SAInterstitialAd.h"
-//#import "SAVideoAd.h"
 #import "SACallback.h"
 #import "SAOrientation.h"
 #import "SADefines.h"
@@ -24,4 +23,4 @@
 #endif
 
 
-//#endif /* SuperAwesome_h */
+#endif

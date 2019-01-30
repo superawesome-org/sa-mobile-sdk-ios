@@ -301,6 +301,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SuperAwesome/Pods-SuperAwesome-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/SAAdLoader/SAAdLoader.framework",
+				"${BUILT_PRODUCTS_DIR}/SAAgeGate/SAAgeGate.framework",
 				"${BUILT_PRODUCTS_DIR}/SABumperPage/SABumperPage.framework",
 				"${BUILT_PRODUCTS_DIR}/SAEvents/SAEvents.framework",
 				"${BUILT_PRODUCTS_DIR}/SAGDPRKisMinor/SAGDPRKisMinor.framework",
@@ -321,6 +322,7 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SAAdLoader.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SAAgeGate.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SABumperPage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SAEvents.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SAGDPRKisMinor.framework",

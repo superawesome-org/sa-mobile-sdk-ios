@@ -16,6 +16,9 @@ PODS:
     - SASession (= 1.1.2)
     - SAUtils (= 1.5.5)
     - SAVASTParser (= 1.7.5)
+  - SAAgeGate (1.0.8):
+    - SAAgeGate/Base (= 1.0.8)
+  - SAAgeGate/Base (1.0.8)
   - SABumperPage (1.0.6)
   - SAEvents (2.2.4):
     - SAEvents/Core (= 2.2.4)
@@ -70,6 +73,7 @@ PODS:
     - SuperAwesome/Base
 
 DEPENDENCIES:
+  - SAAgeGate
   - SuperAwesome/Full (from `../`)
   - SuperAwesome/MoPub (from `../`)
 
@@ -77,6 +81,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - mopub-ios-sdk
     - SAAdLoader
+    - SAAgeGate
     - SABumperPage
     - SAEvents
     - SAGDPRKisMinor
@@ -97,6 +102,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   mopub-ios-sdk: 937b82dd76d8a396ba6a22ae005a1e24c61bf28b
   SAAdLoader: c888a60d899a0e82289ac497ccef54fc4c68de6d
+  SAAgeGate: 49f4a27bd3afc5d740c2514e35d57c8bef7b7bd1
   SABumperPage: 59cb8525a68cc49a646a416977dbc0c963965eb7
   SAEvents: ee2cb6b1ce57ec1ad49d7101cc6c50aba531ff5d
   SAGDPRKisMinor: 1e8ea22afdf16e41f180dcb611ce86077e42cf6b
@@ -111,6 +117,6 @@ SPEC CHECKSUMS:
   SAWebPlayer: ee76faded1a79e05098cacde55b97e64a98deed2
   SuperAwesome: 6f9d2d5794bf4616ee5585b6995539407bf5dcb4
 
-PODFILE CHECKSUM: 6fb20fc739bf3f46283721ca7aec04a36a539bc7
+PODFILE CHECKSUM: b58ac069ba216cad600e08b468fcb063212c06d5
 
 COCOAPODS: 1.5.3
