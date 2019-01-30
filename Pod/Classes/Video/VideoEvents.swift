@@ -24,7 +24,7 @@ import SAVideoPlayer
     //////////////////////////////////////////////////////////////////////////////
     
     @objc(initWithEvents:)
-    init(events: SAEvents) {
+    public init(events: SAEvents) {
         self.events = events
         super.init()
     }

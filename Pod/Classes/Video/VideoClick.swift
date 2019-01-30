@@ -23,9 +23,9 @@ import SABumperPage
     private var currentClickThreshold: TimeInterval = 0
     
     @objc(initWithEvents:andParentalGateEnabled:andBumperPageEnabled:)
-    init (events: SAEvents,
-          isParentalGateEnabled: Bool,
-          isBumperPageEnabled: Bool) {
+    public init (events: SAEvents,
+                 isParentalGateEnabled: Bool,
+                 isBumperPageEnabled: Bool) {
         self.events = events
         self.isParentalGateEnabled = isParentalGateEnabled
         self.isBumperPageEnabled = isBumperPageEnabled
