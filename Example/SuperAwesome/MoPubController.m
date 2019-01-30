@@ -1,5 +1,5 @@
 #import "MoPubController.h"
-#import <MoPub.h>
+#import "MoPub.h"
 
 #define BANNER_ID @"f6fcf45c734d4d3ebd7b7351c9d9758d"
 #define INTER_ID  @"5f2864bf19fb473fb0419e24c8671e24"
@@ -17,11 +17,11 @@
     
     //
     // create & load banner
-//    _banner = [[MPAdView alloc] initWithAdUnitId:BANNER_ID size:MOPUB_BANNER_SIZE];
-//    _banner.frame = CGRectMake(0, 0, self.view.frame.size.width, 80);
-//    _banner.delegate = self;
-//    [self.view addSubview:_banner];
-//    [_banner loadAd];
+    _banner = [[MPAdView alloc] initWithAdUnitId:BANNER_ID size:MOPUB_BANNER_SIZE];
+    _banner.frame = CGRectMake(0, 0, self.view.frame.size.width, 80);
+    _banner.delegate = self;
+    [self.view addSubview:_banner];
+    [_banner loadAd];
     
     //
     // create & load interstitial
@@ -29,10 +29,10 @@
     _interstitial.delegate = self;
     [_interstitial loadAd];
     
-//    //
-//    // load video ads
-//    [[MoPub sharedInstance] initializeRewardedVideoWithGlobalMediationSettings:nil delegate:self];
-//    [MPRewardedVideo loadRewardedVideoAdWithAdUnitID:VIDEO_ID withMediationSettings:nil];
+    //
+    // load video ads
+    [MPRewardedVideo setDelegate:self forAdUnitId:VIDEO_ID];
+    [MPRewardedVideo loadRewardedVideoAdWithAdUnitID:VIDEO_ID withMediationSettings:nil];
 }
 
 ////////////////////////////////////////////////////////////////////////////////

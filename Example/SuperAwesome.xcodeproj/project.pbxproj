@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1663F82C2EC3B85B08D25F64 /* libPods-SuperAwesome.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DB76A9C746D98D6F5F7800F /* libPods-SuperAwesome.a */; };
 		1B0D26CF1CF7186F00619C9C /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0D26CE1CF7186F00619C9C /* Tests.m */; };
 		1B76D2381C91EEB1000AE8F3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B76D2371C91EEB1000AE8F3 /* main.m */; };
 		1B76D23B1C91EEB1000AE8F3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B76D23A1C91EEB1000AE8F3 /* AppDelegate.m */; };
@@ -17,6 +16,7 @@
 		1B76D2461C91EEB1000AE8F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B76D2441C91EEB1000AE8F3 /* LaunchScreen.storyboard */; };
 		1BB5F58B1ED6CC3400ACD72E /* AdMobController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB5F58A1ED6CC3400ACD72E /* AdMobController.m */; };
 		1BB5F5951ED82C2800ACD72E /* MoPubController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB5F5941ED82C2800ACD72E /* MoPubController.m */; };
+		50B20D504DCDBDCCCC1D7423 /* Pods_SuperAwesome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7A1A14910295310D3DB7E03 /* Pods_SuperAwesome.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,7 +30,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		007986ADF1C8DA5685F6203E /* Pods-SuperAwesome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesome.release.xcconfig"; path = "Pods/Target Support Files/Pods-SuperAwesome/Pods-SuperAwesome.release.xcconfig"; sourceTree = "<group>"; };
 		1B0D26CC1CF7186F00619C9C /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B0D26CE1CF7186F00619C9C /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		1B0D26D01CF7186F00619C9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -48,8 +47,9 @@
 		1BB5F58A1ED6CC3400ACD72E /* AdMobController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdMobController.m; sourceTree = "<group>"; };
 		1BB5F5931ED82C2800ACD72E /* MoPubController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoPubController.h; sourceTree = "<group>"; };
 		1BB5F5941ED82C2800ACD72E /* MoPubController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoPubController.m; sourceTree = "<group>"; };
-		7DB76A9C746D98D6F5F7800F /* libPods-SuperAwesome.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SuperAwesome.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8B6BDA5A642CAFF3CCC83E8B /* Pods-SuperAwesome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesome.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SuperAwesome/Pods-SuperAwesome.debug.xcconfig"; sourceTree = "<group>"; };
+		290E4999D45F9A5806995899 /* Pods-SuperAwesome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesome.release.xcconfig"; path = "Pods/Target Support Files/Pods-SuperAwesome/Pods-SuperAwesome.release.xcconfig"; sourceTree = "<group>"; };
+		C81E523260BA249E426EF822 /* Pods-SuperAwesome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesome.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SuperAwesome/Pods-SuperAwesome.debug.xcconfig"; sourceTree = "<group>"; };
+		F7A1A14910295310D3DB7E03 /* Pods_SuperAwesome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SuperAwesome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,7 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1663F82C2EC3B85B08D25F64 /* libPods-SuperAwesome.a in Frameworks */,
+				50B20D504DCDBDCCCC1D7423 /* Pods_SuperAwesome.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,8 +86,8 @@
 				1B76D2351C91EEB1000AE8F3 /* SuperAwesome */,
 				1B0D26CD1CF7186F00619C9C /* Tests */,
 				1B76D2341C91EEB1000AE8F3 /* Products */,
-				2D3CF84E42B927FA4A63C25D /* Pods */,
-				CB9D0529598F21991FBC610F /* Frameworks */,
+				D567F560DA33822B3404D643 /* Pods */,
+				203E6C02776DC5901390638A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -152,21 +152,21 @@
 			name = Storyboards;
 			sourceTree = "<group>";
 		};
-		2D3CF84E42B927FA4A63C25D /* Pods */ = {
+		203E6C02776DC5901390638A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8B6BDA5A642CAFF3CCC83E8B /* Pods-SuperAwesome.debug.xcconfig */,
-				007986ADF1C8DA5685F6203E /* Pods-SuperAwesome.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		CB9D0529598F21991FBC610F /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				7DB76A9C746D98D6F5F7800F /* libPods-SuperAwesome.a */,
+				F7A1A14910295310D3DB7E03 /* Pods_SuperAwesome.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D567F560DA33822B3404D643 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C81E523260BA249E426EF822 /* Pods-SuperAwesome.debug.xcconfig */,
+				290E4999D45F9A5806995899 /* Pods-SuperAwesome.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,11 +194,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1B76D24A1C91EEB1000AE8F3 /* Build configuration list for PBXNativeTarget "SuperAwesome" */;
 			buildPhases = (
-				BED1134601A79A10B56E7339 /* [CP] Check Pods Manifest.lock */,
+				749057D3171DDF9DF7EDFF9E /* [CP] Check Pods Manifest.lock */,
 				1B76D22F1C91EEB1000AE8F3 /* Sources */,
 				1B76D2301C91EEB1000AE8F3 /* Frameworks */,
 				1B76D2311C91EEB1000AE8F3 /* Resources */,
-				8409365FCAA0971ED257AFF7 /* [CP] Copy Pods Resources */,
+				4AB5A2AD7D1A3C54CBD76E47 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -269,74 +269,72 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		8409365FCAA0971ED257AFF7 /* [CP] Copy Pods Resources */ = {
+		4AB5A2AD7D1A3C54CBD76E47 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SuperAwesome/Pods-SuperAwesome-resources.sh",
-				"${PODS_ROOT}/mopub-ios-sdk/MoPubSDK/Internal/Common/MPAdBrowserController.xib",
-				"${PODS_ROOT}/mopub-ios-sdk/MoPubSDK/Resources/MPCloseBtn.png",
-				"${PODS_ROOT}/mopub-ios-sdk/MoPubSDK/Resources/MPCloseBtn@2x.png",
-				"${PODS_ROOT}/mopub-ios-sdk/MoPubSDK/Resources/MPCloseBtn@3x.png",
-				"${PODS_ROOT}/mopub-ios-sdk/MoPubSDK/Resources/MPCloseButtonX.png",
-				"${PODS_ROOT}/mopub-ios-sdk/MoPubSDK/Resources/MPCloseButtonX@2x.png",
-				"${PODS_ROOT}/mopub-ios-sdk/MoPubSDK/Resources/MPCloseButtonX@3x.png",
-				"${PODS_ROOT}/mopub-ios-sdk/MoPubSDK/Resources/MPCountdownTimer.html",
-				"${PODS_ROOT}/mopub-ios-sdk/MoPubSDK/Resources/MPDAAIcon.png",
-				"${PODS_ROOT}/mopub-ios-sdk/MoPubSDK/Resources/MPDAAIcon@2x.png",
-				"${PODS_ROOT}/mopub-ios-sdk/MoPubSDK/Resources/MPDAAIcon@3x.png",
-				"${PODS_ROOT}/mopub-ios-sdk/MoPubSDK/Resources/MPMutedBtn.png",
-				"${PODS_ROOT}/mopub-ios-sdk/MoPubSDK/Resources/MPMutedBtn@2x.png",
-				"${PODS_ROOT}/mopub-ios-sdk/MoPubSDK/Resources/MPMutedBtn@3x.png",
-				"${PODS_ROOT}/mopub-ios-sdk/MoPubSDK/Resources/MPPlayBtn.png",
-				"${PODS_ROOT}/mopub-ios-sdk/MoPubSDK/Resources/MPPlayBtn@2x.png",
-				"${PODS_ROOT}/mopub-ios-sdk/MoPubSDK/Resources/MPPlayBtn@3x.png",
-				"${PODS_ROOT}/mopub-ios-sdk/MoPubSDK/Resources/MPUnmutedBtn.png",
-				"${PODS_ROOT}/mopub-ios-sdk/MoPubSDK/Resources/MPUnmutedBtn@2x.png",
-				"${PODS_ROOT}/mopub-ios-sdk/MoPubSDK/Resources/MPUnmutedBtn@3x.png",
-				"${PODS_ROOT}/mopub-ios-sdk/MoPubSDK/Resources/MRAID.bundle",
+			inputFileListPaths = (
 			);
-			name = "[CP] Copy Pods Resources";
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SuperAwesome/Pods-SuperAwesome-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SAAdLoader/SAAdLoader.framework",
+				"${BUILT_PRODUCTS_DIR}/SAAgeGate/SAAgeGate.framework",
+				"${BUILT_PRODUCTS_DIR}/SABumperPage/SABumperPage.framework",
+				"${BUILT_PRODUCTS_DIR}/SAEvents/SAEvents.framework",
+				"${BUILT_PRODUCTS_DIR}/SAGDPRKisMinor/SAGDPRKisMinor.framework",
+				"${BUILT_PRODUCTS_DIR}/SAJsonParser/SAJsonParser.framework",
+				"${BUILT_PRODUCTS_DIR}/SAModelSpace/SAModelSpace.framework",
+				"${BUILT_PRODUCTS_DIR}/SANetworking/SANetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/SAParentalGate/SAParentalGate.framework",
+				"${BUILT_PRODUCTS_DIR}/SASession/SASession.framework",
+				"${BUILT_PRODUCTS_DIR}/SAUtils/SAUtils.framework",
+				"${BUILT_PRODUCTS_DIR}/SAVASTParser/SAVASTParser.framework",
+				"${BUILT_PRODUCTS_DIR}/SAVideoPlayer/SAVideoPlayer.framework",
+				"${BUILT_PRODUCTS_DIR}/SAWebPlayer/SAWebPlayer.framework",
+				"${BUILT_PRODUCTS_DIR}/SuperAwesome/SuperAwesome.framework",
+				"${BUILT_PRODUCTS_DIR}/mopub-ios-sdk/MoPub.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPAdBrowserController.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPCloseBtn.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPCloseBtn@2x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPCloseBtn@3x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPCloseButtonX.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPCloseButtonX@2x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPCloseButtonX@3x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPCountdownTimer.html",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPDAAIcon.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPDAAIcon@2x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPDAAIcon@3x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPMutedBtn.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPMutedBtn@2x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPMutedBtn@3x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPPlayBtn.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPPlayBtn@2x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPPlayBtn@3x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPUnmutedBtn.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPUnmutedBtn@2x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPUnmutedBtn@3x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MRAID.bundle",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SAAdLoader.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SAAgeGate.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SABumperPage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SAEvents.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SAGDPRKisMinor.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SAJsonParser.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SAModelSpace.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SANetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SAParentalGate.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SASession.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SAUtils.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SAVASTParser.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SAVideoPlayer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SAWebPlayer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SuperAwesome.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MoPub.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SuperAwesome/Pods-SuperAwesome-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SuperAwesome/Pods-SuperAwesome-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BED1134601A79A10B56E7339 /* [CP] Check Pods Manifest.lock */ = {
+		749057D3171DDF9DF7EDFF9E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-SuperAwesome-checkManifestLockResult.txt",
 			);
@@ -514,7 +512,7 @@
 		};
 		1B76D24B1C91EEB1000AE8F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8B6BDA5A642CAFF3CCC83E8B /* Pods-SuperAwesome.debug.xcconfig */;
+			baseConfigurationReference = C81E523260BA249E426EF822 /* Pods-SuperAwesome.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: LIVIU COMAN (K79XEZP48K)";
@@ -533,7 +531,7 @@
 		};
 		1B76D24C1C91EEB1000AE8F3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 007986ADF1C8DA5685F6203E /* Pods-SuperAwesome.release.xcconfig */;
+			baseConfigurationReference = 290E4999D45F9A5806995899 /* Pods-SuperAwesome.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "";
