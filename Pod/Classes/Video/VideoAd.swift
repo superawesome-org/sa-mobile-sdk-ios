@@ -11,7 +11,7 @@ import SASession
 import SAAdLoader
 import SAEvents
 
-enum AdState {
+public enum AdState {
     case none
     case loading
     case hasAd(ad: SAAd)
@@ -280,7 +280,11 @@ enum AdState {
         playback = delay
     }
     
-    static func getCallback() -> sacallback? {
+    public static func getCallback() -> sacallback? {
         return callback
+    }
+    
+    public static func getAds() -> Dictionary<Int, AdState> {
+        return ads
     }
 }

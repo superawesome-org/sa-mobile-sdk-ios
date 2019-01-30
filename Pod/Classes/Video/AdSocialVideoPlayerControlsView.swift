@@ -8,7 +8,7 @@
 import UIKit
 import SAVideoPlayer
 
-@objc(SAAdChromeControl) class AdChromeControl: UIView, VideoPlayerControlsView {
+@objc(SAAdChromeControl) public class AdSocialVideoPlayerControlsView: UIView, VideoPlayerControlsView {
     
     private var blackMask: BlackMask!
     private var chrono: Chronograph!
@@ -142,35 +142,35 @@ import SAVideoPlayer
     // ChromeControl
     ////////////////////////////////////////////////////////////////////////////
     
-    func setPlaying() { /* N/A */ }
+    public func setPlaying() { /* N/A */ }
     
-    func setPaused() { /* N/A */ }
+    public func setPaused() { /* N/A */ }
     
-    func setCompleted() { /* N/A */ }
+    public func setCompleted() { /* N/A */ }
     
-    func setError(error: Error) { /* N/A */ }
+    public func setError(error: Error) { /* N/A */ }
     
-    func setTime(time: Int, duration: Int) {
+    public func setTime(time: Int, duration: Int) {
         let ramaining = duration - time
         chrono.setTime(remaining: ramaining)
     }
     
-    func isPlaying() -> Bool {
+    public func isPlaying() -> Bool {
         return true
     }
     
-    func show() { /* N/A */ }
+    public func show() { /* N/A */ }
     
-    func hide() { /* N/A */ }
+    public func hide() { /* N/A */ }
     
-    func setMinimised() { /* N/A */ }
+    public func setMinimised() { /* N/A */ }
     
-    func setMaximised() { /* N/A */ }
+    public func setMaximised() { /* N/A */ }
     
-    func isMaximised() -> Bool {
+    public func isMaximised() -> Bool {
         return false
     }
     
     @objc(setDelegate:)
-    func set(delegate: VideoPlayerControlsViewDelegate) { /* N/A */ }
+    public func set(delegate: VideoPlayerControlsViewDelegate) { /* N/A */ }
 }

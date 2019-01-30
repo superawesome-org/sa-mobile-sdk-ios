@@ -20,7 +20,7 @@ import SAVideoPlayer
     ////////////////////////////////////////////////////////////////////////////
     
     private var videoPlayer: AwesomeVideoPlayer!
-    private var chrome: AdChromeControl!
+    private var chrome: AdSocialVideoPlayerControlsView!
     
     ////////////////////////////////////////////////////////////////////////////
     // Custom values
@@ -80,7 +80,7 @@ import SAVideoPlayer
         LayoutUtils.bind(view: videoPlayer, toTheEdgesOf: view)
         
         // setup chrome
-        chrome = AdChromeControl(smallClick: config.showSmallClick,
+        chrome = AdSocialVideoPlayerControlsView(smallClick: config.showSmallClick,
                                  showCloseButton: config.showCloseButton,
                                  showSafeAdLogo: config.showSafeAdLogo)
         chrome.layoutMargins = UIEdgeInsets.zero
