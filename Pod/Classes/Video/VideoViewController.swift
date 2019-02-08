@@ -97,6 +97,16 @@ import SAVideoPlayer
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        control.start()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        control.pause()
+        super.viewWillDisappear(animated)
+    }
+    
     ////////////////////////////////////////////////////////////////////////////
     // VideoPlayerDelegate
     ////////////////////////////////////////////////////////////////////////////

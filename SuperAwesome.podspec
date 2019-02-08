@@ -27,7 +27,7 @@ Pod::Spec.new do |s|
   s.subspec 'Base' do |b|
     b.source_files = 'Pod/Classes/**/*'
     b.frameworks = 'AdSupport'
-    b.dependency 'SAVideoPlayer', '2.0.0-beta1'
+    b.dependency 'SAVideoPlayer', '2.0.0-beta2'
     b.dependency 'SAWebPlayer', '1.3.0'
     b.dependency 'SAEvents', '2.2.4'
     b.dependency 'SAAdLoader', '1.4.2'
