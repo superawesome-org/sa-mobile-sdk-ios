@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
 	'Gabriel Coman' => 'gabriel.coman@superawesome.tv'
   }
   s.ios.deployment_target = '10.0'
-  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.0' }
+  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.2' }
   s.requires_arc = true
   s.source = { 
 	:git => 'https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git', 
@@ -27,7 +27,7 @@ Pod::Spec.new do |s|
   s.subspec 'Base' do |b|
     b.source_files = 'Pod/Classes/**/*'
     b.frameworks = 'AdSupport'
-    b.dependency 'SAVideoPlayer', '2.0.0-beta1'
+    b.dependency 'SAVideoPlayer', '2.0.0-beta3'
     b.dependency 'SAWebPlayer', '1.3.0'
     b.dependency 'SAEvents', '2.2.4'
     b.dependency 'SAAdLoader', '1.4.2'

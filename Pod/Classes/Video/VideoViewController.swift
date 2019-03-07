@@ -73,7 +73,7 @@ import SAVideoPlayer
         
         // setup video player
         videoPlayer = AwesomeVideoPlayer()
-        videoPlayer.setControls(control: control)
+        videoPlayer.setControls(controller: control)
         videoPlayer.layoutMargins = UIEdgeInsets.zero
         videoPlayer.setDelegate(delegate: self)
         view.addSubview(videoPlayer)
@@ -87,7 +87,7 @@ import SAVideoPlayer
         chrome.setCloseAction(action: closeAction)
         chrome.setClickAction(action: clickAction)
         chrome.setPadlockAction(action: clickEvents.handleSafeAdTap)
-        videoPlayer.setControlsView(chrome: chrome)
+        videoPlayer.setControlsView(controllerView: chrome)
         LayoutUtils.bind(view: chrome, toTheEdgesOf: videoPlayer)
         
         // play ad
