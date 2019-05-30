@@ -14,6 +14,10 @@
 #import "SAOrientation.h"
 #import "SADefines.h"
 
+@protocol SAVideoPlayerControlsView;
+@protocol SAVideoPlayerControlsViewDelegate;
+@class SAVideoAd;
+
 #if defined(__has_include)
 #if __has_include(<SAGDPRKisMinor/SAAgeCheck.h>)
 #import <SAGDPRKisMinor/SAAgeCheck.h>
@@ -21,6 +25,5 @@
 #import "SAAgeCheck.h"
 #endif
 #endif
-
 
 #endif

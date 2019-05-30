@@ -18,8 +18,6 @@
 #endif
 #endif
 
-@protocol SAVideoPlayerControlsView;
-
 @interface AwesomeAds: NSObject
 + (void) initSDK: (BOOL) loggingEnabled;
 + (void) triggerAgeCheck: (NSString*) age response:(GetIsMinorBlock)response;
