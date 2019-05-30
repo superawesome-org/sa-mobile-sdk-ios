@@ -105,7 +105,6 @@ import SAVideoPlayer
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print("viewDidAppear:")
         control.start()
     }
     
