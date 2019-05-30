@@ -27,7 +27,7 @@ Pod::Spec.new do |s|
   s.subspec 'Base' do |b|
     b.source_files = 'Pod/Classes/**/*'
     b.frameworks = 'AdSupport'
-    b.dependency 'SAVideoPlayer', '2.0.0-beta3'
+    b.dependency 'SAVideoPlayer', '2.0.0-beta4'
     b.dependency 'SAWebPlayer', '1.3.0'
     b.dependency 'SAEvents', '2.2.4'
     b.dependency 'SAAdLoader', '1.4.2'
@@ -58,8 +58,8 @@ Pod::Spec.new do |s|
 #    am.source_files = 'Pod/Plugin/AdMob/*'
 #  end
 
-#  s.subspec 'Unity' do |u|
-#    u.dependency 'SuperAwesome/Base'
-#    u.source_files = 'Pod/Plugin/Unity/*'
-#  end
+  s.subspec 'Unity' do |u|
+    u.dependency 'SuperAwesome/Base'
+    u.source_files = 'Pod/Plugin/Unity/*'
+  end
 end

@@ -22,7 +22,13 @@
 #endif
 #endif
 
+#if defined(__has_include)
+#if __has_include(<SuperAwesome/SuperAwesome-Swift.h>)
 #import <SuperAwesome/SuperAwesome-Swift.h>
+#else
+#import "SuperAwesome-Swift.h"
+#endif
+#endif
 
 extern "C" {
     
