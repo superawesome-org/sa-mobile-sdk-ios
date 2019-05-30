@@ -73,7 +73,7 @@
     [SAVideoAd disableBumperPage];
     [SAVideoAd disableParentalGate];
     [SAVideoAd disableCloseButton];
-    [SAVideoAd disableCloseAtEnd];
+    [SAVideoAd enableCloseAtEnd];
 //    [SAVideoAd2 disableMoatLimiting];
     [SAVideoAd setCallback:^(NSInteger placementId, SAEvent event) {
 
@@ -115,7 +115,7 @@
                    @"name": @"Videos",
                    @"items": @[
                            @{@"name": @"Test video",
-                             @"pid": @(39521)}
+                             @"pid": @(40509)}
                            ]
                    }
                ] mutableCopy];

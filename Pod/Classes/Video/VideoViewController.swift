@@ -95,16 +95,38 @@ import SAVideoPlayer
             let url = URL(fileURLWithPath: diskUrl)
             control.play(url: url)
         }
+        
+        // register notification for foreground
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(willEnterForeground(_:)),
+                                               name: UIApplication.willEnterForegroundNotification,
+                                               object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        print("viewDidAppear:")
         control.start()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         control.pause()
         super.viewWillDisappear(animated)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self,
+                                                  name: UIApplication.willEnterForegroundNotification,
+                                                  object: nil)
+    }
+    
+    ////////////////////////////////////////////////////////////////////////////
+    // Foreground
+    ////////////////////////////////////////////////////////////////////////////
+    
+    @objc
+    func willEnterForeground(_ notification: NSNotification) -> Void {
+        control.start()
     }
     
     ////////////////////////////////////////////////////////////////////////////
