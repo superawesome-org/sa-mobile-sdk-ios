@@ -11,7 +11,7 @@
 #if __has_include(<SuperAwesome/SuperAwesome-Swift.h>)
 #import <SuperAwesome/SuperAwesome-Swift.h>
 #else
-#import "SuperAwesome-Swift"
+#import "SuperAwesome-Swift.h"
 #endif
 #endif
 
