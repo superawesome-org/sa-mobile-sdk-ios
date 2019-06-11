@@ -186,4 +186,7 @@ import SAVideoPlayer
     
     @objc(setDelegate:)
     public func set(delegate: VideoPlayerControlsViewDelegate) { /* N/A */ }
+    
+    @objc(setListener:)
+    public func set(controlsViewListener: VideoPlayerControlsViewDelegate) { /* N/A */ }
 }

@@ -69,7 +69,7 @@
     }];
     
     [SAVideoAd setConfigurationProduction];
-    [SAVideoAd disableTestMode];
+    [SAVideoAd enableTestMode];
     [SAVideoAd disableBumperPage];
     [SAVideoAd disableParentalGate];
     [SAVideoAd disableCloseButton];
@@ -100,7 +100,7 @@
                            @{@"name": @"CPM Interstitial 1 (Rich Media)",
                              @"pid": @(37190)},
                            @{@"name": @"CPM Interstitial 2 (3rd Party Tag)",
-                             @"pid": @(37192)},
+                             @"pid": @(40676)},
 //                           @{@"name": @"Image #1",
 //                             @"pid": @(37218)},
 //                           @{@"name": @"Rich Media #1",
