@@ -92,6 +92,10 @@ static SAOrientation orientation     = SA_DEFAULT_ORIENTATION;
 static SAConfiguration configuration = SA_DEFAULT_CONFIGURATION;
 static BOOL isMoatLimitingEnabled    = SA_DEFAULT_MOAT_LIMITING_STATE;
 
+- (BOOL)prefersStatusBarHidden {
+    return YES;
+}
+
 /**
  * Overridden UIViewController "viewDidLoad" method in which the ad is setup
  * and redrawn to look good.
@@ -149,9 +153,6 @@ static BOOL isMoatLimitingEnabled    = SA_DEFAULT_MOAT_LIMITING_STATE;
  */
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
-    // status bar hidden
-    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
     
     // setup coordinates
     CGSize scrSize = [UIScreen mainScreen].bounds.size;
