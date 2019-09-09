@@ -75,7 +75,7 @@
 
 // hold the prev status bar hidden or not
 @property (nonatomic, assign) BOOL       previousStatusBarHiddenValue;
-
+@property (nonatomic, assign) BOOL       didSetUpConstraints;
 @end
 
 @implementation SAInterstitialAd
@@ -101,7 +101,7 @@ static BOOL isMoatLimitingEnabled    = SA_DEFAULT_MOAT_LIMITING_STATE;
 
     // get the status bar value
     _previousStatusBarHiddenValue = [[UIApplication sharedApplication] isStatusBarHidden];
-    
+    _didSetUpConstraints = NO;
     // get local versions of the static module vars
     sacallback _callbackL    = [SAInterstitialAd getCallback];
     BOOL _isParentalGateEnabledL = [SAInterstitialAd getIsParentalGateEnabled];
@@ -188,7 +188,7 @@ static BOOL isMoatLimitingEnabled    = SA_DEFAULT_MOAT_LIMITING_STATE;
     }
     
     // resize
-    [self resize:CGRectMake(0, 0, currentSize.width, currentSize.height)];
+    [self resizeSubviews:CGRectMake(0, 0, currentSize.width, currentSize.height)];
     
     // play the ad
     [_banner play];
@@ -215,7 +215,7 @@ static BOOL isMoatLimitingEnabled    = SA_DEFAULT_MOAT_LIMITING_STATE;
  */
 - (void) viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-    [self resize:CGRectMake(0, 0, size.width, size.height)];
+    [self resizeSubviews:CGRectMake(0, 0, size.width, size.height)];
 }
 
 /**
@@ -300,7 +300,7 @@ static BOOL isMoatLimitingEnabled    = SA_DEFAULT_MOAT_LIMITING_STATE;
  * 
  * @param frame the new frame to resize to
  */
-- (void) resize: (CGRect) frame {
+- (void) resizeSubviews: (CGRect) frame {
     // calc proper new frame
     CGFloat tW = frame.size.width;
     CGFloat tH = frame.size.height;
@@ -313,9 +313,54 @@ static BOOL isMoatLimitingEnabled    = SA_DEFAULT_MOAT_LIMITING_STATE;
     // invoke private banner method
     [_banner resize:newR];
     
-    // assign new frames & resize
-    [_closeBtn setFrame:CGRectMake(frame.size.width - 40.0f, 0, 40.0f, 40.0f)];
     [self.view bringSubviewToFront:_closeBtn];
+}
+
+/**
+ * Method that sets up constraints for the close button
+ */
+- (void)updateViewConstraints {
+    if (!_didSetUpConstraints) {
+        _closeBtn.translatesAutoresizingMaskIntoConstraints = NO;
+        
+        if (@available(iOS 11.0, *)) {
+            UILayoutGuide *safeGuide = self.view.safeAreaLayoutGuide;
+            [NSLayoutConstraint activateConstraints:@[[_closeBtn.topAnchor constraintEqualToAnchor:safeGuide.topAnchor constant:0.0f],
+                                                      [safeGuide.trailingAnchor constraintEqualToAnchor:_closeBtn.trailingAnchor]]];
+        } else {
+            [NSLayoutConstraint activateConstraints:@[[_closeBtn.topAnchor constraintEqualToAnchor:self.topLayoutGuide.bottomAnchor
+                                                                                          constant:0.0f]]];
+            NSLayoutConstraint *rightConstraint = [NSLayoutConstraint constraintWithItem:_closeBtn
+                                                                               attribute:NSLayoutAttributeTrailing
+                                                                               relatedBy:NSLayoutRelationEqual
+                                                                                  toItem:self.view
+                                                                               attribute:NSLayoutAttributeTrailing
+                                                                              multiplier:1.0f
+                                                                                constant:0.0f];
+            [self.view addConstraint:rightConstraint];
+        }
+        
+        NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:_closeBtn
+                                                                           attribute:NSLayoutAttributeWidth
+                                                                           relatedBy:NSLayoutRelationEqual
+                                                                              toItem:nil
+                                                                           attribute:NSLayoutAttributeNotAnAttribute
+                                                                          multiplier:1.0f
+                                                                            constant:40.0f];
+        NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:_closeBtn
+                                                                            attribute:NSLayoutAttributeHeight
+                                                                            relatedBy:NSLayoutRelationEqual
+                                                                               toItem:nil
+                                                                            attribute:NSLayoutAttributeNotAnAttribute
+                                                                           multiplier:1.0f
+                                                                             constant:40.0f];
+        [_closeBtn addConstraint:widthConstraint];
+        [_closeBtn addConstraint:heightConstraint];
+       
+        _didSetUpConstraints = YES;
+    }
+    
+    [super updateViewConstraints];
 }
 
 + (void) load:(NSInteger) placementId {
