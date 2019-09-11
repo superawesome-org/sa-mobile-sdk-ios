@@ -55,7 +55,7 @@
     }];
     
     [SAInterstitialAd setConfigurationProduction];
-    [SAInterstitialAd disableTestMode];
+    [SAInterstitialAd enableTestMode];
     [SAInterstitialAd disableParentalGate];
     [SAInterstitialAd disableBumperPage];
     [SAInterstitialAd disableMoatLimiting];
