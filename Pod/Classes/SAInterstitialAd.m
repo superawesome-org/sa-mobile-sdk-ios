@@ -460,6 +460,8 @@ static BOOL isMoatLimitingEnabled    = SA_DEFAULT_MOAT_LIMITING_STATE;
         [ads removeObjectForKey:@(placementId)];
         
         // present vc
+        newVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
+        newVC.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
         [parent presentViewController:newVC animated:YES completion:nil];
         
     } else {
