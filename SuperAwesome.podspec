@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
     b.source_files = 'Pod/Classes/**/*'
     b.frameworks = 'AdSupport'
     b.dependency 'SAVideoPlayer', '2.0.0-beta6'
-    b.dependency 'SAWebPlayer', '1.3.0'
+    b.dependency 'SAWebPlayer', '1.4.0'
     b.dependency 'SAEvents', '2.2.4'
     b.dependency 'SAAdLoader', '1.4.2'
     b.dependency 'SABumperPage', '1.0.6'
