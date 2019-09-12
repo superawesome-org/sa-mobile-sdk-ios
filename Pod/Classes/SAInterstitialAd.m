@@ -134,13 +134,6 @@ static BOOL isMoatLimitingEnabled    = SA_DEFAULT_MOAT_LIMITING_STATE;
 }
 
 /**
- * Overridden UIViewController "didReceiveMemoryWarning" method
- */
-- (void) didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
-/**
  * Overridden UIViewController "viewWillAppear" method in which the status bar
  * is set to hidden and further math is applied to get the correct size
  * to resize the ad to
