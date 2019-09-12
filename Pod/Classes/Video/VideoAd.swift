@@ -114,7 +114,7 @@ public enum AdState {
                                                        andEvents: events,
                                                        andCallback: callback,
                                                        andConfig: config)
-            adViewController.modalPresentationStyle = .overFullScreen
+            adViewController.modalPresentationStyle = .fullScreen
             adViewController.modalTransitionStyle = .coverVertical
             viewController.present(adViewController, animated: true)
             ads[placementId] = .none

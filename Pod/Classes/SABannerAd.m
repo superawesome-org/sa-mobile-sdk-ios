@@ -494,8 +494,9 @@
     
     //
     // open browser & goto url
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:destination]];
-    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:destination]
+                                       options:[[NSDictionary alloc] init]
+                             completionHandler:nil];
 }
 
 - (void) resize:(CGRect)toframe {
@@ -523,7 +524,9 @@
  * Method called when the user clicks on a padlock
  */
 - (void) padlockAction {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://ads.superawesome.tv/v2/safead"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://ads.superawesome.tv/v2/safead"]
+                                       options:[[NSDictionary alloc] init]
+                             completionHandler:nil];
 }
 
 - (BOOL) isClosed {
@@ -601,6 +604,5 @@
 - (void) disableMoatLimiting {
     _moatLimiting = false;
 }
-
 
 @end
