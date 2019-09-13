@@ -45,6 +45,22 @@ import SAVideoPlayer
     
     private var callback: sacallback? = nil
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
+    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
+        return .fade
+    }
+    
+    override var prefersHomeIndicatorAutoHidden: Bool {
+        return true
+    }
+    
     init(withAd ad : SAAd,
          andEvents events: SAEvents,
          andCallback callback: sacallback?,

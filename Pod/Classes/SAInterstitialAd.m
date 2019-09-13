@@ -134,13 +134,6 @@ static BOOL isMoatLimitingEnabled    = SA_DEFAULT_MOAT_LIMITING_STATE;
 }
 
 /**
- * Overridden UIViewController "didReceiveMemoryWarning" method
- */
-- (void) didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
-/**
  * Overridden UIViewController "viewWillAppear" method in which the status bar
  * is set to hidden and further math is applied to get the correct size
  * to resize the ad to
@@ -149,9 +142,6 @@ static BOOL isMoatLimitingEnabled    = SA_DEFAULT_MOAT_LIMITING_STATE;
  */
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
-    // status bar hidden
-    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
     
     // setup coordinates
     CGSize scrSize = [UIScreen mainScreen].bounds.size;
@@ -192,18 +182,6 @@ static BOOL isMoatLimitingEnabled    = SA_DEFAULT_MOAT_LIMITING_STATE;
     
     // play the ad
     [_banner play];
-}
-
-/**
- * Overridden UIViewController "viewWillDisappear" method in which I reset the
- * status bar state
- *
- * @param animated  whether the view will disappeared animated or not
- */
-- (void) viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [[UIApplication sharedApplication] setStatusBarHidden:_previousStatusBarHiddenValue
-                                            withAnimation:UIStatusBarAnimationNone];
 }
 
 /**
@@ -279,6 +257,16 @@ static BOOL isMoatLimitingEnabled    = SA_DEFAULT_MOAT_LIMITING_STATE;
  */
 - (BOOL) prefersStatusBarHidden {
     return true;
+}
+
+/**
+* Overridden UIViewController "preferredStatusBarUpdateAnimation" method
+* in which I set that the view controller prefers to fade away the status bar
+*
+* @return UIStatusBarAnimationFade
+*/
+- (UIStatusBarAnimation)preferredStatusBarUpdateAnimation {
+    return UIStatusBarAnimationFade;
 }
 
 /**
@@ -460,7 +448,7 @@ static BOOL isMoatLimitingEnabled    = SA_DEFAULT_MOAT_LIMITING_STATE;
         [ads removeObjectForKey:@(placementId)];
         
         // present vc
-        newVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
+        newVC.modalPresentationStyle = UIModalPresentationFullScreen;
         newVC.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
         [parent presentViewController:newVC animated:YES completion:nil];
         
