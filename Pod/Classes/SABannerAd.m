@@ -524,9 +524,12 @@
  * Method called when the user clicks on a padlock
  */
 - (void) padlockAction {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://ads.superawesome.tv/v2/safead"]
-                                       options:[[NSDictionary alloc] init]
-                             completionHandler:nil];
+    [SABumperPage setCallback:^{
+         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://ads.superawesome.tv/v2/safead"]
+                                            options:[[NSDictionary alloc] init]
+                                  completionHandler:nil];
+    }];
+    [SABumperPage play];
 }
 
 - (BOOL) isClosed {
