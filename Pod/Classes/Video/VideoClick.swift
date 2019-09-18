@@ -32,9 +32,11 @@ import SABumperPage
     }
     
     public func handleSafeAdTap() {
-        if let url = URL(string: VideoClick.PADLOCK_URL) {
+        SABumperPage.setCallback {
+            guard let url = URL(string: VideoClick.PADLOCK_URL) else { return }
             UIApplication.shared.open(url, options: [:])
         }
+        SABumperPage.play()
     }
     
     public func handleAdTap() {
