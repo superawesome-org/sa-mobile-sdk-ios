@@ -327,25 +327,7 @@
             // only call the next part (either pg or click) if the click
             // url is valid, else do nothong
             if (url && [url absoluteString]) {
-                if (weakSelf.isParentalGateEnabled) {
-                    
-                    [SAParentalGate setPgOpenCallback:^{
-                        [weakSelf.events triggerPgOpenEvent];
-                    }];
-                    [SAParentalGate setPgCanceledCallback:^{
-                        [weakSelf.events triggerPgCloseEvent];
-                    }];
-                    [SAParentalGate setPgFailedCallback:^{
-                        [weakSelf.events triggerPgFailEvent];
-                    }];
-                    [SAParentalGate setPgSuccessCallback:^{
-                        [weakSelf.events triggerPgSuccessEvent];
-                        [weakSelf click:[url absoluteString]];
-                    }];
-                    [SAParentalGate play];
-                } else {
-                    [weakSelf click: [url absoluteString]];
-                }
+                [weakSelf showParentalGateIfNeededWithCompletion: ^{ [weakSelf click:[url absoluteString]]; }];
             }
         
         }];
@@ -385,6 +367,29 @@
         } else {
             NSLog(@"Banner Ad callback not implemented. Event would have been adFailedToShow");
         }
+    }
+}
+
+- (void) showParentalGateIfNeededWithCompletion: (void(^)(void)) completion
+{
+    if (self.isParentalGateEnabled) {
+        
+        [SAParentalGate setPgOpenCallback:^{
+            [self.events triggerPgOpenEvent];
+        }];
+        [SAParentalGate setPgCanceledCallback:^{
+            [self.events triggerPgCloseEvent];
+        }];
+        [SAParentalGate setPgFailedCallback:^{
+            [self.events triggerPgFailEvent];
+        }];
+        [SAParentalGate setPgSuccessCallback:^{
+            [self.events triggerPgSuccessEvent];
+            completion();
+        }];
+        [SAParentalGate play];
+    } else {
+        completion();
     }
 }
 
@@ -524,10 +529,16 @@
  * Method called when the user clicks on a padlock
  */
 - (void) padlockAction {
+    __weak typeof (self) weakSelf = self;
+    [self showParentalGateIfNeededWithCompletion: ^{ [weakSelf showSuperAwesomeWebPaeInSafari]; }];
+}
+
+- (void) showSuperAwesomeWebPaeInSafari
+{
     [SABumperPage setCallback:^{
-         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://ads.superawesome.tv/v2/safead"]
-                                            options:[[NSDictionary alloc] init]
-                                  completionHandler:nil];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://ads.superawesome.tv/v2/safead"]
+                                           options:[[NSDictionary alloc] init]
+                                 completionHandler:nil];
     }];
     [SABumperPage play];
 }

@@ -32,6 +32,31 @@ import SABumperPage
     }
     
     public func handleSafeAdTap() {
+        showParentalGateIfNeeded(withCallback: showSuperAwesomeSiteInSafari)
+    }
+    
+    private func showParentalGateIfNeeded(withCallback callBack: @escaping () -> Void) {
+        if isParentalGateEnabled {
+            SAParentalGate.setPgOpenCallback {
+                self.events.triggerPgOpenEvent()
+            }
+            SAParentalGate.setPgCanceledCallback {
+                self.events.triggerPgCloseEvent()
+            }
+            SAParentalGate.setPgFailedCallback {
+                self.events.triggerPgFailEvent()
+            }
+            SAParentalGate.setPgSuccessCallback {
+                self.events.triggerPgSuccessEvent()
+                callBack()
+            }
+            SAParentalGate.play()
+        } else {
+            callBack()
+        }
+    }
+    
+    private func showSuperAwesomeSiteInSafari() {
         SABumperPage.setCallback {
             guard let url = URL(string: VideoClick.PADLOCK_URL) else { return }
             UIApplication.shared.open(url, options: [:])
@@ -40,27 +65,10 @@ import SABumperPage
     }
     
     public func handleAdTap() {
-        if let destination = events.getVASTClickThroughEvent() {
-            if isParentalGateEnabled {
-                SAParentalGate.setPgOpenCallback {
-                    self.events.triggerPgOpenEvent()
-                }
-                SAParentalGate.setPgCanceledCallback {
-                    self.events.triggerPgCloseEvent()
-                }
-                SAParentalGate.setPgFailedCallback {
-                    self.events.triggerPgFailEvent()
-                }
-                SAParentalGate.setPgSuccessCallback {
-                    self.events.triggerPgSuccessEvent()
-                    self.click(destination: destination)
-                }
-                SAParentalGate.play()
-            }
-            else {
-                click(destination: destination)
-            }
-        }
+        guard let destination = events.getVASTClickThroughEvent() else { return }
+        showParentalGateIfNeeded(withCallback: {
+            self.click(destination: destination)
+        })
     }
     
     private func click(destination: String) {

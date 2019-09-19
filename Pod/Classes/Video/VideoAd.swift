@@ -104,8 +104,8 @@ public enum AdState {
         switch adState {
         case .hasAd(let ad):
             let config = VideoViewController.Config(showSmallClick: shouldShowSmallClickButton,
-                                                    showSafeAdLogo: ad.isSafeAdApproved,
-                                                    showCloseButton: shouldShowCloseButton,
+                                                    showSafeAdLogo: true, //ad.isSafeAdApproved,
+                                                    showCloseButton: true, //shouldShowCloseButton,
                                                     shouldCloseAtEnd: shouldAutomaticallyCloseAtEnd,
                                                     isParentalGateEnabled: isParentalGateEnabled,
                                                     isBumperPageEnabled: isBumperPageEnabled,

@@ -56,7 +56,7 @@
     
     [SAInterstitialAd setConfigurationProduction];
     [SAInterstitialAd enableTestMode];
-    [SAInterstitialAd disableParentalGate];
+    [SAInterstitialAd enableParentalGate];
     [SAInterstitialAd disableBumperPage];
     [SAInterstitialAd disableMoatLimiting];
     [SAInterstitialAd setCallback:^(NSInteger placementId, SAEvent event) {
