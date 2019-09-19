@@ -56,7 +56,7 @@
     
     [SAInterstitialAd setConfigurationProduction];
     [SAInterstitialAd enableTestMode];
-    [SAInterstitialAd enableParentalGate];
+    [SAInterstitialAd disableParentalGate];
     [SAInterstitialAd disableBumperPage];
     [SAInterstitialAd disableMoatLimiting];
     [SAInterstitialAd setCallback:^(NSInteger placementId, SAEvent event) {
@@ -71,7 +71,7 @@
     [SAVideoAd setConfigurationProduction];
     [SAVideoAd enableTestMode];
     [SAVideoAd disableBumperPage];
-    [SAVideoAd enableParentalGate];
+    [SAVideoAd disableParentalGate];
     [SAVideoAd disableCloseButton];
     [SAVideoAd enableCloseAtEnd];
 //    [SAVideoAd2 disableMoatLimiting];
