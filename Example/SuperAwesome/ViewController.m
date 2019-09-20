@@ -71,7 +71,7 @@
     [SAVideoAd setConfigurationProduction];
     [SAVideoAd enableTestMode];
     [SAVideoAd disableBumperPage];
-    [SAVideoAd enableParentalGate];
+    [SAVideoAd disableParentalGate];
     [SAVideoAd disableCloseButton];
     [SAVideoAd enableCloseAtEnd];
 //    [SAVideoAd2 disableMoatLimiting];

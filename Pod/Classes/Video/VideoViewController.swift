@@ -97,8 +97,8 @@ import SAVideoPlayer
         
         // setup chrome
         chrome = AdSocialVideoPlayerControlsView(smallClick: config.showSmallClick,
-                                 showCloseButton: config.showCloseButton,
-                                 showSafeAdLogo: config.showSafeAdLogo)
+                                                 showCloseButton: config.showCloseButton,
+                                                 showSafeAdLogo: config.showSafeAdLogo)
         chrome.layoutMargins = UIEdgeInsets.zero
         chrome.setCloseAction(action: closeAction)
         chrome.setClickAction(action: clickAction)
