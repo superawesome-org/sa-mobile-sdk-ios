@@ -1,12 +1,12 @@
 PODS:
-  - mopub-ios-sdk (5.7.1):
-    - mopub-ios-sdk/MoPubSDK (= 5.7.1)
-  - mopub-ios-sdk/Avid (5.7.1):
+  - mopub-ios-sdk (5.9.0):
+    - mopub-ios-sdk/MoPubSDK (= 5.9.0)
+  - mopub-ios-sdk/Avid (5.9.0):
     - mopub-ios-sdk/Core
-  - mopub-ios-sdk/Core (5.7.1)
-  - mopub-ios-sdk/Moat (5.7.1):
+  - mopub-ios-sdk/Core (5.9.0)
+  - mopub-ios-sdk/Moat (5.9.0):
     - mopub-ios-sdk/Core
-  - mopub-ios-sdk/MoPubSDK (5.7.1):
+  - mopub-ios-sdk/MoPubSDK (5.9.0):
     - mopub-ios-sdk/Avid
     - mopub-ios-sdk/Core
     - mopub-ios-sdk/Moat
@@ -54,21 +54,21 @@ PODS:
     - SAModelSpace (= 1.0.0)
     - SANetworking (= 1.0.0)
     - SAUtils (= 1.5.5)
-  - SAVideoPlayer (2.0.0-beta6)
-  - SAWebPlayer (1.3.0):
+  - SAVideoPlayer (2.0.0-beta7)
+  - SAWebPlayer (1.4.1):
     - SANetworking (= 1.0.0)
-  - SuperAwesome/Base (7.1.0-beta6):
+  - SuperAwesome/Base (7.1.1):
     - SAAdLoader (= 1.4.2)
     - SABumperPage (= 1.0.6)
     - SAEvents (= 2.2.4)
     - SAGDPRKisMinor (= 2.0.0)
     - SAParentalGate (= 1.0.2)
-    - SAVideoPlayer (= 2.0.0-beta6)
-    - SAWebPlayer (= 1.3.0)
-  - SuperAwesome/Full (7.1.0-beta6):
+    - SAVideoPlayer (= 2.0.0-beta7)
+    - SAWebPlayer (= 1.4.1)
+  - SuperAwesome/Full (7.1.1):
     - SAEvents/Moat2
     - SuperAwesome/Base
-  - SuperAwesome/MoPub (7.1.0-beta6):
+  - SuperAwesome/MoPub (7.1.1):
     - mopub-ios-sdk
     - SuperAwesome/Base
 
@@ -100,7 +100,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  mopub-ios-sdk: b1167e8c86afaccd37d484828c4ad2c3c1656a32
+  mopub-ios-sdk: 7a5d264dc92c3e6c791bdcd476a2602f71acf331
   SAAdLoader: c888a60d899a0e82289ac497ccef54fc4c68de6d
   SAAgeGate: 49f4a27bd3afc5d740c2514e35d57c8bef7b7bd1
   SABumperPage: 59cb8525a68cc49a646a416977dbc0c963965eb7
@@ -113,10 +113,10 @@ SPEC CHECKSUMS:
   SASession: 05f174a62318b786ee36e4e34d97c2b96444d0ae
   SAUtils: 95e06baec2636bfe494d9f8a43ec4def6fb28229
   SAVASTParser: fa343296e3fd7103a5da210a7c41020a8f280a41
-  SAVideoPlayer: 42f09c98efd3aa8f8e562bb3bfe078a2069d3f03
-  SAWebPlayer: ee76faded1a79e05098cacde55b97e64a98deed2
-  SuperAwesome: a3af0f804a65d6dfb4a67019ed43b9007c160a05
+  SAVideoPlayer: 7029c334b1f366d1c1eea3ea32a5df00c9546866
+  SAWebPlayer: acdd5695e460fd1ab51730d70e81a4824483d098
+  SuperAwesome: 02f087827336e36702286b34190b70dde2a48017
 
 PODFILE CHECKSUM: 3c7f87c9c78e22bfabd0416fe23fcf331508a1a5
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.6.1

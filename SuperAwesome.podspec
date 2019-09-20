@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
   s.source = { 
 	:git => 'https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git', 
 	:branch => 'master',
-	:tag => '7.1.0' 
+	:tag => '7.1.1' 
   }
   s.default_subspec = 'Full'
 
