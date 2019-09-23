@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
 	'Gabriel Coman' => 'gabriel.coman@superawesome.tv'
   }
   s.ios.deployment_target = '10.0'
-  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.2' }
+  s.swift_versions = ['4.2', '5.0']
   s.requires_arc = true
   s.source = { 
 	:git => 'https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git', 

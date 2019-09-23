@@ -17,7 +17,7 @@
 		1BB5F58B1ED6CC3400ACD72E /* AdMobController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB5F58A1ED6CC3400ACD72E /* AdMobController.m */; };
 		1BB5F5951ED82C2800ACD72E /* MoPubController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB5F5941ED82C2800ACD72E /* MoPubController.m */; };
 		1BFE15E622A00DE600C500C0 /* empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFE15E522A00DE600C500C0 /* empty.swift */; };
-		AF72B7B797EA77C3DDE182FE /* Pods_SuperAwesome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8D228E86EE02B615C912501 /* Pods_SuperAwesome.framework */; };
+		67515A1F78F1BE5F01240115 /* Pods_SuperAwesome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA43123FD3E067BF5EE0FDA8 /* Pods_SuperAwesome.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,7 +31,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		15387CA93F5AFA68E5EB2875 /* Pods-SuperAwesome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesome.release.xcconfig"; path = "Target Support Files/Pods-SuperAwesome/Pods-SuperAwesome.release.xcconfig"; sourceTree = "<group>"; };
 		1B0D26CC1CF7186F00619C9C /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B0D26CE1CF7186F00619C9C /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		1B0D26D01CF7186F00619C9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -51,8 +50,9 @@
 		1BB5F5941ED82C2800ACD72E /* MoPubController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoPubController.m; sourceTree = "<group>"; };
 		1BFE15E422A00DE500C500C0 /* SuperAwesome-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SuperAwesome-Bridging-Header.h"; sourceTree = "<group>"; };
 		1BFE15E522A00DE600C500C0 /* empty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = empty.swift; sourceTree = "<group>"; };
-		A59B0C3257669ECF3A2F6025 /* Pods-SuperAwesome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesome.debug.xcconfig"; path = "Target Support Files/Pods-SuperAwesome/Pods-SuperAwesome.debug.xcconfig"; sourceTree = "<group>"; };
-		D8D228E86EE02B615C912501 /* Pods_SuperAwesome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SuperAwesome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F4B423236BBCED9C8A6C4AD /* Pods-SuperAwesome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesome.debug.xcconfig"; path = "Target Support Files/Pods-SuperAwesome/Pods-SuperAwesome.debug.xcconfig"; sourceTree = "<group>"; };
+		BA43123FD3E067BF5EE0FDA8 /* Pods_SuperAwesome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SuperAwesome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E556EABE4E9C293192DFBC0B /* Pods-SuperAwesome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesome.release.xcconfig"; path = "Target Support Files/Pods-SuperAwesome/Pods-SuperAwesome.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,21 +67,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF72B7B797EA77C3DDE182FE /* Pods_SuperAwesome.framework in Frameworks */,
+				67515A1F78F1BE5F01240115 /* Pods_SuperAwesome.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		02F9C44BCB2366DF541FE444 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				D8D228E86EE02B615C912501 /* Pods_SuperAwesome.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		1B0D26CD1CF7186F00619C9C /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -98,7 +90,7 @@
 				1B0D26CD1CF7186F00619C9C /* Tests */,
 				1B76D2341C91EEB1000AE8F3 /* Products */,
 				91259B494F3335F77596BCC1 /* Pods */,
-				02F9C44BCB2366DF541FE444 /* Frameworks */,
+				85BCDB40D63BAE06DE28287F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -165,11 +157,19 @@
 			name = Storyboards;
 			sourceTree = "<group>";
 		};
+		85BCDB40D63BAE06DE28287F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BA43123FD3E067BF5EE0FDA8 /* Pods_SuperAwesome.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		91259B494F3335F77596BCC1 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				A59B0C3257669ECF3A2F6025 /* Pods-SuperAwesome.debug.xcconfig */,
-				15387CA93F5AFA68E5EB2875 /* Pods-SuperAwesome.release.xcconfig */,
+				6F4B423236BBCED9C8A6C4AD /* Pods-SuperAwesome.debug.xcconfig */,
+				E556EABE4E9C293192DFBC0B /* Pods-SuperAwesome.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -199,11 +199,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1B76D24A1C91EEB1000AE8F3 /* Build configuration list for PBXNativeTarget "SuperAwesome" */;
 			buildPhases = (
-				BA0AECBC40E189A6B85349CA /* [CP] Check Pods Manifest.lock */,
+				7DFAEEB4DEEE2D81D819F62F /* [CP] Check Pods Manifest.lock */,
 				1B76D22F1C91EEB1000AE8F3 /* Sources */,
 				1B76D2301C91EEB1000AE8F3 /* Frameworks */,
 				1B76D2311C91EEB1000AE8F3 /* Resources */,
-				565C25656DE3020F6DDA1EB8 /* [CP] Embed Pods Frameworks */,
+				1047701F40A1FE95798D8367 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -276,7 +276,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		565C25656DE3020F6DDA1EB8 /* [CP] Embed Pods Frameworks */ = {
+		1047701F40A1FE95798D8367 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -324,7 +324,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SuperAwesome/Pods-SuperAwesome-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BA0AECBC40E189A6B85349CA /* [CP] Check Pods Manifest.lock */ = {
+		7DFAEEB4DEEE2D81D819F62F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -518,7 +518,7 @@
 		};
 		1B76D24B1C91EEB1000AE8F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A59B0C3257669ECF3A2F6025 /* Pods-SuperAwesome.debug.xcconfig */;
+			baseConfigurationReference = 6F4B423236BBCED9C8A6C4AD /* Pods-SuperAwesome.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -534,14 +534,14 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SuperAwesome/SuperAwesome-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		1B76D24C1C91EEB1000AE8F3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 15387CA93F5AFA68E5EB2875 /* Pods-SuperAwesome.release.xcconfig */;
+			baseConfigurationReference = E556EABE4E9C293192DFBC0B /* Pods-SuperAwesome.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -554,7 +554,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = tv.superawesome.SuperAwesome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SuperAwesome/SuperAwesome-Bridging-Header.h";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
