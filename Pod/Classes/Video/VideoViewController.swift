@@ -13,7 +13,7 @@ import SABumperPage
 import SAEvents
 import SAVideoPlayer
 
-@objc(SAVideoViewConroller) class VideoViewController: UIViewController, VideoPlayerDelegate {
+@objc(SAVideoViewController) class VideoViewController: UIViewController, VideoPlayerDelegate {
     
     ////////////////////////////////////////////////////////////////////////////
     // SubViews
@@ -57,6 +57,7 @@ import SAVideoPlayer
         return .fade
     }
     
+    @available(iOS 11.0, *)
     override var prefersHomeIndicatorAutoHidden: Bool {
         return true
     }
