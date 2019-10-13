@@ -23,22 +23,22 @@ import SAVideoPlayer
     private var closeAction: (() -> Void)?
     private var clickAction: (() -> Void)?
     
-    @objc(initWithSmallClick:andShowCloseButton:andShowSafeAdLogo:)
-    init(smallClick: Bool, showCloseButton: Bool, showSafeAdLogo: Bool) {
+    @objc(initWithSmallClick:andShowSafeAdLogo:)
+    init(smallClick: Bool, showSafeAdLogo: Bool) {
         self.smallClicker = smallClick
         self.safeLogoVisible = showSafeAdLogo
         super.init(frame: .zero)
-        initSubViews(smallClick, showCloseButton, showSafeAdLogo)
+        initSubViews(smallClick, showSafeAdLogo)
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        initSubViews(false, false, true)
+        initSubViews(false, true)
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        initSubViews(false, false, true)
+        initSubViews(false, true)
     }
     
     public override func updateConstraints() {
@@ -89,9 +89,7 @@ import SAVideoPlayer
         super.updateConstraints()
     }
     
-    private func initSubViews(_ smallClick: Bool,
-                              _ showCloseButton: Bool,
-                              _ showSafeAdLogo: Bool) {
+    private func initSubViews(_ smallClick: Bool, _ showSafeAdLogo: Bool) {
         
         blackMask = BlackMask()
         addSubview(blackMask)
@@ -106,7 +104,7 @@ import SAVideoPlayer
         clicker.addTarget(self, action: #selector(didTapOnUrl), for: .touchUpInside)
         
         closeButton = CloseButton()
-        closeButton.isHidden = !showCloseButton
+        closeButton.isHidden = true
         closeButton.addTarget(self, action: #selector(close), for: .touchUpInside)
         addSubview(closeButton)
     }

@@ -9,6 +9,13 @@
 @class SAAd;
 
 /**
+   A protocol to announc banner visibility
+ */
+@protocol SABannerAdVisibilityDelegate
+    - (void) hasBeenVisible;
+@end
+
+/**
  * Class that abstracts away the process of loading & displaying
  * an Banner type Ad.
  * A subclass of the iOS "UIView" class.
@@ -88,5 +95,7 @@
 
 - (void) enableParentalGate;
 - (void) disableParentalGate;
+
+- (void) setBannerVisibilityDelegate: (id<SABannerAdVisibilityDelegate>) delegate;
 
 @end

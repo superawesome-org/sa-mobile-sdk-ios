@@ -66,7 +66,7 @@
 #import "SAVersion.h"
 
 
-@interface SAInterstitialAd ()
+@interface SAInterstitialAd () <SABannerAdVisibilityDelegate>
 
 // views
 @property (nonatomic, strong) SABannerAd *banner;
@@ -113,6 +113,7 @@ static BOOL isMoatLimitingEnabled    = SA_DEFAULT_MOAT_LIMITING_STATE;
     
     // create close button
     _closeBtn = [[UIButton alloc] initWithFrame:CGRectZero];
+    [_closeBtn setHidden:true];
     [_closeBtn setTitle:@"" forState:UIControlStateNormal];
     [_closeBtn setImage:[SAImageUtils closeImage] forState:UIControlStateNormal];
     [_closeBtn addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
@@ -121,6 +122,7 @@ static BOOL isMoatLimitingEnabled    = SA_DEFAULT_MOAT_LIMITING_STATE;
     
     // create & play banner
     _banner = [[SABannerAd alloc] initWithFrame:CGRectZero];
+    [_banner setBannerVisibilityDelegate:self];
     [_banner setConfiguration:configuration];
     [_banner setTestMode:isTestingEnabled];
     [_banner setCallback:_callbackL];
@@ -206,7 +208,7 @@ static BOOL isMoatLimitingEnabled    = SA_DEFAULT_MOAT_LIMITING_STATE;
     
     
     NSArray *supportedOrientations = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"UISupportedInterfaceOrientations"];
-
+    
     UIInterfaceOrientationMask mask = UIInterfaceOrientationMaskAll;
     
     SAOrientation orientationL = [SAInterstitialAd getOrientation];
@@ -260,11 +262,11 @@ static BOOL isMoatLimitingEnabled    = SA_DEFAULT_MOAT_LIMITING_STATE;
 }
 
 /**
-* Overridden UIViewController "preferredStatusBarUpdateAnimation" method
-* in which I set that the view controller prefers to fade away the status bar
-*
-* @return UIStatusBarAnimationFade
-*/
+ * Overridden UIViewController "preferredStatusBarUpdateAnimation" method
+ * in which I set that the view controller prefers to fade away the status bar
+ *
+ * @return UIStatusBarAnimationFade
+ */
 - (UIStatusBarAnimation)preferredStatusBarUpdateAnimation {
     return UIStatusBarAnimationFade;
 }
@@ -285,7 +287,7 @@ static BOOL isMoatLimitingEnabled    = SA_DEFAULT_MOAT_LIMITING_STATE;
 
 /**
  * Method that resizes the ad and it's banner SABannerAd object
- * 
+ *
  * @param frame the new frame to resize to
  */
 - (void) resizeSubviews: (CGRect) frame {
@@ -297,7 +299,7 @@ static BOOL isMoatLimitingEnabled    = SA_DEFAULT_MOAT_LIMITING_STATE;
     CGRect newR = [SAUtils map:frame into:CGRectMake(tX, tY, tW, tH)];;
     newR.origin.x += tX;
     newR.origin.y += tY;
-
+    
     // invoke private banner method
     [_banner resize:newR];
     
@@ -344,7 +346,7 @@ static BOOL isMoatLimitingEnabled    = SA_DEFAULT_MOAT_LIMITING_STATE;
                                                                              constant:40.0f];
         [_closeBtn addConstraint:widthConstraint];
         [_closeBtn addConstraint:heightConstraint];
-       
+        
         _didSetUpConstraints = YES;
     }
     
@@ -384,7 +386,7 @@ static BOOL isMoatLimitingEnabled    = SA_DEFAULT_MOAT_LIMITING_STATE;
         
         // get the loader
         SALoader *loader = [[SALoader alloc] init];
-    
+        
         [loader loadAd:placementId withSession:session andResult:^(SAResponse *response) {
             
             if (response.status != 200) {
@@ -592,6 +594,9 @@ static BOOL isMoatLimitingEnabled    = SA_DEFAULT_MOAT_LIMITING_STATE;
 + (BOOL) getMoatLimitingState {
     return isMoatLimitingEnabled;
 }
-                                    
+
+- (void) hasBeenVisible {
+    [_closeBtn setHidden:false];
+}
 
 @end

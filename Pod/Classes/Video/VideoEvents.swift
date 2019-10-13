@@ -9,6 +9,10 @@ import Foundation
 import SAEvents
 import SAVideoPlayer
 
+@objc (SAVideoEventsDelegate) public protocol VideoEventsDelegate: class {
+    func hasBeenVisible()
+}
+
 @objc (SAVideoEvents) public class VideoEvents: NSObject {
 
     private var isStartHandled: Bool = false
@@ -18,6 +22,8 @@ import SAVideoPlayer
     private var isThirdQuartileHandled: Bool = false
     
     private var events: SAEvents
+    
+    public weak var delegate: VideoEventsDelegate?
     
     //////////////////////////////////////////////////////////////////////////////
     // constructor
@@ -64,6 +70,7 @@ import SAVideoPlayer
             is2SHandled = true
             if let videoPlayer = player as? UIView, events.isChild(inViewableRect: videoPlayer) == true {
                 events.triggerViewableImpressionEvent()
+                delegate?.hasBeenVisible()
             }
         }
         if (time >= duration / 4 && !isFirstQuartileHandled) {

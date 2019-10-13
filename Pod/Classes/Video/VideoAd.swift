@@ -66,7 +66,7 @@ public enum AdState {
             loader.loadAd(placementId, withSession: session) { (response: SAResponse?) in
                 
                 guard let response = response, response.status == 200 else {
-                    self.ads[placementId] = .none
+                    self.ads[placementId] = AdState.none
                     self.callback?(placementId, SAEvent.adFailedToLoad)
                     return
                 }
@@ -74,7 +74,7 @@ public enum AdState {
                 guard let ad = response.ads.firstObject as? SAAd,
                     response.isValid(),
                     ad.creative.details.media.isDownloaded else {
-                        self.ads[placementId] = .none
+                        self.ads[placementId] = AdState.none
                         self.callback?(placementId, SAEvent.adEmpty)
                         return
                 }
@@ -117,7 +117,7 @@ public enum AdState {
             adViewController.modalPresentationStyle = .fullScreen
             adViewController.modalTransitionStyle = .coverVertical
             viewController.present(adViewController, animated: true)
-            ads[placementId] = .none
+            ads[placementId] = AdState.none
             break
         default:
             callback?(placementId, SAEvent.adFailedToShow)

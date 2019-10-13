@@ -139,6 +139,8 @@
 
 @property (nonatomic, assign) long               currentClickThreshold;
 
+@property (weak) id<SABannerAdVisibilityDelegate> visibilityDelegate;
+
 @end
 
 @implementation SABannerAd
@@ -304,6 +306,9 @@
                         // only in case of success trigger event
                         if (success) {
                             [weakSelf.events triggerViewableImpressionEvent];
+                            if (weakSelf.visibilityDelegate != NULL) {
+                                [weakSelf.visibilityDelegate hasBeenVisible];
+                            }
                         }
                     }];
                     
@@ -413,6 +418,11 @@
 }
 
 - (void) close {
+    // de-init delegate
+    if (_visibilityDelegate != NULL) {
+        _visibilityDelegate = NULL;
+    }
+    
     // callback
     if (_callback != NULL) {
         _callback (_ad.placementId, adClosed);
@@ -617,6 +627,10 @@
 
 - (void) disableMoatLimiting {
     _moatLimiting = false;
+}
+
+- (void) setBannerVisibilityDelegate:(id<SABannerAdVisibilityDelegate>)delegate {
+    self.visibilityDelegate = delegate;
 }
 
 @end

@@ -41,7 +41,7 @@
     [SABumperPage overrideLogo:[UIImage imageNamed:@"kws_700"]];
     
     [_bannerAd setConfigurationProduction];
-    [_bannerAd disableTestMode];
+    [_bannerAd enableTestMode];
     [_bannerAd disableMoatLimiting];
     [_bannerAd disableBumperPage];
     [_bannerAd disableParentalGate];
@@ -72,9 +72,9 @@
     [SAVideoAd enableTestMode];
     [SAVideoAd disableBumperPage];
     [SAVideoAd disableParentalGate];
-    [SAVideoAd disableCloseButton];
+    [SAVideoAd enableCloseButton];
     [SAVideoAd enableCloseAtEnd];
-//    [SAVideoAd2 disableMoatLimiting];
+//    [SAVideoAd disableMoatLimiting];
     [SAVideoAd setCallback:^(NSInteger placementId, SAEvent event) {
 
         NSLog(@"SUPER-AWESOME: Video Ad %ld - Event %ld", (long)placementId, (long)event);
@@ -88,34 +88,24 @@
                @{
                    @"name": @"Banners",
                    @"items": @[
-                           @{@"name": @"Moat Banner",
-                             @"pid": @(37188)},
-//                           @{@"name": @"Banner",
-//                             @"pid": @(37217)},
+                           @{@"name": @"Image Banner", @"pid": @(36508)},
+                           @{@"name": @"Rich Media Banner", @"pid": @(36508)},
+                           @{@"name": @"3rd Party Tag Banner", @"pid": @(36508)},
                            ]
                    },
                @{
                    @"name": @"Interstitials",
                    @"items": @[
-                           @{@"name": @"CPM Interstitial 1 (Rich Media)",
-                             @"pid": @(37190)},
-                           @{@"name": @"CPM Interstitial 2 (3rd Party Tag)",
-                             @"pid": @(40676)},
-//                           @{@"name": @"Image #1",
-//                             @"pid": @(37218)},
-//                           @{@"name": @"Rich Media #1",
-//                             @"pid": @(37219)},
-//                           @{@"name": @"Rich Media #2",
-//                             @"pid": @(37220)},
-//                           @{@"name": @"Rich Media #3",
-//                             @"pid": @(37221)}
+                           @{@"name": @"Image Interstitial", @"pid": @(36510)},
+                           @{@"name": @"Rich Media Interstitial", @"pid": @(36510)},
+                           @{@"name": @"3rd Party Tag Interstitial", @"pid": @(36510)}
                            ]
                    },
                @{
                    @"name": @"Videos",
                    @"items": @[
-                           @{@"name": @"Test video",
-                             @"pid": @(40509)}
+                           @{@"name": @"Direct video", @"pid": @(39521)},
+                           @{@"name": @"Programmatic video", @"pid": @(39521)}
                            ]
                    }
                ] mutableCopy];

@@ -13,7 +13,7 @@ import SABumperPage
 import SAEvents
 import SAVideoPlayer
 
-@objc(SAVideoViewController) class VideoViewController: UIViewController, VideoPlayerDelegate {
+@objc(SAVideoViewController) class VideoViewController: UIViewController, VideoPlayerDelegate, VideoEventsDelegate {
     
     ////////////////////////////////////////////////////////////////////////////
     // SubViews
@@ -75,6 +75,7 @@ import SAVideoPlayer
                                  isParentalGateEnabled: config.isParentalGateEnabled,
                                  isBumperPageEnabled: config.isBumperPageEnabled)
         super.init(nibName: nil, bundle: nil)
+        videoEvents.delegate = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -97,9 +98,7 @@ import SAVideoPlayer
         LayoutUtils.bind(view: videoPlayer, toTheEdgesOf: view)
         
         // setup chrome
-        chrome = AdSocialVideoPlayerControlsView(smallClick: config.showSmallClick,
-                                                 showCloseButton: config.showCloseButton,
-                                                 showSafeAdLogo: config.showSafeAdLogo)
+        chrome = AdSocialVideoPlayerControlsView(smallClick: config.showSmallClick, showSafeAdLogo: config.showSafeAdLogo)
         chrome.layoutMargins = UIEdgeInsets.zero
         chrome.setCloseAction(action: closeAction)
         chrome.setClickAction(action: clickAction)
@@ -172,6 +171,12 @@ import SAVideoPlayer
         videoEvents.error(player: videoPlayer, time: time, duration: duration)
         callback?(ad.placementId, SAEvent.adFailedToShow)
         closeAction()
+    }
+    
+    func hasBeenVisible() {
+        if config.showCloseButton {
+            chrome.makeCloseButtonVisible()
+        }
     }
     
     ////////////////////////////////////////////////////////////////////////////

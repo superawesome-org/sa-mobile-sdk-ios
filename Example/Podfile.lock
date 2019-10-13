@@ -57,7 +57,7 @@ PODS:
   - SAVideoPlayer (2.0.0-beta7)
   - SAWebPlayer (1.4.1):
     - SANetworking (= 1.0.0)
-  - SuperAwesome/Base (7.1.1):
+  - SuperAwesome/Base (7.1.2):
     - SAAdLoader (= 1.4.2)
     - SABumperPage (= 1.0.6)
     - SAEvents (= 2.2.4)
@@ -65,10 +65,10 @@ PODS:
     - SAParentalGate (= 1.0.2)
     - SAVideoPlayer (= 2.0.0-beta7)
     - SAWebPlayer (= 1.4.1)
-  - SuperAwesome/Full (7.1.1):
+  - SuperAwesome/Full (7.1.2):
     - SAEvents/Moat2
     - SuperAwesome/Base
-  - SuperAwesome/MoPub (7.1.1):
+  - SuperAwesome/MoPub (7.1.2):
     - mopub-ios-sdk
     - SuperAwesome/Base
 
@@ -115,7 +115,7 @@ SPEC CHECKSUMS:
   SAVASTParser: fa343296e3fd7103a5da210a7c41020a8f280a41
   SAVideoPlayer: 7029c334b1f366d1c1eea3ea32a5df00c9546866
   SAWebPlayer: acdd5695e460fd1ab51730d70e81a4824483d098
-  SuperAwesome: a5fae1cf7a18bdcf2fbf74789d9bc3f74ddcee26
+  SuperAwesome: 3c0c208acc2436d586cfaa1e713305d05b4494ac
 
 PODFILE CHECKSUM: 587e277dea71407d55436e5c954131fd61948e6b
 
