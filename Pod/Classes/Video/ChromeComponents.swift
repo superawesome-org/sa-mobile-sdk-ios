@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SAUtils
 
 extension CAGradientLayer {
     static func darkGradient() -> CAGradientLayer {

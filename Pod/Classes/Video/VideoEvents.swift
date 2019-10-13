@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SAEvents
 import SAVideoPlayer
 
 @objc (SAVideoEventsDelegate) public protocol VideoEventsDelegate: class {

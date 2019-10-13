@@ -4,10 +4,24 @@ use_modular_headers!
 
 target 'SuperAwesome' do
   pod 'SuperAwesome/Full', :path => '../'
-   pod 'SuperAwesome/MoPub', :path => '../'
+  pod 'SuperAwesome/MoPub', :path => '../'
 #    pod 'SuperAwesome/Unity', :path => '../'
 #  pod 'SuperAwesome/AIR', :path => '../'
 #  pod 'SuperAwesome/AdMob', :path => '../'
-  pod 'SAAgeGate'
+  # pod 'SAAgeGate'
 
+  target 'Tests' do
+    inherit! :search_paths
+    pod 'OHHTTPStubs'
+    # pod 'Nimble'
+    # pod 'Mockingjay'
+  end
+
+  post_install do |installer|
+      installer.pods_project.targets.each do |target|
+          target.build_configurations.each do |config|
+              config.build_settings['SWIFT_VERSION'] = '4.2'
+          end
+      end
+  end
 end

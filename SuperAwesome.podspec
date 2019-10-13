@@ -7,59 +7,60 @@ Pod::Spec.new do |s|
                    DESC
   s.homepage = 'https://doc.superawesome.tv/sa-mobile-sdk-ios/latest/'
   s.documentation_url = 'https://doc.superawesome.tv/sa-mobile-sdk-ios/latest/'
-  s.license = { 
-	:type => 'GNU GENERAL PUBLIC LICENSE Version 3', 
-	:file => 'LICENSE' 
+  s.license = {
+  	:type => 'GNU GENERAL PUBLIC LICENSE Version 3',
+  	:file => 'LICENSE'
   }
-  s.author = { 
-	'Gabriel Coman' => 'gabriel.coman@superawesome.tv'
+  s.author = {
+	   'Gabriel Coman' => 'gabriel.coman@superawesome.tv'
   }
   s.ios.deployment_target = '10.0'
   s.swift_versions = ['4.2', '5.0']
   s.requires_arc = true
-  s.source = { 
-	:git => 'https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git', 
-	:branch => 'master',
-	:tag => '7.1.2' 
+  s.source = {
+  	:git => 'https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git',
+  	:branch => 'master',
+  	:tag => '7.1.2'
   }
   s.default_subspec = 'Full'
 
-  s.subspec 'Base' do |b|
+  s.subspec 'Full' do |b|
     b.source_files = 'Pod/Classes/**/*'
     b.frameworks = 'AdSupport'
     b.dependency 'SAVideoPlayer', '2.0.0-beta7'
-    b.dependency 'SAWebPlayer', '1.4.1'
-    b.dependency 'SAEvents', '2.2.4'
-    b.dependency 'SAAdLoader', '1.4.2'
-    b.dependency 'SABumperPage', '1.0.6'
-    b.dependency 'SAParentalGate', '1.0.2'
-    b.dependency 'SAGDPRKisMinor', '2.0.0'
+    b.vendored_frameworks = 'Pod/Libraries/SUPMoatMobileAppKit.framework'
+    # b.dependency 'SAWebPlayer', '1.4.1'
+    # b.dependency 'SAEvents', '2.2.4'
+    # b.dependency 'SAAdLoader', '1.4.2'
+    # b.dependency 'SABumperPage', '1.0.6'
+    # b.dependency 'SAParentalGate', '1.0.2'
+    # b.dependency 'SAGDPRKisMinor', '2.0.0'
   end
 
-  s.subspec 'Full' do |f|
-    f.dependency 'SuperAwesome/Base'
-    f.dependency 'SAEvents/Moat2'
-  end
-  
+  # s.subspec 'Full' do |f|
+  #   f.dependency 'SuperAwesome/Base'
+  #   f.dependency 'SAEvents/Moat2'
+  # end
+
 #  s.subspec 'AIR' do |a|
 #    a.dependency 'SuperAwesome/Base'
 #    a.source_files = 'Pod/Plugin/AIR/*'
 #  end
 
   s.subspec 'MoPub' do |m|
-    m.dependency 'SuperAwesome/Base'
+    m.dependency 'SuperAwesome/Full'
     m.dependency 'mopub-ios-sdk'
     m.source_files = 'Pod/Plugin/MoPub/*'
   end
 
 #  s.subspec 'AdMob' do |am|
-#    am.dependency 'SuperAwesome/Base'
+#    am.dependency 'SuperAwesome/Full'
 #    am.dependency 'Google-Mobile-Ads-SDK', '7.28.0'
 #    am.source_files = 'Pod/Plugin/AdMob/*'
 #  end
 
   s.subspec 'Unity' do |u|
-    u.dependency 'SuperAwesome/Base'
+    u.dependency 'SuperAwesome/Full'
     u.source_files = 'Pod/Plugin/Unity/*'
   end
 end
