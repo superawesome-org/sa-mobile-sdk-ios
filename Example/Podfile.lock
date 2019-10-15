@@ -23,9 +23,7 @@ PODS:
   - OHHTTPStubs/NSURLSession (8.0.0):
     - OHHTTPStubs/Core
   - OHHTTPStubs/OHPathHelpers (8.0.0)
-  - SAVideoPlayer (2.0.0-beta7)
-  - SuperAwesome/Full (7.1.2):
-    - SAVideoPlayer (= 2.0.0-beta7)
+  - SuperAwesome/Full (7.1.2)
   - SuperAwesome/MoPub (7.1.2):
     - mopub-ios-sdk
     - SuperAwesome/Full
@@ -39,7 +37,6 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - mopub-ios-sdk
     - OHHTTPStubs
-    - SAVideoPlayer
 
 EXTERNAL SOURCES:
   SuperAwesome:
@@ -48,8 +45,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   mopub-ios-sdk: 7a5d264dc92c3e6c791bdcd476a2602f71acf331
   OHHTTPStubs: 9cbce6364bec557cc3439aa6bb7514670d780881
-  SAVideoPlayer: 7029c334b1f366d1c1eea3ea32a5df00c9546866
-  SuperAwesome: 3c5c1785b62e4c617549f6f983b219439dd24f33
+  SuperAwesome: a27cdf8a9675013f22d52074c3e0b1cc82746809
 
 PODFILE CHECKSUM: 61fa12c4465d98e8c0cd548b82832a72472156b2
 
