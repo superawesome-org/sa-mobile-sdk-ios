@@ -104,7 +104,7 @@
                @{
                    @"name": @"Videos",
                    @"items": @[
-                           @{@"name": @"Direct video", @"pid": @(39521)},
+                           @{@"name": @"Direct video", @"pid": @(30479)},
                            @{@"name": @"Programmatic video", @"pid": @(39521)}
                            ]
                    }

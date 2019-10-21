@@ -7,10 +7,36 @@
 
 import UIKit
 
-public enum AdState {
-    case none
-    case loading
-    case hasAd(ad: SAAd)
+@objc(SAAdLoading) public enum AdLoading: Int {
+    case none = 0
+    case loading = 1
+    case loaded = 2
+}
+
+@objc(SAAdState) public class AdState: NSObject {
+    let loadState: AdLoading
+    let ad: SAAd?
+    
+    @objc(initWithLoadingState:andAd:)
+    init(loading: AdLoading, ad: SAAd?) {
+        self.loadState = loading
+        self.ad = ad
+    }
+    
+    @objc(none)
+    static func none() -> AdState {
+        return AdState(loading: .none, ad: nil)
+    }
+    
+    @objc(loading)
+    static func loading() -> AdState {
+        return AdState(loading: .loading, ad: nil)
+    }
+    
+    @objc(loadedWithAd:)
+    static func loaded(ad: SAAd) -> AdState {
+        return AdState(loading: .loaded, ad: ad)
+    }
 }
 
 @objc(SAVideoAd) public class VideoAd: NSObject {
@@ -39,11 +65,20 @@ public enum AdState {
     
     @objc(load:)
     public static func load(withPlacementId placementId: Int) {
-        let adState = ads[placementId] ?? .none
+        // add this here
+        if ads[placementId] == nil {
+            ads[placementId] = AdState.none()
+        }
         
-        switch adState {
+        // get adState, if it exists
+        guard let adState = ads[placementId] else {
+            return
+        }
+        
+        // then continue
+        switch adState.loadState {
         case .none:
-            ads[placementId] = .loading
+            ads[placementId] = AdState.loading()
             
             let session = SASession()
             session.setTestMode(isTestingEnabled)
@@ -62,7 +97,7 @@ public enum AdState {
             loader.loadAd(placementId, withSession: session) { (response: SAResponse?) in
                 
                 guard let response = response, response.status == 200 else {
-                    self.ads[placementId] = AdState.none
+                    self.ads[placementId] = AdState.none()
                     self.callback?(placementId, SAEvent.adFailedToLoad)
                     return
                 }
@@ -70,7 +105,7 @@ public enum AdState {
                 guard let ad = response.ads.firstObject as? SAAd,
                     response.isValid(),
                     ad.creative.details.media.isDownloaded else {
-                        self.ads[placementId] = AdState.none
+                        self.ads[placementId] = AdState.none()
                         self.callback?(placementId, SAEvent.adEmpty)
                         return
                 }
@@ -82,23 +117,26 @@ public enum AdState {
                 }
                 
                 // reset video events
-                self.ads[placementId] = .hasAd(ad: ad)
+                self.ads[placementId] = AdState.loaded(ad: ad)
                 self.callback?(placementId, SAEvent.adLoaded)
             }
-            
-        case .loading:
-            break
-        case .hasAd:
+        case .loaded:
             callback?(placementId, SAEvent.adAlreadyLoaded)
+        default:
+            break
         }
     }
     
     @objc(play:fromVC:)
     public static func play(withPlacementId placementId: Int, fromVc viewController: UIViewController) {
-        let adState = ads[placementId] ?? .none
+        guard let adState = ads[placementId] else {
+            callback?(placementId, SAEvent.adEmpty)
+            return
+        }
         
-        switch adState {
-        case .hasAd(let ad):
+        switch adState.loadState {
+        case .loaded:
+            let ad = adState.ad!
             let config = VideoViewController.Config(showSmallClick: shouldShowSmallClickButton,
                                                     showSafeAdLogo: ad.isSafeAdApproved,
                                                     showCloseButton: shouldShowCloseButton,
@@ -113,7 +151,7 @@ public enum AdState {
             adViewController.modalPresentationStyle = .fullScreen
             adViewController.modalTransitionStyle = .coverVertical
             viewController.present(adViewController, animated: true)
-            ads[placementId] = AdState.none
+            ads[placementId] = AdState.none()
             break
         default:
             callback?(placementId, SAEvent.adFailedToShow)
@@ -123,20 +161,15 @@ public enum AdState {
     
     @objc(hasAdAvailable:)
     public static func hasAdAvailable(placementId: Int) -> Bool {
-        let adState = ads[placementId] ?? .none
-        switch adState {
-        case .hasAd: return true
-        default: return false
+        if let adState = ads[placementId], let _ = adState.ad {
+            return true
         }
+        return false
     }
     
     @objc(getAd:)
     public static func getAd(placementId: Int) -> SAAd? {
-        let adState = ads[placementId] ?? .none
-        switch adState {
-        case .hasAd(let ad): return ad
-        default: return nil
-        }
+        return ads[placementId]?.ad
     }
     
     ////////////////////////////////////////////////////////////////////////////
