@@ -59,8 +59,8 @@ Pod::Spec.new do |s|
 #    am.source_files = 'Pod/Plugin/AdMob/*'
 #  end
 
-  s.subspec 'Unity' do |u|
-    u.dependency 'SuperAwesome/Full'
-    u.source_files = 'Pod/Plugin/Unity/*'
-  end
+ # s.subspec 'Unity' do |u|
+ #   u.dependency 'SuperAwesome/Full'
+ #   u.source_files = 'Pod/Plugin/Unity/*'
+ # end
 end
