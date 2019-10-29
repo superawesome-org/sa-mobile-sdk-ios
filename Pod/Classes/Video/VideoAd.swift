@@ -99,7 +99,7 @@ public enum AdState {
         switch adState {
         case .hasAd(let ad):
             let config = VideoViewController.Config(showSmallClick: shouldShowSmallClickButton,
-                                                    showSafeAdLogo: ad.isSafeAdApproved,
+                                                    showSafeAdLogo: ad.isPadlockVisible,
                                                     showCloseButton: shouldShowCloseButton,
                                                     shouldCloseAtEnd: shouldAutomaticallyCloseAtEnd,
                                                     isParentalGateEnabled: isParentalGateEnabled,

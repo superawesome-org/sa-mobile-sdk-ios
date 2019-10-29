@@ -43,8 +43,8 @@
     [_bannerAd setConfigurationProduction];
     [_bannerAd enableTestMode];
     [_bannerAd disableMoatLimiting];
-    [_bannerAd disableBumperPage];
-    [_bannerAd disableParentalGate];
+    [_bannerAd enableBumperPage];
+    [_bannerAd enableParentalGate];
     [_bannerAd setCallback:^(NSInteger placementId, SAEvent event) {
         
         NSLog(@"SUPER-AWESOME: Banner Ad %ld - Event %ld", (long)placementId, (long)event);
@@ -56,8 +56,8 @@
     
     [SAInterstitialAd setConfigurationProduction];
     [SAInterstitialAd enableTestMode];
-    [SAInterstitialAd disableParentalGate];
-    [SAInterstitialAd disableBumperPage];
+    [SAInterstitialAd enableParentalGate];
+    [SAInterstitialAd enableBumperPage];
     [SAInterstitialAd disableMoatLimiting];
     [SAInterstitialAd setCallback:^(NSInteger placementId, SAEvent event) {
         
@@ -70,8 +70,8 @@
     
     [SAVideoAd setConfigurationProduction];
     [SAVideoAd enableTestMode];
-    [SAVideoAd disableBumperPage];
-    [SAVideoAd disableParentalGate];
+    [SAVideoAd enableBumperPage];
+    [SAVideoAd enableParentalGate];
     [SAVideoAd enableCloseButton];
     [SAVideoAd enableCloseAtEnd];
 //    [SAVideoAd disableMoatLimiting];
