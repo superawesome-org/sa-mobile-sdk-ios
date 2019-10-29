@@ -7,14 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SAUnityCallback.h"
-
-#if defined(__has_include)
-#if __has_include(<SuperAwesomeSDK/AwesomeAds.h>)
-#import <SuperAwesomeSDK/AwesomeAds.h>
-#else
 #import "AwesomeAds.h"
-#endif
-#endif
 
 extern "C" {
     

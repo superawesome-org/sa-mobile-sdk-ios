@@ -27,11 +27,14 @@ PODS:
   - SuperAwesome/MoPub (7.1.2):
     - mopub-ios-sdk
     - SuperAwesome/Full
+  - SuperAwesome/Unity (7.1.2):
+    - SuperAwesome/Full
 
 DEPENDENCIES:
   - OHHTTPStubs
   - SuperAwesome/Full (from `../`)
   - SuperAwesome/MoPub (from `../`)
+  - SuperAwesome/Unity (from `../`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -47,6 +50,6 @@ SPEC CHECKSUMS:
   OHHTTPStubs: 9cbce6364bec557cc3439aa6bb7514670d780881
   SuperAwesome: a27cdf8a9675013f22d52074c3e0b1cc82746809
 
-PODFILE CHECKSUM: 61fa12c4465d98e8c0cd548b82832a72472156b2
+PODFILE CHECKSUM: 4887de6485bae333e921847ef124f9bcd8748182
 
 COCOAPODS: 1.7.5

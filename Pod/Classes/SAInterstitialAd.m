@@ -133,6 +133,9 @@ static BOOL isMoatLimitingEnabled    = SA_DEFAULT_MOAT_LIMITING_STATE;
     }
     [_banner setAd:_ad];
     [self.view addSubview:_banner];
+    
+    /// call this here for Unity
+    [self updateViewConstraints];
 }
 
 /**

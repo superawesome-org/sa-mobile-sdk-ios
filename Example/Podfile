@@ -5,7 +5,7 @@ use_modular_headers!
 target 'SuperAwesome' do
   pod 'SuperAwesome/Full', :path => '../'
   pod 'SuperAwesome/MoPub', :path => '../'
-#    pod 'SuperAwesome/Unity', :path => '../'
+  pod 'SuperAwesome/Unity', :path => '../'
 #  pod 'SuperAwesome/AIR', :path => '../'
 #  pod 'SuperAwesome/AdMob', :path => '../'
   # pod 'SAAgeGate'

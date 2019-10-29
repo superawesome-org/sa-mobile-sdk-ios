@@ -5,36 +5,15 @@
 
 #import <UIKit/UIKit.h>
 #import "SAUnityCallback.h"
-
-#if defined(__has_include)
-#if __has_include("SuperAwesomeSDKUnity.h")
-#import "SuperAwesomeSDKUnity.h"
-#else
 #import "AwesomeAds.h"
-#endif
-#endif
-
-#if defined(__has_include)
-#if __has_include(<SASession/SASession.h>)
-#import <SASession/SASession.h>
-#else
 #import "SASession.h"
-#endif
-#endif
+#import "SuperAwesome.h"
 
 #if defined(__has_include)
 #if __has_include(<SuperAwesome/SuperAwesome-Swift.h>)
 #import <SuperAwesome/SuperAwesome-Swift.h>
 #else
 #import "SuperAwesome-Swift.h"
-#endif
-#endif
-
-#if defined(__has_include)
-#if __has_include("SuperAwesome.h")
-#import "SuperAwesome.h"
-#else
-#import "SuperAwesome.h"
 #endif
 #endif
 

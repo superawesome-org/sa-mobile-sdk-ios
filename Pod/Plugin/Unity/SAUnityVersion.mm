@@ -5,14 +5,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SAUnityCallback.h"
-
-#if defined(__has_include)
-#if __has_include(<SuperAwesomeSDK/SAVersion.h>)
-#import <SuperAwesomeSDK/SAVersion.h>
-#else
 #import "SAVersion.h"
-#endif
-#endif
 
 extern "C" {
     
