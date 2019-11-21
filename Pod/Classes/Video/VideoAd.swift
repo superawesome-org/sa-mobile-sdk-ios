@@ -288,4 +288,13 @@ public enum AdState {
     public static func getEvents() -> SAEvents {
         return events
     }
+    
+    @objc(disableMoatLimiting)
+    public static func disableMoatLimiting() {
+        VideoAd.isMoatLimitingEnabled = false
+    }
+    
+    public static func setAd(ad: SAAd, forPlacementId: Int) {
+        ads[forPlacementId] = AdState.hasAd(ad: ad)
+    }
 }

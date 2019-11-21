@@ -41,7 +41,7 @@
     [SABumperPage overrideLogo:[UIImage imageNamed:@"kws_700"]];
     
     [_bannerAd setConfigurationProduction];
-    [_bannerAd enableTestMode];
+    [_bannerAd disableTestMode];
     [_bannerAd disableMoatLimiting];
     [_bannerAd enableBumperPage];
     [_bannerAd enableParentalGate];
@@ -55,7 +55,7 @@
     }];
     
     [SAInterstitialAd setConfigurationProduction];
-    [SAInterstitialAd enableTestMode];
+    [SAInterstitialAd disableTestMode];
     [SAInterstitialAd enableParentalGate];
     [SAInterstitialAd enableBumperPage];
     [SAInterstitialAd disableMoatLimiting];
@@ -74,7 +74,7 @@
     [SAVideoAd enableParentalGate];
     [SAVideoAd enableCloseButton];
     [SAVideoAd enableCloseAtEnd];
-//    [SAVideoAd disableMoatLimiting];
+    [SAVideoAd disableMoatLimiting];
     [SAVideoAd setCallback:^(NSInteger placementId, SAEvent event) {
 
         NSLog(@"SUPER-AWESOME: Video Ad %ld - Event %ld", (long)placementId, (long)event);
@@ -91,6 +91,7 @@
                            @{@"name": @"Image Banner", @"pid": @(36508)},
                            @{@"name": @"Rich Media Banner", @"pid": @(36508)},
                            @{@"name": @"3rd Party Tag Banner", @"pid": @(36508)},
+                           @{@"name": @"Kellogs", @"pid": @(42928)},
                            ]
                    },
                @{
@@ -98,13 +99,14 @@
                    @"items": @[
                            @{@"name": @"Image Interstitial", @"pid": @(36510)},
                            @{@"name": @"Rich Media Interstitial", @"pid": @(36510)},
-                           @{@"name": @"3rd Party Tag Interstitial", @"pid": @(36510)}
+                           @{@"name": @"3rd Party Tag Interstitial", @"pid": @(36510)},
+                           @{@"name": @"Kellogs", @"pid": @(41602)}
                            ]
                    },
                @{
                    @"name": @"Videos",
                    @"items": @[
-                           @{@"name": @"Direct video", @"pid": @(30479)},
+                           @{@"name": @"Direct video", @"pid": @(28000)},
                            @{@"name": @"Programmatic video", @"pid": @(39521)}
                            ]
                    }
