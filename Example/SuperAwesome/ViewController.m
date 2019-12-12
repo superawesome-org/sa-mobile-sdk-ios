@@ -69,7 +69,7 @@
     }];
     
     [SAVideoAd setConfigurationProduction];
-    [SAVideoAd enableTestMode];
+    [SAVideoAd disableTestMode];
     [SAVideoAd enableBumperPage];
     [SAVideoAd enableParentalGate];
     [SAVideoAd enableCloseButton];
@@ -88,6 +88,7 @@
                @{
                    @"name": @"Banners",
                    @"items": @[
+                           @{@"name": @"Abc", @"pid": @(30471)},
                            @{@"name": @"Image Banner", @"pid": @(36508)},
                            @{@"name": @"Rich Media Banner", @"pid": @(36508)},
                            @{@"name": @"3rd Party Tag Banner", @"pid": @(36508)},
@@ -107,7 +108,8 @@
                    @"name": @"Videos",
                    @"items": @[
                            @{@"name": @"Direct video", @"pid": @(28000)},
-                           @{@"name": @"Programmatic video", @"pid": @(39521)}
+                           @{@"name": @"Programmatic video", @"pid": @(39521)},
+                           @{@"name": @"Programmatic video", @"pid": @(34394)}
                            ]
                    }
                ] mutableCopy];

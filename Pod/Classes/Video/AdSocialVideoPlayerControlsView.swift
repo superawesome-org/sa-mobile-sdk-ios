@@ -77,8 +77,8 @@ import UIKit
                 padlock.translatesAutoresizingMaskIntoConstraints = false
                 padlock.topAnchor.constraint(equalTo: self.topAnchor, constant: 0.0).isActive = true
                 padlock.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0.0).isActive = true
-                padlock.widthAnchor.constraint(equalToConstant: 67.0).isActive = true
-                padlock.heightAnchor.constraint(equalToConstant: 25.0).isActive = true
+                padlock.widthAnchor.constraint(equalToConstant: 77.0).isActive = true
+                padlock.heightAnchor.constraint(equalToConstant: 31.0).isActive = true
             }
             
             LayoutUtils.bind(view: closeButton, toTopRightOf: self)

@@ -531,7 +531,7 @@
     CGFloat x = (toframe.size.width - _ad.creative.details.width * scaleX) / 2;
     CGFloat y = (toframe.size.height - _ad.creative.details.height * scaleY) / 2;
     
-    _padlock.frame = CGRectMake(x, y, 67, 25);
+    _padlock.frame = CGRectMake(x, y, 77, 31);
     [self bringSubviewToFront:_padlock];
 }
 
