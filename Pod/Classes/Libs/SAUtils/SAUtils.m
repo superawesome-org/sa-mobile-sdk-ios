@@ -8,6 +8,7 @@
 #import <SystemConfiguration/SystemConfiguration.h>
 #import <sys/socket.h>
 #import <netinet/in.h>
+#import <WebKit/WebKit.h>
 
 @implementation SAUtils
 

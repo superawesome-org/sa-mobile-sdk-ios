@@ -6,7 +6,7 @@
 //
 
 import UIKit
-//import SAVideoPlayer
+import SAVideoPlayer
 
 @objc(SAVideoViewController) class VideoViewController: UIViewController, VideoPlayerDelegate, VideoEventsDelegate {
     
