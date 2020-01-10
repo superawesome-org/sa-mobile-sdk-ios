@@ -53,11 +53,20 @@ import UIKit
     }
     
     private func showSuperAwesomeSiteInSafari() {
-        SABumperPage.setCallback {
-            guard let url = URL(string: VideoClick.PADLOCK_URL) else { return }
+        
+        let bumperCallback: sabumpercallback = {
+            guard let url = URL(string: VideoClick.PADLOCK_URL) else {
+                return
+            }
             UIApplication.shared.open(url, options: [:])
         }
-        SABumperPage.play()
+        
+        if isBumperPageEnabled {
+            SABumperPage.setCallback(bumperCallback)
+            SABumperPage.play()
+        } else {
+            bumperCallback()
+        }
     }
     
     public func handleAdTap() {
