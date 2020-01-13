@@ -55,7 +55,7 @@
     }];
     
     [SAInterstitialAd setConfigurationProduction];
-    [SAInterstitialAd disableTestMode];
+    [SAInterstitialAd enableTestMode];
     [SAInterstitialAd enableParentalGate];
     [SAInterstitialAd enableBumperPage];
     [SAInterstitialAd disableMoatLimiting];
@@ -92,7 +92,7 @@
                            @{@"name": @"Image Banner", @"pid": @(36508)},
                            @{@"name": @"Rich Media Banner", @"pid": @(36508)},
                            @{@"name": @"3rd Party Tag Banner", @"pid": @(36508)},
-                           @{@"name": @"Kellogs", @"pid": @(42928)},
+                           @{@"name": @"Kellogs", @"pid": @(43301)},
                            ]
                    },
                @{
@@ -101,7 +101,8 @@
                            @{@"name": @"Image Interstitial", @"pid": @(36510)},
                            @{@"name": @"Rich Media Interstitial", @"pid": @(36510)},
                            @{@"name": @"3rd Party Tag Interstitial", @"pid": @(36510)},
-                           @{@"name": @"Kellogs", @"pid": @(41602)}
+                           @{@"name": @"Kellogs", @"pid": @(41602)},
+                           @{@"name": @"Test", @"pid": @(30473)}
                            ]
                    },
                @{

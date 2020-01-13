@@ -540,17 +540,23 @@
  */
 - (void) padlockAction {
     __weak typeof (self) weakSelf = self;
-    [self showParentalGateIfNeededWithCompletion: ^{ [weakSelf showSuperAwesomeWebPaeInSafari]; }];
+    [self showParentalGateIfNeededWithCompletion: ^{ [weakSelf showSuperAwesomeWebPageInSafari]; }];
 }
 
-- (void) showSuperAwesomeWebPaeInSafari
+- (void) showSuperAwesomeWebPageInSafari
 {
-    [SABumperPage setCallback:^{
+    sabumpercallback bumperCallback = ^{
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://ads.superawesome.tv/v2/safead"]
                                            options:[[NSDictionary alloc] init]
                                  completionHandler:nil];
-    }];
-    [SABumperPage play];
+    };
+    
+    if (_isBumperPageEnabled) {
+        [SABumperPage setCallback:bumperCallback];
+        [SABumperPage play];
+    } else {
+        bumperCallback();
+    }
 }
 
 - (BOOL) isClosed {
