@@ -40,7 +40,7 @@
     [SABumperPage overrideName:@"Test app"];
     [SABumperPage overrideLogo:[UIImage imageNamed:@"kws_700"]];
     
-    [_bannerAd setConfigurationProduction];
+    [_bannerAd setConfigurationStaging];
     [_bannerAd disableTestMode];
     [_bannerAd disableMoatLimiting];
     [_bannerAd enableBumperPage];
@@ -54,8 +54,8 @@
         }
     }];
     
-    [SAInterstitialAd setConfigurationProduction];
-    [SAInterstitialAd enableTestMode];
+    [SAInterstitialAd setConfigurationStaging];
+    [SAInterstitialAd disableTestMode];
     [SAInterstitialAd enableParentalGate];
     [SAInterstitialAd enableBumperPage];
     [SAInterstitialAd disableMoatLimiting];
@@ -88,29 +88,21 @@
                @{
                    @"name": @"Banners",
                    @"items": @[
-                           @{@"name": @"Abc", @"pid": @(30471)},
-                           @{@"name": @"Image Banner", @"pid": @(36508)},
-                           @{@"name": @"Rich Media Banner", @"pid": @(36508)},
-                           @{@"name": @"3rd Party Tag Banner", @"pid": @(36508)},
-                           @{@"name": @"Kellogs", @"pid": @(43301)},
+                           @{@"name": @"Banner Image", @"pid": @(5391)}
                            ]
                    },
                @{
                    @"name": @"Interstitials",
                    @"items": @[
-                           @{@"name": @"Image Interstitial", @"pid": @(36510)},
-                           @{@"name": @"Rich Media Interstitial", @"pid": @(36510)},
-                           @{@"name": @"3rd Party Tag Interstitial", @"pid": @(36510)},
-                           @{@"name": @"Kellogs", @"pid": @(41602)},
-                           @{@"name": @"Test", @"pid": @(30473)}
+                           @{@"name": @"Rich Media Interstitial", @"pid": @(5392)},
+                           @{@"name": @"3rd Party Tag Interstitial", @"pid": @(5393)},
+                           @{@"name": @"KSF Interstitial", @"pid": @(5387)}
                            ]
                    },
                @{
                    @"name": @"Videos",
                    @"items": @[
-                           @{@"name": @"Direct video", @"pid": @(28000)},
-                           @{@"name": @"Programmatic video", @"pid": @(39521)},
-                           @{@"name": @"Programmatic video", @"pid": @(34394)}
+                           @{@"name": @"Direct video", @"pid": @(34394)}
                            ]
                    }
                ] mutableCopy];

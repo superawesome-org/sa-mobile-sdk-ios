@@ -52,7 +52,7 @@
 + (WKWebViewConfiguration*) defaultConfiguration {
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
     configuration.allowsInlineMediaPlayback = YES;
-    configuration.mediaPlaybackRequiresUserAction = NO;    
+    configuration.mediaTypesRequiringUserActionForPlayback = NO;    
     return configuration;
 }
 

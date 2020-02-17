@@ -288,8 +288,6 @@
         // form the full HTML string and play it!
         NSString *fullHTMLToLoad = [_ad.creative.details.media.html stringByReplacingOccurrencesOfString:@"_MOAT_" withString:moatString];
         
-        NSLog(@"HTML String is %@", fullHTMLToLoad);
-        
         // trigger local impression event
         [_events triggerImpressionEvent];
         
@@ -530,6 +528,13 @@
     // rearrange the padlock
     CGFloat x = (toframe.size.width - _ad.creative.details.width * scaleX) / 2;
     CGFloat y = (toframe.size.height - _ad.creative.details.height * scaleY) / 2;
+    
+    if (isnan(x)) {
+        x = 0;
+    }
+    if (isnan(y)) {
+        y = 0;
+    }
     
     _padlock.frame = CGRectMake(x, y, 77, 31);
     [self bringSubviewToFront:_padlock];

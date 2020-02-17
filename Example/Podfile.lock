@@ -10,23 +10,23 @@ PODS:
     - mopub-ios-sdk/Avid
     - mopub-ios-sdk/Core
     - mopub-ios-sdk/Moat
-  - OHHTTPStubs (8.0.0):
-    - OHHTTPStubs/Default (= 8.0.0)
-  - OHHTTPStubs/Core (8.0.0)
-  - OHHTTPStubs/Default (8.0.0):
+  - OHHTTPStubs (9.0.0):
+    - OHHTTPStubs/Default (= 9.0.0)
+  - OHHTTPStubs/Core (9.0.0)
+  - OHHTTPStubs/Default (9.0.0):
     - OHHTTPStubs/Core
     - OHHTTPStubs/JSON
     - OHHTTPStubs/NSURLSession
     - OHHTTPStubs/OHPathHelpers
-  - OHHTTPStubs/JSON (8.0.0):
+  - OHHTTPStubs/JSON (9.0.0):
     - OHHTTPStubs/Core
-  - OHHTTPStubs/NSURLSession (8.0.0):
+  - OHHTTPStubs/NSURLSession (9.0.0):
     - OHHTTPStubs/Core
-  - OHHTTPStubs/OHPathHelpers (8.0.0)
+  - OHHTTPStubs/OHPathHelpers (9.0.0)
   - SAVideoPlayer (2.0.0-beta8)
-  - SuperAwesome/Full (7.2.1):
+  - SuperAwesome/Full (7.2.3):
     - SAVideoPlayer (= 2.0.0-beta8)
-  - SuperAwesome/MoPub (7.2.1):
+  - SuperAwesome/MoPub (7.2.3):
     - mopub-ios-sdk
     - SuperAwesome/Full
 
@@ -47,9 +47,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   mopub-ios-sdk: 3d65133b95b6498aa871a66818a11a5ba307e565
-  OHHTTPStubs: 9cbce6364bec557cc3439aa6bb7514670d780881
+  OHHTTPStubs: cb29d2a9d09a828ecb93349a2b0c64f99e0db89f
   SAVideoPlayer: f7953c9d6ea1e4875449c148dad53230630f57b8
-  SuperAwesome: e6212426052819ac1b2b39c26087370b65cb4887
+  SuperAwesome: 5eb3017183a583b6caa4b6147a7fb6a13c839ebd
 
 PODFILE CHECKSUM: 140b0575f0f70775778c484bcff63b7dbf697964
 
