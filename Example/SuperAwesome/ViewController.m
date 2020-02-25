@@ -68,7 +68,7 @@
         }
     }];
     
-    [SAVideoAd setConfigurationProduction];
+    [SAVideoAd setConfigurationStaging];
     [SAVideoAd disableTestMode];
     [SAVideoAd enableBumperPage];
     [SAVideoAd enableParentalGate];
@@ -102,7 +102,8 @@
                @{
                    @"name": @"Videos",
                    @"items": @[
-                           @{@"name": @"Direct video", @"pid": @(34394)}
+//                           @{@"name": @"Direct video", @"pid": @(34394)},
+                           @{@"name": @"Direct video", @"pid": @(4891)}
                            ]
                    }
                ] mutableCopy];

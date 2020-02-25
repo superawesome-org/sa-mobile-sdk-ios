@@ -551,7 +551,6 @@
 				1BB5F5891ED6CC3400ACD72E /* AdMobController.h */,
 				1BB5F58A1ED6CC3400ACD72E /* AdMobController.m */,
 				1BB5F5931ED82C2800ACD72E /* MoPubController.h */,
-				1BB5F5941ED82C2800ACD72E /* MoPubController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -590,6 +589,7 @@
 		91259B494F3335F77596BCC1 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				1BB5F5941ED82C2800ACD72E /* MoPubController.m */,
 				6F4B423236BBCED9C8A6C4AD /* Pods-SuperAwesome.debug.xcconfig */,
 				E556EABE4E9C293192DFBC0B /* Pods-SuperAwesome.release.xcconfig */,
 				F807BFD0E24FFEC1ADE486D0 /* Pods-Tests.debug.xcconfig */,
