@@ -30,7 +30,7 @@
 - (void) testVASTAd1 {
     
     // given
-    NSString *given = [_utils fixtureWithName:@"mock_vast_response_4" ofType:@"json"];
+    NSString *given = [_utils stringFixtureWithName:@"mock_vast_response_4" ofType:@"json"];
     
     SAVASTAd *ad = [[SAVASTAd alloc] initWithJsonString:given];
     XCTAssertNotNil(ad);
@@ -55,7 +55,7 @@
 - (void) testVASTAd2 {
     
     // given
-    NSString *given = [_utils fixtureWithName:@"mock_vast_response_5" ofType:@"json"];
+    NSString *given = [_utils stringFixtureWithName:@"mock_vast_response_5" ofType:@"json"];
     
     SAVASTAd *ad = [[SAVASTAd alloc] initWithJsonString:given];
     XCTAssertNotNil(ad);
@@ -87,7 +87,7 @@
 - (void) testVASTAd3 {
     
     // given
-    NSString *given = [_utils fixtureWithName:@"mock_vast_response_6" ofType:@"json"];
+    NSString *given = [_utils stringFixtureWithName:@"mock_vast_response_6" ofType:@"json"];
     
     SAVASTAd *ad = [[SAVASTAd alloc] initWithJsonString:given];
     XCTAssertNotNil(ad);
@@ -119,7 +119,7 @@
 - (void) testVASTAd4 {
     
     // given
-    NSString *given = [_utils fixtureWithName:@"mock_vast_response_7" ofType:@"json"];
+    NSString *given = [_utils stringFixtureWithName:@"mock_vast_response_7" ofType:@"json"];
     
     SAVASTAd *ad = [[SAVASTAd alloc] initWithJsonString:given];
     XCTAssertNotNil(ad);

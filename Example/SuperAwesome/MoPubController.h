@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MoPubController : UIViewController
-
-@end
+//@interface MoPubController : UIViewController
+//
+//@end

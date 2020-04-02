@@ -7,13 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <OHHTTPStubs/OHHTTPStubs.h>
+@import OHHTTPStubs;
 
 @interface SAResponseFactory : NSObject
-- (OHHTTPStubsResponse*) adResponse:(NSString*) json;
-- (OHHTTPStubsResponse*) vastResponse: (NSString*) xml;
-- (OHHTTPStubsResponse*) malformedResponse;
-- (OHHTTPStubsResponse*) emptyResponse;
-- (OHHTTPStubsResponse*) fileResponse: (NSString*) file;
-- (OHHTTPStubsResponse*) sendError;
+- (HTTPStubsResponse*) adResponse:(NSString*) json;
+- (HTTPStubsResponse*) vastResponse: (NSString*) xml;
+- (HTTPStubsResponse*) malformedResponse;
+- (HTTPStubsResponse*) emptyResponse;
+- (HTTPStubsResponse*) fileResponse: (NSString*) file;
+
+- (HTTPStubsResponse*) successResponse;
+- (HTTPStubsResponse*) timeoutResponse;
+
+- (HTTPStubsResponse*) sendResponse: (NSString*) xml;
+
+- (HTTPStubsResponse*) sendError;
+
 @end

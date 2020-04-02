@@ -11,7 +11,7 @@
 #import "SAFileDownloader.h"
 #import "SAFileItem.h"
 #import "SATestUtils.h"
-#import <OHHTTPStubs/OHHTTPStubs.h>
+@import OHHTTPStubs;
 
 @interface SANetwork_FileDownloader_Tests : XCTestCase
 @property (nonatomic, strong) SATestUtils *utils;
@@ -28,7 +28,7 @@
 
 - (void)tearDown {
     _utils = nil;
-    [OHHTTPStubs removeAllStubs];
+    [HTTPStubs removeAllStubs];
     [super tearDown];
 }
 
@@ -41,13 +41,13 @@
 
     NSString *url = @"https://my.mock.api/resource/videoresource.mp4";
     
-    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest * _Nonnull request) {
+    [HTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest * _Nonnull request) {
         return true;
-    } withStubResponse:^OHHTTPStubsResponse * _Nonnull(NSURLRequest * _Nonnull request) {
-        NSData* data = [self->_utils fixtureWithName:@"videoresource" ofType:@"mp4"];
-        return [OHHTTPStubsResponse responseWithData:data
-                                          statusCode:200
-                                             headers:@{@"Content-Type":@"application/json"}];
+    } withStubResponse:^HTTPStubsResponse * _Nonnull(NSURLRequest * _Nonnull request) {
+        NSData* data = [self->_utils dataFixtureWithName:@"videoresource" ofType:@"mp4"];
+        return [HTTPStubsResponse responseWithData:data
+                                        statusCode:200
+                                           headers:@{@"Content-Type":@"application/json"}];
     }];
     
     __block XCTestExpectation *expectation = [self expectationWithDescription:@"High Expectations"];
@@ -84,13 +84,13 @@
     
     NSString *url = @"https://my.mock.api/resource/pngresource.png";
     
-    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest * _Nonnull request) {
+    [HTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest * _Nonnull request) {
         return true;
-    } withStubResponse:^OHHTTPStubsResponse * _Nonnull(NSURLRequest * _Nonnull request) {
-        NSData* data = [self->_utils fixtureWithName:@"pngresource" ofType:@"png"];
-        return [OHHTTPStubsResponse responseWithData:data
-                                          statusCode:200
-                                             headers:@{@"Content-Type":@"application/json"}];
+    } withStubResponse:^HTTPStubsResponse * _Nonnull(NSURLRequest * _Nonnull request) {
+        NSData* data = [self->_utils dataFixtureWithName:@"pngresource" ofType:@"png"];
+        return [HTTPStubsResponse responseWithData:data
+                                        statusCode:200
+                                           headers:@{@"Content-Type":@"application/json"}];
     }];
     
     __block XCTestExpectation *expectation = [self expectationWithDescription:@"High Expectations"];
@@ -127,11 +127,11 @@
     
     NSString *url = @"https://my.mock.api/resource/pngresource.png";
     
-    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest * _Nonnull request) {
+    [HTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest * _Nonnull request) {
         return true;
-    } withStubResponse:^OHHTTPStubsResponse * _Nonnull(NSURLRequest * _Nonnull request) {
+    } withStubResponse:^HTTPStubsResponse * _Nonnull(NSURLRequest * _Nonnull request) {
         NSError* notConnectedError = [NSError errorWithDomain:NSURLErrorDomain code:kCFURLErrorNotConnectedToInternet userInfo:nil];
-        return [OHHTTPStubsResponse responseWithError:notConnectedError];
+        return [HTTPStubsResponse responseWithError:notConnectedError];
     }];
     
     __block XCTestExpectation *expectation = [self expectationWithDescription:@"High Expectations"];

@@ -20,7 +20,7 @@
 - (void)setUp {
     [super setUp];
     _utils = [[SATestUtils alloc] init];
-    _given = [_utils fixtureWithName:@"mock_xml_response_2" ofType:@"xml"];
+    _given = [_utils stringFixtureWithName:@"mock_xml_response_2" ofType:@"xml"];
 }
 
 - (void)tearDown {

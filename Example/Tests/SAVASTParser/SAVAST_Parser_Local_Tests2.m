@@ -33,7 +33,7 @@
 - (void) testParseMediaXML1 {
     
     // given
-    NSString *given = [_utils fixtureWithName:@"mock_vast_response_local" ofType:@"xml"];
+    NSString *given = [_utils stringFixtureWithName:@"mock_vast_response_local" ofType:@"xml"];
     
     SAXMLParser *xmlParser = [[SAXMLParser alloc] init];
     SAXMLElement *document = [xmlParser parseXMLString:given];
