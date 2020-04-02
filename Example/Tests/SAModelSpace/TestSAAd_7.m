@@ -30,7 +30,7 @@
     // Put setup code here. This method is called before the invocation of each test method in the class.
     
     _utils = [[SATestUtils alloc] init];
-    NSString *given = [_utils fixtureWithName:@"mock_ad_response_6" ofType:@"json"];
+    NSString *given = [_utils stringFixtureWithName:@"mock_ad_response_6" ofType:@"json"];
     _result = [[SAAd alloc] initWithJsonString:given];
 }
 

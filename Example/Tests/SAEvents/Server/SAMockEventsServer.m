@@ -7,7 +7,6 @@
 //
 
 #import "SAMockEventsServer.h"
-#import <OHHTTPStubs/OHHTTPStubs.h>
 #import "SAResponseFactory.h"
 
 @interface SAMockEventsServer ()
@@ -24,9 +23,9 @@
 }
 
 - (void) start {
-    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest * _Nonnull request) {
+    [HTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest * _Nonnull request) {
         return true;
-    } withStubResponse:^OHHTTPStubsResponse * _Nonnull(NSURLRequest * _Nonnull request) {
+    } withStubResponse:^HTTPStubsResponse * _Nonnull(NSURLRequest * _Nonnull request) {
         NSString *url = [request URL].absoluteString;
         
         /*
@@ -109,7 +108,7 @@
 }
 
 - (void) shutdown {
-    [OHHTTPStubs removeAllStubs];
+    [HTTPStubs removeAllStubs];
 }
 
 @end

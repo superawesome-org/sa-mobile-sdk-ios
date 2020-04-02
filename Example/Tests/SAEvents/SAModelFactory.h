@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import <SAAd.h>
-//#import <SAModelSpace/SAAd.h>
 
 @interface SAModelFactory : NSObject
 + (SAAd*) createDisplayAd: (NSInteger) placementId;

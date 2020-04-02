@@ -52,10 +52,10 @@
     XCTAssertNotNil(query[@"rnd"]);
     
     XCTAssertNotNil(query[@"bundle"]);
-    XCTAssertEqualObjects(@"org.cocoapods.demo.SAAdLoader-Example", query[@"bundle"]);
+    XCTAssertEqualObjects(@"tv.superawesome.SuperAwesome", query[@"bundle"]);
     
     XCTAssertNotNil(query[@"name"]);
-    XCTAssertEqualObjects(@"SAAdLoader_Example", query[@"name"]);
+    XCTAssertEqualObjects(@"SuperAwesome", query[@"name"]);
     
     XCTAssertNotNil(query[@"ct"]);
     XCTAssertEqual(wifi, [query[@"ct"] intValue]);

@@ -28,7 +28,7 @@
 - (void) testXMLParsing1 {
     
     // given
-    NSString *given = [_utils fixtureWithName:@"mock_xml_response_1" ofType:@"xml"];
+    NSString *given = [_utils stringFixtureWithName:@"mock_xml_response_1" ofType:@"xml"];
     SAXMLParser *parser = [[SAXMLParser alloc] init];
     SAXMLElement *document = [parser parseXMLString:given];
     

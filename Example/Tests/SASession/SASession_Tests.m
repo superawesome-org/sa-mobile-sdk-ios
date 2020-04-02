@@ -208,8 +208,8 @@
     NSString *expectedBaseUrl = TEST_PRODUCTION_URL;
     BOOL expectedTestMode = false;
     NSString *expectedVersion = @"3.2.1";
-    NSString *expectedBundleId = @"org.cocoapods.demo.SASession-Example";
-    NSString *expectedAppName = @"SASession_Example";
+    NSString *expectedBundleId = @"tv.superawesome.SuperAwesome";
+    NSString *expectedAppName = @"SuperAwesome";
     NSString *expectedLang = @"en_US";
     NSString *expectedDevice = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? @"tablet" : @"phone";
     NSInteger expectedConnectivity = [SAUtils getNetworkConnectivity]; // wifi
