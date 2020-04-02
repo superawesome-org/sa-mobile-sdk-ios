@@ -23,7 +23,7 @@ DEPENDENCIES:
   - SuperAwesome/Full (from `../`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - Nimble
     - OHHTTPStubs
     - SAVideoPlayer
@@ -40,4 +40,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: b414c6fd1de187c957e4bbb1f46b272bf82dc2a3
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.9.1
