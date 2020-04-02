@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import Nimble
+/*import Nimble
 import SAGDPRKisMinor
 
 class GetIsMinorModelMappingTests: XCTestCase {
@@ -47,3 +47,4 @@ class GetIsMinorModelMappingTests: XCTestCase {
         expect(getIsMinorResponse?.isMinor).to(beTrue())
     }
 }
+*/

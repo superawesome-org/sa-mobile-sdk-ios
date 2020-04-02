@@ -112,6 +112,8 @@
 		1BB5F5951ED82C2800ACD72E /* MoPubController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB5F5941ED82C2800ACD72E /* MoPubController.m */; };
 		1BFE15E622A00DE600C500C0 /* empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFE15E522A00DE600C500C0 /* empty.swift */; };
 		67515A1F78F1BE5F01240115 /* Pods_SuperAwesome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA43123FD3E067BF5EE0FDA8 /* Pods_SuperAwesome.framework */; };
+		C668A6F3243641AB00C18228 /* DeviceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C668A6F2243641AB00C18228 /* DeviceTests.swift */; };
+		C668A6F5243641B700C18228 /* UserAgentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C668A6F4243641B700C18228 /* UserAgentTests.swift */; };
 		FEA42D2A2A274E3FAC827E44 /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8321AFF62AF81E4087A78AE /* Pods_Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -261,6 +263,8 @@
 		1BFE15E522A00DE600C500C0 /* empty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = empty.swift; sourceTree = "<group>"; };
 		6F4B423236BBCED9C8A6C4AD /* Pods-SuperAwesome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesome.debug.xcconfig"; path = "Target Support Files/Pods-SuperAwesome/Pods-SuperAwesome.debug.xcconfig"; sourceTree = "<group>"; };
 		BA43123FD3E067BF5EE0FDA8 /* Pods_SuperAwesome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SuperAwesome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C668A6F2243641AB00C18228 /* DeviceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTests.swift; sourceTree = "<group>"; };
+		C668A6F4243641B700C18228 /* UserAgentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAgentTests.swift; sourceTree = "<group>"; };
 		D8321AFF62AF81E4087A78AE /* Pods_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E556EABE4E9C293192DFBC0B /* Pods-SuperAwesome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesome.release.xcconfig"; path = "Target Support Files/Pods-SuperAwesome/Pods-SuperAwesome.release.xcconfig"; sourceTree = "<group>"; };
 		F807BFD0E24FFEC1ADE486D0 /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -289,6 +293,7 @@
 		1B0D26CD1CF7186F00619C9C /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				C668A6F024363FA500C18228 /* Core */,
 				1B226FCB23536F8200FA8326 /* SAAdLoader */,
 				1B226FB223536F8200FA8326 /* SAEvents */,
 				1B22701123536F8300FA8326 /* SAIsMinor */,
@@ -598,6 +603,23 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		C668A6F024363FA500C18228 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				C668A6F124363FB100C18228 /* Components */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		C668A6F124363FB100C18228 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				C668A6F2243641AB00C18228 /* DeviceTests.swift */,
+				C668A6F4243641B700C18228 /* UserAgentTests.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -780,10 +802,12 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Tests/Pods-Tests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/OHHTTPStubs/OHHTTPStubs.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OHHTTPStubs.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -799,8 +823,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B22701B23536F8300FA8326 /* TestSAUtils_EncodeJSONDictionaryFromNSDictionary.m in Sources */,
+				C668A6F3243641AB00C18228 /* DeviceTests.swift in Sources */,
 				1B22703723536F8300FA8326 /* SAMocks.m in Sources */,
 				1B22702F23536F8300FA8326 /* TestSAImpressionEventTrigger.m in Sources */,
+				C668A6F5243641B700C18228 /* UserAgentTests.swift in Sources */,
 				1B22707423536F8300FA8326 /* Tests.m in Sources */,
 				1B22704123536F8300FA8326 /* SATestUtils.m in Sources */,
 				1B22706D23536F8300FA8326 /* TestSAVAST_2.m in Sources */,
@@ -947,6 +973,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tv.superawesome.Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SuperAwesome.app/SuperAwesome";
 			};
 			name = Debug;
@@ -964,6 +991,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tv.superawesome.Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SuperAwesome.app/SuperAwesome";
 			};
 			name = Release;

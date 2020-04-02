@@ -1,5 +1,6 @@
 #import "SAEvents+Moat2.h"
 #import <SUPMoatMobileAppKit/SUPMoatMobileAppKit.h>
+#import <WebKit/WebKit.h>
 
 #define MOAT_SERVER                 @"https://z.moatads.com"
 #define MOAT_URL                    @"moatad.js"
@@ -21,7 +22,7 @@
     [analytics startWithOptions:options];
 }
 
-- (NSString*) internalStartMoatTrackingForDisplay:(UIWebView*)webView
+- (NSString*) internalStartMoatTrackingForDisplay:(WKWebView*)webView
                                   andAdDictionary:(NSDictionary*)adDict {
     
     self.webTracker = [SUPMoatWebTracker trackerWithWebComponent:webView];

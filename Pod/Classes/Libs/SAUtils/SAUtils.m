@@ -134,10 +134,6 @@
     return [[self getDocumentsDirectory] stringByAppendingPathComponent:fpath];
 }
 
-+ (NSString*) getUserAgent {
-    return [[[UIWebView alloc] initWithFrame:CGRectZero] stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
-}
-
 + (NSInteger) getCachebuster {
     NSInteger min = 1000000, max = 1500000;
     return [self randomNumberBetween:min maxNumber:max];

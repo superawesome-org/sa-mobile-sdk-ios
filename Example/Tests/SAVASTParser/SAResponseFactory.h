@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <OHHTTPStubs/OHHTTPStubs.h>
+#import <OHHTTPStubs/HTTPStubs.h>
+#import <OHHTTPStubs/HTTPStubsPathHelpers.h>
 
 @interface SAResponseFactory : NSObject
 - (OHHTTPStubsResponse*) sendResponse: (NSString*) xml;

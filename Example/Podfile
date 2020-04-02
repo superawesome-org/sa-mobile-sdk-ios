@@ -12,8 +12,8 @@ target 'SuperAwesome' do
 
   target 'Tests' do
     inherit! :search_paths
-    pod 'OHHTTPStubs'
-    # pod 'Nimble'
+    pod 'OHHTTPStubs/Swift'
+    pod 'Nimble'
     # pod 'Mockingjay'
   end
 

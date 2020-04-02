@@ -10,6 +10,7 @@
 #import "SAVASTEvent.h"
 #import "SANetwork.h"
 #import "SAUtils.h"
+#import <SuperAwesome/SuperAwesome-Swift.h>
 
 @interface SAVASTParser ()
 @property (nonatomic, strong) NSDictionary *header;
@@ -26,7 +27,7 @@
 - (id) init {
     if (self = [super init]) {
         _header = @{@"Content-Type":@"application/json",
-                    @"User-Agent": [SAUtils getUserAgent]};
+                    @"User-Agent": [SAUserAgent.shared name]};
     }
     
     return self;

@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <SAModelSpace/SAAd.h>
-#import <SAModelSpace/SACreative.h>
-#import <SAModelSpace/SADetails.h>
-#import <SAModelSpace/SAMedia.h>
-#import <SAModelSpace/SAVASTAd.h>
-#import <SAModelSpace/SAVASTMedia.h>
-#import <SAModelSpace/SAVASTEvent.h>
+#import <SAAd.h>
+#import <SACreative.h>
+#import <SADetails.h>
+#import <SAMedia.h>
+#import <SAVASTAd.h>
+#import <SAVASTMedia.h>
+#import <SAVASTEvent.h>
 
 @interface MockVastMedia: SAVASTMedia
 @end 

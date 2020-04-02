@@ -7,7 +7,7 @@
 //
 
 
-import XCTest
+/*import XCTest
 import Nimble
 import SAGDPRKisMinor
 
@@ -80,4 +80,4 @@ class GetIsMinorRequestTests: XCTestCase {
         expect(query?.keys.contains("dob")).to(beTrue())
         
     }
-}
+}*/

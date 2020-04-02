@@ -1,17 +1,19 @@
 PODS:
-  - mopub-ios-sdk (5.10.0):
-    - mopub-ios-sdk/MoPubSDK (= 5.10.0)
-  - mopub-ios-sdk/Avid (5.10.0):
+  - mopub-ios-sdk (5.11.0):
+    - mopub-ios-sdk/MoPubSDK (= 5.11.0)
+  - mopub-ios-sdk/Avid (5.11.0):
     - mopub-ios-sdk/Core
-  - mopub-ios-sdk/Core (5.10.0)
-  - mopub-ios-sdk/Moat (5.10.0):
+  - mopub-ios-sdk/Core (5.11.0)
+  - mopub-ios-sdk/Moat (5.11.0):
     - mopub-ios-sdk/Core
-  - mopub-ios-sdk/MoPubSDK (5.10.0):
+  - mopub-ios-sdk/MoPubSDK (5.11.0):
     - mopub-ios-sdk/Avid
     - mopub-ios-sdk/Core
     - mopub-ios-sdk/Moat
-  - OHHTTPStubs (9.0.0):
-    - OHHTTPStubs/Default (= 9.0.0)
+    - mopub-ios-sdk/NativeAds
+  - mopub-ios-sdk/NativeAds (5.11.0):
+    - mopub-ios-sdk/Core
+  - Nimble (8.0.7)
   - OHHTTPStubs/Core (9.0.0)
   - OHHTTPStubs/Default (9.0.0):
     - OHHTTPStubs/Core
@@ -23,21 +25,25 @@ PODS:
   - OHHTTPStubs/NSURLSession (9.0.0):
     - OHHTTPStubs/Core
   - OHHTTPStubs/OHPathHelpers (9.0.0)
+  - OHHTTPStubs/Swift (9.0.0):
+    - OHHTTPStubs/Default
   - SAVideoPlayer (2.0.0-beta8)
-  - SuperAwesome/Full (7.2.3):
+  - SuperAwesome/Full (7.2.4):
     - SAVideoPlayer (= 2.0.0-beta8)
-  - SuperAwesome/MoPub (7.2.3):
+  - SuperAwesome/MoPub (7.2.4):
     - mopub-ios-sdk
     - SuperAwesome/Full
 
 DEPENDENCIES:
-  - OHHTTPStubs
+  - Nimble
+  - OHHTTPStubs/Swift
   - SuperAwesome/Full (from `../`)
   - SuperAwesome/MoPub (from `../`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - mopub-ios-sdk
+    - Nimble
     - OHHTTPStubs
     - SAVideoPlayer
 
@@ -46,11 +52,12 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  mopub-ios-sdk: 3d65133b95b6498aa871a66818a11a5ba307e565
+  mopub-ios-sdk: 292b8e9a55a2e72a34afc04ec01e85486af46240
+  Nimble: a73af6ecd4c9106f434f3d55fc54570be3739e0b
   OHHTTPStubs: cb29d2a9d09a828ecb93349a2b0c64f99e0db89f
   SAVideoPlayer: f7953c9d6ea1e4875449c148dad53230630f57b8
-  SuperAwesome: 5eb3017183a583b6caa4b6147a7fb6a13c839ebd
+  SuperAwesome: 05941166a9e9788c3bab6bd6287cf02f17365b9b
 
-PODFILE CHECKSUM: 140b0575f0f70775778c484bcff63b7dbf697964
+PODFILE CHECKSUM: fe80e27ecd75fa41229a173ddeb80b8e35452131
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.9.1
