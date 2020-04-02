@@ -12,7 +12,9 @@
 
 - (NSString*) stringFixtureWithName: (NSString*) name ofType: (NSString*) type {
     
-    NSString *identifier = @"org.cocoapods.demo.SAAdLoader-Tests";
+    // tv.superawesome.SuperAwesome-Tests
+//    NSString *identifier = @"org.cocoapods.demo.SAAdLoader-Tests";
+    NSString *identifier = @"tv.superawesome.Tests";
     NSBundle *bundle = [NSBundle bundleWithIdentifier:identifier];
     
     if (bundle == nil) {
@@ -20,7 +22,7 @@
         return nil;
     }
     
-    NSString *bundlePath = [bundle pathForResource:@"fixtures" ofType:@"bundle"];
+    NSString *bundlePath = [bundle pathForResource:@"fixtures_tests" ofType:@"bundle"];
     
     if (bundlePath == nil) {
         NSLog(@"Bundle Path is nil");

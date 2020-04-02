@@ -52,15 +52,12 @@
 		1B22704323536F8300FA8326 /* SAMockSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FD523536F8200FA8326 /* SAMockSession.m */; };
 		1B22704423536F8300FA8326 /* TestSAAdLoader_GetAwesomeAdsHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FD623536F8200FA8326 /* TestSAAdLoader_GetAwesomeAdsHeader.m */; };
 		1B22704523536F8300FA8326 /* TestSAAdLoader_GetAwesomeAdsQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FD723536F8200FA8326 /* TestSAAdLoader_GetAwesomeAdsQuery.m */; };
-		1B22704623536F8300FA8326 /* fixtures_adloader.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1B226FD823536F8200FA8326 /* fixtures_adloader.bundle */; };
 		1B22704723536F8300FA8326 /* SAResponseFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FD923536F8200FA8326 /* SAResponseFactory.m */; };
-		1B22704823536F8300FA8326 /* fixtures.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1B226FDB23536F8200FA8326 /* fixtures.bundle */; };
 		1B22704923536F8300FA8326 /* SANetwork_Network_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FDC23536F8200FA8326 /* SANetwork_Network_Tests.m */; };
 		1B22704B23536F8300FA8326 /* SANetwork_FileItem_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FDF23536F8300FA8326 /* SANetwork_FileItem_Tests.m */; };
 		1B22704C23536F8300FA8326 /* SANetwork_FileDownloader_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FE023536F8300FA8326 /* SANetwork_FileDownloader_Tests.m */; };
 		1B22704D23536F8300FA8326 /* SASession_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FE223536F8300FA8326 /* SASession_Tests.m */; };
 		1B22704E23536F8300FA8326 /* SAXML_Parser_Tests4.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FE423536F8300FA8326 /* SAXML_Parser_Tests4.m */; };
-		1B22704F23536F8300FA8326 /* fixtures_vastparser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1B226FE523536F8300FA8326 /* fixtures_vastparser.bundle */; };
 		1B22705023536F8300FA8326 /* SAXML_Parser_Tests7.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FE723536F8300FA8326 /* SAXML_Parser_Tests7.m */; };
 		1B22705123536F8300FA8326 /* SAMockVASTServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FE823536F8300FA8326 /* SAMockVASTServer.m */; };
 		1B22705223536F8300FA8326 /* SAXML_Parser_Tests3.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FE923536F8300FA8326 /* SAXML_Parser_Tests3.m */; };
@@ -81,7 +78,6 @@
 		1B22706323536F8300FA8326 /* TestSAJsonParser_WriteObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B22700123536F8300FA8326 /* TestSAJsonParser_WriteObject.m */; };
 		1B22706423536F8300FA8326 /* TestSAJsonParser_ParseDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B22700223536F8300FA8326 /* TestSAJsonParser_ParseDictionary.m */; };
 		1B22706523536F8300FA8326 /* TestSAAd_4.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B22700423536F8300FA8326 /* TestSAAd_4.m */; };
-		1B22706623536F8300FA8326 /* fixtures_modelspace.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1B22700523536F8300FA8326 /* fixtures_modelspace.bundle */; };
 		1B22706723536F8300FA8326 /* TestSAAd_3.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B22700723536F8300FA8326 /* TestSAAd_3.m */; };
 		1B22706823536F8300FA8326 /* TestSAAd_7.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B22700823536F8300FA8326 /* TestSAAd_7.m */; };
 		1B22706923536F8300FA8326 /* TestSAAd_2.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B22700923536F8300FA8326 /* TestSAAd_2.m */; };
@@ -94,13 +90,13 @@
 		1B22707123536F8300FA8326 /* GetIsMinor+RequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B22701323536F8300FA8326 /* GetIsMinor+RequestTests.swift */; };
 		1B22707223536F8300FA8326 /* TestsUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B22701423536F8300FA8326 /* TestsUtils.swift */; };
 		1B22707323536F8300FA8326 /* GetIsMinorModel+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B22701523536F8300FA8326 /* GetIsMinorModel+Mapping.swift */; };
-		1B22707523536F8300FA8326 /* fixtures_isminor.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1B22701723536F8300FA8326 /* fixtures_isminor.bundle */; };
 		1B76D2381C91EEB1000AE8F3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B76D2371C91EEB1000AE8F3 /* main.m */; };
 		1B76D23B1C91EEB1000AE8F3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B76D23A1C91EEB1000AE8F3 /* AppDelegate.m */; };
 		1B76D23E1C91EEB1000AE8F3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B76D23D1C91EEB1000AE8F3 /* ViewController.m */; };
 		1B76D2411C91EEB1000AE8F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B76D23F1C91EEB1000AE8F3 /* Main.storyboard */; };
 		1B76D2431C91EEB1000AE8F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B76D2421C91EEB1000AE8F3 /* Assets.xcassets */; };
 		1B76D2461C91EEB1000AE8F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B76D2441C91EEB1000AE8F3 /* LaunchScreen.storyboard */; };
+		1BA72AC124365236003A31C5 /* fixtures_tests.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1BA72AC024365236003A31C5 /* fixtures_tests.bundle */; };
 		1BB5F58B1ED6CC3400ACD72E /* AdMobController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB5F58A1ED6CC3400ACD72E /* AdMobController.m */; };
 		1BB5F5951ED82C2800ACD72E /* MoPubController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB5F5941ED82C2800ACD72E /* MoPubController.m */; };
 		1BFE15E622A00DE600C500C0 /* empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFE15E522A00DE600C500C0 /* empty.swift */; };
@@ -176,15 +172,12 @@
 		1B226FD523536F8200FA8326 /* SAMockSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAMockSession.m; sourceTree = "<group>"; };
 		1B226FD623536F8200FA8326 /* TestSAAdLoader_GetAwesomeAdsHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAAdLoader_GetAwesomeAdsHeader.m; sourceTree = "<group>"; };
 		1B226FD723536F8200FA8326 /* TestSAAdLoader_GetAwesomeAdsQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAAdLoader_GetAwesomeAdsQuery.m; sourceTree = "<group>"; };
-		1B226FD823536F8200FA8326 /* fixtures_adloader.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = fixtures_adloader.bundle; sourceTree = "<group>"; };
 		1B226FD923536F8200FA8326 /* SAResponseFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAResponseFactory.m; sourceTree = "<group>"; };
-		1B226FDB23536F8200FA8326 /* fixtures.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = fixtures.bundle; sourceTree = "<group>"; };
 		1B226FDC23536F8200FA8326 /* SANetwork_Network_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SANetwork_Network_Tests.m; sourceTree = "<group>"; };
 		1B226FDF23536F8300FA8326 /* SANetwork_FileItem_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SANetwork_FileItem_Tests.m; sourceTree = "<group>"; };
 		1B226FE023536F8300FA8326 /* SANetwork_FileDownloader_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SANetwork_FileDownloader_Tests.m; sourceTree = "<group>"; };
 		1B226FE223536F8300FA8326 /* SASession_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SASession_Tests.m; sourceTree = "<group>"; };
 		1B226FE423536F8300FA8326 /* SAXML_Parser_Tests4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAXML_Parser_Tests4.m; sourceTree = "<group>"; };
-		1B226FE523536F8300FA8326 /* fixtures_vastparser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = fixtures_vastparser.bundle; sourceTree = "<group>"; };
 		1B226FE723536F8300FA8326 /* SAXML_Parser_Tests7.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAXML_Parser_Tests7.m; sourceTree = "<group>"; };
 		1B226FE823536F8300FA8326 /* SAMockVASTServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAMockVASTServer.m; sourceTree = "<group>"; };
 		1B226FE923536F8300FA8326 /* SAXML_Parser_Tests3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAXML_Parser_Tests3.m; sourceTree = "<group>"; };
@@ -209,7 +202,6 @@
 		1B22700123536F8300FA8326 /* TestSAJsonParser_WriteObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAJsonParser_WriteObject.m; sourceTree = "<group>"; };
 		1B22700223536F8300FA8326 /* TestSAJsonParser_ParseDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAJsonParser_ParseDictionary.m; sourceTree = "<group>"; };
 		1B22700423536F8300FA8326 /* TestSAAd_4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAAd_4.m; sourceTree = "<group>"; };
-		1B22700523536F8300FA8326 /* fixtures_modelspace.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = fixtures_modelspace.bundle; sourceTree = "<group>"; };
 		1B22700723536F8300FA8326 /* TestSAAd_3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAAd_3.m; sourceTree = "<group>"; };
 		1B22700823536F8300FA8326 /* TestSAAd_7.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAAd_7.m; sourceTree = "<group>"; };
 		1B22700923536F8300FA8326 /* TestSAAd_2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAAd_2.m; sourceTree = "<group>"; };
@@ -223,7 +215,6 @@
 		1B22701323536F8300FA8326 /* GetIsMinor+RequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GetIsMinor+RequestTests.swift"; sourceTree = "<group>"; };
 		1B22701423536F8300FA8326 /* TestsUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestsUtils.swift; sourceTree = "<group>"; };
 		1B22701523536F8300FA8326 /* GetIsMinorModel+Mapping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GetIsMinorModel+Mapping.swift"; sourceTree = "<group>"; };
-		1B22701723536F8300FA8326 /* fixtures_isminor.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = fixtures_isminor.bundle; sourceTree = "<group>"; };
 		1B76D2331C91EEB1000AE8F3 /* SuperAwesome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperAwesome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B76D2371C91EEB1000AE8F3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1B76D2391C91EEB1000AE8F3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -234,6 +225,7 @@
 		1B76D2421C91EEB1000AE8F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1B76D2451C91EEB1000AE8F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1B76D2471C91EEB1000AE8F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1BA72AC024365236003A31C5 /* fixtures_tests.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = fixtures_tests.bundle; sourceTree = "<group>"; };
 		1BB5F5891ED6CC3400ACD72E /* AdMobController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdMobController.h; sourceTree = "<group>"; };
 		1BB5F58A1ED6CC3400ACD72E /* AdMobController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdMobController.m; sourceTree = "<group>"; };
 		1BB5F5931ED82C2800ACD72E /* MoPubController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoPubController.h; sourceTree = "<group>"; };
@@ -270,6 +262,8 @@
 		1B0D26CD1CF7186F00619C9C /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				1B226FCF23536F8200FA8326 /* SATestUtils.h */,
+				1B226FD323536F8200FA8326 /* SATestUtils.m */,
 				1B226FCB23536F8200FA8326 /* SAAdLoader */,
 				1B226FB223536F8200FA8326 /* SAEvents */,
 				1B22701123536F8300FA8326 /* SAIsMinor */,
@@ -280,6 +274,7 @@
 				1B226F9B23536F8200FA8326 /* SAUtils */,
 				1B226FE323536F8300FA8326 /* SAVASTParser */,
 				1B0D26D01CF7186F00619C9C /* Info.plist */,
+				1BA72AC024365236003A31C5 /* fixtures_tests.bundle */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -362,8 +357,6 @@
 				1B226FCC23536F8200FA8326 /* SAMockAdServer.h */,
 				1B226FCD23536F8200FA8326 /* TestSAProcessHTML.m */,
 				1B226FCE23536F8200FA8326 /* SAMockSession.h */,
-				1B226FCF23536F8200FA8326 /* SATestUtils.h */,
-				1B226FD323536F8200FA8326 /* SATestUtils.m */,
 				1B226FD023536F8200FA8326 /* SAResponseFactory.h */,
 				1B226FD123536F8200FA8326 /* SAMockAdServer.m */,
 				1B226FD223536F8200FA8326 /* TestSAAdLoader_GetAwesomeAdsEndpoint.m */,
@@ -371,7 +364,6 @@
 				1B226FD523536F8200FA8326 /* SAMockSession.m */,
 				1B226FD623536F8200FA8326 /* TestSAAdLoader_GetAwesomeAdsHeader.m */,
 				1B226FD723536F8200FA8326 /* TestSAAdLoader_GetAwesomeAdsQuery.m */,
-				1B226FD823536F8200FA8326 /* fixtures_adloader.bundle */,
 				1B226FD923536F8200FA8326 /* SAResponseFactory.m */,
 			);
 			path = SAAdLoader;
@@ -380,7 +372,6 @@
 		1B226FDA23536F8200FA8326 /* SANetwork */ = {
 			isa = PBXGroup;
 			children = (
-				1B226FDB23536F8200FA8326 /* fixtures.bundle */,
 				1B226FDC23536F8200FA8326 /* SANetwork_Network_Tests.m */,
 				1B226FDF23536F8300FA8326 /* SANetwork_FileItem_Tests.m */,
 				1B226FE023536F8300FA8326 /* SANetwork_FileDownloader_Tests.m */,
@@ -400,7 +391,6 @@
 			isa = PBXGroup;
 			children = (
 				1B226FE423536F8300FA8326 /* SAXML_Parser_Tests4.m */,
-				1B226FE523536F8300FA8326 /* fixtures_vastparser.bundle */,
 				1B226FE723536F8300FA8326 /* SAXML_Parser_Tests7.m */,
 				1B226FE823536F8300FA8326 /* SAMockVASTServer.m */,
 				1B226FE923536F8300FA8326 /* SAXML_Parser_Tests3.m */,
@@ -447,7 +437,6 @@
 			isa = PBXGroup;
 			children = (
 				1B22700423536F8300FA8326 /* TestSAAd_4.m */,
-				1B22700523536F8300FA8326 /* fixtures_modelspace.bundle */,
 				1B22700723536F8300FA8326 /* TestSAAd_3.m */,
 				1B22700823536F8300FA8326 /* TestSAAd_7.m */,
 				1B22700923536F8300FA8326 /* TestSAAd_2.m */,
@@ -468,7 +457,6 @@
 				1B22701323536F8300FA8326 /* GetIsMinor+RequestTests.swift */,
 				1B22701423536F8300FA8326 /* TestsUtils.swift */,
 				1B22701523536F8300FA8326 /* GetIsMinorModel+Mapping.swift */,
-				1B22701723536F8300FA8326 /* fixtures_isminor.bundle */,
 			);
 			path = SAIsMinor;
 			sourceTree = "<group>";
@@ -655,11 +643,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B22706623536F8300FA8326 /* fixtures_modelspace.bundle in Resources */,
-				1B22704F23536F8300FA8326 /* fixtures_vastparser.bundle in Resources */,
-				1B22704623536F8300FA8326 /* fixtures_adloader.bundle in Resources */,
-				1B22707523536F8300FA8326 /* fixtures_isminor.bundle in Resources */,
-				1B22704823536F8300FA8326 /* fixtures.bundle in Resources */,
+				1BA72AC124365236003A31C5 /* fixtures_tests.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1075,7 +1059,7 @@
 					"\"SuperAwesome\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = tv.superawesome.SuperAwesome;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SuperAwesome;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SuperAwesome/SuperAwesome-Bridging-Header.h";
@@ -1108,7 +1092,7 @@
 					"\"SuperAwesome\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = tv.superawesome.SuperAwesome;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SuperAwesome;
 				SWIFT_OBJC_BRIDGING_HEADER = "SuperAwesome/SuperAwesome-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
