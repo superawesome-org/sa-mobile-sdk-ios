@@ -31,7 +31,7 @@
 - (void) testVASTMedia1 {
     
     // given
-    NSString *given = [_utils fixtureWithName:@"mock_vast_response_1" ofType:@"json"];
+    NSString *given = [_utils stringFixtureWithName:@"mock_vast_response_1" ofType:@"json"];
     
     SAVASTMedia *media = [[SAVASTMedia alloc] initWithJsonString:given];
     XCTAssertNotNil(media);
@@ -53,7 +53,7 @@
 - (void) testVASTMedia2 {
     
     // given
-    NSString *given = [_utils fixtureWithName:@"mock_vast_response_2" ofType:@"json"];
+    NSString *given = [_utils stringFixtureWithName:@"mock_vast_response_2" ofType:@"json"];
     
     SAVASTMedia *media = [[SAVASTMedia alloc] initWithJsonString:given];
     XCTAssertNotNil(media);
@@ -75,7 +75,7 @@
 - (void) testVASTMedia3 {
     
     // given
-    NSString *given = [_utils fixtureWithName:@"mock_vast_response_3" ofType:@"json"];
+    NSString *given = [_utils stringFixtureWithName:@"mock_vast_response_3" ofType:@"json"];
     
     SAVASTMedia *media = [[SAVASTMedia alloc] initWithJsonString:given];
     XCTAssertNotNil(media);

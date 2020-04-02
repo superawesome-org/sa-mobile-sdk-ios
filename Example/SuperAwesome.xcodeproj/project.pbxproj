@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1B0D26CF1CF7186F00619C9C /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B0D26CE1CF7186F00619C9C /* Tests.m */; };
 		1B22701823536F8300FA8326 /* TestSAUtils_UIColorFromRGB.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226F9C23536F8200FA8326 /* TestSAUtils_UIColorFromRGB.m */; };
 		1B22701923536F8300FA8326 /* TestSAUtils_GetSystemSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226F9D23536F8200FA8326 /* TestSAUtils_GetSystemSize.m */; };
 		1B22701A23536F8300FA8326 /* TestSAUtils_FilePathInDocuments.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226F9E23536F8200FA8326 /* TestSAUtils_FilePathInDocuments.m */; };
@@ -36,7 +35,6 @@
 		1B22703123536F8300FA8326 /* TestViewableImpressionEventSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FB823536F8200FA8326 /* TestViewableImpressionEventSetup.m */; };
 		1B22703223536F8300FA8326 /* TestSAClickEventSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FB923536F8200FA8326 /* TestSAClickEventSetup.m */; };
 		1B22703323536F8300FA8326 /* SAMockEventsServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FBB23536F8200FA8326 /* SAMockEventsServer.m */; };
-		1B22703423536F8300FA8326 /* SAResponseFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FBE23536F8200FA8326 /* SAResponseFactory.m */; };
 		1B22703523536F8300FA8326 /* TestSAClickEventTrigger.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FBF23536F8200FA8326 /* TestSAClickEventTrigger.m */; };
 		1B22703623536F8300FA8326 /* TestViewableImpressionEventTrigger.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FC023536F8200FA8326 /* TestViewableImpressionEventTrigger.m */; };
 		1B22703723536F8300FA8326 /* SAMocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FC123536F8200FA8326 /* SAMocks.m */; };
@@ -54,28 +52,22 @@
 		1B22704323536F8300FA8326 /* SAMockSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FD523536F8200FA8326 /* SAMockSession.m */; };
 		1B22704423536F8300FA8326 /* TestSAAdLoader_GetAwesomeAdsHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FD623536F8200FA8326 /* TestSAAdLoader_GetAwesomeAdsHeader.m */; };
 		1B22704523536F8300FA8326 /* TestSAAdLoader_GetAwesomeAdsQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FD723536F8200FA8326 /* TestSAAdLoader_GetAwesomeAdsQuery.m */; };
-		1B22704623536F8300FA8326 /* fixtures_adloader.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1B226FD823536F8200FA8326 /* fixtures_adloader.bundle */; };
 		1B22704723536F8300FA8326 /* SAResponseFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FD923536F8200FA8326 /* SAResponseFactory.m */; };
-		1B22704823536F8300FA8326 /* fixtures.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1B226FDB23536F8200FA8326 /* fixtures.bundle */; };
 		1B22704923536F8300FA8326 /* SANetwork_Network_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FDC23536F8200FA8326 /* SANetwork_Network_Tests.m */; };
-		1B22704A23536F8300FA8326 /* SATestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FDE23536F8300FA8326 /* SATestUtils.m */; };
 		1B22704B23536F8300FA8326 /* SANetwork_FileItem_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FDF23536F8300FA8326 /* SANetwork_FileItem_Tests.m */; };
 		1B22704C23536F8300FA8326 /* SANetwork_FileDownloader_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FE023536F8300FA8326 /* SANetwork_FileDownloader_Tests.m */; };
 		1B22704D23536F8300FA8326 /* SASession_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FE223536F8300FA8326 /* SASession_Tests.m */; };
 		1B22704E23536F8300FA8326 /* SAXML_Parser_Tests4.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FE423536F8300FA8326 /* SAXML_Parser_Tests4.m */; };
-		1B22704F23536F8300FA8326 /* fixtures_vastparser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1B226FE523536F8300FA8326 /* fixtures_vastparser.bundle */; };
 		1B22705023536F8300FA8326 /* SAXML_Parser_Tests7.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FE723536F8300FA8326 /* SAXML_Parser_Tests7.m */; };
 		1B22705123536F8300FA8326 /* SAMockVASTServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FE823536F8300FA8326 /* SAMockVASTServer.m */; };
 		1B22705223536F8300FA8326 /* SAXML_Parser_Tests3.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FE923536F8300FA8326 /* SAXML_Parser_Tests3.m */; };
 		1B22705323536F8300FA8326 /* SAXML_Parser_Tests6.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FEB23536F8300FA8326 /* SAXML_Parser_Tests6.m */; };
 		1B22705423536F8300FA8326 /* SAXML_Parser_Tests2.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FEC23536F8300FA8326 /* SAXML_Parser_Tests2.m */; };
-		1B22705523536F8300FA8326 /* SATestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FED23536F8300FA8326 /* SATestUtils.m */; };
 		1B22705623536F8300FA8326 /* SAVAST_Parser_Async_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FEE23536F8300FA8326 /* SAVAST_Parser_Async_Tests.m */; };
 		1B22705723536F8300FA8326 /* SAVAST_Parser_Local_Tests1.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FEF23536F8300FA8326 /* SAVAST_Parser_Local_Tests1.m */; };
 		1B22705823536F8300FA8326 /* SAXML_Parser_Tests5.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FF023536F8300FA8326 /* SAXML_Parser_Tests5.m */; };
 		1B22705923536F8300FA8326 /* SAXML_Parser_Tests1.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FF223536F8300FA8326 /* SAXML_Parser_Tests1.m */; };
 		1B22705A23536F8300FA8326 /* SAVAST_Parser_Local_Tests2.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FF323536F8300FA8326 /* SAVAST_Parser_Local_Tests2.m */; };
-		1B22705B23536F8300FA8326 /* SAResponseFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FF423536F8300FA8326 /* SAResponseFactory.m */; };
 		1B22705C23536F8300FA8326 /* SAMockPositionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FFA23536F8300FA8326 /* SAMockPositionModel.m */; };
 		1B22705D23536F8300FA8326 /* SAMockEmployeeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FFB23536F8300FA8326 /* SAMockEmployeeModel.m */; };
 		1B22705E23536F8300FA8326 /* SAMockCompanyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FFC23536F8300FA8326 /* SAMockCompanyModel.m */; };
@@ -86,13 +78,11 @@
 		1B22706323536F8300FA8326 /* TestSAJsonParser_WriteObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B22700123536F8300FA8326 /* TestSAJsonParser_WriteObject.m */; };
 		1B22706423536F8300FA8326 /* TestSAJsonParser_ParseDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B22700223536F8300FA8326 /* TestSAJsonParser_ParseDictionary.m */; };
 		1B22706523536F8300FA8326 /* TestSAAd_4.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B22700423536F8300FA8326 /* TestSAAd_4.m */; };
-		1B22706623536F8300FA8326 /* fixtures_modelspace.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1B22700523536F8300FA8326 /* fixtures_modelspace.bundle */; };
 		1B22706723536F8300FA8326 /* TestSAAd_3.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B22700723536F8300FA8326 /* TestSAAd_3.m */; };
 		1B22706823536F8300FA8326 /* TestSAAd_7.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B22700823536F8300FA8326 /* TestSAAd_7.m */; };
 		1B22706923536F8300FA8326 /* TestSAAd_2.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B22700923536F8300FA8326 /* TestSAAd_2.m */; };
 		1B22706A23536F8300FA8326 /* TestSAAd_8.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B22700A23536F8300FA8326 /* TestSAAd_8.m */; };
 		1B22706B23536F8300FA8326 /* TestSAAd_6.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B22700B23536F8300FA8326 /* TestSAAd_6.m */; };
-		1B22706C23536F8300FA8326 /* SATestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B22700C23536F8300FA8326 /* SATestUtils.m */; };
 		1B22706D23536F8300FA8326 /* TestSAVAST_2.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B22700D23536F8300FA8326 /* TestSAVAST_2.m */; };
 		1B22706E23536F8300FA8326 /* TestSAAd_1.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B22700E23536F8300FA8326 /* TestSAAd_1.m */; };
 		1B22706F23536F8300FA8326 /* TestSAAd_5.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B22700F23536F8300FA8326 /* TestSAAd_5.m */; };
@@ -100,14 +90,13 @@
 		1B22707123536F8300FA8326 /* GetIsMinor+RequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B22701323536F8300FA8326 /* GetIsMinor+RequestTests.swift */; };
 		1B22707223536F8300FA8326 /* TestsUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B22701423536F8300FA8326 /* TestsUtils.swift */; };
 		1B22707323536F8300FA8326 /* GetIsMinorModel+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B22701523536F8300FA8326 /* GetIsMinorModel+Mapping.swift */; };
-		1B22707423536F8300FA8326 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B22701623536F8300FA8326 /* Tests.m */; };
-		1B22707523536F8300FA8326 /* fixtures_isminor.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1B22701723536F8300FA8326 /* fixtures_isminor.bundle */; };
 		1B76D2381C91EEB1000AE8F3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B76D2371C91EEB1000AE8F3 /* main.m */; };
 		1B76D23B1C91EEB1000AE8F3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B76D23A1C91EEB1000AE8F3 /* AppDelegate.m */; };
 		1B76D23E1C91EEB1000AE8F3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B76D23D1C91EEB1000AE8F3 /* ViewController.m */; };
 		1B76D2411C91EEB1000AE8F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B76D23F1C91EEB1000AE8F3 /* Main.storyboard */; };
 		1B76D2431C91EEB1000AE8F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B76D2421C91EEB1000AE8F3 /* Assets.xcassets */; };
 		1B76D2461C91EEB1000AE8F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B76D2441C91EEB1000AE8F3 /* LaunchScreen.storyboard */; };
+		1BA72AC124365236003A31C5 /* fixtures_tests.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1BA72AC024365236003A31C5 /* fixtures_tests.bundle */; };
 		1BB5F58B1ED6CC3400ACD72E /* AdMobController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB5F58A1ED6CC3400ACD72E /* AdMobController.m */; };
 		1BB5F5951ED82C2800ACD72E /* MoPubController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB5F5941ED82C2800ACD72E /* MoPubController.m */; };
 		1BFE15E622A00DE600C500C0 /* empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFE15E522A00DE600C500C0 /* empty.swift */; };
@@ -128,7 +117,6 @@
 /* Begin PBXFileReference section */
 		0D95552B746A50A99EDC2490 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
 		1B0D26CC1CF7186F00619C9C /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1B0D26CE1CF7186F00619C9C /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		1B0D26D01CF7186F00619C9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B226F9C23536F8200FA8326 /* TestSAUtils_UIColorFromRGB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAUtils_UIColorFromRGB.m; sourceTree = "<group>"; };
 		1B226F9D23536F8200FA8326 /* TestSAUtils_GetSystemSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAUtils_GetSystemSize.m; sourceTree = "<group>"; };
@@ -160,9 +148,7 @@
 		1B226FB823536F8200FA8326 /* TestViewableImpressionEventSetup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewableImpressionEventSetup.m; sourceTree = "<group>"; };
 		1B226FB923536F8200FA8326 /* TestSAClickEventSetup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAClickEventSetup.m; sourceTree = "<group>"; };
 		1B226FBB23536F8200FA8326 /* SAMockEventsServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAMockEventsServer.m; sourceTree = "<group>"; };
-		1B226FBC23536F8200FA8326 /* SAResponseFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAResponseFactory.h; sourceTree = "<group>"; };
 		1B226FBD23536F8200FA8326 /* SAMockEventsServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAMockEventsServer.h; sourceTree = "<group>"; };
-		1B226FBE23536F8200FA8326 /* SAResponseFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAResponseFactory.m; sourceTree = "<group>"; };
 		1B226FBF23536F8200FA8326 /* TestSAClickEventTrigger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAClickEventTrigger.m; sourceTree = "<group>"; };
 		1B226FC023536F8200FA8326 /* TestViewableImpressionEventTrigger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewableImpressionEventTrigger.m; sourceTree = "<group>"; };
 		1B226FC123536F8200FA8326 /* SAMocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAMocks.m; sourceTree = "<group>"; };
@@ -186,32 +172,23 @@
 		1B226FD523536F8200FA8326 /* SAMockSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAMockSession.m; sourceTree = "<group>"; };
 		1B226FD623536F8200FA8326 /* TestSAAdLoader_GetAwesomeAdsHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAAdLoader_GetAwesomeAdsHeader.m; sourceTree = "<group>"; };
 		1B226FD723536F8200FA8326 /* TestSAAdLoader_GetAwesomeAdsQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAAdLoader_GetAwesomeAdsQuery.m; sourceTree = "<group>"; };
-		1B226FD823536F8200FA8326 /* fixtures_adloader.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = fixtures_adloader.bundle; sourceTree = "<group>"; };
 		1B226FD923536F8200FA8326 /* SAResponseFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAResponseFactory.m; sourceTree = "<group>"; };
-		1B226FDB23536F8200FA8326 /* fixtures.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = fixtures.bundle; sourceTree = "<group>"; };
 		1B226FDC23536F8200FA8326 /* SANetwork_Network_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SANetwork_Network_Tests.m; sourceTree = "<group>"; };
-		1B226FDD23536F8300FA8326 /* SATestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SATestUtils.h; sourceTree = "<group>"; };
-		1B226FDE23536F8300FA8326 /* SATestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SATestUtils.m; sourceTree = "<group>"; };
 		1B226FDF23536F8300FA8326 /* SANetwork_FileItem_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SANetwork_FileItem_Tests.m; sourceTree = "<group>"; };
 		1B226FE023536F8300FA8326 /* SANetwork_FileDownloader_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SANetwork_FileDownloader_Tests.m; sourceTree = "<group>"; };
 		1B226FE223536F8300FA8326 /* SASession_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SASession_Tests.m; sourceTree = "<group>"; };
 		1B226FE423536F8300FA8326 /* SAXML_Parser_Tests4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAXML_Parser_Tests4.m; sourceTree = "<group>"; };
-		1B226FE523536F8300FA8326 /* fixtures_vastparser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = fixtures_vastparser.bundle; sourceTree = "<group>"; };
-		1B226FE623536F8300FA8326 /* SATestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SATestUtils.h; sourceTree = "<group>"; };
 		1B226FE723536F8300FA8326 /* SAXML_Parser_Tests7.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAXML_Parser_Tests7.m; sourceTree = "<group>"; };
 		1B226FE823536F8300FA8326 /* SAMockVASTServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAMockVASTServer.m; sourceTree = "<group>"; };
 		1B226FE923536F8300FA8326 /* SAXML_Parser_Tests3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAXML_Parser_Tests3.m; sourceTree = "<group>"; };
-		1B226FEA23536F8300FA8326 /* SAResponseFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAResponseFactory.h; sourceTree = "<group>"; };
 		1B226FEB23536F8300FA8326 /* SAXML_Parser_Tests6.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAXML_Parser_Tests6.m; sourceTree = "<group>"; };
 		1B226FEC23536F8300FA8326 /* SAXML_Parser_Tests2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAXML_Parser_Tests2.m; sourceTree = "<group>"; };
-		1B226FED23536F8300FA8326 /* SATestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SATestUtils.m; sourceTree = "<group>"; };
 		1B226FEE23536F8300FA8326 /* SAVAST_Parser_Async_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAVAST_Parser_Async_Tests.m; sourceTree = "<group>"; };
 		1B226FEF23536F8300FA8326 /* SAVAST_Parser_Local_Tests1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAVAST_Parser_Local_Tests1.m; sourceTree = "<group>"; };
 		1B226FF023536F8300FA8326 /* SAXML_Parser_Tests5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAXML_Parser_Tests5.m; sourceTree = "<group>"; };
 		1B226FF123536F8300FA8326 /* SAMockVASTServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAMockVASTServer.h; sourceTree = "<group>"; };
 		1B226FF223536F8300FA8326 /* SAXML_Parser_Tests1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAXML_Parser_Tests1.m; sourceTree = "<group>"; };
 		1B226FF323536F8300FA8326 /* SAVAST_Parser_Local_Tests2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAVAST_Parser_Local_Tests2.m; sourceTree = "<group>"; };
-		1B226FF423536F8300FA8326 /* SAResponseFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAResponseFactory.m; sourceTree = "<group>"; };
 		1B226FF723536F8300FA8326 /* SAMockEmployeeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAMockEmployeeModel.h; sourceTree = "<group>"; };
 		1B226FF823536F8300FA8326 /* SAMockPositionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAMockPositionModel.h; sourceTree = "<group>"; };
 		1B226FF923536F8300FA8326 /* SAMockCompanyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAMockCompanyModel.h; sourceTree = "<group>"; };
@@ -225,14 +202,11 @@
 		1B22700123536F8300FA8326 /* TestSAJsonParser_WriteObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAJsonParser_WriteObject.m; sourceTree = "<group>"; };
 		1B22700223536F8300FA8326 /* TestSAJsonParser_ParseDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAJsonParser_ParseDictionary.m; sourceTree = "<group>"; };
 		1B22700423536F8300FA8326 /* TestSAAd_4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAAd_4.m; sourceTree = "<group>"; };
-		1B22700523536F8300FA8326 /* fixtures_modelspace.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = fixtures_modelspace.bundle; sourceTree = "<group>"; };
-		1B22700623536F8300FA8326 /* SATestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SATestUtils.h; sourceTree = "<group>"; };
 		1B22700723536F8300FA8326 /* TestSAAd_3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAAd_3.m; sourceTree = "<group>"; };
 		1B22700823536F8300FA8326 /* TestSAAd_7.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAAd_7.m; sourceTree = "<group>"; };
 		1B22700923536F8300FA8326 /* TestSAAd_2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAAd_2.m; sourceTree = "<group>"; };
 		1B22700A23536F8300FA8326 /* TestSAAd_8.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAAd_8.m; sourceTree = "<group>"; };
 		1B22700B23536F8300FA8326 /* TestSAAd_6.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAAd_6.m; sourceTree = "<group>"; };
-		1B22700C23536F8300FA8326 /* SATestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SATestUtils.m; sourceTree = "<group>"; };
 		1B22700D23536F8300FA8326 /* TestSAVAST_2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAVAST_2.m; sourceTree = "<group>"; };
 		1B22700E23536F8300FA8326 /* TestSAAd_1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAAd_1.m; sourceTree = "<group>"; };
 		1B22700F23536F8300FA8326 /* TestSAAd_5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAAd_5.m; sourceTree = "<group>"; };
@@ -241,8 +215,6 @@
 		1B22701323536F8300FA8326 /* GetIsMinor+RequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GetIsMinor+RequestTests.swift"; sourceTree = "<group>"; };
 		1B22701423536F8300FA8326 /* TestsUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestsUtils.swift; sourceTree = "<group>"; };
 		1B22701523536F8300FA8326 /* GetIsMinorModel+Mapping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GetIsMinorModel+Mapping.swift"; sourceTree = "<group>"; };
-		1B22701623536F8300FA8326 /* Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
-		1B22701723536F8300FA8326 /* fixtures_isminor.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = fixtures_isminor.bundle; sourceTree = "<group>"; };
 		1B76D2331C91EEB1000AE8F3 /* SuperAwesome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperAwesome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B76D2371C91EEB1000AE8F3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1B76D2391C91EEB1000AE8F3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -253,10 +225,11 @@
 		1B76D2421C91EEB1000AE8F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1B76D2451C91EEB1000AE8F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1B76D2471C91EEB1000AE8F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1BA72AC024365236003A31C5 /* fixtures_tests.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = fixtures_tests.bundle; sourceTree = "<group>"; };
 		1BB5F5891ED6CC3400ACD72E /* AdMobController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdMobController.h; sourceTree = "<group>"; };
 		1BB5F58A1ED6CC3400ACD72E /* AdMobController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdMobController.m; sourceTree = "<group>"; };
 		1BB5F5931ED82C2800ACD72E /* MoPubController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoPubController.h; sourceTree = "<group>"; };
-		1BB5F5941ED82C2800ACD72E /* MoPubController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoPubController.m; sourceTree = "<group>"; };
+		1BB5F5941ED82C2800ACD72E /* MoPubController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MoPubController.m; path = ../Pods/MoPubController.m; sourceTree = "<group>"; };
 		1BFE15E422A00DE500C500C0 /* SuperAwesome-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SuperAwesome-Bridging-Header.h"; sourceTree = "<group>"; };
 		1BFE15E522A00DE600C500C0 /* empty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = empty.swift; sourceTree = "<group>"; };
 		6F4B423236BBCED9C8A6C4AD /* Pods-SuperAwesome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesome.debug.xcconfig"; path = "Target Support Files/Pods-SuperAwesome/Pods-SuperAwesome.debug.xcconfig"; sourceTree = "<group>"; };
@@ -289,6 +262,8 @@
 		1B0D26CD1CF7186F00619C9C /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				1B226FCF23536F8200FA8326 /* SATestUtils.h */,
+				1B226FD323536F8200FA8326 /* SATestUtils.m */,
 				1B226FCB23536F8200FA8326 /* SAAdLoader */,
 				1B226FB223536F8200FA8326 /* SAEvents */,
 				1B22701123536F8300FA8326 /* SAIsMinor */,
@@ -298,8 +273,8 @@
 				1B226FE123536F8300FA8326 /* SASession */,
 				1B226F9B23536F8200FA8326 /* SAUtils */,
 				1B226FE323536F8300FA8326 /* SAVASTParser */,
-				1B0D26CE1CF7186F00619C9C /* Tests.m */,
 				1B0D26D01CF7186F00619C9C /* Info.plist */,
+				1BA72AC024365236003A31C5 /* fixtures_tests.bundle */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -362,9 +337,7 @@
 			isa = PBXGroup;
 			children = (
 				1B226FBB23536F8200FA8326 /* SAMockEventsServer.m */,
-				1B226FBC23536F8200FA8326 /* SAResponseFactory.h */,
 				1B226FBD23536F8200FA8326 /* SAMockEventsServer.h */,
-				1B226FBE23536F8200FA8326 /* SAResponseFactory.m */,
 			);
 			path = Server;
 			sourceTree = "<group>";
@@ -384,16 +357,13 @@
 				1B226FCC23536F8200FA8326 /* SAMockAdServer.h */,
 				1B226FCD23536F8200FA8326 /* TestSAProcessHTML.m */,
 				1B226FCE23536F8200FA8326 /* SAMockSession.h */,
-				1B226FCF23536F8200FA8326 /* SATestUtils.h */,
 				1B226FD023536F8200FA8326 /* SAResponseFactory.h */,
 				1B226FD123536F8200FA8326 /* SAMockAdServer.m */,
 				1B226FD223536F8200FA8326 /* TestSAAdLoader_GetAwesomeAdsEndpoint.m */,
-				1B226FD323536F8200FA8326 /* SATestUtils.m */,
 				1B226FD423536F8200FA8326 /* TestSAAdLoader_LoadAd.m */,
 				1B226FD523536F8200FA8326 /* SAMockSession.m */,
 				1B226FD623536F8200FA8326 /* TestSAAdLoader_GetAwesomeAdsHeader.m */,
 				1B226FD723536F8200FA8326 /* TestSAAdLoader_GetAwesomeAdsQuery.m */,
-				1B226FD823536F8200FA8326 /* fixtures_adloader.bundle */,
 				1B226FD923536F8200FA8326 /* SAResponseFactory.m */,
 			);
 			path = SAAdLoader;
@@ -402,10 +372,7 @@
 		1B226FDA23536F8200FA8326 /* SANetwork */ = {
 			isa = PBXGroup;
 			children = (
-				1B226FDB23536F8200FA8326 /* fixtures.bundle */,
 				1B226FDC23536F8200FA8326 /* SANetwork_Network_Tests.m */,
-				1B226FDD23536F8300FA8326 /* SATestUtils.h */,
-				1B226FDE23536F8300FA8326 /* SATestUtils.m */,
 				1B226FDF23536F8300FA8326 /* SANetwork_FileItem_Tests.m */,
 				1B226FE023536F8300FA8326 /* SANetwork_FileDownloader_Tests.m */,
 			);
@@ -424,22 +391,17 @@
 			isa = PBXGroup;
 			children = (
 				1B226FE423536F8300FA8326 /* SAXML_Parser_Tests4.m */,
-				1B226FE523536F8300FA8326 /* fixtures_vastparser.bundle */,
-				1B226FE623536F8300FA8326 /* SATestUtils.h */,
 				1B226FE723536F8300FA8326 /* SAXML_Parser_Tests7.m */,
 				1B226FE823536F8300FA8326 /* SAMockVASTServer.m */,
 				1B226FE923536F8300FA8326 /* SAXML_Parser_Tests3.m */,
-				1B226FEA23536F8300FA8326 /* SAResponseFactory.h */,
 				1B226FEB23536F8300FA8326 /* SAXML_Parser_Tests6.m */,
 				1B226FEC23536F8300FA8326 /* SAXML_Parser_Tests2.m */,
-				1B226FED23536F8300FA8326 /* SATestUtils.m */,
 				1B226FEE23536F8300FA8326 /* SAVAST_Parser_Async_Tests.m */,
 				1B226FEF23536F8300FA8326 /* SAVAST_Parser_Local_Tests1.m */,
 				1B226FF023536F8300FA8326 /* SAXML_Parser_Tests5.m */,
 				1B226FF123536F8300FA8326 /* SAMockVASTServer.h */,
 				1B226FF223536F8300FA8326 /* SAXML_Parser_Tests1.m */,
 				1B226FF323536F8300FA8326 /* SAVAST_Parser_Local_Tests2.m */,
-				1B226FF423536F8300FA8326 /* SAResponseFactory.m */,
 			);
 			path = SAVASTParser;
 			sourceTree = "<group>";
@@ -475,14 +437,11 @@
 			isa = PBXGroup;
 			children = (
 				1B22700423536F8300FA8326 /* TestSAAd_4.m */,
-				1B22700523536F8300FA8326 /* fixtures_modelspace.bundle */,
-				1B22700623536F8300FA8326 /* SATestUtils.h */,
 				1B22700723536F8300FA8326 /* TestSAAd_3.m */,
 				1B22700823536F8300FA8326 /* TestSAAd_7.m */,
 				1B22700923536F8300FA8326 /* TestSAAd_2.m */,
 				1B22700A23536F8300FA8326 /* TestSAAd_8.m */,
 				1B22700B23536F8300FA8326 /* TestSAAd_6.m */,
-				1B22700C23536F8300FA8326 /* SATestUtils.m */,
 				1B22700D23536F8300FA8326 /* TestSAVAST_2.m */,
 				1B22700E23536F8300FA8326 /* TestSAAd_1.m */,
 				1B22700F23536F8300FA8326 /* TestSAAd_5.m */,
@@ -498,8 +457,6 @@
 				1B22701323536F8300FA8326 /* GetIsMinor+RequestTests.swift */,
 				1B22701423536F8300FA8326 /* TestsUtils.swift */,
 				1B22701523536F8300FA8326 /* GetIsMinorModel+Mapping.swift */,
-				1B22701623536F8300FA8326 /* Tests.m */,
-				1B22701723536F8300FA8326 /* fixtures_isminor.bundle */,
 			);
 			path = SAIsMinor;
 			sourceTree = "<group>";
@@ -551,6 +508,7 @@
 				1BB5F5891ED6CC3400ACD72E /* AdMobController.h */,
 				1BB5F58A1ED6CC3400ACD72E /* AdMobController.m */,
 				1BB5F5931ED82C2800ACD72E /* MoPubController.h */,
+				1BB5F5941ED82C2800ACD72E /* MoPubController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -589,7 +547,6 @@
 		91259B494F3335F77596BCC1 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				1BB5F5941ED82C2800ACD72E /* MoPubController.m */,
 				6F4B423236BBCED9C8A6C4AD /* Pods-SuperAwesome.debug.xcconfig */,
 				E556EABE4E9C293192DFBC0B /* Pods-SuperAwesome.release.xcconfig */,
 				F807BFD0E24FFEC1ADE486D0 /* Pods-Tests.debug.xcconfig */,
@@ -686,11 +643,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B22706623536F8300FA8326 /* fixtures_modelspace.bundle in Resources */,
-				1B22704F23536F8300FA8326 /* fixtures_vastparser.bundle in Resources */,
-				1B22704623536F8300FA8326 /* fixtures_adloader.bundle in Resources */,
-				1B22707523536F8300FA8326 /* fixtures_isminor.bundle in Resources */,
-				1B22704823536F8300FA8326 /* fixtures.bundle in Resources */,
+				1BA72AC124365236003A31C5 /* fixtures_tests.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -716,13 +669,11 @@
 				"${PODS_ROOT}/Target Support Files/Pods-SuperAwesome/Pods-SuperAwesome-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/SAVideoPlayer/SAVideoPlayer.framework",
 				"${BUILT_PRODUCTS_DIR}/SuperAwesome/SuperAwesome.framework",
-				"${BUILT_PRODUCTS_DIR}/mopub-ios-sdk/MoPub.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SAVideoPlayer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SuperAwesome.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MoPub.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -780,10 +731,12 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Tests/Pods-Tests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/OHHTTPStubs/OHHTTPStubs.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OHHTTPStubs.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -801,11 +754,9 @@
 				1B22701B23536F8300FA8326 /* TestSAUtils_EncodeJSONDictionaryFromNSDictionary.m in Sources */,
 				1B22703723536F8300FA8326 /* SAMocks.m in Sources */,
 				1B22702F23536F8300FA8326 /* TestSAImpressionEventTrigger.m in Sources */,
-				1B22707423536F8300FA8326 /* Tests.m in Sources */,
 				1B22704123536F8300FA8326 /* SATestUtils.m in Sources */,
 				1B22706D23536F8300FA8326 /* TestSAVAST_2.m in Sources */,
 				1B22703023536F8300FA8326 /* SAModelFactory.m in Sources */,
-				1B0D26CF1CF7186F00619C9C /* Tests.m in Sources */,
 				1B22707223536F8300FA8326 /* TestsUtils.swift in Sources */,
 				1B22702D23536F8300FA8326 /* TestSAURLEventSetup.m in Sources */,
 				1B22706A23536F8300FA8326 /* TestSAAd_8.m in Sources */,
@@ -815,7 +766,6 @@
 				1B22701C23536F8300FA8326 /* TestSAUtils_RemoveAllButFirst.m in Sources */,
 				1B22701923536F8300FA8326 /* TestSAUtils_GetSystemSize.m in Sources */,
 				1B22703823536F8300FA8326 /* TestMoatModule.m in Sources */,
-				1B22705B23536F8300FA8326 /* SAResponseFactory.m in Sources */,
 				1B22705E23536F8300FA8326 /* SAMockCompanyModel.m in Sources */,
 				1B22707323536F8300FA8326 /* GetIsMinorModel+Mapping.swift in Sources */,
 				1B22706523536F8300FA8326 /* TestSAAd_4.m in Sources */,
@@ -835,8 +785,6 @@
 				1B22703C23536F8300FA8326 /* TestSAServerEventSetup.m in Sources */,
 				1B22705C23536F8300FA8326 /* SAMockPositionModel.m in Sources */,
 				1B22703523536F8300FA8326 /* TestSAClickEventTrigger.m in Sources */,
-				1B22703423536F8300FA8326 /* SAResponseFactory.m in Sources */,
-				1B22705523536F8300FA8326 /* SATestUtils.m in Sources */,
 				1B22703123536F8300FA8326 /* TestViewableImpressionEventSetup.m in Sources */,
 				1B22706E23536F8300FA8326 /* TestSAAd_1.m in Sources */,
 				1B22702623536F8300FA8326 /* TestSAUtils_IsRectInRect.m in Sources */,
@@ -862,13 +810,11 @@
 				1B22705823536F8300FA8326 /* SAXML_Parser_Tests5.m in Sources */,
 				1B22702A23536F8300FA8326 /* TestSAUtils_MapInto.m in Sources */,
 				1B22705023536F8300FA8326 /* SAXML_Parser_Tests7.m in Sources */,
-				1B22704A23536F8300FA8326 /* SATestUtils.m in Sources */,
 				1B22705223536F8300FA8326 /* SAXML_Parser_Tests3.m in Sources */,
 				1B22702323536F8300FA8326 /* TestSAUtils_FormGetQueryFromDict.m in Sources */,
 				1B22705123536F8300FA8326 /* SAMockVASTServer.m in Sources */,
 				1B22703223536F8300FA8326 /* TestSAClickEventSetup.m in Sources */,
 				1B22702B23536F8300FA8326 /* TestSAUtils_FilterBy.m in Sources */,
-				1B22706C23536F8300FA8326 /* SATestUtils.m in Sources */,
 				1B22704B23536F8300FA8326 /* SANetwork_FileItem_Tests.m in Sources */,
 				1B22702C23536F8300FA8326 /* TestSAUtils_FindBaseURLFromResource.m in Sources */,
 				1B22703E23536F8300FA8326 /* TestSAProcessHTML.m in Sources */,
@@ -945,8 +891,27 @@
 				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-framework",
+					"\"AdSupport\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"Nimble\"",
+					"-framework",
+					"\"OHHTTPStubs\"",
+					"-framework",
+					"\"SAVideoPlayer\"",
+					"-framework",
+					"\"SuperAwesome\"",
+					"-weak_framework",
+					"\"XCTest\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = tv.superawesome.Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SuperAwesome.app/SuperAwesome";
 			};
 			name = Debug;
@@ -962,8 +927,27 @@
 				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-framework",
+					"\"AdSupport\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"Nimble\"",
+					"-framework",
+					"\"OHHTTPStubs\"",
+					"-framework",
+					"\"SAVideoPlayer\"",
+					"-framework",
+					"\"SuperAwesome\"",
+					"-weak_framework",
+					"\"XCTest\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = tv.superawesome.Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SuperAwesome.app/SuperAwesome";
 			};
 			name = Release;
@@ -1065,8 +1049,17 @@
 				INFOPLIST_FILE = SuperAwesome/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"AdSupport\"",
+					"-framework",
+					"\"SAVideoPlayer\"",
+					"-framework",
+					"\"SuperAwesome\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = tv.superawesome.SuperAwesome;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SuperAwesome;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SuperAwesome/SuperAwesome-Bridging-Header.h";
@@ -1089,8 +1082,17 @@
 				INFOPLIST_FILE = SuperAwesome/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"AdSupport\"",
+					"-framework",
+					"\"SAVideoPlayer\"",
+					"-framework",
+					"\"SuperAwesome\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = tv.superawesome.SuperAwesome;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SuperAwesome;
 				SWIFT_OBJC_BRIDGING_HEADER = "SuperAwesome/SuperAwesome-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

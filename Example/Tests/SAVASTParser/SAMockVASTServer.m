@@ -7,7 +7,6 @@
 //
 
 #import "SAMockVASTServer.h"
-#import <OHHTTPStubs/OHHTTPStubs.h>
 #import "SAResponseFactory.h"
 
 @interface SAMockVASTServer ()
@@ -24,9 +23,9 @@
 }
 
 - (void) start {
-    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest * _Nonnull request) {
+    [HTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest * _Nonnull request) {
         return true;
-    } withStubResponse:^OHHTTPStubsResponse * _Nonnull(NSURLRequest * _Nonnull request) {
+    } withStubResponse:^HTTPStubsResponse * _Nonnull(NSURLRequest * _Nonnull request) {
         NSString *url = [request URL].absoluteString;
         if ([url containsString:@"/vast/vast1.xml"])
             return [self->_factory sendResponse:@"mock_vast_response_1.0"];
@@ -54,7 +53,7 @@
 }
 
 - (void) shutdown {
-    [OHHTTPStubs removeAllStubs];
+    [HTTPStubs removeAllStubs];
 }
 
 @end

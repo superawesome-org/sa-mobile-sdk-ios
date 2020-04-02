@@ -32,7 +32,7 @@
 - (void) testParseMediaXML1 {
     
     // given
-    NSString *given = [_utils fixtureWithName:@"mock_media_files_response_1" ofType:@"xml"];
+    NSString *given = [_utils stringFixtureWithName:@"mock_media_files_response_1" ofType:@"xml"];
     
     SAXMLParser *xmlParser = [[SAXMLParser alloc] init];
     SAXMLElement *document = [xmlParser parseXMLString:given];
@@ -64,7 +64,7 @@
 - (void) testParseMediaXML2 {
     
     // given
-    NSString *given = [_utils fixtureWithName:@"mock_media_files_response_2" ofType:@"xml"];
+    NSString *given = [_utils stringFixtureWithName:@"mock_media_files_response_2" ofType:@"xml"];
     
     SAXMLParser *xmlParser = [[SAXMLParser alloc] init];
     SAXMLElement *document = [xmlParser parseXMLString:given];

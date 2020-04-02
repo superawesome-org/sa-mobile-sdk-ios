@@ -31,37 +31,55 @@
     return [_utils stringFixtureWithName:xml ofType:@"xml"];
 }
 
-- (OHHTTPStubsResponse*) adResponse:(NSString*) json {
+- (HTTPStubsResponse*) adResponse:(NSString*) json {
     NSString *ad = [self sendJSONString:json];
     NSData *data = [ad dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *headers = @{@"Content-Type": @"application/xml"};
-    return [OHHTTPStubsResponse responseWithData:data statusCode:200 headers:headers];
+    return [HTTPStubsResponse responseWithData:data statusCode:200 headers:headers];
 }
 
-- (OHHTTPStubsResponse*) vastResponse: (NSString*) xml {
+- (HTTPStubsResponse*) vastResponse: (NSString*) xml {
     NSString *xmlString = [self sendVASTTag:xml];
     NSData *data = [xmlString dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *headers = @{@"Content-Type": @"application/xml"};
-    return [OHHTTPStubsResponse responseWithData:data statusCode:200 headers:headers];
+    return [HTTPStubsResponse responseWithData:data statusCode:200 headers:headers];
 }
 
-- (OHHTTPStubsResponse*) malformedResponse {
+- (HTTPStubsResponse*) malformedResponse {
     return [self adResponse:@"mock_ad_malformed_response"];
 }
 
-- (OHHTTPStubsResponse*) emptyResponse {
+- (HTTPStubsResponse*) emptyResponse {
     return [self adResponse:@"mock_ad_empty_response"];
 }
 
-- (OHHTTPStubsResponse*) fileResponse: (NSString*) file {
+- (HTTPStubsResponse*) fileResponse: (NSString*) file {
     NSData* data = [_utils dataFixtureWithName:file ofType:@"mp4"];
     NSDictionary *headers = @{@"Content-Type": @"application/xml"};
-    return [OHHTTPStubsResponse responseWithData:data statusCode:200 headers:headers];
+    return [HTTPStubsResponse responseWithData:data statusCode:200 headers:headers];
 }
 
-- (OHHTTPStubsResponse*) sendError {
+- (HTTPStubsResponse*) sendError {
     NSError* notConnectedError = [NSError errorWithDomain:NSURLErrorDomain code:kCFURLErrorNotConnectedToInternet userInfo:nil];
-    return [OHHTTPStubsResponse responseWithError:notConnectedError];
+    return [HTTPStubsResponse responseWithError:notConnectedError];
+}
+
+- (HTTPStubsResponse*) successResponse {
+    NSData *data = [@"{}" dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *headers = @{@"Content-Type": @"application/xml"};
+    return [HTTPStubsResponse responseWithData:data statusCode:200 headers:headers];
+}
+
+- (HTTPStubsResponse*) timeoutResponse {
+    NSError* notConnectedError = [NSError errorWithDomain:NSURLErrorDomain code:kCFURLErrorNotConnectedToInternet userInfo:nil];
+    return [HTTPStubsResponse responseWithError:notConnectedError];
+}
+
+- (HTTPStubsResponse*) sendResponse: (NSString*) xml {
+    NSString *xmlString = [self sendVASTTag:xml];
+    NSData *data = [xmlString dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *headers = @{@"Content-Type": @"application/xml"};
+    return [HTTPStubsResponse responseWithData:data statusCode:200 headers:headers];
 }
 
 @end

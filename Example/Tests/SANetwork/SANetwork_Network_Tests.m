@@ -8,7 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "SANetwork.h"
-#import <OHHTTPStubs/OHHTTPStubs.h>
+@import OHHTTPStubs;
 
 @interface SANetwork_Network_Tests : XCTestCase
 @property (nonatomic, strong) SANetwork *network;
@@ -22,7 +22,7 @@
 }
 
 - (void) tearDown {
-    [OHHTTPStubs removeAllStubs];
+    [HTTPStubs removeAllStubs];
     [super tearDown];
 }
 
@@ -32,12 +32,12 @@
     NSDictionary *query = @{};
     NSDictionary *header = @{};
     
-    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest * _Nonnull request) {
+    [HTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest * _Nonnull request) {
         return true;
-    } withStubResponse:^OHHTTPStubsResponse * _Nonnull(NSURLRequest * _Nonnull request) {
+    } withStubResponse:^HTTPStubsResponse * _Nonnull(NSURLRequest * _Nonnull request) {
         NSString* fixture = @"{}";
         NSData* data = [fixture dataUsingEncoding:NSUTF8StringEncoding];
-        return [OHHTTPStubsResponse responseWithData:data
+        return [HTTPStubsResponse responseWithData:data
                                           statusCode:200
                                              headers:@{@"Content-Type":@"application/json"}];
     }];
@@ -67,12 +67,12 @@
     NSDictionary *query = nil;
     NSDictionary *header = (NSDictionary*)[NSNull null];
     
-    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest * _Nonnull request) {
+    [HTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest * _Nonnull request) {
         return true;
-    } withStubResponse:^OHHTTPStubsResponse * _Nonnull(NSURLRequest * _Nonnull request) {
+    } withStubResponse:^HTTPStubsResponse * _Nonnull(NSURLRequest * _Nonnull request) {
         NSString* fixture = @"{}";
         NSData* data = [fixture dataUsingEncoding:NSUTF8StringEncoding];
-        return [OHHTTPStubsResponse responseWithData:data
+        return [HTTPStubsResponse responseWithData:data
                                           statusCode:200
                                              headers:@{@"Content-Type":@"application/json"}];
     }];
@@ -102,12 +102,12 @@
     NSDictionary *query = @{};
     NSDictionary *header = @{};
     
-    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest * _Nonnull request) {
+    [HTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest * _Nonnull request) {
         return true;
-    } withStubResponse:^OHHTTPStubsResponse * _Nonnull(NSURLRequest * _Nonnull request) {
+    } withStubResponse:^HTTPStubsResponse * _Nonnull(NSURLRequest * _Nonnull request) {
         NSString* fixture = @"{}";
         NSData* data = [fixture dataUsingEncoding:NSUTF8StringEncoding];
-        return [[OHHTTPStubsResponse responseWithData:data
+        return [[HTTPStubsResponse responseWithData:data
                                           statusCode:200
                                              headers:@{@"Content-Type":@"application/json"}] requestTime:1.0 responseTime:2.0];
     }];
@@ -136,11 +136,11 @@
     NSDictionary *query = @{};
     NSDictionary *header = @{};
     
-    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest * _Nonnull request) {
+    [HTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest * _Nonnull request) {
         return true;
-    } withStubResponse:^OHHTTPStubsResponse * _Nonnull(NSURLRequest * _Nonnull request) {
+    } withStubResponse:^HTTPStubsResponse * _Nonnull(NSURLRequest * _Nonnull request) {
         NSError* notConnectedError = [NSError errorWithDomain:NSURLErrorDomain code:kCFURLErrorNotConnectedToInternet userInfo:nil];
-        return [OHHTTPStubsResponse responseWithError:notConnectedError];
+        return [HTTPStubsResponse responseWithError:notConnectedError];
     }];
     
     __block XCTestExpectation *expectation = [self expectationWithDescription:@"High Expectations"];
@@ -260,14 +260,14 @@
     NSDictionary *header = @{};
     NSDictionary *body = @{@"value":@(true)};
     
-    [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest * _Nonnull request) {
+    [HTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest * _Nonnull request) {
         return true;
-    } withStubResponse:^OHHTTPStubsResponse * _Nonnull(NSURLRequest * _Nonnull request) {
+    } withStubResponse:^HTTPStubsResponse * _Nonnull(NSURLRequest * _Nonnull request) {
         NSString* fixture = @"{}";
         NSData* data = [fixture dataUsingEncoding:NSUTF8StringEncoding];
-        return [OHHTTPStubsResponse responseWithData:data
-                                          statusCode:200
-                                             headers:@{@"Content-Type":@"application/json"}];
+        return [HTTPStubsResponse responseWithData:data
+                                        statusCode:200
+                                           headers:@{@"Content-Type":@"application/json"}];
     }];
     
     __block XCTestExpectation *expectation = [self expectationWithDescription:@"High Expectations"];
