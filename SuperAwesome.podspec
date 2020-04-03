@@ -36,6 +36,12 @@ Pod::Spec.new do |s|
     # b.dependency 'SAParentalGate', '1.0.2'
     # b.dependency 'SAGDPRKisMinor', '2.0.0'
   end
+  
+  s.test_spec 'UnitTests' do |test_spec|
+    test_spec.source_files = 'Pod/Tests/**/*'
+    test_spec.dependency 'OCMock' # This dependency will only be linked with your tests.
+  end
+  
 
   # s.subspec 'Full' do |f|
   #   f.dependency 'SuperAwesome/Base'

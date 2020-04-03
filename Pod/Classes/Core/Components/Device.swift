@@ -7,23 +7,24 @@
 
 import Foundation
 
-@objc(SADeviceType)
 public protocol DeviceType {
-    @objc(type) var type: String { get }
-    @objc(systemVersion) var systemVersion: String { get }
-    @objc(systemVersionEscaped) var systemVersionEscaped: String { get }
+    var type: String { get }
+    var systemVersion: String { get }
+    var systemVersionEscaped: String { get }
+    var userAgent: String { get }
 }
 
-@objc(SADevice)
 public class Device : NSObject, DeviceType {
     public var type: String
     public var systemVersion: String
     public var systemVersionEscaped: String
-    
+    public var userAgent: String
+
     public override init() {
         type = UIDevice.current.model.hasPrefix("iPad") ? "iPad" : "iPhone"
         systemVersion = UIDevice.current.systemVersion
         systemVersionEscaped = systemVersion.replacingOccurrences(of: ".", with: "_")
+        userAgent = "Mozilla/5.0 (\(type); CPU \(type) OS \(systemVersionEscaped) like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148"
         
         super.init()
     }
