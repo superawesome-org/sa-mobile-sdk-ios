@@ -7,7 +7,10 @@
 
 @objc(SAModuleContainerType)
 public protocol ModuleContainerType {
-    @objc(componentModule) var componentModule: ComponentModuleType { get }
+    @objc(componentModule)
+    var componentModule: ComponentModuleType { get }
+    
+    @objc(repositoryModule)
     var repositoryModule: RepositoryModuleType { get }
 }
 
