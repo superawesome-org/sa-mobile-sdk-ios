@@ -48,6 +48,8 @@
 
 @implementation SASession
 
+@synthesize dependencies;
+
 - (id) init {
     if (self = [super init]) {
         
@@ -60,7 +62,7 @@
         _bundleId = [[NSBundle mainBundle] bundleIdentifier];
         _appName = [SAUtils encodeURI:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"]];
         _device = [SAUtils getSystemSize] == size_phone ? DEVICE_PHONE : DEVICE_TABLET;
-        _userAgent = SADependencyContainer.shared.modules.componentModule.userAgent.name;
+        _userAgent = dependencies.componentModule.userAgent.name;
         _connectivityType = [SAUtils getNetworkConnectivity];
         _instl = IN_FULLSCREEN;
         _pos = POS_FULLSCREEN;

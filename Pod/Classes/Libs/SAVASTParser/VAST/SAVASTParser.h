@@ -8,6 +8,7 @@
 @class SAVASTAd;
 @class SAVASTMedia;
 @class SAXMLElement;
+@protocol SAInjectable;
 
 // method callback
 typedef void (^saDidParseVAST)(SAVASTAd *ad);
@@ -15,7 +16,7 @@ typedef void (^saDidParseVAST)(SAVASTAd *ad);
 /**
  * Class that abstracts away the complexities of parsing a VAST XML response
  */
-@interface SAVASTParser : NSObject
+@interface SAVASTParser : NSObject<SAInjectable>
 
 /**
  * Method that starts the VAST parsing by calling the internal 

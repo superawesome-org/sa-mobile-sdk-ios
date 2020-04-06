@@ -12,7 +12,7 @@ import Nimble
 
 class UserAgentTests: XCTestCase {
     func testUserAgentName_dataRepositryHasData_useDataRepositoryAgent() throws {
-        // Given
+        // Given: Data repository has data
         let dataUserAgent: String? = "mockUserAgent"
         let userAgent = UserAgent(device: DeviceMock(), dataRepository: DataRepositoryMock(dataUserAgent))
         
@@ -21,8 +21,9 @@ class UserAgentTests: XCTestCase {
     }
     
     func testUserAgentName_dataRepositryHasNoData_useDeviceAgent() throws {
-        // Given
-        let userAgent = UserAgent(device: DeviceMock(), dataRepository: DataRepositoryMock(nil))
+        // Given: Data repository no data
+        let dataUserAgent: String? = nil
+        let userAgent = UserAgent(device: DeviceMock(), dataRepository: DataRepositoryMock(dataUserAgent))
         
         // Then
         expect(userAgent.name).to(equal("mockUserAgent"))

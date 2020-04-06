@@ -17,9 +17,6 @@
 @protocol SAVideoPlayerControlsView;
 @protocol SAVideoPlayerControlsViewDelegate;
 @class SAVideoAd;
-@protocol SAInjectable
-
-@end
 
 #if defined(__has_include)
 #if __has_include(<SAGDPRKisMinor/SAAgeCheck.h>)
