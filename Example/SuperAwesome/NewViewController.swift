@@ -7,11 +7,11 @@
 //
 
 import Foundation
-//import SuperAwesome
+import SuperAwesome
 
 class NewViewController {
     func something() {
-        
+//        let a = SAVideo
         //let a = Video
 //        /let device = Device
     }

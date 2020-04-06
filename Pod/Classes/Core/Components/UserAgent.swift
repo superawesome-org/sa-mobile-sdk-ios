@@ -14,15 +14,11 @@ public protocol UserAgentType {
 
 @objc(SAUserAgent)
 public class UserAgent : NSObject, UserAgentType {
-    @objc(shared)
-    @available(*, deprecated, message: "Temporary code to help out legac code. Refactor to not be a singleton")
-    public static let shared: UserAgentType = UserAgent(device: Device(), dataRepository: DataRepository())
-    
     public var name: String
     private var webView: WKWebView?
     private var dataRepository: DataRepositoryType
     
-    public init(device:DeviceType, dataRepository: DataRepositoryType) {
+    init(device:DeviceType, dataRepository: DataRepositoryType) {
         self.dataRepository = dataRepository
         self.name = dataRepository.userAgent ?? device.userAgent
         super.init()

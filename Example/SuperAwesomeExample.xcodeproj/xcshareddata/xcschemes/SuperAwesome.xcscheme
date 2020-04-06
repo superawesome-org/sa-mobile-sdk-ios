@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1B76D2321C91EEB1000AE8F3"
-               BuildableName = "SuperAwesome.app"
-               BlueprintName = "SuperAwesome"
-               ReferencedContainer = "container:SuperAwesome.xcodeproj">
+               BuildableName = "SuperAwesomeExample.app"
+               BlueprintName = "SuperAwesomeExample"
+               ReferencedContainer = "container:SuperAwesomeExample.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -31,9 +31,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1B76D2321C91EEB1000AE8F3"
-            BuildableName = "SuperAwesome.app"
-            BlueprintName = "SuperAwesome"
-            ReferencedContainer = "container:SuperAwesome.xcodeproj">
+            BuildableName = "SuperAwesomeExample.app"
+            BlueprintName = "SuperAwesomeExample"
+            ReferencedContainer = "container:SuperAwesomeExample.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <Testables>
@@ -44,7 +44,7 @@
                BlueprintIdentifier = "1B0D26CB1CF7186F00619C9C"
                BuildableName = "Tests.xctest"
                BlueprintName = "Tests"
-               ReferencedContainer = "container:SuperAwesome.xcodeproj">
+               ReferencedContainer = "container:SuperAwesomeExample.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -54,7 +54,7 @@
                BlueprintIdentifier = "C668A7172437821A00C18228"
                BuildableName = "SuperAwesomeTests.xctest"
                BlueprintName = "SuperAwesomeTests"
-               ReferencedContainer = "container:SuperAwesome.xcodeproj">
+               ReferencedContainer = "container:SuperAwesomeExample.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -74,9 +74,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1B76D2321C91EEB1000AE8F3"
-            BuildableName = "SuperAwesome.app"
-            BlueprintName = "SuperAwesome"
-            ReferencedContainer = "container:SuperAwesome.xcodeproj">
+            BuildableName = "SuperAwesomeExample.app"
+            BlueprintName = "SuperAwesomeExample"
+            ReferencedContainer = "container:SuperAwesomeExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <EnvironmentVariables>
@@ -98,9 +98,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1B76D2321C91EEB1000AE8F3"
-            BuildableName = "SuperAwesome.app"
-            BlueprintName = "SuperAwesome"
-            ReferencedContainer = "container:SuperAwesome.xcodeproj">
+            BuildableName = "SuperAwesomeExample.app"
+            BlueprintName = "SuperAwesomeExample"
+            ReferencedContainer = "container:SuperAwesomeExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

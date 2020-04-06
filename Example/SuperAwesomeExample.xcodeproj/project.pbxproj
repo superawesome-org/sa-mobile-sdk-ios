@@ -103,7 +103,7 @@
 		C668A6FB2436575B00C18228 /* MoPubController.m in Sources */ = {isa = PBXBuildFile; fileRef = C668A6FA2436575B00C18228 /* MoPubController.m */; };
 		C668A703243659F100C18228 /* DeviceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C668A702243659F100C18228 /* DeviceTests.swift */; };
 		C668A7482437850F00C18228 /* NewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C668A746243784DA00C18228 /* NewViewController.swift */; };
-		EF8EDE4F446CA8BF4020D5AD /* Pods_SuperAwesome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 901D15ED357BD1EEA4526A69 /* Pods_SuperAwesome.framework */; };
+		E52780D260EA21087C0F85EA /* Pods_SuperAwesomeExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 479D753C5EED10C661E7289C /* Pods_SuperAwesomeExample.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -215,7 +215,7 @@
 		1B22701323536F8300FA8326 /* GetIsMinor+RequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GetIsMinor+RequestTests.swift"; sourceTree = "<group>"; };
 		1B22701423536F8300FA8326 /* TestsUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestsUtils.swift; sourceTree = "<group>"; };
 		1B22701523536F8300FA8326 /* GetIsMinorModel+Mapping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GetIsMinorModel+Mapping.swift"; sourceTree = "<group>"; };
-		1B76D2331C91EEB1000AE8F3 /* SuperAwesome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperAwesome.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B76D2331C91EEB1000AE8F3 /* SuperAwesomeExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperAwesomeExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B76D2371C91EEB1000AE8F3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1B76D2391C91EEB1000AE8F3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1B76D23A1C91EEB1000AE8F3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -232,15 +232,17 @@
 		1BFE15E422A00DE500C500C0 /* SuperAwesome-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SuperAwesome-Bridging-Header.h"; sourceTree = "<group>"; };
 		1BFE15E522A00DE600C500C0 /* empty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = empty.swift; sourceTree = "<group>"; };
 		2294CA59892B5A87435606EE /* Pods-SuperAwesome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesome.release.xcconfig"; path = "Target Support Files/Pods-SuperAwesome/Pods-SuperAwesome.release.xcconfig"; sourceTree = "<group>"; };
+		479D753C5EED10C661E7289C /* Pods_SuperAwesomeExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SuperAwesomeExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		497D5AC68B2B27DFFAACACA7 /* Pods-SuperAwesome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesome.debug.xcconfig"; path = "Target Support Files/Pods-SuperAwesome/Pods-SuperAwesome.debug.xcconfig"; sourceTree = "<group>"; };
 		763EEEB15C3FC5CF9C4C2503 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
-		901D15ED357BD1EEA4526A69 /* Pods_SuperAwesome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SuperAwesome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C668A6F7243656E200C18228 /* SATestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SATestUtils.h; sourceTree = "<group>"; };
 		C668A6F8243656E200C18228 /* SATestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SATestUtils.m; sourceTree = "<group>"; };
 		C668A6FA2436575B00C18228 /* MoPubController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoPubController.m; sourceTree = "<group>"; };
 		C668A702243659F100C18228 /* DeviceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTests.swift; sourceTree = "<group>"; };
 		C668A746243784DA00C18228 /* NewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewViewController.swift; sourceTree = "<group>"; };
+		D6B71C01F9DFB74D05E0B0FD /* Pods-SuperAwesomeExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesomeExample.debug.xcconfig"; path = "Target Support Files/Pods-SuperAwesomeExample/Pods-SuperAwesomeExample.debug.xcconfig"; sourceTree = "<group>"; };
 		D8F2154D326FE2F80967D14F /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		DECC64E7421DE990CD928FFD /* Pods-SuperAwesomeExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesomeExample.release.xcconfig"; path = "Target Support Files/Pods-SuperAwesomeExample/Pods-SuperAwesomeExample.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,7 +258,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF8EDE4F446CA8BF4020D5AD /* Pods_SuperAwesome.framework in Frameworks */,
+				E52780D260EA21087C0F85EA /* Pods_SuperAwesomeExample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,7 +482,7 @@
 		1B76D2341C91EEB1000AE8F3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1B76D2331C91EEB1000AE8F3 /* SuperAwesome.app */,
+				1B76D2331C91EEB1000AE8F3 /* SuperAwesomeExample.app */,
 				1B0D26CC1CF7186F00619C9C /* Tests.xctest */,
 			);
 			name = Products;
@@ -544,8 +546,8 @@
 		63CB71636A495D6FBABE5223 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				901D15ED357BD1EEA4526A69 /* Pods_SuperAwesome.framework */,
 				027A65084FCDE85CE56A18B6 /* Pods_Tests.framework */,
+				479D753C5EED10C661E7289C /* Pods_SuperAwesomeExample.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -557,6 +559,8 @@
 				2294CA59892B5A87435606EE /* Pods-SuperAwesome.release.xcconfig */,
 				D8F2154D326FE2F80967D14F /* Pods-Tests.debug.xcconfig */,
 				763EEEB15C3FC5CF9C4C2503 /* Pods-Tests.release.xcconfig */,
+				D6B71C01F9DFB74D05E0B0FD /* Pods-SuperAwesomeExample.debug.xcconfig */,
+				DECC64E7421DE990CD928FFD /* Pods-SuperAwesomeExample.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -600,9 +604,9 @@
 			productReference = 1B0D26CC1CF7186F00619C9C /* Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		1B76D2321C91EEB1000AE8F3 /* SuperAwesome */ = {
+		1B76D2321C91EEB1000AE8F3 /* SuperAwesomeExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1B76D24A1C91EEB1000AE8F3 /* Build configuration list for PBXNativeTarget "SuperAwesome" */;
+			buildConfigurationList = 1B76D24A1C91EEB1000AE8F3 /* Build configuration list for PBXNativeTarget "SuperAwesomeExample" */;
 			buildPhases = (
 				562E66F02882654D5484698E /* [CP] Check Pods Manifest.lock */,
 				1B76D22F1C91EEB1000AE8F3 /* Sources */,
@@ -614,9 +618,9 @@
 			);
 			dependencies = (
 			);
-			name = SuperAwesome;
+			name = SuperAwesomeExample;
 			productName = SuperAwesome;
-			productReference = 1B76D2331C91EEB1000AE8F3 /* SuperAwesome.app */;
+			productReference = 1B76D2331C91EEB1000AE8F3 /* SuperAwesomeExample.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -641,7 +645,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 1B76D22E1C91EEB1000AE8F3 /* Build configuration list for PBXProject "SuperAwesome" */;
+			buildConfigurationList = 1B76D22E1C91EEB1000AE8F3 /* Build configuration list for PBXProject "SuperAwesomeExample" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -655,7 +659,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1B76D2321C91EEB1000AE8F3 /* SuperAwesome */,
+				1B76D2321C91EEB1000AE8F3 /* SuperAwesomeExample */,
 				1B0D26CB1CF7186F00619C9C /* Tests */,
 			);
 		};
@@ -731,7 +735,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SuperAwesome/Pods-SuperAwesome-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-SuperAwesomeExample/Pods-SuperAwesomeExample-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/SAVideoPlayer/SAVideoPlayer.framework",
 				"${BUILT_PRODUCTS_DIR}/SuperAwesome/SuperAwesome.framework",
 			);
@@ -742,7 +746,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SuperAwesome/Pods-SuperAwesome-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SuperAwesomeExample/Pods-SuperAwesomeExample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		562E66F02882654D5484698E /* [CP] Check Pods Manifest.lock */ = {
@@ -760,7 +764,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SuperAwesome-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-SuperAwesomeExample-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -880,7 +884,7 @@
 /* Begin PBXTargetDependency section */
 		1B0D26D21CF7186F00619C9C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 1B76D2321C91EEB1000AE8F3 /* SuperAwesome */;
+			target = 1B76D2321C91EEB1000AE8F3 /* SuperAwesomeExample */;
 			targetProxy = 1B0D26D11CF7186F00619C9C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -914,7 +918,7 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Tests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -937,7 +941,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = tv.superawesome.Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SuperAwesome.app/SuperAwesome";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SuperAwesomeExample.app/SuperAwesomeExample";
 			};
 			name = Debug;
 		};
@@ -950,7 +954,7 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Tests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -973,7 +977,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = tv.superawesome.Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SuperAwesome.app/SuperAwesome";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SuperAwesomeExample.app/SuperAwesomeExample";
 			};
 			name = Release;
 		};
@@ -1014,7 +1018,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1053,7 +1057,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1063,7 +1067,7 @@
 		};
 		1B76D24B1C91EEB1000AE8F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 497D5AC68B2B27DFFAACACA7 /* Pods-SuperAwesome.debug.xcconfig */;
+			baseConfigurationReference = D6B71C01F9DFB74D05E0B0FD /* Pods-SuperAwesomeExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
@@ -1072,7 +1076,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = DCC9L689QJ;
 				INFOPLIST_FILE = SuperAwesome/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1084,7 +1088,7 @@
 					"\"SuperAwesome\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = tv.superawesome.SuperAwesome;
-				PRODUCT_NAME = SuperAwesome;
+				PRODUCT_NAME = SuperAwesomeExample;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SuperAwesome/SuperAwesome-Bridging-Header.h";
@@ -1096,7 +1100,7 @@
 		};
 		1B76D24C1C91EEB1000AE8F3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2294CA59892B5A87435606EE /* Pods-SuperAwesome.release.xcconfig */;
+			baseConfigurationReference = DECC64E7421DE990CD928FFD /* Pods-SuperAwesomeExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
@@ -1105,7 +1109,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = DCC9L689QJ;
 				INFOPLIST_FILE = SuperAwesome/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1117,7 +1121,7 @@
 					"\"SuperAwesome\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = tv.superawesome.SuperAwesome;
-				PRODUCT_NAME = SuperAwesome;
+				PRODUCT_NAME = SuperAwesomeExample;
 				SWIFT_OBJC_BRIDGING_HEADER = "SuperAwesome/SuperAwesome-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1136,7 +1140,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1B76D22E1C91EEB1000AE8F3 /* Build configuration list for PBXProject "SuperAwesome" */ = {
+		1B76D22E1C91EEB1000AE8F3 /* Build configuration list for PBXProject "SuperAwesomeExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1B76D2481C91EEB1000AE8F3 /* Debug */,
@@ -1145,7 +1149,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1B76D24A1C91EEB1000AE8F3 /* Build configuration list for PBXNativeTarget "SuperAwesome" */ = {
+		1B76D24A1C91EEB1000AE8F3 /* Build configuration list for PBXNativeTarget "SuperAwesomeExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1B76D24B1C91EEB1000AE8F3 /* Debug */,

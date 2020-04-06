@@ -8,12 +8,13 @@
 
 import XCTest
 @testable import SuperAwesome
-import Pods_SuperAwesome
 
 
 class DeviceTests: XCTestCase {
 
     func testSomething() throws {
+        //let userAgent = UserAgent(device: Device(), dataRepository: DataRepository())
+        
         //let device = DeviceType()
         //let device =
         
