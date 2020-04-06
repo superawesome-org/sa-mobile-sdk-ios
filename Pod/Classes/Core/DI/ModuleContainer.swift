@@ -12,7 +12,7 @@ public protocol ModuleContainerType {
 }
 
 @objc(SAModuleContainer)
-class ModuleContainer: NSObject, ModuleContainerType {
-    lazy var repositoryModule: RepositoryModuleType = RepositoryModule()
-    lazy var componentModule: ComponentModuleType = ComponentModule(dataRepository: repositoryModule.dataRepository)
+public class ModuleContainer: NSObject, ModuleContainerType {
+    lazy public var repositoryModule: RepositoryModuleType = RepositoryModule()
+    lazy public var componentModule: ComponentModuleType = ComponentModule(dataRepository: repositoryModule.dataRepository)
 }

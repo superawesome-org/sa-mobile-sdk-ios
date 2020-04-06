@@ -7,16 +7,29 @@
 
 @objc(SADependencyContainer)
 public class DependencyContainer: NSObject {
-    @objc(dependencies)
-    public static let dependencies: ModuleContainerType = ModuleContainer()
+    @objc(shared)
+    public private(set) static var shared: DependencyContainer!
+    
+    @objc(initModules:)
+    public static func initModules(_ modules: ModuleContainerType) {
+        shared = DependencyContainer(modules)
+    }
+    
+    @objc(modules)
+    public let moduleContainer: ModuleContainerType
+    
+    @objc(initWith:)
+    public init(_ moduleContainer: ModuleContainerType) {
+        self.moduleContainer = moduleContainer
+    }
 }
 
-@objc(SAInjactable)
-protocol Injactable {
+@objc(SAInjectable)
+public protocol Injectable {
     @objc(dependencies)
     var dependencies: ModuleContainerType { get }
 }
 
-extension Injactable {
-    var dependencies: ModuleContainerType { DependencyContainer.dependencies }
+extension Injectable {
+    var dependencies: ModuleContainerType { DependencyContainer.shared.moduleContainer }
 }

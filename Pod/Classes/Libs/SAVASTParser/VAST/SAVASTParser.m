@@ -27,7 +27,7 @@
 - (id) init {
     if (self = [super init]) {
         _header = @{@"Content-Type":@"application/json",
-                    @"User-Agent": [[[SADependencyContainer.dependencies componentModule] userAgent] name]};
+                    @"User-Agent": SADependencyContainer.shared.modules.componentModule.userAgent.name};
     }
     
     return self;

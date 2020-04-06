@@ -2,6 +2,7 @@
 #import "AwesomeAds.h"
 #import "SAEvents.h"
 #import "SAFileDownloader.h"
+#import <SuperAwesome/SuperAwesome-Swift.h>
 
 static BOOL isInitialised = false;
 
@@ -12,6 +13,7 @@ static BOOL isInitialised = false;
         NSLog(@"Initialising AwesomeAds");
         [SAEvents initMoat: loggingEnabled];
         [SAFileDownloader cleanup];
+        [SADependencyContainer initModules: SAModuleContainer.new];
         isInitialised = true;
     } else {
         NSLog(@"Already initialised AwesomeAds");
