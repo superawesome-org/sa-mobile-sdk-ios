@@ -18,8 +18,6 @@
 
 @implementation SAVASTParser
 
-@synthesize dependencies;
-
 /**
  * Simple constructor that initializes the Header dictionary to be sent along
  * with every request.
@@ -29,7 +27,7 @@
 - (id) init {
     if (self = [super init]) {
         _header = @{@"Content-Type":@"application/json",
-                    @"User-Agent": dependencies.componentModule.userAgent.name};
+                    @"User-Agent": SADependencyContainer.shared.modules.componentModule.userAgent.name};
     }
     
     return self;

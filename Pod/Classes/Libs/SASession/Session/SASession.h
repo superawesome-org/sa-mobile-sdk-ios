@@ -6,13 +6,12 @@
 #import <UIKit/UIKit.h>
 #import "SASessionDefines.h"
 #import "SASessionProtocol.h"
-@protocol SAInjectable;
 
 /**
  * Class that manages an AwesomeAds session, containing all variables 
  * needed to setup loading for a certain ad
  */
-@interface SASession : NSObject <SASessionProtocol, SAInjectable>
+@interface SASession : NSObject <SASessionProtocol>
 
 - (void) setTestMode:(BOOL) testEnabled;
 - (void) enableTestMode;
