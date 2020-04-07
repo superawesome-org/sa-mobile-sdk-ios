@@ -11,14 +11,6 @@ import XCTest
 import Nimble
 @testable import SuperAwesome
 
-class DataRepositoryMock: DataRepositoryType {
-    var userAgent: String?
-    
-    init(_ userAgent:String?) {
-        self.userAgent = userAgent
-    }
-}
-
 class DataRepositoryTests: XCTestCase {
     func testUserAgentName() throws {
         expect(DataRepositoryMock("mockUserAgent").userAgent).to(equal("mockUserAgent"))

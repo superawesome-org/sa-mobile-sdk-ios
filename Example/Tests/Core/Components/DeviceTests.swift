@@ -10,39 +10,7 @@ import XCTest
 import Nimble
 @testable import SuperAwesome
 
-class UIDeviceMock: UIDevice {
-    private let modelMock: String
-    private let systemVersionMock: String
-    
-    init(model:String, systemVersion: String) {
-        self.modelMock = model
-        self.systemVersionMock = systemVersion
-    }
-    
-    override var model : String { return modelMock }
-    override var systemVersion : String { return systemVersionMock }
-}
-
-class DeviceMock: DeviceType {
-    var type: String = ""
-    var systemVersion: String = ""
-    var systemVersionEscaped: String = ""
-    var userAgent: String
-    
-    init() {
-        self.userAgent = "mockDeviceUserAgent"
-    }
-}
-
 class DeviceTests: XCTestCase {
-    var device: Device!
-    let uiDevice = UIDevice()
-    
-    override func setUp() {
-        super.setUp()
-        device = Device(uiDevice)
-    }
-
     func testDeviceModelIpad() throws {
         // Given: Device model is iPad variant
         let model = "iPadXYZ"
@@ -65,13 +33,12 @@ class DeviceTests: XCTestCase {
         // Given: model and system version
         let model = "iPhoneVariant"
         let systemVersion = "13.0"
-        let type = "iPhone"
-        let systemVersionEscaped = "13_0"
         
         let device = Device(UIDeviceMock(model: model, systemVersion: systemVersion))
         
         // Then
-        expect(device.userAgent).to(equal("Mozilla/5.0 (\(type); CPU \(type) OS \(systemVersionEscaped) like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148"
+        expect(device.userAgent).to(equal(
+            "Mozilla/5.0 (iPhone; CPU iPhone OS 13_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148"
         ))
     }
 }

@@ -26,6 +26,7 @@
  */
 - (id) init {
     if (self = [super init]) {
+        // TODO: Convert to use injection
         _header = @{@"Content-Type":@"application/json",
                     @"User-Agent": SADependencyContainer.shared.modules.componentModule.userAgent.name};
     }

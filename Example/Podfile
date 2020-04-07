@@ -4,18 +4,16 @@ use_modular_headers!
 
 target 'SuperAwesomeExample' do
   pod 'SuperAwesome/Full', :path => '../'
-#  pod 'SuperAwesome', :path => '../', :testspecs => ['Tests'] 
 #  pod 'SuperAwesome/MoPub', :path => '../'
 #  pod 'SuperAwesome/Unity', :path => '../'
 #  pod 'SuperAwesome/AIR', :path => '../'
 #  pod 'SuperAwesome/AdMob', :path => '../'
-  # pod 'SAAgeGate'
+#  pod 'SAAgeGate'
 
   target 'Tests' do
     inherit! :search_paths
     pod 'OHHTTPStubs'
     pod 'Nimble'
-    # pod 'Mockingjay'
   end
 
   post_install do |installer|

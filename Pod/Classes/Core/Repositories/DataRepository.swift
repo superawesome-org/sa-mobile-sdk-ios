@@ -15,7 +15,9 @@ public protocol DataRepositoryType {
 
 @objc(SADataRepository)
 class DataRepository : NSObject, DataRepositoryType {
-    private let userAgentKey = "SuperAwesome.Keys.UserAgent"
+    struct Keys {
+        internal static let userAgent = "SuperAwesome.DataRepository.Keys.UserAgent"
+    }
 
     private let dataSource: UserDefaults
     
@@ -24,7 +26,7 @@ class DataRepository : NSObject, DataRepositoryType {
     }
     
     public var userAgent: String? {
-        get { return dataSource.string(forKey: userAgentKey) }
-        set(newValue) { dataSource.set(newValue, forKey: userAgentKey) }
+        get { return dataSource.string(forKey: Keys.userAgent) }
+        set(newValue) { dataSource.set(newValue, forKey: Keys.userAgent) }
     }
 }

@@ -20,7 +20,6 @@
 		1B22702223536F8300FA8326 /* TestSAUtils_UIColorFromHex.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FA723536F8200FA8326 /* TestSAUtils_UIColorFromHex.m */; };
 		1B22702323536F8300FA8326 /* TestSAUtils_FormGetQueryFromDict.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FA823536F8200FA8326 /* TestSAUtils_FormGetQueryFromDict.m */; };
 		1B22702423536F8300FA8326 /* TestSAUtils_GenerateUniqueKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FA923536F8200FA8326 /* TestSAUtils_GenerateUniqueKey.m */; };
-		1B22702523536F8300FA8326 /* TestSAUtils_GetUserAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FAA23536F8200FA8326 /* TestSAUtils_GetUserAgent.m */; };
 		1B22702623536F8300FA8326 /* TestSAUtils_IsRectInRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FAB23536F8200FA8326 /* TestSAUtils_IsRectInRect.m */; };
 		1B22702723536F8300FA8326 /* MockModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FAC23536F8200FA8326 /* MockModel.m */; };
 		1B22702823536F8300FA8326 /* TestSAUtils_RandomNumberBetween.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FAD23536F8200FA8326 /* TestSAUtils_RandomNumberBetween.m */; };
@@ -101,8 +100,10 @@
 		B52C3F5F9407635B595C13F1 /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 027A65084FCDE85CE56A18B6 /* Pods_Tests.framework */; };
 		C61741EC243B8D7600C8D801 /* UserAgentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61741EB243B8D7600C8D801 /* UserAgentTests.swift */; };
 		C61741F2243B9E8300C8D801 /* DataRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61741F1243B9E8300C8D801 /* DataRepositoryTests.swift */; };
+		C61741F5243CA0E900C8D801 /* UIDeviceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61741F4243CA0E900C8D801 /* UIDeviceMock.swift */; };
+		C61741F7243CA14400C8D801 /* DeviceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61741F6243CA14400C8D801 /* DeviceMock.swift */; };
+		C61741F9243CA1D100C8D801 /* DataRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61741F8243CA1D100C8D801 /* DataRepositoryMock.swift */; };
 		C668A6F9243656E200C18228 /* SATestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C668A6F8243656E200C18228 /* SATestUtils.m */; };
-		C668A6FB2436575B00C18228 /* MoPubController.m in Sources */ = {isa = PBXBuildFile; fileRef = C668A6FA2436575B00C18228 /* MoPubController.m */; };
 		C668A703243659F100C18228 /* DeviceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C668A702243659F100C18228 /* DeviceTests.swift */; };
 		E52780D260EA21087C0F85EA /* Pods_SuperAwesomeExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 479D753C5EED10C661E7289C /* Pods_SuperAwesomeExample.framework */; };
 /* End PBXBuildFile section */
@@ -135,7 +136,6 @@
 		1B226FA723536F8200FA8326 /* TestSAUtils_UIColorFromHex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAUtils_UIColorFromHex.m; sourceTree = "<group>"; };
 		1B226FA823536F8200FA8326 /* TestSAUtils_FormGetQueryFromDict.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAUtils_FormGetQueryFromDict.m; sourceTree = "<group>"; };
 		1B226FA923536F8200FA8326 /* TestSAUtils_GenerateUniqueKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAUtils_GenerateUniqueKey.m; sourceTree = "<group>"; };
-		1B226FAA23536F8200FA8326 /* TestSAUtils_GetUserAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAUtils_GetUserAgent.m; sourceTree = "<group>"; };
 		1B226FAB23536F8200FA8326 /* TestSAUtils_IsRectInRect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAUtils_IsRectInRect.m; sourceTree = "<group>"; };
 		1B226FAC23536F8200FA8326 /* MockModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockModel.m; sourceTree = "<group>"; };
 		1B226FAD23536F8200FA8326 /* TestSAUtils_RandomNumberBetween.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAUtils_RandomNumberBetween.m; sourceTree = "<group>"; };
@@ -229,7 +229,6 @@
 		1BA72AC024365236003A31C5 /* fixtures_tests.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = fixtures_tests.bundle; sourceTree = "<group>"; };
 		1BB5F5891ED6CC3400ACD72E /* AdMobController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdMobController.h; sourceTree = "<group>"; };
 		1BB5F58A1ED6CC3400ACD72E /* AdMobController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdMobController.m; sourceTree = "<group>"; };
-		1BB5F5931ED82C2800ACD72E /* MoPubController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoPubController.h; sourceTree = "<group>"; };
 		1BFE15E422A00DE500C500C0 /* SuperAwesome-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SuperAwesome-Bridging-Header.h"; sourceTree = "<group>"; };
 		1BFE15E522A00DE600C500C0 /* empty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = empty.swift; sourceTree = "<group>"; };
 		2294CA59892B5A87435606EE /* Pods-SuperAwesome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesome.release.xcconfig"; path = "Target Support Files/Pods-SuperAwesome/Pods-SuperAwesome.release.xcconfig"; sourceTree = "<group>"; };
@@ -238,9 +237,11 @@
 		763EEEB15C3FC5CF9C4C2503 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
 		C61741EB243B8D7600C8D801 /* UserAgentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAgentTests.swift; sourceTree = "<group>"; };
 		C61741F1243B9E8300C8D801 /* DataRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRepositoryTests.swift; sourceTree = "<group>"; };
+		C61741F4243CA0E900C8D801 /* UIDeviceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDeviceMock.swift; sourceTree = "<group>"; };
+		C61741F6243CA14400C8D801 /* DeviceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceMock.swift; sourceTree = "<group>"; };
+		C61741F8243CA1D100C8D801 /* DataRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRepositoryMock.swift; sourceTree = "<group>"; };
 		C668A6F7243656E200C18228 /* SATestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SATestUtils.h; sourceTree = "<group>"; };
 		C668A6F8243656E200C18228 /* SATestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SATestUtils.m; sourceTree = "<group>"; };
-		C668A6FA2436575B00C18228 /* MoPubController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoPubController.m; sourceTree = "<group>"; };
 		C668A702243659F100C18228 /* DeviceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTests.swift; sourceTree = "<group>"; };
 		D6B71C01F9DFB74D05E0B0FD /* Pods-SuperAwesomeExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesomeExample.debug.xcconfig"; path = "Target Support Files/Pods-SuperAwesomeExample/Pods-SuperAwesomeExample.debug.xcconfig"; sourceTree = "<group>"; };
 		D8F2154D326FE2F80967D14F /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -305,7 +306,6 @@
 				1B226FA723536F8200FA8326 /* TestSAUtils_UIColorFromHex.m */,
 				1B226FA823536F8200FA8326 /* TestSAUtils_FormGetQueryFromDict.m */,
 				1B226FA923536F8200FA8326 /* TestSAUtils_GenerateUniqueKey.m */,
-				1B226FAA23536F8200FA8326 /* TestSAUtils_GetUserAgent.m */,
 				1B226FAB23536F8200FA8326 /* TestSAUtils_IsRectInRect.m */,
 				1B226FAC23536F8200FA8326 /* MockModel.m */,
 				1B226FAD23536F8200FA8326 /* TestSAUtils_RandomNumberBetween.m */,
@@ -512,12 +512,10 @@
 		1BB5F58C1ED6CC3900ACD72E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C668A6FA2436575B00C18228 /* MoPubController.m */,
 				1B76D23C1C91EEB1000AE8F3 /* ViewController.h */,
 				1B76D23D1C91EEB1000AE8F3 /* ViewController.m */,
 				1BB5F5891ED6CC3400ACD72E /* AdMobController.h */,
 				1BB5F58A1ED6CC3400ACD72E /* AdMobController.m */,
-				1BB5F5931ED82C2800ACD72E /* MoPubController.h */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -574,9 +572,20 @@
 			path = Repositories;
 			sourceTree = "<group>";
 		};
+		C61741F3243CA0BD00C8D801 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				C61741F4243CA0E900C8D801 /* UIDeviceMock.swift */,
+				C61741F6243CA14400C8D801 /* DeviceMock.swift */,
+				C61741F8243CA1D100C8D801 /* DataRepositoryMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		C668A700243659CF00C18228 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				C61741F3243CA0BD00C8D801 /* Mocks */,
 				C61741F0243B9E7800C8D801 /* Repositories */,
 				C668A701243659D700C18228 /* Components */,
 			);
@@ -802,6 +811,7 @@
 				1B22703D23536F8300FA8326 /* MockSession.m in Sources */,
 				1B22701C23536F8300FA8326 /* TestSAUtils_RemoveAllButFirst.m in Sources */,
 				1B22701923536F8300FA8326 /* TestSAUtils_GetSystemSize.m in Sources */,
+				C61741F7243CA14400C8D801 /* DeviceMock.swift in Sources */,
 				C61741F2243B9E8300C8D801 /* DataRepositoryTests.swift in Sources */,
 				1B22703823536F8300FA8326 /* TestMoatModule.m in Sources */,
 				1B22705E23536F8300FA8326 /* SAMockCompanyModel.m in Sources */,
@@ -813,6 +823,7 @@
 				1B22704223536F8300FA8326 /* TestSAAdLoader_LoadAd.m in Sources */,
 				1B22702823536F8300FA8326 /* TestSAUtils_RandomNumberBetween.m in Sources */,
 				1B22705623536F8300FA8326 /* SAVAST_Parser_Async_Tests.m in Sources */,
+				C61741F9243CA1D100C8D801 /* DataRepositoryMock.swift in Sources */,
 				1B22702123536F8300FA8326 /* TestSAUtils_EncodeURI.m in Sources */,
 				1B22704323536F8300FA8326 /* SAMockSession.m in Sources */,
 				1B22706B23536F8300FA8326 /* TestSAAd_6.m in Sources */,
@@ -857,6 +868,7 @@
 				1B22704B23536F8300FA8326 /* SANetwork_FileItem_Tests.m in Sources */,
 				1B22702C23536F8300FA8326 /* TestSAUtils_FindBaseURLFromResource.m in Sources */,
 				1B22703E23536F8300FA8326 /* TestSAProcessHTML.m in Sources */,
+				C61741F5243CA0E900C8D801 /* UIDeviceMock.swift in Sources */,
 				1B22703923536F8300FA8326 /* TestSAServerModule.m in Sources */,
 				1B22707123536F8300FA8326 /* GetIsMinor+RequestTests.swift in Sources */,
 				1B22701F23536F8300FA8326 /* TestSAUtils_FindSubstring.m in Sources */,
@@ -864,7 +876,6 @@
 				C668A703243659F100C18228 /* DeviceTests.swift in Sources */,
 				1B22702223536F8300FA8326 /* TestSAUtils_UIColorFromHex.m in Sources */,
 				1B22705D23536F8300FA8326 /* SAMockEmployeeModel.m in Sources */,
-				1B22702523536F8300FA8326 /* TestSAUtils_GetUserAgent.m in Sources */,
 				1B22704C23536F8300FA8326 /* SANetwork_FileDownloader_Tests.m in Sources */,
 				1B22706423536F8300FA8326 /* TestSAJsonParser_ParseDictionary.m in Sources */,
 				1B22706323536F8300FA8326 /* TestSAJsonParser_WriteObject.m in Sources */,
@@ -883,7 +894,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B76D23E1C91EEB1000AE8F3 /* ViewController.m in Sources */,
-				C668A6FB2436575B00C18228 /* MoPubController.m in Sources */,
 				1B76D23B1C91EEB1000AE8F3 /* AppDelegate.m in Sources */,
 				1B76D2381C91EEB1000AE8F3 /* main.m in Sources */,
 				1BB5F58B1ED6CC3400ACD72E /* AdMobController.m in Sources */,
