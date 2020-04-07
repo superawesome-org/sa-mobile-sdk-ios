@@ -55,7 +55,7 @@
     XCTAssertEqualObjects(@"tv.superawesome.SuperAwesome", query[@"bundle"]);
     
     XCTAssertNotNil(query[@"name"]);
-    XCTAssertEqualObjects(@"SuperAwesome", query[@"name"]);
+    XCTAssertEqualObjects(@"SuperAwesomeExample", query[@"name"]);
     
     XCTAssertNotNil(query[@"ct"]);
     XCTAssertEqual(wifi, [query[@"ct"] intValue]);

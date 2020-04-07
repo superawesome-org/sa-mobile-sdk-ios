@@ -110,13 +110,6 @@ typedef NS_ENUM (NSInteger, SAConnectionType) {
 + (NSString*) filePathInDocuments:(NSString*)fpath;
 
 /**
- * Method that returns the current User Agent of a UIWebView object
- * 
- * @return a string representing a User Agent
- */
-+ (NSString*) getUserAgent;
-
-/**
  * Shorthand method that returns a random integer used as cachebuster
  *
  * @return an random integer between 1000000 and 1500000

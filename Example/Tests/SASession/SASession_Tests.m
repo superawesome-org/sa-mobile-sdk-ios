@@ -209,7 +209,7 @@
     BOOL expectedTestMode = false;
     NSString *expectedVersion = @"3.2.1";
     NSString *expectedBundleId = @"tv.superawesome.SuperAwesome";
-    NSString *expectedAppName = @"SuperAwesome";
+    NSString *expectedAppName = @"SuperAwesomeExample";
     NSString *expectedLang = @"en_US";
     NSString *expectedDevice = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? @"tablet" : @"phone";
     NSInteger expectedConnectivity = [SAUtils getNetworkConnectivity]; // wifi

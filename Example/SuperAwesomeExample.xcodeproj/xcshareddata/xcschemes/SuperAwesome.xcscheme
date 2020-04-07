@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1B76D2321C91EEB1000AE8F3"
-               BuildableName = "SuperAwesome.app"
-               BlueprintName = "SuperAwesome"
-               ReferencedContainer = "container:SuperAwesome.xcodeproj">
+               BuildableName = "SuperAwesomeExample.app"
+               BlueprintName = "SuperAwesomeExample"
+               ReferencedContainer = "container:SuperAwesomeExample.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -27,6 +27,15 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "1B76D2321C91EEB1000AE8F3"
+            BuildableName = "SuperAwesomeExample.app"
+            BlueprintName = "SuperAwesomeExample"
+            ReferencedContainer = "container:SuperAwesomeExample.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <Testables>
          <TestableReference
             skipped = "NO">
@@ -35,21 +44,20 @@
                BlueprintIdentifier = "1B0D26CB1CF7186F00619C9C"
                BuildableName = "Tests.xctest"
                BlueprintName = "Tests"
-               ReferencedContainer = "container:SuperAwesome.xcodeproj">
+               ReferencedContainer = "container:SuperAwesomeExample.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C668A7172437821A00C18228"
+               BuildableName = "SuperAwesomeTests.xctest"
+               BlueprintName = "SuperAwesomeTests"
+               ReferencedContainer = "container:SuperAwesomeExample.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1B76D2321C91EEB1000AE8F3"
-            BuildableName = "SuperAwesome.app"
-            BlueprintName = "SuperAwesome"
-            ReferencedContainer = "container:SuperAwesome.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -66,9 +74,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1B76D2321C91EEB1000AE8F3"
-            BuildableName = "SuperAwesome.app"
-            BlueprintName = "SuperAwesome"
-            ReferencedContainer = "container:SuperAwesome.xcodeproj">
+            BuildableName = "SuperAwesomeExample.app"
+            BlueprintName = "SuperAwesomeExample"
+            ReferencedContainer = "container:SuperAwesomeExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <EnvironmentVariables>
@@ -78,8 +86,6 @@
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -92,9 +98,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1B76D2321C91EEB1000AE8F3"
-            BuildableName = "SuperAwesome.app"
-            BlueprintName = "SuperAwesome"
-            ReferencedContainer = "container:SuperAwesome.xcodeproj">
+            BuildableName = "SuperAwesomeExample.app"
+            BlueprintName = "SuperAwesomeExample"
+            ReferencedContainer = "container:SuperAwesomeExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

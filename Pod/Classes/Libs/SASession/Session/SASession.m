@@ -5,6 +5,7 @@
 
 #import "SASession.h"
 #import "SACapper.h"
+#import <SuperAwesome/SuperAwesome-Swift.h>
 
 #if defined(__has_include)
 #if __has_include(<SAUtils/SAUtils.h>)
@@ -59,7 +60,8 @@
         _bundleId = [[NSBundle mainBundle] bundleIdentifier];
         _appName = [SAUtils encodeURI:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"]];
         _device = [SAUtils getSystemSize] == size_phone ? DEVICE_PHONE : DEVICE_TABLET;
-        _userAgent = [SAUtils getUserAgent];
+        // TODO: Convert to use injection
+        _userAgent = SADependencyContainer.shared.modules.componentModule.userAgent.name;
         _connectivityType = [SAUtils getNetworkConnectivity];
         _instl = IN_FULLSCREEN;
         _pos = POS_FULLSCREEN;
