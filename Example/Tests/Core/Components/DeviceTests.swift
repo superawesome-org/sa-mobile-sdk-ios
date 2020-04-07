@@ -30,7 +30,7 @@ class DeviceMock: DeviceType {
     var userAgent: String
     
     init() {
-        self.userAgent = "mockUserAgent"
+        self.userAgent = "mockDeviceUserAgent"
     }
 }
 

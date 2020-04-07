@@ -26,6 +26,6 @@ class UserAgentTests: XCTestCase {
         let userAgent = UserAgent(device: DeviceMock(), dataRepository: DataRepositoryMock(dataUserAgent))
         
         // Then
-        expect(userAgent.name).to(equal("mockUserAgent"))
+        expect(userAgent.name).to(equal("mockDeviceUserAgent"))
     }
 }
