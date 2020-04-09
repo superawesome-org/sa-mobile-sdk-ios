@@ -28,6 +28,7 @@ Pod::Spec.new do |s|
     b.source_files = 'Pod/Classes/**/*'
     b.frameworks = 'AdSupport'
     b.dependency 'SAVideoPlayer', '2.0.0-beta8'
+    b.dependency 'Moya', '~> 14.0'
     b.vendored_frameworks = 'Pod/Libraries/SUPMoatMobileAppKit.framework'
     # b.dependency 'SAWebPlayer', '1.4.1'
     # b.dependency 'SAEvents', '2.2.4'
