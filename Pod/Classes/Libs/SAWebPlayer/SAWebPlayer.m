@@ -158,6 +158,38 @@
 // WebViewDelegate implementation
 ////////////////////////////////////////////////////////////////////////////////
 
+- (WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures {
+    if (_finishedLoading) {
+        NSURL *url = [navigationAction.request URL];
+        NSString *urlStr = [url absoluteString];
+        
+        // protect against about blanks
+        if ([urlStr rangeOfString:@"about:blank"].location != NSNotFound) {
+            return nil;
+        }
+        
+        // guard against iframes
+        if ([urlStr rangeOfString:@"sa-beta-ads-uploads-superawesome.netdna-ssl.com"].location != NSNotFound &&
+            [urlStr rangeOfString:@"/iframes"].location != NSNotFound) {
+            return nil;
+        }
+        
+        // check to see if the URL has a redirect, and take only the redirect
+        NSRange redirLoc = [urlStr rangeOfString:@"&redir="];
+        if (redirLoc.location != NSNotFound) {
+            NSInteger strStart = redirLoc.location + redirLoc.length;
+            NSString *redir = [urlStr substringFromIndex:strStart];
+            
+            // update the new url
+            url = [NSURL URLWithString:redir];
+        }
+        
+        _clickHandler(url);
+    }
+    
+    return nil;
+}
+
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
     
     if (_finishedLoading) {
