@@ -33,11 +33,11 @@ extension AwesomeAdsApi: TargetType {
     
     var task: Task {
         switch self {
-        case .ad(_,let request): return .requestParameters(parameters: request.asDictionary, encoding: URLEncoding.queryString)
-        case .impression(let request): return .requestParameters(parameters: request.asDictionary, encoding: URLEncoding.queryString)
-        case .click(let request): return .requestParameters(parameters: request.asDictionary, encoding: URLEncoding.queryString)
-        case .videoClick(let request): return .requestParameters(parameters: request.asDictionary, encoding: URLEncoding.queryString)
-        case .event(let request): return .requestParameters(parameters: request.asDictionary, encoding: URLEncoding.queryString)
+        case .ad(_,let request): return .requestParameters(parameters: request.toDictionary(), encoding: URLEncoding.queryString)
+        case .impression(let request): return .requestParameters(parameters: request.toDictionary(), encoding: URLEncoding.queryString)
+        case .click(let request): return .requestParameters(parameters: request.toDictionary(), encoding: URLEncoding.queryString)
+        case .videoClick(let request): return .requestParameters(parameters: request.toDictionary(), encoding: URLEncoding.queryString)
+        case .event(let request): return .requestParameters(parameters: request.toDictionary(), encoding: URLEncoding.queryString)
         }
     }
     
