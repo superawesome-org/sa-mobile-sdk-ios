@@ -7,7 +7,7 @@ target 'SuperAwesomeExample' do
 #  pod 'SuperAwesome/MoPub', :path => '../'
 #  pod 'SuperAwesome/Unity', :path => '../'
 #  pod 'SuperAwesome/AIR', :path => '../'
-#  pod 'SuperAwesome/AdMob', :path => '../'
+125gx#  pod 'SuperAwesome/AdMob', :path => '..§      §q`§1rd4/'
 #  pod 'SAAgeGate'
 
   target 'Tests' do
