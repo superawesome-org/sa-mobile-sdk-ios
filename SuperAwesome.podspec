@@ -28,24 +28,13 @@ Pod::Spec.new do |s|
     b.source_files = 'Pod/Classes/**/*'
     b.frameworks = 'AdSupport'
     b.dependency 'SAVideoPlayer', '2.0.0-beta8'
-    b.vendored_frameworks = 'Pod/Libraries/SUPMoatMobileAppKit.framework'
-    # b.dependency 'SAWebPlayer', '1.4.1'
-    # b.dependency 'SAEvents', '2.2.4'
-    # b.dependency 'SAAdLoader', '1.4.2'
-    # b.dependency 'SABumperPage', '1.0.6'
-    # b.dependency 'SAParentalGate', '1.0.2'
-    # b.dependency 'SAGDPRKisMinor', '2.0.0'
   end
-
-  # s.subspec 'Full' do |f|
-  #   f.dependency 'SuperAwesome/Base'
-  #   f.dependency 'SAEvents/Moat2'
-  # end
-
-#  s.subspec 'AIR' do |a|
-#    a.dependency 'SuperAwesome/Base'
-#    a.source_files = 'Pod/Plugin/AIR/*'
-#  end
+  
+  s.subspec 'Moat' do |moat|
+    moat.dependency 'SuperAwesome/Full'
+    moat.vendored_frameworks = 'Pod/Libraries/SUPMoatMobileAppKit.framework'
+    moat.source_files = 'Pod/Plugin/Moat2/*'
+  end
 
 #  s.subspec 'MoPub' do |m|
 #    m.dependency 'SuperAwesome/Full'
@@ -63,4 +52,5 @@ Pod::Spec.new do |s|
  #   u.dependency 'SuperAwesome/Full'
  #   u.source_files = 'Pod/Plugin/Unity/*'
  # end
+ 
 end

@@ -14,13 +14,15 @@ PODS:
     - OHHTTPStubs/Core
   - OHHTTPStubs/OHPathHelpers (9.0.0)
   - SAVideoPlayer (2.0.0-beta8)
+  - SuperAwesome (7.2.5):
+    - SuperAwesome/Full (= 7.2.5)
   - SuperAwesome/Full (7.2.5):
     - SAVideoPlayer (= 2.0.0-beta8)
 
 DEPENDENCIES:
   - Nimble
   - OHHTTPStubs
-  - SuperAwesome/Full (from `../`)
+  - SuperAwesome (from `../`)
 
 SPEC REPOS:
   trunk:
@@ -36,8 +38,8 @@ SPEC CHECKSUMS:
   Nimble: a73af6ecd4c9106f434f3d55fc54570be3739e0b
   OHHTTPStubs: cb29d2a9d09a828ecb93349a2b0c64f99e0db89f
   SAVideoPlayer: f7953c9d6ea1e4875449c148dad53230630f57b8
-  SuperAwesome: e700daa4c1b8527dc99026b1a2b4d00232cde0b5
+  SuperAwesome: eed6efff2170ef6a805ba903e6817cd8e933a0fb
 
-PODFILE CHECKSUM: c447a59749c76617642e49d1b34a6cc661c0d837
+PODFILE CHECKSUM: def1d08e1fa33c6819c4c35e5c07fa70ba9abea3
 
 COCOAPODS: 1.9.1
