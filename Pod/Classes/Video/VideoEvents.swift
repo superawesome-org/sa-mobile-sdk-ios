@@ -50,6 +50,7 @@ import SAVideoPlayer
     
     public func complete(player: VideoPlayer, time: Int, duration: Int) {
         events.stopMoatTrackingForVideoPlayer()
+        guard time >= duration else { return }
         events.triggerVASTCompleteEvent()
     }
     
