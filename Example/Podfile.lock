@@ -1,4 +1,9 @@
 PODS:
+  - Alamofire (5.1.0)
+  - Moya (14.0.0):
+    - Moya/Core (= 14.0.0)
+  - Moya/Core (14.0.0):
+    - Alamofire (~> 5.0)
   - Nimble (8.0.7)
   - OHHTTPStubs (9.0.0):
     - OHHTTPStubs/Default (= 9.0.0)
@@ -17,6 +22,7 @@ PODS:
   - SuperAwesome (7.2.5):
     - SuperAwesome/Full (= 7.2.5)
   - SuperAwesome/Full (7.2.5):
+    - Moya (~> 14.0)
     - SAVideoPlayer (= 2.0.0-beta8)
 
 DEPENDENCIES:
@@ -26,6 +32,8 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - Alamofire
+    - Moya
     - Nimble
     - OHHTTPStubs
     - SAVideoPlayer
@@ -35,10 +43,12 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
+  Alamofire: 9d5c5f602928e512395b30950c5984eca840093c
+  Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   Nimble: a73af6ecd4c9106f434f3d55fc54570be3739e0b
   OHHTTPStubs: cb29d2a9d09a828ecb93349a2b0c64f99e0db89f
   SAVideoPlayer: f7953c9d6ea1e4875449c148dad53230630f57b8
-  SuperAwesome: eed6efff2170ef6a805ba903e6817cd8e933a0fb
+  SuperAwesome: c507693f7860ae5615daeba86ad3bf5a8ca3a2ad
 
 PODFILE CHECKSUM: def1d08e1fa33c6819c4c35e5c07fa70ba9abea3
 

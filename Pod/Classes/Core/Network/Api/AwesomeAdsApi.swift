@@ -41,16 +41,14 @@ extension AwesomeAdsApi: TargetType {
         }
     }
     
-    var sampleData: Data {
-        switch self {
-        case .ad: return "".utf8Encoded
-        case .impression: return "".utf8Encoded
-        case .click: return "".utf8Encoded
-        case .videoClick: return "".utf8Encoded
-        case .event: return "".utf8Encoded
-        }
-    }
+    var sampleData: Data { Data() }
     
     // baseURL is set using the environement in Target
     var baseURL: URL { URL(string: "")! }
+}
+
+func stubbedResponse(_ filename: String) -> Data! {
+    @objc class TestClass: NSObject { }
+    let path = Bundle(for: TestClass.self).path(forResource: filename, ofType: "json")
+    return (try? Data(contentsOf: URL(fileURLWithPath: path!)))
 }

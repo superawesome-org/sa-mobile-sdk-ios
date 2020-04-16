@@ -28,6 +28,7 @@ Pod::Spec.new do |s|
     b.source_files = 'Pod/Classes/**/*'
     b.frameworks = 'AdSupport'
     b.dependency 'SAVideoPlayer', '2.0.0-beta8'
+    b.dependency 'Moya', '~> 14.0'
   end
   
   s.subspec 'Moat' do |moat|

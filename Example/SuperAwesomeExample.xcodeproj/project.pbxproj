@@ -103,6 +103,7 @@
 		C61741F5243CA0E900C8D801 /* UIDeviceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61741F4243CA0E900C8D801 /* UIDeviceMock.swift */; };
 		C61741F7243CA14400C8D801 /* DeviceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61741F6243CA14400C8D801 /* DeviceMock.swift */; };
 		C61741F9243CA1D100C8D801 /* DataRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61741F8243CA1D100C8D801 /* DataRepositoryMock.swift */; };
+		C642D1FF244883B20057FA50 /* AwesomeAdsApiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C642D1FE244883B20057FA50 /* AwesomeAdsApiTests.swift */; };
 		C668A6F9243656E200C18228 /* SATestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C668A6F8243656E200C18228 /* SATestUtils.m */; };
 		C668A703243659F100C18228 /* DeviceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C668A702243659F100C18228 /* DeviceTests.swift */; };
 		E52780D260EA21087C0F85EA /* Pods_SuperAwesomeExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 479D753C5EED10C661E7289C /* Pods_SuperAwesomeExample.framework */; };
@@ -240,6 +241,7 @@
 		C61741F4243CA0E900C8D801 /* UIDeviceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDeviceMock.swift; sourceTree = "<group>"; };
 		C61741F6243CA14400C8D801 /* DeviceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceMock.swift; sourceTree = "<group>"; };
 		C61741F8243CA1D100C8D801 /* DataRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRepositoryMock.swift; sourceTree = "<group>"; };
+		C642D1FE244883B20057FA50 /* AwesomeAdsApiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwesomeAdsApiTests.swift; sourceTree = "<group>"; };
 		C668A6F7243656E200C18228 /* SATestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SATestUtils.h; sourceTree = "<group>"; };
 		C668A6F8243656E200C18228 /* SATestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SATestUtils.m; sourceTree = "<group>"; };
 		C668A702243659F100C18228 /* DeviceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTests.swift; sourceTree = "<group>"; };
@@ -585,6 +587,7 @@
 		C668A700243659CF00C18228 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				C6F216B124486A0800854ECE /* Network */,
 				C61741F3243CA0BD00C8D801 /* Mocks */,
 				C61741F0243B9E7800C8D801 /* Repositories */,
 				C668A701243659D700C18228 /* Components */,
@@ -599,6 +602,22 @@
 				C61741EB243B8D7600C8D801 /* UserAgentTests.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		C6F216B124486A0800854ECE /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				C6F216B224486A0D00854ECE /* Api */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		C6F216B224486A0D00854ECE /* Api */ = {
+			isa = PBXGroup;
+			children = (
+				C642D1FE244883B20057FA50 /* AwesomeAdsApiTests.swift */,
+			);
+			path = Api;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -778,11 +797,15 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SuperAwesomeExample/Pods-SuperAwesomeExample-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/SAVideoPlayer/SAVideoPlayer.framework",
 				"${BUILT_PRODUCTS_DIR}/SuperAwesome/SuperAwesome.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SAVideoPlayer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SuperAwesome.framework",
 			);
@@ -802,6 +825,7 @@
 				1B22703723536F8300FA8326 /* SAMocks.m in Sources */,
 				1B22702F23536F8300FA8326 /* TestSAImpressionEventTrigger.m in Sources */,
 				1B22706D23536F8300FA8326 /* TestSAVAST_2.m in Sources */,
+				C642D1FF244883B20057FA50 /* AwesomeAdsApiTests.swift in Sources */,
 				1B22703023536F8300FA8326 /* SAModelFactory.m in Sources */,
 				1B22707223536F8300FA8326 /* TestsUtils.swift in Sources */,
 				1B22702D23536F8300FA8326 /* TestSAURLEventSetup.m in Sources */,
