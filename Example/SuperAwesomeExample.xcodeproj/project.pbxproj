@@ -104,6 +104,7 @@
 		C61741F7243CA14400C8D801 /* DeviceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61741F6243CA14400C8D801 /* DeviceMock.swift */; };
 		C61741F9243CA1D100C8D801 /* DataRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61741F8243CA1D100C8D801 /* DataRepositoryMock.swift */; };
 		C642D1FF244883B20057FA50 /* AwesomeAdsApiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C642D1FE244883B20057FA50 /* AwesomeAdsApiTests.swift */; };
+		C642D2032448B9230057FA50 /* BundleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C642D2012448B8E40057FA50 /* BundleHelper.swift */; };
 		C668A6F9243656E200C18228 /* SATestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C668A6F8243656E200C18228 /* SATestUtils.m */; };
 		C668A703243659F100C18228 /* DeviceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C668A702243659F100C18228 /* DeviceTests.swift */; };
 		E52780D260EA21087C0F85EA /* Pods_SuperAwesomeExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 479D753C5EED10C661E7289C /* Pods_SuperAwesomeExample.framework */; };
@@ -242,6 +243,7 @@
 		C61741F6243CA14400C8D801 /* DeviceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceMock.swift; sourceTree = "<group>"; };
 		C61741F8243CA1D100C8D801 /* DataRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRepositoryMock.swift; sourceTree = "<group>"; };
 		C642D1FE244883B20057FA50 /* AwesomeAdsApiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwesomeAdsApiTests.swift; sourceTree = "<group>"; };
+		C642D2012448B8E40057FA50 /* BundleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleHelper.swift; sourceTree = "<group>"; };
 		C668A6F7243656E200C18228 /* SATestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SATestUtils.h; sourceTree = "<group>"; };
 		C668A6F8243656E200C18228 /* SATestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SATestUtils.m; sourceTree = "<group>"; };
 		C668A702243659F100C18228 /* DeviceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTests.swift; sourceTree = "<group>"; };
@@ -584,9 +586,18 @@
 			path = Mocks;
 			sourceTree = "<group>";
 		};
+		C642D2002448B8AD0057FA50 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				C642D2012448B8E40057FA50 /* BundleHelper.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
 		C668A700243659CF00C18228 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				C642D2002448B8AD0057FA50 /* Util */,
 				C6F216B124486A0800854ECE /* Network */,
 				C61741F3243CA0BD00C8D801 /* Mocks */,
 				C61741F0243B9E7800C8D801 /* Repositories */,
@@ -755,13 +766,17 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Tests/Pods-Tests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Mockingjay/Mockingjay.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/OHHTTPStubs/OHHTTPStubs.framework",
+				"${BUILT_PRODUCTS_DIR}/URITemplate/URITemplate.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mockingjay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OHHTTPStubs.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/URITemplate.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -894,6 +909,7 @@
 				1B22703E23536F8300FA8326 /* TestSAProcessHTML.m in Sources */,
 				C61741F5243CA0E900C8D801 /* UIDeviceMock.swift in Sources */,
 				1B22703923536F8300FA8326 /* TestSAServerModule.m in Sources */,
+				C642D2032448B9230057FA50 /* BundleHelper.swift in Sources */,
 				1B22707123536F8300FA8326 /* GetIsMinor+RequestTests.swift in Sources */,
 				1B22701F23536F8300FA8326 /* TestSAUtils_FindSubstring.m in Sources */,
 				1B22705723536F8300FA8326 /* SAVAST_Parser_Local_Tests1.m in Sources */,

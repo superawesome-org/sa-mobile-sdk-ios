@@ -1,5 +1,12 @@
 PODS:
   - Alamofire (5.1.0)
+  - Mockingjay (2.0.1):
+    - Mockingjay/Core (= 2.0.1)
+    - Mockingjay/XCTest (= 2.0.1)
+  - Mockingjay/Core (2.0.1):
+    - URITemplate (~> 2.0)
+  - Mockingjay/XCTest (2.0.1):
+    - Mockingjay/Core
   - Moya (14.0.0):
     - Moya/Core (= 14.0.0)
   - Moya/Core (14.0.0):
@@ -24,8 +31,10 @@ PODS:
   - SuperAwesome/Full (7.2.5):
     - Moya (~> 14.0)
     - SAVideoPlayer (= 2.0.0-beta8)
+  - URITemplate (2.0.3)
 
 DEPENDENCIES:
+  - Mockingjay
   - Nimble
   - OHHTTPStubs
   - SuperAwesome (from `../`)
@@ -33,10 +42,12 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - Mockingjay
     - Moya
     - Nimble
     - OHHTTPStubs
     - SAVideoPlayer
+    - URITemplate
 
 EXTERNAL SOURCES:
   SuperAwesome:
@@ -44,12 +55,14 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: 9d5c5f602928e512395b30950c5984eca840093c
+  Mockingjay: 11a621880d2887f1775bdcf824341eb68f218450
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   Nimble: a73af6ecd4c9106f434f3d55fc54570be3739e0b
   OHHTTPStubs: cb29d2a9d09a828ecb93349a2b0c64f99e0db89f
   SAVideoPlayer: f7953c9d6ea1e4875449c148dad53230630f57b8
   SuperAwesome: c507693f7860ae5615daeba86ad3bf5a8ca3a2ad
+  URITemplate: ace0c4c46dcf8afe6e89b4060621852886b15c3b
 
-PODFILE CHECKSUM: def1d08e1fa33c6819c4c35e5c07fa70ba9abea3
+PODFILE CHECKSUM: 0eb376cd1fa161a1ee57c5e19b069ad5724a68bc
 
 COCOAPODS: 1.9.1
