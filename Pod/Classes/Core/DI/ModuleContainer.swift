@@ -6,20 +6,31 @@
 //
 
 @objc(SAModuleContainerType)
-public protocol ModuleContainerType {
+public protocol ModuleContainerObjcType {
     @objc(componentModule)
-    var componentModule: ComponentModuleType { get }
+    var componentModule: ComponentModuleObjcType { get }
     
     @objc(repositoryModule)
-    var repositoryModule: RepositoryModuleType { get }
-    
-    @objc(networkModule)
-    var networkModule: NetworkModuleType { get }
+    var repositoryModule: RepositoryModuleObjcType { get }
 }
 
 @objc(SAModuleContainer)
-public class ModuleContainer: NSObject, ModuleContainerType {
-    lazy public var repositoryModule: RepositoryModuleType = RepositoryModule()
+public class ModuleContainerObjc: NSObject, ModuleContainerObjcType {
+    lazy public var repositoryModule: RepositoryModuleObjcType = RepositoryModuleObjc()
+    lazy public var componentModule: ComponentModuleObjcType = ComponentModuleObjc(dataRepository: repositoryModule.dataRepository)
+}
+
+// MARK: Swift only module container
+
+protocol ModuleContainerType {
+    var componentModule: ComponentModuleType { get }
+    var repositoryModule: RepositoryModuleType { get }
+    var networkModule: NetworkModuleType { get }
+}
+
+class ModuleContainer: ModuleContainerType {
+    lazy public var repositoryModule: RepositoryModuleType =
+        RepositoryModule(provider: networkModule.apiProvider, adQueryMaker: componentModule.adQueryMaker)
     lazy public var componentModule: ComponentModuleType = ComponentModule(dataRepository: repositoryModule.dataRepository)
     lazy public var networkModule: NetworkModuleType = NetworkModule(userAgent: componentModule.userAgent)
 }

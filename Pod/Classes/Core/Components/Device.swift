@@ -10,6 +10,7 @@ import Foundation
 @objc(SADeviceType)
 public protocol DeviceType {
     var type: String { get }
+    var genericType: String { get }
     var systemVersion: String { get }
     var systemVersionEscaped: String { get }
     var userAgent: String { get }
@@ -18,12 +19,14 @@ public protocol DeviceType {
 @objc(SADevice)
 class Device : NSObject, DeviceType {
     public var type: String
+    public var genericType: String
     public var systemVersion: String
     public var systemVersionEscaped: String
     public var userAgent: String
 
     init(_ device: UIDevice) {
         type = device.model.hasPrefix("iPad") ? "iPad" : "iPhone"
+        genericType = type == "iPad" ? "tablet" : "phone"
         systemVersion = device.systemVersion
         systemVersionEscaped = systemVersion.replacingOccurrences(of: ".", with: "_")
         userAgent = "Mozilla/5.0 (\(type); CPU \(type) OS \(systemVersionEscaped) like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148"

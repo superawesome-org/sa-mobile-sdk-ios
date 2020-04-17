@@ -5,13 +5,16 @@
 //  Created by Gunhan Sancar on 16/04/2020.
 //
 
-struct Creative: Codable {
+@objc(SACreative2)
+class Creative: NSObject, Codable {
     let id: Int
     let format: String
     let click_url: String
     let details: CreativeDetail
 }
-struct CreativeDetail: Codable {
+
+@objc(SACreativeDetail2)
+class CreativeDetail: NSObject, Codable {
     let url: String
     let image: String
     let video: String

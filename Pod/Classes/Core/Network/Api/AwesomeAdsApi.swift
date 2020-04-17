@@ -8,7 +8,7 @@
 import Moya
 
 enum AwesomeAdsApi {
-    case ad(placementId: Int, request: AdRequest)
+    case ad(placementId: Int, query: AdQuery)
     case impression(request: ImpressionRequest)
     case click(request: ClickRequest)
     case videoClick(request: ClickRequest)
@@ -33,7 +33,7 @@ extension AwesomeAdsApi: TargetType {
     
     var task: Task {
         switch self {
-        case .ad(_,let request): return .requestParameters(parameters: request.toDictionary(), encoding: URLEncoding.queryString)
+        case .ad(_,let query): return .requestParameters(parameters: query.toDictionary(), encoding: URLEncoding.queryString)
         case .impression(let request): return .requestParameters(parameters: request.toDictionary(), encoding: URLEncoding.queryString)
         case .click(let request): return .requestParameters(parameters: request.toDictionary(), encoding: URLEncoding.queryString)
         case .videoClick(let request): return .requestParameters(parameters: request.toDictionary(), encoding: URLEncoding.queryString)

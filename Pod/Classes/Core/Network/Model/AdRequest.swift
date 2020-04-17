@@ -6,15 +6,10 @@
 //
 
 struct AdRequest: Codable {
+    let environment: Environment
     let test: Bool
-    let sdkVersion: String
-    let rnd: Int
-    let bundle: String
-    let name: String
     let dauid: Int
     let ct: Int
-    let lang: String
-    let device: String
     let pos: Int
     let skip: Int
     let playbackmethod: Int

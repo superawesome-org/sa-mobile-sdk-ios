@@ -29,7 +29,5 @@ struct AwesomeAdsTarget: TargetType {
 
 extension Environment {
     /// Factory method to make an AwesomeAdsTarget object
-    func make(_ target: AwesomeAdsApi) -> AwesomeAdsTarget {
-        return AwesomeAdsTarget(self, target)
-    }
+    func make(_ target: AwesomeAdsApi) -> AwesomeAdsTarget { AwesomeAdsTarget(self, target) }
 }
