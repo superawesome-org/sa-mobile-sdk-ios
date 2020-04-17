@@ -22,22 +22,23 @@ class AwesomeAdsApiTests: XCTestCase {
         ad = nil
     }
 
-    func testRequestAd() throws {
+    func test() throws {
         // Given
         let placementId = 1
         let request = AdRequest(test: true, sdkVersion: "", rnd: 1, bundle: "", name: "", dauid: 1, ct: 1, lang: "",
                                 device: "", pos: 1, skip: 1, playbackmethod: 1, startdelay: 1, instl: 1, w: 1, h: 1)
-    
+        
         stub(uri("/v2/ad/\(placementId)"), jsonData(jsonFile("mock_ad_response_1")))
         
         let expectation = self.expectation(description: "Network request")
-
+        
         // When
         provider.request(AwesomeAdsTarget(.production, .ad(placementId: placementId, request: request))) { result in
             switch result {
             case .success(let response):
-                do { self.ad = try response.map(Ad.self) } catch { }
-                break
+                do {
+                    let filteredResponse = try response.filterSuccessfulStatusCodes()
+                    self.ad = try filteredResponse.map(Ad.self) } catch { }
             case .failure(_): break
             }
             expectation.fulfill()
@@ -46,6 +47,15 @@ class AwesomeAdsApiTests: XCTestCase {
         
         // Then
         let ad = self.ad!
+        expect(ad.advertiserId).to(equal(1))
+        expect(ad.advertiserId).to(equal(1))
+        expect(ad.advertiserId).to(equal(1))
+        expect(ad.advertiserId).to(equal(1))
+        expect(ad.advertiserId).to(equal(1))
+        expect(ad.advertiserId).to(equal(1))
+        expect(ad.advertiserId).to(equal(1))
+        expect(ad.advertiserId).to(equal(1))
+        expect(ad.advertiserId).to(equal(1))
         expect(ad.advertiserId).to(equal(1))
     }
 }
