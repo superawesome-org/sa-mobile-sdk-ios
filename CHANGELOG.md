@@ -1,6 +1,10 @@
 CHANGELOG
 =========
-
+7.2.5
+ - Removal of UIWebview
+ - Click & completed view discrepancy fixes
+ - Moat made optional
+ 
 7.0.1
  - Transitioned to a non-scaling WebView to display banner & interstitial type ads
 
