@@ -8,16 +8,13 @@
 import Moya
 
 protocol NetworkModuleType {
-    var headerPlugin: HeaderPlugin { get }
-    var apiProvider: MoyaProvider<AwesomeAdsTarget> { get }
+    func resolve() -> MoyaProvider<AwesomeAdsTarget>
 }
 
-class NetworkModule: NetworkModuleType {
-    var headerPlugin: HeaderPlugin
-    var apiProvider: MoyaProvider<AwesomeAdsTarget>
-
-    init(userAgent: UserAgentType) {
-        self.headerPlugin = HeaderPlugin(userAgent: userAgent.name)
-        self.apiProvider = MoyaProvider<AwesomeAdsTarget>(plugins: [headerPlugin])
-    }
+class NetworkModule: NetworkModuleType, Injectable {
+    private lazy var userAgent: UserAgentType = (dependencies.resolve() as ComponentModuleType).resolve()
+    private lazy var headerPlugin: PluginType = HeaderPlugin(userAgent: userAgent.name)
+    private lazy var apiProvider: MoyaProvider<AwesomeAdsTarget> = MoyaProvider<AwesomeAdsTarget>(plugins: [headerPlugin])
+    
+    func resolve() -> MoyaProvider<AwesomeAdsTarget> { apiProvider }
 }

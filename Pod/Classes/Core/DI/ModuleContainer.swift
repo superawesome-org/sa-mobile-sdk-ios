@@ -6,7 +6,8 @@
 //
 
 @objc(SAModuleContainerType)
-public protocol ModuleContainerObjcType {
+@available(*, deprecated, message: "Will be deleted")
+public protocol ModuleContainerType {
     @objc(componentModule)
     var componentModule: ComponentModuleObjcType { get }
     
@@ -15,22 +16,7 @@ public protocol ModuleContainerObjcType {
 }
 
 @objc(SAModuleContainer)
-public class ModuleContainerObjc: NSObject, ModuleContainerObjcType {
+public class ModuleContainer: NSObject, ModuleContainerType {
     lazy public var repositoryModule: RepositoryModuleObjcType = RepositoryModuleObjc()
     lazy public var componentModule: ComponentModuleObjcType = ComponentModuleObjc(dataRepository: repositoryModule.dataRepository)
-}
-
-// MARK: Swift only module container
-
-protocol ModuleContainerType {
-    var componentModule: ComponentModuleType { get }
-    var repositoryModule: RepositoryModuleType { get }
-    var networkModule: NetworkModuleType { get }
-}
-
-class ModuleContainer: ModuleContainerType {
-    lazy public var repositoryModule: RepositoryModuleType =
-        RepositoryModule(provider: networkModule.apiProvider, adQueryMaker: componentModule.adQueryMaker)
-    lazy public var componentModule: ComponentModuleType = ComponentModule(dataRepository: repositoryModule.dataRepository)
-    lazy public var networkModule: NetworkModuleType = NetworkModule(userAgent: componentModule.userAgent)
 }

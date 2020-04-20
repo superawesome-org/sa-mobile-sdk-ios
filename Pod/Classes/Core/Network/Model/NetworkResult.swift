@@ -11,10 +11,10 @@ public struct NetworkResult<T> {
     var error: Error?
     
     static func success(_ response: T) -> NetworkResult<T> {
-        return NetworkResult(isSuccess: true, response: response, error: nil)
+        NetworkResult(isSuccess: true, response: response, error: nil)
     }
     
     static func failure(_ error: Error) -> NetworkResult<T> {
-        return NetworkResult(isSuccess: false, response: nil, error: error)
+        NetworkResult(isSuccess: false, response: nil, error: error)
     }
 }

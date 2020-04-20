@@ -8,6 +8,7 @@
 import Moya
 
 @objc(SARepositoryModuleType)
+@available(*, deprecated, message: "Will be deleted")
 public protocol RepositoryModuleObjcType {
     var dataRepository: DataRepositoryType { get }
 }
@@ -17,19 +18,17 @@ class RepositoryModuleObjc: RepositoryModuleObjcType {
 }
 
 protocol RepositoryModuleType {
-    var dataRepository: DataRepositoryType { get }
-    var adRepositroy: AdRepositoryType { get }
+    func resolve() -> DataRepositoryType
+    func resolve() -> AdRepositoryType
 }
 
-class RepositoryModule: RepositoryModuleType {
-    lazy var dataRepository: DataRepositoryType = DataRepository(UserDefaults.standard)
-    lazy var adRepositroy: AdRepositoryType = AdRepository(provider, adQueryMaker: adQueryMaker)
+class RepositoryModule: RepositoryModuleType, Injectable {
+    private lazy var networkModule: NetworkModuleType = dependencies.resolve()
+    private lazy var componentModule: ComponentModuleType = dependencies.resolve()
+    private lazy var dataRepository: DataRepositoryType = DataRepository(UserDefaults.standard)
+    private lazy var adRepositroy: AdRepositoryType = AdRepository(networkModule.resolve(),
+                                                           adQueryMaker: componentModule.resolve())
     
-    private let provider: MoyaProvider<AwesomeAdsTarget>
-    private let adQueryMaker: AdQueryMakerType
-    
-    init(provider: MoyaProvider<AwesomeAdsTarget>, adQueryMaker: AdQueryMakerType) {
-        self.provider = provider
-        self.adQueryMaker = adQueryMaker
-    }
+    func resolve() -> DataRepositoryType { dataRepository }
+    func resolve() -> AdRepositoryType { adRepositroy }
 }

@@ -8,8 +8,6 @@
 struct AdRequest: Codable {
     let environment: Environment
     let test: Bool
-    let dauid: Int
-    let ct: Int
     let pos: Int
     let skip: Int
     let playbackmethod: Int
