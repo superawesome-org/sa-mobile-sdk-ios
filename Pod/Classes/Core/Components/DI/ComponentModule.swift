@@ -31,6 +31,7 @@ protocol ComponentModuleType {
     func resolve() -> SdkInfoType
     func resolve() -> NumberGeneratorType
     func resolve() -> IdGeneratorType
+    func resolve() -> EncoderType
 }
 
 class ComponentModule: ComponentModuleType, Injectable {
@@ -44,9 +45,12 @@ class ComponentModule: ComponentModuleType, Injectable {
                                                                    connectionManager: resolve(),
                                                                    numberGenerator: resolve(),
                                                                    idGenerator: resolve())
-    private lazy var sdkInfo: SdkInfoType = SdkInfo()
+    private lazy var sdkInfo: SdkInfoType = SdkInfo(mainBundle: Bundle.main,
+                                                    sdkBundle: Bundle(for: ComponentModule.self),
+                                                    encoder: resolve())
     private lazy var numberGenerator: NumberGeneratorType = NumberGenerator()
     private lazy var idGenerator: IdGeneratorType = IdGenerator()
+    private lazy var encoder: EncoderType = Encoder()
     
     func resolve() -> DeviceType { device }
     func resolve() -> UserAgentType { userAgent }
@@ -55,4 +59,5 @@ class ComponentModule: ComponentModuleType, Injectable {
     func resolve() -> SdkInfoType { sdkInfo }
     func resolve() -> NumberGeneratorType { numberGenerator }
     func resolve() -> IdGeneratorType { idGenerator }
+    func resolve() -> EncoderType { encoder }
 }

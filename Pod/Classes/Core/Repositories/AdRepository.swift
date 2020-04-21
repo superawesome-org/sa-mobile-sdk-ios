@@ -1,5 +1,5 @@
 //
-//  NetworkRepository.swift
+//  AdRepository.swift
 //  SuperAwesome
 //
 //  Created by Gunhan Sancar on 17/04/2020.
