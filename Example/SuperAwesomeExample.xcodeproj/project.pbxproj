@@ -107,6 +107,8 @@
 		C642D2032448B9230057FA50 /* BundleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C642D2012448B8E40057FA50 /* BundleHelper.swift */; };
 		C668A6F9243656E200C18228 /* SATestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C668A6F8243656E200C18228 /* SATestUtils.m */; };
 		C668A703243659F100C18228 /* DeviceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C668A702243659F100C18228 /* DeviceTests.swift */; };
+		C69A404C244F8ED8006940EB /* SdkInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69A404B244F8ED8006940EB /* SdkInfoTests.swift */; };
+		C69A404E244F8F0E006940EB /* BundleMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69A404D244F8F0E006940EB /* BundleMock.swift */; };
 		E52780D260EA21087C0F85EA /* Pods_SuperAwesomeExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 479D753C5EED10C661E7289C /* Pods_SuperAwesomeExample.framework */; };
 /* End PBXBuildFile section */
 
@@ -247,6 +249,8 @@
 		C668A6F7243656E200C18228 /* SATestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SATestUtils.h; sourceTree = "<group>"; };
 		C668A6F8243656E200C18228 /* SATestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SATestUtils.m; sourceTree = "<group>"; };
 		C668A702243659F100C18228 /* DeviceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTests.swift; sourceTree = "<group>"; };
+		C69A404B244F8ED8006940EB /* SdkInfoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SdkInfoTests.swift; sourceTree = "<group>"; };
+		C69A404D244F8F0E006940EB /* BundleMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleMock.swift; sourceTree = "<group>"; };
 		D6B71C01F9DFB74D05E0B0FD /* Pods-SuperAwesomeExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesomeExample.debug.xcconfig"; path = "Target Support Files/Pods-SuperAwesomeExample/Pods-SuperAwesomeExample.debug.xcconfig"; sourceTree = "<group>"; };
 		D8F2154D326FE2F80967D14F /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		DECC64E7421DE990CD928FFD /* Pods-SuperAwesomeExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesomeExample.release.xcconfig"; path = "Target Support Files/Pods-SuperAwesomeExample/Pods-SuperAwesomeExample.release.xcconfig"; sourceTree = "<group>"; };
@@ -582,6 +586,7 @@
 				C61741F4243CA0E900C8D801 /* UIDeviceMock.swift */,
 				C61741F6243CA14400C8D801 /* DeviceMock.swift */,
 				C61741F8243CA1D100C8D801 /* DataRepositoryMock.swift */,
+				C69A404D244F8F0E006940EB /* BundleMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -611,6 +616,7 @@
 			children = (
 				C668A702243659F100C18228 /* DeviceTests.swift */,
 				C61741EB243B8D7600C8D801 /* UserAgentTests.swift */,
+				C69A404B244F8ED8006940EB /* SdkInfoTests.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -847,6 +853,7 @@
 				1B22706A23536F8300FA8326 /* TestSAAd_8.m in Sources */,
 				1B22704D23536F8300FA8326 /* SASession_Tests.m in Sources */,
 				1B22704023536F8300FA8326 /* TestSAAdLoader_GetAwesomeAdsEndpoint.m in Sources */,
+				C69A404E244F8F0E006940EB /* BundleMock.swift in Sources */,
 				1B22703D23536F8300FA8326 /* MockSession.m in Sources */,
 				1B22701C23536F8300FA8326 /* TestSAUtils_RemoveAllButFirst.m in Sources */,
 				1B22701923536F8300FA8326 /* TestSAUtils_GetSystemSize.m in Sources */,
@@ -908,6 +915,7 @@
 				1B22702C23536F8300FA8326 /* TestSAUtils_FindBaseURLFromResource.m in Sources */,
 				1B22703E23536F8300FA8326 /* TestSAProcessHTML.m in Sources */,
 				C61741F5243CA0E900C8D801 /* UIDeviceMock.swift in Sources */,
+				C69A404C244F8ED8006940EB /* SdkInfoTests.swift in Sources */,
 				1B22703923536F8300FA8326 /* TestSAServerModule.m in Sources */,
 				C642D2032448B9230057FA50 /* BundleHelper.swift in Sources */,
 				1B22707123536F8300FA8326 /* GetIsMinor+RequestTests.swift in Sources */,

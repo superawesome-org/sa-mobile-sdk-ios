@@ -22,12 +22,15 @@ protocol RepositoryModuleType {
     func resolve() -> AdRepositoryType
 }
 
-class RepositoryModule: RepositoryModuleType, Injectable {
-    private lazy var networkModule: NetworkModuleType = dependencies.resolve()
-    private lazy var componentModule: ComponentModuleType = dependencies.resolve()
+class RepositoryModule: RepositoryModuleType {
+    private var networkModule: NetworkModuleType
     private lazy var dataRepository: DataRepositoryType = DataRepository(UserDefaults.standard)
     private lazy var adRepositroy: AdRepositoryType = AdRepository(networkModule.resolve(),
-                                                           adQueryMaker: componentModule.resolve())
+                                                           adQueryMaker: networkModule.resolve())
+    
+    init(_ networkModule: NetworkModuleType) {
+        self.networkModule = networkModule
+    }
     
     func resolve() -> DataRepositoryType { dataRepository }
     func resolve() -> AdRepositoryType { adRepositroy }

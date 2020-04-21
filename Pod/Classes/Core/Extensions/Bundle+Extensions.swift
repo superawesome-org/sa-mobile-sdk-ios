@@ -6,6 +6,6 @@
 //
 
 extension Bundle {
-    var versionNumber: String? { infoDictionary?["CFBundleShortVersionString"] as? String }
-    var name: String? { infoDictionary?["CFBundleName"] as? String }
+    @objc var versionNumber: String? { infoDictionary?["CFBundleShortVersionString"] as? String }
+    @objc var name: String? { infoDictionary?["CFBundleName"] as? String }
 }

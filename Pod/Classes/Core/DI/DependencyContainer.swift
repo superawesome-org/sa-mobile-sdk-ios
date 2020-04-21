@@ -25,33 +25,54 @@ public class DependencyContainerObj: NSObject {
     }
 }
 
-protocol Injectable {
-    var dependencies: DependencyContainer { get }
-}
-
-extension Injectable {
-    var dependencies: DependencyContainer { DependencyContainer.shared }
-}
+//protocol Injectable {
+//    var dependencies: DependencyContainer { get }
+//}
+//
+//extension Injectable {
+//    var dependencies: DependencyContainer { DependencyContainer.shared }
+//}
 
 class DependencyContainer {
     public private(set) static var shared: DependencyContainer!
 
-    private var modules: [String: Module] = [:]
+    //private var dependencies: [String: Dependency] = [:]
+    private var dependencies: [String: Any] = [:]
+
+//    static func initContainer(_ dependencies: @escaping (DependencyContainer) -> [Dependency]) {
+//        shared = DependencyContainer()
+//        modules(shared).forEach { shared.add($0) }
+//    }
     
-    static func initContainer(_ modules: @escaping (DependencyContainer) -> [Module]) {
-        shared = DependencyContainer()
-        modules(shared).forEach { shared.add(module: $0) }
+//    func register(_ factory: @escaping (DependencyContainer) -> Dependency) {
+//        let dependency = factory(self)
+//        dependencies[dependency.name] = dependency
+//    }
+    
+    func register(_ factory: @escaping (DependencyContainer) -> Any) {
+        let dependency = factory(self)
+        dependencies[String(describing: dependency.self)] = dependency
     }
 
-    private func add(module: Module) {
-        modules[module.name] = module
-    }
+//    func register(_ dependency: Dependency) {
+//        dependencies[dependency.name] = dependency
+//    }
 
+//    /// Resolves a module
+//    func resolve<T>(for name: String? = nil) -> T {
+//        let name = name ?? String(describing: T.self)
+//
+//        guard let component: T = dependencies[name]?.resolve() as? T else {
+//            fatalError("Dependency '\(T.self)' not found")
+//        }
+//
+//        return component
+//    }
     /// Resolves a module
     func resolve<T>(for name: String? = nil) -> T {
         let name = name ?? String(describing: T.self)
 
-        guard let component: T = modules[name]?.resolve() as? T else {
+        guard let component: T = dependencies[name] as? T else {
             fatalError("Dependency '\(T.self)' not found")
         }
 
@@ -59,24 +80,22 @@ class DependencyContainer {
     }
 }
 
-struct Module {
-    fileprivate let name: String
-    fileprivate let resolve: () -> Any
-
-    public init<T>(_ name: String? = nil, _ resolve: @escaping () -> T) {
-        self.name = name ?? String(describing: T.self)
-        self.resolve = resolve
-    }
-}
+//struct Dependency {
+//    fileprivate let name: String
+//    fileprivate let resolve: () -> Any
+//
+//    public init<T>(_ name: String? = nil, _ resolve: @escaping () -> T) {
+//        self.name = name ?? String(describing: T.self)
+//        self.resolve = resolve
+//    }
+//}
 
 //class Tester {
 //    func testing() {
-//        DependencyContainer.initContainer { container in
-//            [
-//                Module { RepositoryModule() as RepositoryModuleType },
-//                Module { ComponentModule() as ComponentModuleType },
-//                Module { NetworkModule() as NetworkModuleType }
-//            ]
-//        }
+//        let container = DependencyContainer()
+//        container.register { c in ComponentModule(c.resolve() as RepositoryModuleType) as ComponentModuleType }
+//        container.register { c in NetworkModule(c.resolve() as ComponentModuleType) as NetworkModuleType }
+//        container.register { c in RepositoryModule(c.resolve() as NetworkModuleType) as RepositoryModuleType }
+//
 //    }
 //}

@@ -18,13 +18,13 @@ struct SdkInfo: SdkInfoType {
     var name: String
     var lang: String
     
-    init(mainBundle: Bundle, sdkBundle: Bundle, encoder: EncoderType) {
+    init(mainBundle: Bundle, sdkBundle: Bundle, locale:Locale, encoder: EncoderType) {
         self.version = sdkBundle.versionNumber ?? ""
         self.bundle = mainBundle.bundleIdentifier ?? ""
         self.name = encoder.encodeUri(mainBundle.name)
         
         if let shortLang = mainBundle.preferredLocalizations.first,
-            let region = Locale.current.regionCode {
+            let region = locale.regionCode {
             self.lang = "\(shortLang)_\(region)"
         } else {
             self.lang = "none"
