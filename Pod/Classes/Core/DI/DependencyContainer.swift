@@ -38,13 +38,9 @@ class DependencyContainer {
 
     private var modules: [String: Module] = [:]
     
-    deinit {
-        modules = [:]
-    }
-    
     static func initContainer(_ modules: @escaping (DependencyContainer) -> [Module]) {
         shared = DependencyContainer()
-        modules(shared).forEach{ shared.add(module: $0)}
+        modules(shared).forEach { shared.add(module: $0) }
     }
 
     private func add(module: Module) {
