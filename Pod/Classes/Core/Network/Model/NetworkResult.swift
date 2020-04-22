@@ -6,9 +6,9 @@
 //
 
 public struct NetworkResult<T> {
-    var isSuccess: Bool
-    var response: T?
-    var error: Error?
+    let isSuccess: Bool
+    let response: T?
+    let error: Error?
     
     static func success(_ response: T) -> NetworkResult<T> {
         NetworkResult(isSuccess: true, response: response, error: nil)

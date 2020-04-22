@@ -46,9 +46,3 @@ extension AwesomeAdsApi: TargetType {
     // baseURL is set using the environement in Target
     var baseURL: URL { URL(string: "")! }
 }
-
-func stubbedResponse(_ filename: String) -> Data! {
-    @objc class TestClass: NSObject { }
-    let path = Bundle(for: TestClass.self).path(forResource: filename, ofType: "json")
-    return (try? Data(contentsOf: URL(fileURLWithPath: path!)))
-}

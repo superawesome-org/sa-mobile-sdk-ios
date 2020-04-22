@@ -36,7 +36,7 @@ class DependencyContainer {
         dependencies[String(describing: dependency.self)] = dependency
     }
     
-    /// Resolves a module
+    /// Resolves a dependency
     func resolve<T>(for name: String? = nil) -> T {
         let name = name ?? String(describing: T.self)
 

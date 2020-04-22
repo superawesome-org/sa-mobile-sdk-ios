@@ -26,7 +26,7 @@ class RepositoryModule: RepositoryModuleType {
     private var networkModule: NetworkModuleType
     private lazy var dataRepository: DataRepositoryType = DataRepository(UserDefaults.standard)
     private lazy var adRepositroy: AdRepositoryType = AdRepository(networkModule.resolve(),
-                                                           adQueryMaker: networkModule.resolve())
+                                                                   adQueryMaker: networkModule.resolve())
     
     init(_ networkModule: NetworkModuleType) {
         self.networkModule = networkModule
