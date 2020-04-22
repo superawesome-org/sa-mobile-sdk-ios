@@ -3,7 +3,6 @@
 //  Tests
 //
 //  Created by Gunhan Sancar on 22/04/2020.
-//  Copyright © 2020 Gabriel Coman. All rights reserved.
 //
 
 import XCTest
@@ -17,13 +16,12 @@ class AdRepositoryTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        //provider = MoyaProvider<AwesomeAdsTarget>(plugins:[NetworkLoggerPlugin()])
         result = nil
     }
     
     private func prepare(json:String, isSuccess: Bool) {
         // Given
-        let placementId = 1
+        let placementId: Int = 1
         let request = AdRequest(environment: .staging, test: true, pos: 1,
                                 skip: 1, playbackmethod: 1, startdelay: 1,
                                 instl: 1, w: 1, h: 1)
@@ -40,7 +38,7 @@ class AdRepositoryTests: XCTestCase {
             expectation.fulfill()
         }
         
-        waitForExpectations(timeout: 2, handler: nil)
+        waitForExpectations(timeout: 2.0, handler: nil)
         
         // Then
         expect(self.result?.isSuccess).to(equal(isSuccess))

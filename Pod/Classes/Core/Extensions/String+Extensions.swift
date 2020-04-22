@@ -6,6 +6,6 @@
 //
 
 extension String {
-    var urlEscaped: String { addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)! }
-    var utf8Encoded: Data { data(using: .utf8)! }
+    var urlEscaped: String? { addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) }
+    var utf8Encoded: Data? { data(using: .utf8) }
 }

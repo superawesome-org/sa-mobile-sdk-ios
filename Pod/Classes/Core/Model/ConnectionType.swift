@@ -11,7 +11,7 @@ enum ConnectionType: Int, Codable {
     case ethernet = 1
     case wifi = 2
     case cellularUnknown = 3
-    case cellular2g      = 4
-    case cellular3g      = 5
-    case cellular4g      = 6
+    case cellular2g = 4
+    case cellular3g = 5
+    case cellular4g = 6
 }

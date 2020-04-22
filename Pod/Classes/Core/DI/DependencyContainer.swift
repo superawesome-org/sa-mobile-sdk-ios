@@ -26,8 +26,6 @@ public class DependencyContainerObj: NSObject {
 }
 
 class DependencyContainer {
-    public private(set) static var shared: DependencyContainer!
-
     private var dependencies: [String: Any] = [:]
     
     /// Registers a dependency

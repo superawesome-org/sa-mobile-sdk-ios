@@ -3,7 +3,6 @@
 //  Tests
 //
 //  Created by Gunhan Sancar on 16/04/2020.
-//  Copyright © 2020 Gabriel Coman. All rights reserved.
 //
 
 import XCTest
@@ -17,8 +16,8 @@ class AwesomeAdsApiTests: XCTestCase {
     private var ad: Ad? = nil
     private var error: Error?  = nil
     private let mockQuery = AdQuery(test: true, sdkVersion: "", rnd: 1, bundle: "",
-                        name: "", dauid: 1, ct: .wifi, lang: "", device: "",
-                        pos: 1, skip: 1, playbackmethod: 1, startdelay: 1, instl: 1, w: 1, h: 1)
+                                    name: "", dauid: 1, ct: .wifi, lang: "", device: "",
+                                    pos: 1, skip: 1, playbackmethod: 1, startdelay: 1, instl: 1, w: 1, h: 1)
     
     override func setUp() {
         super.setUp()
@@ -29,7 +28,7 @@ class AwesomeAdsApiTests: XCTestCase {
     
     private func prepareResponse(json: String) {
         // Given
-        let placementId = 1
+        let placementId: Int = 1
         
         stub(uri("/v2/ad/\(placementId)"), jsonData(jsonFile(json)))
         
@@ -50,7 +49,7 @@ class AwesomeAdsApiTests: XCTestCase {
             expectation.fulfill()
         }
         
-        waitForExpectations(timeout: 5, handler: nil)
+        waitForExpectations(timeout: 2.0, handler: nil)
     }
 
     func test_mock_ad_response_1() throws {

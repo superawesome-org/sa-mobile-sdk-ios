@@ -10,5 +10,8 @@ protocol NumberGeneratorType {
 }
 
 class NumberGenerator: NumberGeneratorType {
-    func nextIntForCache() -> Int { Int.random(in: 1000000..<1500000)}
+    private static let cacheBoundMin: Int = 1000000
+    private static let cacheBoundMax: Int = 1500000
+    
+    func nextIntForCache() -> Int { Int.random(in: NumberGenerator.cacheBoundMin..<NumberGenerator.cacheBoundMax)}
 }

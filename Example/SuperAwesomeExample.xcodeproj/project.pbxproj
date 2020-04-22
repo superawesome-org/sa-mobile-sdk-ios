@@ -112,6 +112,7 @@
 		C69A405224505010006940EB /* EncoderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69A405124505010006940EB /* EncoderTests.swift */; };
 		C69A4054245051FD006940EB /* AdRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69A4053245051FD006940EB /* AdRepositoryTests.swift */; };
 		C69A405824505F9A006940EB /* AdQueryMakerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69A405724505F9A006940EB /* AdQueryMakerMock.swift */; };
+		C69A405A24507AC9006940EB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69A405924507AC9006940EB /* MainViewController.swift */; };
 		E52780D260EA21087C0F85EA /* Pods_SuperAwesomeExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 479D753C5EED10C661E7289C /* Pods_SuperAwesomeExample.framework */; };
 /* End PBXBuildFile section */
 
@@ -257,6 +258,7 @@
 		C69A405124505010006940EB /* EncoderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncoderTests.swift; sourceTree = "<group>"; };
 		C69A4053245051FD006940EB /* AdRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdRepositoryTests.swift; sourceTree = "<group>"; };
 		C69A405724505F9A006940EB /* AdQueryMakerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdQueryMakerMock.swift; sourceTree = "<group>"; };
+		C69A405924507AC9006940EB /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		D6B71C01F9DFB74D05E0B0FD /* Pods-SuperAwesomeExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesomeExample.debug.xcconfig"; path = "Target Support Files/Pods-SuperAwesomeExample/Pods-SuperAwesomeExample.debug.xcconfig"; sourceTree = "<group>"; };
 		D8F2154D326FE2F80967D14F /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		DECC64E7421DE990CD928FFD /* Pods-SuperAwesomeExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesomeExample.release.xcconfig"; path = "Target Support Files/Pods-SuperAwesomeExample/Pods-SuperAwesomeExample.release.xcconfig"; sourceTree = "<group>"; };
@@ -530,6 +532,7 @@
 				1B76D23D1C91EEB1000AE8F3 /* ViewController.m */,
 				1BB5F5891ED6CC3400ACD72E /* AdMobController.h */,
 				1BB5F58A1ED6CC3400ACD72E /* AdMobController.m */,
+				C69A405924507AC9006940EB /* MainViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -696,7 +699,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1140;
 				LastUpgradeCheck = 0720;
-				ORGANIZATIONNAME = "Gabriel Coman";
+				ORGANIZATIONNAME = "";
 				TargetAttributes = {
 					1B0D26CB1CF7186F00619C9C = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -956,6 +959,7 @@
 				1B76D23E1C91EEB1000AE8F3 /* ViewController.m in Sources */,
 				1B76D23B1C91EEB1000AE8F3 /* AppDelegate.m in Sources */,
 				1B76D2381C91EEB1000AE8F3 /* main.m in Sources */,
+				C69A405A24507AC9006940EB /* MainViewController.swift in Sources */,
 				1BB5F58B1ED6CC3400ACD72E /* AdMobController.m in Sources */,
 				1BFE15E622A00DE600C500C0 /* empty.swift in Sources */,
 			);

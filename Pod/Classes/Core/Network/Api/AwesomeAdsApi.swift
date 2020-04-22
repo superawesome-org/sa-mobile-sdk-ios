@@ -43,6 +43,6 @@ extension AwesomeAdsApi: TargetType {
     
     var sampleData: Data { Data() }
     
-    // baseURL is set using the environement in Target
-    var baseURL: URL { URL(string: "")! }
+    // baseURL is set using the environment in Target
+    var baseURL: URL { Environment.staging.baseURL }
 }

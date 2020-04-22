@@ -7,9 +7,6 @@
 
 import Moya
 
-/*
- Helper class to dynamically set the baseURL for the MoyaProvider
- */
 struct AwesomeAdsTarget: TargetType {
     let environment: Environment
     let target: TargetType
@@ -28,6 +25,5 @@ struct AwesomeAdsTarget: TargetType {
 }
 
 extension Environment {
-    /// Factory method to make an AwesomeAdsTarget object
     func make(_ target: AwesomeAdsApi) -> AwesomeAdsTarget { AwesomeAdsTarget(self, target) }
 }

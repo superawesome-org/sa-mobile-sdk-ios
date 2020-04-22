@@ -3,7 +3,6 @@
 //  Tests
 //
 //  Created by Gunhan Sancar on 21/04/2020.
-//  Copyright © 2020 Gabriel Coman. All rights reserved.
 //
 
 @testable import SuperAwesome
