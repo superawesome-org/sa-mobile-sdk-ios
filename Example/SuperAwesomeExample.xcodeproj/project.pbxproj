@@ -778,12 +778,10 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SuperAwesomeExample/Pods-SuperAwesomeExample-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/SAVideoPlayer/SAVideoPlayer.framework",
 				"${BUILT_PRODUCTS_DIR}/SuperAwesome/SuperAwesome.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SAVideoPlayer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SuperAwesome.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1105,8 +1103,6 @@
 					"-framework",
 					"\"AdSupport\"",
 					"-framework",
-					"\"SAVideoPlayer\"",
-					"-framework",
 					"\"SuperAwesome\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = tv.superawesome.SuperAwesome;
@@ -1137,8 +1133,6 @@
 					"$(inherited)",
 					"-framework",
 					"\"AdSupport\"",
-					"-framework",
-					"\"SAVideoPlayer\"",
 					"-framework",
 					"\"SuperAwesome\"",
 				);
