@@ -10,7 +10,15 @@
 #import "SAVASTEvent.h"
 #import "SANetwork.h"
 #import "SAUtils.h"
+
+#if defined(__has_include)
+#if __has_include(<SuperAwesome/SuperAwesome-Swift.h>)
 #import <SuperAwesome/SuperAwesome-Swift.h>
+#else
+#import "SuperAwesome-Swift.h"
+#endif
+#endif
+
 
 @interface SAVASTParser ()
 @property (nonatomic, strong) NSDictionary *header;

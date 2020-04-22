@@ -2,7 +2,14 @@
 #import "AwesomeAds.h"
 #import "SAEvents.h"
 #import "SAFileDownloader.h"
+
+#if defined(__has_include)
+#if __has_include(<SuperAwesome/SuperAwesome-Swift.h>)
 #import <SuperAwesome/SuperAwesome-Swift.h>
+#else
+#import "SuperAwesome-Swift.h"
+#endif
+#endif
 
 static BOOL isInitialised = false;
 
