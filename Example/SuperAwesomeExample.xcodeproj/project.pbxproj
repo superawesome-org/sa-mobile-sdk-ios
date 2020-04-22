@@ -109,6 +109,9 @@
 		C668A703243659F100C18228 /* DeviceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C668A702243659F100C18228 /* DeviceTests.swift */; };
 		C69A404C244F8ED8006940EB /* SdkInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69A404B244F8ED8006940EB /* SdkInfoTests.swift */; };
 		C69A404E244F8F0E006940EB /* BundleMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69A404D244F8F0E006940EB /* BundleMock.swift */; };
+		C69A405224505010006940EB /* EncoderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69A405124505010006940EB /* EncoderTests.swift */; };
+		C69A4054245051FD006940EB /* AdRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69A4053245051FD006940EB /* AdRepositoryTests.swift */; };
+		C69A405824505F9A006940EB /* AdQueryMakerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69A405724505F9A006940EB /* AdQueryMakerMock.swift */; };
 		E52780D260EA21087C0F85EA /* Pods_SuperAwesomeExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 479D753C5EED10C661E7289C /* Pods_SuperAwesomeExample.framework */; };
 /* End PBXBuildFile section */
 
@@ -251,6 +254,9 @@
 		C668A702243659F100C18228 /* DeviceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTests.swift; sourceTree = "<group>"; };
 		C69A404B244F8ED8006940EB /* SdkInfoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SdkInfoTests.swift; sourceTree = "<group>"; };
 		C69A404D244F8F0E006940EB /* BundleMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleMock.swift; sourceTree = "<group>"; };
+		C69A405124505010006940EB /* EncoderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncoderTests.swift; sourceTree = "<group>"; };
+		C69A4053245051FD006940EB /* AdRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdRepositoryTests.swift; sourceTree = "<group>"; };
+		C69A405724505F9A006940EB /* AdQueryMakerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdQueryMakerMock.swift; sourceTree = "<group>"; };
 		D6B71C01F9DFB74D05E0B0FD /* Pods-SuperAwesomeExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesomeExample.debug.xcconfig"; path = "Target Support Files/Pods-SuperAwesomeExample/Pods-SuperAwesomeExample.debug.xcconfig"; sourceTree = "<group>"; };
 		D8F2154D326FE2F80967D14F /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		DECC64E7421DE990CD928FFD /* Pods-SuperAwesomeExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesomeExample.release.xcconfig"; path = "Target Support Files/Pods-SuperAwesomeExample/Pods-SuperAwesomeExample.release.xcconfig"; sourceTree = "<group>"; };
@@ -576,6 +582,7 @@
 			isa = PBXGroup;
 			children = (
 				C61741F1243B9E8300C8D801 /* DataRepositoryTests.swift */,
+				C69A4053245051FD006940EB /* AdRepositoryTests.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -587,6 +594,7 @@
 				C61741F6243CA14400C8D801 /* DeviceMock.swift */,
 				C61741F8243CA1D100C8D801 /* DataRepositoryMock.swift */,
 				C69A404D244F8F0E006940EB /* BundleMock.swift */,
+				C69A405724505F9A006940EB /* AdQueryMakerMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -617,6 +625,7 @@
 				C668A702243659F100C18228 /* DeviceTests.swift */,
 				C61741EB243B8D7600C8D801 /* UserAgentTests.swift */,
 				C69A404B244F8ED8006940EB /* SdkInfoTests.swift */,
+				C69A405124505010006940EB /* EncoderTests.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -846,6 +855,7 @@
 				1B22703723536F8300FA8326 /* SAMocks.m in Sources */,
 				1B22702F23536F8300FA8326 /* TestSAImpressionEventTrigger.m in Sources */,
 				1B22706D23536F8300FA8326 /* TestSAVAST_2.m in Sources */,
+				C69A4054245051FD006940EB /* AdRepositoryTests.swift in Sources */,
 				C642D1FF244883B20057FA50 /* AwesomeAdsApiTests.swift in Sources */,
 				1B22703023536F8300FA8326 /* SAModelFactory.m in Sources */,
 				1B22707223536F8300FA8326 /* TestsUtils.swift in Sources */,
@@ -884,6 +894,7 @@
 				1B22706E23536F8300FA8326 /* TestSAAd_1.m in Sources */,
 				1B22702623536F8300FA8326 /* TestSAUtils_IsRectInRect.m in Sources */,
 				1B22706123536F8300FA8326 /* TestSAJsonParser_WriteDictionary.m in Sources */,
+				C69A405224505010006940EB /* EncoderTests.swift in Sources */,
 				1B22706923536F8300FA8326 /* TestSAAd_2.m in Sources */,
 				1B22704723536F8300FA8326 /* SAResponseFactory.m in Sources */,
 				1B22704923536F8300FA8326 /* SANetwork_Network_Tests.m in Sources */,
@@ -909,6 +920,7 @@
 				1B22705223536F8300FA8326 /* SAXML_Parser_Tests3.m in Sources */,
 				1B22702323536F8300FA8326 /* TestSAUtils_FormGetQueryFromDict.m in Sources */,
 				1B22705123536F8300FA8326 /* SAMockVASTServer.m in Sources */,
+				C69A405824505F9A006940EB /* AdQueryMakerMock.swift in Sources */,
 				1B22703223536F8300FA8326 /* TestSAClickEventSetup.m in Sources */,
 				1B22702B23536F8300FA8326 /* TestSAUtils_FilterBy.m in Sources */,
 				1B22704B23536F8300FA8326 /* SANetwork_FileItem_Tests.m in Sources */,
