@@ -52,7 +52,7 @@
     XCTAssertNotNil(query[@"rnd"]);
     
     XCTAssertNotNil(query[@"bundle"]);
-    XCTAssertEqualObjects(@"tv.superawesome.SuperAwesome", query[@"bundle"]);
+    XCTAssertEqualObjects(@"tv.superawesome.awesomeads.sdk", query[@"bundle"]);
     
     XCTAssertNotNil(query[@"name"]);
     XCTAssertEqualObjects(@"SuperAwesomeExample", query[@"name"]);

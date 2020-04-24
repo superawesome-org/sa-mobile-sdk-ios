@@ -98,12 +98,14 @@
 		1BB5F58B1ED6CC3400ACD72E /* AdMobController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB5F58A1ED6CC3400ACD72E /* AdMobController.m */; };
 		1BFE15E622A00DE600C500C0 /* empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFE15E522A00DE600C500C0 /* empty.swift */; };
 		B52C3F5F9407635B595C13F1 /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 027A65084FCDE85CE56A18B6 /* Pods_Tests.framework */; };
+		C60B8EDC24530C8F003451DE /* AdDataSourceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60B8EDB24530C8F003451DE /* AdDataSourceMock.swift */; };
+		C60B8EE124532AE5003451DE /* MockFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60B8EDF24532953003451DE /* MockFactory.swift */; };
+		C60B8EE224532B3E003451DE /* AwesomeAdsApiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C642D1FE244883B20057FA50 /* AwesomeAdsApiTests.swift */; };
 		C61741EC243B8D7600C8D801 /* UserAgentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61741EB243B8D7600C8D801 /* UserAgentTests.swift */; };
 		C61741F2243B9E8300C8D801 /* DataRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61741F1243B9E8300C8D801 /* DataRepositoryTests.swift */; };
 		C61741F5243CA0E900C8D801 /* UIDeviceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61741F4243CA0E900C8D801 /* UIDeviceMock.swift */; };
 		C61741F7243CA14400C8D801 /* DeviceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61741F6243CA14400C8D801 /* DeviceMock.swift */; };
 		C61741F9243CA1D100C8D801 /* DataRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61741F8243CA1D100C8D801 /* DataRepositoryMock.swift */; };
-		C642D1FF244883B20057FA50 /* AwesomeAdsApiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C642D1FE244883B20057FA50 /* AwesomeAdsApiTests.swift */; };
 		C642D2032448B9230057FA50 /* BundleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C642D2012448B8E40057FA50 /* BundleHelper.swift */; };
 		C6535602245239270043115E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6535601245239270043115E /* HealthKit.framework */; };
 		C668A6F9243656E200C18228 /* SATestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C668A6F8243656E200C18228 /* SATestUtils.m */; };
@@ -243,6 +245,8 @@
 		479D753C5EED10C661E7289C /* Pods_SuperAwesomeExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SuperAwesomeExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		497D5AC68B2B27DFFAACACA7 /* Pods-SuperAwesome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesome.debug.xcconfig"; path = "Target Support Files/Pods-SuperAwesome/Pods-SuperAwesome.debug.xcconfig"; sourceTree = "<group>"; };
 		763EEEB15C3FC5CF9C4C2503 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
+		C60B8EDB24530C8F003451DE /* AdDataSourceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdDataSourceMock.swift; sourceTree = "<group>"; };
+		C60B8EDF24532953003451DE /* MockFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFactory.swift; sourceTree = "<group>"; };
 		C61741EB243B8D7600C8D801 /* UserAgentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAgentTests.swift; sourceTree = "<group>"; };
 		C61741F1243B9E8300C8D801 /* DataRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRepositoryTests.swift; sourceTree = "<group>"; };
 		C61741F4243CA0E900C8D801 /* UIDeviceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDeviceMock.swift; sourceTree = "<group>"; };
@@ -601,6 +605,8 @@
 				C61741F8243CA1D100C8D801 /* DataRepositoryMock.swift */,
 				C69A404D244F8F0E006940EB /* BundleMock.swift */,
 				C69A405724505F9A006940EB /* AdQueryMakerMock.swift */,
+				C60B8EDB24530C8F003451DE /* AdDataSourceMock.swift */,
+				C60B8EDF24532953003451DE /* MockFactory.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -639,17 +645,9 @@
 		C6F216B124486A0800854ECE /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				C6F216B224486A0D00854ECE /* Api */,
-			);
-			path = Network;
-			sourceTree = "<group>";
-		};
-		C6F216B224486A0D00854ECE /* Api */ = {
-			isa = PBXGroup;
-			children = (
 				C642D1FE244883B20057FA50 /* AwesomeAdsApiTests.swift */,
 			);
-			path = Api;
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -862,7 +860,6 @@
 				1B22702F23536F8300FA8326 /* TestSAImpressionEventTrigger.m in Sources */,
 				1B22706D23536F8300FA8326 /* TestSAVAST_2.m in Sources */,
 				C69A4054245051FD006940EB /* AdRepositoryTests.swift in Sources */,
-				C642D1FF244883B20057FA50 /* AwesomeAdsApiTests.swift in Sources */,
 				1B22703023536F8300FA8326 /* SAModelFactory.m in Sources */,
 				1B22707223536F8300FA8326 /* TestsUtils.swift in Sources */,
 				1B22702D23536F8300FA8326 /* TestSAURLEventSetup.m in Sources */,
@@ -912,6 +909,7 @@
 				1B22705A23536F8300FA8326 /* SAVAST_Parser_Local_Tests2.m in Sources */,
 				1B22703B23536F8300FA8326 /* TestSAURLEventTrigger.m in Sources */,
 				1B22702723536F8300FA8326 /* MockModel.m in Sources */,
+				C60B8EE224532B3E003451DE /* AwesomeAdsApiTests.swift in Sources */,
 				1B22705923536F8300FA8326 /* SAXML_Parser_Tests1.m in Sources */,
 				C668A6F9243656E200C18228 /* SATestUtils.m in Sources */,
 				1B22705F23536F8300FA8326 /* TestSAJsonParser_ParseObject.m in Sources */,
@@ -932,8 +930,10 @@
 				1B22704B23536F8300FA8326 /* SANetwork_FileItem_Tests.m in Sources */,
 				1B22702C23536F8300FA8326 /* TestSAUtils_FindBaseURLFromResource.m in Sources */,
 				1B22703E23536F8300FA8326 /* TestSAProcessHTML.m in Sources */,
+				C60B8EDC24530C8F003451DE /* AdDataSourceMock.swift in Sources */,
 				C61741F5243CA0E900C8D801 /* UIDeviceMock.swift in Sources */,
 				C69A404C244F8ED8006940EB /* SdkInfoTests.swift in Sources */,
+				C60B8EE124532AE5003451DE /* MockFactory.swift in Sources */,
 				1B22703923536F8300FA8326 /* TestSAServerModule.m in Sources */,
 				C642D2032448B9230057FA50 /* BundleHelper.swift in Sources */,
 				1B22707123536F8300FA8326 /* GetIsMinor+RequestTests.swift in Sources */,

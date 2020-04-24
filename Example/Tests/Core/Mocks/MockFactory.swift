@@ -22,3 +22,7 @@ func makeError() -> Error { NSError(domain:"", code:404, userInfo:nil) }
 
 func makeAdRequest() -> AdRequest { AdRequest(environment: .staging, test: true, pos: 1, skip: 1,
                                               playbackmethod: 1, startdelay: 1,instl: 1, w: 1, h: 1) }
+
+func makeAdQuery() -> AdQuery { AdQuery(test: true, sdkVersion: "", rnd: 1, bundle: "",
+name: "", dauid: 1, ct: .wifi, lang: "", device: "",
+pos: 1, skip: 1, playbackmethod: 1, startdelay: 1, instl: 1, w: 1, h: 1) }

@@ -12,28 +12,23 @@ import Moya
 @testable import SuperAwesome
 
 class AdRepositoryTests: XCTestCase {
-    var result: NetworkResult<Ad>? = nil
+    var result: Result<Ad,Error>? = nil
     
     override func setUp() {
         super.setUp()
         result = nil
     }
     
-    private func prepare(json:String, isSuccess: Bool) {
+    private func prepare(expectedResult: Result<Ad, Error>) {
         // Given
         let placementId: Int = 1
-        let request = AdRequest(environment: .staging, test: true, pos: 1,
-                                skip: 1, playbackmethod: 1, startdelay: 1,
-                                instl: 1, w: 1, h: 1)
-        let mockProvider = MoyaProvider<AwesomeAdsTarget>()
-        let mockQueryMaker = AdQueryMakerMock()
-        let adRepository = AdRepository(mockProvider, adQueryMaker: mockQueryMaker)
-        stub(uri("/v2/ad/\(placementId)"), jsonData(jsonFile(json)))
+        let mockDataSource = AdDataSourceMock(expectedResult)
+        let adRepository = AdRepository(mockDataSource)
 
         // When
         let expectation = self.expectation(description: "request")
         
-        adRepository.getAd(placementId: placementId, request: request) { result in
+        adRepository.getAd(placementId: placementId, request: makeAdRequest()) { result in
             self.result = result
             expectation.fulfill()
         }
@@ -41,15 +36,14 @@ class AdRepositoryTests: XCTestCase {
         waitForExpectations(timeout: 2.0, handler: nil)
         
         // Then
-        expect(self.result?.isSuccess).to(equal(isSuccess))
-        expect(mockQueryMaker.isMakeCalled).to(equal(true))
+        expect(self.result?.isSuccess).to(equal(expectedResult.isSuccess))
     }
     
     func test_getAdCalled_validResponse_success() throws {
-        prepare(json: "mock_ad_response_1", isSuccess: true)
+        prepare(expectedResult: Result.success(makeAd()))
     }
     
     func test_getAdCalled_invalidResponse_failure() throws {
-        prepare(json: "mock_ad_response_no_placement", isSuccess: false)
+        prepare(expectedResult: Result.failure(makeError()))
     }
 }

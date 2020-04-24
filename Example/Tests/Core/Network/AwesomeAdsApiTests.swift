@@ -15,9 +15,6 @@ class AwesomeAdsApiTests: XCTestCase {
     private var provider: MoyaProvider<AwesomeAdsTarget>!
     private var ad: Ad? = nil
     private var error: Error?  = nil
-    private let mockQuery = AdQuery(test: true, sdkVersion: "", rnd: 1, bundle: "",
-                                    name: "", dauid: 1, ct: .wifi, lang: "", device: "",
-                                    pos: 1, skip: 1, playbackmethod: 1, startdelay: 1, instl: 1, w: 1, h: 1)
     
     override func setUp() {
         super.setUp()
@@ -35,15 +32,14 @@ class AwesomeAdsApiTests: XCTestCase {
         let expectation = self.expectation(description: "Network request")
         
         // When
-        provider.request(AwesomeAdsTarget(.production, .ad(placementId: placementId, query: mockQuery))) { result in
+        provider.request(AwesomeAdsTarget(.production,
+                                          .ad(placementId: placementId, query: makeAdQuery()))) { result in
             switch result {
             case .success(let response):
                 do {
                     let filteredResponse = try response.filterSuccessfulStatusCodes()
                     self.ad = try filteredResponse.map(Ad.self) }
-                catch let error {
-                    self.error = error
-                }
+                catch let error { self.error = error }
             case .failure(let error): self.error = NSError(domain:"", code:error.errorCode, userInfo:nil)
             }
             expectation.fulfill()
