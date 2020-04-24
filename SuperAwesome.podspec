@@ -28,7 +28,6 @@ Pod::Spec.new do |s|
     b.source_files = 'Pod/Classes/**/*'
     b.vendored_frameworks = 'Pod/Libraries/SUPMoatMobileAppKit.framework'
     b.frameworks = 'AdSupport'
-    b.dependency 'SAVideoPlayer', '2.0.0-beta8'
   end
 
 #  s.subspec 'MoPub' do |m|
@@ -43,9 +42,9 @@ Pod::Spec.new do |s|
 #    am.source_files = 'Pod/Plugin/AdMob/*'
 #  end
 
- # s.subspec 'Unity' do |u|
- #   u.dependency 'SuperAwesome/Full'
- #   u.source_files = 'Pod/Plugin/Unity/*'
- # end
+# s.subspec 'Unity' do |u|
+#    u.dependency 'SuperAwesome/Full'
+#    u.source_files = 'Pod/Plugin/Unity/*'
+# end
  
 end
