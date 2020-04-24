@@ -105,6 +105,7 @@
 		C61741F9243CA1D100C8D801 /* DataRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61741F8243CA1D100C8D801 /* DataRepositoryMock.swift */; };
 		C642D1FF244883B20057FA50 /* AwesomeAdsApiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C642D1FE244883B20057FA50 /* AwesomeAdsApiTests.swift */; };
 		C642D2032448B9230057FA50 /* BundleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C642D2012448B8E40057FA50 /* BundleHelper.swift */; };
+		C6535602245239270043115E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6535601245239270043115E /* HealthKit.framework */; };
 		C668A6F9243656E200C18228 /* SATestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C668A6F8243656E200C18228 /* SATestUtils.m */; };
 		C668A703243659F100C18228 /* DeviceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C668A702243659F100C18228 /* DeviceTests.swift */; };
 		C69A404C244F8ED8006940EB /* SdkInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69A404B244F8ED8006940EB /* SdkInfoTests.swift */; };
@@ -112,7 +113,6 @@
 		C69A405224505010006940EB /* EncoderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69A405124505010006940EB /* EncoderTests.swift */; };
 		C69A4054245051FD006940EB /* AdRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69A4053245051FD006940EB /* AdRepositoryTests.swift */; };
 		C69A405824505F9A006940EB /* AdQueryMakerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69A405724505F9A006940EB /* AdQueryMakerMock.swift */; };
-		C69A405A24507AC9006940EB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69A405924507AC9006940EB /* MainViewController.swift */; };
 		E52780D260EA21087C0F85EA /* Pods_SuperAwesomeExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 479D753C5EED10C661E7289C /* Pods_SuperAwesomeExample.framework */; };
 /* End PBXBuildFile section */
 
@@ -250,6 +250,8 @@
 		C61741F8243CA1D100C8D801 /* DataRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRepositoryMock.swift; sourceTree = "<group>"; };
 		C642D1FE244883B20057FA50 /* AwesomeAdsApiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwesomeAdsApiTests.swift; sourceTree = "<group>"; };
 		C642D2012448B8E40057FA50 /* BundleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleHelper.swift; sourceTree = "<group>"; };
+		C6535600245239270043115E /* SuperAwesomeExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SuperAwesomeExample.entitlements; sourceTree = "<group>"; };
+		C6535601245239270043115E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		C668A6F7243656E200C18228 /* SATestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SATestUtils.h; sourceTree = "<group>"; };
 		C668A6F8243656E200C18228 /* SATestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SATestUtils.m; sourceTree = "<group>"; };
 		C668A702243659F100C18228 /* DeviceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTests.swift; sourceTree = "<group>"; };
@@ -258,7 +260,6 @@
 		C69A405124505010006940EB /* EncoderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncoderTests.swift; sourceTree = "<group>"; };
 		C69A4053245051FD006940EB /* AdRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdRepositoryTests.swift; sourceTree = "<group>"; };
 		C69A405724505F9A006940EB /* AdQueryMakerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdQueryMakerMock.swift; sourceTree = "<group>"; };
-		C69A405924507AC9006940EB /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		D6B71C01F9DFB74D05E0B0FD /* Pods-SuperAwesomeExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesomeExample.debug.xcconfig"; path = "Target Support Files/Pods-SuperAwesomeExample/Pods-SuperAwesomeExample.debug.xcconfig"; sourceTree = "<group>"; };
 		D8F2154D326FE2F80967D14F /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		DECC64E7421DE990CD928FFD /* Pods-SuperAwesomeExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesomeExample.release.xcconfig"; path = "Target Support Files/Pods-SuperAwesomeExample/Pods-SuperAwesomeExample.release.xcconfig"; sourceTree = "<group>"; };
@@ -278,6 +279,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E52780D260EA21087C0F85EA /* Pods_SuperAwesomeExample.framework in Frameworks */,
+				C6535602245239270043115E /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -489,6 +491,7 @@
 		1B76D22A1C91EEB1000AE8F3 = {
 			isa = PBXGroup;
 			children = (
+				C6535600245239270043115E /* SuperAwesomeExample.entitlements */,
 				1B76D2351C91EEB1000AE8F3 /* SuperAwesome */,
 				1B0D26CD1CF7186F00619C9C /* Tests */,
 				1B76D2341C91EEB1000AE8F3 /* Products */,
@@ -532,7 +535,6 @@
 				1B76D23D1C91EEB1000AE8F3 /* ViewController.m */,
 				1BB5F5891ED6CC3400ACD72E /* AdMobController.h */,
 				1BB5F58A1ED6CC3400ACD72E /* AdMobController.m */,
-				C69A405924507AC9006940EB /* MainViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -562,6 +564,7 @@
 		63CB71636A495D6FBABE5223 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C6535601245239270043115E /* HealthKit.framework */,
 				027A65084FCDE85CE56A18B6 /* Pods_Tests.framework */,
 				479D753C5EED10C661E7289C /* Pods_SuperAwesomeExample.framework */,
 			);
@@ -959,7 +962,6 @@
 				1B76D23E1C91EEB1000AE8F3 /* ViewController.m in Sources */,
 				1B76D23B1C91EEB1000AE8F3 /* AppDelegate.m in Sources */,
 				1B76D2381C91EEB1000AE8F3 /* main.m in Sources */,
-				C69A405A24507AC9006940EB /* MainViewController.swift in Sources */,
 				1BB5F58B1ED6CC3400ACD72E /* AdMobController.m in Sources */,
 				1BFE15E622A00DE600C500C0 /* empty.swift in Sources */,
 			);
@@ -1158,8 +1160,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: LIVIU COMAN (K79XEZP48K)";
+				CODE_SIGN_ENTITLEMENTS = SuperAwesomeExample.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DCC9L689QJ;
 				INFOPLIST_FILE = SuperAwesome/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1173,7 +1177,7 @@
 					"-framework",
 					"\"SuperAwesome\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = tv.superawesome.SuperAwesome;
+				PRODUCT_BUNDLE_IDENTIFIER = tv.superawesome.awesomeads.sdk;
 				PRODUCT_NAME = SuperAwesomeExample;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1191,8 +1195,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_ENTITLEMENTS = SuperAwesomeExample.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DCC9L689QJ;
 				INFOPLIST_FILE = SuperAwesome/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1206,8 +1212,9 @@
 					"-framework",
 					"\"SuperAwesome\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = tv.superawesome.SuperAwesome;
+				PRODUCT_BUNDLE_IDENTIFIER = tv.superawesome.awesomeads.sdk;
 				PRODUCT_NAME = SuperAwesomeExample;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SuperAwesome/SuperAwesome-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

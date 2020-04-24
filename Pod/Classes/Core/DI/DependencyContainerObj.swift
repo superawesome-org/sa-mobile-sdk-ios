@@ -24,24 +24,3 @@ public class DependencyContainerObj: NSObject {
         self.moduleContainer = moduleContainer
     }
 }
-
-class DependencyContainer {
-    private var dependencies: [String: Any] = [:]
-    
-    /// Registers a dependency
-    func register(_ factory: @escaping (DependencyContainer) -> Any) {
-        let dependency = factory(self)
-        dependencies[String(describing: dependency.self)] = dependency
-    }
-    
-    /// Resolves a dependency
-    func resolve<T>(for name: String? = nil) -> T {
-        let name = name ?? String(describing: T.self)
-
-        guard let component: T = dependencies[name] as? T else {
-            fatalError("Dependency '\(T.self)' not found")
-        }
-
-        return component
-    }
-}

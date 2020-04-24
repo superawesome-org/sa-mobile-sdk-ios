@@ -1,19 +1,15 @@
 //
-//  AdRepository.swift
+//  MoyaAdDataSource.swift
 //  SuperAwesome
 //
-//  Created by Gunhan Sancar on 17/04/2020.
+//  Created by Gunhan Sancar on 23/04/2020.
 //
 
 import Moya
 
-protocol AdRepositoryType {
-    func getAd(placementId: Int, request: AdRequest, completion: @escaping Completion<Ad>)
-}
-
-class AdRepository : AdRepositoryType {
-    private let provider: MoyaProvider<AwesomeAdsTarget>
-    private let adQueryMaker: AdQueryMakerType
+class MoyaAdDataSource: AdDataSourceType {
+    let provider: MoyaProvider<AwesomeAdsTarget>
+    let adQueryMaker: AdQueryMakerType
     
     init(_ provider: MoyaProvider<AwesomeAdsTarget>, adQueryMaker: AdQueryMakerType) {
         self.provider = provider
@@ -29,12 +25,12 @@ class AdRepository : AdRepositoryType {
                 do {
                     let filteredResponse = try response.filterSuccessfulStatusCodes()
                     let result = try filteredResponse.map(Ad.self)
-                    completion(NetworkResult.success(result))
+                    completion(Result.success(result))
                 } catch let error{
-                    completion(NetworkResult.failure(error))
+                    completion(Result.failure(error))
                 }
             case .failure(let error):
-                completion(NetworkResult.failure(error))
+                completion(Result.failure(error))
             }
         }
     }

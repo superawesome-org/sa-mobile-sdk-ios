@@ -26,18 +26,20 @@ PODS:
     - OHHTTPStubs/Core
   - OHHTTPStubs/OHPathHelpers (9.0.0)
   - SAVideoPlayer (2.0.0-beta8)
-  - SuperAwesome (7.2.5):
-    - SuperAwesome/Full (= 7.2.5)
+  - SuperAwesome/Core (7.2.5):
+    - SuperAwesome/Full
   - SuperAwesome/Full (7.2.5):
-    - Moya (~> 14.0)
     - SAVideoPlayer (= 2.0.0-beta8)
+  - SuperAwesome/Moya (7.2.5):
+    - Moya (~> 14.0)
+    - SuperAwesome/Core
   - URITemplate (2.0.3)
 
 DEPENDENCIES:
   - Mockingjay
   - Nimble
   - OHHTTPStubs
-  - SuperAwesome (from `../`)
+  - SuperAwesome/Moya (from `../`)
 
 SPEC REPOS:
   trunk:
@@ -60,9 +62,9 @@ SPEC CHECKSUMS:
   Nimble: a73af6ecd4c9106f434f3d55fc54570be3739e0b
   OHHTTPStubs: cb29d2a9d09a828ecb93349a2b0c64f99e0db89f
   SAVideoPlayer: f7953c9d6ea1e4875449c148dad53230630f57b8
-  SuperAwesome: c507693f7860ae5615daeba86ad3bf5a8ca3a2ad
+  SuperAwesome: 150674aa49dfb258f69009142e0c086071ff6563
   URITemplate: ace0c4c46dcf8afe6e89b4060621852886b15c3b
 
-PODFILE CHECKSUM: 0eb376cd1fa161a1ee57c5e19b069ad5724a68bc
+PODFILE CHECKSUM: 56207a16028cd8c9607f643236dfb6fe16ca7a3e
 
 COCOAPODS: 1.9.1

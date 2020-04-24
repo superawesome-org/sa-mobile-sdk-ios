@@ -6,4 +6,4 @@
 //
 
 /// Network call completion closure definition
-public typealias Completion<T> = (_ result: NetworkResult<T>) -> Void
+typealias Completion<T> = (_ result: Result<T, Error>) -> Void

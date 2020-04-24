@@ -28,13 +28,23 @@ Pod::Spec.new do |s|
     b.source_files = 'Pod/Classes/**/*'
     b.frameworks = 'AdSupport'
     b.dependency 'SAVideoPlayer', '2.0.0-beta8'
-    b.dependency 'Moya', '~> 14.0'
   end
   
   s.subspec 'Moat' do |moat|
     moat.dependency 'SuperAwesome/Full'
     moat.vendored_frameworks = 'Pod/Libraries/SUPMoatMobileAppKit.framework'
     moat.source_files = 'Pod/Plugin/Moat2/*'
+  end
+  
+  s.subspec 'Core' do |c|
+    c.dependency 'SuperAwesome/Full'
+    c.source_files = 'Pod/Plugin/Core/**/*'
+  end
+  
+  s.subspec 'Moya' do |m|
+    m.dependency 'SuperAwesome/Core'
+    m.source_files = 'Pod/Plugin/Moya/**/*'
+    m.dependency 'Moya', '~> 14.0'
   end
 
 #  s.subspec 'MoPub' do |m|
