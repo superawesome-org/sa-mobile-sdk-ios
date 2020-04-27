@@ -17,7 +17,6 @@ struct HeaderPlugin: PluginType {
     func prepare(_ request: URLRequest, target: TargetType) -> URLRequest {
         var request = request
         request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
-        
         return request
     }
 }

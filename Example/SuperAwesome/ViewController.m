@@ -35,7 +35,6 @@
 //    [SAVideoAd2 setSmallClick:true];
 //    [SAVideoAd2 load:39521];
     
-    
     SASession *session = [[SASession alloc] init];
     [session setConfigurationStaging];
     

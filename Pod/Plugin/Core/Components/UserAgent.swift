@@ -10,7 +10,6 @@ import WebKit
 /**
 * Class that returns the current User Agent using WKWebView object.
 */
-
 protocol UserAgentType {
     @objc(name) var name: String { get }
 }

@@ -26,20 +26,20 @@ class DependencyContainer {
         let name = name ?? String(describing: T.self)
         
         guard dependencies[name] == nil else {
-            fatalError("You cannot register multiple dependencies using a same name (\(name)")
+            fatalError("You cannot register multiple dependencies using the same name (\(name)")
         }
         
         dependencies[name] = Dependency(name: name, factory: factory, scope: .single)
     }
     
-    func registerFactory<T>(_ name: String? = nil, type: T.Type, scope: DependencyScope, _ factory: @escaping Factory) {
+    func registerFactory<T>(_ name: String? = nil, type: T.Type, _ factory: @escaping Factory) {
         let name = name ?? String(describing: type)
         
         guard dependencies[name] == nil else {
-            fatalError("You cannot register multiple dependencies using a same name (\(name)")
+            fatalError("You cannot register multiple dependencies using the same name (\(name)")
         }
         
-        dependencies[name] = Dependency(name: name, factory: factory, scope: scope)
+        dependencies[name] = Dependency(name: name, factory: factory, scope: .factory)
     }
     
     func resolve<T>(for name: String? = nil) -> T {
@@ -55,12 +55,12 @@ class DependencyContainer {
                 singleInstances[name] = dependency.factory(self)
             }
             guard let instance = singleInstances[name] as? T else {
-                fatalError("Dependency '\(T.self)' has different type")
+                fatalError("Dependency '\(T.self)' has not found")
             }
             return instance
         case .factory:
             guard let instance = dependency.factory(self) as? T else {
-                fatalError("Dependency '\(T.self)' has different type")
+                fatalError("Dependency '\(T.self)' has not found")
             }
             return instance
         }
@@ -69,21 +69,5 @@ class DependencyContainer {
     deinit {
         dependencies.removeAll()
         singleInstances.removeAll()
-    }
-}
-
-class DependencyContainerTests {
-    func testContainer() {
-        let container = DependencyContainer()
-        container.registerSingle(ConnectionManagerType.self) { c in ConnectionManager() }
-        container.registerSingle(DeviceType.self) { c in Device(UIDevice.current) }
-        container.registerSingle(EncoderType.self) { c in Encoder() }
-        container.registerSingle(IdGeneratorType.self) { c in IdGenerator() }
-        container.registerSingle(NumberGeneratorType.self) { c in NumberGenerator() }
-        container.registerSingle(SdkInfoType.self) { c in
-            SdkInfo(mainBundle: Bundle.main, sdkBundle: Bundle(for: DependencyContainer.self),
-                    locale: Locale.current, encoder: c.resolve())
-        }
-        
     }
 }
