@@ -100,7 +100,6 @@
 		B52C3F5F9407635B595C13F1 /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 027A65084FCDE85CE56A18B6 /* Pods_Tests.framework */; };
 		C60B8EDC24530C8F003451DE /* AdDataSourceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60B8EDB24530C8F003451DE /* AdDataSourceMock.swift */; };
 		C60B8EE124532AE5003451DE /* MockFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60B8EDF24532953003451DE /* MockFactory.swift */; };
-		C60B8EE224532B3E003451DE /* AwesomeAdsApiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C642D1FE244883B20057FA50 /* AwesomeAdsApiTests.swift */; };
 		C61741EC243B8D7600C8D801 /* UserAgentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61741EB243B8D7600C8D801 /* UserAgentTests.swift */; };
 		C61741F2243B9E8300C8D801 /* DataRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61741F1243B9E8300C8D801 /* DataRepositoryTests.swift */; };
 		C61741F5243CA0E900C8D801 /* UIDeviceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61741F4243CA0E900C8D801 /* UIDeviceMock.swift */; };
@@ -242,8 +241,10 @@
 		1BFE15E422A00DE500C500C0 /* SuperAwesome-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SuperAwesome-Bridging-Header.h"; sourceTree = "<group>"; };
 		1BFE15E522A00DE600C500C0 /* empty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = empty.swift; sourceTree = "<group>"; };
 		2294CA59892B5A87435606EE /* Pods-SuperAwesome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesome.release.xcconfig"; path = "Target Support Files/Pods-SuperAwesome/Pods-SuperAwesome.release.xcconfig"; sourceTree = "<group>"; };
+		235DC26E667FEA43E2153B95 /* Pods-MoyaUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoyaUnitTests.release.xcconfig"; path = "Target Support Files/Pods-MoyaUnitTests/Pods-MoyaUnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		479D753C5EED10C661E7289C /* Pods_SuperAwesomeExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SuperAwesomeExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		497D5AC68B2B27DFFAACACA7 /* Pods-SuperAwesome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesome.debug.xcconfig"; path = "Target Support Files/Pods-SuperAwesome/Pods-SuperAwesome.debug.xcconfig"; sourceTree = "<group>"; };
+		5FDC5DDF2247CC69FA37359E /* Pods-MoyaUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoyaUnitTests.debug.xcconfig"; path = "Target Support Files/Pods-MoyaUnitTests/Pods-MoyaUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		763EEEB15C3FC5CF9C4C2503 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
 		C60B8EDB24530C8F003451DE /* AdDataSourceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdDataSourceMock.swift; sourceTree = "<group>"; };
 		C60B8EDF24532953003451DE /* MockFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFactory.swift; sourceTree = "<group>"; };
@@ -252,7 +253,6 @@
 		C61741F4243CA0E900C8D801 /* UIDeviceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDeviceMock.swift; sourceTree = "<group>"; };
 		C61741F6243CA14400C8D801 /* DeviceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceMock.swift; sourceTree = "<group>"; };
 		C61741F8243CA1D100C8D801 /* DataRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRepositoryMock.swift; sourceTree = "<group>"; };
-		C642D1FE244883B20057FA50 /* AwesomeAdsApiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwesomeAdsApiTests.swift; sourceTree = "<group>"; };
 		C642D2012448B8E40057FA50 /* BundleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleHelper.swift; sourceTree = "<group>"; };
 		C6535600245239270043115E /* SuperAwesomeExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SuperAwesomeExample.entitlements; sourceTree = "<group>"; };
 		C6535601245239270043115E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
@@ -267,6 +267,7 @@
 		D6B71C01F9DFB74D05E0B0FD /* Pods-SuperAwesomeExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesomeExample.debug.xcconfig"; path = "Target Support Files/Pods-SuperAwesomeExample/Pods-SuperAwesomeExample.debug.xcconfig"; sourceTree = "<group>"; };
 		D8F2154D326FE2F80967D14F /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		DECC64E7421DE990CD928FFD /* Pods-SuperAwesomeExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesomeExample.release.xcconfig"; path = "Target Support Files/Pods-SuperAwesomeExample/Pods-SuperAwesomeExample.release.xcconfig"; sourceTree = "<group>"; };
+		F3FD76F374BF5D4DEE6536DA /* Pods_MoyaUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoyaUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -571,6 +572,7 @@
 				C6535601245239270043115E /* HealthKit.framework */,
 				027A65084FCDE85CE56A18B6 /* Pods_Tests.framework */,
 				479D753C5EED10C661E7289C /* Pods_SuperAwesomeExample.framework */,
+				F3FD76F374BF5D4DEE6536DA /* Pods_MoyaUnitTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -584,6 +586,8 @@
 				763EEEB15C3FC5CF9C4C2503 /* Pods-Tests.release.xcconfig */,
 				D6B71C01F9DFB74D05E0B0FD /* Pods-SuperAwesomeExample.debug.xcconfig */,
 				DECC64E7421DE990CD928FFD /* Pods-SuperAwesomeExample.release.xcconfig */,
+				5FDC5DDF2247CC69FA37359E /* Pods-MoyaUnitTests.debug.xcconfig */,
+				235DC26E667FEA43E2153B95 /* Pods-MoyaUnitTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -623,7 +627,6 @@
 			isa = PBXGroup;
 			children = (
 				C642D2002448B8AD0057FA50 /* Util */,
-				C6F216B124486A0800854ECE /* Network */,
 				C61741F3243CA0BD00C8D801 /* Mocks */,
 				C61741F0243B9E7800C8D801 /* Repositories */,
 				C668A701243659D700C18228 /* Components */,
@@ -640,14 +643,6 @@
 				C69A405124505010006940EB /* EncoderTests.swift */,
 			);
 			path = Components;
-			sourceTree = "<group>";
-		};
-		C6F216B124486A0800854ECE /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				C642D1FE244883B20057FA50 /* AwesomeAdsApiTests.swift */,
-			);
-			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -831,15 +826,11 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SuperAwesomeExample/Pods-SuperAwesomeExample-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/SAVideoPlayer/SAVideoPlayer.framework",
 				"${BUILT_PRODUCTS_DIR}/SuperAwesome/SuperAwesome.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SAVideoPlayer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SuperAwesome.framework",
 			);
@@ -909,7 +900,6 @@
 				1B22705A23536F8300FA8326 /* SAVAST_Parser_Local_Tests2.m in Sources */,
 				1B22703B23536F8300FA8326 /* TestSAURLEventTrigger.m in Sources */,
 				1B22702723536F8300FA8326 /* MockModel.m in Sources */,
-				C60B8EE224532B3E003451DE /* AwesomeAdsApiTests.swift in Sources */,
 				1B22705923536F8300FA8326 /* SAXML_Parser_Tests1.m in Sources */,
 				C668A6F9243656E200C18228 /* SATestUtils.m in Sources */,
 				1B22705F23536F8300FA8326 /* TestSAJsonParser_ParseObject.m in Sources */,
@@ -1028,7 +1018,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = tv.superawesome.Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SuperAwesomeExample.app/SuperAwesomeExample";
 			};
 			name = Debug;
@@ -1064,7 +1054,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = tv.superawesome.Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SuperAwesomeExample.app/SuperAwesomeExample";
 			};
 			name = Release;

@@ -8,7 +8,6 @@
 import XCTest
 import Nimble
 import Mockingjay
-import Moya
 @testable import SuperAwesome
 
 class AdRepositoryTests: XCTestCase {

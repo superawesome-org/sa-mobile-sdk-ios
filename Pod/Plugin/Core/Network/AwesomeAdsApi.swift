@@ -5,8 +5,6 @@
 //  Created by Gunhan Sancar on 08/04/2020.
 //
 
-import Moya
-
 enum AwesomeAdsApi {
     case ad(placementId: Int, query: AdQuery)
     case impression(request: ImpressionRequest)

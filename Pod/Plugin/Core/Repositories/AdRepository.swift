@@ -5,8 +5,6 @@
 //  Created by Gunhan Sancar on 17/04/2020.
 //
 
-import Moya
-
 protocol AdRepositoryType {
     func getAd(placementId: Int, request: AdRequest, completion: @escaping Completion<Ad>)
 }

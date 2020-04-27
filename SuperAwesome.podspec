@@ -43,9 +43,16 @@ Pod::Spec.new do |s|
   
   s.subspec 'Moya' do |m|
     m.dependency 'SuperAwesome/Core'
-    m.source_files = 'Pod/Plugin/Moya/**/*'
+    m.source_files = 'Pod/Plugin/Moya/Classes/**/*'
     m.dependency 'Moya', '~> 14.0'
     m.xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) MOYA_PLUGIN' }
+    
+    m.test_spec 'Tests' do |test_spec|
+      test_spec.source_files = 'Pod/Plugin/Moya/Tests/**/*'
+      test_spec.resources = 'Pod/Plugin/Moya/Resources/*'
+      test_spec.dependency 'Nimble'
+      test_spec.dependency 'Mockingjay'
+    end
   end
 
 #  s.subspec 'MoPub' do |m|
