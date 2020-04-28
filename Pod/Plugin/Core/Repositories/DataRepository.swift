@@ -12,7 +12,7 @@ protocol DataRepositoryType {
     var userAgent: String? { get set }
 }
 
-class DataRepository : NSObject, DataRepositoryType {
+class DataRepository : DataRepositoryType {
     struct Keys {
         internal static let userAgent = "SuperAwesome.DataRepository.Keys.UserAgent"
     }

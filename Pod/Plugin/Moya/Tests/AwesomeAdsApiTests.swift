@@ -48,7 +48,7 @@ class AwesomeAdsApiTests: XCTestCase {
         waitForExpectations(timeout: 2.0, handler: nil)
     }
 
-    func test_mock_ad_response_1() throws {
+    func test_moyaProvider_canGetAndParse_adResponse_1() throws {
         // Given
         prepareResponse(json: "mock_ad_response_1")
         
@@ -85,7 +85,7 @@ class AwesomeAdsApiTests: XCTestCase {
         expect(ad.creative.name).to(beNil())
     }
     
-    func test_mock_ad_response_2() throws {
+    func test_moyaProvider_canGetAndParse_adResponse_2() throws {
         // Given
         prepareResponse(json: "mock_ad_response_2")
         
@@ -122,7 +122,7 @@ class AwesomeAdsApiTests: XCTestCase {
         expect(ad.creative.name).to(equal("Banner 1"))
     }
     
-    func test_mock_ad_response_no_placement() throws {
+    func test_moyaProvider_placementNotFound_returnsError() throws {
         // Given
         prepareResponse(json: "mock_ad_response_no_placement")
         
@@ -131,7 +131,7 @@ class AwesomeAdsApiTests: XCTestCase {
         expect(self.error).toNot(beNil())
     }
     
-    func test_mock_ad_malformed_response() throws {
+    func test_moyaProvider_malformedResponse_returnsError() throws {
         // Given
         prepareResponse(json: "mock_ad_malformed_response")
         

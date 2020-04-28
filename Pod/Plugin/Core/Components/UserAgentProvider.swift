@@ -1,5 +1,5 @@
 //
-//  WebAgent.swift
+//  UserAgentProvider.swift
 //  SuperAwesome
 //
 //  Created by Gunhan Sancar on 01/04/2020.
@@ -8,13 +8,13 @@
 import WebKit
 
 /**
-* Class that returns the current User Agent using WKWebView object.
+* Class that provides the current User Agent using WKWebView object.
 */
-protocol UserAgentType {
-    @objc(name) var name: String { get }
+protocol UserAgentProviderType {
+    var name: String { get }
 }
 
-public class UserAgent : NSObject, UserAgentType {
+class UserAgentProvider : UserAgentProviderType {
     public var name: String
     private var webView: WKWebView?
     private var dataRepository: DataRepositoryType
@@ -22,7 +22,6 @@ public class UserAgent : NSObject, UserAgentType {
     init(device:DeviceType, dataRepository: DataRepositoryType) {
         self.dataRepository = dataRepository
         self.name = dataRepository.userAgent ?? device.userAgent
-        super.init()
         evaluateUserAgent()
     }
     

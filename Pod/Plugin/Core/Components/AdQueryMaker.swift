@@ -12,18 +12,18 @@ protocol AdQueryMakerType {
 class AdQueryMaker: AdQueryMakerType {
     private let device: DeviceType
     private let sdkInfo: SdkInfoType
-    private let connectionManager: ConnectionManagerType
+    private let connectionProvider: ConnectionProviderType
     private let numberGenerator: NumberGeneratorType
     private let idGenerator: IdGeneratorType
     
     init(device: DeviceType,
          sdkInfo: SdkInfoType,
-         connectionManager: ConnectionManagerType,
+         connectionProvider: ConnectionProviderType,
          numberGenerator: NumberGeneratorType,
          idGenerator: IdGeneratorType) {
         self.device = device
         self.sdkInfo = sdkInfo
-        self.connectionManager = connectionManager
+        self.connectionProvider = connectionProvider
         self.numberGenerator = numberGenerator
         self.idGenerator = idGenerator
     }
@@ -35,7 +35,7 @@ class AdQueryMaker: AdQueryMakerType {
                        bundle: sdkInfo.bundle,
                        name: sdkInfo.name,
                        dauid: idGenerator.findDauId(),
-                       ct: connectionManager.findConnectionType(),
+                       ct: connectionProvider.findConnectionType(),
                        lang: sdkInfo.lang,
                        device: device.genericType,
                        pos: request.pos,

@@ -12,7 +12,7 @@ public class AwesomeAdsSdk {
     
     init() {
         self.container = DependencyContainer()
-        container.registerSingle(ConnectionManagerType.self) { _ in ConnectionManager() }
+        container.registerSingle(ConnectionProviderType.self) { _ in ConnectionProvider() }
         container.registerSingle(DeviceType.self) { _ in Device(UIDevice.current) }
         container.registerSingle(EncoderType.self) { _ in Encoder() }
         container.registerSingle(IdGeneratorType.self) { _ in IdGenerator() }
@@ -26,8 +26,8 @@ public class AwesomeAdsSdk {
         container.registerSingle(DataRepositoryType.self) { c in
             DataRepository(UserDefaults.standard)
         }
-        container.registerSingle(UserAgentType.self) { c in
-            UserAgent(device: c.resolve(), dataRepository: c.resolve())
+        container.registerSingle(UserAgentProviderType.self) { c in
+            UserAgentProvider(device: c.resolve(), dataRepository: c.resolve())
         }
         container.registerSingle(AdRepositoryType.self) { c in
             AdRepository(c.resolve())

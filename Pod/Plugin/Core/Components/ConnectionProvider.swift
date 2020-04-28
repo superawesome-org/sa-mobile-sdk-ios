@@ -1,5 +1,5 @@
 //
-//  ConnectionManager.swift
+//  ConnectionProvider.swift
 //  SuperAwesome
 //
 //  Created by Gunhan Sancar on 17/04/2020.
@@ -8,11 +8,11 @@
 import Foundation
 import SystemConfiguration
 
-protocol ConnectionManagerType {
+protocol ConnectionProviderType {
     func findConnectionType() -> ConnectionType
 }
 
-class ConnectionManager: ConnectionManagerType {
+class ConnectionProvider: ConnectionProviderType {
     func findConnectionType() -> ConnectionType {
         var zeroAddress = sockaddr_in()
         zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))

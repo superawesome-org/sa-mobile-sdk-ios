@@ -18,7 +18,7 @@ struct SdkInfo: SdkInfoType {
     var name: String
     var lang: String
     
-    init(mainBundle: Bundle, sdkBundle: Bundle, locale:Locale, encoder: EncoderType) {
+    init(mainBundle: Bundle, sdkBundle: Bundle, locale: Locale, encoder: EncoderType) {
         self.version = sdkBundle.versionNumber ?? ""
         self.bundle = mainBundle.bundleIdentifier ?? ""
         self.name = encoder.encodeUri(mainBundle.name)

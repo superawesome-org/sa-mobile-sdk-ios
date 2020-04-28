@@ -23,16 +23,14 @@ class DependencyContainer {
     private var singleInstances: [String: Any] = [:]
     
     func registerSingle<T>(name: String? = nil, _ type: T.Type, _ factory: @escaping Factory) {
-        let name = name ?? String(describing: T.self)
-        
-        guard dependencies[name] == nil else {
-            fatalError("You cannot register multiple dependencies using the same name (\(name)")
-        }
-        
-        dependencies[name] = Dependency(name: name, factory: factory, scope: .single)
+        register(name: name, type: type, scope: .single, factory)
     }
     
-    func registerFactory<T>(_ name: String? = nil, type: T.Type, _ factory: @escaping Factory) {
+    func registerFactory<T>(name: String? = nil, _ type: T.Type, _ factory: @escaping Factory) {
+        register(name: name, type: type, scope: .factory, factory)
+    }
+    
+    func register<T>(name: String? = nil, type: T.Type, scope: DependencyScope, _ factory: @escaping Factory) {
         let name = name ?? String(describing: type)
         
         guard dependencies[name] == nil else {
