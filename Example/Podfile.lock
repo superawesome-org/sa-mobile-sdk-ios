@@ -1,5 +1,4 @@
 PODS:
-  - Alamofire (5.1.0)
   - Mockingjay (2.0.1):
     - Mockingjay/Core (= 2.0.1)
     - Mockingjay/XCTest (= 2.0.1)
@@ -7,10 +6,6 @@ PODS:
     - URITemplate (~> 2.0)
   - Mockingjay/XCTest (2.0.1):
     - Mockingjay/Core
-  - Moya (14.0.0):
-    - Moya/Core (= 14.0.0)
-  - Moya/Core (14.0.0):
-    - Alamofire (~> 5.0)
   - Nimble (8.0.7)
   - OHHTTPStubs (9.0.0):
     - OHHTTPStubs/Default (= 9.0.0)
@@ -26,32 +21,21 @@ PODS:
     - OHHTTPStubs/Core
   - OHHTTPStubs/OHPathHelpers (9.0.0)
   - SAVideoPlayer (2.0.0-beta8)
-  - SuperAwesome/Core (7.2.5):
-    - SuperAwesome/Full
+  - SuperAwesome (7.2.5):
+    - SuperAwesome/Full (= 7.2.5)
   - SuperAwesome/Full (7.2.5):
     - SAVideoPlayer (= 2.0.0-beta8)
-  - SuperAwesome/Moya (7.2.5):
-    - Moya (~> 14.0)
-    - SuperAwesome/Core
-  - SuperAwesome/Moya/Tests (7.2.5):
-    - Mockingjay
-    - Moya (~> 14.0)
-    - Nimble
-    - SuperAwesome/Core
   - URITemplate (2.0.3)
 
 DEPENDENCIES:
   - Mockingjay
   - Nimble
   - OHHTTPStubs
-  - SuperAwesome/Moya (from `../`)
-  - SuperAwesome/Moya/Tests (from `../`)
+  - SuperAwesome (from `../`)
 
 SPEC REPOS:
   trunk:
-    - Alamofire
     - Mockingjay
-    - Moya
     - Nimble
     - OHHTTPStubs
     - SAVideoPlayer
@@ -62,15 +46,13 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Alamofire: 9d5c5f602928e512395b30950c5984eca840093c
   Mockingjay: 11a621880d2887f1775bdcf824341eb68f218450
-  Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   Nimble: a73af6ecd4c9106f434f3d55fc54570be3739e0b
   OHHTTPStubs: cb29d2a9d09a828ecb93349a2b0c64f99e0db89f
   SAVideoPlayer: f7953c9d6ea1e4875449c148dad53230630f57b8
-  SuperAwesome: 9641e2f498ab3ebdf349e0ef8e25c9a90b216aae
+  SuperAwesome: a8c03b85b49b70c99c7fe2b962bf1fb21fbe8b9c
   URITemplate: ace0c4c46dcf8afe6e89b4060621852886b15c3b
 
-PODFILE CHECKSUM: 6aae8049b1d6f4e86f6818725421647aed0db20a
+PODFILE CHECKSUM: b14ab069e719c3646cc42b6fa37261ef02be2a96
 
 COCOAPODS: 1.9.1

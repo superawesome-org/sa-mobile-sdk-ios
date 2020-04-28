@@ -38,7 +38,13 @@ Pod::Spec.new do |s|
   
   s.subspec 'Core' do |c|
     c.dependency 'SuperAwesome/Full'
-    c.source_files = 'Pod/Plugin/Core/**/*'
+    c.source_files = 'Pod/Plugin/Core/Classes/**/*'
+    
+    c.test_spec 'Tests' do |test_spec|
+      test_spec.source_files = 'Pod/Plugin/Core/Tests/**/*'
+      test_spec.dependency 'Nimble'
+      test_spec.dependency 'Mockingjay'
+    end
   end
   
   s.subspec 'Moya' do |m|

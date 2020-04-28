@@ -3,9 +3,9 @@ use_frameworks!
 use_modular_headers!
 
 target 'SuperAwesomeExample' do
-#  pod 'SuperAwesome', :path => '../'
-#  pod 'SuperAwesome/Core', :path => '../'
-  pod 'SuperAwesome/Moya', :path => '../', :testspecs => ['Tests']
+  pod 'SuperAwesome', :path => '../'
+#  pod 'SuperAwesome/Core', :path => '../', :testspecs => ['Tests']
+#  pod 'SuperAwesome/Moya', :path => '../', :testspecs => ['Tests']
 #  pod 'SuperAwesome/MoPub', :path => '../'
 #  pod 'SuperAwesome/Unity', :path => '../'
 #  pod 'SuperAwesome/AIR', :path => '../'
