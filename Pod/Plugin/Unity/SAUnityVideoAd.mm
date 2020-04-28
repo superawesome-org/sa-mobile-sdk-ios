@@ -3,17 +3,24 @@
  * @Author:      Gabriel Coman (gabriel.coman@superawesome.tv)
  */
 
+#import <CoreMedia/CoreMedia.h>
+#import <AVFoundation/AVFoundation.h>
 #import <UIKit/UIKit.h>
 #import "SAUnityCallback.h"
-#import "AwesomeAds.h"
-#import "SASession.h"
-#import "SuperAwesome.h"
 
 #if defined(__has_include)
-#if __has_include(<SuperAwesome/SuperAwesome-Swift.h>)
-#import <SuperAwesome/SuperAwesome-Swift.h>
+#if __has_include(<SuperAwesomeUnity/SuperAwesomeUnity.h>)
+#import <SuperAwesomeUnity/SuperAwesomeUnity.h>
 #else
-#import "SuperAwesome-Swift.h"
+#import "SuperAwesomeUnity.h"
+#endif
+#endif
+
+#if defined(__has_include)
+#if __has_include(<SuperAwesomeUnity/SuperAwesomeUnity-Swift.h>)
+#import <SuperAwesomeUnity/SuperAwesomeUnity-Swift.h>
+#else
+#import "SuperAwesomeUnity-Swift.h"
 #endif
 #endif
 

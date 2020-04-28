@@ -27,7 +27,6 @@ Pod::Spec.new do |s|
   s.subspec 'Full' do |b|
     b.source_files = 'Pod/Classes/**/*'
     b.frameworks = 'AdSupport'
-    b.dependency 'SAVideoPlayer', '2.0.0-beta8'
   end
   
   s.subspec 'Moat' do |moat|
@@ -73,9 +72,9 @@ Pod::Spec.new do |s|
 #    am.source_files = 'Pod/Plugin/AdMob/*'
 #  end
 
- # s.subspec 'Unity' do |u|
- #   u.dependency 'SuperAwesome/Full'
- #   u.source_files = 'Pod/Plugin/Unity/*'
- # end
+# s.subspec 'Unity' do |u|
+#    u.dependency 'SuperAwesome/Full'
+#    u.source_files = 'Pod/Plugin/Unity/*'
+# end
  
 end

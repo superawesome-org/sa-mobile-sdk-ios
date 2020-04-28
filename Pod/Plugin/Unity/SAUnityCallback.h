@@ -4,7 +4,14 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "NSDictionary+SAJson.h"
+
+#if defined(__has_include)
+#if __has_include(<SuperAwesomeUnity/SuperAwesomeUnity.h>)
+#import <SuperAwesomeUnity/SuperAwesomeUnity.h>
+#else
+#import "SuperAwesomeUnity.h"
+#endif
+#endif
 
 //// forward declaration of this method - which is part of the Unity C
 //// libray, so it would be available there
