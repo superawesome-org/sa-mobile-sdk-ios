@@ -20,9 +20,9 @@ PODS:
   - OHHTTPStubs/NSURLSession (9.0.0):
     - OHHTTPStubs/Core
   - OHHTTPStubs/OHPathHelpers (9.0.0)
-  - SuperAwesome (7.2.5):
-    - SuperAwesome/Full (= 7.2.5)
-  - SuperAwesome/Full (7.2.5)
+  - SuperAwesome (7.2.6):
+    - SuperAwesome/Full (= 7.2.6)
+  - SuperAwesome/Full (7.2.6)
   - URITemplate (2.0.3)
 
 DEPENDENCIES:
@@ -46,7 +46,7 @@ SPEC CHECKSUMS:
   Mockingjay: 11a621880d2887f1775bdcf824341eb68f218450
   Nimble: a73af6ecd4c9106f434f3d55fc54570be3739e0b
   OHHTTPStubs: cb29d2a9d09a828ecb93349a2b0c64f99e0db89f
-  SuperAwesome: b141b69d3bb91f4c84d754fb1998eeda76a1ee81
+  SuperAwesome: 7f7f29f1f8a617e96173d72788ec6170de4e0fa9
   URITemplate: ace0c4c46dcf8afe6e89b4060621852886b15c3b
 
 PODFILE CHECKSUM: b14ab069e719c3646cc42b6fa37261ef02be2a96

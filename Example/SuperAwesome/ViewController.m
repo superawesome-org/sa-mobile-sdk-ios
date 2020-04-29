@@ -41,7 +41,7 @@
     [SABumperPage overrideName:@"Test app"];
     [SABumperPage overrideLogo:[UIImage imageNamed:@"kws_700"]];
     
-    [_bannerAd setConfigurationStaging];
+    [_bannerAd setConfigurationProduction];
     [_bannerAd disableTestMode];
     [_bannerAd disableMoatLimiting];
     [_bannerAd enableBumperPage];
@@ -55,7 +55,7 @@
         }
     }];
     
-    [SAInterstitialAd setConfigurationStaging];
+    [SAInterstitialAd setConfigurationProduction];
     [SAInterstitialAd disableTestMode];
     [SAInterstitialAd enableParentalGate];
     [SAInterstitialAd enableBumperPage];
@@ -69,7 +69,7 @@
         }
     }];
     
-    [SAVideoAd setConfigurationStaging];
+    [SAVideoAd setConfigurationProduction];
     [SAVideoAd disableTestMode];
     [SAVideoAd enableBumperPage];
     [SAVideoAd enableParentalGate];
@@ -89,22 +89,21 @@
                @{
                    @"name": @"Banners",
                    @"items": @[
-                           @{@"name": @"Banner Image", @"pid": @(5391)}
+                           @{@"name": @"Banner Image", @"pid": @(44258)}
                            ]
                    },
                @{
                    @"name": @"Interstitials",
                    @"items": @[
-                           @{@"name": @"Rich Media Interstitial", @"pid": @(5411)},
-                           @{@"name": @"3rd Party Tag Interstitial", @"pid": @(5393)},
-                           @{@"name": @"KSF Interstitial", @"pid": @(5387)}
+                           @{@"name": @"Rich Media Interstitial", @"pid": @(44259)}
                            ]
                    },
                @{
                    @"name": @"Videos",
                    @"items": @[
 //                           @{@"name": @"Direct video", @"pid": @(34394)},
-                           @{@"name": @"Direct video", @"pid": @(4891)}
+                           @{@"name": @"Direct video", @"pid": @(44262)},
+                           @{@"name": @"Tag video", @"pid": @(44261)}
                            ]
                    }
                ] mutableCopy];

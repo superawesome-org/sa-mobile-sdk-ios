@@ -1,5 +1,8 @@
 CHANGELOG
 =========
+7.2.6
+ - Moat framework updated to v4.0.0
+ 
 7.2.5
  - Removal of UIWebview
  - Click & completed view discrepancy fixes

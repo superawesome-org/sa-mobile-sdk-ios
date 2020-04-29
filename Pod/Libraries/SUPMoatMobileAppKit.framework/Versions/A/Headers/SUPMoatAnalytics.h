@@ -12,13 +12,10 @@
 /** Settings that determine aspects of the SDK's functionality */
 @interface SUPMoatOptions : NSObject<NSCopying>
 
-/** If 'YES' then the SDK will attempt to use the device's location services for more precise location data.
- * The SDK will never request location permissions from a user, it will only attempt to use location services if
- * a user has already granted location permissions to the app.
- * 
- * Default = 'YES'
+/**
+ * Deprecated property. Regardless of value set for this property, location services will never be used.
  */
-@property BOOL locationServicesEnabled;
+@property BOOL locationServicesEnabled __deprecated_msg("The SDK has removed use of CoreLocation");
 
 /** If 'YES' then the SDK will attempt to use the device's IDFA for more precise user info.
  * The SDK will only use a user's IDFA if the user has advertising tracking enabled on the device.
