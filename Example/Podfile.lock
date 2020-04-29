@@ -23,7 +23,7 @@ DEPENDENCIES:
   - SuperAwesome (from `../`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - Nimble
     - OHHTTPStubs
 
@@ -34,8 +34,8 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Nimble: a73af6ecd4c9106f434f3d55fc54570be3739e0b
   OHHTTPStubs: cb29d2a9d09a828ecb93349a2b0c64f99e0db89f
-  SuperAwesome: e0c9e07e15cb3ad94fe964908bcbb01c41d7121e
+  SuperAwesome: 1ca971bedf2b79b887b47d3f3a2df1eb210e3793
 
 PODFILE CHECKSUM: def1d08e1fa33c6819c4c35e5c07fa70ba9abea3
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.9.1

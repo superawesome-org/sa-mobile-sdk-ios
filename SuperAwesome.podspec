@@ -26,13 +26,8 @@ Pod::Spec.new do |s|
 
   s.subspec 'Full' do |b|
     b.source_files = 'Pod/Classes/**/*'
+    b.vendored_frameworks = 'Pod/Libraries/SUPMoatMobileAppKit.framework'
     b.frameworks = 'AdSupport'
-  end
-  
-  s.subspec 'Moat' do |moat|
-    moat.dependency 'SuperAwesome/Full'
-    moat.vendored_frameworks = 'Pod/Libraries/SUPMoatMobileAppKit.framework'
-    moat.source_files = 'Pod/Plugin/Moat2/*'
   end
 
 #  s.subspec 'MoPub' do |m|

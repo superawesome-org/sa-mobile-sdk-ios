@@ -11,9 +11,7 @@
 
 #import "SUPMoatAnalytics.h"
 #import "SUPMoatWebTracker.h"
-#import "SUPMoatMPVideoTracker.h"
 #import "SUPMoatAVVideoTracker.h"
-#import "SUPMoatVideoTracker.h"
 #import "SUPMoatNativeDisplayTracker.h"
 #import "SUPMoatGMAInterstitialTracker.h"
 #import "SUPMoatReactiveVideoTracker.h"

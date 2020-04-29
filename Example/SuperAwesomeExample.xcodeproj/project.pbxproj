@@ -952,8 +952,6 @@
 					"-framework",
 					"\"OHHTTPStubs\"",
 					"-framework",
-					"\"SAVideoPlayer\"",
-					"-framework",
 					"\"SuperAwesome\"",
 					"-weak_framework",
 					"\"XCTest\"",
@@ -987,8 +985,6 @@
 					"\"Nimble\"",
 					"-framework",
 					"\"OHHTTPStubs\"",
-					"-framework",
-					"\"SAVideoPlayer\"",
 					"-framework",
 					"\"SuperAwesome\"",
 					"-weak_framework",
@@ -1092,8 +1088,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: LIVIU COMAN (K79XEZP48K)";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DCC9L689QJ;
 				INFOPLIST_FILE = SuperAwesome/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1105,7 +1102,7 @@
 					"-framework",
 					"\"SuperAwesome\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = tv.superawesome.SuperAwesome;
+				PRODUCT_BUNDLE_IDENTIFIER = tv.superawesome.awesomeads.sdk;
 				PRODUCT_NAME = SuperAwesomeExample;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1123,8 +1120,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DCC9L689QJ;
 				INFOPLIST_FILE = SuperAwesome/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1136,8 +1134,9 @@
 					"-framework",
 					"\"SuperAwesome\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = tv.superawesome.SuperAwesome;
+				PRODUCT_BUNDLE_IDENTIFIER = tv.superawesome.awesomeads.sdk;
 				PRODUCT_NAME = SuperAwesomeExample;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SuperAwesome/SuperAwesome-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
