@@ -6,10 +6,11 @@
 //
 
 @objc(SARepositoryModuleType)
-public protocol RepositoryModuleType {
+@available(*, deprecated, message: "Will be deleted")
+public protocol RepositoryModuleObjcType {
     var dataRepository: DataRepositoryType { get }
 }
 
-class RepositoryModule: RepositoryModuleType {
+class RepositoryModuleObjc: RepositoryModuleObjcType {
     lazy var dataRepository: DataRepositoryType = DataRepository(UserDefaults.standard)
 }

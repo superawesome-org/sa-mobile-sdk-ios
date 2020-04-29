@@ -1,4 +1,11 @@
 PODS:
+  - Mockingjay (2.0.1):
+    - Mockingjay/Core (= 2.0.1)
+    - Mockingjay/XCTest (= 2.0.1)
+  - Mockingjay/Core (2.0.1):
+    - URITemplate (~> 2.0)
+  - Mockingjay/XCTest (2.0.1):
+    - Mockingjay/Core
   - Nimble (8.0.7)
   - OHHTTPStubs (9.0.0):
     - OHHTTPStubs/Default (= 9.0.0)
@@ -13,29 +20,35 @@ PODS:
   - OHHTTPStubs/NSURLSession (9.0.0):
     - OHHTTPStubs/Core
   - OHHTTPStubs/OHPathHelpers (9.0.0)
-  - SuperAwesome (7.2.5):
-    - SuperAwesome/Full (= 7.2.5)
-  - SuperAwesome/Full (7.2.5)
+  - SuperAwesome (7.2.6):
+    - SuperAwesome/Full (= 7.2.6)
+  - SuperAwesome/Full (7.2.6)
+  - URITemplate (2.0.3)
 
 DEPENDENCIES:
+  - Mockingjay
   - Nimble
   - OHHTTPStubs
   - SuperAwesome (from `../`)
 
 SPEC REPOS:
   trunk:
+    - Mockingjay
     - Nimble
     - OHHTTPStubs
+    - URITemplate
 
 EXTERNAL SOURCES:
   SuperAwesome:
     :path: "../"
 
 SPEC CHECKSUMS:
+  Mockingjay: 11a621880d2887f1775bdcf824341eb68f218450
   Nimble: a73af6ecd4c9106f434f3d55fc54570be3739e0b
   OHHTTPStubs: cb29d2a9d09a828ecb93349a2b0c64f99e0db89f
-  SuperAwesome: 1ca971bedf2b79b887b47d3f3a2df1eb210e3793
+  SuperAwesome: da934b79659d20794a674c2f1da371bc515ad4ae
+  URITemplate: ace0c4c46dcf8afe6e89b4060621852886b15c3b
 
-PODFILE CHECKSUM: def1d08e1fa33c6819c4c35e5c07fa70ba9abea3
+PODFILE CHECKSUM: b14ab069e719c3646cc42b6fa37261ef02be2a96
 
 COCOAPODS: 1.9.1

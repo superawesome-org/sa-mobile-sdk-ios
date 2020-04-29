@@ -29,6 +29,37 @@ Pod::Spec.new do |s|
     b.vendored_frameworks = 'Pod/Libraries/SUPMoatMobileAppKit.framework'
     b.frameworks = 'AdSupport'
   end
+  
+  s.subspec 'Core' do |c|
+    c.dependency 'SuperAwesome/Full'
+    c.source_files = 'Pod/Plugin/Core/Classes/**/*'
+    
+    c.test_spec 'Tests' do |test_spec|
+      test_spec.source_files = 'Pod/Plugin/Core/Tests/**/*'
+      test_spec.dependency 'Nimble'
+      test_spec.dependency 'Mockingjay'
+    end
+  end
+  
+  s.subspec 'Moya' do |m|
+    m.dependency 'SuperAwesome/Core'
+    m.source_files = 'Pod/Plugin/Moya/Classes/**/*'
+    m.dependency 'Moya', '~> 14.0'
+    m.xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) MOYA_PLUGIN' }
+    
+    m.test_spec 'Tests' do |test_spec|
+      test_spec.source_files = 'Pod/Plugin/Moya/Tests/**/*'
+      test_spec.resources = 'Pod/Plugin/Moya/Resources/*'
+      test_spec.dependency 'Nimble'
+      test_spec.dependency 'Mockingjay'
+    end
+  end
+  
+#  s.subspec 'Moat' do |moat|
+#    moat.dependency 'SuperAwesome/Full'
+#    moat.vendored_frameworks = 'Pod/Libraries/SUPMoatMobileAppKit.framework'
+#    moat.source_files = 'Pod/Plugin/Moat2/*'
+#  end
 
 #  s.subspec 'MoPub' do |m|
 #    m.dependency 'SuperAwesome/Full'

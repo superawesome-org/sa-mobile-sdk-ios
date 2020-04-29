@@ -47,16 +47,6 @@
                ReferencedContainer = "container:SuperAwesomeExample.xcodeproj">
             </BuildableReference>
          </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C668A7172437821A00C18228"
-               BuildableName = "SuperAwesomeTests.xctest"
-               BlueprintName = "SuperAwesomeTests"
-               ReferencedContainer = "container:SuperAwesomeExample.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

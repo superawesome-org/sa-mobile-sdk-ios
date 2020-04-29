@@ -208,7 +208,7 @@
     NSString *expectedBaseUrl = TEST_PRODUCTION_URL;
     BOOL expectedTestMode = false;
     NSString *expectedVersion = @"3.2.1";
-    NSString *expectedBundleId = @"tv.superawesome.SuperAwesome";
+    NSString *expectedBundleId = @"tv.superawesome.awesomeads.sdk";
     NSString *expectedAppName = @"SuperAwesomeExample";
     NSString *expectedLang = @"en_US";
     NSString *expectedDevice = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? @"tablet" : @"phone";

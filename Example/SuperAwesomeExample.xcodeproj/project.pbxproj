@@ -98,13 +98,8 @@
 		1BB5F58B1ED6CC3400ACD72E /* AdMobController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB5F58A1ED6CC3400ACD72E /* AdMobController.m */; };
 		1BFE15E622A00DE600C500C0 /* empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFE15E522A00DE600C500C0 /* empty.swift */; };
 		B52C3F5F9407635B595C13F1 /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 027A65084FCDE85CE56A18B6 /* Pods_Tests.framework */; };
-		C61741EC243B8D7600C8D801 /* UserAgentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61741EB243B8D7600C8D801 /* UserAgentTests.swift */; };
-		C61741F2243B9E8300C8D801 /* DataRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61741F1243B9E8300C8D801 /* DataRepositoryTests.swift */; };
-		C61741F5243CA0E900C8D801 /* UIDeviceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61741F4243CA0E900C8D801 /* UIDeviceMock.swift */; };
-		C61741F7243CA14400C8D801 /* DeviceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61741F6243CA14400C8D801 /* DeviceMock.swift */; };
-		C61741F9243CA1D100C8D801 /* DataRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61741F8243CA1D100C8D801 /* DataRepositoryMock.swift */; };
+		C6535602245239270043115E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6535601245239270043115E /* HealthKit.framework */; };
 		C668A6F9243656E200C18228 /* SATestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C668A6F8243656E200C18228 /* SATestUtils.m */; };
-		C668A703243659F100C18228 /* DeviceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C668A702243659F100C18228 /* DeviceTests.swift */; };
 		E52780D260EA21087C0F85EA /* Pods_SuperAwesomeExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 479D753C5EED10C661E7289C /* Pods_SuperAwesomeExample.framework */; };
 /* End PBXBuildFile section */
 
@@ -232,20 +227,19 @@
 		1BFE15E422A00DE500C500C0 /* SuperAwesome-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SuperAwesome-Bridging-Header.h"; sourceTree = "<group>"; };
 		1BFE15E522A00DE600C500C0 /* empty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = empty.swift; sourceTree = "<group>"; };
 		2294CA59892B5A87435606EE /* Pods-SuperAwesome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesome.release.xcconfig"; path = "Target Support Files/Pods-SuperAwesome/Pods-SuperAwesome.release.xcconfig"; sourceTree = "<group>"; };
+		235DC26E667FEA43E2153B95 /* Pods-MoyaUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoyaUnitTests.release.xcconfig"; path = "Target Support Files/Pods-MoyaUnitTests/Pods-MoyaUnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		479D753C5EED10C661E7289C /* Pods_SuperAwesomeExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SuperAwesomeExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		497D5AC68B2B27DFFAACACA7 /* Pods-SuperAwesome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesome.debug.xcconfig"; path = "Target Support Files/Pods-SuperAwesome/Pods-SuperAwesome.debug.xcconfig"; sourceTree = "<group>"; };
+		5FDC5DDF2247CC69FA37359E /* Pods-MoyaUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoyaUnitTests.debug.xcconfig"; path = "Target Support Files/Pods-MoyaUnitTests/Pods-MoyaUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		763EEEB15C3FC5CF9C4C2503 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
-		C61741EB243B8D7600C8D801 /* UserAgentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAgentTests.swift; sourceTree = "<group>"; };
-		C61741F1243B9E8300C8D801 /* DataRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRepositoryTests.swift; sourceTree = "<group>"; };
-		C61741F4243CA0E900C8D801 /* UIDeviceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDeviceMock.swift; sourceTree = "<group>"; };
-		C61741F6243CA14400C8D801 /* DeviceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceMock.swift; sourceTree = "<group>"; };
-		C61741F8243CA1D100C8D801 /* DataRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRepositoryMock.swift; sourceTree = "<group>"; };
+		C6535600245239270043115E /* SuperAwesomeExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SuperAwesomeExample.entitlements; sourceTree = "<group>"; };
+		C6535601245239270043115E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		C668A6F7243656E200C18228 /* SATestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SATestUtils.h; sourceTree = "<group>"; };
 		C668A6F8243656E200C18228 /* SATestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SATestUtils.m; sourceTree = "<group>"; };
-		C668A702243659F100C18228 /* DeviceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTests.swift; sourceTree = "<group>"; };
 		D6B71C01F9DFB74D05E0B0FD /* Pods-SuperAwesomeExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesomeExample.debug.xcconfig"; path = "Target Support Files/Pods-SuperAwesomeExample/Pods-SuperAwesomeExample.debug.xcconfig"; sourceTree = "<group>"; };
 		D8F2154D326FE2F80967D14F /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		DECC64E7421DE990CD928FFD /* Pods-SuperAwesomeExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesomeExample.release.xcconfig"; path = "Target Support Files/Pods-SuperAwesomeExample/Pods-SuperAwesomeExample.release.xcconfig"; sourceTree = "<group>"; };
+		F3FD76F374BF5D4DEE6536DA /* Pods_MoyaUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoyaUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -262,6 +256,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E52780D260EA21087C0F85EA /* Pods_SuperAwesomeExample.framework in Frameworks */,
+				C6535602245239270043115E /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,7 +266,6 @@
 		1B0D26CD1CF7186F00619C9C /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				C668A700243659CF00C18228 /* Core */,
 				C668A6F7243656E200C18228 /* SATestUtils.h */,
 				C668A6F8243656E200C18228 /* SATestUtils.m */,
 				1B226FCB23536F8200FA8326 /* SAAdLoader */,
@@ -473,6 +467,7 @@
 		1B76D22A1C91EEB1000AE8F3 = {
 			isa = PBXGroup;
 			children = (
+				C6535600245239270043115E /* SuperAwesomeExample.entitlements */,
 				1B76D2351C91EEB1000AE8F3 /* SuperAwesome */,
 				1B0D26CD1CF7186F00619C9C /* Tests */,
 				1B76D2341C91EEB1000AE8F3 /* Products */,
@@ -545,8 +540,10 @@
 		63CB71636A495D6FBABE5223 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C6535601245239270043115E /* HealthKit.framework */,
 				027A65084FCDE85CE56A18B6 /* Pods_Tests.framework */,
 				479D753C5EED10C661E7289C /* Pods_SuperAwesomeExample.framework */,
+				F3FD76F374BF5D4DEE6536DA /* Pods_MoyaUnitTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -560,45 +557,10 @@
 				763EEEB15C3FC5CF9C4C2503 /* Pods-Tests.release.xcconfig */,
 				D6B71C01F9DFB74D05E0B0FD /* Pods-SuperAwesomeExample.debug.xcconfig */,
 				DECC64E7421DE990CD928FFD /* Pods-SuperAwesomeExample.release.xcconfig */,
+				5FDC5DDF2247CC69FA37359E /* Pods-MoyaUnitTests.debug.xcconfig */,
+				235DC26E667FEA43E2153B95 /* Pods-MoyaUnitTests.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		C61741F0243B9E7800C8D801 /* Repositories */ = {
-			isa = PBXGroup;
-			children = (
-				C61741F1243B9E8300C8D801 /* DataRepositoryTests.swift */,
-			);
-			path = Repositories;
-			sourceTree = "<group>";
-		};
-		C61741F3243CA0BD00C8D801 /* Mocks */ = {
-			isa = PBXGroup;
-			children = (
-				C61741F4243CA0E900C8D801 /* UIDeviceMock.swift */,
-				C61741F6243CA14400C8D801 /* DeviceMock.swift */,
-				C61741F8243CA1D100C8D801 /* DataRepositoryMock.swift */,
-			);
-			path = Mocks;
-			sourceTree = "<group>";
-		};
-		C668A700243659CF00C18228 /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				C61741F3243CA0BD00C8D801 /* Mocks */,
-				C61741F0243B9E7800C8D801 /* Repositories */,
-				C668A701243659D700C18228 /* Components */,
-			);
-			path = Core;
-			sourceTree = "<group>";
-		};
-		C668A701243659D700C18228 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				C668A702243659F100C18228 /* DeviceTests.swift */,
-				C61741EB243B8D7600C8D801 /* UserAgentTests.swift */,
-			);
-			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -651,7 +613,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1140;
 				LastUpgradeCheck = 0720;
-				ORGANIZATIONNAME = "Gabriel Coman";
+				ORGANIZATIONNAME = "";
 				TargetAttributes = {
 					1B0D26CB1CF7186F00619C9C = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -736,13 +698,17 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Tests/Pods-Tests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Mockingjay/Mockingjay.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/OHHTTPStubs/OHHTTPStubs.framework",
+				"${BUILT_PRODUCTS_DIR}/URITemplate/URITemplate.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mockingjay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OHHTTPStubs.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/URITemplate.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -809,8 +775,6 @@
 				1B22703D23536F8300FA8326 /* MockSession.m in Sources */,
 				1B22701C23536F8300FA8326 /* TestSAUtils_RemoveAllButFirst.m in Sources */,
 				1B22701923536F8300FA8326 /* TestSAUtils_GetSystemSize.m in Sources */,
-				C61741F7243CA14400C8D801 /* DeviceMock.swift in Sources */,
-				C61741F2243B9E8300C8D801 /* DataRepositoryTests.swift in Sources */,
 				1B22703823536F8300FA8326 /* TestMoatModule.m in Sources */,
 				1B22705E23536F8300FA8326 /* SAMockCompanyModel.m in Sources */,
 				1B22707323536F8300FA8326 /* GetIsMinorModel+Mapping.swift in Sources */,
@@ -821,7 +785,6 @@
 				1B22704223536F8300FA8326 /* TestSAAdLoader_LoadAd.m in Sources */,
 				1B22702823536F8300FA8326 /* TestSAUtils_RandomNumberBetween.m in Sources */,
 				1B22705623536F8300FA8326 /* SAVAST_Parser_Async_Tests.m in Sources */,
-				C61741F9243CA1D100C8D801 /* DataRepositoryMock.swift in Sources */,
 				1B22702123536F8300FA8326 /* TestSAUtils_EncodeURI.m in Sources */,
 				1B22704323536F8300FA8326 /* SAMockSession.m in Sources */,
 				1B22706B23536F8300FA8326 /* TestSAAd_6.m in Sources */,
@@ -866,12 +829,10 @@
 				1B22704B23536F8300FA8326 /* SANetwork_FileItem_Tests.m in Sources */,
 				1B22702C23536F8300FA8326 /* TestSAUtils_FindBaseURLFromResource.m in Sources */,
 				1B22703E23536F8300FA8326 /* TestSAProcessHTML.m in Sources */,
-				C61741F5243CA0E900C8D801 /* UIDeviceMock.swift in Sources */,
 				1B22703923536F8300FA8326 /* TestSAServerModule.m in Sources */,
 				1B22707123536F8300FA8326 /* GetIsMinor+RequestTests.swift in Sources */,
 				1B22701F23536F8300FA8326 /* TestSAUtils_FindSubstring.m in Sources */,
 				1B22705723536F8300FA8326 /* SAVAST_Parser_Local_Tests1.m in Sources */,
-				C668A703243659F100C18228 /* DeviceTests.swift in Sources */,
 				1B22702223536F8300FA8326 /* TestSAUtils_UIColorFromHex.m in Sources */,
 				1B22705D23536F8300FA8326 /* SAMockEmployeeModel.m in Sources */,
 				1B22704C23536F8300FA8326 /* SANetwork_FileDownloader_Tests.m in Sources */,
@@ -881,7 +842,6 @@
 				1B22701823536F8300FA8326 /* TestSAUtils_UIColorFromRGB.m in Sources */,
 				1B22703623536F8300FA8326 /* TestViewableImpressionEventTrigger.m in Sources */,
 				1B22702923536F8300FA8326 /* TestSAUtils_IsEmailValid.m in Sources */,
-				C61741EC243B8D7600C8D801 /* UserAgentTests.swift in Sources */,
 				1B22702023536F8300FA8326 /* TestSAUtils_GetVerboseSystemDetails.m in Sources */,
 				1B22705323536F8300FA8326 /* SAXML_Parser_Tests6.m in Sources */,
 			);
@@ -958,7 +918,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = tv.superawesome.Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SuperAwesomeExample.app/SuperAwesomeExample";
 			};
 			name = Debug;
@@ -992,7 +952,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = tv.superawesome.Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SuperAwesomeExample.app/SuperAwesomeExample";
 			};
 			name = Release;
@@ -1088,6 +1048,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = SuperAwesomeExample.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -1120,6 +1081,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = SuperAwesomeExample.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
