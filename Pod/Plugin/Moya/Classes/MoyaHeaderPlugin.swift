@@ -16,8 +16,6 @@ struct MoyaHeaderPlugin: PluginType {
     
     func prepare(_ request: URLRequest, target: TargetType) -> URLRequest {
         var request = request
-        request.addValue("inside plugin", forHTTPHeaderField: "Plugin-Header")
-
         request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
         return request
     }
