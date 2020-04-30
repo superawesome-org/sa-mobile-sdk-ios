@@ -30,7 +30,15 @@ public class AwesomeAdsSdk {
             UserAgentProvider(device: c.resolve(), dataRepository: c.resolve())
         }
         container.registerSingle(AdRepositoryType.self) { c in
-            AdRepository(c.resolve())
+            AdRepository(dataSource: c.resolve(), adQueryMaker: c.resolve())
+        }
+        container.registerSingle(AdQueryMakerType.self) { c in
+            AdQueryMaker(device: c.resolve(),
+                         sdkInfo: c.resolve(),
+                         connectionProvider: c.resolve(),
+                         numberGenerator: c.resolve(),
+                         idGenerator: c.resolve(),
+                         encoder: c.resolve())
         }
         
         #if MOYA_PLUGIN

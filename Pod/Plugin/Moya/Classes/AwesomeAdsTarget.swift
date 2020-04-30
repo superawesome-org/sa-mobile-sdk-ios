@@ -24,10 +24,6 @@ struct AwesomeAdsTarget: TargetType {
     var headers: [String : String]? { target.headers }
 }
 
-extension Environment {
-    func make(_ target: AwesomeAdsApi) -> AwesomeAdsTarget { AwesomeAdsTarget(self, target) }
-}
-
 extension AwesomeAdsApi: TargetType {
     var method: Moya.Method { .get }
     
@@ -37,14 +33,14 @@ extension AwesomeAdsApi: TargetType {
         switch self {
         case .ad(_,let query):
             return .requestParameters(parameters: query.toDictionary(), encoding: URLEncoding.queryString)
-        case .impression(let request):
-            return .requestParameters(parameters: request.toDictionary(), encoding: URLEncoding.queryString)
-        case .click(let request):
-            return .requestParameters(parameters: request.toDictionary(), encoding: URLEncoding.queryString)
-        case .videoClick(let request):
-            return .requestParameters(parameters: request.toDictionary(), encoding: URLEncoding.queryString)
-        case .event(let request):
-            return .requestParameters(parameters: request.toDictionary(), encoding: URLEncoding.queryString)
+        case .impression(let query):
+            return .requestParameters(parameters: query.toDictionary(), encoding: URLEncoding.queryString)
+        case .click(let query):
+            return .requestParameters(parameters: query.toDictionary(), encoding: URLEncoding.queryString)
+        case .videoClick(let query):
+            return .requestParameters(parameters: query.toDictionary(), encoding: URLEncoding.queryString)
+        case .event(let query):
+            return .requestParameters(parameters: query.toDictionary(), encoding: URLEncoding.queryString)
         }
     }
     

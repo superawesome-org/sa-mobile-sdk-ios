@@ -33,7 +33,7 @@ class AwesomeAdsApiTests: XCTestCase {
         
         // When
         provider.request(AwesomeAdsTarget(.production,
-                                          .ad(placementId: placementId, query: makeAdQuery()))) { result in
+                                          .ad(placementId: placementId, query: makeAdQueryInstance()))) { result in
             switch result {
             case .success(let response):
                 do {

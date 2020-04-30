@@ -1,5 +1,5 @@
 //
-//  Creative.swift
+//  CreativeModels.swift
 //  SuperAwesome
 //
 //  Created by Gunhan Sancar on 16/04/2020.

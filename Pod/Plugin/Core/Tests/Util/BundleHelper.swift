@@ -13,7 +13,7 @@ func xmlFile(_ name: String) -> Data { BundleHelper.loadFileData(name: name, typ
 
 class BundleHelper {
     static func loadFileData(name: String, type: String) -> Data {
-        let bundle = Bundle(identifier: "tv.superawesome.Tests")!
+        let bundle = Bundle(for: AwesomeAdsApiTests.self)
         let path = bundle.path(forResource: "fixtures_tests", ofType: "bundle")!
 
         let data = try? Data(contentsOf: Bundle(path: path)!.url(forResource: name, withExtension: type)!)
