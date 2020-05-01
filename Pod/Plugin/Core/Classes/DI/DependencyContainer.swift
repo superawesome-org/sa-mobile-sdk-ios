@@ -1,5 +1,5 @@
 //
-//  Injectable.swift
+//  DependencyContainer.swift
 //  SuperAwesome
 //
 //  Created by Gunhan Sancar on 06/04/2020.

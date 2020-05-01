@@ -8,10 +8,12 @@
 public class AwesomeAdsSdk {
     static let shared = AwesomeAdsSdk()
     
-    private let container: DependencyContainer
+    private var container: DependencyContainer = DependencyContainer()
+    private var initialised: Bool = false
     
-    init() {
+    private func registerDependencies(_ configuration: Configuration) {
         self.container = DependencyContainer()
+        container.registerSingle(Environment.self) { _ in configuration.environment }
         container.registerSingle(ConnectionProviderType.self) { _ in ConnectionProvider() }
         container.registerSingle(DeviceType.self) { _ in Device(UIDevice.current) }
         container.registerSingle(EncoderType.self) { _ in Encoder() }
@@ -30,11 +32,35 @@ public class AwesomeAdsSdk {
             UserAgentProvider(device: c.resolve(), dataRepository: c.resolve())
         }
         container.registerSingle(AdRepositoryType.self) { c in
-            AdRepository(c.resolve())
+            AdRepository(dataSource: c.resolve(), adQueryMaker: c.resolve())
+        }
+        container.registerSingle(AdQueryMakerType.self) { c in
+            AdQueryMaker(device: c.resolve(),
+                         sdkInfo: c.resolve(),
+                         connectionProvider: c.resolve(),
+                         numberGenerator: c.resolve(),
+                         idGenerator: c.resolve(),
+                         encoder: c.resolve())
         }
         
         #if MOYA_PLUGIN
         MoyaPluginRegistrar.register(container)
         #endif
+    }
+    
+    func initSdk(configuration: Configuration = Configuration(), completion: (()->())? = nil) {
+        guard !initialised else { return }
+        registerDependencies(configuration)
+        initialised = true
+        completion?()
+    }
+    
+    public class Configuration {
+        var environment = Environment.production
+        var logging = false
+        
+        init(environment:Environment = .production) {
+            self.environment = environment
+        }
     }
 }

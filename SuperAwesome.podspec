@@ -48,7 +48,7 @@ Pod::Spec.new do |s|
     m.xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) MOYA_PLUGIN' }
     
     m.test_spec 'Tests' do |test_spec|
-      test_spec.source_files = 'Pod/Plugin/Moya/Tests/**/*'
+      test_spec.source_files = 'Pod/Plugin/Moya/Tests/**/*', 'Pod/Plugin/Core/Tests/**/*'
       test_spec.resources = 'Pod/Plugin/Moya/Resources/*'
       test_spec.dependency 'Nimble'
       test_spec.dependency 'Mockingjay'

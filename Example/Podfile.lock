@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (5.1.0)
   - Mockingjay (2.0.1):
     - Mockingjay/Core (= 2.0.1)
     - Mockingjay/XCTest (= 2.0.1)
@@ -6,6 +7,10 @@ PODS:
     - URITemplate (~> 2.0)
   - Mockingjay/XCTest (2.0.1):
     - Mockingjay/Core
+  - Moya (14.0.0):
+    - Moya/Core (= 14.0.0)
+  - Moya/Core (14.0.0):
+    - Alamofire (~> 5.0)
   - Nimble (8.0.7)
   - OHHTTPStubs (9.0.0):
     - OHHTTPStubs/Default (= 9.0.0)
@@ -20,20 +25,31 @@ PODS:
   - OHHTTPStubs/NSURLSession (9.0.0):
     - OHHTTPStubs/Core
   - OHHTTPStubs/OHPathHelpers (9.0.0)
-  - SuperAwesome (7.2.6):
-    - SuperAwesome/Full (= 7.2.6)
+  - SuperAwesome/Core (7.2.6):
+    - SuperAwesome/Full
   - SuperAwesome/Full (7.2.6)
+  - SuperAwesome/Moya (7.2.6):
+    - Moya (~> 14.0)
+    - SuperAwesome/Core
+  - SuperAwesome/Moya/Tests (7.2.6):
+    - Mockingjay
+    - Moya (~> 14.0)
+    - Nimble
+    - SuperAwesome/Core
   - URITemplate (2.0.3)
 
 DEPENDENCIES:
   - Mockingjay
   - Nimble
   - OHHTTPStubs
-  - SuperAwesome (from `../`)
+  - SuperAwesome/Moya (from `../`)
+  - SuperAwesome/Moya/Tests (from `../`)
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - Mockingjay
+    - Moya
     - Nimble
     - OHHTTPStubs
     - URITemplate
@@ -43,12 +59,14 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
+  Alamofire: 9d5c5f602928e512395b30950c5984eca840093c
   Mockingjay: 11a621880d2887f1775bdcf824341eb68f218450
+  Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   Nimble: a73af6ecd4c9106f434f3d55fc54570be3739e0b
   OHHTTPStubs: cb29d2a9d09a828ecb93349a2b0c64f99e0db89f
-  SuperAwesome: da934b79659d20794a674c2f1da371bc515ad4ae
+  SuperAwesome: 4e2d348b4ca9fdb3648fc41c1e63a121e10919ad
   URITemplate: ace0c4c46dcf8afe6e89b4060621852886b15c3b
 
-PODFILE CHECKSUM: b14ab069e719c3646cc42b6fa37261ef02be2a96
+PODFILE CHECKSUM: 2e44bc0167c3a8f1c35dcefd796f57f25751f5bc
 
 COCOAPODS: 1.9.1

@@ -21,8 +21,10 @@ class AdRepositoryTests: XCTestCase {
     private func prepare(expectedResult: Result<Ad, Error>) {
         // Given
         let placementId: Int = 1
-        let mockDataSource = AdDataSourceMock(expectedResult)
-        let adRepository = AdRepository(mockDataSource)
+        let mockDataSource = AdDataSourceMock()
+        mockDataSource.mockAdResult = expectedResult
+        let mockAdQueryMaker = AdQueryMakerMock()
+        let adRepository = AdRepository(dataSource: mockDataSource, adQueryMaker: mockAdQueryMaker)
 
         // When
         let expectation = self.expectation(description: "request")

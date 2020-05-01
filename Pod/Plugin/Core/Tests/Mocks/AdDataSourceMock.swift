@@ -8,13 +8,26 @@
 @testable import SuperAwesome
 
 class AdDataSourceMock: AdDataSourceType {
-    var mockResult: Result<Ad,Error>
+    var mockAdResult: Result<Ad,Error>!
+    var mockEventResult: Result<Void, Error>!
     
-    init(_ mockResult: Result<Ad,Error>) {
-        self.mockResult = mockResult
+    func getAd(placementId: Int, query: AdQuery, completion: @escaping Completion<Ad>) {
+        completion(mockAdResult)
     }
     
-    func getAd(placementId: Int, request: AdRequest, completion: @escaping Completion<Ad>) {
-        completion(mockResult)
+    func impression(query: EventQuery, completion: @escaping Completion<Void>) {
+        completion(mockEventResult)
+    }
+    
+    func click(query: EventQuery, completion: @escaping Completion<Void>) {
+        completion(mockEventResult)
+    }
+    
+    func videoClick(query: EventQuery, completion: @escaping Completion<Void>) {
+        completion(mockEventResult)
+    }
+    
+    func event(query: EventQuery, completion: @escaping Completion<Void>) {
+        completion(mockEventResult)
     }
 }

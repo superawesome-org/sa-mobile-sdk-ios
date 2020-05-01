@@ -8,7 +8,7 @@
 @testable import SuperAwesome
 
 class DeviceMock: DeviceType {
-    var genericType: String = ""
+    var genericType: String = "DeviceMockGenericType"
     var type: String = ""
     var systemVersion: String = ""
     var systemVersionEscaped: String = ""

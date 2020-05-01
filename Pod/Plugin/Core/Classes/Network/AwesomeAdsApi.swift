@@ -7,10 +7,10 @@
 
 enum AwesomeAdsApi {
     case ad(placementId: Int, query: AdQuery)
-    case impression(request: ImpressionRequest)
-    case click(request: ClickRequest)
-    case videoClick(request: ClickRequest)
-    case event(request: EventRequest)
+    case impression(query: EventQuery)
+    case click(query: EventQuery)
+    case videoClick(query: EventQuery)
+    case event(query: EventQuery)
     
     var path: String {
         switch self {
