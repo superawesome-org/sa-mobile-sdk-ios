@@ -42,7 +42,6 @@ struct AdQuery: Codable {
 }
 
 struct AdRequest: Codable {
-    let environment: Environment
     let test: Bool
     let pos: Int
     let skip: Int

@@ -19,8 +19,7 @@ class AdQueryMakerTests: XCTestCase {
     
     func test_adQuery() throws {
         // Given
-        let request = AdRequest(environment: .staging,
-                                test: false, pos: 10, skip: 20,
+        let request = AdRequest(test: false, pos: 10, skip: 20,
                                 playbackmethod: 30, startdelay: 40,
                                 instl: 50, w: 60, h: 70)
         
@@ -48,8 +47,7 @@ class AdQueryMakerTests: XCTestCase {
     
     func test_clickQuery() throws {
         // Given
-        let request = EventRequest(environment: .production, placementId: 10,
-                                   creativeId: 20, lineItemId: 30, type: .impressionDownloaded)
+        let request = EventRequest(placementId: 10, creativeId: 20, lineItemId: 30, type: .impressionDownloaded)
         
         // When
         let query = queryMaker.makeClickQuery(request)
@@ -69,8 +67,7 @@ class AdQueryMakerTests: XCTestCase {
     
     func test_videoClickQuery() throws {
         // Given
-        let request = EventRequest(environment: .production, placementId: 10,
-                                   creativeId: 20, lineItemId: 30, type: .impressionDownloaded)
+        let request = EventRequest(placementId: 10, creativeId: 20, lineItemId: 30, type: .impressionDownloaded)
         
         // When
         let query = queryMaker.makeVideoClickQuery(request)
@@ -90,8 +87,7 @@ class AdQueryMakerTests: XCTestCase {
     
     func test_eventQuery() throws {
         // Given
-        let request = EventRequest(environment: .production, placementId: 10,
-                                   creativeId: 20, lineItemId: 30, type: .parentalGateOpen)
+        let request = EventRequest(placementId: 10, creativeId: 20, lineItemId: 30, type: .parentalGateOpen)
         
         // When
         let query = queryMaker.makeEventQuery(request)

@@ -19,8 +19,7 @@ class AdRepository : AdRepositoryType {
     }
     
     func getAd(placementId: Int, request: AdRequest, completion: @escaping Completion<Ad>) {
-        dataSource.getAd(environment: request.environment,
-                         placementId: placementId,
+        dataSource.getAd(placementId: placementId,
                          query: adQueryMaker.makeAdQuery(request),
                          completion: completion)
     }

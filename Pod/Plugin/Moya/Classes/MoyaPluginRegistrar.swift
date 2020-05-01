@@ -16,7 +16,7 @@ class MoyaPluginRegistrar {
             MoyaProvider<AwesomeAdsTarget>(plugins:[c.resolve() as MoyaHeaderPlugin])
         }
         container.registerSingle(AdDataSourceType.self) { c in
-            MoyaAdDataSource(c.resolve())
+            MoyaAdDataSource(provider: c.resolve(), environment: c.resolve())
         }
     }
 }

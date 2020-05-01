@@ -11,23 +11,23 @@ class AdDataSourceMock: AdDataSourceType {
     var mockAdResult: Result<Ad,Error>!
     var mockEventResult: Result<Void, Error>!
     
-    func getAd(environment: Environment, placementId: Int, query: AdQuery, completion: @escaping Completion<Ad>) {
+    func getAd(placementId: Int, query: AdQuery, completion: @escaping Completion<Ad>) {
         completion(mockAdResult)
     }
     
-    func impression(environment: Environment, query: EventQuery, completion: @escaping Completion<Void>) {
+    func impression(query: EventQuery, completion: @escaping Completion<Void>) {
         completion(mockEventResult)
     }
     
-    func click(environment: Environment, query: EventQuery, completion: @escaping Completion<Void>) {
+    func click(query: EventQuery, completion: @escaping Completion<Void>) {
         completion(mockEventResult)
     }
     
-    func videoClick(environment: Environment, query: EventQuery, completion: @escaping Completion<Void>) {
+    func videoClick(query: EventQuery, completion: @escaping Completion<Void>) {
         completion(mockEventResult)
     }
     
-    func event(environment: Environment, query: EventQuery, completion: @escaping Completion<Void>) {
+    func event(query: EventQuery, completion: @escaping Completion<Void>) {
         completion(mockEventResult)
     }
 }

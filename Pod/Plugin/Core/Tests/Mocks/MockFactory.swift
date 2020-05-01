@@ -20,10 +20,10 @@ func makeAd() -> Ad {
 
 func makeError() -> Error { NSError(domain:"", code:404, userInfo:nil) }
 
-func makeAdRequest() -> AdRequest { AdRequest(environment: .staging, test: true, pos: 1, skip: 1,
+func makeAdRequest() -> AdRequest { AdRequest(test: true, pos: 1, skip: 1,
                                               playbackmethod: 1, startdelay: 1,instl: 1, w: 1, h: 1) }
 
-func makeEventRequest(_ type: EventType = .parentalGateOpen) -> EventRequest { EventRequest(environment: .staging, placementId: 1, creativeId: 1,
+func makeEventRequest(_ type: EventType = .parentalGateOpen) -> EventRequest { EventRequest(placementId: 1, creativeId: 1,
                                                        lineItemId: 1, type: type) }
 
 func makeAdQueryInstance() -> AdQuery { AdQuery(test: true, sdkVersion: "", rnd: 1, bundle: "",

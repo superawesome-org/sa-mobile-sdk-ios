@@ -22,27 +22,23 @@ class EventRepository : EventRepositoryType {
     }
     
     func impression(request: EventRequest, completion: @escaping Completion<Void>) {
-        dataSource.impression(environment: request.environment,
-                              query: adQueryMaker.makeImpressionQuery(request),
+        dataSource.impression(query: adQueryMaker.makeImpressionQuery(request),
                               completion: completion)
     }
     
     func click(request: EventRequest, completion: @escaping Completion<Void>) {
-        dataSource.click(environment: request.environment,
-                              query: adQueryMaker.makeClickQuery(request),
-                              completion: completion)
+        dataSource.click(query: adQueryMaker.makeClickQuery(request),
+                         completion: completion)
     }
     
     func videoClick(request: EventRequest, completion: @escaping Completion<Void>) {
-        dataSource.videoClick(environment: request.environment,
-                              query: adQueryMaker.makeVideoClickQuery(request),
+        dataSource.videoClick(query: adQueryMaker.makeVideoClickQuery(request),
                               completion: completion)
     }
     
     func event(request: EventRequest, completion: @escaping Completion<Void>) {
-        dataSource.event(environment: request.environment,
-                              query: adQueryMaker.makeEventQuery(request),
-                              completion: completion)
+        dataSource.event(query: adQueryMaker.makeEventQuery(request),
+                         completion: completion)
     }
 }
 

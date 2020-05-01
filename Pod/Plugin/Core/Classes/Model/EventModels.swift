@@ -19,7 +19,6 @@ struct EventQuery: Codable {
 }
 
 struct EventRequest: Codable {
-    let environment: Environment
     let placementId: Int
     let creativeId: Int
     let lineItemId: Int

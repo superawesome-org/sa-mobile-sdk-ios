@@ -8,10 +8,12 @@
 public class AwesomeAdsSdk {
     static let shared = AwesomeAdsSdk()
     
-    private let container: DependencyContainer
+    private var container: DependencyContainer = DependencyContainer()
+    private var initialised: Bool = false
     
-    init() {
+    private func registerDependencies(_ configuration: Configuration) {
         self.container = DependencyContainer()
+        container.registerSingle(Environment.self) { _ in configuration.environment }
         container.registerSingle(ConnectionProviderType.self) { _ in ConnectionProvider() }
         container.registerSingle(DeviceType.self) { _ in Device(UIDevice.current) }
         container.registerSingle(EncoderType.self) { _ in Encoder() }
@@ -44,5 +46,21 @@ public class AwesomeAdsSdk {
         #if MOYA_PLUGIN
         MoyaPluginRegistrar.register(container)
         #endif
+    }
+    
+    func initSdk(configuration: Configuration = Configuration(), completion: (()->())? = nil) {
+        guard !initialised else { return }
+        registerDependencies(configuration)
+        initialised = true
+        completion?()
+    }
+    
+    public class Configuration {
+        var environment = Environment.production
+        var logging = false
+        
+        init(environment:Environment = .production) {
+            self.environment = environment
+        }
     }
 }

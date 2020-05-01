@@ -6,9 +6,9 @@
 //
 
 protocol AdDataSourceType {
-    func getAd(environment: Environment, placementId: Int, query: AdQuery, completion: @escaping Completion<Ad>)
-    func impression(environment: Environment, query: EventQuery, completion: @escaping Completion<Void>)
-    func click(environment: Environment, query: EventQuery, completion: @escaping Completion<Void>)
-    func videoClick(environment: Environment, query: EventQuery, completion: @escaping Completion<Void>)
-    func event(environment: Environment, query: EventQuery, completion: @escaping Completion<Void>)
+    func getAd(placementId: Int, query: AdQuery, completion: @escaping Completion<Ad>)
+    func impression(query: EventQuery, completion: @escaping Completion<Void>)
+    func click(query: EventQuery, completion: @escaping Completion<Void>)
+    func videoClick(query: EventQuery, completion: @escaping Completion<Void>)
+    func event(query: EventQuery, completion: @escaping Completion<Void>)
 }
