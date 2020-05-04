@@ -8,11 +8,9 @@
 @testable import SuperAwesome
 
 class IdGeneratorMock: IdGeneratorType {
-    let dauId: Int
-    init(_ dauId: Int) {
-        self.dauId = dauId
-    }
-    func findDauId() -> Int {
-        return dauId
+    var uniqueDauId: Int
+    
+    init(_ uniqueDauId: Int) {
+        self.uniqueDauId = uniqueDauId
     }
 }

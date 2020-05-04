@@ -5,6 +5,8 @@
 //  Created by Gunhan Sancar on 26/04/2020.
 //
 
+import AdSupport
+
 public class AwesomeAdsSdk {
     static let shared = AwesomeAdsSdk()
     
@@ -17,7 +19,12 @@ public class AwesomeAdsSdk {
         container.registerSingle(ConnectionProviderType.self) { _ in ConnectionProvider() }
         container.registerSingle(DeviceType.self) { _ in Device(UIDevice.current) }
         container.registerSingle(EncoderType.self) { _ in Encoder() }
-        container.registerSingle(IdGeneratorType.self) { _ in IdGenerator() }
+        container.registerSingle(IdGeneratorType.self) { c in
+            IdGenerator(preferencesRepository: c.resolve(),
+                        sdkInfo: c.resolve(),
+                        numberGenerator: c.resolve(),
+                        identifierManager: ASIdentifierManager.shared())
+        }
         container.registerSingle(NumberGeneratorType.self) { _ in NumberGenerator() }
         container.registerSingle(SdkInfoType.self) { c in
             SdkInfo(mainBundle: Bundle.main,
@@ -29,7 +36,7 @@ public class AwesomeAdsSdk {
             DataRepository(UserDefaults.standard)
         }
         container.registerSingle(UserAgentProviderType.self) { c in
-            UserAgentProvider(device: c.resolve(), dataRepository: c.resolve())
+            UserAgentProvider(device: c.resolve(), preferencesRepository: c.resolve())
         }
         container.registerSingle(AdRepositoryType.self) { c in
             AdRepository(dataSource: c.resolve(), adQueryMaker: c.resolve())

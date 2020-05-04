@@ -17,11 +17,11 @@ protocol UserAgentProviderType {
 class UserAgentProvider : UserAgentProviderType {
     public var name: String
     private var webView: WKWebView?
-    private var dataRepository: DataRepositoryType
+    private var preferencesRepository: PreferencesRepositoryType
     
-    init(device:DeviceType, dataRepository: DataRepositoryType) {
-        self.dataRepository = dataRepository
-        self.name = dataRepository.userAgent ?? device.userAgent
+    init(device:DeviceType, preferencesRepository: PreferencesRepositoryType) {
+        self.preferencesRepository = preferencesRepository
+        self.name = preferencesRepository.userAgent ?? device.userAgent
         evaluateUserAgent()
     }
     
@@ -32,7 +32,7 @@ class UserAgentProvider : UserAgentProviderType {
                 print("UserAgent.evaluateUserAgent.error:", String(describing: error))
             } else if let result = result as! String? {
                 self.name = result
-                self.dataRepository.userAgent = result
+                self.preferencesRepository.userAgent = result
             }
             
             self.webView = nil

@@ -8,12 +8,14 @@
 @testable import SuperAwesome
 
 class NumberGeneratorMock: NumberGeneratorType {
-    let mockValue: Int
-    init(_ mockValue: Int) {
-        self.mockValue = mockValue
+    let mockNextInt: Int
+    let mockAlphanumberic: String?
+    
+    init(_ mockNextInt: Int, nextAlphaNumberic: String? = nil) {
+        self.mockNextInt = mockNextInt
+        self.mockAlphanumberic = nextAlphaNumberic
     }
     
-    func nextIntForCache() -> Int {
-        return mockValue
-    }
+    func nextIntForCache() -> Int { mockNextInt }
+    func nextAlphanumericString(length: Int) -> String { mockAlphanumberic! }
 }
