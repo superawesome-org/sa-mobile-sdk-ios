@@ -10,7 +10,7 @@ import Nimble
 @testable import SuperAwesome
 
 class IdGeneratorTests: XCTestCase {
-    func test_dauId_advertisingDisabled_returnsZero() throws {
+    func test_dauId_advertisingDisabled_returnsNoTracking() throws {
         // Given
         let mockAdvertisingIdentifier = UUID()
         let mockAlphanumeric = "123abc"

@@ -10,7 +10,7 @@ import XCTest
 import Nimble
 @testable import SuperAwesome
 
-class LocalDataRepositoryTests: XCTestCase {
+class PreferencesRepositoryTests: XCTestCase {
     func testUserAgentName() throws {
         expect(PreferencesRepositoryMock(userAgent: "mockUserAgent").userAgent).to(equal("mockUserAgent"))
         expect(PreferencesRepositoryMock(userAgent: nil).userAgent).to(beNil())
