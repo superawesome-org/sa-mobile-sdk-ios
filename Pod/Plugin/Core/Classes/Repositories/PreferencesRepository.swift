@@ -15,8 +15,8 @@ protocol PreferencesRepositoryType {
 
 class PreferencesRepository : PreferencesRepositoryType {
     struct Keys {
-        internal static let userAgent = "SuperAwesome.DataRepository.Keys.userAgent"
-        internal static let dauUniqueId = "SuperAwesome.DataRepository.Keys.dauUniquePart"
+        internal static let userAgent = "AwesomeAds.PreferencesRepository.Keys.userAgent"
+        internal static let dauUniqueId = "AwesomeAds.PreferencesRepository.Keys.dauUniquePart"
     }
     
     private let dataSource: UserDefaults
