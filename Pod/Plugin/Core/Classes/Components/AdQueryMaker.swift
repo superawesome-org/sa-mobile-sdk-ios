@@ -41,7 +41,7 @@ class AdQueryMaker: AdQueryMakerType {
                        rnd: numberGenerator.nextIntForCache(),
                        bundle: sdkInfo.bundle,
                        name: sdkInfo.name,
-                       dauid: idGenerator.findDauId(),
+                       dauid: idGenerator.uniqueDauId,
                        ct: connectionProvider.findConnectionType(),
                        lang: sdkInfo.lang,
                        device: device.genericType,
