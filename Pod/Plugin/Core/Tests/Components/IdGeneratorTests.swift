@@ -24,7 +24,6 @@ class IdGeneratorTests: XCTestCase {
         // When
         let dauId = idGenerator.findDauId()
         
-        
         // Then
         expect(dauId).to(equal(IdGenerator.Keys.noTracking))
     }

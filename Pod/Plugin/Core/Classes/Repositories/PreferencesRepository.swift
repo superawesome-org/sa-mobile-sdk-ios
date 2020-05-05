@@ -26,12 +26,12 @@ class PreferencesRepository : PreferencesRepositoryType {
     }
     
     public var userAgent: String? {
-        get { return dataSource.string(forKey: Keys.userAgent) }
+        get { dataSource.string(forKey: Keys.userAgent) }
         set(newValue) { dataSource.set(newValue, forKey: Keys.userAgent) }
     }
     
     public var dauUniquePart: String? {
-        get { return dataSource.string(forKey: Keys.dauUniqueId) }
+        get { dataSource.string(forKey: Keys.dauUniqueId) }
         set(newValue) { dataSource.set(newValue, forKey: Keys.dauUniqueId) }
     }
 }
