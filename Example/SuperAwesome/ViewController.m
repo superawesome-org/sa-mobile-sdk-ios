@@ -51,7 +51,7 @@
         NSLog(@"SUPER-AWESOME: Banner Ad %ld - Event %ld", (long)placementId, (long)event);
         
         if (event == adLoaded) {
-            [_bannerAd play];
+            [self->_bannerAd play];
         }
     }];
     

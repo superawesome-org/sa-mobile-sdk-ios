@@ -56,6 +56,42 @@ import UIKit
         return true
     }
     
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        guard let supportedOrientations = Bundle.main.infoDictionary?["UISupportedInterfaceOrientations"] as? [String]
+            else { return super.supportedInterfaceOrientations }
+        
+        switch config.orientation {
+        case .ANY:
+            return super.supportedInterfaceOrientations
+        case .PORTRAIT:
+            let hasPortrait = supportedOrientations.contains("UIInterfaceOrientationPortrait")
+            let hasPortraitUpsideDown = supportedOrientations.contains("UIInterfaceOrientationPortraitUpsideDown")
+            
+            if hasPortrait && hasPortraitUpsideDown {
+                return [.portrait, .portraitUpsideDown]
+            } else if hasPortrait {
+                return .portrait
+            } else if hasPortraitUpsideDown {
+                return .portraitUpsideDown
+            } else {
+                return super.supportedInterfaceOrientations
+            }
+        case .LANDSCAPE:
+            let hasLandscapeLeft = supportedOrientations.contains("UIInterfaceOrientationLandscapeLeft")
+            let hasLandscapeRight = supportedOrientations.contains("UIInterfaceOrientationLandscapeRight")
+            
+            if hasLandscapeLeft && hasLandscapeRight {
+                return .landscape
+            } else if hasLandscapeLeft {
+                return .landscapeLeft
+            } else if hasLandscapeRight {
+                return .landscapeRight
+            } else {
+                return super.supportedInterfaceOrientations
+            }
+        }
+    }
+    
     init(withAd ad : SAAd,
          andEvents events: SAEvents,
          andCallback callback: sacallback?,
