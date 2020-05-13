@@ -32,7 +32,7 @@ public class AwesomeVideoFullscreenPlayer: UIViewController {
     }
 
     override public var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
-        return .landscapeLeft
+        return UIApplication.shared.statusBarOrientation
     }
     
     override public var supportedInterfaceOrientations: UIInterfaceOrientationMask {
