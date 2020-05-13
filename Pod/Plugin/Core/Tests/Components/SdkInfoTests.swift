@@ -23,6 +23,6 @@ class SdkInfoTests: XCTestCase {
         expect(sdk.bundle).to(equal("mainId"))
         expect(sdk.lang).to(equal("xx_US"))
         expect(sdk.name).to(equal("main%20Name"))
-        expect(sdk.version).to(equal("sdkVersion"))
+        expect(sdk.version).to(equal("ios_sdkVersion"))
     }
 }

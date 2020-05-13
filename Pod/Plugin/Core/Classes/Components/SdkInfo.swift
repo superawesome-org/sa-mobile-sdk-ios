@@ -19,7 +19,10 @@ struct SdkInfo: SdkInfoType {
     var lang: String
     
     init(mainBundle: Bundle, sdkBundle: Bundle, locale: Locale, encoder: EncoderType) {
-        self.version = sdkBundle.versionNumber ?? ""
+        let platform = "ios"
+        let versionNumber = sdkBundle.versionNumber ?? ""
+        
+        self.version = "\(platform)_\(versionNumber)"
         self.bundle = mainBundle.bundleIdentifier ?? ""
         self.name = encoder.encodeUri(mainBundle.name)
         
