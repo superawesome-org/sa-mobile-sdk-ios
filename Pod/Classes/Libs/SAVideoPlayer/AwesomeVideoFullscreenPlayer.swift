@@ -38,9 +38,8 @@ public class AwesomeVideoFullscreenPlayer: UIViewController {
         case .portrait, .portraitUpsideDown:
             return defaultInterfaceOrientation
         default:
-            break
+            return UIApplication.shared.statusBarOrientation
         }
-        return UIApplication.shared.statusBarOrientation
     }
     
     override public var supportedInterfaceOrientations: UIInterfaceOrientationMask {
