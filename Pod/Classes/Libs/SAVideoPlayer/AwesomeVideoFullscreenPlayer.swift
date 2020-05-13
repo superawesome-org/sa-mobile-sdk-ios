@@ -14,7 +14,8 @@ public class AwesomeVideoFullscreenPlayer: UIViewController {
     private var isPlaying: Bool
     private var previousFrame: CGRect
     private var previousCentre: CGPoint
-        
+    public var defaultInterfaceOrientation: UIInterfaceOrientation = .landscapeLeft
+
     override public var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -32,7 +33,13 @@ public class AwesomeVideoFullscreenPlayer: UIViewController {
     }
 
     override public var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
-        return .landscapeLeft
+        let currentOrientation = UIApplication.shared.statusBarOrientation
+        switch currentOrientation {
+        case .portrait, .portraitUpsideDown:
+            return defaultInterfaceOrientation
+        default:
+            return UIApplication.shared.statusBarOrientation
+        }
     }
     
     override public var supportedInterfaceOrientations: UIInterfaceOrientationMask {
