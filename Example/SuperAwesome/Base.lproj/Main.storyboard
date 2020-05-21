@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GcV-mY-20B">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -225,16 +225,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r3j-Fq-OCo">
-                                <rect key="frame" x="0.0" y="44" width="375" height="80"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="6UZ-zE-CQW"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="adUnitID" value="ca-app-pub-7706302691807937/6279786806"/>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lyJ-dF-4zY">
                                 <rect key="frame" x="20" y="728" width="157.66666666666666" height="30"/>
                                 <constraints>
@@ -264,14 +254,8 @@
                             <constraint firstItem="4wL-DN-fxG" firstAttribute="width" secondItem="lyJ-dF-4zY" secondAttribute="width" id="LvH-00-lih"/>
                             <constraint firstItem="4wL-DN-fxG" firstAttribute="leading" secondItem="lyJ-dF-4zY" secondAttribute="trailing" constant="20" id="MsB-T8-zI9"/>
                             <constraint firstItem="lyJ-dF-4zY" firstAttribute="leading" secondItem="XaL-BZ-nUF" secondAttribute="leading" constant="20" id="RRN-tg-iXj"/>
-                            <constraint firstAttribute="trailing" secondItem="r3j-Fq-OCo" secondAttribute="trailing" id="mO7-MP-OJr"/>
-                            <constraint firstItem="r3j-Fq-OCo" firstAttribute="top" secondItem="7Yc-qf-EQX" secondAttribute="bottom" id="mQr-nj-JfO"/>
-                            <constraint firstItem="r3j-Fq-OCo" firstAttribute="leading" secondItem="XaL-BZ-nUF" secondAttribute="leading" id="ped-jg-ftf"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="banner" destination="r3j-Fq-OCo" id="Qk1-dc-jXY"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hGO-AW-cWh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

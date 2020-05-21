@@ -1,63 +1,111 @@
+#if __has_include(<GoogleMobileAds/GoogleMobileAds.h>)
+
 #import "AdMobController.h"
-//#import <GoogleMobileAds/GoogleMobileAds.h>
-//#import "AwesomeAds.h"
-//#import "SAAdMobExtras.h"
+#import <GoogleMobileAds/GoogleMobileAds.h>
+#import "AwesomeAds.h"
+#import "SAAdMobExtras.h"
 
-@interface AdMobController () /*<GADBannerViewDelegate, GADInterstitialDelegate, GADRewardBasedVideoAdDelegate>*/
+@interface AdMobController () <GADBannerViewDelegate, GADInterstitialDelegate, GADRewardedAdDelegate>
 
-//@property (weak, nonatomic) IBOutlet GADBannerView *banner;
-//@property (nonatomic, strong) GADInterstitial *interstitial;
+@property(nonatomic, strong) GADBannerView *bannerView;
+@property(nonatomic, strong) GADInterstitial *interstitial;
+@property(nonatomic, strong) GADRewardedAd *rewardedAd;
 
 @end
 
 @implementation AdMobController
 
+NSString *bannerAdUnitId = @"__YOUR_ADMOB_UNIT_ID__";
+NSString *interstitialAdUnitId = @"__YOUR_ADMOB_UNIT_ID__";
+NSString *rewardAdUnitId = @"__YOUR_ADMOB_UNIT_ID__";
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    //
-//    // banner
-//    GADRequest *bannerReq = [GADRequest request];
-//
-//    SAAdMobCustomEventExtra *extra1 = [[SAAdMobCustomEventExtra alloc] init];
-//    extra1.testEnabled = false;
-//    extra1.parentalGateEnabled = true;
-//    extra1.trasparentEnabled = true;
-//    extra1.configuration = STAGING;
-//
-//    GADCustomEventExtras *extras = [GADCustomEventExtras new];
-//    [extras setExtras:extra1 forLabel:@"iOSBannerCustomEvent"];
-//
-//    [bannerReq registerAdNetworkExtras:extras];
-//
-//    self.banner.adSize = kGADAdSizeBanner;
-//    self.banner.rootViewController = self;
-//    self.banner.delegate = self;
-//    [self.banner loadRequest:bannerReq];
-//
-//    //
-//    // interstitial
-//    self.interstitial = [[GADInterstitial alloc]
-//                         initWithAdUnitID:@"ca-app-pub-7706302691807937/7756520001"];
-//    self.interstitial.delegate = self;
-//    GADRequest *request = [GADRequest request];
-//    [self.interstitial loadRequest:request];
-//
-//    //
-//    // video ad
-//    GADRequest *vidRequest = [GADRequest request];
-//    SAAdMobVideoExtra *extra = [[SAAdMobVideoExtra alloc] init];
-//    extra.testEnabled = false;
-//    extra.closeAtEndEnabled = true;
-//    extra.closeButtonEnabled = false;
-//    extra.parentalGateEnabled = false;
-//    extra.smallCLickEnabled = true;
-//    extra.configuration = STAGING;
-//    extra.orientation = LANDSCAPE;
-//    [vidRequest registerAdNetworkExtras:extra];
-//    [[GADRewardBasedVideoAd sharedInstance] loadRequest:vidRequest
-//                                           withAdUnitID:@"ca-app-pub-7706302691807937/9233253206"];
-//    [[GADRewardBasedVideoAd sharedInstance] setDelegate:self];
+    // Banner Ad
+    [self createAndLoadBannerAd];
+    
+    // Interstitial Ad
+    self.interstitial = [self createAndLoadInterstitial];
+    
+    // Rewarded Ad
+    self.rewardedAd = [self createAndLoadRewardedAd];
+}
+
+- (void)createAndLoadBannerAd {
+    
+    SAAdMobCustomEventExtra *extra = [[SAAdMobCustomEventExtra alloc] init];
+    extra.testEnabled = false;
+    extra.parentalGateEnabled = false;
+    extra.trasparentEnabled = true;
+    //extra.configuration = STAGING;
+    
+    GADCustomEventExtras *extras = [GADCustomEventExtras new];
+    [extras setExtras:extra forLabel:@"iOSBannerCustomEvent"];
+    
+    GADRequest *request = [GADRequest request];
+    [request registerAdNetworkExtras:extras];
+    
+    self.bannerView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
+    [self addBannerViewToView: self.bannerView];
+    self.bannerView.adUnitID = bannerAdUnitId;
+    self.bannerView.rootViewController = self;
+    self.bannerView.delegate = self;
+    [self.bannerView loadRequest:request];
+    
+}
+
+- (GADRewardedAd *)createAndLoadRewardedAd {
+    SAAdMobVideoExtra *extra = [[SAAdMobVideoExtra alloc] init];
+    extra.testEnabled = false;
+    extra.closeAtEndEnabled = true;
+    extra.closeButtonEnabled = false;
+    extra.parentalGateEnabled = false;
+    extra.smallCLickEnabled = true;
+    //extra.configuration = STAGING;
+    //extra.orientation = LANDSCAPE;
+    
+    GADRequest *request = [GADRequest request];
+    [request registerAdNetworkExtras:extra];
+    
+    GADRewardedAd *rewardedAd = [[GADRewardedAd alloc] initWithAdUnitID:rewardAdUnitId];
+    [rewardedAd loadRequest:request completionHandler:^(GADRequestError * _Nullable error) {
+        if (error) {
+            NSLog(@"[SuperAwesome | AdMob] RewardedAd failed to load case");
+        } else {
+            NSLog(@"[SuperAwesome | AdMob] RewardedAd successfully loaded");
+            NSLog(@"[SuperAwesome | AdMob] RewardedAd adapter class name: %@", rewardedAd.responseInfo.adNetworkClassName);
+        }
+    }];
+    return rewardedAd;
+}
+
+- (void)addBannerViewToView:(UIView *)bannerView {
+    bannerView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:bannerView];
+    [self.view addConstraints:@[
+        [NSLayoutConstraint constraintWithItem:bannerView
+                                     attribute:NSLayoutAttributeTop
+                                     relatedBy:NSLayoutRelationEqual
+                                        toItem:self.topLayoutGuide
+                                     attribute:NSLayoutAttributeBottom
+                                    multiplier:1
+                                      constant:0],
+        [NSLayoutConstraint constraintWithItem:bannerView
+                                     attribute:NSLayoutAttributeCenterX
+                                     relatedBy:NSLayoutRelationEqual
+                                        toItem:self.view
+                                     attribute:NSLayoutAttributeCenterX
+                                    multiplier:1
+                                      constant:0]
+    ]];
+}
+
+- (GADInterstitial *)createAndLoadInterstitial {
+    GADInterstitial *interstitial = [[GADInterstitial alloc] initWithAdUnitID: interstitialAdUnitId];
+    interstitial.delegate = self;
+    [interstitial loadRequest:[GADRequest request]];
+    return interstitial;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -65,116 +113,111 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 - (IBAction)showInterstitial:(id)sender {
-
-//    if (self.interstitial.isReady) {
-//        [self.interstitial presentFromRootViewController:self];
-//    } else {
-//        NSLog(@"[SuperAwesome | AdMob] Interstitial Ad wasn't ready");
-//    }
+    
+    if (self.interstitial.isReady) {
+        [self.interstitial presentFromRootViewController:self];
+    } else {
+        NSLog(@"[SuperAwesome | AdMob] Interstitial Ad wasn't ready");
+    }
     
 }
 
 - (IBAction)showVideo:(id)sender {
-    
-//    if ([[GADRewardBasedVideoAd sharedInstance] isReady]) {
-//        [[GADRewardBasedVideoAd sharedInstance] presentFromRootViewController:self];
-//    }else {
-//        NSLog(@"[SuperAwesome | AdMob] Video ad wasn't ready");
-//    }
+    if (self.rewardedAd.isReady) {
+        [self.rewardedAd presentFromRootViewController:self delegate:self];
+    } else {
+        NSLog(@"[SuperAwesome | AdMob] Video ad wasn't ready");
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // GADBannerViewDelegate
 ////////////////////////////////////////////////////////////////////////////////
 
-//- (void) adViewDidReceiveAd:(GADBannerView *)bannerView {
-//    NSLog(@"[SuperAwesome | AdMob] Banner did receive ad");
-//}
-//
-//- (void) adView:(GADBannerView *)bannerView didFailToReceiveAdWithError:(GADRequestError *)error {
-//    NSLog(@"[SuperAwesome | AdMob] Banner did fail to receive ad with %ld | %@", error.code, error.description);
-//}
-//
-//- (void) adViewWillPresentScreen:(GADBannerView *)bannerView {
-//    NSLog(@"[SuperAwesome | AdMob] Banner will present screen");
-//}
-//
-//- (void) adViewWillDismissScreen:(GADBannerView *)bannerView {
-//    NSLog(@"[SuperAwesome | AdMob] Banner will dismiss screen");
-//}
-//
-//- (void) adViewDidDismissScreen:(GADBannerView *)bannerView {
-//    NSLog(@"[SuperAwesome | AdMob] Banner did dismiss screen");
-//}
-//
-//- (void) adViewWillLeaveApplication:(GADBannerView *)bannerView {
-//    NSLog(@"[SuperAwesome | AdMob] Banner will leave application");
-//}
+- (void) adViewDidReceiveAd:(GADBannerView *)bannerView {
+    NSLog(@"[SuperAwesome | AdMob] Banner did receive ad");
+    NSLog(@"[SuperAwesome | AdMob] Banner adapter class name: %@", bannerView.responseInfo.adNetworkClassName);
+}
+
+- (void) adView:(GADBannerView *)bannerView didFailToReceiveAdWithError:(GADRequestError *)error {
+    NSLog(@"[SuperAwesome | AdMob] Banner did fail to receive ad with %ld | %@", error.code, error.description);
+}
+
+- (void) adViewWillPresentScreen:(GADBannerView *)bannerView {
+    NSLog(@"[SuperAwesome | AdMob] Banner will present screen");
+}
+
+- (void) adViewWillDismissScreen:(GADBannerView *)bannerView {
+    NSLog(@"[SuperAwesome | AdMob] Banner will dismiss screen");
+}
+
+- (void) adViewDidDismissScreen:(GADBannerView *)bannerView {
+    NSLog(@"[SuperAwesome | AdMob] Banner did dismiss screen");
+}
+
+- (void) adViewWillLeaveApplication:(GADBannerView *)bannerView {
+    NSLog(@"[SuperAwesome | AdMob] Banner will leave application");
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 // GADInterstitialDelegate
 ////////////////////////////////////////////////////////////////////////////////
 
-//- (void) interstitialDidReceiveAd:(GADInterstitial *)ad {
-//    NSLog(@"[SuperAwesome | AdMob] Interstitial did receive ad");
-//}
-//
-//- (void) interstitial:(GADInterstitial *)ad didFailToReceiveAdWithError:(GADRequestError *)error {
-//    NSLog(@"[SuperAwesome | AdMob] Interstitial did fail to recived ad with %ld | %@", error.code, error.description);
-//}
-//
-//- (void) interstitialWillPresentScreen:(GADInterstitial *)ad {
-//    NSLog(@"[SuperAwesome | AdMob] Interstitial will present screen");
-//}
-//
-//- (void) interstitialWillDismissScreen:(GADInterstitial *)ad {
-//    NSLog(@"[SuperAwesome | AdMob] Interstitial will dismiss screen");
-//}
-//
-//- (void) interstitialDidDismissScreen:(GADInterstitial *)ad {
-//    NSLog(@"[SuperAwesome | AdMob] Interstitial did dismiss screen");
-//}
-//
-//- (void) interstitialDidFailToPresentScreen:(GADInterstitial *)ad {
-//    NSLog(@"[SuperAwesome | AdMob] Interstitial did fail to present screen");
-//}
-//
-//- (void) interstitialWillLeaveApplication:(GADInterstitial *)ad {
-//    NSLog(@"[SuperAwesome | AdMob] Interatitial will leave application");
-//}
+- (void) interstitialDidReceiveAd:(GADInterstitial *)ad {
+    NSLog(@"[SuperAwesome | AdMob] Interstitial did receive ad");
+    NSLog(@"[SuperAwesome | AdMob] Interstitial adapter class name: %@", ad.responseInfo.adNetworkClassName);
+}
+
+- (void) interstitial:(GADInterstitial *)ad didFailToReceiveAdWithError:(GADRequestError *)error {
+    NSLog(@"[SuperAwesome | AdMob] Interstitial did fail to recived ad with %ld | %@", error.code, error.description);
+}
+
+- (void) interstitialWillPresentScreen:(GADInterstitial *)ad {
+    NSLog(@"[SuperAwesome | AdMob] Interstitial will present screen");
+}
+
+- (void) interstitialWillDismissScreen:(GADInterstitial *)ad {
+    NSLog(@"[SuperAwesome | AdMob] Interstitial will dismiss screen");
+}
+
+- (void) interstitialDidDismissScreen:(GADInterstitial *)ad {
+    NSLog(@"[SuperAwesome | AdMob] Interstitial did dismiss screen");
+    self.interstitial = [self createAndLoadInterstitial];
+}
+
+- (void) interstitialDidFailToPresentScreen:(GADInterstitial *)ad {
+    NSLog(@"[SuperAwesome | AdMob] Interstitial did fail to present screen");
+}
+
+- (void) interstitialWillLeaveApplication:(GADInterstitial *)ad {
+    NSLog(@"[SuperAwesome | AdMob] Interatitial will leave application");
+}
 
 ////////////////////////////////////////////////////////////////////////////////
-// GADMRewardBasedVideoAdNetworkConnector
+// GADRewardedAdDelegate
 ////////////////////////////////////////////////////////////////////////////////
 
-//- (void)rewardBasedVideoAdDidReceiveAd:(GADRewardBasedVideoAd *)rewardBasedVideoAd {
-//    NSLog(@"[SuperAwesome | AdMob] Video ad did receive ad");
-//}
-//
-//- (void)rewardBasedVideoAd:(GADRewardBasedVideoAd *)rewardBasedVideoAd
-//    didFailToLoadWithError:(NSError *)error {
-//    NSLog(@"[SuperAwesome | AdMob] Video ad did fail to receive ad with %ld | %@", error.code, error.description);
-//}
-//
-//- (void)rewardBasedVideoAdDidOpen:(GADRewardBasedVideoAd *)rewardBasedVideoAd {
-//    NSLog(@"[SuperAwesome | AdMob] Video ad did open");
-//}
-//
-//- (void)rewardBasedVideoAdDidStartPlaying:(GADRewardBasedVideoAd *)rewardBasedVideoAd {
-//    NSLog(@"[SuperAwesome | AdMob] Video ad did start playing");
-//}
-//
-//- (void)rewardBasedVideoAdDidClose:(GADRewardBasedVideoAd *)rewardBasedVideoAd {
-//    NSLog(@"[SuperAwesome | AdMob] Video ad did close");
-//}
-//
-//- (void)rewardBasedVideoAdWillLeaveApplication:(GADRewardBasedVideoAd *)rewardBasedVideoAd {
-//    NSLog(@"[SuperAwesome | AdMob] Video ad will leave application");
-//}
-//
-//- (void)rewardBasedVideoAd:(GADRewardBasedVideoAd *)rewardBasedVideoAd
-//   didRewardUserWithReward:(GADAdReward *)reward {
-//    NSLog(@"[SuperAwesome | AdMob] Video ad will be rewarded with %@ | %@", reward.amount, reward.type);
-//}
+/// Tells the delegate that the user earned a reward.
+- (void)rewardedAd:(GADRewardedAd *)rewardedAd userDidEarnReward:(GADAdReward *)reward {
+    // TODO: Reward the user.
+    NSLog(@"[SuperAwesome | AdMob] rewardedAd:userDidEarnReward:");
+}
+
+/// Tells the delegate that the rewarded ad was presented.
+- (void)rewardedAdDidPresent:(GADRewardedAd *)rewardedAd {
+    NSLog(@"[SuperAwesome | AdMob] rewardedAdDidPresent:");
+}
+
+/// Tells the delegate that the rewarded ad failed to present.
+- (void)rewardedAd:(GADRewardedAd *)rewardedAd didFailToPresentWithError:(NSError *)error {
+    NSLog(@"[SuperAwesome | AdMob] rewardedAd:didFailToPresentWithError");
+}
+
+/// Tells the delegate that the rewarded ad was dismissed.
+- (void)rewardedAdDidDismiss:(GADRewardedAd *)rewardedAd {
+    NSLog(@"[SuperAwesome | AdMob] rewardedAdDidDismiss:");
+    self.rewardedAd = [self createAndLoadRewardedAd];
+}
 
 @end
+#endif
