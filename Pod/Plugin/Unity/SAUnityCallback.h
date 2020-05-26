@@ -6,10 +6,10 @@
 #import <UIKit/UIKit.h>
 
 #if defined(__has_include)
-#if __has_include(<SuperAwesomeUnity/SuperAwesomeUnity.h>)
-#import <SuperAwesomeUnity/SuperAwesomeUnity.h>
+#if __has_include(<SuperAwesome/SuperAwesome.h>)
+#import <SuperAwesome/SuperAwesome.h>
 #else
-#import "SuperAwesomeUnity.h"
+#import "SuperAwesome.h"
 #endif
 #endif
 

@@ -4,14 +4,7 @@
  */
 
 #import <UIKit/UIKit.h>
-
-#if defined(__has_include)
-#if __has_include(<SuperAwesomeUnity/SuperAwesomeUnity.h>)
-#import <SuperAwesomeUnity/SuperAwesomeUnity.h>
-#else
-#import "SuperAwesomeUnity.h"
-#endif
-#endif
+#import <SuperAwesome/SABumperPage.h>
 
 extern "C" {
     

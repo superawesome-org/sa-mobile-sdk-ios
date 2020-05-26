@@ -9,18 +9,10 @@
 #import "SAUnityCallback.h"
 
 #if defined(__has_include)
-#if __has_include(<SuperAwesomeUnity/SuperAwesomeUnity.h>)
-#import <SuperAwesomeUnity/SuperAwesomeUnity.h>
+#if __has_include(<SuperAwesome/SuperAwesome-Swift.h>)
+#import <SuperAwesome/SuperAwesome-Swift.h>
 #else
-#import "SuperAwesomeUnity.h"
-#endif
-#endif
-
-#if defined(__has_include)
-#if __has_include(<SuperAwesomeUnity/SuperAwesomeUnity-Swift.h>)
-#import <SuperAwesomeUnity/SuperAwesomeUnity-Swift.h>
-#else
-#import "SuperAwesomeUnity-Swift.h"
+#import "SuperAwesome-Swift.h"
 #endif
 #endif
 
