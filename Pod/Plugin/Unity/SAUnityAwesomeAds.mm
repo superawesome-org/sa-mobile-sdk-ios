@@ -6,10 +6,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <SuperAwesome/AwesomeAds.h>
 #import "SAUnityCallback.h"
 
 extern "C" {
-    
     void SuperAwesomeUnityAwesomeAdsInit (bool loggingEnabled) {
         [AwesomeAds initSDK:loggingEnabled];
     }

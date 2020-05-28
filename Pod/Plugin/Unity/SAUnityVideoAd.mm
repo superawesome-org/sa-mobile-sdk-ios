@@ -6,18 +6,10 @@
 #import <CoreMedia/CoreMedia.h>
 #import <AVFoundation/AVFoundation.h>
 #import <UIKit/UIKit.h>
+#import <SuperAwesome/SuperAwesome-Swift.h>
 #import "SAUnityCallback.h"
 
-#if defined(__has_include)
-#if __has_include(<SuperAwesome/SuperAwesome-Swift.h>)
-#import <SuperAwesome/SuperAwesome-Swift.h>
-#else
-#import "SuperAwesome-Swift.h"
-#endif
-#endif
-
 extern "C" {
-    
     /**
      * Native method called from Unity.
      * Add a callback to the SAVideoAd static class

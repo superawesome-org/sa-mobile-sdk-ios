@@ -7,7 +7,6 @@
 #import "SAUnityCallback.h"
 
 extern "C" {
-    
     /**
      * Native method called from Unity.
      * Method that adds a callback to the SAInterstitialAd static method class

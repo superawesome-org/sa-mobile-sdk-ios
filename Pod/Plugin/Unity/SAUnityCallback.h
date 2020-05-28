@@ -4,14 +4,7 @@
  */
 
 #import <UIKit/UIKit.h>
-
-#if defined(__has_include)
-#if __has_include(<SuperAwesome/SuperAwesome.h>)
 #import <SuperAwesome/SuperAwesome.h>
-#else
-#import "SuperAwesome.h"
-#endif
-#endif
 
 //// forward declaration of this method - which is part of the Unity C
 //// libray, so it would be available there
