@@ -4,10 +4,10 @@
  */
 
 #import <UIKit/UIKit.h>
+#import <SuperAwesome/SAVersion.h>
 #import "SAUnityCallback.h"
 
 extern "C" {
-    
     /**
      * Unity to native iOS method that overrides the current version & sdk
      * strings so that this will get reported correctly in the dashboard.

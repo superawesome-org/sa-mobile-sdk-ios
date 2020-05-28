@@ -7,7 +7,6 @@
 #import "SAUnityCallback.h"
 
 extern "C" {
-    
     // A dictionary that holds Unity banners
     NSMutableDictionary *bannerDictionary = [@{} mutableCopy];
     
