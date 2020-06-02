@@ -22,6 +22,7 @@ Pod::Spec.new do |s|
   	:branch => 'master',
   	:tag => '7.2.7'
   }
+  s.static_framework = false
   s.default_subspec = 'Full'
 
   s.subspec 'Full' do |b|
@@ -30,30 +31,30 @@ Pod::Spec.new do |s|
     b.frameworks = 'AdSupport'
   end
   
-  s.subspec 'Core' do |c|
-    c.dependency 'SuperAwesome/Full'
-    c.source_files = 'Pod/Plugin/Core/Classes/**/*'
-    
-    c.test_spec 'Tests' do |test_spec|
-      test_spec.source_files = 'Pod/Plugin/Core/Tests/**/*'
-      test_spec.dependency 'Nimble'
-      test_spec.dependency 'Mockingjay'
-    end
-  end
+#  s.subspec 'Core' do |c|
+#    c.dependency 'SuperAwesome/Full'
+#    c.source_files = 'Pod/Plugin/Core/Classes/**/*'
+#
+#    c.test_spec 'Tests' do |test_spec|
+#      test_spec.source_files = 'Pod/Plugin/Core/Tests/**/*'
+#      test_spec.dependency 'Nimble'
+#      test_spec.dependency 'Mockingjay'
+#    end
+#  end
   
-  s.subspec 'Moya' do |m|
-    m.dependency 'SuperAwesome/Core'
-    m.source_files = 'Pod/Plugin/Moya/Classes/**/*'
-    m.dependency 'Moya', '~> 14.0'
-    m.xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) MOYA_PLUGIN' }
-    
-    m.test_spec 'Tests' do |test_spec|
-      test_spec.source_files = 'Pod/Plugin/Moya/Tests/**/*', 'Pod/Plugin/Core/Tests/**/*'
-      test_spec.resources = 'Pod/Plugin/Moya/Resources/*'
-      test_spec.dependency 'Nimble'
-      test_spec.dependency 'Mockingjay'
-    end
-  end
+#  s.subspec 'Moya' do |m|
+#    m.dependency 'SuperAwesome/Core'
+#    m.source_files = 'Pod/Plugin/Moya/Classes/**/*'
+#    m.dependency 'Moya', '~> 14.0'
+#    m.xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) MOYA_PLUGIN' }
+#
+#    m.test_spec 'Tests' do |test_spec|
+#      test_spec.source_files = 'Pod/Plugin/Moya/Tests/**/*', 'Pod/Plugin/Core/Tests/**/*'
+#      test_spec.resources = 'Pod/Plugin/Moya/Resources/*'
+#      test_spec.dependency 'Nimble'
+#      test_spec.dependency 'Mockingjay'
+#    end
+#  end
   
 #  s.subspec 'Moat' do |moat|
 #    moat.dependency 'SuperAwesome/Full'
@@ -66,12 +67,6 @@ Pod::Spec.new do |s|
 #    m.dependency 'mopub-ios-sdk'
 #    m.source_files = 'Pod/Plugin/MoPub/*'
 #  end
-
-  s.subspec 'AdMob' do |am|
-    am.dependency 'SuperAwesome/Full'
-    am.dependency 'Google-Mobile-Ads-SDK', '7.59'
-    am.source_files = 'Pod/Plugin/AdMob/*'
-  end
 
 # s.subspec 'Unity' do |u|
 #    u.dependency 'SuperAwesome/Full'
