@@ -2,7 +2,7 @@ platform :ios, '10.0'
 use_frameworks!
 
 target 'SuperAwesomeAdMob_Example' do
-  pod 'SuperAwesomeAdMob', :path => '../'
+  pod 'SuperAwesomeAdMob', :path => '../../../'
 
   target 'SuperAwesomeAdMob_Tests' do
     inherit! :search_paths

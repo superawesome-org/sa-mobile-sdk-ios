@@ -30,15 +30,15 @@ PODS:
   - nanopb/decode (1.30905.0)
   - nanopb/encode (1.30905.0)
   - PromisesObjC (1.2.8)
-  - SuperAwesome (7.2.6):
-    - SuperAwesome/Full (= 7.2.6)
-  - SuperAwesome/Full (7.2.6)
-  - SuperAwesomeAdMob (7.59.0):
+  - SuperAwesome (7.2.7):
+    - SuperAwesome/Full (= 7.2.7)
+  - SuperAwesome/Full (7.2.7)
+  - SuperAwesomeAdMob (7.2.7):
     - Google-Mobile-Ads-SDK (= 7.59)
     - SuperAwesome (~> 7.2)
 
 DEPENDENCIES:
-  - SuperAwesomeAdMob (from `../`)
+  - SuperAwesomeAdMob (from `../../../`)
 
 SPEC REPOS:
   trunk:
@@ -51,7 +51,7 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   SuperAwesomeAdMob:
-    :path: "../"
+    :path: "../../../"
 
 SPEC CHECKSUMS:
   Google-Mobile-Ads-SDK: 118217ac8b80e28aabe0c00aedab1cd885857776
@@ -59,9 +59,9 @@ SPEC CHECKSUMS:
   GoogleUtilities: 39530bc0ad980530298e9c4af8549e991fd033b1
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
-  SuperAwesome: 63a9162aa5912a6b14bdae9926317076b2e05080
-  SuperAwesomeAdMob: 836338900fcccf1b7e8d78f4212f47106ceada57
+  SuperAwesome: 8aa6565d25ecbd8ca2ce69ac0285678125765764
+  SuperAwesomeAdMob: b71f301bd41f96ce6b1da15a1f3f86eb75f61607
 
-PODFILE CHECKSUM: 6de642438c5e27f1a02066574ac68b740d7e4cab
+PODFILE CHECKSUM: be03e7f6c710c004e8a330f0c687fb673e9a00a8
 
 COCOAPODS: 1.9.3

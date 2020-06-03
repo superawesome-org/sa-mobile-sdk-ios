@@ -15,14 +15,14 @@ Pod::Spec.new do |s|
   s.source = {
     :git => 'https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git',
     :branch => 'master',
-    :tag => '7.2.7'
+    :tag => "admob-7.2.7"
   }
   s.ios.deployment_target = '10.0'
   s.swift_versions = ['4.2', '5.0']
   s.static_framework = true
   s.requires_arc = true
 
-  s.source_files = 'SuperAwesomeAdMob/Classes/**/*'
+  s.source_files = 'Adapters/AdMob/Classes/**/*'
   s.dependency 'SuperAwesome', '~> 7.2'
   s.dependency 'Google-Mobile-Ads-SDK', '7.59'
 end
