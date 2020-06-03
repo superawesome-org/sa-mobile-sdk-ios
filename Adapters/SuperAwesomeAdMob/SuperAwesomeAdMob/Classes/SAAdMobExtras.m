@@ -1,5 +1,4 @@
 #import "SAAdMobExtras.h"
-#import "AwesomeAds.h"
 
 @implementation SAAdMobVideoExtra
 

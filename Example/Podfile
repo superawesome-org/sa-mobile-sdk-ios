@@ -1,7 +1,7 @@
 platform :ios, '10.0'
 use_frameworks!
 #use_frameworks! :linkage => :static # Use this when Admob enabled
-use_modular_headers!
+#use_modular_headers!
 
 target 'SuperAwesomeExample' do
   pod 'SuperAwesome', :path => '../'
@@ -10,7 +10,6 @@ target 'SuperAwesomeExample' do
 #  pod 'SuperAwesome/MoPub', :path => '../'
 #  pod 'SuperAwesome/Unity', :path => '../'
 #  pod 'SuperAwesome/AIR', :path => '../'
-#  pod 'SuperAwesome/AdMob', :path => '../'
 #  pod 'SAAgeGate'
 
   target 'Tests' do

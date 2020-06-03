@@ -1,5 +1,4 @@
 #import "SAAdMobInterstitialCustomEvent.h"
-#import "SAInterstitialAd.h"
 #import "SAAdMobExtras.h"
 
 #define kERROR_DOMAIN @"tv.superawesome.SAAdMobInterstitialCustomEvent"

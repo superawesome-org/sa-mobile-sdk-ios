@@ -1,8 +1,6 @@
 #import <Foundation/Foundation.h>
 #import <GoogleMobileAds/GoogleMobileAds.h>
-#import "SAOrientation.h"
-#import "SASession.h"
-#import "SASessionDefines.h"
+#import <SuperAwesome/AwesomeAds.h>
 
 @interface SAAdMobVideoExtra : NSObject <GADAdNetworkExtras>
 

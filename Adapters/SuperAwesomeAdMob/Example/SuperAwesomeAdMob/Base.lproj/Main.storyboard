@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="CYE-Xn-FQQ">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Ad Mob View Controller-->
+        <scene sceneID="Oom-So-mZd">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="CYE-Xn-FQQ" customClass="AdMobViewController" customModule="SuperAwesomeAdMob_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HaA-87-gCx"/>
+                        <viewControllerLayoutGuide type="bottom" id="fn4-en-zIk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Jsu-BR-PeM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gah-0m-V8i">
+                                <rect key="frame" x="20" y="617" width="157.5" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="bpL-wn-nd2"/>
+                                </constraints>
+                                <state key="normal" title="Interstitial"/>
+                                <connections>
+                                    <action selector="showInterstitial:" destination="CYE-Xn-FQQ" eventType="touchUpInside" id="hgq-Gj-bgV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zIE-fX-dLA">
+                                <rect key="frame" x="197.5" y="617" width="157.5" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="PZp-3s-GHH"/>
+                                </constraints>
+                                <state key="normal" title="Video"/>
+                                <connections>
+                                    <action selector="showVideo:" destination="CYE-Xn-FQQ" eventType="touchUpInside" id="Zhb-xI-A8V"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="zIE-fX-dLA" firstAttribute="width" secondItem="Gah-0m-V8i" secondAttribute="width" id="7jn-fA-hF2"/>
+                            <constraint firstAttribute="trailing" secondItem="zIE-fX-dLA" secondAttribute="trailing" constant="20" id="GB6-cr-UqX"/>
+                            <constraint firstItem="fn4-en-zIk" firstAttribute="top" secondItem="zIE-fX-dLA" secondAttribute="bottom" constant="20" id="Qv8-sd-cfq"/>
+                            <constraint firstItem="fn4-en-zIk" firstAttribute="top" secondItem="Gah-0m-V8i" secondAttribute="bottom" constant="20" id="Uul-35-NTB"/>
+                            <constraint firstItem="Gah-0m-V8i" firstAttribute="leading" secondItem="Jsu-BR-PeM" secondAttribute="leading" constant="20" id="mEg-BZ-SVK"/>
+                            <constraint firstItem="zIE-fX-dLA" firstAttribute="leading" secondItem="Gah-0m-V8i" secondAttribute="trailing" constant="20" id="nFo-tF-l3Y"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sEE-2j-wRa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1218.840579710145" y="-196.46739130434784"/>
+        </scene>
+    </scenes>
+</document>
