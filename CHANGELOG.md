@@ -1,5 +1,9 @@
 CHANGELOG
 =========
+7.2.7
+ - Added support for AdMob
+ - Separated AdMob into its own podspec
+ 
 7.2.6
  - Moat framework updated to v4.0.0
  
