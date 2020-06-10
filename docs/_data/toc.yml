@@ -1,3 +1,4 @@
+# Left sidebar menu items
 - title: Documentation
   url: ""
   links:
@@ -24,37 +25,37 @@
       url: "docs/bumper-page"
       children:
         - title: Bumper Customisation
-          url: "docs/bumper-page#customisation"
+          url: "docs/bumper-page#bumper-customisation"
         - title: Forcing the Bumper
-          url: "docs/bumper-page#forcing-bumper"
+          url: "docs/bumper-page#forcing-the-bumper"
     - title: Ad Callbacks
       url: "docs/ad-callbacks"
     - title: Integrate with MoPub
       url: "docs/mopub-integration"
       children:
-        - title: Add the MoPub Plugin
-          url: "docs/bumper-page#customisation"
-        - title: Setup MoPub Custom Networks
-          url: "docs/bumper-page#forcing-bumper"
-        - title: Implement MoPub Ads
-          url: "docs/bumper-page#forcing-bumper"
+        - title: Add the Plugin
+          url: "docs/mopub-integration#add-the-mopub-plugin"
+        - title: Setup Custom Networks
+          url: "docs/mopub-integration#setup-custom-networks"
+        - title: Implement Ads
+          url: "docs/mopub-integration#implement-ads"
     - title: Integrate with AdMob
       url: "docs/admob-integration"
       children:
-        - title: Add the AdMob Plugin
-          url: "docs/bumper-page#customisation"
-        - title: Setup AdMob Mediation Groups
-          url: "docs/bumper-page#forcing-bumper"
-        - title: Implement AdMob Ads
-          url: "docs/bumper-page#forcing-bumper"
+        - title: Add the Plugin
+          url: "docs/admob-integration#add-the-admob-plugin"
+        - title: Setup Mediation Groups
+          url: "docs/admob-integration#setup-admob-mediation-groups"
+        - title: Implement Ads
+          url: "docs/admob-integration#implement-ads"
         - title: Customise the Experience
-          url: "docs/bumper-page#forcing-bumper"
+          url: "docs/admob-integration#customise-the-experience"
     - title: Verifying User's Age
       url: "docs/verify-user-age"
     - title: Examples
       url: "docs/examples"
       children:
         - title: Simple example
-          url: "docs/bumper-page#customisation"
+          url: "docs/examples#simple-example"
         - title: Complex example
-          url: "docs/bumper-page#forcing-bumper"
+          url: "docs/examples#complex-example"

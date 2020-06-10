@@ -1,36 +1,47 @@
 ---
-title: A Nested Page
-description: An example of a nested page
+title: Ad callbacks
+description: Ad callbacks
 ---
 
-# A Nested Page
+# Ad callbacks
 
-This is an example of a page that doesn't have a permalink defined, and
-is not included in the table of contents (`_data/toc.yml`). This means
-that it will render based on it's path. Since it's in `docs/example-page.md`,
-the url will be `docs/example-page/`.
+Banner ads, interstitials and video ads all send a number of callbacks to inform you of important lifecycle events.
 
-## Link to a subfolder
-
-Now let's say we want to link to a subfolder, specifically with this
-setup:
-
-```
-docs/
-  example-page.md  (-- we are here
-  subfolder/
-     example-page.md  (-- we want to link here
-```
-
-You can provide the relative path to the file, like `subfolder/example-page.md`
-and Jekyll will handle parsing it. For example:
-
- - [here is that link](subfolder/example-page)
- 
-And {% include doc.html name="here" path="subfolder/example-page" %} is the same link, 
-but generated with the include statement:
-
-```
-{% raw %}{% include doc.html name="here" path="subfolder/example-page" %}{% endraw %}
-```
-
+{% highlight objective_c %}
+[SAVideoAd setCallback:^(NSInteger placementId, SAEvent event) {
+    switch (event) {
+        case adLoaded: {
+            // called when an ad has finished loading
+            break;
+        }
+        case adEmpty: {
+            // called when the request was successful but the ad server returned no ad
+            break;
+        }
+        case adFailedToLoad: {
+            // called when an ad could not be loaded
+            break;
+        }
+        case adShown: {
+            // called when an ad is first shown
+            break;
+        }
+        case adFailedToShow: {
+            // called when an ad fails to show
+            break;
+        }
+        case adClicked: {
+            // called when an ad is clicked
+            break;
+        }
+        case adEnded: {
+            // called when a video ad has ended playing (but hasn't yet closed)
+            break;
+        }
+        case adClosed: {
+            // called when a fullscreen ad is closed
+            break;
+        }
+    }
+}];
+{% endhighlight %}

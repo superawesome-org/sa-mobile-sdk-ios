@@ -1,36 +1,64 @@
 ---
-title: A Nested Page
-description: An example of a nested page
+title: Video Ads
+description: Video Ads
 ---
 
-# A Nested Page
+# Video Ads
 
-This is an example of a page that doesn't have a permalink defined, and
-is not included in the table of contents (`_data/toc.yml`). This means
-that it will render based on it's path. Since it's in `docs/example-page.md`,
-the url will be `docs/example-page/`.
+The following code block sets up a video ad and loads it:
 
-## Link to a subfolder
+{% highlight objective_c %}
+@implementation ViewController
 
-Now let's say we want to link to a subfolder, specifically with this
-setup:
+- (void)viewDidLoad {
+    [super viewDidLoad];
 
-```
-docs/
-  example-page.md  (-- we are here
-  subfolder/
-     example-page.md  (-- we want to link here
-```
+    // set whole video surface clickable
+    [SAVideoAd disableSmallClick];
 
-You can provide the relative path to the file, like `subfolder/example-page.md`
-and Jekyll will handle parsing it. For example:
+    // set config to production
+    [SAVideoAd setConfigurationProduction];
 
- - [here is that link](subfolder/example-page)
- 
-And {% include doc.html name="here" path="subfolder/example-page" %} is the same link, 
-but generated with the include statement:
+    // to display test ads
+    [SAVideo enableTestMode];
 
-```
-{% raw %}{% include doc.html name="here" path="subfolder/example-page" %}{% endraw %}
-```
+    // lock orientation to portrait or landscape
+    [SAVideo setOrientationPortrait];
 
+    // enable or disable a close button
+    [SAVideoAd enableCloseButton];
+
+    // enable or disable auto-closing at the end
+    [SAVideoAd disableCloseAtEnd];
+
+    // start loading ad data for a placement
+    [SAVideo load: 30479];
+}
+{% endhighlight %}
+
+Once you’ve loaded an ad, you can also display it:
+
+{% highlight objective_c %}
+@IBAction void onClick:(id) sender {
+
+    // check if ad is loaded
+    if ([SAVideoAd hasAdAvailable: 30479]) {
+
+        // display the ad
+        [SAVideoAd play: 30479 fromVC: self];
+    }
+}
+{% endhighlight %}
+
+These are the default values:
+
+| Parameter | Value |
+|-----|-----|
+| Configuration | Production |
+| Test mode | Disabled |
+| Orientation | Any | 
+| Closes at end | True |
+| Close button | Disabled |
+| Small click button | Disabled | 
+
+{% include alert.html type="info" title="Note" content="When locking orientation with either the <strong>setOrientationPortrait</strong> or <strong>setOrientationLandscape</strong> methods, the SDK will first look at the list of orientations supported by your app and conform to that. If, for example, you set an interstitial ad to display in landscape mode but your app only supports portrait orientations, the ad will show in portrait mode." %}

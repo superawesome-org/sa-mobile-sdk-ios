@@ -1,36 +1,52 @@
 ---
-title: A Nested Page
-description: An example of a nested page
+title: Interstitial Ads
+description: Interstitial Ads
 ---
 
-# A Nested Page
+# Interstitial Ads
 
-This is an example of a page that doesn't have a permalink defined, and
-is not included in the table of contents (`_data/toc.yml`). This means
-that it will render based on it's path. Since it's in `docs/example-page.md`,
-the url will be `docs/example-page/`.
+The following code block sets up an interstitial ad and loads it:
 
-## Link to a subfolder
+{% highlight objective_c %}
+@implementation ViewController
 
-Now let's say we want to link to a subfolder, specifically with this
-setup:
+- (void)viewDidLoad {
+    [super viewDidLoad];
 
-```
-docs/
-  example-page.md  (-- we are here
-  subfolder/
-     example-page.md  (-- we want to link here
-```
+    // set config to production
+    [SAInterstitialAd setConfigurationProduction];
 
-You can provide the relative path to the file, like `subfolder/example-page.md`
-and Jekyll will handle parsing it. For example:
+    // to display test ads
+    [SAInterstitialAd enableTestMode];
 
- - [here is that link](subfolder/example-page)
- 
-And {% include doc.html name="here" path="subfolder/example-page" %} is the same link, 
-but generated with the include statement:
+    // lock orientation to portrait or landscape
+    [SAInterstitialAd setOrientationPortrait];
 
-```
-{% raw %}{% include doc.html name="here" path="subfolder/example-page" %}{% endraw %}
-```
+    // start loading ad data for a placement
+    [SAInterstitialAd load: 30473];
+}
+{% endhighlight %}
 
+Once you’ve loaded an ad, you can also display it:
+
+{% highlight objective_c %}
+@IBAction void onClick:(id) sender {
+
+    // check if ad is loaded
+    if ([SAInterstitialAd hasAdAvailable: 30473]) {
+
+        // display the ad
+        [SAInterstitialAd play: 30473 fromVC: self];
+    }
+}
+{% endhighlight %}
+
+These are the default values:
+
+| Parameter | Value |
+|-----|-----|
+| Configuration | Production |
+| Test mode | Disabled |
+| Orientation | Any | 
+
+{% include alert.html type="info" title="Note" content="When locking orientation with either the <strong>setOrientationPortrait</strong> or <strong>setOrientationLandscape</strong> methods, the SDK will first look at the list of orientations supported by your app and conform to that. If, for example, you set an interstitial ad to display in landscape mode but your app only supports portrait orientations, the ad will show in portrait mode." %}

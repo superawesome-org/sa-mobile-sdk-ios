@@ -1,36 +1,27 @@
 ---
-title: A Nested Page
-description: An example of a nested page
+title: Verifying a user’s age
+description: Verifying a user’s age
 ---
 
-# A Nested Page
+# Verifying a user’s age
 
-This is an example of a page that doesn't have a permalink defined, and
-is not included in the table of contents (`_data/toc.yml`). This means
-that it will render based on it's path. Since it's in `docs/example-page.md`,
-the url will be `docs/example-page/`.
+A new feature in the SDK is the ability to verify a user’s age, given a date of birth.
 
-## Link to a subfolder
+An example below:
 
-Now let's say we want to link to a subfolder, specifically with this
-setup:
+{% highlight objective_c %}
+#import "AwesomeAds.h"
 
-```
-docs/
-  example-page.md  (-- we are here
-  subfolder/
-     example-page.md  (-- we want to link here
-```
+// some date in format YYYY-MM-DD
+NSString* dateOfBirth = @"2012-02-02";
 
-You can provide the relative path to the file, like `subfolder/example-page.md`
-and Jekyll will handle parsing it. For example:
-
- - [here is that link](subfolder/example-page)
- 
-And {% include doc.html name="here" path="subfolder/example-page" %} is the same link, 
-but generated with the include statement:
-
-```
-{% raw %}{% include doc.html name="here" path="subfolder/example-page" %}{% endraw %}
-```
-
+[AwesomeAds triggerAgeCheck:dateOfBirth response:^(GetIsMinorModel *model) {
+  if (model != nil) {
+    // relevant values in the model
+    NSString* country = model.country;
+    NSInteger consentAgeForCountry = model.consentAgeForCountry;
+    NSInteger age = model.age;
+    BOOL isMinor = model.isMinor;
+  }
+}];
+{% endhighlight %}

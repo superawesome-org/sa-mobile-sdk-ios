@@ -7,7 +7,6 @@ description: Banner Ads
 
 The following block of code creates and loads a banner ad:
 
-
 {% highlight objective_c %}
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet SABannerAd *bannerAd;

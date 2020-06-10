@@ -1,36 +1,59 @@
 ---
-title: A Nested Page
-description: An example of a nested page
+title: Bumper page
+description: Bumper page
 ---
 
-# A Nested Page
+# Bumper page
 
-This is an example of a page that doesn't have a permalink defined, and
-is not included in the table of contents (`_data/toc.yml`). This means
-that it will render based on it's path. Since it's in `docs/example-page.md`,
-the url will be `docs/example-page/`.
+This section will show how to use the bumper element and how to customise it.
 
-## Link to a subfolder
+The Bumper is an optional UI dialog that informs the user that they are about to leave a kid-safe place and proceed to an external website.
 
-Now let's say we want to link to a subfolder, specifically with this
-setup:
+In technical terms when a user clicks on an ad placement a bumper popup will be presented for a duration of 3 seconds informing that the user will be redirected to a external source.
 
-```
-docs/
-  example-page.md  (-- we are here
-  subfolder/
-     example-page.md  (-- we want to link here
-```
+SuperAwesome’s kid-safe review team will always configure the bumper when:
+ - An ad links to a social media site, eg YouTube, Facebook, etc.
+ - An ad links to a retailer or online shop
 
-You can provide the relative path to the file, like `subfolder/example-page.md`
-and Jekyll will handle parsing it. For example:
+## Bumper customisation
 
- - [here is that link](subfolder/example-page)
- 
-And {% include doc.html name="here" path="subfolder/example-page" %} is the same link, 
-but generated with the include statement:
+ It is possible to customise the bumper in following ways:
+  1. Add a custom name
+  2. Add a custom logo
 
-```
-{% raw %}{% include doc.html name="here" path="subfolder/example-page" %}{% endraw %}
-```
+### 1. Bumper customisation - custom name
 
+In order to override the name on the bumper dialog, please use the following code:
+
+{% highlight objective_c %}
+// customize the name displayed on the bumper page
+[SABumperPage overrideName:@"__CUSTOM_APP_NAME__"];
+{% endhighlight %}
+
+### 2. Bumper customisation - custom logo
+
+In order to override the logo on the bumper dialog, please use the following code:
+
+{% highlight objective_c %}
+// customize the logo displayed on the bumper page
+[SABumperPage overrideLogo:[UIImage imageName:@"__MY_LOGO__"]];
+{% endhighlight %}
+
+By default the Bumper page will try to use the application name and the AwesomeAds logo and will look like following:
+
+![image-title-here]({{ site.baseurl }}/assets/img/IMG_06_BumperPage.png){:class="img-responsive"}
+
+## Forcing the bumper
+
+Optionally, Publishers can choose for the bumper to always display when an ad is served on a placement. In order to enable the bumper, please use the following code:
+
+{% highlight objective_c %}
+// enable Bumper page on one banner placement
+[mybanner enableBumperPage];
+
+// enable Bumper page on all interstitial ads
+[SAInterstitialAd enableBumperPage];
+
+// enable Bumper page on all video ads
+[SAVideoAd enableBumperPage];
+{% endhighlight %}

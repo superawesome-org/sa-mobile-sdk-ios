@@ -1,36 +1,106 @@
 ---
-title: A Nested Page
-description: An example of a nested page
+title: Examples
+description: Examples
 ---
 
-# A Nested Page
+# Simple example
 
-This is an example of a page that doesn't have a permalink defined, and
-is not included in the table of contents (`_data/toc.yml`). This means
-that it will render based on it's path. Since it's in `docs/example-page.md`,
-the url will be `docs/example-page/`.
+The first example shows how you can add a banner ad in your app with just a few lines of code.
 
-## Link to a subfolder
+{% highlight objective_c %}
+#import "SuperAwesome.h"
 
-Now let's say we want to link to a subfolder, specifically with this
-setup:
+@interface MyViewController()
+@property (weak, nonatomic) IBOutlet SABannerAd *bannerAd;
+@end
 
-```
-docs/
-  example-page.md  (-- we are here
-  subfolder/
-     example-page.md  (-- we want to link here
-```
+@implementation MyViewController
 
-You can provide the relative path to the file, like `subfolder/example-page.md`
-and Jekyll will handle parsing it. For example:
+- (void) viewDidLoad {
+    [super viewDidLoad];
 
- - [here is that link](subfolder/example-page)
- 
-And {% include doc.html name="here" path="subfolder/example-page" %} is the same link, 
-but generated with the include statement:
+    // setup the banner
+    [_bannerAd disableParentalGate];
+    [_bannerAd enableBumperPage];
 
-```
-{% raw %}{% include doc.html name="here" path="subfolder/example-page" %}{% endraw %}
-```
+    // add a callback
+    [_bannerAd setCallback:^(NSInteger placementId, SAEvent event) {
+        // when the ad loads, play it directly
+        if (event == adLoaded) {
+            [_bannerAd play];
+        }
+    }];
 
+    // start the loading process
+    [_bannerAd load:30471];
+}
+
+@end
+{% endhighlight %}
+
+## Complex example
+
+This example shows how you can add different types of ads and make them respond to multiple callbacks.
+
+{% highlight objective_c %}
+#import "SuperAwesome.h"
+
+@interface MyViewController()
+@property (weak, nonatomic) IBOutlet SABannerAd *bannerAd;
+@end
+
+@implementation MyViewController
+
+- (void) viewDidLoad {
+    [super viewDidLoad];
+
+    // setup the banner
+    [_bannerAd enableParentalGate];
+    [_bannerAd disableBumperPage];
+
+    // and load it
+    [_bannerAd load:30471];
+
+    // setup the video
+    [SAVideoAd disableParentalGate];
+    [SAVideoAd enableBumperPage];
+    [SAVideoAd disableCloseButton];
+
+    // load
+    [SAVideoAd load:30479];
+    [SAVideoAd load:30480];
+}
+
+@IBAction void playBanner {
+
+    if ([_banner hasAdAvailable]) {
+        [_banner play];
+    }
+}
+
+@IBAction void playVideo1 {
+
+    if ([SAVideoAd hasAdAvailable: 30479]) {
+
+        // do some last minute setup
+        [SAVideoAd setOrientationLandscape];
+
+        // and play
+        [SAVideoAd play: 30479 fromVC: self];
+    }
+}
+
+@IBAction void playVideo2 {
+
+    if ([SAVideoAd hasAdAvailable: 30480]) {
+
+        // do some last minute setup
+        [SAVideoAd setOrientationAny];
+
+        // and play
+        [SAVideoAd play: 30480 fromVC: self];
+    }
+}
+
+@end
+{% endhighlight %}

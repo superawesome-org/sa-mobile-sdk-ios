@@ -1,36 +1,35 @@
 ---
-title: A Nested Page
-description: An example of a nested page
+title: Parental gate
+description: Parental gate
 ---
 
-# A Nested Page
+# Parental gate
 
-This is an example of a page that doesn't have a permalink defined, and
-is not included in the table of contents (`_data/toc.yml`). This means
-that it will render based on it's path. Since it's in `docs/example-page.md`,
-the url will be `docs/example-page/`.
+The Parental gate is an optional UI element you can add to your ad placements so that when a user clicks on an ad he is presented with a popup asking him to solve a simple math sum.
 
-## Link to a subfolder
+Its role is to prevent very young users from simply clicking on an ad and instead ask their parents for guidance.
 
-Now let's say we want to link to a subfolder, specifically with this
-setup:
+A parental gate is mandatory on all external click throughs on apps in the kids category on iOS. This should be applied if your app is in this category and you do not have your own in use, to prevent your app being blocked by Apple.
 
-```
-docs/
-  example-page.md  (-- we are here
-  subfolder/
-     example-page.md  (-- we want to link here
-```
+You can enable it like so:
 
-You can provide the relative path to the file, like `subfolder/example-page.md`
-and Jekyll will handle parsing it. For example:
+{% highlight objective_c %}
+// enable Parental gate on one banner placement
+[mybanner enableParentalGate];
 
- - [here is that link](subfolder/example-page)
- 
-And {% include doc.html name="here" path="subfolder/example-page" %} is the same link, 
-but generated with the include statement:
+// enable Parental gate on all interstitial ads
+[SAInterstitialAd enableParentalGate];
 
-```
-{% raw %}{% include doc.html name="here" path="subfolder/example-page" %}{% endraw %}
-```
+// enable Parental gate on all video ads
+[SAVideoAd enableParentalGate];
+{% endhighlight %}
 
+The final result will look something similar to this:
+
+![image-title-here]({{ site.baseurl }}/assets/img/IMG_06_ParentalGate.png){:class="img-responsive"}
+
+These are the default values:
+
+| Parameter | Value |
+|-----|-----|
+| Parental gate | Disabled |
