@@ -14,10 +14,10 @@ Change your <strong>Podfile</strong> to contain the following:
 {% highlight shell %}
 target 'MyProject' do
     # add the SuperAwesome SDK
-    pod 'SuperAwesome', '7.2.7'
+    pod 'SuperAwesome', '~> 7.2'
 
-    # add the MoPub plugin
-    pod 'SuperAwesome/AdMob', '7.2.7'
+    # add the AdMob plugin
+   pod 'SuperAwesomeAdMob', '~> 7.2'
 end
 {% endhighlight %}
 
