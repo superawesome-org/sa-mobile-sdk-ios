@@ -14,9 +14,9 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Docsy Jekyll
-email: your-email@domain.com
-author: Gunhan Sancar
+title: iOS Publisher SDK
+email: awesomeads-support@superawesome.com
+author: SuperAwesome Ltd
 description: > # this means to ignore newlines until "baseurl:"
   AwesomeAds iOS Publisher SDK
 
@@ -27,6 +27,8 @@ baseurl: "/sa-mobile-sdk-ios" # the subpath of your site, e.g. /blog
 url: "http://superawesomeltd.github.io/sa-mobile-sdk-ios" # the base hostname & protocol for your site
 
 # Social (First three Required)
+changelog_url: https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/blob/master/CHANGELOG.md
+licence_url: https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/blob/master/LICENSE
 repo: "https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios"
 github_user: "SuperAwesomeLTD"
 github_repo: "sa-mobile-sdk-ios"
@@ -37,7 +39,7 @@ github_repo: "sa-mobile-sdk-ios"
 # dockerhub: vanessa
 
 # Should there be feedback buttons at the bottom of pages?
-feedback: true
+feedback: false
 
 # Link to a privacy policy in footer, uncomment and define if wanted
 # privacy: https://domain.com/privacy
@@ -47,7 +49,7 @@ feedback: true
 # If commented, will use material hat theme
 # logo: "assets/img/logo/SRCC-square-red.png"
 logo_pixels: 34
-color: "#30638e"
+color: "#256EFF"
 # color: "#8c1515" # primary color for header, buttons
 
 # Build settings

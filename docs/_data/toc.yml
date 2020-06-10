@@ -1,23 +1,60 @@
 - title: Documentation
-  url: docs
+  url: ""
   links:
-    - title: "Getting Started"
-      url: "docs/getting-started"
+    - title: Preparing
+      url: "docs/prepare"
       children:
-        - title: Features
-          url: "docs/getting-started#getting-started"
-        - title: Development
-          url: "docs/getting-started#development"
-        - title: Customization
-          url: "docs/getting-started#customization"
-    - title: "Extras"
-      url: "docs/extras"
+        - title: Create apps
+          url: "docs/prepare#create-apps"
+        - title: Add placements
+          url: "docs/prepare#add-placements"
+    - title: Add the SDK
+      url: "docs/add-sdk"
+    - title: Initial Setup
+      url: "docs/initial-setup"
+    - title: Banner Ads
+      url: "docs/banner-ads"
+    - title: Interstitial Ads
+      url: "docs/interstitial-ads"
+    - title: Video Ads
+      url: "docs/video-ads"
+    - title: Parental Gate
+      url: "docs/parental-gate"
+    - title: Bumper Page
+      url: "docs/bumper-page"
       children:
-        - title: Quizzes
-          url: "docs/extras/example-quiz"
-        - title: Tags Page
-          url: "tags"
-    - title: "About"
-      url: "about"
-    - title: "News"
-      url: "news"
+        - title: Bumper Customisation
+          url: "docs/bumper-page#customisation"
+        - title: Forcing the Bumper
+          url: "docs/bumper-page#forcing-bumper"
+    - title: Ad Callbacks
+      url: "docs/ad-callbacks"
+    - title: Integrate with MoPub
+      url: "docs/mopub-integration"
+      children:
+        - title: Add the MoPub Plugin
+          url: "docs/bumper-page#customisation"
+        - title: Setup MoPub Custom Networks
+          url: "docs/bumper-page#forcing-bumper"
+        - title: Implement MoPub Ads
+          url: "docs/bumper-page#forcing-bumper"
+    - title: Integrate with AdMob
+      url: "docs/admob-integration"
+      children:
+        - title: Add the AdMob Plugin
+          url: "docs/bumper-page#customisation"
+        - title: Setup AdMob Mediation Groups
+          url: "docs/bumper-page#forcing-bumper"
+        - title: Implement AdMob Ads
+          url: "docs/bumper-page#forcing-bumper"
+        - title: Customise the Experience
+          url: "docs/bumper-page#forcing-bumper"
+    - title: Verifying User's Age
+      url: "docs/verify-user-age"
+    - title: Examples
+      url: "docs/examples"
+      children:
+        - title: Simple example
+          url: "docs/bumper-page#customisation"
+        - title: Complex example
+          url: "docs/bumper-page#forcing-bumper"
