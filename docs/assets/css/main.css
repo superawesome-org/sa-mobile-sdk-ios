@@ -18087,7 +18087,8 @@ html body .md-typeset .headerlink {
 }
 
 .td-sidebar-nav__section-title .active {
-    font-weight: 700
+    font-weight: 700;
+    color: {{ site.color }}
 }
 
 .td-sidebar-nav__section-title a {
