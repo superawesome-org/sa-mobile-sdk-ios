@@ -95,10 +95,9 @@
 		1B76D2431C91EEB1000AE8F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B76D2421C91EEB1000AE8F3 /* Assets.xcassets */; };
 		1B76D2461C91EEB1000AE8F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B76D2441C91EEB1000AE8F3 /* LaunchScreen.storyboard */; };
 		1BA72AC124365236003A31C5 /* fixtures_tests.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1BA72AC024365236003A31C5 /* fixtures_tests.bundle */; };
-		1BB5F58B1ED6CC3400ACD72E /* AdMobController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BB5F58A1ED6CC3400ACD72E /* AdMobController.m */; };
-		1BFE15E622A00DE600C500C0 /* empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFE15E522A00DE600C500C0 /* empty.swift */; };
 		5B51EE2012ED15F23C9BFC5B /* Pods_SuperAwesomeExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96EE21F4DF48D0FCFCD153B0 /* Pods_SuperAwesomeExample.framework */; };
 		70B5F465E960BEC2B334097B /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CCE055A718C2B29B8C03461 /* Pods_Tests.framework */; };
+		C64CAD28249CC5AB00788A7F /* MoPubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64CAD27249CC5AB00788A7F /* MoPubViewController.swift */; };
 		C6535602245239270043115E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6535601245239270043115E /* HealthKit.framework */; };
 		C668A6F9243656E200C18228 /* SATestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C668A6F8243656E200C18228 /* SATestUtils.m */; };
 /* End PBXBuildFile section */
@@ -221,10 +220,7 @@
 		1B76D2451C91EEB1000AE8F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1B76D2471C91EEB1000AE8F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1BA72AC024365236003A31C5 /* fixtures_tests.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = fixtures_tests.bundle; sourceTree = "<group>"; };
-		1BB5F5891ED6CC3400ACD72E /* AdMobController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdMobController.h; sourceTree = "<group>"; };
-		1BB5F58A1ED6CC3400ACD72E /* AdMobController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdMobController.m; sourceTree = "<group>"; };
 		1BFE15E422A00DE500C500C0 /* SuperAwesome-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SuperAwesome-Bridging-Header.h"; sourceTree = "<group>"; };
-		1BFE15E522A00DE600C500C0 /* empty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = empty.swift; sourceTree = "<group>"; };
 		2294CA59892B5A87435606EE /* Pods-SuperAwesome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesome.release.xcconfig"; path = "Target Support Files/Pods-SuperAwesome/Pods-SuperAwesome.release.xcconfig"; sourceTree = "<group>"; };
 		235DC26E667FEA43E2153B95 /* Pods-MoyaUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoyaUnitTests.release.xcconfig"; path = "Target Support Files/Pods-MoyaUnitTests/Pods-MoyaUnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		497D5AC68B2B27DFFAACACA7 /* Pods-SuperAwesome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesome.debug.xcconfig"; path = "Target Support Files/Pods-SuperAwesome/Pods-SuperAwesome.debug.xcconfig"; sourceTree = "<group>"; };
@@ -232,6 +228,7 @@
 		5FDC5DDF2247CC69FA37359E /* Pods-MoyaUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoyaUnitTests.debug.xcconfig"; path = "Target Support Files/Pods-MoyaUnitTests/Pods-MoyaUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		763EEEB15C3FC5CF9C4C2503 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
 		96EE21F4DF48D0FCFCD153B0 /* Pods_SuperAwesomeExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SuperAwesomeExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C64CAD27249CC5AB00788A7F /* MoPubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoPubViewController.swift; sourceTree = "<group>"; };
 		C6535600245239270043115E /* SuperAwesomeExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SuperAwesomeExample.entitlements; sourceTree = "<group>"; };
 		C6535601245239270043115E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		C668A6F7243656E200C18228 /* SATestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SATestUtils.h; sourceTree = "<group>"; };
@@ -509,8 +506,7 @@
 			children = (
 				1B76D23C1C91EEB1000AE8F3 /* ViewController.h */,
 				1B76D23D1C91EEB1000AE8F3 /* ViewController.m */,
-				1BB5F5891ED6CC3400ACD72E /* AdMobController.h */,
-				1BB5F58A1ED6CC3400ACD72E /* AdMobController.m */,
+				C64CAD27249CC5AB00788A7F /* MoPubViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -522,7 +518,6 @@
 				1B76D23A1C91EEB1000AE8F3 /* AppDelegate.m */,
 				1B76D2421C91EEB1000AE8F3 /* Assets.xcassets */,
 				1B76D2471C91EEB1000AE8F3 /* Info.plist */,
-				1BFE15E522A00DE600C500C0 /* empty.swift */,
 				1BFE15E422A00DE500C500C0 /* SuperAwesome-Bridging-Header.h */,
 			);
 			name = Meta;
@@ -851,11 +846,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C64CAD28249CC5AB00788A7F /* MoPubViewController.swift in Sources */,
 				1B76D23E1C91EEB1000AE8F3 /* ViewController.m in Sources */,
 				1B76D23B1C91EEB1000AE8F3 /* AppDelegate.m in Sources */,
 				1B76D2381C91EEB1000AE8F3 /* main.m in Sources */,
-				1BB5F58B1ED6CC3400ACD72E /* AdMobController.m in Sources */,
-				1BFE15E622A00DE600C500C0 /* empty.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
