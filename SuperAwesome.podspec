@@ -31,6 +31,13 @@ Pod::Spec.new do |s|
     b.frameworks = 'AdSupport'
   end
   
+  s.subspec 'MoPub' do |m|
+    m.dependency 'SuperAwesome/Full'
+    m.dependency 'mopub-ios-sdk'
+    m.source_files = 'Pod/Plugin/MoPub/*'
+    m.xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) MOPUB_PLUGIN' }
+  end
+  
 #  s.subspec 'Core' do |c|
 #    c.dependency 'SuperAwesome/Full'
 #    c.source_files = 'Pod/Plugin/Core/Classes/**/*'
@@ -60,12 +67,6 @@ Pod::Spec.new do |s|
 #    moat.dependency 'SuperAwesome/Full'
 #    moat.vendored_frameworks = 'Pod/Libraries/SUPMoatMobileAppKit.framework'
 #    moat.source_files = 'Pod/Plugin/Moat2/*'
-#  end
-
-#  s.subspec 'MoPub' do |m|
-#    m.dependency 'SuperAwesome/Full'
-#    m.dependency 'mopub-ios-sdk'
-#    m.source_files = 'Pod/Plugin/MoPub/*'
 #  end
 
 # s.subspec 'Unity' do |u|

@@ -20,20 +20,13 @@
 @property (weak, nonatomic) IBOutlet SABannerAd *bannerAd;
 @property (nonatomic, strong) NSMutableArray *data;
 @property (weak, nonatomic) IBOutlet UIButton *ageCheckButton;
+@property (weak, nonatomic) IBOutlet UIButton *mopubButton;
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-//    [SAVideoAd2 setCallback:^(NSInteger placementId, SAEvent event) {
-//        if (event == adLoaded) {
-//            [SAVideoAd2 play:placementId fromVC:self];
-//        }
-//    }];
-//    [SAVideoAd2 setSmallClick:true];
-//    [SAVideoAd2 load:39521];
     
     SASession *session = [[SASession alloc] init];
     [session setConfigurationStaging];
@@ -113,10 +106,6 @@
     [_ageCheckButton addTarget:self
                         action:@selector(getIsMinorDetails)
               forControlEvents:UIControlEventTouchUpInside];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
