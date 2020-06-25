@@ -13,8 +13,18 @@ static NSString *sdk        = @"ios";
 
 @implementation SAVersion
 
++ (NSString*) getPluginName {
+#if MOPUB_PLUGIN
+    return @"_mopub";
+#elif ADMOB_PLUGIN
+    return @"_admob";
+#else
+    return @"";
+#endif
+}
+
 + (NSString*) getSdkVersion {
-    return [NSString stringWithFormat:@"%@_%@", sdk, version];
+    return [NSString stringWithFormat:@"%@_%@%@", sdk, version, [self getPluginName]];
 }
 
 + (void) overrideVersion: (NSString*) v {

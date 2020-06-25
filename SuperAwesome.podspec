@@ -35,7 +35,8 @@ Pod::Spec.new do |s|
     m.dependency 'SuperAwesome/Full'
     m.dependency 'mopub-ios-sdk'
     m.source_files = 'Pod/Plugin/MoPub/*'
-    m.xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) MOPUB_PLUGIN' }
+    m.xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) MOPUB_PLUGIN',
+                   'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) MOPUB_PLUGIN=1' }
   end
   
 #  s.subspec 'Core' do |c|
