@@ -26,7 +26,7 @@ You can add the SDK to your project by declaring the following Pod:
 
 {% highlight shell %}
 target 'MyProject' do
-    pod 'SuperAwesome', '7.2.6'
+    pod 'SuperAwesome', '{{ site.latest_version }}'
 end
 {% endhighlight %}
 

@@ -26,7 +26,7 @@ baseurl: "/sa-mobile-sdk-ios" # the subpath of your site, e.g. /blog
 # This is mostly for testing
 url: "http://superawesomeltd.github.io/sa-mobile-sdk-ios" # the base hostname & protocol for your site
 
-# Social (First three Required)
+latest_version: 7.2.8
 changelog_url: https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/blob/master/CHANGELOG.md
 licence_url: https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/blob/master/LICENSE
 repo: "https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios"
