@@ -33,14 +33,30 @@ Login to the MoPub dashboard using your preferred account.
 
 From here forward the tutorial assumes you have an iOS app with three ad units setup in MoPub; one banner, one interstitial ad and one rewarded video ad:
 
-Notice that the custom event classes required by MoPub are:
- - for Banner Ads: SAMoPubBannerCustomEvent
- - for Interstitial Ads: SAMoPubInterstitialCustomEvent
- - for Rewarded Video Ads: SAMoPubVideoCustomEvent
+![image-title-here]({{ site.baseurl }}/assets/img/IMG_07_MoPub_0.png){:class="img-responsive"}
 
-Finally, you can tell MoPub what AwesomeAds ads to load and how to display them by filling out the custom event class data field with a JSON similar to this:
+From your MoPub admin interface you should create a `New Order`
 
-{% highlight json %}
+![image-title-here]({{ site.baseurl }}/assets/img/mopub-create-order.png){:class="img-responsive"}
+
+From the next menu, select `New line item`
+
+![image-title-here]({{ site.baseurl }}/assets/img/mopub-line-item.png){:class="img-responsive"}
+
+Notice that the custom event class names required by MoPub are:
+ - <strong>for Banner Ads:</strong>
+ 
+ `SuperAwesome.AwesomeAdsMoPubBannerAdapter`
+ - <strong>for Interstitial Ads:</strong> 
+ 
+ `SuperAwesome.AwesomeAdsMoPubInterstitialAdapter`
+ - <strong>for Rewarded Video Ads:</strong> 
+ 
+ `SuperAwesome.AwesomeAdsMoPubVideoAdapter`
+
+And, you can tell MoPub what AwesomeAds ads to load and how to display them by filling out the custom event class data field with a JSON similar to this:
+
+```json
 {
     "placementId": 30473,
     "isTestEnabled": true or false,
@@ -50,32 +66,43 @@ Finally, you can tell MoPub what AwesomeAds ads to load and how to display them 
     "shouldAutomaticallyCloseAtEnd": true or false,
     "shouldShowSmallClickButton": true or false
 }
-{% endhighlight %}
+```
+
+- In the second tab `Ad unit targeting`, <strong>Select</strong> your App&ad unit e.g. Banner
+
+- In the third tab `Audience targetting`, <strong>Select</strong> your target audience
+
+*Create multiple line items for banner, interstitial, and video(rewarded) ads.
+
+{% include alert.html type="warning" title="Note" content="To test your adapter integration, you can disable other networks and only enable `AwesomeAds` line items to see if they are being served in your app." %}
 
 ## Implement Ads
 
+Initialise the `MoPub` sdk with <strong>AwesomeAds</strong> adapter configuration
+
+```swift
+let configuration = MPMoPubConfiguration.init(adUnitIdForAppInitialization: bannerAdId)
+        configuration.loggingLevel = .debug
+        configuration.additionalNetworks = [AwesomeAdsMoPubAdapterConfiguration.self]
+                
+        MoPub.sharedInstance().initializeSdk(with: configuration) {
+            print("MoPub SDK initialisation complete")
+            
+            self.configureBanner()
+            self.configureInterstitial()
+            self.configureVideo()
+        }
+```
+
 Once the previous steps are done, you can add MoPub banners, interstitials and rewarded video ads just as you normally would:
 
-{% highlight objective_c %}
-// create & load banner
-MPAdView *banner = [[MPAdView alloc] initWithAdUnitId:@"_AD_UNIT_ID_"
-        size:MOPUB_BANNER_SIZE];
-banner.frame = CGRectMake(0, 0, self.view.frame.size.width, 80);
-[self.view addSubview: banner];
-[banner loadAd];
+ - <strong>for Banner Ads:</strong>
+ [Banners](https://developers.mopub.com/publishers/ios/banner/)
+ 
+ - <strong>for Interstitial Ads:</strong> 
+ [Interstitials](https://developers.mopub.com/publishers/ios/interstitial/)
 
-// create & load interstitial
-MPInterstitialAdController *interstitial =
-        [MPInterstitialAdController interstitialAdControllerForAdUnitId: @"_AD_UNIT_ID_"];
-[interstitial loadAd];
+ - <strong>for Rewarded Video Ads:</strong> 
+ [Rewarded Video](https://developers.mopub.com/publishers/ios/rewarded-video/)
 
-// load video ads
-[[MoPub sharedInstance]
-        initializeRewardedVideoWithGlobalMediationSettings: nil
-        delegate: self];
-[MPRewardedVideo
-        loadRewardedVideoAdWithAdUnitID: @"_AD_UNIT_ID_"
-        withMediationSettings: nil];
-{% endhighlight %}
-
-Since the previously created custom events will run on these ads, and AwesomeAds is integrated alongside the MoPub plugin, you should start seeing ads playing.
+Since the previously created custom events will run on these ads, and the iOS Publisher SDK is integrated alongside the MoPub plugin, you should start seeing ads playing.
