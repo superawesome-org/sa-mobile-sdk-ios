@@ -25,6 +25,8 @@ This will also create a special file called a <strong>Podfile</strong>, where yo
 You can add the SDK to your project by declaring the following Pod:
 
 {% highlight shell %}
+use_frameworks!
+
 target 'MyProject' do
     pod 'SuperAwesome', '{{ site.latest_version }}'
 end
@@ -42,6 +44,14 @@ Don’t forget to use the <strong>.xcworkspace</strong> file to open your projec
 
 You can import the main SDK header file like so:
 
-{% highlight objective_c %}
+### Objective-C: 
+
+```objective_c
 #import "SuperAwesome.h"
-{% endhighlight %}
+@import SuperAwesome;
+```
+
+### Swift:
+```swift
+import SuperAwesome
+```
