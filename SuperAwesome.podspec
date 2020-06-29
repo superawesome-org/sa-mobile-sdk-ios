@@ -26,8 +26,12 @@ Pod::Spec.new do |s|
   s.default_subspec = 'Full'
 
   s.subspec 'Full' do |b|
+    b.dependency 'SuperAwesome/Main'
+    b.dependency 'SuperAwesome/Moat'
+  end
+  
+  s.subspec 'Main' do |b|
     b.source_files = 'Pod/Classes/**/*'
-    b.vendored_frameworks = 'Pod/Libraries/SUPMoatMobileAppKit.framework'
     b.frameworks = 'AdSupport'
   end
   
@@ -38,7 +42,12 @@ Pod::Spec.new do |s|
     m.xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) MOPUB_PLUGIN',
                    'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) MOPUB_PLUGIN=1' }
   end
-  
+
+  s.subspec 'Moat' do |moat|
+    moat.vendored_frameworks = 'Pod/Libraries/SUPMoatMobileAppKit.framework'
+    moat.source_files = 'Pod/Plugin/Moat2/*'
+  end
+
 #  s.subspec 'Core' do |c|
 #    c.dependency 'SuperAwesome/Full'
 #    c.source_files = 'Pod/Plugin/Core/Classes/**/*'
@@ -62,12 +71,6 @@ Pod::Spec.new do |s|
 #      test_spec.dependency 'Nimble'
 #      test_spec.dependency 'Mockingjay'
 #    end
-#  end
-  
-#  s.subspec 'Moat' do |moat|
-#    moat.dependency 'SuperAwesome/Full'
-#    moat.vendored_frameworks = 'Pod/Libraries/SUPMoatMobileAppKit.framework'
-#    moat.source_files = 'Pod/Plugin/Moat2/*'
 #  end
 
 # s.subspec 'Unity' do |u|
