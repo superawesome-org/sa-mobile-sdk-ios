@@ -15,7 +15,6 @@
 + (void) internalInitMoat: (BOOL) loggingEnabled {
     
     SUPMoatOptions *options = [[SUPMoatOptions alloc] init];
-    options.locationServicesEnabled = false;
     options.IDFACollectionEnabled = false;
     options.debugLoggingEnabled = loggingEnabled;
     SUPMoatAnalytics *analytics = [SUPMoatAnalytics sharedInstance];
