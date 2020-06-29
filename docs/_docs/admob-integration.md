@@ -59,6 +59,18 @@ and finally set the AwesomeAds custom event class name as Class Name SAAdMobBann
 
 ![image-title-here]({{ site.baseurl }}/assets/img/IMG_08_AdMob_7.png){:class="img-responsive"}
 
+Notice that the custom event class names required by AdMob are:
+ - <strong>for Banner Ads:</strong>
+ 
+ `SAAdMobBannerCustomEvent`
+ - <strong>for Interstitial Ads:</strong> 
+ 
+ `SAAdMobInterstitialCustomEvent`
+ - <strong>for Rewarded Video Ads:</strong> 
+ 
+ `SAAdMobVideoMediationAdapter`
+
+
 Finally, save your changes. This will register BannerCustomEvent as a custom event running on your ad units from now on. You’ll have to repeat the same process for interstitial and rewarded video ads.
 
 ## Implement Ads
