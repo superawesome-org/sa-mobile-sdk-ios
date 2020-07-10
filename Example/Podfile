@@ -7,7 +7,7 @@ target 'SuperAwesomeExample' do
   pod 'SuperAwesome', :path => '../'
 #  pod 'SuperAwesome/Main', :path => '../'
 #  pod 'SuperAwesome/Core', :path => '../', :testspecs => ['Tests']
-#  pod 'SuperAwesome/Moya', :path => '../', :testspecs => ['Tests']
+  pod 'SuperAwesome/Moya', :path => '../', :testspecs => ['Tests']
 #  pod 'SuperAwesome/MoPub', :path => '../'
 #  pod 'SuperAwesome/Unity', :path => '../'
 #  pod 'SuperAwesome/AIR', :path => '../'

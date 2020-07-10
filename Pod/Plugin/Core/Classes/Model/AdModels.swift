@@ -51,3 +51,13 @@ struct AdRequest: Codable {
     let w: Int
     let h: Int
 }
+
+class AdResponse {
+    let ad: Ad
+    var html: String?
+    var vast: VastAd?
+    
+    init(_ ad: Ad) {
+        self.ad = ad
+    }
+}

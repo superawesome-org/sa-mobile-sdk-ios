@@ -39,7 +39,7 @@ public class AwesomeAdsSdk {
             UserAgentProvider(device: c.resolve(), preferencesRepository: c.resolve())
         }
         container.registerSingle(AdRepositoryType.self) { c in
-            AdRepository(dataSource: c.resolve(), adQueryMaker: c.resolve())
+            AdRepository(dataSource: c.resolve(), adQueryMaker: c.resolve(), adProcessor: c.resolve())
         }
         container.registerSingle(AdQueryMakerType.self) { c in
             AdQueryMaker(device: c.resolve(),

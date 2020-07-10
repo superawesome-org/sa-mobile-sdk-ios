@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (5.2.1)
   - Mockingjay (2.0.1):
     - Mockingjay/Core (= 2.0.1)
     - Mockingjay/XCTest (= 2.0.1)
@@ -6,6 +7,10 @@ PODS:
     - URITemplate (~> 2.0)
   - Mockingjay/XCTest (2.0.1):
     - Mockingjay/Core
+  - Moya (14.0.0):
+    - Moya/Core (= 14.0.0)
+  - Moya/Core (14.0.0):
+    - Alamofire (~> 5.0)
   - Nimble (8.1.1)
   - OHHTTPStubs (9.0.0):
     - OHHTTPStubs/Default (= 9.0.0)
@@ -22,11 +27,23 @@ PODS:
   - OHHTTPStubs/OHPathHelpers (9.0.0)
   - SuperAwesome (7.2.8):
     - SuperAwesome/Full (= 7.2.8)
+  - SuperAwesome/Core (7.2.8):
+    - SuperAwesome/Full
+    - SwiftyXMLParser (~> 5.0)
   - SuperAwesome/Full (7.2.8):
     - SuperAwesome/Main
     - SuperAwesome/Moat
   - SuperAwesome/Main (7.2.8)
   - SuperAwesome/Moat (7.2.8)
+  - SuperAwesome/Moya (7.2.8):
+    - Moya (~> 14.0)
+    - SuperAwesome/Core
+  - SuperAwesome/Moya/Tests (7.2.8):
+    - Mockingjay
+    - Moya (~> 14.0)
+    - Nimble
+    - SuperAwesome/Core
+  - SwiftyXMLParser (5.0.0)
   - URITemplate (2.0.3)
 
 DEPENDENCIES:
@@ -34,12 +51,17 @@ DEPENDENCIES:
   - Nimble
   - OHHTTPStubs
   - SuperAwesome (from `../`)
+  - SuperAwesome/Moya (from `../`)
+  - SuperAwesome/Moya/Tests (from `../`)
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - Mockingjay
+    - Moya
     - Nimble
     - OHHTTPStubs
+    - SwiftyXMLParser
     - URITemplate
 
 EXTERNAL SOURCES:
@@ -47,12 +69,15 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
+  Alamofire: e911732990610fe89af59ac0077f923d72dc3dfd
   Mockingjay: 11a621880d2887f1775bdcf824341eb68f218450
+  Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   Nimble: 5f8a2fb6fa343a7242dfdd9d42f7267419d464b2
   OHHTTPStubs: cb29d2a9d09a828ecb93349a2b0c64f99e0db89f
-  SuperAwesome: 13ec18424b737466dbd52fb6769b6a806c41b859
+  SuperAwesome: 2b2eafd881d3982a6b1bea33be6417252a9e86c5
+  SwiftyXMLParser: 5ebb8793192f403fa8cc691045143906122a7a75
   URITemplate: ace0c4c46dcf8afe6e89b4060621852886b15c3b
 
-PODFILE CHECKSUM: 62a24be9a61396183eb81c829c528f546f140231
+PODFILE CHECKSUM: a983ffcff22b7177d1ac5e292eca2e711fca49b1
 
 COCOAPODS: 1.9.3
