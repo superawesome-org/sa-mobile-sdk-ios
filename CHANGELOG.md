@@ -1,5 +1,15 @@
 CHANGELOG
 =========
+7.2.10
+ - Removed IDFA and AdSupport framework from the codebase
+ 
+7.2.9
+ - Moved Moat library to it's own module
+
+7.2.8
+ - Release MoPub Adapter 
+ - Add SDK metric info
+ 
 7.2.7
  - Added support for AdMob
  - Separated AdMob into its own podspec
