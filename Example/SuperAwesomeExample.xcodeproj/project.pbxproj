@@ -97,6 +97,7 @@
 		1BA72AC124365236003A31C5 /* fixtures_tests.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1BA72AC024365236003A31C5 /* fixtures_tests.bundle */; };
 		21528C928B7BFDA0D29213BE /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A01EA0D5528DC347839D3C89 /* Pods_Tests.framework */; };
 		A7EFC8DE3E1F552F65AEDB94 /* Pods_SuperAwesomeExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46665EBC142A783963BB4282 /* Pods_SuperAwesomeExample.framework */; };
+		C647364224CF4A130093342F /* TestSAUtils_MonthYearStringFromDate.m in Sources */ = {isa = PBXBuildFile; fileRef = C647364124CF4A130093342F /* TestSAUtils_MonthYearStringFromDate.m */; };
 		C64CAD28249CC5AB00788A7F /* MoPubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64CAD27249CC5AB00788A7F /* MoPubViewController.swift */; };
 		C6535602245239270043115E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6535601245239270043115E /* HealthKit.framework */; };
 		C668A6F9243656E200C18228 /* SATestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C668A6F8243656E200C18228 /* SATestUtils.m */; };
@@ -228,6 +229,7 @@
 		5FDC5DDF2247CC69FA37359E /* Pods-MoyaUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoyaUnitTests.debug.xcconfig"; path = "Target Support Files/Pods-MoyaUnitTests/Pods-MoyaUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		763EEEB15C3FC5CF9C4C2503 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
 		A01EA0D5528DC347839D3C89 /* Pods_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C647364124CF4A130093342F /* TestSAUtils_MonthYearStringFromDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAUtils_MonthYearStringFromDate.m; sourceTree = "<group>"; };
 		C64CAD27249CC5AB00788A7F /* MoPubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoPubViewController.swift; sourceTree = "<group>"; };
 		C6535600245239270043115E /* SuperAwesomeExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SuperAwesomeExample.entitlements; sourceTree = "<group>"; };
 		C6535601245239270043115E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
@@ -283,6 +285,7 @@
 		1B226F9B23536F8200FA8326 /* SAUtils */ = {
 			isa = PBXGroup;
 			children = (
+				C647364124CF4A130093342F /* TestSAUtils_MonthYearStringFromDate.m */,
 				1B226F9C23536F8200FA8326 /* TestSAUtils_UIColorFromRGB.m */,
 				1B226F9D23536F8200FA8326 /* TestSAUtils_GetSystemSize.m */,
 				1B226F9E23536F8200FA8326 /* TestSAUtils_FilePathInDocuments.m */,
@@ -811,6 +814,7 @@
 				1B22701E23536F8300FA8326 /* TestSAUtils_IsValidURL.m in Sources */,
 				1B22704523536F8300FA8326 /* TestSAAdLoader_GetAwesomeAdsQuery.m in Sources */,
 				1B22706023536F8300FA8326 /* TestSAJsonParser_ParseArray.m in Sources */,
+				C647364224CF4A130093342F /* TestSAUtils_MonthYearStringFromDate.m in Sources */,
 				1B22706223536F8300FA8326 /* TestSAJsonParser_WriteArray.m in Sources */,
 				1B22702E23536F8300FA8326 /* TestSAVASTModule.m in Sources */,
 				1B22705823536F8300FA8326 /* SAXML_Parser_Tests5.m in Sources */,
@@ -896,8 +900,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-framework",
-					"\"AdSupport\"",
-					"-framework",
 					"\"CFNetwork\"",
 					"-framework",
 					"\"Foundation\"",
@@ -929,8 +931,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
-					"-framework",
-					"\"AdSupport\"",
 					"-framework",
 					"\"CFNetwork\"",
 					"-framework",
@@ -1077,8 +1077,6 @@
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",
-					"\"AdSupport\"",
-					"-framework",
 					"\"SuperAwesome\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = tv.superawesome.awesomeads.sdk;
@@ -1110,8 +1108,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
-					"-framework",
-					"\"AdSupport\"",
 					"-framework",
 					"\"SuperAwesome\"",
 				);

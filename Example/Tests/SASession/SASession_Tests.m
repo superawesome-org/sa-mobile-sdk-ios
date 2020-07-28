@@ -7,7 +7,6 @@
 //
 
 @import XCTest;
-@import AdSupport;
 
 // import session
 #import "SASession.h"
@@ -226,7 +225,6 @@
     NSInteger connectivity = [_session getConnectivityType];
     NSInteger cachebuster = [_session getCachebuster];
     NSString *userAgent = [_session getUserAgent];
-    NSUInteger dauId = [_session getDauId];
     
     // assert
     XCTAssertEqual(config, expectedConfig);
@@ -243,11 +241,6 @@
         XCTAssertTrue([userAgent rangeOfString:@"iPad"].location > 0);
     } else {
         XCTAssertTrue([userAgent rangeOfString:@"iPhone"].location > 0);
-    }
-    
-    BOOL canTrack = [[ASIdentifierManager sharedManager] isAdvertisingTrackingEnabled];
-    if (canTrack) {
-        XCTAssertTrue(dauId > 0);
     }
 }
 

@@ -227,5 +227,12 @@ UIColor *UIColorFromRGB (NSInteger red, NSInteger green, NSInteger blue);
  */
 + (NSValue*) invoke:(NSString*)method onClass:(NSString*) name, ...;
 
+/**
+* Method that returns string representation of a given date
+*
+* @param date    the method to be invoked, as a string
+* @return   String representation of given date formatted as MMyyyy
+*/
+NSString *MonthYearStringFromDate(NSDate *date);
 
 @end

@@ -32,7 +32,6 @@ Pod::Spec.new do |s|
   
   s.subspec 'Base' do |b|
     b.source_files = 'Pod/Classes/**/*'
-    b.frameworks = 'AdSupport'
   end
   
   s.subspec 'MoPub' do |m|
