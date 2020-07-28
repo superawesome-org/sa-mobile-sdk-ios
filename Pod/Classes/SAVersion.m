@@ -8,7 +8,7 @@
 
 #import "SAVersion.h"
 
-static NSString *version    = @"7.2.9";
+static NSString *version    = @"7.2.10";
 static NSString *sdk        = @"ios";
 
 @implementation SAVersion
