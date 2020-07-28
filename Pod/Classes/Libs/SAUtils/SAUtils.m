@@ -418,7 +418,7 @@ NSString *MonthYearStringFromDate(NSDate *date) {
     
     dispatch_once(&onceToken, ^{
         dateFormatter = [[NSDateFormatter alloc] init];
-        dateFormatter.dateFormat = @"MM/yyyy";
+        dateFormatter.dateFormat = @"MMyyyy";
     });
     
     return [dateFormatter stringFromDate:date];

@@ -26,7 +26,7 @@
     // get the user defaults
     NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
     
-    // get the first part of the DAU, from the current date as MM/yyyy
+    // get the first part of the DAU, from the current date as MMyyyy
     NSString *firstPartOfDAU = MonthYearStringFromDate(NSDate.new);
     
     // get the second part of the DAU, the library generated 32-character

@@ -33,7 +33,7 @@
     NSString* result1 = MonthYearStringFromDate(given1);
     
     // then
-    XCTAssertTrue([result1 isEqualToString: @"07/2020"]);
+    XCTAssertTrue([result1 isEqualToString: @"072020"]);
 }
 
 @end
