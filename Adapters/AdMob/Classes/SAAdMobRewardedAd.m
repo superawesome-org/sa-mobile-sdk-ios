@@ -26,18 +26,27 @@
 - (void)loadRewardedAdForAdConfiguration: (nonnull GADMediationRewardedAdConfiguration *)adConfiguration
                        completionHandler: (nonnull GADMediationRewardedLoadCompletionHandler)completionHandler {
     
+    // Ensure the original completion handler is only called once, and is deallocated once called.
     __block atomic_flag completionHandlerCalled = ATOMIC_FLAG_INIT;
+    
+    // Store the complition handler for later use
     __block GADMediationRewardedLoadCompletionHandler originalCompletionHandler = [completionHandler copy];
+    
+    // Complition handler is called once the ad is loaded
     _completionHandler = ^id<GADMediationRewardedAdEventDelegate>(
-                                                                  id<GADMediationRewardedAd> rewardedAd, NSError *error) {
+                                                                  id<GADMediationRewardedAd> rewardedAd,
+                                                                  NSError *error) {
+        // Check wether the complition handler is called and return if it is
         if (atomic_flag_test_and_set(&completionHandlerCalled)) {
             return nil;
         }
+        
         id<GADMediationRewardedAdEventDelegate> delegate = nil;
         if (originalCompletionHandler) {
             delegate = originalCompletionHandler(rewardedAd, error);
         }
         originalCompletionHandler = nil;
+        
         return delegate;
     };
     
