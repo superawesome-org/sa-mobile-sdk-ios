@@ -70,8 +70,8 @@ class AdMobViewController: UIViewController {
         let extra = SAAdMobVideoExtra()
         extra.testEnabled = false
         extra.closeAtEndEnabled = true
-        extra.closeButtonEnabled = false
-        extra.parentalGateEnabled = false
+        extra.closeButtonEnabled = true
+        extra.parentalGateEnabled = true
         extra.smallCLickEnabled = true
         //extra.configuration = STAGING;
         //extra.orientation = LANDSCAPE;
