@@ -51,8 +51,13 @@ import UIKit
             blackMask.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1/5).isActive = true
             
             chrono.translatesAutoresizingMaskIntoConstraints = false
-            chrono.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5.0).isActive = true
-            chrono.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5.0).isActive = true
+            if #available(iOS 11.0, *) {
+                chrono.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor, constant: 5.0).isActive = true
+                chrono.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor, constant: -5.0).isActive = true
+            } else {
+                chrono.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5.0).isActive = true
+                chrono.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5.0).isActive = true
+            }
             chrono.widthAnchor.constraint(equalToConstant: 50).isActive = true
             chrono.heightAnchor.constraint(equalToConstant: 20).isActive = true
             
@@ -74,8 +79,14 @@ import UIKit
                 addSubview(padlock)
                 
                 padlock.translatesAutoresizingMaskIntoConstraints = false
-                padlock.topAnchor.constraint(equalTo: self.topAnchor, constant: 0.0).isActive = true
-                padlock.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0.0).isActive = true
+                
+                if #available(iOS 11.0, *) {
+                    padlock.topAnchor.constraint(equalToSystemSpacingBelow: self.safeAreaLayoutGuide.topAnchor, multiplier: 1.0).isActive = true
+                    padlock.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor, constant: 0.0).isActive = true
+                } else {
+                    padlock.topAnchor.constraint(equalTo: self.topAnchor, constant: 0.0).isActive = true
+                    padlock.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0.0).isActive = true
+                }
                 padlock.widthAnchor.constraint(equalToConstant: 77.0).isActive = true
                 padlock.heightAnchor.constraint(equalToConstant: 31.0).isActive = true
             }
@@ -178,7 +189,7 @@ import UIKit
     public func setMaximised() { /* N/A */ }
     
     public func isMaximised() -> Bool {
-        return false
+        return self.bounds == UIApplication.shared.keyWindow?.bounds
     }
     
     @objc(setDelegate:)

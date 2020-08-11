@@ -23,8 +23,13 @@ class LayoutUtils: NSObject {
         view.translatesAutoresizingMaskIntoConstraints = false
         let margins = otherView.layoutMarginsGuide
         
-        view.topAnchor.constraint(equalTo: margins.topAnchor, constant: 0.0).isActive = true
-        view.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: 0.0).isActive = true
+        if #available(iOS 11.0, *) {
+            view.topAnchor.constraint(equalToSystemSpacingBelow: otherView.safeAreaLayoutGuide.topAnchor, multiplier: 1.0).isActive = true
+            view.trailingAnchor.constraint(equalTo: otherView.layoutMarginsGuide.trailingAnchor, constant: 0.0).isActive = true
+        } else {
+            view.topAnchor.constraint(equalTo: margins.topAnchor, constant: 0.0).isActive = true
+            view.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: 0.0).isActive = true
+        }
         view.widthAnchor.constraint(equalToConstant: 40.0).isActive = true
         view.heightAnchor.constraint(equalToConstant: 40.0).isActive = true
     }
