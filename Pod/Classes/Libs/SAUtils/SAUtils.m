@@ -412,4 +412,16 @@ UIColor *UIColorFromRGB(NSInteger red, NSInteger green, NSInteger blue) {
     
 }
 
+NSString *MonthYearStringFromDate(NSDate *date) {
+    static NSDateFormatter *dateFormatter = nil;
+    static dispatch_once_t onceToken;
+    
+    dispatch_once(&onceToken, ^{
+        dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.dateFormat = @"MMyyyy";
+    });
+    
+    return [dateFormatter stringFromDate:date];
+}
+
 @end

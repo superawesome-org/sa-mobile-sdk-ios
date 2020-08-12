@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-#import <GoogleMobileAds/GoogleMobileAds.h>
+@import GoogleMobileAds;
 
-@interface SAAdMobVideoMediationAdapter : NSObject <GADMRewardBasedVideoAdNetworkAdapter>
+@interface SAAdMobVideoMediationAdapter : NSObject <GADMediationAdapter>
 @end
