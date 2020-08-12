@@ -89,11 +89,13 @@ public class AwesomeVideoPlayer: UIView, VideoPlayer {
     }
     
     public func setMaximised() {
+        guard !isFullscreen else { return }
         isFullscreen = true
         previousParent = superview
 
         let parentVC = self.parentViewController
         let isPlaying = controllerView?.isPlaying() ?? false
+        
         let newVC = AwesomeVideoFullscreenPlayer(withVideoPlayer: self, andIsCurrentlyPlaying: isPlaying)
         newVC.modalPresentationStyle = .fullScreen
         newVC.modalTransitionStyle = .coverVertical
@@ -101,6 +103,7 @@ public class AwesomeVideoPlayer: UIView, VideoPlayer {
     }
     
     public func setMinimised() {
+        guard isFullscreen else { return }
         isFullscreen = false
         let parentVC = self.parentViewController
         parentVC?.dismiss(animated: true)
