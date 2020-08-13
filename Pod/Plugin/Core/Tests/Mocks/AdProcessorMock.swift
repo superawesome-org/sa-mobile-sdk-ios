@@ -11,7 +11,4 @@ class AdProcessorMock: AdProcessorType {
     func process(_ ad: Ad, complition: @escaping OnCompleteListener<AdResponse>) {
         
     }
-    
-    
 }
-
