@@ -8,14 +8,14 @@
 @objc(SAComponentModuleType)
 @available(*, deprecated, message: "Will be deleted")
 public protocol ComponentModuleObjcType {
-    var device: DeviceType { get }
+    var device: DeviceTypeObjc { get }
     @objc(userAgent) var userAgent: UserAgentType { get }
 }
 
 class ComponentModuleObjc: ComponentModuleObjcType {
     private var dataRepository: DataRepositoryType
     
-    lazy var device: DeviceType = Device(UIDevice.current)
+    lazy var device: DeviceTypeObjc = DeviceObjc(UIDevice.current)
     lazy var userAgent: UserAgentType = UserAgent(device: device, dataRepository: dataRepository)
     
     init(dataRepository:DataRepositoryType) {

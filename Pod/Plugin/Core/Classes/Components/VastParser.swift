@@ -12,15 +12,22 @@ protocol VastParserType {
 }
 
 class VastParser: NSObject, VastParserType {
+    
+    private let connectionProvider: ConnectionProviderType
+    
+    init(connectionProvider: ConnectionProviderType) {
+        self.connectionProvider = connectionProvider
+    }
+    
     func parse(_ data: Data) -> VastAd {
         let vastAd = VastAd()
         let xml = XML.parse(data)
         var root: XML.Accessor
         
-        if xml.VAST.Ad.InLine.error != nil {
+        if xml.VAST.Ad.InLine.error == nil {
             vastAd.type = .InLine
             root = xml.VAST.Ad.InLine
-        } else if xml.VAST.Ad.Wrapper.error != nil {
+        } else if xml.VAST.Ad.Wrapper.error == nil {
             vastAd.type = .Wrapper
             root = xml.VAST.Ad.Wrapper
         } else {
@@ -38,7 +45,7 @@ class VastParser: NSObject, VastParserType {
         if let value = root.Impression.text {
             vastAd.events.append(VastEvent(event: "vast_impression", url: value))
         }
-                          
+        
         for linear in root.Creatives.Creative.Linear {
             
             linear.VideoClicks.ClickThrough.iterateValues().forEach { value in
@@ -69,9 +76,28 @@ class VastParser: NSObject, VastParserType {
             }
         }
         
+        let sortedMedias = vastAd.medias.sorted { (first, second) -> Bool in
+            first.bitrate ?? 0 < second.bitrate ?? 0
+        }
+        
+        let quality = connectionProvider.findConnectionType().findQuality()
+        switch quality {
+        case .minumum: vastAd.url = sortedMedias.first?.url
+        case .medium:
+            let size = sortedMedias.count
+            if size > 2 {
+                vastAd.url = sortedMedias[size/2].url
+            }
+            break
+        case .maximum: vastAd.url = sortedMedias.last?.url
+        }
+        
+        if vastAd.url == nil && vastAd.medias.count > 0 {
+            vastAd.url = vastAd.medias.last?.url
+        }
+        
         return vastAd
     }
-    
 }
 
 extension XML.Accessor {

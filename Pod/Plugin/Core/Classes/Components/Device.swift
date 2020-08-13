@@ -28,7 +28,5 @@ class Device : DeviceType {
         systemVersion = device.systemVersion
         systemVersionEscaped = systemVersion.replacingOccurrences(of: ".", with: "_")
         userAgent = "Mozilla/5.0 (\(type); CPU \(type) OS \(systemVersionEscaped) like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148"
-        
-        super.init()
     }
 }

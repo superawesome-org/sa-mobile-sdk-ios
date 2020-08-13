@@ -8,7 +8,7 @@
 import Foundation
 
 @objc(SADeviceType)
-public protocol DeviceType {
+public protocol DeviceTypeObjc {
     var type: String { get }
     var genericType: String { get }
     var systemVersion: String { get }
@@ -17,7 +17,7 @@ public protocol DeviceType {
 }
 
 @objc(SADevice)
-class Device : NSObject, DeviceType {
+class DeviceObjc : NSObject, DeviceTypeObjc {
     public var type: String
     public var genericType: String
     public var systemVersion: String

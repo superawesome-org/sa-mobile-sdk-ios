@@ -15,3 +15,23 @@ enum ConnectionType: Int, Codable {
     case cellular3g = 5
     case cellular4g = 6
 }
+
+/// Represent connection quality
+/// For 2g connections minimum
+/// For 3g connections medium
+/// For 4g, wifi connections maximum
+enum ConnectionQuality: Int, Codable {
+    case minumum = 0
+    case medium = 1
+    case maximum = 2
+}
+
+extension ConnectionType {
+    func findQuality() -> ConnectionQuality {
+        switch self {
+        case .cellular2g, .cellularUnknown: return .minumum
+        case .unknown, .ethernet, .cellular4g, .wifi: return .maximum
+        default: return .medium
+        }
+    }
+}
