@@ -16,7 +16,7 @@ class MoyaAdDataSource: AdDataSourceType {
         self.environment = environment
     }
     
-    func getAd(placementId: Int, query: AdQuery, completion: @escaping Completion<Ad>) {
+    func getAd(placementId: Int, query: AdQuery, completion: @escaping OnResult<Ad>) {
         let target = AwesomeAdsTarget(environment, .ad(placementId: placementId, query: query))
         
         provider.request(target) { result in
@@ -35,27 +35,27 @@ class MoyaAdDataSource: AdDataSourceType {
         }
     }
     
-    func impression(query: EventQuery, completion: @escaping Completion<Void>) {
+    func impression(query: EventQuery, completion: @escaping OnResult<Void>) {
         let target = AwesomeAdsTarget(environment, .impression(query: query))
         responseHandler(target: target, completion: completion)
     }
     
-    func click(query: EventQuery, completion: @escaping Completion<Void>) {
+    func click(query: EventQuery, completion: @escaping OnResult<Void>) {
         let target = AwesomeAdsTarget(environment, .click(query: query))
         responseHandler(target: target, completion: completion)
     }
     
-    func videoClick(query: EventQuery, completion: @escaping Completion<Void>) {
+    func videoClick(query: EventQuery, completion: @escaping OnResult<Void>) {
         let target = AwesomeAdsTarget(environment, .videoClick(query: query))
         responseHandler(target: target, completion: completion)
     }
     
-    func event(query: EventQuery, completion: @escaping Completion<Void>) {
+    func event(query: EventQuery, completion: @escaping OnResult<Void>) {
         let target = AwesomeAdsTarget(environment, .event(query: query))
         responseHandler(target: target, completion: completion)
     }
     
-    private func responseHandler(target: AwesomeAdsTarget, completion: @escaping Completion<Void>) {
+    private func responseHandler(target: AwesomeAdsTarget, completion: @escaping OnResult<Void>) {
         provider.request(target) { result in
             switch result {
             case .success(let response):

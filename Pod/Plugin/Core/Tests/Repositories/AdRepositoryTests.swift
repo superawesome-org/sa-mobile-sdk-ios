@@ -24,7 +24,8 @@ class AdRepositoryTests: XCTestCase {
         let mockDataSource = AdDataSourceMock()
         mockDataSource.mockAdResult = expectedResult
         let mockAdQueryMaker = AdQueryMakerMock()
-        let adRepository = AdRepository(dataSource: mockDataSource, adQueryMaker: mockAdQueryMaker)
+        let mockAdProcessor = AdProcessorMock()
+        let adRepository = AdRepository(dataSource: mockDataSource, adQueryMaker: mockAdQueryMaker, adProcessor: mockAdProcessor)
 
         // When
         let expectation = self.expectation(description: "request")

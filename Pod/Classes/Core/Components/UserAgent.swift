@@ -21,7 +21,7 @@ public class UserAgent : NSObject, UserAgentType {
     private var webView: WKWebView?
     private var dataRepository: DataRepositoryType
     
-    init(device:DeviceType, dataRepository: DataRepositoryType) {
+    init(device:DeviceTypeObjc, dataRepository: DataRepositoryType) {
         self.dataRepository = dataRepository
         self.name = dataRepository.userAgent ?? device.userAgent
         super.init()

@@ -9,13 +9,13 @@ struct Creative: Codable {
     let id: Int
     let name: String?
     let format: CreativeFormatType
-    let click_url: String
+    let click_url: String?
     let details: CreativeDetail
 }
 
 struct CreativeDetail: Codable {
     let url: String
-    let image: String
+    let image: String?
     let video: String
     let placement_format: String
     let tag: String?
