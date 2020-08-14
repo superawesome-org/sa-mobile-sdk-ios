@@ -6,7 +6,7 @@
 //
 
 protocol AdProcessorType {
-    func process(_ ad: Ad, complition: @escaping OnCompleteListener<AdResponse>)
+    func process(_ placementId: Int, _ ad: Ad, complition: @escaping OnComplete<AdResponse>)
 }
 
 class AdProcessor: AdProcessorType {
@@ -22,7 +22,7 @@ class AdProcessor: AdProcessorType {
         self.networkDataSource = networkDataSource
     }
     
-    func process(_ ad: Ad, complition: @escaping OnCompleteListener<AdResponse>) {
+    func process(_ placementId: Int, _ ad: Ad, complition: @escaping OnComplete<AdResponse>) {
         let response = AdResponse(ad)
         
         switch ad.creative.format {
@@ -30,7 +30,7 @@ class AdProcessor: AdProcessorType {
             response.html = htmlFormatter.formatImageIntoHtml(ad)
             complition(response)
         case .rich_media:
-            response.html = htmlFormatter.formatRichMediaIntoHtml(ad)
+            response.html = htmlFormatter.formatRichMediaIntoHtml(placementId, ad)
             complition(response)
         case .tag:
             response.html = htmlFormatter.formatTagIntoHtml(ad)
@@ -47,7 +47,7 @@ class AdProcessor: AdProcessorType {
         }
     }
     
-    private func handleVast(_ url: String, initialVast: VastAd?, complition: @escaping OnCompleteListener<VastAd?>) {
+    private func handleVast(_ url: String, initialVast: VastAd?, complition: @escaping OnComplete<VastAd?>) {
         networkDataSource.getData(url: url) { result in
             switch result {
             case .success(let data):

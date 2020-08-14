@@ -8,7 +8,7 @@
 @testable import SuperAwesome
 
 class AdProcessorMock: AdProcessorType {
-    func process(_ ad: Ad, complition: @escaping OnCompleteListener<AdResponse>) {
+    func process(_ placementId: Int, _ ad: Ad, complition: @escaping OnComplete<AdResponse>) {
         
     }
 }

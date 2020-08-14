@@ -7,7 +7,7 @@
 
 protocol HtmlFormatterType {
     func formatImageIntoHtml(_ ad: Ad) -> String
-    func formatRichMediaIntoHtml(_ ad: Ad) -> String
+    func formatRichMediaIntoHtml(_ placementId: Int, _ ad: Ad) -> String
     func formatTagIntoHtml(_ ad: Ad) -> String
 }
 
@@ -31,8 +31,8 @@ class HtmlFormatter: HtmlFormatterType {
         return "\(img)_MOAT_"
     }
     
-    func formatRichMediaIntoHtml(_ ad: Ad) -> String {
-        let url = "\(ad.creative.details.url)?placement=\(1)&line_item=\(ad.line_item_id)&creative=\(ad.creative.id)&rnd=\(numberGenerator.nextIntForCache())"
+    func formatRichMediaIntoHtml(_ placementId: Int, _ ad: Ad) -> String {
+        let url = "\(ad.creative.details.url)?placement=\(placementId)&line_item=\(ad.line_item_id)&creative=\(ad.creative.id)&rnd=\(numberGenerator.nextIntForCache())"
         return "<iframe style='padding:0;border:0;' width='100%' height='100%' src='\(url)'></iframe>_MOAT_"
     }
     

@@ -6,7 +6,7 @@
 //
 
 /// Callback function for success & failure results
-typealias OnResultListener<T> = (_ result: Result<T, Error>) -> Void
+typealias OnResult<T> = (_ result: Result<T, Error>) -> Void
 
 /// Callback function for completable events
-typealias OnCompleteListener<T> = (_ result: T) -> Void
+typealias OnComplete<T> = (_ result: T) -> Void

@@ -33,14 +33,14 @@ class VastParserTests: XCTestCase {
         vastAd1.url = "url1"
         vastAd1.events.append(VastEvent(event: "", url: ""))
         vastAd1.events.append(VastEvent(event: "", url: ""))
-        vastAd1.medias.append(VastMedia())
-        vastAd1.medias.append(VastMedia())
+        vastAd1.addMedia(VastMedia())
+        vastAd1.addMedia(VastMedia())
         
         let vastAd2 = VastAd()
         vastAd2.type = .Wrapper
         vastAd2.url = "url2"
         vastAd2.events.append(VastEvent(event: "", url: ""))
-        vastAd2.medias.append(VastMedia())
+        vastAd2.addMedia(VastMedia())
         
         // When
         let merged = vastAd1.merge(from: vastAd2)
@@ -48,7 +48,7 @@ class VastParserTests: XCTestCase {
         // Then
         expect(merged.url).to(equal("url2"))
         expect(merged.events.count).to(equal(3))
-        expect(merged.medias.count).to(equal(3))
+        expect(merged.media.count).to(equal(3))
     }
     
     func test_parse_response1() throws {
@@ -75,7 +75,7 @@ class VastParserTests: XCTestCase {
         expect(clickEvent?.url).to(equal("https://ads.superawesome.tv/v2/video/click?placement=30479&creative=-1&line_item=-1&sdkVersion=unknown&rnd=1809240&device=web&country=GB"))
         expect(vast.redirect).to(beNil())
         expect(vast.type).to(equal(.InLine))
-        expect(vast.medias.count).to(equal(1))
+        expect(vast.media.count).to(equal(1))
         expect(vast.events.count).to(equal(15))
     }
     

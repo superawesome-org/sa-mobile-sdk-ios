@@ -10,7 +10,7 @@ protocol NetworkRepositoryType {
 }
 
 class NetworkRepository: NetworkRepositoryType {
-    func get<T>(_ url: String, completion: OnResultListener<T>) {
+    func get<T>(_ url: String, completion: OnResult<T>) {
         
     }
 }

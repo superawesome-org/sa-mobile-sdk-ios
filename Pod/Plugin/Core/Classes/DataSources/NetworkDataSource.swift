@@ -6,6 +6,6 @@
 //
 
 protocol NetworkDataSourceType {
-    func getData(url: String, completion: @escaping OnResultListener<Data>)
-    func downloadFile(url: String, completion: @escaping OnResultListener<String>)
+    func getData(url: String, completion: @escaping OnResult<Data>)
+    func downloadFile(url: String, completion: @escaping OnResult<String>)
 }

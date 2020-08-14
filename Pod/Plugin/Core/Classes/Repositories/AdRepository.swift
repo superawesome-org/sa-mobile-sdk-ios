@@ -6,7 +6,7 @@
 //
 
 protocol AdRepositoryType {
-    func getAd(placementId: Int, request: AdRequest, completion: @escaping OnResultListener<Ad>)
+    func getAd(placementId: Int, request: AdRequest, completion: @escaping OnResult<Ad>)
 }
 
 class AdRepository : AdRepositoryType {
@@ -22,11 +22,11 @@ class AdRepository : AdRepositoryType {
         self.adProcessor = adProcessor
     }
     
-    func getAd(placementId: Int, request: AdRequest, completion: @escaping OnResultListener<Ad>) {
+    func getAd(placementId: Int, request: AdRequest, completion: @escaping OnResult<Ad>) {
         dataSource.getAd(placementId: placementId,
                          query: adQueryMaker.makeAdQuery(request)) { result in
                             if case .success(let ad) = result {
-                                self.adProcessor.process(ad) { response in
+                                self.adProcessor.process(placementId, ad) { response in
                                     
                                 }
                             } else {

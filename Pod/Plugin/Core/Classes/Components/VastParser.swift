@@ -39,26 +39,26 @@ class VastParser: NSObject, VastParserType {
         }
         
         if let value = root.Error.text {
-            vastAd.events.append(VastEvent(event: "vast_error", url: value))
+            vastAd.addEvent(VastEvent(event: "vast_error", url: value))
         }
         
         if let value = root.Impression.text {
-            vastAd.events.append(VastEvent(event: "vast_impression", url: value))
+            vastAd.addEvent(VastEvent(event: "vast_impression", url: value))
         }
         
         for linear in root.Creatives.Creative.Linear {
             
             linear.VideoClicks.ClickThrough.iterateValues().forEach { value in
-                vastAd.events.append(VastEvent(event: "vast_click_through", url: value))
+                vastAd.addEvent(VastEvent(event: "vast_click_through", url: value))
             }
             
             linear.VideoClicks.ClickTracking.iterateValues().forEach { value in
-                vastAd.events.append(VastEvent(event: "vast_click_tracking", url: value))
+                vastAd.addEvent(VastEvent(event: "vast_click_tracking", url: value))
             }
             
             for tracking in linear.TrackingEvents.Tracking {
                 if let event = tracking.attributes["event"], let url = tracking.text {
-                    vastAd.events.append(VastEvent(event: "vast_\(event)", url: url))
+                    vastAd.addEvent(VastEvent(event: "vast_\(event)", url: url))
                 }
             }
             
@@ -71,14 +71,12 @@ class VastParser: NSObject, VastParserType {
                     let height = media.attributes["height"]?.toInt {
                     
                     let media = VastMedia(type: type, url: url, bitrate: bitrate, width: width, height: height)
-                    vastAd.medias.append(media)
+                    vastAd.addMedia(media)
                 }
             }
         }
         
-        let sortedMedias = vastAd.medias.sorted { (first, second) -> Bool in
-            first.bitrate ?? 0 < second.bitrate ?? 0
-        }
+        let sortedMedias = vastAd.sortedMedia()
         
         let quality = connectionProvider.findConnectionType().findQuality()
         switch quality {
@@ -92,8 +90,8 @@ class VastParser: NSObject, VastParserType {
         case .maximum: vastAd.url = sortedMedias.last?.url
         }
         
-        if vastAd.url == nil && vastAd.medias.count > 0 {
-            vastAd.url = vastAd.medias.last?.url
+        if vastAd.url == nil && vastAd.media.count > 0 {
+            vastAd.url = vastAd.media.last?.url
         }
         
         return vastAd
