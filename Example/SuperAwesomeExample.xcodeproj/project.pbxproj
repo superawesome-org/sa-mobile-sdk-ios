@@ -97,6 +97,7 @@
 		1BA72AC124365236003A31C5 /* fixtures_tests.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1BA72AC024365236003A31C5 /* fixtures_tests.bundle */; };
 		21528C928B7BFDA0D29213BE /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A01EA0D5528DC347839D3C89 /* Pods_Tests.framework */; };
 		A7EFC8DE3E1F552F65AEDB94 /* Pods_SuperAwesomeExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46665EBC142A783963BB4282 /* Pods_SuperAwesomeExample.framework */; };
+		C643DE0D24EFC7CA00B07228 /* AwesomeAdsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C643DE0C24EFC7CA00B07228 /* AwesomeAdsViewController.swift */; };
 		C647364224CF4A130093342F /* TestSAUtils_MonthYearStringFromDate.m in Sources */ = {isa = PBXBuildFile; fileRef = C647364124CF4A130093342F /* TestSAUtils_MonthYearStringFromDate.m */; };
 		C64CAD28249CC5AB00788A7F /* MoPubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64CAD27249CC5AB00788A7F /* MoPubViewController.swift */; };
 		C6535602245239270043115E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6535601245239270043115E /* HealthKit.framework */; };
@@ -229,6 +230,7 @@
 		5FDC5DDF2247CC69FA37359E /* Pods-MoyaUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoyaUnitTests.debug.xcconfig"; path = "Target Support Files/Pods-MoyaUnitTests/Pods-MoyaUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		763EEEB15C3FC5CF9C4C2503 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
 		A01EA0D5528DC347839D3C89 /* Pods_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C643DE0C24EFC7CA00B07228 /* AwesomeAdsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwesomeAdsViewController.swift; sourceTree = "<group>"; };
 		C647364124CF4A130093342F /* TestSAUtils_MonthYearStringFromDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAUtils_MonthYearStringFromDate.m; sourceTree = "<group>"; };
 		C64CAD27249CC5AB00788A7F /* MoPubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoPubViewController.swift; sourceTree = "<group>"; };
 		C6535600245239270043115E /* SuperAwesomeExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SuperAwesomeExample.entitlements; sourceTree = "<group>"; };
@@ -510,6 +512,7 @@
 				1B76D23C1C91EEB1000AE8F3 /* ViewController.h */,
 				1B76D23D1C91EEB1000AE8F3 /* ViewController.m */,
 				C64CAD27249CC5AB00788A7F /* MoPubViewController.swift */,
+				C643DE0C24EFC7CA00B07228 /* AwesomeAdsViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -858,6 +861,7 @@
 				C64CAD28249CC5AB00788A7F /* MoPubViewController.swift in Sources */,
 				1B76D23E1C91EEB1000AE8F3 /* ViewController.m in Sources */,
 				1B76D23B1C91EEB1000AE8F3 /* AppDelegate.m in Sources */,
+				C643DE0D24EFC7CA00B07228 /* AwesomeAdsViewController.swift in Sources */,
 				1B76D2381C91EEB1000AE8F3 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

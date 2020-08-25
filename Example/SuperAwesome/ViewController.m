@@ -82,7 +82,7 @@
                @{
                    @"name": @"Banners",
                    @"items": @[
-                           @{@"name": @"Banner Image", @"pid": @(44258)}
+                           @{@"name": @"Banner Image", @"pid": @(44259)}
                            ]
                    },
                @{

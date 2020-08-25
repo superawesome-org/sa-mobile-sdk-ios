@@ -6,6 +6,12 @@
 //
 
 protocol AdProcessorType {
+    /// Processes the  given `ad` and creates and `HTML` or `VAST` fields.
+    ///
+    /// - Parameter placementId: Used while forming HTML tags
+    /// - Parameter ad: The `Ad` object to be processed
+    /// - Parameter complition: Callback closure to be notified once the process is completed
+    /// - Returns: `AdResponse` object which contains `HTML` or `VAST` fields to be shown
     func process(_ placementId: Int, _ ad: Ad, complition: @escaping OnComplete<AdResponse>)
 }
 
@@ -23,22 +29,26 @@ class AdProcessor: AdProcessorType {
     }
     
     func process(_ placementId: Int, _ ad: Ad, complition: @escaping OnComplete<AdResponse>) {
-        let response = AdResponse(ad)
+        let response = AdResponse(placementId, ad)
         
         switch ad.creative.format {
         case .image_with_link:
             response.html = htmlFormatter.formatImageIntoHtml(ad)
+            response.baseUrl = ad.creative.details.image?.baseUrl
             complition(response)
         case .rich_media:
             response.html = htmlFormatter.formatRichMediaIntoHtml(placementId, ad)
+            response.baseUrl = ad.creative.details.url.baseUrl
             complition(response)
         case .tag:
             response.html = htmlFormatter.formatTagIntoHtml(ad)
+            response.baseUrl = "https://ads.superawesome.tv"
             complition(response)
         case .video:
             if let url = ad.creative.details.vast {
                 handleVast(url, initialVast: nil) { vast in
                     response.vast = vast
+                    response.baseUrl = ad.creative.details.video.baseUrl
                     complition(response)
                 }
             } else {

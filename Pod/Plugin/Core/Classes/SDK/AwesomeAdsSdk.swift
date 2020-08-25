@@ -7,10 +7,11 @@
 
 import AdSupport
 
-public class AwesomeAdsSdk {
-    static let shared = AwesomeAdsSdk()
+@objc
+public class AwesomeAdsSdk: NSObject {
+    public static let shared = AwesomeAdsSdk()
     
-    private var container: DependencyContainer = DependencyContainer()
+    private(set) var container: DependencyContainer = DependencyContainer()
     private var initialised: Bool = false
     
     private func registerDependencies(_ configuration: Configuration) {
@@ -32,8 +33,8 @@ public class AwesomeAdsSdk {
                     locale: Locale.current,
                     encoder: c.resolve())
         }
-        container.registerSingle(DataRepositoryType.self) { c in
-            DataRepository(UserDefaults.standard)
+        container.registerSingle(PreferencesRepositoryType.self) { c in
+            PreferencesRepository(UserDefaults.standard)
         }
         container.registerSingle(UserAgentProviderType.self) { c in
             UserAgentProvider(device: c.resolve(), preferencesRepository: c.resolve())
@@ -49,13 +50,22 @@ public class AwesomeAdsSdk {
                          idGenerator: c.resolve(),
                          encoder: c.resolve())
         }
-        
+        container.registerSingle(AdProcessorType.self) { c in
+            AdProcessor(htmlFormatter: c.resolve(), vastParser: c.resolve(), networkDataSource: c.resolve())
+        }
+        container.registerSingle(HtmlFormatterType.self) { c in
+            HtmlFormatter(numberGenerator: c.resolve(), encoder: c.resolve())
+        }
+        container.registerSingle(VastParserType.self) { c in
+            VastParser(connectionProvider: c.resolve())
+        }
+        container.registerSingle(ImageProviderType.self) { _ in ImageProvider() }
         #if MOYA_PLUGIN
         MoyaPluginRegistrar.register(container)
         #endif
     }
     
-    func initSdk(configuration: Configuration = Configuration(), completion: (()->())? = nil) {
+    public func initSdk(configuration: Configuration = Configuration(), completion: (()->())? = nil) {
         guard !initialised else { return }
         registerDependencies(configuration)
         initialised = true
@@ -66,8 +76,14 @@ public class AwesomeAdsSdk {
         var environment = Environment.production
         var logging = false
         
-        init(environment:Environment = .production) {
+        public init(environment: Environment = .production) {
             self.environment = environment
         }
+    }
+}
+
+extension Injectable {
+    var dependencies: DependencyContainer {
+        return AwesomeAdsSdk.shared.container
     }
 }

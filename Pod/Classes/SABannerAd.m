@@ -237,7 +237,7 @@
     [_session setWidth:size.width];
     [_session setHeight:size.height];
     
-    
+    //
     // load ad
     SALoader *loader = [[SALoader alloc] init];    
     [loader loadAd:placementId withSession:_session andResult:^(SAResponse *response) {

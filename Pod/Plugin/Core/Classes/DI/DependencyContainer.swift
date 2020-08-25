@@ -18,6 +18,10 @@ struct Dependency {
     let scope: DependencyScope
 }
 
+protocol Injectable {
+    var dependencies: DependencyContainer { get }
+}
+
 class DependencyContainer {
     private var dependencies: [String: Dependency] = [:]
     private var singleInstances: [String: Any] = [:]

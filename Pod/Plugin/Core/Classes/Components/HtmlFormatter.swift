@@ -25,15 +25,15 @@ class HtmlFormatter: HtmlFormatterType {
         let img = "<img src='\(ad.creative.details.image ?? "")' width='100%' height='100%' style='object-fit: contain;'/>"
         
         if let clickUrl = ad.creative.click_url {
-            return "<a href='\(clickUrl)' target='_blank'>\(img)</a>_MOAT_"
+            return "<a href='\(clickUrl)' target='_blank'>\(img)</a>"
         }
         
-        return "\(img)_MOAT_"
+        return "\(img)"
     }
     
     func formatRichMediaIntoHtml(_ placementId: Int, _ ad: Ad) -> String {
         let url = "\(ad.creative.details.url)?placement=\(placementId)&line_item=\(ad.line_item_id)&creative=\(ad.creative.id)&rnd=\(numberGenerator.nextIntForCache())"
-        return "<iframe style='padding:0;border:0;' width='100%' height='100%' src='\(url)'></iframe>_MOAT_"
+        return "<iframe style='padding:0;border:0;' width='100%' height='100%' src='\(url)'></iframe>"
     }
     
     func formatTagIntoHtml(_ ad: Ad) -> String {
@@ -55,6 +55,6 @@ class HtmlFormatter: HtmlFormatterType {
             .replacingOccurrences(of: "\\n", with: "")
             .replacingOccurrences(of: "\t", with: "")
         
-        return "\(tag)_MOAT_"
+        return "\(tag)"
     }
 }

@@ -8,7 +8,7 @@
 import Alamofire
 
 class AFNetworkDataSource: NetworkDataSourceType {
-    func getData(url: String, completion: @escaping OnResultListener<Data>) {
+    func getData(url: String, completion: @escaping OnResult<Data>) {
         AF.request(url).responseData { response in
             if let data = response.data {
                 completion(Result.success(data))
@@ -18,7 +18,7 @@ class AFNetworkDataSource: NetworkDataSourceType {
         }
     }
     
-    func downloadFile(url: String, completion: @escaping OnResultListener<String>) {
+    func downloadFile(url: String, completion: @escaping OnResult<String>) {
         let destination: DownloadRequest.Destination = { _, _ in
             let fileName = url.toMD5
             let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]

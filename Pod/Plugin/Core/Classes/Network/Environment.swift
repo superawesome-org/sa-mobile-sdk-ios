@@ -5,7 +5,7 @@
 //  Created by Gunhan Sancar on 08/04/2020.
 //
 
-enum Environment: String, Codable {
+public enum Environment: String, Codable {
     case production
     case staging
 }

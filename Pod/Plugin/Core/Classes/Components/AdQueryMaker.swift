@@ -45,11 +45,11 @@ class AdQueryMaker: AdQueryMakerType {
                        ct: connectionProvider.findConnectionType(),
                        lang: sdkInfo.lang,
                        device: device.genericType,
-                       pos: request.pos,
-                       skip: request.skip,
+                       pos: request.pos.rawValue,
+                       skip: request.skip.rawValue,
                        playbackmethod: request.playbackmethod,
-                       startdelay: request.startdelay,
-                       instl: request.instl,
+                       startdelay: request.startdelay.rawValue,
+                       instl: request.instl.rawValue,
                        w: request.w,
                        h: request.h)
     }

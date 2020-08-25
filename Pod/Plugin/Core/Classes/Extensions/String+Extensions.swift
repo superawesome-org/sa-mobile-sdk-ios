@@ -27,4 +27,8 @@ extension String {
             $0 + String(format: "%02x", digest[$1])
         }
     }
+    var baseUrl: String {
+        let url = URL(string: self)
+        return "\(url?.scheme ?? "")://\(url?.host ?? "")"
+    }
 }
