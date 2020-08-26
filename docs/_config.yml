@@ -5,10 +5,10 @@ description: > # this means to ignore newlines until "baseurl:"
   AwesomeAds iOS Publisher SDK
 
 # DO NOT CHANGE THE LINE OF THIS FILE without editing .circleci/circle_urls.sh
-baseurl: "/sa-mobile-sdk-ios" # the subpath of your site, e.g. /blog
+baseurl: "/sa-mobile-sdk-ios/latest" # the subpath of your site, e.g. /blog
 
 # This is mostly for testing
-url: "http://superawesomeltd.github.io/sa-mobile-sdk-ios" # the base hostname & protocol for your site
+url: "https://doc.superawesome.tv/sa-mobile-sdk-ios/latest" # the base hostname & protocol for your site
 
 latest_version: 7.2.13
 changelog_url: https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/blob/master/CHANGELOG.md
