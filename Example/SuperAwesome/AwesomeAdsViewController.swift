@@ -60,6 +60,7 @@ class AwesomeAdsViewController: UIViewController {
             self.bannerView.load(self.bannerId)
         }
     }
+    
     private func initUI() {
         // banner view
         bannerView = BannerView()

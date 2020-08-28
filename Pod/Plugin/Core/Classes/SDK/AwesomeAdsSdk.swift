@@ -16,6 +16,7 @@ public class AwesomeAdsSdk: NSObject {
     
     private func registerDependencies(_ configuration: Configuration) {
         self.container = DependencyContainer()
+        container.registerSingle(LoggerType.self) { _ in OsLogger() }
         container.registerSingle(Environment.self) { _ in configuration.environment }
         container.registerSingle(ConnectionProviderType.self) { _ in ConnectionProvider() }
         container.registerSingle(DeviceType.self) { _ in Device(UIDevice.current) }
@@ -41,6 +42,9 @@ public class AwesomeAdsSdk: NSObject {
         }
         container.registerSingle(AdRepositoryType.self) { c in
             AdRepository(dataSource: c.resolve(), adQueryMaker: c.resolve(), adProcessor: c.resolve())
+        }
+        container.registerSingle(EventRepositoryType.self) { c in
+            EventRepository(dataSource: c.resolve(), adQueryMaker: c.resolve())
         }
         container.registerSingle(AdQueryMakerType.self) { c in
             AdQueryMaker(device: c.resolve(),

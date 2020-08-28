@@ -35,38 +35,38 @@ class MoyaAdDataSource: AdDataSourceType {
         }
     }
     
-    func impression(query: EventQuery, completion: @escaping OnResult<Void>) {
+    func impression(query: EventQuery, completion: OnResult<Void>?) {
         let target = AwesomeAdsTarget(environment, .impression(query: query))
         responseHandler(target: target, completion: completion)
     }
     
-    func click(query: EventQuery, completion: @escaping OnResult<Void>) {
+    func click(query: EventQuery, completion: OnResult<Void>?) {
         let target = AwesomeAdsTarget(environment, .click(query: query))
         responseHandler(target: target, completion: completion)
     }
     
-    func videoClick(query: EventQuery, completion: @escaping OnResult<Void>) {
+    func videoClick(query: EventQuery, completion: OnResult<Void>?) {
         let target = AwesomeAdsTarget(environment, .videoClick(query: query))
         responseHandler(target: target, completion: completion)
     }
     
-    func event(query: EventQuery, completion: @escaping OnResult<Void>) {
+    func event(query: EventQuery, completion: OnResult<Void>?) {
         let target = AwesomeAdsTarget(environment, .event(query: query))
         responseHandler(target: target, completion: completion)
     }
     
-    private func responseHandler(target: AwesomeAdsTarget, completion: @escaping OnResult<Void>) {
+    private func responseHandler(target: AwesomeAdsTarget, completion: OnResult<Void>?) {
         provider.request(target) { result in
             switch result {
             case .success(let response):
                 do {
                     _ = try response.filterSuccessfulStatusCodes()
-                    completion(Result.success(Void()))
+                    completion?(Result.success(Void()))
                 } catch let error{
-                    completion(Result.failure(error))
+                    completion?(Result.failure(error))
                 }
             case .failure(let error):
-                completion(Result.failure(error))
+                completion?(Result.failure(error))
             }
         }
     }

@@ -23,7 +23,7 @@ struct EventRequest: Codable {
     let creativeId: Int
     let lineItemId: Int
     let type: EventType
-    let data: EventData? = nil
+    let data: EventData?
 }
 
 struct EventData: Codable {

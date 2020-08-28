@@ -7,8 +7,17 @@
 
 import WebKit
 
+protocol WebViewDelegate {
+    /// Called when the WebView finishes its loading for the first time
+    func onStart()
+    func onError()
+    func onClick(url: String)
+}
 
 class WebView: WKWebView {
+    var delegate: WebViewDelegate?
+    
+    private var finishedLoading = false
     
     override init(frame: CGRect, configuration: WKWebViewConfiguration) {
         super.init(frame: frame, configuration: configuration)
@@ -19,17 +28,12 @@ class WebView: WKWebView {
         print("WebView.loadHTML called")
         // embed html code inside a full html wrapper
         let baseHtml = "<html><head><meta name=\"viewport\" content=\"width=device-width initial-scale=1\" /><style>html, body, div { margin: 0px; padding: 0px; } html, body { width:100%; height:100%; } </style></head><body>\(html ?? "")</body></html>"
-
+        
         // lock-and-load
         if let data = baseHtml.data(using: .utf8), let url = URL(string: base ?? "") {
             load(data, mimeType: "text/html", characterEncodingName: "UTF-8", baseURL: url)
         }
     }
-    
-//    init(frame: CGRect) {
-//        super.init(frame: frame)
-//        configureScrollView()
-//    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -42,11 +46,11 @@ class WebView: WKWebView {
     }
     
     /**
-    * "defaultConfiguration" Returns the default web player configuration,
-    * to be used when initialising this web view
-    *
-    * @return  default configuration for the web player
-    */
+     * "defaultConfiguration" Returns the default web player configuration,
+     * to be used when initialising this web view
+     *
+     * @return  default configuration for the web player
+     */
     class func defaultConfiguration() -> WKWebViewConfiguration {
         let configuration = WKWebViewConfiguration()
         configuration.allowsInlineMediaPlayback = true
@@ -64,4 +68,59 @@ extension WebView: UIScrollViewDelegate {
      * @return              a scrolled zoomed UIView; or nil in this case
      */
     func viewForZooming(in scrollView: UIScrollView) -> UIView? { nil }
+}
+
+extension WebView: WKUIDelegate {
+    func webView(_ webView: WKWebView,
+                 createWebViewWith configuration: WKWebViewConfiguration,
+                 for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+        return nil
+    }
+    
+    func webView(_ webView: WKWebView,
+                 decidePolicyFor navigationAction: WKNavigationAction,
+                 decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        guard finishedLoading else {
+            decisionHandler(WKNavigationActionPolicy.allow)
+            return
+        }
+        
+        let url = navigationAction.request.url
+        let urlString = url?.absoluteString
+        
+        // protect against about blanks
+        if urlString?.contains("about:blank") ?? false {
+            decisionHandler(WKNavigationActionPolicy.allow)
+            return
+        }
+        
+        // protect against iframes
+        if urlString?.contains("sa-beta-ads-uploads-superawesome.netdna-ssl.com") ?? false &&
+            urlString?.contains("/iframes") ?? false {
+            decisionHandler(WKNavigationActionPolicy.allow)
+            return
+        }
+        
+        // check to see if the URL has a redirect, and take only the redirect
+        if urlString?.contains("&redir=") ?? false {
+            
+        }
+        
+        decisionHandler(WKNavigationActionPolicy.cancel)
+    }
+}
+
+extension WebView: WKNavigationDelegate {
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        if !finishedLoading {
+            finishedLoading = true
+            delegate?.onStart()
+        }
+    }
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        if !finishedLoading {
+            finishedLoading = true
+            delegate?.onError()
+        }
+    }
 }

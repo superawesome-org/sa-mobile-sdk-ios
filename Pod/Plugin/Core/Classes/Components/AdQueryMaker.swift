@@ -7,10 +7,10 @@
 
 protocol AdQueryMakerType {
     func makeAdQuery(_ request: AdRequest) -> AdQuery
-    func makeImpressionQuery(_ request: EventRequest) -> EventQuery
+    func makeImpressionQuery(_ adResponse: AdResponse) -> EventQuery
     func makeClickQuery(_ request: EventRequest) -> EventQuery
     func makeVideoClickQuery(_ request: EventRequest) -> EventQuery
-    func makeEventQuery(_ request: EventRequest) -> EventQuery
+    func makeEventQuery(_ adResponse: AdResponse, _ eventData: EventData) -> EventQuery
 }
 
 class AdQueryMaker: AdQueryMakerType {
@@ -54,11 +54,11 @@ class AdQueryMaker: AdQueryMakerType {
                        h: request.h)
     }
     
-    func makeImpressionQuery(_ request: EventRequest) -> EventQuery {
-        return EventQuery(placement: request.placementId,
+    func makeImpressionQuery(_ adResponse: AdResponse) -> EventQuery {
+        return EventQuery(placement: adResponse.placementId,
                           bundle: sdkInfo.bundle,
-                          creative: request.creativeId,
-                          line_item: request.lineItemId,
+                          creative: adResponse.ad.creative.id,
+                          line_item: adResponse.ad.line_item_id,
                           ct: connectionProvider.findConnectionType(),
                           sdkVersion: sdkInfo.version,
                           rnd: numberGenerator.nextIntForCache(),
@@ -93,17 +93,17 @@ class AdQueryMaker: AdQueryMakerType {
                           data: nil)
     }
     
-    func makeEventQuery(_ request: EventRequest) -> EventQuery {
-        let json = encoder.toJson(request.data)
+    func makeEventQuery(_ adResponse: AdResponse, _ eventData: EventData) -> EventQuery {
+        let json = encoder.toJson(eventData)
         let encodedData = encoder.encodeUri(json)
-        return EventQuery(placement: request.placementId,
+        return EventQuery(placement: adResponse.placementId,
                           bundle: sdkInfo.bundle,
-                          creative: request.creativeId,
-                          line_item: request.lineItemId,
+                          creative: adResponse.ad.creative.id,
+                          line_item: adResponse.ad.line_item_id,
                           ct: connectionProvider.findConnectionType(),
                           sdkVersion: sdkInfo.version,
                           rnd: numberGenerator.nextIntForCache(),
-                          type: request.type,
+                          type: eventData.type,
                           no_image: nil,
                           data: encodedData)
     }

@@ -12,7 +12,9 @@ import UIKit
 public class BannerView: UIView, Injectable {
 
     private lazy var adRepository: AdRepositoryType = dependencies.resolve()
+    private lazy var eventRepository: EventRepositoryType = dependencies.resolve()
     private lazy var imageProvider: ImageProviderType = dependencies.resolve()
+    private lazy var logger: LoggerType = dependencies.resolve()
     
     private var adResponse: AdResponse?
     private var testEnabled = false
@@ -23,6 +25,7 @@ public class BannerView: UIView, Injectable {
     private var delegate: AdEventCallback?
     private var visibilityDelegate: SABannerAdVisibilityDelegate?
     private var webView: WebView?
+    private var parentalGate: ParentalGate?
     
     // MARK: - Public functions
     
@@ -38,7 +41,6 @@ public class BannerView: UIView, Injectable {
         
         adRepository.getAd(placementId: placementId,
                            request: makeAdRequest()) { [weak self] result in
-                            print("BannerView.load.result: \(result)")
                             switch result {
                             case .success(let response): self?.onSuccess(response)
                             case .failure(let error): self?.onFailure(error)
@@ -49,9 +51,10 @@ public class BannerView: UIView, Injectable {
     
     /// Method that, if an ad data is loaded, will play the content for the user
     public func play() {
-        print("play called")
+        logger.info("BannerView.play()")
         // guard against invalid ad formats
-        guard let html = adResponse?.html, adResponse?.ad.creative.format != CreativeFormatType.video, !closed else {
+        guard let adResponse = adResponse, let html = adResponse.html,
+            adResponse.ad.creative.format != CreativeFormatType.video, !closed else {
             delegate?(0, .adFailedToShow)
             return
         }
@@ -63,18 +66,24 @@ public class BannerView: UIView, Injectable {
 //            }
 //        }
         
-        removeWebView()
         addWebView()
         
+        eventRepository.impression(adResponse, completion: nil)
+        
+        showPadlockIfNeeded()
+        
+        
+        webView?.loadHTML(html, witBase: adResponse.baseUrl)
+    }
+    
+    private func showPadlockIfNeeded() {
+        guard adResponse?.ad.show_padlock ?? false  else { return }
+        
         let padlock = UIButton(frame: CGRect.zero)
-        padlock.setImage(SAImageUtils.padlockImage(), for: .normal)
+        padlock.setImage(imageProvider.safeAdImage, for: .normal)
         padlock.addTarget(self, action: #selector(padlockAction), for: .touchUpInside)
-        if ad.isPadlockVisible {
-            webplayer.addSubview(padlock)
-        }
         
-        
-        webView?.loadHTML(html, witBase: adResponse?.baseUrl)
+        webView?.addSubview(padlock)
     }
     
     /// Method that is called to close the ad
@@ -106,9 +115,7 @@ public class BannerView: UIView, Injectable {
     }
     
     /// Callback function
-    public func setCallback(_ callback: @escaping AdEventCallback) {
-        delegate = callback
-    }
+    public func setCallback(_ callback: @escaping AdEventCallback) { delegate = callback }
     
     public func enableTestMode() { testEnabled = true }
     
@@ -156,12 +163,13 @@ public class BannerView: UIView, Injectable {
     // MARK: - Private functions
     
     private func onSuccess(_ response: AdResponse) {
+        logger.success("Ad load successful for \(response.placementId)")
         self.adResponse = response
         delegate?(response.placementId, .adLoaded)
     }
     
     private func onFailure(_ error: Error) {
-        
+        logger.error("Ad load failed", error: error)
     }
     
     private func makeAdRequest() -> AdRequest {
@@ -176,8 +184,13 @@ public class BannerView: UIView, Injectable {
     }
     
     private func addWebView() {
+        removeWebView()
+        
         webView = WebView(frame: CGRect.zero, configuration: WebView.defaultConfiguration())
+        
         if let view = webView {
+            view.delegate = self
+            
             view.translatesAutoresizingMaskIntoConstraints = false
             addSubview(view)
             
@@ -194,4 +207,79 @@ public class BannerView: UIView, Injectable {
         webView?.removeFromSuperview()
         webView = nil
     }
+    
+    private func addPadLock() {
+        guard adResponse?.ad.show_padlock ?? false else { return }
+        
+        let padlock = UIButton(frame: CGRect.zero)
+        padlock.setImage(imageProvider.safeAdImage, for: .normal)
+        padlock.addTarget(self, action: #selector(padlockAction), for: .touchUpInside)
+        
+        webView?.addSubview(padlock)
+    }
+    
+    @objc private func padlockAction() {
+        weak var weakSelf = self
+        showParentalGateIfNeeded(withCompletion: {
+            weakSelf?.showSuperAwesomeWebPageInSafari()
+        })
+    }
+    
+    private func showParentalGateIfNeeded(withCompletion completion: @escaping () -> Void) {
+        if parentalGateEnabled {
+            parentalGate?.stop()
+            parentalGate = dependencies.resolve()
+            parentalGate?.delegate = self
+            parentalGate?.show()
+        } else {
+            completion()
+        }
+    }
+    
+    private func showSuperAwesomeWebPageInSafari() {
+        let bumperCallback = {
+            if let url = URL(string: "https://ads.superawesome.tv/v2/safead") {
+                UIApplication.shared.open(
+                    url,
+                    options: [:],
+                    completionHandler: nil)
+            }
+        }
+        
+        if bumperPageEnabled {
+            //SABumperPage.callback = bumperCallback
+            //SABumperPage.play()
+        } else {
+            bumperCallback()
+        }
+    }
+}
+
+extension BannerView: ParentalGateDelegate {
+    func parentalGateOpenned() {
+        guard let adResponse = adResponse else { return }
+        eventRepository.parentalGateOpen(adResponse, completion: nil)
+    }
+    
+    func parentalGateCancelled() {
+        guard let adResponse = adResponse else { return }
+        eventRepository.parentalGateClose(adResponse, completion: nil)
+    }
+    
+    func parentalGateFailed() {
+        guard let adResponse = adResponse else { return }
+        eventRepository.parentalGateFail(adResponse, completion: nil)
+    }
+    
+    func parentalGateSuccess() {
+        guard let adResponse = adResponse else { return }
+        eventRepository.parentalGateSuccess(adResponse, completion: nil)
+    }
+    
+    func parentalGateStopped() {
+    }
+}
+
+extension BannerView: WebViewDelegate {
+    
 }

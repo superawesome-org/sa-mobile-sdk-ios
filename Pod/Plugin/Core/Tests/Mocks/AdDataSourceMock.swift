@@ -27,7 +27,7 @@ class AdDataSourceMock: AdDataSourceType {
         completion(mockEventResult)
     }
     
-    func event(query: EventQuery, completion: @escaping OnResult<Void>) {
+    func event(query: EventQuery, completion: OnResult<Void>?) {
         completion(mockEventResult)
     }
 }

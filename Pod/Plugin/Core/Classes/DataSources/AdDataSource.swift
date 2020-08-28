@@ -7,8 +7,8 @@
 
 protocol AdDataSourceType {
     func getAd(placementId: Int, query: AdQuery, completion: @escaping OnResult<Ad>)
-    func impression(query: EventQuery, completion: @escaping OnResult<Void>)
-    func click(query: EventQuery, completion: @escaping OnResult<Void>)
-    func videoClick(query: EventQuery, completion: @escaping OnResult<Void>)
-    func event(query: EventQuery, completion: @escaping OnResult<Void>)
+    func impression(query: EventQuery, completion: OnResult<Void>?)
+    func click(query: EventQuery, completion: OnResult<Void>?)
+    func videoClick(query: EventQuery, completion: OnResult<Void>?)
+    func event(query: EventQuery, completion: OnResult<Void>?)
 }
