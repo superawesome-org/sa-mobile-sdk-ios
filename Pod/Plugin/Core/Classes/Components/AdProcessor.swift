@@ -54,6 +54,7 @@ class AdProcessor: AdProcessorType {
             } else {
                 complition(response)
             }
+        case .unknown: complition(response)
         }
     }
     

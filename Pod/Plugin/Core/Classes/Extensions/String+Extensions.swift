@@ -32,3 +32,17 @@ extension String {
         return "\(url?.scheme ?? "")://\(url?.host ?? "")"
     }
 }
+
+extension StringProtocol {
+    func indexUpperBound<S: StringProtocol>(of string: S, options: String.CompareOptions = []) -> Index? {
+        range(of: string, options: options)?.upperBound
+    }
+    
+    /// Returns a string which is substring of the given string starting at the end of `from` parameter
+    func suffix(from: String) -> String? {
+        if let index = indexUpperBound(of: from)  {
+            return String(suffix(from: index))
+        }
+        return nil
+    }
+}

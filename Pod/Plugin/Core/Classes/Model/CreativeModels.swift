@@ -26,9 +26,10 @@ struct CreativeDetail: Codable {
     let vast: String?
 }
 
-enum CreativeFormatType: String, Codable {
+enum CreativeFormatType: String, Codable, DecodableDefaultLastItem {
     case video
     case image_with_link
     case tag
     case rich_media
+    case unknown
 }

@@ -30,20 +30,21 @@ PODS:
   - SuperAwesome/Base (7.2.13)
   - SuperAwesome/Core (7.2.13):
     - SuperAwesome/Full
+  - SuperAwesome/Dependencies (7.2.13):
+    - Moya (~> 14.0)
+    - SuperAwesome/Core
+    - SwiftyXMLParser (~> 5.0)
+  - SuperAwesome/Dependencies/Tests (7.2.13):
+    - Mockingjay
+    - Moya (~> 14.0)
+    - Nimble
+    - SuperAwesome/Core
     - SwiftyXMLParser (~> 5.0)
   - SuperAwesome/Full (7.2.13):
     - SuperAwesome/Base
     - SuperAwesome/Moat
   - SuperAwesome/Moat (7.2.13):
     - SuperAwesome/Base
-  - SuperAwesome/Moya (7.2.13):
-    - Moya (~> 14.0)
-    - SuperAwesome/Core
-  - SuperAwesome/Moya/Tests (7.2.13):
-    - Mockingjay
-    - Moya (~> 14.0)
-    - Nimble
-    - SuperAwesome/Core
   - SwiftyXMLParser (5.0.0)
   - URITemplate (2.0.3)
 
@@ -52,8 +53,8 @@ DEPENDENCIES:
   - Nimble
   - OHHTTPStubs
   - SuperAwesome (from `../`)
-  - SuperAwesome/Moya (from `../`)
-  - SuperAwesome/Moya/Tests (from `../`)
+  - SuperAwesome/Dependencies (from `../`)
+  - SuperAwesome/Dependencies/Tests (from `../`)
 
 SPEC REPOS:
   trunk:
@@ -75,10 +76,10 @@ SPEC CHECKSUMS:
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   Nimble: 5f8a2fb6fa343a7242dfdd9d42f7267419d464b2
   OHHTTPStubs: cb29d2a9d09a828ecb93349a2b0c64f99e0db89f
-  SuperAwesome: c646e4bdb6da5f8906336cb796a7d8905ff491e6
+  SuperAwesome: 5b00a95ac0ccb3a45ec20aaaa9907a40dc0d2401
   SwiftyXMLParser: 5ebb8793192f403fa8cc691045143906122a7a75
   URITemplate: ace0c4c46dcf8afe6e89b4060621852886b15c3b
 
-PODFILE CHECKSUM: a983ffcff22b7177d1ac5e292eca2e711fca49b1
+PODFILE CHECKSUM: 69707689193db0baa3e198c596c91369d149a096
 
 COCOAPODS: 1.9.3

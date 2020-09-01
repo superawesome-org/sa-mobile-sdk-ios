@@ -2,14 +2,10 @@
 //  VastParser.swift
 //  SuperAwesome
 //
-//  Created by Gunhan Sancar on 06/07/2020.
+//  Created by Gunhan Sancar on 01/09/2020.
 //
 
 import SwiftyXMLParser
-
-protocol VastParserType {
-    func parse(_ data: Data) -> VastAd
-}
 
 class VastParser: NSObject, VastParserType {
     
@@ -109,3 +105,4 @@ extension XML.Accessor {
         return result
     }
 }
+

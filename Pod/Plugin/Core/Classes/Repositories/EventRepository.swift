@@ -7,8 +7,8 @@
 
 protocol EventRepositoryType {
     func impression(_ adResponse: AdResponse, completion: OnResult<Void>?)
-    func click(request: EventRequest, completion: OnResult<Void>?)
-    func videoClick(request: EventRequest, completion: OnResult<Void>?)
+    func click(_ adResponse: AdResponse, completion: OnResult<Void>?)
+    func videoClick(_ adResponse: AdResponse, completion: OnResult<Void>?)
     func parentalGateOpen(_ adResponse: AdResponse, completion: OnResult<Void>?)
     func parentalGateClose(_ adResponse: AdResponse, completion: OnResult<Void>?)
     func parentalGateSuccess(_ adResponse: AdResponse, completion: OnResult<Void>?)
@@ -26,18 +26,15 @@ class EventRepository : EventRepositoryType {
     }
     
     func impression(_ adResponse: AdResponse, completion: OnResult<Void>?) {
-        dataSource.impression(query: adQueryMaker.makeImpressionQuery(adResponse),
-                              completion: completion)
+        dataSource.impression(query: adQueryMaker.makeImpressionQuery(adResponse), completion: completion)
     }
     
-    func click(request: EventRequest, completion: OnResult<Void>?) {
-        dataSource.click(query: adQueryMaker.makeClickQuery(request),
-                         completion: completion)
+    func click(_ adResponse: AdResponse, completion: OnResult<Void>?) {
+        dataSource.click(query: adQueryMaker.makeClickQuery(adResponse), completion: completion)
     }
     
-    func videoClick(request: EventRequest, completion: OnResult<Void>?) {
-        dataSource.videoClick(query: adQueryMaker.makeVideoClickQuery(request),
-                              completion: completion)
+    func videoClick(_ adResponse: AdResponse, completion: OnResult<Void>?) {
+        dataSource.videoClick(query: adQueryMaker.makeVideoClickQuery(adResponse), completion: completion)
     }
     
     func parentalGateOpen(_ adResponse: AdResponse, completion: OnResult<Void>?) {
@@ -65,8 +62,7 @@ class EventRepository : EventRepositoryType {
                              line_item: adResponse.ad.line_item_id,
                              creative: adResponse.ad.creative.id,
                              type: type)
-        dataSource.event(query: adQueryMaker.makeEventQuery(adResponse, data),
-                         completion: completion)
+        dataSource.event(query: adQueryMaker.makeEventQuery(adResponse, data), completion: completion)
     }
 }
 

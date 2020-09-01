@@ -9,9 +9,9 @@ import WebKit
 
 protocol WebViewDelegate {
     /// Called when the WebView finishes its loading for the first time
-    func onStart()
-    func onError()
-    func onClick(url: String)
+    func webViewOnStart()
+    func webViewOnError()
+    func webViewOnClick(url: URL)
 }
 
 class WebView: WKWebView {
@@ -85,7 +85,7 @@ extension WebView: WKUIDelegate {
             return
         }
         
-        let url = navigationAction.request.url
+        var url = navigationAction.request.url
         let urlString = url?.absoluteString
         
         // protect against about blanks
@@ -103,7 +103,14 @@ extension WebView: WKUIDelegate {
         
         // check to see if the URL has a redirect, and take only the redirect
         if urlString?.contains("&redir=") ?? false {
-            
+            if let redirectString = urlString?.suffix(from: "&redir="),
+                let redirectUrl = URL(string: redirectString) {
+                url = redirectUrl
+            }
+        }
+        
+        if let url = url {
+            delegate?.webViewOnClick(url: url)
         }
         
         decisionHandler(WKNavigationActionPolicy.cancel)
@@ -114,13 +121,13 @@ extension WebView: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         if !finishedLoading {
             finishedLoading = true
-            delegate?.onStart()
+            delegate?.webViewOnStart()
         }
     }
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         if !finishedLoading {
             finishedLoading = true
-            delegate?.onError()
+            delegate?.webViewOnError()
         }
     }
 }

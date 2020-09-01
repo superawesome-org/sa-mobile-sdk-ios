@@ -60,12 +60,9 @@ public class AwesomeAdsSdk: NSObject {
         container.registerSingle(HtmlFormatterType.self) { c in
             HtmlFormatter(numberGenerator: c.resolve(), encoder: c.resolve())
         }
-        container.registerSingle(VastParserType.self) { c in
-            VastParser(connectionProvider: c.resolve())
-        }
         container.registerSingle(ImageProviderType.self) { _ in ImageProvider() }
-        #if MOYA_PLUGIN
-        MoyaPluginRegistrar.register(container)
+        #if DEPENDENCIES_PLUGIN
+        DependenciesRegistrar.register(container)
         #endif
     }
     

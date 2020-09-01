@@ -10,7 +10,7 @@ import UIKit
 /// Class that abstracts away the process of loading & displaying Banner type Ad.
 @objc
 public class BannerView: UIView, Injectable {
-
+    
     private lazy var adRepository: AdRepositoryType = dependencies.resolve()
     private lazy var eventRepository: EventRepositoryType = dependencies.resolve()
     private lazy var imageProvider: ImageProviderType = dependencies.resolve()
@@ -55,16 +55,16 @@ public class BannerView: UIView, Injectable {
         // guard against invalid ad formats
         guard let adResponse = adResponse, let html = adResponse.html,
             adResponse.ad.creative.format != CreativeFormatType.video, !closed else {
-            delegate?(0, .adFailedToShow)
-            return
+                delegate?(0, .adFailedToShow)
+                return
         }
         
-//        resize(self.frame)
-//        registerForOrientationDidChangeNotification { [weak self] _ in
-//            if let view = self {
-//                view.resize(view.frame)
-//            }
-//        }
+        //        resize(self.frame)
+        //        registerForOrientationDidChangeNotification { [weak self] _ in
+        //            if let view = self {
+        //                view.resize(view.frame)
+        //            }
+        //        }
         
         addWebView()
         
@@ -219,9 +219,8 @@ public class BannerView: UIView, Injectable {
     }
     
     @objc private func padlockAction() {
-        weak var weakSelf = self
-        showParentalGateIfNeeded(withCompletion: {
-            weakSelf?.showSuperAwesomeWebPageInSafari()
+        showParentalGateIfNeeded( withCompletion: { [weak self]  in
+            self?.showSuperAwesomeWebPageInSafari()
         })
     }
     
@@ -253,6 +252,19 @@ public class BannerView: UIView, Injectable {
             bumperCallback()
         }
     }
+    
+    /// Method that is called when a user clicks / taps on an ad
+    private func onAdClicked(_ urlString: String) {
+        
+    }
+    
+    private func navigateToUrl(_ url: URL) {
+        guard let adResponse = adResponse else { return }
+        delegate?(adResponse.placementId, .adClicked)
+        eventRepository.click(adResponse, completion: nil)
+        
+        UIApplication.shared.open( url, options: [:], completionHandler: nil)
+    }
 }
 
 extension BannerView: ParentalGateDelegate {
@@ -281,5 +293,17 @@ extension BannerView: ParentalGateDelegate {
 }
 
 extension BannerView: WebViewDelegate {
+    func webViewOnStart() {
+        
+    }
     
+    func webViewOnError() {
+        
+    }
+    
+    func webViewOnClick(url: URL) {
+        showParentalGateIfNeeded { [weak self] in
+            self?.onAdClicked(url.absoluteString)
+        }
+    }
 }

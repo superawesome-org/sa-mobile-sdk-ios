@@ -7,8 +7,11 @@
 
 import Moya
 
-class MoyaPluginRegistrar {
+class DependenciesRegistrar {
     static func register(_ container: DependencyContainer) {
+        container.registerSingle(VastParserType.self) { c in
+            VastParser(connectionProvider: c.resolve())
+        }
         container.registerFactory(MoyaHeaderPlugin.self) { c in
             MoyaHeaderPlugin(userAgentProvider: c.resolve() as UserAgentProviderType)
         }
