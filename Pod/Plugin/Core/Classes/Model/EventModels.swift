@@ -18,14 +18,6 @@ struct EventQuery: Codable {
     let data: String?
 }
 
-struct EventRequest: Codable {
-    let placementId: Int
-    let creativeId: Int
-    let lineItemId: Int
-    let type: EventType
-    let data: EventData?
-}
-
 struct EventData: Codable {
     let placement: Int
     let line_item: Int

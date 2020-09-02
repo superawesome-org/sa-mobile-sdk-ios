@@ -55,7 +55,8 @@ class AwesomeAdsViewController: UIViewController {
             }
         }
         
-        AwesomeAdsSdk.shared.initSdk(configuration: AwesomeAdsSdk.Configuration(environment: .production)) {
+        let configuration = AwesomeAdsSdk.Configuration(environment: .production, logging: true)
+        AwesomeAdsSdk.shared.initSdk(configuration: configuration) {
             print("AwesomeAds SDK init complete")
             self.bannerView.load(self.bannerId)
         }
@@ -64,6 +65,8 @@ class AwesomeAdsViewController: UIViewController {
     private func initUI() {
         // banner view
         bannerView = BannerView()
+        bannerView.enableParentalGate()
+        
         bannerView.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
         bannerView.translatesAutoresizingMaskIntoConstraints = false
         

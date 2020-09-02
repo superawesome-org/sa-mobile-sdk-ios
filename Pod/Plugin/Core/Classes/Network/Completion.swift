@@ -10,3 +10,6 @@ typealias OnResult<T> = (_ result: Result<T, Error>) -> Void
 
 /// Callback function for completable events
 typealias OnComplete<T> = (_ result: T) -> Void
+
+/// Callback function for callable events
+typealias VoidBlock = () -> Void

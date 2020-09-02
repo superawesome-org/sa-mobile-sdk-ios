@@ -5,36 +5,46 @@
 //  Created by Gunhan Sancar on 06/04/2020.
 //
 
-typealias Factory = (DependencyContainer) -> Any
+/// Factory is a function to create instances with given `DependencyContainer` and if needed with a `param`
+typealias Factory<T> = (DependencyContainer, Any?) -> T
 
+/// Scope of a dependency
 enum DependencyScope {
+    /// Single scope defines the dependency is created only once in the container
     case single
+    /// Factory scope defines the dependency is created every time it is resolved for
     case factory
 }
 
-struct Dependency {
+/// A dependency has a name, scope and a factory builder to create the instances when needed
+struct Dependency<T> {
     let name: String
-    let factory: Factory
+    let factory: Factory<T>
     let scope: DependencyScope
 }
 
+/// Injectable protocol helps to inject a dependency container to any class
 protocol Injectable {
     var dependencies: DependencyContainer { get }
 }
 
+/// Dependency container is used to store all of the dependencies with given factories.
 class DependencyContainer {
-    private var dependencies: [String: Dependency] = [:]
+    private var dependencies: [String: Dependency<Any>] = [:]
     private var singleInstances: [String: Any] = [:]
     
-    func registerSingle<T>(name: String? = nil, _ type: T.Type, _ factory: @escaping Factory) {
+    /// Registers a single scoped dependency
+    func registerSingle<T>(name: String? = nil, _ type: T.Type, _ factory: @escaping Factory<T>) {
         register(name: name, type: type, scope: .single, factory)
     }
     
-    func registerFactory<T>(name: String? = nil, _ type: T.Type, _ factory: @escaping Factory) {
+    /// Registers a factory scoped dependency
+    func registerFactory<T>(name: String? = nil, _ type: T.Type, _ factory: @escaping Factory<T>) {
         register(name: name, type: type, scope: .factory, factory)
     }
     
-    func register<T>(name: String? = nil, type: T.Type, scope: DependencyScope, _ factory: @escaping Factory) {
+    /// Registers a dependency
+    func register<T>(name: String? = nil, type: T.Type, scope: DependencyScope, _ factory: @escaping Factory<T>) {
         let name = name ?? String(describing: type)
         
         guard dependencies[name] == nil else {
@@ -44,7 +54,9 @@ class DependencyContainer {
         dependencies[name] = Dependency(name: name, factory: factory, scope: .factory)
     }
     
-    func resolve<T>(for name: String? = nil) -> T {
+    /// Resolves a dependency from the container using the return type of `T` or using the `name` of the dependency
+    /// By default the type of the dependency used as a name
+    func resolve<T>(_ name: String? = nil, param: Any? = nil) -> T {
         let name = name ?? String(describing: T.self)
         
         guard let dependency: Dependency = dependencies[name] else {
@@ -54,14 +66,14 @@ class DependencyContainer {
         switch dependency.scope {
         case .single:
             if singleInstances[name] == nil {
-                singleInstances[name] = dependency.factory(self)
+                singleInstances[name] = dependency.factory(self, param)
             }
             guard let instance = singleInstances[name] as? T else {
                 fatalError("Dependency '\(T.self)' has not found")
             }
             return instance
         case .factory:
-            guard let instance = dependency.factory(self) as? T else {
+            guard let instance = dependency.factory(self, param) as? T else {
                 fatalError("Dependency '\(T.self)' has not found")
             }
             return instance

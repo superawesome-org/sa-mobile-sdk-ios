@@ -14,7 +14,7 @@ public class BannerView: UIView, Injectable {
     private lazy var adRepository: AdRepositoryType = dependencies.resolve()
     private lazy var eventRepository: EventRepositoryType = dependencies.resolve()
     private lazy var imageProvider: ImageProviderType = dependencies.resolve()
-    private lazy var logger: LoggerType = dependencies.resolve()
+    private lazy var logger: LoggerType = dependencies.resolve(param: BannerView.self)
     
     private var adResponse: AdResponse?
     private var testEnabled = false
@@ -26,6 +26,7 @@ public class BannerView: UIView, Injectable {
     private var visibilityDelegate: SABannerAdVisibilityDelegate?
     private var webView: WebView?
     private var parentalGate: ParentalGate?
+    private var parentalGateBlock: VoidBlock?
     
     // MARK: - Public functions
     
@@ -37,7 +38,7 @@ public class BannerView: UIView, Injectable {
      * @param placementId   the Ad placement id to load data for
      */
     public func load(_ placementId: Int) {
-        print("Banner.load: \(placementId)")
+        logger.info("Banner.load: \(placementId)")
         
         adRepository.getAd(placementId: placementId,
                            request: makeAdRequest()) { [weak self] result in
@@ -59,19 +60,11 @@ public class BannerView: UIView, Injectable {
                 return
         }
         
-        //        resize(self.frame)
-        //        registerForOrientationDidChangeNotification { [weak self] _ in
-        //            if let view = self {
-        //                view.resize(view.frame)
-        //            }
-        //        }
-        
         addWebView()
         
         eventRepository.impression(adResponse, completion: nil)
         
         showPadlockIfNeeded()
-        
         
         webView?.loadHTML(html, witBase: adResponse.baseUrl)
     }
@@ -224,12 +217,13 @@ public class BannerView: UIView, Injectable {
         })
     }
     
-    private func showParentalGateIfNeeded(withCompletion completion: @escaping () -> Void) {
+    private func showParentalGateIfNeeded(withCompletion completion: @escaping VoidBlock) {
         if parentalGateEnabled {
             parentalGate?.stop()
-            parentalGate = dependencies.resolve()
+            parentalGate = dependencies.resolve() as ParentalGate
             parentalGate?.delegate = self
             parentalGate?.show()
+            parentalGateBlock = completion
         } else {
             completion()
         }
@@ -238,10 +232,7 @@ public class BannerView: UIView, Injectable {
     private func showSuperAwesomeWebPageInSafari() {
         let bumperCallback = {
             if let url = URL(string: "https://ads.superawesome.tv/v2/safead") {
-                UIApplication.shared.open(
-                    url,
-                    options: [:],
-                    completionHandler: nil)
+                UIApplication.shared.open( url, options: [:], completionHandler: nil)
             }
         }
         
@@ -268,6 +259,12 @@ public class BannerView: UIView, Injectable {
 }
 
 extension BannerView: ParentalGateDelegate {
+    func parentalGateSuccess() {
+        parentalGateBlock?()
+        guard let adResponse = adResponse else { return }
+        eventRepository.parentalGateSuccess(adResponse, completion: nil)
+    }
+    
     func parentalGateOpenned() {
         guard let adResponse = adResponse else { return }
         eventRepository.parentalGateOpen(adResponse, completion: nil)
@@ -282,14 +279,6 @@ extension BannerView: ParentalGateDelegate {
         guard let adResponse = adResponse else { return }
         eventRepository.parentalGateFail(adResponse, completion: nil)
     }
-    
-    func parentalGateSuccess() {
-        guard let adResponse = adResponse else { return }
-        eventRepository.parentalGateSuccess(adResponse, completion: nil)
-    }
-    
-    func parentalGateStopped() {
-    }
 }
 
 extension BannerView: WebViewDelegate {
@@ -302,6 +291,7 @@ extension BannerView: WebViewDelegate {
     }
     
     func webViewOnClick(url: URL) {
+        logger.info("BannerView.webViewOnClick")
         showParentalGateIfNeeded { [weak self] in
             self?.onAdClicked(url.absoluteString)
         }

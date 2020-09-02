@@ -12,23 +12,45 @@ protocol LoggerType {
     func info(_ message: String, depth: Int)
     func success(_ message: String)
     func error(_ message: String, error: Error)
+    func tag(_ tag: String) ->  LoggerType
 }
 
 public class OsLogger: LoggerType {
+    private var tag: String = ""
+    private let loggingEnabled: Bool
+    
+    init(_ loggingEnabled: Bool, _ tag: String?) {
+        self.loggingEnabled = loggingEnabled
+        self.tag = tag ?? self.tag
+    }
+    
+    func tag(_ tag: String) ->  LoggerType {
+        self.tag = tag
+        return self
+    }
+    
     func info(_ message: String) {
+        guard loggingEnabled else { return }
+        
         info(message, depth: 0)
     }
     
     func info(_ message: String, depth: Int) {
+        guard loggingEnabled else { return }
+        
         let depthString = String(repeating: "→ ", count: depth)
-        os_log("%@", log: OSLog.default, type: OSLogType.info, "⬜️ \(depthString)\(message)")
+        os_log("%@", log: OSLog.default, type: OSLogType.info, "⬜️ \(depthString)[\(tag)] \(message)")
     }
     
     public func success(_ message: String) {
-        os_log("%@", log: OSLog.default, type: OSLogType.info, "🟩 \(message)")
+        guard loggingEnabled else { return }
+        
+        os_log("%@", log: OSLog.default, type: OSLogType.info, "🟩 [\(tag)] \(message)")
     }
     
     func error(_ message: String, error: Error) {
-        os_log("%@", log: OSLog.default, type: OSLogType.error, "🟥 \(message) \n \(error.localizedDescription)")
+        guard loggingEnabled else { return }
+        
+        os_log("%@", log: OSLog.default, type: OSLogType.error, "🟥 [\(tag)] \(message) \n \(error.localizedDescription)")
     }
 }

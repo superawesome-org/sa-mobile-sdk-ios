@@ -21,7 +21,7 @@ class WebView: WKWebView {
     
     override init(frame: CGRect, configuration: WKWebViewConfiguration) {
         super.init(frame: frame, configuration: configuration)
-        configureScrollView()
+        configure()
     }
     
     func loadHTML(_ html: String?, witBase base: String?) {
@@ -39,10 +39,12 @@ class WebView: WKWebView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureScrollView() {
+    func configure() {
         scrollView.delegate = self
         scrollView.isScrollEnabled = true
         scrollView.bounces = false
+        self.uiDelegate = self
+        self.navigationDelegate = self
     }
     
     /**
