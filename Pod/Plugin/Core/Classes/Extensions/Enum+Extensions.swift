@@ -5,7 +5,7 @@
 //  Created by Gunhan Sancar on 28/08/2020.
 //
 
-/// This protocol allows the decoded enum to be set to the last enum value instead of throwing an error
+/// This protocol allows the decoded enum to be set to the last enum value if there is no match instead of throwing an error
 protocol DecodableDefaultLastItem: Decodable & CaseIterable & RawRepresentable
 where RawValue: Decodable, AllCases: BidirectionalCollection { }
 

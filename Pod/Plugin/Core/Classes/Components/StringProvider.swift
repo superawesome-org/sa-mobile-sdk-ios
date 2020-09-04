@@ -13,6 +13,9 @@ protocol StringProviderType {
     var errorTitle: String { get }
     var errorMessage: String { get }
     var okTitle: String { get }
+    
+    func bumperPageInfo(counter: Int) -> String
+    func bumperPageLeaving(appName: String?) -> String
 }
 
 class StringProvider: StringProviderType {
@@ -25,4 +28,10 @@ class StringProvider: StringProviderType {
     var errorTitle = "Oops! That was the wrong answer."
     var errorMessage = "Please seek guidance from a responsible adult to help you continue."
     var okTitle = "Ok"
+    func bumperPageInfo(counter: Int) -> String {
+        "A new site will open in \(counter) seconds. Remember to stay safe online and don’t share your username or password with anyone!"
+    }
+    func bumperPageLeaving(appName: String?) -> String {
+        "Bye! You’re now leaving \(appName ?? "this app")."
+    }
 }

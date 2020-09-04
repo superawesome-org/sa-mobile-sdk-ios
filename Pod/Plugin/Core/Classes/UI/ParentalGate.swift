@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol ParentalGateDelegate {
+protocol ParentalGateDelegate: class {
     func parentalGateOpenned()
     func parentalGateCancelled()
     func parentalGateFailed()
@@ -15,7 +15,7 @@ protocol ParentalGateDelegate {
 }
 
 class ParentalGate {
-    public var delegate: ParentalGateDelegate?
+    public weak var delegate: ParentalGateDelegate?
     
     private var topWindow: UIWindow?
     private var challangeAlertController: UIAlertController?
@@ -64,8 +64,7 @@ class ParentalGate {
             controller.addTextField(configurationHandler: { textField in
                 textField.keyboardType = .numberPad
             })
-            
-            displayAlertInWindow(controller)
+            topWindow = controller.presentInNewWindow()
         }
         
         delegate?.parentalGateOpenned()
@@ -90,16 +89,8 @@ class ParentalGate {
         
         if let controller = errorAlertController {
             controller.addAction(okAction)
-            displayAlertInWindow(controller)
+            topWindow = controller.presentInNewWindow()
         }
-    }
-    
-    private func displayAlertInWindow(_ controller: UIAlertController) {
-        topWindow = UIWindow(frame: UIScreen.main.bounds)
-        topWindow?.rootViewController = UIViewController()
-        topWindow?.windowLevel = UIWindow.Level(UIWindow.Level.alert.rawValue + 1)
-        topWindow?.makeKeyAndVisible()
-        topWindow?.rootViewController?.present(controller, animated: true)
     }
     
     private func onContinue() {

@@ -7,7 +7,7 @@
 
 import Moya
 
-class MoyaAdDataSource: AdDataSourceType {
+class MoyaAdDataSource: AwsomeAdsDataSourceType {
     private let provider: MoyaProvider<AwesomeAdsTarget>
     private let environment: Environment
     

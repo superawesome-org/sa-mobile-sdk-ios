@@ -55,6 +55,8 @@ class AwesomeAdsViewController: UIViewController {
             }
         }
         
+        BumperPage.overrideName("Demo App")
+        
         let configuration = AwesomeAdsSdk.Configuration(environment: .production, logging: true)
         AwesomeAdsSdk.shared.initSdk(configuration: configuration) {
             print("AwesomeAds SDK init complete")
@@ -65,7 +67,8 @@ class AwesomeAdsViewController: UIViewController {
     private func initUI() {
         // banner view
         bannerView = BannerView()
-        bannerView.enableParentalGate()
+        bannerView.enableBumperPage()
+        //bannerView.enableParentalGate()
         
         bannerView.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
         bannerView.translatesAutoresizingMaskIntoConstraints = false

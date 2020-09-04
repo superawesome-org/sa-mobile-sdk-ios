@@ -11,6 +11,7 @@ import UIKit
 @objc
 public class BannerView: UIView, Injectable {
     
+    // Dependencies
     private lazy var adRepository: AdRepositoryType = dependencies.resolve()
     private lazy var eventRepository: EventRepositoryType = dependencies.resolve()
     private lazy var imageProvider: ImageProviderType = dependencies.resolve()
@@ -27,6 +28,7 @@ public class BannerView: UIView, Injectable {
     private var webView: WebView?
     private var parentalGate: ParentalGate?
     private var parentalGateBlock: VoidBlock?
+    private var placementId: Int { adResponse?.placementId ?? 0 }
     
     // MARK: - Public functions
     
@@ -38,7 +40,7 @@ public class BannerView: UIView, Injectable {
      * @param placementId   the Ad placement id to load data for
      */
     public func load(_ placementId: Int) {
-        logger.info("Banner.load: \(placementId)")
+        logger.info("load() for: \(placementId)")
         
         adRepository.getAd(placementId: placementId,
                            request: makeAdRequest()) { [weak self] result in
@@ -52,11 +54,11 @@ public class BannerView: UIView, Injectable {
     
     /// Method that, if an ad data is loaded, will play the content for the user
     public func play() {
-        logger.info("BannerView.play()")
+        logger.info("play()")
         // guard against invalid ad formats
         guard let adResponse = adResponse, let html = adResponse.html,
             adResponse.ad.creative.format != CreativeFormatType.video, !closed else {
-                delegate?(0, .adFailedToShow)
+                delegate?(placementId, .adFailedToShow)
                 return
         }
         
@@ -82,7 +84,7 @@ public class BannerView: UIView, Injectable {
     /// Method that is called to close the ad
     public func close() {
         visibilityDelegate = nil
-        delegate?(adResponse?.placementId ?? 0, .adClosed)
+        delegate?(placementId, .adClosed)
         adResponse = nil
         removeWebView()
         closed = true
@@ -158,7 +160,7 @@ public class BannerView: UIView, Injectable {
     private func onSuccess(_ response: AdResponse) {
         logger.success("Ad load successful for \(response.placementId)")
         self.adResponse = response
-        delegate?(response.placementId, .adLoaded)
+        delegate?(placementId, .adLoaded)
     }
     
     private func onFailure(_ error: Error) {
@@ -230,28 +232,35 @@ public class BannerView: UIView, Injectable {
     }
     
     private func showSuperAwesomeWebPageInSafari() {
-        let bumperCallback = {
+        let onComplete = {
             if let url = URL(string: "https://ads.superawesome.tv/v2/safead") {
                 UIApplication.shared.open( url, options: [:], completionHandler: nil)
             }
         }
         
         if bumperPageEnabled {
-            //SABumperPage.callback = bumperCallback
-            //SABumperPage.play()
+            BumperPage().play(onComplete)
         } else {
-            bumperCallback()
+            onComplete()
         }
     }
     
     /// Method that is called when a user clicks / taps on an ad
-    private func onAdClicked(_ urlString: String) {
+    private func onAdClicked(_ url: URL) {
+        logger.success("onAdClicked: for url: \(url.absoluteString)")
         
+        if bumperPageEnabled || adResponse?.ad.creative.bumper ?? false {
+            BumperPage().play { [weak self] in
+                self?.navigateToUrl(url)
+            }
+        } else {
+            navigateToUrl(url)
+        }
     }
     
     private func navigateToUrl(_ url: URL) {
         guard let adResponse = adResponse else { return }
-        delegate?(adResponse.placementId, .adClicked)
+        delegate?(placementId, .adClicked)
         eventRepository.click(adResponse, completion: nil)
         
         UIApplication.shared.open( url, options: [:], completionHandler: nil)
@@ -283,17 +292,21 @@ extension BannerView: ParentalGateDelegate {
 
 extension BannerView: WebViewDelegate {
     func webViewOnStart() {
-        
+        delegate?(placementId, .adShown)
+        // TODO: Implement viewable status
     }
     
     func webViewOnError() {
-        
+        delegate?(placementId, .adFailedToShow)
     }
     
     func webViewOnClick(url: URL) {
         logger.info("BannerView.webViewOnClick")
+//        BumperPage().play {
+//
+//        }
         showParentalGateIfNeeded { [weak self] in
-            self?.onAdClicked(url.absoluteString)
+            self?.onAdClicked(url)
         }
     }
 }

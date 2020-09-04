@@ -11,6 +11,7 @@ struct Creative: Codable {
     let format: CreativeFormatType
     let click_url: String?
     let details: CreativeDetail
+    let bumper: Bool
 }
 
 struct CreativeDetail: Codable {
