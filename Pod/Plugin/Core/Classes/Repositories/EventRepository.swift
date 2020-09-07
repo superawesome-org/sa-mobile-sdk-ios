@@ -17,10 +17,10 @@ protocol EventRepositoryType {
 }
 
 class EventRepository : EventRepositoryType {
-    private let dataSource: AwsomeAdsDataSourceType
+    private let dataSource: AwsomeAdsApiDataSourceType
     private let adQueryMaker: AdQueryMakerType
     
-    init(dataSource: AwsomeAdsDataSourceType, adQueryMaker: AdQueryMakerType) {
+    init(dataSource: AwsomeAdsApiDataSourceType, adQueryMaker: AdQueryMakerType) {
         self.dataSource = dataSource
         self.adQueryMaker = adQueryMaker
     }

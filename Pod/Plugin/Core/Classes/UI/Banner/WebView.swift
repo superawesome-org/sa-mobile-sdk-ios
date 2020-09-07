@@ -24,7 +24,7 @@ class WebView: WKWebView {
         configure()
     }
     
-    func loadHTML(_ html: String?, witBase base: String?) {
+    func loadHTML(_ html: String?, withBase base: String?, sourceSize: CGSize) {
         print("WebView.loadHTML called")
         // embed html code inside a full html wrapper
         let baseHtml = "<html><head><meta name=\"viewport\" content=\"width=device-width initial-scale=1\" /><style>html, body, div { margin: 0px; padding: 0px; } html, body { width:100%; height:100%; } </style></head><body>\(html ?? "")</body></html>"
@@ -45,6 +45,7 @@ class WebView: WKWebView {
         scrollView.bounces = false
         self.uiDelegate = self
         self.navigationDelegate = self
+        backgroundColor = .clear
     }
     
     /**

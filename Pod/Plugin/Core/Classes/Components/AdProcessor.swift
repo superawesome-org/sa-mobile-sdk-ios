@@ -19,13 +19,16 @@ class AdProcessor: AdProcessorType {
     private let htmlFormatter: HtmlFormatterType
     private let vastParser: VastParserType
     private let networkDataSource: NetworkDataSourceType
+    private let logger: LoggerType
     
     init(htmlFormatter: HtmlFormatterType,
          vastParser: VastParserType,
-         networkDataSource: NetworkDataSourceType) {
+         networkDataSource: NetworkDataSourceType,
+         logger: LoggerType) {
         self.htmlFormatter = htmlFormatter
         self.vastParser = vastParser
         self.networkDataSource = networkDataSource
+        self.logger = logger
     }
     
     func process(_ placementId: Int, _ ad: Ad, complition: @escaping OnComplete<AdResponse>) {
@@ -49,7 +52,16 @@ class AdProcessor: AdProcessorType {
                 handleVast(url, initialVast: nil) { vast in
                     response.vast = vast
                     response.baseUrl = ad.creative.details.video.baseUrl
-                    complition(response)
+                    
+                    self.networkDataSource.downloadFile(url: vast?.url ?? "",
+                                                        completion: { result in
+                                                            switch result {
+                                                            case .success(let localFilePath):
+                                                                response.filePath = localFilePath
+                                                                complition(response)
+                                                            case .failure: complition(response)
+                                                            }
+                    })
                 }
             } else {
                 complition(response)

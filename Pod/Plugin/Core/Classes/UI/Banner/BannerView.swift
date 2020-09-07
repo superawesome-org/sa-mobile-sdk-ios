@@ -30,6 +30,24 @@ public class BannerView: UIView, Injectable {
     private var parentalGateBlock: VoidBlock?
     private var placementId: Int { adResponse?.placementId ?? 0 }
     
+    private var padlock: UIButton?
+    
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        initialize()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        initialize()
+    }
+    // MARK: - Internal functions
+    
+    func configure(adResponse: AdResponse, delegate: AdEventCallback?) {
+        self.adResponse = adResponse
+        self.delegate = delegate
+    }
+    
     // MARK: - Public functions
     
     /**
@@ -68,17 +86,26 @@ public class BannerView: UIView, Injectable {
         
         showPadlockIfNeeded()
         
-        webView?.loadHTML(html, witBase: adResponse.baseUrl)
+        webView?.loadHTML(html, withBase: adResponse.baseUrl,
+                          sourceSize: CGSize(width: adResponse.ad.creative.details.width,
+                                             height: adResponse.ad.creative.details.height))
     }
     
     private func showPadlockIfNeeded() {
-        guard adResponse?.ad.show_padlock ?? false  else { return }
+        guard adResponse?.ad.show_padlock ?? false, let webView = webView  else { return }
         
         let padlock = UIButton(frame: CGRect.zero)
         padlock.setImage(imageProvider.safeAdImage, for: .normal)
         padlock.addTarget(self, action: #selector(padlockAction), for: .touchUpInside)
         
-        webView?.addSubview(padlock)
+        webView.addSubview(padlock)
+        
+        NSLayoutConstraint.activate([
+            padlock.leadingAnchor.constraint(equalTo: webView.leadingAnchor, constant: 12.0),
+            padlock.topAnchor.constraint(equalTo: webView.topAnchor, constant: 12.0)
+        ])
+        
+        self.padlock = padlock
     }
     
     /// Method that is called to close the ad
@@ -157,6 +184,10 @@ public class BannerView: UIView, Injectable {
     
     // MARK: - Private functions
     
+    private func initialize() {
+        setColor(false)
+    }
+    
     private func onSuccess(_ response: AdResponse) {
         logger.success("Ad load successful for \(response.placementId)")
         self.adResponse = response
@@ -165,6 +196,7 @@ public class BannerView: UIView, Injectable {
     
     private func onFailure(_ error: Error) {
         logger.error("Ad load failed", error: error)
+        delegate?(placementId, .adFailedToLoad)
     }
     
     private func makeAdRequest() -> AdRequest {
@@ -185,20 +217,28 @@ public class BannerView: UIView, Injectable {
         
         if let view = webView {
             view.delegate = self
-            
             view.translatesAutoresizingMaskIntoConstraints = false
-            addSubview(view)
             
+            addSubview(view)
+            logger.info("aspectRatio(): \(adResponse?.aspectRatio() ?? -1)")
             NSLayoutConstraint.activate([
-                view.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
-                view.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
-                view.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0),
-                view.heightAnchor.constraint(equalTo: self.heightAnchor, constant: 0)
+                view.widthAnchor.constraint(equalTo: view.heightAnchor, multiplier: adResponse?.aspectRatio() ?? 1.0, constant: 0),
+                
+                view.widthAnchor.constraint(lessThanOrEqualTo: self.widthAnchor, multiplier: 1.0, constant: 0),
+                view.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1.0, constant: 0).withPriority(250),
+                
+                view.heightAnchor.constraint(lessThanOrEqualTo: self.heightAnchor, multiplier: 1.0, constant: 0),
+                view.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1.0, constant: 0).withPriority(250),
+                
+                view.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0),
+                view.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0),
             ])
         }
     }
     
     private func removeWebView() {
+        padlock?.removeFromSuperview()
+        padlock = nil
         webView?.removeFromSuperview()
         webView = nil
     }
@@ -292,19 +332,21 @@ extension BannerView: ParentalGateDelegate {
 
 extension BannerView: WebViewDelegate {
     func webViewOnStart() {
+        logger.info("webViewOnStart")
         delegate?(placementId, .adShown)
         // TODO: Implement viewable status
     }
     
     func webViewOnError() {
+        logger.info("webViewOnError")
         delegate?(placementId, .adFailedToShow)
     }
     
     func webViewOnClick(url: URL) {
-        logger.info("BannerView.webViewOnClick")
-//        BumperPage().play {
-//
-//        }
+        logger.info("webViewOnClick")
+        //        BumperPage().play {
+        //
+        //        }
         showParentalGateIfNeeded { [weak self] in
             self?.onAdClicked(url)
         }

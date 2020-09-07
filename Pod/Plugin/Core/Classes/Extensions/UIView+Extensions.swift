@@ -22,4 +22,20 @@ extension UIView {
             name: NSNotification.Name("UIDeviceOrientationDidChangeNotification"),
             object: nil)
     }
+    
+    var safeTopAnchor: NSLayoutYAxisAnchor {
+        if #available(iOS 11.0, *) {
+            return safeAreaLayoutGuide.topAnchor
+        } else {
+            return topAnchor
+        }
+    }
+    
+    var safeTrailingAnchor: NSLayoutXAxisAnchor {
+        if #available(iOS 11.0, *) {
+            return safeAreaLayoutGuide.trailingAnchor
+        } else {
+            return trailingAnchor
+        }
+    }
 }

@@ -39,10 +39,9 @@ class AFNetworkDataSource: NetworkDataSourceType {
     }
     
     func clearFiles() {
-        let fileManager = FileManager.default
-        let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
-        
         do {
+            let fileManager = FileManager.default
+            let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
             try fileManager.removeItem(at: documentsURL)
         } catch {
             return

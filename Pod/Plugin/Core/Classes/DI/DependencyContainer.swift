@@ -25,7 +25,11 @@ struct Dependency<T> {
 
 /// Injectable protocol helps to inject a dependency container to any class
 protocol Injectable {
+    //// Injecting into instances
     var dependencies: DependencyContainer { get }
+    
+    /// Injecting into static classes
+    static var dependencies: DependencyContainer { get }
 }
 
 /// Dependency container is used to store all of the dependencies with given factories.
@@ -56,6 +60,7 @@ class DependencyContainer {
     
     /// Resolves a dependency from the container using the return type of `T` or using the `name` of the dependency
     /// By default the type of the dependency used as a name
+    /// param - is the optional parameter to send to the construction of the resolved type
     func resolve<T>(_ name: String? = nil, param: Any? = nil) -> T {
         let name = name ?? String(describing: T.self)
         

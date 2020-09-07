@@ -10,11 +10,11 @@ protocol AdRepositoryType {
 }
 
 class AdRepository : AdRepositoryType {
-    private let dataSource: AwsomeAdsDataSourceType
+    private let dataSource: AwsomeAdsApiDataSourceType
     private let adQueryMaker: AdQueryMakerType
     private let adProcessor: AdProcessorType
     
-    init(dataSource: AwsomeAdsDataSourceType,
+    init(dataSource: AwsomeAdsApiDataSourceType,
          adQueryMaker: AdQueryMakerType,
          adProcessor: AdProcessorType) {
         self.dataSource = dataSource

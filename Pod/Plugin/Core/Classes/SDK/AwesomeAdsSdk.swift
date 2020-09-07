@@ -16,6 +16,7 @@ public class AwesomeAdsSdk: NSObject {
     
     private func registerDependencies(_ configuration: Configuration) {
         self.container = DependencyContainer()
+        container.registerSingle(Bundle.self) { _,_  in Bundle.main }
         container.registerSingle(StringProviderType.self) { _,_  in StringProvider() }
         container.registerFactory(ParentalGate.self) { c, _ in
             ParentalGate(numberGenerator: c.resolve(), stringProvider: c.resolve()) }
@@ -33,7 +34,7 @@ public class AwesomeAdsSdk: NSObject {
         }
         container.registerSingle(NumberGeneratorType.self) { _, _ in NumberGenerator() }
         container.registerSingle(SdkInfoType.self) { c, _ in
-            SdkInfo(mainBundle: Bundle.main,
+            SdkInfo(mainBundle: c.resolve(),
                     sdkBundle: Bundle(for: DependencyContainer.self),
                     locale: Locale.current,
                     encoder: c.resolve())
@@ -59,12 +60,14 @@ public class AwesomeAdsSdk: NSObject {
                          encoder: c.resolve())
         }
         container.registerSingle(AdProcessorType.self) { c, _ in
-            AdProcessor(htmlFormatter: c.resolve(), vastParser: c.resolve(), networkDataSource: c.resolve())
+            AdProcessor(htmlFormatter: c.resolve(), vastParser: c.resolve(), networkDataSource: c.resolve(),
+                        logger: c.resolve(param: AdProcessor.self))
         }
         container.registerSingle(HtmlFormatterType.self) { c, _ in
             HtmlFormatter(numberGenerator: c.resolve(), encoder: c.resolve())
         }
         container.registerSingle(ImageProviderType.self) { _, _ in ImageProvider() }
+        container.registerSingle(OrientationProviderType.self) { c, _ in OrientationProvider(c.resolve()) }
         #if DEPENDENCIES_PLUGIN
         DependenciesRegistrar.register(container)
         #endif
@@ -89,7 +92,6 @@ public class AwesomeAdsSdk: NSObject {
 }
 
 extension Injectable {
-    var dependencies: DependencyContainer {
-        return AwesomeAdsSdk.shared.container
-    }
+    var dependencies: DependencyContainer { AwesomeAdsSdk.shared.container }
+    static var dependencies: DependencyContainer { AwesomeAdsSdk.shared.container }
 }

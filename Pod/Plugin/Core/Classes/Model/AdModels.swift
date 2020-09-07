@@ -58,10 +58,18 @@ class AdResponse {
     var html: String?
     var vast: VastAd?
     var baseUrl: String?
+    var filePath: String?
     
     init(_ placementId: Int, _ ad: Ad) {
         self.placementId = placementId
         self.ad = ad
+    }
+    
+    /// Returns the aspect ratio of the ad's creative
+    func aspectRatio() -> CGFloat {
+        let width = ad.creative.details.width
+        let height = ad.creative.details.height
+        return CGFloat(width) / CGFloat(height)
     }
 }
 

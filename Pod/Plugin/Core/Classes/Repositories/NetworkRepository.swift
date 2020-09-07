@@ -6,11 +6,23 @@
 //
 
 protocol NetworkRepositoryType {
+        func getData(url: String, completion: @escaping OnResult<Data>)
     
+    func downloadFile(url: String, completion: @escaping OnResult<String>)
 }
 
 class NetworkRepository: NetworkRepositoryType {
-    func get<T>(_ url: String, completion: OnResult<T>) {
+    private let dataSource: NetworkDataSourceType
+    
+    init(dataSource: NetworkDataSourceType) {
+        self.dataSource = dataSource
+    }
+    
+    func getData(url: String, completion: @escaping OnResult<Data>) {
+        
+    }
+    
+    func downloadFile(url: String, completion: @escaping OnResult<String>) {
         
     }
 }
