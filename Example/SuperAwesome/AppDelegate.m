@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "AwesomeAds.h"
 
 @interface AppDelegate ()
 @end
@@ -15,7 +14,6 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [AwesomeAds initSDK:true];
     return YES;
 }
 

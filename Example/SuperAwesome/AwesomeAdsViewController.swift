@@ -4,7 +4,7 @@
 //
 //  Created by Gunhan Sancar on 21/08/2020.
 //
-
+#if DEPENDENCIES_PLUGIN
 import UIKit
 import SuperAwesome
 
@@ -22,20 +22,14 @@ struct Row {
 class AwesomeAdsViewController: UIViewController {
     private var bannerView: BannerView!
     
-    private let bannerId = 44258
-    private let interstitialId = 44259
-    private let videoId = 44259
-    
     private let rows = [
         Row(type: .banner, placementId: 44258),
         Row(type: .interstitial, placementId: 44259),
-        Row(type: .video, placementId: 44258)
+        Row(type: .video, placementId: 44261)
     ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        initUI()
         
         BumperPage.overrideName("Demo App")
         
@@ -43,6 +37,8 @@ class AwesomeAdsViewController: UIViewController {
         AwesomeAdsSdk.shared.initSdk(configuration: configuration) {
             print("AwesomeAds SDK init complete")
         }
+        
+        initUI()
     }
     
     private func initUI() {
@@ -141,7 +137,39 @@ class AwesomeAdsViewController: UIViewController {
     }
     
     private func configureVideo() {
-        
+        VideoAd.enableCloseButton()
+        VideoAd.setCallback { (placementId, event) in
+            switch event {
+                
+            case .adLoaded:
+                VideoAd.play(withPlacementId: placementId, fromVc: self)
+                break
+            case .adEmpty:
+                print(" VideoAd >> Ad adEmpty ")
+                break
+            case .adFailedToLoad:
+                print(" VideoAd >> Ad adFailedToLoad ")
+                break
+            case .adAlreadyLoaded:
+                print(" VideoAd >> Ad adAlreadyLoaded ")
+                break
+            case .adShown:
+                print(" VideoAd >> Ad adShown ")
+                break
+            case .adFailedToShow:
+                print(" VideoAd >> Ad adFailedToShow ")
+                break
+            case .adClicked:
+                print(" VideoAd >> Ad adClicked ")
+                break
+            case .adEnded:
+                print(" VideoAd >> Ad adEnded ")
+                break
+            case .adClosed:
+                print(" VideoAd >> Ad adClosed ")
+                break
+            }
+        }
     }
     
     private func initButtons() {
@@ -190,7 +218,7 @@ class AwesomeAdsViewController: UIViewController {
         case .interstitial:
             InterstitialAd.load(item.placementId)
         case .video:
-            bannerView.load(item.placementId)
+            VideoAd.load(withPlacementId: item.placementId)
         }
     }
 }
@@ -204,3 +232,5 @@ extension UIView {
         }
     }
 }
+
+#endif

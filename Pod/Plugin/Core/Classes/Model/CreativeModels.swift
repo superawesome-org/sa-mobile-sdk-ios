@@ -11,7 +11,7 @@ struct Creative: Codable {
     let format: CreativeFormatType
     let click_url: String?
     let details: CreativeDetail
-    let bumper: Bool
+    let bumper: Bool?
 }
 
 struct CreativeDetail: Codable {
@@ -22,7 +22,6 @@ struct CreativeDetail: Codable {
     let tag: String?
     let width: Int
     let height: Int
-    let transcodedVideos: String?
     let duration: Int
     let vast: String?
 }

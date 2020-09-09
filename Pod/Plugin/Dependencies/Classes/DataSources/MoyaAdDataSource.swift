@@ -26,7 +26,7 @@ class MoyaAdDataSource: AwsomeAdsApiDataSourceType {
                     let filteredResponse = try response.filterSuccessfulStatusCodes()
                     let result = try filteredResponse.map(Ad.self)
                     completion(Result.success(result))
-                } catch let error{
+                } catch let error {
                     completion(Result.failure(error))
                 }
             case .failure(let error):

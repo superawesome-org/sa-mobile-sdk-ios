@@ -8,7 +8,7 @@
 import UIKit
 
 protocol OrientationProviderType {
-    func findSupportedOrientations(_ orientation: SAOrientation, _ defaultOrientations: UIInterfaceOrientationMask) -> UIInterfaceOrientationMask
+    func findSupportedOrientations(_ orientation: Orientation, _ defaultOrientations: UIInterfaceOrientationMask) -> UIInterfaceOrientationMask
 }
 
 class OrientationProvider: OrientationProviderType {
@@ -18,14 +18,14 @@ class OrientationProvider: OrientationProviderType {
         self.bundle = bundle
     }
     
-    func findSupportedOrientations(_ orientation: SAOrientation, _ defaultOrientations: UIInterfaceOrientationMask) -> UIInterfaceOrientationMask {
+    func findSupportedOrientations(_ orientation: Orientation, _ defaultOrientations: UIInterfaceOrientationMask) -> UIInterfaceOrientationMask {
         guard let supportedOrientations = bundle.infoDictionary?["UISupportedInterfaceOrientations"] as? [String]
             else { return defaultOrientations }
         
         switch orientation {
-        case .ANY:
+        case .any:
             return defaultOrientations
-        case .PORTRAIT:
+        case .portrait:
             let hasPortrait = supportedOrientations.contains("UIInterfaceOrientationPortrait")
             let hasPortraitUpsideDown = supportedOrientations.contains("UIInterfaceOrientationPortraitUpsideDown")
             
@@ -38,7 +38,7 @@ class OrientationProvider: OrientationProviderType {
             } else {
                 return defaultOrientations
             }
-        case .LANDSCAPE:
+        case .landscape:
             let hasLandscapeLeft = supportedOrientations.contains("UIInterfaceOrientationLandscapeLeft")
             let hasLandscapeRight = supportedOrientations.contains("UIInterfaceOrientationLandscapeRight")
             

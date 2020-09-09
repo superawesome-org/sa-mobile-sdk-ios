@@ -8,19 +8,19 @@
 import Alamofire
 
 class AFNetworkDataSource: NetworkDataSourceType {
-    func getData(url: String, completion: @escaping OnResult<Data>) {
+    func getData(url: String, completion: OnResult<Data>?) {
         AF.request(url).responseData { response in
             if let data = response.data {
-                completion(Result.success(data))
+                completion?(Result.success(data))
             } else {
-                completion(Result.failure(AwesomeAdsError.network))
+                completion?(Result.failure(AwesomeAdsError.network))
             }
         }
     }
     
     func downloadFile(url: String, completion: @escaping OnResult<String>) {
         let destination: DownloadRequest.Destination = { _, _ in
-            let fileName = url.toMD5
+            let fileName = url.fileName
             let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
             let fileURL = documentsURL.appendingPathComponent(fileName)
 

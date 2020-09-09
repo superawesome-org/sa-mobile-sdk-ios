@@ -49,7 +49,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'Core' do |c|
-    c.dependency 'SuperAwesome/Full'
+#    c.dependency 'SuperAwesome/Full'
     c.source_files = 'Pod/Plugin/Core/Classes/**/*'
 
     c.test_spec 'Tests' do |test_spec|
@@ -64,6 +64,8 @@ Pod::Spec.new do |s|
     m.source_files = 'Pod/Plugin/Dependencies/Classes/**/*'
     m.dependency 'SwiftyXMLParser', '~> 5.0'
     m.dependency 'Moya', '~> 14.0'
+    m.dependency 'SAVideoPlayer', '~> 2.0'
+
     m.xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) DEPENDENCIES_PLUGIN' }
 
     m.test_spec 'Tests' do |test_spec|

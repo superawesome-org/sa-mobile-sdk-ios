@@ -41,7 +41,7 @@ struct AdQuery: Codable {
     let h: Int
 }
 
-struct AdRequest: Codable {
+public struct AdRequest: Codable {
     let test: Bool
     let pos: Position
     let skip: Skip
@@ -84,7 +84,7 @@ extension AdRequest {
     }
 
     /// Start delay cases
-    enum StartDelay: Int, Codable {
+    public enum StartDelay: Int, Codable {
         case postRoll = -2
         case genericMidRoll = -1
         case preRoll = 0

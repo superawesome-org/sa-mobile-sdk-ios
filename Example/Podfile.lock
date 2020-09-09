@@ -11,7 +11,7 @@ PODS:
     - Moya/Core (= 14.0.0)
   - Moya/Core (14.0.0):
     - Alamofire (~> 5.0)
-  - Nimble (8.1.1)
+  - Nimble (8.1.2)
   - OHHTTPStubs (9.0.0):
     - OHHTTPStubs/Default (= 9.0.0)
   - OHHTTPStubs/Core (9.0.0)
@@ -25,26 +25,20 @@ PODS:
   - OHHTTPStubs/NSURLSession (9.0.0):
     - OHHTTPStubs/Core
   - OHHTTPStubs/OHPathHelpers (9.0.0)
-  - SuperAwesome (7.2.13):
-    - SuperAwesome/Full (= 7.2.13)
-  - SuperAwesome/Base (7.2.13)
-  - SuperAwesome/Core (7.2.13):
-    - SuperAwesome/Full
+  - SAVideoPlayer (2.0.0)
+  - SuperAwesome/Core (7.2.13)
   - SuperAwesome/Dependencies (7.2.13):
     - Moya (~> 14.0)
+    - SAVideoPlayer (~> 2.0)
     - SuperAwesome/Core
     - SwiftyXMLParser (~> 5.0)
   - SuperAwesome/Dependencies/Tests (7.2.13):
     - Mockingjay
     - Moya (~> 14.0)
     - Nimble
+    - SAVideoPlayer (~> 2.0)
     - SuperAwesome/Core
     - SwiftyXMLParser (~> 5.0)
-  - SuperAwesome/Full (7.2.13):
-    - SuperAwesome/Base
-    - SuperAwesome/Moat
-  - SuperAwesome/Moat (7.2.13):
-    - SuperAwesome/Base
   - SwiftyXMLParser (5.0.0)
   - URITemplate (2.0.3)
 
@@ -52,7 +46,6 @@ DEPENDENCIES:
   - Mockingjay
   - Nimble
   - OHHTTPStubs
-  - SuperAwesome (from `../`)
   - SuperAwesome/Dependencies (from `../`)
   - SuperAwesome/Dependencies/Tests (from `../`)
 
@@ -63,6 +56,7 @@ SPEC REPOS:
     - Moya
     - Nimble
     - OHHTTPStubs
+    - SAVideoPlayer
     - SwiftyXMLParser
     - URITemplate
 
@@ -74,12 +68,13 @@ SPEC CHECKSUMS:
   Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
   Mockingjay: 11a621880d2887f1775bdcf824341eb68f218450
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
-  Nimble: 5f8a2fb6fa343a7242dfdd9d42f7267419d464b2
+  Nimble: 3864815b4703c7ebffba875973c70e854489fbae
   OHHTTPStubs: cb29d2a9d09a828ecb93349a2b0c64f99e0db89f
-  SuperAwesome: 5b00a95ac0ccb3a45ec20aaaa9907a40dc0d2401
+  SAVideoPlayer: 357664a1cc86456059bfb1da9b38234275eac0b6
+  SuperAwesome: d0b8cd6b8fff334d047ef5816f0e83ec4022eba5
   SwiftyXMLParser: 5ebb8793192f403fa8cc691045143906122a7a75
   URITemplate: ace0c4c46dcf8afe6e89b4060621852886b15c3b
 
-PODFILE CHECKSUM: 69707689193db0baa3e198c596c91369d149a096
+PODFILE CHECKSUM: df26a58b9d4b2a5f0d19baaca215296ccc2134bb
 
 COCOAPODS: 1.9.3

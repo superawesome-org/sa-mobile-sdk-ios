@@ -31,6 +31,15 @@ extension String {
         let url = URL(string: self)
         return "\(url?.scheme ?? "")://\(url?.host ?? "")"
     }
+    
+    /// Returns the extension name or nil
+    var fileExtension: String? {
+        let parts = components(separatedBy: ".")
+        return parts.last
+    }
+    
+    /// Returns the filename of the givin url string using md5 and extension of the file
+    var fileName: String { "\(toMD5).\(fileExtension ?? "mp4")" }
 }
 
 extension StringProtocol {

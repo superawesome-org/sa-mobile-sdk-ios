@@ -14,8 +14,8 @@ public class InterstitialAd: Injectable {
     private(set) static var isParentalGateEnabled: Bool = false
     private(set) static var isBumperPageEnabled: Bool = false
     private(set) static var isTestingEnabled: Bool = false
-    private(set) static var orientation: SAOrientation = .ANY
-    private(set) static var configuration = SA_DEFAULT_CONFIGURATION
+    private(set) static var orientation: Orientation = .any
+    //    private(set) static var configuration = Configuration
     private(set) static var isMoatLimitingEnabled: Bool = true
     
     private static var delegate: AdEventCallback?
@@ -34,13 +34,11 @@ public class InterstitialAd: Injectable {
     public class func load(_ placementId: Int) {
         logger.info("load() for: \(placementId)")
         
-        adRepository.getAd(placementId: placementId,
-                           request: makeAdRequest()) { result in
-                            switch result {
-                            case .success(let response): self.onSuccess(response)
-                            case .failure(let error): self.onFailure(error)
-                            }
-                            
+        adRepository.getAd(placementId: placementId, request: makeAdRequest()) { result in
+            switch result {
+            case .success(let response): self.onSuccess(response)
+            case .failure(let error): self.onFailure(error)
+            }
         }
     }
     
@@ -55,8 +53,8 @@ public class InterstitialAd: Injectable {
         logger.info("play()")
         // guard against invalid ad formats
         guard let adResponse = adResponse, adResponse.ad.creative.format != CreativeFormatType.video else {
-                delegate?(placementId, .adFailedToShow)
-                return
+            delegate?(placementId, .adFailedToShow)
+            return
         }
         
         let controller = InterstitialAdViewController(adResponse: adResponse,
@@ -94,7 +92,8 @@ public class InterstitialAd: Injectable {
     public class func setConfigurationStaging() {
     }
     
-    public class func setOrientation(_ value: SAOrientation) {
+    public class func setOrientation(_ orientation: Orientation) {
+        self.orientation = orientation
     }
     
     public class func setOrientationAny() {

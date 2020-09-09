@@ -7,16 +7,7 @@
 
 import UIKit
 
-protocol ParentalGateDelegate: class {
-    func parentalGateOpenned()
-    func parentalGateCancelled()
-    func parentalGateFailed()
-    func parentalGateSuccess()
-}
-
 class ParentalGate {
-    public weak var delegate: ParentalGateDelegate?
-    
     private var topWindow: UIWindow?
     private var challangeAlertController: UIAlertController?
     private var errorAlertController: UIAlertController?
@@ -25,10 +16,13 @@ class ParentalGate {
     private var secondNumber: Int = 0
     private var solution: Int = 0
     
+    var openAction: VoidBlock?
+    var cancelAction: VoidBlock?
+    var failAction: VoidBlock?
+    var successAction: VoidBlock?
     
     private let numberGenerator: NumberGeneratorType
     private let stringProvider: StringProviderType
-    
     
     init(numberGenerator:NumberGeneratorType, stringProvider: StringProviderType) {
         self.numberGenerator = numberGenerator
@@ -55,7 +49,7 @@ class ParentalGate {
         
         let cancelAction = UIAlertAction(title: stringProvider.cancelTitle, style: .default) { [weak self] _ in
             self?.stop()
-            self?.delegate?.parentalGateCancelled()
+            self?.cancelAction?()
         }
 
         if let controller = challangeAlertController {
@@ -67,12 +61,12 @@ class ParentalGate {
             topWindow = controller.presentInNewWindow()
         }
         
-        delegate?.parentalGateOpenned()
+        self.openAction?()
     }
     
     private func onSuccessfulAttempt() {
         stop()
-        delegate?.parentalGateSuccess()
+        self.successAction?()
     }
     
     private func onFailedAttempt() {
@@ -84,7 +78,7 @@ class ParentalGate {
         
         let okAction = UIAlertAction(title: stringProvider.cancelTitle, style: .default) { [weak self] _ in
             self?.stop()
-            self?.delegate?.parentalGateFailed()
+            self?.failAction?()
         }
         
         if let controller = errorAlertController {

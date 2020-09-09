@@ -18,6 +18,7 @@ public class AwesomeAdsSdk: NSObject {
         self.container = DependencyContainer()
         container.registerSingle(Bundle.self) { _,_  in Bundle.main }
         container.registerSingle(StringProviderType.self) { _,_  in StringProvider() }
+        container.registerFactory(AdControllerType.self) { _, _ in AdController() }
         container.registerFactory(ParentalGate.self) { c, _ in
             ParentalGate(numberGenerator: c.resolve(), stringProvider: c.resolve()) }
         container.registerFactory(LoggerType.self) { _, param in
@@ -39,17 +40,8 @@ public class AwesomeAdsSdk: NSObject {
                     locale: Locale.current,
                     encoder: c.resolve())
         }
-        container.registerSingle(PreferencesRepositoryType.self) { c, _ in
-            PreferencesRepository(UserDefaults.standard)
-        }
         container.registerSingle(UserAgentProviderType.self) { c, _ in
             UserAgentProvider(device: c.resolve(), preferencesRepository: c.resolve())
-        }
-        container.registerSingle(AdRepositoryType.self) { c, _ in
-            AdRepository(dataSource: c.resolve(), adQueryMaker: c.resolve(), adProcessor: c.resolve())
-        }
-        container.registerSingle(EventRepositoryType.self) { c, _ in
-            EventRepository(dataSource: c.resolve(), adQueryMaker: c.resolve())
         }
         container.registerSingle(AdQueryMakerType.self) { c, _ in
             AdQueryMaker(device: c.resolve(),
@@ -68,6 +60,22 @@ public class AwesomeAdsSdk: NSObject {
         }
         container.registerSingle(ImageProviderType.self) { _, _ in ImageProvider() }
         container.registerSingle(OrientationProviderType.self) { c, _ in OrientationProvider(c.resolve()) }
+        
+        /// Repository Module
+        container.registerSingle(PreferencesRepositoryType.self) { c, _ in
+            PreferencesRepository(UserDefaults.standard)
+        }
+        container.registerSingle(AdRepositoryType.self) { c, _ in
+            AdRepository(dataSource: c.resolve(), adQueryMaker: c.resolve(), adProcessor: c.resolve())
+        }
+        container.registerSingle(EventRepositoryType.self) { c, _ in
+            EventRepository(dataSource: c.resolve(), adQueryMaker: c.resolve())
+        }
+        container.registerFactory(VastEventRepositoryType.self) { c, param in
+            VastEventRepository(adResponse: param as! AdResponse,
+                                networkDataSource: c.resolve(),
+                                logger: c.resolve(param: VastEventRepository.self))
+        }
         #if DEPENDENCIES_PLUGIN
         DependenciesRegistrar.register(container)
         #endif

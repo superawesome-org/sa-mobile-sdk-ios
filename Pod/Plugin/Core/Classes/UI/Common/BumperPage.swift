@@ -8,6 +8,8 @@
 import UIKit
 
 public class BumperPage: UIViewController, Injectable {
+    private static let CounterMaxInSeconds = 3
+    
     // Dependencies
     private lazy var imageProvider: ImageProviderType = dependencies.resolve()
     private lazy var stringProvider: StringProviderType = dependencies.resolve()
@@ -23,7 +25,6 @@ public class BumperPage: UIViewController, Injectable {
     
     private var timer: Timer?
     private var counter = 0
-    private let CounterMaxInSeconds = 3
     
     private static var overridenLogo: UIImage? = nil
     private static var overridenName: String? = nil
@@ -51,7 +52,7 @@ public class BumperPage: UIViewController, Injectable {
     }
     
     private func setTimerVars() {
-        counter = CounterMaxInSeconds
+        counter = BumperPage.CounterMaxInSeconds
     }
     
     private func createTimer() {

@@ -28,6 +28,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [AwesomeAds initSDK:true];
+    
     SASession *session = [[SASession alloc] init];
     [session setConfigurationStaging];
     

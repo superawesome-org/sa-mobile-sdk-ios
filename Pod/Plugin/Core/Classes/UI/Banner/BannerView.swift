@@ -11,25 +11,11 @@ import UIKit
 @objc
 public class BannerView: UIView, Injectable {
     
-    // Dependencies
-    private lazy var adRepository: AdRepositoryType = dependencies.resolve()
-    private lazy var eventRepository: EventRepositoryType = dependencies.resolve()
     private lazy var imageProvider: ImageProviderType = dependencies.resolve()
+    private lazy var controller: AdControllerType = dependencies.resolve()
     private lazy var logger: LoggerType = dependencies.resolve(param: BannerView.self)
     
-    private var adResponse: AdResponse?
-    private var testEnabled = false
-    private var parentalGateEnabled = false
-    private var bumperPageEnabled = false
-    private var moatLimiting = true
-    private var closed = false
-    private var delegate: AdEventCallback?
-    private var visibilityDelegate: SABannerAdVisibilityDelegate?
     private var webView: WebView?
-    private var parentalGate: ParentalGate?
-    private var parentalGateBlock: VoidBlock?
-    private var placementId: Int { adResponse?.placementId ?? 0 }
-    
     private var padlock: UIButton?
     
     public override init(frame: CGRect) {
@@ -44,8 +30,8 @@ public class BannerView: UIView, Injectable {
     // MARK: - Internal functions
     
     func configure(adResponse: AdResponse, delegate: AdEventCallback?) {
-        self.adResponse = adResponse
-        self.delegate = delegate
+        setAdResponse(adResponse)
+        setCallback(delegate)
     }
     
     // MARK: - Public functions
@@ -59,30 +45,22 @@ public class BannerView: UIView, Injectable {
      */
     public func load(_ placementId: Int) {
         logger.info("load() for: \(placementId)")
-        
-        adRepository.getAd(placementId: placementId,
-                           request: makeAdRequest()) { [weak self] result in
-                            switch result {
-                            case .success(let response): self?.onSuccess(response)
-                            case .failure(let error): self?.onFailure(error)
-                            }
-                            
-        }
+        controller.load(placementId, makeAdRequest())
     }
     
     /// Method that, if an ad data is loaded, will play the content for the user
     public func play() {
         logger.info("play()")
         // guard against invalid ad formats
-        guard let adResponse = adResponse, let html = adResponse.html,
-            adResponse.ad.creative.format != CreativeFormatType.video, !closed else {
-                delegate?(placementId, .adFailedToShow)
+        guard let adResponse = controller.adResponse, let html = adResponse.html,
+            adResponse.ad.creative.format != CreativeFormatType.video, !controller.closed else {
+                controller.adFailedToShow()
                 return
         }
         
         addWebView()
         
-        eventRepository.impression(adResponse, completion: nil)
+        controller.triggerImpressionEvent()
         
         showPadlockIfNeeded()
         
@@ -92,7 +70,7 @@ public class BannerView: UIView, Injectable {
     }
     
     private func showPadlockIfNeeded() {
-        guard adResponse?.ad.show_padlock ?? false, let webView = webView  else { return }
+        guard controller.showPadlock, let webView = webView  else { return }
         
         let padlock = UIButton(frame: CGRect.zero)
         padlock.setImage(imageProvider.safeAdImage, for: .normal)
@@ -110,11 +88,9 @@ public class BannerView: UIView, Injectable {
     
     /// Method that is called to close the ad
     public func close() {
-        visibilityDelegate = nil
-        delegate?(placementId, .adClosed)
-        adResponse = nil
+        //        visibilityDelegate = nil
+        controller.close()
         removeWebView()
-        closed = true
     }
     
     /**
@@ -123,41 +99,37 @@ public class BannerView: UIView, Injectable {
      *
      * @return              true or false
      */
-    public func hasAdAvailable() -> Bool { adResponse != nil }
+    public func hasAdAvailable() -> Bool { controller.adResponse != nil }
     
     /// Method that gets whether the banner is closed or not
-    public func isClosed() -> Bool { closed }
-    
-    /**
-     * Method that resizes the ad object
-     *
-     * @param toframe the new frame to resize to
-     */
-    public func resize(_ toframe: CGRect) {
-    }
+    public func isClosed() -> Bool { controller.closed }
     
     /// Callback function
-    public func setCallback(_ callback: @escaping AdEventCallback) { delegate = callback }
+    public func setCallback(_ callback: AdEventCallback?) { controller.delegate = callback }
     
-    public func enableTestMode() { testEnabled = true }
+    public func setTestMode(_ value: Bool) { controller.testEnabled = value }
     
-    public func disableTestMode() { testEnabled = false }
+    public func enableTestMode() { setTestMode(true) }
     
-    public func setConfigurationProduction() {
-    }
+    public func disableTestMode() { setTestMode(false) }
     
-    public func setConfigurationStaging() {
-    }
+    @available(*, deprecated, message: "Use `AwesomeAdsSdk.Configuration` instead")
+    public func setConfigurationProduction() { }
     
-    public func setConfiguration(_ value: Int) {
-    }
+    @available(*, deprecated, message: "Use `AwesomeAdsSdk.Configuration` instead")
+    public func setConfigurationStaging() { }
     
+    public func setParentalGate(_ value: Bool) { controller.parentalGateEnabled = value }
     
-    public func setTestMode(_ value: Bool) { testEnabled = value }
+    public func enableParentalGate() { setParentalGate(true) }
     
-    public func setParentalGate(_ value: Bool) { parentalGateEnabled = value }
+    public func disableParentalGate() { setParentalGate(false) }
     
-    public func setBumperPage(_ value: Bool) { bumperPageEnabled = value }
+    public func setBumperPage(_ value: Bool) { controller.bumperPageEnabled = value }
+    
+    public func enableBumperPage() { setBumperPage(true) }
+    
+    public func disableBumperPage() { setBumperPage(false) }
     
     public func setColorTransparent() { setColor(true) }
     
@@ -168,19 +140,11 @@ public class BannerView: UIView, Injectable {
             UIColor.clear : UIColor(red: 224.0 / 255.0, green: 224.0 / 255.0, blue: 224.0 / 255.0, alpha: 1)
     }
     
-    public func disableMoatLimiting() { moatLimiting = false }
+    public func disableMoatLimiting() { controller.moatLimiting = false }
     
-    public func enableBumperPage() { bumperPageEnabled = true }
-    
-    public func disableBumperPage() { bumperPageEnabled = false }
-    
-    public func enableParentalGate() { parentalGateEnabled = true }
-    
-    public func disableParentalGate() { parentalGateEnabled = false }
-    
-    public func setBannerVisibilityDelegate(_ delegate: SABannerAdVisibilityDelegate) {
-        visibilityDelegate = delegate
-    }
+    //    public func setBannerVisibilityDelegate(_ delegate: SABannerAdVisibilityDelegate) {
+    //        visibilityDelegate = delegate
+    //    }
     
     // MARK: - Private functions
     
@@ -188,19 +152,12 @@ public class BannerView: UIView, Injectable {
         setColor(false)
     }
     
-    private func onSuccess(_ response: AdResponse) {
-        logger.success("Ad load successful for \(response.placementId)")
-        self.adResponse = response
-        delegate?(placementId, .adLoaded)
-    }
-    
-    private func onFailure(_ error: Error) {
-        logger.error("Ad load failed", error: error)
-        delegate?(placementId, .adFailedToLoad)
+    private func setAdResponse(_ adResponse: AdResponse) {
+        controller.adResponse = adResponse
     }
     
     private func makeAdRequest() -> AdRequest {
-        AdRequest(test: testEnabled,
+        AdRequest(test: controller.testEnabled,
                   pos: AdRequest.Position.aboveTheFold,
                   skip: AdRequest.Skip.no,
                   playbackmethod: AdRequest.PlaybackSoundOnScreen,
@@ -220,9 +177,11 @@ public class BannerView: UIView, Injectable {
             view.translatesAutoresizingMaskIntoConstraints = false
             
             addSubview(view)
-            logger.info("aspectRatio(): \(adResponse?.aspectRatio() ?? -1)")
+            
+            let aspectRatio = controller.adResponse?.aspectRatio() ?? 1.0
+            logger.info("aspectRatio(): \(aspectRatio)")
             NSLayoutConstraint.activate([
-                view.widthAnchor.constraint(equalTo: view.heightAnchor, multiplier: adResponse?.aspectRatio() ?? 1.0, constant: 0),
+                view.widthAnchor.constraint(equalTo: view.heightAnchor, multiplier: aspectRatio, constant: 0),
                 
                 view.widthAnchor.constraint(lessThanOrEqualTo: self.widthAnchor, multiplier: 1.0, constant: 0),
                 view.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1.0, constant: 0).withPriority(250),
@@ -244,7 +203,7 @@ public class BannerView: UIView, Injectable {
     }
     
     private func addPadLock() {
-        guard adResponse?.ad.show_padlock ?? false else { return }
+        guard controller.showPadlock else { return }
         
         let padlock = UIButton(frame: CGRect.zero)
         padlock.setImage(imageProvider.safeAdImage, for: .normal)
@@ -253,102 +212,23 @@ public class BannerView: UIView, Injectable {
         webView?.addSubview(padlock)
     }
     
-    @objc private func padlockAction() {
-        showParentalGateIfNeeded( withCompletion: { [weak self]  in
-            self?.showSuperAwesomeWebPageInSafari()
-        })
-    }
-    
-    private func showParentalGateIfNeeded(withCompletion completion: @escaping VoidBlock) {
-        if parentalGateEnabled {
-            parentalGate?.stop()
-            parentalGate = dependencies.resolve() as ParentalGate
-            parentalGate?.delegate = self
-            parentalGate?.show()
-            parentalGateBlock = completion
-        } else {
-            completion()
-        }
-    }
-    
-    private func showSuperAwesomeWebPageInSafari() {
-        let onComplete = {
-            if let url = URL(string: "https://ads.superawesome.tv/v2/safead") {
-                UIApplication.shared.open( url, options: [:], completionHandler: nil)
-            }
-        }
-        
-        if bumperPageEnabled {
-            BumperPage().play(onComplete)
-        } else {
-            onComplete()
-        }
-    }
-    
-    /// Method that is called when a user clicks / taps on an ad
-    private func onAdClicked(_ url: URL) {
-        logger.success("onAdClicked: for url: \(url.absoluteString)")
-        
-        if bumperPageEnabled || adResponse?.ad.creative.bumper ?? false {
-            BumperPage().play { [weak self] in
-                self?.navigateToUrl(url)
-            }
-        } else {
-            navigateToUrl(url)
-        }
-    }
-    
-    private func navigateToUrl(_ url: URL) {
-        guard let adResponse = adResponse else { return }
-        delegate?(placementId, .adClicked)
-        eventRepository.click(adResponse, completion: nil)
-        
-        UIApplication.shared.open( url, options: [:], completionHandler: nil)
-    }
-}
-
-extension BannerView: ParentalGateDelegate {
-    func parentalGateSuccess() {
-        parentalGateBlock?()
-        guard let adResponse = adResponse else { return }
-        eventRepository.parentalGateSuccess(adResponse, completion: nil)
-    }
-    
-    func parentalGateOpenned() {
-        guard let adResponse = adResponse else { return }
-        eventRepository.parentalGateOpen(adResponse, completion: nil)
-    }
-    
-    func parentalGateCancelled() {
-        guard let adResponse = adResponse else { return }
-        eventRepository.parentalGateClose(adResponse, completion: nil)
-    }
-    
-    func parentalGateFailed() {
-        guard let adResponse = adResponse else { return }
-        eventRepository.parentalGateFail(adResponse, completion: nil)
-    }
+    @objc private func padlockAction() { controller.handleSafeAdTap() }
 }
 
 extension BannerView: WebViewDelegate {
     func webViewOnStart() {
         logger.info("webViewOnStart")
-        delegate?(placementId, .adShown)
+        controller.adShown()
         // TODO: Implement viewable status
     }
     
     func webViewOnError() {
         logger.info("webViewOnError")
-        delegate?(placementId, .adFailedToShow)
+        controller.adFailedToShow()
     }
     
     func webViewOnClick(url: URL) {
         logger.info("webViewOnClick")
-        //        BumperPage().play {
-        //
-        //        }
-        showParentalGateIfNeeded { [weak self] in
-            self?.onAdClicked(url)
-        }
+        controller.handleAdTap(url: url)
     }
 }

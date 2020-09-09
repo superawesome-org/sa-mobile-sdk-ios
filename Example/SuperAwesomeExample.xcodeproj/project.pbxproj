@@ -90,14 +90,13 @@
 		1B22707323536F8300FA8326 /* GetIsMinorModel+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B22701523536F8300FA8326 /* GetIsMinorModel+Mapping.swift */; };
 		1B76D2381C91EEB1000AE8F3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B76D2371C91EEB1000AE8F3 /* main.m */; };
 		1B76D23B1C91EEB1000AE8F3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B76D23A1C91EEB1000AE8F3 /* AppDelegate.m */; };
-		1B76D23E1C91EEB1000AE8F3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B76D23D1C91EEB1000AE8F3 /* ViewController.m */; };
 		1B76D2411C91EEB1000AE8F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B76D23F1C91EEB1000AE8F3 /* Main.storyboard */; };
 		1B76D2431C91EEB1000AE8F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B76D2421C91EEB1000AE8F3 /* Assets.xcassets */; };
 		1B76D2461C91EEB1000AE8F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B76D2441C91EEB1000AE8F3 /* LaunchScreen.storyboard */; };
 		1BA72AC124365236003A31C5 /* fixtures_tests.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1BA72AC024365236003A31C5 /* fixtures_tests.bundle */; };
 		21528C928B7BFDA0D29213BE /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A01EA0D5528DC347839D3C89 /* Pods_Tests.framework */; };
 		A7EFC8DE3E1F552F65AEDB94 /* Pods_SuperAwesomeExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46665EBC142A783963BB4282 /* Pods_SuperAwesomeExample.framework */; };
-		C643DE0D24EFC7CA00B07228 /* AwesomeAdsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C643DE0C24EFC7CA00B07228 /* AwesomeAdsViewController.swift */; };
+		C62FC13125096E18005F97BF /* AwesomeAdsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C643DE0C24EFC7CA00B07228 /* AwesomeAdsViewController.swift */; };
 		C647364224CF4A130093342F /* TestSAUtils_MonthYearStringFromDate.m in Sources */ = {isa = PBXBuildFile; fileRef = C647364124CF4A130093342F /* TestSAUtils_MonthYearStringFromDate.m */; };
 		C64CAD28249CC5AB00788A7F /* MoPubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64CAD27249CC5AB00788A7F /* MoPubViewController.swift */; };
 		C6535602245239270043115E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6535601245239270043115E /* HealthKit.framework */; };
@@ -722,6 +721,7 @@
 				"${PODS_ROOT}/Target Support Files/Pods-SuperAwesomeExample/Pods-SuperAwesomeExample-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/SAVideoPlayer/SAVideoPlayer.framework",
 				"${BUILT_PRODUCTS_DIR}/SuperAwesome/SuperAwesome.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyXMLParser/SwiftyXMLParser.framework",
 			);
@@ -729,6 +729,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SAVideoPlayer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SuperAwesome.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyXMLParser.framework",
 			);
@@ -859,9 +860,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C64CAD28249CC5AB00788A7F /* MoPubViewController.swift in Sources */,
-				1B76D23E1C91EEB1000AE8F3 /* ViewController.m in Sources */,
+				C62FC13125096E18005F97BF /* AwesomeAdsViewController.swift in Sources */,
 				1B76D23B1C91EEB1000AE8F3 /* AppDelegate.m in Sources */,
-				C643DE0D24EFC7CA00B07228 /* AwesomeAdsViewController.swift in Sources */,
 				1B76D2381C91EEB1000AE8F3 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

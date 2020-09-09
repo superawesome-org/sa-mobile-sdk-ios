@@ -19,14 +19,14 @@ class InterstitialAdViewController: UIViewController, Injectable {
     private let parentGateEnabled: Bool
     private let bumperPageEnabled: Bool
     private let testingEnabled: Bool
-    private let orientation: SAOrientation
+    private let orientation: Orientation
     private let delegate: AdEventCallback?
     
     init(adResponse: AdResponse,
          parentGateEnabled: Bool,
          bumperPageEnabled: Bool,
          testingEnabled: Bool,
-         orientation: SAOrientation,
+         orientation: Orientation,
          delegate: AdEventCallback?) {
         self.adResponse = adResponse
         self.parentGateEnabled = parentGateEnabled
