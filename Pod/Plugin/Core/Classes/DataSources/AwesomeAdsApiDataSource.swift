@@ -6,7 +6,7 @@
 //
 
 /// `AwesomeAdsDataSource` is used to make request to `AwesomeAds` API
-protocol AwsomeAdsApiDataSourceType {
+protocol AwesomeAdsApiDataSourceType {
     /// Makes a request to `/ad` endpoint to retrieve an Ad object for the given `placementId`
     func getAd(placementId: Int, query: AdQuery, completion: @escaping OnResult<Ad>)
     

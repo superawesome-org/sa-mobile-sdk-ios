@@ -18,8 +18,8 @@ class DependenciesRegistrar {
         container.registerSingle(MoyaProvider<AwesomeAdsTarget>.self) { c, _ in
             MoyaProvider<AwesomeAdsTarget>(plugins:[c.resolve() as MoyaHeaderPlugin])
         }
-        container.registerSingle(AwsomeAdsApiDataSourceType.self) { c, _ in
-            MoyaAdDataSource(provider: c.resolve(), environment: c.resolve())
+        container.registerSingle(AwesomeAdsApiDataSourceType.self) { c, _ in
+            MoyaAwesomeAdsApiDataSource(provider: c.resolve(), environment: c.resolve())
         }
         container.registerSingle(NetworkDataSourceType.self) { c, _ in
             AFNetworkDataSource()
