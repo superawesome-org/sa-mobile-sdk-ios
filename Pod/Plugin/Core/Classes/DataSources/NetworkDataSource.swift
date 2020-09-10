@@ -12,4 +12,7 @@ protocol NetworkDataSourceType {
     
     /// Downloads the file on the given `url` and saves  locally, Then returns the `path` of the local file
     func downloadFile(url: String, completion: @escaping OnResult<String>)
+    
+    /// Clears the files from the user's document directory which is downloaded by itself
+    func clearFiles()
 }

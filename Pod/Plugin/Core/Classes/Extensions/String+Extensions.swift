@@ -37,9 +37,6 @@ extension String {
         let parts = components(separatedBy: ".")
         return parts.last
     }
-    
-    /// Returns the filename of the givin url string using md5 and extension of the file
-    var fileName: String { "\(toMD5).\(fileExtension ?? "mp4")" }
 }
 
 extension StringProtocol {

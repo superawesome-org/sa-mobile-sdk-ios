@@ -14,8 +14,9 @@ public class AwesomeAdsSdk: NSObject {
     private(set) var container: DependencyContainer = DependencyContainer()
     private var initialised: Bool = false
     
-    private func registerDependencies(_ configuration: Configuration) {
-        self.container = DependencyContainer()
+    private func registerComponentModule(_ configuration: Configuration) {
+        container.registerFactory(ViewableDetectorType.self) { c, param in
+            ViewableDetector(logger: c.resolve(param: ViewableDetector.self)) }
         container.registerSingle(Bundle.self) { _,_  in Bundle.main }
         container.registerSingle(StringProviderType.self) { _,_  in StringProvider() }
         container.registerFactory(AdControllerType.self) { _, _ in AdController() }
@@ -60,8 +61,9 @@ public class AwesomeAdsSdk: NSObject {
         }
         container.registerSingle(ImageProviderType.self) { _, _ in ImageProvider() }
         container.registerSingle(OrientationProviderType.self) { c, _ in OrientationProvider(c.resolve()) }
-        
-        /// Repository Module
+    }
+    
+    private func registerRepositoryModule() {
         container.registerSingle(PreferencesRepositoryType.self) { c, _ in
             PreferencesRepository(UserDefaults.standard)
         }
@@ -76,6 +78,14 @@ public class AwesomeAdsSdk: NSObject {
                                 networkDataSource: c.resolve(),
                                 logger: c.resolve(param: VastEventRepository.self))
         }
+    }
+    
+    private func registerDependencies(_ configuration: Configuration) {
+        self.container = DependencyContainer()
+        
+        registerComponentModule(configuration)
+        registerRepositoryModule()
+        
         #if DEPENDENCIES_PLUGIN
         DependenciesRegistrar.register(container)
         #endif

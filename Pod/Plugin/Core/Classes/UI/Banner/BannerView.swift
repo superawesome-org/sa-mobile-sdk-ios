@@ -17,6 +17,7 @@ public class BannerView: UIView, Injectable {
     
     private var webView: WebView?
     private var padlock: UIButton?
+    private var viewableDetector: ViewableDetectorType?
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -219,7 +220,11 @@ extension BannerView: WebViewDelegate {
     func webViewOnStart() {
         logger.info("webViewOnStart")
         controller.adShown()
-        // TODO: Implement viewable status
+        
+        viewableDetector = dependencies.resolve() as ViewableDetectorType
+        viewableDetector?.start(for: self, target: .display, hasBeenVisible: { [weak self] in
+            self?.controller.triggerViewableImpression()
+        })
     }
     
     func webViewOnError() {

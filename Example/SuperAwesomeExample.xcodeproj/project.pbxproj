@@ -88,8 +88,6 @@
 		1B22707123536F8300FA8326 /* GetIsMinor+RequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B22701323536F8300FA8326 /* GetIsMinor+RequestTests.swift */; };
 		1B22707223536F8300FA8326 /* TestsUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B22701423536F8300FA8326 /* TestsUtils.swift */; };
 		1B22707323536F8300FA8326 /* GetIsMinorModel+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B22701523536F8300FA8326 /* GetIsMinorModel+Mapping.swift */; };
-		1B76D2381C91EEB1000AE8F3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B76D2371C91EEB1000AE8F3 /* main.m */; };
-		1B76D23B1C91EEB1000AE8F3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B76D23A1C91EEB1000AE8F3 /* AppDelegate.m */; };
 		1B76D2411C91EEB1000AE8F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B76D23F1C91EEB1000AE8F3 /* Main.storyboard */; };
 		1B76D2431C91EEB1000AE8F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B76D2421C91EEB1000AE8F3 /* Assets.xcassets */; };
 		1B76D2461C91EEB1000AE8F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B76D2441C91EEB1000AE8F3 /* LaunchScreen.storyboard */; };
@@ -100,6 +98,7 @@
 		C647364224CF4A130093342F /* TestSAUtils_MonthYearStringFromDate.m in Sources */ = {isa = PBXBuildFile; fileRef = C647364124CF4A130093342F /* TestSAUtils_MonthYearStringFromDate.m */; };
 		C64CAD28249CC5AB00788A7F /* MoPubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64CAD27249CC5AB00788A7F /* MoPubViewController.swift */; };
 		C6535602245239270043115E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6535601245239270043115E /* HealthKit.framework */; };
+		C656915D250A3BCA00BF2855 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C656915C250A3BCA00BF2855 /* AppDelegate.swift */; };
 		C668A6F9243656E200C18228 /* SATestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C668A6F8243656E200C18228 /* SATestUtils.m */; };
 /* End PBXBuildFile section */
 
@@ -211,9 +210,6 @@
 		1B22701423536F8300FA8326 /* TestsUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestsUtils.swift; sourceTree = "<group>"; };
 		1B22701523536F8300FA8326 /* GetIsMinorModel+Mapping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GetIsMinorModel+Mapping.swift"; sourceTree = "<group>"; };
 		1B76D2331C91EEB1000AE8F3 /* SuperAwesomeExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperAwesomeExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1B76D2371C91EEB1000AE8F3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		1B76D2391C91EEB1000AE8F3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		1B76D23A1C91EEB1000AE8F3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1B76D23C1C91EEB1000AE8F3 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		1B76D23D1C91EEB1000AE8F3 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		1B76D2401C91EEB1000AE8F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -234,6 +230,7 @@
 		C64CAD27249CC5AB00788A7F /* MoPubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoPubViewController.swift; sourceTree = "<group>"; };
 		C6535600245239270043115E /* SuperAwesomeExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SuperAwesomeExample.entitlements; sourceTree = "<group>"; };
 		C6535601245239270043115E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		C656915C250A3BCA00BF2855 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C668A6F7243656E200C18228 /* SATestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SATestUtils.h; sourceTree = "<group>"; };
 		C668A6F8243656E200C18228 /* SATestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SATestUtils.m; sourceTree = "<group>"; };
 		D6B71C01F9DFB74D05E0B0FD /* Pods-SuperAwesomeExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesomeExample.debug.xcconfig"; path = "Target Support Files/Pods-SuperAwesomeExample/Pods-SuperAwesomeExample.debug.xcconfig"; sourceTree = "<group>"; };
@@ -492,17 +489,8 @@
 				1BB5F58E1ED6CC4F00ACD72E /* Storyboards */,
 				1BB5F58D1ED6CC4300ACD72E /* Meta */,
 				1BB5F58C1ED6CC3900ACD72E /* Controllers */,
-				1B76D2361C91EEB1000AE8F3 /* Supporting Files */,
 			);
 			path = SuperAwesome;
-			sourceTree = "<group>";
-		};
-		1B76D2361C91EEB1000AE8F3 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				1B76D2371C91EEB1000AE8F3 /* main.m */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		1BB5F58C1ED6CC3900ACD72E /* Controllers */ = {
@@ -519,8 +507,7 @@
 		1BB5F58D1ED6CC4300ACD72E /* Meta */ = {
 			isa = PBXGroup;
 			children = (
-				1B76D2391C91EEB1000AE8F3 /* AppDelegate.h */,
-				1B76D23A1C91EEB1000AE8F3 /* AppDelegate.m */,
+				C656915C250A3BCA00BF2855 /* AppDelegate.swift */,
 				1B76D2421C91EEB1000AE8F3 /* Assets.xcassets */,
 				1B76D2471C91EEB1000AE8F3 /* Info.plist */,
 				1BFE15E422A00DE500C500C0 /* SuperAwesome-Bridging-Header.h */,
@@ -861,8 +848,7 @@
 			files = (
 				C64CAD28249CC5AB00788A7F /* MoPubViewController.swift in Sources */,
 				C62FC13125096E18005F97BF /* AwesomeAdsViewController.swift in Sources */,
-				1B76D23B1C91EEB1000AE8F3 /* AppDelegate.m in Sources */,
-				1B76D2381C91EEB1000AE8F3 /* main.m in Sources */,
+				C656915D250A3BCA00BF2855 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

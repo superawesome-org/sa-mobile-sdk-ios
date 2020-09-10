@@ -20,19 +20,21 @@ protocol AdControllerType {
     func handleAdTap(url: URL)
     func handleSafeAdTap()
     
-    func showSuperAwesomeWebPageInSafari()
-    func showParentalGateIfNeeded(_ completion: VoidBlock?)
     func onAdClicked(_ url: URL)
     
+    func load(_ placementId: Int, _ request: AdRequest)
+    func close()
+    
+    // delegate events
     func adEnded()
     func adFailedToShow()
     func adShown()
     func adClicked()
     func adClosed()
     
-    func load(_ placementId: Int, _ request: AdRequest)
+    // trigger web events
+    func triggerViewableImpression()
     func triggerImpressionEvent()
-    func close()
 }
 
 class AdController: AdControllerType, Injectable {
@@ -94,6 +96,11 @@ class AdController: AdControllerType, Injectable {
     func adClicked() { delegate?(placementId, .adClicked) }
     
     func adClosed() { delegate?(placementId, .adClosed) }
+    
+    func triggerViewableImpression() {
+        guard let adResponse = adResponse else { return }
+        eventRepository.viewableImpression(adResponse, completion: nil)
+    }
     
     func triggerImpressionEvent() {
         guard let adResponse = adResponse else { return }
