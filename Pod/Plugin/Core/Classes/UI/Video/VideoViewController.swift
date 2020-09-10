@@ -35,12 +35,9 @@ import SAVideoPlayer
         let orientation: Orientation
     }
     
-    //    private let ad: SAAd
-    //    private let events: SAEvents
     private let config: Config
     private let control: VideoPlayerControls = VideoPlayerController()
     private let videoEvents: VideoEvents
-    //    private let clickEvents: VideoClick
     
     private var callback: AdEventCallback? = nil
     
@@ -48,11 +45,10 @@ import SAVideoPlayer
         self.config = config
         self.callback = callback
         videoEvents = VideoEvents(adResponse)
-        //        clickEvents = VideoClick(events: events,
-        //                                 isParentalGateEnabled: config.isParentalGateEnabled,
-        //                                 isBumperPageEnabled: config.isBumperPageEnabled)
         super.init(nibName: nil, bundle: nil)
         self.controller.adResponse = adResponse
+        self.controller.parentalGateEnabled = config.isParentalGateEnabled
+        self.controller.bumperPageEnabled = config.isBumperPageEnabled
         videoEvents.delegate = self
     }
     
