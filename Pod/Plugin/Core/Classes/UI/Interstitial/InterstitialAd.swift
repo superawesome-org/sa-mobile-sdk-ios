@@ -8,20 +8,15 @@
 import UIKit
 
 public class InterstitialAd: Injectable {
-    private static var adRepository: AdRepositoryType = dependencies.resolve()
+    private static var controller: AdControllerType = dependencies.resolve()
     private static var logger: LoggerType = dependencies.resolve(param: InterstitialAd.self)
     
-    private(set) static var isParentalGateEnabled: Bool = false
-    private(set) static var isBumperPageEnabled: Bool = false
-    private(set) static var isTestingEnabled: Bool = false
-    private(set) static var orientation: Orientation = .any
-    //    private(set) static var configuration = Configuration
-    private(set) static var isMoatLimitingEnabled: Bool = true
-    
-    private static var delegate: AdEventCallback?
-    private static var adResponse: AdResponse?
-    private static var placementId: Int { adResponse?.placementId ?? 0 }
-    
+    private(set) static var isParentalGateEnabled: Bool = Constants.defaultParentalGate
+    private(set) static var isBumperPageEnabled: Bool = Constants.defaultBumperPage
+    private(set) static var isTestingEnabled: Bool = Constants.defaultTestMode
+    private(set) static var orientation: Orientation = Constants.defaultOrientation
+    private(set) static var isMoatLimitingEnabled: Bool = Constants.defaultMoatLimitingState
+        
     // MARK: - Public functions
     
     /**
@@ -33,13 +28,7 @@ public class InterstitialAd: Injectable {
      */
     public class func load(_ placementId: Int) {
         logger.info("load() for: \(placementId)")
-        
-        adRepository.getAd(placementId: placementId, request: makeAdRequest()) { result in
-            switch result {
-            case .success(let response): self.onSuccess(response)
-            case .failure(let error): self.onFailure(error)
-            }
-        }
+        controller.load(placementId, makeAdRequest())
     }
     
     /**
@@ -52,20 +41,20 @@ public class InterstitialAd: Injectable {
     public class func play(_ placementId: Int, fromVC parent: UIViewController?) {
         logger.info("play()")
         // guard against invalid ad formats
-        guard let adResponse = adResponse, adResponse.ad.creative.format != CreativeFormatType.video else {
-            delegate?(placementId, .adFailedToShow)
-            return
+        guard let adResponse = controller.adResponse, adResponse.ad.creative.format != CreativeFormatType.video else {
+                controller.adFailedToShow()
+                return
         }
         
-        let controller = InterstitialAdViewController(adResponse: adResponse,
+        let viewController = InterstitialAdViewController(adResponse: adResponse,
                                                       parentGateEnabled: isParentalGateEnabled,
                                                       bumperPageEnabled: isBumperPageEnabled,
                                                       testingEnabled: isTestingEnabled,
                                                       orientation: orientation,
-                                                      delegate: delegate)
-        controller.modalPresentationStyle = .fullScreen
-        controller.modalTransitionStyle = .coverVertical
-        parent?.present(controller, animated: true, completion: nil)
+                                                      delegate: self.controller.delegate)
+        viewController.modalPresentationStyle = .fullScreen
+        viewController.modalTransitionStyle = .coverVertical
+        parent?.present(viewController, animated: true, completion: nil)
     }
     
     /**
@@ -75,35 +64,26 @@ public class InterstitialAd: Injectable {
      * @param placementId   the Ad placement id to check for
      * @return              true or false
      */
-    public class func hasAdAvailable(_ placementId: Int) -> Bool {
-        adResponse != nil
-    }
+    public class func hasAdAvailable(_ placementId: Int) -> Bool { controller.adAvailable }
     
-    public class func setCallback(_ callback: @escaping AdEventCallback) {
-        delegate = callback
-    }
+    public class func setCallback(_ callback: @escaping AdEventCallback) { controller.delegate = callback }
     
-    public class func setConfiguration(_ value: Int) {
-    }
+    @available(*, deprecated, message: "Use `AwesomeAdsSdk.Configuration` instead")
+    public class func setConfiguration(_ value: Int) { }
     
-    public class func setConfigurationProduction() {
-    }
+    @available(*, deprecated, message: "Use `AwesomeAdsSdk.Configuration` instead")
+    public class func setConfigurationProduction() { }
     
-    public class func setConfigurationStaging() {
-    }
+    @available(*, deprecated, message: "Use `AwesomeAdsSdk.Configuration` instead")
+    public class func setConfigurationStaging() { }
     
-    public class func setOrientation(_ orientation: Orientation) {
-        self.orientation = orientation
-    }
+    public class func setOrientation(_ orientation: Orientation) { self.orientation = orientation }
     
-    public class func setOrientationAny() {
-    }
+    public class func setOrientationAny() { setOrientation(.any) }
     
-    public class func setOrientationPortrait() {
-    }
+    public class func setOrientationPortrait() { setOrientation(.portrait) }
     
-    public class func setOrientationLandscape() {
-    }
+    public class func setOrientationLandscape() { setOrientation(.landscape) }
     
     public class func setTestMode(_ value: Bool) { isTestingEnabled = value }
     
@@ -138,16 +118,5 @@ public class InterstitialAd: Injectable {
                          instl: AdRequest.FullScreen.on,
                          w: Int(size.width),
                          h: Int(size.height))
-    }
-    
-    private static func onSuccess(_ response: AdResponse) {
-        logger.success("Ad load successful for \(response.placementId)")
-        self.adResponse = response
-        delegate?(placementId, .adLoaded)
-    }
-    
-    private static func onFailure(_ error: Error) {
-        logger.error("Ad load failed", error: error)
-        delegate?(placementId, .adFailedToLoad)
     }
 }

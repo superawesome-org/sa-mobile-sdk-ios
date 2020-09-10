@@ -15,6 +15,7 @@ protocol AdControllerType {
     var delegate: AdEventCallback? { get set }
     var adResponse: AdResponse? { get set }
     var filePathUrl: URL? { get }
+    var adAvailable: Bool { get }
     
     func handleAdTapForVast()
     func handleAdTap(url: URL)
@@ -45,6 +46,8 @@ class AdController: AdControllerType, Injectable {
     private lazy var adRepository: AdRepositoryType = dependencies.resolve()
     
     private var parentalGate: ParentalGate?
+    private var currentClickThreshold: TimeInterval = 0
+    
     var parentalGateEnabled: Bool = false
     var bumperPageEnabled: Bool = false
     var testEnabled = false
@@ -54,7 +57,7 @@ class AdController: AdControllerType, Injectable {
     var delegate: AdEventCallback?
     var placementId: Int { adResponse?.placementId ?? 0 }
     var showPadlock: Bool { adResponse?.ad.show_padlock ?? false }
-    private var currentClickThreshold: TimeInterval = 0
+    var adAvailable: Bool { adResponse != nil }
     
     private lazy var parentalGateOpenAction = { [weak self] in
         guard let adResponse = self?.adResponse else { return }
@@ -156,11 +159,10 @@ class AdController: AdControllerType, Injectable {
         delegate?(placementId, .adClicked)
         
         if adResponse.ad.creative.format == .video {
-            //vastRepository.clickTracking()
+            eventRepository.videoClick(adResponse, completion: nil)
         } else {
             eventRepository.click(adResponse, completion: nil)
         }
-        
         
         UIApplication.shared.open( url, options: [:], completionHandler: nil)
     }

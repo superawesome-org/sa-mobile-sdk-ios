@@ -72,10 +72,12 @@ class InterstitialAdViewController: UIViewController, Injectable {
     
     private func configureBannerView() {
         let bannerView = BannerView()
-        bannerView.configure(adResponse: adResponse, delegate: delegate)
-        bannerView.setTestMode(InterstitialAd.isTestingEnabled)
-        bannerView.setBumperPage(InterstitialAd.isBumperPageEnabled)
-        bannerView.setParentalGate(InterstitialAd.isParentalGateEnabled)
+        bannerView.configure(adResponse: adResponse, delegate: delegate) { [weak self] in
+            self?.closeButton?.isHidden = false
+        }
+        bannerView.setTestMode(testingEnabled)
+        bannerView.setBumperPage(bumperPageEnabled)
+        bannerView.setParentalGate(parentGateEnabled)
         bannerView.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(bannerView)
@@ -92,6 +94,7 @@ class InterstitialAdViewController: UIViewController, Injectable {
     
     private func configureCloseButton() {
         let button = UIButton()
+        button.isHidden = true
         button.setTitle("", for: .normal)
         button.setImage(imageProvider.closeImage, for: .normal)
         button.addTarget(self, action: #selector(onCloseClicked), for: .touchUpInside)

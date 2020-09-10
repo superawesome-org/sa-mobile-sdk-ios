@@ -18,6 +18,7 @@ public class BannerView: UIView, Injectable {
     private var webView: WebView?
     private var padlock: UIButton?
     private var viewableDetector: ViewableDetectorType?
+    private var hasBeenVisible: VoidBlock?
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,7 +31,8 @@ public class BannerView: UIView, Injectable {
     }
     // MARK: - Internal functions
     
-    func configure(adResponse: AdResponse, delegate: AdEventCallback?) {
+    func configure(adResponse: AdResponse, delegate: AdEventCallback?, hasBeenVisible: VoidBlock?) {
+        self.hasBeenVisible = hasBeenVisible
         setAdResponse(adResponse)
         setCallback(delegate)
     }
@@ -89,7 +91,7 @@ public class BannerView: UIView, Injectable {
     
     /// Method that is called to close the ad
     public func close() {
-        //        visibilityDelegate = nil
+        viewableDetector = nil
         controller.close()
         removeWebView()
     }
@@ -222,8 +224,9 @@ extension BannerView: WebViewDelegate {
         controller.adShown()
         
         viewableDetector = dependencies.resolve() as ViewableDetectorType
-        viewableDetector?.start(for: self, target: .display, hasBeenVisible: { [weak self] in
+        viewableDetector?.start(for: self, hasBeenVisible: { [weak self] in
             self?.controller.triggerViewableImpression()
+            self?.hasBeenVisible?()
         })
     }
     

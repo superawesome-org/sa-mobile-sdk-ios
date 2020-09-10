@@ -5,13 +5,9 @@
 //  Created by Gunhan Sancar on 10/09/2020.
 //
 
-enum ViewableTargetTick: Int {
-    case display = 1
-    case video = 2
-}
-
 protocol ViewableDetectorType {
-    func start(for view: UIView, target: ViewableTargetTick, hasBeenVisible: VoidBlock?)
+    func start(for view: UIView, hasBeenVisible: VoidBlock?)
+    func cancel()
 }
 
 class ViewableDetector: ViewableDetectorType {
@@ -19,7 +15,7 @@ class ViewableDetector: ViewableDetectorType {
     private let logger: LoggerType
     private weak var view: UIView?
     private var viewableCounter = 0
-    private var targetTickCount = 0
+    private let targetTickCount = 1
     
     var hasBeenVisible: VoidBlock?
     
@@ -34,9 +30,8 @@ class ViewableDetector: ViewableDetectorType {
         view = nil
     }
     
-    func start(for view: UIView, target: ViewableTargetTick, hasBeenVisible: VoidBlock?) {
+    func start(for view: UIView, hasBeenVisible: VoidBlock?) {
         cancel()
-        targetTickCount = target.rawValue
         self.hasBeenVisible = hasBeenVisible
         self.view = view
         timer = Timer.scheduledTimer(timeInterval: 1, target: self,
@@ -48,11 +43,13 @@ class ViewableDetector: ViewableDetectorType {
         
         if view?.isVisibleToUser ?? false {
             viewableCounter += 1
-            logger.info("View is visible to user: \(viewableCounter)")
+            logger.info("View is visible to user. Ticks: \(viewableCounter)")
+        } else {
+            logger.info("View is not visible \(String(describing: view.self))")
         }
         
         if viewableCounter >= targetTickCount {
-            logger.success("View has been visible to user. Viewable is completed.")
+            logger.success("View has been visible to user. Viewable event is sent.")
             hasBeenVisible?()
             cancel()
         }

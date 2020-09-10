@@ -72,22 +72,11 @@ extension UIView {
             return false
         }
         
-        let topSafeArea: CGFloat
-        let bottomSafeArea: CGFloat
-        
-        if #available(iOS 11.0, *) {
-            topSafeArea = rootViewController.view.safeAreaInsets.top
-            bottomSafeArea = rootViewController.view.safeAreaInsets.bottom
-        } else {
-            topSafeArea = rootViewController.topLayoutGuide.length
-            bottomSafeArea = rootViewController.bottomLayoutGuide.length
-        }
-        
         let viewFrame = convert(bounds, to: rootViewController.view)
         
         return viewFrame.minX >= 0 &&
             viewFrame.maxX <= rootViewController.view.bounds.width &&
-            viewFrame.minY >= topSafeArea &&
-            viewFrame.maxY <= rootViewController.view.bounds.height - bottomSafeArea
+            viewFrame.minY >= 0 &&
+            viewFrame.maxY <= rootViewController.view.bounds.height
     }
 }
