@@ -13,7 +13,6 @@ import Foundation
 public class VideoPlayerController: AVPlayer, VideoPlayerControls {
     
     private let videoEndEvent = NSNotification.Name.AVPlayerItemDidPlayToEndTime
-    private let videoEndSelector = #selector(didFinishPlaying(_:))
     private let periodicTimeInterval = CMTime(seconds: 1, preferredTimescale: 2)
     
     private var timeObserver: Any?
@@ -30,9 +29,8 @@ public class VideoPlayerController: AVPlayer, VideoPlayerControls {
     
     public override init() {
         super.init()
-        
-        didEndObserver = notif.addObserver(forName: videoEndEvent, object: nil, queue: OperationQueue.main, using: { (notif) in
-            self.didFinishPlaying(notif)
+        didEndObserver = notif.addObserver(forName: videoEndEvent, object: nil, queue: OperationQueue.main, using: { [weak self] (notif) in
+            self?.didFinishPlaying(notif)
         })
     }
     
@@ -47,6 +45,8 @@ public class VideoPlayerController: AVPlayer, VideoPlayerControls {
         if let timeObserver = timeObserver {
             removeTimeObserver(timeObserver)
         }
+        timeObserver = nil
+        didEndObserver = nil
     }
     
     ////////////////////////////////////////////////////////////////////////////
@@ -58,7 +58,10 @@ public class VideoPlayerController: AVPlayer, VideoPlayerControls {
         item = AVPlayerItem(asset: asset)
         if let item = item {
             replaceCurrentItem(with: item)
-            timeObserver = addPeriodicTimeObserver(forInterval: periodicTimeInterval, queue: mainQueue, using: timeFunction)
+            timeObserver = addPeriodicTimeObserver(forInterval: periodicTimeInterval,
+                                                   queue: mainQueue) { [weak self] time in
+                self?.timeFunction(time)
+            }
             delegate?.didPrepare(control: self)
         }
     }
@@ -110,11 +113,15 @@ public class VideoPlayerController: AVPlayer, VideoPlayerControls {
     
     @objc
     private func didFinishPlaying(_ notification: Notification) {
-        mainQueue.async {
-            self.delegate?.didCompleteMedia(control: self,
-                                            time: self.getCurrentPosition(),
-                                            duration: self.getDuration())
+        mainQueue.async { [weak self] in
+            self?.didCompleteMedia()
         }
+    }
+    
+    private func didCompleteMedia() {
+        delegate?.didCompleteMedia(control: self,
+                                   time: self.getCurrentPosition(),
+                                   duration: self.getDuration())
     }
     
     private func timeFunction(_ time: CMTime) {
