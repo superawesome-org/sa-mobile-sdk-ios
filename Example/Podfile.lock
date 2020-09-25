@@ -1,17 +1,17 @@
 PODS:
   - Alamofire (5.2.2)
-  - Mockingjay (2.0.1):
-    - Mockingjay/Core (= 2.0.1)
-    - Mockingjay/XCTest (= 2.0.1)
-  - Mockingjay/Core (2.0.1):
-    - URITemplate (~> 2.0)
-  - Mockingjay/XCTest (2.0.1):
+  - Mockingjay (3.0.0-alpha.1):
+    - Mockingjay/Core (= 3.0.0-alpha.1)
+    - Mockingjay/XCTest (= 3.0.0-alpha.1)
+  - Mockingjay/Core (3.0.0-alpha.1):
+    - URITemplate (~> 3.0)
+  - Mockingjay/XCTest (3.0.0-alpha.1):
     - Mockingjay/Core
   - Moya (14.0.0):
     - Moya/Core (= 14.0.0)
   - Moya/Core (14.0.0):
     - Alamofire (~> 5.0)
-  - Nimble (8.1.1)
+  - Nimble (8.1.2)
   - OHHTTPStubs (9.0.0):
     - OHHTTPStubs/Default (= 9.0.0)
   - OHHTTPStubs/Core (9.0.0)
@@ -25,27 +25,27 @@ PODS:
   - OHHTTPStubs/NSURLSession (9.0.0):
     - OHHTTPStubs/Core
   - OHHTTPStubs/OHPathHelpers (9.0.0)
-  - SuperAwesome (7.2.13):
-    - SuperAwesome/Full (= 7.2.13)
-  - SuperAwesome/Base (7.2.13)
-  - SuperAwesome/Core (7.2.13):
+  - SuperAwesome (7.2.14):
+    - SuperAwesome/Full (= 7.2.14)
+  - SuperAwesome/Base (7.2.14)
+  - SuperAwesome/Core (7.2.14):
     - SuperAwesome/Full
     - SwiftyXMLParser (~> 5.0)
-  - SuperAwesome/Full (7.2.13):
+  - SuperAwesome/Full (7.2.14):
     - SuperAwesome/Base
     - SuperAwesome/Moat
-  - SuperAwesome/Moat (7.2.13):
+  - SuperAwesome/Moat (7.2.14):
     - SuperAwesome/Base
-  - SuperAwesome/Moya (7.2.13):
+  - SuperAwesome/Moya (7.2.14):
     - Moya (~> 14.0)
     - SuperAwesome/Core
-  - SuperAwesome/Moya/Tests (7.2.13):
-    - Mockingjay
+  - SuperAwesome/Moya/Tests (7.2.14):
+    - Mockingjay (= 3.0.0-alpha.1)
     - Moya (~> 14.0)
     - Nimble
     - SuperAwesome/Core
   - SwiftyXMLParser (5.0.0)
-  - URITemplate (2.0.3)
+  - URITemplate (3.0.0)
 
 DEPENDENCIES:
   - Mockingjay
@@ -71,13 +71,13 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
-  Mockingjay: 11a621880d2887f1775bdcf824341eb68f218450
+  Mockingjay: 0f7c5aa49c7f1b95621cee3c79b557141f5a225c
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
-  Nimble: 5f8a2fb6fa343a7242dfdd9d42f7267419d464b2
+  Nimble: 3864815b4703c7ebffba875973c70e854489fbae
   OHHTTPStubs: cb29d2a9d09a828ecb93349a2b0c64f99e0db89f
-  SuperAwesome: c646e4bdb6da5f8906336cb796a7d8905ff491e6
+  SuperAwesome: 5881328c1d0c071fb87252f6cf2e37c2b3d0ab33
   SwiftyXMLParser: 5ebb8793192f403fa8cc691045143906122a7a75
-  URITemplate: ace0c4c46dcf8afe6e89b4060621852886b15c3b
+  URITemplate: 58e0d47f967006c5d59888af5356c4a8ed3b197d
 
 PODFILE CHECKSUM: a983ffcff22b7177d1ac5e292eca2e711fca49b1
 

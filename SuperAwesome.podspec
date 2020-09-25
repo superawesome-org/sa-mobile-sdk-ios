@@ -56,7 +56,7 @@ Pod::Spec.new do |s|
     c.test_spec 'Tests' do |test_spec|
       test_spec.source_files = 'Pod/Plugin/Core/Tests/**/*'
       test_spec.dependency 'Nimble'
-      test_spec.dependency 'Mockingjay'
+      test_spec.dependency 'Mockingjay', '3.0.0-alpha.1'
     end
   end
   
@@ -70,7 +70,7 @@ Pod::Spec.new do |s|
       test_spec.source_files = 'Pod/Plugin/Moya/Tests/**/*', 'Pod/Plugin/Core/Tests/**/*'
       test_spec.resources = 'Pod/Plugin/Moya/Resources/*'
       test_spec.dependency 'Nimble'
-      test_spec.dependency 'Mockingjay'
+      test_spec.dependency 'Mockingjay', '3.0.0-alpha.1'
     end
   end
 
