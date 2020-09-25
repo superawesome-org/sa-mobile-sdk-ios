@@ -53,11 +53,11 @@ Pod::Spec.new do |s|
     c.dependency 'SwiftyXMLParser', '~> 5.0'
     c.source_files = 'Pod/Plugin/Core/Classes/**/*'
 
-    c.test_spec 'Tests' do |test_spec|
-      test_spec.source_files = 'Pod/Plugin/Core/Tests/**/*'
-      test_spec.dependency 'Nimble'
-      test_spec.dependency 'Mockingjay', '3.0.0-alpha.1'
-    end
+#    c.test_spec 'Tests' do |test_spec|
+#      test_spec.source_files = 'Pod/Plugin/Core/Tests/**/*'
+#      test_spec.dependency 'Nimble'
+#      test_spec.dependency 'Mockingjay', '3.0.0-alpha.1'
+#    end
   end
   
   s.subspec 'Moya' do |m|
@@ -66,12 +66,12 @@ Pod::Spec.new do |s|
     m.dependency 'Moya', '~> 14.0'
     m.xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) MOYA_PLUGIN' }
 
-    m.test_spec 'Tests' do |test_spec|
-      test_spec.source_files = 'Pod/Plugin/Moya/Tests/**/*', 'Pod/Plugin/Core/Tests/**/*'
-      test_spec.resources = 'Pod/Plugin/Moya/Resources/*'
-      test_spec.dependency 'Nimble'
-      test_spec.dependency 'Mockingjay', '3.0.0-alpha.1'
-    end
+#    m.test_spec 'Tests' do |test_spec|
+#      test_spec.source_files = 'Pod/Plugin/Moya/Tests/**/*', 'Pod/Plugin/Core/Tests/**/*'
+#      test_spec.resources = 'Pod/Plugin/Moya/Resources/*'
+#      test_spec.dependency 'Nimble'
+#      test_spec.dependency 'Mockingjay', '3.0.0-alpha.1'
+#    end
   end
 
 # s.subspec 'Unity' do |u|
