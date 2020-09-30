@@ -139,15 +139,10 @@ public class BannerView: UIView, Injectable {
     public func setColorGray() { setColor(false) }
     
     public func setColor(_ value: Bool) {
-        backgroundColor = value ?
-            UIColor.clear : UIColor(red: 224.0 / 255.0, green: 224.0 / 255.0, blue: 224.0 / 255.0, alpha: 1)
+        backgroundColor = value ? UIColor.clear : Constants.backgroundGray
     }
     
     public func disableMoatLimiting() { controller.moatLimiting = false }
-    
-    //    public func setBannerVisibilityDelegate(_ delegate: SABannerAdVisibilityDelegate) {
-    //        visibilityDelegate = delegate
-    //    }
     
     // MARK: - Private functions
     

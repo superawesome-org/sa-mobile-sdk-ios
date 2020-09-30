@@ -43,7 +43,7 @@ class InterstitialAdViewController: UIViewController, Injectable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(red: 224.0 / 255.0, green: 224.0 / 255.0, blue: 224.0 / 255.0, alpha: 1)
+        view.backgroundColor = Constants.backgroundGray
         configureBannerView()
         configureCloseButton()
     }
@@ -113,7 +113,6 @@ class InterstitialAdViewController: UIViewController, Injectable {
     }
     
     @objc private func onCloseClicked() {
-        //SAInterstitialAd.remove(fromLoadedAds: ad)
         bannerView?.close()
         dismiss(animated: true)
     }
