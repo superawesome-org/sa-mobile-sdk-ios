@@ -38,15 +38,13 @@ protocol AdControllerType {
     func triggerImpressionEvent()
 }
 
-class AdController: AdControllerType, Injectable {
-    private static let ClickThresholdInSeconds = 5
-    
+class AdController: AdControllerType, Injectable {    
     private lazy var logger: LoggerType = dependencies.resolve(param: AdController.self)
     private lazy var eventRepository: EventRepositoryType = dependencies.resolve()
     private lazy var adRepository: AdRepositoryType = dependencies.resolve()
     
     private var parentalGate: ParentalGate?
-    private var currentClickThreshold: TimeInterval = 0
+    private var lastClickTime: TimeInterval = 0
     
     var parentalGateEnabled: Bool = false
     var bumperPageEnabled: Bool = false
@@ -149,12 +147,14 @@ class AdController: AdControllerType, Injectable {
         guard let adResponse = adResponse else { return }
         
         let currentTime = NSDate().timeIntervalSince1970
-        let diff = abs(currentTime - currentClickThreshold)
+        let diff = abs(currentTime - lastClickTime)
         
-        if Int32(diff) < AdController.ClickThresholdInSeconds {
+        if Int32(diff) < Constants.defaultClickThresholdInMs {
             logger.info("Ad clicked too quickly: ignored")
             return
         }
+        
+        lastClickTime = currentTime
         
         delegate?(placementId, .adClicked)
         

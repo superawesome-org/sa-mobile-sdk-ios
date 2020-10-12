@@ -11,7 +11,7 @@ PODS:
     - Moya/Core (= 14.0.0)
   - Moya/Core (14.0.0):
     - Alamofire (~> 5.0)
-  - Nimble (8.1.2)
+  - Nimble (9.0.0)
   - OHHTTPStubs (9.0.0):
     - OHHTTPStubs/Default (= 9.0.0)
   - OHHTTPStubs/Core (9.0.0)
@@ -25,7 +25,7 @@ PODS:
   - OHHTTPStubs/NSURLSession (9.0.0):
     - OHHTTPStubs/Core
   - OHHTTPStubs/OHPathHelpers (9.0.0)
-  - SAVideoPlayer (2.0.0)
+  - SAVideoPlayer (2.0.1)
   - SuperAwesome/Core (7.2.13)
   - SuperAwesome/Dependencies (7.2.13):
     - Moya (~> 14.0)
@@ -68,9 +68,9 @@ SPEC CHECKSUMS:
   Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
   Mockingjay: 11a621880d2887f1775bdcf824341eb68f218450
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
-  Nimble: 3864815b4703c7ebffba875973c70e854489fbae
+  Nimble: 3b4ec3fd40f1dc178058e0981107721c615643d8
   OHHTTPStubs: cb29d2a9d09a828ecb93349a2b0c64f99e0db89f
-  SAVideoPlayer: 357664a1cc86456059bfb1da9b38234275eac0b6
+  SAVideoPlayer: 5a1db63d754db28595f8561b910e1f9754cbfa13
   SuperAwesome: d0b8cd6b8fff334d047ef5816f0e83ec4022eba5
   SwiftyXMLParser: 5ebb8793192f403fa8cc691045143906122a7a75
   URITemplate: ace0c4c46dcf8afe6e89b4060621852886b15c3b
