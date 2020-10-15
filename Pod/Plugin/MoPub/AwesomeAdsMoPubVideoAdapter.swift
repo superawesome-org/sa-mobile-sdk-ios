@@ -80,7 +80,7 @@ public class AwesomeAdsMoPubVideoAdapter: MPFullscreenAdAdapter, MPThirdPartyFul
 
     public override var hasAdAvailable: Bool {
         get { VideoAd.hasAdAvailable(placementId: placementId) }
-        set { _hasAdAvailable = newValue }
+        set { }
     }
     
     public override func presentAd(from viewController: UIViewController) {

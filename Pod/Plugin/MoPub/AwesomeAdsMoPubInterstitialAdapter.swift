@@ -13,7 +13,7 @@ public class AwesomeAdsMoPubInterstitialAdapter: MPFullscreenAdAdapter, MPThirdP
     private var placementId: Int = 0
     private let errorFactory = AwesomeAdsMoPubErrorFactory()
     private let adHelper = AwesomeAdsMoPubAdHelper()
-
+ 
     public override func requestAd(withAdapterInfo info: [AnyHashable : Any], adMarkup: String?) {
         let extractor = AwesomeAdsMoPubAdDataExtractor(info)
         placementId = extractor.placementId
@@ -71,10 +71,11 @@ public class AwesomeAdsMoPubInterstitialAdapter: MPFullscreenAdAdapter, MPThirdP
     }
 
     public override var isRewardExpected: Bool { false }
+    
 
     public override var hasAdAvailable: Bool {
         get { SAInterstitialAd.hasAdAvailable(placementId) }
-        set { _hasAdAvailable = newValue }
+        set { }
     }
     
     public override func presentAd(from viewController: UIViewController) {
