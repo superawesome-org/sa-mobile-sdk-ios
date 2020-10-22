@@ -15,7 +15,9 @@ import SAVideoPlayer
 class VideoEvents: Injectable {
     
     private var vastRepository: VastEventRepositoryType?
-
+    private var moatRepository: MoatRepositoryType?
+    private var viewableDetector: ViewableDetectorType?
+    
     private var isStartHandled: Bool = false
     private var is2SHandled: Bool = false
     private var isFirstQuartileHandled: Bool = false
@@ -26,6 +28,7 @@ class VideoEvents: Injectable {
     
     init(_ adResponse: AdResponse) {
         vastRepository = dependencies.resolve(param: adResponse) as VastEventRepositoryType
+        moatRepository = dependencies.resolve(param: adResponse, false) as MoatRepositoryType
     }
     
     // MARK: - public class interface
@@ -34,20 +37,20 @@ class VideoEvents: Injectable {
         if let videoPlayer = player as? UIView,
            let avPlayer = player.getAVPlayer(),
            let avLayer = player.getAVPlayerLayer() {
-//            events.startMoatTracking(forVideoPlayer: avPlayer,
-//                                     with: avLayer,
-//                                    andView: videoPlayer)
+            _ = moatRepository?.startMoatTracking(forVideoPlayer: avPlayer,
+                                              with: avLayer,
+                                              andView: videoPlayer)
         }
     }
     
     public func complete(player: VideoPlayer, time: Int, duration: Int) {
-//        events.stopMoatTrackingForVideoPlayer()
+        _ = moatRepository?.stopMoatTrackingForVideoPlayer()
         guard time >= duration else { return }
         vastRepository?.complete()
     }
     
     public func error(player: VideoPlayer, time: Int, duration: Int) {
-//        events.stopMoatTrackingForVideoPlayer()
+        _ = moatRepository?.stopMoatTrackingForVideoPlayer()
         vastRepository?.error()
     }
     
@@ -60,10 +63,13 @@ class VideoEvents: Injectable {
         }
         if (time >= 2 && !is2SHandled) {
             is2SHandled = true
-            //events.isChild(inViewableRect: videoPlayer) == true
+            
             if let videoPlayer = player as? UIView {
-                vastRepository?.impression()
-                delegate?.hasBeenVisible()
+                viewableDetector = dependencies.resolve() as ViewableDetectorType
+                viewableDetector?.start(for: videoPlayer, hasBeenVisible: { [weak self] in
+                    self?.vastRepository?.impression()
+                    self?.delegate?.hasBeenVisible()
+                })
             }
         }
         if (time >= duration / 4 && !isFirstQuartileHandled) {
@@ -78,5 +84,9 @@ class VideoEvents: Injectable {
             isThirdQuartileHandled = true
             vastRepository?.thirdQuartile()
         }
+    }
+    
+    deinit {
+        viewableDetector = nil
     }
 }

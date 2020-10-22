@@ -7,21 +7,18 @@
 
 import Moya
 
-class DependenciesRegistrar {
+class NetworkModule {
     static func register(_ container: DependencyContainer) {
-        container.registerSingle(VastParserType.self) { c, _ in
-            VastParser(connectionProvider: c.resolve())
-        }
-        container.registerFactory(MoyaHeaderPlugin.self) { c, _ in
+        container.factory(MoyaHeaderPlugin.self) { c, _ in
             MoyaHeaderPlugin(userAgentProvider: c.resolve() as UserAgentProviderType)
         }
-        container.registerSingle(MoyaProvider<AwesomeAdsTarget>.self) { c, _ in
+        container.single(MoyaProvider<AwesomeAdsTarget>.self) { c, _ in
             MoyaProvider<AwesomeAdsTarget>(plugins:[c.resolve() as MoyaHeaderPlugin])
         }
-        container.registerSingle(AwesomeAdsApiDataSourceType.self) { c, _ in
+        container.single(AwesomeAdsApiDataSourceType.self) { c, _ in
             MoyaAwesomeAdsApiDataSource(provider: c.resolve(), environment: c.resolve())
         }
-        container.registerSingle(NetworkDataSourceType.self) { c, _ in
+        container.single(NetworkDataSourceType.self) { c, _ in
             AFNetworkDataSource()
         }
     }

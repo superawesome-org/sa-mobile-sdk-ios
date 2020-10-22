@@ -4,7 +4,7 @@
 //
 //  Created by Gunhan Sancar on 21/08/2020.
 //
-#if DEPENDENCIES_PLUGIN
+
 import UIKit
 import SuperAwesome
 
@@ -232,5 +232,3 @@ extension UIView {
         }
     }
 }
-
-#endif

@@ -6,7 +6,7 @@
 //
 
 /// Factory is a function to create instances with given `DependencyContainer` and if needed with a `param`
-typealias Factory<T> = (DependencyContainer, Any?) -> T
+typealias Factory<T> = (DependencyContainer, [Any?]) -> T
 
 /// Scope of a dependency
 enum DependencyScope {
@@ -38,12 +38,12 @@ class DependencyContainer {
     private var singleInstances: [String: Any] = [:]
     
     /// Registers a single scoped dependency
-    func registerSingle<T>(name: String? = nil, _ type: T.Type, _ factory: @escaping Factory<T>) {
+    func single<T>(name: String? = nil, _ type: T.Type, _ factory: @escaping Factory<T>) {
         register(name: name, type: type, scope: .single, factory)
     }
     
     /// Registers a factory scoped dependency
-    func registerFactory<T>(name: String? = nil, _ type: T.Type, _ factory: @escaping Factory<T>) {
+    func factory<T>(name: String? = nil, _ type: T.Type, _ factory: @escaping Factory<T>) {
         register(name: name, type: type, scope: .factory, factory)
     }
     
@@ -61,7 +61,7 @@ class DependencyContainer {
     /// Resolves a dependency from the container using the return type of `T` or using the `name` of the dependency
     /// By default the type of the dependency used as a name
     /// param - is the optional parameter to send to the construction of the resolved type
-    func resolve<T>(_ name: String? = nil, param: Any? = nil) -> T {
+    func resolve<T>(_ name: String? = nil, param: Any?...) -> T {
         let name = name ?? String(describing: T.self)
         
         guard let dependency: Dependency = dependencies[name] else {

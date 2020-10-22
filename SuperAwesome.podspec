@@ -48,33 +48,72 @@ Pod::Spec.new do |s|
     moat.source_files = 'Pod/Plugin/Moat2/*'
   end
 
-  s.subspec 'Core' do |c|
-#    c.dependency 'SuperAwesome/Full'
-    c.source_files = 'Pod/Plugin/Core/Classes/**/*'
+  # Refactored subspecs
 
-    c.test_spec 'Tests' do |test_spec|
-      test_spec.source_files = 'Pod/Plugin/Core/Tests/**/*'
+  s.subspec 'FullModule' do |subspec|
+    subspec.dependency 'SuperAwesome/CoreModule'
+    subspec.dependency 'SuperAwesome/MoatModule'
+  end
+
+  s.subspec 'CoreModule' do |subspec|
+    subspec.source_files = 'Pod/Sources/Core/**/*'
+
+    subspec.dependency 'SuperAwesome/CommonModule'
+    subspec.dependency 'SuperAwesome/UIModule'
+    subspec.dependency 'SuperAwesome/NetworkModule'
+  end
+
+  s.subspec 'CommonModule' do |subspec|
+    subspec.source_files = 'Pod/Sources/Common/**/*'
+
+    subspec.dependency 'SwiftyXMLParser', '~> 5.0'
+    subspec.dependency 'SAVideoPlayer', '~> 2.0'
+
+    subspec.test_spec 'Tests' do |test_spec|
+      test_spec.source_files = 'Pod/Tests/Common/'
       test_spec.dependency 'Nimble'
       test_spec.dependency 'Mockingjay'
     end
+  end
+
+  s.subspec 'MoatModule' do |subspec|
+    subspec.source_files = 'Pod/Sources/Moat/**/*'
+
+    subspec.dependency 'SuperAwesome/CommonModule'
+    subspec.vendored_frameworks = 'Pod/Libraries/SUPMoatMobileAppKit.framework'
+
+    subspec.xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) MOAT_MODULE' }
+  end
+
+  s.subspec 'UIModule' do |subspec|
+    subspec.source_files = 'Pod/Sources/UI/**/*'
+
+    subspec.dependency 'SuperAwesome/CommonModule'    
+  end
+
+  s.subspec 'NetworkModule' do |subspec|
+    subspec.source_files = 'Pod/Sources/Network/**/*'
+
+    subspec.dependency 'SuperAwesome/CommonModule'
+    subspec.dependency 'Moya', '~> 14.0'
   end
   
-  s.subspec 'Dependencies' do |m|
-    m.dependency 'SuperAwesome/Core'
-    m.source_files = 'Pod/Plugin/Dependencies/Classes/**/*'
-    m.dependency 'SwiftyXMLParser', '~> 5.0'
-    m.dependency 'Moya', '~> 14.0'
-    m.dependency 'SAVideoPlayer', '~> 2.0'
+  # s.subspec 'Dependencies' do |m|
+  #   m.dependency 'SuperAwesome/Core'
+  #   m.source_files = 'Pod/Plugin/Dependencies/Classes/**/*'
+  #   m.dependency 'SwiftyXMLParser', '~> 5.0'
+  #   m.dependency 'Moya', '~> 14.0'
+  #   m.dependency 'SAVideoPlayer', '~> 2.0'
 
-    m.xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) DEPENDENCIES_PLUGIN' }
+  #   m.xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) DEPENDENCIES_PLUGIN' }
 
-    m.test_spec 'Tests' do |test_spec|
-      test_spec.source_files = 'Pod/Plugin/Dependencies/Tests/**/*', 'Pod/Plugin/Core/Tests/**/*'
-      test_spec.resources = 'Pod/Plugin/Dependencies/Resources/*'
-      test_spec.dependency 'Nimble'
-      test_spec.dependency 'Mockingjay'
-    end
-  end
+  #   m.test_spec 'Tests' do |test_spec|
+  #     test_spec.source_files = 'Pod/Plugin/Dependencies/Tests/**/*', 'Pod/Plugin/Core/Tests/**/*'
+  #     test_spec.resources = 'Pod/Plugin/Dependencies/Resources/*'
+  #     test_spec.dependency 'Nimble'
+  #     test_spec.dependency 'Mockingjay'
+  #   end
+  # end
 
 # s.subspec 'Unity' do |u|
 #    u.dependency 'SuperAwesome/Full'
