@@ -11,7 +11,7 @@ struct Ad: Codable {
     let moat: Float
     let is_fill: Bool
     let is_fallback: Bool
-    let campaign_id: Int
+    var campaign_id: Int? = 0
     let campaign_type: Int
     let is_house: Bool
     let safe_ad_approved: Bool

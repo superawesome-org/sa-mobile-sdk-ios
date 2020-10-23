@@ -12,14 +12,14 @@ import Mockingjay
 @testable import SuperAwesome
 
 class MoyaAdDataSourceTests: XCTestCase {
-    private var dataSource: MoyaAdDataSource!
+    private var dataSource: MoyaAwesomeAdsApiDataSource!
     private var provider: MoyaProvider<AwesomeAdsTarget>!
     private var adResult: Result<Ad,Error>?
     private var eventResult: Result<Void,Error>?
     
     override func setUp() {
         provider = MoyaProvider<AwesomeAdsTarget>(plugins:[NetworkLoggerPlugin()])
-        dataSource = MoyaAdDataSource(provider: provider, environment: .staging)
+        dataSource = MoyaAwesomeAdsApiDataSource(provider: provider, environment: .staging)
         adResult = nil
         eventResult = nil
     }

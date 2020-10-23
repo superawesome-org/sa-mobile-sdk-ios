@@ -9,6 +9,7 @@
 
 class AdQueryMakerMock: AdQueryMakerType {
     
+    
     static let mockQuery = AdQuery(test: true, sdkVersion: "", rnd: 1, bundle: "", name: "", dauid: 1,
                                    ct: .wifi, lang: "", device: "", pos: 1, skip: 1, playbackmethod: 1,
                                    startdelay: 1, instl: 1, w: 1, h: 1   )
@@ -21,22 +22,22 @@ class AdQueryMakerMock: AdQueryMakerType {
         return makeAdQueryInstance()
     }
     
-    func makeImpressionQuery(_ request: EventRequest) -> EventQuery {
+    func makeImpressionQuery(_ adResponse: AdResponse) -> EventQuery {
         isMakeCalled = true
         return makeEventQueryInstance()
     }
     
-    func makeClickQuery(_ request: EventRequest) -> EventQuery {
+    func makeClickQuery(_ adResponse: AdResponse) -> EventQuery {
         isMakeCalled = true
         return makeEventQueryInstance()
     }
     
-    func makeVideoClickQuery(_ request: EventRequest) -> EventQuery {
+    func makeVideoClickQuery(_ adResponse: AdResponse) -> EventQuery {
         isMakeCalled = true
         return makeEventQueryInstance()
     }
     
-    func makeEventQuery(_ request: EventRequest) -> EventQuery {
+    func makeEventQuery(_ adResponse: AdResponse, _ eventData: EventData) -> EventQuery {
         isMakeCalled = true
         return makeEventQueryInstance()
     }

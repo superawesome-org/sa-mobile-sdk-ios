@@ -11,7 +11,7 @@ import Mockingjay
 @testable import SuperAwesome
 
 class AdRepositoryTests: XCTestCase {
-    var result: Result<Ad,Error>? = nil
+    var result: Result<AdResponse,Error>? = nil
     
     override func setUp() {
         super.setUp()

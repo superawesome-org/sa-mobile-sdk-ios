@@ -30,7 +30,7 @@ class EventRepositoryTests: XCTestCase {
         
         // When
         let expectation = self.expectation(description: "request")
-        repository.impression(request: makeEventRequest(.impressionDownloaded)) { result in
+        repository.impression(makeAdResponse()) { result in
             self.result = result
             expectation.fulfill()
         }
@@ -47,7 +47,7 @@ class EventRepositoryTests: XCTestCase {
         
         // When
         let expectation = self.expectation(description: "request")
-        repository.click(request: makeEventRequest()) { result in
+        repository.impression(makeAdResponse()) { result in
             self.result = result
             expectation.fulfill()
         }
@@ -64,7 +64,7 @@ class EventRepositoryTests: XCTestCase {
         
         // When
         let expectation = self.expectation(description: "request")
-        repository.videoClick(request: makeEventRequest()) { result in
+        repository.impression(makeAdResponse()) { result in
             self.result = result
             expectation.fulfill()
         }
@@ -81,7 +81,7 @@ class EventRepositoryTests: XCTestCase {
         
         // When
         let expectation = self.expectation(description: "request")
-        repository.event(request: makeEventRequest()) { result in
+        repository.impression(makeAdResponse()) { result in
             self.result = result
             expectation.fulfill()
         }

@@ -9,6 +9,6 @@
 
 class AdProcessorMock: AdProcessorType {
     func process(_ placementId: Int, _ ad: Ad, complition: @escaping OnComplete<AdResponse>) {
-        
+        complition(AdResponse(placementId, ad))
     }
 }

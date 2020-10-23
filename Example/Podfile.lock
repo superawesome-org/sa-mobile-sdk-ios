@@ -1,9 +1,17 @@
 PODS:
   - Alamofire (5.3.0)
+  - Mockingjay (3.0.0-alpha.1):
+    - Mockingjay/Core (= 3.0.0-alpha.1)
+    - Mockingjay/XCTest (= 3.0.0-alpha.1)
+  - Mockingjay/Core (3.0.0-alpha.1):
+    - URITemplate (~> 3.0)
+  - Mockingjay/XCTest (3.0.0-alpha.1):
+    - Mockingjay/Core
   - Moya (14.0.0):
     - Moya/Core (= 14.0.0)
   - Moya/Core (14.0.0):
     - Alamofire (~> 5.0)
+  - Nimble (9.0.0)
   - SAVideoPlayer (2.0.1)
   - SuperAwesome/CommonModule (7.2.13):
     - SAVideoPlayer (~> 2.0)
@@ -15,6 +23,11 @@ PODS:
   - SuperAwesome/FullModule (7.2.13):
     - SuperAwesome/CoreModule
     - SuperAwesome/MoatModule
+  - SuperAwesome/FullModule/Tests (7.2.13):
+    - Mockingjay (= 3.0.0-alpha.1)
+    - Nimble
+    - SuperAwesome/CoreModule
+    - SuperAwesome/MoatModule
   - SuperAwesome/MoatModule (7.2.13):
     - SuperAwesome/CommonModule
   - SuperAwesome/NetworkModule (7.2.13):
@@ -23,16 +36,21 @@ PODS:
   - SuperAwesome/UIModule (7.2.13):
     - SuperAwesome/CommonModule
   - SwiftyXMLParser (5.0.0)
+  - URITemplate (3.0.0)
 
 DEPENDENCIES:
   - SuperAwesome/FullModule (from `../`)
+  - SuperAwesome/FullModule/Tests (from `../`)
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - Mockingjay
     - Moya
+    - Nimble
     - SAVideoPlayer
     - SwiftyXMLParser
+    - URITemplate
 
 EXTERNAL SOURCES:
   SuperAwesome:
@@ -40,11 +58,14 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: 2c792affbdc2f18016e08fdbcacd60aebe1ba593
+  Mockingjay: 0f7c5aa49c7f1b95621cee3c79b557141f5a225c
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
+  Nimble: 3b4ec3fd40f1dc178058e0981107721c615643d8
   SAVideoPlayer: 5a1db63d754db28595f8561b910e1f9754cbfa13
-  SuperAwesome: 2bc5b2738ab4c90329bd8c0df1471cb17de8524b
+  SuperAwesome: 853a5ae0ea20019b4b5e077d801400fa9a39bafb
   SwiftyXMLParser: 5ebb8793192f403fa8cc691045143906122a7a75
+  URITemplate: 58e0d47f967006c5d59888af5356c4a8ed3b197d
 
-PODFILE CHECKSUM: c2fe185b3ea208a48ad3fa0af81339743cf2cf95
+PODFILE CHECKSUM: 7008de7f1a3a9e2a2e67405b2bdad7964f9777dd
 
 COCOAPODS: 1.10.0

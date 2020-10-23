@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
   s.source = {
   	:git => 'https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git',
   	:branch => 'master',
-  	:tag => '7.2.13'
+    :tag => "#{s.version}"
   }
   s.static_framework = false
   s.default_subspec = 'Full'
@@ -53,6 +53,13 @@ Pod::Spec.new do |s|
   s.subspec 'FullModule' do |subspec|
     subspec.dependency 'SuperAwesome/CoreModule'
     subspec.dependency 'SuperAwesome/MoatModule'
+
+    subspec.test_spec 'Tests' do |test_spec|
+      test_spec.source_files = 'Pod/Tests/Common/**/*', 'Pod/Tests/Network/**/*'
+      test_spec.resources = 'Pod/Tests/Resources/*'
+      test_spec.dependency 'Nimble'
+      test_spec.dependency 'Mockingjay', '3.0.0-alpha.1'
+    end
   end
 
   s.subspec 'CoreModule' do |subspec|
