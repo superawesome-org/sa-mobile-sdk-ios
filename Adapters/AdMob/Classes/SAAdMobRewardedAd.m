@@ -118,8 +118,13 @@
             }
             case adAlreadyLoaded:
             case adFailedToShow:
-            case adEnded:
+            case adEnded: {
+                GADAdReward *reward = [[GADAdReward alloc] initWithRewardType:@"Reward"
+                                                                 rewardAmount:[[NSDecimalNumber alloc] initWithInt:1]];
+                
+                [weakSelf.delegate didRewardUserWithReward: reward];
                 break;
+            }
         }
     }];
     

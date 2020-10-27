@@ -158,7 +158,7 @@ extension AdMobViewController: GADInterstitialDelegate {
 
 extension AdMobViewController: GADRewardedAdDelegate {
     func rewardedAd(_ rewardedAd: GADRewardedAd, userDidEarn reward: GADAdReward) {
-        print("[SuperAwesome | AdMob] rewardedAd:userDidEarnReward:")
+        print("[SuperAwesome | AdMob] rewardedAd:userDidEarnReward: Type:\(reward.type) Amount:\(reward.amount)")
     }
     func rewardedAdDidDismiss(_ rewardedAd: GADRewardedAd) {
         print("[SuperAwesome | AdMob] rewardedAdDidDismiss:")
