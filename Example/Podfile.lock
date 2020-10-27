@@ -20,13 +20,13 @@ PODS:
   - OHHTTPStubs/NSURLSession (9.0.0):
     - OHHTTPStubs/Core
   - OHHTTPStubs/OHPathHelpers (9.0.0)
-  - SuperAwesome (7.2.14):
-    - SuperAwesome/Full (= 7.2.14)
-  - SuperAwesome/Base (7.2.14)
-  - SuperAwesome/Full (7.2.14):
+  - SuperAwesome (7.2.15):
+    - SuperAwesome/Full (= 7.2.15)
+  - SuperAwesome/Base (7.2.15)
+  - SuperAwesome/Full (7.2.15):
     - SuperAwesome/Base
     - SuperAwesome/Moat
-  - SuperAwesome/Moat (7.2.14):
+  - SuperAwesome/Moat (7.2.15):
     - SuperAwesome/Base
   - URITemplate (2.0.3)
 
@@ -51,9 +51,9 @@ SPEC CHECKSUMS:
   Mockingjay: 11a621880d2887f1775bdcf824341eb68f218450
   Nimble: 3b4ec3fd40f1dc178058e0981107721c615643d8
   OHHTTPStubs: cb29d2a9d09a828ecb93349a2b0c64f99e0db89f
-  SuperAwesome: 2d60ccb24967c33b6e315d78b37c8555d61745b7
+  SuperAwesome: bc3ca099c08303c02185ae9fc1acfd65fb969fe5
   URITemplate: ace0c4c46dcf8afe6e89b4060621852886b15c3b
 
 PODFILE CHECKSUM: 62a24be9a61396183eb81c829c528f546f140231
 
-COCOAPODS: 1.10.0.rc.1
+COCOAPODS: 1.10.0
