@@ -17,8 +17,14 @@ Pod::Spec.new do |s|
     :branch => 'master',
     :tag => "7.2.15"
   }
-  s.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
-  s.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
+
+  s.pod_target_xcconfig  = {
+    'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 arm64e armv7 armv7s',
+    'EXCLUDED_ARCHS[sdk=iphoneos*]' => 'i386 x86_64' }
+  s.user_target_xcconfig = {
+    'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 arm64e armv7 armv7s',
+    'EXCLUDED_ARCHS[sdk=iphoneos*]' => 'i386 x86_64' }
+
   s.ios.deployment_target = '10.0'
   s.swift_versions = ['4.2', '5.0']
   s.static_framework = true
