@@ -28,6 +28,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [AwesomeAds initSDK:true];
+    
     SASession *session = [[SASession alloc] init];
     [session setConfigurationStaging];
     
@@ -82,7 +84,7 @@
                @{
                    @"name": @"Banners",
                    @"items": @[
-                           @{@"name": @"Banner Image", @"pid": @(44258)}
+                           @{@"name": @"Banner Image", @"pid": @(44259)}
                            ]
                    },
                @{

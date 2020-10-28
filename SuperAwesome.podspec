@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
   s.source = {
   	:git => 'https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git',
   	:branch => 'master',
-  	:tag => '7.2.16'
+    :tag => "#{s.version}"
   }
   s.static_framework = false
   s.default_subspec = 'Full'
@@ -47,8 +47,7 @@ Pod::Spec.new do |s|
     m.dependency 'mopub-ios-sdk', '~> 5.14'
     m.source_files = 'Pod/Plugin/MoPub/*'
     m.xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) MOPUB_PLUGIN',
-                   'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) MOPUB_PLUGIN=1'
-    }
+                   'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) MOPUB_PLUGIN=1' }
   end
 
   s.subspec 'Moat' do |moat|
@@ -57,30 +56,61 @@ Pod::Spec.new do |s|
     moat.source_files = 'Pod/Plugin/Moat2/*'
   end
 
-  s.subspec 'Core' do |c|
-    c.dependency 'SuperAwesome/Full'
-    c.dependency 'SwiftyXMLParser', '~> 5.0'
-    c.source_files = 'Pod/Plugin/Core/Classes/**/*'
+  # Refactored subspecs
 
-#    c.test_spec 'Tests' do |test_spec|
-#      test_spec.source_files = 'Pod/Plugin/Core/Tests/**/*'
-#      test_spec.dependency 'Nimble'
-#      test_spec.dependency 'Mockingjay', '3.0.0-alpha.1'
-#    end
+  s.subspec 'FullModule' do |subspec|
+    subspec.dependency 'SuperAwesome/CoreModule'
+    subspec.dependency 'SuperAwesome/MoatModule'
+
+    subspec.test_spec 'Tests' do |test_spec|
+      test_spec.source_files = 'Pod/Tests/Common/**/*', 'Pod/Tests/Network/**/*'
+      test_spec.resources = 'Pod/Tests/Resources/*'
+      test_spec.dependency 'Nimble'
+      test_spec.dependency 'Mockingjay', '3.0.0-alpha.1'
+    end
   end
-  
-  s.subspec 'Moya' do |m|
-    m.dependency 'SuperAwesome/Core'
-    m.source_files = 'Pod/Plugin/Moya/Classes/**/*'
-    m.dependency 'Moya', '~> 14.0'
-    m.xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) MOYA_PLUGIN' }
 
-#    m.test_spec 'Tests' do |test_spec|
-#      test_spec.source_files = 'Pod/Plugin/Moya/Tests/**/*', 'Pod/Plugin/Core/Tests/**/*'
-#      test_spec.resources = 'Pod/Plugin/Moya/Resources/*'
-#      test_spec.dependency 'Nimble'
-#      test_spec.dependency 'Mockingjay', '3.0.0-alpha.1'
-#    end
+  s.subspec 'CoreModule' do |subspec|
+    subspec.source_files = 'Pod/Sources/Core/**/*'
+
+    subspec.dependency 'SuperAwesome/CommonModule'
+    subspec.dependency 'SuperAwesome/UIModule'
+    subspec.dependency 'SuperAwesome/NetworkModule'
+  end
+
+  s.subspec 'CommonModule' do |subspec|
+    subspec.source_files = 'Pod/Sources/Common/**/*'
+
+    subspec.dependency 'SwiftyXMLParser', '~> 5.0'
+    subspec.dependency 'SAVideoPlayer', '~> 2.0'
+
+    subspec.test_spec 'Tests' do |test_spec|
+      test_spec.source_files = 'Pod/Tests/Common/'
+      test_spec.dependency 'Nimble'
+      test_spec.dependency 'Mockingjay'
+    end
+  end
+
+  s.subspec 'MoatModule' do |subspec|
+    subspec.source_files = 'Pod/Sources/Moat/**/*'
+
+    subspec.dependency 'SuperAwesome/CommonModule'
+    subspec.vendored_frameworks = 'Pod/Libraries/SUPMoatMobileAppKit.framework'
+
+    subspec.xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) MOAT_MODULE' }
+  end
+
+  s.subspec 'UIModule' do |subspec|
+    subspec.source_files = 'Pod/Sources/UI/**/*'
+
+    subspec.dependency 'SuperAwesome/CommonModule'    
+  end
+
+  s.subspec 'NetworkModule' do |subspec|
+    subspec.source_files = 'Pod/Sources/Network/**/*'
+
+    subspec.dependency 'SuperAwesome/CommonModule'
+    subspec.dependency 'Moya', '~> 14.0'
   end
 
 # s.subspec 'Unity' do |u|

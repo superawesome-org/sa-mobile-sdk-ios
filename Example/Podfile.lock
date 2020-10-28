@@ -1,46 +1,55 @@
 PODS:
-  - Mockingjay (2.0.1):
-    - Mockingjay/Core (= 2.0.1)
-    - Mockingjay/XCTest (= 2.0.1)
-  - Mockingjay/Core (2.0.1):
-    - URITemplate (~> 2.0)
-  - Mockingjay/XCTest (2.0.1):
+  - Alamofire (5.3.0)
+  - Mockingjay (3.0.0-alpha.1):
+    - Mockingjay/Core (= 3.0.0-alpha.1)
+    - Mockingjay/XCTest (= 3.0.0-alpha.1)
+  - Mockingjay/Core (3.0.0-alpha.1):
+    - URITemplate (~> 3.0)
+  - Mockingjay/XCTest (3.0.0-alpha.1):
     - Mockingjay/Core
+  - Moya (14.0.0):
+    - Moya/Core (= 14.0.0)
+  - Moya/Core (14.0.0):
+    - Alamofire (~> 5.0)
   - Nimble (9.0.0)
-  - OHHTTPStubs (9.0.0):
-    - OHHTTPStubs/Default (= 9.0.0)
-  - OHHTTPStubs/Core (9.0.0)
-  - OHHTTPStubs/Default (9.0.0):
-    - OHHTTPStubs/Core
-    - OHHTTPStubs/JSON
-    - OHHTTPStubs/NSURLSession
-    - OHHTTPStubs/OHPathHelpers
-  - OHHTTPStubs/JSON (9.0.0):
-    - OHHTTPStubs/Core
-  - OHHTTPStubs/NSURLSession (9.0.0):
-    - OHHTTPStubs/Core
-  - OHHTTPStubs/OHPathHelpers (9.0.0)
-  - SuperAwesome (7.2.15):
-    - SuperAwesome/Full (= 7.2.15)
-  - SuperAwesome/Base (7.2.15)
-  - SuperAwesome/Full (7.2.15):
-    - SuperAwesome/Base
-    - SuperAwesome/Moat
-  - SuperAwesome/Moat (7.2.15):
-    - SuperAwesome/Base
-  - URITemplate (2.0.3)
+  - SAVideoPlayer (2.0.1)
+  - SuperAwesome/CommonModule (7.2.16):
+    - SAVideoPlayer (~> 2.0)
+    - SwiftyXMLParser (~> 5.0)
+  - SuperAwesome/CoreModule (7.2.16):
+    - SuperAwesome/CommonModule
+    - SuperAwesome/NetworkModule
+    - SuperAwesome/UIModule
+  - SuperAwesome/FullModule (7.2.16):
+    - SuperAwesome/CoreModule
+    - SuperAwesome/MoatModule
+  - SuperAwesome/FullModule/Tests (7.2.16):
+    - Mockingjay (= 3.0.0-alpha.1)
+    - Nimble
+    - SuperAwesome/CoreModule
+    - SuperAwesome/MoatModule
+  - SuperAwesome/MoatModule (7.2.16):
+    - SuperAwesome/CommonModule
+  - SuperAwesome/NetworkModule (7.2.16):
+    - Moya (~> 14.0)
+    - SuperAwesome/CommonModule
+  - SuperAwesome/UIModule (7.2.16):
+    - SuperAwesome/CommonModule
+  - SwiftyXMLParser (5.0.0)
+  - URITemplate (3.0.0)
 
 DEPENDENCIES:
-  - Mockingjay
-  - Nimble
-  - OHHTTPStubs
-  - SuperAwesome (from `../`)
+  - SuperAwesome/FullModule (from `../`)
+  - SuperAwesome/FullModule/Tests (from `../`)
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - Mockingjay
+    - Moya
     - Nimble
-    - OHHTTPStubs
+    - SAVideoPlayer
+    - SwiftyXMLParser
     - URITemplate
 
 EXTERNAL SOURCES:
@@ -48,12 +57,15 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Mockingjay: 11a621880d2887f1775bdcf824341eb68f218450
+  Alamofire: 2c792affbdc2f18016e08fdbcacd60aebe1ba593
+  Mockingjay: 0f7c5aa49c7f1b95621cee3c79b557141f5a225c
+  Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   Nimble: 3b4ec3fd40f1dc178058e0981107721c615643d8
-  OHHTTPStubs: cb29d2a9d09a828ecb93349a2b0c64f99e0db89f
-  SuperAwesome: bc3ca099c08303c02185ae9fc1acfd65fb969fe5
-  URITemplate: ace0c4c46dcf8afe6e89b4060621852886b15c3b
+  SAVideoPlayer: 5a1db63d754db28595f8561b910e1f9754cbfa13
+  SuperAwesome: 7324ee41feb1f5cc3669bc06cb149a0162ab4106
+  SwiftyXMLParser: 5ebb8793192f403fa8cc691045143906122a7a75
+  URITemplate: 58e0d47f967006c5d59888af5356c4a8ed3b197d
 
-PODFILE CHECKSUM: 62a24be9a61396183eb81c829c528f546f140231
+PODFILE CHECKSUM: 7008de7f1a3a9e2a2e67405b2bdad7964f9777dd
 
 COCOAPODS: 1.10.0
