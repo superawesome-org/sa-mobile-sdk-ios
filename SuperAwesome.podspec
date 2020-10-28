@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'SuperAwesome'
-  s.version = '7.2.13'
+  s.version = '7.2.16'
   s.summary = 'SuperAwesome Mobile SDK for iOS'
   s.description = <<-DESC
                    The SuperAwesome Mobile SDK lets you to easily add COPPA compliant advertisements and other platform features, like user authentication and registration, to your apps. We try to make integration as easy as possible, so we provide all the necessary tools such as this guide, API documentation, screencasts and demo apps.
@@ -14,6 +14,14 @@ Pod::Spec.new do |s|
   s.author = {
 	   'Gabriel Coman' => 'gabriel.coman@superawesome.tv'
   }
+  
+  s.pod_target_xcconfig  = {
+    'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 arm64e armv7 armv7s',
+    'EXCLUDED_ARCHS[sdk=iphoneos*]' => 'i386 x86_64' }
+  s.user_target_xcconfig = {
+    'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 arm64e armv7 armv7s',
+    'EXCLUDED_ARCHS[sdk=iphoneos*]' => 'i386 x86_64' }
+  
   s.ios.deployment_target = '10.0'
   s.swift_versions = ['4.2', '5.0']
   s.requires_arc = true
@@ -36,7 +44,7 @@ Pod::Spec.new do |s|
   
   s.subspec 'MoPub' do |m|
     m.dependency 'SuperAwesome/Full'
-    m.dependency 'mopub-ios-sdk'
+    m.dependency 'mopub-ios-sdk', '~> 5.14'
     m.source_files = 'Pod/Plugin/MoPub/*'
     m.xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) MOPUB_PLUGIN',
                    'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) MOPUB_PLUGIN=1' }
@@ -104,23 +112,6 @@ Pod::Spec.new do |s|
     subspec.dependency 'SuperAwesome/CommonModule'
     subspec.dependency 'Moya', '~> 14.0'
   end
-  
-  # s.subspec 'Dependencies' do |m|
-  #   m.dependency 'SuperAwesome/Core'
-  #   m.source_files = 'Pod/Plugin/Dependencies/Classes/**/*'
-  #   m.dependency 'SwiftyXMLParser', '~> 5.0'
-  #   m.dependency 'Moya', '~> 14.0'
-  #   m.dependency 'SAVideoPlayer', '~> 2.0'
-
-  #   m.xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) DEPENDENCIES_PLUGIN' }
-
-  #   m.test_spec 'Tests' do |test_spec|
-  #     test_spec.source_files = 'Pod/Plugin/Dependencies/Tests/**/*', 'Pod/Plugin/Core/Tests/**/*'
-  #     test_spec.resources = 'Pod/Plugin/Dependencies/Resources/*'
-  #     test_spec.dependency 'Nimble'
-  #     test_spec.dependency 'Mockingjay'
-  #   end
-  # end
 
 # s.subspec 'Unity' do |u|
 #    u.dependency 'SuperAwesome/Full'

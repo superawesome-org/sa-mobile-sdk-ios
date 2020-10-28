@@ -8,3 +8,17 @@ SuperAwesome Mobile SDK for iOS
 [![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg)]()
 
 For more information check out the [SuperAwesome Developer Portal](http://doc.superawesome.tv/sa-mobile-sdk-ios/latest/).
+
+
+### CocoaPods
+
+Use the following entry in your Podfile:
+
+```rb
+pod 'SuperAwesome', '~> 7.2'
+```
+
+Then run `pod update`.
+
+In any file you'd like to use `SuperAwesome` in, don't forget to
+import the framework with `import SuperAwesome`

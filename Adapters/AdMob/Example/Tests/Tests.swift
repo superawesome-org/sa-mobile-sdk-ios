@@ -1,5 +1,4 @@
 import XCTest
-import SuperAwesomeAdMob
 
 class Tests: XCTestCase {
     

@@ -241,24 +241,31 @@
     // load ad
     SALoader *loader = [[SALoader alloc] init];    
     [loader loadAd:placementId withSession:_session andResult:^(SAResponse *response) {
-
-        if (response.status != 200) {
-            weakSelf.callback(placementId, adFailedToLoad);
-        } else {
-            // set can play
-            weakSelf.canPlay = [response isValid];
-            
-            // assign new ad
-            weakSelf.ad = [response isValid] ? [response.ads objectAtIndex:0] : nil;
-            
-            // call the callback
-            if (weakSelf.callback != NULL) {
-                weakSelf.callback (placementId, [response isValid] ? adLoaded : adEmpty);
-            } else {
-                NSLog(@"Banner Ad callback not implemented. Should have been either adLoaded or adEmpty");
-            }
+        if (weakSelf != NULL) {
+            [weakSelf processLoadResult:placementId andResult:response];
         }
     }];
+}
+
+- (void) processLoadResult:(NSInteger)placementId andResult: (SAResponse *) response {
+    if (response.status != 200) {
+        if (_callback != NULL) {
+            _callback(placementId, adFailedToLoad);
+        }
+    } else {
+        // set can play
+        _canPlay = [response isValid];
+        
+        // assign new ad
+        _ad = [response isValid] ? [response.ads objectAtIndex:0] : nil;
+        
+        // call the callback
+        if (_callback != NULL) {
+            _callback (placementId, [response isValid] ? adLoaded : adEmpty);
+        } else {
+            NSLog(@"Banner Ad callback not implemented. Should have been either adLoaded or adEmpty");
+        }
+    }
 }
 
 - (void) play {

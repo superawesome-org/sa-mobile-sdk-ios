@@ -13,27 +13,27 @@ PODS:
     - Alamofire (~> 5.0)
   - Nimble (9.0.0)
   - SAVideoPlayer (2.0.1)
-  - SuperAwesome/CommonModule (7.2.13):
+  - SuperAwesome/CommonModule (7.2.16):
     - SAVideoPlayer (~> 2.0)
     - SwiftyXMLParser (~> 5.0)
-  - SuperAwesome/CoreModule (7.2.13):
+  - SuperAwesome/CoreModule (7.2.16):
     - SuperAwesome/CommonModule
     - SuperAwesome/NetworkModule
     - SuperAwesome/UIModule
-  - SuperAwesome/FullModule (7.2.13):
+  - SuperAwesome/FullModule (7.2.16):
     - SuperAwesome/CoreModule
     - SuperAwesome/MoatModule
-  - SuperAwesome/FullModule/Tests (7.2.13):
+  - SuperAwesome/FullModule/Tests (7.2.16):
     - Mockingjay (= 3.0.0-alpha.1)
     - Nimble
     - SuperAwesome/CoreModule
     - SuperAwesome/MoatModule
-  - SuperAwesome/MoatModule (7.2.13):
+  - SuperAwesome/MoatModule (7.2.16):
     - SuperAwesome/CommonModule
-  - SuperAwesome/NetworkModule (7.2.13):
+  - SuperAwesome/NetworkModule (7.2.16):
     - Moya (~> 14.0)
     - SuperAwesome/CommonModule
-  - SuperAwesome/UIModule (7.2.13):
+  - SuperAwesome/UIModule (7.2.16):
     - SuperAwesome/CommonModule
   - SwiftyXMLParser (5.0.0)
   - URITemplate (3.0.0)
@@ -62,7 +62,7 @@ SPEC CHECKSUMS:
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   Nimble: 3b4ec3fd40f1dc178058e0981107721c615643d8
   SAVideoPlayer: 5a1db63d754db28595f8561b910e1f9754cbfa13
-  SuperAwesome: 853a5ae0ea20019b4b5e077d801400fa9a39bafb
+  SuperAwesome: 7324ee41feb1f5cc3669bc06cb149a0162ab4106
   SwiftyXMLParser: 5ebb8793192f403fa8cc691045143906122a7a75
   URITemplate: 58e0d47f967006c5d59888af5356c4a8ed3b197d
 
