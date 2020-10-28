@@ -80,7 +80,8 @@ class AdProcessor: AdProcessorType {
                     let mergedVast = vast.merge(from: initialVast)
                     self.handleVast(redirect, initialVast: mergedVast, complition: complition)
                 } else {
-                    complition(vast)
+                    let mergedVast = vast.merge(from: initialVast)
+                    complition(mergedVast)
                 }
             case .failure: complition(initialVast)
             }

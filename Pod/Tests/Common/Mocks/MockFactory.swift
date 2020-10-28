@@ -7,18 +7,18 @@
 
 @testable import SuperAwesome
 
-func makeAd() -> Ad {
+func makeAd(_ format: CreativeFormatType = .image_with_link, _ vast: String? = nil) -> Ad {
     Ad(advertiserId: 10, publisherId: 20, moat: 0.1, is_fill: true,
                 is_fallback: false, campaign_id: 30, campaign_type: 40, is_house: true,
                 safe_ad_approved: true, show_padlock: false, line_item_id: 50, test: false,
                 app: 70, device: "device", creative: Creative(id: 80, name: "name",
-                                                              format: .image_with_link, click_url: "someurl",
+                                                              format: format, click_url: "someurl",
                                                               details: CreativeDetail(url: "detailurl", image: "image",
                                                                                       video: "video",
                                                                                       placement_format: "placement",
                                                                                       tag: "tag", width: 90,
                                                                                       height: 100, duration: 110,
-                                                                                      vast: "vast"), bumper: true))
+                                                                                      vast: vast), bumper: true))
 }
 
 func makeError() -> Error { NSError(domain:"", code:404, userInfo:nil) }
