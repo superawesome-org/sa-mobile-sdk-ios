@@ -33,34 +33,9 @@ Pod::Spec.new do |s|
   s.static_framework = false
   s.default_subspec = 'Full'
 
-  s.subspec 'Full' do |b|
-    b.dependency 'SuperAwesome/Base'
-    b.dependency 'SuperAwesome/Moat'
-  end
-  
-  s.subspec 'Base' do |b|
-    b.source_files = 'Pod/Classes/**/*'
-  end
-  
-  s.subspec 'MoPub' do |m|
-    m.dependency 'SuperAwesome/Full'
-    m.dependency 'mopub-ios-sdk', '~> 5.14'
-    m.source_files = 'Pod/Plugin/MoPub/*'
-    m.xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) MOPUB_PLUGIN',
-                   'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) MOPUB_PLUGIN=1' }
-  end
-
-  s.subspec 'Moat' do |moat|
-    moat.dependency 'SuperAwesome/Base'
-    moat.vendored_frameworks = 'Pod/Libraries/SUPMoatMobileAppKit.framework'
-    moat.source_files = 'Pod/Plugin/Moat2/*'
-  end
-
-  # Refactored subspecs
-
-  s.subspec 'FullModule' do |subspec|
-    subspec.dependency 'SuperAwesome/CoreModule'
-    subspec.dependency 'SuperAwesome/MoatModule'
+  s.subspec 'Full' do |subspec|
+    subspec.dependency 'SuperAwesome/Core'
+    subspec.dependency 'SuperAwesome/Moat'
 
     subspec.test_spec 'Tests' do |test_spec|
       test_spec.source_files = 'Pod/Tests/Common/**/*', 'Pod/Tests/Network/**/*'
@@ -70,15 +45,15 @@ Pod::Spec.new do |s|
     end
   end
 
-  s.subspec 'CoreModule' do |subspec|
+  s.subspec 'Core' do |subspec|
     subspec.source_files = 'Pod/Sources/Core/**/*'
 
-    subspec.dependency 'SuperAwesome/CommonModule'
-    subspec.dependency 'SuperAwesome/UIModule'
-    subspec.dependency 'SuperAwesome/NetworkModule'
+    subspec.dependency 'SuperAwesome/Common'
+    subspec.dependency 'SuperAwesome/UI'
+    subspec.dependency 'SuperAwesome/Network'
   end
 
-  s.subspec 'CommonModule' do |subspec|
+  s.subspec 'Common' do |subspec|
     subspec.source_files = 'Pod/Sources/Common/**/*'
 
     subspec.dependency 'SwiftyXMLParser', '~> 5.0'
@@ -91,31 +66,39 @@ Pod::Spec.new do |s|
     end
   end
 
-  s.subspec 'MoatModule' do |subspec|
+  s.subspec 'Moat' do |subspec|
     subspec.source_files = 'Pod/Sources/Moat/**/*'
 
-    subspec.dependency 'SuperAwesome/CommonModule'
+    subspec.dependency 'SuperAwesome/Common'
     subspec.vendored_frameworks = 'Pod/Libraries/SUPMoatMobileAppKit.framework'
 
     subspec.xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) MOAT_MODULE' }
   end
 
-  s.subspec 'UIModule' do |subspec|
+  s.subspec 'UI' do |subspec|
     subspec.source_files = 'Pod/Sources/UI/**/*'
 
-    subspec.dependency 'SuperAwesome/CommonModule'    
+    subspec.dependency 'SuperAwesome/Common'    
   end
 
-  s.subspec 'NetworkModule' do |subspec|
+  s.subspec 'Network' do |subspec|
     subspec.source_files = 'Pod/Sources/Network/**/*'
 
-    subspec.dependency 'SuperAwesome/CommonModule'
+    subspec.dependency 'SuperAwesome/Common'
     subspec.dependency 'Moya', '~> 14.0'
   end
 
-# s.subspec 'Unity' do |u|
-#    u.dependency 'SuperAwesome/Full'
-#    u.source_files = 'Pod/Plugin/Unity/*'
-# end
+  # s.subspec 'MoPub' do |m|
+  #   m.dependency 'SuperAwesome/Full'
+  #   m.dependency 'mopub-ios-sdk', '~> 5.14'
+  #   m.source_files = 'Pod/Plugin/MoPub/*'
+  #   m.xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) MOPUB_PLUGIN',
+  #                  'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) MOPUB_PLUGIN=1' }
+  # end
+
+  # s.subspec 'Unity' do |u|
+  #   u.dependency 'SuperAwesome/Full'
+  #   u.source_files = 'Pod/Plugin/Unity/*'
+  # end
  
 end
