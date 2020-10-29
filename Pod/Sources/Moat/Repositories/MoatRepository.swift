@@ -49,7 +49,7 @@ class MoatRepository: NSObject, MoatRepositoryType {
         let ad = adResponse.ad
         var moatQuery = ""
         moatQuery += "moatClientLevel1=\(ad.advertiserId)"
-        moatQuery += "&moatClientLevel2=\(ad.campaign_id)"
+        moatQuery += "&moatClientLevel2=\(ad.campaign_id ?? 0)"
         moatQuery += "&moatClientLevel3=\(ad.line_item_id)"
         moatQuery += "&moatClientLevel4=\(ad.creative.id)"
         moatQuery += "&moatClientSlicer1=\(ad.app)"
@@ -83,7 +83,7 @@ class MoatRepository: NSObject, MoatRepositoryType {
         let ad = adResponse.ad
         var adIds: [String: String] = [:]
         adIds["level1"] = "\(ad.advertiserId)"
-        adIds["level2"] = "\(ad.campaign_id)"
+        adIds["level2"] = "\(ad.campaign_id ?? 0)"
         adIds["level3"] = "\(ad.line_item_id)"
         adIds["level4"] = "\(ad.creative.id)"
         adIds["slicer1"] = "\(ad.app)"

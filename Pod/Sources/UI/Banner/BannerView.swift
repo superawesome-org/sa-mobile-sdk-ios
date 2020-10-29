@@ -19,6 +19,7 @@ public class BannerView: UIView, Injectable {
     private var padlock: UIButton?
     private var viewableDetector: ViewableDetectorType?
     private var hasBeenVisible: VoidBlock?
+    private var moatRepository: MoatRepositoryType?
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -67,9 +68,16 @@ public class BannerView: UIView, Injectable {
         
         showPadlockIfNeeded()
         
-        webView?.loadHTML(html, withBase: adResponse.baseUrl,
+        let fullHtml = startMoat(adResponse: adResponse, html: html)
+        webView?.loadHTML(fullHtml, withBase: adResponse.baseUrl,
                           sourceSize: CGSize(width: adResponse.ad.creative.details.width,
                                              height: adResponse.ad.creative.details.height))
+    }
+    
+    private func startMoat(adResponse: AdResponse, html: String) -> String {
+        moatRepository = dependencies.resolve(param: adResponse, controller.moatLimiting) as MoatRepositoryType
+        let moatScript = moatRepository?.startMoatTracking(forDisplay: webView)
+        return "\(html)\(moatScript ?? "")"
     }
     
     private func showPadlockIfNeeded() {
@@ -92,6 +100,8 @@ public class BannerView: UIView, Injectable {
     /// Method that is called to close the ad
     public func close() {
         viewableDetector = nil
+        _ = moatRepository?.stopMoatTrackingForDisplay()
+        moatRepository = nil
         controller.close()
         removeWebView()
     }

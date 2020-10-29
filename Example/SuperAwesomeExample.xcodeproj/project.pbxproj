@@ -19,8 +19,6 @@
 
 /* Begin PBXFileReference section */
 		1B76D2331C91EEB1000AE8F3 /* SuperAwesomeExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperAwesomeExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1B76D23C1C91EEB1000AE8F3 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		1B76D23D1C91EEB1000AE8F3 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		1B76D2401C91EEB1000AE8F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1B76D2421C91EEB1000AE8F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1B76D2451C91EEB1000AE8F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -86,8 +84,6 @@
 		1BB5F58C1ED6CC3900ACD72E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				1B76D23D1C91EEB1000AE8F3 /* ViewController.m */,
-				1B76D23C1C91EEB1000AE8F3 /* ViewController.h */,
 				C64CAD27249CC5AB00788A7F /* MoPubViewController.swift */,
 				C643DE0C24EFC7CA00B07228 /* AwesomeAdsViewController.swift */,
 			);

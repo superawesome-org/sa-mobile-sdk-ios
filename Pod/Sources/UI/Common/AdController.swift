@@ -205,7 +205,7 @@ class AdController: AdControllerType, Injectable {
     
     func showSuperAwesomeWebPageInSafari() {
         let onComplete = {
-            if let url = URL(string: "https://ads.superawesome.tv/v2/safead") {
+            if let url = URL(string: Constants.defaultSafeAdUrl) {
                 UIApplication.shared.open( url, options: [:], completionHandler: nil)
             }
         }
