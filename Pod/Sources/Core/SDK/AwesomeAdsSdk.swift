@@ -62,6 +62,7 @@ public class AwesomeAdsSdk: NSObject {
         }
         container.single(ImageProviderType.self) { _, _ in ImageProvider() }
         container.single(OrientationProviderType.self) { c, _ in OrientationProvider(c.resolve()) }
+        container.single(DateProviderType.self) { _, _ in  DateProvider() }
     }
     
     private func registerRepositoryModule() {

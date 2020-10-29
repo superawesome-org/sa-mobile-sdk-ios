@@ -10,7 +10,7 @@ import Nimble
 @testable import SuperAwesome
 
 class DateProviderTests: XCTestCase {
-    func test_dateNow() throws {
+    func test_nowAsMonthYear() throws {
         // Given
         let dateProvider = DateProvider()
         

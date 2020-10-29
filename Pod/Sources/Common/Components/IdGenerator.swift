@@ -31,7 +31,7 @@ class IdGenerator: IdGeneratorType {
         self.dateProvider = dateProvider
     }
     
-    func findDauId() -> Int {
+    private func findDauId() -> Int {
         let firstPart = dateProvider.nowAsMonthYear()
         let secondPart = preferencesRepository.dauUniquePart ?? generateAndSavePartOfDau()
         let thirdPart = sdkInfo.bundle

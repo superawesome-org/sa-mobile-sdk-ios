@@ -38,7 +38,8 @@ Pod::Spec.new do |s|
     subspec.dependency 'SuperAwesome/Moat'
 
     subspec.test_spec 'Tests' do |test_spec|
-      test_spec.source_files = 'Pod/Tests/Common/**/*', 'Pod/Tests/Network/**/*', 'Pod/Tests/Moat/**/*'
+      test_spec.source_files = 'Pod/Tests/Common/**/*', 'Pod/Tests/Network/**/*', 'Pod/Tests/Moat/**/*', 'Pod/Tests/UI/**/*'
+
       test_spec.resources = 'Pod/Tests/Resources/*'
       test_spec.dependency 'Nimble'
       test_spec.dependency 'Mockingjay', '3.0.0-alpha.1'
