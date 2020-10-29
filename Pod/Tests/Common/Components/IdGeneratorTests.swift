@@ -10,39 +10,17 @@ import Nimble
 @testable import SuperAwesome
 
 class IdGeneratorTests: XCTestCase {
-    func test_dauId_advertisingDisabled_returnsNoTracking() throws {
-        // Given
-        let mockAdvertisingIdentifier = UUID()
-        let mockAlphanumeric = "123abc"
-        let mockAdvertisingManager = ASIdentifierManagerMock(mockIsAdvertisingTrackingEnabled: false,
-                                                             mockAdvertisingIdentifier: mockAdvertisingIdentifier)
-        let idGenerator = IdGenerator(preferencesRepository: PreferencesRepositoryMock(),
-                                      sdkInfo: SdkInfoMock(),
-                                      numberGenerator: NumberGeneratorMock(0, nextAlphaNumberic: mockAlphanumeric),
-                                      identifierManager: mockAdvertisingManager)
-        
-        // When
-        let dauId = idGenerator.findDauId()
-        
-        // Then
-        expect(dauId).to(equal(IdGenerator.Keys.noTracking))
-    }
-    
     func test_dauId_advertisingEnabled_returnsUniqueDauId() throws {
         // Given
-        let mockAdvertisingIdentifier = UUID(uuidString: "EDB32944-B4D1-4299-8BCC-B421885B2716")!
         let mockAlphanumeric = "123abc"
-        let mockAdvertisingManager = ASIdentifierManagerMock(mockIsAdvertisingTrackingEnabled: true,
-                                                             mockAdvertisingIdentifier: mockAdvertisingIdentifier)
         let idGenerator = IdGenerator(preferencesRepository: PreferencesRepositoryMock(),
                                       sdkInfo: SdkInfoMock(),
-                                      numberGenerator: NumberGeneratorMock(0, nextAlphaNumberic: mockAlphanumeric),
-                                      identifierManager: mockAdvertisingManager)
+                                      numberGenerator: NumberGeneratorMock(0, nextAlphaNumberic: mockAlphanumeric), dateProvider: DateProviderMock(monthYear: "102020"))
         
         // When
-        let dauId = idGenerator.findDauId()
+        let result = idGenerator.findDauId()
         
         // Then
-        expect(dauId).to(equal(7884738852088729949))
+        expect(5118545265961385482).to(equal(result))
     }
 }

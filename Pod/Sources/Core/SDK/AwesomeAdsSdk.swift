@@ -5,8 +5,6 @@
 //  Created by Gunhan Sancar on 26/04/2020.
 //
 
-import AdSupport
-
 @objc
 public class AwesomeAdsSdk: NSObject {
     public static let shared = AwesomeAdsSdk()
@@ -32,7 +30,7 @@ public class AwesomeAdsSdk: NSObject {
             IdGenerator(preferencesRepository: c.resolve(),
                         sdkInfo: c.resolve(),
                         numberGenerator: c.resolve(),
-                        identifierManager: ASIdentifierManager.shared())
+                        dateProvider: c.resolve())
         }
         container.single(NumberGeneratorType.self) { _, _ in NumberGenerator() }
         container.single(SdkInfoType.self) { c, _ in
