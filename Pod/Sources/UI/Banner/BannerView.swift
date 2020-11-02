@@ -8,7 +8,7 @@
 import UIKit
 
 /// Class that abstracts away the process of loading & displaying Banner type Ad.
-@objc
+@objc(SABannerAd)
 public class BannerView: UIView, Injectable {
     
     private lazy var imageProvider: ImageProviderType = dependencies.resolve()

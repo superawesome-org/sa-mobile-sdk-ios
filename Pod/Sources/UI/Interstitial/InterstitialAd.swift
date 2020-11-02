@@ -7,7 +7,8 @@
 
 import UIKit
 
-public class InterstitialAd: Injectable {
+@objc(SAInterstitialAd)
+public class InterstitialAd: NSObject, Injectable {
     private static var controller: AdControllerType = dependencies.resolve()
     private static var logger: LoggerType = dependencies.resolve(param: InterstitialAd.self)
     

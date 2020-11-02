@@ -6,8 +6,8 @@
 //
 
 @objc
-public class AwesomeAdsSdk: NSObject {
-    public static let shared = AwesomeAdsSdk()
+public class AwesomeAds: NSObject {
+    public static let shared = AwesomeAds()
     
     private(set) var container: DependencyContainer = DependencyContainer()
     private var initialised: Bool = false
@@ -100,13 +100,35 @@ public class AwesomeAdsSdk: NSObject {
         NetworkModule.register(container)
     }
     
-    public func initSdk(configuration: Configuration = Configuration(), completion: (()->())? = nil) {
+    /// Initialise the AwesomeAds SDK.
+    ///
+    /// - Parameter logging: enables or disables the logging of the SDK
+    public static func initSDK(_ logging: Bool) {
+        shared.initSDK(configuration: Configuration(environment: .production, logging: logging), completion: nil)
+    }
+    
+    /// Initialise the AwesomeAds SDK.
+    ///
+    /// - Parameter configuration: to set various options including environment, and logging
+    /// - Parameter complition: Callback closure to be notified once the initialisation is done
+    public static func initSDK(configuration: Configuration = Configuration(),
+                               completion: (()->())? = nil) {
+        shared.initSDK(configuration: configuration, completion: completion)
+    }
+    
+    /// Initialise the AwesomeAds SDK.
+    ///
+    /// - Parameter configuration: to set various options including environment, and logging
+    /// - Parameter complition: Callback closure to be notified once the initialisation is done
+    public func initSDK(configuration: Configuration = Configuration(),
+                        completion: (()->())? = nil) {
         guard !initialised else { return }
         registerDependencies(configuration)
         initialised = true
         completion?()
     }
     
+    /// Configuration options for the AwesomeAds SDK
     public class Configuration {
         var environment = Environment.production
         var logging = false
@@ -119,6 +141,6 @@ public class AwesomeAdsSdk: NSObject {
 }
 
 extension Injectable {
-    var dependencies: DependencyContainer { AwesomeAdsSdk.shared.container }
-    static var dependencies: DependencyContainer { AwesomeAdsSdk.shared.container }
+    var dependencies: DependencyContainer { AwesomeAds.shared.container }
+    static var dependencies: DependencyContainer { AwesomeAds.shared.container }
 }

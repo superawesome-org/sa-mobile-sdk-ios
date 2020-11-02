@@ -19,33 +19,76 @@ struct Row {
     let placementId: Int
 }
 
+private let rows = [
+    Row(type: .banner, placementId: 44258),
+    Row(type: .interstitial, placementId: 45493),
+    Row(type: .video, placementId: 44261)
+]
+
 class AwesomeAdsViewController: UIViewController {
     private var bannerView: BannerView!
-    
-    private let rows = [
-        Row(type: .banner, placementId: 44258),
-        Row(type: .interstitial, placementId: 44259),
-        Row(type: .video, placementId: 44261)
-    ]
+    private var segment: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         BumperPage.overrideName("Demo App")
         
-        let configuration = AwesomeAdsSdk.Configuration(environment: .production, logging: true)
-        AwesomeAdsSdk.shared.initSdk(configuration: configuration) {
+        let configuration = AwesomeAds.Configuration(environment: .production, logging: true)
+        AwesomeAds.initSDK(configuration: configuration) {
             print("AwesomeAds SDK init complete")
         }
         
         initUI()
     }
     
+    func configuration1() {
+        bannerView.enableParentalGate()
+        bannerView.enableBumperPage()
+    }
+    
+    func configuration2() {
+        bannerView.disableParentalGate()
+        bannerView.disableBumperPage()
+    }
+    
     private func initUI() {
+        initSegment()
         initBannerView()
         initButtons()
         configureInterstitial()
         configureVideo()
+    }
+    
+    private func initSegment() {
+        let segment = UISegmentedControl(items: ["Config 1", "Config 2"])
+        segment.addTarget(self, action: #selector(segmentChanged), for: .valueChanged)
+        segment.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(segment)
+        
+        NSLayoutConstraint.activate([
+            segment.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            segment.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            segment.topAnchor.constraint(equalTo: view.safeTopAnchor, constant: 0),
+            segment.heightAnchor.constraint(equalToConstant: 30)
+        ])
+        
+        self.segment = segment
+    }
+    
+    @objc func segmentChanged() {
+        let idx = segment.selectedSegmentIndex
+        switch idx {
+        case 0:
+            configuration1()
+            print("configuration 1")
+        case 1:
+            configuration2()
+            print("configuration 2")
+        default:
+            print("configuration none")
+        }
     }
     
     private func initBannerView() {
@@ -68,7 +111,7 @@ class AwesomeAdsViewController: UIViewController {
         
         bannerView.setCallback { (placementId, event) in
             switch event {
-                
+            
             case .adLoaded:
                 print(" bannerView >> Ad adLoaded ")
                 self.bannerView.play()
@@ -104,7 +147,7 @@ class AwesomeAdsViewController: UIViewController {
     private func configureInterstitial() {
         InterstitialAd.setCallback { (placementId, event) in
             switch event {
-                
+            
             case .adLoaded:
                 InterstitialAd.play(placementId, fromVC: self)
                 break
@@ -140,7 +183,7 @@ class AwesomeAdsViewController: UIViewController {
         VideoAd.enableCloseButton()
         VideoAd.setCallback { (placementId, event) in
             switch event {
-                
+            
             case .adLoaded:
                 VideoAd.play(withPlacementId: placementId, fromVc: self)
                 break
@@ -186,7 +229,7 @@ class AwesomeAdsViewController: UIViewController {
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16.0),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 16.0),
             stackView.bottomAnchor.constraint(lessThanOrEqualTo: bannerView.topAnchor),
-            stackView.topAnchor.constraint(equalTo: view.safeTopAnchor, constant: 16.0)
+            stackView.topAnchor.constraint(equalTo: segment.bottomAnchor, constant: 16.0)
         ])
         
         for (index, row) in rows.enumerated() {

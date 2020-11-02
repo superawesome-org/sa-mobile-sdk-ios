@@ -7,22 +7,87 @@
 
 import XCTest
 
+/*
+ In this test configuration 1 and configuration 2 is used
+ Configuration 1 represents the following options and Configuration 2 represents the otherwise
+ enableParantalGate = true
+ enableBumperPage = true
+ */
 class SuperAwesomeExampleUITests: XCTestCase {
+    let bannerId = 44258
+    let interstitialId = 44259
+    let videoId = 44259
+    
     let exists = NSPredicate(format: "exists == true")
+    let parentalQuestionPredicate = NSPredicate(format: "label BEGINSWITH 'Please solve the following problem to continue'")
+    private var app: XCUIApplication!
     
     override func setUpWithError() throws {
         continueAfterFailure = false
-    }
-    
-    override func tearDownWithError() throws {
-    }
-    
-    func testBanner() throws {
-        let app = XCUIApplication()
+        app = XCUIApplication()
         app.launch()
+    }
+    
+    private func tapConfig1() { app.buttons["Config 1"].tap() }
+    private func tapConfig2() { app.buttons["Config 2"].tap() }
+
+    private func tapBanner() { app.staticTexts["  Banner - \(bannerId)  "].tap() }
+    private func tapInterstitial() { app.staticTexts["  Interstitial - \(interstitialId)  "].tap() }
+    
+    private func waitAndTapWebView() {
+        let webElement = app.webViews.webViews.webViews.links.children(matching: .image).element
+        _ = webElement.waitForExistence(timeout: 10.0)
+        webElement.tap()
+    }
+    
+    private func waitAndTapBackFromSafari() {
+        let safari = XCUIApplication(bundleIdentifier: "com.apple.mobilesafari")
+        _ = safari.wait(for: .runningForeground, timeout: 30)
+        app.activate()
+    }
+    
+    func test_config1_banner() throws {
+        tapConfig1()
+        tapBanner()
         
-        app.staticTexts["  Banner - 44258  "].tap()
+        // Wait for banner to appear and tap
+        waitAndTapWebView()
         
-        //let expectation = expectation(for: predicate, evaluatedWith: element, handler: nil)
+        // Find Parantal gate popup
+        let elementsQuery = app.alerts["Parental Gate"].scrollViews.otherElements
+        let questionLabel = elementsQuery.staticTexts.element(matching: parentalQuestionPredicate)
+        
+        // Extract the numbers from the question
+        let numbers = questionLabel.label.components(separatedBy: CharacterSet.decimalDigits.inverted).filter { text -> Bool in
+            !text.isEmpty
+        }
+        let total = (Int(numbers[0]) ?? 0) + (Int(numbers[1]) ?? 0)
+        debugPrint("Extracted \(numbers[0]) + \(numbers[1]) = \(total)")
+        
+        // Type total into the textfield
+        let inputElement = elementsQuery.textFields.firstMatch
+        inputElement.tap()
+        inputElement.typeText("\(total)")
+        elementsQuery.buttons["Continue"].tap()
+        
+        // Wait for bumper to appear
+        let bumper = app.children(matching: .window).element(boundBy: 1).children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element
+        _ = bumper.waitForExistence(timeout: 4.0)
+        
+        // Wait for redirect and come back to test app
+        waitAndTapBackFromSafari()
+    }
+    
+    func test_config2_banner() throws {
+        tapConfig2()
+        tapBanner()
+        waitAndTapWebView()
+        waitAndTapBackFromSafari()
+    }
+    
+    func test_config1_interstitial() throws {
+        tapConfig1()
+        tapInterstitial()
+        waitAndTapWebView()
     }
 }

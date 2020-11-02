@@ -13,7 +13,8 @@ enum AdState {
     case hasAd(ad: AdResponse)
 }
 
-@objc(SAVideoAd) public class VideoAd: NSObject, Injectable {
+@objc(SAVideoAd)
+public class VideoAd: NSObject, Injectable {
     private static var adRepository: AdRepositoryType = dependencies.resolve()
     private static var logger: LoggerType = dependencies.resolve(param: InterstitialAd.self)
 
@@ -25,15 +26,13 @@ enum AdState {
 
     static var shouldShowSmallClickButton: Bool = Constants.defaultSmallClick
     static var orientation: Orientation = Constants.defaultOrientation
-//    static var configuration: SAConfiguration = SAConfiguration(rawValue: Int(SA_DEFAULT_CONFIGURATION))!
+
     static var isMoatLimitingEnabled: Bool = Constants.defaultMoatLimitingState
     static var delay: AdRequest.StartDelay = Constants.defaultStartDelay
 
     private static var callback: AdEventCallback? = nil
 
     private static var ads = Dictionary<Int, AdState>()
-
-//    private static let events: SAEvents = SAEvents()
 
     ////////////////////////////////////////////////////////////////////////////
     // Internal control methods
@@ -269,21 +268,9 @@ enum AdState {
     public static func getCallback() -> AdEventCallback? {
         return callback
     }
-//
-//    public static func getAds() -> Dictionary<Int, AdState> {
-//        return ads
-//    }
-//
-//    public static func getEvents() -> SAEvents {
-//        return events
-//    }
 
     @objc(disableMoatLimiting)
     public static func disableMoatLimiting() {
         VideoAd.isMoatLimitingEnabled = false
     }
-//
-//    public static func setAd(ad: SAAd, forPlacementId: Int) {
-//        ads[forPlacementId] = AdState.hasAd(ad: ad)
-//    }
 }
