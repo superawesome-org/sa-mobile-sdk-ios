@@ -77,6 +77,34 @@ extension WebView: WKUIDelegate {
     func webView(_ webView: WKWebView,
                  createWebViewWith configuration: WKWebViewConfiguration,
                  for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+        if finishedLoading {
+            var url = navigationAction.request.url
+            let urlString = url?.absoluteString
+            
+            // protect against about blanks
+            if urlString?.contains("about:blank") ?? false {
+                return nil
+            }
+            
+            // protect against iframes
+            if urlString?.contains("sa-beta-ads-uploads-superawesome.netdna-ssl.com") ?? false &&
+                urlString?.contains("/iframes") ?? false {
+                return nil
+            }
+            
+            // check to see if the URL has a redirect, and take only the redirect
+            if urlString?.contains("&redir=") ?? false {
+                if let redirectString = urlString?.suffix(from: "&redir="),
+                   let redirectUrl = URL(string: redirectString) {
+                    url = redirectUrl
+                }
+            }
+            
+            if let url = url {
+                delegate?.webViewOnClick(url: url)
+            }
+        }
+        
         return nil
     }
     
@@ -107,7 +135,7 @@ extension WebView: WKUIDelegate {
         // check to see if the URL has a redirect, and take only the redirect
         if urlString?.contains("&redir=") ?? false {
             if let redirectString = urlString?.suffix(from: "&redir="),
-                let redirectUrl = URL(string: redirectString) {
+               let redirectUrl = URL(string: redirectString) {
                 url = redirectUrl
             }
         }
@@ -127,6 +155,7 @@ extension WebView: WKNavigationDelegate {
             delegate?.webViewOnStart()
         }
     }
+    
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         if !finishedLoading {
             finishedLoading = true

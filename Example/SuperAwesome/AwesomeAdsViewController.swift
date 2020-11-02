@@ -21,7 +21,7 @@ struct Row {
 
 private let rows = [
     Row(type: .banner, placementId: 44258),
-    Row(type: .interstitial, placementId: 45493),
+    Row(type: .interstitial, placementId: 44259),
     Row(type: .video, placementId: 44261)
 ]
 
