@@ -19,8 +19,9 @@ class MoatModuleTests: XCTestCase {
         container.factory(NumberGeneratorType.self) { c, _ in NumberGeneratorMock(0) }
         
         // When
-        MoatModule.initMoat(true)
-        MoatModule.register(container)
+        let module = MoatModule()
+        module.initMoat(true)
+        module.register(container)
         
         // Then
         let expectedDependency = container.resolve(param: makeAdResponse(), false) as MoatRepositoryType

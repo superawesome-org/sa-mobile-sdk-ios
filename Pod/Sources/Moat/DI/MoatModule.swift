@@ -7,8 +7,8 @@
 
 import SUPMoatMobileAppKit
 
-class MoatModule {
-    static func initMoat(_ loggingEnabled: Bool) {
+class MoatModule: DependencyModule {
+    func initMoat(_ loggingEnabled: Bool) {
         let options = SUPMoatOptions()
         options.idfaCollectionEnabled = false
         options.debugLoggingEnabled = loggingEnabled
@@ -18,7 +18,7 @@ class MoatModule {
         print("SuperAwesome-Moat-Module Called 'initMoat' and moat is enabled")
     }
     
-    static func register(_ container: DependencyContainer) {
+    func register(_ container: DependencyContainer) {
         container.factory(MoatRepositoryType.self) { c, param in
             MoatRepository(adResponse: param[0] as! AdResponse,
                            moatLimiting: (param[1] != nil),

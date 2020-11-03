@@ -34,8 +34,7 @@ class AwesomeAdsViewController: UIViewController {
         
         BumperPage.overrideName("Demo App")
         
-        let configuration = AwesomeAds.Configuration(environment: .production, logging: true)
-        AwesomeAds.initSDK(configuration: configuration) {
+        AwesomeAds.initSDK(configuration: Configuration(environment: .production, logging: true)) {
             print("AwesomeAds SDK init complete")
         }
         

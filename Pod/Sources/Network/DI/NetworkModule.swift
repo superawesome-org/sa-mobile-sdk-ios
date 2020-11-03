@@ -7,8 +7,8 @@
 
 import Moya
 
-class NetworkModule {
-    static func register(_ container: DependencyContainer) {
+class NetworkModule: DependencyModule {
+    func register(_ container: DependencyContainer) {
         container.factory(MoyaHeaderPlugin.self) { c, _ in
             MoyaHeaderPlugin(userAgentProvider: c.resolve() as UserAgentProviderType)
         }

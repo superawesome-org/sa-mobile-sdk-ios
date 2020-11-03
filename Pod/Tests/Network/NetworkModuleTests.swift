@@ -22,7 +22,7 @@ class NetworkModuleTests: XCTestCase {
         }
         
         // When
-        NetworkModule.register(container)
+        NetworkModule().register(container)
         
         // Then
         let expectedDependency = container.resolve() as MoyaHeaderPlugin

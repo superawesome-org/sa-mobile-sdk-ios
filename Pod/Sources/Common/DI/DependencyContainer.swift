@@ -5,6 +5,11 @@
 //  Created by Gunhan Sancar on 06/04/2020.
 //
 
+/// Dependency module is used to register dependencies in a container
+protocol DependencyModule {
+    func register(_ container: DependencyContainer)
+}
+
 /// Factory is a function to create instances with given `DependencyContainer` and if needed with a `param`
 typealias Factory<T> = (DependencyContainer, [Any?]) -> T
 
