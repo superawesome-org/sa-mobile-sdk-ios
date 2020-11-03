@@ -46,13 +46,7 @@ class SuperAwesomeExampleUITests: XCTestCase {
         app.activate()
     }
     
-    func test_config1_banner() throws {
-        tapConfig1()
-        tapBanner()
-        
-        // Wait for banner to appear and tap
-        waitAndTapWebView()
-        
+    private func findParentalGateAndTypeAnswer() {
         // Find Parantal gate popup
         let elementsQuery = app.alerts["Parental Gate"].scrollViews.otherElements
         let questionLabel = elementsQuery.staticTexts.element(matching: parentalQuestionPredicate)
@@ -69,6 +63,26 @@ class SuperAwesomeExampleUITests: XCTestCase {
         inputElement.tap()
         inputElement.typeText("\(total)")
         elementsQuery.buttons["Continue"].tap()
+    }
+    
+    private func tapCoordinate(x: CGFloat, y: CGFloat) {
+        let normalized = app.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 0))
+        let coordinate = normalized.withOffset(CGVector(dx: x, dy: y))
+        coordinate.tap()
+    }
+    
+    private func tapCloseButton() {
+        app.windows.children(matching: .other).element.children(matching: .other).element.children(matching: .button).element.tap()
+    }
+    
+    func test_config1_banner() throws {
+        tapConfig1()
+        tapBanner()
+        
+        // Wait for banner to appear and tap
+        waitAndTapWebView()
+        
+        findParentalGateAndTypeAnswer()
         
         // Wait for bumper to appear
         let bumper = app.children(matching: .window).element(boundBy: 1).children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element
@@ -88,6 +102,32 @@ class SuperAwesomeExampleUITests: XCTestCase {
     func test_config1_interstitial() throws {
         tapConfig1()
         tapInterstitial()
-        waitAndTapWebView()
+        
+        let element = app.webViews.webViews.webViews.element
+        _ = element.waitForExistence(timeout: 5.0)
+        
+        // Trigger action on the test ad
+        tapCoordinate(x: element.frame.midX, y: element.frame.midY + 40)
+        
+        findParentalGateAndTypeAnswer()
+        
+        waitAndTapBackFromSafari()
+        
+        tapCloseButton()
+    }
+    
+    func test_config2_interstitial() throws {
+        tapConfig2()
+        tapInterstitial()
+        
+        let element = app.webViews.webViews.webViews.element
+        _ = element.waitForExistence(timeout: 5.0)
+        
+        // Trigger action on the test ad
+        tapCoordinate(x: element.frame.midX, y: element.frame.midY + 40)
+                
+        waitAndTapBackFromSafari()
+        
+        tapCloseButton()
     }
 }
