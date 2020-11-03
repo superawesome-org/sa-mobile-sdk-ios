@@ -122,71 +122,20 @@ class AwesomeAdsViewController: UIViewController {
         ])
         
         bannerView.setCallback { (placementId, event) in
-            switch event {
+            print(" bannerView >> \(event)")
             
-            case .adLoaded:
-                print(" bannerView >> Ad adLoaded ")
+            if event == .adLoaded {
                 self.bannerView.play()
-                break
-            case .adEmpty:
-                print(" bannerView >> Ad adEmpty ")
-                break
-            case .adFailedToLoad:
-                print(" bannerView >> Ad adFailedToLoad ")
-                break
-            case .adAlreadyLoaded:
-                print(" bannerView >> Ad adAlreadyLoaded ")
-                break
-            case .adShown:
-                print(" bannerView >> Ad adShown ")
-                break
-            case .adFailedToShow:
-                print(" bannerView >> Ad adFailedToShow ")
-                break
-            case .adClicked:
-                print(" bannerView >> Ad adClicked ")
-                break
-            case .adEnded:
-                print(" bannerView >> Ad adEnded ")
-                break
-            case .adClosed:
-                print(" bannerView >> Ad adClosed ")
-                break
             }
         }
     }
     
     private func configureInterstitial() {
         InterstitialAd.setCallback { (placementId, event) in
-            switch event {
+            print(" InterstitialAd >> \(event)")
             
-            case .adLoaded:
+            if event == .adLoaded {
                 InterstitialAd.play(placementId, fromVC: self)
-                break
-            case .adEmpty:
-                print(" InterstitialAd >> Ad adEmpty ")
-                break
-            case .adFailedToLoad:
-                print(" InterstitialAd >> Ad adFailedToLoad ")
-                break
-            case .adAlreadyLoaded:
-                print(" InterstitialAd >> Ad adAlreadyLoaded ")
-                break
-            case .adShown:
-                print(" InterstitialAd >> Ad adShown ")
-                break
-            case .adFailedToShow:
-                print(" InterstitialAd >> Ad adFailedToShow ")
-                break
-            case .adClicked:
-                print(" InterstitialAd >> Ad adClicked ")
-                break
-            case .adEnded:
-                print(" InterstitialAd >> Ad adEnded ")
-                break
-            case .adClosed:
-                print(" InterstitialAd >> Ad adClosed ")
-                break
             }
         }
     }
@@ -194,35 +143,10 @@ class AwesomeAdsViewController: UIViewController {
     private func configureVideo() {
         VideoAd.enableCloseButton()
         VideoAd.setCallback { (placementId, event) in
-            switch event {
+            print(" VideoAd >> \(event)")
             
-            case .adLoaded:
+            if event == .adLoaded {
                 VideoAd.play(withPlacementId: placementId, fromVc: self)
-                break
-            case .adEmpty:
-                print(" VideoAd >> Ad adEmpty ")
-                break
-            case .adFailedToLoad:
-                print(" VideoAd >> Ad adFailedToLoad ")
-                break
-            case .adAlreadyLoaded:
-                print(" VideoAd >> Ad adAlreadyLoaded ")
-                break
-            case .adShown:
-                print(" VideoAd >> Ad adShown ")
-                break
-            case .adFailedToShow:
-                print(" VideoAd >> Ad adFailedToShow ")
-                break
-            case .adClicked:
-                print(" VideoAd >> Ad adClicked ")
-                break
-            case .adEnded:
-                print(" VideoAd >> Ad adEnded ")
-                break
-            case .adClosed:
-                print(" VideoAd >> Ad adClosed ")
-                break
             }
         }
     }
