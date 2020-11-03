@@ -87,9 +87,15 @@ import SAVideoPlayer
         // setup chrome
         chrome = AdSocialVideoPlayerControlsView(smallClick: config.showSmallClick, showSafeAdLogo: config.showSafeAdLogo)
         chrome.layoutMargins = UIEdgeInsets.zero
-        chrome.setCloseAction(action: closeAction)
-        chrome.setClickAction(action: clickAction)
-        chrome.setPadlockAction(action: controller.handleSafeAdTap)
+        chrome.setCloseAction { [weak self] in
+            self?.closeAction()
+        }
+        chrome.setClickAction { [weak self] in
+            self?.clickAction()
+        }
+        chrome.setPadlockAction { [weak self] in
+            self?.controller.handleSafeAdTap()
+        }
         videoPlayer.setControlsView(controllerView: chrome)
         chrome.bind(toTheEdgesOf: videoPlayer)
         
@@ -99,10 +105,10 @@ import SAVideoPlayer
         }
         
         // register notification for foreground
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(willEnterForeground(_:)),
-                                               name: UIApplication.willEnterForegroundNotification,
-                                               object: nil)
+        NotificationCenter.default.addObserver(forName: UIApplication.willEnterForegroundNotification, object: nil, queue: .main)
+        { [weak self] notification in
+            self?.willEnterForeground(notification)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -126,7 +132,7 @@ import SAVideoPlayer
     ////////////////////////////////////////////////////////////////////////////
     
     @objc
-    func willEnterForeground(_ notification: NSNotification) -> Void {
+    func willEnterForeground(_ notification: Notification) -> Void {
         control.start()
     }
     ////////////////////////////////////////////////////////////////////////////
