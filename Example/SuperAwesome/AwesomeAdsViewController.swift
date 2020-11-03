@@ -48,6 +48,9 @@ class AwesomeAdsViewController: UIViewController {
         
         InterstitialAd.enableParentalGate()
         InterstitialAd.enableBumperPage()
+        
+        VideoAd.enableParentalGate()
+        VideoAd.enableBumperPage()
     }
     
     func configuration2() {
@@ -56,6 +59,9 @@ class AwesomeAdsViewController: UIViewController {
         
         InterstitialAd.disableParentalGate()
         InterstitialAd.disableBumperPage()
+        
+        VideoAd.disableParentalGate()
+        VideoAd.disableBumperPage()
     }
     
     private func initUI() {

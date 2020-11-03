@@ -16,7 +16,7 @@ import XCTest
 class SuperAwesomeExampleUITests: XCTestCase {
     let bannerId = 44258
     let interstitialId = 44259
-    let videoId = 44259
+    let videoId = 44261
     
     let exists = NSPredicate(format: "exists == true")
     let parentalQuestionPredicate = NSPredicate(format: "label BEGINSWITH 'Please solve the following problem to continue'")
@@ -33,6 +33,7 @@ class SuperAwesomeExampleUITests: XCTestCase {
 
     private func tapBanner() { app.staticTexts["  Banner - \(bannerId)  "].tap() }
     private func tapInterstitial() { app.staticTexts["  Interstitial - \(interstitialId)  "].tap() }
+    private func tapVideo() { app.staticTexts["  Video - \(videoId)  "].tap() }
     
     private func waitAndTapWebView() {
         let webElement = app.webViews.webViews.webViews.links.children(matching: .image).element
@@ -73,6 +74,16 @@ class SuperAwesomeExampleUITests: XCTestCase {
     
     private func tapCloseButton() {
         app.windows.children(matching: .other).element.children(matching: .other).element.children(matching: .button).element.tap()
+    }
+    
+    private func tapVideoCloseButton() {
+        app.windows.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .button).element(boundBy: 1).tap()
+    }
+    
+    private func waitAndClickOnVideo() {
+        let button = app.windows.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .button).element(boundBy: 0)
+        _ = button.waitForExistence(timeout: 10.0)
+        button.tap()
     }
     
     func test_config1_banner() throws {
@@ -129,5 +140,22 @@ class SuperAwesomeExampleUITests: XCTestCase {
         waitAndTapBackFromSafari()
         
         tapCloseButton()
+    }
+    
+    func test_config1_video() throws {
+        tapConfig1()
+        tapVideo()
+        waitAndClickOnVideo()
+        findParentalGateAndTypeAnswer()
+        waitAndTapBackFromSafari()
+        tapVideoCloseButton()
+    }
+    
+    func test_config2_video() throws {
+        tapConfig2()
+        tapVideo()
+        waitAndClickOnVideo()
+        waitAndTapBackFromSafari()
+        tapVideoCloseButton()
     }
 }
