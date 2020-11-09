@@ -15,13 +15,8 @@ struct CommonModule: DependencyModule {
     }
     
     private func registerComponentModule(_ container: DependencyContainer) {
-        container.factory(ViewableDetectorType.self) { c, param in
-            ViewableDetector(logger: c.resolve(param: ViewableDetector.self)) }
         container.single(Bundle.self) { _,_  in Bundle.main }
         container.single(StringProviderType.self) { _,_  in StringProvider() }
-        container.single(AdControllerType.self) { _, _ in AdController() }
-        container.factory(ParentalGate.self) { c, _ in
-            ParentalGate(numberGenerator: c.resolve(), stringProvider: c.resolve()) }
         container.factory(LoggerType.self) { _, param in
             OsLogger(configuration.logging, "\(param[0] ?? "")") }
         container.single(Environment.self) { _, _ in configuration.environment }

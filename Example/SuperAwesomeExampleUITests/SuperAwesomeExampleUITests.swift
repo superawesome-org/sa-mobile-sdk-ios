@@ -83,6 +83,7 @@ class SuperAwesomeExampleUITests: XCTestCase {
     private func waitAndClickOnVideo() {
         let button = app.windows.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .button).element(boundBy: 0)
         _ = button.waitForExistence(timeout: 10.0)
+        sleep(1)
         button.tap()
     }
     
@@ -116,6 +117,8 @@ class SuperAwesomeExampleUITests: XCTestCase {
         
         let element = app.webViews.webViews.webViews.element
         _ = element.waitForExistence(timeout: 5.0)
+        
+        sleep(1)
         
         // Trigger action on the test ad
         tapCoordinate(x: element.frame.midX, y: element.frame.midY + 40)

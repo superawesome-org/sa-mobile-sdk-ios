@@ -28,15 +28,6 @@ struct Dependency<T> {
     let scope: DependencyScope
 }
 
-/// Injectable protocol helps to inject a dependency container to any class
-protocol Injectable {
-    //// Injecting into instances
-    var dependencies: DependencyContainer { get }
-    
-    /// Injecting into static classes
-    static var dependencies: DependencyContainer { get }
-}
-
 /// Dependency container is used to store all of the dependencies with given factories.
 class DependencyContainer {
     private var dependencies: [String: Dependency<Any>] = [:]

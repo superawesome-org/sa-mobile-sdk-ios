@@ -6,6 +6,7 @@ use_frameworks!
 target 'SuperAwesomeExample' do
 #  pod 'SuperAwesome', :path => '../'
   pod 'SuperAwesome/Full', :path => '../', :testspecs => ['Tests']
+#pod 'SuperAwesome/UI', :path => '../'
 #  pod 'SuperAwesome/Main', :path => '../'
 #  pod 'SuperAwesome/Core', :path => '../', :testspecs => ['Tests']
 #  pod 'SuperAwesome/Dependencies', :path => '../', :testspecs => ['Tests']

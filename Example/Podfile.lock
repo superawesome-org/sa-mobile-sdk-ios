@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (5.3.0)
+  - Alamofire (5.4.0)
   - Mockingjay (3.0.0-alpha.1):
     - Mockingjay/Core (= 3.0.0-alpha.1)
     - Mockingjay/XCTest (= 3.0.0-alpha.1)
@@ -13,20 +13,20 @@ PODS:
     - Alamofire (~> 5.0)
   - Nimble (9.0.0)
   - SAVideoPlayer (2.0.1)
-  - SuperAwesome/Common (8.0.0-alpha.1):
-    - SAVideoPlayer (~> 2.0)
-    - SwiftyXMLParser (~> 5.0)
-  - SuperAwesome/Core (8.0.0-alpha.1):
+  - SuperAwesome/Base (8.0.0-alpha.1):
     - SuperAwesome/Common
     - SuperAwesome/Network
     - SuperAwesome/UI
+  - SuperAwesome/Common (8.0.0-alpha.1):
+    - SAVideoPlayer (~> 2.0)
+    - SwiftyXMLParser (~> 5.0)
   - SuperAwesome/Full (8.0.0-alpha.1):
-    - SuperAwesome/Core
+    - SuperAwesome/Base
     - SuperAwesome/Moat
   - SuperAwesome/Full/Tests (8.0.0-alpha.1):
     - Mockingjay (= 3.0.0-alpha.1)
     - Nimble
-    - SuperAwesome/Core
+    - SuperAwesome/Base
     - SuperAwesome/Moat
   - SuperAwesome/Moat (8.0.0-alpha.1):
     - SuperAwesome/Common
@@ -57,15 +57,15 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Alamofire: 2c792affbdc2f18016e08fdbcacd60aebe1ba593
+  Alamofire: 3b6a534a3df22db367e4dedeeca73d1ddfcf0e2f
   Mockingjay: 0f7c5aa49c7f1b95621cee3c79b557141f5a225c
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   Nimble: 3b4ec3fd40f1dc178058e0981107721c615643d8
   SAVideoPlayer: 5a1db63d754db28595f8561b910e1f9754cbfa13
-  SuperAwesome: 4aa952e03624f552dbbd97b364a49e540512d199
+  SuperAwesome: c81fc0b3441f77a7e3a480f61ab22badf6f7993c
   SwiftyXMLParser: 5ebb8793192f403fa8cc691045143906122a7a75
   URITemplate: 58e0d47f967006c5d59888af5356c4a8ed3b197d
 
-PODFILE CHECKSUM: 10638075abddbfc2d66123b84573ec67f6df25dc
+PODFILE CHECKSUM: 003521f9d988c7151b731537e01b594111993f6a
 
 COCOAPODS: 1.10.0

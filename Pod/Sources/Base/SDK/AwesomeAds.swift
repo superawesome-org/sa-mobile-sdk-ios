@@ -28,6 +28,9 @@ public class AwesomeAds: NSObject {
         CommonModule(configuration: configuration).register(container)
         registerMoatModule(configuration.logging)
         NetworkModule().register(container)
+        UIModule().register(container)
+        
+        InjectableComponent.register(self.container)
     }
     
     /// Initialise the AwesomeAds SDK.
@@ -59,7 +62,7 @@ public class AwesomeAds: NSObject {
     }
 }
 
-extension Injectable {
-    var dependencies: DependencyContainer { AwesomeAds.shared.container }
-    static var dependencies: DependencyContainer { AwesomeAds.shared.container }
-}
+//extension Injectable {
+//    var dependencies: DependencyContainer { AwesomeAds.shared.container }
+//    static var dependencies: DependencyContainer { AwesomeAds.shared.container }
+//}
