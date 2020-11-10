@@ -26,7 +26,7 @@ github_repo: "sa-mobile-sdk-ios"
 feedback: false
 
 # Link to a privacy policy in footer, uncomment and define if wanted
-# privacy: https://domain.com/privacy
+privacy: data-collection
 
 # google-analytics: UA-XXXXXXXXXX
 # Image and (square) dimension for logo (don't start with /)
