@@ -10,10 +10,11 @@ import Nimble
 @testable import SuperAwesome
 
 class NumberGeneratorTests: XCTestCase {
+    let numberGenerator = NumberGenerator()
+    
     func test_uniquenessOfAlphanumericIdGeneration() throws {
         // Given
         let length = 32
-        let numberGenerator = NumberGenerator()
         var listOfItems:[String] = []
         var duplicateFound = false
         
@@ -31,5 +32,32 @@ class NumberGeneratorTests: XCTestCase {
         
         // Then
         expect(duplicateFound).to(equal(false))
+    }
+    
+    func test_nextFloatForMoat() throws {
+        // When
+        let result = numberGenerator.nextFloatForMoat()
+        
+        // Then
+        expect(result) > 0
+        expect(result) < 1
+    }
+    
+    func test_nextIntForCache() throws {
+        // When
+        let result = numberGenerator.nextIntForCache()
+        
+        // Then
+        expect(result) > 1000000
+        expect(result) < 1500000
+    }
+    
+    func test_nextIntForParentalGate() throws {
+        // When
+        let result = numberGenerator.nextIntForParentalGate()
+        
+        // Then
+        expect(result) > 50
+        expect(result) < 99
     }
 }

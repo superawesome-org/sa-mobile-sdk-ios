@@ -61,8 +61,3 @@ public class AwesomeAds: NSObject {
         completion?()
     }
 }
-
-//extension Injectable {
-//    var dependencies: DependencyContainer { AwesomeAds.shared.container }
-//    static var dependencies: DependencyContainer { AwesomeAds.shared.container }
-//}
