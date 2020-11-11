@@ -10,7 +10,7 @@ The iOS Publisher SDK (Software Development Kit) lets you to easily add COPPA co
 
 | Info    | Contents  |
 |---------|-----------|
-| Version   |    ![Cocoapods](https://img.shields.io/cocoapods/v/SuperAwesome) ([Changelog]({{ site.changelog_url }}))   |
+| Version   |   {{ site.latest_version }} ([Changelog]({{ site.changelog_url }}))   |
 | Support   |   iOS 10.0+         |
 | GitHub    |   [https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios]({{ site.repo }})         |
 | Contact   |   [{{ site.email }}]({{ site.email }})        |
