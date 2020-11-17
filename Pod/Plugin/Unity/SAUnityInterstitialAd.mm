@@ -67,5 +67,16 @@ extern "C" {
         [SAInterstitialAd setOrientation:getOrientationFromInt (orientation)];
         [SAInterstitialAd play: placementId fromVC: root];
     }
-    
+
+    /**
+     * Native method called from Unity.
+     * Apply Settings
+     */
+    void SuperAwesomeUnitySAInterstitialAdApplySettings (bool isParentalGateEnabled, bool isBumperPageEnabled,
+                                                         int orientation, bool isTestingEnabled) {
+        [SAInterstitialAd setParentalGate:isParentalGateEnabled];
+        [SAInterstitialAd setBumperPage:isBumperPageEnabled];
+        [SAInterstitialAd setOrientation:getOrientationFromInt (orientation)];
+        [SAInterstitialAd setTestMode:isTestingEnabled];
+    }
 }
