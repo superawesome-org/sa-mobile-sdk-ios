@@ -76,5 +76,26 @@ extern "C" {
         [SAVideoAd setOrientation: getOrientationFromInt (orientation)];
         [SAVideoAd play: placementId fromVC: root];
     }
+
+    /**
+     * Native method called from Unity.
+     * Play a video ad
+     *
+     * @param isParentalGateEnabled         true / false
+     * @param isBumperPageEnabled           true / false
+     * @param shouldShowCloseButton         true / false
+     * @param shouldShowSmallClickButton    true / false
+     * @param shouldAutomaticallyCloseAtEnd true / false
+     * @param orientation                   ANY = 0 / PORTRAIT = 1 / LANDSCAPE = 2
+     */
+    void SuperAwesomeUnitySAVideoAdApplySettings(bool isParentalGateEnabled, bool isBumperPageEnabled, bool shouldShowCloseButton, bool shouldShowSmallClickButton, bool shouldAutomaticallyCloseAtEnd, int orientation, bool isTestingEnabled) {
+        [SAVideoAd setParentalGate:isParentalGateEnabled];
+        [SAVideoAd setBumperPage:isBumperPageEnabled];
+        [SAVideoAd setCloseButton:shouldShowCloseButton];
+        [SAVideoAd setSmallClick:shouldShowSmallClickButton];
+        [SAVideoAd setCloseAtEnd:shouldAutomaticallyCloseAtEnd];
+        [SAVideoAd setOrientation: getOrientationFromInt (orientation)];
+        [SAVideoAd setTestMode: isTestingEnabled];
+    }
     
 }
