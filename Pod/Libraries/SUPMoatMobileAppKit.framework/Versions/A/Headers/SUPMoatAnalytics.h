@@ -22,7 +22,7 @@
  *
  * Default = 'YES'
  */
-@property BOOL IDFACollectionEnabled;
+@property BOOL IDFACollectionEnabled __deprecated_msg("The SDK has temporarily removed the use of IDFA due to iOS 14 privacy policy changes");
 
 /** If 'YES' and a 'MOAT_LOGGING' environment variable is set in Xcode,
  * then the SDK will log information to assist in the implementation and testing process.
