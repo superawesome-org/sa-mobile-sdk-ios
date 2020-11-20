@@ -94,9 +94,9 @@
                @{
                    @"name": @"Videos",
                    @"items": @[
-//                           @{@"name": @"Direct video", @"pid": @(34394)},
-                           @{@"name": @"Direct video", @"pid": @(39318)},
-                           @{@"name": @"Tag video", @"pid": @(44261)}
+                           @{@"name": @"Direct video", @"pid": @(44262)}
+//                           @{@"name": @"Direct video", @"pid": @(39318)},
+//                           @{@"name": @"Tag video", @"pid": @(44261)}
                            ]
                    }
                ] mutableCopy];
