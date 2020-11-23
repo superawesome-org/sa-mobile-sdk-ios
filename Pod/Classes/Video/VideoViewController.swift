@@ -226,7 +226,8 @@ import UIKit
     private func closeAction() {
         videoPlayer.destroy()
         SAParentalGate.close()
-        callback?(ad.placementId, SAEvent.adClosed)
-        dismiss(animated: true)
+        dismiss(animated: true) {
+            self.callback?(self.ad.placementId, SAEvent.adClosed)
+        }
     }
 }
