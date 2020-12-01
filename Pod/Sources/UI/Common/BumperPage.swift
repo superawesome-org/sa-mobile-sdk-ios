@@ -7,6 +7,7 @@
 
 import UIKit
 
+@objc
 public class BumperPage: UIViewController, Injectable {
     private static let CounterMaxInSeconds = 3
     
@@ -183,7 +184,8 @@ public class BumperPage: UIViewController, Injectable {
         bigLabel = label
     }
     
-    @objc private func timerFunction() {
+    @objc
+    private func timerFunction() {
         if counter > 0 {
             counter -= 1
             smallLabel?.text = stringProvider.bumperPageInfo(counter: counter)
@@ -204,11 +206,13 @@ public class BumperPage: UIViewController, Injectable {
     }
     
     /// Overrides the logo on the bumper dialog
+    @objc
     public class func overrideLogo(_ image: UIImage?) {
         overridenLogo = image
     }
 
     /// Overrides the name on the bumper dialog
+    @objc
     public class func overrideName(_ name: String?) {
         overridenName = name
     }

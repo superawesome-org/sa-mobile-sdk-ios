@@ -47,12 +47,14 @@ public class BannerView: UIView, Injectable {
      *
      * @param placementId   the Ad placement id to load data for
      */
+    @objc
     public func load(_ placementId: Int) {
         logger.info("load() for: \(placementId)")
         controller.load(placementId, makeAdRequest())
     }
     
     /// Method that, if an ad data is loaded, will play the content for the user
+    @objc
     public func play() {
         logger.info("play()")
         // guard against invalid ad formats
@@ -98,6 +100,7 @@ public class BannerView: UIView, Injectable {
     }
     
     /// Method that is called to close the ad
+    @objc
     public func close() {
         viewableDetector = nil
         _ = moatRepository?.stopMoatTrackingForDisplay()
@@ -112,46 +115,63 @@ public class BannerView: UIView, Injectable {
      *
      * @return              true or false
      */
+    @objc
     public func hasAdAvailable() -> Bool { controller.adResponse != nil }
     
     /// Method that gets whether the banner is closed or not
+    @objc
     public func isClosed() -> Bool { controller.closed }
     
     /// Callback function
+    @objc
     public func setCallback(_ callback: AdEventCallback?) { controller.delegate = callback }
     
+    @objc
     public func setTestMode(_ value: Bool) { controller.testEnabled = value }
     
+    @objc
     public func enableTestMode() { setTestMode(true) }
     
+    @objc
     public func disableTestMode() { setTestMode(false) }
     
     @available(*, deprecated, message: "Use `AwesomeAdsSdk.Configuration` instead")
+    @objc
     public func setConfigurationProduction() { }
     
     @available(*, deprecated, message: "Use `AwesomeAdsSdk.Configuration` instead")
+    @objc
     public func setConfigurationStaging() { }
     
+    @objc
     public func setParentalGate(_ value: Bool) { controller.parentalGateEnabled = value }
     
+    @objc
     public func enableParentalGate() { setParentalGate(true) }
     
+    @objc
     public func disableParentalGate() { setParentalGate(false) }
     
+    @objc
     public func setBumperPage(_ value: Bool) { controller.bumperPageEnabled = value }
     
+    @objc
     public func enableBumperPage() { setBumperPage(true) }
     
+    @objc
     public func disableBumperPage() { setBumperPage(false) }
     
+    @objc
     public func setColorTransparent() { setColor(true) }
     
+    @objc
     public func setColorGray() { setColor(false) }
     
     public func setColor(_ value: Bool) {
         backgroundColor = value ? UIColor.clear : Constants.backgroundGray
     }
     
+    @objc
     public func disableMoatLimiting() { controller.moatLimiting = false }
     
     // MARK: - Private functions
