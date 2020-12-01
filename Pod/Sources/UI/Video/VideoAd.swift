@@ -137,7 +137,8 @@ public class VideoAd: NSObject, Injectable {
     ////////////////////////////////////////////////////////////////////////////
     // setters
     ////////////////////////////////////////////////////////////////////////////
-
+    
+    @objc(setCallback:)
     public static func setCallback(_ callback: AdEventCallback?) {
         self.callback = callback
     }

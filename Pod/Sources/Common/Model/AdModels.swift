@@ -122,6 +122,7 @@ extension AdRequest {
 *  - adEnded:          triggerd when a video ad ends
 *  - adClosed:         triggered once when the ad is closed;
 */
+@objc(SAEvent)
 public enum AdEvent : Int {
     case adLoaded = 0
     case adEmpty = 1
