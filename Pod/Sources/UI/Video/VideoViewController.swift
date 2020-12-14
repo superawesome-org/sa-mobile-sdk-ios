@@ -146,9 +146,9 @@ import SAVideoPlayer
     
     private func closeAction() {
         videoPlayer.destroy()
-        controller.adClosed()
-        controller.close()
-        dismiss(animated: true)
+        dismiss(animated: true) { [weak self] in
+            self?.controller.close()
+        }
     }
 }
 
