@@ -1,3 +1,6 @@
+source 'git@github.com:SuperAwesomeLTD/pj-Private-CocoaPods.git'
+source 'git@github.com:SuperAwesomeLTD/sa-private-pods-specs-ios.git'
+source 'git@github.com:CocoaPods/Specs.git'
 platform :ios, '10.0'
 use_frameworks!
 #use_frameworks! :linkage => :static # Use this when Admob enabled
