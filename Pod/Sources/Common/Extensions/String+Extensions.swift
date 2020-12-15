@@ -9,10 +9,11 @@ import Foundation
 import CommonCrypto
 
 extension String {
-    var urlEscaped: String? { addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) }
-    var utf8Encoded: Data? { data(using: .utf8) }
+    
+    /// Returns the Int value of a string
     var toInt: Int? { Int(self) }
     
+    /// Returns an MD5 has of the current string
     var toMD5: String {
         let length = Int(CC_MD5_DIGEST_LENGTH)
         var digest = [UInt8](repeating: 0, count: length)
@@ -27,6 +28,8 @@ extension String {
             $0 + String(format: "%02x", digest[$1])
         }
     }
+    
+    /// Returns the base url formed from a full url
     var baseUrl: String {
         let url = URL(string: self)
         return "\(url?.scheme ?? "")://\(url?.host ?? "")"
@@ -35,7 +38,7 @@ extension String {
     /// Returns the extension name or nil
     var fileExtension: String? {
         let parts = components(separatedBy: ".")
-        return parts.last
+        return parts.count > 1 ? parts.last : nil
     }
 }
 

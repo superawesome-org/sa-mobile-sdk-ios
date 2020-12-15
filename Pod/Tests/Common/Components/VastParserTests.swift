@@ -1,25 +1,3 @@
-//
-//  VastParserTests.swift
-//  SuperAwesome
-//
-//  Created by Gunhan Sancar on 07/07/2020.
-//
-//
-//import Nimble
-//import SwiftyXML
-//@testable import SuperAwesome
-//
-//class VastParserTests: XCTestCase {
-//    func testUserAgentName_dataRepositryHasData_useDataRepositoryAgent() throws {
-//        // Given
-//        let xml = SwiftyXML(xmlFile("mock_vast_response_1.0"))
-//
-//        // Then
-//        //expect(userAgent.name).to(equal(dataUserAgent))
-//    }
-//
-//}
-
 import XCTest
 import Nimble
 @testable import SuperAwesome
