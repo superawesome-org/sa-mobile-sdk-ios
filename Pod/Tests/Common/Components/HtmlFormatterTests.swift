@@ -16,7 +16,7 @@ class HtmlFormatterTests: XCTestCase {
         let formatter = HtmlFormatter(numberGenerator: NumberGeneratorMock(10), encoder: EncoderMock())
         
         // When
-        let result = formatter.formatImageIntoHtml(makeAdWithImageLink(imageLink))
+        let result = formatter.formatImageIntoHtml(MockFactory.makeAdWithImageLink(imageLink))
         
         // Then
         expect("<a href='https://www.superawesome.com/' target='_blank'><img src='image' width='100%' height='100%' style='object-fit: contain;'/></a>").to(equal(result))
@@ -27,7 +27,7 @@ class HtmlFormatterTests: XCTestCase {
         let formatter = HtmlFormatter(numberGenerator: NumberGeneratorMock(10), encoder: EncoderMock())
         
         // When
-        let result = formatter.formatImageIntoHtml(makeAdWithImageLink(nil))
+        let result = formatter.formatImageIntoHtml(MockFactory.makeAdWithImageLink(nil))
         
         // Then
         expect("<img src='image' width='100%' height='100%' style='object-fit: contain;'/>").to(equal(result))
@@ -39,7 +39,7 @@ class HtmlFormatterTests: XCTestCase {
         let formatter = HtmlFormatter(numberGenerator: NumberGeneratorMock(10), encoder: EncoderMock())
         
         // When
-        let result = formatter.formatRichMediaIntoHtml(placementId, makeAd())
+        let result = formatter.formatRichMediaIntoHtml(placementId, MockFactory.makeAd())
         
         // Then
         expect("<iframe style='padding:0;border:0;' width='100%' height='100%' src='detailurl?placement=\(placementId)&line_item=50&creative=80&rnd=10'></iframe>").to(equal(result))
@@ -52,7 +52,7 @@ class HtmlFormatterTests: XCTestCase {
         let formatter = HtmlFormatter(numberGenerator: NumberGeneratorMock(10), encoder: EncoderMock())
         
         // When
-        let result = formatter.formatTagIntoHtml(makeAdWithTagAndClickUrl(tag, url))
+        let result = formatter.formatTagIntoHtml(MockFactory.makeAdWithTagAndClickUrl(tag, url))
         
         // Then
         expect(#"<A HREF="someurl&redir=https://ad.doubleclick.net/ddm/jump/N304202.1915243SUPERAWESOME.TV/B10773905.144955457;sz=480x320;ord=1486394166729?"><IMG SRC="https://ad.doubleclick.net/ddm/ad/N304202.1915243SUPERAWESOME.TV/B10773905.144955457;sz=480x320;ord=1486394166729;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=?" BORDER=0 WIDTH=480 HEIGHT=320 ALT="Advertisement"></A>"#).to(equal(result))

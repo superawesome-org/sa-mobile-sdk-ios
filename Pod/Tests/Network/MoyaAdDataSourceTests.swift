@@ -31,7 +31,7 @@ class MoyaAdDataSourceTests: XCTestCase {
         
         // When
         let expectation = self.expectation(description: "Network request")
-        dataSource.getAd(placementId: placementId, query: makeAdQueryInstance()) { result in
+        dataSource.getAd(placementId: placementId, query: MockFactory.makeAdQueryInstance()) { result in
             self.adResult = result
             expectation.fulfill()
         }
@@ -48,7 +48,7 @@ class MoyaAdDataSourceTests: XCTestCase {
         
         // When
         let expectation = self.expectation(description: "Network request")
-        dataSource.getAd(placementId: placementId, query: makeAdQueryInstance()) { result in
+        dataSource.getAd(placementId: placementId, query: MockFactory.makeAdQueryInstance()) { result in
             self.adResult = result
             expectation.fulfill()
         }
@@ -64,7 +64,7 @@ class MoyaAdDataSourceTests: XCTestCase {
         
         // When
         let expectation = self.expectation(description: "Network request")
-        dataSource.impression(query: makeEventQueryInstance()) { result in
+        dataSource.impression(query: MockFactory.makeEventQueryInstance()) { result in
             self.eventResult = result
             expectation.fulfill()
         }
@@ -80,7 +80,7 @@ class MoyaAdDataSourceTests: XCTestCase {
         
         // When
         let expectation = self.expectation(description: "Network request")
-        dataSource.click(query: makeEventQueryInstance()) { result in
+        dataSource.click(query: MockFactory.makeEventQueryInstance()) { result in
             self.eventResult = result
             expectation.fulfill()
         }
@@ -96,7 +96,7 @@ class MoyaAdDataSourceTests: XCTestCase {
         
         // When
         let expectation = self.expectation(description: "Network request")
-        dataSource.videoClick(query: makeEventQueryInstance()) { result in
+        dataSource.videoClick(query: MockFactory.makeEventQueryInstance()) { result in
             self.eventResult = result
             expectation.fulfill()
         }
@@ -112,7 +112,7 @@ class MoyaAdDataSourceTests: XCTestCase {
         
         // When
         let expectation = self.expectation(description: "Network request")
-        dataSource.event(query: makeEventQueryInstance()) { result in
+        dataSource.event(query: MockFactory.makeEventQueryInstance()) { result in
             self.eventResult = result
             expectation.fulfill()
         }

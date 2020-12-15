@@ -16,7 +16,7 @@ import XCTest
 class SuperAwesomeExampleUITests: XCTestCase {
     let bannerId = 44258
     let interstitialId = 44259
-    let videoId = 44261
+    let videoId = 44262
     
     let exists = NSPredicate(format: "exists == true")
     let parentalQuestionPredicate = NSPredicate(format: "label BEGINSWITH 'Please solve the following problem to continue'")

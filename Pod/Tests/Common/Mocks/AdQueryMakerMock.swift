@@ -19,26 +19,26 @@ class AdQueryMakerMock: AdQueryMakerType {
     
     func makeAdQuery(_ request: AdRequest) -> AdQuery {
         isMakeCalled = true
-        return makeAdQueryInstance()
+        return MockFactory.makeAdQueryInstance()
     }
     
     func makeImpressionQuery(_ adResponse: AdResponse) -> EventQuery {
         isMakeCalled = true
-        return makeEventQueryInstance()
+        return MockFactory.makeEventQueryInstance()
     }
     
     func makeClickQuery(_ adResponse: AdResponse) -> EventQuery {
         isMakeCalled = true
-        return makeEventQueryInstance()
+        return MockFactory.makeEventQueryInstance()
     }
     
     func makeVideoClickQuery(_ adResponse: AdResponse) -> EventQuery {
         isMakeCalled = true
-        return makeEventQueryInstance()
+        return MockFactory.makeEventQueryInstance()
     }
     
     func makeEventQuery(_ adResponse: AdResponse, _ eventData: EventData) -> EventQuery {
         isMakeCalled = true
-        return makeEventQueryInstance()
+        return MockFactory.makeEventQueryInstance()
     }
 }

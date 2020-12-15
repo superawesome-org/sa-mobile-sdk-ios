@@ -19,7 +19,7 @@ class AdProcessorTests: XCTestCase {
     private func testProcess(_ format: CreativeFormatType, _ html: String?, _ vast: String?) {
         // Given
         let placementId = 1
-        let ad = makeAd(format, vast)
+        let ad = MockFactory.makeAd(format, vast)
         let dataResult: Result<Data, Error> = Result.success(Data())
         let downloadResult: Result<String, Error> = Result.success("")
         let adProcessor = AdProcessor(htmlFormatter: HtmlFormatterMock(imageFormat: imageFormatUsed,
@@ -51,7 +51,7 @@ class AdProcessorTests: XCTestCase {
                            impressionEventCount: Int?) {
         // Given
         let placementId = 1
-        let ad = makeAd(.video, url)
+        let ad = MockFactory.makeAd(.video, url)
         let adProcessor = AdProcessor(htmlFormatter: HtmlFormatterMock(imageFormat: imageFormatUsed,
                                                                        mediaFormat: mediaFormatUsed,
                                                                        tagFormat: tagFormatUsed),

@@ -20,8 +20,9 @@ class MoyaHeaderPluginTests: XCTestCase {
         let request = URLRequest(url: URL(string: "https://superawesome.com")!)
 
         // When
-        let updatedRequest = moyaHeaderPlugin.prepare(request,
-                                                      target: AwesomeAdsApi.event(query: makeEventQueryInstance()))
+        let updatedRequest = moyaHeaderPlugin.prepare(
+            request,
+            target: AwesomeAdsApi.event(query: MockFactory.makeEventQueryInstance()))
 
         // Then
         expect(updatedRequest.headers["User-Agent"]).to(equal(name))

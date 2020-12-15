@@ -24,7 +24,7 @@ class MoatModuleTests: XCTestCase {
         module.register(container)
         
         // Then
-        let expectedDependency = container.resolve(param: makeAdResponse(), false) as MoatRepositoryType
+        let expectedDependency = container.resolve(param: MockFactory.makeAdResponse(), false) as MoatRepositoryType
         expect(expectedDependency).notTo(beNil())
     }
 }

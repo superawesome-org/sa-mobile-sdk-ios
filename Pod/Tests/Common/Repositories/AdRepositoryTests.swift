@@ -30,7 +30,7 @@ class AdRepositoryTests: XCTestCase {
         // When
         let expectation = self.expectation(description: "request")
         
-        adRepository.getAd(placementId: placementId, request: makeAdRequest()) { result in
+        adRepository.getAd(placementId: placementId, request: MockFactory.makeAdRequest()) { result in
             self.result = result
             expectation.fulfill()
         }
@@ -42,10 +42,10 @@ class AdRepositoryTests: XCTestCase {
     }
     
     func test_getAdCalled_validResponse_success() throws {
-        prepare(expectedResult: Result.success(makeAd()))
+        prepare(expectedResult: Result.success(MockFactory.makeAd()))
     }
     
     func test_getAdCalled_invalidResponse_failure() throws {
-        prepare(expectedResult: Result.failure(makeError()))
+        prepare(expectedResult: Result.failure(MockFactory.makeError()))
     }
 }

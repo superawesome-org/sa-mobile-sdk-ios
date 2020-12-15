@@ -52,7 +52,7 @@ class AdQueryMakerTests: XCTestCase {
     
     func test_clickQuery() throws {
         // Given
-        let response = makeAdResponse()
+        let response = MockFactory.makeAdResponse()
         
         // When
         let query = queryMaker.makeClickQuery(response)
@@ -72,7 +72,7 @@ class AdQueryMakerTests: XCTestCase {
     
     func test_videoClickQuery() throws {
         // Given
-        let response = makeAdResponse()
+        let response = MockFactory.makeAdResponse()
         
         // When
         let query = queryMaker.makeVideoClickQuery(response)
@@ -92,7 +92,7 @@ class AdQueryMakerTests: XCTestCase {
     
     func test_eventQuery() throws {
         // Given
-        let response = makeAdResponse()
+        let response = MockFactory.makeAdResponse()
         let data = EventData(placement: 10, line_item: 20, creative: 30, type: .impressionDownloaded)
         
         // When
