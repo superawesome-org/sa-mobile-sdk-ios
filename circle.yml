@@ -13,8 +13,8 @@ jobs:
       - run:
           name: Install CocoaPods
           command:
-           - cd ~/Example
-           - pod install
+          - cd ~/Example
+          - pod install
 
       # Set Ruby version
       - run:
