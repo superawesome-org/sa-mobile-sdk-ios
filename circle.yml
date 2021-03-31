@@ -9,10 +9,16 @@ jobs:
       FASTLANE_LANE: test
     steps:
       - checkout
-      - run: bundle install
+      # Install CocoaPods
       - run:
-          name: pods
-          command: bundle exec pod install
+          name: Install CocoaPods
+          command: pod install
+
+      # Set Ruby version
+      - run:
+          name: Set Ruby Version
+          command:  echo "ruby-2.4" > ~/.ruby-version
+      - run: bundle install
       - run:
           name: Fastlane
           command: bundle exec fastlane $FASTLANE_LANE
