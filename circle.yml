@@ -19,8 +19,6 @@ jobs:
           path: output/scan
           
   setupFastLane:
-    executor:
-      name: default
     steps:
       - checkout
       - run:
