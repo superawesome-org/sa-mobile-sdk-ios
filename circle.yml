@@ -14,7 +14,7 @@ jobs:
       # Install CocoaPods
       - run:
           name: Install CocoaPods
-          command: ls && bundle exec pod install
+          command: cd Example && ls && bundle exec pod install
           
       - run:
           name: Fastlane
