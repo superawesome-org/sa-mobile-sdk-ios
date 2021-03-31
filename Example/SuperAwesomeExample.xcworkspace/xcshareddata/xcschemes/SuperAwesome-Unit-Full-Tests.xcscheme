@@ -57,6 +57,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "C702E66B81B882A3D543C649C8C506EA"
+            BuildableName = "SuperAwesome-Unit-Full-Tests.xctest"
+            BlueprintName = "SuperAwesome-Unit-Full-Tests"
+            ReferencedContainer = "container:Pods/Pods.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
