@@ -17,6 +17,7 @@ protocol LoggerType {
 
 public class OsLogger: LoggerType {
     private var tag: String = ""
+    private let prefix: String = "_mark"
     private let loggingEnabled: Bool
     
     init(_ loggingEnabled: Bool, _ tag: String?) {
@@ -39,18 +40,18 @@ public class OsLogger: LoggerType {
         guard loggingEnabled else { return }
         
         let depthString = String(repeating: "→ ", count: depth)
-        os_log("%@", log: OSLog.default, type: OSLogType.info, "⬜️ \(depthString)[\(tag)] \(message)")
+        os_log("%@", log: OSLog.default, type: OSLogType.info, "⬜️ [\(prefix)] \(depthString)[\(tag)] \(message)")
     }
     
     public func success(_ message: String) {
         guard loggingEnabled else { return }
         
-        os_log("%@", log: OSLog.default, type: OSLogType.info, "🟩 [\(tag)] \(message)")
+        os_log("%@", log: OSLog.default, type: OSLogType.info, "🟩 [\(prefix)] [\(tag)] \(message)")
     }
     
     func error(_ message: String, error: Error) {
         guard loggingEnabled else { return }
         
-        os_log("%@", log: OSLog.default, type: OSLogType.error, "🟥 [\(tag)] \(message) \n \(error.localizedDescription)")
+        os_log("%@", log: OSLog.default, type: OSLogType.error, "🟥 [\(prefix)] [\(tag)] \(message) \n \(error.localizedDescription)")
     }
 }
