@@ -27,8 +27,11 @@ platform :ios do
     scan
   end
 
-  lane :tests do
-    run_tests(scheme: "SuperAwesome-Unit_full_tests")
+  platform :ios do
+    before_all do
+      setup_circle_ci
+    end
+    ...
   end
 
   desc "Submit a new Beta Build to Apple TestFlight"
