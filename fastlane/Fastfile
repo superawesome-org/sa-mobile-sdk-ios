@@ -18,8 +18,7 @@ default_platform :ios
 platform :ios do
   before_all do
     # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
-    
-    
+    setup_circle_ci
   end
 
   desc "Runs all the tests"
@@ -27,12 +26,6 @@ platform :ios do
     scan
   end
 
-  platform :ios do
-    before_all do
-      setup_circle_ci
-    end
-    ...
-  end
 
   desc "Submit a new Beta Build to Apple TestFlight"
   desc "This will also make sure the profile is up to date"
