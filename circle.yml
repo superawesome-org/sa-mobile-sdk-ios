@@ -19,6 +19,8 @@ jobs:
           path: output/scan
           
   setupFastLane:
+    macos:
+      xcode: 12.4.0
     steps:
       - checkout
       - run:
