@@ -32,7 +32,7 @@ jobs:
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - checkout
-      - run: swiftlint lint --reporter junit | tee result.xml
+      - run: cd Example && swiftlint lint --reporter junit | tee result.xml
       - store_artifacts:
           path: result.xml
       - store_test_results:
