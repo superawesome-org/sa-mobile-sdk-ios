@@ -5,10 +5,8 @@
 //  Created by Gunhan Sancar on 19/06/2020.
 //
 
-#if MOPUB_PLUGIN
-
 import UIKit
-import MoPub
+import MoPubSDK
 import SuperAwesome
 
 class MoPubViewController: UIViewController {
@@ -28,7 +26,6 @@ class MoPubViewController: UIViewController {
         
         let configuration = MPMoPubConfiguration.init(adUnitIdForAppInitialization: bannerAdId)
         configuration.loggingLevel = .debug
-        configuration.additionalNetworks = [AwesomeAdsMoPubAdapterConfiguration.self]
                 
         MoPub.sharedInstance().initializeSdk(with: configuration) {
             print("MoPub SDK initialisation complete")
@@ -96,8 +93,9 @@ class MoPubViewController: UIViewController {
     }
     
     @objc func didVideoClick(_ sender: UIButton) {
-        if MPRewardedVideo.hasAdAvailable(forAdUnitID: videoAdId) {
-            MPRewardedVideo.presentAd(forAdUnitID: videoAdId, from: self, with: nil)
+        if MPRewardedAds.hasAdAvailable(forAdUnitID: videoAdId) {
+            let ad = MPRewardedAds.selectedReward(forAdUnitID: videoAdId)
+            MPRewardedAds.presentRewardedAd(forAdUnitID: videoAdId, from: self, with: ad, customData: "")
         } else {
             print("video ad is not ready")
         }
@@ -114,20 +112,18 @@ class MoPubViewController: UIViewController {
     }
     
     private func configureVideo() {
-        MPRewardedVideo.loadAd(withAdUnitID: videoAdId, withMediationSettings: nil)
-        MPRewardedVideo.setDelegate(self, forAdUnitId: videoAdId)
+        MPRewardedAds.loadRewardedAd(withAdUnitID: videoAdId, withMediationSettings: nil)
+        MPRewardedAds.setDelegate(self, forAdUnitId: videoAdId)
     }
-    
 }
 
 extension MoPubViewController: MPAdViewDelegate {
     func viewControllerForPresentingModalView() -> UIViewController! { self }
 }
 
-extension MoPubViewController: MPRewardedVideoDelegate {
-    func rewardedVideoAdDidFailToLoad(forAdUnitID adUnitID: String!, error: Error!) {
+extension MoPubViewController: MPRewardedAdsDelegate {
+    func rewardedAdDidFailToLoad(forAdUnitID adUnitID: String!, error: Error!) {
         print("MoPubViewController: rewardedVideoAdDidFailToLoad: error:\(String(describing: error))")
     }
 }
 
-#endif

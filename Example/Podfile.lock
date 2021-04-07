@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (5.4.1)
+  - Alamofire (5.4.2)
   - Mockingjay (3.0.0-alpha.1):
     - Mockingjay/Core (= 3.0.0-alpha.1)
     - Mockingjay/XCTest (= 3.0.0-alpha.1)
@@ -7,6 +7,14 @@ PODS:
     - URITemplate (~> 3.0)
   - Mockingjay/XCTest (3.0.0-alpha.1):
     - Mockingjay/Core
+  - mopub-ios-sdk (5.16.2):
+    - mopub-ios-sdk/MoPubSDK (= 5.16.2)
+  - mopub-ios-sdk/Core (5.16.2)
+  - mopub-ios-sdk/MoPubSDK (5.16.2):
+    - mopub-ios-sdk/Core
+    - mopub-ios-sdk/NativeAds
+  - mopub-ios-sdk/NativeAds (5.16.2):
+    - mopub-ios-sdk/Core
   - Moya (14.0.0):
     - Moya/Core (= 14.0.0)
   - Moya/Core (14.0.0):
@@ -39,6 +47,7 @@ PODS:
   - URITemplate (3.0.0)
 
 DEPENDENCIES:
+  - mopub-ios-sdk
   - SuperAwesome/Full (from `../`)
   - SuperAwesome/Full/Tests (from `../`)
 
@@ -46,6 +55,7 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - Mockingjay
+    - mopub-ios-sdk
     - Moya
     - Nimble
     - SAVideoPlayer
@@ -57,15 +67,16 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
+  Alamofire: bfbc4c2fe5909b1d94fb4ef2277c6b3727ef5dae
   Mockingjay: 0f7c5aa49c7f1b95621cee3c79b557141f5a225c
+  mopub-ios-sdk: ce5aa12abe59d42cb8866b1297bdff7b6a42e273
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   Nimble: 3b4ec3fd40f1dc178058e0981107721c615643d8
   SAVideoPlayer: 5a1db63d754db28595f8561b910e1f9754cbfa13
-  SuperAwesome: 3f41cb7db5d6d796cb56febd101a368d48e34410
+  SuperAwesome: 0801e885f4353a21a2c784246b7d72f1659261d8
   SwiftyXMLParser: 5ebb8793192f403fa8cc691045143906122a7a75
   URITemplate: 58e0d47f967006c5d59888af5356c4a8ed3b197d
 
-PODFILE CHECKSUM: 003521f9d988c7151b731537e01b594111993f6a
+PODFILE CHECKSUM: 4237b9dca7161c9a0262404d76ad9087937480d0
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.10.1

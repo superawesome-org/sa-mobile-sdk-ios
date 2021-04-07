@@ -1,4 +1,4 @@
-platform :ios, '10.0'
+platform :ios, '11.0'
 use_frameworks!
 #use_frameworks! :linkage => :static # Use this when Admob enabled
 #use_modular_headers!
@@ -6,6 +6,7 @@ use_frameworks!
 target 'SuperAwesomeExample' do
 #  pod 'SuperAwesome', :path => '../'
   pod 'SuperAwesome/Full', :path => '../', :testspecs => ['Tests']
+  pod 'mopub-ios-sdk'
 #pod 'SuperAwesome/UI', :path => '../'
 #  pod 'SuperAwesome/Main', :path => '../'
 #  pod 'SuperAwesome/Core', :path => '../', :testspecs => ['Tests']

@@ -26,7 +26,7 @@ Pod::Spec.new do |s|
     'EXCLUDED_ARCHS[sdk=iphoneos*]' => 'i386 x86_64' }
 
   s.ios.deployment_target = '10.0'
-  s.swift_versions = ['4.2', '5.0']
+  s.swift_versions = ['5.0']
   s.static_framework = true
   s.requires_arc = true
 

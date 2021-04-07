@@ -10,4 +10,5 @@ scheme("SuperAwesome-Unit-Full-Tests")
 
 # open_report true
 
+include_simulator_logs(false)
 clean(true)

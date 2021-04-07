@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Kge-oP-0Hj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Kge-oP-0Hj">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,7 +25,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v89-i0-s2s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1218.840579710145" y="474.45652173913049"/>
+            <point key="canvasLocation" x="246" y="-607"/>
         </scene>
         <!--Awesome Ads View Controller-->
         <scene sceneID="Hum-3B-zcO">
@@ -44,54 +44,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yMh-eK-IPg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-718" y="-607"/>
-        </scene>
-        <!--Ad Mob Controller-->
-        <scene sceneID="YpK-su-2dl">
-            <objects>
-                <viewController modalPresentationStyle="fullScreen" id="GcV-mY-20B" customClass="AdMobController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="7Yc-qf-EQX"/>
-                        <viewControllerLayoutGuide type="bottom" id="YZ7-hG-UhN"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="XaL-BZ-nUF">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lyJ-dF-4zY">
-                                <rect key="frame" x="20" y="728" width="157.66666666666666" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="2Eq-G6-ZTH"/>
-                                </constraints>
-                                <state key="normal" title="Interstitial"/>
-                                <connections>
-                                    <action selector="showInterstitial:" destination="GcV-mY-20B" eventType="touchUpInside" id="9QZ-rM-GUz"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4wL-DN-fxG">
-                                <rect key="frame" x="197.66666666666663" y="728" width="157.33333333333337" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="ykd-1w-rlh"/>
-                                </constraints>
-                                <state key="normal" title="Video"/>
-                                <connections>
-                                    <action selector="showVideo:" destination="GcV-mY-20B" eventType="touchUpInside" id="7Gj-9v-6DS"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="4wL-DN-fxG" secondAttribute="trailing" constant="20" id="AIv-vI-ht2"/>
-                            <constraint firstItem="YZ7-hG-UhN" firstAttribute="top" secondItem="lyJ-dF-4zY" secondAttribute="bottom" constant="20" id="Ayh-hO-Xcd"/>
-                            <constraint firstItem="YZ7-hG-UhN" firstAttribute="top" secondItem="4wL-DN-fxG" secondAttribute="bottom" constant="20" id="K06-Dt-FMb"/>
-                            <constraint firstItem="4wL-DN-fxG" firstAttribute="width" secondItem="lyJ-dF-4zY" secondAttribute="width" id="LvH-00-lih"/>
-                            <constraint firstItem="4wL-DN-fxG" firstAttribute="leading" secondItem="lyJ-dF-4zY" secondAttribute="trailing" constant="20" id="MsB-T8-zI9"/>
-                            <constraint firstItem="lyJ-dF-4zY" firstAttribute="leading" secondItem="XaL-BZ-nUF" secondAttribute="leading" constant="20" id="RRN-tg-iXj"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hGO-AW-cWh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1218.840579710145" y="-196.46739130434784"/>
         </scene>
     </scenes>
     <resources>
