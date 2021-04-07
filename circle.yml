@@ -22,7 +22,7 @@ jobs:
           
       - run:
           name: swiftLint
-          command: SwiftLint
+          command: swiftlint
           
       - run:
           name: Fastlane
