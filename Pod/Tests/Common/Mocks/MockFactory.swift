@@ -8,7 +8,7 @@
 @testable import SuperAwesome
 
 class MockFactory {
-    
+
     static func makeAdWithTagAndClickUrl(_ tag: String?, _ url: String?) -> Ad {
         makeAd(.tag, nil, url, tag)
     }
@@ -55,7 +55,7 @@ class MockFactory {
             bumper: true))
     }
 
-    static func makeError() -> Error { NSError(domain:"", code:404, userInfo:nil) }
+    static func makeError() -> Error { NSError(domain: "", code: 404, userInfo: nil) }
 
     static func makeAdRequest() -> AdRequest {
         AdRequest(
@@ -107,5 +107,3 @@ class MockFactory {
         AdResponse(10, makeAd())
     }
 }
-
-

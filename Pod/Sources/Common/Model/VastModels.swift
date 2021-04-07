@@ -10,9 +10,9 @@ class VastAd {
     var redirect: String?
     var type: VastType = .Invalid
     var media: [VastMedia] = []
-    
+
     private(set) var clickThroughUrl: String?
-    
+
     var errorEvents: [String] = []
     var impressionEvents: [String] = []
     var creativeViewEvents: [String] = []
@@ -22,10 +22,10 @@ class VastAd {
     var thirdQuartileEvents: [String] = []
     var completeEvents: [String] = []
     var clickTrackingEvents: [String] = []
-    
+
     func merge(from: VastAd?) -> VastAd {
         guard let from = from else { return self }
-        
+
         self.url = from.url ?? self.url
         self.clickThroughUrl = from.clickThroughUrl ?? self.clickThroughUrl
         self.errorEvents.append(contentsOf: from.errorEvents)
@@ -39,14 +39,14 @@ class VastAd {
         self.clickTrackingEvents.append(contentsOf: from.clickTrackingEvents)
 
         self.media.append(contentsOf: from.media)
-        
+
         return self
     }
-    
+
     func addMedia(_ media: VastMedia) {
         self.media.append(media)
     }
-    
+
     func addEvent(_ event: VastEvent) {
         switch event.event {
         case "vast_click_through": clickThroughUrl = event.url
@@ -62,7 +62,7 @@ class VastAd {
         default: break
         }
     }
-    
+
     func sortedMedia() -> [VastMedia] {
         return media.sorted { (first, second) -> Bool in
             first.bitrate ?? 0 < second.bitrate ?? 0
@@ -88,6 +88,3 @@ struct VastEvent {
     let event: String
     let url: String
 }
-
-
-

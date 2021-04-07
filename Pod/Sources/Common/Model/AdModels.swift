@@ -60,12 +60,12 @@ class AdResponse {
     var vast: VastAd?
     var baseUrl: String?
     var filePath: String?
-    
+
     init(_ placementId: Int, _ ad: Ad) {
         self.placementId = placementId
         self.ad = ad
     }
-    
+
     /// Returns the aspect ratio of the ad's creative
     func aspectRatio() -> CGFloat {
         let width = ad.creative.details.width
@@ -77,7 +77,7 @@ class AdResponse {
 extension AdRequest {
     /// The playback method
     static let PlaybackSoundOnScreen = 5
-    
+
     /// Specify if the ad is in full screen or not
     enum FullScreen: Int, Codable {
         case on = 1
@@ -91,14 +91,14 @@ extension AdRequest {
         case preRoll = 0
         case midRoll = 1
     }
-    
+
     /// Specify the position of the ad
     enum Position: Int, Codable {
         case aboveTheFold = 1
         case belowTheFold = 3
         case fullScreen = 7
     }
-    
+
     /// Specify if the ad can be skipped
     enum Skip: Int, Codable {
         case no = 0
@@ -123,7 +123,7 @@ extension AdRequest {
 *  - adClosed:         triggered once when the ad is closed;
 */
 @objc(SAEvent)
-public enum AdEvent : Int {
+public enum AdEvent: Int {
     case adLoaded = 0
     case adEmpty = 1
     case adFailedToLoad = 2

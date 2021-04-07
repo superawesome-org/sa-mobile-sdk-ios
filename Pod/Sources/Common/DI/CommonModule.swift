@@ -6,17 +6,17 @@
 //
 
 struct CommonModule: DependencyModule {
-    
+
     let configuration: Configuration
-    
+
     func register(_ container: DependencyContainer) {
         registerComponentModule(container)
         registerRepositoryModule(container)
     }
-    
+
     private func registerComponentModule(_ container: DependencyContainer) {
-        container.single(Bundle.self) { _,_  in Bundle.main }
-        container.single(StringProviderType.self) { _,_  in StringProvider() }
+        container.single(Bundle.self) { _, _  in Bundle.main }
+        container.single(StringProviderType.self) { _, _  in StringProvider() }
         container.factory(LoggerType.self) { _, param in
             OsLogger(configuration.logging, "\(param[0] ?? "")") }
         container.single(Environment.self) { _, _ in configuration.environment }
@@ -61,9 +61,9 @@ struct CommonModule: DependencyModule {
         container.single(OrientationProviderType.self) { c, _ in OrientationProvider(c.resolve()) }
         container.single(DateProviderType.self) { _, _ in  DateProvider() }
     }
-    
+
     private func registerRepositoryModule(_ container: DependencyContainer) {
-        container.single(PreferencesRepositoryType.self) { c, _ in
+        container.single(PreferencesRepositoryType.self) { _, _ in
             PreferencesRepository(UserDefaults.standard)
         }
         container.single(AdRepositoryType.self) { c, _ in

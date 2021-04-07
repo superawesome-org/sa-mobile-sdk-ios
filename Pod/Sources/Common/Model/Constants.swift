@@ -17,9 +17,9 @@ struct Constants {
     static let defaultEnvironment = Environment.production
     static let defaultMoatLimitingState = true
     static let defaultStartDelay = AdRequest.StartDelay.preRoll
-    
+
     static let backgroundGray = UIColor(red: 224.0 / 255.0, green: 224.0 / 255.0,
                                         blue: 224.0 / 255.0, alpha: 1)
-    
+
     static let defaultSafeAdUrl = "https://ads.superawesome.tv/v2/safead"
 }

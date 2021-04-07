@@ -11,8 +11,8 @@ class EncoderMock: EncoderType {
     func encodeUri(_ string: String?) -> String {
         return "EncoderMockEncodeUri"
     }
-    
-    func toJson<T>(_ encodable: T) -> String? where T : Encodable {
+
+    func toJson<T>(_ encodable: T) -> String? where T: Encodable {
         return "EncoderMockToJson"
     }
 }

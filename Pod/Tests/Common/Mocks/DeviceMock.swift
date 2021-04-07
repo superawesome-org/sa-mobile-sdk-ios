@@ -13,7 +13,7 @@ class DeviceMock: DeviceType {
     var systemVersion: String = ""
     var systemVersionEscaped: String = ""
     var userAgent: String
-    
+
     init() {
         self.userAgent = "mockDeviceUserAgent"
     }

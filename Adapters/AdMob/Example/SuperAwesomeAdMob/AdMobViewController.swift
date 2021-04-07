@@ -15,7 +15,7 @@ class AdMobViewController: UIViewController {
     private var bannerAdUnitId = "ca-app-pub-2222631699890286/4083046906"
     private var interstitialAdUnitId = "ca-app-pub-2222631699890286/6406350858"
     private var rewardAdUnitId = "ca-app-pub-2222631699890286/3695609060"
-    
+
     private var bannerView: GADBannerView!
     private var interstitial: GADInterstitial!
     private var rewardedAd: GADRewardedAd!
@@ -32,7 +32,7 @@ class AdMobViewController: UIViewController {
         // Rewarded Ad
         rewardedAd = createAndLoadRewardedAd()
     }
-    
+
     func createAndLoadBannerAd() {
         let extra = SAAdMobCustomEventExtra()
         extra.testEnabled = false
@@ -41,7 +41,7 @@ class AdMobViewController: UIViewController {
         //extra.configuration = STAGING;
 
         let extras = GADCustomEventExtras()
-        extras.setExtras(extra as? [AnyHashable : Any], forLabel: "iOSBannerCustomEvent")
+        extras.setExtras(extra as? [AnyHashable: Any], forLabel: "iOSBannerCustomEvent")
 
         let request = GADRequest()
         request.register(extras)
@@ -58,15 +58,15 @@ class AdMobViewController: UIViewController {
         bannerView.delegate = self
         bannerView.load(request)
     }
-    
+
     func createAndLoadInterstitial() -> GADInterstitial {
         let interstitial = GADInterstitial(adUnitID: interstitialAdUnitId)
         interstitial.delegate = self
         interstitial.load(GADRequest())
         return interstitial
     }
-    
-    func createAndLoadRewardedAd() -> GADRewardedAd{
+
+    func createAndLoadRewardedAd() -> GADRewardedAd {
         let extra = SAAdMobVideoExtra()
         extra.testEnabled = false
         extra.closeAtEndEnabled = true
@@ -90,7 +90,7 @@ class AdMobViewController: UIViewController {
         })
         return rewardedAd
     }
-    
+
     func addBannerView(bannerView: UIView?) {
         guard let bannerView = bannerView else { return }
         bannerView.translatesAutoresizingMaskIntoConstraints = false
@@ -112,7 +112,7 @@ class AdMobViewController: UIViewController {
                                constant: 0)
         ])
     }
-    
+
     @IBAction func showInterstitial(_ sender: Any) {
         if interstitial.isReady {
             interstitial.present(fromRootViewController: self)
@@ -120,7 +120,7 @@ class AdMobViewController: UIViewController {
             print("[SuperAwesome | AdMob] Interstitial Ad wasn't ready")
         }
     }
-    
+
     @IBAction func showVideo(_ sender: Any) {
         if rewardedAd.isReady {
             rewardedAd.present(fromRootViewController: self, delegate: self)
@@ -128,7 +128,7 @@ class AdMobViewController: UIViewController {
             print("[SuperAwesome | AdMob] Video ad wasn't ready")
         }
     }
-    
+
 }
 
 extension AdMobViewController: GADBannerViewDelegate {

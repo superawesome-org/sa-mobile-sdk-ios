@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIViewController {
-    
+
     /// Present the caller viewcontroller in a new `UIWindow` and return the window
     func presentInNewWindow() -> UIWindow {
         let window = UIWindow(frame: UIScreen.main.bounds)

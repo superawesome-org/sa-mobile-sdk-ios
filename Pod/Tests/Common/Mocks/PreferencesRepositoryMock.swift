@@ -10,7 +10,7 @@
 class PreferencesRepositoryMock: PreferencesRepositoryType {
     var dauUniquePart: String?
     var userAgent: String?
-    
+
     init(userAgent: String? = nil, dauUniquePart: String? = nil) {
         self.userAgent = userAgent
         self.dauUniquePart = dauUniquePart

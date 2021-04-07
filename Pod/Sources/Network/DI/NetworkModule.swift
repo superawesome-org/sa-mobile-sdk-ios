@@ -13,12 +13,12 @@ class NetworkModule: DependencyModule {
             MoyaHeaderPlugin(userAgentProvider: c.resolve() as UserAgentProviderType)
         }
         container.single(MoyaProvider<AwesomeAdsTarget>.self) { c, _ in
-            MoyaProvider<AwesomeAdsTarget>(plugins:[c.resolve() as MoyaHeaderPlugin])
+            MoyaProvider<AwesomeAdsTarget>(plugins: [c.resolve() as MoyaHeaderPlugin])
         }
         container.single(AwesomeAdsApiDataSourceType.self) { c, _ in
             MoyaAwesomeAdsApiDataSource(provider: c.resolve(), environment: c.resolve())
         }
-        container.single(NetworkDataSourceType.self) { c, _ in
+        container.single(NetworkDataSourceType.self) { _, _ in
             AFNetworkDataSource()
         }
     }

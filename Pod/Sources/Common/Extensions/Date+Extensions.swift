@@ -13,7 +13,7 @@ extension Date {
         formatter.dateFormat = "MMyyyy"
         return formatter
     }()
-    
+
     /// Convert this date instance to MMyyyy formatted String
     var monthYearString: String { Date.monthYearFormatter.string(from: self) }
 }

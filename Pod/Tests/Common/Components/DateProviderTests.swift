@@ -13,10 +13,10 @@ class DateProviderTests: XCTestCase {
     func test_nowAsMonthYear() throws {
         // Given
         let dateProvider = DateProvider()
-        
+
         // When
         let result = dateProvider.nowAsMonthYear()
-        
+
         // Then
         expect(Date().monthYearString).to(equal(result))
     }

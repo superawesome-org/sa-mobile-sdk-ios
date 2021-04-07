@@ -14,10 +14,10 @@ public class AwesomeAdsMoPubVideoAdapter: MPFullscreenAdAdapter, MPThirdPartyFul
     private let errorFactory = AwesomeAdsMoPubErrorFactory()
     private let adHelper = AwesomeAdsMoPubAdHelper()
 
-    public override func requestAd(withAdapterInfo info: [AnyHashable : Any], adMarkup: String?) {
+    public override func requestAd(withAdapterInfo info: [AnyHashable: Any], adMarkup: String?) {
         let extractor = AwesomeAdsMoPubAdDataExtractor(info)
         placementId = extractor.placementId
-        
+
         VideoAd.setConfiguration(extractor.configuration)
         VideoAd.setTestMode(extractor.isTestEnabled)
         VideoAd.setParentalGate(extractor.isParentalGateEnabled)
@@ -27,26 +27,26 @@ public class AwesomeAdsMoPubVideoAdapter: MPFullscreenAdAdapter, MPThirdPartyFul
         VideoAd.setCloseAtEnd(extractor.shouldAutomaticallyCloseAtEnd)
         VideoAd.setSmallClick(extractor.shouldShowSmallClickButton)
         VideoAd.setPlaybackMode(extractor.playbackMode)
-        
+
         VideoAd.setCallback { [weak self] (placementId, event) in
             self?.handleEvent(event, placementId)
         }
-        
+
         VideoAd.load(withPlacementId: placementId)
-                
+
         MPLogging.logEvent(MPLogEvent.adLoadAttempt(), source: "\(extractor.placementId)", from: AwesomeAdsMoPubVideoAdapter.self)
     }
-    
+
     private func adLoadFailed( _ placementId: Int) {
         let error = errorFactory.makeError(message: "Ad empty or failed to load", placementId: placementId, errorCode: MOPUBErrorAdapterInvalid)
 
         let event = MPLogEvent.adLoadFailed(forAdapter: NSStringFromClass(AwesomeAdsMoPubVideoAdapter.self), error: error)
-        
+
         MPLogging.logEvent(event, source: "\(placementId)", from: AwesomeAdsMoPubVideoAdapter.self)
 
         delegate?.fullscreenAdAdapter(self, didFailToLoadAdWithError: error)
     }
-    
+
     private func handleEvent(_ event: SAEvent, _ placementId: Int) {
         switch event {
         case .adLoaded:
@@ -59,7 +59,7 @@ public class AwesomeAdsMoPubVideoAdapter: MPFullscreenAdAdapter, MPThirdPartyFul
             adLoadFailed(placementId)
         case .adFailedToShow:
             let error = errorFactory.makeError(message: "Ad empty or failed to show", placementId: placementId, errorCode: MOPUBErrorAdapterInvalid)
-            
+
             delegate?.fullscreenAdAdapter(self, didFailToShowAdWithError: error)
         case .adAlreadyLoaded:
             do {}
@@ -82,7 +82,7 @@ public class AwesomeAdsMoPubVideoAdapter: MPFullscreenAdAdapter, MPThirdPartyFul
         get { VideoAd.hasAdAvailable(placementId: placementId) }
         set { }
     }
-    
+
     public override func presentAd(from viewController: UIViewController) {
         if hasAdAvailable {
             VideoAd.play(withPlacementId: placementId, fromVc: viewController)

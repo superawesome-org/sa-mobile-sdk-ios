@@ -13,18 +13,17 @@ struct MoatRepositoryMock: MoatRepositoryType {
     func startMoatTracking(forDisplay webView: WKWebView?) -> String? {
         ""
     }
-    
+
     func stopMoatTrackingForDisplay() -> Bool {
         true
     }
-    
+
     func startMoatTracking(forVideoPlayer player: AVPlayer?, with layer: AVPlayerLayer?, andView view: UIView?) -> Bool {
         true
     }
-    
+
     func stopMoatTrackingForVideoPlayer() -> Bool {
         true
     }
-    
-    
+
 }

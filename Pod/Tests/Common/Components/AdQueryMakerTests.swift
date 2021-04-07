@@ -16,7 +16,7 @@ class AdQueryMakerTests: XCTestCase {
                                           numberGenerator: NumberGeneratorMock(400),
                                           idGenerator: IdGeneratorMock(300),
                                           encoder: EncoderMock())
-    
+
     func test_adQuery() throws {
         // Given
         let request = AdRequest(test: false,
@@ -27,10 +27,10 @@ class AdQueryMakerTests: XCTestCase {
                                 instl: .off,
                                 w: 20,
                                 h: 30)
-        
+
         // When
         let query = queryMaker.makeAdQuery(request)
-        
+
         // Then
         expect(query.bundle).to(equal("SdkInfoMockBundle"))
         expect(query.ct).to(equal(.ethernet))
@@ -49,14 +49,14 @@ class AdQueryMakerTests: XCTestCase {
         expect(query.test).to(equal(false))
         expect(query.w).to(equal(20))
     }
-    
+
     func test_clickQuery() throws {
         // Given
         let response = MockFactory.makeAdResponse()
-        
+
         // When
         let query = queryMaker.makeClickQuery(response)
-        
+
         // Then
         expect(query.bundle).to(equal("SdkInfoMockBundle"))
         expect(query.creative).to(equal(80))
@@ -69,14 +69,14 @@ class AdQueryMakerTests: XCTestCase {
         expect(query.sdkVersion).to(equal("SdkInfoMockVersion"))
         expect(query.type).to(beNil())
     }
-    
+
     func test_videoClickQuery() throws {
         // Given
         let response = MockFactory.makeAdResponse()
-        
+
         // When
         let query = queryMaker.makeVideoClickQuery(response)
-        
+
         // Then
         expect(query.bundle).to(equal("SdkInfoMockBundle"))
         expect(query.creative).to(equal(80))
@@ -89,15 +89,15 @@ class AdQueryMakerTests: XCTestCase {
         expect(query.sdkVersion).to(equal("SdkInfoMockVersion"))
         expect(query.type).to(beNil())
     }
-    
+
     func test_eventQuery() throws {
         // Given
         let response = MockFactory.makeAdResponse()
         let data = EventData(placement: 10, line_item: 20, creative: 30, type: .impressionDownloaded)
-        
+
         // When
         let query = queryMaker.makeEventQuery(response, data)
-        
+
         // Then
         expect(query.bundle).to(equal("SdkInfoMockBundle"))
         expect(query.creative).to(equal(80))

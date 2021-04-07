@@ -3,7 +3,7 @@ import Nimble
 @testable import SuperAwesome
 
 class VastParserTests: XCTestCase {
-    
+
     func test_merge_vastAds() throws {
         // Given
         let vastAd1 = VastAd()
@@ -13,29 +13,29 @@ class VastParserTests: XCTestCase {
         vastAd1.addEvent(VastEvent(event: "vast_start", url: ""))
         vastAd1.addMedia(VastMedia())
         vastAd1.addMedia(VastMedia())
-        
+
         let vastAd2 = VastAd()
         vastAd2.type = .Wrapper
         vastAd2.url = "url2"
         vastAd2.addEvent(VastEvent(event: "vast_start", url: ""))
         vastAd2.addMedia(VastMedia())
-        
+
         // When
         let merged = vastAd1.merge(from: vastAd2)
-        
+
         // Then
         expect(merged.url).to(equal("url2"))
         expect(merged.startEvents.count).to(equal(3))
         expect(merged.media.count).to(equal(3))
     }
-    
+
     func test_parse_response1() throws {
         // Given
         let parser = VastParser(connectionProvider: ConnectionProviderMock())
-        
+
         // When
         let vast = parser.parse(xmlFile("mock_vast_response_1.0"))
-        
+
         // Then
         expect(vast.url).to(equal("https://ads.superawesome.tv/v2/demo_images/video.mp4"))
         expect(vast.errorEvents.first).to(equal("https://ads.superawesome.tv/v2/video/error?placement=30479&amp;creative=-1&amp;line_item=-1&amp;sdkVersion=unknown&amp;rnd=3232269&amp;device=web&amp;country=GB&amp;code=[ERRORCODE]"))
@@ -45,14 +45,14 @@ class VastParserTests: XCTestCase {
         expect(vast.type).to(equal(.InLine))
         expect(vast.media.count).to(equal(1))
     }
-    
+
     func test_parse_response2() throws {
         // Given
         let parser = VastParser(connectionProvider: ConnectionProviderMock())
-        
+
         // When
         let vast = parser.parse(xmlFile("mock_vast_response_2.0"))
-        
+
         // Then
         expect(vast.errorEvents.count).to(equal(1))
         expect(vast.impressionEvents.count).to(equal(1))

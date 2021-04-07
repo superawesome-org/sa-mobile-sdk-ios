@@ -13,24 +13,24 @@ import Mockingjay
 
 class AwesomeAdsApiTests: XCTestCase {
     private var provider: MoyaProvider<AwesomeAdsTarget>!
-    private var ad: Ad? = nil
-    private var error: Error?  = nil
-    
+    private var ad: Ad?
+    private var error: Error?
+
     override func setUp() {
         super.setUp()
-        provider = MoyaProvider<AwesomeAdsTarget>(plugins:[NetworkLoggerPlugin()])
+        provider = MoyaProvider<AwesomeAdsTarget>(plugins: [NetworkLoggerPlugin()])
         ad = nil
         error = nil
     }
-    
+
     private func prepareResponse(json: String) {
         // Given
         let placementId: Int = 1
-        
+
         stub(uri("/v2/ad/\(placementId)"), jsonData(jsonFile(json)))
-        
+
         let expectation = self.expectation(description: "Network request")
-        
+
         // When
         provider.request(AwesomeAdsTarget(.production,
                                           .ad(placementId: placementId, query: MockFactory.makeAdQueryInstance()))) { result in
@@ -38,20 +38,19 @@ class AwesomeAdsApiTests: XCTestCase {
             case .success(let response):
                 do {
                     let filteredResponse = try response.filterSuccessfulStatusCodes()
-                    self.ad = try filteredResponse.map(Ad.self) }
-                catch let error { self.error = error }
-            case .failure(let error): self.error = NSError(domain:"", code:error.errorCode, userInfo:nil)
+                    self.ad = try filteredResponse.map(Ad.self) } catch let error { self.error = error }
+            case .failure(let error): self.error = NSError(domain: "", code: error.errorCode, userInfo: nil)
             }
             expectation.fulfill()
         }
-        
+
         waitForExpectations(timeout: 2.0, handler: nil)
     }
 
     func test_moyaProvider_canGetAndParse_adResponse_1() throws {
         // Given
         prepareResponse(json: "mock_ad_response_1")
-        
+
         // Then
         expect(self.ad).toNot(beNil())
         expect(self.error).to(beNil())
@@ -83,11 +82,11 @@ class AwesomeAdsApiTests: XCTestCase {
         expect(ad.creative.id).to(equal(4906))
         expect(ad.creative.name).to(beNil())
     }
-    
+
     func test_moyaProvider_canGetAndParse_adResponse_2() throws {
         // Given
         prepareResponse(json: "mock_ad_response_2")
-        
+
         // Then
         expect(self.ad).toNot(beNil())
         expect(self.error).to(beNil())
@@ -119,23 +118,23 @@ class AwesomeAdsApiTests: XCTestCase {
         expect(ad.creative.id).to(equal(114))
         expect(ad.creative.name).to(equal("Banner 1"))
     }
-    
+
     func test_moyaProvider_placementNotFound_returnsError() throws {
         // Given
         prepareResponse(json: "mock_ad_response_no_placement")
-        
+
         // Then
         expect(self.ad).to(beNil())
         expect(self.error).toNot(beNil())
     }
-    
+
     func test_moyaProvider_malformedResponse_returnsError() throws {
         // Given
         prepareResponse(json: "mock_ad_malformed_response")
-        
+
         // Then
         expect(self.ad).to(beNil())
         expect(self.error).toNot(beNil())
     }
-    
+
 }

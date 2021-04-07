@@ -20,7 +20,7 @@ class AdQueryMaker: AdQueryMakerType {
     private let numberGenerator: NumberGeneratorType
     private let idGenerator: IdGeneratorType
     private let encoder: EncoderType
-    
+
     init(device: DeviceType,
          sdkInfo: SdkInfoType,
          connectionProvider: ConnectionProviderType,
@@ -34,7 +34,7 @@ class AdQueryMaker: AdQueryMakerType {
         self.idGenerator = idGenerator
         self.encoder = encoder
     }
-    
+
     func makeAdQuery(_ request: AdRequest) -> AdQuery {
         return AdQuery(test: request.test,
                        sdkVersion: sdkInfo.version,
@@ -53,7 +53,7 @@ class AdQueryMaker: AdQueryMakerType {
                        w: request.w,
                        h: request.h)
     }
-    
+
     func makeImpressionQuery(_ adResponse: AdResponse) -> EventQuery {
         return EventQuery(placement: adResponse.placementId,
                           bundle: sdkInfo.bundle,
@@ -66,7 +66,7 @@ class AdQueryMaker: AdQueryMakerType {
                           no_image: true,
                           data: nil)
     }
-    
+
     func makeClickQuery(_ adResponse: AdResponse) -> EventQuery {
         return EventQuery(placement: adResponse.placementId,
                           bundle: sdkInfo.bundle,
@@ -79,7 +79,7 @@ class AdQueryMaker: AdQueryMakerType {
                           no_image: nil,
                           data: nil)
     }
-    
+
     func makeVideoClickQuery(_ adResponse: AdResponse) -> EventQuery {
         return EventQuery(placement: adResponse.placementId,
                           bundle: sdkInfo.bundle,
@@ -92,7 +92,7 @@ class AdQueryMaker: AdQueryMakerType {
                           no_image: nil,
                           data: nil)
     }
-    
+
     func makeEventQuery(_ adResponse: AdResponse, _ eventData: EventData) -> EventQuery {
         let json = encoder.toJson(eventData)
         let encodedData = encoder.encodeUri(json)

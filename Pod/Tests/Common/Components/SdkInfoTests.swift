@@ -18,7 +18,7 @@ class SdkInfoTests: XCTestCase {
 
         // When
         let sdk = SdkInfo(mainBundle: mainBundle, sdkBundle: sdkBundle, locale: locale, encoder: Encoder())
-        
+
         // Then
         expect(sdk.bundle).to(equal("mainId"))
         expect(sdk.lang).to(equal("xx_US"))

@@ -9,11 +9,11 @@ protocol AdRepositoryType {
     func getAd(placementId: Int, request: AdRequest, completion: @escaping OnResult<AdResponse>)
 }
 
-class AdRepository : AdRepositoryType {
+class AdRepository: AdRepositoryType {
     private let dataSource: AwesomeAdsApiDataSourceType
     private let adQueryMaker: AdQueryMakerType
     private let adProcessor: AdProcessorType
-    
+
     init(dataSource: AwesomeAdsApiDataSourceType,
          adQueryMaker: AdQueryMakerType,
          adProcessor: AdProcessorType) {
@@ -21,7 +21,7 @@ class AdRepository : AdRepositoryType {
         self.adQueryMaker = adQueryMaker
         self.adProcessor = adProcessor
     }
-    
+
     func getAd(placementId: Int, request: AdRequest, completion: @escaping OnResult<AdResponse>) {
         let query = adQueryMaker.makeAdQuery(request)
         dataSource.getAd(placementId: placementId, query: query) { result in

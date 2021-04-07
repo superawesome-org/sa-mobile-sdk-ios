@@ -6,7 +6,7 @@
 //
 
 @objc
-public enum Orientation : Int {
+public enum Orientation: Int {
     case any = 0
     case portrait = 1
     case landscape = 2

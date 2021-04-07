@@ -4,10 +4,12 @@ use_frameworks!
 #use_modular_headers!
 
 target 'SuperAwesomeExample' do
-#  pod 'SuperAwesome', :path => '../'
   pod 'SuperAwesome/Full', :path => '../', :testspecs => ['Tests']
   pod 'mopub-ios-sdk'
-#pod 'SuperAwesome/UI', :path => '../'
+  pod 'SwiftLint'
+
+#  pod 'SuperAwesome', :path => '../'
+#  pod 'SuperAwesome/UI', :path => '../'
 #  pod 'SuperAwesome/Main', :path => '../'
 #  pod 'SuperAwesome/Core', :path => '../', :testspecs => ['Tests']
 #  pod 'SuperAwesome/Dependencies', :path => '../', :testspecs => ['Tests']

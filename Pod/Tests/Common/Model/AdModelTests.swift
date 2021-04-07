@@ -10,7 +10,7 @@ import Nimble
 @testable import SuperAwesome
 
 class AdModelTests: XCTestCase {
-    
+
     func test_AdResponse_aspectRatio() {
         // given
         let details = CreativeDetail(
@@ -47,10 +47,10 @@ class AdModelTests: XCTestCase {
             device: "abc",
             creative: creative)
         let response = AdResponse(3000, ad)
-        
+
         // when
         let result = response.aspectRatio()
-        
+
         // then
         expect(result).to(equal(2.6666666666666665))
     }

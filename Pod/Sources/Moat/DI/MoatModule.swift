@@ -14,10 +14,10 @@ class MoatModule: DependencyModule {
         options.debugLoggingEnabled = loggingEnabled
         let analytics = SUPMoatAnalytics.sharedInstance()
         analytics?.start(with: options)
-        
+
         print("SuperAwesome-Moat-Module Called 'initMoat' and moat is enabled")
     }
-    
+
     func register(_ container: DependencyContainer) {
         container.factory(MoatRepositoryType.self) { c, param in
             MoatRepository(adResponse: param[0] as! AdResponse,
