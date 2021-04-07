@@ -23,8 +23,8 @@ Pod::Spec.new do |s|
     'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 arm64e armv7 armv7s',
     'EXCLUDED_ARCHS[sdk=iphoneos*]' => 'i386 x86_64' }
   
-  s.ios.deployment_target = '10.0'
-  s.swift_versions = ['4.2', '5.0']
+  s.ios.deployment_target = '11.0'
+  s.swift_versions = ['5.0']
   s.requires_arc = true
   s.source = {
   	:git => 'https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git',
