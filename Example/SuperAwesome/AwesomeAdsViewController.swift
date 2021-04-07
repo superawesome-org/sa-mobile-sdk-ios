@@ -106,7 +106,7 @@ class AwesomeAdsViewController: UIViewController {
         // banner view
         bannerView = BannerView()
         bannerView.enableBumperPage()
-        //bannerView.enableParentalGate()
+        // bannerView.enableParentalGate()
 
         bannerView.backgroundColor = UIColor.gray
         bannerView.translatesAutoresizingMaskIntoConstraints = false

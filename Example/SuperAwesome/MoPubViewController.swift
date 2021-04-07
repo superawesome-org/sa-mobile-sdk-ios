@@ -94,8 +94,8 @@ class MoPubViewController: UIViewController {
 
     @objc func didVideoClick(_ sender: UIButton) {
         if MPRewardedAds.hasAdAvailable(forAdUnitID: videoAdId) {
-            let ad = MPRewardedAds.selectedReward(forAdUnitID: videoAdId)
-            MPRewardedAds.presentRewardedAd(forAdUnitID: videoAdId, from: self, with: ad, customData: "")
+            let advert = MPRewardedAds.selectedReward(forAdUnitID: videoAdId)
+            MPRewardedAds.presentRewardedAd(forAdUnitID: videoAdId, from: self, with: advert, customData: "")
         } else {
             print("video ad is not ready")
         }

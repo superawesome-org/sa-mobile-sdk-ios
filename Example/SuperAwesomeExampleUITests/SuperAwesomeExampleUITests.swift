@@ -19,7 +19,8 @@ class SuperAwesomeExampleUITests: XCTestCase {
     let videoId = 44262
 
     let exists = NSPredicate(format: "exists == true")
-    let parentalQuestionPredicate = NSPredicate(format: "label BEGINSWITH 'Please solve the following problem to continue'")
+    let predicate = "label BEGINSWITH 'Please solve the following problem to continue'"
+    let parentalQuestionPredicate = NSPredicate(format: predicate)
     private var app: XCUIApplication!
 
     override func setUpWithError() throws {
@@ -53,9 +54,8 @@ class SuperAwesomeExampleUITests: XCTestCase {
         let questionLabel = elementsQuery.staticTexts.element(matching: parentalQuestionPredicate)
 
         // Extract the numbers from the question
-        let numbers = questionLabel.label.components(separatedBy: CharacterSet.decimalDigits.inverted).filter { text -> Bool in
-            !text.isEmpty
-        }
+        let numbers = questionLabel.label.components(separatedBy: CharacterSet.decimalDigits.inverted)
+            .filter { !$0.isEmpty }
         let total = (Int(numbers[0]) ?? 0) + (Int(numbers[1]) ?? 0)
         debugPrint("Extracted \(numbers[0]) + \(numbers[1]) = \(total)")
 
@@ -66,22 +66,30 @@ class SuperAwesomeExampleUITests: XCTestCase {
         elementsQuery.buttons["Continue"].tap()
     }
 
-    private func tapCoordinate(x: CGFloat, y: CGFloat) {
+    private func tapCoordinate(xPoint: CGFloat, yPoint: CGFloat) {
         let normalized = app.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 0))
-        let coordinate = normalized.withOffset(CGVector(dx: x, dy: y))
+        let coordinate = normalized.withOffset(CGVector(dx: xPoint, dy: yPoint))
         coordinate.tap()
     }
 
     private func tapCloseButton() {
-        app.windows.children(matching: .other).element.children(matching: .other).element.children(matching: .button).element.tap()
+        app.windows.children(matching: .other)
+            .element.children(matching: .other)
+            .element.children(matching: .button)
+            .element.tap()
     }
 
     private func tapVideoCloseButton() {
-        app.windows.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .button).element(boundBy: 1).tap()
+        app.windows.children(matching: .other).element.children(matching: .other)
+            .element.children(matching: .other).element.children(matching: .other)
+            .element.children(matching: .button).element(boundBy: 1).tap()
     }
 
     private func waitAndClickOnVideo() {
-        let button = app.windows.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .button).element(boundBy: 0)
+        let button = app.windows.children(matching: .other)
+            .element.children(matching: .other).element.children(matching: .other)
+            .element.children(matching: .other).element.children(matching: .button)
+            .element(boundBy: 0)
         _ = button.waitForExistence(timeout: 10.0)
         sleep(1)
         button.tap()
@@ -97,7 +105,9 @@ class SuperAwesomeExampleUITests: XCTestCase {
         findParentalGateAndTypeAnswer()
 
         // Wait for bumper to appear
-        let bumper = app.children(matching: .window).element(boundBy: 1).children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element
+        let bumper = app.children(matching: .window).element(boundBy: 1).children(matching: .other)
+            .element.children(matching: .other).element.children(matching: .other)
+            .element.children(matching: .other).element
         _ = bumper.waitForExistence(timeout: 4.0)
 
         // Wait for redirect and come back to test app
