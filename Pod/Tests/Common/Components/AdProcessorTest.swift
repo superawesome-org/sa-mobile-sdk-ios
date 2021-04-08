@@ -75,8 +75,8 @@ class AdProcessorTests: XCTestCase {
     }
 
     func test_process() throws {
-        testProcess(.image_with_link, imageFormatUsed, nil)
-        testProcess(.rich_media, mediaFormatUsed, nil)
+        testProcess(.imageWithLink, imageFormatUsed, nil)
+        testProcess(.richMedia, mediaFormatUsed, nil)
         testProcess(.tag, tagFormatUsed, nil)
         testProcess(.unknown, nil, nil)
     }

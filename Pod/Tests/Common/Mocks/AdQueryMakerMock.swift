@@ -9,9 +9,9 @@
 
 class AdQueryMakerMock: AdQueryMakerType {
 
-    static let mockQuery = AdQuery(test: true, sdkVersion: "", rnd: 1, bundle: "", name: "", dauid: 1,
-                                   ct: .wifi, lang: "", device: "", pos: 1, skip: 1, playbackmethod: 1,
-                                   startdelay: 1, instl: 1, w: 1, h: 1   )
+    static let mockQuery = AdQuery(test: true, sdkVersion: "", random: 1, bundle: "", name: "", dauid: 1,
+                                   connectionType: .wifi, lang: "", device: "", position: 1, skip: 1, playbackMethod: 1,
+                                   startDelay: 1, instl: 1, width: 1, height: 1   )
 
     var mockAdQuery: AdQuery = AdQueryMakerMock.mockQuery
     var isMakeCalled: Bool = false

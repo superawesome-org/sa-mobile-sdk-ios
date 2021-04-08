@@ -20,34 +20,34 @@ class AdQueryMakerTests: XCTestCase {
     func test_adQuery() throws {
         // Given
         let request = AdRequest(test: false,
-                                pos: .aboveTheFold,
+                                position: .aboveTheFold,
                                 skip: .no,
-                                playbackmethod: 10,
-                                startdelay: .genericMidRoll,
+                                playbackMethod: 10,
+                                startDelay: .genericMidRoll,
                                 instl: .off,
-                                w: 20,
-                                h: 30)
+                                width: 20,
+                                height: 30)
 
         // When
         let query = queryMaker.makeAdQuery(request)
 
         // Then
         expect(query.bundle).to(equal("SdkInfoMockBundle"))
-        expect(query.ct).to(equal(.ethernet))
+        expect(query.connectionType).to(equal(.ethernet))
         expect(query.dauid).to(equal(300))
         expect(query.device).to(equal("DeviceMockGenericType"))
-        expect(query.h).to(equal(30))
+        expect(query.height).to(equal(30))
         expect(query.instl).to(equal(0))
         expect(query.lang).to(equal("SdkInfoMockLang"))
         expect(query.name).to(equal("SdkInfoMockName"))
-        expect(query.playbackmethod).to(equal(10))
-        expect(query.pos).to(equal(1))
-        expect(query.rnd).to(equal(400))
+        expect(query.playbackMethod).to(equal(10))
+        expect(query.position).to(equal(1))
+        expect(query.random).to(equal(400))
         expect(query.sdkVersion).to(equal("SdkInfoMockVersion"))
         expect(query.skip).to(equal(0))
-        expect(query.startdelay).to(equal(-1))
+        expect(query.startDelay).to(equal(-1))
         expect(query.test).to(equal(false))
-        expect(query.w).to(equal(20))
+        expect(query.width).to(equal(20))
     }
 
     func test_clickQuery() throws {
@@ -60,10 +60,10 @@ class AdQueryMakerTests: XCTestCase {
         // Then
         expect(query.bundle).to(equal("SdkInfoMockBundle"))
         expect(query.creative).to(equal(80))
-        expect(query.ct).to(equal(.ethernet))
+        expect(query.connectionType).to(equal(.ethernet))
         expect(query.data).to(beNil())
-        expect(query.line_item).to(equal(50))
-        expect(query.no_image).to(beNil())
+        expect(query.lineItem).to(equal(50))
+        expect(query.noImage).to(beNil())
         expect(query.placement).to(equal(10))
         expect(query.rnd).to(equal(400))
         expect(query.sdkVersion).to(equal("SdkInfoMockVersion"))
@@ -80,10 +80,10 @@ class AdQueryMakerTests: XCTestCase {
         // Then
         expect(query.bundle).to(equal("SdkInfoMockBundle"))
         expect(query.creative).to(equal(80))
-        expect(query.ct).to(equal(.ethernet))
+        expect(query.connectionType).to(equal(.ethernet))
         expect(query.data).to(beNil())
-        expect(query.line_item).to(equal(50))
-        expect(query.no_image).to(beNil())
+        expect(query.lineItem).to(equal(50))
+        expect(query.noImage).to(beNil())
         expect(query.placement).to(equal(10))
         expect(query.rnd).to(equal(400))
         expect(query.sdkVersion).to(equal("SdkInfoMockVersion"))
@@ -93,7 +93,7 @@ class AdQueryMakerTests: XCTestCase {
     func test_eventQuery() throws {
         // Given
         let response = MockFactory.makeAdResponse()
-        let data = EventData(placement: 10, line_item: 20, creative: 30, type: .impressionDownloaded)
+        let data = EventData(placement: 10, lineItem: 20, creative: 30, type: .impressionDownloaded)
 
         // When
         let query = queryMaker.makeEventQuery(response, data)
@@ -101,10 +101,10 @@ class AdQueryMakerTests: XCTestCase {
         // Then
         expect(query.bundle).to(equal("SdkInfoMockBundle"))
         expect(query.creative).to(equal(80))
-        expect(query.ct).to(equal(.ethernet))
+        expect(query.connectionType).to(equal(.ethernet))
         expect(query.data).to(equal("EncoderMockEncodeUri"))
-        expect(query.line_item).to(equal(50))
-        expect(query.no_image).to(beNil())
+        expect(query.lineItem).to(equal(50))
+        expect(query.noImage).to(beNil())
         expect(query.placement).to(equal(10))
         expect(query.rnd).to(equal(400))
         expect(query.sdkVersion).to(equal("SdkInfoMockVersion"))

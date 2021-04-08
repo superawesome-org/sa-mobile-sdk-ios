@@ -44,7 +44,7 @@ public class InterstitialAd: NSObject, Injectable {
     public class func play(_ placementId: Int, fromVC parent: UIViewController?) {
         logger.info("play()")
         // guard against invalid ad formats
-        guard let adResponse = controller.adResponse, adResponse.ad.creative.format != CreativeFormatType.video else {
+        guard let adResponse = controller.adResponse, adResponse.advert.creative.format != CreativeFormatType.video else {
                 controller.adFailedToShow()
                 return
         }
@@ -133,12 +133,12 @@ public class InterstitialAd: NSObject, Injectable {
         let size = UIScreen.main.bounds.size
 
         return AdRequest(test: isTestingEnabled,
-                         pos: AdRequest.Position.fullScreen,
+                         position: AdRequest.Position.fullScreen,
                          skip: AdRequest.Skip.yes,
-                         playbackmethod: AdRequest.PlaybackSoundOnScreen,
-                         startdelay: AdRequest.StartDelay.preRoll,
+                         playbackMethod: AdRequest.PlaybackSoundOnScreen,
+                         startDelay: AdRequest.StartDelay.preRoll,
                          instl: AdRequest.FullScreen.on,
-                         w: Int(size.width),
-                         h: Int(size.height))
+                         width: Int(size.width),
+                         height: Int(size.height))
     }
 }

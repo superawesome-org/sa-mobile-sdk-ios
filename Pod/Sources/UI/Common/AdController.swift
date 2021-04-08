@@ -54,7 +54,7 @@ class AdController: AdControllerType, Injectable {
     var adResponse: AdResponse?
     var delegate: AdEventCallback?
     var placementId: Int { adResponse?.placementId ?? 0 }
-    var showPadlock: Bool { adResponse?.ad.show_padlock ?? false }
+    var showPadlock: Bool { adResponse?.advert.showPadlock ?? false }
     var adAvailable: Bool { adResponse != nil }
 
     private lazy var parentalGateOpenAction = { [weak self] in
@@ -134,7 +134,7 @@ class AdController: AdControllerType, Injectable {
     func onAdClicked(_ url: URL) {
         logger.success("onAdClicked: for url: \(url.absoluteString)")
 
-        if bumperPageEnabled || adResponse?.ad.creative.bumper ?? false {
+        if bumperPageEnabled || adResponse?.advert.creative.bumper ?? false {
             BumperPage().play { [weak self] in
                 self?.navigateToUrl(url)
             }
@@ -158,7 +158,7 @@ class AdController: AdControllerType, Injectable {
 
         delegate?(placementId, .adClicked)
 
-        if adResponse.ad.creative.format == .video {
+        if adResponse.advert.creative.format == .video {
             eventRepository.videoClick(adResponse, completion: nil)
         } else {
             eventRepository.click(adResponse, completion: nil)

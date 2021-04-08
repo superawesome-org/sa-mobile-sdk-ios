@@ -12,6 +12,7 @@ protocol ImageProviderType {
     var safeAdImage: UIImage { get }
 }
 
+// swiftlint:disable line_length
 class ImageProvider: ImageProviderType {
 
     lazy var bumperPoweredByImage: UIImage = {

@@ -35,11 +35,11 @@ class AdProcessor: AdProcessorType {
         let response = AdResponse(placementId, ad)
 
         switch ad.creative.format {
-        case .image_with_link:
+        case .imageWithLink:
             response.html = htmlFormatter.formatImageIntoHtml(ad)
             response.baseUrl = ad.creative.details.image?.baseUrl
             complition(response)
-        case .rich_media:
+        case .richMedia:
             response.html = htmlFormatter.formatRichMediaIntoHtml(placementId, ad)
             response.baseUrl = ad.creative.details.url.baseUrl
             complition(response)

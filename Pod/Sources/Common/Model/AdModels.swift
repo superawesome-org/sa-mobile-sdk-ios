@@ -9,67 +9,116 @@ struct Ad: Codable {
     let advertiserId: Int
     let publisherId: Int
     let moat: Float
-    let is_fill: Bool
-    let is_fallback: Bool
-    var campaign_id: Int? = 0
-    let campaign_type: Int
-    let is_house: Bool
-    let safe_ad_approved: Bool
-    let show_padlock: Bool
-    let line_item_id: Int
+    let isFill: Bool
+    let isFallback: Bool
+    var campaignId: Int? = 0
+    let campaignType: Int
+    let isHouse: Bool
+    let safeAdApproved: Bool
+    let showPadlock: Bool
+    let lineItemId: Int
     let test: Bool
     let app: Int
     let device: String
     let creative: Creative
+
+    enum CodingKeys: String, CodingKey {
+        case advertiserId
+        case publisherId
+        case moat
+        case isFill = "is_fill"
+        case isFallback = "is_fallback"
+        case campaignId = "campaign_id"
+        case campaignType = "campaign_type"
+        case isHouse = "is_house"
+        case safeAdApproved = "safe_ad_approved"
+        case showPadlock = "show_padlock"
+        case lineItemId = "line_item_id"
+        case test
+        case app
+        case device
+        case creative
+        }
 }
 
 struct AdQuery: Codable {
     let test: Bool
     let sdkVersion: String
-    let rnd: Int
+    let random: Int
     let bundle: String
     let name: String
     let dauid: Int
-    let ct: ConnectionType
+    let connectionType: ConnectionType
     let lang: String
     let device: String
-    let pos: Int
+    let position: Int
     let skip: Int
-    let playbackmethod: Int
-    let startdelay: Int
+    let playbackMethod: Int
+    let startDelay: Int
     let instl: Int
-    let w: Int
-    let h: Int
+    let width: Int
+    let height: Int
+
+    enum CodingKeys: String, CodingKey {
+        case test
+        case sdkVersion
+        case random = "rnd"
+        case bundle
+        case name
+        case dauid
+        case connectionType = "ct"
+        case lang
+        case device
+        case position = "pos"
+        case skip
+        case playbackMethod = "playbackmethod"
+        case startDelay = "startDelay"
+        case instl
+        case width = "w"
+        case height = "h"
+        }
 }
 
 public struct AdRequest: Codable {
     let test: Bool
-    let pos: Position
+    let position: Position
     let skip: Skip
-    let playbackmethod: Int
-    let startdelay: StartDelay
+    let playbackMethod: Int
+    let startDelay: StartDelay
     let instl: FullScreen
-    let w: Int
-    let h: Int
+    let width: Int
+    let height: Int
+
+    enum CodingKeys: String, CodingKey {
+        case test
+        case position = "pos"
+        case skip
+        case playbackMethod = "playbackmethod"
+        case startDelay = "startdelay"
+        case instl
+        case width = "w"
+        case height = "h"
+        }
+
 }
 
 class AdResponse {
     let placementId: Int
-    let ad: Ad
+    let advert: Ad
     var html: String?
     var vast: VastAd?
     var baseUrl: String?
     var filePath: String?
 
-    init(_ placementId: Int, _ ad: Ad) {
+    init(_ placementId: Int, _ advert: Ad) {
         self.placementId = placementId
-        self.ad = ad
+        self.advert = advert
     }
 
     /// Returns the aspect ratio of the ad's creative
     func aspectRatio() -> CGFloat {
-        let width = ad.creative.details.width
-        let height = ad.creative.details.height
+        let width = advert.creative.details.width
+        let height = advert.creative.details.height
         return CGFloat(width) / CGFloat(height)
     }
 }

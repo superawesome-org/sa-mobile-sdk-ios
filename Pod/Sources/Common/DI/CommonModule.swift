@@ -23,42 +23,42 @@ struct CommonModule: DependencyModule {
         container.single(ConnectionProviderType.self) { _, _ in ConnectionProvider() }
         container.single(DeviceType.self) { _, _ in Device(UIDevice.current) }
         container.single(EncoderType.self) { _, _ in Encoder() }
-        container.single(IdGeneratorType.self) { c, _ in
-            IdGenerator(preferencesRepository: c.resolve(),
-                        sdkInfo: c.resolve(),
-                        numberGenerator: c.resolve(),
-                        dateProvider: c.resolve())
+        container.single(IdGeneratorType.self) { container, _ in
+            IdGenerator(preferencesRepository: container.resolve(),
+                        sdkInfo: container.resolve(),
+                        numberGenerator: container.resolve(),
+                        dateProvider: container.resolve())
         }
         container.single(NumberGeneratorType.self) { _, _ in NumberGenerator() }
-        container.single(SdkInfoType.self) { c, _ in
-            SdkInfo(mainBundle: c.resolve(),
+        container.single(SdkInfoType.self) { container, _ in
+            SdkInfo(mainBundle: container.resolve(),
                     sdkBundle: Bundle(for: DependencyContainer.self),
                     locale: Locale.current,
-                    encoder: c.resolve())
+                    encoder: container.resolve())
         }
-        container.single(UserAgentProviderType.self) { c, _ in
-            UserAgentProvider(device: c.resolve(), preferencesRepository: c.resolve())
+        container.single(UserAgentProviderType.self) { container, _ in
+            UserAgentProvider(device: container.resolve(), preferencesRepository: container.resolve())
         }
-        container.single(AdQueryMakerType.self) { c, _ in
-            AdQueryMaker(device: c.resolve(),
-                         sdkInfo: c.resolve(),
-                         connectionProvider: c.resolve(),
-                         numberGenerator: c.resolve(),
-                         idGenerator: c.resolve(),
-                         encoder: c.resolve())
+        container.single(AdQueryMakerType.self) { container, _ in
+            AdQueryMaker(device: container.resolve(),
+                         sdkInfo: container.resolve(),
+                         connectionProvider: container.resolve(),
+                         numberGenerator: container.resolve(),
+                         idGenerator: container.resolve(),
+                         encoder: container.resolve())
         }
-        container.single(VastParserType.self) { c, _ in
-            VastParser(connectionProvider: c.resolve())
+        container.single(VastParserType.self) { container, _ in
+            VastParser(connectionProvider: container.resolve())
         }
-        container.single(AdProcessorType.self) { c, _ in
-            AdProcessor(htmlFormatter: c.resolve(), vastParser: c.resolve(), networkDataSource: c.resolve(),
-                        logger: c.resolve(param: AdProcessor.self))
+        container.single(AdProcessorType.self) { container, _ in
+            AdProcessor(htmlFormatter: container.resolve(), vastParser: container.resolve(), networkDataSource: container.resolve(),
+                        logger: container.resolve(param: AdProcessor.self))
         }
-        container.single(HtmlFormatterType.self) { c, _ in
-            HtmlFormatter(numberGenerator: c.resolve(), encoder: c.resolve())
+        container.single(HtmlFormatterType.self) { container, _ in
+            HtmlFormatter(numberGenerator: container.resolve(), encoder: container.resolve())
         }
         container.single(ImageProviderType.self) { _, _ in ImageProvider() }
-        container.single(OrientationProviderType.self) { c, _ in OrientationProvider(c.resolve()) }
+        container.single(OrientationProviderType.self) { container, _ in OrientationProvider(container.resolve()) }
         container.single(DateProviderType.self) { _, _ in  DateProvider() }
     }
 
@@ -66,16 +66,19 @@ struct CommonModule: DependencyModule {
         container.single(PreferencesRepositoryType.self) { _, _ in
             PreferencesRepository(UserDefaults.standard)
         }
-        container.single(AdRepositoryType.self) { c, _ in
-            AdRepository(dataSource: c.resolve(), adQueryMaker: c.resolve(), adProcessor: c.resolve())
+        container.single(AdRepositoryType.self) { container, _ in
+            AdRepository(dataSource: container.resolve(), adQueryMaker: container.resolve(), adProcessor: container.resolve())
         }
-        container.single(EventRepositoryType.self) { c, _ in
-            EventRepository(dataSource: c.resolve(), adQueryMaker: c.resolve())
+        container.single(EventRepositoryType.self) { container, _ in
+            EventRepository(dataSource: container.resolve(), adQueryMaker: container.resolve())
         }
-        container.factory(VastEventRepositoryType.self) { c, param in
-            VastEventRepository(adResponse: param[0] as! AdResponse,
-                                networkDataSource: c.resolve(),
-                                logger: c.resolve(param: VastEventRepository.self))
+        container.factory(VastEventRepositoryType.self) { container, param in
+            guard let adResponse = param[0] as?  AdResponse else {
+                fatalError()
+            }
+            return VastEventRepository(adResponse: adResponse,
+                                networkDataSource: container.resolve(),
+                                logger: container.resolve(param: VastEventRepository.self))
         }
     }
 }

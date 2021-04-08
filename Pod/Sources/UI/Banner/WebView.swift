@@ -7,7 +7,7 @@
 
 import WebKit
 
-protocol WebViewDelegate {
+protocol WebViewDelegate: class {
     /// Called when the WebView finishes its loading for the first time
     func webViewOnStart()
     func webViewOnError()
@@ -15,7 +15,7 @@ protocol WebViewDelegate {
 }
 
 class WebView: WKWebView {
-    var delegate: WebViewDelegate?
+    weak var delegate: WebViewDelegate?
 
     private var finishedLoading = false
 
@@ -27,7 +27,15 @@ class WebView: WKWebView {
     func loadHTML(_ html: String?, withBase base: String?, sourceSize: CGSize) {
         print("WebView.loadHTML called")
         // embed html code inside a full html wrapper
-        let baseHtml = "<html><head><meta name=\"viewport\" content=\"width=device-width initial-scale=1\" /><style>html, body, div { margin: 0px; padding: 0px; } html, body { width:100%; height:100%; } </style></head><body>\(html ?? "")</body></html>"
+        let baseHtml = """
+        <html>
+           <head>
+            <meta name="viewport" content="width=device-width initial-scale=1" />
+            <style>html, body, div { margin: 0px; padding: 0px; } html, body { width:100%; height:100%; } </style>
+          </head>
+          <body>\(html ?? "")</body>
+        </html>
+"""
 
         // lock-and-load
         if let data = baseHtml.data(using: .utf8), let url = URL(string: base ?? "") {

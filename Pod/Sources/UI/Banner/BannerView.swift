@@ -59,7 +59,7 @@ public class BannerView: UIView, Injectable {
         logger.info("play()")
         // guard against invalid ad formats
         guard let adResponse = controller.adResponse, let html = adResponse.html,
-            adResponse.ad.creative.format != CreativeFormatType.video, !controller.closed else {
+            adResponse.advert.creative.format != CreativeFormatType.video, !controller.closed else {
                 controller.adFailedToShow()
                 return
         }
@@ -72,8 +72,8 @@ public class BannerView: UIView, Injectable {
 
         let fullHtml = startMoat(adResponse: adResponse, html: html)
         webView?.loadHTML(fullHtml, withBase: adResponse.baseUrl,
-                          sourceSize: CGSize(width: adResponse.ad.creative.details.width,
-                                             height: adResponse.ad.creative.details.height))
+                          sourceSize: CGSize(width: adResponse.advert.creative.details.width,
+                                             height: adResponse.advert.creative.details.height))
     }
 
     private func startMoat(adResponse: AdResponse, html: String) -> String {
@@ -186,13 +186,13 @@ public class BannerView: UIView, Injectable {
 
     private func makeAdRequest() -> AdRequest {
         AdRequest(test: controller.testEnabled,
-                  pos: AdRequest.Position.aboveTheFold,
+                  position: AdRequest.Position.aboveTheFold,
                   skip: AdRequest.Skip.no,
-                  playbackmethod: AdRequest.PlaybackSoundOnScreen,
-                  startdelay: AdRequest.StartDelay.preRoll,
+                  playbackMethod: AdRequest.PlaybackSoundOnScreen,
+                  startDelay: AdRequest.StartDelay.preRoll,
                   instl: AdRequest.FullScreen.off,
-                  w: Int(frame.size.width),
-                  h: Int(frame.size.height))
+                  width: Int(frame.size.width),
+                  height: Int(frame.size.height))
     }
 
     private func addWebView() {

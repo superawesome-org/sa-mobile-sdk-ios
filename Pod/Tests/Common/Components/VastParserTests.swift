@@ -7,7 +7,7 @@ class VastParserTests: XCTestCase {
     func test_merge_vastAds() throws {
         // Given
         let vastAd1 = VastAd()
-        vastAd1.type = .InLine
+        vastAd1.type = .inLine
         vastAd1.url = "url1"
         vastAd1.addEvent(VastEvent(event: "vast_start", url: ""))
         vastAd1.addEvent(VastEvent(event: "vast_start", url: ""))
@@ -15,7 +15,7 @@ class VastParserTests: XCTestCase {
         vastAd1.addMedia(VastMedia())
 
         let vastAd2 = VastAd()
-        vastAd2.type = .Wrapper
+        vastAd2.type = .wrapper
         vastAd2.url = "url2"
         vastAd2.addEvent(VastEvent(event: "vast_start", url: ""))
         vastAd2.addMedia(VastMedia())
@@ -42,7 +42,7 @@ class VastParserTests: XCTestCase {
         expect(vast.impressionEvents.first).to(equal("https://ads.superawesome.tv/v2/video/impression?placement=30479&amp;creative=-1&amp;line_item=-1&amp;sdkVersion=unknown&amp;rnd=4538730&amp;device=web&amp;country=GB"))
         expect(vast.clickThroughUrl).to(equal("https://ads.superawesome.tv/v2/video/click?placement=30479&creative=-1&line_item=-1&sdkVersion=unknown&rnd=1809240&device=web&country=GB"))
         expect(vast.redirect).to(beNil())
-        expect(vast.type).to(equal(.InLine))
+        expect(vast.type).to(equal(.inLine))
         expect(vast.media.count).to(equal(1))
     }
 

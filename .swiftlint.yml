@@ -1,0 +1,9 @@
+
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+- Pods
+- ../Pods
+- ./Pods
+- /Pods
+- Example/Pods
+- Project/R.generated.swift
+- Project/Pods

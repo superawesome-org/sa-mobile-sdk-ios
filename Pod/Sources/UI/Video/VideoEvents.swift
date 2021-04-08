@@ -55,13 +55,13 @@ class VideoEvents: Injectable {
     }
 
     public func time(player: VideoPlayer, time: Int, duration: Int) {
-        if (time >= 1 && !isStartHandled) {
+        if time >= 1 && !isStartHandled {
             isStartHandled = true
             vastRepository?.impression()
             vastRepository?.creativeView()
             vastRepository?.start()
         }
-        if (time >= 2 && !is2SHandled) {
+        if time >= 2 && !is2SHandled {
             is2SHandled = true
 
             if let videoPlayer = player as? UIView {
@@ -72,15 +72,15 @@ class VideoEvents: Injectable {
                 })
             }
         }
-        if (time >= duration / 4 && !isFirstQuartileHandled) {
+        if time >= duration / 4 && !isFirstQuartileHandled {
             isFirstQuartileHandled = true
             vastRepository?.firstQuartile()
         }
-        if (time >= duration / 2 && !isMidpointHandled) {
+        if time >= duration / 2 && !isMidpointHandled {
             isMidpointHandled = true
             vastRepository?.midPoint()
         }
-        if (time >= (3 * duration) / 4 && !isThirdQuartileHandled) {
+        if time >= (3 * duration) / 4 && !isThirdQuartileHandled {
             isThirdQuartileHandled = true
             vastRepository?.thirdQuartile()
         }

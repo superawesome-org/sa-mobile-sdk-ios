@@ -8,7 +8,7 @@
 class VastAd {
     var url: String?
     var redirect: String?
-    var type: VastType = .Invalid
+    var type: VastType = .invalid
     var media: [VastMedia] = []
 
     private(set) var clickThroughUrl: String?
@@ -71,9 +71,9 @@ class VastAd {
 }
 
 enum VastType {
-    case Invalid
-    case InLine
-    case Wrapper
+    case invalid
+    case inLine
+    case wrapper
 }
 
 struct VastMedia {

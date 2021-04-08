@@ -24,7 +24,7 @@ class HtmlFormatter: HtmlFormatterType {
     func formatImageIntoHtml(_ ad: Ad) -> String {
         let img = "<img src='\(ad.creative.details.image ?? "")' width='100%' height='100%' style='object-fit: contain;'/>"
 
-        if let clickUrl = ad.creative.click_url {
+        if let clickUrl = ad.creative.clickUrl {
             return "<a href='\(clickUrl)' target='_blank'>\(img)</a>"
         }
 
@@ -32,14 +32,14 @@ class HtmlFormatter: HtmlFormatterType {
     }
 
     func formatRichMediaIntoHtml(_ placementId: Int, _ ad: Ad) -> String {
-        let url = "\(ad.creative.details.url)?placement=\(placementId)&line_item=\(ad.line_item_id)&creative=\(ad.creative.id)&rnd=\(numberGenerator.nextIntForCache())"
+        let url = "\(ad.creative.details.url)?placement=\(placementId)&line_item=\(ad.lineItemId)&creative=\(ad.creative.id)&rnd=\(numberGenerator.nextIntForCache())"
         return "<iframe style='padding:0;border:0;' width='100%' height='100%' src='\(url)'></iframe>"
     }
 
     func formatTagIntoHtml(_ ad: Ad) -> String {
         var tag = ad.creative.details.tag ?? ""
 
-        if let clickUrl = ad.creative.click_url {
+        if let clickUrl = ad.creative.clickUrl {
             tag = tag.replacingOccurrences(of: "[click]", with: "\(clickUrl)&redir=")
                 .replacingOccurrences(of: "[click_enc]", with: encoder.encodeUri(clickUrl))
         } else {

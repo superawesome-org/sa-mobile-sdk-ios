@@ -21,10 +21,10 @@ class VastParser: NSObject, VastParserType {
         var root: XML.Accessor
 
         if xml.VAST.Ad.InLine.error == nil {
-            vastAd.type = .InLine
+            vastAd.type = .inLine
             root = xml.VAST.Ad.InLine
         } else if xml.VAST.Ad.Wrapper.error == nil {
-            vastAd.type = .Wrapper
+            vastAd.type = .wrapper
             root = xml.VAST.Ad.Wrapper
         } else {
             return vastAd

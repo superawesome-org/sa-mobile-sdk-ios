@@ -42,13 +42,13 @@ public class VideoAd: NSObject, Injectable {
         let size = UIScreen.main.bounds.size
 
         return AdRequest(test: isTestingEnabled,
-                         pos: AdRequest.Position.fullScreen,
+                         position: AdRequest.Position.fullScreen,
                          skip: AdRequest.Skip.yes,
-                         playbackmethod: AdRequest.PlaybackSoundOnScreen,
-                         startdelay: delay,
+                         playbackMethod: AdRequest.PlaybackSoundOnScreen,
+                         startDelay: delay,
                          instl: AdRequest.FullScreen.on,
-                         w: Int(size.width),
-                         h: Int(size.height))
+                         width: Int(size.width),
+                         height: Int(size.height))
     }
 
     private static func onSuccess(_ placementId: Int, _ response: AdResponse) {
@@ -98,7 +98,7 @@ public class VideoAd: NSObject, Injectable {
         switch adState {
         case .hasAd(let ad):
             let config = VideoViewController.Config(showSmallClick: shouldShowSmallClickButton,
-                                                    showSafeAdLogo: ad.ad.show_padlock,
+                                                    showSafeAdLogo: ad.advert.showPadlock,
                                                     showCloseButton: shouldShowCloseButton,
                                                     shouldCloseAtEnd: shouldAutomaticallyCloseAtEnd,
                                                     isParentalGateEnabled: isParentalGateEnabled,

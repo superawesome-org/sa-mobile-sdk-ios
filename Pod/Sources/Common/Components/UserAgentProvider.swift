@@ -30,9 +30,9 @@ class UserAgentProvider: UserAgentProviderType {
         webView?.evaluateJavaScript("navigator.userAgent", completionHandler: { (result, error) in
             if error != nil {
                 print("UserAgent.evaluateUserAgent.error:", String(describing: error))
-            } else if let result = result as! String? {
-                self.name = result
-                self.preferencesRepository.userAgent = result
+            } else if let res = result as? String {
+                self.name = res
+                self.preferencesRepository.userAgent = res
             }
 
             self.webView = nil
