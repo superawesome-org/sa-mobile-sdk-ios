@@ -13,22 +13,22 @@ protocol OrientationProviderType {
 
 class OrientationProvider: OrientationProviderType {
     private let bundle: Bundle
-    
+
     init(_ bundle: Bundle) {
         self.bundle = bundle
     }
-    
+
     func findSupportedOrientations(_ orientation: Orientation, _ defaultOrientations: UIInterfaceOrientationMask) -> UIInterfaceOrientationMask {
         guard let supportedOrientations = bundle.infoDictionary?["UISupportedInterfaceOrientations"] as? [String]
             else { return defaultOrientations }
-        
+
         switch orientation {
         case .any:
             return defaultOrientations
         case .portrait:
             let hasPortrait = supportedOrientations.contains("UIInterfaceOrientationPortrait")
             let hasPortraitUpsideDown = supportedOrientations.contains("UIInterfaceOrientationPortraitUpsideDown")
-            
+
             if hasPortrait && hasPortraitUpsideDown {
                 return [.portrait, .portraitUpsideDown]
             } else if hasPortrait {
@@ -41,7 +41,7 @@ class OrientationProvider: OrientationProviderType {
         case .landscape:
             let hasLandscapeLeft = supportedOrientations.contains("UIInterfaceOrientationLandscapeLeft")
             let hasLandscapeRight = supportedOrientations.contains("UIInterfaceOrientationLandscapeRight")
-            
+
             if hasLandscapeLeft && hasLandscapeRight {
                 return .landscape
             } else if hasLandscapeLeft {

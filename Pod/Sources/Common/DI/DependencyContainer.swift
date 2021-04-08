@@ -32,38 +32,38 @@ struct Dependency<T> {
 class DependencyContainer {
     private var dependencies: [String: Dependency<Any>] = [:]
     private var singleInstances: [String: Any] = [:]
-    
+
     /// Registers a single scoped dependency
     func single<T>(name: String? = nil, _ type: T.Type, _ factory: @escaping Factory<T>) {
         register(name: name, type: type, scope: .single, factory)
     }
-    
+
     /// Registers a factory scoped dependency
     func factory<T>(name: String? = nil, _ type: T.Type, _ factory: @escaping Factory<T>) {
         register(name: name, type: type, scope: .factory, factory)
     }
-    
+
     /// Registers a dependency
     func register<T>(name: String? = nil, type: T.Type, scope: DependencyScope, _ factory: @escaping Factory<T>) {
         let name = name ?? String(describing: type)
-        
+
         guard dependencies[name] == nil else {
             fatalError("You cannot register multiple dependencies using the same name (\(name)")
         }
-        
+
         dependencies[name] = Dependency(name: name, factory: factory, scope: .factory)
     }
-    
+
     /// Resolves a dependency from the container using the return type of `T` or using the `name` of the dependency
     /// By default the type of the dependency used as a name
     /// param - is the optional parameter to send to the construction of the resolved type
     func resolve<T>(_ name: String? = nil, param: Any?...) -> T {
         let name = name ?? String(describing: T.self)
-        
+
         guard let dependency: Dependency = dependencies[name] else {
             fatalError("Dependency '\(name)' is not registered")
         }
-        
+
         switch dependency.scope {
         case .single:
             if singleInstances[name] == nil {
@@ -80,7 +80,7 @@ class DependencyContainer {
             return instance
         }
     }
-    
+
     deinit {
         dependencies.removeAll()
         singleInstances.removeAll()

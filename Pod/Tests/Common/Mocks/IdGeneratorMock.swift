@@ -9,7 +9,7 @@
 
 class IdGeneratorMock: IdGeneratorType {
     var uniqueDauId: Int
-    
+
     init(_ uniqueDauId: Int) {
         self.uniqueDauId = uniqueDauId
     }

@@ -12,7 +12,7 @@ class BundleMock: Bundle {
     var mockBundleId: String = ""
     var mockVersionNumber: String = ""
     var mockLocalizations: [String] = []
-    
+
     static func make(name: String, bundleId: String, versionNumber: String, localizations: [String]) -> BundleMock {
         let bundle = BundleMock()
         bundle.mockName = name
@@ -21,9 +21,9 @@ class BundleMock: Bundle {
         bundle.mockLocalizations = localizations
         return bundle
     }
-    
+
     override var preferredLocalizations: [String] { mockLocalizations }
     override var bundleIdentifier: String? { mockBundleId }
-    override var name : String { mockName}
-    override var versionNumber : String { mockVersionNumber }
+    override var name: String { mockName}
+    override var versionNumber: String { mockVersionNumber }
 }

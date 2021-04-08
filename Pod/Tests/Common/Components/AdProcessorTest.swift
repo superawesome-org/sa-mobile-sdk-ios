@@ -10,12 +10,12 @@ import Nimble
 @testable import SuperAwesome
 
 class AdProcessorTests: XCTestCase {
-    var response: AdResponse? = nil
-    
+    var response: AdResponse?
+
     private let imageFormatUsed = "imgformatused"
     private let mediaFormatUsed = "mediaformatused"
     private let tagFormatUsed = "tagformatused"
-    
+
     private func testProcess(_ format: CreativeFormatType, _ html: String?, _ vast: String?) {
         // Given
         let placementId = 1
@@ -36,13 +36,13 @@ class AdProcessorTests: XCTestCase {
             self.response = response
             expectation.fulfill()
         }
-        
+
         waitForExpectations(timeout: 2.0, handler: nil)
-        
+
         // Then
         expect(self.response?.html).to(equalSmart(html))
     }
-    
+
     private func testVideo(_ url: String?, filePath: String?,
                            dataResult: Result<Data, Error>,
                            dataResult2: Result<Data, Error>,
@@ -66,26 +66,26 @@ class AdProcessorTests: XCTestCase {
             self.response = response
             expectation.fulfill()
         }
-        
+
         waitForExpectations(timeout: 2.0, handler: nil)
-        
+
         // Then
         expect(self.response?.filePath).to(filePath != nil ? equal(filePath) : beNil())
         expect(self.response?.vast?.impressionEvents.count).to(equalSmart(impressionEventCount))
     }
-    
+
     func test_process() throws {
-        testProcess(.image_with_link, imageFormatUsed, nil)
-        testProcess(.rich_media, mediaFormatUsed, nil)
+        testProcess(.imageWithLink, imageFormatUsed, nil)
+        testProcess(.richMedia, mediaFormatUsed, nil)
         testProcess(.tag, tagFormatUsed, nil)
         testProcess(.unknown, nil, nil)
     }
-    
+
     func test_videoTag_networkDataCalled() throws {
         let downloadFilePath = "localfilepath"
         let first = VastAd()
         first.addEvent(VastEvent(event: "vast_impression", url: "url1"))
-        
+
         testVideo("first_url", filePath: downloadFilePath,
                   dataResult: Result.success(Data("firstdata".utf8)),
                   dataResult2: Result.success(Data()),
@@ -93,16 +93,16 @@ class AdProcessorTests: XCTestCase {
                   vastAd: first, secondVastAd: VastAd(),
                   impressionEventCount: 1)
     }
-    
+
     func test_videoTag_vastRedirect_mergeVasts() throws {
         let downloadFilePath = "localfilepath"
         let first = VastAd()
         first.redirect = "redirecturl"
         first.addEvent(VastEvent(event: "vast_impression", url: "url1"))
-        
+
         let second = VastAd()
         second.addEvent(VastEvent(event: "vast_impression", url: "url2"))
-        
+
         testVideo("firsturl", filePath: downloadFilePath,
                   dataResult: Result.success(Data("firstdata".utf8)),
                   dataResult2: Result.success(Data()),
@@ -110,7 +110,7 @@ class AdProcessorTests: XCTestCase {
                   vastAd: first, secondVastAd: second,
                   impressionEventCount: 2)
     }
-    
+
     func test_videoTag_downloadFailure_emptyResponse() throws {
         testVideo("firsturl", filePath: nil,
                   dataResult: Result.failure(AwesomeAdsError.network),
@@ -119,7 +119,7 @@ class AdProcessorTests: XCTestCase {
                   vastAd: VastAd(), secondVastAd: VastAd(),
                   impressionEventCount: nil)
     }
-    
+
     func test_videoTag_noUrl_emptyResponse() throws {
         testVideo(nil, filePath: nil,
                   dataResult: Result.failure(AwesomeAdsError.network),

@@ -15,14 +15,14 @@ struct TestCodable: Codable {
 }
 
 class CodableExtensionTests: XCTestCase {
-    
+
     func test_toDictionary_method_on_Codable_type() {
         // given
         let codable = TestCodable(id: 3, name: "test")
-        
+
         // when
         let result = codable.toDictionary()
-        
+
         // then
         let id: Int = result["id"] as? Int ?? 0
         expect(id).to(equal(3))

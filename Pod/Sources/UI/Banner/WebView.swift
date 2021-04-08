@@ -7,7 +7,7 @@
 
 import WebKit
 
-protocol WebViewDelegate {
+protocol WebViewDelegate: class {
     /// Called when the WebView finishes its loading for the first time
     func webViewOnStart()
     func webViewOnError()
@@ -15,30 +15,38 @@ protocol WebViewDelegate {
 }
 
 class WebView: WKWebView {
-    var delegate: WebViewDelegate?
-    
+    weak var delegate: WebViewDelegate?
+
     private var finishedLoading = false
-    
+
     override init(frame: CGRect, configuration: WKWebViewConfiguration) {
         super.init(frame: frame, configuration: configuration)
         configure()
     }
-    
+
     func loadHTML(_ html: String?, withBase base: String?, sourceSize: CGSize) {
         print("WebView.loadHTML called")
         // embed html code inside a full html wrapper
-        let baseHtml = "<html><head><meta name=\"viewport\" content=\"width=device-width initial-scale=1\" /><style>html, body, div { margin: 0px; padding: 0px; } html, body { width:100%; height:100%; } </style></head><body>\(html ?? "")</body></html>"
-        
+        let baseHtml = """
+        <html>
+           <head>
+            <meta name="viewport" content="width=device-width initial-scale=1" />
+            <style>html, body, div { margin: 0px; padding: 0px; } html, body { width:100%; height:100%; } </style>
+          </head>
+          <body>\(html ?? "")</body>
+        </html>
+"""
+
         // lock-and-load
         if let data = baseHtml.data(using: .utf8), let url = URL(string: base ?? "") {
             load(data, mimeType: "text/html", characterEncodingName: "UTF-8", baseURL: url)
         }
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     func configure() {
         scrollView.delegate = self
         scrollView.isScrollEnabled = true
@@ -47,7 +55,7 @@ class WebView: WKWebView {
         self.navigationDelegate = self
         backgroundColor = .clear
     }
-    
+
     /**
      * "defaultConfiguration" Returns the default web player configuration,
      * to be used when initialising this web view
@@ -80,18 +88,18 @@ extension WebView: WKUIDelegate {
         if finishedLoading {
             var url = navigationAction.request.url
             let urlString = url?.absoluteString
-            
+
             // protect against about blanks
             if urlString?.contains("about:blank") ?? false {
                 return nil
             }
-            
+
             // protect against iframes
             if urlString?.contains("sa-beta-ads-uploads-superawesome.netdna-ssl.com") ?? false &&
                 urlString?.contains("/iframes") ?? false {
                 return nil
             }
-            
+
             // check to see if the URL has a redirect, and take only the redirect
             if urlString?.contains("&redir=") ?? false {
                 if let redirectString = urlString?.suffix(from: "&redir="),
@@ -99,15 +107,15 @@ extension WebView: WKUIDelegate {
                     url = redirectUrl
                 }
             }
-            
+
             if let url = url {
                 delegate?.webViewOnClick(url: url)
             }
         }
-        
+
         return nil
     }
-    
+
     func webView(_ webView: WKWebView,
                  decidePolicyFor navigationAction: WKNavigationAction,
                  decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
@@ -115,23 +123,23 @@ extension WebView: WKUIDelegate {
             decisionHandler(WKNavigationActionPolicy.allow)
             return
         }
-        
+
         var url = navigationAction.request.url
         let urlString = url?.absoluteString
-        
+
         // protect against about blanks
         if urlString?.contains("about:blank") ?? false {
             decisionHandler(WKNavigationActionPolicy.allow)
             return
         }
-        
+
         // protect against iframes
         if urlString?.contains("sa-beta-ads-uploads-superawesome.netdna-ssl.com") ?? false &&
             urlString?.contains("/iframes") ?? false {
             decisionHandler(WKNavigationActionPolicy.allow)
             return
         }
-        
+
         // check to see if the URL has a redirect, and take only the redirect
         if urlString?.contains("&redir=") ?? false {
             if let redirectString = urlString?.suffix(from: "&redir="),
@@ -139,11 +147,11 @@ extension WebView: WKUIDelegate {
                 url = redirectUrl
             }
         }
-        
+
         if let url = url {
             delegate?.webViewOnClick(url: url)
         }
-        
+
         decisionHandler(WKNavigationActionPolicy.cancel)
     }
 }
@@ -155,7 +163,7 @@ extension WebView: WKNavigationDelegate {
             delegate?.webViewOnStart()
         }
     }
-    
+
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         if !finishedLoading {
             finishedLoading = true

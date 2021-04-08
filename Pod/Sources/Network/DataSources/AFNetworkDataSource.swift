@@ -17,16 +17,16 @@ class AFNetworkDataSource: NetworkDataSourceType {
             }
         }
     }
-    
+
     func downloadFile(url: String, completion: @escaping OnResult<String>) {
         /// The url should contain the file extension at the end
         guard let fileExtension = url.fileExtension else {
             completion(Result.failure(AwesomeAdsError.fileInvalid))
             return
         }
-        
+
         let fileName =  "\(url.toMD5).\(fileExtension)"
-        
+
         let destination: DownloadRequest.Destination = { _, _ in
             let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
             let fileURL = documentsURL.appendingPathComponent(fileName)
@@ -44,7 +44,7 @@ class AFNetworkDataSource: NetworkDataSourceType {
             }
         }
     }
-    
+
     func clearFiles() {
         do {
             let fileManager = FileManager.default

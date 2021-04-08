@@ -20,7 +20,7 @@ class AdQueryMaker: AdQueryMakerType {
     private let numberGenerator: NumberGeneratorType
     private let idGenerator: IdGeneratorType
     private let encoder: EncoderType
-    
+
     init(device: DeviceType,
          sdkInfo: SdkInfoType,
          connectionProvider: ConnectionProviderType,
@@ -34,77 +34,77 @@ class AdQueryMaker: AdQueryMakerType {
         self.idGenerator = idGenerator
         self.encoder = encoder
     }
-    
+
     func makeAdQuery(_ request: AdRequest) -> AdQuery {
         return AdQuery(test: request.test,
                        sdkVersion: sdkInfo.version,
-                       rnd: numberGenerator.nextIntForCache(),
+                       random: numberGenerator.nextIntForCache(),
                        bundle: sdkInfo.bundle,
                        name: sdkInfo.name,
                        dauid: idGenerator.uniqueDauId,
-                       ct: connectionProvider.findConnectionType(),
+                       connectionType: connectionProvider.findConnectionType(),
                        lang: sdkInfo.lang,
                        device: device.genericType,
-                       pos: request.pos.rawValue,
+                       position: request.position.rawValue,
                        skip: request.skip.rawValue,
-                       playbackmethod: request.playbackmethod,
-                       startdelay: request.startdelay.rawValue,
+                       playbackMethod: request.playbackMethod,
+                       startDelay: request.startDelay.rawValue,
                        instl: request.instl.rawValue,
-                       w: request.w,
-                       h: request.h)
+                       width: request.width,
+                       height: request.height)
     }
-    
+
     func makeImpressionQuery(_ adResponse: AdResponse) -> EventQuery {
         return EventQuery(placement: adResponse.placementId,
                           bundle: sdkInfo.bundle,
-                          creative: adResponse.ad.creative.id,
-                          line_item: adResponse.ad.line_item_id,
-                          ct: connectionProvider.findConnectionType(),
+                          creative: adResponse.advert.creative.id,
+                          lineItem: adResponse.advert.lineItemId,
+                          connectionType: connectionProvider.findConnectionType(),
                           sdkVersion: sdkInfo.version,
                           rnd: numberGenerator.nextIntForCache(),
                           type: .impressionDownloaded,
-                          no_image: true,
+                          noImage: true,
                           data: nil)
     }
-    
+
     func makeClickQuery(_ adResponse: AdResponse) -> EventQuery {
         return EventQuery(placement: adResponse.placementId,
                           bundle: sdkInfo.bundle,
-                          creative: adResponse.ad.creative.id,
-                          line_item: adResponse.ad.line_item_id,
-                          ct: connectionProvider.findConnectionType(),
+                          creative: adResponse.advert.creative.id,
+                          lineItem: adResponse.advert.lineItemId,
+                          connectionType: connectionProvider.findConnectionType(),
                           sdkVersion: sdkInfo.version,
                           rnd: numberGenerator.nextIntForCache(),
                           type: nil,
-                          no_image: nil,
+                          noImage: nil,
                           data: nil)
     }
-    
+
     func makeVideoClickQuery(_ adResponse: AdResponse) -> EventQuery {
         return EventQuery(placement: adResponse.placementId,
                           bundle: sdkInfo.bundle,
-                          creative: adResponse.ad.creative.id,
-                          line_item: adResponse.ad.line_item_id,
-                          ct: connectionProvider.findConnectionType(),
+                          creative: adResponse.advert.creative.id,
+                          lineItem: adResponse.advert.lineItemId,
+                          connectionType: connectionProvider.findConnectionType(),
                           sdkVersion: sdkInfo.version,
                           rnd: numberGenerator.nextIntForCache(),
                           type: nil,
-                          no_image: nil,
+                          noImage: nil,
                           data: nil)
     }
-    
+
     func makeEventQuery(_ adResponse: AdResponse, _ eventData: EventData) -> EventQuery {
         let json = encoder.toJson(eventData)
         let encodedData = encoder.encodeUri(json)
         return EventQuery(placement: adResponse.placementId,
                           bundle: sdkInfo.bundle,
-                          creative: adResponse.ad.creative.id,
-                          line_item: adResponse.ad.line_item_id,
-                          ct: connectionProvider.findConnectionType(),
+                          creative: adResponse.advert.creative.id,
+                          lineItem: adResponse.advert.lineItemId,
+                          connectionType: connectionProvider.findConnectionType(),
                           sdkVersion: sdkInfo.version,
                           rnd: numberGenerator.nextIntForCache(),
                           type: eventData.type,
-                          no_image: nil,
+                          noImage: nil,
                           data: encodedData)
     }
 }

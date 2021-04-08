@@ -9,7 +9,7 @@
 protocol Injectable {
     //// Injecting into instances
     var dependencies: DependencyContainer { get }
-    
+
     /// Injecting into static classes
     static var dependencies: DependencyContainer { get }
 }
@@ -22,7 +22,7 @@ extension Injectable {
 /// Provides the default `DependencyContainer` for `Injectable` protocol
 class InjectableComponent {
     static var container: DependencyContainer!
-    
+
     static func register(_ container: DependencyContainer) {
         self.container = container
     }

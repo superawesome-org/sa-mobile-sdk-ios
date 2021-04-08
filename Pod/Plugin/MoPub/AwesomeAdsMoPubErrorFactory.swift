@@ -9,8 +9,8 @@ import Foundation
 import MoPub
 
 class AwesomeAdsMoPubErrorFactory {
-    func makeError(message:String, placementId: Int, errorCode: MOPUBErrorCode) -> Error {
-        let error = NSError(domain:"", code:Int(errorCode.rawValue), userInfo:[ NSLocalizedDescriptionKey: "Error:\(message) PlacementId: \(placementId)"]) as Error
+    func makeError(message: String, placementId: Int, errorCode: MOPUBErrorCode) -> Error {
+        let error = NSError(domain: "", code: Int(errorCode.rawValue), userInfo: [ NSLocalizedDescriptionKey: "Error:\(message) PlacementId: \(placementId)"]) as Error
         return error
     }
 }

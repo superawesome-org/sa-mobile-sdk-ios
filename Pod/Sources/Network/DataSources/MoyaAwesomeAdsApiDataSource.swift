@@ -10,15 +10,15 @@ import Moya
 class MoyaAwesomeAdsApiDataSource: AwesomeAdsApiDataSourceType {
     private let provider: MoyaProvider<AwesomeAdsTarget>
     private let environment: Environment
-    
+
     init(provider: MoyaProvider<AwesomeAdsTarget>, environment: Environment) {
         self.provider = provider
         self.environment = environment
     }
-    
+
     func getAd(placementId: Int, query: AdQuery, completion: @escaping OnResult<Ad>) {
         let target = AwesomeAdsTarget(environment, .ad(placementId: placementId, query: query))
-        
+
         provider.request(target) { result in
             switch result {
             case .success(let response):
@@ -34,27 +34,27 @@ class MoyaAwesomeAdsApiDataSource: AwesomeAdsApiDataSourceType {
             }
         }
     }
-    
+
     func impression(query: EventQuery, completion: OnResult<Void>?) {
         let target = AwesomeAdsTarget(environment, .impression(query: query))
         responseHandler(target: target, completion: completion)
     }
-    
+
     func click(query: EventQuery, completion: OnResult<Void>?) {
         let target = AwesomeAdsTarget(environment, .click(query: query))
         responseHandler(target: target, completion: completion)
     }
-    
+
     func videoClick(query: EventQuery, completion: OnResult<Void>?) {
         let target = AwesomeAdsTarget(environment, .videoClick(query: query))
         responseHandler(target: target, completion: completion)
     }
-    
+
     func event(query: EventQuery, completion: OnResult<Void>?) {
         let target = AwesomeAdsTarget(environment, .event(query: query))
         responseHandler(target: target, completion: completion)
     }
-    
+
     private func responseHandler(target: AwesomeAdsTarget, completion: OnResult<Void>?) {
         provider.request(target) { result in
             switch result {
@@ -62,7 +62,7 @@ class MoyaAwesomeAdsApiDataSource: AwesomeAdsApiDataSourceType {
                 do {
                     _ = try response.filterSuccessfulStatusCodes()
                     completion?(Result.success(Void()))
-                } catch let error{
+                } catch let error {
                     completion?(Result.failure(error))
                 }
             case .failure(let error):

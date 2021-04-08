@@ -14,7 +14,7 @@ public class AwesomeAdsMoPubAdapterConfiguration: MPBaseAdapterConfiguration {
     public override var moPubNetworkName: String { "awesomeads" }
     public override var networkSdkVersion: String { SAVersion.getSdkVersion() }
     public override var biddingToken: String? { nil }
-    public override func initializeNetwork(withConfiguration configuration: [String : Any]?, complete: ((Error?) -> Void)? = nil) {
+    public override func initializeNetwork(withConfiguration configuration: [String: Any]?, complete: ((Error?) -> Void)? = nil) {
         AwesomeAds.initSDK(false)
         complete?(nil)
     }

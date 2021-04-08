@@ -24,7 +24,21 @@ jobs:
       - store_test_results:
           path: output/scan
           
-  setupFastLane:
+  swiftlint:
+    docker:
+      - image: bytesguy/swiftlint:latest
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+    steps:
+      - checkout
+      - run: cd Example && swiftlint lint --reporter junit | tee result.xml
+      - store_artifacts:
+          path: result.xml
+      - store_test_results:
+          path: result.xml
+          
+  setup-FastLane:
     macos:
       xcode: 12.4.0
     steps:
@@ -50,5 +64,6 @@ jobs:
 workflows:
   build-test:
     jobs:
-      - setupFastLane
+      - swiftlint
+      - setup-FastLane
       - build-and-test

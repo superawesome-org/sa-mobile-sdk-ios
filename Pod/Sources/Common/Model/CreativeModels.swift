@@ -9,27 +9,48 @@ struct Creative: Codable {
     let id: Int
     let name: String?
     let format: CreativeFormatType
-    let click_url: String?
+    let clickUrl: String?
     let details: CreativeDetail
     let bumper: Bool?
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case format
+        case clickUrl = "click_url"
+        case details
+        case bumper
+        }
 }
 
 struct CreativeDetail: Codable {
     let url: String
     let image: String?
     let video: String
-    let placement_format: String
+    let placementFormat: String
     let tag: String?
     let width: Int
     let height: Int
     let duration: Int
     let vast: String?
+
+    enum CodingKeys: String, CodingKey {
+        case url
+        case image
+        case video
+        case placementFormat = "placement_format"
+        case tag
+        case width
+        case height
+        case duration
+        case vast
+        }
 }
 
 enum CreativeFormatType: String, Codable, DecodableDefaultLastItem {
     case video
-    case image_with_link
+    case imageWithLink = "image_with_link"
     case tag
-    case rich_media
+    case richMedia = "rich_media"
     case unknown
 }

@@ -15,7 +15,7 @@ protocol DeviceType {
     var userAgent: String { get }
 }
 
-class Device : DeviceType {
+class Device: DeviceType {
     public var type: String
     public var genericType: String
     public var systemVersion: String

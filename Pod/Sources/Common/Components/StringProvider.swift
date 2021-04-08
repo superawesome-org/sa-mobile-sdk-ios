@@ -13,7 +13,7 @@ protocol StringProviderType {
     var errorTitle: String { get }
     var errorMessage: String { get }
     var okTitle: String { get }
-    
+
     func bumperPageInfo(counter: Int) -> String
     func bumperPageLeaving(appName: String?) -> String
 }

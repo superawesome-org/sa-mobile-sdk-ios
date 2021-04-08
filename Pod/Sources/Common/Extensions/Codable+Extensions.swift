@@ -6,7 +6,7 @@
 //
 
 extension Encodable {
-    
+
     /// Convert given `Encodable` object into a dictionary of `[String : Any]`
     func toDictionary() -> [String: Any] {
         guard let data = try? JSONEncoder().encode(self) else { return [:] }

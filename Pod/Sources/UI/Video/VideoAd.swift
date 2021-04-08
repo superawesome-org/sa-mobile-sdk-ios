@@ -30,38 +30,38 @@ public class VideoAd: NSObject, Injectable {
     static var isMoatLimitingEnabled: Bool = Constants.defaultMoatLimitingState
     static var delay: AdRequest.StartDelay = Constants.defaultStartDelay
 
-    private static var callback: AdEventCallback? = nil
+    private static var callback: AdEventCallback?
 
     private static var ads = Dictionary<Int, AdState>()
 
     ////////////////////////////////////////////////////////////////////////////
     // Internal control methods
     ////////////////////////////////////////////////////////////////////////////
-    
+
     private static func makeAdRequest() -> AdRequest {
         let size = UIScreen.main.bounds.size
-        
+
         return AdRequest(test: isTestingEnabled,
-                         pos: AdRequest.Position.fullScreen,
+                         position: AdRequest.Position.fullScreen,
                          skip: AdRequest.Skip.yes,
-                         playbackmethod: AdRequest.PlaybackSoundOnScreen,
-                         startdelay: delay,
+                         playbackMethod: AdRequest.PlaybackSoundOnScreen,
+                         startDelay: delay,
                          instl: AdRequest.FullScreen.on,
-                         w: Int(size.width),
-                         h: Int(size.height))
+                         width: Int(size.width),
+                         height: Int(size.height))
     }
-    
+
     private static func onSuccess(_ placementId: Int, _ response: AdResponse) {
         logger.success("Ad load successful for \(response.placementId)")
-        
+
 //        if (!self.isMoatLimitingEnabled) {
 //            events.disableMoatLimiting()
 //        }
-        
+
         self.ads[placementId] = .hasAd(ad: response)
         callback?(placementId, .adLoaded)
     }
-    
+
     private static func onFailure(_ placementId: Int, _ error: Error) {
         logger.error("Ad load failed", error: error)
         self.ads[placementId] = AdState.none
@@ -75,9 +75,9 @@ public class VideoAd: NSObject, Injectable {
         switch adState {
         case .none:
             ads[placementId] = .loading
-            
+
             logger.info("load() for: \(placementId)")
-            
+
             adRepository.getAd(placementId: placementId, request: makeAdRequest()) { result in
                 switch result {
                 case .success(let response): self.onSuccess(placementId, response)
@@ -98,7 +98,7 @@ public class VideoAd: NSObject, Injectable {
         switch adState {
         case .hasAd(let ad):
             let config = VideoViewController.Config(showSmallClick: shouldShowSmallClickButton,
-                                                    showSafeAdLogo: ad.ad.show_padlock,
+                                                    showSafeAdLogo: ad.advert.showPadlock,
                                                     showCloseButton: shouldShowCloseButton,
                                                     shouldCloseAtEnd: shouldAutomaticallyCloseAtEnd,
                                                     isParentalGateEnabled: isParentalGateEnabled,
@@ -137,7 +137,7 @@ public class VideoAd: NSObject, Injectable {
     ////////////////////////////////////////////////////////////////////////////
     // setters
     ////////////////////////////////////////////////////////////////////////////
-    
+
     @objc(setCallback:)
     public static func setCallback(_ callback: AdEventCallback?) {
         self.callback = callback

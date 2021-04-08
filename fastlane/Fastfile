@@ -23,7 +23,7 @@ platform :ios do
 
   desc "Runs all the tests"
   lane :test do
-    scan(workspace:"Example/SuperAwesomeExample.xcworkspace")
+    scan(workspace:"Example/SuperAwesomeExample.xcworkspace", include_simulator_logs: false)
   end
 
 

@@ -9,16 +9,16 @@ import Moya
 
 class NetworkModule: DependencyModule {
     func register(_ container: DependencyContainer) {
-        container.factory(MoyaHeaderPlugin.self) { c, _ in
-            MoyaHeaderPlugin(userAgentProvider: c.resolve() as UserAgentProviderType)
+        container.factory(MoyaHeaderPlugin.self) { cont, _ in
+            MoyaHeaderPlugin(userAgentProvider: cont.resolve() as UserAgentProviderType)
         }
-        container.single(MoyaProvider<AwesomeAdsTarget>.self) { c, _ in
-            MoyaProvider<AwesomeAdsTarget>(plugins:[c.resolve() as MoyaHeaderPlugin])
+        container.single(MoyaProvider<AwesomeAdsTarget>.self) { cont, _ in
+            MoyaProvider<AwesomeAdsTarget>(plugins: [cont.resolve() as MoyaHeaderPlugin])
         }
-        container.single(AwesomeAdsApiDataSourceType.self) { c, _ in
-            MoyaAwesomeAdsApiDataSource(provider: c.resolve(), environment: c.resolve())
+        container.single(AwesomeAdsApiDataSourceType.self) { cont, _ in
+            MoyaAwesomeAdsApiDataSource(provider: cont.resolve(), environment: cont.resolve())
         }
-        container.single(NetworkDataSourceType.self) { c, _ in
+        container.single(NetworkDataSourceType.self) { _, _ in
             AFNetworkDataSource()
         }
     }

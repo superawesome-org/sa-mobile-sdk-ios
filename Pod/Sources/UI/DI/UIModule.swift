@@ -7,10 +7,10 @@
 
 class UIModule: DependencyModule {
     func register(_ container: DependencyContainer) {
-        container.factory(ViewableDetectorType.self) { c, param in
-            ViewableDetector(logger: c.resolve(param: ViewableDetector.self)) }
+        container.factory(ViewableDetectorType.self) { innerContainer, param in
+            ViewableDetector(logger: innerContainer.resolve(param: ViewableDetector.self)) }
         container.single(AdControllerType.self) { _, _ in AdController() }
-        container.factory(ParentalGate.self) { c, _ in
-            ParentalGate(numberGenerator: c.resolve(), stringProvider: c.resolve()) }
+        container.factory(ParentalGate.self) { innerContainer, _ in
+            ParentalGate(numberGenerator: innerContainer.resolve(), stringProvider: innerContainer.resolve()) }
     }
 }

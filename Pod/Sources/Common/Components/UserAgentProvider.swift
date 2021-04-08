@@ -14,27 +14,27 @@ protocol UserAgentProviderType {
     var name: String { get }
 }
 
-class UserAgentProvider : UserAgentProviderType {
+class UserAgentProvider: UserAgentProviderType {
     public var name: String
     private var webView: WKWebView?
     private var preferencesRepository: PreferencesRepositoryType
-    
-    init(device:DeviceType, preferencesRepository: PreferencesRepositoryType) {
+
+    init(device: DeviceType, preferencesRepository: PreferencesRepositoryType) {
         self.preferencesRepository = preferencesRepository
         self.name = preferencesRepository.userAgent ?? device.userAgent
         evaluateUserAgent()
     }
-    
+
     private func evaluateUserAgent() {
         webView = WKWebView()
         webView?.evaluateJavaScript("navigator.userAgent", completionHandler: { (result, error) in
             if error != nil {
                 print("UserAgent.evaluateUserAgent.error:", String(describing: error))
-            } else if let result = result as! String? {
-                self.name = result
-                self.preferencesRepository.userAgent = result
+            } else if let res = result as? String {
+                self.name = res
+                self.preferencesRepository.userAgent = res
             }
-            
+
             self.webView = nil
         })
     }

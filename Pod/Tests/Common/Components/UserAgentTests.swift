@@ -15,17 +15,17 @@ class UserAgentTests: XCTestCase {
         let dataUserAgent: String? = "mockUserAgent"
         let userAgent = UserAgentProvider(device: DeviceMock(),
                                   preferencesRepository: PreferencesRepositoryMock(userAgent: dataUserAgent))
-        
+
         // Then
         expect(userAgent.name).to(equal(dataUserAgent))
     }
-    
+
     func testUserAgentName_dataRepositryHasNoData_useDeviceAgent() throws {
         // Given: Data repository no data
         let dataUserAgent: String? = nil
         let userAgent = UserAgentProvider(device: DeviceMock(),
                                   preferencesRepository: PreferencesRepositoryMock(userAgent: dataUserAgent))
-        
+
         // Then
         expect(userAgent.name).to(equal("mockDeviceUserAgent"))
     }
