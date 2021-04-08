@@ -1,4 +1,4 @@
-// #import "SAEvents+Moat2.h"
+#import "SAEvents+Moat2.h"
 #import <SUPMoatMobileAppKit/SUPMoatMobileAppKit.h>
 #import <WebKit/WebKit.h>
 
