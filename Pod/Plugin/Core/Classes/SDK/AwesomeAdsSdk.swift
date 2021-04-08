@@ -5,7 +5,6 @@
 //  Created by Gunhan Sancar on 26/04/2020.
 //
 
-import AdSupport
 
 public class AwesomeAdsSdk {
     static let shared = AwesomeAdsSdk()
@@ -22,8 +21,7 @@ public class AwesomeAdsSdk {
         container.registerSingle(IdGeneratorType.self) { c in
             IdGenerator(preferencesRepository: c.resolve(),
                         sdkInfo: c.resolve(),
-                        numberGenerator: c.resolve(),
-                        identifierManager: ASIdentifierManager.shared())
+                        numberGenerator: c.resolve())
         }
         container.registerSingle(NumberGeneratorType.self) { _ in NumberGenerator() }
         container.registerSingle(SdkInfoType.self) { c in
