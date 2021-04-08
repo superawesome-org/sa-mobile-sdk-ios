@@ -18,7 +18,11 @@ class IdGenerator: IdGeneratorType {
     private var preferencesRepository: PreferencesRepositoryType
     private let sdkInfo: SdkInfoType
     private let numberGenerator: NumberGeneratorType
-    private let dateProvider: DateProvider
+    private lazy var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMyyyy"
+        return formatter
+    }()
     
     lazy var uniqueDauId: Int = { findDauId() }()
     
@@ -31,9 +35,8 @@ class IdGenerator: IdGeneratorType {
     }
     
     func findDauId() -> Int {
-        guard identifierManager.isAdvertisingTrackingEnabled else { return Keys.noTracking }
-        
-        let firstPart = identifierManager.advertisingIdentifier.uuidString
+    
+        let firstPart = dateFormatter.string(from: Date())
         let secondPart = preferencesRepository.dauUniquePart ?? generateAndSavePartOfDau()
         let thirdPart = sdkInfo.bundle
         
