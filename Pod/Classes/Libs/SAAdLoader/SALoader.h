@@ -56,7 +56,7 @@ typedef void (^saDidLoadAd)(SAResponse *response);
 - (NSDictionary*) getAwesomeAdsQuery: (id<SASessionProtocol>) session;
 
 /**
- * Method that creates the Awesome Ads specific header needed for 
+ * Method that creates the Awesome Ads specific header needed for
  * network requests
  *
  * @param session   current session
@@ -69,7 +69,7 @@ typedef void (^saDidLoadAd)(SAResponse *response);
  *
  * @param placementId the AwesomeAds ID to load an ad for
  * @param session     the current session to load the placement Id for
- * @param result      callback block copy so that the loader can return 
+ * @param result      callback block copy so that the loader can return
  *                    the response to the library user
  */
 - (void) loadAd:(NSInteger) placementId
@@ -99,4 +99,10 @@ typedef void (^saDidLoadAd)(SAResponse *response);
          andStatus:(NSInteger) status
         andSession:(id<SASessionProtocol>) session
          andResult:(saDidLoadAd) result;
+
+- (void) loadAdByPlacementId:(NSInteger) placementId
+                 andLineItem:(NSInteger) lineItemId
+               andCreativeId:(NSInteger) creativeId
+                  andSession:(id<SASessionProtocol>) session
+                   andResult:(saDidLoadAd) result;
 @end
