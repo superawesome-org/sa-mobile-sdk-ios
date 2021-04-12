@@ -17,7 +17,7 @@
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet SABannerAd *bannerAd;
+@property (weak, nonatomic) IBOutlet SAManagedBannerAd *bannerAd;
 @property (nonatomic, strong) NSMutableArray *data;
 @property (weak, nonatomic) IBOutlet UIButton *ageCheckButton;
 @property (weak, nonatomic) IBOutlet UIButton *mopubButton;
@@ -40,11 +40,9 @@
     [_bannerAd enableBumperPage];
     [_bannerAd enableParentalGate];
     [_bannerAd setCallback:^(NSInteger placementId, SAEvent event) {
-        
         NSLog(@"SUPER-AWESOME: Banner Ad %ld - Event %ld", (long)placementId, (long)event);
-        
         if (event == adLoaded) {
-            [self->_bannerAd play];
+            [self->_bannerAd load:placementId];
         }
     }];
     
@@ -151,14 +149,11 @@
     
     // BANNERS
     if ([indexPath section] == 0) {
-        
-        [_bannerAd load:placementId];
-        
+        [_bannerAd load: placementId];
     }
     // INTERSTITIALS
     else if ([indexPath section] == 1) {
-        
-        [SAInterstitialAd load:placementId];
+        [SAInterstitialAd load: placementId];
         
     }
     // VIDEOS
