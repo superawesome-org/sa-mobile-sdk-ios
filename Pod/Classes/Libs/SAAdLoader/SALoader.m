@@ -113,7 +113,7 @@
 @implementation SALoader
 
 - (NSString*) getAwesomeAdsEndpoint: (id<SASessionProtocol>) session
-                forPlacementId:(NSInteger) placementId {
+                     forPlacementId:(NSInteger) placementId {
     
     if (session) {
         return [NSString stringWithFormat:@"%@/ad/%ld",
@@ -146,7 +146,7 @@
                  @"w": @([session getWidth]),
                  @"h": @([session getHeight])
                  // @"preload": @(true)
-          };
+        };
     } else {
         return @{};
     }
@@ -156,7 +156,7 @@
     if (session) {
         return @{@"Content-Type":@"application/json",
                  @"User-Agent": [session getUserAgent]
-                 };
+        };
     } else {
         return @{};
     }
@@ -195,6 +195,26 @@
         [self processAd:placementId andData:data andStatus:status andSession:session andResult:result];
         
     }];
+}
+
+- (void) loadAdByPlacementId:(NSInteger) placementId
+                 andLineItem:(NSInteger) lineItemId
+               andCreativeId:(NSInteger) creativeId
+                  andSession:(id<SASessionProtocol>)session
+                   andResult:(saDidLoadAd) result {
+    NSDictionary *query = [self getAwesomeAdsQuery:session];
+    NSDictionary *header = [self getAwesomeAdsHeader:session];
+    NSString *endpoint = [NSString stringWithFormat:@"%@/ad/%ld/%ld",
+                          [session getBaseUrl],
+                          (long) lineItemId,
+                          (long) creativeId];
+    [self loadAd:endpoint
+       withQuery:query
+       andHeader:header
+  andPlacementId:placementId
+      andSession:session
+       andResult:result];
+    
 }
 
 - (void) processAd:(NSInteger) placementId
