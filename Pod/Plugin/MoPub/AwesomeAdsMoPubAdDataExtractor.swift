@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import MoPub
+import MoPubSDK
 
 class AwesomeAdsMoPubAdDataExtractor {
     private let info: [AnyHashable : Any]

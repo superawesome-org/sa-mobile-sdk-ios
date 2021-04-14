@@ -718,10 +718,12 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SuperAwesomeExample/Pods-SuperAwesomeExample-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/SuperAwesome/SuperAwesome.framework",
+				"${BUILT_PRODUCTS_DIR}/mopub-ios-sdk/MoPubSDK.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SuperAwesome.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MoPubSDK.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

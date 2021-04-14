@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import MoPub
+import MoPubSDK
 
 class AwesomeAdsMoPubErrorFactory {
     func makeError(message:String, placementId: Int, errorCode: MOPUBErrorCode) -> Error {

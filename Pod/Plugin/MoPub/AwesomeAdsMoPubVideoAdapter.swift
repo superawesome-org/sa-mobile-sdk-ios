@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import MoPub
+import MoPubSDK
 
 @objc
 public class AwesomeAdsMoPubVideoAdapter: MPFullscreenAdAdapter, MPThirdPartyFullscreenAdAdapter {

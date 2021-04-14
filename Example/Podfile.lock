@@ -6,6 +6,14 @@ PODS:
     - URITemplate (~> 2.0)
   - Mockingjay/XCTest (2.0.1):
     - Mockingjay/Core
+  - mopub-ios-sdk (5.16.2):
+    - mopub-ios-sdk/MoPubSDK (= 5.16.2)
+  - mopub-ios-sdk/Core (5.16.2)
+  - mopub-ios-sdk/MoPubSDK (5.16.2):
+    - mopub-ios-sdk/Core
+    - mopub-ios-sdk/NativeAds
+  - mopub-ios-sdk/NativeAds (5.16.2):
+    - mopub-ios-sdk/Core
   - Nimble (9.0.0)
   - OHHTTPStubs (9.1.0):
     - OHHTTPStubs/Default (= 9.1.0)
@@ -28,6 +36,9 @@ PODS:
     - SuperAwesome/Moat
   - SuperAwesome/Moat (8.0.1-alpha):
     - SuperAwesome/Base
+  - SuperAwesome/MoPub (8.0.1-alpha):
+    - mopub-ios-sdk (~> 5.14)
+    - SuperAwesome/Full
   - URITemplate (2.0.3)
 
 DEPENDENCIES:
@@ -35,10 +46,12 @@ DEPENDENCIES:
   - Nimble
   - OHHTTPStubs
   - SuperAwesome (from `../`)
+  - SuperAwesome/MoPub (from `../`)
 
 SPEC REPOS:
   trunk:
     - Mockingjay
+    - mopub-ios-sdk
     - Nimble
     - OHHTTPStubs
     - URITemplate
@@ -49,11 +62,12 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Mockingjay: 11a621880d2887f1775bdcf824341eb68f218450
+  mopub-ios-sdk: ce5aa12abe59d42cb8866b1297bdff7b6a42e273
   Nimble: 3b4ec3fd40f1dc178058e0981107721c615643d8
   OHHTTPStubs: 90eac6d8f2c18317baeca36698523dc67c513831
   SuperAwesome: f6c82574ccdef551c9422f7868d3d35d0fa6d57a
   URITemplate: ace0c4c46dcf8afe6e89b4060621852886b15c3b
 
-PODFILE CHECKSUM: e0c42ee25ae58f8330fc91b3087b19e01f3a2f4b
+PODFILE CHECKSUM: 7e9ceeffc2ab3cd8fa9a92c8a1230a21b391b9ec
 
 COCOAPODS: 1.10.1
