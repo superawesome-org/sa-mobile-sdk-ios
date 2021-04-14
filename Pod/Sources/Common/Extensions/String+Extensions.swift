@@ -15,18 +15,10 @@ extension String {
 
     /// Returns an MD5 has of the current string
     var toMD5: String {
-        let length = Int(CC_MD5_DIGEST_LENGTH)
-        var digest = [UInt8](repeating: 0, count: length)
-
-        if let data = self.data(using: String.Encoding.utf8) {
-            _ = data.withUnsafeBytes { bytes in
-                CC_MD5(bytes, CC_LONG(data.count), &digest)
-            }
-        }
-
-        return (0..<length).reduce("") {
-            $0 + String(format: "%02x", digest[$1])
-        }
+        let data = Data(utf8) as NSData
+        var hash = [UInt8](repeating: 0, count: Int(CC_MD5_DIGEST_LENGTH))
+        CC_MD5(data.bytes, CC_LONG(data.length), &hash)
+        return hash.map { String(format: "%02hhx", $0) }.joined()
     }
 
     /// Returns the base url formed from a full url
