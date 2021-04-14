@@ -8,7 +8,6 @@
 #if MOPUB_PLUGIN
 
 import UIKit
-import MoPub
 import SuperAwesome
 
 class MoPubViewController: UIViewController {
