@@ -21,27 +21,29 @@ PODS:
     - Alamofire (~> 5.0)
   - Nimble (9.0.0)
   - SAVideoPlayer (2.0.1)
-  - SuperAwesome/Base (8.0.0-alpha.2):
+  - SuperAwesome (8.0.0-alpha.3-refactor):
+    - SuperAwesome/Full (= 8.0.0-alpha.3-refactor)
+  - SuperAwesome/Base (8.0.0-alpha.3-refactor):
     - SuperAwesome/Common
     - SuperAwesome/Network
     - SuperAwesome/UI
-  - SuperAwesome/Common (8.0.0-alpha.2):
+  - SuperAwesome/Common (8.0.0-alpha.3-refactor):
     - SAVideoPlayer (~> 2.0)
     - SwiftyXMLParser (~> 5.0)
-  - SuperAwesome/Full (8.0.0-alpha.2):
+  - SuperAwesome/Full (8.0.0-alpha.3-refactor):
     - SuperAwesome/Base
     - SuperAwesome/Moat
-  - SuperAwesome/Full/Tests (8.0.0-alpha.2):
+  - SuperAwesome/Full/Tests (8.0.0-alpha.3-refactor):
     - Mockingjay (= 3.0.0-alpha.1)
     - Nimble
     - SuperAwesome/Base
     - SuperAwesome/Moat
-  - SuperAwesome/Moat (8.0.0-alpha.2):
+  - SuperAwesome/Moat (8.0.0-alpha.3-refactor):
     - SuperAwesome/Common
-  - SuperAwesome/Network (8.0.0-alpha.2):
+  - SuperAwesome/Network (8.0.0-alpha.3-refactor):
     - Moya (~> 14.0)
     - SuperAwesome/Common
-  - SuperAwesome/UI (8.0.0-alpha.2):
+  - SuperAwesome/UI (8.0.0-alpha.3-refactor):
     - SuperAwesome/Common
   - SwiftLint (0.43.1)
   - SwiftyXMLParser (5.0.0)
@@ -49,6 +51,7 @@ PODS:
 
 DEPENDENCIES:
   - mopub-ios-sdk
+  - SuperAwesome (from `../`)
   - SuperAwesome/Full (from `../`)
   - SuperAwesome/Full/Tests (from `../`)
   - SwiftLint
@@ -76,11 +79,11 @@ SPEC CHECKSUMS:
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   Nimble: 3b4ec3fd40f1dc178058e0981107721c615643d8
   SAVideoPlayer: 5a1db63d754db28595f8561b910e1f9754cbfa13
-  SuperAwesome: 956cff23f2ed04e35a0b8b0a73ed38f74e169e90
+  SuperAwesome: e3b6461dd457eb062d125a83579a0eda97a5174c
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
   SwiftyXMLParser: 5ebb8793192f403fa8cc691045143906122a7a75
   URITemplate: 58e0d47f967006c5d59888af5356c4a8ed3b197d
 
-PODFILE CHECKSUM: efd5b05f2fc4a280f8fd7f012f6ce757b4bddd50
+PODFILE CHECKSUM: 6ecd468aec93ba391fabb95e7c076aa1a527175f
 
 COCOAPODS: 1.10.1

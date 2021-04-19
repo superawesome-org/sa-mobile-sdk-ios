@@ -8,7 +8,7 @@ target 'SuperAwesomeExample' do
   pod 'mopub-ios-sdk'
   pod 'SwiftLint'
 
-#  pod 'SuperAwesome', :path => '../'
+ pod 'SuperAwesome', :path => '../'
 #  pod 'SuperAwesome/UI', :path => '../'
 #  pod 'SuperAwesome/Main', :path => '../'
 #  pod 'SuperAwesome/Core', :path => '../', :testspecs => ['Tests']
