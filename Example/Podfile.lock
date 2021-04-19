@@ -21,8 +21,6 @@ PODS:
     - Alamofire (~> 5.0)
   - Nimble (9.0.0)
   - SAVideoPlayer (2.0.1)
-  - SuperAwesome (8.0.0-alpha.3-refactor):
-    - SuperAwesome/Full (= 8.0.0-alpha.3-refactor)
   - SuperAwesome/Base (8.0.0-alpha.3-refactor):
     - SuperAwesome/Common
     - SuperAwesome/Network
@@ -51,7 +49,6 @@ PODS:
 
 DEPENDENCIES:
   - mopub-ios-sdk
-  - SuperAwesome (from `../`)
   - SuperAwesome/Full (from `../`)
   - SuperAwesome/Full/Tests (from `../`)
   - SwiftLint
@@ -84,6 +81,6 @@ SPEC CHECKSUMS:
   SwiftyXMLParser: 5ebb8793192f403fa8cc691045143906122a7a75
   URITemplate: 58e0d47f967006c5d59888af5356c4a8ed3b197d
 
-PODFILE CHECKSUM: 6ecd468aec93ba391fabb95e7c076aa1a527175f
+PODFILE CHECKSUM: efd5b05f2fc4a280f8fd7f012f6ce757b4bddd50
 
 COCOAPODS: 1.10.1
