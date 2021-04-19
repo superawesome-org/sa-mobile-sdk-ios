@@ -25,7 +25,7 @@ public class InterstitialAd: NSObject, Injectable {
      * Ads can only be loaded once and then can be reloaded after they've
      * been played.
      *
-     * @param placementId   the Ad placement id to load data for
+     * - Parameter placementId: The Ad placement id to load data for
      */
     @objc
     public class func load(_ placementId: Int) {
@@ -37,8 +37,9 @@ public class InterstitialAd: NSObject, Injectable {
      * Method that, if an ad data is loaded, will play
      * the content for the user
      *
-     * @param placementId   the Ad placement id to play an ad for
-     * @param parent        the parent view controller
+     * - Parameters:
+     *   - placementId: The Ad placement id to play an ad for
+     *   - parent:  The parent view controller
      */
     @objc
     public class func play(_ placementId: Int, fromVC parent: UIViewController?) {
@@ -63,9 +64,8 @@ public class InterstitialAd: NSObject, Injectable {
     /**
      * Method that returns whether ad data for a certain placement
      * has already been loaded
-     *
-     * @param placementId   the Ad placement id to check for
-     * @return              true or false
+     * - Parameter placementId: the Ad placement id to check for
+     * - Returns:  true or false
      */
     @objc
     public class func hasAdAvailable(_ placementId: Int) -> Bool { controller.adAvailable }
