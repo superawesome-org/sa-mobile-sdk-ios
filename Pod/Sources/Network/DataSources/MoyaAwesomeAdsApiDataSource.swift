@@ -35,6 +35,25 @@ class MoyaAwesomeAdsApiDataSource: AwesomeAdsApiDataSourceType {
         }
     }
 
+    func getAd(placementId: Int, lineItemId: Int, creativeId: Int, query: AdQuery, completion: @escaping OnResult<Ad>) {
+        let target = AwesomeAdsTarget(environment, .adByLineAndCreativeId(lineItemId: lineItemId, creativeId: creativeId, query: query))
+
+        provider.request(target) { result in
+            switch result {
+            case .success(let response):
+                do {
+                    let filteredResponse = try response.filterSuccessfulStatusCodes()
+                    let result = try filteredResponse.map(Ad.self)
+                    completion(Result.success(result))
+                } catch let error {
+                    completion(Result.failure(error))
+                }
+            case .failure(let error):
+                completion(Result.failure(error))
+            }
+        }
+    }
+
     func impression(query: EventQuery, completion: OnResult<Void>?) {
         let target = AwesomeAdsTarget(environment, .impression(query: query))
         responseHandler(target: target, completion: completion)

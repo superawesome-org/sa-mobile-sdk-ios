@@ -24,6 +24,7 @@ protocol AdControllerType {
     func onAdClicked(_ url: URL)
 
     func load(_ placementId: Int, _ request: AdRequest)
+    func load(_ placementId: Int, lineItemId: Int, creativeId: Int, _ request: AdRequest)
     func close()
 
     // delegate events
@@ -39,6 +40,7 @@ protocol AdControllerType {
 }
 
 class AdController: AdControllerType, Injectable {
+
     private lazy var logger: LoggerType = dependencies.resolve(param: AdController.self)
     private lazy var eventRepository: EventRepositoryType = dependencies.resolve()
     private lazy var adRepository: AdRepositoryType = dependencies.resolve()
@@ -111,10 +113,21 @@ class AdController: AdControllerType, Injectable {
     func load(_ placementId: Int, _ request: AdRequest) {
         adRepository.getAd(placementId: placementId,
                            request: request) { [weak self] result in
-                            switch result {
-                            case .success(let response): self?.onSuccess(response)
-                            case .failure(let error): self?.onFailure(error)
-                            }
+            switch result {
+            case .success(let response): self?.onSuccess(response)
+            case .failure(let error): self?.onFailure(error)
+            }
+
+        }
+    }
+
+    func load(_ placementId: Int, lineItemId: Int, creativeId: Int, _ request: AdRequest) {
+        adRepository.getAd(placementId: placementId,
+                           request: request) { [weak self] result in
+            switch result {
+            case .success(let response): self?.onSuccess(response)
+            case .failure(let error): self?.onFailure(error)
+            }
 
         }
     }

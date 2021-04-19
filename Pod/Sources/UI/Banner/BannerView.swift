@@ -53,6 +53,22 @@ public class BannerView: UIView, Injectable {
         controller.load(placementId, makeAdRequest())
     }
 
+    /**
+     * Method that loads an ad into the queue.
+     * Ads can only be loaded once and then can be reloaded after they've
+     * been played.
+     *
+     * - Parameters:
+     *   - placementId: the Ad placement id to load data for
+     *   - lineItemId: id of the line item
+     *   - creativeId: id of the creative
+     */
+    @objc
+    public func load(_ placementId: Int, lineItemId: Int, creativeId: Int) {
+        logger.info("load() for: \(placementId)")
+        controller.load(placementId, lineItemId: lineItemId, creativeId: creativeId, makeAdRequest())
+    }
+
     /// Method that, if an ad data is loaded, will play the content for the user
     @objc
     public func play() {

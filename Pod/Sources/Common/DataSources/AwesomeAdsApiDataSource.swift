@@ -10,6 +10,9 @@ protocol AwesomeAdsApiDataSourceType {
     /// Makes a request to `/ad` endpoint to retrieve an Ad object for the given `placementId`
     func getAd(placementId: Int, query: AdQuery, completion: @escaping OnResult<Ad>)
 
+    /// Makes a request to `/ad/{lineItemId}/{creativeId}` endpoint to retrieve an Ad object for the given `placementId`
+    func getAd(placementId: Int, lineItemId: Int, creativeId: Int, query: AdQuery, completion: @escaping OnResult<Ad>)
+
     /// Makes a request to `/impression` endpoint to trigger an impression event
     func impression(query: EventQuery, completion: OnResult<Void>?)
 
