@@ -43,6 +43,28 @@ class WebView: WKWebView {
         }
     }
 
+    func loadAdViaJsScrpit(placementId: Int, adRequest: AdRequest) -> String {
+        let dict = try? JSONDecoder().decode([String: Int].self, from: JSONEncoder().encode(adRequest))
+        let queryParams = dict?.filter {
+            String(describing: $0.key) != "test"
+        }.map { key, value in
+            "&\(key)=\(value)"
+        }.joined(separator: "") ?? ""
+        return """
+<html>
+  <header>
+   <meta name='viewport' content='width=device-width'/>
+   <style>html, body, div { margin: 0px; padding: 0px; } html, body { width: 100%; height: 100%; }</style>
+  </header>
+  <body>
+    <script type="text/javascript"
+    src="https://ads.superawesome.tv/v2/ad.js?placement=\(placementId)\(queryParams)">
+    </script>
+  </body>
+</html>
+"""
+    }
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
