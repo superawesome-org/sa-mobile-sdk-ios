@@ -1,6 +1,6 @@
 //
 //  SAManagedBannerAd.swift
-//  Alamofire
+//  SuperAwesome
 //
 //  Created by Mark on 19/04/2021.
 //

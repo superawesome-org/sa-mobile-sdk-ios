@@ -42,15 +42,15 @@ class WebView: WKWebView {
             load(data, mimeType: "text/html", characterEncodingName: "UTF-8", baseURL: url)
         }
     }
-
-    func loadAdViaJsScrpit(placementId: Int, adRequest: AdRequest) -> String {
+    
+    func loadAdViaJsScript(placementId: Int, adRequest: AdRequest) {
         let dict = try? JSONDecoder().decode([String: Int].self, from: JSONEncoder().encode(adRequest))
         let queryParams = dict?.filter {
             String(describing: $0.key) != "test"
         }.map { key, value in
             "&\(key)=\(value)"
         }.joined(separator: "") ?? ""
-        return """
+        let html = """
 <html>
   <header>
    <meta name='viewport' content='width=device-width'/>
@@ -63,6 +63,7 @@ class WebView: WKWebView {
   </body>
 </html>
 """
+        loadHTMLString(html, baseURL: nil)
     }
 
     required init?(coder: NSCoder) {
