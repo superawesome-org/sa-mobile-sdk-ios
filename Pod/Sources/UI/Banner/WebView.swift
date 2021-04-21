@@ -42,7 +42,7 @@ class WebView: WKWebView {
             load(data, mimeType: "text/html", characterEncodingName: "UTF-8", baseURL: url)
         }
     }
-    
+
     func loadAdViaJsScript(placementId: Int, adRequest: AdRequest) {
         let dict = try? JSONDecoder().decode([String: Int].self, from: JSONEncoder().encode(adRequest))
         let queryParams = dict?.filter {
