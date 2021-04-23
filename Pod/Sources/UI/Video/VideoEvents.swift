@@ -23,7 +23,6 @@ class VideoEvents: Injectable {
     private var isFirstQuartileHandled: Bool = false
     private var isMidpointHandled: Bool = false
     private var isThirdQuartileHandled: Bool = false
-    private var totalTime = 0
 
     public weak var delegate: VideoEventsDelegate?
 
@@ -39,8 +38,8 @@ class VideoEvents: Injectable {
            let avPlayer = player.getAVPlayer(),
            let avLayer = player.getAVPlayerLayer() {
             _ = moatRepository?.startMoatTracking(forVideoPlayer: avPlayer,
-                                              with: avLayer,
-                                              andView: videoPlayer)
+                                                  with: avLayer,
+                                                  andView: videoPlayer)
         }
     }
 
@@ -56,33 +55,31 @@ class VideoEvents: Injectable {
     }
 
     public func time(player: VideoPlayer, time: Int, duration: Int) {
-        totalTime += time
-        if totalTime >= 1 && !isStartHandled {
+        if let videoPlayer = player as? UIView, !is2SHandled {
+            is2SHandled = true
+            viewableDetector = dependencies.resolve() as ViewableDetectorType
+            viewableDetector?.start(for: videoPlayer, forTickCount: 2, hasBeenVisible: { [weak self] in
+                self?.vastRepository?.impression()
+                self?.delegate?.hasBeenVisible()
+            })
+        }
+        
+        if time >= 1 && !isStartHandled {
             isStartHandled = true
             vastRepository?.impression()
             vastRepository?.creativeView()
             vastRepository?.start()
         }
-        if totalTime >= 2 && !is2SHandled {
-            is2SHandled = true
 
-            if let videoPlayer = player as? UIView {
-                viewableDetector = dependencies.resolve() as ViewableDetectorType
-                viewableDetector?.start(for: videoPlayer, hasBeenVisible: { [weak self] in
-                    self?.vastRepository?.impression()
-                    self?.delegate?.hasBeenVisible()
-                })
-            }
-        }
-        if totalTime >= duration / 4 && !isFirstQuartileHandled {
+        if time >= duration / 4 && !isFirstQuartileHandled {
             isFirstQuartileHandled = true
             vastRepository?.firstQuartile()
         }
-        if totalTime >= duration / 2 && !isMidpointHandled {
+        if time >= duration / 2 && !isMidpointHandled {
             isMidpointHandled = true
             vastRepository?.midPoint()
         }
-        if totalTime >= (3 * duration) / 4 && !isThirdQuartileHandled {
+        if time >= (3 * duration) / 4 && !isThirdQuartileHandled {
             isThirdQuartileHandled = true
             vastRepository?.thirdQuartile()
         }

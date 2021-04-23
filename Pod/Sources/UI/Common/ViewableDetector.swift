@@ -6,16 +6,18 @@
 //
 
 protocol ViewableDetectorType {
+    func start(for view: UIView, forTickCount: Int, hasBeenVisible: VoidBlock?)
     func start(for view: UIView, hasBeenVisible: VoidBlock?)
     func cancel()
 }
 
 class ViewableDetector: ViewableDetectorType {
+
     private var timer: Timer?
     private let logger: LoggerType
     private weak var view: UIView?
     private var viewableCounter = 0
-    private let targetTickCount = 1
+    private var targetTickCount = 1
 
     var hasBeenVisible: VoidBlock?
 
@@ -36,6 +38,11 @@ class ViewableDetector: ViewableDetectorType {
         self.view = view
         timer = Timer.scheduledTimer(timeInterval: 1, target: self,
                                      selector: #selector(timerFunction), userInfo: nil, repeats: true)
+    }
+
+    func start(for view: UIView, forTickCount: Int, hasBeenVisible: VoidBlock?) {
+        targetTickCount = forTickCount
+        start(for: view, hasBeenVisible: hasBeenVisible)
     }
 
     @objc private func timerFunction() {
