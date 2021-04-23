@@ -19,7 +19,7 @@ class VideoEvents: Injectable {
     private var viewableDetector: ViewableDetectorType?
 
     private var isStartHandled: Bool = false
-    private var is2SHandled: Bool = false
+    private var isViewDetectorStarted: Bool = false
     private var isFirstQuartileHandled: Bool = false
     private var isMidpointHandled: Bool = false
     private var isThirdQuartileHandled: Bool = false
@@ -38,8 +38,8 @@ class VideoEvents: Injectable {
            let avPlayer = player.getAVPlayer(),
            let avLayer = player.getAVPlayerLayer() {
             _ = moatRepository?.startMoatTracking(forVideoPlayer: avPlayer,
-                                              with: avLayer,
-                                              andView: videoPlayer)
+                                                  with: avLayer,
+                                                  andView: videoPlayer)
         }
     }
 
@@ -55,23 +55,22 @@ class VideoEvents: Injectable {
     }
 
     public func time(player: VideoPlayer, time: Int, duration: Int) {
+        if let videoPlayer = player as? UIView, !isViewDetectorStarted {
+            isViewDetectorStarted = true
+            viewableDetector = dependencies.resolve() as ViewableDetectorType
+            viewableDetector?.start(for: videoPlayer, forTickCount: 2, hasBeenVisible: { [weak self] in
+                self?.vastRepository?.impression()
+                self?.delegate?.hasBeenVisible()
+            })
+        }
+
         if time >= 1 && !isStartHandled {
             isStartHandled = true
             vastRepository?.impression()
             vastRepository?.creativeView()
             vastRepository?.start()
         }
-        if time >= 2 && !is2SHandled {
-            is2SHandled = true
 
-            if let videoPlayer = player as? UIView {
-                viewableDetector = dependencies.resolve() as ViewableDetectorType
-                viewableDetector?.start(for: videoPlayer, hasBeenVisible: { [weak self] in
-                    self?.vastRepository?.impression()
-                    self?.delegate?.hasBeenVisible()
-                })
-            }
-        }
         if time >= duration / 4 && !isFirstQuartileHandled {
             isFirstQuartileHandled = true
             vastRepository?.firstQuartile()
