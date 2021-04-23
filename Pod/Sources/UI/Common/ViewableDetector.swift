@@ -47,7 +47,6 @@ class ViewableDetector: ViewableDetectorType {
 
     @objc private func timerFunction() {
         logger.info("Tick for visibility")
-
         if view?.isVisibleToUser ?? false {
             viewableCounter += 1
             logger.info("View is visible to user. Ticks: \(viewableCounter)")

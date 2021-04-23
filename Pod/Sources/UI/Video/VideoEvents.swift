@@ -63,7 +63,7 @@ class VideoEvents: Injectable {
                 self?.delegate?.hasBeenVisible()
             })
         }
-        
+
         if time >= 1 && !isStartHandled {
             isStartHandled = true
             vastRepository?.impression()
