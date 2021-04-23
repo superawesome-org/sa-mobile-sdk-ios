@@ -17,7 +17,7 @@ protocol LoggerType {
 
 public class OsLogger: LoggerType {
     private var tag: String = ""
-    private let prefix: String = "_mark"
+    private let prefix: String = ""
     private let loggingEnabled: Bool
 
     init(_ loggingEnabled: Bool, _ tag: String?) {
