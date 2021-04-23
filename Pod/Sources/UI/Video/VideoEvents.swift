@@ -19,7 +19,7 @@ class VideoEvents: Injectable {
     private var viewableDetector: ViewableDetectorType?
 
     private var isStartHandled: Bool = false
-    private var is2SHandled: Bool = false
+    private var isViewDetectorStarted: Bool = false
     private var isFirstQuartileHandled: Bool = false
     private var isMidpointHandled: Bool = false
     private var isThirdQuartileHandled: Bool = false
@@ -55,8 +55,8 @@ class VideoEvents: Injectable {
     }
 
     public func time(player: VideoPlayer, time: Int, duration: Int) {
-        if let videoPlayer = player as? UIView, !is2SHandled {
-            is2SHandled = true
+        if let videoPlayer = player as? UIView, !isViewDetectorStarted {
+            isViewDetectorStarted = true
             viewableDetector = dependencies.resolve() as ViewableDetectorType
             viewableDetector?.start(for: videoPlayer, forTickCount: 2, hasBeenVisible: { [weak self] in
                 self?.vastRepository?.impression()
