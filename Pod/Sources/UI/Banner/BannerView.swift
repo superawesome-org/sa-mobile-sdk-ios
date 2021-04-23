@@ -45,7 +45,7 @@ public class BannerView: UIView, Injectable {
      * Ads can only be loaded once and then can be reloaded after they've
      * been played.
      *
-     * @param placementId   the Ad placement id to load data for
+     * - Parameter placementId: the Ad placement id to load data for
      */
     @objc
     public func load(_ placementId: Int) {

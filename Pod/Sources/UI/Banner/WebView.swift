@@ -98,8 +98,8 @@ extension WebView: UIScrollViewDelegate {
      * Overridden "viewForZoomingInScrollView:" method from the
      * UIScrollViewDelegate protocol
      *
-     * @param scrollView    the current scroll view of the web view
-     * @return              a scrolled zoomed UIView; or nil in this case
+     * - Parameter scrollView: The current scroll view of the web view
+     * - Returns: A scrolled zoomed UIView; or nil in this case
      */
     func viewForZooming(in scrollView: UIScrollView) -> UIView? { nil }
 }
