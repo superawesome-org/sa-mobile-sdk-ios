@@ -12,8 +12,7 @@ enum AwesomeAdsApi {
     case click(query: EventQuery)
     case videoClick(query: EventQuery)
     case event(query: EventQuery)
-    case dwellTimeEvent(event: DwellTimeEvent)
-
+    
     var path: String {
         switch self {
         case .ad(let placementId, _): return "/ad/\(placementId)"
@@ -22,7 +21,7 @@ enum AwesomeAdsApi {
         case .impression: return "/impression"
         case .click: return "/click"
         case .videoClick: return "/video/click"
-        case .event, .dwellTimeEvent(event: _): return "/event"
+        case .event: return "/event"
         }
     }
 }
