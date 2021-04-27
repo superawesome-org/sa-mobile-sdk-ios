@@ -14,6 +14,7 @@ protocol EventRepositoryType {
     func parentalGateSuccess(_ adResponse: AdResponse, completion: OnResult<Void>?)
     func parentalGateFail(_ adResponse: AdResponse, completion: OnResult<Void>?)
     func viewableImpression(_ adResponse: AdResponse, completion: OnResult<Void>?)
+    func dwellTime(_ adResponse: AdResponse, completion: OnResult<Void>?)
 }
 
 class EventRepository: EventRepositoryType {
@@ -55,6 +56,10 @@ class EventRepository: EventRepositoryType {
 
     func viewableImpression(_ adResponse: AdResponse, completion: OnResult<Void>?) {
         customEvent(.viewableImpression, adResponse, completion: completion)
+    }
+
+    func dwellTime(_ adResponse: AdResponse, completion: OnResult<Void>?) {
+        dataSource.event(query: DwellTimeEvent(), completion: completion)
     }
 
     private func customEvent(_ type: EventType, _ adResponse: AdResponse, completion: OnResult<Void>?) {

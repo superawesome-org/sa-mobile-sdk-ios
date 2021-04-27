@@ -17,6 +17,8 @@ class VideoEvents: Injectable {
     private var vastRepository: VastEventRepositoryType?
     private var moatRepository: MoatRepositoryType?
     private var viewableDetector: ViewableDetectorType?
+    private var eventRepository: EventRepositoryType?
+    private let adResponse: AdResponse
 
     private var isStartHandled: Bool = false
     private var isViewDetectorStarted: Bool = false
@@ -27,8 +29,10 @@ class VideoEvents: Injectable {
     public weak var delegate: VideoEventsDelegate?
 
     init(_ adResponse: AdResponse) {
+        self.adResponse = adResponse
         vastRepository = dependencies.resolve(param: adResponse) as VastEventRepositoryType
         moatRepository = dependencies.resolve(param: adResponse, false) as MoatRepositoryType
+        eventRepository = dependencies.resolve() as EventRepositoryType
     }
 
     // MARK: - public class interface
@@ -58,6 +62,12 @@ class VideoEvents: Injectable {
         if let videoPlayer = player as? UIView, !isViewDetectorStarted {
             isViewDetectorStarted = true
             viewableDetector = dependencies.resolve() as ViewableDetectorType
+            viewableDetector?.whenVisible = { [weak self] in
+                guard let self = self else {
+                    return
+                }
+                self.eventRepository?.dwellTime(self.adResponse, completion: nil)
+            }
             viewableDetector?.start(for: videoPlayer, forTickCount: 2, hasBeenVisible: { [weak self] in
                 self?.vastRepository?.impression()
                 self?.delegate?.hasBeenVisible()

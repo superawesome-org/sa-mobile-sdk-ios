@@ -24,4 +24,7 @@ protocol AwesomeAdsApiDataSourceType {
 
     /// Makes a request to `/event` endpoint to trigger an custom event
     func event(query: EventQuery, completion: OnResult<Void>?)
+
+    /// Makes a request to `/event` endpoint to trigger an custom event
+    func event(query: DwellTimeEvent, completion: OnResult<Void>?)
 }
