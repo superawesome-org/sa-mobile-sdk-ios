@@ -59,7 +59,7 @@ class EventRepository: EventRepositoryType {
     }
 
     func dwellTime(_ adResponse: AdResponse, completion: OnResult<Void>?) {
-        dataSource.event(query: DwellTimeEvent(), completion: completion)
+        customEvent(.dwellTime, adResponse, completion: completion)
     }
 
     private func customEvent(_ type: EventType, _ adResponse: AdResponse, completion: OnResult<Void>?) {

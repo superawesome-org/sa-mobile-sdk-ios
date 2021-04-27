@@ -74,11 +74,6 @@ class MoyaAwesomeAdsApiDataSource: AwesomeAdsApiDataSourceType {
         responseHandler(target: target, completion: completion)
     }
 
-    func event(query: DwellTimeEvent, completion: OnResult<Void>?) {
-        let target = AwesomeAdsTarget(environment, .dwellTimeEvent(event: query))
-        responseHandler(target: target, completion: completion)
-    }
-
     private func responseHandler(target: AwesomeAdsTarget, completion: OnResult<Void>?) {
         provider.request(target) { result in
             switch result {

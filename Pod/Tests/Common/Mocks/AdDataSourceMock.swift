@@ -22,10 +22,6 @@ class AdDataSourceMock: AwesomeAdsApiDataSourceType {
     func event(query: EventQuery, completion: OnResult<Void>?) {
         completion?(mockEventResult)
     }
-    
-    func event(query: DwellTimeEvent, completion: OnResult<Void>?) {
-        completion?(mockEventResult)
-    }
 
     func impression(query: EventQuery, completion: OnResult<Void>?) {
         completion?(mockEventResult)

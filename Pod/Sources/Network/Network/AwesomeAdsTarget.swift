@@ -43,8 +43,6 @@ extension AwesomeAdsApi: TargetType {
             return .requestParameters(parameters: query.toDictionary(), encoding: URLEncoding.queryString)
         case .event(let query):
             return .requestParameters(parameters: query.toDictionary(), encoding: URLEncoding.queryString)
-        case .dwellTimeEvent(event: let event):
-            return .requestParameters(parameters: event.toDictionary(), encoding: URLEncoding.queryString)
         }
     }
 
