@@ -6,6 +6,7 @@
 //
 
 protocol ViewableDetectorType {
+    var whenVisible: VoidBlock? { get set }
     func start(for view: UIView, forTickCount: Int, hasBeenVisible: VoidBlock?)
     func start(for view: UIView, hasBeenVisible: VoidBlock?)
     func cancel()
@@ -20,6 +21,7 @@ class ViewableDetector: ViewableDetectorType {
     private var targetTickCount = 1
 
     var hasBeenVisible: VoidBlock?
+    var whenVisible: VoidBlock?
 
     init(logger: LoggerType) {
         self.logger = logger
@@ -50,6 +52,7 @@ class ViewableDetector: ViewableDetectorType {
         if view?.isVisibleToUser ?? false {
             viewableCounter += 1
             logger.info("View is visible to user. Ticks: \(viewableCounter)")
+            whenVisible?()
         } else {
             logger.info("View is not visible \(String(describing: view.self))")
         }

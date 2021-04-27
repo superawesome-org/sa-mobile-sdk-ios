@@ -31,6 +31,15 @@ struct EventQuery: Codable {
         }
 }
 
+struct DwellTimeEvent: Codable {
+    var type = "custom.analytics.DWELL_TIME"
+    let value: Int
+
+    init(time: Int = 1) {
+        self.value = time
+    }
+}
+
 struct EventData: Codable {
     let placement: Int
     let lineItem: Int
@@ -54,7 +63,7 @@ enum EventType: String, Codable {
     case parentalGateSuccess
 
     enum CodingKeys: String, CodingKey {
-            case viewableImpression = "viewable_impression"
+        case viewableImpression = "viewable_impression"
         case impressionDownloaded
         case parentalGateOpen
         case parentalGateClose
