@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'SuperAwesome'
-  s.version = '8.0.4-refactor'
+  s.version = '8.0.5-refactor'
   s.summary = 'SuperAwesome Mobile SDK for iOS'
   s.description = <<-DESC
                    The SuperAwesome Mobile SDK lets you to easily add COPPA compliant advertisements and other platform features, like user authentication and registration, to your apps. We try to make integration as easy as possible, so we provide all the necessary tools such as this guide, API documentation, screencasts and demo apps.
@@ -16,15 +16,14 @@ Pod::Spec.new do |s|
      'Gunhan Sancar' => 'gunhan.sancar@superawesome.com'
   }
   
-  s.pod_target_xcconfig  = {
-    'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 arm64e armv7 armv7s',
-    'EXCLUDED_ARCHS[sdk=iphoneos*]' => 'i386 x86_64' }
-  s.user_target_xcconfig = {
-    'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 arm64e armv7 armv7s',
-    'EXCLUDED_ARCHS[sdk=iphoneos*]' => 'i386 x86_64' }
+ # s.pod_target_xcconfig  = {
+ #   'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386 x86_64' }
+ # s.user_target_xcconfig = {
+ #   'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386 x86_64' }
   
-  s.ios.deployment_target = '10.0'
-  s.swift_versions = ['5.0']
+  s.platform = :ios, "11.0"
+  s.ios.deployment_target = '11.0'
+  s.swift_versions = ['5.1']
   s.requires_arc = true
   s.source = {
   	:git => 'https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git',
@@ -39,7 +38,7 @@ Pod::Spec.new do |s|
     subspec.dependency 'SuperAwesome/Moat'
 
     subspec.test_spec 'Tests' do |test_spec|
-      test_spec.source_files = 'Pod/Tests/Common/**/*', 'Pod/Tests/Network/**/*', 'Pod/Tests/Moat/**/*', 'Pod/Tests/UI/**/*'
+      test_spec.source_files = 'Pod/Tests/Common/**/*.{swift}', 'Pod/Tests/Network/**/*.{swift}', 'Pod/Tests/Moat/**/*.{swift}', 'Pod/Tests/UI/**/*.{swift}'
       test_spec.resources = 'Pod/Tests/Resources/*'
       test_spec.dependency 'Nimble'
       test_spec.dependency 'Mockingjay', '3.0.0-alpha.1'
@@ -47,6 +46,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'Base' do |subspec|
+    subspec.platform = :ios, "11.0"
     subspec.source_files = 'Pod/Sources/Base/**/*'
     subspec.dependency 'SuperAwesome/Common'
     subspec.dependency 'SuperAwesome/UI'
@@ -54,33 +54,37 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'Common' do |subspec|
-    subspec.source_files = 'Pod/Sources/Common/**/*'
-    subspec.dependency 'SwiftyXMLParser', '~> 5.0'
-    subspec.dependency 'SAVideoPlayer', '~> 2.0'
+    subspec.platform = :ios, "11.0"
+    subspec.source_files = 'Pod/Sources/Common/**/*.{swift}'
+    subspec.dependency 'SwiftyXMLParser'
+    subspec.dependency 'SAVideoPlayer'
   end
 
   s.subspec 'Moat' do |subspec|
-    subspec.source_files = 'Pod/Sources/Moat/**/*'
+    subspec.platform = :ios, "11.0"
+    subspec.source_files = 'Pod/Sources/Moat/**/*.{swift}'
     subspec.dependency 'SuperAwesome/Common'
     subspec.vendored_frameworks = 'Pod/Libraries/SUPMoatMobileAppKit.framework'
     subspec.xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) MOAT_MODULE' }
   end
 
   s.subspec 'UI' do |subspec|
-    subspec.source_files = 'Pod/Sources/UI/**/*'
+    subspec.platform = :ios, "11.0"
+    subspec.source_files = 'Pod/Sources/UI/**/*.{swift}'
     subspec.dependency 'SuperAwesome/Common'    
   end
 
   s.subspec 'Network' do |subspec|
-    subspec.source_files = 'Pod/Sources/Network/**/*'
+    subspec.platform = :ios, "11.0"
+    subspec.source_files = 'Pod/Sources/Network/**/*.{swift}'
     subspec.dependency 'SuperAwesome/Common'
-    subspec.dependency 'Moya', '~> 14.0'
+    subspec.dependency 'Moya'
   end
 
   # s.subspec 'MoPub' do |m|
   #   m.dependency 'SuperAwesome/Full'
   #   m.dependency 'mopub-ios-sdk', '~> 5.14'
-  #   m.source_files = 'Pod/Plugin/MoPub/*'
+  #   m.source_files = 'Pod/Plugin/MoPub/*.{swift}'
   #   m.xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) MOPUB_PLUGIN',
   #                  'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) MOPUB_PLUGIN=1' }
   # end

@@ -26,8 +26,8 @@ PODS:
     - SuperAwesome/Network
     - SuperAwesome/UI
   - SuperAwesome/Common (8.0.4-refactor):
-    - SAVideoPlayer (~> 2.0)
-    - SwiftyXMLParser (~> 5.0)
+    - SAVideoPlayer
+    - SwiftyXMLParser
   - SuperAwesome/Full (8.0.4-refactor):
     - SuperAwesome/Base
     - SuperAwesome/Moat
@@ -39,7 +39,7 @@ PODS:
   - SuperAwesome/Moat (8.0.4-refactor):
     - SuperAwesome/Common
   - SuperAwesome/Network (8.0.4-refactor):
-    - Moya (~> 14.0)
+    - Moya
     - SuperAwesome/Common
   - SuperAwesome/UI (8.0.4-refactor):
     - SuperAwesome/Common
@@ -76,11 +76,11 @@ SPEC CHECKSUMS:
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   Nimble: 7bed62ffabd6dbfe05f5925cbc43722533248990
   SAVideoPlayer: 5a1db63d754db28595f8561b910e1f9754cbfa13
-  SuperAwesome: cd70a805439cf9983b11ff6f184d2a1e4e581b14
+  SuperAwesome: 72b275c1f3ee9b94e9fdb6e6b2391c261e2104ab
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
   SwiftyXMLParser: 5ebb8793192f403fa8cc691045143906122a7a75
   URITemplate: 58e0d47f967006c5d59888af5356c4a8ed3b197d
 
-PODFILE CHECKSUM: efd5b05f2fc4a280f8fd7f012f6ce757b4bddd50
+PODFILE CHECKSUM: 361ea5357cff72612dbc85fd9b652fad35073b54
 
 COCOAPODS: 1.10.1
