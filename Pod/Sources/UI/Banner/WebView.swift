@@ -7,7 +7,7 @@
 
 import WebKit
 
-protocol WebViewDelegate: class {
+protocol WebViewDelegate: AnyObject {
     /// Called when the WebView finishes its loading for the first time
     func webViewOnStart()
     func webViewOnError()
