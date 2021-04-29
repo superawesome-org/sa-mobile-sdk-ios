@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.source = {
     :git => 'https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git',
     :branch => 'master',
-    :tag => "8.0.4-refactor"
+    :tag => "8.0.1-refactor-Admobr"
   }
 
   s.pod_target_xcconfig  = {
