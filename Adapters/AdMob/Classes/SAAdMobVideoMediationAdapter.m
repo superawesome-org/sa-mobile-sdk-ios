@@ -22,7 +22,22 @@
     return version;
 }
 
-+ (GADVersionNumber)version {
++ (NSInteger)version {
+    NSString *versionString = [NSString stringWithFormat:@"%@.0", [SAVersion getSdkVersion]];
+    NSArray *versionComponents = [versionString componentsSeparatedByString:@"."];
+    NSInteger version = 0;
+    if (versionComponents.count == 4) {
+        version += [versionComponents[0] integerValue] * 1000000;
+        version += [versionComponents[1] integerValue] * 10000;
+        
+        // Adapter versions have 2 patch versions. Multiply the first patch by 100.
+        version = [versionComponents[2] integerValue] * 100;
+        version = [versionComponents[3] integerValue];
+    }
+    return version;
+}
+
++ (GADVersionNumber)adapterVersion {
     NSString *versionString = [NSString stringWithFormat:@"%@.0", [SAVersion getSdkVersion]];
     NSArray *versionComponents = [versionString componentsSeparatedByString:@"."];
     GADVersionNumber version = {0};
@@ -35,10 +50,6 @@
         + [versionComponents[3] integerValue];
     }
     return version;
-}
-
-+ (NSString *)adapterVersion {
-    return [SAVersion getSdkVersion];
 }
 
 + (Class<GADAdNetworkExtras>)networkExtrasClass {

@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.source = {
     :git => 'https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git',
     :branch => 'master',
-    :tag => "8.0.0-refactor"
+    :tag => "8.0.4-refactor"
   }
 
   s.pod_target_xcconfig  = {
@@ -30,7 +30,7 @@ Pod::Spec.new do |s|
   s.static_framework = true
   s.requires_arc = true
 
-  s.source_files = 'Adapters/AdMob/Classes/**/*'
+  s.source_files = 'Adapters/AdMob/Classes/**/*.{h,m,swift}'
   s.dependency 'SuperAwesome', '~> 8.0'
   s.dependency 'Google-Mobile-Ads-SDK'
   s.xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) ADMOB_PLUGIN',
