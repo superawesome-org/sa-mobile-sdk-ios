@@ -47,7 +47,7 @@ PODS:
     - SuperAwesome/Moat
   - SuperAwesome/Moat (8.0.5):
     - SuperAwesome/Base
-  - SuperAwesomeAdMob (8.0.0-refactor):
+  - SuperAwesomeAdMob (8.0.1-refactor-Admob):
     - Google-Mobile-Ads-SDK
     - SuperAwesome (~> 8.0)
 
@@ -76,7 +76,7 @@ SPEC CHECKSUMS:
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   SuperAwesome: 51a08b4af3cd2820dc4c3b0637722018a820656e
-  SuperAwesomeAdMob: dc808ea9adc7ec46680f6c839eecf35b0c3b1b37
+  SuperAwesomeAdMob: ffa6575384c12712b7b04f34e9e392ea938f6ad9
 
 PODFILE CHECKSUM: d9f17782073701152863b71254b43ce6dd7582e8
 
