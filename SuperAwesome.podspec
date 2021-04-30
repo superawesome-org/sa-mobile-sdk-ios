@@ -16,14 +16,14 @@ Pod::Spec.new do |s|
      'Gunhan Sancar' => 'gunhan.sancar@superawesome.com'
   }
   
- # s.pod_target_xcconfig  = {
- #   'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386 x86_64' }
- # s.user_target_xcconfig = {
- #   'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386 x86_64' }
+  s.pod_target_xcconfig  = {
+   'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
+  s.user_target_xcconfig = {
+   'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
   
   s.platform = :ios, "11.0"
   s.ios.deployment_target = '11.0'
-  s.swift_versions = ['5.1']
+  s.swift_versions = ['5.4']
   s.requires_arc = true
   s.source = {
   	:git => 'https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git',
@@ -36,6 +36,9 @@ Pod::Spec.new do |s|
   s.subspec 'Full' do |subspec|
     subspec.dependency 'SuperAwesome/Base'
     subspec.dependency 'SuperAwesome/Moat'
+    subspec.platform = :ios, "11.0"
+    subspec.ios.deployment_target = '11.0'
+    subspec.xcconfig = { 'IPHONEOS_DEPLOYMENT_TARGET' => '$(inherited)' }
 
     subspec.test_spec 'Tests' do |test_spec|
       test_spec.source_files = 'Pod/Tests/Common/**/*.{swift}', 'Pod/Tests/Network/**/*.{swift}', 'Pod/Tests/Moat/**/*.{swift}', 'Pod/Tests/UI/**/*.{swift}'
@@ -47,38 +50,47 @@ Pod::Spec.new do |s|
 
   s.subspec 'Base' do |subspec|
     subspec.platform = :ios, "11.0"
-    subspec.source_files = 'Pod/Sources/Base/**/*'
+    subspec.ios.deployment_target = '11.0'
+    subspec.source_files = 'Pod/Sources/Base/**/*.{swift}'
     subspec.dependency 'SuperAwesome/Common'
     subspec.dependency 'SuperAwesome/UI'
     subspec.dependency 'SuperAwesome/Network'
+    subspec.xcconfig = { 'IPHONEOS_DEPLOYMENT_TARGET' => '$(inherited)' }
   end
 
   s.subspec 'Common' do |subspec|
     subspec.platform = :ios, "11.0"
+    subspec.ios.deployment_target = '11.0'
     subspec.source_files = 'Pod/Sources/Common/**/*.{swift}'
     subspec.dependency 'SwiftyXMLParser'
     subspec.dependency 'SAVideoPlayer'
+    subspec.xcconfig = { 'IPHONEOS_DEPLOYMENT_TARGET' => '$(inherited)' }
   end
 
   s.subspec 'Moat' do |subspec|
     subspec.platform = :ios, "11.0"
+    subspec.ios.deployment_target = '11.0'
     subspec.source_files = 'Pod/Sources/Moat/**/*.{swift}'
     subspec.dependency 'SuperAwesome/Common'
     subspec.vendored_frameworks = 'Pod/Libraries/SUPMoatMobileAppKit.framework'
-    subspec.xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) MOAT_MODULE' }
+    subspec.xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) MOAT_MODULE','IPHONEOS_DEPLOYMENT_TARGET' => '$(inherited)' }
   end
 
   s.subspec 'UI' do |subspec|
     subspec.platform = :ios, "11.0"
+    subspec.ios.deployment_target = '11.0'
     subspec.source_files = 'Pod/Sources/UI/**/*.{swift}'
     subspec.dependency 'SuperAwesome/Common'    
+    subspec.xcconfig = { 'IPHONEOS_DEPLOYMENT_TARGET' => '$(inherited)' }
   end
 
   s.subspec 'Network' do |subspec|
     subspec.platform = :ios, "11.0"
+    subspec.ios.deployment_target = '11.0'
     subspec.source_files = 'Pod/Sources/Network/**/*.{swift}'
     subspec.dependency 'SuperAwesome/Common'
-    subspec.dependency 'Moya'
+    subspec.dependency 'Moya', '14.0.0'
+    subspec.xcconfig = { 'IPHONEOS_DEPLOYMENT_TARGET' => '$(inherited)' }
   end
 
   # s.subspec 'MoPub' do |m|
