@@ -5,7 +5,7 @@
 //  Created by Gunhan Sancar on 16/04/2020.
 //
 
-struct Creative: Codable {
+public struct Creative: Codable {
     let id: Int
     let name: String?
     let format: CreativeFormatType

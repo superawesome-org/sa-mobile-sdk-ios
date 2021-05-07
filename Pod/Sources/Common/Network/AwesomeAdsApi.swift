@@ -12,7 +12,7 @@ enum AwesomeAdsApi {
     case click(query: EventQuery)
     case videoClick(query: EventQuery)
     case event(query: EventQuery)
-    
+
     var path: String {
         switch self {
         case .ad(let placementId, _): return "/ad/\(placementId)"
