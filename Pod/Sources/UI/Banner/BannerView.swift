@@ -53,6 +53,10 @@ public class BannerView: UIView, Injectable {
         controller.load(placementId, makeAdRequest())
     }
 
+    public func getAd() -> Ad? {
+       return controller.adResponse?.advert
+    }
+
     /**
      * Method that loads an ad into the queue.
      * Ads can only be loaded once and then can be reloaded after they've

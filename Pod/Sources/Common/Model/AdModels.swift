@@ -5,7 +5,7 @@
 //  Created by Gunhan Sancar on 15/04/2020.
 //
 
-struct Ad: Codable {
+public struct Ad: Codable {
     let advertiserId: Int
     let publisherId: Int
     let moat: Float
