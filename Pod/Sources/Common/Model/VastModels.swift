@@ -7,20 +7,20 @@
 
 class VastAd {
     let url: String?
-    var redirect: String?
+    private(set) var redirect: String?
     let type: VastType
     let media: [VastMedia]
 
     private(set) var clickThroughUrl: String?
     private(set) var errorEvents: [String] = []
     private(set) var impressionEvents: [String] = []
-    var creativeViewEvents: [String] = []
-    var startEvents: [String] = []
-    var firstQuartileEvents: [String] = []
-    var midPointEvents: [String] = []
-    var thirdQuartileEvents: [String] = []
-    var completeEvents: [String] = []
-    var clickTrackingEvents: [String] = []
+    private(set) var creativeViewEvents: [String] = []
+    private(set) var startEvents: [String] = []
+    private(set) var firstQuartileEvents: [String] = []
+    private(set) var midPointEvents: [String] = []
+    private(set) var thirdQuartileEvents: [String] = []
+    private(set)  var completeEvents: [String] = []
+    private(set)  var clickTrackingEvents: [String] = []
 
     init(
         url: String? = nil,
