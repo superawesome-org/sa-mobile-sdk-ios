@@ -14,6 +14,8 @@ class Version {
     static var pluginName: String {
         #if MOPUB_PLUGIN
             return "_mopub"
+        #elseif ADMOB_PLUGIN
+            return "_adMob"
         #endif
             return ""
         }
