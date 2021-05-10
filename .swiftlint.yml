@@ -8,5 +8,3 @@ excluded: # paths to ignore during linting. Takes precedence over `included`.
 - Project/R.generated.swift
 - Project/Pods
 
-
-cyclomatic_complexity: 25

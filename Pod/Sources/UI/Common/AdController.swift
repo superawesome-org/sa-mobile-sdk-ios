@@ -12,7 +12,7 @@ protocol AdControllerType {
     var moatLimiting: Bool { get set }
     var closed: Bool { get set }
     var showPadlock: Bool { get }
-    var delegate: AdEventCallback? { get set }
+    var callback: AdEventCallback? { get set }
     var adResponse: AdResponse? { get set }
     var filePathUrl: URL? { get }
     var adAvailable: Bool { get }
@@ -54,7 +54,7 @@ class AdController: AdControllerType, Injectable {
     var moatLimiting = true
     var closed = false
     var adResponse: AdResponse?
-    var delegate: AdEventCallback?
+    var callback: AdEventCallback?
     var placementId: Int { adResponse?.placementId ?? 0 }
     var showPadlock: Bool { adResponse?.advert.showPadlock ?? false }
     var adAvailable: Bool { adResponse != nil }
@@ -85,20 +85,20 @@ class AdController: AdControllerType, Injectable {
     }
 
     func close() {
-        delegate?(placementId, .adClosed)
+        callback?(placementId, .adClosed)
         adResponse = nil
         closed = true
     }
 
-    func adFailedToShow() { delegate?(placementId, .adFailedToShow) }
+    func adFailedToShow() { callback?(placementId, .adFailedToShow) }
 
-    func adShown() { delegate?(placementId, .adShown) }
+    func adShown() { callback?(placementId, .adShown) }
 
-    func adEnded() { delegate?(placementId, .adEnded) }
+    func adEnded() { callback?(placementId, .adEnded) }
 
-    func adClicked() { delegate?(placementId, .adClicked) }
+    func adClicked() { callback?(placementId, .adClicked) }
 
-    func adClosed() { delegate?(placementId, .adClosed) }
+    func adClosed() { callback?(placementId, .adClosed) }
 
     func triggerViewableImpression() {
         guard let adResponse = adResponse else { return }
@@ -135,12 +135,12 @@ class AdController: AdControllerType, Injectable {
     private func onSuccess(_ response: AdResponse) {
         logger.success("Ad load successful for \(response.placementId)")
         adResponse = response
-        delegate?(placementId, .adLoaded)
+        callback?(placementId, .adLoaded)
     }
 
     private func onFailure(_ error: Error) {
         logger.error("Ad load failed", error: error)
-        delegate?(placementId, .adFailedToLoad)
+        callback?(placementId, .adFailedToLoad)
     }
 
     /// Method that is called when a user clicks / taps on an ad
@@ -169,7 +169,7 @@ class AdController: AdControllerType, Injectable {
 
         lastClickTime = currentTime
 
-        delegate?(placementId, .adClicked)
+        callback?(placementId, .adClicked)
 
         if adResponse.advert.creative.format == .video {
             eventRepository.videoClick(adResponse, completion: nil)

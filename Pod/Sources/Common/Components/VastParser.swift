@@ -83,13 +83,29 @@ class VastParser: NSObject, VastParserType {
                 }
             }
         }
+        return VastAd(
+            url: getUrl(medias: medias),
+            type: type,
+            redirect: redirect,
+            errorEvents: errors,
+            impressions: impressions,
+            clickThrough: clickThrough,
+            creativeViewEvents: creativeViews,
+            startEvents: startEvents,
+            firstQuartileEvents: firstQuartiles,
+            midPointEvents: midPoints,
+            thirdQuartileEvents: thirdQuartiles,
+            completeEvents: completes,
+            clickTrackingEvents: clickTrackingEvents,
+            media: medias
+        )
+    }
 
-        var url: String?
-
+    func getUrl(medias: [VastMedia]) -> String? {
         let sortedMedias = medias.sorted { (first, second) -> Bool in
             first.bitrate ?? 0 < second.bitrate ?? 0
         }
-
+        var url: String?
         let quality = connectionProvider.findConnectionType().findQuality()
         switch quality {
         case .minumum: url = sortedMedias.first?.url
@@ -106,23 +122,7 @@ class VastParser: NSObject, VastParserType {
         if url == nil && medias.count > 0 {
             url = medias.last?.url
         }
-
-        return VastAd(
-            url: url,
-            type: type,
-            redirect: redirect,
-            errorEvents: errors,
-            impressions: impressions,
-            clickThrough: clickThrough,
-            creativeViewEvents: creativeViews,
-            startEvents: startEvents,
-            firstQuartileEvents: firstQuartiles,
-            midPointEvents: midPoints,
-            thirdQuartileEvents: thirdQuartiles,
-            completeEvents: completes,
-            clickTrackingEvents: clickTrackingEvents,
-            media: medias
-        )
+        return url
     }
 }
 

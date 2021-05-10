@@ -140,7 +140,7 @@ public class BannerView: UIView, Injectable {
 
     /// Callback function
     @objc
-    public func setCallback(_ callback: AdEventCallback?) { controller.delegate = callback }
+    public func setCallback(_ callback: AdEventCallback?) { controller.callback = callback }
 
     @objc
     public func setTestMode(_ value: Bool) { controller.testEnabled = value }
@@ -231,7 +231,7 @@ public class BannerView: UIView, Injectable {
                 view.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1.0, constant: 0).withPriority(250),
 
                 view.heightAnchor.constraint(lessThanOrEqualTo: self.heightAnchor, multiplier: 1.0, constant: 0),
-                view.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1.0, constant: 0).withPriority(250),
+                view.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 1.0, constant: 0).withPriority(250),
 
                 view.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0),
                 view.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0)

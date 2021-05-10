@@ -123,7 +123,7 @@ extension MoatRepository: SUPMoatTrackerDelegate {
     }
 
     func tracker(_ tracker: SUPMoatBaseTracker?, failedToStartTracking type: SUPMoatStartFailureType, reason: String?) {
-        logger.info("Tracker \(tracker.debugDescription) failed to start tracking because \(String(describing: reason))")
+        logger.info("Tracker \(tracker.debugDescription) failed reason \(String(describing: reason))")
     }
 }
 
