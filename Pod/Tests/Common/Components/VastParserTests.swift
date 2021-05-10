@@ -3,28 +3,28 @@ import Nimble
 @testable import SuperAwesome
 
 class VastParserTests: XCTestCase {
-    
+
     func test_merge_vastAds() throws {
         // Given
-        let vastAd1 = VastAd(url: "url1", type:.inLine, redirect: nil,startEvents: ["",""], media: [VastMedia(),VastMedia()])
-        let vastAd2 = VastAd(url: "url2",type: .wrapper,startEvents: [""], media: [VastMedia()])
-        
+        let vastAd1 = VastAd(url: "url1", type: .inLine, redirect: nil, startEvents: ["", ""], media: [VastMedia(), VastMedia()])
+        let vastAd2 = VastAd(url: "url2", type: .wrapper, startEvents: [""], media: [VastMedia()])
+
         // When
         let merged = vastAd1.merge(from: vastAd2)
-        
+
         // Then
         expect(merged.url).to(equal("url2"))
         expect(merged.startEvents.count).to(equal(3))
         expect(merged.media.count).to(equal(3))
     }
-    
+
     func test_parse_response1() throws {
         // Given
         let parser = VastParser(connectionProvider: ConnectionProviderMock())
-        
+
         // When
         let vast = parser.parse(xmlFile("mock_vast_response_1.0"))
-        
+
         // Then
         expect(vast?.url).to(equal("https://ads.superawesome.tv/v2/demo_images/video.mp4"))
         expect(vast?.errorEvents.first).to(equal("https://ads.superawesome.tv/v2/video/error?placement=30479&amp;creative=-1&amp;line_item=-1&amp;sdkVersion=unknown&amp;rnd=3232269&amp;device=web&amp;country=GB&amp;code=[ERRORCODE]"))
@@ -34,34 +34,29 @@ class VastParserTests: XCTestCase {
         expect(vast?.type).to(equal(.inLine))
         expect(vast?.media.count).to(equal(1))
         expect(vast?.creativeViewEvents).to(equal(["https://ads.superawesome.tv/v2/video/tracking?event=creativeView&placement=30479&creative=-1&line_item=-1&sdkVersion=unknown&rnd=4240693&device=web&country=GB"]))
-        
-        
+
         expect(vast?.startEvents).to(equal(["https://ads.superawesome.tv/v2/video/tracking?event=start&placement=30479&creative=-1&line_item=-1&sdkVersion=unknown&rnd=3286915&device=web&country=GB"]))
-        
-        
-        
+
         expect( vast?.firstQuartileEvents).to(equal([
             "https://ads.superawesome.tv/v2/video/tracking?event=firstQuartile&placement=30479&creative=-1&line_item=-1&sdkVersion=unknown&rnd=6712493&device=web&country=GB"
         ]))
-        
+
         expect( vast?.midPointEvents).to(equal([ "https://ads.superawesome.tv/v2/video/tracking?event=midpoint&placement=30479&creative=-1&line_item=-1&sdkVersion=unknown&rnd=6657530&device=web&country=GB"]))
-        
-        
+
         expect( vast?.thirdQuartileEvents).to(equal([ "https://ads.superawesome.tv/v2/video/tracking?event=thirdQuartile&placement=30479&creative=-1&line_item=-1&sdkVersion=unknown&rnd=5158651&device=web&country=GB"]))
-        
+
         expect(  vast?.completeEvents          ).to(equal(["https://ads.superawesome.tv/v2/video/tracking?event=complete&placement=30479&creative=-1&line_item=-1&sdkVersion=unknown&rnd=2312316&device=web&country=GB"]))
-        
-        
+
         expect(vast?.clickTrackingEvents).to(equal([]))
     }
-    
+
     func test_parse_response2() throws {
         // Given
         let parser = VastParser(connectionProvider: ConnectionProviderMock())
-        
+
         // When
         let vast = parser.parse(xmlFile("mock_vast_response_2.0"))
-        
+
         // Then
         expect(vast?.errorEvents.count).to(equal(1))
         expect(vast?.impressionEvents.count).to(equal(1))
@@ -70,22 +65,19 @@ class VastParserTests: XCTestCase {
         expect(vast?.type).to(equal(.wrapper))
         expect(vast?.media.count).to(equal(0))
         expect(vast?.creativeViewEvents).to(equal(["https://pubads.g.doubleclick.net/pagead/conversion/?ai=BLY-QpZJ4WL-oDcOLbcvpodAOoK2Q6wYAAAAQASCo3bsmOABYiKrYxtcBYLu-roPQCrIBFWRldmVsb3BlcnMuZ29vZ2xlLmNvbboBCjcyOHg5MF94bWzIAQXaAUhodHRwczovL2RldmVsb3BlcnMuZ29vZ2xlLmNvbS9pbnRlcmFjdGl2ZS1tZWRpYS1hZHMvZG9jcy9zZGtzL2h0bWw1L3RhZ3PAAgLgAgDqAiUvMTI0MzE5MDk2L2V4dGVybmFsL3NpbmdsZV9hZF9zYW1wbGVz-AL30R6AAwGQA9AFmAPwAagDAeAEAdIFBhCIrvTSApAGAaAGJNgHAOAHCg&amp;sigh=ClmLNunom9E&amp;label=vast_creativeview&amp;ad_mt=[AD_MT]"]))
-        
-        
+
         expect(vast?.startEvents).to(equal(["https://pubads.g.doubleclick.net/pagead/conversion/?ai=BLY-QpZJ4WL-oDcOLbcvpodAOoK2Q6wYAAAAQASCo3bsmOABYiKrYxtcBYLu-roPQCrIBFWRldmVsb3BlcnMuZ29vZ2xlLmNvbboBCjcyOHg5MF94bWzIAQXaAUhodHRwczovL2RldmVsb3BlcnMuZ29vZ2xlLmNvbS9pbnRlcmFjdGl2ZS1tZWRpYS1hZHMvZG9jcy9zZGtzL2h0bWw1L3RhZ3PAAgLgAgDqAiUvMTI0MzE5MDk2L2V4dGVybmFsL3NpbmdsZV9hZF9zYW1wbGVz-AL30R6AAwGQA9AFmAPwAagDAeAEAdIFBhCIrvTSApAGAaAGJNgHAOAHCg&amp;sigh=ClmLNunom9E&amp;label=part2viewed&amp;ad_mt=[AD_MT]", "https://video-ad-stats.googlesyndication.com/video/client_events?event=2&amp;web_property=ca-pub-3279133228669082&amp;cpn=[CPN]&amp;break_type=[BREAK_TYPE]&amp;slot_pos=[SLOT_POS]&amp;ad_id=[AD_ID]&amp;ad_sys=[AD_SYS]&amp;ad_len=[AD_LEN]&amp;p_w=[P_W]&amp;p_h=[P_H]&amp;mt=[MT]&amp;rwt=[RWT]&amp;wt=[WT]&amp;sdkv=[SDKV]&amp;vol=[VOL]&amp;content_v=[CONTENT_V]&amp;conn=[CONN]&amp;format=[FORMAT_NAMESPACE]_[FORMAT_TYPE]_[FORMAT_SUBTYPE]"]))
-        
+
         expect( vast?.firstQuartileEvents).to(equal([
             "https://pubads.g.doubleclick.net/pagead/conversion/?ai=BLY-QpZJ4WL-oDcOLbcvpodAOoK2Q6wYAAAAQASCo3bsmOABYiKrYxtcBYLu-roPQCrIBFWRldmVsb3BlcnMuZ29vZ2xlLmNvbboBCjcyOHg5MF94bWzIAQXaAUhodHRwczovL2RldmVsb3BlcnMuZ29vZ2xlLmNvbS9pbnRlcmFjdGl2ZS1tZWRpYS1hZHMvZG9jcy9zZGtzL2h0bWw1L3RhZ3PAAgLgAgDqAiUvMTI0MzE5MDk2L2V4dGVybmFsL3NpbmdsZV9hZF9zYW1wbGVz-AL30R6AAwGQA9AFmAPwAagDAeAEAdIFBhCIrvTSApAGAaAGJNgHAOAHCg&amp;sigh=ClmLNunom9E&amp;label=videoplaytime25&amp;ad_mt=[AD_MT]"
         ]))
-        
+
         expect( vast?.midPointEvents).to(equal([ "https://pubads.g.doubleclick.net/pagead/conversion/?ai=BLY-QpZJ4WL-oDcOLbcvpodAOoK2Q6wYAAAAQASCo3bsmOABYiKrYxtcBYLu-roPQCrIBFWRldmVsb3BlcnMuZ29vZ2xlLmNvbboBCjcyOHg5MF94bWzIAQXaAUhodHRwczovL2RldmVsb3BlcnMuZ29vZ2xlLmNvbS9pbnRlcmFjdGl2ZS1tZWRpYS1hZHMvZG9jcy9zZGtzL2h0bWw1L3RhZ3PAAgLgAgDqAiUvMTI0MzE5MDk2L2V4dGVybmFsL3NpbmdsZV9hZF9zYW1wbGVz-AL30R6AAwGQA9AFmAPwAagDAeAEAdIFBhCIrvTSApAGAaAGJNgHAOAHCg&amp;sigh=ClmLNunom9E&amp;label=videoplaytime50&amp;ad_mt=[AD_MT]"]))
-        
-        
+
         expect( vast?.thirdQuartileEvents).to(equal([ "https://pubads.g.doubleclick.net/pagead/conversion/?ai=BLY-QpZJ4WL-oDcOLbcvpodAOoK2Q6wYAAAAQASCo3bsmOABYiKrYxtcBYLu-roPQCrIBFWRldmVsb3BlcnMuZ29vZ2xlLmNvbboBCjcyOHg5MF94bWzIAQXaAUhodHRwczovL2RldmVsb3BlcnMuZ29vZ2xlLmNvbS9pbnRlcmFjdGl2ZS1tZWRpYS1hZHMvZG9jcy9zZGtzL2h0bWw1L3RhZ3PAAgLgAgDqAiUvMTI0MzE5MDk2L2V4dGVybmFsL3NpbmdsZV9hZF9zYW1wbGVz-AL30R6AAwGQA9AFmAPwAagDAeAEAdIFBhCIrvTSApAGAaAGJNgHAOAHCg&amp;sigh=ClmLNunom9E&amp;label=videoplaytime75&amp;ad_mt=[AD_MT]"]))
-        
-        expect( vast?.completeEvents).to(equal ([ "https://pubads.g.doubleclick.net/pagead/conversion/?ai=BLY-QpZJ4WL-oDcOLbcvpodAOoK2Q6wYAAAAQASCo3bsmOABYiKrYxtcBYLu-roPQCrIBFWRldmVsb3BlcnMuZ29vZ2xlLmNvbboBCjcyOHg5MF94bWzIAQXaAUhodHRwczovL2RldmVsb3BlcnMuZ29vZ2xlLmNvbS9pbnRlcmFjdGl2ZS1tZWRpYS1hZHMvZG9jcy9zZGtzL2h0bWw1L3RhZ3PAAgLgAgDqAiUvMTI0MzE5MDk2L2V4dGVybmFsL3NpbmdsZV9hZF9zYW1wbGVz-AL30R6AAwGQA9AFmAPwAagDAeAEAdIFBhCIrvTSApAGAaAGJNgHAOAHCg&amp;sigh=ClmLNunom9E&amp;label=videoplaytime100&amp;ad_mt=[AD_MT]" , "https://video-ad-stats.googlesyndication.com/video/client_events?event=3&amp;web_property=ca-pub-3279133228669082&amp;cpn=[CPN]&amp;break_type=[BREAK_TYPE]&amp;slot_pos=[SLOT_POS]&amp;ad_id=[AD_ID]&amp;ad_sys=[AD_SYS]&amp;ad_len=[AD_LEN]&amp;p_w=[P_W]&amp;p_h=[P_H]&amp;mt=[MT]&amp;rwt=[RWT]&amp;wt=[WT]&amp;sdkv=[SDKV]&amp;vol=[VOL]&amp;content_v=[CONTENT_V]&amp;conn=[CONN]&amp;format=[FORMAT_NAMESPACE]_[FORMAT_TYPE]_[FORMAT_SUBTYPE]"]))
-        
-        
+
+        expect( vast?.completeEvents).to(equal ([ "https://pubads.g.doubleclick.net/pagead/conversion/?ai=BLY-QpZJ4WL-oDcOLbcvpodAOoK2Q6wYAAAAQASCo3bsmOABYiKrYxtcBYLu-roPQCrIBFWRldmVsb3BlcnMuZ29vZ2xlLmNvbboBCjcyOHg5MF94bWzIAQXaAUhodHRwczovL2RldmVsb3BlcnMuZ29vZ2xlLmNvbS9pbnRlcmFjdGl2ZS1tZWRpYS1hZHMvZG9jcy9zZGtzL2h0bWw1L3RhZ3PAAgLgAgDqAiUvMTI0MzE5MDk2L2V4dGVybmFsL3NpbmdsZV9hZF9zYW1wbGVz-AL30R6AAwGQA9AFmAPwAagDAeAEAdIFBhCIrvTSApAGAaAGJNgHAOAHCg&amp;sigh=ClmLNunom9E&amp;label=videoplaytime100&amp;ad_mt=[AD_MT]", "https://video-ad-stats.googlesyndication.com/video/client_events?event=3&amp;web_property=ca-pub-3279133228669082&amp;cpn=[CPN]&amp;break_type=[BREAK_TYPE]&amp;slot_pos=[SLOT_POS]&amp;ad_id=[AD_ID]&amp;ad_sys=[AD_SYS]&amp;ad_len=[AD_LEN]&amp;p_w=[P_W]&amp;p_h=[P_H]&amp;mt=[MT]&amp;rwt=[RWT]&amp;wt=[WT]&amp;sdkv=[SDKV]&amp;vol=[VOL]&amp;content_v=[CONTENT_V]&amp;conn=[CONN]&amp;format=[FORMAT_NAMESPACE]_[FORMAT_TYPE]_[FORMAT_SUBTYPE]"]))
+
         expect(vast?.clickTrackingEvents).to(equal(["https://video-ad-stats.googlesyndication.com/video/client_events?event=6&amp;web_property=ca-pub-3279133228669082&amp;cpn=[CPN]&amp;break_type=[BREAK_TYPE]&amp;slot_pos=[SLOT_POS]&amp;ad_id=[AD_ID]&amp;ad_sys=[AD_SYS]&amp;ad_len=[AD_LEN]&amp;p_w=[P_W]&amp;p_h=[P_H]&amp;mt=[MT]&amp;rwt=[RWT]&amp;wt=[WT]&amp;sdkv=[SDKV]&amp;vol=[VOL]&amp;content_v=[CONTENT_V]&amp;conn=[CONN]&amp;format=[FORMAT_NAMESPACE]_[FORMAT_TYPE]_[FORMAT_SUBTYPE]", "https://pubads.g.doubleclick.net/pcs/click?xai=AKAOjsuyjdNJZ1zHVE5WfaJrEvrP7eK0VqSdNyGBRoMjMXd90VYE3xZVr3l5Kn0h166VefqEYqeNX_z_zObIjytcV-YGYRDvmnzU93x3Kplly4YHIdlHtXRrAE3AbaZAjN9HEjoTs4g6GZM7lc4KX_5OdCRwaEq-DuVxs0QZNkyJ5b8nCA3nkya8WzKLmAf_4sjx3e3aAanzjuaYc1__5LMi7hXLuYk_Bubh7HNPofn4y8PKVmnaOZGfaycMkFIr4pTd1DdQJ6Ma&amp;sig=Cg0ArKJSzOdaV5VR9GxbEAE&amp;urlfix=1"]))
     }
 }

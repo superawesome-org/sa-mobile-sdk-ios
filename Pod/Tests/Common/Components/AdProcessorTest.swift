@@ -25,7 +25,7 @@ class AdProcessorTests: XCTestCase {
         let adProcessor = AdProcessor(htmlFormatter: HtmlFormatterMock(imageFormat: imageFormatUsed,
                                                                        mediaFormat: mediaFormatUsed,
                                                                        tagFormat: tagFormatUsed),
-                                      vastParser: VastParserMock(firstVast: makeVastAd(), secondVast: makeVastAd()),
+                                      vastParser: VastParserMock(firstVast: VastAd(type: .inLine), secondVast: VastAd(type: .inLine)),
                                       networkDataSource: NetworkDataSourceMock(getDataResult: dataResult,
                                                                                getDataResult2: dataResult,
                                                                                downloadFileResult: downloadResult),
@@ -83,22 +83,21 @@ class AdProcessorTests: XCTestCase {
 
     func test_videoTag_networkDataCalled() throws {
         let downloadFilePath = "localfilepath"
-        let first = makeVastAd(impressions: ["url1"])
+        let first = VastAd(type: .inLine, impressions: ["url1"])
 
         testVideo("first_url", filePath: downloadFilePath,
                   dataResult: Result.success(Data("firstdata".utf8)),
                   dataResult2: Result.success(Data()),
                   downloadResult: Result.success(downloadFilePath),
-                  vastAd: first, secondVastAd: makeVastAd(),
+                  vastAd: first, secondVastAd: VastAd(type: .inLine),
                   impressionEventCount: 1)
     }
 
     func test_videoTag_vastRedirect_mergeVasts() throws {
         let downloadFilePath = "localfilepath"
-        let first =   makeVastAd(impressions: ["url1"])
-        first.redirect = "redirecturl"
+        let first =  VastAd(type: .invalid, redirect: "redirecturl", impressions: ["url1"])
 
-        let second =  makeVastAd(impressions: ["url2"])
+        let second =  VastAd(type: .inLine, impressions: ["url2"])
 
         testVideo("firsturl", filePath: downloadFilePath,
                   dataResult: Result.success(Data("firstdata".utf8)),
@@ -113,7 +112,7 @@ class AdProcessorTests: XCTestCase {
                   dataResult: Result.failure(AwesomeAdsError.network),
                   dataResult2: Result.failure(AwesomeAdsError.network),
                   downloadResult: Result.failure(AwesomeAdsError.network),
-                  vastAd: makeVastAd(), secondVastAd: makeVastAd(),
+                  vastAd: VastAd(type: .inLine), secondVastAd: VastAd(type: .inLine),
                   impressionEventCount: nil)
     }
 
@@ -122,11 +121,8 @@ class AdProcessorTests: XCTestCase {
                   dataResult: Result.failure(AwesomeAdsError.network),
                   dataResult2: Result.failure(AwesomeAdsError.network),
                   downloadResult: Result.failure(AwesomeAdsError.network),
-                  vastAd: makeVastAd(), secondVastAd: makeVastAd(),
+                  vastAd: VastAd(type: .inLine), secondVastAd: VastAd(type: .inLine),
                   impressionEventCount: nil)
     }
-    
-    private func makeVastAd(impressions:[String] = []) -> VastAd{
-        return VastAd(type: .invalid,impressions: impressions)
-    }
+
 }
