@@ -15,82 +15,114 @@ class VastParser: NSObject, VastParserType {
         self.connectionProvider = connectionProvider
     }
 
-    func parse(_ data: Data) -> VastAd {
-        let vastAd = VastAd()
+    func parse(_ data: Data) -> VastAd? {
+
         let xml = XML.parse(data)
         var root: XML.Accessor
 
+        var type: VastType!
         if xml.VAST.Ad.InLine.error == nil {
-            vastAd.type = .inLine
+            type = .inLine
             root = xml.VAST.Ad.InLine
         } else if xml.VAST.Ad.Wrapper.error == nil {
-            vastAd.type = .wrapper
+            type = .wrapper
             root = xml.VAST.Ad.Wrapper
         } else {
-            return vastAd
+            return nil
         }
 
-        if let value = root.VASTAdTagURI.text {
-            vastAd.redirect = value
-        }
+        let redirect = root.VASTAdTagURI.text
 
+        var errors: [String] = []
         if let value = root.Error.text {
-            vastAd.addEvent(VastEvent(event: "vast_error", url: value))
+            errors = [value]
         }
 
+        var impressions: [String] = []
         if let value = root.Impression.text {
-            vastAd.addEvent(VastEvent(event: "vast_impression", url: value))
+            impressions = [value]
         }
+
+        var clickThrough: String?
+        var clickTrackingEvents = [String]()
+        var creativeViews = [String]()
+        var startEvents = [String]()
+        var firstQuartiles = [String]()
+        var midPoints = [String]()
+        var thirdQuartiles = [String]()
+        var completes = [String]()
+        var medias = [VastMedia]()
 
         for linear in root.Creatives.Creative.Linear {
-
-            linear.VideoClicks.ClickThrough.iterateValues().forEach { value in
-                vastAd.addEvent(VastEvent(event: "vast_click_through", url: value))
-            }
-
-            linear.VideoClicks.ClickTracking.iterateValues().forEach { value in
-                vastAd.addEvent(VastEvent(event: "vast_click_tracking", url: value))
-            }
+            clickThrough = linear.VideoClicks.ClickThrough.iterateValues().map { $0 }.last
+            clickTrackingEvents.append(contentsOf: linear.VideoClicks.ClickTracking.iterateValues().map { $0 })
 
             for tracking in linear.TrackingEvents.Tracking {
-                if let event = tracking.attributes["event"], let url = tracking.text {
-                    vastAd.addEvent(VastEvent(event: "vast_\(event)", url: url))
+                if let event = tracking.attributes["event"], let url = tracking.text, !url.isEmpty {
+                    switch event {
+                    case "creativeView": creativeViews.append(url)
+                    case "start": startEvents.append(url)
+                    case "firstQuartile": firstQuartiles.append(url)
+                    case "midpoint": midPoints.append(url)
+                    case "thirdQuartile": thirdQuartiles.append(url)
+                    case "complete": completes.append(url)
+                    default: continue
+                    }
                 }
+
             }
 
             for media in linear.MediaFiles.MediaFile {
                 if let type = media.attributes["type"],
-                    type.contains("mp4"),
-                    let url = media.text,
-                    let bitrate = media.attributes["bitrate"]?.toInt,
-                    let width = media.attributes["width"]?.toInt,
-                    let height = media.attributes["height"]?.toInt {
-
-                    let media = VastMedia(type: type, url: url, bitrate: bitrate, width: width, height: height)
-                    vastAd.addMedia(media)
+                   type.contains("mp4"),
+                   let url = media.text,
+                   let bitrate = media.attributes["bitrate"]?.toInt,
+                   let width = media.attributes["width"]?.toInt,
+                   let height = media.attributes["height"]?.toInt {
+                    medias.append(VastMedia(type: type, url: url, bitrate: bitrate, width: width, height: height))
                 }
             }
         }
+        return VastAd(
+            url: getUrl(medias: medias),
+            type: type,
+            redirect: redirect,
+            errorEvents: errors,
+            impressions: impressions,
+            clickThrough: clickThrough,
+            creativeViewEvents: creativeViews,
+            startEvents: startEvents,
+            firstQuartileEvents: firstQuartiles,
+            midPointEvents: midPoints,
+            thirdQuartileEvents: thirdQuartiles,
+            completeEvents: completes,
+            clickTrackingEvents: clickTrackingEvents,
+            media: medias
+        )
+    }
 
-        let sortedMedias = vastAd.sortedMedia()
-
+    func getUrl(medias: [VastMedia]) -> String? {
+        let sortedMedias = medias.sorted { (first, second) -> Bool in
+            first.bitrate ?? 0 < second.bitrate ?? 0
+        }
+        var url: String?
         let quality = connectionProvider.findConnectionType().findQuality()
         switch quality {
-        case .minumum: vastAd.url = sortedMedias.first?.url
+        case .minumum: url = sortedMedias.first?.url
         case .medium:
             let size = sortedMedias.count
             if size > 2 {
-                vastAd.url = sortedMedias[size/2].url
+               url = sortedMedias[size/2].url
+            } else {
+                url = sortedMedias.last?.url
             }
-            break
-        case .maximum: vastAd.url = sortedMedias.last?.url
+        case .maximum: url = sortedMedias.last?.url
         }
 
-        if vastAd.url == nil && vastAd.media.count > 0 {
-            vastAd.url = vastAd.media.last?.url
+        if url == nil && medias.count > 0 {
+            url = medias.last?.url
         }
-
-        return vastAd
+        return url
     }
 }
 

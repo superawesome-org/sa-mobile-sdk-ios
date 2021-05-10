@@ -6,67 +6,71 @@
 //
 
 class VastAd {
-    var url: String?
-    var redirect: String?
-    var type: VastType = .invalid
-    var media: [VastMedia] = []
+    let url: String?
+    private(set) var redirect: String?
+    let type: VastType
+    let media: [VastMedia]
 
     private(set) var clickThroughUrl: String?
+    private(set) var errorEvents: [String] = []
+    private(set) var impressionEvents: [String] = []
+    private(set) var creativeViewEvents: [String] = []
+    private(set) var startEvents: [String] = []
+    private(set) var firstQuartileEvents: [String] = []
+    private(set) var midPointEvents: [String] = []
+    private(set) var thirdQuartileEvents: [String] = []
+    private(set)  var completeEvents: [String] = []
+    private(set)  var clickTrackingEvents: [String] = []
 
-    var errorEvents: [String] = []
-    var impressionEvents: [String] = []
-    var creativeViewEvents: [String] = []
-    var startEvents: [String] = []
-    var firstQuartileEvents: [String] = []
-    var midPointEvents: [String] = []
-    var thirdQuartileEvents: [String] = []
-    var completeEvents: [String] = []
-    var clickTrackingEvents: [String] = []
+    init(
+        url: String? = nil,
+        type: VastType,
+        redirect: String? = nil,
+        errorEvents: [String] = [],
+        impressions: [String] = [],
+        clickThrough: String? = nil,
+        creativeViewEvents: [String] = [],
+        startEvents: [String] = [],
+        firstQuartileEvents: [String] = [],
+        midPointEvents: [String] = [],
+        thirdQuartileEvents: [String] = [],
+        completeEvents: [String] = [],
+        clickTrackingEvents: [String] = [],
+        media: [VastMedia] = []) {
+        self.url = url
+        self.redirect = redirect
+        self.type = type
+        self.media = media
+        self.errorEvents = errorEvents
+        self.impressionEvents = impressions
+        self.creativeViewEvents = creativeViewEvents
+        self.clickThroughUrl = clickThrough
+        self.startEvents = startEvents
+        self.firstQuartileEvents = firstQuartileEvents
+        self.midPointEvents = midPointEvents
+        self.thirdQuartileEvents = thirdQuartileEvents
+        self.completeEvents = completeEvents
+        self.clickTrackingEvents = clickTrackingEvents
+
+    }
 
     func merge(from: VastAd?) -> VastAd {
         guard let from = from else { return self }
 
-        self.url = from.url ?? self.url
-        self.clickThroughUrl = from.clickThroughUrl ?? self.clickThroughUrl
-        self.errorEvents.append(contentsOf: from.errorEvents)
-        self.impressionEvents.append(contentsOf: from.impressionEvents)
-        self.creativeViewEvents.append(contentsOf: from.creativeViewEvents)
-        self.startEvents.append(contentsOf: from.startEvents)
-        self.firstQuartileEvents.append(contentsOf: from.firstQuartileEvents)
-        self.midPointEvents.append(contentsOf: from.midPointEvents)
-        self.thirdQuartileEvents.append(contentsOf: from.thirdQuartileEvents)
-        self.completeEvents.append(contentsOf: from.completeEvents)
-        self.clickTrackingEvents.append(contentsOf: from.clickTrackingEvents)
+        return VastAd(url: from.url ?? self.url,
+               type: type,
+               redirect: nil,
+               errorEvents: errorEvents + from.errorEvents,
+               impressions: impressionEvents + from.impressionEvents,
+               clickThrough: from.clickThroughUrl ?? self.clickThroughUrl,
+               startEvents: startEvents + from.startEvents,
+               firstQuartileEvents: firstQuartileEvents + from.firstQuartileEvents,
+               midPointEvents: midPointEvents + from.midPointEvents,
+               thirdQuartileEvents: thirdQuartileEvents +  from.thirdQuartileEvents,
+               completeEvents: completeEvents + from.completeEvents,
+               clickTrackingEvents: clickTrackingEvents + from.clickTrackingEvents,
+               media: media + from.media)
 
-        self.media.append(contentsOf: from.media)
-
-        return self
-    }
-
-    func addMedia(_ media: VastMedia) {
-        self.media.append(media)
-    }
-
-    func addEvent(_ event: VastEvent) {
-        switch event.event {
-        case "vast_click_through": clickThroughUrl = event.url
-        case "vast_error": errorEvents.append(event.url)
-        case "vast_impression": impressionEvents.append(event.url)
-        case "vast_creativeView": creativeViewEvents.append(event.url)
-        case "vast_start": startEvents.append(event.url)
-        case "vast_firstQuartile": firstQuartileEvents.append(event.url)
-        case "vast_midpoint": midPointEvents.append(event.url)
-        case "vast_thirdQuartile": thirdQuartileEvents.append(event.url)
-        case "vast_complete": completeEvents.append(event.url)
-        case "vast_click_tracking": clickTrackingEvents.append(event.url)
-        default: break
-        }
-    }
-
-    func sortedMedia() -> [VastMedia] {
-        return media.sorted { (first, second) -> Bool in
-            first.bitrate ?? 0 < second.bitrate ?? 0
-        }
     }
 }
 

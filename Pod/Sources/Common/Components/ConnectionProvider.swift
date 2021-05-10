@@ -38,7 +38,8 @@ class ConnectionProvider: ConnectionProviderType {
             return .cellularUnknown
         } else if !flags.contains(.connectionRequired) {
             return .wifi
-        } else if (flags.contains(.connectionOnDemand) || flags.contains(.connectionOnTraffic)) && !flags.contains(.interventionRequired) {
+        } else if (flags.contains(.connectionOnDemand) || flags.contains(.connectionOnTraffic))
+                    && !flags.contains(.interventionRequired) {
             return .wifi
         } else {
             return .unknown

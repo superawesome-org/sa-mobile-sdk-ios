@@ -45,7 +45,8 @@ public class InterstitialAd: NSObject, Injectable {
     public class func play(_ placementId: Int, fromVC parent: UIViewController?) {
         logger.info("play()")
         // guard against invalid ad formats
-        guard let adResponse = controller.adResponse, adResponse.advert.creative.format != CreativeFormatType.video else {
+        guard let adResponse = controller.adResponse,
+              adResponse.advert.creative.format != CreativeFormatType.video else {
                 controller.adFailedToShow()
                 return
         }
@@ -55,7 +56,7 @@ public class InterstitialAd: NSObject, Injectable {
                                                       bumperPageEnabled: isBumperPageEnabled,
                                                       testingEnabled: isTestingEnabled,
                                                       orientation: orientation,
-                                                      delegate: self.controller.delegate)
+                                                      delegate: self.controller.callback)
         viewController.modalPresentationStyle = .fullScreen
         viewController.modalTransitionStyle = .coverVertical
         parent?.present(viewController, animated: true, completion: nil)
@@ -71,7 +72,7 @@ public class InterstitialAd: NSObject, Injectable {
     public class func hasAdAvailable(_ placementId: Int) -> Bool { controller.adAvailable }
 
     @objc
-    public class func setCallback(_ callback: @escaping AdEventCallback) { controller.delegate = callback }
+    public class func setCallback(_ callback: @escaping AdEventCallback) { controller.callback = callback }
 
     @available(*, deprecated, message: "Use `AwesomeAdsSdk.Configuration` instead")
     @objc
