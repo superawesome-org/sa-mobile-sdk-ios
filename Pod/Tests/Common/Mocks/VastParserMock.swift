@@ -11,7 +11,7 @@ struct VastParserMock: VastParserType {
     let firstVast: VastAd
     let secondVast: VastAd
 
-    func parse(_ data: Data) -> VastAd {
+    func parse(_ data: Data) -> VastAd? {
         if String(decoding: data, as: UTF8.self).contains("first") {
             return firstVast
         } else {

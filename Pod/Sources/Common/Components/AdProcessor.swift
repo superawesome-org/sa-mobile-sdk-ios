@@ -70,17 +70,16 @@ class AdProcessor: AdProcessorType {
         }
     }
 
-    private func handleVast(_ url: String, initialVast: VastAd?, complition: @escaping OnComplete<VastAd?>) {
+    private func handleVast(_ url: String, initialVast: VastAd?, isRedirect: Bool = false, complition: @escaping OnComplete<VastAd?>) {
         networkDataSource.getData(url: url) { result in
             switch result {
             case .success(let data):
                 let vast = self.vastParser.parse(data)
-
-                if let redirect = vast.redirect {
-                    let mergedVast = vast.merge(from: initialVast)
-                    self.handleVast(redirect, initialVast: mergedVast, complition: complition)
+                if let redirect = vast?.redirect, !isRedirect {
+                    let mergedVast = vast?.merge(from: initialVast)
+                    self.handleVast(redirect, initialVast: mergedVast, isRedirect: true, complition: complition)
                 } else {
-                    let mergedVast = vast.merge(from: initialVast)
+                    let mergedVast = vast?.merge(from: initialVast)
                     complition(mergedVast)
                 }
             case .failure: complition(initialVast)

@@ -7,5 +7,5 @@
 
 /// Protocol to parse VAST XML documents
 protocol VastParserType {
-    func parse(_ data: Data) -> VastAd
+    func parse(_ data: Data) -> VastAd?
 }

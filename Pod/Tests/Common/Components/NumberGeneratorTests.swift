@@ -57,7 +57,7 @@ class NumberGeneratorTests: XCTestCase {
         let result = numberGenerator.nextIntForParentalGate()
 
         // Then
-        expect(result) > 50
+        expect(result) >= 50
         expect(result) < 99
     }
 }

@@ -19,7 +19,7 @@ PODS:
     - Moya/Core (= 14.0.0)
   - Moya/Core (14.0.0):
     - Alamofire (~> 5.0)
-  - Nimble (9.0.1)
+  - Nimble (9.2.0)
   - SAVideoPlayer (2.0.1)
   - SuperAwesome/Base (8.0.5-refactor):
     - SuperAwesome/Common
@@ -74,9 +74,9 @@ SPEC CHECKSUMS:
   Mockingjay: 0f7c5aa49c7f1b95621cee3c79b557141f5a225c
   mopub-ios-sdk: ce5aa12abe59d42cb8866b1297bdff7b6a42e273
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
-  Nimble: 7bed62ffabd6dbfe05f5925cbc43722533248990
+  Nimble: 4f4a345c80b503b3ea13606a4f98405974ee4d0b
   SAVideoPlayer: 5a1db63d754db28595f8561b910e1f9754cbfa13
-  SuperAwesome: 664f36235a3e6b3271545ba5183886cf9891d685
+  SuperAwesome: f509402423dac6411f06a10dc8f67f4a055bb07a
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
   SwiftyXMLParser: 5ebb8793192f403fa8cc691045143906122a7a75
   URITemplate: 58e0d47f967006c5d59888af5356c4a8ed3b197d
