@@ -15,7 +15,7 @@ class Version {
         #if MOPUB_PLUGIN
             return "_mopub"
         #elseif ADMOB_PLUGIN
-            return "_adMob"
+            return "_admob"
         #endif
             return ""
         }
