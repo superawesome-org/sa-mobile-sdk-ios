@@ -17,20 +17,20 @@ class AdMobViewController: UIViewController {
     private var rewardAdUnitId = "ca-app-pub-2222631699890286/3695609060"
     
     private var bannerView: GADBannerView!
-    private var interstitial: GADInterstitial!
-    private var rewardedAd: GADRewardedAd!
-
+    private var interstitial: GADInterstitialAd?
+    private var rewardedAd: GADRewardedAd?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Banner Ad
         createAndLoadBannerAd()
-
-        // Interstitial Ad
-        interstitial = createAndLoadInterstitial()
-
+        
+        // Intestitial Ad
+        createAndLoadInterstitial()
+        
         // Rewarded Ad
-        rewardedAd = createAndLoadRewardedAd()
+        createAndLoadRewardedAd()
     }
     
     func createAndLoadBannerAd() {
@@ -38,14 +38,13 @@ class AdMobViewController: UIViewController {
         extra.testEnabled = false
         extra.parentalGateEnabled = false
         extra.trasparentEnabled = true
-        //extra.configuration = STAGING;
-
+        
         let extras = GADCustomEventExtras()
         extras.setExtras(extra as? [AnyHashable : Any], forLabel: "iOSBannerCustomEvent")
-
+        
         let request = GADRequest()
         request.register(extras)
-
+        
         bannerView = GADBannerView(adSize: kGADAdSizeBanner)
         bannerView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(bannerView)
@@ -59,14 +58,19 @@ class AdMobViewController: UIViewController {
         bannerView.load(request)
     }
     
-    func createAndLoadInterstitial() -> GADInterstitial {
-        let interstitial = GADInterstitial(adUnitID: interstitialAdUnitId)
-        interstitial.delegate = self
-        interstitial.load(GADRequest())
-        return interstitial
+    func createAndLoadInterstitial()  {
+        GADInterstitialAd.load(withAdUnitID: interstitialAdUnitId, request: nil){ interstitial, error in
+            if error != nil {
+                print("[SuperAwesome | AdMob] interstitial failed to load case")
+            } else {
+                print("[SuperAwesome | AdMob] interstitial successfully loaded")
+                print("[SuperAwesome | AdMob] interstitial adapter class name: \(interstitial?.responseInfo.adNetworkClassName ?? "")")
+            }
+            self.interstitial = interstitial
+        }
     }
     
-    func createAndLoadRewardedAd() -> GADRewardedAd{
+    func createAndLoadRewardedAd(){
         let extra = SAAdMobVideoExtra()
         extra.testEnabled = false
         extra.closeAtEndEnabled = true
@@ -75,20 +79,19 @@ class AdMobViewController: UIViewController {
         extra.smallCLickEnabled = true
         //extra.configuration = STAGING;
         //extra.orientation = LANDSCAPE;
-
+        
         let request = GADRequest()
         request.register(extra)
-
-        let rewardedAd = GADRewardedAd(adUnitID: rewardAdUnitId)
-        rewardedAd.load(request, completionHandler: { error in
+        
+        GADRewardedAd.load(withAdUnitID: rewardAdUnitId, request: request){ rewardedAd, error in
             if error != nil {
                 print("[SuperAwesome | AdMob] RewardedAd failed to load case")
             } else {
                 print("[SuperAwesome | AdMob] RewardedAd successfully loaded")
-                print("[SuperAwesome | AdMob] RewardedAd adapter class name: \(rewardedAd.responseInfo?.adNetworkClassName ?? "")")
+                print("[SuperAwesome | AdMob] RewardedAd adapter class name: \(rewardedAd?.responseInfo.adNetworkClassName ?? "")")
             }
-        })
-        return rewardedAd
+            self.rewardedAd = rewardedAd
+        }
     }
     
     func addBannerView(bannerView: UIView?) {
@@ -114,16 +117,19 @@ class AdMobViewController: UIViewController {
     }
     
     @IBAction func showInterstitial(_ sender: Any) {
-        if interstitial.isReady {
-            interstitial.present(fromRootViewController: self)
+        if let ad = interstitial {
+            ad.present(fromRootViewController: self)
         } else {
-            print("[SuperAwesome | AdMob] Interstitial Ad wasn't ready")
+            print("Ad wasn't ready")
         }
     }
     
     @IBAction func showVideo(_ sender: Any) {
-        if rewardedAd.isReady {
-            rewardedAd.present(fromRootViewController: self, delegate: self)
+        
+        if let ad = rewardedAd{
+            ad.present(fromRootViewController: self){
+                
+            }
         } else {
             print("[SuperAwesome | AdMob] Video ad wasn't ready")
         }
@@ -135,39 +141,11 @@ extension AdMobViewController: GADBannerViewDelegate {
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
         print("[SuperAwesome | AdMob] adView:adViewDidReceiveAd:")
     }
-    func adViewDidDismissScreen(_ bannerView: GADBannerView) {
+    func bannerViewDidDismissScreen(_ bannerView: GADBannerView) {
         print("[SuperAwesome | AdMob] adView:adViewDidDismissScreen:")
     }
-    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
-        print("[SuperAwesome | AdMob] adView:didFailToReceiveAdWithError:")
-    }
 }
 
-extension AdMobViewController: GADInterstitialDelegate {
-    func interstitialDidReceiveAd(_ ad: GADInterstitial) {
-        print("[SuperAwesome | AdMob] interstitialDidReceiveAd:")
-    }
-    func interstitialDidFail(toPresentScreen ad: GADInterstitial) {
-        print("[SuperAwesome | AdMob] interstitialDidReceiveAd:")
-    }
-    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
-        print("[SuperAwesome | AdMob] interstitialDidDismissScreen:")
-        self.interstitial = createAndLoadInterstitial()
-    }
-}
-
-extension AdMobViewController: GADRewardedAdDelegate {
-    func rewardedAd(_ rewardedAd: GADRewardedAd, userDidEarn reward: GADAdReward) {
-        print("[SuperAwesome | AdMob] rewardedAd:userDidEarnReward: Type:\(reward.type) Amount:\(reward.amount)")
-    }
-    func rewardedAdDidDismiss(_ rewardedAd: GADRewardedAd) {
-        print("[SuperAwesome | AdMob] rewardedAdDidDismiss:")
-        self.rewardedAd = createAndLoadRewardedAd()
-    }
-    func rewardedAdDidPresent(_ rewardedAd: GADRewardedAd) {
-        print("[SuperAwesome | AdMob] rewardedAdDidPresent:")
-    }
-    func rewardedAd(_ rewardedAd: GADRewardedAd, didFailToPresentWithError error: Error) {
-        print("[SuperAwesome | AdMob] rewardedAd:didFailToPresentWithError")
-    }
+extension AdMobViewController: GADFullScreenContentDelegate {
+    
 }
