@@ -12,12 +12,13 @@ import Foundation
 }
 
 @objc (SAVideoEvents) public class VideoEvents: NSObject {
-
+    
     private var isStartHandled: Bool = false
     private var is2SHandled: Bool = false
     private var isFirstQuartileHandled: Bool = false
     private var isMidpointHandled: Bool = false
     private var isThirdQuartileHandled: Bool = false
+    private var viewableDetector: ViewableDetectorType? = nil
     
     private var events: SAEvents
     
@@ -43,8 +44,9 @@ import Foundation
            let avLayer = player.getAVPlayerLayer() {
             events.startMoatTracking(forVideoPlayer: avPlayer,
                                      with: avLayer,
-                                    andView: videoPlayer)
+                                     andView: videoPlayer)
         }
+        is2SHandled = false
     }
     
     public func complete(player: VideoPlayer, time: Int, duration: Int) {
@@ -59,19 +61,24 @@ import Foundation
     }
     
     public func time(player: VideoPlayer, time: Int, duration: Int) {
+        
+        if let videoPlayer = player as? UIView, !is2SHandled  {
+            is2SHandled = true
+            viewableDetector?.cancel()
+            viewableDetector = ViewableDetector()
+            viewableDetector?.start(for: videoPlayer, forTickCount: 2, hasBeenVisible: { [weak self] in
+                self?.events.triggerViewableImpressionEvent()
+                self?.delegate?.hasBeenVisible()
+            })
+        }
+        
         if (time >= 1 && !isStartHandled) {
             isStartHandled = true
             events.triggerVASTImpressionEvent()
             events.triggerVASTCreativeViewEvent()
             events.triggerVASTStartEvent()
         }
-        if (time >= 2 && !is2SHandled) {
-            is2SHandled = true
-            if let videoPlayer = player as? UIView, events.isChild(inViewableRect: videoPlayer) == true {
-                events.triggerViewableImpressionEvent()
-                delegate?.hasBeenVisible()
-            }
-        }
+        
         if (time >= duration / 4 && !isFirstQuartileHandled) {
             isFirstQuartileHandled = true
             events.triggerVASTFirstQuartileEvent()
