@@ -5,6 +5,7 @@
 //
 
 import UIKit
+import WebKit
 
 @objc(SAManagedBannerAd) public final class SAManagedBannerAd: UIView {
 
