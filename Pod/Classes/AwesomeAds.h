@@ -4,6 +4,7 @@
  */
 
 #import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
 #import "SABannerAd.h"
 #import "SAInterstitialAd.h"
 #import "SACallback.h"
