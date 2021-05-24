@@ -15,7 +15,7 @@ For more information check out the [SuperAwesome Developer Portal](http://doc.su
 Use the following entry in your Podfile:
 
 ```rb
-pod 'SuperAwesome', '~> 7.2'
+pod 'SuperAwesome', '~> 8.0'
 ```
 
 Then run `pod update`.
