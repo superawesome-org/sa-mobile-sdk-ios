@@ -14,10 +14,10 @@ Change your <strong>Podfile</strong> to contain the following:
 {% highlight shell %}
 target 'MyProject' do
     # add the SuperAwesome SDK
-    pod 'SuperAwesome', '~> 7.2'
+    pod 'SuperAwesome', '~> {{ site.latest_version }}'
 
     # add the MoPub plugin
-    pod 'SuperAwesome/MoPub', '~> 7.2'
+    pod 'SuperAwesome/MoPub', '~> {{ site.latest_version }}'
 end
 {% endhighlight %}
 
