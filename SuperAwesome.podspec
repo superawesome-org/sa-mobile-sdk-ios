@@ -14,7 +14,12 @@ Pod::Spec.new do |s|
   s.author = {
 	   'Gabriel Coman' => 'gabriel.coman@superawesome.tv'
   }
-  
+  s.pod_target_xcconfig  = {
+      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 arm64e armv7 armv7s',
+      'EXCLUDED_ARCHS[sdk=iphoneos*]' => 'i386 x86_64' }
+  s.user_target_xcconfig = {
+      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 arm64e armv7 armv7s',
+      'EXCLUDED_ARCHS[sdk=iphoneos*]' => 'i386 x86_64' }
   
   s.ios.deployment_target = '10.0'
   s.swift_versions = ['5.0']
@@ -46,14 +51,18 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'Moat' do |moat|
+    moat.ios.deployment_target  = '10.0'
     moat.dependency 'SuperAwesome/Base'
     moat.vendored_frameworks = 'Pod/Libraries/SUPMoatMobileAppKit.framework'
     moat.source_files = 'Pod/Plugin/Moat2/*'
+    moat.dependency 'SwiftyXMLParser', '4.3.0'
   end
 
   s.subspec 'Core' do |c|
+    c.ios.deployment_target  = '10.0'
     c.dependency 'SuperAwesome/Full'
     c.source_files = 'Pod/Plugin/Core/Classes/**/*'
+    c.dependency 'SwiftyXMLParser'
 
 #    c.test_spec 'Tests' do |test_spec|
 #      test_spec.source_files = 'Pod/Plugin/Core/Tests/**/*'
