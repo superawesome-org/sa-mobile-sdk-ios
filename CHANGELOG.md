@@ -5,9 +5,9 @@ CHANGELOG
  - Added Dwell Time
  - Cleaned up and updated dependencies across the board, including Admob and Mopub
  - Fixed viewable impression calculation
- - Added support for new formats: 3rd party programmatic display and interstitials
+ - Added support for new formats: 3rd party display and interstitials
  - Removed ASIdentifier wholely from the project. The code was not in use. 
- - Initial functionality added for IronSource integration
+ - Initial functionality added for selection of a specific creative based on request parameters
 
 7.2.10
  - Removed IDFA and AdSupport framework from the codebase
