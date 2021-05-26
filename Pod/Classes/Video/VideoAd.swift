@@ -92,6 +92,62 @@ public enum AdState {
         }
     }
     
+    @objc(load: creativeId: lineItemId:)
+    public static func load(withPlacementId placementId: Int, creativeId:Int,lineItemId:Int) {
+        let adState = ads[placementId] ?? .none
+        
+        switch adState {
+        case .none:
+            ads[placementId] = .loading
+            
+            let session = SASession()
+            session.setTestMode(isTestingEnabled)
+            session.setConfiguration(configuration)
+            session.setVersion(SAVersion.getSdkVersion())
+            session.setPos(SARTBPosition.POS_FULLSCREEN)
+            session.setPlaybackMethod(SARTBPlaybackMethod.PB_WITH_SOUND_ON_SCREEN)
+            session.setInstl(SARTBInstl.IN_FULLSCREEN)
+            session.setSkip(shouldShowCloseButton ? SARTBSkip.SK_SKIP : SARTBSkip.SK_NO_SKIP)
+            session.setStartDelay(playback)
+            let size = UIScreen.main.bounds.size
+            session.setWidth(Int(size.width))
+            session.setHeight(Int(size.height))
+            
+            let loader = SALoader()
+            loader.loadAd(byPlacementId: placementId, andLineItem: lineItemId, andCreativeId: creativeId, andSession: session){ (response: SAResponse?) in
+                
+                guard let response = response, response.status == 200 else {
+                    self.ads[placementId] = AdState.none
+                    self.callback?(placementId, SAEvent.adFailedToLoad)
+                    return
+                }
+                
+                guard let ad = response.ads.firstObject as? SAAd,
+                    response.isValid(),
+                    ad.creative.details.media.isDownloaded else {
+                        self.ads[placementId] = AdState.none
+                        self.callback?(placementId, SAEvent.adEmpty)
+                        return
+                }
+                
+                // create events object
+                events.setAd(ad, andSession: session)
+                if (!self.isMoatLimitingEnabled) {
+                    events.disableMoatLimiting()
+                }
+                
+                // reset video events
+                self.ads[placementId] = .hasAd(ad: ad)
+                self.callback?(placementId, SAEvent.adLoaded)
+            }
+            
+        case .loading:
+            break
+        case .hasAd:
+            callback?(placementId, SAEvent.adAlreadyLoaded)
+        }
+    }
+    
     @objc(play:fromVC:)
     public static func play(withPlacementId placementId: Int, fromVc viewController: UIViewController) {
         let adState = ads[placementId] ?? .none
