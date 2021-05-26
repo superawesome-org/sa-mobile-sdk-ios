@@ -247,6 +247,44 @@
     }];
 }
 
+- (void)loadAdByPlacementId:(NSInteger)placementId andLineItem:(NSInteger)lineItemId andCreativeId:(NSInteger)creativeId{
+    
+    // trying to init the SDK very late
+    [AwesomeAds initSDK:false];
+    
+    // first close any existing ad
+    if (!_firstPlay) {
+        [self close];
+    }
+    
+    // reset playability
+    _canPlay = false;
+    _isClosed = false;
+    
+    // get a weak self reference
+    __weak typeof (self) weakSelf = self;
+    
+    // change session
+    [_session setVersion:[SAVersion getSdkVersion]];
+    [_session setPos:POS_ABOVE_THE_FOLD];
+    [_session setPlaybackMethod:PB_WITH_SOUND_ON_SCREEN];
+    [_session setInstl:IN_NOT_FULLSCREEN];
+    [_session setSkip:SK_NO_SKIP];
+    [_session setStartDelay:DL_PRE_ROLL];
+    CGSize size = self.frame.size;
+    [_session setWidth:size.width];
+    [_session setHeight:size.height];
+    
+    
+    // load ad
+    SALoader *loader = [[SALoader alloc] init];
+    [loader loadAdByPlacementId:placementId andLineItem:lineItemId andCreativeId:creativeId andSession:_session andResult:^(SAResponse *response) {
+        if (weakSelf != NULL) {
+            [weakSelf processLoadResult:placementId andResult:response];
+        }
+    }];
+}
+
 - (void) processLoadResult:(NSInteger)placementId andResult: (SAResponse *) response {
     if (response.status != 200) {
         if (_callback != NULL) {

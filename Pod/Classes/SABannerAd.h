@@ -32,6 +32,19 @@
 - (void) load:(NSInteger)placementId;
 
 /**
+ * Method that loads an ad into the queue.
+ * Ads can only be loaded once and then can be reloaded after they've
+ * been played.
+ *
+ * @param placementId   the Ad placement id to load data for
+ * @param lineItemId   the id of the line item
+ * @param creativeId  the id of the creative
+ */
+- (void) loadAdByPlacementId:(NSInteger) placementId
+                 andLineItem:(NSInteger) lineItemId
+               andCreativeId:(NSInteger) creativeId;
+
+/**
  * Method that, if an ad data is loaded, will play
  * the content for the user
  * */

@@ -437,6 +437,86 @@ static BOOL isMoatLimitingEnabled    = SA_DEFAULT_MOAT_LIMITING_STATE;
     }
 }
 
++ (void)loadAdByPlacementId:(NSInteger)placementId andLineItem:(NSInteger)lineItemId andCreativeId:(NSInteger)creativeId{
+    // trying to init the SDK very late
+    [AwesomeAds initSDK:false];
+    
+    // create dictionary
+    if (ads == NULL) {
+        ads = [@{} mutableCopy];
+    }
+    
+    // if the ad data for the placement id doesn't existing in the "ads"
+    // hash map, then proceed with loading it
+    if ([ads objectForKey:@(placementId)] == NULL) {
+        
+        // set a placeholder
+        [ads setObject:@(true) forKey:@(placementId)];
+        
+        // form a new session
+        SASession *session = [[SASession alloc] init];
+        [session setTestMode:isTestingEnabled];
+        [session setConfiguration:configuration];
+        [session setVersion:[SAVersion getSdkVersion]];
+        [session setPos:POS_FULLSCREEN];
+        [session setPlaybackMethod:PB_WITH_SOUND_ON_SCREEN];
+        [session setInstl:IN_FULLSCREEN];
+        [session setSkip:SK_SKIP];
+        [session setStartDelay:DL_PRE_ROLL];
+        CGSize size = [UIScreen mainScreen].bounds.size;
+        [session setWidth:size.width];
+        [session setHeight:size.height];
+        
+        // get the loader
+        SALoader *loader = [[SALoader alloc] init];
+        
+        [loader loadAdByPlacementId:placementId andLineItem:lineItemId andCreativeId:creativeId andSession:session andResult:^(SAResponse *response) {
+            
+            if (response.status != 200) {
+                
+                //
+                // make sure to remove this cause the ad load failed
+                [ads removeObjectForKey:@(placementId)];
+                
+                //
+                // send callback
+                if (callback != NULL) {
+                    callback(placementId, adFailedToLoad);
+                } else {
+                    NSLog(@"Interstitial Ad callback not implemented. Event would have been adFailedToLoad");
+                }
+            }
+            else {
+                // add to the array queue
+                if ([response isValid]) {
+                    [ads setObject:[response.ads objectAtIndex:0] forKey:@(placementId)];
+                }
+                // remove
+                else {
+                    [ads removeObjectForKey:@(placementId)];
+                }
+                
+                // callback
+                if (callback != NULL) {
+                    callback(placementId, [response isValid] ? adLoaded : adEmpty);
+                } else {
+                    NSLog(@"Interstitial Ad callback not implemented. Event would have been either adLoaded or adEmpty");
+                }
+            }
+        }];
+        
+    }
+    // else if the ad data for the placement exists in the "ads" hash map,
+    // then notify the user that it already exists and he should just play it
+    else {
+        if (callback != NULL) {
+            callback (placementId, adAlreadyLoaded);
+        } else {
+            NSLog(@"Interstitial Ad callback not implemented. Event would have been adAlreadyLoaded");
+        }
+    }
+}
+
 + (void) play:(NSInteger) placementId fromVC:(UIViewController*)parent {
     
     // find out if the ad is loaded
