@@ -43,15 +43,13 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
-            skipped = "NO"
-            parallelizable = "YES"
-            testExecutionOrdering = "random">
+            skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C702E66B81B882A3D543C649C8C506EA"
-               BuildableName = "SuperAwesome-Unit-Full-Tests.xctest"
-               BlueprintName = "SuperAwesome-Unit-Full-Tests"
-               ReferencedContainer = "container:Pods/Pods.xcodeproj">
+               BlueprintIdentifier = "1B0D26CB1CF7186F00619C9C"
+               BuildableName = "Tests.xctest"
+               BlueprintName = "Tests"
+               ReferencedContainer = "container:SuperAwesomeExample.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
