@@ -11,7 +11,6 @@ import Foundation
 import Foundation
 // import SAGDPRKisMinor
 
-
 enum FixtureError: Error {
     case CannotLoadMainBundle
     case CannotLoadFixturesBundle
@@ -20,9 +19,8 @@ enum FixtureError: Error {
     case CannotParseData
 }
 
-
 func fixtureWithName(name: String, ofType: String = "json") throws -> AnyObject {
-    
+
     guard let testBundle = Bundle(identifier: "org.cocoapods.demo.SAGDPRKisMinor-Tests") else {
         print(FixtureError.CannotLoadMainBundle)
         throw FixtureError.CannotLoadMainBundle
@@ -43,17 +41,17 @@ func fixtureWithName(name: String, ofType: String = "json") throws -> AnyObject 
         print(FixtureError.CannotLoadData)
         throw FixtureError.CannotLoadData
     }
-    
-    do{
+
+    do {
         try JSONSerialization.jsonObject(with: data as Data, options: .allowFragments)
     } catch (let value) {
         print(value)
     }
-    
+
     guard let JSON = try? JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) else {
         print(FixtureError.CannotParseData)
         throw FixtureError.CannotParseData
     }
-    
+
     return JSON as AnyObject
 }
