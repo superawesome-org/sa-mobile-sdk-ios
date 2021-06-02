@@ -1,5 +1,3 @@
-source 'git@github.com:SuperAwesomeLTD/pj-Private-CocoaPods.git'
-source 'git@github.com:SuperAwesomeLTD/sa-private-pods-specs-ios.git'
 source 'https://cdn.cocoapods.org/'
 platform :ios, '10.0'
 use_frameworks!
