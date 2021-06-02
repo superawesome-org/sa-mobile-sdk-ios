@@ -85,9 +85,7 @@
 		1B22706E23536F8300FA8326 /* TestSAAd_1.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B22700E23536F8300FA8326 /* TestSAAd_1.m */; };
 		1B22706F23536F8300FA8326 /* TestSAAd_5.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B22700F23536F8300FA8326 /* TestSAAd_5.m */; };
 		1B22707023536F8300FA8326 /* TestSAVAST_1.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B22701023536F8300FA8326 /* TestSAVAST_1.m */; };
-		1B22707123536F8300FA8326 /* GetIsMinor+RequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B22701323536F8300FA8326 /* GetIsMinor+RequestTests.swift */; };
 		1B22707223536F8300FA8326 /* TestsUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B22701423536F8300FA8326 /* TestsUtils.swift */; };
-		1B22707323536F8300FA8326 /* GetIsMinorModel+Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B22701523536F8300FA8326 /* GetIsMinorModel+Mapping.swift */; };
 		1B76D2381C91EEB1000AE8F3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B76D2371C91EEB1000AE8F3 /* main.m */; };
 		1B76D23B1C91EEB1000AE8F3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B76D23A1C91EEB1000AE8F3 /* AppDelegate.m */; };
 		1B76D23E1C91EEB1000AE8F3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B76D23D1C91EEB1000AE8F3 /* ViewController.m */; };
@@ -207,9 +205,7 @@
 		1B22700F23536F8300FA8326 /* TestSAAd_5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAAd_5.m; sourceTree = "<group>"; };
 		1B22701023536F8300FA8326 /* TestSAVAST_1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAVAST_1.m; sourceTree = "<group>"; };
 		1B22701223536F8300FA8326 /* SAGDPRKisMinor_Tests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SAGDPRKisMinor_Tests-Bridging-Header.h"; sourceTree = "<group>"; };
-		1B22701323536F8300FA8326 /* GetIsMinor+RequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GetIsMinor+RequestTests.swift"; sourceTree = "<group>"; };
 		1B22701423536F8300FA8326 /* TestsUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestsUtils.swift; sourceTree = "<group>"; };
-		1B22701523536F8300FA8326 /* GetIsMinorModel+Mapping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GetIsMinorModel+Mapping.swift"; sourceTree = "<group>"; };
 		1B76D2331C91EEB1000AE8F3 /* SuperAwesomeExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperAwesomeExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B76D2371C91EEB1000AE8F3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1B76D2391C91EEB1000AE8F3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -457,9 +453,7 @@
 			isa = PBXGroup;
 			children = (
 				1B22701223536F8300FA8326 /* SAGDPRKisMinor_Tests-Bridging-Header.h */,
-				1B22701323536F8300FA8326 /* GetIsMinor+RequestTests.swift */,
 				1B22701423536F8300FA8326 /* TestsUtils.swift */,
-				1B22701523536F8300FA8326 /* GetIsMinorModel+Mapping.swift */,
 			);
 			path = SAIsMinor;
 			sourceTree = "<group>";
@@ -776,7 +770,6 @@
 				1B22701923536F8300FA8326 /* TestSAUtils_GetSystemSize.m in Sources */,
 				1B22703823536F8300FA8326 /* TestMoatModule.m in Sources */,
 				1B22705E23536F8300FA8326 /* SAMockCompanyModel.m in Sources */,
-				1B22707323536F8300FA8326 /* GetIsMinorModel+Mapping.swift in Sources */,
 				1B22706523536F8300FA8326 /* TestSAAd_4.m in Sources */,
 				1B22701D23536F8300FA8326 /* TestSAUtils_GetCachebuster.m in Sources */,
 				1B22702423536F8300FA8326 /* TestSAUtils_GenerateUniqueKey.m in Sources */,
@@ -830,7 +823,6 @@
 				1B22702C23536F8300FA8326 /* TestSAUtils_FindBaseURLFromResource.m in Sources */,
 				1B22703E23536F8300FA8326 /* TestSAProcessHTML.m in Sources */,
 				1B22703923536F8300FA8326 /* TestSAServerModule.m in Sources */,
-				1B22707123536F8300FA8326 /* GetIsMinor+RequestTests.swift in Sources */,
 				1B22701F23536F8300FA8326 /* TestSAUtils_FindSubstring.m in Sources */,
 				1B22705723536F8300FA8326 /* SAVAST_Parser_Local_Tests1.m in Sources */,
 				1B22702223536F8300FA8326 /* TestSAUtils_UIColorFromHex.m in Sources */,

@@ -20,16 +20,16 @@ PODS:
   - OHHTTPStubs/NSURLSession (9.1.0):
     - OHHTTPStubs/Core
   - OHHTTPStubs/OHPathHelpers (9.1.0)
-  - SuperAwesome (8.0.6):
-    - SuperAwesome/Full (= 8.0.6)
-  - SuperAwesome/Base (8.0.6)
-  - SuperAwesome/Full (8.0.6):
+  - SuperAwesome (8.1.0):
+    - SuperAwesome/Full (= 8.1.0)
+  - SuperAwesome/Base (8.1.0)
+  - SuperAwesome/Full (8.1.0):
     - SuperAwesome/Base
     - SuperAwesome/Moat
-  - SuperAwesome/Moat (8.0.6):
+  - SuperAwesome/Moat (8.1.0):
     - SuperAwesome/Base
-    - SwiftyXMLParser
-  - SwiftyXMLParser (5.0.0)
+    - SwiftyXMLParser (= 4.3.0)
+  - SwiftyXMLParser (4.3.0)
   - URITemplate (2.0.3)
 
 DEPENDENCIES:
@@ -54,10 +54,10 @@ SPEC CHECKSUMS:
   Mockingjay: 11a621880d2887f1775bdcf824341eb68f218450
   Nimble: 4f4a345c80b503b3ea13606a4f98405974ee4d0b
   OHHTTPStubs: 90eac6d8f2c18317baeca36698523dc67c513831
-  SuperAwesome: 1fa0ab830b65d78fcb42d13d10f541725ef9c19b
-  SwiftyXMLParser: 5ebb8793192f403fa8cc691045143906122a7a75
+  SuperAwesome: 14830a0f77c3445e688e5b9552b8474231b2465b
+  SwiftyXMLParser: b2e0b0dd0e0fb1ac39869dd4a0c6181847af2945
   URITemplate: ace0c4c46dcf8afe6e89b4060621852886b15c3b
 
-PODFILE CHECKSUM: e0c42ee25ae58f8330fc91b3087b19e01f3a2f4b
+PODFILE CHECKSUM: 659d7e39c3fdae937446cf1960e2f2b238426612
 
 COCOAPODS: 1.10.1
