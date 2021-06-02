@@ -46,8 +46,8 @@ func fixtureWithName(name: String, ofType: String = "json") throws -> AnyObject 
     }
 
     guard let JSON = try? JSONSerialization.jsonObject(with: data as Data, options: .allowFragments) else {
-        print(FixtureError.CannotParseData)
-        throw FixtureError.CannotParseData
+        print(FixtureError.cannotParseData)
+        throw FixtureError.cannotParseData
     }
 
     return JSON as AnyObject
