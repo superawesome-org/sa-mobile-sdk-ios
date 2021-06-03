@@ -12,8 +12,6 @@
 
 - (NSString*) stringFixtureWithName: (NSString*) name ofType: (NSString*) type {
     
-    // tv.superawesome.SuperAwesome-Tests
-//    NSString *identifier = @"org.cocoapods.demo.SAAdLoader-Tests";
     NSString *identifier = @"tv.superawesome.Tests";
     NSBundle *bundle = [NSBundle bundleWithIdentifier:identifier];
     
