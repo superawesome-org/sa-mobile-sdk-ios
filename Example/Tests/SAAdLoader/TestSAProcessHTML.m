@@ -81,8 +81,6 @@
     
     XCTAssertNotNil(ad.creative.details.media.html);
     XCTAssertTrue([ad.creative.details.media.html containsString:@"_MOAT_"]);
-//    XCTAssertTrue([ad.creative.details.media.html containsString:@"<!-- Beginning PassBack for Ad unit FK:Site-Skyscraper-Passback ### size: [[120,600]] -->\\<script type='text/javascript' src='http://www.googletagservices.com/tag/js/gpt.js'>\\\googletag.pubads().definePassback('1002534/FK:Site-Skyscraper-Passback', [[120,600]]).display();\\</script>\<!-- End Passback -->"]);
-    
 }
 
 - (void) test_SAProcessHTML_FormatCreativeIntoTagHTML2 {
@@ -108,9 +106,7 @@
     ad.creative.details.media.html = [SAProcessHTML formatCreativeIntoTagHTML:ad];
     
     XCTAssertNotNil(ad.creative.details.media.html);
-//    XCTAssertTrue([ad.creative.details.media.html containsString:@"http://hotnews.ro&redir="]);
     XCTAssertTrue([ad.creative.details.media.html containsString:@"https://ad.doubleclick.net/ddm/jump/N304202.1915243SUPERAWESOME.TV"]);
-//    XCTAssertTrue([ad.creative.details.media.html containsString:@"http://hotnews.ro?redir=https://ad.doubleclick.net/ddm/jump/N304202.1915243SUPERAWESOME.TV"]);
     XCTAssertTrue([ad.creative.details.media.html containsString:@"<IMG SRC=\"https://ad.doubleclick.net/ddm/ad/N304202.1915243SUPERAWESOME.TV"]);
     XCTAssertTrue([ad.creative.details.media.html containsString:@"_MOAT_"]);
     XCTAssertFalse([ad.creative.details.media.html containsString:@"[click]"]);

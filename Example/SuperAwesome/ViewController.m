@@ -68,36 +68,34 @@
     [SAVideoAd enableCloseAtEnd];
     [SAVideoAd disableMoatLimiting];
     [SAVideoAd setCallback:^(NSInteger placementId, SAEvent event) {
-
+        
         NSLog(@"SUPER-AWESOME: Video Ad %ld - Event %ld", (long)placementId, (long)event);
-
+        
         if (event == adLoaded) {
             [SAVideoAd play:placementId fromVC:self];
         }
     }];
     
     _data = [@[
-               @{
-                   @"name": @"Banners",
-                   @"items": @[
-                           @{@"name": @"Banner Image", @"pid": @(44258)}
-                           ]
-                   },
-               @{
-                   @"name": @"Interstitials",
-                   @"items": @[
-                           @{@"name": @"Rich Media Interstitial", @"pid": @(44259)}
-                           ]
-                   },
-               @{
-                   @"name": @"Videos",
-                   @"items": @[
-                           @{@"name": @"Direct video", @"pid": @(44262)}
-//                           @{@"name": @"Direct video", @"pid": @(39318)},
-//                           @{@"name": @"Tag video", @"pid": @(44261)}
-                           ]
-                   }
-               ] mutableCopy];
+        @{
+            @"name": @"Banners",
+            @"items": @[
+                    @{@"name": @"Banner Image", @"pid": @(44258)}
+            ]
+        },
+        @{
+            @"name": @"Interstitials",
+            @"items": @[
+                    @{@"name": @"Rich Media Interstitial", @"pid": @(44259)}
+            ]
+        },
+        @{
+            @"name": @"Videos",
+            @"items": @[
+                    @{@"name": @"Direct video", @"pid": @(44262)}
+            ]
+        }
+    ] mutableCopy];
     
     
     // Age Check

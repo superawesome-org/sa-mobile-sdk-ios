@@ -122,15 +122,8 @@
     tagString = [tagString stringByReplacingOccurrencesOfString:@"\\t" withString:@""];
     tagString = [tagString stringByReplacingOccurrencesOfString:@"\\n" withString:@""];
     tagString = [tagString stringByReplacingOccurrencesOfString:@"\t" withString:@""];
-    //    tagString = [tagString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-    //    tagString = [tagString stringByReplacingOccurrencesOfString:@"“" withString:@"\""];
     
     NSString *html = [tagHtml stringByReplacingOccurrencesOfString:@"tagdata" withString:tagString];
-    //    html = [html stringByReplacingOccurrencesOfString:@"\/" withString:@"/"];
-    //    html = [html stringByReplacingOccurrencesOfString:@"\\/" withString:@"/"];
-    //    html = [html stringByReplacingOccurrencesOfString:@"\"" withString:@"'"];
-    
-    // return the parametrized template
     return html;
 }
 
