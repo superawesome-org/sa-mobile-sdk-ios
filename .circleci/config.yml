@@ -1,0 +1,70 @@
+# .circleci/config.yml
+version: 2.1
+jobs:
+  build-and-test:
+    macos:
+      xcode: 12.4.0
+    environment:
+      FL_OUTPUT_DIR: output
+      FASTLANE_LANE: test
+    steps:
+      - checkout
+      - run: bundle install
+      
+      # Install CocoaPods
+      - run:
+          name: Install CocoaPods
+          command: cd Example && bundle exec pod install
+          
+      - run:
+          name: Fastlane
+          command: bundle exec fastlane $FASTLANE_LANE
+      - store_artifacts:
+          path: output
+      - store_test_results:
+          path: output/scan
+          
+  swiftlint:
+    docker:
+      - image: bytesguy/swiftlint:latest
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+    steps:
+      - checkout
+      - run: cd Example && swiftlint lint --reporter junit | tee result.xml
+      - store_artifacts:
+          path: result.xml
+      - store_test_results:
+          path: result.xml
+          
+  setup-FastLane:
+    macos:
+      xcode: 12.4.0
+    steps:
+      - checkout
+      - run:
+          name: Select Ruby Version
+          command:  echo "ruby-2.4" > .ruby-version
+      - restore_cache:
+          keys:
+          - m2-gems-{{ checksum "Gemfile.lock" }}
+          - m2-gems-
+      - run:
+          name: Install Ruby Gems
+          command: bundle check || bundle install --path vendor/bundle
+          environment:
+            BUNDLE_JOBS: 4
+            BUNDLE_RETRY: 3
+      - save_cache:
+          key: m2-gems-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+workflows:
+  build-test:
+    jobs:
+      - swiftlint
+      - setup-FastLane
+      - build-and-test
+
