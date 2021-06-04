@@ -8,9 +8,6 @@
 #ifndef SuperAwesome_h
 #define SuperAwesome_h
 
-#import "SABannerAd.h"
-#import "SAInterstitialAd.h"
-#import "SACallback.h"
 #import "SAOrientation.h"
 #import "SADefines.h"
 

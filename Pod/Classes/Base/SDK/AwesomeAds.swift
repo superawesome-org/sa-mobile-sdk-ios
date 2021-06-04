@@ -36,6 +36,7 @@ public class AwesomeAds: NSObject {
     /// Initialise the AwesomeAds SDK.
     ///
     /// - Parameter logging: enables or disables the logging of the SDK
+    @objc
     public static func initSDK(_ logging: Bool) {
         shared.initSDK(configuration: Configuration(environment: .production, logging: logging), completion: nil)
     }

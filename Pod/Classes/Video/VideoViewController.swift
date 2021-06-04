@@ -37,7 +37,7 @@ import UIKit
     private let videoEvents: VideoEvents
     private let clickEvents: VideoClick
     
-    private var callback: sacallback? = nil
+    private var callback: AdEventCallback? = nil
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -94,7 +94,7 @@ import UIKit
     
     init(withAd ad : SAAd,
          andEvents events: SAEvents,
-         andCallback callback: sacallback?,
+         andCallback callback: AdEventCallback?,
          andConfig config: Config) {
         self.ad = ad
         self.events = events
@@ -185,7 +185,7 @@ import UIKit
     
     func didPrepare(videoPlayer: VideoPlayer, time: Int, duration: Int) {
         videoEvents.prepare(player: videoPlayer, time: time, duration: duration)
-        callback?(ad.placementId, SAEvent.adShown)
+        callback?(ad.placementId, .adShown)
     }
     
     func didUpdateTime(videoPlayer: VideoPlayer, time: Int, duration: Int) {
@@ -195,7 +195,7 @@ import UIKit
     func didComplete(videoPlayer: VideoPlayer, time: Int, duration: Int) {
         videoEvents.complete(player: videoPlayer, time: time, duration: duration)
         chrome.makeCloseButtonVisible()
-        callback?(ad.placementId, SAEvent.adEnded)
+        callback?(ad.placementId, .adEnded)
         
         if config.shouldCloseAtEnd {
             closeAction()
@@ -204,7 +204,7 @@ import UIKit
     
     func didError(videoPlayer: VideoPlayer, error: Error, time: Int, duration: Int) {
         videoEvents.error(player: videoPlayer, time: time, duration: duration)
-        callback?(ad.placementId, SAEvent.adFailedToShow)
+        callback?(ad.placementId, .adFailedToShow)
         closeAction()
     }
     
@@ -219,7 +219,7 @@ import UIKit
     ////////////////////////////////////////////////////////////////////////////
     
     private func clickAction() {
-        callback?(ad.placementId, SAEvent.adClicked)
+        callback?(ad.placementId,.adClicked)
         clickEvents.handleAdTap()
     }
     
@@ -228,7 +228,7 @@ import UIKit
         SAParentalGate.close()
         dismiss(animated: true) { [weak self] in
             if let placementId = self?.ad.placementId {
-                self?.callback?(placementId, SAEvent.adClosed)
+                self?.callback?(placementId,.adClosed)
             }
         }
     }

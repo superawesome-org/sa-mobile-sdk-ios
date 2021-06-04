@@ -26,7 +26,7 @@ public enum AdState {
     static var isMoatLimitingEnabled: Bool = Bool(truncating: NSNumber(value: SA_DEFAULT_MOAT_LIMITING_STATE))
     static var playback: SARTBStartDelay = SARTBStartDelay(rawValue: Int(SA_DEFAULT_PLAYBACK_MODE))!
     
-    private static var callback: sacallback? = nil
+    private static var callback: AdEventCallback? = nil
     
     private static var ads = Dictionary<Int, AdState>()
     
@@ -62,7 +62,7 @@ public enum AdState {
                 
                 guard let response = response, response.status == 200 else {
                     self.ads[placementId] = AdState.none
-                    self.callback?(placementId, SAEvent.adFailedToLoad)
+                    self.callback?(placementId, .adFailedToLoad)
                     return
                 }
                 
@@ -70,7 +70,7 @@ public enum AdState {
                     response.isValid(),
                     ad.creative.details.media.isDownloaded else {
                         self.ads[placementId] = AdState.none
-                        self.callback?(placementId, SAEvent.adEmpty)
+                        self.callback?(placementId, .adEmpty)
                         return
                 }
                 
@@ -82,13 +82,13 @@ public enum AdState {
                 
                 // reset video events
                 self.ads[placementId] = .hasAd(ad: ad)
-                self.callback?(placementId, SAEvent.adLoaded)
+                self.callback?(placementId, .adLoaded)
             }
             
         case .loading:
             break
         case .hasAd:
-            callback?(placementId, SAEvent.adAlreadyLoaded)
+            callback?(placementId, .adAlreadyLoaded)
         }
     }
     
@@ -118,7 +118,7 @@ public enum AdState {
                 
                 guard let response = response, response.status == 200 else {
                     self.ads[placementId] = AdState.none
-                    self.callback?(placementId, SAEvent.adFailedToLoad)
+                    self.callback?(placementId, .adFailedToLoad)
                     return
                 }
                 
@@ -126,7 +126,7 @@ public enum AdState {
                     response.isValid(),
                     ad.creative.details.media.isDownloaded else {
                         self.ads[placementId] = AdState.none
-                        self.callback?(placementId, SAEvent.adEmpty)
+                        self.callback?(placementId, .adEmpty)
                         return
                 }
                 
@@ -138,13 +138,13 @@ public enum AdState {
                 
                 // reset video events
                 self.ads[placementId] = .hasAd(ad: ad)
-                self.callback?(placementId, SAEvent.adLoaded)
+                self.callback?(placementId, .adLoaded)
             }
             
         case .loading:
             break
         case .hasAd:
-            callback?(placementId, SAEvent.adAlreadyLoaded)
+            callback?(placementId, .adAlreadyLoaded)
         }
     }
     
@@ -171,7 +171,7 @@ public enum AdState {
             ads[placementId] = AdState.none
             break
         default:
-            callback?(placementId, SAEvent.adFailedToShow)
+            callback?(placementId, .adFailedToShow)
             break
         }
     }
@@ -199,7 +199,7 @@ public enum AdState {
     ////////////////////////////////////////////////////////////////////////////
     
     @objc(setCallback:)
-    public static func setCallback(_ callback: @escaping sacallback) {
+    public static func setCallback(_ callback: @escaping AdEventCallback) {
         self.callback = callback
     }
     
@@ -333,7 +333,7 @@ public enum AdState {
         playback = delay
     }
     
-    public static func getCallback() -> sacallback? {
+    public static func getCallback() -> AdEventCallback? {
         return callback
     }
     

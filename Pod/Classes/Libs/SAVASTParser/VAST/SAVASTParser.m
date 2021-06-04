@@ -21,7 +21,6 @@
 
 #if defined(__has_include)
 #if __has_include(<SuperAwesome/SuperAwesome-Swift.h>)
-#import <SuperAwesome/SuperAwesome-Swift.h>
 #else
 #import "SuperAwesome-Swift.h"
 #endif
@@ -44,7 +43,7 @@
     if (self = [super init]) {
         // TODO: Convert to use injection
         _header = @{@"Content-Type":@"application/json",
-                    @"User-Agent": SADependencyContainer.shared.modules.componentModule.userAgent.name};
+                    @"User-Agent": @"iOS"};
     }
     
     return self;

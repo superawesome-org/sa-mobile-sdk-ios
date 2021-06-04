@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (5.4.3)
   - Mockingjay (2.0.1):
     - Mockingjay/Core (= 2.0.1)
     - Mockingjay/XCTest (= 2.0.1)
@@ -6,6 +7,18 @@ PODS:
     - URITemplate (~> 2.0)
   - Mockingjay/XCTest (2.0.1):
     - Mockingjay/Core
+  - mopub-ios-sdk (5.17.0):
+    - mopub-ios-sdk/MoPubSDK (= 5.17.0)
+  - mopub-ios-sdk/Core (5.17.0)
+  - mopub-ios-sdk/MoPubSDK (5.17.0):
+    - mopub-ios-sdk/Core
+    - mopub-ios-sdk/NativeAds
+  - mopub-ios-sdk/NativeAds (5.17.0):
+    - mopub-ios-sdk/Core
+  - Moya (14.0.0):
+    - Moya/Core (= 14.0.0)
+  - Moya/Core (14.0.0):
+    - Alamofire (~> 5.0)
   - Nimble (9.2.0)
   - OHHTTPStubs (9.1.0):
     - OHHTTPStubs/Default (= 9.1.0)
@@ -21,13 +34,8 @@ PODS:
     - OHHTTPStubs/Core
   - OHHTTPStubs/OHPathHelpers (9.1.0)
   - SuperAwesome (8.1.0):
-    - SuperAwesome/Full (= 8.1.0)
-  - SuperAwesome/Base (8.1.0)
-  - SuperAwesome/Full (8.1.0):
-    - SuperAwesome/Base
-    - SuperAwesome/Moat
-  - SuperAwesome/Moat (8.1.0):
-    - SuperAwesome/Base
+    - mopub-ios-sdk (~> 5.14)
+    - Moya (~> 14.0)
     - SwiftyXMLParser (= 4.3.0)
   - SwiftyXMLParser (4.3.0)
   - URITemplate (2.0.3)
@@ -40,7 +48,10 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - Mockingjay
+    - mopub-ios-sdk
+    - Moya
     - Nimble
     - OHHTTPStubs
     - SwiftyXMLParser
@@ -51,17 +62,16 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
+  Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
   Mockingjay: 11a621880d2887f1775bdcf824341eb68f218450
+  mopub-ios-sdk: 36d322902674b79b0560a1cb8d15af0548d364ea
+  Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   Nimble: 4f4a345c80b503b3ea13606a4f98405974ee4d0b
   OHHTTPStubs: 90eac6d8f2c18317baeca36698523dc67c513831
-  SuperAwesome: 14830a0f77c3445e688e5b9552b8474231b2465b
+  SuperAwesome: 34eed5bc9fa3f44f3892bf8cbbc16721ca129f7f
   SwiftyXMLParser: b2e0b0dd0e0fb1ac39869dd4a0c6181847af2945
   URITemplate: ace0c4c46dcf8afe6e89b4060621852886b15c3b
 
-<<<<<<< HEAD
-PODFILE CHECKSUM: 659d7e39c3fdae937446cf1960e2f2b238426612
-=======
 PODFILE CHECKSUM: 65087fa5e777e2058eec6e7ed9370d14d42b9aea
->>>>>>> master
 
 COCOAPODS: 1.10.1
