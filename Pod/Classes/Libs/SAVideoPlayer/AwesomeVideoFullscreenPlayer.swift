@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 public class AwesomeVideoFullscreenPlayer: UIViewController {
-    
+
     private weak var player: AwesomeVideoPlayer!
     private var isPlaying: Bool
     private var previousFrame: CGRect
@@ -19,15 +19,15 @@ public class AwesomeVideoFullscreenPlayer: UIViewController {
     override public var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-    
+
     override public var prefersStatusBarHidden: Bool {
         return true
     }
-    
+
     override public var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
         return .fade
     }
-    
+
     override public var prefersHomeIndicatorAutoHidden: Bool {
         return true
     }
@@ -41,11 +41,11 @@ public class AwesomeVideoFullscreenPlayer: UIViewController {
             return UIApplication.shared.statusBarOrientation
         }
     }
-    
+
     override public var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .all
     }
-    
+
     public init(withVideoPlayer player: AwesomeVideoPlayer,
                 andIsCurrentlyPlaying playing: Bool) {
         self.player = player
@@ -54,20 +54,20 @@ public class AwesomeVideoFullscreenPlayer: UIViewController {
         previousCentre = player.center
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private func setUp() {
         player.alpha = 0.0
     }
-    
+
     override public func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(player)
     }
-    
+
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if isPlaying {
@@ -81,7 +81,7 @@ public class AwesomeVideoFullscreenPlayer: UIViewController {
             self.player.layoutSubviews()
         })
     }
-    
+
     override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         let duration: TimeInterval = animated ? 0.3 : 0.0
@@ -95,7 +95,7 @@ public class AwesomeVideoFullscreenPlayer: UIViewController {
     deinit {
         player = nil
     }
-    
+
     override public func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         coordinator.animate(alongsideTransition: { _ in

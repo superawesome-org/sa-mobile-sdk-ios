@@ -8,18 +8,18 @@
 import UIKit
 
 @objc(SAVideoViewController) class VideoViewController: UIViewController, VideoPlayerDelegate, VideoEventsDelegate {
-    
+
     ////////////////////////////////////////////////////////////////////////////
     // SubViews
     ////////////////////////////////////////////////////////////////////////////
-    
+
     private var videoPlayer: AwesomeVideoPlayer!
     private var chrome: AdSocialVideoPlayerControlsView!
-    
+
     ////////////////////////////////////////////////////////////////////////////
     // Custom values
     ////////////////////////////////////////////////////////////////////////////
-    
+
     struct Config {
         let showSmallClick: Bool
         let showSafeAdLogo: Bool
@@ -29,44 +29,44 @@ import UIKit
         let isBumperPageEnabled: Bool
         let orientation: SAOrientation
     }
-    
+
     private let ad: SAAd
     private let events: SAEvents
     private let config: Config
     private let control: VideoPlayerControls = VideoPlayerController()
     private let videoEvents: VideoEvents
     private let clickEvents: VideoClick
-    
-    private var callback: sacallback? = nil
-    
+
+    private var callback: AdEventCallback?
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-    
+
     override var prefersStatusBarHidden: Bool {
         return true
     }
-    
+
     override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
         return .fade
     }
-    
+
     @available(iOS 11.0, *)
     override var prefersHomeIndicatorAutoHidden: Bool {
         return true
     }
-    
+
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         guard let supportedOrientations = Bundle.main.infoDictionary?["UISupportedInterfaceOrientations"] as? [String]
         else { return super.supportedInterfaceOrientations }
-        
+
         switch config.orientation {
         case .ANY:
             return super.supportedInterfaceOrientations
         case .PORTRAIT:
             let hasPortrait = supportedOrientations.contains("UIInterfaceOrientationPortrait")
             let hasPortraitUpsideDown = supportedOrientations.contains("UIInterfaceOrientationPortraitUpsideDown")
-            
+
             if hasPortrait && hasPortraitUpsideDown {
                 return [.portrait, .portraitUpsideDown]
             } else if hasPortrait {
@@ -79,7 +79,7 @@ import UIKit
         case .LANDSCAPE:
             let hasLandscapeLeft = supportedOrientations.contains("UIInterfaceOrientationLandscapeLeft")
             let hasLandscapeRight = supportedOrientations.contains("UIInterfaceOrientationLandscapeRight")
-            
+
             if hasLandscapeLeft && hasLandscapeRight {
                 return .landscape
             } else if hasLandscapeLeft {
@@ -91,10 +91,10 @@ import UIKit
             }
         }
     }
-    
-    init(withAd ad : SAAd,
+
+    init(withAd ad: SAAd,
          andEvents events: SAEvents,
-         andCallback callback: sacallback?,
+         andCallback callback: AdEventCallback?,
          andConfig config: Config) {
         self.ad = ad
         self.events = events
@@ -107,18 +107,18 @@ import UIKit
         super.init(nibName: nil, bundle: nil)
         videoEvents.delegate = self
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("Don't use this externally!")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // initial view setup
         view.backgroundColor = UIColor.black
         view.layoutMargins = UIEdgeInsets.zero
-        
+
         // setup video player
         videoPlayer = AwesomeVideoPlayer()
         videoPlayer.setControls(controller: control)
@@ -126,7 +126,7 @@ import UIKit
         videoPlayer.setDelegate(delegate: self)
         view.addSubview(videoPlayer)
         LayoutUtils.bind(view: videoPlayer, toTheEdgesOf: view)
-        
+
         // setup chrome
         chrome = AdSocialVideoPlayerControlsView(smallClick: config.showSmallClick, showSafeAdLogo: config.showSafeAdLogo)
         chrome.layoutMargins = UIEdgeInsets.zero
@@ -141,94 +141,93 @@ import UIKit
         }
         videoPlayer.setControlsView(controllerView: chrome)
         LayoutUtils.bind(view: chrome, toTheEdgesOf: videoPlayer)
-        
+
         // play ad
         if let diskUrl = SAUtils.filePath(inDocuments: ad.creative.details.media.path) {
             let url = URL(fileURLWithPath: diskUrl)
             control.play(url: url)
         }
-        
+
         // register notification for foreground
-        NotificationCenter.default.addObserver(forName: UIApplication.willEnterForegroundNotification, object: nil, queue: .main)
-        { [weak self] notification in
+        NotificationCenter.default.addObserver(forName: UIApplication.willEnterForegroundNotification, object: nil, queue: .main) { [weak self] notification in
             self?.willEnterForeground(notification)
         }
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         control.start()
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         control.pause()
         super.viewWillDisappear(animated)
     }
-    
+
     deinit {
         NotificationCenter.default.removeObserver(self,
                                                   name: UIApplication.willEnterForegroundNotification,
                                                   object: nil)
     }
-    
+
     ////////////////////////////////////////////////////////////////////////////
     // Foreground
     ////////////////////////////////////////////////////////////////////////////
-    
-    func willEnterForeground(_ notification: Notification) -> Void {
+
+    func willEnterForeground(_ notification: Notification) {
         control.start()
     }
-    
+
     ////////////////////////////////////////////////////////////////////////////
     // VideoPlayerDelegate
     ////////////////////////////////////////////////////////////////////////////
-    
+
     func didPrepare(videoPlayer: VideoPlayer, time: Int, duration: Int) {
         videoEvents.prepare(player: videoPlayer, time: time, duration: duration)
-        callback?(ad.placementId, SAEvent.adShown)
+        callback?(ad.placementId, .adShown)
     }
-    
+
     func didUpdateTime(videoPlayer: VideoPlayer, time: Int, duration: Int) {
         videoEvents.time(player: videoPlayer, time: time, duration: duration)
     }
-    
+
     func didComplete(videoPlayer: VideoPlayer, time: Int, duration: Int) {
         videoEvents.complete(player: videoPlayer, time: time, duration: duration)
         chrome.makeCloseButtonVisible()
-        callback?(ad.placementId, SAEvent.adEnded)
-        
+        callback?(ad.placementId, .adEnded)
+
         if config.shouldCloseAtEnd {
             closeAction()
         }
     }
-    
+
     func didError(videoPlayer: VideoPlayer, error: Error, time: Int, duration: Int) {
         videoEvents.error(player: videoPlayer, time: time, duration: duration)
-        callback?(ad.placementId, SAEvent.adFailedToShow)
+        callback?(ad.placementId, .adFailedToShow)
         closeAction()
     }
-    
+
     func hasBeenVisible() {
         if config.showCloseButton {
             chrome.makeCloseButtonVisible()
         }
     }
-    
+
     ////////////////////////////////////////////////////////////////////////////
     // private methods
     ////////////////////////////////////////////////////////////////////////////
-    
+
     private func clickAction() {
-        callback?(ad.placementId, SAEvent.adClicked)
+        callback?(ad.placementId, .adClicked)
         clickEvents.handleAdTap()
     }
-    
+
     private func closeAction() {
         videoPlayer.destroy()
         SAParentalGate.close()
         dismiss(animated: true) { [weak self] in
             if let placementId = self?.ad.placementId {
-                self?.callback?(placementId, SAEvent.adClosed)
+                self?.callback?(placementId, .adClosed)
             }
         }
     }

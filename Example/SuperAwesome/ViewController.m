@@ -7,7 +7,6 @@
 //
 
 #import "ViewController.h"
-#import "AwesomeAds.h"
 #import "SAUtils.h"
 #import "SASession.h"
 #import "SABumperPage.h"
@@ -41,7 +40,7 @@
     [_bannerAd enableParentalGate];
     [_bannerAd setCallback:^(NSInteger placementId, SAEvent event) {
         NSLog(@"SUPER-AWESOME: Banner Ad %ld - Event %ld", (long)placementId, (long)event);
-        if (event == adLoaded) {
+        if (event == SAEventAdLoaded) {
             [self->_bannerAd load:placementId];
         }
     }];
@@ -55,7 +54,7 @@
         
         NSLog(@"SUPER-AWESOME: Interstitial Ad %ld - Event %ld", (long)placementId, (long)event);
         
-        if (event == adLoaded) {
+        if (event == SAEventAdLoaded) {
             [SAInterstitialAd play:placementId fromVC:self];
         }
     }];
@@ -71,7 +70,7 @@
         
         NSLog(@"SUPER-AWESOME: Video Ad %ld - Event %ld", (long)placementId, (long)event);
         
-        if (event == adLoaded) {
+        if (event == SAEventAdLoaded) {
             [SAVideoAd play:placementId fromVC:self];
         }
     }];
@@ -167,7 +166,7 @@
     NSString* dateOfBirth = @"2012-02-02";
     __block NSString* message = nil;
     
-    [AwesomeAds triggerAgeCheck:dateOfBirth response:^(GetIsMinorModel *model) {
+    [[SAAgeCheck sdk] getIsMinor:dateOfBirth :^(GetIsMinorModel *model) {
         if (model != nil) {
             NSString* country = [model country];
             NSInteger consentAgeForCountry = [model consentAgeForCountry];

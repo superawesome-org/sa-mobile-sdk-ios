@@ -30,7 +30,7 @@ class SAManagedInterstatilAdViewController: UIViewController {
         managedBannerAdView.load(placementId: placementId)
     }
 
-    @objc(setCallback:) public func setCallback(value: sacallback? = nil) {
+    @objc(setCallback:) public func setCallback(value: AdEventCallback? = nil) {
         managedBannerAdView.setCallback(value: value)
     }
 

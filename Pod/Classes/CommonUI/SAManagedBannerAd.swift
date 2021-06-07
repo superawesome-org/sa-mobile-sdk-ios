@@ -13,7 +13,7 @@ import WebKit
 
     private let session = SASession()
     private let loader = SALoader()
-    private var listener: sacallback?
+    private var listener: AdEventCallback?
     private let events = SAEvents()
     private var placementId: Int = 0
     private var isParentalGateEnabled = SA_DEFAULT_PARENTALGATE != 0
@@ -86,7 +86,7 @@ import WebKit
         }
     }
 
-    @objc(setCallback:) public func setCallback(value: sacallback? = nil) {
+    @objc(setCallback:) public func setCallback(value: AdEventCallback? = nil) {
         self.listener = value
     }
 
@@ -147,6 +147,14 @@ import WebKit
         isParentalGateEnabled = false
     }
 
+    @objc public func setParentalGate(_ isEnabled: Bool) {
+        isParentalGateEnabled = isEnabled
+    }
+
+    @objc public func setBumperPage(_ isEnabled: Bool) {
+        isBumperPageEnabled = isEnabled
+    }
+
     private func showParentalGate(completion: @escaping() -> Void) {
         if isParentalGateEnabled {
 
@@ -184,6 +192,9 @@ import WebKit
         UIApplication.shared.open(url)
     }
 
+    func close() {
+
+    }
 }
 
 extension SAManagedBannerAd: WKUIDelegate {
@@ -193,10 +204,10 @@ extension SAManagedBannerAd: WKUIDelegate {
 extension SAManagedBannerAd: WKNavigationDelegate {
 
     public func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
-        listener?(placementId, SAEvent.adClicked)
+        listener?(placementId, .adClicked)
         if(finishedLoading && navigationAction.navigationType == .other) {
             if let navUrl = navigationAction.request.url {
-                listener?(placementId, SAEvent.adClicked)
+                listener?(placementId, .adClicked)
                 showParentalGate { [weak self] in
                     self?.handle(url: navUrl)
                 }

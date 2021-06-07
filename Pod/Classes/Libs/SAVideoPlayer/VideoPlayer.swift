@@ -19,51 +19,51 @@ import Foundation
  */
 @objc(SAVideoPlayer)
 public protocol VideoPlayer: VideoPlayerControlsDelegate, VideoPlayerControlsViewDelegate {
-    
+
     /**
      * Sets the media control for the video player
      * @param control - an instance of an object that implements the MediaControl protocol
      */
     @objc(setControls:)
     func setControls(controller: VideoPlayerControls)
-    
+
     /**
      * Sets the chrome control for the video player
      * @param chrome - an instance of an object that implements the ChromeControl protocol
      */
     @objc(setConstrolsView:)
     func setControlsView(controllerView: VideoPlayerControlsView)
-    
+
     /**
      * Sets the state of the video to maximised
      */
     @objc(maximise)
     func setMaximised()
-    
+
     /**
      * Sets the state of the video to minimised
      */
     @objc(minimise)
     func setMinimised()
-    
+
     /**
      * Destroy & release the whole video player
      */
     @objc(destroy)
     func destroy()
-    
+
     /**
      * Return the current AVPlayer
      */
     @objc(avPlayer)
     func getAVPlayer() -> AVPlayer?
-    
+
     /**
      * Return the current AVPlayerLayer
      */
     @objc(avPlayerLayer)
     func getAVPlayerLayer() -> AVPlayerLayer?
-    
+
     /**
      *Set the delegate of the VideoPlayer protocol
      * @param delegate - an instance of an object that implements VideoPlayerDelegate
@@ -86,7 +86,7 @@ public protocol VideoPlayerDelegate: class {
      */
     @objc(didPrepareVideoPlayer:withTime:andDuration:)
     func didPrepare(videoPlayer: VideoPlayer, time: Int, duration: Int)
-    
+
     /**
      * This method is called by the video player when it has updated the time
      * @param videoPlayer - the current videoPlayer instance
@@ -95,7 +95,7 @@ public protocol VideoPlayerDelegate: class {
      */
     @objc(didUpdateTimeForVideoPlayer:withTime:andDuration:)
     func didUpdateTime(videoPlayer: VideoPlayer, time: Int, duration: Int)
-    
+
     /**
      * This method is called by the video player when it has finished playing
      * @param videoPlayer - the current videoPlayer instance
@@ -104,7 +104,7 @@ public protocol VideoPlayerDelegate: class {
      */
     @objc(didCompleteVideoPlayer:withTime:andDuration:)
     func didComplete(videoPlayer: VideoPlayer, time: Int, duration: Int)
-    
+
     /**
      * This method is called by the video player when it has encountered an error
      * @param videoPlayer - the current videoPlayer instance
