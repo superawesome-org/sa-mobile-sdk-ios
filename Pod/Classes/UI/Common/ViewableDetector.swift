@@ -22,7 +22,6 @@ class ViewableDetector: ViewableDetectorType {
     var hasBeenVisible: VoidBlock?
     var whenVisible: VoidBlock?
 
-
     func cancel() {
         viewableCounter = 0
         timer?.invalidate()

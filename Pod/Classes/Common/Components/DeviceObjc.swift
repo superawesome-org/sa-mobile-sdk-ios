@@ -17,7 +17,7 @@ public protocol DeviceTypeObjc {
 }
 
 @objc(SADevice)
-class DeviceObjc : NSObject, DeviceTypeObjc {
+class DeviceObjc: NSObject, DeviceTypeObjc {
     public var type: String
     public var genericType: String
     public var systemVersion: String
@@ -30,7 +30,7 @@ class DeviceObjc : NSObject, DeviceTypeObjc {
         systemVersion = device.systemVersion
         systemVersionEscaped = systemVersion.replacingOccurrences(of: ".", with: "_")
         userAgent = "Mozilla/5.0 (\(type); CPU \(type) OS \(systemVersionEscaped) like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148"
-        
+
         super.init()
     }
 }

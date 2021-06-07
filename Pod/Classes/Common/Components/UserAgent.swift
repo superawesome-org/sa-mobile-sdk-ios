@@ -16,18 +16,18 @@ public protocol UserAgentType {
 }
 
 @objc(SAUserAgent)
-public class UserAgent : NSObject, UserAgentType {
+public class UserAgent: NSObject, UserAgentType {
     public var name: String
     private var webView: WKWebView?
     private var dataRepository: DataRepositoryType
-    
-    init(device:DeviceTypeObjc, dataRepository: DataRepositoryType) {
+
+    init(device: DeviceTypeObjc, dataRepository: DataRepositoryType) {
         self.dataRepository = dataRepository
         self.name = dataRepository.userAgent ?? device.userAgent
         super.init()
         evaluateUserAgent()
     }
-    
+
     private func evaluateUserAgent() {
         webView = WKWebView()
         webView?.evaluateJavaScript("navigator.userAgent", completionHandler: { (result, error) in
@@ -37,7 +37,7 @@ public class UserAgent : NSObject, UserAgentType {
                 self.name = result
                 self.dataRepository.userAgent = result
             }
-            
+
             self.webView = nil
         })
     }

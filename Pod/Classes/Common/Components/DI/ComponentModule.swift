@@ -14,11 +14,11 @@ public protocol ComponentModuleObjcType {
 
 class ComponentModuleObjc: ComponentModuleObjcType {
     private var dataRepository: DataRepositoryType
-    
+
     lazy var device: DeviceTypeObjc = DeviceObjc(UIDevice.current)
     lazy var userAgent: UserAgentType = UserAgent(device: device, dataRepository: dataRepository)
-    
-    init(dataRepository:DataRepositoryType) {
+
+    init(dataRepository: DataRepositoryType) {
         self.dataRepository = dataRepository
     }
 }

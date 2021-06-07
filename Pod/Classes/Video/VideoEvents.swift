@@ -12,32 +12,32 @@ import Foundation
 }
 
 @objc (SAVideoEvents) public class VideoEvents: NSObject {
-    
+
     private var isStartHandled: Bool = false
     private var is2SHandled: Bool = false
     private var isFirstQuartileHandled: Bool = false
     private var isMidpointHandled: Bool = false
     private var isThirdQuartileHandled: Bool = false
-    private var viewableDetector: ViewableDetectorType? = nil
-    
+    private var viewableDetector: ViewableDetectorType?
+
     private var events: SAEvents
-    
+
     public weak var delegate: VideoEventsDelegate?
-    
+
     //////////////////////////////////////////////////////////////////////////////
     // constructor
     //////////////////////////////////////////////////////////////////////////////
-    
+
     @objc(initWithEvents:)
     public init(events: SAEvents) {
         self.events = events
         super.init()
     }
-    
+
     //////////////////////////////////////////////////////////////////////////////
     // public class interface
     //////////////////////////////////////////////////////////////////////////////
-    
+
     public func prepare(player: VideoPlayer, time: Int, duration: Int) {
         if let videoPlayer = player as? UIView,
            let avPlayer = player.getAVPlayer(),
@@ -48,21 +48,21 @@ import Foundation
         }
         is2SHandled = false
     }
-    
+
     public func complete(player: VideoPlayer, time: Int, duration: Int) {
         events.stopMoatTrackingForVideoPlayer()
         guard time >= duration else { return }
         events.triggerVASTCompleteEvent()
     }
-    
+
     public func error(player: VideoPlayer, time: Int, duration: Int) {
         events.stopMoatTrackingForVideoPlayer()
         events.triggerVASTErrorEvent()
     }
-    
+
     public func time(player: VideoPlayer, time: Int, duration: Int) {
-        
-        if let videoPlayer = player as? UIView, !is2SHandled  {
+
+        if let videoPlayer = player as? UIView, !is2SHandled {
             is2SHandled = true
             viewableDetector?.cancel()
             viewableDetector = ViewableDetector()
@@ -71,14 +71,14 @@ import Foundation
                 self?.delegate?.hasBeenVisible()
             })
         }
-        
+
         if (time >= 1 && !isStartHandled) {
             isStartHandled = true
             events.triggerVASTImpressionEvent()
             events.triggerVASTCreativeViewEvent()
             events.triggerVASTStartEvent()
         }
-        
+
         if (time >= duration / 4 && !isFirstQuartileHandled) {
             isFirstQuartileHandled = true
             events.triggerVASTFirstQuartileEvent()

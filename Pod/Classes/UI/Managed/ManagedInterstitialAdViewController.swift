@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 class ManagedInterstitialAdViewController: UIViewController, Injectable {
 
     private lazy var imageProvider: ImageProviderType = dependencies.resolve()
@@ -72,7 +71,7 @@ class ManagedInterstitialAdViewController: UIViewController, Injectable {
 
     private func configureBannerView() {
         let bannerView = SAManagedBannerAd()
-        bannerView.setCallback(value: {[weak self] a,b in
+        bannerView.setCallback(value: {[weak self] _, _ in
             self?.closeButton?.isHidden = false
         })
         bannerView.setTestMode(value: testingEnabled)

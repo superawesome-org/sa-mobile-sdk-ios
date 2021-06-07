@@ -7,7 +7,7 @@
 
 class UIModule: DependencyModule {
     func register(_ container: DependencyContainer) {
-        container.factory(ViewableDetectorType.self) { innerContainer, param in
+        container.factory(ViewableDetectorType.self) { _, _ in
             ViewableDetector() }
         container.single(AdControllerType.self) { _, _ in AdController() }
         container.factory(ParentalGate.self) { innerContainer, _ in

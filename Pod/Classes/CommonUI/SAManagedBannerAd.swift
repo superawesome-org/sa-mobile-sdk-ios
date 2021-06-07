@@ -146,12 +146,12 @@ import WebKit
     @objc public func disableParentalGate() {
         isParentalGateEnabled = false
     }
-    
-    @objc public func setParentalGate(_ isEnabled:Bool){
+
+    @objc public func setParentalGate(_ isEnabled: Bool) {
         isParentalGateEnabled = isEnabled
     }
-    
-    @objc public func setBumperPage(_ isEnabled:Bool){
+
+    @objc public func setBumperPage(_ isEnabled: Bool) {
         isBumperPageEnabled = isEnabled
     }
 
@@ -192,8 +192,8 @@ import WebKit
         UIApplication.shared.open(url)
     }
 
-    func close(){
-        
+    func close() {
+
     }
 }
 

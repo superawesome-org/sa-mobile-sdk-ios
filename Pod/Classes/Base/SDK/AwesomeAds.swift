@@ -13,13 +13,9 @@ public class AwesomeAds: NSObject {
     private var initialised: Bool = false
 
     private func registerMoatModule(_ loggingEnabled: Bool) {
-        #if MOAT_MODULE
         let module = MoatModule()
         module.initMoat(loggingEnabled)
         module.register(container)
-        #else
-        debugPrint("Moat module is not available. Skipping.")
-        #endif
     }
 
     private func registerDependencies(_ configuration: Configuration) {
