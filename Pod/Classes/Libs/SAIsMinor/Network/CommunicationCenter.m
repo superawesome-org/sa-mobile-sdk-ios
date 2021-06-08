@@ -7,5 +7,5 @@
 
 #import <Foundation/Foundation.h>
 
-NSString *const isMinorURL = @"https://kwsapi.superawesome.tv/";
+NSString *const isMinorURL = @"https://kwsapi-popjam.superawesome.tv/";
 
