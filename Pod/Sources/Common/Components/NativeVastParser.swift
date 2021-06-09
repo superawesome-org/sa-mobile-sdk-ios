@@ -7,25 +7,25 @@
 
 import UIKit
 
-final class NativeVastPasser: NSObject, VastParserType {
+final class NativeVastParser: NSObject, VastParserType {
     private var vastAd: VastAd?
 
     private var currentElements: [String] = []
     private let connectionProvider: ConnectionProviderType
 
-    private  var type: VastType! = .invalid
-    private  var redirect: String?
-    private  var errors: [String] = []
-    private  var impressions: [String] = []
-    private  var clickThrough: String?
-    private  var clickTrackingEvents = [String]()
-    private  var creativeViews = [String]()
-    private  var startEvents = [String]()
-    private  var firstQuartiles = [String]()
-    private  var midPoints = [String]()
-    private  var thirdQuartiles = [String]()
-    private  var completes = [String]()
-    private  var medias = [VastMedia]()
+    private var type: VastType! = .invalid
+    private var redirect: String?
+    private var errors: [String] = []
+    private var impressions: [String] = []
+    private var clickThrough: String?
+    private var clickTrackingEvents = [String]()
+    private var creativeViews = [String]()
+    private var startEvents = [String]()
+    private var firstQuartiles = [String]()
+    private var midPoints = [String]()
+    private var thirdQuartiles = [String]()
+    private var completes = [String]()
+    private var medias = [VastMedia]()
     private var event: String?
     private var currentMedia: VastMedia?
     private var trackingUrl: String = ""
@@ -71,9 +71,13 @@ final class NativeVastPasser: NSObject, VastParserType {
     }
 }
 
-extension NativeVastPasser: XMLParserDelegate {
+extension NativeVastParser: XMLParserDelegate {
 
-    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String: String] = [:]) {
+    func parser(_ parser: XMLParser,
+                didStartElement elementName: String,
+                namespaceURI: String?,
+                qualifiedName qName: String?,
+                attributes attributeDict: [String: String] = [:]) {
 
         if type == .invalid && currentElements.contains("Ad") {
             if elementName == "InLine" {
@@ -97,13 +101,15 @@ extension NativeVastPasser: XMLParserDelegate {
         }
     }
 
-    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+    func parser(_ parser: XMLParser,
+                didEndElement elementName: String,
+                namespaceURI: String?,
+                qualifiedName qName: String?) {
 
         if currentElements.count >= 2 {
             currentElements.removeFirst()
         }
         if currentElements.last == "Tracking" {
-            print("___mark \(event) \(trackingUrl)")
             switch event {
             case "creativeView": creativeViews.append(trackingUrl)
             case "start": startEvents.append(trackingUrl)
@@ -111,7 +117,7 @@ extension NativeVastPasser: XMLParserDelegate {
             case "midpoint": midPoints.append(trackingUrl)
             case "thirdQuartile": thirdQuartiles.append(trackingUrl)
             case "complete": completes.append(trackingUrl)
-            default: print("othter event \(event) \(trackingUrl)")
+            default: print("othter event")
             }
             trackingUrl = ""
         }
@@ -126,13 +132,6 @@ extension NativeVastPasser: XMLParserDelegate {
         if currentElements.last == "Error" && !errorUrl.isEmpty {
             errors.append(errorUrl)
             errorUrl = ""
-        }
-        if currentElements.last == "MediaFile" && !mediaUrl.isEmpty {
-            currentMedia?.url = mediaUrl
-            mediaUrl = ""
-            if let media = currentMedia {
-                medias.append(media)
-            }
         }
         event = nil
     }
@@ -164,12 +163,10 @@ extension NativeVastPasser: XMLParserDelegate {
             }
             if currentElements.last == "MediaFile"{
                 currentMedia?.url = data
-                if let media = currentMedia {
+                if let media = currentMedia , media.type?.contains("mp4") == true{
                     medias.append(media)
                 }
             }
-
-            print("_mark foundCharacters \(string)")
         }
     }
 
