@@ -19,8 +19,8 @@ class VastAd {
     private(set) var firstQuartileEvents: [String] = []
     private(set) var midPointEvents: [String] = []
     private(set) var thirdQuartileEvents: [String] = []
-    private(set)  var completeEvents: [String] = []
-    private(set)  var clickTrackingEvents: [String] = []
+    private(set) var completeEvents: [String] = []
+    private(set) var clickTrackingEvents: [String] = []
 
     init(
         url: String? = nil,
@@ -74,13 +74,13 @@ class VastAd {
     }
 }
 
-enum VastType {
+enum VastType: String {
     case invalid
     case inLine
     case wrapper
 }
 
-struct VastMedia {
+struct VastMedia: Equatable {
     var type: String?
     var url: String?
     var bitrate: Int?

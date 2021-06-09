@@ -16,7 +16,6 @@ class VastParser: NSObject, VastParserType {
     }
 
     func parse(_ data: Data) -> VastAd? {
-
         let xml = XML.parse(data)
         var root: XML.Accessor
 
