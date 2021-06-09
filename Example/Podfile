@@ -1,5 +1,5 @@
 source 'https://cdn.cocoapods.org/'
-platform :ios, '10.0'
+platform :ios, '11.0'
 use_frameworks!
 #use_frameworks! :linkage => :static # Use this when Admob enabled
 #use_modular_headers!

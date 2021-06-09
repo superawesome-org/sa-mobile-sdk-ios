@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
       'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 arm64e armv7 armv7s',
       'EXCLUDED_ARCHS[sdk=iphoneos*]' => 'i386 x86_64' }
   
-  s.ios.deployment_target = '10.0'
+  s.ios.deployment_target = '11.0'
   s.swift_versions = ['5.0']
   s.requires_arc = true
   s.source = {
@@ -31,9 +31,9 @@ Pod::Spec.new do |s|
   }
   s.static_framework = false
 
-  s.dependency 'mopub-ios-sdk','~> 5.14'
-  s.dependency 'SwiftyXMLParser', '4.3.0'
-  s.dependency 'Moya', '~> 14.0'
+  s.dependency 'mopub-ios-sdk'
+  s.dependency 'SwiftyXMLParser'
+  s.dependency 'Moya'
   s.source_files = 'Pod/Classes/**/*'
   s.vendored_frameworks = 'Pod/Libraries/SUPMoatMobileAppKit.framework'
 

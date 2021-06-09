@@ -89,6 +89,8 @@ import UIKit
             } else {
                 return super.supportedInterfaceOrientations
             }
+        @unknown default:
+            fatalError()
         }
     }
 
