@@ -36,11 +36,6 @@ PODS:
   - SuperAwesome (8.1.0):
     - mopub-ios-sdk
     - Moya (~> 14.0)
-    - SuperAwesome/Unity (= 8.1.0)
-    - SwiftyXMLParser (= 4.3.0)
-  - SuperAwesome/Unity (8.1.0):
-    - mopub-ios-sdk
-    - Moya (~> 14.0)
     - SwiftyXMLParser (= 4.3.0)
   - SwiftyXMLParser (4.3.0)
   - URITemplate (2.0.3)
@@ -73,10 +68,10 @@ SPEC CHECKSUMS:
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   Nimble: 4f4a345c80b503b3ea13606a4f98405974ee4d0b
   OHHTTPStubs: 90eac6d8f2c18317baeca36698523dc67c513831
-  SuperAwesome: ada0804b39a79f2d8ad669a6b9129d0d05164dbe
+  SuperAwesome: f157a2f9d5f124add15ad365810b3c4848321584
   SwiftyXMLParser: b2e0b0dd0e0fb1ac39869dd4a0c6181847af2945
   URITemplate: ace0c4c46dcf8afe6e89b4060621852886b15c3b
 
 PODFILE CHECKSUM: 1ab632067b970ad603ba7c42b3da85378e54766f
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.9.3
