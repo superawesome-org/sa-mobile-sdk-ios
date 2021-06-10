@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Mockingjay
 
 func jsonFile(_ name: String) -> Data { BundleHelper.loadFileData(name: name, type: "json") }
 func xmlFile(_ name: String) -> Data { BundleHelper.loadFileData(name: name, type: "xml") }
