@@ -17,6 +17,7 @@ public class InterstitialAd: NSObject, Injectable {
     private(set) static var isTestingEnabled: Bool = Constants.defaultTestMode
     private(set) static var orientation: Orientation = Constants.defaultOrientation
     private(set) static var isMoatLimitingEnabled: Bool = Constants.defaultMoatLimitingState
+    private static let factory = RequestFactoryImpl()
 
     // MARK: - Public functions
 
@@ -131,15 +132,6 @@ public class InterstitialAd: NSObject, Injectable {
     // MARK: - Private functions
 
     private static func makeAdRequest() -> AdRequest {
-        let size = UIScreen.main.bounds.size
-
-        return AdRequest(test: isTestingEnabled,
-                         position: AdRequest.Position.fullScreen,
-                         skip: AdRequest.Skip.yes,
-                         playbackMethod: AdRequest.PlaybackSoundOnScreen,
-                         startDelay: AdRequest.StartDelay.preRoll,
-                         instl: AdRequest.FullScreen.on,
-                         width: Int(size.width),
-                         height: Int(size.height))
+        return factory.makeRequest(isTestEnabled: isTestingEnabled, screen: .interstitial, size: UIScreen.main.bounds.size)
     }
 }

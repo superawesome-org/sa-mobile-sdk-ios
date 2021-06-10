@@ -22,11 +22,9 @@ class AdQueryMakerTests: XCTestCase {
         let request = AdRequest(test: false,
                                 position: .aboveTheFold,
                                 skip: .no,
-                                playbackMethod: 10,
-                                startDelay: .genericMidRoll,
                                 instl: .off,
-                                width: 20,
-                                height: 30)
+                                width: 20 ,
+                                height:30)
 
         // When
         let query = queryMaker.makeAdQuery(request)
