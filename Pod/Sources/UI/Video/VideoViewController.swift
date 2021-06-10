@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SAVideoPlayer
 
 @objc(SAVideoViewController) class VideoViewController: UIViewController, Injectable {
 

@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SAVideoPlayer
 
 @objc (SAVideoEventsDelegate) public protocol VideoEventsDelegate: AnyObject {
     func hasBeenVisible()

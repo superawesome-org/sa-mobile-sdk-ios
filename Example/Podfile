@@ -5,7 +5,7 @@ use_frameworks!
 
 target 'SuperAwesomeExample' do
   pod 'SuperAwesome/Full', :path => '../', :testspecs => ['Tests']
-  pod 'mopub-ios-sdk'
+  pod 'mopub-ios-sdk', '~> 5.15'
   pod 'SwiftLint'
 
 #  pod 'SuperAwesome', :path => '../'
