@@ -28,7 +28,8 @@ public class VideoAd: NSObject, Injectable {
     static var orientation: Orientation = Constants.defaultOrientation
 
     static var isMoatLimitingEnabled: Bool = Constants.defaultMoatLimitingState
-    static var delay: AdRequest.StartDelay = Constants.defaultStartDelay
+    static var delay: AdRequest.StartDelay = .preRoll
+    private static let factory = RequestFactoryImpl()
 
     private static var callback: AdEventCallback?
 
@@ -39,16 +40,7 @@ public class VideoAd: NSObject, Injectable {
     ////////////////////////////////////////////////////////////////////////////
 
     private static func makeAdRequest() -> AdRequest {
-        let size = UIScreen.main.bounds.size
-
-        return AdRequest(test: isTestingEnabled,
-                         position: AdRequest.Position.fullScreen,
-                         skip: AdRequest.Skip.yes,
-                         playbackMethod: AdRequest.PlaybackSoundOnScreen,
-                         startDelay: delay,
-                         instl: AdRequest.FullScreen.on,
-                         width: Int(size.width),
-                         height: Int(size.height))
+        return factory.makeRequest(isTestEnabled: isTestingEnabled, screen: .video, size: UIScreen.main.bounds.size)
     }
 
     private static func onSuccess(_ placementId: Int, _ response: AdResponse) {

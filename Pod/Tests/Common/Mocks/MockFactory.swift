@@ -62,8 +62,6 @@ class MockFactory {
             test: false,
             position: .aboveTheFold,
             skip: .no,
-            playbackMethod: 10,
-            startDelay: .genericMidRoll,
             instl: .off,
             width: 25,
             height: 35)

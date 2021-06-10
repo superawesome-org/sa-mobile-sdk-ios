@@ -83,11 +83,24 @@ public struct AdRequest: Codable {
     let test: Bool
     let position: Position
     let skip: Skip
-    let playbackMethod: Int
-    let startDelay: StartDelay
     let instl: FullScreen
     let width: Int
     let height: Int
+    let startDelay: StartDelay
+    let playbackMethod: Int
+    
+    init( test: Bool, position: Position,skip: Skip,instl: FullScreen,width: Int,height: Int,
+          startDelay: StartDelay = .preRoll,playbackMethod: Int = AdRequest.PlaybackSoundOnScreen){
+        self.test = test
+        self.position =  position
+        self.skip = skip
+        self.instl = instl
+        self.width = width
+        self.height = height
+        self.startDelay = startDelay
+        self.playbackMethod = playbackMethod
+        
+    }
 
     enum CodingKeys: String, CodingKey {
         case test

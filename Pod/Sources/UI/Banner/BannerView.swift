@@ -205,14 +205,7 @@ public class BannerView: UIView, Injectable {
     }
 
     private func makeAdRequest() -> AdRequest {
-        AdRequest(test: controller.testEnabled,
-                  position: AdRequest.Position.aboveTheFold,
-                  skip: AdRequest.Skip.no,
-                  playbackMethod: AdRequest.PlaybackSoundOnScreen,
-                  startDelay: AdRequest.StartDelay.preRoll,
-                  instl: AdRequest.FullScreen.off,
-                  width: Int(frame.size.width),
-                  height: Int(frame.size.height))
+        return RequestFactoryImpl().makeRequest(isTestEnabled: controller.testEnabled, screen: .bannerView, size: frame.size)
     }
 
     private func addWebView() {
