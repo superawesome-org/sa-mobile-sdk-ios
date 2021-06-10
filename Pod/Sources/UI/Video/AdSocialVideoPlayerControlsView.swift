@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SAVideoPlayer
 
 @objc(SAAdSocialVideoPlayerControlsView) public class AdSocialVideoPlayerControlsView: UIView, VideoPlayerControlsView {
 

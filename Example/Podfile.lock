@@ -20,14 +20,11 @@ PODS:
   - Moya/Core (14.0.0):
     - Alamofire (~> 5.0)
   - Nimble (9.2.0)
-  - SAVideoPlayer (2.0.1)
   - SuperAwesome/Base (8.0.7-refactor):
     - SuperAwesome/Common
     - SuperAwesome/Network
     - SuperAwesome/UI
-  - SuperAwesome/Common (8.0.7-refactor):
-    - SAVideoPlayer
-    - SwiftyXMLParser
+  - SuperAwesome/Common (8.0.7-refactor)
   - SuperAwesome/Full (8.0.7-refactor):
     - SuperAwesome/Base
     - SuperAwesome/Moat
@@ -44,7 +41,6 @@ PODS:
   - SuperAwesome/UI (8.0.7-refactor):
     - SuperAwesome/Common
   - SwiftLint (0.43.1)
-  - SwiftyXMLParser (5.0.0)
   - URITemplate (3.0.0)
 
 DEPENDENCIES:
@@ -60,9 +56,7 @@ SPEC REPOS:
     - mopub-ios-sdk
     - Moya
     - Nimble
-    - SAVideoPlayer
     - SwiftLint
-    - SwiftyXMLParser
     - URITemplate
 
 EXTERNAL SOURCES:
@@ -75,10 +69,8 @@ SPEC CHECKSUMS:
   mopub-ios-sdk: 36d322902674b79b0560a1cb8d15af0548d364ea
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   Nimble: 4f4a345c80b503b3ea13606a4f98405974ee4d0b
-  SAVideoPlayer: 5a1db63d754db28595f8561b910e1f9754cbfa13
-  SuperAwesome: cc04e81d0676e382d9fb1168730c344c71ae8f3f
+  SuperAwesome: f33fa573dbbec97bf2cbddf4e2c7fca58a21475b
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
-  SwiftyXMLParser: 5ebb8793192f403fa8cc691045143906122a7a75
   URITemplate: 58e0d47f967006c5d59888af5356c4a8ed3b197d
 
 PODFILE CHECKSUM: efd5b05f2fc4a280f8fd7f012f6ce757b4bddd50

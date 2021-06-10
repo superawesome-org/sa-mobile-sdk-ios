@@ -286,7 +286,6 @@
 				"${PODS_ROOT}/Target Support Files/Pods-SuperAwesomeExample/Pods-SuperAwesomeExample-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
-				"${BUILT_PRODUCTS_DIR}/SAVideoPlayer/SAVideoPlayer.framework",
 				"${BUILT_PRODUCTS_DIR}/SuperAwesome/SuperAwesome.framework",
 				"${BUILT_PRODUCTS_DIR}/mopub-ios-sdk/MoPubSDK.framework",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OMSDK_Mopub/OMSDK_Mopub.framework/OMSDK_Mopub",
@@ -295,7 +294,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SAVideoPlayer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SuperAwesome.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MoPubSDK.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OMSDK_Mopub.framework",
