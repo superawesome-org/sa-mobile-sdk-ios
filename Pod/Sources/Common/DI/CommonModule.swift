@@ -48,7 +48,7 @@ struct CommonModule: DependencyModule {
                          encoder: container.resolve())
         }
         container.single(VastParserType.self) { container, _ in
-            VastParser(connectionProvider: container.resolve())
+            NativeVastParser(connectionProvider: container.resolve())
         }
         container.single(AdProcessorType.self) { container, _ in
             AdProcessor(htmlFormatter: container.resolve(), vastParser: container.resolve(), networkDataSource: container.resolve(),
