@@ -62,8 +62,6 @@ Pod::Spec.new do |s|
     subspec.platform = :ios, "11.0"
     subspec.ios.deployment_target = '11.0'
     subspec.source_files = 'Pod/Sources/Common/**/*.{swift}'
-    subspec.dependency 'SwiftyXMLParser'
-    subspec.dependency 'SAVideoPlayer'
     subspec.xcconfig = { 'IPHONEOS_DEPLOYMENT_TARGET' => '$(inherited)' }
   end
 
