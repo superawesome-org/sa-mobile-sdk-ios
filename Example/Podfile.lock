@@ -35,7 +35,7 @@ PODS:
   - SwiftLint (0.43.1)
 
 DEPENDENCIES:
-  - mopub-ios-sdk (~> 5.15)
+  - mopub-ios-sdk
   - SuperAwesome/Full (from `../`)
   - SuperAwesome/Full/Tests (from `../`)
   - SwiftLint
@@ -60,6 +60,6 @@ SPEC CHECKSUMS:
   SuperAwesome: 5373b9260ff727579f60f6d969b1aa6cb98c309a
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
 
-PODFILE CHECKSUM: 6bf4938a191e2e4d3d2d3d3e902a2f874484403b
+PODFILE CHECKSUM: efd5b05f2fc4a280f8fd7f012f6ce757b4bddd50
 
 COCOAPODS: 1.10.1
