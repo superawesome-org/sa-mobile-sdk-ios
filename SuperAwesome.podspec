@@ -44,7 +44,6 @@ Pod::Spec.new do |s|
       test_spec.source_files = 'Pod/Tests/Common/**/*.{swift}', 'Pod/Tests/Network/**/*.{swift}', 'Pod/Tests/Moat/**/*.{swift}', 'Pod/Tests/UI/**/*.{swift}'
       test_spec.resources = 'Pod/Tests/Resources/*'
       test_spec.dependency 'Nimble'
-      test_spec.dependency 'Mockingjay', '3.0.0-alpha.1'
     end
   end
 

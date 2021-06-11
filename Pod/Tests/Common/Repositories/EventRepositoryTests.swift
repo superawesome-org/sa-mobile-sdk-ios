@@ -7,7 +7,6 @@
 
 import XCTest
 import Nimble
-import Mockingjay
 @testable import SuperAwesome
 
 class EventRepositoryTests: XCTestCase {

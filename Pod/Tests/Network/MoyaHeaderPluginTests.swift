@@ -8,7 +8,6 @@
 import XCTest
 import Nimble
 import Moya
-import Mockingjay
 @testable import SuperAwesome
 
 class MoyaHeaderPluginTests: XCTestCase {

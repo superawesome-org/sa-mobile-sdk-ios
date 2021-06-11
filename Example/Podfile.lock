@@ -1,12 +1,5 @@
 PODS:
   - Alamofire (5.4.3)
-  - Mockingjay (3.0.0-alpha.1):
-    - Mockingjay/Core (= 3.0.0-alpha.1)
-    - Mockingjay/XCTest (= 3.0.0-alpha.1)
-  - Mockingjay/Core (3.0.0-alpha.1):
-    - URITemplate (~> 3.0)
-  - Mockingjay/XCTest (3.0.0-alpha.1):
-    - Mockingjay/Core
   - mopub-ios-sdk (5.17.0):
     - mopub-ios-sdk/MoPubSDK (= 5.17.0)
   - mopub-ios-sdk/Core (5.17.0)
@@ -29,7 +22,6 @@ PODS:
     - SuperAwesome/Base
     - SuperAwesome/Moat
   - SuperAwesome/Full/Tests (8.0.7-refactor):
-    - Mockingjay (= 3.0.0-alpha.1)
     - Nimble
     - SuperAwesome/Base
     - SuperAwesome/Moat
@@ -41,7 +33,6 @@ PODS:
   - SuperAwesome/UI (8.0.7-refactor):
     - SuperAwesome/Common
   - SwiftLint (0.43.1)
-  - URITemplate (3.0.0)
 
 DEPENDENCIES:
   - mopub-ios-sdk
@@ -52,12 +43,10 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
-    - Mockingjay
     - mopub-ios-sdk
     - Moya
     - Nimble
     - SwiftLint
-    - URITemplate
 
 EXTERNAL SOURCES:
   SuperAwesome:
@@ -65,13 +54,11 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
-  Mockingjay: 0f7c5aa49c7f1b95621cee3c79b557141f5a225c
   mopub-ios-sdk: 36d322902674b79b0560a1cb8d15af0548d364ea
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   Nimble: 4f4a345c80b503b3ea13606a4f98405974ee4d0b
-  SuperAwesome: f33fa573dbbec97bf2cbddf4e2c7fca58a21475b
+  SuperAwesome: 5373b9260ff727579f60f6d969b1aa6cb98c309a
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
-  URITemplate: 58e0d47f967006c5d59888af5356c4a8ed3b197d
 
 PODFILE CHECKSUM: efd5b05f2fc4a280f8fd7f012f6ce757b4bddd50
 
