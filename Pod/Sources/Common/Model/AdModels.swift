@@ -88,9 +88,9 @@ public struct AdRequest: Codable {
     let height: Int
     let startDelay: StartDelay
     let playbackMethod: Int
-    
-    init( test: Bool, position: Position,skip: Skip,instl: FullScreen,width: Int,height: Int,
-          startDelay: StartDelay = .preRoll,playbackMethod: Int = AdRequest.PlaybackSoundOnScreen){
+
+    init( test: Bool, position: Position, skip: Skip, instl: FullScreen, width: Int, height: Int,
+          startDelay: StartDelay = .preRoll, playbackMethod: Int = AdRequest.PlaybackSoundOnScreen) {
         self.test = test
         self.position =  position
         self.skip = skip
@@ -99,7 +99,7 @@ public struct AdRequest: Codable {
         self.height = height
         self.startDelay = startDelay
         self.playbackMethod = playbackMethod
-        
+
     }
 
     enum CodingKeys: String, CodingKey {

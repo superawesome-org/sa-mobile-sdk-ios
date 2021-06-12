@@ -86,7 +86,6 @@ Pod::Spec.new do |s|
     subspec.ios.deployment_target = '11.0'
     subspec.source_files = 'Pod/Sources/Network/**/*.{swift}'
     subspec.dependency 'SuperAwesome/Common'
-    subspec.dependency 'Moya', '14.0.0'
     subspec.xcconfig = { 'IPHONEOS_DEPLOYMENT_TARGET' => '$(inherited)' }
   end
 

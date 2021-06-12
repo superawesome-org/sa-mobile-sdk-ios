@@ -117,7 +117,7 @@ extension NativeVastParser: XMLParserDelegate {
             case "midpoint": midPoints.append(trackingUrl)
             case "thirdQuartile": thirdQuartiles.append(trackingUrl)
             case "complete": completes.append(trackingUrl)
-            default: print("othter event")
+            default: print("")
             }
             trackingUrl = ""
         }
@@ -163,7 +163,7 @@ extension NativeVastParser: XMLParserDelegate {
             }
             if currentElements.last == "MediaFile"{
                 currentMedia?.url = data
-                if let media = currentMedia , media.type?.contains("mp4") == true{
+                if let media = currentMedia, media.type?.contains("mp4") == true {
                     medias.append(media)
                 }
             }

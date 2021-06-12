@@ -15,60 +15,60 @@ import Foundation
  */
 @objc(SAVideoPlayerControls)
 public protocol VideoPlayerControls: class {
-    
+
     /**
      * Method that starts playing a piece of media
      * @param url - the url of a valid piece of media (remote or local)
      */
     @objc(play:)
     func play(url: URL)
-    
+
     /**
      * Method that resumes the media play
      */
     @objc(start)
     func start()
-    
+
     /**
      * Method that pauses the media play
      */
     @objc(pause)
     func pause()
-    
+
     /**
      * Method that resets the state of the MediaControl, but should
      * not release all resources so that it becomes unavailable
      */
     @objc(reset)
     func reset()
-    
+
     /**
      * Method that frees up all resources owned by the MediaControl;
      * From here on, it cannot be re-used to play media
      */
     @objc(destroy)
     func destroy()
-    
+
     /**
      * Method to seek to a different position
      */
     @objc(seekTo:)
     func seekTo(position: CMTime)
-    
+
     /**
      * Method that returns the total duration, in seconds, of the
      * media control
      */
     @objc(duration)
     func getDuration() -> Int
-    
+
     /**
      * Method that returns the current position, in seconds, of the
      * media control
      */
     @objc(currentPosition)
     func getCurrentPosition() -> Int
-    
+
     /**
      * Method to set the MediaControl's delegate
      * @param delegate - a reference to an object implementing the MediaControlDelegate protocol
@@ -82,14 +82,14 @@ public protocol VideoPlayerControls: class {
  */
 @objc(SAVideoPlayerControlsDelegate)
 public protocol VideoPlayerControlsDelegate: class {
-    
+
     /**
      * This method is called by the VideoPlayerControls when the media is prepared
      * @param control - the current media control instance
      */
     @objc(didPrepareControl:)
     func didPrepare(control: VideoPlayerControls)
-    
+
     /**
      * This method is called by the VideoPlayerControls when the time has been updated
      * @param control - the current media control instance
@@ -98,7 +98,7 @@ public protocol VideoPlayerControlsDelegate: class {
      */
     @objc(didPrepareControl:withTime:andDuration:)
     func didUpdateTime(control: VideoPlayerControls, time: Int, duration: Int)
-    
+
     /**
      * This method is called by the VideoPlayerControls when the media is finished
      * @param control - the current media control instance
@@ -107,14 +107,14 @@ public protocol VideoPlayerControlsDelegate: class {
      */
     @objc(didCompleteControl:withTime:andDuration:)
     func didCompleteMedia(control: VideoPlayerControls, time: Int, duration: Int)
-    
+
     /**
      * This method is called by the VideoPlayerControls when seeking is over
      * @param control - the current media control instance
      */
     @objc(didCompleteSeekOnControl:)
     func didCompleteSeek(control: VideoPlayerControls)
-    
+
     /**
      * This method is called by the VideoPlayerControls when an error happened
      * @param control - the current media control instance

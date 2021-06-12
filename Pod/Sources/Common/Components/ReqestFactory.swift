@@ -22,28 +22,28 @@ class RequestFactoryImpl {
         case bannerView
         case interstitial
         case video
-   
+
         var position: AdRequest.Position {
             if self == .bannerView {
                 return .aboveTheFold
             }
             return .fullScreen
         }
-     
+
         var skip: AdRequest.Skip {
             if self == .bannerView {
                 return .no
             }
             return .yes
         }
-        
+
         var fullScreen: AdRequest.FullScreen {
             if self == .bannerView {
                 return .off
             }
             return .on
         }
-     
+
         var delay: AdRequest.StartDelay {
             switch self {
             default:

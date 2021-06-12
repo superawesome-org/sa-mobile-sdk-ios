@@ -12,31 +12,31 @@ import UIKit
 
 @objc(SAAwesomeVideoPlayer)
 public class AwesomeVideoPlayer: UIView, VideoPlayer {
-    
+
     internal static let animationDuration = 0.3
-    
+
     private var playerLayer: AVPlayerLayer?
     private var didSetUpConstraints: Bool = false
-    
+
     private weak var controller: VideoPlayerControls?
     private weak var controllerView: VideoPlayerControlsView?
-    
+
     internal var isFullscreen: Bool = false
-    
+
     public weak var delegate: VideoPlayerDelegate?
-    
+
     private weak var previousParent: UIView?
-    
+
     ////////////////////////////////////////////////////////////////////////////
     // Different setters and getters
     ////////////////////////////////////////////////////////////////////////////
-    
+
     @objc(setControls:)
     public func setControls(controller: VideoPlayerControls) {
         self.controller = controller
         self.controller?.set(delegate: self)
     }
-    
+
     @objc(setConstrolsView:)
     public func setControlsView(controllerView: VideoPlayerControlsView) {
         (self.controllerView as? UIView)?.removeFromSuperview()
@@ -45,7 +45,7 @@ public class AwesomeVideoPlayer: UIView, VideoPlayer {
         guard let chrome = self.controllerView as? UIView else { return }
         addSubview(chrome)
     }
-    
+
     public override func updateConstraints() {
         if !didSetUpConstraints {
             didSetUpConstraints = true
@@ -59,7 +59,7 @@ public class AwesomeVideoPlayer: UIView, VideoPlayer {
         }
         super.updateConstraints()
     }
-    
+
     public func destroy() {
         controller?.reset()
         controller = nil
@@ -69,12 +69,12 @@ public class AwesomeVideoPlayer: UIView, VideoPlayer {
         playerLayer?.removeFromSuperlayer()
         playerLayer = nil
     }
-    
+
     override public func layoutSubviews() {
         super.layoutSubviews()
         playerLayer?.frame = CGRect(x: 0.0, y: 0.0, width: frame.width, height: frame.height)
     }
-    
+
     @objc(player)
     func getPlayer() -> AVPlayer? {
         guard let control = controller as? AVPlayer else {
@@ -82,12 +82,12 @@ public class AwesomeVideoPlayer: UIView, VideoPlayer {
         }
         return control
     }
-    
+
     @objc(playerLayer)
     func getLayer() -> AVPlayerLayer? {
         return playerLayer
     }
-    
+
     public func setMaximised() {
         isFullscreen = true
         previousParent = superview
@@ -99,7 +99,7 @@ public class AwesomeVideoPlayer: UIView, VideoPlayer {
         newVC.modalTransitionStyle = .coverVertical
         parentVC?.present(newVC, animated: true)
     }
-    
+
     public func setMinimised() {
         isFullscreen = false
         let parentVC = self.parentViewController
@@ -115,34 +115,34 @@ public class AwesomeVideoPlayer: UIView, VideoPlayer {
             getAVPlayer()?.pause()
         }
     }
-    
+
     public func setDelegate(delegate: VideoPlayerDelegate?) {
         self.delegate = delegate
     }
-    
+
     public func getAVPlayer() -> AVPlayer? {
         guard let player = controller as? AVPlayer else { return nil }
         return player
     }
-    
+
     public func getAVPlayerLayer() -> AVPlayerLayer? {
         return playerLayer
     }
-    
+
     ////////////////////////////////////////////////////////////////////////////
     // MediaControlDelegate
     ////////////////////////////////////////////////////////////////////////////
-    
+
     public func didPrepare(control: VideoPlayerControls) {
         if let avcontrol = control as? AVPlayer {
             playerLayer?.removeFromSuperlayer()
             playerLayer = AVPlayerLayer(player: avcontrol)
-            
+
             if let playerLayer = playerLayer {
                 layer.addSublayer(playerLayer)
                 control.start()
                 delegate?.didPrepare(videoPlayer: self, time: control.getCurrentPosition(), duration: control.getDuration())
-                
+
                 controllerView?.setPlaying()
                 if let chrome = controllerView as? UIView {
                     bringSubviewToFront(chrome)
@@ -150,57 +150,57 @@ public class AwesomeVideoPlayer: UIView, VideoPlayer {
             }
         }
     }
-    
+
     public func didUpdateTime(control: VideoPlayerControls, time: Int, duration: Int) {
         controllerView?.setTime(time: time, duration: duration)
         delegate?.didUpdateTime(videoPlayer: self, time: control.getCurrentPosition(), duration: control.getDuration())
     }
-    
+
     public func didCompleteMedia(control: VideoPlayerControls, time: Int, duration: Int) {
         controllerView?.setCompleted()
         delegate?.didComplete(videoPlayer: self, time: control.getCurrentPosition(), duration: control.getDuration())
     }
-    
+
     public func didCompleteSeek(control: VideoPlayerControls) {
         // N/A
     }
-    
+
     public func didError(control: VideoPlayerControls, error: Error, time: Int, duration: Int) {
         delegate?.didError(videoPlayer: self, error: error, time: 0, duration: 0)
     }
-    
+
     ////////////////////////////////////////////////////////////////////////////
     // ChromeControlDelegate
     ////////////////////////////////////////////////////////////////////////////
-    
+
     public func didStartProgressBarSeek() {
         // N/A
     }
-    
+
     public func didEndProgressBarSeek(value: Float) {
         let totalSeconds = controller?.getDuration() ?? 0
         let value = CMTimeValue(value * Float(totalSeconds))
         let seekTime = CMTime(value: value, timescale: 1)
         controller?.seekTo(position: seekTime)
     }
-    
+
     public func didTapPlay() {
         controller?.start()
     }
-    
+
     public func didTapPause() {
         controller?.pause()
     }
-    
+
     public func didTapReplay() {
         controller?.seekTo(position: CMTime(seconds: 0.0, preferredTimescale: 1))
         controller?.start()
     }
-    
+
     public func didTapMaximise() {
         setMaximised()
     }
-    
+
     public func didTapMinimise() {
         setMinimised()
     }

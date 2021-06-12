@@ -1,5 +1,4 @@
 PODS:
-  - Alamofire (5.4.3)
   - mopub-ios-sdk (5.17.0):
     - mopub-ios-sdk/MoPubSDK (= 5.17.0)
   - mopub-ios-sdk/Core (5.17.0)
@@ -8,10 +7,6 @@ PODS:
     - mopub-ios-sdk/NativeAds
   - mopub-ios-sdk/NativeAds (5.17.0):
     - mopub-ios-sdk/Core
-  - Moya (14.0.0):
-    - Moya/Core (= 14.0.0)
-  - Moya/Core (14.0.0):
-    - Alamofire (~> 5.0)
   - Nimble (9.2.0)
   - SuperAwesome/Base (8.0.7-refactor):
     - SuperAwesome/Common
@@ -28,7 +23,6 @@ PODS:
   - SuperAwesome/Moat (8.0.7-refactor):
     - SuperAwesome/Common
   - SuperAwesome/Network (8.0.7-refactor):
-    - Moya (= 14.0.0)
     - SuperAwesome/Common
   - SuperAwesome/UI (8.0.7-refactor):
     - SuperAwesome/Common
@@ -42,9 +36,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - Alamofire
     - mopub-ios-sdk
-    - Moya
     - Nimble
     - SwiftLint
 
@@ -53,11 +45,9 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
   mopub-ios-sdk: 36d322902674b79b0560a1cb8d15af0548d364ea
-  Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   Nimble: 4f4a345c80b503b3ea13606a4f98405974ee4d0b
-  SuperAwesome: 5373b9260ff727579f60f6d969b1aa6cb98c309a
+  SuperAwesome: 369b4abb1064204c0818c559001da48ec59a970b
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
 
 PODFILE CHECKSUM: efd5b05f2fc4a280f8fd7f012f6ce757b4bddd50
