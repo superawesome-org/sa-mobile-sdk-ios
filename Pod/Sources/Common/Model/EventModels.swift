@@ -76,8 +76,8 @@ enum EventType: String, Codable {
         case parentalGateFail
         case parentalGateSuccess
         }
-    
-    var serverName: String{
+
+    var serverName: String {
         switch self {
         case .viewableImpression: return "viewable_impression"
         case .dwellTime: return"custom.analytics.DWELL_TIME"
