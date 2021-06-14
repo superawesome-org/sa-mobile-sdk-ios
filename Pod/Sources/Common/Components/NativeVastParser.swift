@@ -34,12 +34,14 @@ final class NativeVastParser: NSObject, VastParserType {
     private var impressionsUrl = ""
     private var errorUrl = ""
     private var mediaUrl = ""
+    private var clickThroughFinished = false
 
     init(connectionProvider: ConnectionProviderType) {
         self.connectionProvider = connectionProvider
     }
 
     func parse(_ data: Data) -> VastAd? {
+        print(String(data: data, encoding: .utf8))
         let decoder = XMLParser(data: data)
         decoder.delegate = self
         decoder.parse()
@@ -117,7 +119,7 @@ extension NativeVastParser: XMLParserDelegate {
             case "midpoint": midPoints.append(trackingUrl)
             case "thirdQuartile": thirdQuartiles.append(trackingUrl)
             case "complete": completes.append(trackingUrl)
-            default: print("othter event")
+            default:()
             }
             trackingUrl = ""
         }
@@ -133,6 +135,9 @@ extension NativeVastParser: XMLParserDelegate {
             errors.append(errorUrl)
             errorUrl = ""
         }
+        if currentElements.last == "ClickThrough" {
+            clickThroughFinished = true
+        }
         event = nil
     }
 
@@ -145,14 +150,14 @@ extension NativeVastParser: XMLParserDelegate {
             if currentElements.last == "Tracking" {
                 trackingUrl += data
             }
-            if currentElements.last == "ClickThrough"{
+            if currentElements.last == "ClickThrough" && !clickThroughFinished {
                 if clickThrough != nil {
                     clickThrough! += data
                 } else {
                     clickThrough = data
                 }
             }
-            if currentElements.last == "ClickTracking"{
+            if currentElements.last == "ClickTracking" {
                 clickTrackingUrl += data
             }
             if currentElements.last == "Impression" {
@@ -163,7 +168,7 @@ extension NativeVastParser: XMLParserDelegate {
             }
             if currentElements.last == "MediaFile"{
                 currentMedia?.url = data
-                if let media = currentMedia , media.type?.contains("mp4") == true{
+                if let media = currentMedia, media.type?.contains("mp4") == true {
                     medias.append(media)
                 }
             }

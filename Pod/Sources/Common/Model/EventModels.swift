@@ -29,6 +29,19 @@ struct EventQuery: Codable {
         case noImage = "no_image"
         case data
         }
+
+    var params: [String: String] {
+        ["placement": "\(placement)",
+         "bundle": bundle,
+         "creative": "\(creative)",
+         "line_item": "\(lineItem)",
+         "ct": "\(connectionType)",
+         "sdkVersion": sdkVersion,
+         "rnd": "\(rnd)",
+         "type": "\(type?.serverName ?? "")",
+         "no_image": "\(noImage )"
+        ]
+    }
 }
 
 struct EventData: Codable {
@@ -63,4 +76,13 @@ enum EventType: String, Codable {
         case parentalGateFail
         case parentalGateSuccess
         }
+
+    var serverName: String {
+        switch self {
+        case .viewableImpression: return "viewable_impression"
+        case .dwellTime: return"custom.analytics.DWELL_TIME"
+        default:
+            return self.rawValue
+        }
+    }
 }
