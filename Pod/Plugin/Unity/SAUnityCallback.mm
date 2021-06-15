@@ -6,13 +6,6 @@
 #import <UIKit/UIKit.h>
 #import <SuperAwesome/SuperAwesome.h>
 
-//// forward declaration of this method - which is part of the Unity C
-//// libray, so it would be available there
-//inline void UnitySendMessage(const char *identifier, const char *function, const char *payload);
-//{
-//
-//}
-
 /**
  * Generic method used to send messages back to unity
  *

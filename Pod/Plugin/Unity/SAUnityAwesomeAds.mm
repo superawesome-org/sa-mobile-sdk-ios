@@ -6,7 +6,6 @@
 //
 
 #import <UIKit/UIKit.h>
-//#import <SuperAwesome/AwesomeAds.h>
 #import "SAUnityCallback.h"
 
 extern "C" {
@@ -15,16 +14,6 @@ extern "C" {
     }
     
     void SuperAwesomeUnityAwesomeAdsTriggerAgeCheck (const char *age) {
-        
-        NSString *ageString = [NSString stringWithUTF8String:age];
-        
-//        [AwesomeAds triggerAgeCheck:ageString response:^(GetIsMinorModel *model) {
-//
-//            GetIsMinorModel *finalModel = model != nil ? model : [[GetIsMinorModel alloc] init];
-//            NSDictionary *payload = [finalModel dictionaryRepresentation];
-//            if (payload != nil) {
-//                sendToUnity(@"AwesomeAds", payload);
-//            }
-//        }];
+        // WARN: deprecated functionality in AA SDK
     }
 }

@@ -7,14 +7,6 @@ PODS:
     - URITemplate (~> 2.0)
   - Mockingjay/XCTest (2.0.1):
     - Mockingjay/Core
-  - mopub-ios-sdk (5.16.2):
-    - mopub-ios-sdk/MoPubSDK (= 5.16.2)
-  - mopub-ios-sdk/Core (5.16.2)
-  - mopub-ios-sdk/MoPubSDK (5.16.2):
-    - mopub-ios-sdk/Core
-    - mopub-ios-sdk/NativeAds
-  - mopub-ios-sdk/NativeAds (5.16.2):
-    - mopub-ios-sdk/Core
   - Moya (14.0.0):
     - Moya/Core (= 14.0.0)
   - Moya/Core (14.0.0):
@@ -34,7 +26,6 @@ PODS:
     - OHHTTPStubs/Core
   - OHHTTPStubs/OHPathHelpers (9.1.0)
   - SuperAwesome (8.1.0):
-    - mopub-ios-sdk (= 5.16.2)
     - Moya (~> 14.0)
     - SwiftyXMLParser (= 4.3.0)
   - SwiftyXMLParser (4.3.0)
@@ -50,7 +41,6 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - Mockingjay
-    - mopub-ios-sdk
     - Moya
     - Nimble
     - OHHTTPStubs
@@ -64,11 +54,10 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
   Mockingjay: 11a621880d2887f1775bdcf824341eb68f218450
-  mopub-ios-sdk: ce5aa12abe59d42cb8866b1297bdff7b6a42e273
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   Nimble: 4f4a345c80b503b3ea13606a4f98405974ee4d0b
   OHHTTPStubs: 90eac6d8f2c18317baeca36698523dc67c513831
-  SuperAwesome: 9e039a210b62b836288fb9c9444ea5be590ea8ab
+  SuperAwesome: d5ca613a4b40e07545d5e1a4fe11ed561f27ecdb
   SwiftyXMLParser: b2e0b0dd0e0fb1ac39869dd4a0c6181847af2945
   URITemplate: ace0c4c46dcf8afe6e89b4060621852886b15c3b
 

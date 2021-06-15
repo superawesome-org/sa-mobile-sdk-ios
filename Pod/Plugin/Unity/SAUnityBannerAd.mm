@@ -59,7 +59,6 @@ extern "C" {
             
             SABannerAd *banner = [bannerDictionary objectForKey:key];
             [banner setTestMode:test];
-//            [banner setConfiguration:getConfigurationFromInt(configuration)];
             [banner load:placementId];
             
         } else {
@@ -174,7 +173,6 @@ extern "C" {
             SABannerAd *banner = [bannerDictionary objectForKey:key];
             [banner close];
             [banner removeFromSuperview];
-            // [bannerDictionary removeObjectForKey:key];
         } else {
             // handle failure
         }
