@@ -17,15 +17,15 @@ extern "C" {
     void SuperAwesomeUnitySAVideoAdCreate () {
         [SAVideoAd setCallback:^(NSInteger placementId, SAEvent event) {
             switch (event) {
-                case adLoaded: unitySendAdCallback(@"SAVideoAd", placementId, @"adLoaded"); break;
-                case adEmpty: unitySendAdCallback(@"SAVideoAd", placementId, @"adEmpty"); break;
-                case adFailedToLoad: unitySendAdCallback(@"SAVideoAd", placementId, @"adFailedToLoad"); break;
-                case adAlreadyLoaded: unitySendAdCallback(@"SAVideoAd", placementId, @"adAlreadyLoaded"); break;
-                case adShown: unitySendAdCallback(@"SAVideoAd", placementId, @"adShown"); break;
-                case adFailedToShow: unitySendAdCallback(@"SAVideoAd", placementId, @"adFailedToShow"); break;
-                case adClicked: unitySendAdCallback(@"SAVideoAd", placementId, @"adClicked"); break;
-                case adEnded: unitySendAdCallback(@"SAVideoAd", placementId, @"adEnded"); break;
-                case adClosed: unitySendAdCallback(@"SAVideoAd", placementId, @"adClosed"); break;
+                case SAEventAdLoaded: unitySendAdCallback(@"SAVideoAd", placementId, @"adLoaded"); break;
+                case SAEventAdEmpty: unitySendAdCallback(@"SAVideoAd", placementId, @"adEmpty"); break;
+                case SAEventAdFailedToLoad: unitySendAdCallback(@"SAVideoAd", placementId, @"adFailedToLoad"); break;
+                case SAEventAdAlreadyLoaded: unitySendAdCallback(@"SAVideoAd", placementId, @"adAlreadyLoaded"); break;
+                case SAEventAdShown: unitySendAdCallback(@"SAVideoAd", placementId, @"adShown"); break;
+                case SAEventAdFailedToShow: unitySendAdCallback(@"SAVideoAd", placementId, @"adFailedToShow"); break;
+                case SAEventAdClicked: unitySendAdCallback(@"SAVideoAd", placementId, @"adClicked"); break;
+                case SAEventAdEnded: unitySendAdCallback(@"SAVideoAd", placementId, @"adEnded"); break;
+                case SAEventAdClosed: unitySendAdCallback(@"SAVideoAd", placementId, @"adClosed"); break;
             }
         }];
     }

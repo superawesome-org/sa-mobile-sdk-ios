@@ -26,15 +26,15 @@ extern "C" {
         // set banner callback
         [banner setCallback:^(NSInteger placementId, SAEvent event) {
             switch (event) {
-                case adLoaded: unitySendAdCallback(key, placementId, @"adLoaded"); break;
-                case adEmpty: unitySendAdCallback(key, placementId, @"adEmpty"); break;
-                case adFailedToLoad: unitySendAdCallback(key, placementId, @"adFailedToLoad"); break;
-                case adAlreadyLoaded: unitySendAdCallback(key, placementId, @"adAlreadyLoaded"); break;
-                case adShown: unitySendAdCallback(key, placementId, @"adShown"); break;
-                case adFailedToShow: unitySendAdCallback(key, placementId, @"adFailedToShow"); break;
-                case adClicked: unitySendAdCallback(key, placementId, @"adClicked"); break;
-                case adEnded: unitySendAdCallback(key, placementId, @"adEnded"); break;
-                case adClosed: unitySendAdCallback(key, placementId, @"adClosed"); break;
+                case SAEventAdLoaded: unitySendAdCallback(key, placementId, @"adLoaded"); break;
+                case SAEventAdEmpty: unitySendAdCallback(key, placementId, @"adEmpty"); break;
+                case SAEventAdFailedToLoad: unitySendAdCallback(key, placementId, @"adFailedToLoad"); break;
+                case SAEventAdAlreadyLoaded: unitySendAdCallback(key, placementId, @"adAlreadyLoaded"); break;
+                case SAEventAdShown: unitySendAdCallback(key, placementId, @"adShown"); break;
+                case SAEventAdFailedToShow: unitySendAdCallback(key, placementId, @"adFailedToShow"); break;
+                case SAEventAdClicked: unitySendAdCallback(key, placementId, @"adClicked"); break;
+                case SAEventAdEnded: unitySendAdCallback(key, placementId, @"adEnded"); break;
+                case SAEventAdClosed: unitySendAdCallback(key, placementId, @"adClosed"); break;
             }
         }];
         
@@ -48,7 +48,7 @@ extern "C" {
      *
      * @param unityName     the unique name of the banner in unity
      * @param placementId   placement id to load the ad for
-     * @param configuration production = 0 / staging = 1
+     * @param configuration production = 0 / staging = 1 --- deprecated
      * @param test          true / false
      */
     void SuperAwesomeUnitySABannerAdLoad (const char *unityName, int placementId, int configuration, bool test) {
@@ -59,7 +59,7 @@ extern "C" {
             
             SABannerAd *banner = [bannerDictionary objectForKey:key];
             [banner setTestMode:test];
-            [banner setConfiguration:getConfigurationFromInt(configuration)];
+//            [banner setConfiguration:getConfigurationFromInt(configuration)];
             [banner load:placementId];
             
         } else {
@@ -127,9 +127,9 @@ extern "C" {
             __block SABannerAd *banner = [bannerDictionary objectForKey:key];
             [banner setParentalGate:isParentalGateEnabled];
             [banner setBumperPage:isBumperPageEnabled];
-            [banner setColor:color];
+//            [banner setColor:color];
             [root.view addSubview:banner];
-            [banner resize:CGRectMake(realPos.x, realPos.y, realSize.width, realSize.height)];
+//            [banner resize:CGRectMake(realPos.x, realPos.y, realSize.width, realSize.height)];
             
             // add a block notification
             [[NSNotificationCenter defaultCenter] addObserverForName:@"UIDeviceOrientationDidChangeNotification"
@@ -149,7 +149,7 @@ extern "C" {
                  if (position == 0) realPos = CGPointMake((screen.width - realSize.width) / 2.0f, 0);
                  else realPos = CGPointMake((screen.width - realSize.width) / 2.0f, screen.height - realSize.height);
                  
-                 [banner resize:CGRectMake(realPos.x, realPos.y, realSize.width, realSize.height)];
+//                 [banner resize:CGRectMake(realPos.x, realPos.y, realSize.width, realSize.height)];
              }];
             
             // finally play
