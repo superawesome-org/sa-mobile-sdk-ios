@@ -4,7 +4,6 @@
  */
 
 #import <UIKit/UIKit.h>
-#import <SuperAwesome/SuperAwesome.h>
 #import <SuperAwesome/SuperAwesome-Swift.h>
 
 /**
