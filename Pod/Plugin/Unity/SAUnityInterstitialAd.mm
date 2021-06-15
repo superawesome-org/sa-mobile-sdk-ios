@@ -14,15 +14,15 @@ extern "C" {
     void SuperAwesomeUnitySAInterstitialAdCreate () {
         [SAInterstitialAd setCallback:^(NSInteger placementId, SAEvent event) {
             switch (event) {
-                case adLoaded: unitySendAdCallback(@"SAInterstitialAd", placementId, @"adLoaded"); break;
-                case adEmpty: unitySendAdCallback(@"SAInterstitialAd", placementId, @"adEmpty"); break;
-                case adFailedToLoad: unitySendAdCallback(@"SAInterstitialAd", placementId, @"adFailedToLoad"); break;
-                case adAlreadyLoaded: unitySendAdCallback(@"SAInterstitialAd", placementId, @"adAlreadyLoaded"); break;
-                case adShown: unitySendAdCallback(@"SAInterstitialAd", placementId, @"adShown"); break;
-                case adFailedToShow: unitySendAdCallback(@"SAInterstitialAd", placementId, @"adFailedToShow"); break;
-                case adClicked: unitySendAdCallback(@"SAInterstitialAd", placementId, @"adClicked"); break;
-                case adEnded: unitySendAdCallback(@"SAInterstitialAd", placementId, @"adEnded"); break;
-                case adClosed: unitySendAdCallback(@"SAInterstitialAd", placementId, @"adClosed"); break;
+                case SAEventAdLoaded: unitySendAdCallback(@"SAInterstitialAd", placementId, @"adLoaded"); break;
+                case SAEventAdEmpty: unitySendAdCallback(@"SAInterstitialAd", placementId, @"adEmpty"); break;
+                case SAEventAdFailedToLoad: unitySendAdCallback(@"SAInterstitialAd", placementId, @"adFailedToLoad"); break;
+                case SAEventAdAlreadyLoaded: unitySendAdCallback(@"SAInterstitialAd", placementId, @"adAlreadyLoaded"); break;
+                case SAEventAdShown: unitySendAdCallback(@"SAInterstitialAd", placementId, @"adShown"); break;
+                case SAEventAdFailedToShow: unitySendAdCallback(@"SAInterstitialAd", placementId, @"adFailedToShow"); break;
+                case SAEventAdClicked: unitySendAdCallback(@"SAInterstitialAd", placementId, @"adClicked"); break;
+                case SAEventAdEnded: unitySendAdCallback(@"SAInterstitialAd", placementId, @"adEnded"); break;
+                case SAEventAdClosed: unitySendAdCallback(@"SAInterstitialAd", placementId, @"adClosed"); break;
             }
         }];
     }
@@ -63,7 +63,7 @@ extern "C" {
         UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
         [SAInterstitialAd setParentalGate:isParentalGateEnabled];
         [SAInterstitialAd setBumperPage:isBumperPageEnabled];
-        [SAInterstitialAd setOrientation:getOrientationFromInt (orientation)];
+//        [SAInterstitialAd setOrientation:getOrientationFromInt (orientation)];
         [SAInterstitialAd play: placementId fromVC: root];
     }
 
@@ -75,7 +75,7 @@ extern "C" {
                                                          int orientation, bool isTestingEnabled) {
         [SAInterstitialAd setParentalGate:isParentalGateEnabled];
         [SAInterstitialAd setBumperPage:isBumperPageEnabled];
-        [SAInterstitialAd setOrientation:getOrientationFromInt (orientation)];
+//        [SAInterstitialAd setOrientation:getOrientationFromInt (orientation)];
         [SAInterstitialAd setTestMode:isTestingEnabled];
     }
 }

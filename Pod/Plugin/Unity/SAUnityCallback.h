@@ -4,7 +4,7 @@
  */
 
 #import <UIKit/UIKit.h>
-#import <SuperAwesome/SuperAwesome.h>
+#import <SuperAwesome/SuperAwesome-Swift.h>
 
 /**
  * Generic method used to send messages back to unity
@@ -38,3 +38,4 @@ static inline void unitySendAdCallback (NSString *unityName, NSInteger placement
     sendToUnity(unityName, data);
     
 }
+

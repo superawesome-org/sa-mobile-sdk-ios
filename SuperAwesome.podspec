@@ -31,7 +31,6 @@ Pod::Spec.new do |s|
   }
   s.static_framework = false
 
-  s.dependency 'mopub-ios-sdk', '5.16.2'
   s.dependency 'SwiftyXMLParser', '4.3.0'
   s.dependency 'Moya', '~> 14.0'
   s.source_files = 'Pod/Classes/**/*'
