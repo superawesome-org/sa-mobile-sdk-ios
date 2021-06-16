@@ -12,7 +12,7 @@ class ManagedInterstitialAdViewController: UIViewController, Injectable {
     private lazy var imageProvider: ImageProviderType = dependencies.resolve()
     private lazy var orientationProvider: OrientationProviderType = dependencies.resolve()
 
-    private var bannerView: ManagedBannerView?
+    private var managedBannerView: ManagedBannerView?
     private var closeButton: UIButton?
 
     private let adResponse: AdResponse
@@ -50,7 +50,7 @@ class ManagedInterstitialAdViewController: UIViewController, Injectable {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        bannerView?.load(adResponse.placementId)
+        managedBannerView?.load(adResponse.placementId)
     }
 
     override var shouldAutorotate: Bool { true }
@@ -65,8 +65,8 @@ class ManagedInterstitialAdViewController: UIViewController, Injectable {
 
     /// Method that is called to close the ad
     func close() {
-        bannerView?.close()
-        bannerView = nil
+        managedBannerView?.close()
+        managedBannerView = nil
         dismiss(animated: true, completion: nil)
     }
 
@@ -89,7 +89,7 @@ class ManagedInterstitialAdViewController: UIViewController, Injectable {
             bannerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
         ])
 
-        self.bannerView = bannerView
+        self.managedBannerView = bannerView
     }
 
     private func configureCloseButton() {
@@ -113,7 +113,7 @@ class ManagedInterstitialAdViewController: UIViewController, Injectable {
     }
 
     @objc private func onCloseClicked() {
-        bannerView?.close()
+        managedBannerView?.close()
         dismiss(animated: true)
     }
 }

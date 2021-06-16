@@ -7,7 +7,6 @@
 
 import UIKit
 
-@objc(SAInterstitialAd)
 public class InterstitialAd: NSObject, Injectable {
     private static var controller: AdControllerType = dependencies.resolve()
     private static var logger: LoggerType = dependencies.resolve(param: InterstitialAd.self)
@@ -48,16 +47,16 @@ public class InterstitialAd: NSObject, Injectable {
         // guard against invalid ad formats
         guard let adResponse = controller.adResponse,
               adResponse.advert.creative.format != CreativeFormatType.video else {
-                controller.adFailedToShow()
-                return
+            controller.adFailedToShow()
+            return
         }
 
         let viewController = InterstitialAdViewController(adResponse: adResponse,
-                                                      parentGateEnabled: isParentalGateEnabled,
-                                                      bumperPageEnabled: isBumperPageEnabled,
-                                                      testingEnabled: isTestingEnabled,
-                                                      orientation: orientation,
-                                                      delegate: self.controller.callback)
+                                                          parentGateEnabled: isParentalGateEnabled,
+                                                          bumperPageEnabled: isBumperPageEnabled,
+                                                          testingEnabled: isTestingEnabled,
+                                                          orientation: orientation,
+                                                          delegate: self.controller.callback)
         viewController.modalPresentationStyle = .fullScreen
         viewController.modalTransitionStyle = .coverVertical
         parent?.present(viewController, animated: true, completion: nil)
@@ -74,18 +73,6 @@ public class InterstitialAd: NSObject, Injectable {
 
     @objc
     public class func setCallback(_ callback: @escaping AdEventCallback) { controller.callback = callback }
-
-    @available(*, deprecated, message: "Use `AwesomeAdsSdk.Configuration` instead")
-    @objc
-    public class func setConfiguration(_ value: Int) { }
-
-    @available(*, deprecated, message: "Use `AwesomeAdsSdk.Configuration` instead")
-    @objc
-    public class func setConfigurationProduction() { }
-
-    @available(*, deprecated, message: "Use `AwesomeAdsSdk.Configuration` instead")
-    @objc
-    public class func setConfigurationStaging() { }
 
     @objc
     public class func setOrientation(_ orientation: Orientation) { self.orientation = orientation }
@@ -132,6 +119,8 @@ public class InterstitialAd: NSObject, Injectable {
     // MARK: - Private functions
 
     private static func makeAdRequest() -> AdRequest {
-        return factory.makeRequest(isTestEnabled: isTestingEnabled, screen: .interstitial, size: UIScreen.main.bounds.size)
+        factory.makeRequest(isTestEnabled: isTestingEnabled,
+                                   screen: .interstitial,
+                                   size: UIScreen.main.bounds.size)
     }
 }

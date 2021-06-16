@@ -51,8 +51,11 @@ struct CommonModule: DependencyModule {
             NativeVastParser(connectionProvider: container.resolve())
         }
         container.single(AdProcessorType.self) { container, _ in
-            AdProcessor(htmlFormatter: container.resolve(), vastParser: container.resolve(), networkDataSource: container.resolve(),
-                        logger: container.resolve(param: AdProcessor.self))
+            AdProcessor(
+                htmlFormatter: container.resolve(),
+                vastParser: container.resolve(),
+                networkDataSource: container.resolve(),
+                logger: container.resolve(param: AdProcessor.self))
         }
         container.single(HtmlFormatterType.self) { container, _ in
             HtmlFormatter(numberGenerator: container.resolve(), encoder: container.resolve())
@@ -77,8 +80,8 @@ struct CommonModule: DependencyModule {
                 fatalError()
             }
             return VastEventRepository(adResponse: adResponse,
-                                networkDataSource: container.resolve(),
-                                logger: container.resolve(param: VastEventRepository.self))
+                                       networkDataSource: container.resolve(),
+                                       logger: container.resolve(param: VastEventRepository.self))
         }
     }
 }
