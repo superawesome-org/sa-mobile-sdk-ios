@@ -8,7 +8,6 @@
 import UIKit
 
 /// Class that abstracts away the process of loading & displaying Banner type Ad.
-@objc(SABannerAd)
 public class BannerView: UIView, Injectable {
 
     private lazy var imageProvider: ImageProviderType = dependencies.resolve()
@@ -54,7 +53,7 @@ public class BannerView: UIView, Injectable {
     }
 
     public func getAd() -> Ad? {
-       return controller.adResponse?.advert
+        return controller.adResponse?.advert
     }
 
     /**
@@ -79,9 +78,9 @@ public class BannerView: UIView, Injectable {
         logger.info("play()")
         // guard against invalid ad formats
         guard let adResponse = controller.adResponse, let html = adResponse.html,
-            adResponse.advert.creative.format != CreativeFormatType.video, !controller.closed else {
-                controller.adFailedToShow()
-                return
+              adResponse.advert.creative.format != CreativeFormatType.video, !controller.closed else {
+            controller.adFailedToShow()
+            return
         }
 
         addWebView()
@@ -155,14 +154,6 @@ public class BannerView: UIView, Injectable {
     @objc
     public func disableTestMode() { setTestMode(false) }
 
-    @available(*, deprecated, message: "Use `AwesomeAdsSdk.Configuration` instead")
-    @objc
-    public func setConfigurationProduction() { }
-
-    @available(*, deprecated, message: "Use `AwesomeAdsSdk.Configuration` instead")
-    @objc
-    public func setConfigurationStaging() { }
-
     @objc
     public func setParentalGate(_ value: Bool) { controller.parentalGateEnabled = value }
 
@@ -205,7 +196,9 @@ public class BannerView: UIView, Injectable {
     }
 
     private func makeAdRequest() -> AdRequest {
-        return RequestFactoryImpl().makeRequest(isTestEnabled: controller.testEnabled, screen: .bannerView, size: frame.size)
+        RequestFactoryImpl().makeRequest(isTestEnabled: controller.testEnabled,
+                                                screen: .bannerView,
+                                                size: frame.size)
     }
 
     private func addWebView() {

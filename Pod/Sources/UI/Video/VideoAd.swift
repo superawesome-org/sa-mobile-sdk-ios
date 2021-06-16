@@ -12,7 +12,6 @@ enum AdState {
     case hasAd(ad: AdResponse)
 }
 
-@objc(SAVideoAd)
 public class VideoAd: NSObject, Injectable {
     private static var adRepository: AdRepositoryType = dependencies.resolve()
     private static var logger: LoggerType = dependencies.resolve(param: InterstitialAd.self)
@@ -32,7 +31,7 @@ public class VideoAd: NSObject, Injectable {
 
     private static var callback: AdEventCallback?
 
-    private static var ads = Dictionary<Int, AdState>()
+    private static var ads = [Int: AdState]()
 
     ////////////////////////////////////////////////////////////////////////////
     // Internal control methods
@@ -44,10 +43,6 @@ public class VideoAd: NSObject, Injectable {
 
     private static func onSuccess(_ placementId: Int, _ response: AdResponse) {
         logger.success("Ad load successful for \(response.placementId)")
-
-//        if (!self.isMoatLimitingEnabled) {
-//            events.disableMoatLimiting()
-//        }
 
         self.ads[placementId] = .hasAd(ad: response)
         callback?(placementId, .adLoaded)
@@ -76,7 +71,6 @@ public class VideoAd: NSObject, Injectable {
                 }
             }
         case .loading: logger.info("Ad is already loading for: \(placementId)")
-            break
         case .hasAd:
             callback?(placementId, .adAlreadyLoaded)
         }
@@ -100,10 +94,8 @@ public class VideoAd: NSObject, Injectable {
             adViewController.modalTransitionStyle = .coverVertical
             viewController.present(adViewController, animated: true)
             ads[placementId] = AdState.none
-            break
         default:
             callback?(placementId, .adFailedToShow)
-            break
         }
     }
 
@@ -115,15 +107,14 @@ public class VideoAd: NSObject, Injectable {
         default: return false
         }
     }
-//
-//    @objc(getAd:)
-//    public static func getAd(placementId: Int) -> SAAd? {
-//        let adState = ads[placementId] ?? .none
-//        switch adState {
-//        case .hasAd(let ad): return ad
-//        default: return nil
-//        }
-//    }
+
+    public static func getAd(placementId: Int) -> Ad? {
+        let adState = ads[placementId] ?? .none
+        switch adState {
+        case .hasAd(let ad): return ad.advert
+        default: return nil
+        }
+    }
 
     ////////////////////////////////////////////////////////////////////////////
     // setters
@@ -177,16 +168,6 @@ public class VideoAd: NSObject, Injectable {
     @objc(disableBumperPage)
     public static func disableBumperPage() {
         setBumperPage(false)
-    }
-
-    @objc(setConfigurationProduction)
-    public static func setConfigurationProduction() {
-//        setConfiguration(SAConfiguration.PRODUCTION)
-    }
-
-    @objc(setConfigurationStaging)
-    public static func setConfigurationStaging() {
-//        setConfiguration(SAConfiguration.STAGING)
     }
 
     public static func setOriantation(_ orientation: Orientation) {

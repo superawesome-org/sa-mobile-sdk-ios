@@ -20,7 +20,7 @@ class InterstitialAdViewController: UIViewController, Injectable {
     private let bumperPageEnabled: Bool
     private let testingEnabled: Bool
     private let orientation: Orientation
-    private let delegate: AdEventCallback?
+    private let callback: AdEventCallback?
 
     init(adResponse: AdResponse,
          parentGateEnabled: Bool,
@@ -33,7 +33,7 @@ class InterstitialAdViewController: UIViewController, Injectable {
         self.bumperPageEnabled = bumperPageEnabled
         self.testingEnabled = testingEnabled
         self.orientation = orientation
-        self.delegate = delegate
+        self.callback = delegate
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -72,7 +72,7 @@ class InterstitialAdViewController: UIViewController, Injectable {
 
     private func configureBannerView() {
         let bannerView = BannerView()
-        bannerView.configure(adResponse: adResponse, delegate: delegate) { [weak self] in
+        bannerView.configure(adResponse: adResponse, delegate: callback) { [weak self] in
             self?.closeButton?.isHidden = false
         }
         bannerView.setTestMode(testingEnabled)
