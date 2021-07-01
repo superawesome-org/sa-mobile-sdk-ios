@@ -7,7 +7,7 @@
 import UIKit
 import WebKit
 
-@objc(SAManagedBannerAd) public final class SAManagedBannerAd: UIView {
+@objc(SAManagedBannerAd) public final class SAManagedBannerAd: UIView, Injectable {
 
     internal var finishedLoading = false
 
@@ -20,6 +20,9 @@ import WebKit
     private var isBumperPageEnabled = SA_DEFAULT_BUMPERPAGE != 0
     private var moatLimiting = true
     private let awesomeAds = AwesomeAds()
+    
+    @available(iOS 14.5, *)
+    private lazy var sknetworkManager: SKAdNetworkManager = dependencies.resolve()
 
     lazy var webView: WKWebView = {
         let preferences = WKPreferences()
@@ -83,6 +86,9 @@ import WebKit
                 events.disableMoatLimiting()
             }
             webView.loadHTMLString(html, baseURL: url)
+            if #available(iOS 14.5, *) {
+                sknetworkManager.startImpression(lineItemId: placementId, creativeId: 1)
+            }
         }
     }
 
@@ -193,7 +199,9 @@ import WebKit
     }
 
     func close() {
-
+        if #available(iOS 14.5, *) {
+            sknetworkManager.endImpression()
+        }
     }
 }
 

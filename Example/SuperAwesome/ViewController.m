@@ -16,7 +16,7 @@
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet SAManagedBannerAd *bannerAd;
+@property (weak, nonatomic) IBOutlet SABannerAd *bannerAd;
 @property (nonatomic, strong) NSMutableArray *data;
 @property (weak, nonatomic) IBOutlet UIButton *ageCheckButton;
 @property (weak, nonatomic) IBOutlet UIButton *mopubButton;
@@ -41,7 +41,7 @@
     [_bannerAd setCallback:^(NSInteger placementId, SAEvent event) {
         NSLog(@"SUPER-AWESOME: Banner Ad %ld - Event %ld", (long)placementId, (long)event);
         if (event == SAEventAdLoaded) {
-            [self->_bannerAd load:placementId];
+            [self->_bannerAd play];
         }
     }];
     
