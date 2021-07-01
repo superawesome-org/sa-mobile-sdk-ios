@@ -12,6 +12,7 @@ enum AwesomeAdsApi {
     case click(query: EventQuery)
     case videoClick(query: EventQuery)
     case event(query: EventQuery)
+    case signature(lineItemId: Int, creativeId: Int)
 
     var path: String {
         switch self {
@@ -22,6 +23,7 @@ enum AwesomeAdsApi {
         case .click: return "/click"
         case .videoClick: return "/video/click"
         case .event: return "/event"
+        case .signature(let lineItemId, let creativeId): return "/skadnetwork/sign/\(lineItemId)/\(creativeId)"
         }
     }
 }

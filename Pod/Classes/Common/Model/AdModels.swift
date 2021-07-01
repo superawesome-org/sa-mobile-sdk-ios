@@ -186,3 +186,28 @@ public enum AdEvent: Int {
 
 /// Callback function for completable events
 public typealias AdEventCallback = (_ placementId: Int, _ event: AdEvent) -> Void
+
+
+struct AdvertiserSignatureDTO: Equatable, Codable {
+    let signature: String
+    let campaignID: Int
+    let itunesItemID: Int
+    let sourceAppID: Int
+    let impressionID: String
+    let timestamp: String
+    let version: String
+    let adNetworkID: String
+    let fidelityType: Int
+
+        enum CodingKeys: String, CodingKey {
+            case campaignID = "campaignId"
+            case itunesItemID = "itunesItemId"
+            case sourceAppID = "sourceAppId"
+            case impressionID = "impressionId"
+            case adNetworkID = "adNetworkId"
+            case signature
+            case timestamp
+            case version
+            case fidelityType
+        }
+}

@@ -8,6 +8,7 @@
 import Moya
 
 class MoyaAwesomeAdsApiDataSource: AwesomeAdsApiDataSourceType {
+    
     private let provider: MoyaProvider<AwesomeAdsTarget>
     private let environment: Environment
 
@@ -44,6 +45,25 @@ class MoyaAwesomeAdsApiDataSource: AwesomeAdsApiDataSourceType {
                 do {
                     let filteredResponse = try response.filterSuccessfulStatusCodes()
                     let result = try filteredResponse.map(Ad.self)
+                    completion(Result.success(result))
+                } catch let error {
+                    completion(Result.failure(error))
+                }
+            case .failure(let error):
+                completion(Result.failure(error))
+            }
+        }
+    }
+    
+    func signature(lineItemId :Int, creativeId: Int,  completion: @escaping (Result<AdvertiserSignatureDTO, Error>) -> Void) {
+        let target = AwesomeAdsTarget(environment, .signature(lineItemId: lineItemId, creativeId: creativeId))
+
+        provider.request(target) { result in
+            switch result {
+            case .success(let response):
+                do {
+                    let filteredResponse = try response.filterSuccessfulStatusCodes()
+                    let result = try filteredResponse.map(AdvertiserSignatureDTO.self)
                     completion(Result.success(result))
                 } catch let error {
                     completion(Result.failure(error))
