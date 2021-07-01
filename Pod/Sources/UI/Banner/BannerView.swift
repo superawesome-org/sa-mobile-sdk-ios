@@ -156,6 +156,14 @@ public class BannerView: UIView, Injectable {
 
     @objc
     public func setParentalGate(_ value: Bool) { controller.parentalGateEnabled = value }
+    
+    @available(*, deprecated, message: "Use `AwesomeAdsSdk.Configuration` instead")
+    @objc
+    public func setConfigurationProduction() { }
+
+    @available(*, deprecated, message: "Use `AwesomeAdsSdk.Configuration` instead")
+    @objc
+    public func setConfigurationStaging() { }
 
     @objc
     public func enableParentalGate() { setParentalGate(true) }
