@@ -8,6 +8,8 @@
 import Foundation
 
 class UrlSessionAwesomeAdsDataSource: AwesomeAdsApiDataSourceType {
+   
+    
 
     private let environment: Environment
     private let userAgent: String
@@ -39,6 +41,10 @@ class UrlSessionAwesomeAdsDataSource: AwesomeAdsApiDataSourceType {
 
     func event(query: EventQuery, completion: OnResult<Void>?) {
         get(endPoint: "/v2/event", params: query.params, completion: completion)
+    }
+ 
+    func signature(lineItemId: Int, creativeId: Int, completion: @escaping OnResult<AdvertiserSignatureDTO>) {
+        get(endPoint: "/v2/skadnetwork/sign/\(lineItemId)/\(creativeId)", params: [:], completion: completion)
     }
 
     private func get(endPoint: String, params: [String: String], completion: OnResult<Void>?) {

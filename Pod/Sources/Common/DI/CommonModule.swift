@@ -60,6 +60,11 @@ struct CommonModule: DependencyModule {
         container.single(HtmlFormatterType.self) { container, _ in
             HtmlFormatter(numberGenerator: container.resolve(), encoder: container.resolve())
         }
+        if #available(iOS 14.5, *) {
+            container.single(SKAdNetworkManager.self){container,_ in
+                SKAdNetworkManagerImpl(repository: container.resolve())
+            }
+        }
         container.single(ImageProviderType.self) { _, _ in ImageProvider() }
         container.single(OrientationProviderType.self) { container, _ in OrientationProvider(container.resolve()) }
         container.single(DateProviderType.self) { _, _ in  DateProvider() }

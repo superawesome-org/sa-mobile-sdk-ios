@@ -8,6 +8,8 @@
 @testable import SuperAwesome
 
 class AdDataSourceMock: AwesomeAdsApiDataSourceType {
+    
+    
     var mockAdResult: Result<Ad, Error>!
     var mockEventResult: Result<Void, Error>!
 
@@ -33,5 +35,9 @@ class AdDataSourceMock: AwesomeAdsApiDataSourceType {
 
     func videoClick(query: EventQuery, completion: OnResult<Void>?) {
         completion?(mockEventResult)
+    }
+    
+    func signature(lineItemId: Int, creativeId: Int, completion: @escaping OnResult<AdvertiserSignatureDTO>) {
+    
     }
 }
