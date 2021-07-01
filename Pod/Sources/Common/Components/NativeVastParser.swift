@@ -41,7 +41,6 @@ final class NativeVastParser: NSObject, VastParserType {
     }
 
     func parse(_ data: Data) -> VastAd? {
-        print(String(data: data, encoding: .utf8))
         let decoder = XMLParser(data: data)
         decoder.delegate = self
         decoder.parse()

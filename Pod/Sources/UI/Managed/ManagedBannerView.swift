@@ -14,6 +14,8 @@ public class ManagedBannerView: UIView, Injectable {
     private lazy var imageProvider: ImageProviderType = dependencies.resolve()
     private lazy var controller: AdControllerType = dependencies.resolve()
     private lazy var logger: LoggerType = dependencies.resolve(param: BannerView.self)
+    @available(iOS 14.5, *)
+    private lazy var sknetworkManager: SKAdNetworkManager = dependencies.resolve()
 
     private var webView: WebView?
     private var padlock: UIButton?
@@ -77,6 +79,9 @@ public class ManagedBannerView: UIView, Injectable {
         webView?.loadAdViaJsScript(placementId: placementId, adRequest: makeAdRequest())
         controller.triggerImpressionEvent()
         showPadlockIfNeeded()
+        if #available(iOS 14.5, *) {
+            sknetworkManager.startImpression(lineItemId: placementId, creativeId: 1)
+        }
     }
 
     private func startMoat(adResponse: AdResponse, html: String) -> String {
@@ -110,6 +115,9 @@ public class ManagedBannerView: UIView, Injectable {
         moatRepository = nil
         controller.close()
         removeWebView()
+        if #available(iOS 14.5, *) {
+            sknetworkManager.endImpression()
+        }
     }
 
     /**

@@ -170,6 +170,16 @@ public class VideoAd: NSObject, Injectable {
         setBumperPage(false)
     }
 
+    @objc(setConfigurationProduction)
+    public static func setConfigurationProduction() {
+//        setConfiguration(SAConfiguration.PRODUCTION)
+    }
+
+    @objc(setConfigurationStaging)
+    public static func setConfigurationStaging() {
+//        setConfiguration(SAConfiguration.STAGING)
+    }
+    
     public static func setOriantation(_ orientation: Orientation) {
         self.orientation = orientation
     }

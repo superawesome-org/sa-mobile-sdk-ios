@@ -11,7 +11,6 @@ import Foundation
 public class SAInterstitialAd: InterstitialAd {
     private static var listener: SADelegate?
 
-
     @available(*, deprecated, renamed: "setCallback" )
     public static func setListener(listener: SADelegate) {
         self.listener = listener
