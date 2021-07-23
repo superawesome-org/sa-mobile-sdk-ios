@@ -8,9 +8,6 @@
 import Foundation
 
 class UrlSessionAwesomeAdsDataSource: AwesomeAdsApiDataSourceType {
-   
-    
-
     private let environment: Environment
     private let userAgent: String
 
@@ -47,18 +44,19 @@ class UrlSessionAwesomeAdsDataSource: AwesomeAdsApiDataSourceType {
         get(endPoint: "/v2/skadnetwork/sign/\(lineItemId)/\(creativeId)", params: [:], completion: completion)
     }
 
-    private func get(endPoint: String, params: [String: String], completion: OnResult<Void>?) {
+    func get(endPoint: String, params: [String: String], completion: OnResult<Void>?) {
         let queryItems: [URLQueryItem] = params.map {
-            URLQueryItem(name: $0.key, value: $0.value)
+            URLQueryItem(name: $0.key, value: $0.value )
         }
-        var components = URLComponents(string: environment.baseURL.absoluteString)!
-        components.path = endPoint
+        var components = URLComponents(string: endPoint)!
         components.queryItems = queryItems
         var request = URLRequest(url: components.url!)
         request.httpMethod = "GET"
         request.addValue(userAgent, forHTTPHeaderField: "User-Agent")
-        URLSession.shared.dataTask(with: request) { _, response, _ in
-            print("mark \(components.url?.absoluteString ?? "")")
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
             if let httpResponse = response as? HTTPURLResponse, (200..<299).contains(httpResponse.statusCode) {
                 DispatchQueue.main.async {
                     completion?(.success(Void()))

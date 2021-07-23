@@ -61,7 +61,7 @@ struct CommonModule: DependencyModule {
             HtmlFormatter(numberGenerator: container.resolve(), encoder: container.resolve())
         }
         if #available(iOS 14.5, *) {
-            container.single(SKAdNetworkManager.self){container,_ in
+            container.single(SKAdNetworkManager.self){ container ,_ in
                 SKAdNetworkManagerImpl(repository: container.resolve())
             }
         }

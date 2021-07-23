@@ -40,4 +40,8 @@ class AdDataSourceMock: AwesomeAdsApiDataSourceType {
     func signature(lineItemId: Int, creativeId: Int, completion: @escaping OnResult<AdvertiserSignatureDTO>) {
     
     }
+    
+    func get(endPoint: String, params: [String : String], completion: OnResult<Void>?) {
+        completion?(mockEventResult)
+    }
 }

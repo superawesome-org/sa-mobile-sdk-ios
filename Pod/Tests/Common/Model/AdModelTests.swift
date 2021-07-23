@@ -29,7 +29,8 @@ class AdModelTests: XCTestCase {
             format: CreativeFormatType.video,
             clickUrl: "http://test.com",
             details: details,
-            bumper: false)
+            bumper: false,
+            payload: nil)
         let ad = Ad(
             advertiserId: 1000,
             publisherId: 1000,

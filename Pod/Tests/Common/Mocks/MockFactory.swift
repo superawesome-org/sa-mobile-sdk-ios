@@ -52,7 +52,8 @@ class MockFactory {
                 height: 100,
                 duration: 110,
                 vast: vast),
-            bumper: true))
+            bumper: true,
+            payload: nil))
     }
 
     static func makeError() -> Error { NSError(domain: "", code: 404, userInfo: nil) }

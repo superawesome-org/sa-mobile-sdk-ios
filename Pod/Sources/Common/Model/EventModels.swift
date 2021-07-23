@@ -16,7 +16,7 @@ struct EventQuery: Codable {
     let type: EventType?
     let noImage: Bool?
     let data: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case placement
         case bundle
@@ -28,8 +28,8 @@ struct EventQuery: Codable {
         case type
         case noImage = "no_image"
         case data
-        }
-
+    }
+    
     var params: [String: String] {
         ["placement": "\(placement)",
          "bundle": bundle,
@@ -39,8 +39,38 @@ struct EventQuery: Codable {
          "sdkVersion": sdkVersion,
          "rnd": "\(rnd)",
          "type": "\(type?.serverName ?? "")",
-         "no_image": "\(noImage )"
+         "no_image": "\(noImage ?? false)"
         ]
+    }
+}
+
+struct PopJamEventData{
+    let placement: Int
+    let lineItem: Int
+    let creative: Int
+    let type: String
+    
+    var dataStr: String {
+        """
+            {"placement": \(placement), "line_item":\(lineItem), "creative":\(creative),"type":\(type)}
+        """
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case lineItem = "line_item"
+        case placement
+        case creative
+        case type
+    }
+}
+
+struct PopJamEvent {
+    let sdkVersion: String
+    let data: PopJamEventData
+    let rnd: Int
+    
+    var queryParams:  [String:String] {
+        [ "sdkVersion": "\(sdkVersion)", "rnd":"\(rnd)","data":data.dataStr ]
     }
 }
 
@@ -49,13 +79,13 @@ struct EventData: Codable {
     let lineItem: Int
     let creative: Int
     let type: EventType
-
+    
     enum CodingKeys: String, CodingKey {
-            case lineItem = "line_item"
+        case lineItem = "line_item"
         case placement
-        case  creative
+        case creative
         case type
-        }
+    }
 }
 
 enum EventType: String, Codable {
@@ -66,7 +96,7 @@ enum EventType: String, Codable {
     case parentalGateFail
     case parentalGateSuccess
     case dwellTime
-
+    
     enum CodingKeys: String, CodingKey {
         case viewableImpression = "viewable_impression"
         case dwellTime = "custom.analytics.DWELL_TIME"
@@ -75,8 +105,8 @@ enum EventType: String, Codable {
         case parentalGateClose
         case parentalGateFail
         case parentalGateSuccess
-        }
-
+    }
+    
     var serverName: String {
         switch self {
         case .viewableImpression: return "viewable_impression"
