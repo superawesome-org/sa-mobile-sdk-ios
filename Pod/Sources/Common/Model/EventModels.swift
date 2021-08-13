@@ -99,7 +99,7 @@ enum EventType: String, Codable {
     
     enum CodingKeys: String, CodingKey {
         case viewableImpression = "viewable_impression"
-        case dwellTime = "custom.analytics.DWELL_TIME"
+        case dwellTime = "viewTime"
         case impressionDownloaded
         case parentalGateOpen
         case parentalGateClose
@@ -110,7 +110,7 @@ enum EventType: String, Codable {
     var serverName: String {
         switch self {
         case .viewableImpression: return "viewable_impression"
-        case .dwellTime: return"custom.analytics.DWELL_TIME"
+        case .dwellTime: return "viewTime"
         default:
             return self.rawValue
         }

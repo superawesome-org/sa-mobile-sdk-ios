@@ -1,11 +1,11 @@
 PODS:
-  - mopub-ios-sdk (5.17.0):
-    - mopub-ios-sdk/MoPubSDK (= 5.17.0)
-  - mopub-ios-sdk/Core (5.17.0)
-  - mopub-ios-sdk/MoPubSDK (5.17.0):
+  - mopub-ios-sdk (5.18.0):
+    - mopub-ios-sdk/MoPubSDK (= 5.18.0)
+  - mopub-ios-sdk/Core (5.18.0)
+  - mopub-ios-sdk/MoPubSDK (5.18.0):
     - mopub-ios-sdk/Core
     - mopub-ios-sdk/NativeAds
-  - mopub-ios-sdk/NativeAds (5.17.0):
+  - mopub-ios-sdk/NativeAds (5.18.0):
     - mopub-ios-sdk/Core
   - Nimble (9.2.0)
   - SuperAwesome/Base (8.0.11-refactor):
@@ -45,7 +45,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  mopub-ios-sdk: 36d322902674b79b0560a1cb8d15af0548d364ea
+  mopub-ios-sdk: d7b533646d96a075e578e8af9598794f2dfb7f7b
   Nimble: 4f4a345c80b503b3ea13606a4f98405974ee4d0b
   SuperAwesome: bc741c0d8ff24574a18de96226120402a7403f4b
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
