@@ -56,7 +56,7 @@ enum EventType: String, Codable {
 
     enum CodingKeys: String, CodingKey {
         case viewableImpression = "viewable_impression"
-        case dwellTime = "custom.analytics.DWELL_TIME"
+        case dwellTime = "viewTime"
         case impressionDownloaded
         case parentalGateOpen
         case parentalGateClose
