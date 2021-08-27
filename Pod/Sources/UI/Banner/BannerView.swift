@@ -227,18 +227,9 @@ public class BannerView: UIView, Injectable {
             view.translatesAutoresizingMaskIntoConstraints = false
 
             addSubview(view)
-
-            let aspectRatio = controller.adResponse?.aspectRatio() ?? 1.0
-            logger.info("aspectRatio(): \(aspectRatio)")
             NSLayoutConstraint.activate([
-                view.widthAnchor.constraint(equalTo: view.heightAnchor, multiplier: aspectRatio, constant: 0),
-
                 view.widthAnchor.constraint(lessThanOrEqualTo: self.widthAnchor, multiplier: 1.0, constant: 0),
-                view.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1.0, constant: 0).withPriority(250),
-
                 view.heightAnchor.constraint(lessThanOrEqualTo: self.heightAnchor, multiplier: 1.0, constant: 0),
-                view.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 1.0, constant: 0).withPriority(250),
-
                 view.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0),
                 view.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0)
             ])
