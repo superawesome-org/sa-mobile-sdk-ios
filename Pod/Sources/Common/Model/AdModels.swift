@@ -16,11 +16,11 @@ public struct Ad: Codable {
     let isHouse: Bool
     let safeAdApproved: Bool
     let showPadlock: Bool
-    let lineItemId: Int
+    public let lineItemId: Int
     let test: Bool
     let app: Int
     let device: String
-    let creative: Creative
+    public let creative: Creative
 
     enum CodingKeys: String, CodingKey {
         case advertiserId

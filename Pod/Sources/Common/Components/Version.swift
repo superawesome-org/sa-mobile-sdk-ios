@@ -7,21 +7,20 @@
 
 import Foundation
 
-class Version {
+public class Version {
     static var version = "8.0.6"
     static var sdk = "ios"
-
+    
     static var pluginName: String {
         #if MOPUB_PLUGIN
-            return "_mopub"
+        return "_mopub"
         #elseif ADMOB_PLUGIN
-            return "_admob"
+        return "_admob"
         #endif
-            return ""
-        }
-
-        static func getSdkVersion() -> String {
-            return "\(sdk)_\(version)\(pluginName)"
-        }
-
+        return ""
     }
+    
+    public static func getSdkVersion() -> String {
+        return "\(sdk)_\(version)\(pluginName)"
+    }
+}
