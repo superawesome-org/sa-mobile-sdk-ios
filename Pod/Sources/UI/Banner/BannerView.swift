@@ -57,6 +57,10 @@ public class BannerView: UIView, Injectable {
     public func getAd() -> Ad? {
         return controller.adResponse?.advert
     }
+    
+    public func removeAd() {
+        controller.adResponse = nil
+    }
 
     /**
      * Method that loads an ad into the queue.
