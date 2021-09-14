@@ -11,7 +11,7 @@ import Foundation
     func hasBeenVisible()
 }
 
-class VideoEvents: Injectable {
+public class VideoEvents: Injectable {
 
     private var vastRepository: VastEventRepositoryType?
     private var moatRepository: MoatRepositoryType?
@@ -29,6 +29,27 @@ class VideoEvents: Injectable {
 
     init(_ adResponse: AdResponse) {
         self.adResponse = adResponse
+        vastRepository = dependencies.resolve(param: adResponse) as VastEventRepositoryType
+        moatRepository = dependencies.resolve(param: adResponse, false) as MoatRepositoryType
+        eventRepository = dependencies.resolve() as EventRepositoryType
+    }
+ 
+    public init(_ placementId: Int, creativeId: Int, lineItemId: Int) {
+        self.adResponse = AdResponse(placementId,
+                                     Ad(advertiserId: 0,
+                                        publisherId: 0,
+                                        moat: 0.2,
+                                        isFill: false,
+                                        isFallback: false,
+                                        campaignId: 0,
+                                        campaignType: 0,
+                                        isHouse: false,
+                                        safeAdApproved: false,
+                                        showPadlock: false,
+                                        lineItemId: lineItemId,
+                                        test: false,
+                                        app: 1, device: "",
+                                        creative: Creative(id: creativeId)))
         vastRepository = dependencies.resolve(param: adResponse) as VastEventRepositoryType
         moatRepository = dependencies.resolve(param: adResponse, false) as MoatRepositoryType
         eventRepository = dependencies.resolve() as EventRepositoryType
