@@ -85,7 +85,8 @@
         @{
             @"name": @"Interstitials",
             @"items": @[
-                    @{@"name": @"Rich Media Interstitial", @"pid": @(44259)}
+                    @{@"name": @"Rich Media Interstitial - 1", @"pid": @(71755)},
+                    @{@"name": @"Rich Media Interstitial - 2", @"pid": @(71756)}
             ]
         },
         @{
