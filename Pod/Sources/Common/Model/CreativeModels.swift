@@ -13,6 +13,26 @@ public struct Creative: Codable {
     let details: CreativeDetail
     let bumper: Bool?
     public let payload: String?
+    
+    public init(id: Int) {
+        self.id = id
+        self.name = ""
+        self.format = .imageWithLink
+        self.clickUrl = nil
+        self.details = CreativeDetail(url: "", image: nil, video: "", placementFormat: "", tag: nil, width: 0, height: 0, duration: 0, vast: nil)
+        self.bumper = false
+        self.payload = nil
+    }
+    
+    init(id: Int,name: String?, format: CreativeFormatType,clickUrl: String?,details: CreativeDetail, bumper: Bool,payload: String?){
+        self.id = id
+        self.name = name
+        self.format = format
+        self.clickUrl = clickUrl
+        self.details = details
+        self.bumper = bumper
+        self.payload = payload
+    }
 
     enum CodingKeys: String, CodingKey {
         case id

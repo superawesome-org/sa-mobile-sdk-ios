@@ -39,6 +39,10 @@ public struct Ad: Codable {
         case device
         case creative
         }
+    
+    public var mediaUrl:URL? {
+        URL(string: creative.details.url)
+    }
 }
 
 struct AdQuery: Codable {
