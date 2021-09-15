@@ -39,8 +39,6 @@ class AwesomeAdsViewController: UIViewController {
         }
 
         initUI()
-        let pjad = PJAd(feedItemId: "192333")
-        AdManager.sharedManager.sendCustomEventType("test", ForAd: pjad)
     }
 
     func configuration1() {
