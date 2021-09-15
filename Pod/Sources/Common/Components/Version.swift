@@ -10,7 +10,7 @@ import Foundation
 public class Version {
     static var version = "8.0.14"
     static var sdk = "ios"
-    
+
     static var pluginName: String {
         #if MOPUB_PLUGIN
         return "_mopub"
@@ -19,7 +19,7 @@ public class Version {
         #endif
         return ""
     }
-    
+
     public static func getSdkVersion() -> String {
         return "\(sdk)_\(version)\(pluginName)"
     }

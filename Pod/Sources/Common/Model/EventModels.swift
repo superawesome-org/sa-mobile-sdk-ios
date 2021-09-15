@@ -16,7 +16,7 @@ struct EventQuery: Codable {
     let type: EventType?
     let noImage: Bool?
     let data: String?
-    
+
     enum CodingKeys: String, CodingKey {
         case placement
         case bundle
@@ -29,7 +29,7 @@ struct EventQuery: Codable {
         case noImage = "no_image"
         case data
     }
-    
+
     var params: [String: String] {
         ["placement": "\(placement)",
          "bundle": bundle,
@@ -44,18 +44,18 @@ struct EventQuery: Codable {
     }
 }
 
-struct PopJamEventData{
+struct PopJamEventData {
     let placement: Int
     let lineItem: Int
     let creative: Int
     let type: String
-    
+
     var dataStr: String {
         """
             {"placement": \(placement), "line_item":\(lineItem), "creative":\(creative),"type":\(type)}
         """
     }
-    
+
     enum CodingKeys: String, CodingKey {
         case lineItem = "line_item"
         case placement
@@ -68,9 +68,9 @@ struct PopJamEvent {
     let sdkVersion: String
     let data: PopJamEventData
     let rnd: Int
-    
-    var queryParams:  [String:String] {
-        [ "sdkVersion": "\(sdkVersion)", "rnd":"\(rnd)","data":data.dataStr ]
+
+    var queryParams: [String: String] {
+        [ "sdkVersion": "\(sdkVersion)", "rnd": "\(rnd)", "data": data.dataStr ]
     }
 }
 
@@ -79,7 +79,7 @@ struct EventData: Codable {
     let lineItem: Int
     let creative: Int
     let type: EventType
-    
+
     enum CodingKeys: String, CodingKey {
         case lineItem = "line_item"
         case placement
@@ -96,7 +96,7 @@ enum EventType: String, Codable {
     case parentalGateFail
     case parentalGateSuccess
     case dwellTime
-    
+
     enum CodingKeys: String, CodingKey {
         case viewableImpression = "viewable_impression"
         case dwellTime = "viewTime"
@@ -106,7 +106,7 @@ enum EventType: String, Codable {
         case parentalGateFail
         case parentalGateSuccess
     }
-    
+
     var serverName: String {
         switch self {
         case .viewableImpression: return "viewable_impression"
