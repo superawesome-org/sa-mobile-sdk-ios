@@ -6,7 +6,6 @@
 //
 import Foundation
 
-
 @objc
 public class PJAd: NSObject, NSCoding {
 
@@ -68,8 +67,7 @@ public class PJAd: NSObject, NSCoding {
     @objc
     public var clickUrl: String = ""
 
-    public required init(feedItemId: String)
-    {
+    public required init(feedItemId: String) {
         self.feedItemId = feedItemId
         super.init()
     }
@@ -87,11 +85,10 @@ public class PJAd: NSObject, NSCoding {
         self.clickUrl = aDecoder.decodeObject(forKey: "clickUrl") as? String ?? ""
     }
 
-    public func encode(with aCoder: NSCoder)
-    {
+    public func encode(with aCoder: NSCoder) {
         aCoder.encode(feedItemId, forKey: "feedItemId")
         aCoder.encode(data, forKey: "data")
-        aCoder.encode(action.rawValue , forKey: "action")
+        aCoder.encode(action.rawValue, forKey: "action")
         aCoder.encode(dateForPost, forKey: "dateForPost")
         aCoder.encode(placementId, forKey: "placementId")
         aCoder.encode(lineItemId, forKey: "lineItemId")

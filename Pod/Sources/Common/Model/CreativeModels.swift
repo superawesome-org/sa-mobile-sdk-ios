@@ -13,7 +13,7 @@ public struct Creative: Codable {
     let details: CreativeDetail
     let bumper: Bool?
     public let payload: String?
-    
+
     public init(id: Int) {
         self.id = id
         self.name = ""
@@ -23,8 +23,8 @@ public struct Creative: Codable {
         self.bumper = false
         self.payload = nil
     }
-    
-    init(id: Int,name: String?, format: CreativeFormatType,clickUrl: String?,details: CreativeDetail, bumper: Bool,payload: String?){
+
+    init(id: Int, name: String?, format: CreativeFormatType, clickUrl: String?, details: CreativeDetail, bumper: Bool, payload: String?) {
         self.id = id
         self.name = name
         self.format = format

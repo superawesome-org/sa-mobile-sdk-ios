@@ -57,7 +57,7 @@ public class BannerView: UIView, Injectable {
     public func getAd() -> Ad? {
         return controller.adResponse?.advert
     }
-    
+
     public func removeAd() {
         controller.adResponse = nil
     }
@@ -168,7 +168,7 @@ public class BannerView: UIView, Injectable {
 
     @objc
     public func setParentalGate(_ value: Bool) { controller.parentalGateEnabled = value }
-    
+
     @available(*, deprecated, message: "Use `AwesomeAdsSdk.Configuration` instead")
     @objc
     public func setConfigurationProduction() { }

@@ -85,7 +85,7 @@ public class InterstitialAd: NSObject, Injectable {
     @available(*, deprecated, message: "Use `AwesomeAdsSdk.Configuration` instead")
     @objc
     public class func setConfigurationStaging() { }
-    
+
     @objc
     public class func setOrientation(_ orientation: Orientation) { self.orientation = orientation }
 

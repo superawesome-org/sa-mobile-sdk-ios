@@ -33,7 +33,7 @@ public class VideoEvents: Injectable {
         moatRepository = dependencies.resolve(param: adResponse, false) as MoatRepositoryType
         eventRepository = dependencies.resolve() as EventRepositoryType
     }
- 
+
     public init(_ placementId: Int, creativeId: Int, lineItemId: Int) {
         self.adResponse = AdResponse(placementId,
                                      Ad(advertiserId: 0,

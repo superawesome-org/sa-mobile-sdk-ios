@@ -39,7 +39,7 @@ class UrlSessionAwesomeAdsDataSource: AwesomeAdsApiDataSourceType {
     func event(query: EventQuery, completion: OnResult<Void>?) {
         get(endPoint: "/v2/event", params: query.params, completion: completion)
     }
- 
+
     func signature(lineItemId: Int, creativeId: Int, completion: @escaping OnResult<AdvertiserSignatureDTO>) {
         get(endPoint: "/v2/skadnetwork/sign/\(lineItemId)/\(creativeId)", params: [:], completion: completion)
     }
@@ -53,7 +53,7 @@ class UrlSessionAwesomeAdsDataSource: AwesomeAdsApiDataSourceType {
         var request = URLRequest(url: components.url!)
         request.httpMethod = "GET"
         request.addValue(userAgent, forHTTPHeaderField: "User-Agent")
-        URLSession.shared.dataTask(with: request) { data, response, error in
+        URLSession.shared.dataTask(with: request) { _, response, error in
             if let error = error {
                 print(error.localizedDescription)
             }

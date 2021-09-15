@@ -179,7 +179,7 @@ public class VideoAd: NSObject, Injectable {
     public static func setConfigurationStaging() {
 //        setConfiguration(SAConfiguration.STAGING)
     }
-    
+
     public static func setOriantation(_ orientation: Orientation) {
         self.orientation = orientation
     }
