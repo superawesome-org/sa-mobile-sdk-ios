@@ -8,7 +8,7 @@
 import Foundation
 
 public class Version {
-    static var version = "8.0.6"
+    static var version = "8.0.14"
     static var sdk = "ios"
     
     static var pluginName: String {
