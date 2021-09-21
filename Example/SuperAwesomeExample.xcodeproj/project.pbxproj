@@ -308,7 +308,7 @@
 				"${PODS_ROOT}/Target Support Files/Pods-SuperAwesomeExample/Pods-SuperAwesomeExample-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/SuperAwesome/SuperAwesome.framework",
 				"${BUILT_PRODUCTS_DIR}/mopub-ios-sdk/MoPubSDK.framework",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OMSDK_Mopub/OMSDK_Mopub.framework/OMSDK_Mopub",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/mopub-ios-sdk/Core/OMSDK_Mopub.framework/OMSDK_Mopub",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (

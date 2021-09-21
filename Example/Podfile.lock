@@ -7,26 +7,26 @@ PODS:
     - mopub-ios-sdk/NativeAds
   - mopub-ios-sdk/NativeAds (5.18.0):
     - mopub-ios-sdk/Core
-  - Nimble (9.2.0)
-  - SuperAwesome/Base (8.0.11-refactor):
+  - Nimble (9.2.1)
+  - SuperAwesome/Base (8.0.14-refactor):
     - SuperAwesome/Common
     - SuperAwesome/Network
     - SuperAwesome/UI
-  - SuperAwesome/Common (8.0.11-refactor)
-  - SuperAwesome/Full (8.0.11-refactor):
+  - SuperAwesome/Common (8.0.14-refactor)
+  - SuperAwesome/Full (8.0.14-refactor):
     - SuperAwesome/Base
     - SuperAwesome/Moat
-  - SuperAwesome/Full/Tests (8.0.11-refactor):
+  - SuperAwesome/Full/Tests (8.0.14-refactor):
     - Nimble
     - SuperAwesome/Base
     - SuperAwesome/Moat
-  - SuperAwesome/Moat (8.0.11-refactor):
+  - SuperAwesome/Moat (8.0.14-refactor):
     - SuperAwesome/Common
-  - SuperAwesome/Network (8.0.11-refactor):
+  - SuperAwesome/Network (8.0.14-refactor):
     - SuperAwesome/Common
-  - SuperAwesome/UI (8.0.11-refactor):
+  - SuperAwesome/UI (8.0.14-refactor):
     - SuperAwesome/Common
-  - SwiftLint (0.43.1)
+  - SwiftLint (0.44.0)
 
 DEPENDENCIES:
   - mopub-ios-sdk
@@ -46,10 +46,10 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   mopub-ios-sdk: d7b533646d96a075e578e8af9598794f2dfb7f7b
-  Nimble: 4f4a345c80b503b3ea13606a4f98405974ee4d0b
-  SuperAwesome: bc741c0d8ff24574a18de96226120402a7403f4b
-  SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
+  Nimble: e7e615c0335ee4bf5b0d786685451e62746117d5
+  SuperAwesome: c30384b09b0ef15504198900613c665c6c8d4b82
+  SwiftLint: e96c0a8c770c7ebbc4d36c55baf9096bb65c4584
 
 PODFILE CHECKSUM: efd5b05f2fc4a280f8fd7f012f6ce757b4bddd50
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.2
