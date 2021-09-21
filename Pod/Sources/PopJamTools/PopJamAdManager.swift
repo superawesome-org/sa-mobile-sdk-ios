@@ -2,7 +2,7 @@
 //  PopJamAdManager.swift
 //  Pods
 //
-//  Created by Mark on 19/07/2021.
+//  Created by Mark Gilchrist on 19/07/2021.
 //
 
 import Foundation
