@@ -147,6 +147,7 @@ public class AwesomeVideoPlayer: UIView, VideoPlayer {
                 delegate?.didPrepare(videoPlayer: self, time: control.getCurrentPosition(), duration: control.getDuration())
 
                 controllerView?.setPlaying()
+                subviews.forEach { bringSubviewToFront($0) }
                 if let chrome = controllerView as? UIView {
                     bringSubviewToFront(chrome)
                 }
