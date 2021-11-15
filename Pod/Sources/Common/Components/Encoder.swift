@@ -5,6 +5,8 @@
 //  Created by Gunhan Sancar on 21/04/2020.
 //
 
+import Foundation
+
 protocol EncoderType {
     func encodeUri(_ string: String?) -> String
     func toJson<T: Encodable>(_ encodable: T) -> String?

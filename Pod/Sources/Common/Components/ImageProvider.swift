@@ -5,6 +5,8 @@
 //  Created by Gunhan Sancar on 24/08/2020.
 //
 
+import UIKit
+
 protocol ImageProviderType {
     var bumperPoweredByImage: UIImage { get }
     var bumperBackgroundImage: UIImage { get }

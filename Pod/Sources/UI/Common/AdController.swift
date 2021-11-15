@@ -5,6 +5,8 @@
 //  Created by Gunhan Sancar on 08/09/2020.
 //
 
+import UIKit
+
 protocol AdControllerType {
     var parentalGateEnabled: Bool { get set }
     var bumperPageEnabled: Bool { get set }

@@ -5,7 +5,9 @@
 //  Created by Gunhan Sancar on 08/07/2020.
 //
 
-enum AwesomeAdsError {
+import Foundation
+
+enum AwesomeAdsError: Error {
     case network
     case fileInvalid
     case jsonNotFound(json: String, endPoint: String)

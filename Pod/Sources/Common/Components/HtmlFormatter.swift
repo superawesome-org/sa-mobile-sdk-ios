@@ -5,6 +5,8 @@
 //  Created by Gunhan Sancar on 02/07/2020.
 //
 
+import Foundation
+
 protocol HtmlFormatterType {
     func formatImageIntoHtml(_ advert: Ad) -> String
     func formatRichMediaIntoHtml(_ placementId: Int, _ advert: Ad) -> String

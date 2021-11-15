@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.documentation_url = 'https://doc.superawesome.tv/sa-mobile-sdk-ios/latest/'
   s.license = {
     :type => 'GNU GENERAL PUBLIC LICENSE Version 3',
-    :file => 'LICENSE'
+    :file => 'LICENSE.md'
   }
   s.author = { 'Gunhan Sancar' => 'gunhan.sancar@superawesome.com' }
   s.source = {

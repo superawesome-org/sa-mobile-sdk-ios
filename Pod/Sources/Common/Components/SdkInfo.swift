@@ -5,6 +5,8 @@
 //  Created by Gunhan Sancar on 17/04/2020.
 //
 
+import Foundation
+
 protocol SdkInfoType {
     var version: String { get }
     var bundle: String { get }

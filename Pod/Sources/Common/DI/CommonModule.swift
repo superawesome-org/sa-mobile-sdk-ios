@@ -5,6 +5,8 @@
 //  Created by Gunhan Sancar on 03/11/2020.
 //
 
+import UIKit
+
 struct CommonModule: DependencyModule {
 
     let configuration: Configuration

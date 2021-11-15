@@ -5,7 +5,7 @@
 //  Created by Gunhan Sancar on 02/04/2020.
 //
 
-import Foundation
+import UIKit
 
 protocol DeviceType {
     var type: String { get }

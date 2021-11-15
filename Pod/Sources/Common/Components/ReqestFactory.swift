@@ -5,7 +5,7 @@
 //  Created by Mark on 10/06/2021.
 //
 
-import Foundation
+import UIKit
 
 class RequestFactoryImpl {
     func makeRequest(isTestEnabled: Bool = false, screen: ForView, size: CGSize, delay: AdRequest.StartDelay  = .preRoll) -> AdRequest {

@@ -5,6 +5,7 @@
 //  Created by Gunhan Sancar on 28/10/2020.
 //
 
+import Foundation
 @testable import SuperAwesome
 
 struct NetworkDataSourceMock: NetworkDataSourceType {

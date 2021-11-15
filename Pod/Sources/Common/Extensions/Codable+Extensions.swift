@@ -5,6 +5,8 @@
 //  Created by Gunhan Sancar on 15/04/2020.
 //
 
+import Foundation
+
 extension Encodable {
 
     /// Convert given `Encodable` object into a dictionary of `[String : Any]`

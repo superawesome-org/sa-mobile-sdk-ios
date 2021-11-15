@@ -6,6 +6,7 @@
 //
 
 @testable import SuperAwesome
+import UIKit
 
 class UIDeviceMock: UIDevice {
     private let modelMock: String

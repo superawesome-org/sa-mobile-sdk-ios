@@ -5,6 +5,7 @@
 //  Created by Gunhan Sancar on 21/04/2020.
 //
 
+import Foundation
 @testable import SuperAwesome
 
 class BundleMock: Bundle {

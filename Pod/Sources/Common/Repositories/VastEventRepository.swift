@@ -5,6 +5,8 @@
 //  Created by Gunhan Sancar on 09/09/2020.
 //
 
+import Foundation
+
 protocol VastEventRepositoryType {
     func clickThrough()
     func error()

@@ -4,6 +4,7 @@
 //
 //  Created by Gabriel Coman on 17/12/2018.
 //
+
 import UIKit
 
 enum AdState {

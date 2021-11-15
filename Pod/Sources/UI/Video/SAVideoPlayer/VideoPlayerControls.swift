@@ -14,7 +14,7 @@ import Foundation
  * used to control a piece of media.
  */
 @objc(SAVideoPlayerControls)
-public protocol VideoPlayerControls: class {
+public protocol VideoPlayerControls: AnyObject {
 
     /**
      * Method that starts playing a piece of media
@@ -81,7 +81,7 @@ public protocol VideoPlayerControls: class {
  * The associated delegate of the media control
  */
 @objc(SAVideoPlayerControlsDelegate)
-public protocol VideoPlayerControlsDelegate: class {
+public protocol VideoPlayerControlsDelegate: AnyObject {
 
     /**
      * This method is called by the VideoPlayerControls when the media is prepared

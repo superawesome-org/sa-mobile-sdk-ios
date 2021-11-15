@@ -5,6 +5,8 @@
 //  Created by Gunhan Sancar on 09/09/2020.
 //
 
+import UIKit
+
 struct Constants {
     static let defaultClickThresholdInMs = 5000
     static let defaultTestMode = false

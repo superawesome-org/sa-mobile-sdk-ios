@@ -8,6 +8,7 @@
 import XCTest
 import Nimble
 @testable import SuperAwesome
+import UIKit
 
 class DeviceTests: XCTestCase {
     func testDeviceModelIpad() throws {

@@ -5,6 +5,8 @@
 //  Created by Gunhan Sancar on 10/09/2020.
 //
 
+import UIKit
+
 protocol ViewableDetectorType {
     var whenVisible: VoidBlock? { get set }
     func start(for view: UIView, forTickCount: Int, hasBeenVisible: VoidBlock?)

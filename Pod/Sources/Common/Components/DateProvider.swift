@@ -5,6 +5,8 @@
 //  Created by Gunhan Sancar on 29/10/2020.
 //
 
+import Foundation
+
 protocol DateProviderType {
     /// Returns the MMyyyy of the current date
     func nowAsMonthYear() -> String

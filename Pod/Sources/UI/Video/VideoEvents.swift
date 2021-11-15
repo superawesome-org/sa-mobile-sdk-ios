@@ -5,7 +5,7 @@
 //  Created by Gabriel Coman on 18/01/2019.
 //
 
-import Foundation
+import UIKit
 
 @objc (SAVideoEventsDelegate) public protocol VideoEventsDelegate: AnyObject {
     func hasBeenVisible()

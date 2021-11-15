@@ -5,9 +5,10 @@
 //  Created by Gunhan Sancar on 21/04/2020.
 //
 
-import XCTest
+import Foundation
 import Nimble
 @testable import SuperAwesome
+import XCTest
 
 class SdkInfoTests: XCTestCase {
     func testSdkInfo() throws {

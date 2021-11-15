@@ -5,6 +5,8 @@
 //  Created by Gunhan Sancar on 08/07/2020.
 //
 
+import Foundation
+
 /// `NetworkDataSource` is used to make generic networking operations
 protocol NetworkDataSourceType {
     /// Makes the `GET` request and returns the raw data in a `Data`object

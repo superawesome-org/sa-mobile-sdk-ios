@@ -5,7 +5,7 @@
 //  Created by Mark Gilchrist on 19/07/2021.
 //
 
-import Foundation
+import UIKit
 
 @objc
 public protocol AdManagerDelegate: NSObjectProtocol {

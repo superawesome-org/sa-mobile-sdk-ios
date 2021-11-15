@@ -12,10 +12,26 @@ func xmlFile(_ name: String) -> Data { BundleHelper.loadFileData(name: name, typ
 
 class BundleHelper {
     static func loadFileData(name: String, type: String) -> Data {
-        let bundle = Bundle(for: self)
-        let path = bundle.path(forResource: "fixtures_tests", ofType: "bundle")!
+                
+        let testBundle = Bundle(for: self)
+        if let path = testBundle.path(forResource: "fixtures_tests", ofType: "bundle"),
+           let innerBundle = Bundle(path: path),
+           let fixturesUrl = innerBundle.url(forResource: name, withExtension: type),
+           let data = try? Data(contentsOf: fixturesUrl) {
+            return data
+        }
+        
+        // Swift Package File Resolver
+        
+        guard let testSubBundlePath = testBundle.path(forResource: "SuperAwesome_sa-mobile-sdk-iosTests", ofType: "bundle"),
+              let testsSubBundle = Bundle(path: testSubBundlePath),
+              let fixturesBundlePath = testsSubBundle.path(forResource: "fixtures_tests", ofType: "bundle"),
+              let fixturesBundle = Bundle(path: fixturesBundlePath),
+              let fixturesUrl = fixturesBundle.url(forResource: name, withExtension: type),
+              let data = try? Data(contentsOf: fixturesUrl) else {
+                  return Data()
+        }
 
-        let data = try? Data(contentsOf: Bundle(path: path)!.url(forResource: name, withExtension: type)!)
-        return data!
+        return data
     }
 }
