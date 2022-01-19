@@ -7,6 +7,37 @@
 import UIKit
 import WebKit
 
+let overrideConsole = """
+    function log(emoji, type, args) {
+      window.webkit.messageHandlers.logging.postMessage(
+        `${emoji} JS ${type}: ${Object.values(args)
+          .map(v => typeof(v) === "undefined" ? "undefined" : typeof(v) === "object" ? JSON.stringify(v) : v.toString())
+          .map(v => v.substring(0, 3000)) // Limit msg to 3000 chars
+          .join(", ")}`
+      )
+    }
+
+    let originalLog = console.log
+    let originalWarn = console.warn
+    let originalError = console.error
+    let originalDebug = console.debug
+
+    console.log = function() { log("📗", "log", arguments); originalLog.apply(null, arguments) }
+    console.warn = function() { log("📙", "warning", arguments); originalWarn.apply(null, arguments) }
+    console.error = function() { log("📕", "error", arguments); originalError.apply(null, arguments) }
+    console.debug = function() { log("📘", "debug", arguments); originalDebug.apply(null, arguments) }
+
+    window.addEventListener("error", function(e) {
+       log("💥", "Uncaught", [`${e.message} at ${e.filename}:${e.lineno}:${e.colno}`])
+    })
+"""
+
+class LoggingMessageHandler: NSObject, WKScriptMessageHandler {
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        print(message.body)
+    }
+}
+
 @objc(SAManagedBannerAd) public final class SAManagedBannerAd: UIView, Injectable {
 
     internal var finishedLoading = false
@@ -25,11 +56,22 @@ import WebKit
     private lazy var sknetworkManager: SKAdNetworkManager = dependencies.resolve()
 
     lazy var webView: WKWebView = {
+        let userContentController = WKUserContentController()
+        userContentController.add(LoggingMessageHandler(), name: "logging")
+        userContentController.addUserScript(WKUserScript(source: overrideConsole, injectionTime: .atDocumentStart, forMainFrameOnly: false))
+        
         let preferences = WKPreferences()
         preferences.javaScriptEnabled = true
+        preferences.javaScriptCanOpenWindowsAutomatically = true
+        
+        
         let configuration = WKWebViewConfiguration()
         configuration.preferences = preferences
         configuration.allowsInlineMediaPlayback = true
+        configuration.mediaTypesRequiringUserActionForPlayback = []
+        configuration.userContentController = userContentController
+        //configuration.mediaTypesRequiringUserActionForPlayback = .audio
+
         if #available(iOS 14.0, *) {
             configuration.defaultWebpagePreferences.allowsContentJavaScript = true
         }
@@ -51,13 +93,15 @@ import WebKit
         setTestMode(value: SA_DEFAULT_TESTMODE != 0)
         addSubview(webView)
         webView.translatesAutoresizingMaskIntoConstraints = false
-        webView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        webView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        webView.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        webView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        NSLayoutConstraint.activate([
+            webView.leadingAnchor.constraint(equalTo: safeLeadingAnchor, constant: 0),
+            webView.trailingAnchor.constraint(equalTo: safeTrailingAnchor, constant: 0),
+            webView.bottomAnchor.constraint(equalTo: safeBottomAnchor, constant: 0),
+            webView.topAnchor.constraint(equalTo: safeTopAnchor, constant: 0),
+        ])
         webView.navigationDelegate = self
         webView.uiDelegate = self
-
+        
     }
 
     private func createHTML(placementId: Int, baseUrl: String) -> String {
@@ -86,6 +130,27 @@ import WebKit
                 events.disableMoatLimiting()
             }
             webView.loadHTMLString(html, baseURL: url)
+            if #available(iOS 14.5, *) {
+                sknetworkManager.startImpression(lineItemId: placementId, creativeId: 1)
+            }
+        }
+    }
+    
+    @objc(load:html:) public func load(placementId: Int, html: String) {
+        if let baseUrl = session.getBaseUrl(), let url = URL(string: baseUrl) {
+            self.placementId = placementId
+
+            print(html)
+            
+            if !moatLimiting {
+                events.disableMoatLimiting()
+            }
+            
+            //let a = "https://cdn-factory.marketjs.com/en/color-fill-playable-ad-demo/index.html"
+            
+            webView.loadHTMLString(html, baseURL: url)
+//            webView.load(URLRequest(url: URL(string: a)!))
+            
             if #available(iOS 14.5, *) {
                 sknetworkManager.startImpression(lineItemId: placementId, creativeId: 1)
             }
@@ -226,5 +291,17 @@ extension SAManagedBannerAd: WKNavigationDelegate {
 
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         finishedLoading = true
+    }
+    
+    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if let url = navigationAction.request.url {
+            if url.host == "www.apple.com" {
+                UIApplication.shared.open(url)
+                decisionHandler(.cancel)
+                return
+            }
+        }
+
+        decisionHandler(.allow)
     }
 }

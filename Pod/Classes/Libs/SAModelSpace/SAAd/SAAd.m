@@ -52,6 +52,7 @@
         _isFallback = [jsonDictionary safeBoolForKey:@"is_fallback" orDefault:_isFallback];
         _isFill = [jsonDictionary safeBoolForKey:@"is_fill" orDefault:_isFill];
         _isHouse = [jsonDictionary safeBoolForKey:@"is_house" orDefault:_isHouse];
+        _isVpaid = [jsonDictionary safeBoolForKey:@"is_vpaid" orDefault:_isVpaid];
         _isSafeAdApproved = [jsonDictionary safeBoolForKey:@"safe_ad_approved" orDefault:_isSafeAdApproved];
         _isPadlockVisible = [jsonDictionary safeBoolForKey:@"show_padlock" orDefault:_isPadlockVisible];
         _moat = [jsonDictionary safeFloatForKey:@"moat" orDefault:_moat];
@@ -94,13 +95,13 @@
         case SA_Rich:
             return _creative.details.url != nil && _creative.details.media.html != nil;
         case SA_Video:
-            return _creative.details.vast != nil &&
+            return (_creative.details.vast != nil &&
                     _creative.details.media.path != nil &&
                     _creative.details.media.path != (NSString*)[NSNull null] &&
                     _creative.details.media.url != nil &&
-                    _creative.details.media.isDownloaded;
+                    _creative.details.media.isDownloaded) || [self isValidVpaid];
         case SA_Tag:
-            return _creative.details.tag != nil && _creative.details.media.html != nil;
+            return [self isValidTag];
         case SA_Appwall:
             return _creative.details.image != nil &&
                     _creative.details.media.path != nil &&
@@ -110,6 +111,14 @@
     }
     
     return true;
+}
+
+- (BOOL) isValidTag {
+    return _creative.details.tag != nil && _creative.details.media.html != nil;
+}
+
+- (BOOL) isValidVpaid {
+    return _isVpaid && [self isValidTag];
 }
 
 /**
@@ -162,6 +171,7 @@
     _isHouse = false;
     _isSafeAdApproved = false;
     _isPadlockVisible = false;
+    _isVpaid = false;
     _device = nil;
     NSTimeInterval timeStamp = [[NSDate date] timeIntervalSince1970];
     _loadTime = timeStamp * 1000;

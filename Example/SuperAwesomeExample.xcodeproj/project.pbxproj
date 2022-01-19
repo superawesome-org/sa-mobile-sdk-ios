@@ -98,6 +98,7 @@
 		C64CAD28249CC5AB00788A7F /* MoPubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64CAD27249CC5AB00788A7F /* MoPubViewController.swift */; };
 		C6535602245239270043115E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6535601245239270043115E /* HealthKit.framework */; };
 		C668A6F9243656E200C18228 /* SATestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C668A6F8243656E200C18228 /* SATestUtils.m */; };
+		C66E71002791E7EA000996E6 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66E70FF2791E7EA000996E6 /* MainViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -228,6 +229,7 @@
 		C6535601245239270043115E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		C668A6F7243656E200C18228 /* SATestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SATestUtils.h; sourceTree = "<group>"; };
 		C668A6F8243656E200C18228 /* SATestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SATestUtils.m; sourceTree = "<group>"; };
+		C66E70FF2791E7EA000996E6 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		D6B71C01F9DFB74D05E0B0FD /* Pods-SuperAwesomeExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesomeExample.debug.xcconfig"; path = "Target Support Files/Pods-SuperAwesomeExample/Pods-SuperAwesomeExample.debug.xcconfig"; sourceTree = "<group>"; };
 		D8F2154D326FE2F80967D14F /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		DECC64E7421DE990CD928FFD /* Pods-SuperAwesomeExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesomeExample.release.xcconfig"; path = "Target Support Files/Pods-SuperAwesomeExample/Pods-SuperAwesomeExample.release.xcconfig"; sourceTree = "<group>"; };
@@ -500,6 +502,7 @@
 				1B76D23C1C91EEB1000AE8F3 /* ViewController.h */,
 				1B76D23D1C91EEB1000AE8F3 /* ViewController.m */,
 				C64CAD27249CC5AB00788A7F /* MoPubViewController.swift */,
+				C66E70FF2791E7EA000996E6 /* MainViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -845,6 +848,7 @@
 				C64CAD28249CC5AB00788A7F /* MoPubViewController.swift in Sources */,
 				1B76D23E1C91EEB1000AE8F3 /* ViewController.m in Sources */,
 				4D2BB747266A689B00E3D86A /* AppDelegate.swift in Sources */,
+				C66E71002791E7EA000996E6 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

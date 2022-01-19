@@ -67,8 +67,7 @@ public enum AdState {
                 }
 
                 guard let ad = response.ads.firstObject as? SAAd,
-                    response.isValid(),
-                    ad.creative.details.media.isDownloaded else {
+                      response.isValid(), ad.isValid() else {
                         self.ads[placementId] = AdState.none
                         self.callback?(placementId, .adEmpty)
                         return
@@ -154,20 +153,31 @@ public enum AdState {
 
         switch adState {
         case .hasAd(let ad):
-            let config = VideoViewController.Config(showSmallClick: shouldShowSmallClickButton,
-                                                    showSafeAdLogo: ad.isPadlockVisible,
-                                                    showCloseButton: shouldShowCloseButton,
-                                                    shouldCloseAtEnd: shouldAutomaticallyCloseAtEnd,
-                                                    isParentalGateEnabled: isParentalGateEnabled,
-                                                    isBumperPageEnabled: isBumperPageEnabled,
-                                                    orientation: orientation)
-            let adViewController = VideoViewController(withAd: ad,
-                                                       andEvents: events,
-                                                       andCallback: callback,
-                                                       andConfig: config)
-            adViewController.modalPresentationStyle = .fullScreen
-            adViewController.modalTransitionStyle = .coverVertical
-            viewController.present(adViewController, animated: true)
+            if ad.isVpaid {
+                let managedVideoAdController = SAManagedVideoAdViewController(placementId: ad.placementId,
+                                                                              html: ad.creative.details.tag)
+                managedVideoAdController.modalPresentationStyle = .fullScreen
+                managedVideoAdController.modalTransitionStyle = .coverVertical
+                
+                viewController.present(managedVideoAdController, animated: true)
+            } else {
+                let config = VideoViewController.Config(showSmallClick: shouldShowSmallClickButton,
+                                                        showSafeAdLogo: ad.isPadlockVisible,
+                                                        showCloseButton: shouldShowCloseButton,
+                                                        shouldCloseAtEnd: shouldAutomaticallyCloseAtEnd,
+                                                        isParentalGateEnabled: isParentalGateEnabled,
+                                                        isBumperPageEnabled: isBumperPageEnabled,
+                                                        orientation: orientation)
+                let adViewController = VideoViewController(withAd: ad,
+                                                           andEvents: events,
+                                                           andCallback: callback,
+                                                           andConfig: config)
+                adViewController.modalPresentationStyle = .fullScreen
+                adViewController.modalTransitionStyle = .coverVertical
+                
+                viewController.present(adViewController, animated: true)
+            }
+            
             ads[placementId] = AdState.none
             break
         default:

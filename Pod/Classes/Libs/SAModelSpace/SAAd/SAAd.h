@@ -83,6 +83,7 @@ static inline SACampaignType getSACampaignTypeFromInt (NSInteger campaign) {
 @property (nonatomic, assign) BOOL           isHouse;
 @property (nonatomic, assign) BOOL           isSafeAdApproved;
 @property (nonatomic, assign) BOOL           isPadlockVisible;
+@property (nonatomic, assign) BOOL           isVpaid;
 
 @property (nonatomic, strong) NSString       *device;
 

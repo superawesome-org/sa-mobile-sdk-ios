@@ -13,8 +13,8 @@ public enum Environment: String, Codable {
 extension Environment {
    var baseURL: URL {
         switch self {
-        case .production: return URL(string: "https://ads.superawesome.tv/v2")!
-        case .staging: return URL(string: "https://ads.staging.superawesome.tv/v2")!
+        case .production: return URL(string: "https://eu-west-1-ads.superawesome.tv/v2")!
+        case .staging: return URL(string: "https://us-east-1-ads.staging.superawesome.tv/v2")!
         }
     }
 }
