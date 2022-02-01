@@ -79,23 +79,21 @@
         @{
             @"name": @"Banners",
             @"items": @[
-                    @{@"name": @"Banner - Mobile Leaderboard", @"pid": @(78149)}
+                    @{@"name": @"Mobile Leaderboard", @"pid": @(82088)}
             ]
         },
         @{
             @"name": @"Interstitials",
             @"items": @[
-                    @{@"name": @"Mobile Interstitial Portrait", @"pid": @(78150)},
-                    // TODO: KSF
-                    @{@"name": @"Mobile Interstitial Portrait - KSF", @"pid": @(78150)}
+                    @{@"name": @"Mobile Interstitial Portrait", @"pid": @(82089)},
+                    @{@"name": @"Interstitial via KSF", @"pid": @(82063)},
             ]
         },
         @{
             @"name": @"Videos",
             @"items": @[
-                    @{@"name": @"Direct Video", @"pid": @(78148)},
-                    // TODO: KSF
-                    @{@"name": @"VPAID - KSF", @"pid": @(78148)}
+                    @{@"name": @"Direct Video", @"pid": @(82090)},
+                    @{@"name": @"VPAID via KSF", @"pid": @(82064)}
             ]
         }
     ] mutableCopy];
