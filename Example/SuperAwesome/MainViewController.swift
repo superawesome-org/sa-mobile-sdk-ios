@@ -71,7 +71,7 @@ class MainViewController: UIViewController {
     }
     
     private func initSegment() {
-        let segment = UISegmentedControl(items: ["Config 1", "Config 2"])
+        let segment = UISegmentedControl(items: ["Enable checks", "Disable checks"])
         segment.addTarget(self, action: #selector(segmentChanged), for: .valueChanged)
         segment.translatesAutoresizingMaskIntoConstraints = false
         
@@ -105,7 +105,6 @@ class MainViewController: UIViewController {
         // banner view
         bannerView = BannerView()
         bannerView.enableBumperPage()
-        // bannerView.enableParentalGate()
         bannerView.backgroundColor = UIColor.gray
         bannerView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -139,7 +138,6 @@ class MainViewController: UIViewController {
     
     private func configureVideo() {
         VideoAd.setConfigurationProduction()
-        //        VideoAd.setConfigurationStaging()
         VideoAd.enableCloseButton()
         VideoAd.setCallback { (placementId, event) in
             print(" VideoAd >> \(event.rawValue)")
