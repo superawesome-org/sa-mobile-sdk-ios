@@ -10,13 +10,13 @@ protocol EncoderType {
     func toJson<T: Encodable>(_ encodable: T) -> String?
 }
 
-class Encoder: EncoderType {
+class CustomEncoder: EncoderType {
     private let escapedSet = CharacterSet(charactersIn: "!*'\"();:@&=+$,/?%#[]% ").inverted
     private let jsonEncoder = JSONEncoder()
 
     func encodeUri(_ string: String?) -> String {
         guard let string = string, string.count > 0 else { return "" }
-        return string.addingPercentEncoding( withAllowedCharacters: escapedSet ) ?? ""
+        return string.addingPercentEncoding(withAllowedCharacters: escapedSet) ?? ""
     }
 
     func toJson<T: Encodable>(_ encodable: T) -> String? {

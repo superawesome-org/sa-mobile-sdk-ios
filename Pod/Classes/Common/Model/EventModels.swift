@@ -38,29 +38,19 @@ struct EventData: Codable {
     let type: EventType
 
     enum CodingKeys: String, CodingKey {
-            case lineItem = "line_item"
+        case lineItem = "line_item"
         case placement
-        case  creative
+        case creative
         case type
-        }
+    }
 }
 
 enum EventType: String, Codable {
     case impressionDownloaded
-    case viewableImpression
+    case viewableImpression = "viewable_impression"
     case parentalGateOpen
     case parentalGateClose
     case parentalGateFail
     case parentalGateSuccess
-    case dwellTime
-
-    enum CodingKeys: String, CodingKey {
-        case viewableImpression = "viewable_impression"
-        case dwellTime = "viewTime"
-        case impressionDownloaded
-        case parentalGateOpen
-        case parentalGateClose
-        case parentalGateFail
-        case parentalGateSuccess
-        }
+    case dwellTime = "viewTime"
 }

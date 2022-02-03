@@ -22,7 +22,7 @@ struct CommonModule: DependencyModule {
         container.single(Environment.self) { _, _ in configuration.environment }
         container.single(ConnectionProviderType.self) { _, _ in ConnectionProvider() }
         container.single(DeviceType.self) { _, _ in Device(UIDevice.current) }
-        container.single(EncoderType.self) { _, _ in Encoder() }
+        container.single(EncoderType.self) { _, _ in CustomEncoder() }
         container.single(IdGeneratorType.self) { container, _ in
             IdGenerator(preferencesRepository: container.resolve(),
                         sdkInfo: container.resolve(),
