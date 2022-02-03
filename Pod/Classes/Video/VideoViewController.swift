@@ -7,7 +7,7 @@
 
 import UIKit
 
-@objc(SAVideoViewController) class VideoViewController: UIViewController, VideoPlayerDelegate, VideoEventsDelegate {
+@objc(SAVideoViewController) class VideoViewController: UIViewController, VideoPlayerDelegate, VideoEventsDelegate, Injectable {
 
     ////////////////////////////////////////////////////////////////////////////
     // SubViews
@@ -38,6 +38,8 @@ import UIKit
     private let clickEvents: VideoClick
 
     private var callback: AdEventCallback?
+    
+    private var logger: LoggerType = dependencies.resolve(param: VideoViewController.self)
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -195,6 +197,7 @@ import UIKit
         videoEvents.complete(player: videoPlayer, time: time, duration: duration)
         chrome.makeCloseButtonVisible()
         callback?(ad.placementId, .adEnded)
+        logger.success("Event callback: adEnded")
 
         if config.shouldCloseAtEnd {
             closeAction()
@@ -219,6 +222,7 @@ import UIKit
 
     private func clickAction() {
         callback?(ad.placementId, .adClicked)
+        logger.success("Event callback: adClicked")
         clickEvents.handleAdTap()
     }
 
@@ -228,6 +232,7 @@ import UIKit
         dismiss(animated: true) { [weak self] in
             if let placementId = self?.ad.placementId {
                 self?.callback?(placementId, .adClosed)
+                self?.logger.success("Event callback: adClosed")
             }
         }
     }
