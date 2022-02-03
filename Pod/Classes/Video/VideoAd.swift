@@ -92,6 +92,7 @@ public enum AdState {
             break
         case .hasAd:
             callback?(placementId, .adAlreadyLoaded)
+            logger.success("Event callback: adAlreadyLoaded")
         }
     }
 
@@ -149,6 +150,7 @@ public enum AdState {
             break
         case .hasAd:
             callback?(placementId, .adAlreadyLoaded)
+            logger.success("Event callback: adAlreadyLoaded")
         }
     }
 
