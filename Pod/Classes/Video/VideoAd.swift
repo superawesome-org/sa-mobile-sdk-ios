@@ -85,14 +85,14 @@ public enum AdState {
                 // reset video events
                 self.ads[placementId] = .hasAd(ad: ad)
                 self.callback?(placementId, .adLoaded)
-                logger.success("Event callback: adLoaded")
+                logger.success("Event callback: adLoaded for placement \(placementId)")
             }
 
         case .loading:
             break
         case .hasAd:
             callback?(placementId, .adAlreadyLoaded)
-            logger.success("Event callback: adAlreadyLoaded")
+            logger.success("Event callback: adAlreadyLoaded for placement \(placementId)")
         }
     }
 
@@ -143,14 +143,14 @@ public enum AdState {
                 // reset video events
                 self.ads[placementId] = .hasAd(ad: ad)
                 self.callback?(placementId, .adLoaded)
-                logger.success("Event callback: adLoaded")
+                logger.success("Event callback: adLoaded for placement \(placementId)")
             }
 
         case .loading:
             break
         case .hasAd:
             callback?(placementId, .adAlreadyLoaded)
-            logger.success("Event callback: adAlreadyLoaded")
+            logger.success("Event callback: adAlreadyLoaded for placement \(placementId)")
         }
     }
 

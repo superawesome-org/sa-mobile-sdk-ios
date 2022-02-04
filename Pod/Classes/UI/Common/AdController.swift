@@ -86,7 +86,7 @@ class AdController: AdControllerType, Injectable {
 
     func close() {
         callback?(placementId, .adClosed)
-        logger.success("Event callback: adClosed")
+        logger.info("Event callback: adClosed for placement \(placementId)")
         adResponse = nil
         closed = true
     }
@@ -95,7 +95,7 @@ class AdController: AdControllerType, Injectable {
 
     func adShown() {
         callback?(placementId, .adShown)
-        logger.success("Event callback: adShown")
+        logger.info("Event callback: adShown for placement \(placementId)")
     }
 
     func adEnded() { callback?(placementId, .adEnded) }
@@ -137,10 +137,9 @@ class AdController: AdControllerType, Injectable {
     }
 
     private func onSuccess(_ response: AdResponse) {
-        logger.success("Ad load successful for \(response.placementId)")
         adResponse = response
         callback?(placementId, .adLoaded)
-        logger.success("Event callback: adLoaded")
+        logger.success("Event callback: adLoaded for \(response.placementId)")
     }
 
     private func onFailure(_ error: Error) {
@@ -175,7 +174,7 @@ class AdController: AdControllerType, Injectable {
         lastClickTime = currentTime
 
         callback?(placementId, .adClicked)
-        logger.success("Event callback: adClicked")
+        logger.success("Event callback: adClicked for \(placementId)")
 
         if adResponse.advert.creative.format == .video {
             eventRepository.videoClick(adResponse, completion: nil)

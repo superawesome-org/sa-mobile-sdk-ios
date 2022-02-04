@@ -197,7 +197,7 @@ import UIKit
         videoEvents.complete(player: videoPlayer, time: time, duration: duration)
         chrome.makeCloseButtonVisible()
         callback?(ad.placementId, .adEnded)
-        logger.success("Event callback: adEnded")
+        logger.info("Event callback: adEnded for placement \(ad.placementId)")
 
         if config.shouldCloseAtEnd {
             closeAction()
@@ -222,7 +222,7 @@ import UIKit
 
     private func clickAction() {
         callback?(ad.placementId, .adClicked)
-        logger.success("Event callback: adClicked")
+        logger.info("Event callback: adClicked for placement \(ad.placementId)")
         clickEvents.handleAdTap()
     }
 
@@ -232,7 +232,7 @@ import UIKit
         dismiss(animated: true) { [weak self] in
             if let placementId = self?.ad.placementId {
                 self?.callback?(placementId, .adClosed)
-                self?.logger.success("Event callback: adClosed")
+                self?.logger.info("Event callback: adClosed for placement \(placementId)")
             }
         }
     }
