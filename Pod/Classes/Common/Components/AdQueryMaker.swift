@@ -95,7 +95,6 @@ class AdQueryMaker: AdQueryMakerType {
 
     func makeEventQuery(_ adResponse: AdResponse, _ eventData: EventData) -> EventQuery {
         let json = encoder.toJson(eventData)
-        let encodedData = encoder.encodeUri(json)
         return EventQuery(placement: adResponse.placementId,
                           bundle: sdkInfo.bundle,
                           creative: adResponse.advert.creative.id,
@@ -105,6 +104,6 @@ class AdQueryMaker: AdQueryMakerType {
                           rnd: numberGenerator.nextIntForCache(),
                           type: eventData.type,
                           noImage: nil,
-                          data: encodedData)
+                          data: json)
     }
 }
