@@ -19,21 +19,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MN4-wY-FVS">
-                                <rect key="frame" x="76" y="60" width="223" height="547"/>
-                                <string key="text">SuperAwesome SDK
-Demo</string>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4i6-OV-nvv">
+                                <rect key="frame" x="48" y="100" width="279" height="467"/>
+                                <string key="text">AwesomeAds
+Test App</string>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="29"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="MN4-wY-FVS" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="60" id="DUB-9H-kQO"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="MN4-wY-FVS" secondAttribute="bottom" constant="60" id="F3t-dk-nzs"/>
-                            <constraint firstItem="MN4-wY-FVS" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="60" id="fOn-ai-Ioe"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="MN4-wY-FVS" secondAttribute="trailing" constant="60" id="mNA-r8-Bd5"/>
+                            <constraint firstItem="4i6-OV-nvv" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="32" id="0Ef-RR-WP2"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="4i6-OV-nvv" secondAttribute="trailing" constant="32" id="7qI-sq-nxU"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="4i6-OV-nvv" secondAttribute="bottom" constant="100" id="Uzu-Nt-smw"/>
+                            <constraint firstItem="4i6-OV-nvv" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="100" id="wnT-tH-JqS"/>
                         </constraints>
                     </view>
                 </viewController>

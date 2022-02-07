@@ -12,7 +12,7 @@ public enum AdState {
     case hasAd(ad: SAAd)
 }
 
-@objc(SAVideoAd) public class VideoAd: NSObject {
+@objc(SAVideoAd) public class VideoAd: NSObject, Injectable {
 
     static var isTestingEnabled: Bool = Bool(truncating: NSNumber(value: SA_DEFAULT_TESTMODE))
     static var isParentalGateEnabled: Bool = Bool(truncating: NSNumber(value: SA_DEFAULT_PARENTALGATE))
@@ -31,6 +31,8 @@ public enum AdState {
     private static var ads = Dictionary<Int, AdState>()
 
     private static let events: SAEvents = SAEvents()
+    
+    private static var logger: LoggerType = dependencies.resolve(param: VideoAd.self)
 
     ////////////////////////////////////////////////////////////////////////////
     // Internal control methods
@@ -82,12 +84,14 @@ public enum AdState {
                 // reset video events
                 self.ads[placementId] = .hasAd(ad: ad)
                 self.callback?(placementId, .adLoaded)
+                logger.success("Event callback: adLoaded for placement \(placementId)")
             }
 
         case .loading:
             break
         case .hasAd:
             callback?(placementId, .adAlreadyLoaded)
+            logger.success("Event callback: adAlreadyLoaded for placement \(placementId)")
         }
     }
 
@@ -138,12 +142,14 @@ public enum AdState {
                 // reset video events
                 self.ads[placementId] = .hasAd(ad: ad)
                 self.callback?(placementId, .adLoaded)
+                logger.success("Event callback: adLoaded for placement \(placementId)")
             }
 
         case .loading:
             break
         case .hasAd:
             callback?(placementId, .adAlreadyLoaded)
+            logger.success("Event callback: adAlreadyLoaded for placement \(placementId)")
         }
     }
 
