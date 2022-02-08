@@ -20,21 +20,26 @@ protocol EventRepositoryType {
 class EventRepository: EventRepositoryType {
     private let dataSource: AwesomeAdsApiDataSourceType
     private let adQueryMaker: AdQueryMakerType
+    private let logger: LoggerType
 
-    init(dataSource: AwesomeAdsApiDataSourceType, adQueryMaker: AdQueryMakerType) {
+    init(dataSource: AwesomeAdsApiDataSourceType, adQueryMaker: AdQueryMakerType, logger: LoggerType) {
         self.dataSource = dataSource
         self.adQueryMaker = adQueryMaker
+        self.logger = logger
     }
 
     func impression(_ adResponse: AdResponse, completion: OnResult<Void>?) {
+        logger.info("Event Tracking: impression sent for \(adResponse.placementId)")
         dataSource.impression(query: adQueryMaker.makeImpressionQuery(adResponse), completion: completion)
     }
 
     func click(_ adResponse: AdResponse, completion: OnResult<Void>?) {
+        logger.info("Event Tracking: click sent for \(adResponse.placementId)")
         dataSource.click(query: adQueryMaker.makeClickQuery(adResponse), completion: completion)
     }
 
     func videoClick(_ adResponse: AdResponse, completion: OnResult<Void>?) {
+        logger.info("Event Tracking: video_click sent for \(adResponse.placementId)")
         dataSource.videoClick(query: adQueryMaker.makeVideoClickQuery(adResponse), completion: completion)
     }
 
@@ -55,10 +60,12 @@ class EventRepository: EventRepositoryType {
     }
 
     func viewableImpression(_ adResponse: AdResponse, completion: OnResult<Void>?) {
+        logger.info("Event Tracking: viewable_impression sent for \(adResponse.placementId)")
         customEvent(.viewableImpression, adResponse, completion: completion)
     }
 
     func dwellTime(_ adResponse: AdResponse, completion: OnResult<Void>?) {
+        logger.info("Event Tracking: dwell_time sent for \(adResponse.placementId)")
         customEvent(.dwellTime, adResponse, completion: completion)
     }
 
