@@ -39,7 +39,6 @@ class EventRepository: EventRepositoryType {
     }
 
     func videoClick(_ adResponse: AdResponse, completion: OnResult<Void>?) {
-        logger.info("Event Tracking: video_click sent for \(adResponse.placementId)")
         dataSource.videoClick(query: adQueryMaker.makeVideoClickQuery(adResponse), completion: completion)
     }
 
@@ -65,7 +64,6 @@ class EventRepository: EventRepositoryType {
     }
 
     func dwellTime(_ adResponse: AdResponse, completion: OnResult<Void>?) {
-        logger.info("Event Tracking: dwell_time sent for \(adResponse.placementId)")
         customEvent(.dwellTime, adResponse, completion: completion)
     }
 
