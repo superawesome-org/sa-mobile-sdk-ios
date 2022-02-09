@@ -75,7 +75,7 @@ struct CommonModule: DependencyModule {
             AdRepository(dataSource: container.resolve(), adQueryMaker: container.resolve(), adProcessor: container.resolve())
         }
         container.single(EventRepositoryType.self) { container, _ in
-            EventRepository(dataSource: container.resolve(), adQueryMaker: container.resolve())
+            EventRepository(dataSource: container.resolve(), adQueryMaker: container.resolve(), logger: container.resolve(param: EventRepository.self))
         }
         container.factory(VastEventRepositoryType.self) { container, param in
             guard let adResponse = param[0] as?  AdResponse else {
