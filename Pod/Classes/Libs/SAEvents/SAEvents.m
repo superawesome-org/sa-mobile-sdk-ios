@@ -95,6 +95,7 @@
 
 - (void) triggerVASTImpressionEvent {
     if (_vastModule) {
+        NSLog(@"Event Tracking: vast_impression");
         [_vastModule triggerVASTImpressionEvent: nil];
     }
 }
@@ -113,30 +114,35 @@
 
 - (void) triggerVASTFirstQuartileEvent {
     if (_vastModule) {
+        NSLog(@"Event Tracking: first_quartile");
         [_vastModule triggerVASTFirstQuartileEvent: nil];
     }
 }
 
 - (void) triggerVASTMidpointEvent {
     if (_vastModule) {
+        NSLog(@"Event Tracking: midpoint");
         [_vastModule triggerVASTMidpointEvent: nil];
     }
 }
 
 - (void) triggerVASTThirdQuartileEvent {
     if (_vastModule) {
+        NSLog(@"Event Tracking: third_quartile");
         [_vastModule triggerVASTThirdQuartileEvent: nil];
     }
 }
 
 - (void) triggerVASTCompleteEvent {
     if (_vastModule) {
+        NSLog(@"Event Tracking: complete");
         [_vastModule triggerVASTCompleteEvent: nil];
     }
 }
 
 - (void) triggerVASTClickTrackingEvent {
     if (_vastModule) {
+        NSLog(@"Event Tracking: video_click");
         [_vastModule triggerVASTClickTrackingEvent: nil];
     }
 }
@@ -180,6 +186,7 @@
 - (BOOL) startMoatTrackingForVideoPlayer:(AVPlayer*) player
                                withLayer:(AVPlayerLayer*) layer
                                  andView:(UIView*) view {
+    NSLog(@"Event Tracking: moat_video_player");
     return _moatModule ? [_moatModule startMoatTrackingForVideoPlayer:player withLayer:layer andView:view] : false;
 }
 
