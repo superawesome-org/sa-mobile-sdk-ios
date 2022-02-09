@@ -95,7 +95,7 @@
 
 - (void) triggerVASTImpressionEvent {
     if (_vastModule) {
-        NSLog(@"Event Tracking: vast_impression");
+        NSLog(@"Event Tracking: impression (video)");
         [_vastModule triggerVASTImpressionEvent: nil];
     }
 }
@@ -186,7 +186,7 @@
 - (BOOL) startMoatTrackingForVideoPlayer:(AVPlayer*) player
                                withLayer:(AVPlayerLayer*) layer
                                  andView:(UIView*) view {
-    NSLog(@"Event Tracking: moat_video_player");
+    NSLog(@"Event Tracking: moat (video_player)");
     return _moatModule ? [_moatModule startMoatTrackingForVideoPlayer:player withLayer:layer andView:view] : false;
 }
 
