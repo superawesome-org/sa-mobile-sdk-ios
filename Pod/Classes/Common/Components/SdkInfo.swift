@@ -17,20 +17,28 @@ struct SdkInfo: SdkInfoType {
     var bundle: String
     var name: String
     var lang: String
-
+    
     init(mainBundle: Bundle, sdkBundle: Bundle, locale: Locale, encoder: EncoderType) {
         let platform = "ios"
         let versionNumber = sdkBundle.versionNumber ?? ""
-
-        self.version = "\(platform)_\(versionNumber)"
+        
         self.bundle = mainBundle.bundleIdentifier ?? ""
         self.name = encoder.encodeUri(mainBundle.name)
-
+        
         if let shortLang = mainBundle.preferredLocalizations.first,
-            let region = locale.regionCode {
+           let region = locale.regionCode {
             self.lang = "\(shortLang)_\(region)"
         } else {
             self.lang = "none"
         }
+        
+#if MOPUB_PLUGIN
+        let pluginName = "_mopub"
+#elseif ADMOB_PLUGIN
+        let pluginName = "_admob"
+#endif
+        let pluginName = ""
+        
+        self.version = "\(platform)_\(versionNumber)\(pluginName)"
     }
 }
