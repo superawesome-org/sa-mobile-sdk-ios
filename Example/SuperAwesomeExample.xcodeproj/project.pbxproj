@@ -7,243 +7,145 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1B22701823536F8300FA8326 /* TestSAUtils_UIColorFromRGB.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226F9C23536F8200FA8326 /* TestSAUtils_UIColorFromRGB.m */; };
-		1B22701923536F8300FA8326 /* TestSAUtils_GetSystemSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226F9D23536F8200FA8326 /* TestSAUtils_GetSystemSize.m */; };
-		1B22701A23536F8300FA8326 /* TestSAUtils_FilePathInDocuments.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226F9E23536F8200FA8326 /* TestSAUtils_FilePathInDocuments.m */; };
-		1B22701B23536F8300FA8326 /* TestSAUtils_EncodeJSONDictionaryFromNSDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226F9F23536F8200FA8326 /* TestSAUtils_EncodeJSONDictionaryFromNSDictionary.m */; };
-		1B22701C23536F8300FA8326 /* TestSAUtils_RemoveAllButFirst.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FA023536F8200FA8326 /* TestSAUtils_RemoveAllButFirst.m */; };
-		1B22701D23536F8300FA8326 /* TestSAUtils_GetCachebuster.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FA123536F8200FA8326 /* TestSAUtils_GetCachebuster.m */; };
-		1B22701E23536F8300FA8326 /* TestSAUtils_IsValidURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FA223536F8200FA8326 /* TestSAUtils_IsValidURL.m */; };
-		1B22701F23536F8300FA8326 /* TestSAUtils_FindSubstring.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FA423536F8200FA8326 /* TestSAUtils_FindSubstring.m */; };
-		1B22702023536F8300FA8326 /* TestSAUtils_GetVerboseSystemDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FA523536F8200FA8326 /* TestSAUtils_GetVerboseSystemDetails.m */; };
-		1B22702123536F8300FA8326 /* TestSAUtils_EncodeURI.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FA623536F8200FA8326 /* TestSAUtils_EncodeURI.m */; };
-		1B22702223536F8300FA8326 /* TestSAUtils_UIColorFromHex.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FA723536F8200FA8326 /* TestSAUtils_UIColorFromHex.m */; };
-		1B22702323536F8300FA8326 /* TestSAUtils_FormGetQueryFromDict.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FA823536F8200FA8326 /* TestSAUtils_FormGetQueryFromDict.m */; };
-		1B22702423536F8300FA8326 /* TestSAUtils_GenerateUniqueKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FA923536F8200FA8326 /* TestSAUtils_GenerateUniqueKey.m */; };
-		1B22702623536F8300FA8326 /* TestSAUtils_IsRectInRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FAB23536F8200FA8326 /* TestSAUtils_IsRectInRect.m */; };
-		1B22702723536F8300FA8326 /* MockModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FAC23536F8200FA8326 /* MockModel.m */; };
-		1B22702823536F8300FA8326 /* TestSAUtils_RandomNumberBetween.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FAD23536F8200FA8326 /* TestSAUtils_RandomNumberBetween.m */; };
-		1B22702923536F8300FA8326 /* TestSAUtils_IsEmailValid.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FAE23536F8200FA8326 /* TestSAUtils_IsEmailValid.m */; };
-		1B22702A23536F8300FA8326 /* TestSAUtils_MapInto.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FAF23536F8200FA8326 /* TestSAUtils_MapInto.m */; };
-		1B22702B23536F8300FA8326 /* TestSAUtils_FilterBy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FB023536F8200FA8326 /* TestSAUtils_FilterBy.m */; };
-		1B22702C23536F8300FA8326 /* TestSAUtils_FindBaseURLFromResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FB123536F8200FA8326 /* TestSAUtils_FindBaseURLFromResource.m */; };
-		1B22702D23536F8300FA8326 /* TestSAURLEventSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FB423536F8200FA8326 /* TestSAURLEventSetup.m */; };
-		1B22702E23536F8300FA8326 /* TestSAVASTModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FB523536F8200FA8326 /* TestSAVASTModule.m */; };
-		1B22702F23536F8300FA8326 /* TestSAImpressionEventTrigger.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FB623536F8200FA8326 /* TestSAImpressionEventTrigger.m */; };
-		1B22703023536F8300FA8326 /* SAModelFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FB723536F8200FA8326 /* SAModelFactory.m */; };
-		1B22703123536F8300FA8326 /* TestViewableImpressionEventSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FB823536F8200FA8326 /* TestViewableImpressionEventSetup.m */; };
-		1B22703223536F8300FA8326 /* TestSAClickEventSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FB923536F8200FA8326 /* TestSAClickEventSetup.m */; };
-		1B22703323536F8300FA8326 /* SAMockEventsServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FBB23536F8200FA8326 /* SAMockEventsServer.m */; };
-		1B22703523536F8300FA8326 /* TestSAClickEventTrigger.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FBF23536F8200FA8326 /* TestSAClickEventTrigger.m */; };
-		1B22703623536F8300FA8326 /* TestViewableImpressionEventTrigger.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FC023536F8200FA8326 /* TestViewableImpressionEventTrigger.m */; };
-		1B22703723536F8300FA8326 /* SAMocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FC123536F8200FA8326 /* SAMocks.m */; };
-		1B22703823536F8300FA8326 /* TestMoatModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FC223536F8200FA8326 /* TestMoatModule.m */; };
-		1B22703923536F8300FA8326 /* TestSAServerModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FC323536F8200FA8326 /* TestSAServerModule.m */; };
-		1B22703A23536F8300FA8326 /* TestSAImpressionEventSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FC523536F8200FA8326 /* TestSAImpressionEventSetup.m */; };
-		1B22703B23536F8300FA8326 /* TestSAURLEventTrigger.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FC623536F8200FA8326 /* TestSAURLEventTrigger.m */; };
-		1B22703C23536F8300FA8326 /* TestSAServerEventSetup.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FC723536F8200FA8326 /* TestSAServerEventSetup.m */; };
-		1B22703D23536F8300FA8326 /* MockSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FC923536F8200FA8326 /* MockSession.m */; };
-		1B22703E23536F8300FA8326 /* TestSAProcessHTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FCD23536F8200FA8326 /* TestSAProcessHTML.m */; };
-		1B22703F23536F8300FA8326 /* SAMockAdServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FD123536F8200FA8326 /* SAMockAdServer.m */; };
-		1B22704023536F8300FA8326 /* TestSAAdLoader_GetAwesomeAdsEndpoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FD223536F8200FA8326 /* TestSAAdLoader_GetAwesomeAdsEndpoint.m */; };
-		1B22704223536F8300FA8326 /* TestSAAdLoader_LoadAd.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FD423536F8200FA8326 /* TestSAAdLoader_LoadAd.m */; };
-		1B22704323536F8300FA8326 /* SAMockSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FD523536F8200FA8326 /* SAMockSession.m */; };
-		1B22704423536F8300FA8326 /* TestSAAdLoader_GetAwesomeAdsHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FD623536F8200FA8326 /* TestSAAdLoader_GetAwesomeAdsHeader.m */; };
-		1B22704523536F8300FA8326 /* TestSAAdLoader_GetAwesomeAdsQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FD723536F8200FA8326 /* TestSAAdLoader_GetAwesomeAdsQuery.m */; };
-		1B22704723536F8300FA8326 /* SAResponseFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FD923536F8200FA8326 /* SAResponseFactory.m */; };
-		1B22704923536F8300FA8326 /* SANetwork_Network_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FDC23536F8200FA8326 /* SANetwork_Network_Tests.m */; };
-		1B22704B23536F8300FA8326 /* SANetwork_FileItem_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FDF23536F8300FA8326 /* SANetwork_FileItem_Tests.m */; };
-		1B22704C23536F8300FA8326 /* SANetwork_FileDownloader_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FE023536F8300FA8326 /* SANetwork_FileDownloader_Tests.m */; };
-		1B22704D23536F8300FA8326 /* SASession_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FE223536F8300FA8326 /* SASession_Tests.m */; };
-		1B22704E23536F8300FA8326 /* SAXML_Parser_Tests4.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FE423536F8300FA8326 /* SAXML_Parser_Tests4.m */; };
-		1B22705023536F8300FA8326 /* SAXML_Parser_Tests7.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FE723536F8300FA8326 /* SAXML_Parser_Tests7.m */; };
-		1B22705123536F8300FA8326 /* SAMockVASTServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FE823536F8300FA8326 /* SAMockVASTServer.m */; };
-		1B22705223536F8300FA8326 /* SAXML_Parser_Tests3.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FE923536F8300FA8326 /* SAXML_Parser_Tests3.m */; };
-		1B22705323536F8300FA8326 /* SAXML_Parser_Tests6.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FEB23536F8300FA8326 /* SAXML_Parser_Tests6.m */; };
-		1B22705423536F8300FA8326 /* SAXML_Parser_Tests2.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FEC23536F8300FA8326 /* SAXML_Parser_Tests2.m */; };
-		1B22705623536F8300FA8326 /* SAVAST_Parser_Async_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FEE23536F8300FA8326 /* SAVAST_Parser_Async_Tests.m */; };
-		1B22705723536F8300FA8326 /* SAVAST_Parser_Local_Tests1.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FEF23536F8300FA8326 /* SAVAST_Parser_Local_Tests1.m */; };
-		1B22705823536F8300FA8326 /* SAXML_Parser_Tests5.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FF023536F8300FA8326 /* SAXML_Parser_Tests5.m */; };
-		1B22705923536F8300FA8326 /* SAXML_Parser_Tests1.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FF223536F8300FA8326 /* SAXML_Parser_Tests1.m */; };
-		1B22705A23536F8300FA8326 /* SAVAST_Parser_Local_Tests2.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FF323536F8300FA8326 /* SAVAST_Parser_Local_Tests2.m */; };
-		1B22705C23536F8300FA8326 /* SAMockPositionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FFA23536F8300FA8326 /* SAMockPositionModel.m */; };
-		1B22705D23536F8300FA8326 /* SAMockEmployeeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FFB23536F8300FA8326 /* SAMockEmployeeModel.m */; };
-		1B22705E23536F8300FA8326 /* SAMockCompanyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FFC23536F8300FA8326 /* SAMockCompanyModel.m */; };
-		1B22705F23536F8300FA8326 /* TestSAJsonParser_ParseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FFD23536F8300FA8326 /* TestSAJsonParser_ParseObject.m */; };
-		1B22706023536F8300FA8326 /* TestSAJsonParser_ParseArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FFE23536F8300FA8326 /* TestSAJsonParser_ParseArray.m */; };
-		1B22706123536F8300FA8326 /* TestSAJsonParser_WriteDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B226FFF23536F8300FA8326 /* TestSAJsonParser_WriteDictionary.m */; };
-		1B22706223536F8300FA8326 /* TestSAJsonParser_WriteArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B22700023536F8300FA8326 /* TestSAJsonParser_WriteArray.m */; };
-		1B22706323536F8300FA8326 /* TestSAJsonParser_WriteObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B22700123536F8300FA8326 /* TestSAJsonParser_WriteObject.m */; };
-		1B22706423536F8300FA8326 /* TestSAJsonParser_ParseDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B22700223536F8300FA8326 /* TestSAJsonParser_ParseDictionary.m */; };
-		1B22706523536F8300FA8326 /* TestSAAd_4.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B22700423536F8300FA8326 /* TestSAAd_4.m */; };
-		1B22706723536F8300FA8326 /* TestSAAd_3.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B22700723536F8300FA8326 /* TestSAAd_3.m */; };
-		1B22706823536F8300FA8326 /* TestSAAd_7.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B22700823536F8300FA8326 /* TestSAAd_7.m */; };
-		1B22706923536F8300FA8326 /* TestSAAd_2.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B22700923536F8300FA8326 /* TestSAAd_2.m */; };
-		1B22706A23536F8300FA8326 /* TestSAAd_8.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B22700A23536F8300FA8326 /* TestSAAd_8.m */; };
-		1B22706B23536F8300FA8326 /* TestSAAd_6.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B22700B23536F8300FA8326 /* TestSAAd_6.m */; };
-		1B22706D23536F8300FA8326 /* TestSAVAST_2.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B22700D23536F8300FA8326 /* TestSAVAST_2.m */; };
-		1B22706E23536F8300FA8326 /* TestSAAd_1.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B22700E23536F8300FA8326 /* TestSAAd_1.m */; };
-		1B22706F23536F8300FA8326 /* TestSAAd_5.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B22700F23536F8300FA8326 /* TestSAAd_5.m */; };
-		1B22707023536F8300FA8326 /* TestSAVAST_1.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B22701023536F8300FA8326 /* TestSAVAST_1.m */; };
-		1B22707223536F8300FA8326 /* TestsUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B22701423536F8300FA8326 /* TestsUtils.swift */; };
 		1B76D2411C91EEB1000AE8F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B76D23F1C91EEB1000AE8F3 /* Main.storyboard */; };
 		1B76D2431C91EEB1000AE8F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B76D2421C91EEB1000AE8F3 /* Assets.xcassets */; };
 		1B76D2461C91EEB1000AE8F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B76D2441C91EEB1000AE8F3 /* LaunchScreen.storyboard */; };
-		1BA72AC124365236003A31C5 /* fixtures_tests.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1BA72AC024365236003A31C5 /* fixtures_tests.bundle */; };
-		21528C928B7BFDA0D29213BE /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A01EA0D5528DC347839D3C89 /* Pods_Tests.framework */; };
 		4D2BB747266A689B00E3D86A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2BB746266A689B00E3D86A /* AppDelegate.swift */; };
+		7F12D2F7DB65E88C1B5E1D5A /* Pods_SuperAwesomeExampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEB1A8E3ADA4E4B4C3D91571 /* Pods_SuperAwesomeExampleTests.framework */; };
 		A7EFC8DE3E1F552F65AEDB94 /* Pods_SuperAwesomeExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46665EBC142A783963BB4282 /* Pods_SuperAwesomeExample.framework */; };
 		C6398A1027AAAEF300D6A152 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6398A0F27AAAEF300D6A152 /* MainViewController.swift */; };
 		C6398A1327AAB1E500D6A152 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6398A1227AAB1E500D6A152 /* UIView+Extensions.swift */; };
-		C647364224CF4A130093342F /* TestSAUtils_MonthYearStringFromDate.m in Sources */ = {isa = PBXBuildFile; fileRef = C647364124CF4A130093342F /* TestSAUtils_MonthYearStringFromDate.m */; };
 		C64CAD28249CC5AB00788A7F /* MoPubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64CAD27249CC5AB00788A7F /* MoPubViewController.swift */; };
 		C6535602245239270043115E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6535601245239270043115E /* HealthKit.framework */; };
-		C668A6F9243656E200C18228 /* SATestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C668A6F8243656E200C18228 /* SATestUtils.m */; };
+		C6C6AEEA27D7D1D000FFB5CA /* SuperAwesomeExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AEE927D7D1D000FFB5CA /* SuperAwesomeExampleTests.swift */; };
+		C6C6AEF827D7D31A00FFB5CA /* ConnectionTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AEF727D7D31A00FFB5CA /* ConnectionTypeTests.swift */; };
+		C6C6AEFA27D7D36900FFB5CA /* AdModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AEF927D7D36900FFB5CA /* AdModelTests.swift */; };
+		C6C6AEFC27D7D39700FFB5CA /* fixtures_tests.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C6C6AEFB27D7D39700FFB5CA /* fixtures_tests.bundle */; };
+		C6C6AF1627D7D3DB00FFB5CA /* AdProcessorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF0227D7D3DA00FFB5CA /* AdProcessorMock.swift */; };
+		C6C6AF1727D7D3DB00FFB5CA /* ConnectionProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF0327D7D3DA00FFB5CA /* ConnectionProviderMock.swift */; };
+		C6C6AF1827D7D3DB00FFB5CA /* LoggerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF0427D7D3DA00FFB5CA /* LoggerMock.swift */; };
+		C6C6AF1927D7D3DB00FFB5CA /* HtmlFormatterMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF0527D7D3DA00FFB5CA /* HtmlFormatterMock.swift */; };
+		C6C6AF1A27D7D3DB00FFB5CA /* PreferencesRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF0627D7D3DA00FFB5CA /* PreferencesRepositoryMock.swift */; };
+		C6C6AF1B27D7D3DB00FFB5CA /* UIDeviceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF0727D7D3DA00FFB5CA /* UIDeviceMock.swift */; };
+		C6C6AF1C27D7D3DB00FFB5CA /* UserAgentProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF0827D7D3DA00FFB5CA /* UserAgentProviderMock.swift */; };
+		C6C6AF1D27D7D3DB00FFB5CA /* DeviceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF0927D7D3DA00FFB5CA /* DeviceMock.swift */; };
+		C6C6AF1E27D7D3DB00FFB5CA /* AdDataSourceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF0A27D7D3DA00FFB5CA /* AdDataSourceMock.swift */; };
+		C6C6AF1F27D7D3DB00FFB5CA /* VastParserMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF0B27D7D3DA00FFB5CA /* VastParserMock.swift */; };
+		C6C6AF2027D7D3DB00FFB5CA /* AdQueryMakerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF0C27D7D3DA00FFB5CA /* AdQueryMakerMock.swift */; };
+		C6C6AF2127D7D3DB00FFB5CA /* IdGeneratorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF0D27D7D3DA00FFB5CA /* IdGeneratorMock.swift */; };
+		C6C6AF2227D7D3DB00FFB5CA /* EncoderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF0E27D7D3DA00FFB5CA /* EncoderMock.swift */; };
+		C6C6AF2327D7D3DB00FFB5CA /* NumberGeneratorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF0F27D7D3DA00FFB5CA /* NumberGeneratorMock.swift */; };
+		C6C6AF2427D7D3DB00FFB5CA /* NetworkDataSourceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF1027D7D3DA00FFB5CA /* NetworkDataSourceMock.swift */; };
+		C6C6AF2527D7D3DB00FFB5CA /* BundleMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF1127D7D3DB00FFB5CA /* BundleMock.swift */; };
+		C6C6AF2627D7D3DB00FFB5CA /* DateProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF1227D7D3DB00FFB5CA /* DateProviderMock.swift */; };
+		C6C6AF2727D7D3DB00FFB5CA /* MoatRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF1327D7D3DB00FFB5CA /* MoatRepositoryMock.swift */; };
+		C6C6AF2827D7D3DB00FFB5CA /* SdkInfoMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF1427D7D3DB00FFB5CA /* SdkInfoMock.swift */; };
+		C6C6AF2927D7D3DB00FFB5CA /* MockFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF1527D7D3DB00FFB5CA /* MockFactory.swift */; };
+		C6C6AF2C27D7E27800FFB5CA /* BundleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF2A27D7E27700FFB5CA /* BundleHelper.swift */; };
+		C6C6AF2D27D7E27800FFB5CA /* PredicateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF2B27D7E27800FFB5CA /* PredicateHelper.swift */; };
+		C6C6AF3127D7E2CF00FFB5CA /* PreferencesRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF2E27D7E2CE00FFB5CA /* PreferencesRepositoryTests.swift */; };
+		C6C6AF3227D7E2CF00FFB5CA /* AdRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF2F27D7E2CE00FFB5CA /* AdRepositoryTests.swift */; };
+		C6C6AF3327D7E2CF00FFB5CA /* EventRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF3027D7E2CF00FFB5CA /* EventRepositoryTests.swift */; };
+		C6C6AF3627D7E34F00FFB5CA /* StringExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF3427D7E34F00FFB5CA /* StringExtensionTests.swift */; };
+		C6C6AF3727D7E34F00FFB5CA /* CodableExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF3527D7E34F00FFB5CA /* CodableExtensionTests.swift */; };
+		C6C6AF4427D7E37A00FFB5CA /* DateProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF3827D7E37900FFB5CA /* DateProviderTests.swift */; };
+		C6C6AF4527D7E37A00FFB5CA /* DeviceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF3927D7E37900FFB5CA /* DeviceTests.swift */; };
+		C6C6AF4627D7E37A00FFB5CA /* IdGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF3A27D7E37900FFB5CA /* IdGeneratorTests.swift */; };
+		C6C6AF4727D7E37A00FFB5CA /* ImageProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF3B27D7E37900FFB5CA /* ImageProviderTests.swift */; };
+		C6C6AF4827D7E37A00FFB5CA /* EncoderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF3C27D7E37900FFB5CA /* EncoderTests.swift */; };
+		C6C6AF4927D7E37A00FFB5CA /* AdQueryMakerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF3D27D7E37900FFB5CA /* AdQueryMakerTests.swift */; };
+		C6C6AF4A27D7E37A00FFB5CA /* VastParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF3E27D7E37A00FFB5CA /* VastParserTests.swift */; };
+		C6C6AF4B27D7E37A00FFB5CA /* NumberGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF3F27D7E37A00FFB5CA /* NumberGeneratorTests.swift */; };
+		C6C6AF4C27D7E37A00FFB5CA /* SdkInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF4027D7E37A00FFB5CA /* SdkInfoTests.swift */; };
+		C6C6AF4D27D7E37A00FFB5CA /* UserAgentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF4127D7E37A00FFB5CA /* UserAgentTests.swift */; };
+		C6C6AF4E27D7E37A00FFB5CA /* HtmlFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF4227D7E37A00FFB5CA /* HtmlFormatterTests.swift */; };
+		C6C6AF4F27D7E37A00FFB5CA /* AdProcessorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF4327D7E37A00FFB5CA /* AdProcessorTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		1B0D26D11CF7186F00619C9C /* PBXContainerItemProxy */ = {
+		C6C6AEEB27D7D1D000FFB5CA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1B76D22B1C91EEB1000AE8F3 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 1B76D2321C91EEB1000AE8F3;
-			remoteInfo = SuperAwesome;
+			remoteInfo = SuperAwesomeExample;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1B0D26CC1CF7186F00619C9C /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1B0D26D01CF7186F00619C9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1B226F9C23536F8200FA8326 /* TestSAUtils_UIColorFromRGB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAUtils_UIColorFromRGB.m; sourceTree = "<group>"; };
-		1B226F9D23536F8200FA8326 /* TestSAUtils_GetSystemSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAUtils_GetSystemSize.m; sourceTree = "<group>"; };
-		1B226F9E23536F8200FA8326 /* TestSAUtils_FilePathInDocuments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAUtils_FilePathInDocuments.m; sourceTree = "<group>"; };
-		1B226F9F23536F8200FA8326 /* TestSAUtils_EncodeJSONDictionaryFromNSDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAUtils_EncodeJSONDictionaryFromNSDictionary.m; sourceTree = "<group>"; };
-		1B226FA023536F8200FA8326 /* TestSAUtils_RemoveAllButFirst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAUtils_RemoveAllButFirst.m; sourceTree = "<group>"; };
-		1B226FA123536F8200FA8326 /* TestSAUtils_GetCachebuster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAUtils_GetCachebuster.m; sourceTree = "<group>"; };
-		1B226FA223536F8200FA8326 /* TestSAUtils_IsValidURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAUtils_IsValidURL.m; sourceTree = "<group>"; };
-		1B226FA323536F8200FA8326 /* MockModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockModel.h; sourceTree = "<group>"; };
-		1B226FA423536F8200FA8326 /* TestSAUtils_FindSubstring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAUtils_FindSubstring.m; sourceTree = "<group>"; };
-		1B226FA523536F8200FA8326 /* TestSAUtils_GetVerboseSystemDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAUtils_GetVerboseSystemDetails.m; sourceTree = "<group>"; };
-		1B226FA623536F8200FA8326 /* TestSAUtils_EncodeURI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAUtils_EncodeURI.m; sourceTree = "<group>"; };
-		1B226FA723536F8200FA8326 /* TestSAUtils_UIColorFromHex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAUtils_UIColorFromHex.m; sourceTree = "<group>"; };
-		1B226FA823536F8200FA8326 /* TestSAUtils_FormGetQueryFromDict.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAUtils_FormGetQueryFromDict.m; sourceTree = "<group>"; };
-		1B226FA923536F8200FA8326 /* TestSAUtils_GenerateUniqueKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAUtils_GenerateUniqueKey.m; sourceTree = "<group>"; };
-		1B226FAB23536F8200FA8326 /* TestSAUtils_IsRectInRect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAUtils_IsRectInRect.m; sourceTree = "<group>"; };
-		1B226FAC23536F8200FA8326 /* MockModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockModel.m; sourceTree = "<group>"; };
-		1B226FAD23536F8200FA8326 /* TestSAUtils_RandomNumberBetween.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAUtils_RandomNumberBetween.m; sourceTree = "<group>"; };
-		1B226FAE23536F8200FA8326 /* TestSAUtils_IsEmailValid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAUtils_IsEmailValid.m; sourceTree = "<group>"; };
-		1B226FAF23536F8200FA8326 /* TestSAUtils_MapInto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAUtils_MapInto.m; sourceTree = "<group>"; };
-		1B226FB023536F8200FA8326 /* TestSAUtils_FilterBy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAUtils_FilterBy.m; sourceTree = "<group>"; };
-		1B226FB123536F8200FA8326 /* TestSAUtils_FindBaseURLFromResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAUtils_FindBaseURLFromResource.m; sourceTree = "<group>"; };
-		1B226FB323536F8200FA8326 /* SAMocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAMocks.h; sourceTree = "<group>"; };
-		1B226FB423536F8200FA8326 /* TestSAURLEventSetup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAURLEventSetup.m; sourceTree = "<group>"; };
-		1B226FB523536F8200FA8326 /* TestSAVASTModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAVASTModule.m; sourceTree = "<group>"; };
-		1B226FB623536F8200FA8326 /* TestSAImpressionEventTrigger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAImpressionEventTrigger.m; sourceTree = "<group>"; };
-		1B226FB723536F8200FA8326 /* SAModelFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAModelFactory.m; sourceTree = "<group>"; };
-		1B226FB823536F8200FA8326 /* TestViewableImpressionEventSetup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewableImpressionEventSetup.m; sourceTree = "<group>"; };
-		1B226FB923536F8200FA8326 /* TestSAClickEventSetup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAClickEventSetup.m; sourceTree = "<group>"; };
-		1B226FBB23536F8200FA8326 /* SAMockEventsServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAMockEventsServer.m; sourceTree = "<group>"; };
-		1B226FBD23536F8200FA8326 /* SAMockEventsServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAMockEventsServer.h; sourceTree = "<group>"; };
-		1B226FBF23536F8200FA8326 /* TestSAClickEventTrigger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAClickEventTrigger.m; sourceTree = "<group>"; };
-		1B226FC023536F8200FA8326 /* TestViewableImpressionEventTrigger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewableImpressionEventTrigger.m; sourceTree = "<group>"; };
-		1B226FC123536F8200FA8326 /* SAMocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAMocks.m; sourceTree = "<group>"; };
-		1B226FC223536F8200FA8326 /* TestMoatModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestMoatModule.m; sourceTree = "<group>"; };
-		1B226FC323536F8200FA8326 /* TestSAServerModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAServerModule.m; sourceTree = "<group>"; };
-		1B226FC423536F8200FA8326 /* SAModelFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAModelFactory.h; sourceTree = "<group>"; };
-		1B226FC523536F8200FA8326 /* TestSAImpressionEventSetup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAImpressionEventSetup.m; sourceTree = "<group>"; };
-		1B226FC623536F8200FA8326 /* TestSAURLEventTrigger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAURLEventTrigger.m; sourceTree = "<group>"; };
-		1B226FC723536F8200FA8326 /* TestSAServerEventSetup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAServerEventSetup.m; sourceTree = "<group>"; };
-		1B226FC923536F8200FA8326 /* MockSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockSession.m; sourceTree = "<group>"; };
-		1B226FCA23536F8200FA8326 /* MockSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockSession.h; sourceTree = "<group>"; };
-		1B226FCC23536F8200FA8326 /* SAMockAdServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAMockAdServer.h; sourceTree = "<group>"; };
-		1B226FCD23536F8200FA8326 /* TestSAProcessHTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAProcessHTML.m; sourceTree = "<group>"; };
-		1B226FCE23536F8200FA8326 /* SAMockSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAMockSession.h; sourceTree = "<group>"; };
-		1B226FD023536F8200FA8326 /* SAResponseFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAResponseFactory.h; sourceTree = "<group>"; };
-		1B226FD123536F8200FA8326 /* SAMockAdServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAMockAdServer.m; sourceTree = "<group>"; };
-		1B226FD223536F8200FA8326 /* TestSAAdLoader_GetAwesomeAdsEndpoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAAdLoader_GetAwesomeAdsEndpoint.m; sourceTree = "<group>"; };
-		1B226FD423536F8200FA8326 /* TestSAAdLoader_LoadAd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAAdLoader_LoadAd.m; sourceTree = "<group>"; };
-		1B226FD523536F8200FA8326 /* SAMockSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAMockSession.m; sourceTree = "<group>"; };
-		1B226FD623536F8200FA8326 /* TestSAAdLoader_GetAwesomeAdsHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAAdLoader_GetAwesomeAdsHeader.m; sourceTree = "<group>"; };
-		1B226FD723536F8200FA8326 /* TestSAAdLoader_GetAwesomeAdsQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAAdLoader_GetAwesomeAdsQuery.m; sourceTree = "<group>"; };
-		1B226FD923536F8200FA8326 /* SAResponseFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAResponseFactory.m; sourceTree = "<group>"; };
-		1B226FDC23536F8200FA8326 /* SANetwork_Network_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SANetwork_Network_Tests.m; sourceTree = "<group>"; };
-		1B226FDF23536F8300FA8326 /* SANetwork_FileItem_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SANetwork_FileItem_Tests.m; sourceTree = "<group>"; };
-		1B226FE023536F8300FA8326 /* SANetwork_FileDownloader_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SANetwork_FileDownloader_Tests.m; sourceTree = "<group>"; };
-		1B226FE223536F8300FA8326 /* SASession_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SASession_Tests.m; sourceTree = "<group>"; };
-		1B226FE423536F8300FA8326 /* SAXML_Parser_Tests4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAXML_Parser_Tests4.m; sourceTree = "<group>"; };
-		1B226FE723536F8300FA8326 /* SAXML_Parser_Tests7.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAXML_Parser_Tests7.m; sourceTree = "<group>"; };
-		1B226FE823536F8300FA8326 /* SAMockVASTServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAMockVASTServer.m; sourceTree = "<group>"; };
-		1B226FE923536F8300FA8326 /* SAXML_Parser_Tests3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAXML_Parser_Tests3.m; sourceTree = "<group>"; };
-		1B226FEB23536F8300FA8326 /* SAXML_Parser_Tests6.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAXML_Parser_Tests6.m; sourceTree = "<group>"; };
-		1B226FEC23536F8300FA8326 /* SAXML_Parser_Tests2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAXML_Parser_Tests2.m; sourceTree = "<group>"; };
-		1B226FEE23536F8300FA8326 /* SAVAST_Parser_Async_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAVAST_Parser_Async_Tests.m; sourceTree = "<group>"; };
-		1B226FEF23536F8300FA8326 /* SAVAST_Parser_Local_Tests1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAVAST_Parser_Local_Tests1.m; sourceTree = "<group>"; };
-		1B226FF023536F8300FA8326 /* SAXML_Parser_Tests5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAXML_Parser_Tests5.m; sourceTree = "<group>"; };
-		1B226FF123536F8300FA8326 /* SAMockVASTServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAMockVASTServer.h; sourceTree = "<group>"; };
-		1B226FF223536F8300FA8326 /* SAXML_Parser_Tests1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAXML_Parser_Tests1.m; sourceTree = "<group>"; };
-		1B226FF323536F8300FA8326 /* SAVAST_Parser_Local_Tests2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAVAST_Parser_Local_Tests2.m; sourceTree = "<group>"; };
-		1B226FF723536F8300FA8326 /* SAMockEmployeeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAMockEmployeeModel.h; sourceTree = "<group>"; };
-		1B226FF823536F8300FA8326 /* SAMockPositionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAMockPositionModel.h; sourceTree = "<group>"; };
-		1B226FF923536F8300FA8326 /* SAMockCompanyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAMockCompanyModel.h; sourceTree = "<group>"; };
-		1B226FFA23536F8300FA8326 /* SAMockPositionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAMockPositionModel.m; sourceTree = "<group>"; };
-		1B226FFB23536F8300FA8326 /* SAMockEmployeeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAMockEmployeeModel.m; sourceTree = "<group>"; };
-		1B226FFC23536F8300FA8326 /* SAMockCompanyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAMockCompanyModel.m; sourceTree = "<group>"; };
-		1B226FFD23536F8300FA8326 /* TestSAJsonParser_ParseObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAJsonParser_ParseObject.m; sourceTree = "<group>"; };
-		1B226FFE23536F8300FA8326 /* TestSAJsonParser_ParseArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAJsonParser_ParseArray.m; sourceTree = "<group>"; };
-		1B226FFF23536F8300FA8326 /* TestSAJsonParser_WriteDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAJsonParser_WriteDictionary.m; sourceTree = "<group>"; };
-		1B22700023536F8300FA8326 /* TestSAJsonParser_WriteArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAJsonParser_WriteArray.m; sourceTree = "<group>"; };
-		1B22700123536F8300FA8326 /* TestSAJsonParser_WriteObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAJsonParser_WriteObject.m; sourceTree = "<group>"; };
-		1B22700223536F8300FA8326 /* TestSAJsonParser_ParseDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAJsonParser_ParseDictionary.m; sourceTree = "<group>"; };
-		1B22700423536F8300FA8326 /* TestSAAd_4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAAd_4.m; sourceTree = "<group>"; };
-		1B22700723536F8300FA8326 /* TestSAAd_3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAAd_3.m; sourceTree = "<group>"; };
-		1B22700823536F8300FA8326 /* TestSAAd_7.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAAd_7.m; sourceTree = "<group>"; };
-		1B22700923536F8300FA8326 /* TestSAAd_2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAAd_2.m; sourceTree = "<group>"; };
-		1B22700A23536F8300FA8326 /* TestSAAd_8.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAAd_8.m; sourceTree = "<group>"; };
-		1B22700B23536F8300FA8326 /* TestSAAd_6.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAAd_6.m; sourceTree = "<group>"; };
-		1B22700D23536F8300FA8326 /* TestSAVAST_2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAVAST_2.m; sourceTree = "<group>"; };
-		1B22700E23536F8300FA8326 /* TestSAAd_1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAAd_1.m; sourceTree = "<group>"; };
-		1B22700F23536F8300FA8326 /* TestSAAd_5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAAd_5.m; sourceTree = "<group>"; };
-		1B22701023536F8300FA8326 /* TestSAVAST_1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAVAST_1.m; sourceTree = "<group>"; };
-		1B22701223536F8300FA8326 /* SAGDPRKisMinor_Tests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SAGDPRKisMinor_Tests-Bridging-Header.h"; sourceTree = "<group>"; };
-		1B22701423536F8300FA8326 /* TestsUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestsUtils.swift; sourceTree = "<group>"; };
 		1B76D2331C91EEB1000AE8F3 /* SuperAwesomeExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperAwesomeExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B76D2401C91EEB1000AE8F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1B76D2421C91EEB1000AE8F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1B76D2451C91EEB1000AE8F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1B76D2471C91EEB1000AE8F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1BA72AC024365236003A31C5 /* fixtures_tests.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = fixtures_tests.bundle; sourceTree = "<group>"; };
 		1BFE15E422A00DE500C500C0 /* SuperAwesome-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SuperAwesome-Bridging-Header.h"; sourceTree = "<group>"; };
 		2294CA59892B5A87435606EE /* Pods-SuperAwesome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesome.release.xcconfig"; path = "Target Support Files/Pods-SuperAwesome/Pods-SuperAwesome.release.xcconfig"; sourceTree = "<group>"; };
 		235DC26E667FEA43E2153B95 /* Pods-MoyaUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoyaUnitTests.release.xcconfig"; path = "Target Support Files/Pods-MoyaUnitTests/Pods-MoyaUnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		46665EBC142A783963BB4282 /* Pods_SuperAwesomeExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SuperAwesomeExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		497D5AC68B2B27DFFAACACA7 /* Pods-SuperAwesome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesome.debug.xcconfig"; path = "Target Support Files/Pods-SuperAwesome/Pods-SuperAwesome.debug.xcconfig"; sourceTree = "<group>"; };
 		4D2BB746266A689B00E3D86A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		53169C56FFF1FDCACB267A9D /* Pods-SuperAwesomeExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesomeExampleTests.release.xcconfig"; path = "Target Support Files/Pods-SuperAwesomeExampleTests/Pods-SuperAwesomeExampleTests.release.xcconfig"; sourceTree = "<group>"; };
 		5FDC5DDF2247CC69FA37359E /* Pods-MoyaUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoyaUnitTests.debug.xcconfig"; path = "Target Support Files/Pods-MoyaUnitTests/Pods-MoyaUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		763EEEB15C3FC5CF9C4C2503 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
 		A01EA0D5528DC347839D3C89 /* Pods_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B11A00536A3939F72F5C056B /* Pods-SuperAwesomeExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesomeExampleTests.debug.xcconfig"; path = "Target Support Files/Pods-SuperAwesomeExampleTests/Pods-SuperAwesomeExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C6398A0F27AAAEF300D6A152 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C6398A1227AAB1E500D6A152 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
-		C647364124CF4A130093342F /* TestSAUtils_MonthYearStringFromDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestSAUtils_MonthYearStringFromDate.m; sourceTree = "<group>"; };
 		C64CAD27249CC5AB00788A7F /* MoPubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoPubViewController.swift; sourceTree = "<group>"; };
 		C6535600245239270043115E /* SuperAwesomeExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SuperAwesomeExample.entitlements; sourceTree = "<group>"; };
 		C6535601245239270043115E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
-		C668A6F7243656E200C18228 /* SATestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SATestUtils.h; sourceTree = "<group>"; };
-		C668A6F8243656E200C18228 /* SATestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SATestUtils.m; sourceTree = "<group>"; };
+		C6C6AEE727D7D1D000FFB5CA /* SuperAwesomeExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperAwesomeExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6C6AEE927D7D1D000FFB5CA /* SuperAwesomeExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperAwesomeExampleTests.swift; sourceTree = "<group>"; };
+		C6C6AEF727D7D31A00FFB5CA /* ConnectionTypeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionTypeTests.swift; sourceTree = "<group>"; };
+		C6C6AEF927D7D36900FFB5CA /* AdModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdModelTests.swift; sourceTree = "<group>"; };
+		C6C6AEFB27D7D39700FFB5CA /* fixtures_tests.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = fixtures_tests.bundle; sourceTree = "<group>"; };
+		C6C6AF0227D7D3DA00FFB5CA /* AdProcessorMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdProcessorMock.swift; sourceTree = "<group>"; };
+		C6C6AF0327D7D3DA00FFB5CA /* ConnectionProviderMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionProviderMock.swift; sourceTree = "<group>"; };
+		C6C6AF0427D7D3DA00FFB5CA /* LoggerMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggerMock.swift; sourceTree = "<group>"; };
+		C6C6AF0527D7D3DA00FFB5CA /* HtmlFormatterMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HtmlFormatterMock.swift; sourceTree = "<group>"; };
+		C6C6AF0627D7D3DA00FFB5CA /* PreferencesRepositoryMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesRepositoryMock.swift; sourceTree = "<group>"; };
+		C6C6AF0727D7D3DA00FFB5CA /* UIDeviceMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDeviceMock.swift; sourceTree = "<group>"; };
+		C6C6AF0827D7D3DA00FFB5CA /* UserAgentProviderMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAgentProviderMock.swift; sourceTree = "<group>"; };
+		C6C6AF0927D7D3DA00FFB5CA /* DeviceMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceMock.swift; sourceTree = "<group>"; };
+		C6C6AF0A27D7D3DA00FFB5CA /* AdDataSourceMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdDataSourceMock.swift; sourceTree = "<group>"; };
+		C6C6AF0B27D7D3DA00FFB5CA /* VastParserMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VastParserMock.swift; sourceTree = "<group>"; };
+		C6C6AF0C27D7D3DA00FFB5CA /* AdQueryMakerMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdQueryMakerMock.swift; sourceTree = "<group>"; };
+		C6C6AF0D27D7D3DA00FFB5CA /* IdGeneratorMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdGeneratorMock.swift; sourceTree = "<group>"; };
+		C6C6AF0E27D7D3DA00FFB5CA /* EncoderMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncoderMock.swift; sourceTree = "<group>"; };
+		C6C6AF0F27D7D3DA00FFB5CA /* NumberGeneratorMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberGeneratorMock.swift; sourceTree = "<group>"; };
+		C6C6AF1027D7D3DA00FFB5CA /* NetworkDataSourceMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkDataSourceMock.swift; sourceTree = "<group>"; };
+		C6C6AF1127D7D3DB00FFB5CA /* BundleMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BundleMock.swift; sourceTree = "<group>"; };
+		C6C6AF1227D7D3DB00FFB5CA /* DateProviderMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateProviderMock.swift; sourceTree = "<group>"; };
+		C6C6AF1327D7D3DB00FFB5CA /* MoatRepositoryMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoatRepositoryMock.swift; sourceTree = "<group>"; };
+		C6C6AF1427D7D3DB00FFB5CA /* SdkInfoMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SdkInfoMock.swift; sourceTree = "<group>"; };
+		C6C6AF1527D7D3DB00FFB5CA /* MockFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockFactory.swift; sourceTree = "<group>"; };
+		C6C6AF2A27D7E27700FFB5CA /* BundleHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BundleHelper.swift; sourceTree = "<group>"; };
+		C6C6AF2B27D7E27800FFB5CA /* PredicateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PredicateHelper.swift; sourceTree = "<group>"; };
+		C6C6AF2E27D7E2CE00FFB5CA /* PreferencesRepositoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesRepositoryTests.swift; sourceTree = "<group>"; };
+		C6C6AF2F27D7E2CE00FFB5CA /* AdRepositoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdRepositoryTests.swift; sourceTree = "<group>"; };
+		C6C6AF3027D7E2CF00FFB5CA /* EventRepositoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventRepositoryTests.swift; sourceTree = "<group>"; };
+		C6C6AF3427D7E34F00FFB5CA /* StringExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensionTests.swift; sourceTree = "<group>"; };
+		C6C6AF3527D7E34F00FFB5CA /* CodableExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodableExtensionTests.swift; sourceTree = "<group>"; };
+		C6C6AF3827D7E37900FFB5CA /* DateProviderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateProviderTests.swift; sourceTree = "<group>"; };
+		C6C6AF3927D7E37900FFB5CA /* DeviceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceTests.swift; sourceTree = "<group>"; };
+		C6C6AF3A27D7E37900FFB5CA /* IdGeneratorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdGeneratorTests.swift; sourceTree = "<group>"; };
+		C6C6AF3B27D7E37900FFB5CA /* ImageProviderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageProviderTests.swift; sourceTree = "<group>"; };
+		C6C6AF3C27D7E37900FFB5CA /* EncoderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncoderTests.swift; sourceTree = "<group>"; };
+		C6C6AF3D27D7E37900FFB5CA /* AdQueryMakerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdQueryMakerTests.swift; sourceTree = "<group>"; };
+		C6C6AF3E27D7E37A00FFB5CA /* VastParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VastParserTests.swift; sourceTree = "<group>"; };
+		C6C6AF3F27D7E37A00FFB5CA /* NumberGeneratorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberGeneratorTests.swift; sourceTree = "<group>"; };
+		C6C6AF4027D7E37A00FFB5CA /* SdkInfoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SdkInfoTests.swift; sourceTree = "<group>"; };
+		C6C6AF4127D7E37A00FFB5CA /* UserAgentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAgentTests.swift; sourceTree = "<group>"; };
+		C6C6AF4227D7E37A00FFB5CA /* HtmlFormatterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HtmlFormatterTests.swift; sourceTree = "<group>"; };
+		C6C6AF4327D7E37A00FFB5CA /* AdProcessorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdProcessorTest.swift; sourceTree = "<group>"; };
 		D6B71C01F9DFB74D05E0B0FD /* Pods-SuperAwesomeExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesomeExample.debug.xcconfig"; path = "Target Support Files/Pods-SuperAwesomeExample/Pods-SuperAwesomeExample.debug.xcconfig"; sourceTree = "<group>"; };
 		D8F2154D326FE2F80967D14F /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		DECC64E7421DE990CD928FFD /* Pods-SuperAwesomeExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesomeExample.release.xcconfig"; path = "Target Support Files/Pods-SuperAwesomeExample/Pods-SuperAwesomeExample.release.xcconfig"; sourceTree = "<group>"; };
+		EEB1A8E3ADA4E4B4C3D91571 /* Pods_SuperAwesomeExampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SuperAwesomeExampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3FD76F374BF5D4DEE6536DA /* Pods_MoyaUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoyaUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		1B0D26C91CF7186F00619C9C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				21528C928B7BFDA0D29213BE /* Pods_Tests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		1B76D2301C91EEB1000AE8F3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -253,215 +155,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C6C6AEE427D7D1D000FFB5CA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7F12D2F7DB65E88C1B5E1D5A /* Pods_SuperAwesomeExampleTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1B0D26CD1CF7186F00619C9C /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				C668A6F7243656E200C18228 /* SATestUtils.h */,
-				C668A6F8243656E200C18228 /* SATestUtils.m */,
-				1B226FCB23536F8200FA8326 /* SAAdLoader */,
-				1B226FB223536F8200FA8326 /* SAEvents */,
-				1B22701123536F8300FA8326 /* SAIsMinor */,
-				1B226FF523536F8300FA8326 /* SAJsonParser */,
-				1B22700323536F8300FA8326 /* SAModelSpace */,
-				1B226FDA23536F8200FA8326 /* SANetwork */,
-				1B226FE123536F8300FA8326 /* SASession */,
-				1B226F9B23536F8200FA8326 /* SAUtils */,
-				1B226FE323536F8300FA8326 /* SAVASTParser */,
-				1B0D26D01CF7186F00619C9C /* Info.plist */,
-				1BA72AC024365236003A31C5 /* fixtures_tests.bundle */,
-			);
-			path = Tests;
-			sourceTree = "<group>";
-		};
-		1B226F9B23536F8200FA8326 /* SAUtils */ = {
-			isa = PBXGroup;
-			children = (
-				C647364124CF4A130093342F /* TestSAUtils_MonthYearStringFromDate.m */,
-				1B226F9C23536F8200FA8326 /* TestSAUtils_UIColorFromRGB.m */,
-				1B226F9D23536F8200FA8326 /* TestSAUtils_GetSystemSize.m */,
-				1B226F9E23536F8200FA8326 /* TestSAUtils_FilePathInDocuments.m */,
-				1B226F9F23536F8200FA8326 /* TestSAUtils_EncodeJSONDictionaryFromNSDictionary.m */,
-				1B226FA023536F8200FA8326 /* TestSAUtils_RemoveAllButFirst.m */,
-				1B226FA123536F8200FA8326 /* TestSAUtils_GetCachebuster.m */,
-				1B226FA223536F8200FA8326 /* TestSAUtils_IsValidURL.m */,
-				1B226FA323536F8200FA8326 /* MockModel.h */,
-				1B226FA423536F8200FA8326 /* TestSAUtils_FindSubstring.m */,
-				1B226FA523536F8200FA8326 /* TestSAUtils_GetVerboseSystemDetails.m */,
-				1B226FA623536F8200FA8326 /* TestSAUtils_EncodeURI.m */,
-				1B226FA723536F8200FA8326 /* TestSAUtils_UIColorFromHex.m */,
-				1B226FA823536F8200FA8326 /* TestSAUtils_FormGetQueryFromDict.m */,
-				1B226FA923536F8200FA8326 /* TestSAUtils_GenerateUniqueKey.m */,
-				1B226FAB23536F8200FA8326 /* TestSAUtils_IsRectInRect.m */,
-				1B226FAC23536F8200FA8326 /* MockModel.m */,
-				1B226FAD23536F8200FA8326 /* TestSAUtils_RandomNumberBetween.m */,
-				1B226FAE23536F8200FA8326 /* TestSAUtils_IsEmailValid.m */,
-				1B226FAF23536F8200FA8326 /* TestSAUtils_MapInto.m */,
-				1B226FB023536F8200FA8326 /* TestSAUtils_FilterBy.m */,
-				1B226FB123536F8200FA8326 /* TestSAUtils_FindBaseURLFromResource.m */,
-			);
-			path = SAUtils;
-			sourceTree = "<group>";
-		};
-		1B226FB223536F8200FA8326 /* SAEvents */ = {
-			isa = PBXGroup;
-			children = (
-				1B226FB323536F8200FA8326 /* SAMocks.h */,
-				1B226FB423536F8200FA8326 /* TestSAURLEventSetup.m */,
-				1B226FB523536F8200FA8326 /* TestSAVASTModule.m */,
-				1B226FB623536F8200FA8326 /* TestSAImpressionEventTrigger.m */,
-				1B226FB723536F8200FA8326 /* SAModelFactory.m */,
-				1B226FB823536F8200FA8326 /* TestViewableImpressionEventSetup.m */,
-				1B226FB923536F8200FA8326 /* TestSAClickEventSetup.m */,
-				1B226FBA23536F8200FA8326 /* Server */,
-				1B226FBF23536F8200FA8326 /* TestSAClickEventTrigger.m */,
-				1B226FC023536F8200FA8326 /* TestViewableImpressionEventTrigger.m */,
-				1B226FC123536F8200FA8326 /* SAMocks.m */,
-				1B226FC223536F8200FA8326 /* TestMoatModule.m */,
-				1B226FC323536F8200FA8326 /* TestSAServerModule.m */,
-				1B226FC423536F8200FA8326 /* SAModelFactory.h */,
-				1B226FC523536F8200FA8326 /* TestSAImpressionEventSetup.m */,
-				1B226FC623536F8200FA8326 /* TestSAURLEventTrigger.m */,
-				1B226FC723536F8200FA8326 /* TestSAServerEventSetup.m */,
-				1B226FC823536F8200FA8326 /* Session */,
-			);
-			path = SAEvents;
-			sourceTree = "<group>";
-		};
-		1B226FBA23536F8200FA8326 /* Server */ = {
-			isa = PBXGroup;
-			children = (
-				1B226FBB23536F8200FA8326 /* SAMockEventsServer.m */,
-				1B226FBD23536F8200FA8326 /* SAMockEventsServer.h */,
-			);
-			path = Server;
-			sourceTree = "<group>";
-		};
-		1B226FC823536F8200FA8326 /* Session */ = {
-			isa = PBXGroup;
-			children = (
-				1B226FC923536F8200FA8326 /* MockSession.m */,
-				1B226FCA23536F8200FA8326 /* MockSession.h */,
-			);
-			path = Session;
-			sourceTree = "<group>";
-		};
-		1B226FCB23536F8200FA8326 /* SAAdLoader */ = {
-			isa = PBXGroup;
-			children = (
-				1B226FCC23536F8200FA8326 /* SAMockAdServer.h */,
-				1B226FCD23536F8200FA8326 /* TestSAProcessHTML.m */,
-				1B226FCE23536F8200FA8326 /* SAMockSession.h */,
-				1B226FD023536F8200FA8326 /* SAResponseFactory.h */,
-				1B226FD123536F8200FA8326 /* SAMockAdServer.m */,
-				1B226FD223536F8200FA8326 /* TestSAAdLoader_GetAwesomeAdsEndpoint.m */,
-				1B226FD423536F8200FA8326 /* TestSAAdLoader_LoadAd.m */,
-				1B226FD523536F8200FA8326 /* SAMockSession.m */,
-				1B226FD623536F8200FA8326 /* TestSAAdLoader_GetAwesomeAdsHeader.m */,
-				1B226FD723536F8200FA8326 /* TestSAAdLoader_GetAwesomeAdsQuery.m */,
-				1B226FD923536F8200FA8326 /* SAResponseFactory.m */,
-			);
-			path = SAAdLoader;
-			sourceTree = "<group>";
-		};
-		1B226FDA23536F8200FA8326 /* SANetwork */ = {
-			isa = PBXGroup;
-			children = (
-				1B226FDC23536F8200FA8326 /* SANetwork_Network_Tests.m */,
-				1B226FDF23536F8300FA8326 /* SANetwork_FileItem_Tests.m */,
-				1B226FE023536F8300FA8326 /* SANetwork_FileDownloader_Tests.m */,
-			);
-			path = SANetwork;
-			sourceTree = "<group>";
-		};
-		1B226FE123536F8300FA8326 /* SASession */ = {
-			isa = PBXGroup;
-			children = (
-				1B226FE223536F8300FA8326 /* SASession_Tests.m */,
-			);
-			path = SASession;
-			sourceTree = "<group>";
-		};
-		1B226FE323536F8300FA8326 /* SAVASTParser */ = {
-			isa = PBXGroup;
-			children = (
-				1B226FE423536F8300FA8326 /* SAXML_Parser_Tests4.m */,
-				1B226FE723536F8300FA8326 /* SAXML_Parser_Tests7.m */,
-				1B226FE823536F8300FA8326 /* SAMockVASTServer.m */,
-				1B226FE923536F8300FA8326 /* SAXML_Parser_Tests3.m */,
-				1B226FEB23536F8300FA8326 /* SAXML_Parser_Tests6.m */,
-				1B226FEC23536F8300FA8326 /* SAXML_Parser_Tests2.m */,
-				1B226FEE23536F8300FA8326 /* SAVAST_Parser_Async_Tests.m */,
-				1B226FEF23536F8300FA8326 /* SAVAST_Parser_Local_Tests1.m */,
-				1B226FF023536F8300FA8326 /* SAXML_Parser_Tests5.m */,
-				1B226FF123536F8300FA8326 /* SAMockVASTServer.h */,
-				1B226FF223536F8300FA8326 /* SAXML_Parser_Tests1.m */,
-				1B226FF323536F8300FA8326 /* SAVAST_Parser_Local_Tests2.m */,
-			);
-			path = SAVASTParser;
-			sourceTree = "<group>";
-		};
-		1B226FF523536F8300FA8326 /* SAJsonParser */ = {
-			isa = PBXGroup;
-			children = (
-				1B226FF623536F8300FA8326 /* Mocks */,
-				1B226FFD23536F8300FA8326 /* TestSAJsonParser_ParseObject.m */,
-				1B226FFE23536F8300FA8326 /* TestSAJsonParser_ParseArray.m */,
-				1B226FFF23536F8300FA8326 /* TestSAJsonParser_WriteDictionary.m */,
-				1B22700023536F8300FA8326 /* TestSAJsonParser_WriteArray.m */,
-				1B22700123536F8300FA8326 /* TestSAJsonParser_WriteObject.m */,
-				1B22700223536F8300FA8326 /* TestSAJsonParser_ParseDictionary.m */,
-			);
-			path = SAJsonParser;
-			sourceTree = "<group>";
-		};
-		1B226FF623536F8300FA8326 /* Mocks */ = {
-			isa = PBXGroup;
-			children = (
-				1B226FF723536F8300FA8326 /* SAMockEmployeeModel.h */,
-				1B226FF823536F8300FA8326 /* SAMockPositionModel.h */,
-				1B226FF923536F8300FA8326 /* SAMockCompanyModel.h */,
-				1B226FFA23536F8300FA8326 /* SAMockPositionModel.m */,
-				1B226FFB23536F8300FA8326 /* SAMockEmployeeModel.m */,
-				1B226FFC23536F8300FA8326 /* SAMockCompanyModel.m */,
-			);
-			path = Mocks;
-			sourceTree = "<group>";
-		};
-		1B22700323536F8300FA8326 /* SAModelSpace */ = {
-			isa = PBXGroup;
-			children = (
-				1B22700423536F8300FA8326 /* TestSAAd_4.m */,
-				1B22700723536F8300FA8326 /* TestSAAd_3.m */,
-				1B22700823536F8300FA8326 /* TestSAAd_7.m */,
-				1B22700923536F8300FA8326 /* TestSAAd_2.m */,
-				1B22700A23536F8300FA8326 /* TestSAAd_8.m */,
-				1B22700B23536F8300FA8326 /* TestSAAd_6.m */,
-				1B22700D23536F8300FA8326 /* TestSAVAST_2.m */,
-				1B22700E23536F8300FA8326 /* TestSAAd_1.m */,
-				1B22700F23536F8300FA8326 /* TestSAAd_5.m */,
-				1B22701023536F8300FA8326 /* TestSAVAST_1.m */,
-			);
-			path = SAModelSpace;
-			sourceTree = "<group>";
-		};
-		1B22701123536F8300FA8326 /* SAIsMinor */ = {
-			isa = PBXGroup;
-			children = (
-				1B22701223536F8300FA8326 /* SAGDPRKisMinor_Tests-Bridging-Header.h */,
-				1B22701423536F8300FA8326 /* TestsUtils.swift */,
-			);
-			path = SAIsMinor;
-			sourceTree = "<group>";
-		};
 		1B76D22A1C91EEB1000AE8F3 = {
 			isa = PBXGroup;
 			children = (
 				C6535600245239270043115E /* SuperAwesomeExample.entitlements */,
 				1B76D2351C91EEB1000AE8F3 /* SuperAwesome */,
-				1B0D26CD1CF7186F00619C9C /* Tests */,
+				C6C6AEE827D7D1D000FFB5CA /* SuperAwesomeExampleTests */,
 				1B76D2341C91EEB1000AE8F3 /* Products */,
 				91259B494F3335F77596BCC1 /* Pods */,
 				63CB71636A495D6FBABE5223 /* Frameworks */,
@@ -472,7 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				1B76D2331C91EEB1000AE8F3 /* SuperAwesomeExample.app */,
-				1B0D26CC1CF7186F00619C9C /* Tests.xctest */,
+				C6C6AEE727D7D1D000FFB5CA /* SuperAwesomeExampleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -532,6 +242,7 @@
 				F3FD76F374BF5D4DEE6536DA /* Pods_MoyaUnitTests.framework */,
 				46665EBC142A783963BB4282 /* Pods_SuperAwesomeExample.framework */,
 				A01EA0D5528DC347839D3C89 /* Pods_Tests.framework */,
+				EEB1A8E3ADA4E4B4C3D91571 /* Pods_SuperAwesomeExampleTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -547,6 +258,8 @@
 				DECC64E7421DE990CD928FFD /* Pods-SuperAwesomeExample.release.xcconfig */,
 				5FDC5DDF2247CC69FA37359E /* Pods-MoyaUnitTests.debug.xcconfig */,
 				235DC26E667FEA43E2153B95 /* Pods-MoyaUnitTests.release.xcconfig */,
+				B11A00536A3939F72F5C056B /* Pods-SuperAwesomeExampleTests.debug.xcconfig */,
+				53169C56FFF1FDCACB267A9D /* Pods-SuperAwesomeExampleTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -559,29 +272,123 @@
 			name = Utils;
 			sourceTree = "<group>";
 		};
+		C6C6AEE827D7D1D000FFB5CA /* SuperAwesomeExampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				C6C6AEF427D7D2F400FFB5CA /* Common */,
+				C6C6AEF527D7D2FD00FFB5CA /* Resources */,
+				C6C6AEE927D7D1D000FFB5CA /* SuperAwesomeExampleTests.swift */,
+			);
+			path = SuperAwesomeExampleTests;
+			sourceTree = "<group>";
+		};
+		C6C6AEF427D7D2F400FFB5CA /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				C6C6AF0127D7D3CC00FFB5CA /* Mocks */,
+				C6C6AF0027D7D3C700FFB5CA /* Util */,
+				C6C6AEFF27D7D3C000FFB5CA /* Repositories */,
+				C6C6AEFE27D7D3B800FFB5CA /* Extensions */,
+				C6C6AEFD27D7D3AA00FFB5CA /* Components */,
+				C6C6AEF627D7D30A00FFB5CA /* Model */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		C6C6AEF527D7D2FD00FFB5CA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C6C6AEFB27D7D39700FFB5CA /* fixtures_tests.bundle */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		C6C6AEF627D7D30A00FFB5CA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C6C6AEF727D7D31A00FFB5CA /* ConnectionTypeTests.swift */,
+				C6C6AEF927D7D36900FFB5CA /* AdModelTests.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C6C6AEFD27D7D3AA00FFB5CA /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				C6C6AF4327D7E37A00FFB5CA /* AdProcessorTest.swift */,
+				C6C6AF3D27D7E37900FFB5CA /* AdQueryMakerTests.swift */,
+				C6C6AF3827D7E37900FFB5CA /* DateProviderTests.swift */,
+				C6C6AF3927D7E37900FFB5CA /* DeviceTests.swift */,
+				C6C6AF3C27D7E37900FFB5CA /* EncoderTests.swift */,
+				C6C6AF4227D7E37A00FFB5CA /* HtmlFormatterTests.swift */,
+				C6C6AF3A27D7E37900FFB5CA /* IdGeneratorTests.swift */,
+				C6C6AF3B27D7E37900FFB5CA /* ImageProviderTests.swift */,
+				C6C6AF3E27D7E37A00FFB5CA /* VastParserTests.swift */,
+				C6C6AF3F27D7E37A00FFB5CA /* NumberGeneratorTests.swift */,
+				C6C6AF4027D7E37A00FFB5CA /* SdkInfoTests.swift */,
+				C6C6AF4127D7E37A00FFB5CA /* UserAgentTests.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		C6C6AEFE27D7D3B800FFB5CA /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C6C6AF3527D7E34F00FFB5CA /* CodableExtensionTests.swift */,
+				C6C6AF3427D7E34F00FFB5CA /* StringExtensionTests.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C6C6AEFF27D7D3C000FFB5CA /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				C6C6AF2F27D7E2CE00FFB5CA /* AdRepositoryTests.swift */,
+				C6C6AF3027D7E2CF00FFB5CA /* EventRepositoryTests.swift */,
+				C6C6AF2E27D7E2CE00FFB5CA /* PreferencesRepositoryTests.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		C6C6AF0027D7D3C700FFB5CA /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				C6C6AF2A27D7E27700FFB5CA /* BundleHelper.swift */,
+				C6C6AF2B27D7E27800FFB5CA /* PredicateHelper.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		C6C6AF0127D7D3CC00FFB5CA /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				C6C6AF0A27D7D3DA00FFB5CA /* AdDataSourceMock.swift */,
+				C6C6AF0227D7D3DA00FFB5CA /* AdProcessorMock.swift */,
+				C6C6AF0C27D7D3DA00FFB5CA /* AdQueryMakerMock.swift */,
+				C6C6AF1127D7D3DB00FFB5CA /* BundleMock.swift */,
+				C6C6AF0327D7D3DA00FFB5CA /* ConnectionProviderMock.swift */,
+				C6C6AF1227D7D3DB00FFB5CA /* DateProviderMock.swift */,
+				C6C6AF0927D7D3DA00FFB5CA /* DeviceMock.swift */,
+				C6C6AF0E27D7D3DA00FFB5CA /* EncoderMock.swift */,
+				C6C6AF0527D7D3DA00FFB5CA /* HtmlFormatterMock.swift */,
+				C6C6AF0D27D7D3DA00FFB5CA /* IdGeneratorMock.swift */,
+				C6C6AF0427D7D3DA00FFB5CA /* LoggerMock.swift */,
+				C6C6AF1327D7D3DB00FFB5CA /* MoatRepositoryMock.swift */,
+				C6C6AF1527D7D3DB00FFB5CA /* MockFactory.swift */,
+				C6C6AF1027D7D3DA00FFB5CA /* NetworkDataSourceMock.swift */,
+				C6C6AF0F27D7D3DA00FFB5CA /* NumberGeneratorMock.swift */,
+				C6C6AF0627D7D3DA00FFB5CA /* PreferencesRepositoryMock.swift */,
+				C6C6AF1427D7D3DB00FFB5CA /* SdkInfoMock.swift */,
+				C6C6AF0727D7D3DA00FFB5CA /* UIDeviceMock.swift */,
+				C6C6AF0827D7D3DA00FFB5CA /* UserAgentProviderMock.swift */,
+				C6C6AF0B27D7D3DA00FFB5CA /* VastParserMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1B0D26CB1CF7186F00619C9C /* Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1B0D26D31CF7186F00619C9C /* Build configuration list for PBXNativeTarget "Tests" */;
-			buildPhases = (
-				0184385E7C1BAFD35FBF2C57 /* [CP] Check Pods Manifest.lock */,
-				1B0D26C81CF7186F00619C9C /* Sources */,
-				1B0D26C91CF7186F00619C9C /* Frameworks */,
-				1B0D26CA1CF7186F00619C9C /* Resources */,
-				8C351D1E69C7C0F633F97B45 /* [CP] Embed Pods Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				1B0D26D21CF7186F00619C9C /* PBXTargetDependency */,
-			);
-			name = Tests;
-			productName = Tests;
-			productReference = 1B0D26CC1CF7186F00619C9C /* Tests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		1B76D2321C91EEB1000AE8F3 /* SuperAwesomeExample */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1B76D24A1C91EEB1000AE8F3 /* Build configuration list for PBXNativeTarget "SuperAwesomeExample" */;
@@ -601,25 +408,46 @@
 			productReference = 1B76D2331C91EEB1000AE8F3 /* SuperAwesomeExample.app */;
 			productType = "com.apple.product-type.application";
 		};
+		C6C6AEE627D7D1D000FFB5CA /* SuperAwesomeExampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C6C6AEED27D7D1D000FFB5CA /* Build configuration list for PBXNativeTarget "SuperAwesomeExampleTests" */;
+			buildPhases = (
+				B50E5BD1DD654D9762D9234F /* [CP] Check Pods Manifest.lock */,
+				C6C6AEE327D7D1D000FFB5CA /* Sources */,
+				C6C6AEE427D7D1D000FFB5CA /* Frameworks */,
+				C6C6AEE527D7D1D000FFB5CA /* Resources */,
+				D321E4FF3D223861383E18EF /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C6C6AEEC27D7D1D000FFB5CA /* PBXTargetDependency */,
+			);
+			name = SuperAwesomeExampleTests;
+			productName = SuperAwesomeExampleTests;
+			productReference = C6C6AEE727D7D1D000FFB5CA /* SuperAwesomeExampleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		1B76D22B1C91EEB1000AE8F3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1140;
+				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = "";
 				TargetAttributes = {
-					1B0D26CB1CF7186F00619C9C = {
-						CreatedOnToolsVersion = 7.3.1;
-						TestTargetID = 1B76D2321C91EEB1000AE8F3;
-					};
 					1B76D2321C91EEB1000AE8F3 = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = DCC9L689QJ;
 						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
+					};
+					C6C6AEE627D7D1D000FFB5CA = {
+						CreatedOnToolsVersion = 13.2.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 1B76D2321C91EEB1000AE8F3;
 					};
 				};
 			};
@@ -637,20 +465,12 @@
 			projectRoot = "";
 			targets = (
 				1B76D2321C91EEB1000AE8F3 /* SuperAwesomeExample */,
-				1B0D26CB1CF7186F00619C9C /* Tests */,
+				C6C6AEE627D7D1D000FFB5CA /* SuperAwesomeExampleTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		1B0D26CA1CF7186F00619C9C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1BA72AC124365236003A31C5 /* fixtures_tests.bundle in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		1B76D2311C91EEB1000AE8F3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -661,31 +481,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C6C6AEE527D7D1D000FFB5CA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6C6AEFC27D7D39700FFB5CA /* fixtures_tests.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0184385E7C1BAFD35FBF2C57 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Tests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		562E66F02882654D5484698E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -732,121 +538,49 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SuperAwesomeExample/Pods-SuperAwesomeExample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8C351D1E69C7C0F633F97B45 /* [CP] Embed Pods Frameworks */ = {
+		B50E5BD1DD654D9762D9234F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SuperAwesomeExampleTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D321E4FF3D223861383E18EF /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Tests/Pods-Tests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Mockingjay/Mockingjay.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-SuperAwesomeExampleTests/Pods-SuperAwesomeExampleTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
-				"${BUILT_PRODUCTS_DIR}/OHHTTPStubs/OHHTTPStubs.framework",
-				"${BUILT_PRODUCTS_DIR}/URITemplate/URITemplate.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mockingjay.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OHHTTPStubs.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/URITemplate.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Tests/Pods-Tests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SuperAwesomeExampleTests/Pods-SuperAwesomeExampleTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		1B0D26C81CF7186F00619C9C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1B22701B23536F8300FA8326 /* TestSAUtils_EncodeJSONDictionaryFromNSDictionary.m in Sources */,
-				1B22703723536F8300FA8326 /* SAMocks.m in Sources */,
-				1B22702F23536F8300FA8326 /* TestSAImpressionEventTrigger.m in Sources */,
-				1B22706D23536F8300FA8326 /* TestSAVAST_2.m in Sources */,
-				1B22703023536F8300FA8326 /* SAModelFactory.m in Sources */,
-				1B22707223536F8300FA8326 /* TestsUtils.swift in Sources */,
-				1B22702D23536F8300FA8326 /* TestSAURLEventSetup.m in Sources */,
-				1B22706A23536F8300FA8326 /* TestSAAd_8.m in Sources */,
-				1B22704D23536F8300FA8326 /* SASession_Tests.m in Sources */,
-				1B22704023536F8300FA8326 /* TestSAAdLoader_GetAwesomeAdsEndpoint.m in Sources */,
-				1B22703D23536F8300FA8326 /* MockSession.m in Sources */,
-				1B22701C23536F8300FA8326 /* TestSAUtils_RemoveAllButFirst.m in Sources */,
-				1B22701923536F8300FA8326 /* TestSAUtils_GetSystemSize.m in Sources */,
-				1B22703823536F8300FA8326 /* TestMoatModule.m in Sources */,
-				1B22705E23536F8300FA8326 /* SAMockCompanyModel.m in Sources */,
-				1B22706523536F8300FA8326 /* TestSAAd_4.m in Sources */,
-				1B22701D23536F8300FA8326 /* TestSAUtils_GetCachebuster.m in Sources */,
-				1B22702423536F8300FA8326 /* TestSAUtils_GenerateUniqueKey.m in Sources */,
-				1B22706823536F8300FA8326 /* TestSAAd_7.m in Sources */,
-				1B22704223536F8300FA8326 /* TestSAAdLoader_LoadAd.m in Sources */,
-				1B22702823536F8300FA8326 /* TestSAUtils_RandomNumberBetween.m in Sources */,
-				1B22705623536F8300FA8326 /* SAVAST_Parser_Async_Tests.m in Sources */,
-				1B22702123536F8300FA8326 /* TestSAUtils_EncodeURI.m in Sources */,
-				1B22704323536F8300FA8326 /* SAMockSession.m in Sources */,
-				1B22706B23536F8300FA8326 /* TestSAAd_6.m in Sources */,
-				1B22703323536F8300FA8326 /* SAMockEventsServer.m in Sources */,
-				1B22706F23536F8300FA8326 /* TestSAAd_5.m in Sources */,
-				1B22701A23536F8300FA8326 /* TestSAUtils_FilePathInDocuments.m in Sources */,
-				1B22704E23536F8300FA8326 /* SAXML_Parser_Tests4.m in Sources */,
-				1B22703C23536F8300FA8326 /* TestSAServerEventSetup.m in Sources */,
-				1B22705C23536F8300FA8326 /* SAMockPositionModel.m in Sources */,
-				1B22703523536F8300FA8326 /* TestSAClickEventTrigger.m in Sources */,
-				1B22703123536F8300FA8326 /* TestViewableImpressionEventSetup.m in Sources */,
-				1B22706E23536F8300FA8326 /* TestSAAd_1.m in Sources */,
-				1B22702623536F8300FA8326 /* TestSAUtils_IsRectInRect.m in Sources */,
-				1B22706123536F8300FA8326 /* TestSAJsonParser_WriteDictionary.m in Sources */,
-				1B22706923536F8300FA8326 /* TestSAAd_2.m in Sources */,
-				1B22704723536F8300FA8326 /* SAResponseFactory.m in Sources */,
-				1B22704923536F8300FA8326 /* SANetwork_Network_Tests.m in Sources */,
-				1B22705423536F8300FA8326 /* SAXML_Parser_Tests2.m in Sources */,
-				1B22703F23536F8300FA8326 /* SAMockAdServer.m in Sources */,
-				1B22706723536F8300FA8326 /* TestSAAd_3.m in Sources */,
-				1B22704423536F8300FA8326 /* TestSAAdLoader_GetAwesomeAdsHeader.m in Sources */,
-				1B22707023536F8300FA8326 /* TestSAVAST_1.m in Sources */,
-				1B22705A23536F8300FA8326 /* SAVAST_Parser_Local_Tests2.m in Sources */,
-				1B22703B23536F8300FA8326 /* TestSAURLEventTrigger.m in Sources */,
-				1B22702723536F8300FA8326 /* MockModel.m in Sources */,
-				1B22705923536F8300FA8326 /* SAXML_Parser_Tests1.m in Sources */,
-				C668A6F9243656E200C18228 /* SATestUtils.m in Sources */,
-				1B22705F23536F8300FA8326 /* TestSAJsonParser_ParseObject.m in Sources */,
-				1B22701E23536F8300FA8326 /* TestSAUtils_IsValidURL.m in Sources */,
-				1B22704523536F8300FA8326 /* TestSAAdLoader_GetAwesomeAdsQuery.m in Sources */,
-				1B22706023536F8300FA8326 /* TestSAJsonParser_ParseArray.m in Sources */,
-				C647364224CF4A130093342F /* TestSAUtils_MonthYearStringFromDate.m in Sources */,
-				1B22706223536F8300FA8326 /* TestSAJsonParser_WriteArray.m in Sources */,
-				1B22702E23536F8300FA8326 /* TestSAVASTModule.m in Sources */,
-				1B22705823536F8300FA8326 /* SAXML_Parser_Tests5.m in Sources */,
-				1B22702A23536F8300FA8326 /* TestSAUtils_MapInto.m in Sources */,
-				1B22705023536F8300FA8326 /* SAXML_Parser_Tests7.m in Sources */,
-				1B22705223536F8300FA8326 /* SAXML_Parser_Tests3.m in Sources */,
-				1B22702323536F8300FA8326 /* TestSAUtils_FormGetQueryFromDict.m in Sources */,
-				1B22705123536F8300FA8326 /* SAMockVASTServer.m in Sources */,
-				1B22703223536F8300FA8326 /* TestSAClickEventSetup.m in Sources */,
-				1B22702B23536F8300FA8326 /* TestSAUtils_FilterBy.m in Sources */,
-				1B22704B23536F8300FA8326 /* SANetwork_FileItem_Tests.m in Sources */,
-				1B22702C23536F8300FA8326 /* TestSAUtils_FindBaseURLFromResource.m in Sources */,
-				1B22703E23536F8300FA8326 /* TestSAProcessHTML.m in Sources */,
-				1B22703923536F8300FA8326 /* TestSAServerModule.m in Sources */,
-				1B22701F23536F8300FA8326 /* TestSAUtils_FindSubstring.m in Sources */,
-				1B22705723536F8300FA8326 /* SAVAST_Parser_Local_Tests1.m in Sources */,
-				1B22702223536F8300FA8326 /* TestSAUtils_UIColorFromHex.m in Sources */,
-				1B22705D23536F8300FA8326 /* SAMockEmployeeModel.m in Sources */,
-				1B22704C23536F8300FA8326 /* SANetwork_FileDownloader_Tests.m in Sources */,
-				1B22706423536F8300FA8326 /* TestSAJsonParser_ParseDictionary.m in Sources */,
-				1B22706323536F8300FA8326 /* TestSAJsonParser_WriteObject.m in Sources */,
-				1B22703A23536F8300FA8326 /* TestSAImpressionEventSetup.m in Sources */,
-				1B22701823536F8300FA8326 /* TestSAUtils_UIColorFromRGB.m in Sources */,
-				1B22703623536F8300FA8326 /* TestViewableImpressionEventTrigger.m in Sources */,
-				1B22702923536F8300FA8326 /* TestSAUtils_IsEmailValid.m in Sources */,
-				1B22702023536F8300FA8326 /* TestSAUtils_GetVerboseSystemDetails.m in Sources */,
-				1B22705323536F8300FA8326 /* SAXML_Parser_Tests6.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		1B76D22F1C91EEB1000AE8F3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -858,13 +592,62 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C6C6AEE327D7D1D000FFB5CA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6C6AF2027D7D3DB00FFB5CA /* AdQueryMakerMock.swift in Sources */,
+				C6C6AF4627D7E37A00FFB5CA /* IdGeneratorTests.swift in Sources */,
+				C6C6AEEA27D7D1D000FFB5CA /* SuperAwesomeExampleTests.swift in Sources */,
+				C6C6AEF827D7D31A00FFB5CA /* ConnectionTypeTests.swift in Sources */,
+				C6C6AF1D27D7D3DB00FFB5CA /* DeviceMock.swift in Sources */,
+				C6C6AF3727D7E34F00FFB5CA /* CodableExtensionTests.swift in Sources */,
+				C6C6AF4B27D7E37A00FFB5CA /* NumberGeneratorTests.swift in Sources */,
+				C6C6AF1E27D7D3DB00FFB5CA /* AdDataSourceMock.swift in Sources */,
+				C6C6AF1727D7D3DB00FFB5CA /* ConnectionProviderMock.swift in Sources */,
+				C6C6AF2327D7D3DB00FFB5CA /* NumberGeneratorMock.swift in Sources */,
+				C6C6AF2C27D7E27800FFB5CA /* BundleHelper.swift in Sources */,
+				C6C6AF2227D7D3DB00FFB5CA /* EncoderMock.swift in Sources */,
+				C6C6AF3227D7E2CF00FFB5CA /* AdRepositoryTests.swift in Sources */,
+				C6C6AF1927D7D3DB00FFB5CA /* HtmlFormatterMock.swift in Sources */,
+				C6C6AF2427D7D3DB00FFB5CA /* NetworkDataSourceMock.swift in Sources */,
+				C6C6AF4E27D7E37A00FFB5CA /* HtmlFormatterTests.swift in Sources */,
+				C6C6AF2D27D7E27800FFB5CA /* PredicateHelper.swift in Sources */,
+				C6C6AF3127D7E2CF00FFB5CA /* PreferencesRepositoryTests.swift in Sources */,
+				C6C6AF4527D7E37A00FFB5CA /* DeviceTests.swift in Sources */,
+				C6C6AEFA27D7D36900FFB5CA /* AdModelTests.swift in Sources */,
+				C6C6AF3627D7E34F00FFB5CA /* StringExtensionTests.swift in Sources */,
+				C6C6AF4F27D7E37A00FFB5CA /* AdProcessorTest.swift in Sources */,
+				C6C6AF2527D7D3DB00FFB5CA /* BundleMock.swift in Sources */,
+				C6C6AF2127D7D3DB00FFB5CA /* IdGeneratorMock.swift in Sources */,
+				C6C6AF1627D7D3DB00FFB5CA /* AdProcessorMock.swift in Sources */,
+				C6C6AF2827D7D3DB00FFB5CA /* SdkInfoMock.swift in Sources */,
+				C6C6AF1A27D7D3DB00FFB5CA /* PreferencesRepositoryMock.swift in Sources */,
+				C6C6AF1827D7D3DB00FFB5CA /* LoggerMock.swift in Sources */,
+				C6C6AF2627D7D3DB00FFB5CA /* DateProviderMock.swift in Sources */,
+				C6C6AF4727D7E37A00FFB5CA /* ImageProviderTests.swift in Sources */,
+				C6C6AF3327D7E2CF00FFB5CA /* EventRepositoryTests.swift in Sources */,
+				C6C6AF4A27D7E37A00FFB5CA /* VastParserTests.swift in Sources */,
+				C6C6AF4427D7E37A00FFB5CA /* DateProviderTests.swift in Sources */,
+				C6C6AF1B27D7D3DB00FFB5CA /* UIDeviceMock.swift in Sources */,
+				C6C6AF4D27D7E37A00FFB5CA /* UserAgentTests.swift in Sources */,
+				C6C6AF1F27D7D3DB00FFB5CA /* VastParserMock.swift in Sources */,
+				C6C6AF4C27D7E37A00FFB5CA /* SdkInfoTests.swift in Sources */,
+				C6C6AF4827D7E37A00FFB5CA /* EncoderTests.swift in Sources */,
+				C6C6AF4927D7E37A00FFB5CA /* AdQueryMakerTests.swift in Sources */,
+				C6C6AF2927D7D3DB00FFB5CA /* MockFactory.swift in Sources */,
+				C6C6AF1C27D7D3DB00FFB5CA /* UserAgentProviderMock.swift in Sources */,
+				C6C6AF2727D7D3DB00FFB5CA /* MoatRepositoryMock.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		1B0D26D21CF7186F00619C9C /* PBXTargetDependency */ = {
+		C6C6AEEC27D7D1D000FFB5CA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 1B76D2321C91EEB1000AE8F3 /* SuperAwesomeExample */;
-			targetProxy = 1B0D26D11CF7186F00619C9C /* PBXContainerItemProxy */;
+			targetProxy = C6C6AEEB27D7D1D000FFB5CA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -888,70 +671,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		1B0D26D41CF7186F00619C9C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D8F2154D326FE2F80967D14F /* Pods-Tests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NONNULL = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = Tests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OTHER_LDFLAGS = (
-					"-framework",
-					"\"CFNetwork\"",
-					"-framework",
-					"\"Foundation\"",
-					"-framework",
-					"\"Nimble\"",
-					"-framework",
-					"\"OHHTTPStubs\"",
-					"-framework",
-					"\"SuperAwesome\"",
-					"-weak_framework",
-					"\"XCTest\"",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = tv.superawesome.Tests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SuperAwesomeExample.app/SuperAwesomeExample";
-			};
-			name = Debug;
-		};
-		1B0D26D51CF7186F00619C9C /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 763EEEB15C3FC5CF9C4C2503 /* Pods-Tests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NONNULL = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = Tests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OTHER_LDFLAGS = (
-					"-framework",
-					"\"CFNetwork\"",
-					"-framework",
-					"\"Foundation\"",
-					"-framework",
-					"\"Nimble\"",
-					"-framework",
-					"\"OHHTTPStubs\"",
-					"-framework",
-					"\"SuperAwesome\"",
-					"-weak_framework",
-					"\"XCTest\"",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = tv.superawesome.Tests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SuperAwesomeExample.app/SuperAwesomeExample";
-			};
-			name = Release;
-		};
 		1B76D2481C91EEB1000AE8F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1123,18 +842,67 @@
 			};
 			name = Release;
 		};
+		C6C6AEEE27D7D1D000FFB5CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B11A00536A3939F72F5C056B /* Pods-SuperAwesomeExampleTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.superawesome.SuperAwesomeExampleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SuperAwesomeExample.app/SuperAwesomeExample";
+			};
+			name = Debug;
+		};
+		C6C6AEEF27D7D1D000FFB5CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 53169C56FFF1FDCACB267A9D /* Pods-SuperAwesomeExampleTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.superawesome.SuperAwesomeExampleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SuperAwesomeExample.app/SuperAwesomeExample";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1B0D26D31CF7186F00619C9C /* Build configuration list for PBXNativeTarget "Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1B0D26D41CF7186F00619C9C /* Debug */,
-				1B0D26D51CF7186F00619C9C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		1B76D22E1C91EEB1000AE8F3 /* Build configuration list for PBXProject "SuperAwesomeExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1149,6 +917,15 @@
 			buildConfigurations = (
 				1B76D24B1C91EEB1000AE8F3 /* Debug */,
 				1B76D24C1C91EEB1000AE8F3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C6C6AEED27D7D1D000FFB5CA /* Build configuration list for PBXNativeTarget "SuperAwesomeExampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C6C6AEEE27D7D1D000FFB5CA /* Debug */,
+				C6C6AEEF27D7D1D000FFB5CA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
