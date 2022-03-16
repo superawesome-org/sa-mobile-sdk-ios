@@ -151,7 +151,7 @@ class LoggingMessageHandler: NSObject, WKScriptMessageHandler {
         if let baseUrl = session.getBaseUrl(), let url = URL(string: baseUrl) {
             self.placementId = placementId
 
-            print(html)
+            logger.info(html)
             
             if !moatLimiting {
                 events.disableMoatLimiting()
