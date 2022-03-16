@@ -282,7 +282,10 @@ extension SAManagedBannerAd: WKUIDelegate {
 
 extension SAManagedBannerAd: WKNavigationDelegate {
 
-    public func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+    public func webView(_ webView: WKWebView,
+                        createWebViewWith configuration: WKWebViewConfiguration,
+                        for navigationAction: WKNavigationAction,
+                        windowFeatures: WKWindowFeatures) -> WKWebView? {
         listener?(placementId, .adClicked)
         if(finishedLoading && navigationAction.navigationType == .other) {
             if let navUrl = navigationAction.request.url {
@@ -299,7 +302,9 @@ extension SAManagedBannerAd: WKNavigationDelegate {
         finishedLoading = true
     }
     
-    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+    public func webView(_ webView: WKWebView,
+                        decidePolicyFor navigationAction: WKNavigationAction,
+                        decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         decisionHandler(.allow)
     }
 }
