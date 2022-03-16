@@ -275,26 +275,29 @@
                     break;
                 }
                 case SA_Video:{
-                    SAVASTParser *parser = [[SAVASTParser alloc] init];
-                    [parser parseVAST:ad.creative.details.vast withResponse:^(SAVASTAd *savastAd) {
-                        
-                        // add the vast ad
-                        ad.creative.details.media.vastAd = savastAd;
-                        // copy the vast media
-                        ad.creative.details.media.url = savastAd.url;
-                        // download file
-                        [[[SAFileDownloader alloc] init] downloadFileFrom:ad.creative.details.media.url andResponse:^(BOOL success, NSString *key, NSString *diskPath) {
+                    if ([ad isVpaid]) {
+                        ad.creative.details.media.html = [SAProcessHTML formatCreativeIntoTagHTML:ad];
+                        localResult(response);
+                    } else {
+                        SAVASTParser *parser = [[SAVASTParser alloc] init];
+                        [parser parseVAST:ad.creative.details.vast withResponse:^(SAVASTAd *savastAd) {
                             
-                            // add final details
-                            ad.creative.details.media.path = diskPath;
-                            ad.creative.details.media.isDownloaded = diskPath != nil && diskPath != (NSString*)[NSNull null];
-                            
-                            // finally respond
-                            localResult (response);
-                            
+                            // add the vast ad
+                            ad.creative.details.media.vastAd = savastAd;
+                            // copy the vast media
+                            ad.creative.details.media.url = savastAd.url;
+                            // download file
+                            [[[SAFileDownloader alloc] init] downloadFileFrom:ad.creative.details.media.url andResponse:^(BOOL success, NSString *key, NSString *diskPath) {
+                                
+                                // add final details
+                                ad.creative.details.media.path = diskPath;
+                                ad.creative.details.media.isDownloaded = diskPath != nil && diskPath != (NSString*)[NSNull null];
+                                
+                                // finally respond
+                                localResult (response);
+                            }];
                         }];
-                        
-                    }];
+                    }
                     break;
                 }
             }
