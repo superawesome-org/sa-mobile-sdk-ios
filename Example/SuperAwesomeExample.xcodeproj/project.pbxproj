@@ -613,12 +613,11 @@
 				TargetAttributes = {
 					1B0D26CB1CF7186F00619C9C = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 3JBUC4KNH3;
 						TestTargetID = 1B76D2321C91EEB1000AE8F3;
 					};
 					1B76D2321C91EEB1000AE8F3 = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = 3JBUC4KNH3;
+						DevelopmentTeam = DCC9L689QJ;
 						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
@@ -897,8 +896,6 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
-				DEVELOPMENT_TEAM = 3JBUC4KNH3;
 				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -931,8 +928,6 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
-				DEVELOPMENT_TEAM = 3JBUC4KNH3;
 				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1078,7 +1073,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = 3JBUC4KNH3;
+				DEVELOPMENT_TEAM = DCC9L689QJ;
 				INFOPLIST_FILE = SuperAwesome/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1087,7 +1082,7 @@
 					"-framework",
 					"\"SuperAwesome\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = tv.superawesome.awesomeads.sdk.gunhan;
+				PRODUCT_BUNDLE_IDENTIFIER = tv.superawesome.awesomeads.sdk;
 				PRODUCT_NAME = SuperAwesomeExample;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1110,7 +1105,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = 3JBUC4KNH3;
+				DEVELOPMENT_TEAM = DCC9L689QJ;
 				INFOPLIST_FILE = SuperAwesome/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1119,7 +1114,7 @@
 					"-framework",
 					"\"SuperAwesome\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = tv.superawesome.awesomeads.sdk.gunhan;
+				PRODUCT_BUNDLE_IDENTIFIER = tv.superawesome.awesomeads.sdk;
 				PRODUCT_NAME = SuperAwesomeExample;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SuperAwesome/SuperAwesome-Bridging-Header.h";

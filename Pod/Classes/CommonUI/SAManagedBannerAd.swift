@@ -33,8 +33,15 @@ let overrideConsole = """
 """
 
 class LoggingMessageHandler: NSObject, WKScriptMessageHandler {
+    private var logger: LoggerType
+    
+    init(_ logger: LoggerType) {
+        self.logger = logger
+    }
+    
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        print(message.body)
+        let log = String(describing: message.body)
+        logger.info(log)
     }
 }
 
@@ -54,23 +61,24 @@ class LoggingMessageHandler: NSObject, WKScriptMessageHandler {
     
     @available(iOS 14.5, *)
     private lazy var sknetworkManager: SKAdNetworkManager = dependencies.resolve()
-
+    private var logger: LoggerType = dependencies.resolve(param: SAManagedBannerAd.self)
+    
     lazy var webView: WKWebView = {
         let userContentController = WKUserContentController()
-        userContentController.add(LoggingMessageHandler(), name: "logging")
-        userContentController.addUserScript(WKUserScript(source: overrideConsole, injectionTime: .atDocumentStart, forMainFrameOnly: false))
+        userContentController.add(LoggingMessageHandler(logger), name: "logging")
+        userContentController.addUserScript(WKUserScript(source: overrideConsole,
+                                                         injectionTime: .atDocumentStart,
+                                                         forMainFrameOnly: false))
         
         let preferences = WKPreferences()
         preferences.javaScriptEnabled = true
         preferences.javaScriptCanOpenWindowsAutomatically = true
-        
         
         let configuration = WKWebViewConfiguration()
         configuration.preferences = preferences
         configuration.allowsInlineMediaPlayback = true
         configuration.mediaTypesRequiringUserActionForPlayback = []
         configuration.userContentController = userContentController
-        //configuration.mediaTypesRequiringUserActionForPlayback = .audio
 
         if #available(iOS 14.0, *) {
             configuration.defaultWebpagePreferences.allowsContentJavaScript = true
@@ -101,7 +109,6 @@ class LoggingMessageHandler: NSObject, WKScriptMessageHandler {
         ])
         webView.navigationDelegate = self
         webView.uiDelegate = self
-        
     }
 
     private func createHTML(placementId: Int, baseUrl: String) -> String {
@@ -125,11 +132,15 @@ class LoggingMessageHandler: NSObject, WKScriptMessageHandler {
         if let baseUrl = session.getBaseUrl(), let url = URL(string: baseUrl) {
             self.placementId = placementId
             let html: String = createHTML(placementId: placementId, baseUrl: baseUrl)
-            print(html)
+            
+            logger.info(html)
+            
             if !moatLimiting {
                 events.disableMoatLimiting()
             }
+            
             webView.loadHTMLString(html, baseURL: url)
+            
             if #available(iOS 14.5, *) {
                 sknetworkManager.startImpression(lineItemId: placementId, creativeId: 1)
             }
@@ -145,11 +156,8 @@ class LoggingMessageHandler: NSObject, WKScriptMessageHandler {
             if !moatLimiting {
                 events.disableMoatLimiting()
             }
-            
-            //let a = "https://cdn-factory.marketjs.com/en/color-fill-playable-ad-demo/index.html"
-            
+
             webView.loadHTMLString(html, baseURL: url)
-//            webView.load(URLRequest(url: URL(string: a)!))
             
             if #available(iOS 14.5, *) {
                 sknetworkManager.startImpression(lineItemId: placementId, creativeId: 1)
@@ -199,7 +207,6 @@ class LoggingMessageHandler: NSObject, WKScriptMessageHandler {
 
     @objc public func enableMoatLimiting() {
         moatLimiting = true
-
     }
 
     @objc public func enableBumperPage() {
@@ -228,7 +235,6 @@ class LoggingMessageHandler: NSObject, WKScriptMessageHandler {
 
     private func showParentalGate(completion: @escaping() -> Void) {
         if isParentalGateEnabled {
-
             SAParentalGate.setPgOpenCallback {[weak self]  in
                 self?.events.triggerPgOpenEvent()
             }
@@ -294,14 +300,6 @@ extension SAManagedBannerAd: WKNavigationDelegate {
     }
     
     public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        if let url = navigationAction.request.url {
-            if url.host == "www.apple.com" {
-                UIApplication.shared.open(url)
-                decisionHandler(.cancel)
-                return
-            }
-        }
-
         decisionHandler(.allow)
     }
 }

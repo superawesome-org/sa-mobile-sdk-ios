@@ -295,13 +295,9 @@
                                 
                                 // finally respond
                                 localResult (response);
-                                
                             }];
-                            
                         }];
                     }
-                    
-                    
                     break;
                 }
             }

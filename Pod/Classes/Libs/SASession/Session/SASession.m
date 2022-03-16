@@ -28,8 +28,8 @@
 #endif
 
 // define the production & staging URLs
-#define PRODUCTION_URL  @"https://eu-west-1-ads.superawesome.tv/v2"
-#define STAGING_URL     @"https://us-east-1-ads.staging.superawesome.tv/v2"
+#define PRODUCTION_URL  @"https://ads.superawesome.tv/v2"
+#define STAGING_URL     @"https://ads.staging.superawesome.tv/v2"
 
 // define the type of device to be sent to the ad server
 #define DEVICE_PHONE    @"phone"
