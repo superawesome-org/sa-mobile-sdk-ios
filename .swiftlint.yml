@@ -5,7 +5,12 @@ excluded: # paths to ignore during linting.
 identifier_name:
   min_length: 1
   allowed_symbols: ["_"]
+type_name:
+  min_length: 1
 line_length:
-  warning: 140
+  warning: 170
 disabled_rules:
-  function_parameter_count
+  - function_parameter_count
+  - function_body_length
+  - cyclomatic_complexity
+  - type_body_length

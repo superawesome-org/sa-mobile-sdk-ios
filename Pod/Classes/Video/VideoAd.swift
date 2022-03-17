@@ -185,10 +185,8 @@ public enum AdState {
             }
 
             ads[placementId] = AdState.none
-            break
         default:
             callback?(placementId, .adFailedToShow)
-            break
         }
     }
 
