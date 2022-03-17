@@ -54,7 +54,7 @@ class VastParser: NSObject, VastParserType {
         var medias = [VastMedia]()
 
         let creative = root["Creatives"]["Creative"].first
-        
+
         if creative.error == nil {
             for linear in creative.Linear {
                 clickThrough = linear.VideoClicks.ClickThrough.iterateValues().map { $0 }.last
@@ -87,7 +87,7 @@ class VastParser: NSObject, VastParserType {
                 }
             }
         }
-        
+
         return VastAd(
             url: getUrl(medias: medias),
             type: type,
@@ -141,7 +141,7 @@ extension XML.Accessor {
         }
         return result
     }
-    
+
     /// Get the text or CDATA from the element
     var textOrCDATA: String? {
         if self.text != nil {
@@ -150,7 +150,7 @@ extension XML.Accessor {
                let cdataStr = String(data: cdata, encoding: .utf8) {
                return cdataStr
         }
-            
+
         return nil
     }
 }

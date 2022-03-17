@@ -24,6 +24,6 @@ protocol AwesomeAdsApiDataSourceType {
 
     /// Makes a request to `/event` endpoint to trigger an custom event
     func event(query: EventQuery, completion: OnResult<Void>?)
-    
+
     func signature(lineItemId: Int, creativeId: Int, completion: @escaping OnResult<AdvertiserSignatureDTO>)
 }

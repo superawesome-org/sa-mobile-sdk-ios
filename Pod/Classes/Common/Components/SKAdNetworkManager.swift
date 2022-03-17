@@ -17,13 +17,13 @@ protocol SKAdNetworkManager {
 @available(iOS 14.5, *)
 final class SKAdNetworkManagerImpl: SKAdNetworkManager {
     private let repository: AwesomeAdsApiDataSourceType
-    private var signature: String? = nil
-    private var adImpression: SKAdImpression? = nil
-    
-    init(repository: AwesomeAdsApiDataSourceType){
+    private var signature: String?
+    private var adImpression: SKAdImpression?
+
+    init(repository: AwesomeAdsApiDataSourceType) {
         self.repository = repository
     }
-    
+
     func startImpression(lineItemId: Int, creativeId: Int) {
         repository.signature(lineItemId: lineItemId, creativeId: creativeId) { [weak self] result in
             switch result {
@@ -31,23 +31,22 @@ final class SKAdNetworkManagerImpl: SKAdNetworkManager {
                 self?.signature = dto.signature
                 let adImpression = dto.skAdvertiser
                 self?.adImpression = adImpression
-                SKAdNetwork.startImpression(adImpression){ e in
+                SKAdNetwork.startImpression(adImpression) { e in
                     print(e?.localizedDescription ?? "nil")
                 }
             case .failure(let error): print(error.localizedDescription)
             }
         }
     }
-    
+
     func endImpression() {
         guard let adImpression = adImpression else { return }
-        SKAdNetwork.endImpression(adImpression){[weak self] e in
+        SKAdNetwork.endImpression(adImpression) {[weak self] e in
             print(e?.localizedDescription ?? "nil")
             self?.adImpression = nil
         }
     }
 }
-
 
 extension AdvertiserSignatureDTO {
     @available(iOS 14.5, *)

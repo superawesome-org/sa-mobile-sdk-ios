@@ -22,9 +22,9 @@ extension Injectable {
 /// Provides the default `DependencyContainer` for `Injectable` protocol
 class InjectableComponent {
     private static var _container: DependencyContainer?
-    static var container: DependencyContainer!{
+    static var container: DependencyContainer! {
         get {
-            if let _container = _container{
+            if let _container = _container {
                 return _container
             }
             fatalError("Did you forget to call `AwesomeAds.initSDK()` in `func applicationDidFinishLaunching(_ application: UIApplication)`")

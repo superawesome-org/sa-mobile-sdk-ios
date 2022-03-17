@@ -17,7 +17,7 @@ class AFNetworkDataSource: NetworkDataSourceType {
             }
         }
     }
-    
+
     func downloadFile(url: String, completion: @escaping OnResultListener<String>) {
         let destination: DownloadRequest.Destination = { _, _ in
             let fileName = url.toMD5
@@ -37,11 +37,11 @@ class AFNetworkDataSource: NetworkDataSourceType {
             }
         }
     }
-    
+
     func clearFiles() {
         let fileManager = FileManager.default
         let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
-        
+
         do {
             try fileManager.removeItem(at: documentsURL)
         } catch {

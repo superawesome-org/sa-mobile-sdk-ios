@@ -38,7 +38,7 @@ import UIKit
     private let clickEvents: VideoClick
 
     private var callback: AdEventCallback?
-    
+
     private var logger: LoggerType = dependencies.resolve(param: VideoViewController.self)
 
     override var preferredStatusBarStyle: UIStatusBarStyle {

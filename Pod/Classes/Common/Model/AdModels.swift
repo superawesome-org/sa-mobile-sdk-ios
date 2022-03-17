@@ -187,7 +187,6 @@ public enum AdEvent: Int {
 /// Callback function for completable events
 public typealias AdEventCallback = (_ placementId: Int, _ event: AdEvent) -> Void
 
-
 struct AdvertiserSignatureDTO: Equatable, Codable {
     let signature: String
     let campaignID: Int

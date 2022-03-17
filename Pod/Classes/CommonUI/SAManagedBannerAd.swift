@@ -34,11 +34,11 @@ let overrideConsole = """
 
 class LoggingMessageHandler: NSObject, WKScriptMessageHandler {
     private var logger: LoggerType
-    
+
     init(_ logger: LoggerType) {
         self.logger = logger
     }
-    
+
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         let log = String(describing: message.body)
         logger.info(log)
@@ -58,22 +58,22 @@ class LoggingMessageHandler: NSObject, WKScriptMessageHandler {
     private var isBumperPageEnabled = SA_DEFAULT_BUMPERPAGE != 0
     private var moatLimiting = true
     private let awesomeAds = AwesomeAds()
-    
+
     @available(iOS 14.5, *)
     private lazy var sknetworkManager: SKAdNetworkManager = dependencies.resolve()
     private var logger: LoggerType = dependencies.resolve(param: SAManagedBannerAd.self)
-    
+
     lazy var webView: WKWebView = {
         let userContentController = WKUserContentController()
         userContentController.add(LoggingMessageHandler(logger), name: "logging")
         userContentController.addUserScript(WKUserScript(source: overrideConsole,
                                                          injectionTime: .atDocumentStart,
                                                          forMainFrameOnly: false))
-        
+
         let preferences = WKPreferences()
         preferences.javaScriptEnabled = true
         preferences.javaScriptCanOpenWindowsAutomatically = true
-        
+
         let configuration = WKWebViewConfiguration()
         configuration.preferences = preferences
         configuration.allowsInlineMediaPlayback = true
@@ -105,7 +105,7 @@ class LoggingMessageHandler: NSObject, WKScriptMessageHandler {
             webView.leadingAnchor.constraint(equalTo: safeLeadingAnchor, constant: 0),
             webView.trailingAnchor.constraint(equalTo: safeTrailingAnchor, constant: 0),
             webView.bottomAnchor.constraint(equalTo: safeBottomAnchor, constant: 0),
-            webView.topAnchor.constraint(equalTo: safeTopAnchor, constant: 0),
+            webView.topAnchor.constraint(equalTo: safeTopAnchor, constant: 0)
         ])
         webView.navigationDelegate = self
         webView.uiDelegate = self
@@ -132,33 +132,33 @@ class LoggingMessageHandler: NSObject, WKScriptMessageHandler {
         if let baseUrl = session.getBaseUrl(), let url = URL(string: baseUrl) {
             self.placementId = placementId
             let html: String = createHTML(placementId: placementId, baseUrl: baseUrl)
-            
+
             logger.info(html)
-            
+
             if !moatLimiting {
                 events.disableMoatLimiting()
             }
-            
+
             webView.loadHTMLString(html, baseURL: url)
-            
+
             if #available(iOS 14.5, *) {
                 sknetworkManager.startImpression(lineItemId: placementId, creativeId: 1)
             }
         }
     }
-    
+
     @objc(load:html:) public func load(placementId: Int, html: String) {
         if let baseUrl = session.getBaseUrl(), let url = URL(string: baseUrl) {
             self.placementId = placementId
 
             logger.info(html)
-            
+
             if !moatLimiting {
                 events.disableMoatLimiting()
             }
 
             webView.loadHTMLString(html, baseURL: url)
-            
+
             if #available(iOS 14.5, *) {
                 sknetworkManager.startImpression(lineItemId: placementId, creativeId: 1)
             }
@@ -170,7 +170,7 @@ class LoggingMessageHandler: NSObject, WKScriptMessageHandler {
     }
 
     @objc public func setColor(value: Bool) {
-        if (value) {
+        if value {
             backgroundColor = UIColor(red: 224/255, green: 224/255, blue: 224/255, alpha: 0.0)
         } else {
             backgroundColor = UIColor(red: 224/255, green: 224/255, blue: 224/255, alpha: 1.0)
@@ -287,7 +287,7 @@ extension SAManagedBannerAd: WKNavigationDelegate {
                         for navigationAction: WKNavigationAction,
                         windowFeatures: WKWindowFeatures) -> WKWebView? {
         listener?(placementId, .adClicked)
-        if(finishedLoading && navigationAction.navigationType == .other) {
+        if finishedLoading && navigationAction.navigationType == .other {
             if let navUrl = navigationAction.request.url {
                 listener?(placementId, .adClicked)
                 showParentalGate { [weak self] in
@@ -301,7 +301,7 @@ extension SAManagedBannerAd: WKNavigationDelegate {
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         finishedLoading = true
     }
-    
+
     public func webView(_ webView: WKWebView,
                         decidePolicyFor navigationAction: WKNavigationAction,
                         decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
