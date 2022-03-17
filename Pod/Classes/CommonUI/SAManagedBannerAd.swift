@@ -124,7 +124,9 @@ class LoggingMessageHandler: NSObject, WKScriptMessageHandler {
     src="\(baseUrl)/ad.js?placement=\(placementId)\(queryParams)"></script>
 """
         return """
-<html><header><meta name='viewport' content='width=device-width'/><style>html, body, div { margin: 0px; padding: 0px; } html, body { width: 100%; height: 100%; }</style></header><body>\(scriptHtml)</body></html>
+<html><header><meta name='viewport' content='width=device-width'/>
+<style>html, body, div { margin: 0px; padding: 0px; } html, body { width: 100%; height: 100%; }</style>
+</header><body>\(scriptHtml)</body></html>
 """
     }
 

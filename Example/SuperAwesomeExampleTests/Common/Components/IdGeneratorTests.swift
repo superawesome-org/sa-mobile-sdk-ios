@@ -15,7 +15,9 @@ class IdGeneratorTests: XCTestCase {
         let mockAlphanumeric = "123abc"
         let idGenerator = IdGenerator(preferencesRepository: PreferencesRepositoryMock(),
                                       sdkInfo: SdkInfoMock(),
-                                      numberGenerator: NumberGeneratorMock(0, nextAlphaNumberic: mockAlphanumeric), dateProvider: DateProviderMock(monthYear: "102020"))
+                                      numberGenerator: NumberGeneratorMock(0,
+                                                                           nextAlphaNumberic: mockAlphanumeric),
+                                      dateProvider: DateProviderMock(monthYear: "102020"))
 
         // When
         let result = idGenerator.uniqueDauId

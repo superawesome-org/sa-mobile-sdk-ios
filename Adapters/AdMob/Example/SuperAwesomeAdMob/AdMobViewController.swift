@@ -49,8 +49,12 @@ class AdMobViewController: UIViewController {
         bannerView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(bannerView)
         view.addConstraints([
-            NSLayoutConstraint(item: bannerView, attribute: .top, relatedBy: .equal, toItem: topLayoutGuide, attribute: .bottom, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: bannerView, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0)
+            NSLayoutConstraint(item: bannerView, attribute: .top,
+                               relatedBy: .equal, toItem: topLayoutGuide,
+                               attribute: .bottom, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: bannerView, attribute: .centerX,
+                               relatedBy: .equal, toItem: view,
+                               attribute: .centerX, multiplier: 1, constant: 0)
         ])
         bannerView.adUnitID = bannerAdUnitId
         bannerView.rootViewController = self
