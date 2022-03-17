@@ -10,5 +10,6 @@ scheme("SuperAwesomeExample")
 
 # open_report true
 
+device("iPhone 11")
 include_simulator_logs false
 clean(true)
