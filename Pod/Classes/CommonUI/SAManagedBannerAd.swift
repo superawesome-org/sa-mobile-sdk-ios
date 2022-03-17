@@ -30,6 +30,7 @@ let overrideConsole = """
     window.addEventListener("error", function(e) {
        log("💥", "Uncaught", [`${e.message} at ${e.filename}:${e.lineno}:${e.colno}`])
     })
+
 """
 
 class LoggingMessageHandler: NSObject, WKScriptMessageHandler {
