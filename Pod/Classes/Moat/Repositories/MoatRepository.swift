@@ -60,9 +60,8 @@ class MoatRepository: NSObject, MoatRepositoryType {
         <script src="\(moatServerBaseUrl)/\(moatDisplayPartnerCode)/\(moatJSfile)?\(moatQuery)" type="text/javascript">
 </script>
 """
-        
-        logger.info("Event Tracking: moat (display)");
-        logger.info("SuperAwesome-Moat Started Moat web stracking with result \(result) and JS tag \(stringResult)")
+
+        logger.info("Event Tracking: moat (display). SuperAwesome-Moat Started Moat web tracking with result \(result) and JS tag \(stringResult)")
 
         return stringResult
     }
@@ -70,7 +69,7 @@ class MoatRepository: NSObject, MoatRepositoryType {
     func stopMoatTrackingForDisplay() -> Bool {
         if let webTracker = webTracker {
             webTracker.stopTracking()
-            logger.info("SuperAwesome-Moat Stoped Moat web tracking")
+            logger.info("SuperAwesome-Moat Stopped Moat web tracking")
             return true
         } else {
             logger.info("SuperAwesome-Moat Failed to stop Moat web tracking because webTracker is null")
