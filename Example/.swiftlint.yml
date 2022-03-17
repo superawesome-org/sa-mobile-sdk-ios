@@ -1,0 +1,11 @@
+excluded: # paths to ignore during linting.
+  - Pods
+  - SuperAwesomeExampleTests/Common/Components/VastParserTests.swift
+  - SuperAwesomeExampleTests/Common/Components/HtmlFormatterTests.swift
+identifier_name:
+  min_length: 1
+  allowed_symbols: ["_"]
+line_length:
+  warning: 140
+disabled_rules:
+  function_parameter_count
