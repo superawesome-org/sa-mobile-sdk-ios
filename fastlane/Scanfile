@@ -6,7 +6,7 @@
 
 # Remove the # in front of the line to enable the option
 
-scheme("SuperAwesome-Unit-Full-Tests")
+scheme("SuperAwesomeExample")
 
 # open_report true
 
