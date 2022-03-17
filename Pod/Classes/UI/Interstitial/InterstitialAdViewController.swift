@@ -20,6 +20,7 @@ class InterstitialAdViewController: UIViewController, Injectable {
     private let bumperPageEnabled: Bool
     private let testingEnabled: Bool
     private let orientation: Orientation
+    // swiftlint:disable weak_delegate
     private let delegate: AdEventCallback?
 
     init(adResponse: AdResponse,

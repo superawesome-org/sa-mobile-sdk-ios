@@ -151,6 +151,7 @@ import UIKit
         }
 
         // register notification for foreground
+        // swiftlint:disable discarded_notification_center_observer
         NotificationCenter.default.addObserver(forName: UIApplication.willEnterForegroundNotification, object: nil, queue: .main) { [weak self] notification in
             self?.willEnterForeground(notification)
         }

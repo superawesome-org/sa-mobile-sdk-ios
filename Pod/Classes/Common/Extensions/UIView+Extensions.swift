@@ -9,6 +9,7 @@ import UIKit
 
 extension UIView {
     func registerForOrientationDidChangeNotification(_ block: @escaping (Notification) -> Void) {
+        // swiftlint:disable discarded_notification_center_observer
         NotificationCenter.default.addObserver(
             forName: NSNotification.Name("UIDeviceOrientationDidChangeNotification"),
             object: nil,
