@@ -72,22 +72,22 @@ import Foundation
             })
         }
 
-        if (time >= 1 && !isStartHandled) {
+        if time >= 1 && !isStartHandled {
             isStartHandled = true
             events.triggerVASTImpressionEvent()
             events.triggerVASTCreativeViewEvent()
             events.triggerVASTStartEvent()
         }
 
-        if (time >= duration / 4 && !isFirstQuartileHandled) {
+        if time >= duration / 4 && !isFirstQuartileHandled {
             isFirstQuartileHandled = true
             events.triggerVASTFirstQuartileEvent()
         }
-        if (time >= duration / 2 && !isMidpointHandled) {
+        if time >= duration / 2 && !isMidpointHandled {
             isMidpointHandled = true
             events.triggerVASTMidpointEvent()
         }
-        if (time >= (3 * duration) / 4 && !isThirdQuartileHandled) {
+        if time >= (3 * duration) / 4 && !isThirdQuartileHandled {
             isThirdQuartileHandled = true
             events.triggerVASTThirdQuartileEvent()
         }

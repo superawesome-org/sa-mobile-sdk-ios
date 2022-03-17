@@ -8,7 +8,7 @@
 import Moya
 
 class MoyaAwesomeAdsApiDataSource: AwesomeAdsApiDataSourceType {
-    
+
     private let provider: MoyaProvider<AwesomeAdsTarget>
     private let environment: Environment
 
@@ -54,8 +54,8 @@ class MoyaAwesomeAdsApiDataSource: AwesomeAdsApiDataSourceType {
             }
         }
     }
-    
-    func signature(lineItemId :Int, creativeId: Int,  completion: @escaping (Result<AdvertiserSignatureDTO, Error>) -> Void) {
+
+    func signature(lineItemId: Int, creativeId: Int, completion: @escaping (Result<AdvertiserSignatureDTO, Error>) -> Void) {
         let target = AwesomeAdsTarget(environment, .signature(lineItemId: lineItemId, creativeId: creativeId))
 
         provider.request(target) { result in

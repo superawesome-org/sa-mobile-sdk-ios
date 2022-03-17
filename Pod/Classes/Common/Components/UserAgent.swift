@@ -33,7 +33,7 @@ public class UserAgent: NSObject, UserAgentType {
         webView?.evaluateJavaScript("navigator.userAgent", completionHandler: { (result, error) in
             if error != nil {
                 print("UserAgent.evaluateUserAgent.error:", String(describing: error))
-            } else if let result = result as! String? {
+            } else if let result = result as? String {
                 self.name = result
                 self.dataRepository.userAgent = result
             }

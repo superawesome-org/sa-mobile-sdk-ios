@@ -7,10 +7,8 @@ use_frameworks!
 target 'SuperAwesomeExample' do
   pod 'SuperAwesome', :path => '../'
 
-  target 'Tests' do
+  target 'SuperAwesomeExampleTests' do
     inherit! :search_paths
-    pod 'OHHTTPStubs'
     pod 'Nimble'
-    pod 'Mockingjay'
   end
 end

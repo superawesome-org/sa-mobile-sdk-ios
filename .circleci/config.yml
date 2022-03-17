@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   build-and-test:
     macos:
-      xcode: 12.4.0
+      xcode: 13.2.1
     environment:
       FL_OUTPUT_DIR: output
       FASTLANE_LANE: test
@@ -32,7 +32,7 @@ jobs:
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - checkout
-      - run: cd Example && swiftlint lint --reporter junit | tee result.xml
+      - run: swiftlint lint --reporter junit | tee result.xml
       - store_artifacts:
           path: result.xml
       - store_test_results:
@@ -40,7 +40,7 @@ jobs:
           
   setup-FastLane:
     macos:
-      xcode: 12.4.0
+      xcode: 13.2.1
     steps:
       - checkout
       - run:

@@ -9,6 +9,7 @@ import UIKit
 
 extension UIView {
     func registerForOrientationDidChangeNotification(_ block: @escaping (Notification) -> Void) {
+        // swiftlint:disable discarded_notification_center_observer
         NotificationCenter.default.addObserver(
             forName: NSNotification.Name("UIDeviceOrientationDidChangeNotification"),
             object: nil,
@@ -30,7 +31,7 @@ extension UIView {
             return topAnchor
         }
     }
-    
+
     var safeBottomAnchor: NSLayoutYAxisAnchor {
         if #available(iOS 11.0, *) {
             return safeAreaLayoutGuide.bottomAnchor
@@ -46,7 +47,7 @@ extension UIView {
             return trailingAnchor
         }
     }
-    
+
     var safeLeadingAnchor: NSLayoutXAxisAnchor {
         if #available(iOS 11.0, *) {
             return safeAreaLayoutGuide.leadingAnchor

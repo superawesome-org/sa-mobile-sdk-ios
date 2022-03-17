@@ -14,7 +14,7 @@ public class BannerView: UIView, Injectable {
     private lazy var imageProvider: ImageProviderType = dependencies.resolve()
     private lazy var controller: AdControllerType = dependencies.resolve()
     private lazy var logger: LoggerType = dependencies.resolve(param: BannerView.self)
-    
+
     @available(iOS 14.5, *)
     private lazy var sknetworkManager: SKAdNetworkManager = dependencies.resolve()
 
