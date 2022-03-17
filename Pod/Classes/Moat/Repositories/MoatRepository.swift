@@ -60,7 +60,8 @@ class MoatRepository: NSObject, MoatRepositoryType {
         <script src="\(moatServerBaseUrl)/\(moatDisplayPartnerCode)/\(moatJSfile)?\(moatQuery)" type="text/javascript">
 </script>
 """
-
+        
+        logger.info("Event Tracking: moat (display)");
         logger.info("SuperAwesome-Moat Started Moat web stracking with result \(result) and JS tag \(stringResult)")
 
         return stringResult
