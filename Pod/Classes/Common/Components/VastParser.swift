@@ -31,15 +31,15 @@ class VastParser: NSObject, VastParserType {
             return nil
         }
 
-        let redirect = root.VASTAdTagURI.text
+        let redirect = root.VASTAdTagURI.textOrCDATA
 
         var errors: [String] = []
-        if let value = root.Error.text {
+        if let value = root.Error.textOrCDATA {
             errors = [value]
         }
 
         var impressions: [String] = []
-        if let value = root.Impression.text {
+        if let value = root.Impression.textOrCDATA {
             impressions = [value]
         }
 
@@ -53,36 +53,41 @@ class VastParser: NSObject, VastParserType {
         var completes = [String]()
         var medias = [VastMedia]()
 
-        for linear in root.Creatives.Creative.Linear {
-            clickThrough = linear.VideoClicks.ClickThrough.iterateValues().map { $0 }.last
-            clickTrackingEvents.append(contentsOf: linear.VideoClicks.ClickTracking.iterateValues().map { $0 })
+        let creative = root["Creatives"]["Creative"].first
 
-            for tracking in linear.TrackingEvents.Tracking {
-                if let event = tracking.attributes["event"], let url = tracking.text, !url.isEmpty {
-                    switch event {
-                    case "creativeView": creativeViews.append(url)
-                    case "start": startEvents.append(url)
-                    case "firstQuartile": firstQuartiles.append(url)
-                    case "midpoint": midPoints.append(url)
-                    case "thirdQuartile": thirdQuartiles.append(url)
-                    case "complete": completes.append(url)
-                    default: continue
+        if creative.error == nil {
+            for linear in creative.Linear {
+                clickThrough = linear.VideoClicks.ClickThrough.iterateValues().map { $0 }.last
+                clickTrackingEvents.append(contentsOf: linear.VideoClicks.ClickTracking.iterateValues().map { $0 })
+
+                for tracking in linear.TrackingEvents.Tracking {
+                    if let event = tracking.attributes["event"], let url = tracking.textOrCDATA, !url.isEmpty {
+                        switch event {
+                        case "creativeView": creativeViews.append(url)
+                        case "start": startEvents.append(url)
+                        case "firstQuartile": firstQuartiles.append(url)
+                        case "midpoint": midPoints.append(url)
+                        case "thirdQuartile": thirdQuartiles.append(url)
+                        case "complete": completes.append(url)
+                        default: continue
+                        }
                     }
+
                 }
 
-            }
-
-            for media in linear.MediaFiles.MediaFile {
-                if let type = media.attributes["type"],
-                   type.contains("mp4"),
-                   let url = media.text,
-                   let bitrate = media.attributes["bitrate"]?.toInt,
-                   let width = media.attributes["width"]?.toInt,
-                   let height = media.attributes["height"]?.toInt {
-                    medias.append(VastMedia(type: type, url: url, bitrate: bitrate, width: width, height: height))
+                for media in linear.MediaFiles.MediaFile {
+                    if let type = media.attributes["type"],
+                       type.contains("mp4"),
+                       let url = media.textOrCDATA,
+                       let bitrate = media.attributes["bitrate"]?.toInt,
+                       let width = media.attributes["width"]?.toInt,
+                       let height = media.attributes["height"]?.toInt {
+                        medias.append(VastMedia(type: type, url: url, bitrate: bitrate, width: width, height: height))
+                    }
                 }
             }
         }
+
         return VastAd(
             url: getUrl(medias: medias),
             type: type,
@@ -130,10 +135,22 @@ extension XML.Accessor {
     func iterateValues() -> [String] {
         var result = [String]()
         for item in self {
-            if let value = item.text {
+            if let value = item.textOrCDATA {
                 result.append(value)
             }
         }
         return result
+    }
+
+    /// Get the text or CDATA from the element
+    var textOrCDATA: String? {
+        if self.text != nil {
+            return self.text
+        } else if let cdata = self.element?.CDATA,
+               let cdataStr = String(data: cdata, encoding: .utf8) {
+               return cdataStr
+        }
+
+        return nil
     }
 }

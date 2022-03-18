@@ -19,7 +19,7 @@ class AFNetworkDataSource: NetworkDataSourceType {
     }
 
     func downloadFile(url: String, completion: @escaping OnResult<String>) {
-        /// The url should contain the file extension at the end
+        // The url should contain the file extension at the end
         guard let fileExtension = url.fileExtension else {
             completion(Result.failure(AwesomeAdsError.fileInvalid))
             return

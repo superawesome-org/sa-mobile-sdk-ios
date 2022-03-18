@@ -28,10 +28,10 @@ public enum AdState {
 
     private static var callback: AdEventCallback?
 
-    private static var ads = Dictionary<Int, AdState>()
+    private static var ads = [Int: AdState]()
 
     private static let events: SAEvents = SAEvents()
-    
+
     private static var logger: LoggerType = dependencies.resolve(param: VideoAd.self)
 
     ////////////////////////////////////////////////////////////////////////////
@@ -77,7 +77,7 @@ public enum AdState {
 
                 // create events object
                 events.setAd(ad, andSession: session)
-                if (!self.isMoatLimitingEnabled) {
+                if !self.isMoatLimitingEnabled {
                     events.disableMoatLimiting()
                 }
 
@@ -135,7 +135,7 @@ public enum AdState {
 
                 // create events object
                 events.setAd(ad, andSession: session)
-                if (!self.isMoatLimitingEnabled) {
+                if !self.isMoatLimitingEnabled {
                     events.disableMoatLimiting()
                 }
 
@@ -164,7 +164,7 @@ public enum AdState {
                                                                               html: ad.creative.details.tag)
                 managedVideoAdController.modalPresentationStyle = .fullScreen
                 managedVideoAdController.modalTransitionStyle = .coverVertical
-                
+
                 viewController.present(managedVideoAdController, animated: true)
             } else {
                 let config = VideoViewController.Config(showSmallClick: shouldShowSmallClickButton,
@@ -180,15 +180,13 @@ public enum AdState {
                                                            andConfig: config)
                 adViewController.modalPresentationStyle = .fullScreen
                 adViewController.modalTransitionStyle = .coverVertical
-                
+
                 viewController.present(adViewController, animated: true)
             }
-            
+
             ads[placementId] = AdState.none
-            break
         default:
             callback?(placementId, .adFailedToShow)
-            break
         }
     }
 
@@ -353,7 +351,7 @@ public enum AdState {
         return callback
     }
 
-    public static func getAds() -> Dictionary<Int, AdState> {
+    public static func getAds() -> [Int: AdState] {
         return ads
     }
 

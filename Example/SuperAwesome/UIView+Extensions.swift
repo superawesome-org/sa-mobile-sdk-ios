@@ -25,7 +25,7 @@ extension UIView {
 }
 
 extension UIButton {
-    
+
     func setBackgroundColor(color: UIColor, forState: UIControl.State) {
         self.clipsToBounds = true
         UIGraphicsBeginImageContext(CGSize(width: 1, height: 1))
@@ -37,5 +37,5 @@ extension UIButton {
             self.setBackgroundImage(colorImage, for: forState)
         }
     }
-    
+
 }
