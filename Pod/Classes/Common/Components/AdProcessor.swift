@@ -41,7 +41,7 @@ class AdProcessor: AdProcessorType {
             complition(response)
         case .richMedia:
             response.html = htmlFormatter.formatRichMediaIntoHtml(placementId, ad)
-            response.baseUrl = ad.creative.details.url.baseUrl
+            response.baseUrl = (ad.creative.details.url ?? Constants.defaultBaseUrl).baseUrl
             complition(response)
         case .tag:
             response.html = htmlFormatter.formatTagIntoHtml(ad)
@@ -51,7 +51,7 @@ class AdProcessor: AdProcessorType {
             if let url = ad.creative.details.vast {
                 handleVast(url, initialVast: nil) { vast in
                     response.vast = vast
-                    response.baseUrl = ad.creative.details.video.baseUrl
+                    response.baseUrl = (ad.creative.details.video ?? Constants.defaultBaseUrl).baseUrl
 
                     self.networkDataSource.downloadFile(url: vast?.url ?? "",
                                                         completion: { result in

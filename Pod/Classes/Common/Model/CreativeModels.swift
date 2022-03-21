@@ -24,9 +24,9 @@ public struct Creative: Codable {
 }
 
 struct CreativeDetail: Codable {
-    let url: String
+    let url: String?
     let image: String?
-    let video: String
+    let video: String?
     let placementFormat: String
     let tag: String?
     let width: Int
