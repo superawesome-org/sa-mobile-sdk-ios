@@ -22,4 +22,5 @@ struct Constants {
                                         blue: 224.0 / 255.0, alpha: 1)
 
     static let defaultSafeAdUrl = "https://ads.superawesome.tv/v2/safead"
+    static let defaultBaseUrl = "https://ads.superawesome.tv"
 }

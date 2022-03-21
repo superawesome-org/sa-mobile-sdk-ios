@@ -32,7 +32,8 @@ class HtmlFormatter: HtmlFormatterType {
     }
 
     func formatRichMediaIntoHtml(_ placementId: Int, _ ad: Ad) -> String {
-        let url = "\(ad.creative.details.url)?placement=\(placementId)&line_item=\(ad.lineItemId)&creative=\(ad.creative.id)&rnd=\(numberGenerator.nextIntForCache())"
+        let baseUrl = ad.creative.details.url ?? ""
+        let url = "\(baseUrl)?placement=\(placementId)&line_item=\(ad.lineItemId)&creative=\(ad.creative.id)&rnd=\(numberGenerator.nextIntForCache())"
         return "<iframe style='padding:0;border:0;' width='100%' height='100%' src='\(url)'></iframe>"
     }
 
