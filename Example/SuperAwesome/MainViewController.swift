@@ -23,9 +23,9 @@ struct Row {
 private let rows = [
     Row(type: .banner, name: "Leaderboard", placementId: 82088),
     Row(type: .interstitial, name: "Portrait", placementId: 82089),
-    Row(type: .interstitial, name: "KSF", placementId: 82063),
+    Row(type: .interstitial, name: "KSF", placementId: 84799),
     Row(type: .video, name: "Direct", placementId: 82090),
-    Row(type: .video, name: "VPAID via KSF", placementId: 82064)
+    Row(type: .video, name: "VPAID via KSF", placementId: 84798)
 ]
 
 class MainViewController: UIViewController {
