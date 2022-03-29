@@ -199,7 +199,7 @@ class MainViewController: UIViewController {
 
         switch item.type {
         case .banner:
-            bannerView.load(item.placementId)            
+            bannerView.load(item.placementId)
         case .interstitial:
             InterstitialAd.load(item.placementId)
         case .video:

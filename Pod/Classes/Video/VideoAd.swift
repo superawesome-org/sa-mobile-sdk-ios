@@ -130,6 +130,7 @@ public enum AdState {
                     ad.creative.details.media.isDownloaded else {
                         self.ads[placementId] = AdState.none
                         self.callback?(placementId, .adEmpty)
+                        logger.info("Event callback: adEmpty for placement \(placementId)")
                         return
                 }
 
