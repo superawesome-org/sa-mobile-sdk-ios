@@ -17,6 +17,9 @@
 		C6398A1327AAB1E500D6A152 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6398A1227AAB1E500D6A152 /* UIView+Extensions.swift */; };
 		C64CAD28249CC5AB00788A7F /* MoPubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64CAD27249CC5AB00788A7F /* MoPubViewController.swift */; };
 		C6535602245239270043115E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6535601245239270043115E /* HealthKit.framework */; };
+		C6895C4E27F4C780009FAE1A /* AdControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6895C4D27F4C780009FAE1A /* AdControllerTests.swift */; };
+		C6895C5327F4CA38009FAE1A /* AdRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6895C5227F4CA38009FAE1A /* AdRepositoryMock.swift */; };
+		C6895C5527F4DE7B009FAE1A /* TestDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6895C5427F4DE7B009FAE1A /* TestDependencies.swift */; };
 		C6C6AEEA27D7D1D000FFB5CA /* SuperAwesomeExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AEE927D7D1D000FFB5CA /* SuperAwesomeExampleTests.swift */; };
 		C6C6AEF827D7D31A00FFB5CA /* ConnectionTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AEF727D7D31A00FFB5CA /* ConnectionTypeTests.swift */; };
 		C6C6AEFA27D7D36900FFB5CA /* AdModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AEF927D7D36900FFB5CA /* AdModelTests.swift */; };
@@ -94,6 +97,9 @@
 		C64CAD27249CC5AB00788A7F /* MoPubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoPubViewController.swift; sourceTree = "<group>"; };
 		C6535600245239270043115E /* SuperAwesomeExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SuperAwesomeExample.entitlements; sourceTree = "<group>"; };
 		C6535601245239270043115E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		C6895C4D27F4C780009FAE1A /* AdControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdControllerTests.swift; sourceTree = "<group>"; };
+		C6895C5227F4CA38009FAE1A /* AdRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdRepositoryMock.swift; sourceTree = "<group>"; };
+		C6895C5427F4DE7B009FAE1A /* TestDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDependencies.swift; sourceTree = "<group>"; };
 		C6C6AEE727D7D1D000FFB5CA /* SuperAwesomeExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperAwesomeExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6C6AEE927D7D1D000FFB5CA /* SuperAwesomeExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperAwesomeExampleTests.swift; sourceTree = "<group>"; };
 		C6C6AEF727D7D31A00FFB5CA /* ConnectionTypeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionTypeTests.swift; sourceTree = "<group>"; };
@@ -272,9 +278,34 @@
 			name = Utils;
 			sourceTree = "<group>";
 		};
+		C6895C4F27F4C79B009FAE1A /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				C6895C5127F4C9F8009FAE1A /* Mocks */,
+				C6895C5027F4C7A1009FAE1A /* Common */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		C6895C5027F4C7A1009FAE1A /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				C6895C4D27F4C780009FAE1A /* AdControllerTests.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		C6895C5127F4C9F8009FAE1A /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		C6C6AEE827D7D1D000FFB5CA /* SuperAwesomeExampleTests */ = {
 			isa = PBXGroup;
 			children = (
+				C6895C4F27F4C79B009FAE1A /* UI */,
 				C6C6AEF427D7D2F400FFB5CA /* Common */,
 				C6C6AEF527D7D2FD00FFB5CA /* Resources */,
 				C6C6AEE927D7D1D000FFB5CA /* SuperAwesomeExampleTests.swift */,
@@ -355,6 +386,7 @@
 			children = (
 				C6C6AF2A27D7E27700FFB5CA /* BundleHelper.swift */,
 				C6C6AF2B27D7E27800FFB5CA /* PredicateHelper.swift */,
+				C6895C5427F4DE7B009FAE1A /* TestDependencies.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -382,6 +414,7 @@
 				C6C6AF0727D7D3DA00FFB5CA /* UIDeviceMock.swift */,
 				C6C6AF0827D7D3DA00FFB5CA /* UserAgentProviderMock.swift */,
 				C6C6AF0B27D7D3DA00FFB5CA /* VastParserMock.swift */,
+				C6895C5227F4CA38009FAE1A /* AdRepositoryMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -608,9 +641,11 @@
 				C6C6AF2327D7D3DB00FFB5CA /* NumberGeneratorMock.swift in Sources */,
 				C6C6AF2C27D7E27800FFB5CA /* BundleHelper.swift in Sources */,
 				C6C6AF2227D7D3DB00FFB5CA /* EncoderMock.swift in Sources */,
+				C6895C4E27F4C780009FAE1A /* AdControllerTests.swift in Sources */,
 				C6C6AF3227D7E2CF00FFB5CA /* AdRepositoryTests.swift in Sources */,
 				C6C6AF1927D7D3DB00FFB5CA /* HtmlFormatterMock.swift in Sources */,
 				C6C6AF2427D7D3DB00FFB5CA /* NetworkDataSourceMock.swift in Sources */,
+				C6895C5327F4CA38009FAE1A /* AdRepositoryMock.swift in Sources */,
 				C6C6AF4E27D7E37A00FFB5CA /* HtmlFormatterTests.swift in Sources */,
 				C6C6AF2D27D7E27800FFB5CA /* PredicateHelper.swift in Sources */,
 				C6C6AF3127D7E2CF00FFB5CA /* PreferencesRepositoryTests.swift in Sources */,
@@ -622,6 +657,7 @@
 				C6C6AF2127D7D3DB00FFB5CA /* IdGeneratorMock.swift in Sources */,
 				C6C6AF1627D7D3DB00FFB5CA /* AdProcessorMock.swift in Sources */,
 				C6C6AF2827D7D3DB00FFB5CA /* SdkInfoMock.swift in Sources */,
+				C6895C5527F4DE7B009FAE1A /* TestDependencies.swift in Sources */,
 				C6C6AF1A27D7D3DB00FFB5CA /* PreferencesRepositoryMock.swift in Sources */,
 				C6C6AF1827D7D3DB00FFB5CA /* LoggerMock.swift in Sources */,
 				C6C6AF2627D7D3DB00FFB5CA /* DateProviderMock.swift in Sources */,

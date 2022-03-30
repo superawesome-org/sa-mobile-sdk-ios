@@ -21,6 +21,7 @@ public struct Ad: Codable {
     let app: Int
     let device: String
     let creative: Creative
+    let ksfRequest: String?
 
     enum CodingKeys: String, CodingKey {
         case advertiserId
@@ -38,7 +39,8 @@ public struct Ad: Codable {
         case app
         case device
         case creative
-        }
+        case ksfRequest
+    }
 }
 
 struct AdQuery: Codable {
@@ -76,7 +78,7 @@ struct AdQuery: Codable {
         case instl
         case width = "w"
         case height = "h"
-        }
+    }
 }
 
 public struct AdRequest: Codable {
@@ -98,7 +100,7 @@ public struct AdRequest: Codable {
         case instl
         case width = "w"
         case height = "h"
-        }
+    }
 
 }
 
@@ -156,21 +158,21 @@ extension AdRequest {
 }
 
 /**
-* This enum holds all the possible callback values that an ad sends during its lifetime
-*  - adLoaded:         ad was loaded successfully and is ready
-*                      to be displayed
-*  - adEmpty           the ad server returned an empty response
-*  - adFailedToLoad:   ad was not loaded successfully and will not be
-*                      able to play
-*  - adAlreadyLoaded   ad was previously loaded in an interstitial, video or
-*                      app wall queue
-*  - adShown:          triggered once when the ad first displays
-*  - adFailedToShow:   for some reason the ad failed to show; technically
-*                      this should never happen nowadays
-*  - adClicked:        triggered every time the ad gets clicked
-*  - adEnded:          triggerd when a video ad ends
-*  - adClosed:         triggered once when the ad is closed;
-*/
+ * This enum holds all the possible callback values that an ad sends during its lifetime
+ *  - adLoaded:         ad was loaded successfully and is ready
+ *                      to be displayed
+ *  - adEmpty           the ad server returned an empty response
+ *  - adFailedToLoad:   ad was not loaded successfully and will not be
+ *                      able to play
+ *  - adAlreadyLoaded   ad was previously loaded in an interstitial, video or
+ *                      app wall queue
+ *  - adShown:          triggered once when the ad first displays
+ *  - adFailedToShow:   for some reason the ad failed to show; technically
+ *                      this should never happen nowadays
+ *  - adClicked:        triggered every time the ad gets clicked
+ *  - adEnded:          triggerd when a video ad ends
+ *  - adClosed:         triggered once when the ad is closed;
+ */
 @objc(SAEvent)
 public enum AdEvent: Int {
     case adLoaded = 0
@@ -198,15 +200,15 @@ struct AdvertiserSignatureDTO: Equatable, Codable {
     let adNetworkID: String
     let fidelityType: Int
 
-        enum CodingKeys: String, CodingKey {
-            case campaignID = "campaignId"
-            case itunesItemID = "itunesItemId"
-            case sourceAppID = "sourceAppId"
-            case impressionID = "impressionId"
-            case adNetworkID = "adNetworkId"
-            case signature
-            case timestamp
-            case version
-            case fidelityType
-        }
+    enum CodingKeys: String, CodingKey {
+        case campaignID = "campaignId"
+        case itunesItemID = "itunesItemId"
+        case sourceAppID = "sourceAppId"
+        case impressionID = "impressionId"
+        case adNetworkID = "adNetworkId"
+        case signature
+        case timestamp
+        case version
+        case fidelityType
+    }
 }

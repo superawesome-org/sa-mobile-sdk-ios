@@ -56,7 +56,7 @@ class AdController: AdControllerType, Injectable {
     var adResponse: AdResponse?
     var callback: AdEventCallback?
     var placementId: Int { adResponse?.placementId ?? 0 }
-    var showPadlock: Bool { adResponse?.advert.showPadlock ?? false }
+    var showPadlock: Bool { adResponse?.advert.showPadlock ?? false && adResponse?.advert.ksfRequest == nil }
     var adAvailable: Bool { adResponse != nil }
 
     private lazy var parentalGateOpenAction = { [weak self] in

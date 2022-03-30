@@ -45,7 +45,8 @@ class AdModelTests: XCTestCase {
             test: true,
             app: 1000,
             device: "abc",
-            creative: creative)
+            creative: creative,
+            ksfRequest: nil)
         let response = AdResponse(3000, ad)
 
         // when
