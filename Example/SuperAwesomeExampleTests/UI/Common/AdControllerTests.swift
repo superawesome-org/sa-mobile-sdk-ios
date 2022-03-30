@@ -18,10 +18,10 @@ class AdControllerTests: XCTestCase {
         TestDependencies.register(adRepository: adRepository)
     }
 
-    func test_givenKsfSafeAd_whenAdLoads_thenShowPadlockFalse() {
+    private func showPadlockTest(showPadlock: Bool, ksfUrl: String?, expectedResult: Bool) {
         // Given
         adRepository.response = .success(
-            AdResponse(123, MockFactory.makeAd(.tag, nil, nil, nil, true, "ksfUrl"))
+            AdResponse(123, MockFactory.makeAd(.tag, nil, nil, nil, showPadlock, ksfUrl))
         )
 
         let controller = AdController()
@@ -30,21 +30,12 @@ class AdControllerTests: XCTestCase {
         controller.load(123, MockFactory.makeAdRequest())
 
         // Then
-        expect(controller.showPadlock).to(equal(false))
+        expect(controller.showPadlock).to(equal(expectedResult))
     }
 
-    func test_givenNotKsfSafeAd_whenAdLoads_thenShowPadlockTrue() {
-        // Given
-        adRepository.response = .success(
-            AdResponse(123, MockFactory.makeAd(.tag, nil, nil, nil, true, nil))
-        )
-
-        let controller = AdController()
-
-        // When
-        controller.load(123, MockFactory.makeAdRequest())
-
-        // Then
-        expect(controller.showPadlock).to(equal(true))
+    func test_showPadlock() {
+        showPadlockTest(showPadlock: true, ksfUrl: "http", expectedResult: false)
+        showPadlockTest(showPadlock: true, ksfUrl: nil, expectedResult: true)
+        showPadlockTest(showPadlock: false, ksfUrl: "http", expectedResult: false)
     }
 }
