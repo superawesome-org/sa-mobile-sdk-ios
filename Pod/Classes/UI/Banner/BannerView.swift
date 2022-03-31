@@ -112,14 +112,17 @@ public class BannerView: UIView, Injectable {
         guard controller.showPadlock, let webView = webView  else { return }
 
         let padlock = UIButton(frame: CGRect.zero)
+        padlock.translatesAutoresizingMaskIntoConstraints = false
         padlock.setImage(imageProvider.safeAdImage, for: .normal)
         padlock.addTarget(self, action: #selector(padlockAction), for: .touchUpInside)
 
         webView.addSubview(padlock)
 
         NSLayoutConstraint.activate([
-            padlock.leadingAnchor.constraint(equalTo: webView.leadingAnchor, constant: 12.0),
-            padlock.topAnchor.constraint(equalTo: webView.topAnchor, constant: 12.0)
+            padlock.widthAnchor.constraint(equalToConstant: 77.0),
+            padlock.heightAnchor.constraint(equalToConstant: 31.0),
+            padlock.leadingAnchor.constraint(equalTo: webView.safeLeadingAnchor, constant: 12.0),
+            padlock.topAnchor.constraint(equalTo: webView.safeTopAnchor, constant: 12.0)
         ])
 
         self.padlock = padlock
@@ -251,16 +254,6 @@ public class BannerView: UIView, Injectable {
         padlock = nil
         webView?.removeFromSuperview()
         webView = nil
-    }
-
-    private func addPadLock() {
-        guard controller.showPadlock else { return }
-
-        let padlock = UIButton(frame: CGRect.zero)
-        padlock.setImage(imageProvider.safeAdImage, for: .normal)
-        padlock.addTarget(self, action: #selector(padlockAction), for: .touchUpInside)
-
-        webView?.addSubview(padlock)
     }
 
     @objc private func padlockAction() { controller.handleSafeAdTap() }

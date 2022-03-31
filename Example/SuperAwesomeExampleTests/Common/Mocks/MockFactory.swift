@@ -21,7 +21,9 @@ class MockFactory {
         _ format: CreativeFormatType = .imageWithLink,
         _ vast: String? = nil,
         _ clickUrl: String? = nil,
-        _ tag: String? = nil
+        _ tag: String? = nil,
+        _ showPadlock: Bool = false,
+        _ ksfRequest: String? = nil
     ) -> Ad {
         Ad(advertiserId: 10,
            publisherId: 20,
@@ -32,7 +34,7 @@ class MockFactory {
            campaignType: 40,
            isHouse: true,
            safeAdApproved: true,
-           showPadlock: false,
+           showPadlock: showPadlock,
            lineItemId: 50,
            test: false,
            app: 70,
@@ -52,7 +54,8 @@ class MockFactory {
                 height: 100,
                 duration: 110,
                 vast: vast),
-            bumper: true))
+            bumper: true),
+           ksfRequest: ksfRequest)
     }
 
     static func makeError() -> Error { NSError(domain: "", code: 404, userInfo: nil) }
