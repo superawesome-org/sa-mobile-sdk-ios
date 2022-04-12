@@ -46,7 +46,14 @@ class LoggingMessageHandler: NSObject, WKScriptMessageHandler {
     }
 }
 
-@objc(SAManagedBannerAd) public final class SAManagedBannerAd: UIView, Injectable {
+class AdViewMessageHandler: NSObject, WKScriptMessageHandler {
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        let log = String(describing: message.body)
+        let a = log
+    }
+}
+
+@objc(SAManagedAdView) public final class SAManagedAdView: UIView, Injectable {
 
     internal var finishedLoading = false
 
@@ -62,11 +69,12 @@ class LoggingMessageHandler: NSObject, WKScriptMessageHandler {
 
     @available(iOS 14.5, *)
     private lazy var sknetworkManager: SKAdNetworkManager = dependencies.resolve()
-    private var logger: LoggerType = dependencies.resolve(param: SAManagedBannerAd.self)
+    private var logger: LoggerType = dependencies.resolve(param: SAManagedAdView.self)
 
     lazy var webView: WKWebView = {
         let userContentController = WKUserContentController()
         userContentController.add(LoggingMessageHandler(logger), name: "logging")
+        userContentController.add(AdViewMessageHandler(), name: "SA_AD_JS_BRIDGE")
         userContentController.addUserScript(WKUserScript(source: overrideConsole,
                                                          injectionTime: .atDocumentStart,
                                                          forMainFrameOnly: false))
@@ -110,44 +118,6 @@ class LoggingMessageHandler: NSObject, WKScriptMessageHandler {
         ])
         webView.navigationDelegate = self
         webView.uiDelegate = self
-    }
-
-    private func createHTML(placementId: Int, baseUrl: String) -> String {
-        let queryObject = loader.getAwesomeAdsQuery(session)
-        let queryParams = queryObject?.filter {
-            String(describing: $0.key) != "test"
-        }.map { key, value in
-            "&\(key)=\(value)"
-        }.joined(separator: "") ?? ""
-
-        let scriptHtml = """
-                <script type="text/javascript"
-    src="\(baseUrl)/ad.js?placement=\(placementId)\(queryParams)"></script>
-"""
-        return """
-<html><header><meta name='viewport' content='width=device-width'/>
-<style>html, body, div { margin: 0px; padding: 0px; } html, body { width: 100%; height: 100%; }</style>
-</header><body>\(scriptHtml)</body></html>
-"""
-    }
-
-    @objc(load:) public func load(placementId: Int) {
-        if let baseUrl = session.getBaseUrl(), let url = URL(string: baseUrl) {
-            self.placementId = placementId
-            let html: String = createHTML(placementId: placementId, baseUrl: baseUrl)
-
-            logger.info(html)
-
-            if !moatLimiting {
-                events.disableMoatLimiting()
-            }
-
-            webView.loadHTMLString(html, baseURL: url)
-
-            if #available(iOS 14.5, *) {
-                sknetworkManager.startImpression(lineItemId: placementId, creativeId: 1)
-            }
-        }
     }
 
     @objc(load:html:) public func load(placementId: Int, html: String) {
@@ -279,11 +249,11 @@ class LoggingMessageHandler: NSObject, WKScriptMessageHandler {
     }
 }
 
-extension SAManagedBannerAd: WKUIDelegate {
+extension SAManagedAdView: WKUIDelegate {
 
 }
 
-extension SAManagedBannerAd: WKNavigationDelegate {
+extension SAManagedAdView: WKNavigationDelegate {
 
     public func webView(_ webView: WKWebView,
                         createWebViewWith configuration: WKWebViewConfiguration,
