@@ -1,6 +1,13 @@
 CHANGELOG
 =========
 
+8.3.0
+ - Fix showing KSF safe ad logos properly
+ - Fix Interstitial via KSF ads not loading
+ - Complete VPAID support
+ - Fix double encoding for event names
+ - Update internal dependencies
+
 8.0.8
  - Added Dwell Time
  - Cleaned up and updated dependencies across the board, including Admob and Mopub
