@@ -285,12 +285,7 @@ class AdViewMessageHandler: NSObject, WKScriptMessageHandler {
     }
 }
 
-extension SAManagedAdView: WKUIDelegate {
-
-}
-
-extension SAManagedAdView: WKNavigationDelegate {
-
+extension SAManagedAdView: WKNavigationDelegate, WKUIDelegate {
     public func webView(_ webView: WKWebView,
                         createWebViewWith configuration: WKWebViewConfiguration,
                         for navigationAction: WKNavigationAction,
