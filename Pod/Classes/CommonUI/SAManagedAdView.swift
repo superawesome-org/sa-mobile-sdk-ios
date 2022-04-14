@@ -34,34 +34,20 @@ private let overrideConsoleScript = """
 """
 
 private let bridgeScript = """
+    function postMessageToBridge(message) {
+        window.webkit.messageHandlers.bridge.postMessage(message);
+    }
+
     var SA_AD_JS_BRIDGE = {
-        adLoaded: function() {
-            window.webkit.messageHandlers.bridge.postMessage("0");
-        },
-        adEmpty: function() {
-            window.webkit.messageHandlers.bridge.postMessage("1");
-        },
-        adFailedToLoad: function() {
-            window.webkit.messageHandlers.bridge.postMessage("2");
-        },
-        adAlreadyLoaded: function() {
-            window.webkit.messageHandlers.bridge.postMessage("3");
-        },
-        adShown: function() {
-            window.webkit.messageHandlers.bridge.postMessage("4");
-        },
-        adFailedToShow: function() {
-            window.webkit.messageHandlers.bridge.postMessage("5");
-        },
-        adClicked: function() {
-            window.webkit.messageHandlers.bridge.postMessage("6");
-        },
-        adEnded: function() {
-            window.webkit.messageHandlers.bridge.postMessage("7");
-        },
-        adClosed: function() {
-            window.webkit.messageHandlers.bridge.postMessage("8");
-        }
+        adLoaded: function() { postMessageToBridge("0"); },
+        adEmpty: function() { postMessageToBridge("1"); },
+        adFailedToLoad: function() { postMessageToBridge("2"); },
+        adAlreadyLoaded: function() { postMessageToBridge("3"); },
+        adShown: function() { postMessageToBridge("4"); },
+        adFailedToShow: function() { postMessageToBridge("5"); },
+        adClicked: function() { postMessageToBridge("6"); },
+        adEnded: function() { postMessageToBridge("7"); },
+        adClosed: function() { postMessageToBridge("8"); }
     };
 """
 
