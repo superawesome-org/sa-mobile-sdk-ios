@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+8.3.1
+ - Add JavaScript bridge to receive events from WebView sources
+
 8.3.0
  - Fix showing KSF safe ad logos properly
  - Fix Interstitial via KSF ads not loading
