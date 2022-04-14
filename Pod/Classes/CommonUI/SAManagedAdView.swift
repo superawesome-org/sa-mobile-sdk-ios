@@ -1,5 +1,5 @@
 //
-//  SAManagedBannerAd.swift
+//  SAManagedAdView.swift
 //
 //  Created by Mark on 08/04/2021.
 //
@@ -7,7 +7,7 @@
 import UIKit
 import WebKit
 
-let overrideConsole = """
+private let overrideConsoleScript = """
     function log(emoji, type, args) {
       window.webkit.messageHandlers.logging.postMessage(
         `${emoji} JS ${type}: ${Object.values(args)
@@ -33,7 +33,7 @@ let overrideConsole = """
 
 """
 
-let bridgeScript = """
+private let bridgeScript = """
     var SA_AD_JS_BRIDGE = {
         adLoaded: function() {
             window.webkit.messageHandlers.bridge.postMessage("0");
@@ -114,7 +114,7 @@ class AdViewMessageHandler: NSObject, WKScriptMessageHandler {
         let userContentController = WKUserContentController()
         userContentController.add(LoggingMessageHandler(logger), name: "logging")
         userContentController.add(AdViewMessageHandler(self), name: "bridge")
-        userContentController.addUserScript(WKUserScript(source: overrideConsole,
+        userContentController.addUserScript(WKUserScript(source: overrideConsoleScript,
                                                          injectionTime: .atDocumentStart,
                                                          forMainFrameOnly: false))
         userContentController.addUserScript(WKUserScript(source: bridgeScript,
