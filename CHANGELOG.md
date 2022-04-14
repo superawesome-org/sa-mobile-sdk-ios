@@ -8,6 +8,33 @@ CHANGELOG
  - Fix double encoding for event names
  - Update internal dependencies
 
+8.1.6
+ - Add VPAID support
+ - Fix unit tests
+ - Add tracking logs
+ - Add safe ad approved placements to Demo App
+ - Fix safe ad logo appearances
+
+8.1.5
+- Add tracking logs
+- Update SwiftyXml
+- Fix double encoding and incorrect event names
+- Fix SuperAwesomeUnityBumperOverrideName
+
+8.1.4
+- SwiftyXml changes
+
+8.1.3
+- Add support for additional video overlay views
+
+8.1.2
+- Remove aspect ratio
+
+8.1.1
+- Added initial implementation of SKADNetwork
+- Fixed SDK version being passed through in the request 
+- Updated Dwell Time metric from custom metric to standard metric
+
 8.0.8
  - Added Dwell Time
  - Cleaned up and updated dependencies across the board, including Admob and Mopub
