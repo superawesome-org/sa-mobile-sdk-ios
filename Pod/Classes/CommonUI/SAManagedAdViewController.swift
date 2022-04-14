@@ -8,15 +8,17 @@
 import UIKit
 import WebKit
 
-@objc(SAManagedVideoAdViewController) public final class SAManagedVideoAdViewController: UIViewController, Injectable {
+@objc(SAManagedAdViewController) public final class SAManagedAdViewController: UIViewController, Injectable {
     private let placementId: Int
     private let html: String
     private var closeButton: UIButton?
+    private var callback: AdEventCallback?
     private lazy var imageProvider: ImageProviderType = dependencies.resolve()
 
-    init(placementId: Int, html: String) {
+    init(placementId: Int, html: String, callback: AdEventCallback?) {
         self.placementId = placementId
         self.html = html
+        self.callback = callback
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -24,8 +26,11 @@ import WebKit
         fatalError("Don't use this externally!")
     }
 
-    lazy var managedBannerAd: SAManagedBannerAd = {
-        return SAManagedBannerAd()
+    lazy var managedAdView: SAManagedAdView = {
+        let adView = SAManagedAdView()
+        adView.setBridge(bridge: self)
+        adView.setCallback(value: callback)
+        return adView
     }()
 
     public override func viewDidLoad() {
@@ -33,14 +38,14 @@ import WebKit
         initView()
 
         DispatchQueue.main.async {
-            self.managedBannerAd.load(placementId: self.placementId, html: self.html)
+            self.managedAdView.load(placementId: self.placementId, html: self.html)
         }
 
     }
 
     /// Method that is called to close the ad
     func close() {
-        managedBannerAd.close()
+        managedAdView.close()
 
         dismiss(animated: true, completion: nil)
     }
@@ -66,22 +71,38 @@ import WebKit
     }
 
     @objc private func onCloseClicked() {
-        managedBannerAd.close()
+        managedAdView.close()
         dismiss(animated: true)
     }
 
     private func initView() {
-        managedBannerAd.translatesAutoresizingMaskIntoConstraints = false
+        managedAdView.translatesAutoresizingMaskIntoConstraints = false
 
-        view.addSubview(managedBannerAd)
+        view.addSubview(managedAdView)
 
         NSLayoutConstraint.activate([
-            managedBannerAd.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor, constant: 0),
-            managedBannerAd.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: 0),
-            managedBannerAd.bottomAnchor.constraint(equalTo: view.safeBottomAnchor, constant: 0),
-            managedBannerAd.topAnchor.constraint(equalTo: view.safeTopAnchor, constant: 0)
+            managedAdView.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor, constant: 0),
+            managedAdView.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: 0),
+            managedAdView.bottomAnchor.constraint(equalTo: view.safeBottomAnchor, constant: 0),
+            managedAdView.topAnchor.constraint(equalTo: view.safeTopAnchor, constant: 0)
         ])
 
         configureCloseButton()
     }
 }
+
+extension SAManagedAdViewController: AdViewJavaScriptBridge {
+    func onEvent(event: AdEvent) {
+        callback?(self.placementId, event)
+
+        if eventsForClosing.contains(event) {
+            if !isBeingDismissed {
+                close()
+            }
+        }
+    }
+}
+
+private let eventsForClosing = [
+    AdEvent.adEmpty, .adFailedToLoad, .adFailedToShow, .adEnded, .adClosed
+]
