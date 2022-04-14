@@ -162,7 +162,8 @@ public enum AdState {
         case .hasAd(let ad):
             if ad.isVpaid {
                 let managedVideoAdController = SAManagedAdViewController(placementId: ad.placementId,
-                                                                              html: ad.creative.details.tag)
+                                                                         html: ad.creative.details.tag,
+                                                                         callback: callback)
                 managedVideoAdController.modalPresentationStyle = .fullScreen
                 managedVideoAdController.modalTransitionStyle = .coverVertical
 

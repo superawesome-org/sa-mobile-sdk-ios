@@ -12,11 +12,13 @@ import WebKit
     private let placementId: Int
     private let html: String
     private var closeButton: UIButton?
+    private var callback: AdEventCallback?
     private lazy var imageProvider: ImageProviderType = dependencies.resolve()
 
-    init(placementId: Int, html: String) {
+    init(placementId: Int, html: String, callback: AdEventCallback?) {
         self.placementId = placementId
         self.html = html
+        self.callback = callback
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -25,7 +27,10 @@ import WebKit
     }
 
     lazy var managedAdView: SAManagedAdView = {
-        return SAManagedAdView()
+        let adView = SAManagedAdView()
+        adView.setBridge(bridge: self)
+        adView.setCallback(value: callback)
+        return adView
     }()
 
     public override func viewDidLoad() {
@@ -85,3 +90,19 @@ import WebKit
         configureCloseButton()
     }
 }
+
+extension SAManagedAdViewController: AdViewJavaScriptBridge {
+    func onEvent(event: AdEvent) {
+        callback?(self.placementId, event)
+
+        if eventsForClosing.contains(event) {
+            if !isBeingDismissed {
+                close()
+            }
+        }
+    }
+}
+
+private let eventsForClosing = [
+    AdEvent.adEmpty, .adFailedToLoad, .adFailedToShow, .adEnded, .adClosed
+]

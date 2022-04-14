@@ -33,6 +33,38 @@ let overrideConsole = """
 
 """
 
+let bridgeScript = """
+    var SA_AD_JS_BRIDGE = {
+        adLoaded: function() {
+            window.webkit.messageHandlers.bridge.postMessage("0");
+        },
+        adEmpty: function() {
+            window.webkit.messageHandlers.bridge.postMessage("1");
+        },
+        adFailedToLoad: function() {
+            window.webkit.messageHandlers.bridge.postMessage("2");
+        },
+        adAlreadyLoaded: function() {
+            window.webkit.messageHandlers.bridge.postMessage("3");
+        },
+        adShown: function() {
+            window.webkit.messageHandlers.bridge.postMessage("4");
+        },
+        adFailedToShow: function() {
+            window.webkit.messageHandlers.bridge.postMessage("5");
+        },
+        adClicked: function() {
+            window.webkit.messageHandlers.bridge.postMessage("6");
+        },
+        adEnded: function() {
+            window.webkit.messageHandlers.bridge.postMessage("7");
+        },
+        adClosed: function() {
+            window.webkit.messageHandlers.bridge.postMessage("8");
+        }
+    };
+"""
+
 class LoggingMessageHandler: NSObject, WKScriptMessageHandler {
     private var logger: LoggerType
 
@@ -47,9 +79,16 @@ class LoggingMessageHandler: NSObject, WKScriptMessageHandler {
 }
 
 class AdViewMessageHandler: NSObject, WKScriptMessageHandler {
+    private var bridge: AdViewJavaScriptBridge?
+
+    init(_ bridge: AdViewJavaScriptBridge?) {
+        self.bridge = bridge
+    }
+
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        let log = String(describing: message.body)
-        let a = log
+        let body = String(describing: message.body)
+        guard let id = Int(body), let event = AdEvent(rawValue: id) else { return }
+        bridge?.onEvent(event: event)
     }
 }
 
@@ -59,13 +98,13 @@ class AdViewMessageHandler: NSObject, WKScriptMessageHandler {
 
     private let session = SASession()
     private let loader = SALoader()
-    private var listener: AdEventCallback?
+    private var callback: AdEventCallback?
     private let events = SAEvents()
     private var placementId: Int = 0
     private var isParentalGateEnabled = SA_DEFAULT_PARENTALGATE != 0
     private var isBumperPageEnabled = SA_DEFAULT_BUMPERPAGE != 0
     private var moatLimiting = true
-    private let awesomeAds = AwesomeAds()
+    private var bridge: AdViewJavaScriptBridge?
 
     @available(iOS 14.5, *)
     private lazy var sknetworkManager: SKAdNetworkManager = dependencies.resolve()
@@ -74,8 +113,11 @@ class AdViewMessageHandler: NSObject, WKScriptMessageHandler {
     lazy var webView: WKWebView = {
         let userContentController = WKUserContentController()
         userContentController.add(LoggingMessageHandler(logger), name: "logging")
-        userContentController.add(AdViewMessageHandler(), name: "SA_AD_JS_BRIDGE")
+        userContentController.add(AdViewMessageHandler(self), name: "bridge")
         userContentController.addUserScript(WKUserScript(source: overrideConsole,
+                                                         injectionTime: .atDocumentStart,
+                                                         forMainFrameOnly: false))
+        userContentController.addUserScript(WKUserScript(source: bridgeScript,
                                                          injectionTime: .atDocumentStart,
                                                          forMainFrameOnly: false))
 
@@ -138,8 +180,12 @@ class AdViewMessageHandler: NSObject, WKScriptMessageHandler {
         }
     }
 
+    func setBridge(bridge: AdViewJavaScriptBridge? = nil) {
+        self.bridge = bridge
+    }
+
     @objc(setCallback:) public func setCallback(value: AdEventCallback? = nil) {
-        self.listener = value
+        self.callback = value
     }
 
     @objc public func setColor(value: Bool) {
@@ -245,7 +291,11 @@ class AdViewMessageHandler: NSObject, WKScriptMessageHandler {
     func close() {
         if #available(iOS 14.5, *) {
             sknetworkManager.endImpression()
+            webView.closeAllMediaPresentations()
         }
+
+        // Stop any playing media
+        webView.loadHTMLString("", baseURL: nil)
     }
 }
 
@@ -259,10 +309,10 @@ extension SAManagedAdView: WKNavigationDelegate {
                         createWebViewWith configuration: WKWebViewConfiguration,
                         for navigationAction: WKNavigationAction,
                         windowFeatures: WKWindowFeatures) -> WKWebView? {
-        listener?(placementId, .adClicked)
+        callback?(placementId, .adClicked)
         if finishedLoading && navigationAction.navigationType == .other {
             if let navUrl = navigationAction.request.url {
-                listener?(placementId, .adClicked)
+                callback?(placementId, .adClicked)
                 showParentalGate { [weak self] in
                     self?.handle(url: navUrl)
                 }
@@ -279,5 +329,12 @@ extension SAManagedAdView: WKNavigationDelegate {
                         decidePolicyFor navigationAction: WKNavigationAction,
                         decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         decisionHandler(.allow)
+    }
+}
+
+extension SAManagedAdView: AdViewJavaScriptBridge {
+    // Propagate events to the callback bridge
+    func onEvent(event: AdEvent) {
+        bridge?.onEvent(event: event)
     }
 }
