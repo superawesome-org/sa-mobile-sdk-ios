@@ -39,15 +39,15 @@ private let bridgeScript = """
     }
 
     var SA_AD_JS_BRIDGE = {
-        adLoaded: function() { postMessageToBridge("0"); },
-        adEmpty: function() { postMessageToBridge("1"); },
-        adFailedToLoad: function() { postMessageToBridge("2"); },
-        adAlreadyLoaded: function() { postMessageToBridge("3"); },
-        adShown: function() { postMessageToBridge("4"); },
-        adFailedToShow: function() { postMessageToBridge("5"); },
-        adClicked: function() { postMessageToBridge("6"); },
-        adEnded: function() { postMessageToBridge("7"); },
-        adClosed: function() { postMessageToBridge("8"); }
+        adLoaded: function() { postMessageToBridge("\(AdEvent.adLoaded.rawValue)"); },
+        adEmpty: function() { postMessageToBridge("\(AdEvent.adEmpty.rawValue)"); },
+        adFailedToLoad: function() { postMessageToBridge("\(AdEvent.adFailedToLoad.rawValue)"); },
+        adAlreadyLoaded: function() { postMessageToBridge("\(AdEvent.adAlreadyLoaded.rawValue)"); },
+        adShown: function() { postMessageToBridge("\(AdEvent.adShown.rawValue)"); },
+        adFailedToShow: function() { postMessageToBridge("\(AdEvent.adFailedToShow.rawValue)"); },
+        adClicked: function() { postMessageToBridge("\(AdEvent.adClicked.rawValue)"); },
+        adEnded: function() { postMessageToBridge("\(AdEvent.adEnded.rawValue)"); },
+        adClosed: function() { postMessageToBridge("\(AdEvent.adClosed.rawValue)"); }
     };
 """
 
