@@ -199,6 +199,7 @@ public class BannerView: UIView, Injectable {
     @objc
     public func setColorGray() { setColor(false) }
 
+    @objc
     public func setColor(_ value: Bool) {
         backgroundColor = value ? UIColor.clear : Constants.backgroundGray
     }

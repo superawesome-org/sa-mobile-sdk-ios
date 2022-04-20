@@ -1,6 +1,6 @@
 /**
- * @Copyright:   SuperAwesome Trading Limited 2017
- * @Author:      Gabriel Coman (gabriel.coman@superawesome.tv)
+ * @Copyright:  SuperAwesome Trading Limited 2022
+ * @Author:     Gabriel Coman (gabriel.coman@superawesome.com), Gunhan Sancar (gunhan.sancar@superawesome.com)
  */
 
 #import <UIKit/UIKit.h>
@@ -117,43 +117,30 @@ extern "C" {
                 realSize.width = screen.width;
             }
             
-            // calculate the position of the ad
-            __block CGPoint realPos = position == 0 ?
-            CGPointMake((screen.width - realSize.width) / 2.0f, 0) :
-            CGPointMake((screen.width - realSize.width) / 2.0f, screen.height - realSize.height);
-            
             // get banner
             __block SABannerAd *banner = [bannerDictionary objectForKey:key];
             [banner setParentalGate:isParentalGateEnabled];
             [banner setBumperPage:isBumperPageEnabled];
-//            [banner setColor:color];
+            [banner setColor:color];
             [root.view addSubview:banner];
-//            [banner resize:CGRectMake(realPos.x, realPos.y, realSize.width, realSize.height)];
             
-            // add a block notification
-            [[NSNotificationCenter defaultCenter] addObserverForName:@"UIDeviceOrientationDidChangeNotification"
-                                                              object:nil
-                                                               queue:nil
-                                                          usingBlock:
-             ^(NSNotification * note) {
-                 screen = [UIScreen mainScreen].bounds.size;
-                 
-                 realSize = CGSizeMake(width, height);
-                 
-                 if (realSize.width > screen.width) {
-                     realSize.height = (screen.width * realSize.height) / realSize.width;
-                     realSize.width = screen.width;
-                 }
-                 
-                 if (position == 0) realPos = CGPointMake((screen.width - realSize.width) / 2.0f, 0);
-                 else realPos = CGPointMake((screen.width - realSize.width) / 2.0f, screen.height - realSize.height);
-                 
-//                 [banner resize:CGRectMake(realPos.x, realPos.y, realSize.width, realSize.height)];
-             }];
+            // setup constraints
+            banner.translatesAutoresizingMaskIntoConstraints = false;
+            [root.view removeConstraints:[banner constraints]];
             
+            if (position == 0) {
+                // Align to the top
+                [banner.topAnchor constraintEqualToAnchor:root.topLayoutGuide.bottomAnchor].active = YES;
+            } else {
+                // Align to the bottom
+                [banner.bottomAnchor constraintEqualToAnchor:root.bottomLayoutGuide.topAnchor].active = YES;
+            }
+            [banner.widthAnchor constraintEqualToConstant:realSize.width].active = YES;
+            [banner.heightAnchor constraintEqualToConstant:realSize.height].active = YES;
+            [banner.centerXAnchor constraintEqualToAnchor:root.view.centerXAnchor].active = YES;
+                        
             // finally play
             [banner play];
-            
         } else {
             // handle failure
         }
