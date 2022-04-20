@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+8.3.2
+ - Fix Unity plugin for banner ads
+
 8.3.1
  - Add JavaScript bridge to receive events from WebView sources
 
