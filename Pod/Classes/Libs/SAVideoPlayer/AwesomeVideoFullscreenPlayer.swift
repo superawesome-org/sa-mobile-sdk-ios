@@ -66,6 +66,7 @@ public class AwesomeVideoFullscreenPlayer: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(player)
+        player.autoresizingMask = [.flexibleHeight, .flexibleWidth];
     }
 
     override public func viewWillAppear(_ animated: Bool) {
