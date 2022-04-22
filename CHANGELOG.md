@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+8.3.3
+ - Fix occasional sizing issues with AwesomeVideoFullscreenPlayer.swift
+
 8.3.2
  - Fix Unity plugin for banner ads
 
