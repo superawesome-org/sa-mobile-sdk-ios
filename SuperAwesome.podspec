@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'SuperAwesome'
-  s.version = '8.3.2'
+  s.version = '8.3.3'
   s.summary = 'SuperAwesome Mobile SDK for iOS'
   s.description = <<-DESC
                    The SuperAwesome Mobile SDK lets you to easily add COPPA compliant advertisements and other platform features, like user authentication and registration, to your apps. We try to make integration as easy as possible, so we provide all the necessary tools such as this guide, API documentation, screencasts and demo apps.
@@ -13,7 +13,8 @@ Pod::Spec.new do |s|
   }
   s.author = {
      'Gabriel Coman' => 'gabriel.coman@superawesome.com',
-     'Gunhan Sancar' => 'gunhan.sancar@superawesome.com'
+     'Gunhan Sancar' => 'gunhan.sancar@superawesome.com',
+     'Tom O\'Rourke' => 'tom.orourke@superawesome.com'
   }
   s.pod_target_xcconfig  = {
       'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 arm64e armv7 armv7s',
