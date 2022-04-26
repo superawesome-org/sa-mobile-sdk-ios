@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ukg-ni-LTt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ukg-ni-LTt">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,25 +25,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cOi-ZF-ufS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="398" y="134"/>
-        </scene>
-        <!--Mo Pub View Controller-->
-        <scene sceneID="hl6-2D-xjd">
-            <objects>
-                <viewController modalPresentationStyle="fullScreen" id="rpa-wQ-psf" customClass="MoPubViewController" customModule="SuperAwesomeExample" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="zbT-tb-qdO"/>
-                        <viewControllerLayoutGuide type="bottom" id="12l-OQ-lKR"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="PTf-pK-khF">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="HDP-wR-uHR"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="v89-i0-s2s" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1218.840579710145" y="474.45652173913049"/>
         </scene>
         <!--Ad Mob Controller-->
         <scene sceneID="YpK-su-2dl">

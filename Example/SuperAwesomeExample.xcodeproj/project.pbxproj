@@ -15,7 +15,6 @@
 		A7EFC8DE3E1F552F65AEDB94 /* Pods_SuperAwesomeExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46665EBC142A783963BB4282 /* Pods_SuperAwesomeExample.framework */; };
 		C6398A1027AAAEF300D6A152 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6398A0F27AAAEF300D6A152 /* MainViewController.swift */; };
 		C6398A1327AAB1E500D6A152 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6398A1227AAB1E500D6A152 /* UIView+Extensions.swift */; };
-		C64CAD28249CC5AB00788A7F /* MoPubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64CAD27249CC5AB00788A7F /* MoPubViewController.swift */; };
 		C6535602245239270043115E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6535601245239270043115E /* HealthKit.framework */; };
 		C6895C4E27F4C780009FAE1A /* AdControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6895C4D27F4C780009FAE1A /* AdControllerTests.swift */; };
 		C6895C5327F4CA38009FAE1A /* AdRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6895C5227F4CA38009FAE1A /* AdRepositoryMock.swift */; };
@@ -94,7 +93,6 @@
 		B11A00536A3939F72F5C056B /* Pods-SuperAwesomeExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesomeExampleTests.debug.xcconfig"; path = "Target Support Files/Pods-SuperAwesomeExampleTests/Pods-SuperAwesomeExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C6398A0F27AAAEF300D6A152 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C6398A1227AAB1E500D6A152 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
-		C64CAD27249CC5AB00788A7F /* MoPubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoPubViewController.swift; sourceTree = "<group>"; };
 		C6535600245239270043115E /* SuperAwesomeExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SuperAwesomeExample.entitlements; sourceTree = "<group>"; };
 		C6535601245239270043115E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		C6895C4D27F4C780009FAE1A /* AdControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdControllerTests.swift; sourceTree = "<group>"; };
@@ -215,7 +213,6 @@
 		1BB5F58C1ED6CC3900ACD72E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C64CAD27249CC5AB00788A7F /* MoPubViewController.swift */,
 				C6398A0F27AAAEF300D6A152 /* MainViewController.swift */,
 			);
 			name = Controllers;
@@ -618,7 +615,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C64CAD28249CC5AB00788A7F /* MoPubViewController.swift in Sources */,
 				C6398A1327AAB1E500D6A152 /* UIView+Extensions.swift in Sources */,
 				4D2BB747266A689B00E3D86A /* AppDelegate.swift in Sources */,
 				C6398A1027AAAEF300D6A152 /* MainViewController.swift in Sources */,

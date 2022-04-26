@@ -14,9 +14,7 @@ static NSString *sdk        = @"ios";
 @implementation SAVersion
 
 + (NSString*) getPluginName {
-#if MOPUB_PLUGIN
-    return @"_mopub";
-#elif ADMOB_PLUGIN
+#if ADMOB_PLUGIN
     return @"_admob";
 #else
     return @"";
