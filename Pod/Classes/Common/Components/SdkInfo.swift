@@ -32,9 +32,7 @@ struct SdkInfo: SdkInfoType {
             self.lang = "none"
         }
 
-#if MOPUB_PLUGIN
-        let pluginName = "_mopub"
-#elseif ADMOB_PLUGIN
+#if ADMOB_PLUGIN
         let pluginName = "_admob"
 #endif
         let pluginName = ""
