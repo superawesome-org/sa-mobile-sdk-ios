@@ -33,6 +33,7 @@ public enum AdState {
     private static let events: SAEvents = SAEvents()
 
     private static var logger: LoggerType = dependencies.resolve(param: VideoAd.self)
+    private static var sdkInfo: SdkInfoType = dependencies.resolve()
 
     ////////////////////////////////////////////////////////////////////////////
     // Internal control methods
@@ -49,7 +50,7 @@ public enum AdState {
             let session = SASession()
             session.setTestMode(isTestingEnabled)
             session.setConfiguration(configuration)
-            session.setVersion(SAVersion.getSdkVersion())
+            session.setVersion(sdkInfo.version)
             session.setPos(SARTBPosition.POS_FULLSCREEN)
             session.setPlaybackMethod(SARTBPlaybackMethod.PB_WITH_SOUND_ON_SCREEN)
             session.setInstl(SARTBInstl.IN_FULLSCREEN)
@@ -106,7 +107,7 @@ public enum AdState {
             let session = SASession()
             session.setTestMode(isTestingEnabled)
             session.setConfiguration(configuration)
-            session.setVersion(SAVersion.getSdkVersion())
+            session.setVersion(sdkInfo.version)
             session.setPos(SARTBPosition.POS_FULLSCREEN)
             session.setPlaybackMethod(SARTBPlaybackMethod.PB_WITH_SOUND_ON_SCREEN)
             session.setInstl(SARTBInstl.IN_FULLSCREEN)

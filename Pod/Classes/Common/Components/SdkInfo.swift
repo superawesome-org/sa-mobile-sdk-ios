@@ -12,8 +12,12 @@ protocol SdkInfoType {
     var lang: String { get }
 }
 
-struct SdkInfo: SdkInfoType {
-    var version: String
+@objc
+public class SdkInfo: NSObject, SdkInfoType {
+    private static var overriddenVersion: String?
+
+    let sdkVersion: String
+    let pluginName: String
     var bundle: String
     var name: String
     var lang: String
@@ -32,11 +36,25 @@ struct SdkInfo: SdkInfoType {
             self.lang = "none"
         }
 
-#if ADMOB_PLUGIN
-        let pluginName = "_admob"
-#endif
-        let pluginName = ""
+        #if ADMOB_PLUGIN
+        self.pluginName = "_admob"
+        #else
+        self.pluginName = ""
+        #endif
 
-        self.version = "\(platform)_\(versionNumber)\(pluginName)"
+        self.sdkVersion = "\(platform)_\(versionNumber)"
+    }
+
+    var version: String {
+        return "\(SdkInfo.overriddenVersion ?? sdkVersion)\(pluginName)"
+    }
+
+    @objc
+    public class func overrideVersion(_ version: String?, withPlatform platform: String?) {
+        if let platform = platform, let version = version {
+            SdkInfo.overriddenVersion = "\(platform)_\(version)"
+        } else {
+            SdkInfo.overriddenVersion = nil
+        }
     }
 }
