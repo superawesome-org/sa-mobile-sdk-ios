@@ -18,7 +18,7 @@ class SdkInfoTests: XCTestCase {
 
         // When
         let sdk = SdkInfo(mainBundle: mainBundle, sdkBundle: sdkBundle, locale: locale, encoder: CustomEncoder())
-        SdkInfo.overrideVersion(nil, nil)
+        SdkInfo.overrideVersion(nil, withPlatform: nil)
 
         // Then
         expect(sdk.bundle).to(equal("mainId"))
@@ -35,7 +35,7 @@ class SdkInfoTests: XCTestCase {
         let sdk = SdkInfo(mainBundle: mainBundle, sdkBundle: sdkBundle, locale: locale, encoder: CustomEncoder())
 
         // When
-        SdkInfo.overrideVersion("unity", "9.8.7")
+        SdkInfo.overrideVersion("9.8.7", withPlatform: "unity")
 
         // Then
         expect(sdk.version).to(equal("unity_9.8.7"))

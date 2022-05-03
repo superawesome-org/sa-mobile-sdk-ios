@@ -50,7 +50,7 @@ public class SdkInfo: NSObject, SdkInfoType {
     }
 
     @objc
-    public class func overrideVersion(_ platform: String?, _ version: String?) {
+    public class func overrideVersion(_ version: String?, withPlatform platform: String?) {
         if let platform = platform, let version = version {
             SdkInfo.overriddenVersion = "\(platform)_\(version)"
         } else {

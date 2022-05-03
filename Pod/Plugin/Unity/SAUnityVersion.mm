@@ -16,11 +16,9 @@ extern "C" {
      * @param sdkString     pointer to an array of chars containing the sdk
      */
     void SuperAwesomeUnityVersionSetVersion (const char *versionString, const char *sdkString) {
-        
         NSString *version = [NSString stringWithUTF8String:versionString];
         NSString *sdk = [NSString stringWithUTF8String:sdkString];
         
-        [SAVersion overrideVersion:version];
-        [SAVersion overrideSdk:sdk];
+        [SdkInfo overrideVersion:version withPlatform: @"unity"];
     }
 }
