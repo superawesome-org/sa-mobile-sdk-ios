@@ -7,7 +7,7 @@
 
 import Foundation
 
-@objc (SAVideoEventsDelegate) public protocol VideoEventsDelegate: class {
+@objc (SAVideoEventsDelegate) public protocol VideoEventsDelegate: AnyObject {
     func hasBeenVisible()
 }
 
@@ -66,7 +66,6 @@ class VideoEvents: Injectable {
             if let videoPlayer = player as? UIView {
                 viewableDetector = dependencies.resolve() as ViewableDetectorType
                 viewableDetector?.start(for: videoPlayer, hasBeenVisible: { [weak self] in
-                    self?.vastRepository?.impression()
                     self?.delegate?.hasBeenVisible()
                 })
             }

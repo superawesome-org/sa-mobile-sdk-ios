@@ -119,11 +119,13 @@ class AdController: AdControllerType, Injectable {
     func triggerViewableImpression() {
         guard let adResponse = adResponse else { return }
         eventRepository.viewableImpression(adResponse, completion: nil)
+        logger.info("Event callback: viewableImpression for placement \(placementId)")
     }
 
     func triggerImpressionEvent() {
         guard let adResponse = adResponse else { return }
         eventRepository.impression(adResponse, completion: nil)
+        logger.info("Event callback: impression for placement \(placementId)")
     }
 
     func load(_ placementId: Int, _ request: AdRequest) {
@@ -161,7 +163,7 @@ class AdController: AdControllerType, Injectable {
 
     /// Method that is called when a user clicks / taps on an ad
     func onAdClicked(_ url: URL) {
-        logger.success("onAdClicked: for url: \(url.absoluteString)")
+        logger.success("Event callback: onAdClicked: for url: \(url.absoluteString)")
 
         if bumperPageEnabled || adResponse?.advert.creative.bumper ?? false {
             BumperPage().play { [weak self] in
@@ -179,7 +181,7 @@ class AdController: AdControllerType, Injectable {
         let diff = abs(currentTime - lastClickTime)
 
         if Int32(diff) < Constants.defaultClickThresholdInMs {
-            logger.info("Ad clicked too quickly: ignored")
+            logger.info("Event callback: Ad clicked too quickly: ignored")
             return
         }
 
@@ -199,7 +201,7 @@ class AdController: AdControllerType, Injectable {
 
     func handleAdTapForVast() {
         guard let clickThroughUrl = adResponse?.vast?.clickThroughUrl, let url = URL(string: clickThroughUrl) else {
-            logger.info("Click through URL is not found")
+            logger.info("Event callback: Click through URL is not found")
             return
         }
 

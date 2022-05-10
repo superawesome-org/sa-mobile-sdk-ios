@@ -137,6 +137,7 @@ import UIKit
 
 extension VideoViewController: VideoEventsDelegate {
     func hasBeenVisible() {
+        controller.triggerViewableImpression()
         if config.showCloseButton {
             chrome.makeCloseButtonVisible()
         }
