@@ -12,6 +12,7 @@ public struct Creative: Codable {
     let clickUrl: String?
     let details: CreativeDetail
     let bumper: Bool?
+    let payload: String?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -20,7 +21,8 @@ public struct Creative: Codable {
         case clickUrl = "click_url"
         case details
         case bumper
-        }
+        case payload = "customPayload"
+    }
 }
 
 struct CreativeDetail: Codable {
