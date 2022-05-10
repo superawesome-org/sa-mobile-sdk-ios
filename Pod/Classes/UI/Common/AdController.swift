@@ -91,18 +91,30 @@ class AdController: AdControllerType, Injectable {
         closed = true
     }
 
-    func adFailedToShow() { callback?(placementId, .adFailedToShow) }
+    func adFailedToShow() {
+        callback?(placementId, .adFailedToShow)
+        logger.info("Event callback: adFailedToShow for placement \(placementId)")
+    }
 
     func adShown() {
         callback?(placementId, .adShown)
         logger.info("Event callback: adShown for placement \(placementId)")
     }
 
-    func adEnded() { callback?(placementId, .adEnded) }
+    func adEnded() {
+        callback?(placementId, .adEnded)
+        logger.info("Event callback: adEnded for placement \(placementId)")
+    }
 
-    func adClicked() { callback?(placementId, .adClicked) }
+    func adClicked() {
+        callback?(placementId, .adClicked)
+        logger.info("Event callback: adClicked for placement \(placementId)")
+    }
 
-    func adClosed() { callback?(placementId, .adClosed) }
+    func adClosed() {
+        callback?(placementId, .adClosed)
+        logger.info("Event callback: adClosed for placement \(placementId)")
+    }
 
     func triggerViewableImpression() {
         guard let adResponse = adResponse else { return }
@@ -143,7 +155,7 @@ class AdController: AdControllerType, Injectable {
     }
 
     private func onFailure(_ error: Error) {
-        logger.error("Ad load failed", error: error)
+        logger.error("Event callback: adFailedToLoad for \(placementId)", error: error)
         callback?(placementId, .adFailedToLoad)
     }
 

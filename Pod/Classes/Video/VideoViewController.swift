@@ -154,7 +154,6 @@ extension VideoViewController: VideoPlayerDelegate {
     }
 
     func didComplete(videoPlayer: VideoPlayer, time: Int, duration: Int) {
-        logger.info("Event callback: adEnded for placement \(controller.adResponse?.placementId)")
         videoEvents.complete(player: videoPlayer, time: time, duration: duration)
         chrome.makeCloseButtonVisible()
         controller.adEnded()

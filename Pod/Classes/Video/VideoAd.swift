@@ -45,7 +45,7 @@ public class VideoAd: NSObject, Injectable {
         case .none:
             ads[placementId] = .loading
 
-            logger.info("load() for: \(placementId)")
+            logger.success("Event callback: ad is started to load for placement \(placementId)")
 
             adRepository.getAd(placementId: placementId, request: makeAdRequest()) { result in
                 switch result {
@@ -54,10 +54,10 @@ public class VideoAd: NSObject, Injectable {
                 }
             }
         case .loading:
-            logger.info("Ad is already loading for: \(placementId)")
+            logger.success("Event callback: ad is loading for placement \(placementId)")
         case .hasAd:
-            callback?(placementId, .adAlreadyLoaded)
             logger.success("Event callback: adAlreadyLoaded for placement \(placementId)")
+            callback?(placementId, .adAlreadyLoaded)
         }
     }
 
@@ -107,7 +107,7 @@ public class VideoAd: NSObject, Injectable {
     }
 
     private static func onSuccess(_ placementId: Int, _ response: AdResponse) {
-        logger.success("Ad load successful for \(response.placementId)")
+        logger.success("Event callback: adLoaded for placement \(placementId)")
 
         if !isMoatLimitingEnabled {
             disableMoatLimiting()
@@ -118,7 +118,7 @@ public class VideoAd: NSObject, Injectable {
     }
 
     private static func onFailure(_ placementId: Int, _ error: Error) {
-        logger.error("Ad load failed", error: error)
+        logger.error("Event callback: adFailedToLoad for placement \(placementId)", error: error)
         self.ads[placementId] = AdState.none
         callback?(placementId, .adFailedToLoad)
     }
