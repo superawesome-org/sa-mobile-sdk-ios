@@ -7,18 +7,13 @@
 
 import UIKit
 
-@objc(SAVideoViewController) class VideoViewController: UIViewController, VideoPlayerDelegate, VideoEventsDelegate, Injectable {
+@objc(SAVideoViewController) class VideoViewController: UIViewController, Injectable {
 
-    ////////////////////////////////////////////////////////////////////////////
-    // SubViews
-    ////////////////////////////////////////////////////////////////////////////
-
+    private lazy var controller: AdControllerType = dependencies.resolve()
+    private lazy var orientationProvider: OrientationProviderType = dependencies.resolve()
     private var videoPlayer: AwesomeVideoPlayer!
     private var chrome: AdSocialVideoPlayerControlsView!
-
-    ////////////////////////////////////////////////////////////////////////////
-    // Custom values
-    ////////////////////////////////////////////////////////////////////////////
+    private var logger: LoggerType = dependencies.resolve(param: VideoViewController.self)
 
     struct Config {
         let showSmallClick: Bool
@@ -27,87 +22,37 @@ import UIKit
         let shouldCloseAtEnd: Bool
         let isParentalGateEnabled: Bool
         let isBumperPageEnabled: Bool
-        let orientation: SAOrientation
+        let orientation: Orientation
     }
 
-    private let ad: SAAd
-    private let events: SAEvents
     private let config: Config
     private let control: VideoPlayerControls = VideoPlayerController()
     private let videoEvents: VideoEvents
-    private let clickEvents: VideoClick
 
     private var callback: AdEventCallback?
 
-    private var logger: LoggerType = dependencies.resolve(param: VideoViewController.self)
-
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
-
-    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
-        return .fade
-    }
-
-    @available(iOS 11.0, *)
-    override var prefersHomeIndicatorAutoHidden: Bool {
-        return true
-    }
-
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        guard let supportedOrientations = Bundle.main.infoDictionary?["UISupportedInterfaceOrientations"] as? [String]
-        else { return super.supportedInterfaceOrientations }
-
-        switch config.orientation {
-        case .ANY:
-            return super.supportedInterfaceOrientations
-        case .PORTRAIT:
-            let hasPortrait = supportedOrientations.contains("UIInterfaceOrientationPortrait")
-            let hasPortraitUpsideDown = supportedOrientations.contains("UIInterfaceOrientationPortraitUpsideDown")
-
-            if hasPortrait && hasPortraitUpsideDown {
-                return [.portrait, .portraitUpsideDown]
-            } else if hasPortrait {
-                return .portrait
-            } else if hasPortraitUpsideDown {
-                return .portraitUpsideDown
-            } else {
-                return super.supportedInterfaceOrientations
-            }
-        case .LANDSCAPE:
-            let hasLandscapeLeft = supportedOrientations.contains("UIInterfaceOrientationLandscapeLeft")
-            let hasLandscapeRight = supportedOrientations.contains("UIInterfaceOrientationLandscapeRight")
-
-            if hasLandscapeLeft && hasLandscapeRight {
-                return .landscape
-            } else if hasLandscapeLeft {
-                return .landscapeLeft
-            } else if hasLandscapeRight {
-                return .landscapeRight
-            } else {
-                return super.supportedInterfaceOrientations
-            }
-        }
-    }
-
-    init(withAd ad: SAAd,
-         andEvents events: SAEvents,
-         andCallback callback: AdEventCallback?,
-         andConfig config: Config) {
-        self.ad = ad
-        self.events = events
+    init(adResponse: AdResponse, callback: AdEventCallback?, config: Config) {
         self.config = config
         self.callback = callback
-        videoEvents = VideoEvents(events: events)
-        clickEvents = VideoClick(events: events,
-                                 isParentalGateEnabled: config.isParentalGateEnabled,
-                                 isBumperPageEnabled: config.isBumperPageEnabled)
+        videoEvents = VideoEvents(adResponse)
         super.init(nibName: nil, bundle: nil)
+        self.controller.adResponse = adResponse
+        self.controller.parentalGateEnabled = config.isParentalGateEnabled
+        self.controller.bumperPageEnabled = config.isBumperPageEnabled
         videoEvents.delegate = self
+    }
+
+    override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
+
+    override var prefersStatusBarHidden: Bool { true }
+
+    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation { .fade }
+
+    @available(iOS 11.0, *)
+    override var prefersHomeIndicatorAutoHidden: Bool { true }
+
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        orientationProvider.findSupportedOrientations(config.orientation, super.supportedInterfaceOrientations)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -127,7 +72,7 @@ import UIKit
         videoPlayer.layoutMargins = UIEdgeInsets.zero
         videoPlayer.setDelegate(delegate: self)
         view.addSubview(videoPlayer)
-        LayoutUtils.bind(view: videoPlayer, toTheEdgesOf: view)
+        videoPlayer.bind(toTheEdgesOf: view)
 
         // setup chrome
         chrome = AdSocialVideoPlayerControlsView(smallClick: config.showSmallClick, showSafeAdLogo: config.showSafeAdLogo)
@@ -139,14 +84,13 @@ import UIKit
             self?.clickAction()
         }
         chrome.setPadlockAction { [weak self] in
-            self?.clickEvents.handleSafeAdTap()
+            self?.controller.handleSafeAdTap()
         }
         videoPlayer.setControlsView(controllerView: chrome)
-        LayoutUtils.bind(view: chrome, toTheEdgesOf: videoPlayer)
+        chrome.bind(toTheEdgesOf: videoPlayer)
 
         // play ad
-        if let diskUrl = SAUtils.filePath(inDocuments: ad.creative.details.media.path) {
-            let url = URL(fileURLWithPath: diskUrl)
+        if let url = controller.filePathUrl {
             control.play(url: url)
         }
 
@@ -173,21 +117,36 @@ import UIKit
                                                   object: nil)
     }
 
-    ////////////////////////////////////////////////////////////////////////////
-    // Foreground
-    ////////////////////////////////////////////////////////////////////////////
-
+    @objc
     func willEnterForeground(_ notification: Notification) {
         control.start()
     }
 
-    ////////////////////////////////////////////////////////////////////////////
-    // VideoPlayerDelegate
-    ////////////////////////////////////////////////////////////////////////////
+    private func clickAction() {
+        controller.adClicked()
+        controller.handleAdTapForVast()
+    }
 
+    private func closeAction() {
+        videoPlayer.destroy()
+        dismiss(animated: true) { [weak self] in
+            self?.controller.close()
+        }
+    }
+}
+
+extension VideoViewController: VideoEventsDelegate {
+    func hasBeenVisible() {
+        if config.showCloseButton {
+            chrome.makeCloseButtonVisible()
+        }
+    }
+}
+
+extension VideoViewController: VideoPlayerDelegate {
     func didPrepare(videoPlayer: VideoPlayer, time: Int, duration: Int) {
         videoEvents.prepare(player: videoPlayer, time: time, duration: duration)
-        callback?(ad.placementId, .adShown)
+        controller.adShown()
     }
 
     func didUpdateTime(videoPlayer: VideoPlayer, time: Int, duration: Int) {
@@ -195,10 +154,10 @@ import UIKit
     }
 
     func didComplete(videoPlayer: VideoPlayer, time: Int, duration: Int) {
+        logger.info("Event callback: adEnded for placement \(controller.adResponse?.placementId)")
         videoEvents.complete(player: videoPlayer, time: time, duration: duration)
         chrome.makeCloseButtonVisible()
-        callback?(ad.placementId, .adEnded)
-        logger.info("Event callback: adEnded for placement \(ad.placementId)")
+        controller.adEnded()
 
         if config.shouldCloseAtEnd {
             closeAction()
@@ -207,34 +166,7 @@ import UIKit
 
     func didError(videoPlayer: VideoPlayer, error: Error, time: Int, duration: Int) {
         videoEvents.error(player: videoPlayer, time: time, duration: duration)
-        callback?(ad.placementId, .adFailedToShow)
+        controller.adFailedToShow()
         closeAction()
-    }
-
-    func hasBeenVisible() {
-        if config.showCloseButton {
-            chrome.makeCloseButtonVisible()
-        }
-    }
-
-    ////////////////////////////////////////////////////////////////////////////
-    // private methods
-    ////////////////////////////////////////////////////////////////////////////
-
-    private func clickAction() {
-        callback?(ad.placementId, .adClicked)
-        logger.info("Event callback: adClicked for placement \(ad.placementId)")
-        clickEvents.handleAdTap()
-    }
-
-    private func closeAction() {
-        videoPlayer.destroy()
-        SAParentalGate.close()
-        dismiss(animated: true) { [weak self] in
-            if let placementId = self?.ad.placementId {
-                self?.callback?(placementId, .adClosed)
-                self?.logger.info("Event callback: adClosed for placement \(placementId)")
-            }
-        }
     }
 }

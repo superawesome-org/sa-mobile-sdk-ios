@@ -1,43 +1,71 @@
 //
-//  SAVideoAd2.swift
+//  SAVideoAd.swift
 //  SuperAwesome
 //
 //  Created by Gabriel Coman on 17/12/2018.
 //
 import UIKit
 
-public enum AdState {
+enum AdState {
     case none
     case loading
-    case hasAd(ad: SAAd)
+    case hasAd(ad: AdResponse)
 }
 
-@objc(SAVideoAd) public class VideoAd: NSObject, Injectable {
+@objc(SAVideoAd)
+public class VideoAd: NSObject, Injectable {
+    private static var adRepository: AdRepositoryType = dependencies.resolve()
+    private static var logger: LoggerType = dependencies.resolve(param: InterstitialAd.self)
 
-    static var isTestingEnabled: Bool = Bool(truncating: NSNumber(value: SA_DEFAULT_TESTMODE))
-    static var isParentalGateEnabled: Bool = Bool(truncating: NSNumber(value: SA_DEFAULT_PARENTALGATE))
-    static var isBumperPageEnabled: Bool = Bool(truncating: NSNumber(value: SA_DEFAULT_BUMPERPAGE))
-    static var shouldAutomaticallyCloseAtEnd: Bool = Bool(truncating: NSNumber(value: SA_DEFAULT_CLOSEATEND))
-    static var shouldShowCloseButton: Bool = Bool(truncating: NSNumber(value: SA_DEFAULT_CLOSEBUTTON))
+    static var isTestingEnabled: Bool = Constants.defaultTestMode
+    static var isParentalGateEnabled: Bool = Constants.defaultParentalGate
+    static var isBumperPageEnabled: Bool = Constants.defaultBumperPage
+    static var shouldAutomaticallyCloseAtEnd: Bool = Constants.defaultCloseAtEnd
+    static var shouldShowCloseButton: Bool = Constants.defaultCloseButton
 
-    static var shouldShowSmallClickButton: Bool = Bool(truncating: NSNumber(value: SA_DEFAULT_SMALLCLICK))
-    static var orientation: SAOrientation = SAOrientation(rawValue: Int(SA_DEFAULT_ORIENTATION))!
-    static var configuration: SAConfiguration = SAConfiguration(rawValue: Int(SA_DEFAULT_CONFIGURATION))!
-    static var isMoatLimitingEnabled: Bool = Bool(truncating: NSNumber(value: SA_DEFAULT_MOAT_LIMITING_STATE))
-    static var playback: SARTBStartDelay = SARTBStartDelay(rawValue: Int(SA_DEFAULT_PLAYBACK_MODE))!
+    static var shouldShowSmallClickButton: Bool = Constants.defaultSmallClick
+    static var orientation: Orientation = Constants.defaultOrientation
 
-    private static var callback: AdEventCallback?
+    static var isMoatLimitingEnabled: Bool = Constants.defaultMoatLimitingState
+    static var delay: AdRequest.StartDelay = Constants.defaultStartDelay
 
-    private static var ads = [Int: AdState]()
+    private static var callback: AdEventCallback? = nil
 
-    private static let events: SAEvents = SAEvents()
-
-    private static var logger: LoggerType = dependencies.resolve(param: VideoAd.self)
-    private static var sdkInfo: SdkInfoType = dependencies.resolve()
+    private static var ads = Dictionary<Int, AdState>()
 
     ////////////////////////////////////////////////////////////////////////////
     // Internal control methods
     ////////////////////////////////////////////////////////////////////////////
+    
+    private static func makeAdRequest() -> AdRequest {
+        let size = UIScreen.main.bounds.size
+        
+        return AdRequest(test: isTestingEnabled,
+                         position: AdRequest.Position.fullScreen,
+                         skip: AdRequest.Skip.yes,
+                         playbackMethod: AdRequest.PlaybackSoundOnScreen,
+                         startDelay: delay,
+                         instl: AdRequest.FullScreen.on,
+                         width: Int(size.width),
+                         height: Int(size.height))
+    }
+    
+    private static func onSuccess(_ placementId: Int, _ response: AdResponse) {
+        logger.success("Ad load successful for \(response.placementId)")
+        
+        if !isMoatLimitingEnabled {
+            disableMoatLimiting()
+        }
+        
+        self.ads[placementId] = .hasAd(ad: response)
+        callback?(placementId, .adLoaded)
+    }
+    
+    private static func onFailure(_ placementId: Int, _ error: Error) {
+        logger.error("Ad load failed", error: error)
+        self.ads[placementId] = AdState.none
+        callback?(placementId, .adFailedToLoad)
+    }
 
     @objc(load:)
     public static func load(withPlacementId placementId: Int) {
@@ -46,109 +74,17 @@ public enum AdState {
         switch adState {
         case .none:
             ads[placementId] = .loading
-
-            let session = SASession()
-            session.setTestMode(isTestingEnabled)
-            session.setConfiguration(configuration)
-            session.setVersion(sdkInfo.version)
-            session.setPos(SARTBPosition.POS_FULLSCREEN)
-            session.setPlaybackMethod(SARTBPlaybackMethod.PB_WITH_SOUND_ON_SCREEN)
-            session.setInstl(SARTBInstl.IN_FULLSCREEN)
-            session.setSkip(shouldShowCloseButton ? SARTBSkip.SK_SKIP : SARTBSkip.SK_NO_SKIP)
-            session.setStartDelay(playback)
-            let size = UIScreen.main.bounds.size
-            session.setWidth(Int(size.width))
-            session.setHeight(Int(size.height))
-
-            let loader = SALoader()
-            loader.loadAd(placementId, withSession: session) { (response: SAResponse?) in
-
-                guard let response = response, response.status == 200 else {
-                    self.ads[placementId] = AdState.none
-                    self.callback?(placementId, .adFailedToLoad)
-                    return
+            
+            logger.info("load() for: \(placementId)")
+            
+            adRepository.getAd(placementId: placementId, request: makeAdRequest()) { result in
+                switch result {
+                case .success(let response): self.onSuccess(placementId, response)
+                case .failure(let error): self.onFailure(placementId, error)
                 }
-
-                guard let ad = response.ads.firstObject as? SAAd,
-                      response.isValid(), ad.isValid() else {
-                        self.ads[placementId] = AdState.none
-                        self.callback?(placementId, .adEmpty)
-                        return
-                }
-
-                // create events object
-                events.setAd(ad, andSession: session)
-                if !self.isMoatLimitingEnabled {
-                    events.disableMoatLimiting()
-                }
-
-                // reset video events
-                self.ads[placementId] = .hasAd(ad: ad)
-                self.callback?(placementId, .adLoaded)
-                logger.success("Event callback: adLoaded for placement \(placementId)")
             }
-
         case .loading:
-            break
-        case .hasAd:
-            callback?(placementId, .adAlreadyLoaded)
-            logger.success("Event callback: adAlreadyLoaded for placement \(placementId)")
-        }
-    }
-
-    @objc(load: creativeId: lineItemId:)
-    public static func load(withPlacementId placementId: Int, creativeId: Int, lineItemId: Int) {
-        let adState = ads[placementId] ?? .none
-
-        switch adState {
-        case .none:
-            ads[placementId] = .loading
-
-            let session = SASession()
-            session.setTestMode(isTestingEnabled)
-            session.setConfiguration(configuration)
-            session.setVersion(sdkInfo.version)
-            session.setPos(SARTBPosition.POS_FULLSCREEN)
-            session.setPlaybackMethod(SARTBPlaybackMethod.PB_WITH_SOUND_ON_SCREEN)
-            session.setInstl(SARTBInstl.IN_FULLSCREEN)
-            session.setSkip(shouldShowCloseButton ? SARTBSkip.SK_SKIP : SARTBSkip.SK_NO_SKIP)
-            session.setStartDelay(playback)
-            let size = UIScreen.main.bounds.size
-            session.setWidth(Int(size.width))
-            session.setHeight(Int(size.height))
-
-            let loader = SALoader()
-            loader.loadAd(byPlacementId: placementId, andLineItem: lineItemId, andCreativeId: creativeId, andSession: session) { (response: SAResponse?) in
-
-                guard let response = response, response.status == 200 else {
-                    self.ads[placementId] = AdState.none
-                    self.callback?(placementId, .adFailedToLoad)
-                    return
-                }
-
-                guard let ad = response.ads.firstObject as? SAAd,
-                    response.isValid(),
-                    ad.creative.details.media.isDownloaded else {
-                        self.ads[placementId] = AdState.none
-                        self.callback?(placementId, .adEmpty)
-                        logger.info("Event callback: adEmpty for placement \(placementId)")
-                        return
-                }
-
-                // create events object
-                events.setAd(ad, andSession: session)
-                if !self.isMoatLimitingEnabled {
-                    events.disableMoatLimiting()
-                }
-
-                // reset video events
-                self.ads[placementId] = .hasAd(ad: ad)
-                self.callback?(placementId, .adLoaded)
-                logger.success("Event callback: adLoaded for placement \(placementId)")
-            }
-
-        case .loading:
-            break
+            logger.info("Ad is already loading for: \(placementId)")
         case .hasAd:
             callback?(placementId, .adAlreadyLoaded)
             logger.success("Event callback: adAlreadyLoaded for placement \(placementId)")
@@ -161,32 +97,17 @@ public enum AdState {
 
         switch adState {
         case .hasAd(let ad):
-            if ad.isVpaid {
-                let managedVideoAdController = SAManagedAdViewController(placementId: ad.placementId,
-                                                                         html: ad.creative.details.tag,
-                                                                         callback: callback)
-                managedVideoAdController.modalPresentationStyle = .fullScreen
-                managedVideoAdController.modalTransitionStyle = .coverVertical
-
-                viewController.present(managedVideoAdController, animated: true)
-            } else {
-                let config = VideoViewController.Config(showSmallClick: shouldShowSmallClickButton,
-                                                        showSafeAdLogo: ad.isPadlockVisible,
-                                                        showCloseButton: shouldShowCloseButton,
-                                                        shouldCloseAtEnd: shouldAutomaticallyCloseAtEnd,
-                                                        isParentalGateEnabled: isParentalGateEnabled,
-                                                        isBumperPageEnabled: isBumperPageEnabled,
-                                                        orientation: orientation)
-                let adViewController = VideoViewController(withAd: ad,
-                                                           andEvents: events,
-                                                           andCallback: callback,
-                                                           andConfig: config)
-                adViewController.modalPresentationStyle = .fullScreen
-                adViewController.modalTransitionStyle = .coverVertical
-
-                viewController.present(adViewController, animated: true)
-            }
-
+            let config = VideoViewController.Config(showSmallClick: shouldShowSmallClickButton,
+                                                    showSafeAdLogo: ad.advert.showPadlock,
+                                                    showCloseButton: shouldShowCloseButton,
+                                                    shouldCloseAtEnd: shouldAutomaticallyCloseAtEnd,
+                                                    isParentalGateEnabled: isParentalGateEnabled,
+                                                    isBumperPageEnabled: isBumperPageEnabled,
+                                                    orientation: orientation)
+            let adViewController = VideoViewController(adResponse: ad, callback: callback, config: config)
+            adViewController.modalPresentationStyle = .fullScreen
+            adViewController.modalTransitionStyle = .coverVertical
+            viewController.present(adViewController, animated: true)
             ads[placementId] = AdState.none
         default:
             callback?(placementId, .adFailedToShow)
@@ -202,21 +123,12 @@ public enum AdState {
         }
     }
 
-    @objc(getAd:)
-    public static func getAd(placementId: Int) -> SAAd? {
-        let adState = ads[placementId] ?? .none
-        switch adState {
-        case .hasAd(let ad): return ad
-        default: return nil
-        }
-    }
-
     ////////////////////////////////////////////////////////////////////////////
     // setters
     ////////////////////////////////////////////////////////////////////////////
-
+    
     @objc(setCallback:)
-    public static func setCallback(_ callback: @escaping AdEventCallback) {
+    public static func setCallback(_ callback: AdEventCallback?) {
         self.callback = callback
     }
 
@@ -265,39 +177,33 @@ public enum AdState {
         setBumperPage(false)
     }
 
-    @objc(setConfiguration:)
-    public static func setConfiguration(_ config: SAConfiguration) {
-        configuration = config
-    }
-
     @objc(setConfigurationProduction)
     public static func setConfigurationProduction() {
-        setConfiguration(SAConfiguration.PRODUCTION)
+//        setConfiguration(SAConfiguration.PRODUCTION)
     }
 
     @objc(setConfigurationStaging)
     public static func setConfigurationStaging() {
-        setConfiguration(SAConfiguration.STAGING)
+//        setConfiguration(SAConfiguration.STAGING)
     }
 
-    @objc(setOrientation:)
-    public static func setOriantation(_ orientation: SAOrientation) {
+    public static func setOriantation(_ orientation: Orientation) {
         self.orientation = orientation
     }
 
     @objc(setOrientationAny)
     public static func setOrientationAny() {
-        setOriantation(SAOrientation.ANY)
+        setOriantation(.any)
     }
 
     @objc(setOrientationPortrait)
     public static func setOrientationPortrait() {
-        setOriantation(SAOrientation.PORTRAIT)
+        setOriantation(.portrait)
     }
 
     @objc(setOrientationLandscape)
     public static func setOrientationLandscape() {
-        setOriantation(SAOrientation.LANDSCAPE)
+        setOriantation(.landscape)
     }
 
     @objc(setCloseButton:)
@@ -345,29 +251,16 @@ public enum AdState {
         setCloseAtEnd(false)
     }
 
-    @objc(setPlaybackMode:)
-    public static func setPlaybackMode(_ delay: SARTBStartDelay) {
-        playback = delay
+    public static func setPlaybackMode(_ delay: AdRequest.StartDelay) {
+        self.delay = delay
     }
 
     public static func getCallback() -> AdEventCallback? {
         return callback
     }
 
-    public static func getAds() -> [Int: AdState] {
-        return ads
-    }
-
-    public static func getEvents() -> SAEvents {
-        return events
-    }
-
     @objc(disableMoatLimiting)
     public static func disableMoatLimiting() {
         VideoAd.isMoatLimitingEnabled = false
-    }
-
-    public static func setAd(ad: SAAd, forPlacementId: Int) {
-        ads[forPlacementId] = AdState.hasAd(ad: ad)
     }
 }

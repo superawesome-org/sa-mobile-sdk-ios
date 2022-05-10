@@ -11,85 +11,81 @@ import Foundation
     func hasBeenVisible()
 }
 
-@objc (SAVideoEvents) public class VideoEvents: NSObject {
-
+class VideoEvents: Injectable {
+    
+    private var vastRepository: VastEventRepositoryType?
+    private var moatRepository: MoatRepositoryType?
+    private var viewableDetector: ViewableDetectorType?
+    
     private var isStartHandled: Bool = false
     private var is2SHandled: Bool = false
     private var isFirstQuartileHandled: Bool = false
     private var isMidpointHandled: Bool = false
     private var isThirdQuartileHandled: Bool = false
-    private var viewableDetector: ViewableDetectorType?
-
-    private var events: SAEvents
-
+        
     public weak var delegate: VideoEventsDelegate?
-
-    //////////////////////////////////////////////////////////////////////////////
-    // constructor
-    //////////////////////////////////////////////////////////////////////////////
-
-    @objc(initWithEvents:)
-    public init(events: SAEvents) {
-        self.events = events
-        super.init()
+    
+    init(_ adResponse: AdResponse) {
+        vastRepository = dependencies.resolve(param: adResponse) as VastEventRepositoryType
+        moatRepository = dependencies.resolve(param: adResponse, false) as MoatRepositoryType
     }
-
-    //////////////////////////////////////////////////////////////////////////////
-    // public class interface
-    //////////////////////////////////////////////////////////////////////////////
-
+    
+    // MARK: - public class interface
+    
     public func prepare(player: VideoPlayer, time: Int, duration: Int) {
         if let videoPlayer = player as? UIView,
            let avPlayer = player.getAVPlayer(),
            let avLayer = player.getAVPlayerLayer() {
-            events.startMoatTracking(forVideoPlayer: avPlayer,
-                                     with: avLayer,
-                                     andView: videoPlayer)
+            _ = moatRepository?.startMoatTracking(forVideoPlayer: avPlayer,
+                                              with: avLayer,
+                                              andView: videoPlayer)
         }
-        is2SHandled = false
     }
-
+    
     public func complete(player: VideoPlayer, time: Int, duration: Int) {
-        events.stopMoatTrackingForVideoPlayer()
+        _ = moatRepository?.stopMoatTrackingForVideoPlayer()
         guard time >= duration else { return }
-        events.triggerVASTCompleteEvent()
+        vastRepository?.complete()
     }
-
+    
     public func error(player: VideoPlayer, time: Int, duration: Int) {
-        events.stopMoatTrackingForVideoPlayer()
-        events.triggerVASTErrorEvent()
+        _ = moatRepository?.stopMoatTrackingForVideoPlayer()
+        vastRepository?.error()
     }
-
+    
     public func time(player: VideoPlayer, time: Int, duration: Int) {
-
-        if let videoPlayer = player as? UIView, !is2SHandled {
-            is2SHandled = true
-            viewableDetector?.cancel()
-            viewableDetector = ViewableDetector()
-            viewableDetector?.start(for: videoPlayer, forTickCount: 2, hasBeenVisible: { [weak self] in
-                self?.events.triggerViewableImpressionEvent()
-                self?.delegate?.hasBeenVisible()
-            })
-        }
-
-        if time >= 1 && !isStartHandled {
+        if (time >= 1 && !isStartHandled) {
             isStartHandled = true
-            events.triggerVASTImpressionEvent()
-            events.triggerVASTCreativeViewEvent()
-            events.triggerVASTStartEvent()
+            vastRepository?.impression()
+            vastRepository?.creativeView()
+            vastRepository?.start()
         }
-
-        if time >= duration / 4 && !isFirstQuartileHandled {
+        if (time >= 2 && !is2SHandled) {
+            is2SHandled = true
+            
+            if let videoPlayer = player as? UIView {
+                viewableDetector = dependencies.resolve() as ViewableDetectorType
+                viewableDetector?.start(for: videoPlayer, hasBeenVisible: { [weak self] in
+                    self?.vastRepository?.impression()
+                    self?.delegate?.hasBeenVisible()
+                })
+            }
+        }
+        if (time >= duration / 4 && !isFirstQuartileHandled) {
             isFirstQuartileHandled = true
-            events.triggerVASTFirstQuartileEvent()
+            vastRepository?.firstQuartile()
         }
-        if time >= duration / 2 && !isMidpointHandled {
+        if (time >= duration / 2 && !isMidpointHandled) {
             isMidpointHandled = true
-            events.triggerVASTMidpointEvent()
+            vastRepository?.midPoint()
         }
-        if time >= (3 * duration) / 4 && !isThirdQuartileHandled {
+        if (time >= (3 * duration) / 4 && !isThirdQuartileHandled) {
             isThirdQuartileHandled = true
-            events.triggerVASTThirdQuartileEvent()
+            vastRepository?.thirdQuartile()
         }
+    }
+    
+    deinit {
+        viewableDetector = nil
     }
 }
