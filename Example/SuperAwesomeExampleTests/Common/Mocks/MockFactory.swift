@@ -54,7 +54,8 @@ class MockFactory {
                 height: 100,
                 duration: 110,
                 vast: vast),
-            bumper: true),
+            bumper: true,
+            payload: nil),
            ksfRequest: ksfRequest)
     }
 
