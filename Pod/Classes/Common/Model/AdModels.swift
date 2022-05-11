@@ -127,7 +127,7 @@ class AdResponse {
     }
 
     /// Returns if the type of the ad is Vpaid
-    func isVpaid() -> Bool {
+    var isVpaid: Bool {
         advert.isVpaid ?? false
     }
 }

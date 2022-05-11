@@ -94,7 +94,7 @@ public class VideoAd: NSObject, Injectable {
 
         switch adState {
         case .hasAd(let ad):
-            if ad.isVpaid() {
+            if ad.isVpaid {
                 let managedVideoAdController = SAManagedAdViewController(placementId: ad.placementId,
                                                                          html: ad.advert.creative.details.tag ?? "",
                                                                          callback: callback)
