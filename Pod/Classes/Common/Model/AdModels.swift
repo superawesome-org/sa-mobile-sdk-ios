@@ -143,6 +143,7 @@ extension AdRequest {
     }
 
     /// Start delay cases
+    @objc
     public enum StartDelay: Int, Codable {
         case postRoll = -2
         case genericMidRoll = -1

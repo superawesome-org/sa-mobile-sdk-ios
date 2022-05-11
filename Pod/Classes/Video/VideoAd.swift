@@ -223,6 +223,7 @@ public class VideoAd: NSObject, Injectable {
     public static func setConfigurationStaging() {
     }
 
+    @objc(setOrientation:)
     public static func setOriantation(_ orientation: Orientation) {
         self.orientation = orientation
     }
@@ -287,6 +288,7 @@ public class VideoAd: NSObject, Injectable {
         setCloseAtEnd(false)
     }
 
+    @objc(setPlaybackMode:)
     public static func setPlaybackMode(_ delay: AdRequest.StartDelay) {
         self.delay = delay
     }
