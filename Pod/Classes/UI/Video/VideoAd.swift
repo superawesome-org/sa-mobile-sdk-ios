@@ -213,15 +213,13 @@ public class VideoAd: NSObject, Injectable {
         setBumperPage(false)
     }
 
-    @available(*, deprecated, message: "Use `AwesomeAds.init()` to select configuration")
+    @available(*, deprecated, message: "Use `AwesomeAds.initSDK()` to select configuration")
     @objc(setConfigurationProduction)
-    public static func setConfigurationProduction() {
-    }
+    public static func setConfigurationProduction() { }
 
-    @available(*, deprecated, message: "Use `AwesomeAds.init()` to select configuration")
+    @available(*, deprecated, message: "Use `AwesomeAds.initSDK()` to select configuration")
     @objc(setConfigurationStaging)
-    public static func setConfigurationStaging() {
-    }
+    public static func setConfigurationStaging() { }
 
     @objc(setOrientation:)
     public static func setOriantation(_ orientation: Orientation) {

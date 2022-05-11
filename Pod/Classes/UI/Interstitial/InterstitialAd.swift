@@ -74,15 +74,15 @@ public class InterstitialAd: NSObject, Injectable {
     @objc
     public class func setCallback(_ callback: @escaping AdEventCallback) { controller.callback = callback }
 
-    @available(*, deprecated, message: "Use `AwesomeAdsSdk.Configuration` instead")
+    @available(*, deprecated, message: "Use `AwesomeAds.initSDK()` to select configuration")
     @objc
     public class func setConfiguration(_ value: Int) { }
 
-    @available(*, deprecated, message: "Use `AwesomeAdsSdk.Configuration` instead")
+    @available(*, deprecated, message: "Use `AwesomeAds.initSDK()` to select configuration")
     @objc
     public class func setConfigurationProduction() { }
 
-    @available(*, deprecated, message: "Use `AwesomeAdsSdk.Configuration` instead")
+    @available(*, deprecated, message: "Use `AwesomeAds.initSDK()` to select configuration")
     @objc
     public class func setConfigurationStaging() { }
 
