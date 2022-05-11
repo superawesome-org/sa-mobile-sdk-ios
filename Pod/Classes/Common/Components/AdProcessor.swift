@@ -45,7 +45,7 @@ class AdProcessor: AdProcessorType {
             complition(response)
         case .tag:
             response.html = htmlFormatter.formatTagIntoHtml(ad)
-            response.baseUrl = "https://ads.superawesome.tv"
+            response.baseUrl = Constants.defaultBaseUrl
             complition(response)
         case .video:
             if let url = ad.creative.details.vast {

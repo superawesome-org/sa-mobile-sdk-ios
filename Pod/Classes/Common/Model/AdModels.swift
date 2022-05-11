@@ -14,6 +14,7 @@ public struct Ad: Codable {
     var campaignId: Int? = 0
     let campaignType: Int
     let isHouse: Bool
+    let isVpaid: Bool? = false
     let safeAdApproved: Bool
     let showPadlock: Bool
     let lineItemId: Int
@@ -32,6 +33,7 @@ public struct Ad: Codable {
         case campaignId = "campaign_id"
         case campaignType = "campaign_type"
         case isHouse = "is_house"
+        case isVpaid = "is_vpaid"
         case safeAdApproved = "safe_ad_approved"
         case showPadlock = "show_padlock"
         case lineItemId = "line_item_id"
@@ -122,6 +124,11 @@ class AdResponse {
         let width = advert.creative.details.width
         let height = advert.creative.details.height
         return CGFloat(width) / CGFloat(height)
+    }
+
+    /// Returns if the type of the ad is Vpaid
+    func isVpaid() -> Bool {
+        advert.isVpaid ?? false
     }
 }
 

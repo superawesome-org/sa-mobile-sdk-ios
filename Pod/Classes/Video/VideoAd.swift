@@ -61,23 +61,59 @@ public class VideoAd: NSObject, Injectable {
         }
     }
 
+    @objc(load: creativeId: lineItemId:)
+    public static func load(withPlacementId placementId: Int, creativeId: Int, lineItemId: Int) {
+        let adState = ads[placementId] ?? .none
+
+        switch adState {
+        case .none:
+            ads[placementId] = .loading
+
+            logger.success("Event callback: ad is started to load for placement \(placementId)")
+
+            adRepository.getAd(placementId: placementId,
+                               lineItemId: lineItemId,
+                               creativeId: creativeId,
+                               request: makeAdRequest()) { result in
+                switch result {
+                case .success(let response): self.onSuccess(placementId, response)
+                case .failure(let error): self.onFailure(placementId, error)
+                }
+            }
+        case .loading:
+            logger.success("Event callback: ad is loading for placement \(placementId)")
+        case .hasAd:
+            logger.success("Event callback: adAlreadyLoaded for placement \(placementId)")
+            callback?(placementId, .adAlreadyLoaded)
+        }
+    }
+
     @objc(play:fromVC:)
     public static func play(withPlacementId placementId: Int, fromVc viewController: UIViewController) {
         let adState = ads[placementId] ?? .none
 
         switch adState {
         case .hasAd(let ad):
-            let config = VideoViewController.Config(showSmallClick: shouldShowSmallClickButton,
-                                                    showSafeAdLogo: ad.advert.showPadlock,
-                                                    showCloseButton: shouldShowCloseButton,
-                                                    shouldCloseAtEnd: shouldAutomaticallyCloseAtEnd,
-                                                    isParentalGateEnabled: isParentalGateEnabled,
-                                                    isBumperPageEnabled: isBumperPageEnabled,
-                                                    orientation: orientation)
-            let adViewController = VideoViewController(adResponse: ad, callback: callback, config: config)
-            adViewController.modalPresentationStyle = .fullScreen
-            adViewController.modalTransitionStyle = .coverVertical
-            viewController.present(adViewController, animated: true)
+            if ad.isVpaid() {
+                let managedVideoAdController = SAManagedAdViewController(placementId: ad.placementId,
+                                                                         html: ad.advert.creative.details.tag ?? "",
+                                                                         callback: callback)
+                managedVideoAdController.modalPresentationStyle = .fullScreen
+                managedVideoAdController.modalTransitionStyle = .coverVertical
+                viewController.present(managedVideoAdController, animated: true)
+            } else {
+                let config = VideoViewController.Config(showSmallClick: shouldShowSmallClickButton,
+                                                        showSafeAdLogo: ad.advert.showPadlock,
+                                                        showCloseButton: shouldShowCloseButton,
+                                                        shouldCloseAtEnd: shouldAutomaticallyCloseAtEnd,
+                                                        isParentalGateEnabled: isParentalGateEnabled,
+                                                        isBumperPageEnabled: isBumperPageEnabled,
+                                                        orientation: orientation)
+                let adViewController = VideoViewController(adResponse: ad, callback: callback, config: config)
+                adViewController.modalPresentationStyle = .fullScreen
+                adViewController.modalTransitionStyle = .coverVertical
+                viewController.present(adViewController, animated: true)
+            }
             ads[placementId] = AdState.none
         default:
             callback?(placementId, .adFailedToShow)
@@ -177,14 +213,14 @@ public class VideoAd: NSObject, Injectable {
         setBumperPage(false)
     }
 
+    @available(*, deprecated, message: "Use `AwesomeAds.init()` to select configuration")
     @objc(setConfigurationProduction)
     public static func setConfigurationProduction() {
-//        setConfiguration(SAConfiguration.PRODUCTION)
     }
 
+    @available(*, deprecated, message: "Use `AwesomeAds.init()` to select configuration")
     @objc(setConfigurationStaging)
     public static func setConfigurationStaging() {
-//        setConfiguration(SAConfiguration.STAGING)
     }
 
     public static func setOriantation(_ orientation: Orientation) {
