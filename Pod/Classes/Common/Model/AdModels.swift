@@ -14,7 +14,7 @@ public struct Ad: Codable {
     var campaignId: Int? = 0
     let campaignType: Int
     let isHouse: Bool
-    let isVpaid: Bool? = false
+    let isVpaid: Bool?
     let safeAdApproved: Bool
     let showPadlock: Bool
     let lineItemId: Int
