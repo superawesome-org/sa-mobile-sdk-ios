@@ -5,10 +5,24 @@
 //  Created by Gunhan Sancar on 17/04/2020.
 //
 
-protocol SdkInfoType {
+@objc
+public protocol SdkInfoType {
+    /// Returns the combined version information platform + version number
+    /// e.g. ios_x.y.z
     var version: String { get }
+
+    /// Returns the version number only
+    /// e.g. x.y.z
+    var versionNumber: String { get }
+
+    /// Returns the bundle name for the app
     var bundle: String { get }
+
+    /// Returns the name of the app
     var name: String { get }
+
+    /// Returns the preferred locale language and region
+    /// e.g. en_UK
     var lang: String { get }
 }
 
@@ -18,13 +32,14 @@ public class SdkInfo: NSObject, SdkInfoType {
 
     let sdkVersion: String
     let pluginName: String
-    var bundle: String
-    var name: String
-    var lang: String
+    public var bundle: String
+    public var name: String
+    public var lang: String
+    public var versionNumber: String
 
     init(mainBundle: Bundle, sdkBundle: Bundle, locale: Locale, encoder: EncoderType) {
         let platform = "ios"
-        let versionNumber = sdkBundle.versionNumber ?? ""
+        self.versionNumber = sdkBundle.versionNumber ?? ""
 
         self.bundle = mainBundle.bundleIdentifier ?? ""
         self.name = encoder.encodeUri(mainBundle.name)
@@ -45,7 +60,7 @@ public class SdkInfo: NSObject, SdkInfoType {
         self.sdkVersion = "\(platform)_\(versionNumber)"
     }
 
-    var version: String {
+    public var version: String {
         return "\(SdkInfo.overriddenVersion ?? sdkVersion)\(pluginName)"
     }
 

@@ -25,6 +25,7 @@ class SdkInfoTests: XCTestCase {
         expect(sdk.lang).to(equal("xx_US"))
         expect(sdk.name).to(equal("main%20Name"))
         expect(sdk.version).to(equal("ios_1.2.3"))
+        expect(sdk.versionNumber).to(equal("1.2.3"))
     }
 
     func test_overrideVersion() throws {
