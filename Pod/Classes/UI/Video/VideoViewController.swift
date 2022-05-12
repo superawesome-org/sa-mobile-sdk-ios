@@ -63,20 +63,20 @@ import UIKit
         super.viewDidLoad()
 
         // initial view setup
-        view.backgroundColor = UIColor.black
-        view.layoutMargins = UIEdgeInsets.zero
+        view.backgroundColor = .black
+        view.layoutMargins = .zero
 
         // setup video player
         videoPlayer = AwesomeVideoPlayer()
         videoPlayer.setControls(controller: control)
-        videoPlayer.layoutMargins = UIEdgeInsets.zero
+        videoPlayer.layoutMargins = .zero
         videoPlayer.setDelegate(delegate: self)
         view.addSubview(videoPlayer)
         videoPlayer.bind(toTheEdgesOf: view)
 
         // setup chrome
         chrome = AdSocialVideoPlayerControlsView(smallClick: config.showSmallClick, showSafeAdLogo: config.showSafeAdLogo)
-        chrome.layoutMargins = UIEdgeInsets.zero
+        chrome.layoutMargins = .zero
         chrome.setCloseAction { [weak self] in
             self?.closeAction()
         }
