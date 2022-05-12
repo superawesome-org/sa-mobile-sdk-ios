@@ -29,6 +29,7 @@ private let rows = [
 ]
 
 class MainViewController: UIViewController {
+    private var headerLabel: UILabel!
     private var bannerView: BannerView!
     private var segment: UISegmentedControl!
 
@@ -63,11 +64,28 @@ class MainViewController: UIViewController {
     }
 
     private func initUI() {
+        initHeader()
         initSegment()
         initBannerView()
         initButtons()
         configureInterstitial()
         configureVideo()
+    }
+
+    private func initHeader() {
+        let version = AwesomeAds.info()?.versionNumber ?? ""
+        headerLabel = UILabel()
+        headerLabel.text = "AwesomeAds.version: \(version)"
+        headerLabel.font = UIFont(name: "HelveticaNeue-Light", size: 14)
+        headerLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        view.addSubview(headerLabel)
+
+        NSLayoutConstraint.activate([
+            headerLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            headerLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 16),
+            headerLabel.topAnchor.constraint(equalTo: view.safeTopAnchor, constant: 16)
+        ])
     }
 
     private func initSegment() {
@@ -80,7 +98,7 @@ class MainViewController: UIViewController {
         NSLayoutConstraint.activate([
             segment.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             segment.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            segment.topAnchor.constraint(equalTo: view.safeTopAnchor, constant: 0),
+            segment.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 16),
             segment.heightAnchor.constraint(equalToConstant: 30)
         ])
 
@@ -137,7 +155,6 @@ class MainViewController: UIViewController {
     }
 
     private func configureVideo() {
-        VideoAd.setConfigurationProduction()
         VideoAd.enableCloseButton()
         VideoAd.setCallback { (placementId, event) in
             print(" VideoAd >> \(event.rawValue)")

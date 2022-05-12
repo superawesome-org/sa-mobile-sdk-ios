@@ -9,6 +9,7 @@
 
 class SdkInfoMock: SdkInfoType {
     var version: String = "SdkInfoMockVersion"
+    var versionNumber: String = "SdkInfoMockVersion"
     var bundle: String = "SdkInfoMockBundle"
     var name: String = "SdkInfoMockName"
     var lang: String = "SdkInfoMockLang"

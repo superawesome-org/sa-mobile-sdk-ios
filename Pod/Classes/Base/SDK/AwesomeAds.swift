@@ -29,24 +29,7 @@ public class AwesomeAds: NSObject {
         InjectableComponent.register(self.container)
     }
 
-    /// Initialise the AwesomeAds SDK.
-    ///
-    /// - Parameter logging: enables or disables the logging of the SDK
-    @objc
-    public static func initSDK(_ logging: Bool) {
-        shared.initSDK(configuration: Configuration(environment: .production, logging: logging), completion: nil)
-    }
-
-    /// Initialise the AwesomeAds SDK.
-    ///
-    /// - Parameter configuration: to set various options including environment, and logging
-    /// - Parameter complition: Callback closure to be notified once the initialisation is done
-    public static func initSDK(configuration: Configuration = Configuration(),
-                               completion: (() -> Void)? = nil) {
-        shared.initSDK(configuration: configuration, completion: completion)
-    }
-
-    /// Initialise the AwesomeAds SDK.
+    /// Initialise the AwesomeAds SDK
     ///
     /// - Parameter configuration: to set various options including environment, and logging
     /// - Parameter complition: Callback closure to be notified once the initialisation is done
@@ -56,5 +39,38 @@ public class AwesomeAds: NSObject {
         registerDependencies(configuration)
         initialised = true
         completion?()
+    }
+
+    /// Gets information about AwesomeAds SDK
+    ///
+    /// Returns `nil` if the AwesomeAds SDK has not been initialised
+    @objc
+    public func info() -> SdkInfoType? {
+        guard initialised else { return nil }
+        let info: SdkInfoType = container.resolve()
+        return info
+    }
+
+    /// Gets information about AwesomeAds SDK
+    ///
+    /// Returns `nil` if the AwesomeAds SDK has not been initialised
+    @objc
+    public static func info() -> SdkInfoType? { shared.info() }
+
+    /// Initialise the AwesomeAds SDK.
+    ///
+    /// - Parameter logging: enables or disables the logging of the SDK
+    @objc
+    public static func initSDK(_ logging: Bool) {
+        shared.initSDK(configuration: Configuration(environment: .production, logging: logging), completion: nil)
+    }
+
+    /// Initialise the AwesomeAds SDK
+    ///
+    /// - Parameter configuration: to set various options including environment, and logging
+    /// - Parameter complition: Callback closure to be notified once the initialisation is done
+    public static func initSDK(configuration: Configuration = Configuration(),
+                               completion: (() -> Void)? = nil) {
+        shared.initSDK(configuration: configuration, completion: completion)
     }
 }
