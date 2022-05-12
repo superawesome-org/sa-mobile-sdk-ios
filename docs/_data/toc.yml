@@ -30,15 +30,6 @@
           url: "docs/bumper-page#forcing-the-bumper"
     - title: Ad Callbacks
       url: "docs/ad-callbacks"
-    - title: Integrate with MoPub
-      url: "docs/mopub-integration"
-      children:
-        - title: Add the Plugin
-          url: "docs/mopub-integration#add-the-mopub-plugin"
-        - title: Setup Custom Networks
-          url: "docs/mopub-integration#setup-custom-networks"
-        - title: Implement Ads
-          url: "docs/mopub-integration#implement-ads"
     - title: Integrate with AdMob
       url: "docs/admob-integration"
       children:
