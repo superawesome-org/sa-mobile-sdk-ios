@@ -41,19 +41,16 @@ import UIKit
     }
 
     public override func updateConstraints() {
-
         if !didSetupConstraints {
-
             blackMask.translatesAutoresizingMaskIntoConstraints = false
             blackMask.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
             blackMask.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
             blackMask.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
             blackMask.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1/5).isActive = true
-
             chrono.translatesAutoresizingMaskIntoConstraints = false
             if #available(iOS 11.0, *) {
-                chrono.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor, constant: 5.0).isActive = true
-                chrono.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor, constant: -5.0).isActive = true
+                chrono.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor, constant: 5.0).isActive = true
+                chrono.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor, constant: -5.0).isActive = true
             } else {
                 chrono.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5.0).isActive = true
                 chrono.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5.0).isActive = true
@@ -77,12 +74,11 @@ import UIKit
                 padlock = Padlock()
                 padlock.addTarget(self, action: #selector(didTapOnPadlock), for: .touchUpInside)
                 addSubview(padlock)
-
                 padlock.translatesAutoresizingMaskIntoConstraints = false
 
                 if #available(iOS 11.0, *) {
-                    padlock.topAnchor.constraint(equalToSystemSpacingBelow: self.safeAreaLayoutGuide.topAnchor, multiplier: 1.0).isActive = true
-                    padlock.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor, constant: 0.0).isActive = true
+                    padlock.topAnchor.constraint(equalToSystemSpacingBelow: safeAreaLayoutGuide.topAnchor, multiplier: 1.0).isActive = true
+                    padlock.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor, constant: 0.0).isActive = true
                 } else {
                     padlock.topAnchor.constraint(equalTo: self.topAnchor, constant: 0.0).isActive = true
                     padlock.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0.0).isActive = true
@@ -90,9 +86,7 @@ import UIKit
                 padlock.widthAnchor.constraint(equalToConstant: 77.0).isActive = true
                 padlock.heightAnchor.constraint(equalToConstant: 31.0).isActive = true
             }
-
-            LayoutUtils.bind(view: closeButton, toTopRightOf: self)
-
+            closeButton.bind(toTopRightOf: self)
             didSetupConstraints = true
         }
 

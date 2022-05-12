@@ -13,4 +13,8 @@ class AdRepositoryMock: AdRepositoryType {
     func getAd(placementId: Int, request: AdRequest, completion: @escaping OnResult<AdResponse>) {
         completion(response)
     }
+
+    func getAd(placementId: Int, lineItemId: Int, creativeId: Int, request: AdRequest, completion: @escaping OnResult<AdResponse>) {
+        completion(response)
+    }
 }

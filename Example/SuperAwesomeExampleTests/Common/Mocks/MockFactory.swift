@@ -33,6 +33,7 @@ class MockFactory {
            campaignId: 30,
            campaignType: 40,
            isHouse: true,
+           isVpaid: true,
            safeAdApproved: true,
            showPadlock: showPadlock,
            lineItemId: 50,

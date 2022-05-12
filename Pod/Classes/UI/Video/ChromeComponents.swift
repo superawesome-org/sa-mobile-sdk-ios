@@ -108,11 +108,12 @@ extension UILabel {
     }
 }
 
-@objc(SAPadlock) class Padlock: UIButton {
+@objc(SAPadlock) class Padlock: UIButton, Injectable {
+    private lazy var imageProvider: ImageProviderType = dependencies.resolve()
 
     init() {
         super.init(frame: CGRect.zero)
-        setImage(SAImageUtils.padlockImage(), for: .normal)
+        setImage(imageProvider.safeAdImage, for: .normal)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -120,11 +121,13 @@ extension UILabel {
     }
 }
 
-@objc(CloseButton) class CloseButton: UIButton {
+@objc(CloseButton) class CloseButton: UIButton, Injectable {
+
+    private lazy var imageProvider: ImageProviderType = dependencies.resolve()
 
     init() {
         super.init(frame: CGRect.zero)
-        setImage(SAImageUtils.closeImage(), for: .normal)
+        setImage(imageProvider.closeImage, for: .normal)
     }
 
     required init?(coder aDecoder: NSCoder) {

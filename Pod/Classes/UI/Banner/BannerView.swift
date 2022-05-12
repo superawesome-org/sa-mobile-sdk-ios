@@ -167,11 +167,11 @@ public class BannerView: UIView, Injectable {
     @objc
     public func disableTestMode() { setTestMode(false) }
 
-    @available(*, deprecated, message: "Use `AwesomeAdsSdk.Configuration` instead")
+    @available(*, deprecated, message: "Use `AwesomeAds.initSDK()` to select configuration")
     @objc
     public func setConfigurationProduction() { }
 
-    @available(*, deprecated, message: "Use `AwesomeAdsSdk.Configuration` instead")
+    @available(*, deprecated, message: "Use `AwesomeAds.initSDK()` to select configuration")
     @objc
     public func setConfigurationStaging() { }
 

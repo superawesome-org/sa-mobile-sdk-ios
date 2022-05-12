@@ -40,6 +40,7 @@ class AdModelTests: XCTestCase {
             campaignId: 0,
             campaignType: 1,
             isHouse: false,
+            isVpaid: false,
             safeAdApproved: true,
             showPadlock: true,
             lineItemId: 2000,
