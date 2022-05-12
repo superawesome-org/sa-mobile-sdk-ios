@@ -42,6 +42,8 @@ public class AwesomeAds: NSObject {
     }
 
     /// Gets information about AwesomeAds SDK
+    ///
+    /// Returns `nil` if the AwesomeAds SDK has not been initialised
     @objc
     public func info() -> SdkInfoType? {
         guard initialised else { return nil }
@@ -50,6 +52,8 @@ public class AwesomeAds: NSObject {
     }
 
     /// Gets information about AwesomeAds SDK
+    ///
+    /// Returns `nil` if the AwesomeAds SDK has not been initialised
     @objc
     public static func info() -> SdkInfoType? { shared.info() }
 
