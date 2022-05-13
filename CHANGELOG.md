@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+8.3.4
+ - Exposed the payload property on the Creative object
+
 8.3.3
  - Fix occasional sizing issues with AwesomeVideoFullscreenPlayer.swift
 
