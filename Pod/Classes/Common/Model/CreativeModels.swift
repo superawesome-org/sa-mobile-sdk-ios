@@ -6,13 +6,13 @@
 //
 
 public struct Creative: Codable {
-    let id: Int
+    public let id: Int
     let name: String?
     let format: CreativeFormatType
-    let clickUrl: String?
+    public let clickUrl: String?
     let details: CreativeDetail
     let bumper: Bool?
-    let payload: String?
+    public let payload: String?
 
     enum CodingKeys: String, CodingKey {
         case id

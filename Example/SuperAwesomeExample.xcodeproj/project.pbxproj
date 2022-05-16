@@ -278,7 +278,6 @@
 		C6895C4F27F4C79B009FAE1A /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				C6895C5127F4C9F8009FAE1A /* Mocks */,
 				C6895C5027F4C7A1009FAE1A /* Common */,
 			);
 			path = UI;
@@ -290,13 +289,6 @@
 				C6895C4D27F4C780009FAE1A /* AdControllerTests.swift */,
 			);
 			path = Common;
-			sourceTree = "<group>";
-		};
-		C6895C5127F4C9F8009FAE1A /* Mocks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Mocks;
 			sourceTree = "<group>";
 		};
 		C6C6AEE827D7D1D000FFB5CA /* SuperAwesomeExampleTests */ = {
