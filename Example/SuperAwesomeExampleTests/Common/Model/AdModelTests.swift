@@ -32,8 +32,6 @@ class AdModelTests: XCTestCase {
             bumper: false,
             payload: nil)
         let ad = Ad(
-            creative: creative,
-            lineItemId: 2000,
             advertiserId: 1000,
             publisherId: 1000,
             moat: false,
@@ -45,9 +43,11 @@ class AdModelTests: XCTestCase {
             isVpaid: false,
             safeAdApproved: true,
             showPadlock: true,
+            lineItemId: 2000,
             test: true,
             app: 1000,
             device: "abc",
+            creative: creative,
             ksfRequest: nil)
         let response = AdResponse(3000, ad)
 
