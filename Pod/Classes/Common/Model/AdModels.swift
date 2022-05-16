@@ -6,6 +6,8 @@
 //
 
 public struct Ad: Codable {
+    public let creative: Creative
+    public let lineItemId: Int
     let advertiserId: Int
     let publisherId: Int
     let moat: Float
@@ -17,11 +19,9 @@ public struct Ad: Codable {
     let isVpaid: Bool?
     let safeAdApproved: Bool
     let showPadlock: Bool
-    public let lineItemId: Int
     let test: Bool
     let app: Int
     let device: String
-    public let creative: Creative
     let ksfRequest: String?
 
     enum CodingKeys: String, CodingKey {

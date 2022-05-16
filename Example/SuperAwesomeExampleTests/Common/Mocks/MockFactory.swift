@@ -25,22 +25,7 @@ class MockFactory {
         _ showPadlock: Bool = false,
         _ ksfRequest: String? = nil
     ) -> Ad {
-        Ad(advertiserId: 10,
-           publisherId: 20,
-           moat: 0.1,
-           isFill: true,
-           isFallback: false,
-           campaignId: 30,
-           campaignType: 40,
-           isHouse: true,
-           isVpaid: true,
-           safeAdApproved: true,
-           showPadlock: showPadlock,
-           lineItemId: 50,
-           test: false,
-           app: 70,
-           device: "device",
-           creative: Creative(
+        Ad(creative: Creative(
             id: 80,
             name: "name",
             format: format,
@@ -57,6 +42,21 @@ class MockFactory {
                 vast: vast),
             bumper: true,
             payload: nil),
+           lineItemId: 50,
+           advertiserId: 10,
+           publisherId: 20,
+           moat: 0.1,
+           isFill: true,
+           isFallback: false,
+           campaignId: 30,
+           campaignType: 40,
+           isHouse: true,
+           isVpaid: true,
+           safeAdApproved: true,
+           showPadlock: showPadlock,
+           test: false,
+           app: 70,
+           device: "device",
            ksfRequest: ksfRequest)
     }
 
