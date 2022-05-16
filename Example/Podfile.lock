@@ -5,7 +5,7 @@ PODS:
   - Moya/Core (14.0.0):
     - Alamofire (~> 5.0)
   - Nimble (10.0.0)
-  - SuperAwesome (8.3.3):
+  - SuperAwesome (8.3.4):
     - Moya (~> 14.0)
     - SwiftyXMLParser (= 5.6.0)
   - SwiftyXMLParser (5.6.0)
@@ -29,7 +29,7 @@ SPEC CHECKSUMS:
   Alamofire: 87bd8c952f9a4454320fce00d9cc3de57bcadaf5
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   Nimble: 5316ef81a170ce87baf72dd961f22f89a602ff84
-  SuperAwesome: b5f4cfdb6339035aa126188a31a2966bf75c951d
+  SuperAwesome: 20408a2b68177e259143a944c3d66eb385e539ab
   SwiftyXMLParser: 9b98995235961881322015ebe38d1f3d7c953bd7
 
 PODFILE CHECKSUM: b2e141ff33d7b2ba0a68994472ccb6202a4eb48f
