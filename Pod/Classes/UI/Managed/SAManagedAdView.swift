@@ -82,13 +82,8 @@ class AdViewMessageHandler: NSObject, WKScriptMessageHandler {
 
     internal var finishedLoading = false
 
-    private let session = SASession()
-    private let loader = SALoader()
     private var callback: AdEventCallback?
-    private let events = SAEvents()
     private var placementId: Int = 0
-    private var isParentalGateEnabled = SA_DEFAULT_PARENTALGATE != 0
-    private var isBumperPageEnabled = SA_DEFAULT_BUMPERPAGE != 0
     private var moatLimiting = true
     private var bridge: AdViewJavaScriptBridge?
 
@@ -134,8 +129,6 @@ class AdViewMessageHandler: NSObject, WKScriptMessageHandler {
     }
 
     private func initView() {
-        setConfiguration(value: SAConfiguration(rawValue: SAConfiguration.RawValue(SA_DEFAULT_CONFIGURATION))!)
-        setTestMode(value: SA_DEFAULT_TESTMODE != 0)
         addSubview(webView)
         webView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -148,15 +141,11 @@ class AdViewMessageHandler: NSObject, WKScriptMessageHandler {
         webView.uiDelegate = self
     }
 
-    @objc(load:html:) public func load(placementId: Int, html: String) {
-        if let baseUrl = session.getBaseUrl(), let url = URL(string: baseUrl) {
+    public func load(placementId: Int, html: String, baseUrl: String?) {
+        if let baseUrl = baseUrl, let url = URL(string: baseUrl) {
             self.placementId = placementId
 
             logger.info(html)
-
-            if !moatLimiting {
-                events.disableMoatLimiting()
-            }
 
             webView.loadHTMLString(html, baseURL: url)
 
@@ -170,108 +159,12 @@ class AdViewMessageHandler: NSObject, WKScriptMessageHandler {
         self.bridge = bridge
     }
 
-    @objc(setCallback:) public func setCallback(value: AdEventCallback? = nil) {
+    public func setCallback(value: AdEventCallback? = nil) {
         self.callback = value
     }
 
-    @objc public func setColor(value: Bool) {
-        if value {
-            backgroundColor = UIColor(red: 224/255, green: 224/255, blue: 224/255, alpha: 0.0)
-        } else {
-            backgroundColor = UIColor(red: 224/255, green: 224/255, blue: 224/255, alpha: 1.0)
-        }
-    }
-
-    @objc public func setConfigurationProduction() {
-        setConfiguration(value: SAConfiguration.PRODUCTION)
-    }
-
-    @objc public func setConfigurationStaging() {
-        setConfiguration(value: SAConfiguration.STAGING)
-    }
-
-    @objc public func setConfiguration(value: SAConfiguration) {
-        session.setConfiguration(value)
-    }
-
-    @objc public func setTestMode(value: Bool) {
-        session.setTestMode(value)
-    }
-
-    @objc public func enableTestMode() {
-        session.setTestMode(true)
-    }
-
-    @objc public func disableTestMode() {
-        session.setTestMode(false)
-    }
-
-    @objc public func disableMoatLimiting() {
-        moatLimiting = false
-    }
-
-    @objc public func enableMoatLimiting() {
-        moatLimiting = true
-    }
-
-    @objc public func enableBumperPage() {
-        isBumperPageEnabled = true
-    }
-
-    @objc public func disableBumperPage() {
-        isBumperPageEnabled = false
-    }
-
-    @objc public func enableParentalGate() {
-        isParentalGateEnabled = true
-    }
-
-    @objc public func disableParentalGate() {
-        isParentalGateEnabled = false
-    }
-
-    @objc public func setParentalGate(_ isEnabled: Bool) {
-        isParentalGateEnabled = isEnabled
-    }
-
-    @objc public func setBumperPage(_ isEnabled: Bool) {
-        isBumperPageEnabled = isEnabled
-    }
-
-    private func showParentalGate(completion: @escaping() -> Void) {
-        if isParentalGateEnabled {
-            SAParentalGate.setPgOpenCallback {[weak self]  in
-                self?.events.triggerPgOpenEvent()
-            }
-            SAParentalGate.setPgCanceledCallback {[weak self]  in
-                self?.events.triggerPgCloseEvent()
-            }
-            SAParentalGate.setPgFailedCallback {[weak self]  in
-                self?.events.triggerPgFailEvent()
-            }
-            SAParentalGate.setPgSuccessCallback { [weak self]  in
-                self?.events.triggerPgSuccessEvent()
-                completion()
-            }
-            SAParentalGate.play()
-        } else {
-            completion()
-        }
-    }
-
-    private func onClick(url: URL) {
-        if isBumperPageEnabled {
-            SABumperPage.setCallback { [weak self] in
-                self?.handle(url: url)
-            }
-            SABumperPage.play()
-        } else {
-            handle(url: url)
-        }
-    }
-
-    private func handle(url: URL) {
-        UIApplication.shared.open(url)
+    public func setColor(value: Bool) {
+        backgroundColor = value ? UIColor.clear : Constants.backgroundGray
     }
 
     func close() {
@@ -290,13 +183,9 @@ extension SAManagedAdView: WKNavigationDelegate, WKUIDelegate {
                         createWebViewWith configuration: WKWebViewConfiguration,
                         for navigationAction: WKNavigationAction,
                         windowFeatures: WKWindowFeatures) -> WKWebView? {
-        callback?(placementId, .adClicked)
         if finishedLoading && navigationAction.navigationType == .other {
-            if let navUrl = navigationAction.request.url {
-                callback?(placementId, .adClicked)
-                showParentalGate { [weak self] in
-                    self?.handle(url: navUrl)
-                }
+            if let url = navigationAction.request.url {
+                bridge?.onAdClick(url: url)
             }
         }
         return nil
@@ -314,6 +203,11 @@ extension SAManagedAdView: WKNavigationDelegate, WKUIDelegate {
 }
 
 extension SAManagedAdView: AdViewJavaScriptBridge {
+    // Propagate events to the callback bridge
+    func onAdClick(url: URL) {
+        bridge?.onAdClick(url: url)
+    }
+
     // Propagate events to the callback bridge
     func onEvent(event: AdEvent) {
         bridge?.onEvent(event: event)
