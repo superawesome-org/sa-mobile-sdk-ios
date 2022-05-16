@@ -7,11 +7,11 @@
 
 public struct Creative: Codable {
     public let id: Int
-    public let name: String?
-    public let format: CreativeFormatType
+    let name: String?
+    let format: CreativeFormatType
     public let clickUrl: String?
-    public let details: CreativeDetail
-    public let bumper: Bool?
+    let details: CreativeDetail
+    let bumper: Bool?
     public let payload: String?
 
     enum CodingKeys: String, CodingKey {
@@ -25,16 +25,16 @@ public struct Creative: Codable {
     }
 }
 
-public struct CreativeDetail: Codable {
-    public let url: String?
-    public let image: String?
-    public let video: String?
-    public let placementFormat: String
-    public let tag: String?
-    public let width: Int
-    public let height: Int
-    public let duration: Int
-    public let vast: String?
+struct CreativeDetail: Codable {
+    let url: String?
+    let image: String?
+    let video: String?
+    let placementFormat: String
+    let tag: String?
+    let width: Int
+    let height: Int
+    let duration: Int
+    let vast: String?
 
     enum CodingKeys: String, CodingKey {
         case url
@@ -49,7 +49,7 @@ public struct CreativeDetail: Codable {
         }
 }
 
-public enum CreativeFormatType: String, Codable, DecodableDefaultLastItem {
+enum CreativeFormatType: String, Codable, DecodableDefaultLastItem {
     case video
     case imageWithLink = "image_with_link"
     case tag

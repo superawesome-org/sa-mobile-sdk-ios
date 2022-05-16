@@ -11,7 +11,7 @@ protocol DecodableDefaultLastItem: Decodable & CaseIterable & RawRepresentable
 where RawValue: Decodable, AllCases: BidirectionalCollection { }
 
 extension DecodableDefaultLastItem {
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         self = try Self(rawValue: decoder.singleValueContainer().decode(RawValue.self)) ?? Self.allCases.last!
     }
 }
