@@ -37,6 +37,7 @@ protocol AdControllerType {
     // trigger web events
     func triggerViewableImpression()
     func triggerImpressionEvent()
+    func triggerDwellTime()
 }
 
 class AdController: AdControllerType, Injectable {
@@ -126,6 +127,12 @@ class AdController: AdControllerType, Injectable {
         guard let adResponse = adResponse else { return }
         eventRepository.impression(adResponse, completion: nil)
         logger.info("Event callback: impression for placement \(placementId)")
+    }
+
+    func triggerDwellTime() {
+        guard let adResponse = adResponse else { return }
+        eventRepository.dwellTime(adResponse, completion: nil)
+        logger.info("Event callback: dwellTime for placement \(placementId)")
     }
 
     func load(_ placementId: Int, _ request: AdRequest) {
