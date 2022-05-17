@@ -8,22 +8,11 @@
 #ifndef SuperAwesome_h
 #define SuperAwesome_h
 
-#import "SAOrientation.h"
-#import "SADefines.h"
-
 @protocol SAVideoPlayerControlsView;
 @protocol SAVideoPlayerControlsViewDelegate;
 @class SAVideoAd;
 @class SABannerAd;
 @class SAInterstitialAd;
 @class AwesomeAds;
-
-#if defined(__has_include)
-#if __has_include(<SAGDPRKisMinor/SAAgeCheck.h>)
-#import <SAGDPRKisMinor/SAAgeCheck.h>
-#else
-#import "SAAgeCheck.h"
-#endif
-#endif
 
 #endif

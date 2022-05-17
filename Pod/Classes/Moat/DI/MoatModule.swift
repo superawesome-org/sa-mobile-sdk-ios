@@ -10,7 +10,6 @@ import SUPMoatMobileAppKit
 class MoatModule: DependencyModule {
     func initMoat(_ loggingEnabled: Bool) {
         let options = SUPMoatOptions()
-        options.idfaCollectionEnabled = false
         options.debugLoggingEnabled = loggingEnabled
         let analytics = SUPMoatAnalytics.sharedInstance()
         analytics?.start(with: options)
