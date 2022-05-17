@@ -7,4 +7,5 @@
 
 protocol AdViewJavaScriptBridge {
     func onEvent(event: AdEvent)
+    func onAdClick(url: URL)
 }

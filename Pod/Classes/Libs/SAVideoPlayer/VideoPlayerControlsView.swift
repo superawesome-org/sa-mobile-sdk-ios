@@ -12,7 +12,7 @@ import Foundation
  * (that is also used to control the video from the user's perspective)
  */
 @objc(SAVideoPlayerControlsView)
-public protocol VideoPlayerControlsView: class {
+public protocol VideoPlayerControlsView: AnyObject {
 
     /**
      * Method that sets the chrome in the playing state
@@ -100,7 +100,7 @@ public protocol VideoPlayerControlsView: class {
  * The associated delegate of chrome control
  */
 @objc(SAVideoPlayerControlsViewDelegate)
-public protocol VideoPlayerControlsViewDelegate: class {
+public protocol VideoPlayerControlsViewDelegate: AnyObject {
 
     /**
      * This method is called by the chrome control when the progress

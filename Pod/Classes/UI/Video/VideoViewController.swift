@@ -14,24 +14,13 @@ import UIKit
     private var videoPlayer: AwesomeVideoPlayer!
     private var chrome: AdSocialVideoPlayerControlsView!
     private var logger: LoggerType = dependencies.resolve(param: VideoViewController.self)
-
-    struct Config {
-        let showSmallClick: Bool
-        let showSafeAdLogo: Bool
-        let showCloseButton: Bool
-        let shouldCloseAtEnd: Bool
-        let isParentalGateEnabled: Bool
-        let isBumperPageEnabled: Bool
-        let orientation: Orientation
-    }
-
-    private let config: Config
+    private let config: AdConfig
     private let control: VideoPlayerControls = VideoPlayerController()
     private let videoEvents: VideoEvents
 
     private var callback: AdEventCallback?
 
-    init(adResponse: AdResponse, callback: AdEventCallback?, config: Config) {
+    init(adResponse: AdResponse, callback: AdEventCallback?, config: AdConfig) {
         self.config = config
         self.callback = callback
         videoEvents = VideoEvents(adResponse)

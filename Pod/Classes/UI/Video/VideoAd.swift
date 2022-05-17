@@ -94,24 +94,24 @@ public class VideoAd: NSObject, Injectable {
 
         switch adState {
         case .hasAd(let ad):
+            let config = AdConfig(showSmallClick: shouldShowSmallClickButton,
+                                  showSafeAdLogo: ad.advert.showPadlock,
+                                  showCloseButton: shouldShowCloseButton,
+                                  shouldCloseAtEnd: shouldAutomaticallyCloseAtEnd,
+                                  isParentalGateEnabled: isParentalGateEnabled,
+                                  isBumperPageEnabled: isBumperPageEnabled,
+                                  orientation: orientation)
             if ad.isVpaid {
-                let managedVideoAdController = SAManagedAdViewController(placementId: ad.placementId,
-                                                                         html: ad.advert.creative.details.tag ?? "",
-                                                                         callback: callback)
+                let managedVideoAdController = SAManagedAdViewController(adResponse: ad, config: config, callback: callback)
                 managedVideoAdController.modalPresentationStyle = .fullScreen
                 managedVideoAdController.modalTransitionStyle = .coverVertical
+
                 viewController.present(managedVideoAdController, animated: true)
             } else {
-                let config = VideoViewController.Config(showSmallClick: shouldShowSmallClickButton,
-                                                        showSafeAdLogo: ad.advert.showPadlock,
-                                                        showCloseButton: shouldShowCloseButton,
-                                                        shouldCloseAtEnd: shouldAutomaticallyCloseAtEnd,
-                                                        isParentalGateEnabled: isParentalGateEnabled,
-                                                        isBumperPageEnabled: isBumperPageEnabled,
-                                                        orientation: orientation)
                 let adViewController = VideoViewController(adResponse: ad, callback: callback, config: config)
                 adViewController.modalPresentationStyle = .fullScreen
                 adViewController.modalTransitionStyle = .coverVertical
+
                 viewController.present(adViewController, animated: true)
             }
             ads[placementId] = AdState.none

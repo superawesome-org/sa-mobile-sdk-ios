@@ -76,7 +76,7 @@ public protocol VideoPlayer: VideoPlayerControlsDelegate, VideoPlayerControlsVie
  * The Delegate of the video player
  */
 @objc(SAVideoPlayerDelegate)
-public protocol VideoPlayerDelegate: class {
+public protocol VideoPlayerDelegate: AnyObject {
     /**
      * This method is called by the video player when it is prepared and
      * has started to play a video

@@ -13,13 +13,19 @@ import WebKit
     private let html: String
     private var closeButton: UIButton?
     private var callback: AdEventCallback?
+    private let config: AdConfig
     private lazy var imageProvider: ImageProviderType = dependencies.resolve()
+    private lazy var controller: AdControllerType = dependencies.resolve()
 
-    init(placementId: Int, html: String, callback: AdEventCallback?) {
-        self.placementId = placementId
-        self.html = html
+    init(adResponse: AdResponse, config: AdConfig, callback: AdEventCallback?) {
+        self.placementId = adResponse.placementId
+        self.html = adResponse.advert.creative.details.tag ?? ""
         self.callback = callback
+        self.config = config
         super.init(nibName: nil, bundle: nil)
+        self.controller.adResponse = adResponse
+        self.controller.parentalGateEnabled = config.isParentalGateEnabled
+        self.controller.bumperPageEnabled = config.isBumperPageEnabled
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -38,7 +44,9 @@ import WebKit
         initView()
 
         DispatchQueue.main.async {
-            self.managedAdView.load(placementId: self.placementId, html: self.html)
+            self.managedAdView.load(placementId: self.placementId,
+                                    html: self.html,
+                                    baseUrl: self.controller.adResponse?.baseUrl)
         }
 
     }
@@ -46,6 +54,7 @@ import WebKit
     /// Method that is called to close the ad
     func close() {
         managedAdView.close()
+        controller.close()
 
         dismiss(animated: true, completion: nil)
     }
@@ -100,6 +109,11 @@ extension SAManagedAdViewController: AdViewJavaScriptBridge {
                 close()
             }
         }
+    }
+
+    func onAdClick(url: URL) {
+        callback?(placementId, .adClicked)
+        controller.handleAdTap(url: url)
     }
 }
 
