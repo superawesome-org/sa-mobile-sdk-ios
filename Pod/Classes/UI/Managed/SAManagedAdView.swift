@@ -164,7 +164,7 @@ class AdViewMessageHandler: NSObject, WKScriptMessageHandler {
     }
 
     public func setColor(value: Bool) {
-        backgroundColor = value ? UIColor.clear : Constants.backgroundGray
+        backgroundColor = value ? .clear : Constants.backgroundGray
     }
 
     func close() {
