@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+8.3.5
+ - Refactor: video player flow to only Swift
+ - Refactor: expose SDK version information
+ - Refactor: update access modifiers for Creative object
+ - Fix: sending dwell time events correctly on iOS
+ 
 8.3.4
  - Exposed the payload property on the Creative object
 
@@ -312,5 +318,5 @@ with regards to rewarded videos since now you can trigger your reward UI while s
  - Base version 5
  - Added new publisher interface for SABannerAd, SAInterstitialAd, SAVideoAd
  - In this new version each type of ad is responsbile for loading & playing the ad unit
- - Also, onse an ad has been played, it has to be loaded again
+ - Also, once an ad has been played, it has to be loaded again
 
