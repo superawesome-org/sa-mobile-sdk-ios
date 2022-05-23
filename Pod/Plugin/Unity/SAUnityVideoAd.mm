@@ -40,8 +40,7 @@ extern "C" {
      */
     void SuperAwesomeUnitySAVideoAdLoad(int placementId, int configuration, bool test, int playback) {
         [SAVideoAd setTestMode:test];
-        [SAVideoAd setConfiguration:getConfigurationFromInt(configuration)];
-        [SAVideoAd setPlaybackMode:getRTBStartDelayFromInt(playback)];
+        [SAVideoAd setPlaybackMode:[StartDelayHelper from:playback]];
         [SAVideoAd load: placementId];
     }
     
@@ -73,7 +72,7 @@ extern "C" {
         [SAVideoAd setCloseButton:shouldShowCloseButton];
         [SAVideoAd setSmallClick:shouldShowSmallClickButton];
         [SAVideoAd setCloseAtEnd:shouldAutomaticallyCloseAtEnd];
-        [SAVideoAd setOrientation: getOrientationFromInt (orientation)];
+        [SAVideoAd setOrientation:[OrientationHelper from: orientation]];
         [SAVideoAd play: placementId fromVC: root];
     }
 
@@ -94,7 +93,7 @@ extern "C" {
         [SAVideoAd setCloseButton:shouldShowCloseButton];
         [SAVideoAd setSmallClick:shouldShowSmallClickButton];
         [SAVideoAd setCloseAtEnd:shouldAutomaticallyCloseAtEnd];
-        [SAVideoAd setOrientation: getOrientationFromInt (orientation)];
+        [SAVideoAd setOrientation:[OrientationHelper from: orientation]];
         [SAVideoAd setTestMode: isTestingEnabled];
     }
     
