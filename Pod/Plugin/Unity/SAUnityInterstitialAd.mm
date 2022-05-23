@@ -37,7 +37,6 @@ extern "C" {
      */
     void SuperAwesomeUnitySAInterstitialAdLoad (int placementId, int configuration, bool test) {
         [SAInterstitialAd setTestMode:test];
-        [SAInterstitialAd setConfiguration:getConfigurationFromInt(configuration)];
         [SAInterstitialAd load: placementId];
     }
     
@@ -63,7 +62,7 @@ extern "C" {
         UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
         [SAInterstitialAd setParentalGate:isParentalGateEnabled];
         [SAInterstitialAd setBumperPage:isBumperPageEnabled];
-//        [SAInterstitialAd setOrientation:getOrientationFromInt (orientation)];
+        [SAInterstitialAd setOrientation:[OrientationHelper from: orientation]];
         [SAInterstitialAd play: placementId fromVC: root];
     }
 
@@ -75,7 +74,8 @@ extern "C" {
                                                          int orientation, bool isTestingEnabled) {
         [SAInterstitialAd setParentalGate:isParentalGateEnabled];
         [SAInterstitialAd setBumperPage:isBumperPageEnabled];
-//        [SAInterstitialAd setOrientation:getOrientationFromInt (orientation)];
+        [SAInterstitialAd setOrientation:[OrientationHelper from: orientation]];
         [SAInterstitialAd setTestMode:isTestingEnabled];
     }
 }
+

@@ -7,7 +7,7 @@
 
 import UIKit
 
-@objc
+@objc(SABumperPage)
 public class BumperPage: UIViewController, Injectable {
     private static let CounterMaxInSeconds = 3
 

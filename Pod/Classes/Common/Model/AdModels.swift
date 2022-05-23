@@ -165,6 +165,15 @@ extension AdRequest {
     }
 }
 
+@objc
+public class StartDelayHelper: NSObject {
+    /// Creates `StartDelay` enum from `int` value.
+    @objc
+    public class func from(_ value: Int) -> AdRequest.StartDelay {
+        AdRequest.StartDelay(rawValue: value) ?? Constants.defaultStartDelay
+    }
+}
+
 /**
  * This enum holds all the possible callback values that an ad sends during its lifetime
  *  - adLoaded:         ad was loaded successfully and is ready

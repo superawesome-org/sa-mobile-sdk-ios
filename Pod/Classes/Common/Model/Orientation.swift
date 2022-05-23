@@ -11,3 +11,12 @@ public enum Orientation: Int {
     case portrait = 1
     case landscape = 2
 }
+
+@objc
+public class OrientationHelper: NSObject {
+    /// Creates `Orientation` enum from `int` value.
+    @objc
+    public class func from(_ value: Int) -> Orientation {
+        Orientation(rawValue: value) ?? Constants.defaultOrientation
+    }
+}

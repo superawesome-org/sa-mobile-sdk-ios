@@ -4,7 +4,6 @@
  */
 
 #import <UIKit/UIKit.h>
-#import <SuperAwesome/SAVersion.h>
 #import "SAUnityCallback.h"
 
 extern "C" {
@@ -19,6 +18,6 @@ extern "C" {
         NSString *version = [NSString stringWithUTF8String:versionString];
         NSString *sdk = [NSString stringWithUTF8String:sdkString];
         
-        [SdkInfo overrideVersion:version withPlatform: @"unity"];
+        [SdkInfo overrideVersion:version withPlatform: sdk];
     }
 }

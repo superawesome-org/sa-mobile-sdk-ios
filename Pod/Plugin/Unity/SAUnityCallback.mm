@@ -4,7 +4,15 @@
  */
 
 #import <UIKit/UIKit.h>
-#import <SuperAwesome/SuperAwesome.h>
+#import <SuperAwesome/SuperAwesome-Swift.h>
+
+static inline NSString* jsonData(NSDictionary *data) {
+    if ([NSJSONSerialization isValidJSONObject:data]) {
+        NSData *json = [NSJSONSerialization dataWithJSONObject:data options:kNilOptions error:nil];
+        return [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding];
+    }
+    return nil;
+}
 
 /**
  * Generic method used to send messages back to unity
@@ -15,7 +23,7 @@
 static inline void sendToUnity (NSString *unityName, NSDictionary *data) {
     
     const char *name = [unityName UTF8String];
-    NSString *payload = [data jsonCompactStringRepresentation];
+    NSString *payload = jsonData(data);
     const char *payloadUTF8 = [payload UTF8String];
     UnitySendMessage (name, "nativeCallback", payloadUTF8);
     
@@ -38,3 +46,4 @@ static inline void unitySendAdCallback (NSString *unityName, NSInteger placement
     sendToUnity(unityName, data);
     
 }
+

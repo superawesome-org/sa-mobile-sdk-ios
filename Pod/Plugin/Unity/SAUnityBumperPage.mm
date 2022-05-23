@@ -5,7 +5,7 @@
  */
 
 #import <UIKit/UIKit.h>
-#import <SuperAwesome/SABumperPage.h>
+#import <SuperAwesome/SuperAwesome-Swift.h>
 
 extern "C" {
     /**
@@ -15,7 +15,6 @@ extern "C" {
      * @param nameString pointer to an array of chars containing the version
      */
     void SuperAwesomeUnityBumperOverrideName (const char *nameString) {
-        
         NSString *name = [NSString stringWithUTF8String:nameString];
         [SABumperPage overrideName: name];
     }
