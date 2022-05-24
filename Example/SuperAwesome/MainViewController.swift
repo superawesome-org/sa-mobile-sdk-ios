@@ -252,8 +252,6 @@ class MainViewController: UIViewController {
 
     @objc private func onButtonClick(_ sender: UIButton) {
         let item = rows[sender.tag]
-        print("\(item.type.rawValue) clicked for \(item.placementId)")
-
         if let item = item as? SingleIdRow {
             handleSingleIdRowTapped(item: item)
         } else if let item = item as? MultiIdRow{
@@ -262,6 +260,7 @@ class MainViewController: UIViewController {
     }
 
     private func handleSingleIdRowTapped(item: SingleIdRow) {
+
         print("\(item.type.rawValue) clicked for \(item.placementId)")
 
         switch item.type {
@@ -275,7 +274,12 @@ class MainViewController: UIViewController {
     }
 
     private func handleMultiIdRowTapped(item: MultiIdRow) {
-        print("\(item.type.rawValue) clicked for placement id: \(item.placementId) lineItemId: \(item.lineItemId) creativeId: \(item.creativeId)" )
+
+        print("\(item.type.rawValue) clicked"
+              + " for placement id: \(item.placementId)"
+              + " lineItemId: \(item.lineItemId)"
+              + " creativeId: \(item.creativeId)"
+        )
 
         switch item.type {
         case .banner:
