@@ -147,14 +147,17 @@ class AdController: AdControllerType, Injectable {
     }
 
     func load(_ placementId: Int, lineItemId: Int, creativeId: Int, _ request: AdRequest) {
-        adRepository.getAd(placementId: placementId,
-                           request: request) { [weak self] result in
-            switch result {
-            case .success(let response): self?.onSuccess(response)
-            case .failure(let error): self?.onFailure(error)
-            }
 
-        }
+        adRepository.getAd(
+            placementId: placementId,
+            lineItemId: lineItemId,
+            creativeId: creativeId,
+            request: request) { [weak self] result in
+                switch result {
+                case .success(let response): self?.onSuccess(response)
+                case .failure(let error): self?.onFailure(error)
+                }
+            }
     }
 
     private func onSuccess(_ response: AdResponse) {

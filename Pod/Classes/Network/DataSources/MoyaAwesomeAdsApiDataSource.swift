@@ -37,7 +37,15 @@ class MoyaAwesomeAdsApiDataSource: AwesomeAdsApiDataSourceType {
     }
 
     func getAd(placementId: Int, lineItemId: Int, creativeId: Int, query: AdQuery, completion: @escaping OnResult<Ad>) {
-        let target = AwesomeAdsTarget(environment, .adByLineAndCreativeId(lineItemId: lineItemId, creativeId: creativeId, query: query))
+        let target = AwesomeAdsTarget(
+            environment,
+            .adByPlacementLineAndCreativeId(
+                placementId: placementId,
+                lineItemId: lineItemId,
+                creativeId: creativeId,
+                query: query
+            )
+        )
 
         provider.request(target) { result in
             switch result {
