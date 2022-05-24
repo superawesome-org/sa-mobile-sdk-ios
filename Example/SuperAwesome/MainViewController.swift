@@ -14,18 +14,58 @@ enum RowType: String {
     case video = "Video"
 }
 
-struct Row {
+protocol AdRow {
+    var type: RowType { get }
+    var name: String { get }
+    var placementId: Int { get }
+}
+
+struct SingleIdRow: AdRow {
     let type: RowType
     let name: String
     let placementId: Int
 }
 
-private let rows = [
-    Row(type: .banner, name: "Leaderboard", placementId: 82088),
-    Row(type: .interstitial, name: "Portrait", placementId: 82089),
-    Row(type: .interstitial, name: "KSF", placementId: 84799),
-    Row(type: .video, name: "Direct", placementId: 82090),
-    Row(type: .video, name: "VPAID via KSF", placementId: 84798)
+struct MultiIdRow: AdRow {
+    let type: RowType
+    let name: String
+    let placementId: Int
+    let lineItemId: Int
+    let creativeId: Int
+}
+
+private let rows: [AdRow] = [
+    MultiIdRow(
+        type: .banner,
+        name: "Leaderboard MultiId",
+        placementId: 82088,
+        lineItemId: 176803,
+        creativeId: 499387
+    ),
+    SingleIdRow(
+        type: .interstitial,
+        name: "Portrait",
+        placementId: 82089
+    ),
+    MultiIdRow(
+        type: .interstitial,
+        name: "Portrait MultiId",
+        placementId: 82089,
+        lineItemId: 176803,
+        creativeId: 503038
+    ),
+    MultiIdRow(
+        type: .video,
+        name: "Direct MultiId",
+        placementId: 82090,
+        lineItemId: 176803,
+        creativeId: 504433
+    ),
+    SingleIdRow(
+        type: .video,
+        name: "VPAID via KSF",
+        placementId: 84798
+    )
 ]
 
 class MainViewController: UIViewController {
@@ -214,6 +254,16 @@ class MainViewController: UIViewController {
         let item = rows[sender.tag]
         print("\(item.type.rawValue) clicked for \(item.placementId)")
 
+        if let item = item as? SingleIdRow {
+            handleSingleIdRowTapped(item: item)
+        } else if let item = item as? MultiIdRow{
+            handleMultiIdRowTapped(item: item)
+        }
+    }
+
+    private func handleSingleIdRowTapped(item: SingleIdRow) {
+        print("\(item.type.rawValue) clicked for \(item.placementId)")
+
         switch item.type {
         case .banner:
             bannerView.load(item.placementId)
@@ -221,6 +271,31 @@ class MainViewController: UIViewController {
             InterstitialAd.load(item.placementId)
         case .video:
             VideoAd.load(withPlacementId: item.placementId)
+        }
+    }
+
+    private func handleMultiIdRowTapped(item: MultiIdRow) {
+        print("\(item.type.rawValue) clicked for placement id: \(item.placementId) lineItemId: \(item.lineItemId) creativeId: \(item.creativeId)" )
+
+        switch item.type {
+        case .banner:
+            bannerView.load(
+                item.placementId,
+                lineItemId: item.lineItemId,
+                creativeId: item.creativeId
+            )
+        case .interstitial:
+            InterstitialAd.load(
+                item.placementId,
+                lineItemId: item.lineItemId,
+                creativeId: item.creativeId
+            )
+        case .video:
+            VideoAd.load(
+                withPlacementId: item.placementId,
+                lineItemId: item.lineItemId,
+                creativeId: item.creativeId
+            )
         }
     }
 }

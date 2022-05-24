@@ -62,7 +62,7 @@ public class VideoAd: NSObject, Injectable {
     }
 
     @objc(load: creativeId: lineItemId:)
-    public static func load(withPlacementId placementId: Int, creativeId: Int, lineItemId: Int) {
+    public static func load(withPlacementId placementId: Int, lineItemId: Int, creativeId: Int) {
         let adState = ads[placementId] ?? .none
 
         switch adState {
