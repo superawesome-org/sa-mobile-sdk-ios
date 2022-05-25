@@ -11,21 +11,27 @@ import Nimble
 @testable import SuperAwesome
 
 class AdRepositoryTests: XCTestCase {
-    var result: Result<AdResponse, Error>?
+
+    private let mockDataSource = AdDataSourceMock()
+    private let mockAdQueryMaker = AdQueryMakerMock()
+    private let mockAdProcessor = AdProcessorMock()
+    private lazy var adRepository = AdRepository(
+        dataSource: mockDataSource,
+        adQueryMaker: mockAdQueryMaker,
+        adProcessor: mockAdProcessor
+    )
+
+    private var result: Result<AdResponse, Error>?
 
     override func setUp() {
         super.setUp()
         result = nil
     }
 
-    private func prepare(expectedResult: Result<Ad, Error>) {
+    private func prepareWithSingleId(expectedResult: Result<Ad, Error>) {
         // Given
         let placementId: Int = 1
-        let mockDataSource = AdDataSourceMock()
         mockDataSource.mockAdResult = expectedResult
-        let mockAdQueryMaker = AdQueryMakerMock()
-        let mockAdProcessor = AdProcessorMock()
-        let adRepository = AdRepository(dataSource: mockDataSource, adQueryMaker: mockAdQueryMaker, adProcessor: mockAdProcessor)
 
         // When
         let expectation = self.expectation(description: "request")
@@ -41,11 +47,44 @@ class AdRepositoryTests: XCTestCase {
         expect(self.result?.isSuccess).to(equal(expectedResult.isSuccess))
     }
 
+    private func prepareWithMultiId(expectedResult: Result<Ad, Error>) {
+        // Given
+        let placementId: Int = 1
+        let lineItemId: Int = 2
+        let creativeId: Int = 3
+        mockDataSource.mockAdResult = expectedResult
+
+        // When
+        let expectation = self.expectation(description: "request")
+
+        adRepository.getAd(
+            placementId: placementId,
+            lineItemId: lineItemId,
+            creativeId: creativeId,
+            request: MockFactory.makeAdRequest()) { result in
+                self.result = result
+                expectation.fulfill()
+            }
+
+        waitForExpectations(timeout: 2.0, handler: nil)
+
+        // Then
+        expect(self.result?.isSuccess).to(equal(expectedResult.isSuccess))
+    }
+
     func test_getAdCalled_validResponse_success() throws {
-        prepare(expectedResult: Result.success(MockFactory.makeAd()))
+        prepareWithSingleId(expectedResult: Result.success(MockFactory.makeAd()))
     }
 
     func test_getAdCalled_invalidResponse_failure() throws {
-        prepare(expectedResult: Result.failure(MockFactory.makeError()))
+        prepareWithSingleId(expectedResult: Result.failure(MockFactory.makeError()))
+    }
+
+    func test_getAdWithMultiIdCalled_validResponse_success() throws {
+        prepareWithMultiId(expectedResult: Result.success(MockFactory.makeAd()))
+    }
+
+    func test_getAdWithMultiIdCalled_invalidResponse_failure() throws {
+        prepareWithMultiId(expectedResult: Result.failure(MockFactory.makeError()))
     }
 }
