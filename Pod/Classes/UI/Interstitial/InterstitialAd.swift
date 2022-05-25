@@ -43,7 +43,6 @@ public class InterstitialAd: NSObject, Injectable {
      *   - lineItemId: id of the line item
      *   - creativeId: id of the creative
      */
-
     @objc
     public class func load(_ placementId: Int, lineItemId: Int, creativeId: Int) {
         logger.info("load() for placement Id: \(placementId) lineItemId: \(lineItemId), creativeId: \(creativeId)")
