@@ -25,9 +25,7 @@ class AwesomeAdsTargetTest: XCTestCase {
                                         query: mockAdQuery
                                       ))
 
-        let expectedPath = "/ad/1"
-
-        XCTAssertEqual(expectedPath, target.path)
+        XCTAssertEqual("/ad/1", target.path)
     }
 
     func test_target_path_equals_expected_path_for_adByPlacementLineAndCreativeId() {
@@ -40,9 +38,7 @@ class AwesomeAdsTargetTest: XCTestCase {
                                         query: mockAdQuery
                                       ))
 
-        let expectedPath = "/ad/1/2/3"
-
-        XCTAssertEqual(expectedPath, target.path)
+        XCTAssertEqual("/ad/1/2/3", target.path)
     }
 
     func test_target_path_equals_expected_path_for_impression() {
@@ -52,9 +48,7 @@ class AwesomeAdsTargetTest: XCTestCase {
                                         query: mocEventdQuery
                                       ))
 
-        let expectedPath = "/impression"
-
-        XCTAssertEqual(expectedPath, target.path)
+        XCTAssertEqual("/impression", target.path)
     }
 
     func test_target_path_equals_expected_path_for_click() {
@@ -64,9 +58,7 @@ class AwesomeAdsTargetTest: XCTestCase {
                                         query: mocEventdQuery
                                       ))
 
-        let expectedPath = "/click"
-
-        XCTAssertEqual(expectedPath, target.path)
+        XCTAssertEqual("/click", target.path)
     }
 
     func test_target_path_equals_expected_path_for_videoClick() {
@@ -76,9 +68,7 @@ class AwesomeAdsTargetTest: XCTestCase {
                                         query: mocEventdQuery
                                       ))
 
-        let expectedPath = "/video/click"
-
-        XCTAssertEqual(expectedPath, target.path)
+        XCTAssertEqual("/video/click", target.path)
     }
 
     func test_target_path_equals_expected_path_for_event() {
@@ -88,9 +78,7 @@ class AwesomeAdsTargetTest: XCTestCase {
                                         query: mocEventdQuery
                                       ))
 
-        let expectedPath = "/event"
-
-        XCTAssertEqual(expectedPath, target.path)
+        XCTAssertEqual("/event", target.path)
     }
 
     func test_target_path_equals_expected_path_for_signature() {
@@ -101,8 +89,6 @@ class AwesomeAdsTargetTest: XCTestCase {
                                         creativeId: creativeId
                                       ))
 
-        let expectedPath = "/skadnetwork/sign/2/3"
-
-        XCTAssertEqual(expectedPath, target.path)
+        XCTAssertEqual("/skadnetwork/sign/2/3", target.path)
     }
 }
