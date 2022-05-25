@@ -6,7 +6,6 @@
 //
 
 import XCTest
-import Nimble
 @testable import SuperAwesome
 
 class AwesomeAdsTargetTest: XCTestCase {
