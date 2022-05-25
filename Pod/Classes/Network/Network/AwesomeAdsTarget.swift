@@ -33,7 +33,7 @@ extension AwesomeAdsApi: TargetType {
         switch self {
         case .ad(_, let query):
             return .requestParameters(parameters: query.toDictionary(), encoding: URLEncoding.queryString)
-        case .adByLineAndCreativeId(lineItemId: _, creativeId: _, let query):
+        case .adByPlacementLineAndCreativeId(placementId: _, lineItemId: _, creativeId: _, let query):
             return .requestParameters(parameters: query.toDictionary(), encoding: URLEncoding.queryString)
         case .impression(let query):
             return .requestParameters(parameters: query.toDictionary(), encoding: URLEncoding.queryString)

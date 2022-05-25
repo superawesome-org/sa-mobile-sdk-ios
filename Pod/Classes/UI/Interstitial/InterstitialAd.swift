@@ -34,6 +34,22 @@ public class InterstitialAd: NSObject, Injectable {
     }
 
     /**
+     * Method that loads an ad into the queue.
+     * Ads can only be loaded once and then can be reloaded after they've
+     * been played.
+     *
+     * - Parameters:
+     *   - placementId: the Ad placement id to load data for
+     *   - lineItemId: id of the line item
+     *   - creativeId: id of the creative
+     */
+    @objc
+    public class func load(_ placementId: Int, lineItemId: Int, creativeId: Int) {
+        logger.info("load() for placement Id: \(placementId) lineItemId: \(lineItemId), creativeId: \(creativeId)")
+        controller.load(placementId, lineItemId: lineItemId, creativeId: creativeId, makeAdRequest())
+    }
+
+    /**
      * Method that, if an ad data is loaded, will play
      * the content for the user
      *

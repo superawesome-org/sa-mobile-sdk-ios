@@ -72,7 +72,7 @@ public class BannerView: UIView, Injectable {
      */
     @objc
     public func load(_ placementId: Int, lineItemId: Int, creativeId: Int) {
-        logger.info("load() for: \(placementId)")
+        logger.info("load() for placement Id: \(placementId) lineItemId: \(lineItemId), creativeId: \(creativeId)")
         controller.load(placementId, lineItemId: lineItemId, creativeId: creativeId, makeAdRequest())
     }
 

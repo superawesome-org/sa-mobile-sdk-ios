@@ -61,8 +61,18 @@ public class VideoAd: NSObject, Injectable {
         }
     }
 
-    @objc(load: creativeId: lineItemId:)
-    public static func load(withPlacementId placementId: Int, creativeId: Int, lineItemId: Int) {
+    /**
+     * Method that loads an ad into the queue.
+     * Ads can only be loaded once and then can be reloaded after they've
+     * been played.
+     *
+     * - Parameters:
+     *   - placementId: the Ad placement id to load data for
+     *   - lineItemId: id of the line item
+     *   - creativeId: id of the creative
+     */
+    @objc(load: lineItemId: creativeId:)
+    public static func load(withPlacementId placementId: Int, lineItemId: Int, creativeId: Int) {
         let adState = ads[placementId] ?? .none
 
         switch adState {
