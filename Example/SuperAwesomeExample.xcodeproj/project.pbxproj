@@ -62,6 +62,7 @@
 		C6C6AF4D27D7E37A00FFB5CA /* UserAgentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF4127D7E37A00FFB5CA /* UserAgentTests.swift */; };
 		C6C6AF4E27D7E37A00FFB5CA /* HtmlFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF4227D7E37A00FFB5CA /* HtmlFormatterTests.swift */; };
 		C6C6AF4F27D7E37A00FFB5CA /* AdProcessorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF4327D7E37A00FFB5CA /* AdProcessorTest.swift */; };
+		CCDA7340283E56CB00A75542 /* AwesomeAdsTargetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDA733F283E56CB00A75542 /* AwesomeAdsTargetTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +143,7 @@
 		C6C6AF4127D7E37A00FFB5CA /* UserAgentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAgentTests.swift; sourceTree = "<group>"; };
 		C6C6AF4227D7E37A00FFB5CA /* HtmlFormatterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HtmlFormatterTests.swift; sourceTree = "<group>"; };
 		C6C6AF4327D7E37A00FFB5CA /* AdProcessorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdProcessorTest.swift; sourceTree = "<group>"; };
+		CCDA733F283E56CB00A75542 /* AwesomeAdsTargetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwesomeAdsTargetTests.swift; sourceTree = "<group>"; };
 		D6B71C01F9DFB74D05E0B0FD /* Pods-SuperAwesomeExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesomeExample.debug.xcconfig"; path = "Target Support Files/Pods-SuperAwesomeExample/Pods-SuperAwesomeExample.debug.xcconfig"; sourceTree = "<group>"; };
 		D8F2154D326FE2F80967D14F /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		DECC64E7421DE990CD928FFD /* Pods-SuperAwesomeExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesomeExample.release.xcconfig"; path = "Target Support Files/Pods-SuperAwesomeExample/Pods-SuperAwesomeExample.release.xcconfig"; sourceTree = "<group>"; };
@@ -305,6 +307,7 @@
 		C6C6AEF427D7D2F400FFB5CA /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				CCDA733E283E569E00A75542 /* Network */,
 				C6C6AF0127D7D3CC00FFB5CA /* Mocks */,
 				C6C6AF0027D7D3C700FFB5CA /* Util */,
 				C6C6AEFF27D7D3C000FFB5CA /* Repositories */,
@@ -406,6 +409,14 @@
 				C6895C5227F4CA38009FAE1A /* AdRepositoryMock.swift */,
 			);
 			path = Mocks;
+			sourceTree = "<group>";
+		};
+		CCDA733E283E569E00A75542 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				CCDA733F283E56CB00A75542 /* AwesomeAdsTargetTests.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -642,6 +653,7 @@
 				C6C6AF3627D7E34F00FFB5CA /* StringExtensionTests.swift in Sources */,
 				C6C6AF4F27D7E37A00FFB5CA /* AdProcessorTest.swift in Sources */,
 				C6C6AF2527D7D3DB00FFB5CA /* BundleMock.swift in Sources */,
+				CCDA7340283E56CB00A75542 /* AwesomeAdsTargetTests.swift in Sources */,
 				C6C6AF2127D7D3DB00FFB5CA /* IdGeneratorMock.swift in Sources */,
 				C6C6AF1627D7D3DB00FFB5CA /* AdProcessorMock.swift in Sources */,
 				C6C6AF2827D7D3DB00FFB5CA /* SdkInfoMock.swift in Sources */,
