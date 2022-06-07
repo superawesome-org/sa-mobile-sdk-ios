@@ -113,6 +113,7 @@ extension UILabel {
 
     init() {
         super.init(frame: CGRect.zero)
+        accessibilityIdentifier = "padlock"
         setImage(imageProvider.safeAdImage, for: .normal)
     }
 

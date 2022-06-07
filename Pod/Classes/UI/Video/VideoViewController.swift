@@ -78,6 +78,10 @@ import UIKit
         videoPlayer.setControlsView(controllerView: chrome)
         chrome.bind(toTheEdgesOf: videoPlayer)
 
+        if config.showCloseButtonNoDelay {
+            chrome.makeCloseButtonVisible()
+        }
+
         // play ad
         if let url = controller.filePathUrl {
             control.play(url: url)

@@ -108,6 +108,7 @@ import UIKit
         clicker.addTarget(self, action: #selector(didTapOnUrl), for: .touchUpInside)
 
         closeButton = CloseButton()
+        closeButton.accessibilityIdentifier = "closeButton"
         closeButton.isHidden = true
         closeButton.addTarget(self, action: #selector(close), for: .touchUpInside)
         addSubview(closeButton)

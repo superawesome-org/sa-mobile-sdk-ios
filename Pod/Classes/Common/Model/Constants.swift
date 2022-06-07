@@ -12,6 +12,7 @@ struct Constants {
     static let defaultBumperPage = false
     static let defaultCloseAtEnd = true
     static let defaultCloseButton = false
+    static let defaultCloseButtonNoDelay = false
     static let defaultSmallClick = false
     static let defaultOrientation = Orientation.any
     static let defaultEnvironment = Environment.production

@@ -22,6 +22,7 @@ public class VideoAd: NSObject, Injectable {
     static var isBumperPageEnabled: Bool = Constants.defaultBumperPage
     static var shouldAutomaticallyCloseAtEnd: Bool = Constants.defaultCloseAtEnd
     static var shouldShowCloseButton: Bool = Constants.defaultCloseButton
+    static var shouldShowCloseButtonNoDelay: Bool = Constants.defaultCloseButtonNoDelay
 
     static var shouldShowSmallClickButton: Bool = Constants.defaultSmallClick
     static var orientation: Orientation = Constants.defaultOrientation
@@ -107,6 +108,7 @@ public class VideoAd: NSObject, Injectable {
             let config = AdConfig(showSmallClick: shouldShowSmallClickButton,
                                   showSafeAdLogo: ad.advert.showPadlock,
                                   showCloseButton: shouldShowCloseButton,
+                                  showCloseButtonNoDelay: shouldShowCloseButtonNoDelay,
                                   shouldCloseAtEnd: shouldAutomaticallyCloseAtEnd,
                                   isParentalGateEnabled: isParentalGateEnabled,
                                   isBumperPageEnabled: isBumperPageEnabled,
@@ -264,6 +266,26 @@ public class VideoAd: NSObject, Injectable {
     @objc(disableCloseButton)
     public static func disableCloseButton() {
         setCloseButton(false)
+    }
+
+    /**
+     * Method that causes the close button to display immediately without a delay.
+     * WARNING: this will allow users to close the ad before the viewable tracking event is fired
+     * and should only be used if you explicitly want this behaviour over consistent tracking.
+     */
+
+    @objc(enableCloseButtonNoDelay)
+    public static func enableCloseButtonNoDelay() {
+        shouldShowCloseButtonNoDelay = true
+    }
+
+    /**
+     * Method that disables the close button from showing without a delay.
+     */
+
+    @objc(disableCloseButtonNoDelay)
+    public static func disableCloseButtonNoDelay() {
+        shouldShowCloseButtonNoDelay = false
     }
 
     @objc(setSmallClick:)
