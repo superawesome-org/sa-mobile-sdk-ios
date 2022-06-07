@@ -53,7 +53,8 @@ class AdQueryMaker: AdQueryMakerType {
                                         startDelay: request.startDelay.rawValue,
                                         instl: request.instl.rawValue,
                                         width: request.width,
-                                        height: request.height), options: options)
+                                        height: request.height),
+                    options: options)
     }
 
     func makeImpressionQuery(_ adResponse: AdResponse) -> QueryBundle {
@@ -66,7 +67,8 @@ class AdQueryMaker: AdQueryMakerType {
                                            rnd: numberGenerator.nextIntForCache(),
                                            type: .impressionDownloaded,
                                            noImage: true,
-                                           data: nil), options: options)
+                                           data: nil),
+                    options: options)
     }
 
     func makeClickQuery(_ adResponse: AdResponse) -> QueryBundle {
@@ -79,20 +81,21 @@ class AdQueryMaker: AdQueryMakerType {
                                            rnd: numberGenerator.nextIntForCache(),
                                            type: nil,
                                            noImage: nil,
-                                           data: nil), options: options)
+                                           data: nil),
+                    options: options)
     }
 
     func makeEventQuery(_ adResponse: AdResponse, _ eventData: EventData) -> QueryBundle {
-        let json = encoder.toJson(eventData)
-        return QueryBundle(parameters: EventQuery(placement: adResponse.placementId,
-                                                  bundle: sdkInfo.bundle,
-                                                  creative: adResponse.advert.creative.id,
-                                                  lineItem: adResponse.advert.lineItemId,
-                                                  connectionType: connectionProvider.findConnectionType(),
-                                                  sdkVersion: sdkInfo.version,
-                                                  rnd: numberGenerator.nextIntForCache(),
-                                                  type: eventData.type,
-                                                  noImage: nil,
-                                                  data: json), options: options)
+        QueryBundle(parameters: EventQuery(placement: adResponse.placementId,
+                                           bundle: sdkInfo.bundle,
+                                           creative: adResponse.advert.creative.id,
+                                           lineItem: adResponse.advert.lineItemId,
+                                           connectionType: connectionProvider.findConnectionType(),
+                                           sdkVersion: sdkInfo.version,
+                                           rnd: numberGenerator.nextIntForCache(),
+                                           type: eventData.type,
+                                           noImage: nil,
+                                           data: encoder.toJson(eventData)),
+                    options: options)
     }
 }

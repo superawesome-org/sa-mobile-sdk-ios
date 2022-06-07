@@ -105,7 +105,8 @@ class MockFactory {
             rnd: 1,
             type: nil,
             noImage: nil,
-            data: nil), options: nil)
+            data: nil),
+                    options: nil)
     }
 
     static func makeAdResponse() -> AdResponse {
