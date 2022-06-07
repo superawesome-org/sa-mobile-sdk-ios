@@ -11,8 +11,8 @@ import XCTest
 class AwesomeAdsTargetTest: XCTestCase {
 
     private let environment: Environment = .staging
-    private let mockAdQuery: AdQuery = AdQueryMakerMock.mockQuery
-    private let mocEventdQuery: EventQuery = MockFactory.makeEventQueryInstance()
+    private let mockAdQuery: QueryBundle = AdQueryMakerMock.mockQuery
+    private let mocEventdQuery: QueryBundle = MockFactory.makeEventQueryInstance()
     private let placementId = 1
     private let lineItemId = 2
     private let creativeId = 3

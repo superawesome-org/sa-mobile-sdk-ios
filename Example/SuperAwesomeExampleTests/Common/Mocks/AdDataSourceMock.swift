@@ -12,27 +12,31 @@ class AdDataSourceMock: AwesomeAdsApiDataSourceType {
     var mockAdResult: Result<Ad, Error>!
     var mockEventResult: Result<Void, Error>!
 
-    func getAd(placementId: Int, query: AdQuery, completion: @escaping OnResult<Ad>) {
+    func getAd(placementId: Int, query: QueryBundle, completion: @escaping OnResult<Ad>) {
         completion(mockAdResult)
     }
 
-    func getAd(placementId: Int, lineItemId: Int, creativeId: Int, query: AdQuery, completion: @escaping OnResult<Ad>) {
+    func getAd(placementId: Int,
+               lineItemId: Int,
+               creativeId: Int,
+               query: QueryBundle,
+               completion: @escaping OnResult<Ad>) {
         completion(mockAdResult)
     }
 
-    func event(query: EventQuery, completion: OnResult<Void>?) {
+    func event(query: QueryBundle, completion: OnResult<Void>?) {
         completion?(mockEventResult)
     }
 
-    func impression(query: EventQuery, completion: OnResult<Void>?) {
+    func impression(query: QueryBundle, completion: OnResult<Void>?) {
         completion?(mockEventResult)
     }
 
-    func click(query: EventQuery, completion: OnResult<Void>?) {
+    func click(query: QueryBundle, completion: OnResult<Void>?) {
         completion?(mockEventResult)
     }
 
-    func videoClick(query: EventQuery, completion: OnResult<Void>?) {
+    func videoClick(query: QueryBundle, completion: OnResult<Void>?) {
         completion?(mockEventResult)
     }
 

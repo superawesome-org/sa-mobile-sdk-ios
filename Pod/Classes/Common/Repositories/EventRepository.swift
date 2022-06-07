@@ -39,7 +39,8 @@ class EventRepository: EventRepositoryType {
     }
 
     func videoClick(_ adResponse: AdResponse, completion: OnResult<Void>?) {
-        dataSource.videoClick(query: adQueryMaker.makeVideoClickQuery(adResponse), completion: completion)
+        logger.info("Event Tracking: videoClick sent for \(adResponse.placementId)")
+        dataSource.videoClick(query: adQueryMaker.makeClickQuery(adResponse), completion: completion)
     }
 
     func parentalGateOpen(_ adResponse: AdResponse, completion: OnResult<Void>?) {
@@ -59,7 +60,6 @@ class EventRepository: EventRepositoryType {
     }
 
     func viewableImpression(_ adResponse: AdResponse, completion: OnResult<Void>?) {
-        logger.info("Event Tracking: viewable_impression sent for \(adResponse.placementId)")
         customEvent(.viewableImpression, adResponse, completion: completion)
     }
 
@@ -72,6 +72,7 @@ class EventRepository: EventRepositoryType {
                              lineItem: adResponse.advert.lineItemId,
                              creative: adResponse.advert.creative.id,
                              type: type)
+        logger.info("Event Tracking: \(type.rawValue) sent for \(adResponse.placementId)")
         dataSource.event(query: adQueryMaker.makeEventQuery(adResponse, data), completion: completion)
     }
 }

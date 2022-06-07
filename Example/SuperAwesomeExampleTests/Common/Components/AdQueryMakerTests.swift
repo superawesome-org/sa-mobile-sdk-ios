@@ -15,7 +15,8 @@ class AdQueryMakerTests: XCTestCase {
                                           connectionProvider: ConnectionProviderMock(),
                                           numberGenerator: NumberGeneratorMock(400),
                                           idGenerator: IdGeneratorMock(300),
-                                          encoder: EncoderMock())
+                                          encoder: EncoderMock(),
+                                          options: nil)
 
     func test_adQuery() throws {
         // Given
@@ -29,7 +30,8 @@ class AdQueryMakerTests: XCTestCase {
                                 height: 30)
 
         // When
-        let query = queryMaker.makeAdQuery(request)
+        let bundle = queryMaker.makeAdQuery(request)
+        guard let query = bundle.parameters as? AdQuery else { return }
 
         // Then
         expect(query.bundle).to(equal("SdkInfoMockBundle"))
@@ -55,7 +57,8 @@ class AdQueryMakerTests: XCTestCase {
         let response = MockFactory.makeAdResponse()
 
         // When
-        let query = queryMaker.makeClickQuery(response)
+        let bundle = queryMaker.makeClickQuery(response)
+        guard let query = bundle.parameters as? EventQuery else { return }
 
         // Then
         expect(query.bundle).to(equal("SdkInfoMockBundle"))
@@ -75,7 +78,8 @@ class AdQueryMakerTests: XCTestCase {
         let response = MockFactory.makeAdResponse()
 
         // When
-        let query = queryMaker.makeVideoClickQuery(response)
+        let bundle = queryMaker.makeClickQuery(response)
+        guard let query = bundle.parameters as? EventQuery else { return }
 
         // Then
         expect(query.bundle).to(equal("SdkInfoMockBundle"))
@@ -96,7 +100,8 @@ class AdQueryMakerTests: XCTestCase {
         let data = EventData(placement: 10, lineItem: 20, creative: 30, type: .impressionDownloaded)
 
         // When
-        let query = queryMaker.makeEventQuery(response, data)
+        let bundle = queryMaker.makeEventQuery(response, data)
+        guard let query = bundle.parameters as? EventQuery else { return }
 
         // Then
         expect(query.bundle).to(equal("SdkInfoMockBundle"))

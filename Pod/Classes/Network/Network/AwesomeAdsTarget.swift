@@ -32,17 +32,17 @@ extension AwesomeAdsApi: TargetType {
     var task: Task {
         switch self {
         case .ad(_, let query):
-            return .requestParameters(parameters: query.toDictionary(), encoding: URLEncoding.queryString)
+            return .requestParameters(parameters: query.build(), encoding: URLEncoding.queryString)
         case .adByPlacementLineAndCreativeId(placementId: _, lineItemId: _, creativeId: _, let query):
-            return .requestParameters(parameters: query.toDictionary(), encoding: URLEncoding.queryString)
+            return .requestParameters(parameters: query.build(), encoding: URLEncoding.queryString)
         case .impression(let query):
-            return .requestParameters(parameters: query.toDictionary(), encoding: URLEncoding.queryString)
+            return .requestParameters(parameters: query.build(), encoding: URLEncoding.queryString)
         case .click(let query):
-            return .requestParameters(parameters: query.toDictionary(), encoding: URLEncoding.queryString)
+            return .requestParameters(parameters: query.build(), encoding: URLEncoding.queryString)
         case .videoClick(let query):
-            return .requestParameters(parameters: query.toDictionary(), encoding: URLEncoding.queryString)
+            return .requestParameters(parameters: query.build(), encoding: URLEncoding.queryString)
         case .event(let query):
-            return .requestParameters(parameters: query.toDictionary(), encoding: URLEncoding.queryString)
+            return .requestParameters(parameters: query.build(), encoding: URLEncoding.queryString)
         case .signature:
             return .requestParameters(parameters: [:], encoding: URLEncoding.queryString)
         }
