@@ -6,12 +6,12 @@
 //
 
 enum AwesomeAdsApi {
-    case ad(placementId: Int, query: AdQuery)
-    case adByPlacementLineAndCreativeId(placementId: Int, lineItemId: Int, creativeId: Int, query: AdQuery)
-    case impression(query: EventQuery)
-    case click(query: EventQuery)
-    case videoClick(query: EventQuery)
-    case event(query: EventQuery)
+    case ad(placementId: Int, query: QueryBundle)
+    case adByPlacementLineAndCreativeId(placementId: Int, lineItemId: Int, creativeId: Int, query: QueryBundle)
+    case impression(query: QueryBundle)
+    case click(query: QueryBundle)
+    case videoClick(query: QueryBundle)
+    case event(query: QueryBundle)
     case signature(lineItemId: Int, creativeId: Int)
 
     var path: String {

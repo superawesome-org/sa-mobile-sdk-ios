@@ -9,34 +9,47 @@
 
 class AdQueryMakerMock: AdQueryMakerType {
 
-    static let mockQuery = AdQuery(test: true, sdkVersion: "", random: 1, bundle: "", name: "", dauid: 1,
-                                   connectionType: .wifi, lang: "", device: "", position: 1, skip: 1, playbackMethod: 1,
-                                   startDelay: 1, instl: 1, width: 1, height: 1   )
+    static let mockQuery = QueryBundle(parameters: AdQuery(test: true,
+                                                           sdkVersion: "",
+                                                           random: 1,
+                                                           bundle: "",
+                                                           name: "",
+                                                           dauid: 1,
+                                                           connectionType: .wifi,
+                                                           lang: "",
+                                                           device: "",
+                                                           position: 1,
+                                                           skip: 1,
+                                                           playbackMethod: 1,
+                                                           startDelay: 1,
+                                                           instl: 1,
+                                                           width: 1,
+                                                           height: 1), options: nil)
 
-    var mockAdQuery: AdQuery = AdQueryMakerMock.mockQuery
+    var mockAdQuery: QueryBundle = AdQueryMakerMock.mockQuery
     var isMakeCalled: Bool = false
 
-    func makeAdQuery(_ request: AdRequest) -> AdQuery {
+    func makeAdQuery(_ request: AdRequest) -> QueryBundle {
         isMakeCalled = true
         return MockFactory.makeAdQueryInstance()
     }
 
-    func makeImpressionQuery(_ adResponse: AdResponse) -> EventQuery {
+    func makeImpressionQuery(_ adResponse: AdResponse) -> QueryBundle {
         isMakeCalled = true
         return MockFactory.makeEventQueryInstance()
     }
 
-    func makeClickQuery(_ adResponse: AdResponse) -> EventQuery {
+    func makeClickQuery(_ adResponse: AdResponse) -> QueryBundle {
         isMakeCalled = true
         return MockFactory.makeEventQueryInstance()
     }
 
-    func makeVideoClickQuery(_ adResponse: AdResponse) -> EventQuery {
+    func makeVideoClickQuery(_ adResponse: AdResponse) -> QueryBundle {
         isMakeCalled = true
         return MockFactory.makeEventQueryInstance()
     }
 
-    func makeEventQuery(_ adResponse: AdResponse, _ eventData: EventData) -> EventQuery {
+    func makeEventQuery(_ adResponse: AdResponse, _ eventData: EventData) -> QueryBundle {
         isMakeCalled = true
         return MockFactory.makeEventQueryInstance()
     }

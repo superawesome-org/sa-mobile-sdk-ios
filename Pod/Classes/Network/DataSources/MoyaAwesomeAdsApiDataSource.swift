@@ -17,7 +17,7 @@ class MoyaAwesomeAdsApiDataSource: AwesomeAdsApiDataSourceType {
         self.environment = environment
     }
 
-    func getAd(placementId: Int, query: AdQuery, completion: @escaping OnResult<Ad>) {
+    func getAd(placementId: Int, query: QueryBundle, completion: @escaping OnResult<Ad>) {
         let target = AwesomeAdsTarget(environment, .ad(placementId: placementId, query: query))
 
         provider.request(target) { result in
@@ -36,7 +36,11 @@ class MoyaAwesomeAdsApiDataSource: AwesomeAdsApiDataSourceType {
         }
     }
 
-    func getAd(placementId: Int, lineItemId: Int, creativeId: Int, query: AdQuery, completion: @escaping OnResult<Ad>) {
+    func getAd(placementId: Int,
+               lineItemId: Int,
+               creativeId: Int,
+               query: QueryBundle,
+               completion: @escaping OnResult<Ad>) {
         let target = AwesomeAdsTarget(
             environment,
             .adByPlacementLineAndCreativeId(
@@ -82,22 +86,22 @@ class MoyaAwesomeAdsApiDataSource: AwesomeAdsApiDataSourceType {
         }
     }
 
-    func impression(query: EventQuery, completion: OnResult<Void>?) {
+    func impression(query: QueryBundle, completion: OnResult<Void>?) {
         let target = AwesomeAdsTarget(environment, .impression(query: query))
         responseHandler(target: target, completion: completion)
     }
 
-    func click(query: EventQuery, completion: OnResult<Void>?) {
+    func click(query: QueryBundle, completion: OnResult<Void>?) {
         let target = AwesomeAdsTarget(environment, .click(query: query))
         responseHandler(target: target, completion: completion)
     }
 
-    func videoClick(query: EventQuery, completion: OnResult<Void>?) {
+    func videoClick(query: QueryBundle, completion: OnResult<Void>?) {
         let target = AwesomeAdsTarget(environment, .videoClick(query: query))
         responseHandler(target: target, completion: completion)
     }
 
-    func event(query: EventQuery, completion: OnResult<Void>?) {
+    func event(query: QueryBundle, completion: OnResult<Void>?) {
         let target = AwesomeAdsTarget(environment, .event(query: query))
         responseHandler(target: target, completion: completion)
     }

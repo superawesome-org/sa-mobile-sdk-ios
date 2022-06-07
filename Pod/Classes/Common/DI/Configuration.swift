@@ -6,12 +6,17 @@
 //
 
 /// Configuration options for the AwesomeAds SDK
-public class Configuration {
-    var environment = Environment.production
-    var logging = false
+@objc
+public class Configuration: NSObject {
+    let environment: Environment
+    let logging: Bool
+    let options: [String: String]?
 
-    public init(environment: Environment = .production, logging: Bool = false) {
+    public init(environment: Environment = .production,
+                logging: Bool = false,
+                options: [String: String]? = nil) {
         self.environment = environment
         self.logging = logging
+        self.options = options
     }
 }

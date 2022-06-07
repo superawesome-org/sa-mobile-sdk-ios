@@ -45,7 +45,8 @@ struct CommonModule: DependencyModule {
                          connectionProvider: container.resolve(),
                          numberGenerator: container.resolve(),
                          idGenerator: container.resolve(),
-                         encoder: container.resolve())
+                         encoder: container.resolve(),
+                         options: configuration.options)
         }
         container.single(VastParserType.self) { container, _ in
             VastParser(connectionProvider: container.resolve())

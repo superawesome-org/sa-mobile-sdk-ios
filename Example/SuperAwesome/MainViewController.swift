@@ -254,7 +254,7 @@ class MainViewController: UIViewController {
         let item = rows[sender.tag]
         if let item = item as? SingleIdRow {
             handleSingleIdRowTapped(item: item)
-        } else if let item = item as? MultiIdRow{
+        } else if let item = item as? MultiIdRow {
             handleMultiIdRowTapped(item: item)
         }
     }

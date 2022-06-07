@@ -73,8 +73,8 @@ class MockFactory {
                   height: 35)
     }
 
-    static func makeAdQueryInstance() -> AdQuery {
-        AdQuery(
+    static func makeAdQueryInstance() -> QueryBundle {
+        QueryBundle(parameters: AdQuery(
             test: true,
             sdkVersion: "",
             random: 1,
@@ -90,11 +90,13 @@ class MockFactory {
             startDelay: 1,
             instl: 1,
             width: 1,
-            height: 1)
+            height: 1),
+                    options: nil)
+
     }
 
-    static func makeEventQueryInstance() -> EventQuery {
-        EventQuery(
+    static func makeEventQueryInstance() -> QueryBundle {
+        QueryBundle(parameters: EventQuery(
             placement: 1,
             bundle: "",
             creative: 1,
@@ -104,7 +106,8 @@ class MockFactory {
             rnd: 1,
             type: nil,
             noImage: nil,
-            data: nil)
+            data: nil),
+                    options: nil)
     }
 
     static func makeAdResponse() -> AdResponse {

@@ -32,7 +32,8 @@ public class AwesomeAds: NSObject {
     /// Initialise the AwesomeAds SDK
     ///
     /// - Parameter configuration: to set various options including environment, and logging
-    /// - Parameter complition: Callback closure to be notified once the initialisation is done
+    /// - Parameter completion: Callback closure to be notified once the initialisation is done
+    @objc
     public func initSDK(configuration: Configuration = Configuration(),
                         completion: (() -> Void)? = nil) {
         guard !initialised else { return }
@@ -68,7 +69,8 @@ public class AwesomeAds: NSObject {
     /// Initialise the AwesomeAds SDK
     ///
     /// - Parameter configuration: to set various options including environment, and logging
-    /// - Parameter complition: Callback closure to be notified once the initialisation is done
+    /// - Parameter completion: Callback closure to be notified once the initialisation is done
+    @objc
     public static func initSDK(configuration: Configuration = Configuration(),
                                completion: (() -> Void)? = nil) {
         shared.initSDK(configuration: configuration, completion: completion)

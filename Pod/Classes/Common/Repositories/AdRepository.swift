@@ -42,7 +42,10 @@ class AdRepository: AdRepositoryType {
 
     func getAd(placementId: Int, lineItemId: Int, creativeId: Int, request: AdRequest, completion: @escaping OnResult<AdResponse>) {
         let query = adQueryMaker.makeAdQuery(request)
-        dataSource.getAd(placementId: placementId, lineItemId: lineItemId, creativeId: creativeId, query: query) { result in
+        dataSource.getAd(placementId: placementId,
+                         lineItemId: lineItemId,
+                         creativeId: creativeId,
+                         query: query) { result in
             switch result {
             case .success(let ad):
                 self.adProcessor.process(placementId, ad) { response in
