@@ -34,7 +34,7 @@ class VideoAdUITests: XCTestCase {
 
         // When
 
-        // The padlock is visible immediately so the close button should be visible at the same time
+        // The padlock is visible (it's visible immediately)
         let padlockResult = XCTWaiter.wait(for: [padlockExpectation], timeout: 5.0)
         XCTAssertEqual(padlockResult, .completed)
 
@@ -71,16 +71,16 @@ class VideoAdUITests: XCTestCase {
 
         // When
 
-        // The padlock is visible immediately so the close button should not be visible at the same time
+        // The padlock is visible (it's visible immediately)
         let padlockResult = XCTWaiter.wait(for: [padlockExpectation], timeout: 5.0)
         XCTAssertEqual(padlockResult, .completed)
 
+        // The close button is not initially visible
         XCTAssertFalse(app.buttons["closeButton"].exists)
 
         // Then
 
         // The close button is visible after a delay
-
         let closeButtonResult = XCTWaiter.wait(for: [closeButtonExpectation], timeout: 5.0)
 
         XCTAssertEqual(closeButtonResult, .completed)
