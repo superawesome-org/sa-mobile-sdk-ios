@@ -90,7 +90,8 @@ class MockFactory {
             startDelay: 1,
             instl: 1,
             width: 1,
-            height: 1), options: nil)
+            height: 1),
+                    options: nil)
 
     }
 
