@@ -78,7 +78,7 @@ import UIKit
         videoPlayer.setControlsView(controllerView: chrome)
         chrome.bind(toTheEdgesOf: videoPlayer)
 
-        if config.showCloseButton && config.showCloseButtonNoDelay {
+        if config.closeButtonState == .visibleImmediately {
             chrome.makeCloseButtonVisible()
         }
 
@@ -133,7 +133,7 @@ extension VideoViewController: VideoEventsDelegate {
         controller.triggerViewableImpression()
         controller.triggerDwellTime()
 
-        if config.showCloseButton && config.showCloseButtonNoDelay == false {
+        if config.closeButtonState == .visibleWithDelay {
             chrome.makeCloseButtonVisible()
         }
     }

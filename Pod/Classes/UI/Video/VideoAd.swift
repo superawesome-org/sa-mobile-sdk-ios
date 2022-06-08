@@ -21,9 +21,7 @@ public class VideoAd: NSObject, Injectable {
     static var isParentalGateEnabled: Bool = Constants.defaultParentalGate
     static var isBumperPageEnabled: Bool = Constants.defaultBumperPage
     static var shouldAutomaticallyCloseAtEnd: Bool = Constants.defaultCloseAtEnd
-    static var shouldShowCloseButton: Bool = Constants.defaultCloseButton
-    static var shouldShowCloseButtonNoDelay: Bool = Constants.defaultCloseButtonNoDelay
-
+    static var closeButtonState: CloseButtonState = Constants.defaultCloseButton
     static var shouldShowSmallClickButton: Bool = Constants.defaultSmallClick
     static var orientation: Orientation = Constants.defaultOrientation
 
@@ -107,8 +105,7 @@ public class VideoAd: NSObject, Injectable {
         case .hasAd(let ad):
             let config = AdConfig(showSmallClick: shouldShowSmallClickButton,
                                   showSafeAdLogo: ad.advert.showPadlock,
-                                  showCloseButton: shouldShowCloseButton,
-                                  showCloseButtonNoDelay: shouldShowCloseButtonNoDelay,
+                                  closeButtonState: closeButtonState,
                                   shouldCloseAtEnd: shouldAutomaticallyCloseAtEnd,
                                   isParentalGateEnabled: isParentalGateEnabled,
                                   isBumperPageEnabled: isBumperPageEnabled,
@@ -255,7 +252,7 @@ public class VideoAd: NSObject, Injectable {
 
     @objc(setCloseButton:)
     public static func setCloseButton(_ close: Bool) {
-        shouldShowCloseButton = close
+        closeButtonState = close ? .visibleWithDelay : .hidden
     }
 
     @objc(enableCloseButton)
@@ -277,16 +274,7 @@ public class VideoAd: NSObject, Injectable {
 
     @objc(enableCloseButtonNoDelay)
     public static func enableCloseButtonNoDelay() {
-        shouldShowCloseButtonNoDelay = true
-    }
-
-    /**
-     * Method that disables the close button from showing without a delay.
-     */
-
-    @objc(disableCloseButtonNoDelay)
-    public static func disableCloseButtonNoDelay() {
-        shouldShowCloseButtonNoDelay = false
+        closeButtonState = .visibleImmediately
     }
 
     @objc(setSmallClick:)
