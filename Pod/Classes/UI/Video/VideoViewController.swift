@@ -78,6 +78,10 @@ import UIKit
         videoPlayer.setControlsView(controllerView: chrome)
         chrome.bind(toTheEdgesOf: videoPlayer)
 
+        if config.closeButtonState == .visibleImmediately {
+            chrome.makeCloseButtonVisible()
+        }
+
         // play ad
         if let url = controller.filePathUrl {
             control.play(url: url)
@@ -129,7 +133,7 @@ extension VideoViewController: VideoEventsDelegate {
         controller.triggerViewableImpression()
         controller.triggerDwellTime()
 
-        if config.showCloseButton {
+        if config.closeButtonState == .visibleWithDelay {
             chrome.makeCloseButtonVisible()
         }
     }

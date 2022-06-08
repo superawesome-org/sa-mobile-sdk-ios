@@ -90,6 +90,9 @@ class MainViewController: UIViewController {
 
         VideoAd.enableParentalGate()
         VideoAd.enableBumperPage()
+
+        // Normal close button configuration
+        VideoAd.enableCloseButton()
     }
 
     func configuration2() {
@@ -101,6 +104,9 @@ class MainViewController: UIViewController {
 
         VideoAd.disableParentalGate()
         VideoAd.disableBumperPage()
+
+        // Close button configured with no delay
+        VideoAd.enableCloseButtonNoDelay()
     }
 
     private func initUI() {
@@ -132,6 +138,7 @@ class MainViewController: UIViewController {
         let segment = UISegmentedControl(items: ["Enable checks", "Disable checks"])
         segment.addTarget(self, action: #selector(segmentChanged), for: .valueChanged)
         segment.translatesAutoresizingMaskIntoConstraints = false
+        segment.accessibilityIdentifier = "configControl"
 
         view.addSubview(segment)
 
@@ -212,6 +219,7 @@ class MainViewController: UIViewController {
         stackView.alignment = .fill
         stackView.distribution = .fill
         stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.accessibilityIdentifier = "adsStackView"
 
         view.addSubview(stackView)
 

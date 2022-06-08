@@ -8,7 +8,7 @@
 struct AdConfig {
     let showSmallClick: Bool
     let showSafeAdLogo: Bool
-    let showCloseButton: Bool
+    let closeButtonState: CloseButtonState
     let shouldCloseAtEnd: Bool
     let isParentalGateEnabled: Bool
     let isBumperPageEnabled: Bool

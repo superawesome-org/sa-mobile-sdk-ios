@@ -57,6 +57,16 @@
                ReferencedContainer = "container:SuperAwesomeExample.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "CC6AE3CD284F906B002F7581"
+               BuildableName = "SuperAwesomeExampleUITests.xctest"
+               BlueprintName = "SuperAwesomeExampleUITests"
+               ReferencedContainer = "container:SuperAwesomeExample.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
