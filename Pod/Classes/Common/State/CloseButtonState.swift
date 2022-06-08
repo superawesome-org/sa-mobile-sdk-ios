@@ -1,6 +1,6 @@
 //
 //  CloseButtonState.swift
-//  Alamofire
+//  SuperAwesome
 //
 //  Created by Tom O'Rourke on 08/06/2022.
 //
