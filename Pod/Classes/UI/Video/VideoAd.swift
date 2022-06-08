@@ -266,8 +266,7 @@ public class VideoAd: NSObject, Injectable {
     }
 
     /**
-     * Method that enables the close button to display immediately without a delay when showing the
-     * close button is enabled via enableCloseButton().
+     * Method that enables the close button to display immediately without a delay.
      * WARNING: this will allow users to close the ad before the viewable tracking event is fired
      * and should only be used if you explicitly want this behaviour over consistent tracking.
      */
