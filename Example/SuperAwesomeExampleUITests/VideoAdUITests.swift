@@ -21,7 +21,7 @@ class VideoAdUITests: XCTestCase {
         // Given
 
         // Close button appearing with no delay is configured via the SegmentControl
-        app.segmentedControls["configControl"].buttons.element(boundBy: 0).tap()
+        app.segmentedControls["configControl"].buttons.element(boundBy: 1).tap()
 
         // Tap the video ad in the list
         app.otherElements["adsStackView"].buttons.element(boundBy: 3).tap()
@@ -52,7 +52,7 @@ class VideoAdUITests: XCTestCase {
         // Given
 
         // Close button appearing with a delay is configured via the SegmentControl
-        app.segmentedControls["configControl"].buttons.element(boundBy: 1).tap()
+        app.segmentedControls["configControl"].buttons.element(boundBy: 0).tap()
 
         // Tap the video ad in the list
         app.otherElements["adsStackView"].buttons.element(boundBy: 3).tap()

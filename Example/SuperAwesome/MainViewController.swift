@@ -91,8 +91,8 @@ class MainViewController: UIViewController {
         VideoAd.enableParentalGate()
         VideoAd.enableBumperPage()
 
-        // Close button configured with no delay
-        VideoAd.enableCloseButtonNoDelay()
+        // Normal close button configuration
+        VideoAd.enableCloseButton()
     }
 
     func configuration2() {
@@ -105,8 +105,8 @@ class MainViewController: UIViewController {
         VideoAd.disableParentalGate()
         VideoAd.disableBumperPage()
 
-        // Normal close button configuration
-        VideoAd.enableCloseButton()
+        // Close button configured with no delay
+        VideoAd.enableCloseButtonNoDelay()
     }
 
     private func initUI() {
