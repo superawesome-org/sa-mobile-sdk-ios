@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+8.3.6
+ - Updated iOS Unity plugin to account for iOS refactor
+ - Added support for multiple ID placement loading
+ - Added support for setting custom parameters in SDK initialisation for event tracking
+ - Added support for immediate close button showing
+ 
 8.3.5
  - Refactor: video player flow to only Swift
  - Refactor: expose SDK version information
