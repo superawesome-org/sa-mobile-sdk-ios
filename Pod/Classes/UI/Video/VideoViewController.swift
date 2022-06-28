@@ -62,7 +62,7 @@ import UIKit
         view.addSubview(videoPlayer)
         videoPlayer.bind(
             toTheEdgesOf: view,
-            insets: UIEdgeInsets(top: 0, left: 0, bottom: Padding.s.negative, right: 0)
+            insets: UIEdgeInsets(top: 0.0, left: 0.0, bottom: Padding.s.negative, right: 0.0)
         )
 
         // setup chrome
@@ -79,7 +79,7 @@ import UIKit
         }
         videoPlayer.setControlsView(
             controllerView: chrome,
-            insets: UIEdgeInsets(top: 0, left: 0, bottom: Padding.s.negative, right: 0)
+            insets: UIEdgeInsets(top: 0.0, left: 0.0, bottom: Padding.s.negative, right: 0.0)
         )
 
         if config.closeButtonState == .visibleImmediately {
