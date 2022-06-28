@@ -37,27 +37,15 @@ public class AwesomeVideoPlayer: UIView, VideoPlayer {
         self.controller?.set(delegate: self)
     }
 
-    @objc(setConstrolsView:)
-    public func setControlsView(controllerView: VideoPlayerControlsView) {
+    @objc(setConstrolsView:insets:)
+    public func setControlsView(controllerView: VideoPlayerControlsView, insets: UIEdgeInsets = .zero) {
         (self.controllerView as? UIView)?.removeFromSuperview()
         self.controllerView = controllerView
         self.controllerView?.set(delegate: self)
         guard let chrome = self.controllerView as? UIView else { return }
         addSubview(chrome)
-    }
-
-    public override func updateConstraints() {
-        if !didSetUpConstraints {
-            didSetUpConstraints = true
-            if let chrome = self.controllerView as? UIView {
-                chrome.translatesAutoresizingMaskIntoConstraints = false
-                chrome.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-                chrome.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-                chrome.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-                chrome.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-            }
-        }
-        super.updateConstraints()
+        chrome.translatesAutoresizingMaskIntoConstraints = false
+        chrome.bind(toTheEdgesOf: self, insets: insets)
     }
 
     public func destroy() {
