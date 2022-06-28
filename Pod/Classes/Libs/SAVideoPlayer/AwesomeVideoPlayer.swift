@@ -44,7 +44,6 @@ public class AwesomeVideoPlayer: UIView, VideoPlayer {
         self.controllerView?.set(delegate: self)
         guard let chrome = self.controllerView as? UIView else { return }
         addSubview(chrome)
-        chrome.translatesAutoresizingMaskIntoConstraints = false
         chrome.bind(toTheEdgesOf: self, insets: insets)
     }
 
