@@ -56,14 +56,14 @@ extension UIView {
         }
     }
 
-    func bind(toTheEdgesOf otherView: UIView) {
+    func bind(toTheEdgesOf otherView: UIView, insets: UIEdgeInsets = .zero) {
         self.translatesAutoresizingMaskIntoConstraints = false
         let margins = otherView.layoutMarginsGuide
 
-        self.topAnchor.constraint(equalTo: margins.topAnchor, constant: 0.0).isActive = true
-        self.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 0.0).isActive = true
-        self.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: 0.0).isActive = true
-        self.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: -8.0).isActive = true
+        self.topAnchor.constraint(equalTo: margins.topAnchor, constant: insets.top).isActive = true
+        self.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: insets.left).isActive = true
+        self.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: insets.right).isActive = true
+        self.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: insets.bottom).isActive = true
     }
 
     func bind(toTopRightOf otherView: UIView) {

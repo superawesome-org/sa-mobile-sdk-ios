@@ -30,9 +30,10 @@ public protocol VideoPlayer: VideoPlayerControlsDelegate, VideoPlayerControlsVie
     /**
      * Sets the chrome control for the video player
      * @param chrome - an instance of an object that implements the ChromeControl protocol
+     * @param insets - the insets for the VideoPlayerControlsView
      */
-    @objc(setConstrolsView:)
-    func setControlsView(controllerView: VideoPlayerControlsView)
+    @objc(setConstrolsView:insets:)
+    func setControlsView(controllerView: VideoPlayerControlsView, insets: UIEdgeInsets)
 
     /**
      * Sets the state of the video to maximised

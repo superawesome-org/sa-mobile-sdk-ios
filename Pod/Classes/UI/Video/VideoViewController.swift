@@ -17,7 +17,6 @@ import UIKit
     private let config: AdConfig
     private let control: VideoPlayerControls = VideoPlayerController()
     private let videoEvents: VideoEvents
-
     private var callback: AdEventCallback?
 
     init(adResponse: AdResponse, callback: AdEventCallback?, config: AdConfig) {
@@ -61,7 +60,10 @@ import UIKit
         videoPlayer.layoutMargins = .zero
         videoPlayer.setDelegate(delegate: self)
         view.addSubview(videoPlayer)
-        videoPlayer.bind(toTheEdgesOf: view)
+        videoPlayer.bind(
+            toTheEdgesOf: view,
+            insets: UIEdgeInsets(top: 0.0, left: 0.0, bottom: Padding.s.negative, right: 0.0)
+        )
 
         // setup chrome
         chrome = AdSocialVideoPlayerControlsView(smallClick: config.showSmallClick, showSafeAdLogo: config.showSafeAdLogo)
@@ -75,8 +77,10 @@ import UIKit
         chrome.setPadlockAction { [weak self] in
             self?.controller.handleSafeAdTap()
         }
-        videoPlayer.setControlsView(controllerView: chrome)
-        chrome.bind(toTheEdgesOf: videoPlayer)
+        videoPlayer.setControlsView(
+            controllerView: chrome,
+            insets: UIEdgeInsets(top: 0.0, left: 0.0, bottom: Padding.s.negative, right: 0.0)
+        )
 
         if config.closeButtonState == .visibleImmediately {
             chrome.makeCloseButtonVisible()
