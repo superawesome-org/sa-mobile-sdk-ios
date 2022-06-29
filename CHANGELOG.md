@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+8.3.7
+ - Added constraint fixes for the video player
+
 8.3.6
  - Updated iOS Unity plugin to account for iOS refactor
  - Added support for multiple ID placement loading
