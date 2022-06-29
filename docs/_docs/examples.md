@@ -104,3 +104,27 @@ This example shows how you can add different types of ads and make them respond 
 
 @end
 {% endhighlight %}
+
+# SDK Info
+
+Information about the SDK can be accessed via the info() function on the AwesomeAds object, for example:
+
+{% highlight swift %}
+
+// Returns the version number of the SDK and the platform e.g. ios_x.y.z
+AwesomeAds.info()?.version
+
+// Returns the version number of the SDK only e.g. x.y.z
+AwesomeAds.info()?.versionNumber
+
+// Returns the bundle name for the app
+AwesomeAds.info()?.bundle
+
+// Returns the name of the app
+AwesomeAds.info()?.name
+
+// Returns the preferred locale language and region
+// e.g. en_UK
+AwesomeAds.info()?.lang
+
+{% endhighlight %}

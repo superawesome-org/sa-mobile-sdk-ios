@@ -7,46 +7,54 @@ description: Video Ads
 
 The following code block sets up a video ad and loads it:
 
-{% highlight objective_c %}
-@implementation ViewController
+{% highlight swift %}
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+override func viewDidLoad() {
+    super.viewDidLoad()
 
     // set whole video surface clickable
-    [SAVideoAd disableSmallClick];
+    VideoAd.disableSmallClickButton()
 
-    // set config to production
-    [SAVideoAd setConfigurationProduction];
+    // deprecated: set config to production. Use `AwesomeAds.initSDK()` to select the configuration instead.
+    VideoAd.setConfigurationProduction()
 
     // to display test ads
-    [SAVideo enableTestMode];
+    VideoAd.enableTestMode()
 
     // lock orientation to portrait or landscape
-    [SAVideo setOrientationPortrait];
+    VideoAd.setOrientationPortrait()
 
     // enable or disable a close button
-    [SAVideoAd enableCloseButton];
+    VideoAd.enableCloseButton()
+
+    // enable or disable a close button that displays without a delay. Use instead of enableCloseButton.
+    // WARNING: this will allow users to close the ad before the viewable tracking event is fired
+    // and should only be used if you explicitly want this behaviour over consistent tracking.
+    VideoAd.enableCloseButtonNoDelay()
 
     // enable or disable auto-closing at the end
-    [SAVideoAd disableCloseAtEnd];
+    VideoAd.disableCloseAtEnd()
 
     // start loading ad data for a placement
-    [SAVideo load: 30479];
+    VideoAd.load(30479)
 }
 {% endhighlight %}
 
-Once you’ve loaded an ad, you can also display it:
+Once you’ve loaded an ad, you can display it by checking if the ad has loaded using a callback:
 
-{% highlight objective_c %}
-@IBAction void onClick:(id) sender {
-
-    // check if ad is loaded
-    if ([SAVideoAd hasAdAvailable: 30479]) {
-
-        // display the ad
-        [SAVideoAd play: 30479 fromVC: self];
+{% highlight swift %}
+VideoAd.setCallback { (placementId, event) in
+    if event == .adLoaded {
+        VideoAd.play(withPlacementId: placementId, fromVc: self)
     }
+}
+{% endhighlight %}
+
+Or by checking the method hasAdAvailable which returns a Boolean:
+
+{% highlight swift %}
+if VideoAd.hasAdAvailable(30479) {
+    ...
 }
 {% endhighlight %}
 

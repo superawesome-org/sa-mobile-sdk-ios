@@ -50,5 +50,7 @@
           url: "docs/examples#simple-example"
         - title: Complex example
           url: "docs/examples#complex-example"
+        - title: SDK info
+          url: "docs/examples#sdk-info"
     - title: Data Collection
       url: "docs/data-collection"
