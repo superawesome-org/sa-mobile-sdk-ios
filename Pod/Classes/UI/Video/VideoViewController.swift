@@ -25,6 +25,7 @@ import UIKit
         videoEvents = VideoEvents(adResponse)
         super.init(nibName: nil, bundle: nil)
         self.controller.adResponse = adResponse
+        self.controller.callback = callback
         self.controller.parentalGateEnabled = config.isParentalGateEnabled
         self.controller.bumperPageEnabled = config.isBumperPageEnabled
         videoEvents.delegate = self
