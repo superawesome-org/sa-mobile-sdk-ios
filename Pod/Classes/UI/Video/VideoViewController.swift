@@ -17,11 +17,9 @@ import UIKit
     private let config: AdConfig
     private let control: VideoPlayerControls = VideoPlayerController()
     private let videoEvents: VideoEvents
-    private var callback: AdEventCallback?
 
     init(adResponse: AdResponse, callback: AdEventCallback?, config: AdConfig) {
         self.config = config
-        self.callback = callback
         videoEvents = VideoEvents(adResponse)
         super.init(nibName: nil, bundle: nil)
         self.controller.adResponse = adResponse
