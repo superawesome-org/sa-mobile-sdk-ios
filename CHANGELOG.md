@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+8.3.8
+ - Fix for missing events in the AdController callback
+
 8.3.7
  - Added constraint fixes for the video player
 
