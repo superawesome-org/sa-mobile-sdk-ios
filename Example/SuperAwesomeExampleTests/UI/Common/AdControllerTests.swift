@@ -12,10 +12,17 @@ import Nimble
 
 class AdControllerTests: XCTestCase {
     private var adRepository: AdRepositoryMock = AdRepositoryMock()
+    private let controller = AdController()
+    private var receivedEvent: AdEvent?
 
     override func setUp() {
         super.setUp()
         TestDependencies.register(adRepository: adRepository)
+        receivedEvent = nil
+
+        controller.callback = { [weak self] (placementId, event) in
+            self?.receivedEvent = event
+        }
     }
 
     private func showPadlockTest(showPadlock: Bool, ksfUrl: String?, expectedResult: Bool) {
@@ -24,13 +31,11 @@ class AdControllerTests: XCTestCase {
             AdResponse(123, MockFactory.makeAd(.tag, nil, nil, nil, showPadlock, ksfUrl))
         )
 
-        let controller = AdController()
-
         // When
         controller.load(123, MockFactory.makeAdRequest())
 
         // Then
-        expect(controller.showPadlock).to(equal(expectedResult))
+        XCTAssertEqual(controller.showPadlock, expectedResult)
     }
 
     func test_showPadlock() {
@@ -47,13 +52,6 @@ class AdControllerTests: XCTestCase {
             AdResponse(123, MockFactory.makeAd())
         )
 
-        let controller = AdController()
-        var receivedEvent: AdEvent?
-
-        controller.callback = { (placementId, event) in
-            receivedEvent = event
-        }
-
         // When
         controller.load(123, MockFactory.makeAdRequest())
 
@@ -63,14 +61,9 @@ class AdControllerTests: XCTestCase {
 
     func testAdFailedToLoadCallback() {
         // Given
-        adRepository.response = .failure(MockFactory.makeError())
-
-        let controller = AdController()
-        var receivedEvent: AdEvent?
-
-        controller.callback = { (placementId, event) in
-            receivedEvent = event
-        }
+        adRepository.response = .failure(
+            MockFactory.makeError()
+        )
 
         // When
         controller.load(123, MockFactory.makeAdRequest())
@@ -81,14 +74,6 @@ class AdControllerTests: XCTestCase {
 
     func testAdClosedCallback() {
         // Given
-        let controller = AdController()
-        var receivedEvent: AdEvent?
-
-        controller.callback = { (placementId, event) in
-            receivedEvent = event
-        }
-
-        // When
         controller.close()
 
         // Then
@@ -97,15 +82,6 @@ class AdControllerTests: XCTestCase {
 
     func testAdFailedToShowCallback() {
         // Given
-
-        let controller = AdController()
-        var receivedEvent: AdEvent?
-
-        controller.callback = { (placementId, event) in
-            receivedEvent = event
-        }
-
-        // When
         controller.adFailedToShow()
 
         // Then
@@ -114,15 +90,6 @@ class AdControllerTests: XCTestCase {
 
     func testAdEndedCallback() {
         // Given
-
-        let controller = AdController()
-        var receivedEvent: AdEvent?
-
-        controller.callback = { (placementId, event) in
-            receivedEvent = event
-        }
-
-        // When
         controller.adEnded()
 
         // Then
@@ -131,15 +98,6 @@ class AdControllerTests: XCTestCase {
 
     func testAdShownCallback() {
         // Given
-
-        let controller = AdController()
-        var receivedEvent: AdEvent?
-
-        controller.callback = { (placementId, event) in
-            receivedEvent = event
-        }
-
-        // When
         controller.adShown()
 
         // Then
@@ -148,15 +106,6 @@ class AdControllerTests: XCTestCase {
 
     func testAdClickedCallback() {
         // Given
-
-        let controller = AdController()
-        var receivedEvent: AdEvent?
-
-        controller.callback = { (placementId, event) in
-            receivedEvent = event
-        }
-
-        // When
         controller.adClicked()
 
         // Then
