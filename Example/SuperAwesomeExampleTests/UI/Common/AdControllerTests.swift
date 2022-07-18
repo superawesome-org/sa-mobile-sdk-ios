@@ -18,6 +18,16 @@ class AdControllerTests: XCTestCase {
         TestDependencies.register(adRepository: adRepository)
     }
 
+    private func configureAdResponseWithSuccess() {
+        adRepository.response = .success(
+            AdResponse(123, MockFactory.makeAd())
+        )
+    }
+
+    private func configureAdResponseWithError() {
+        adRepository.response = .failure(MockFactory.makeError())
+    }
+
     private func showPadlockTest(showPadlock: Bool, ksfUrl: String?, expectedResult: Bool) {
         // Given
         adRepository.response = .success(
@@ -37,5 +47,129 @@ class AdControllerTests: XCTestCase {
         showPadlockTest(showPadlock: true, ksfUrl: "http", expectedResult: false)
         showPadlockTest(showPadlock: true, ksfUrl: nil, expectedResult: true)
         showPadlockTest(showPadlock: false, ksfUrl: "http", expectedResult: false)
+    }
+
+    // Callbacks
+
+    func testAdLoadedCallback() {
+        // Given
+        configureAdResponseWithSuccess()
+
+        let controller = AdController()
+        var receivedEvent: AdEvent?
+
+        controller.callback = { (placementId, event) in
+            receivedEvent = event
+        }
+
+        // When
+        controller.load(123, MockFactory.makeAdRequest())
+
+        // Then
+        XCTAssertEqual(receivedEvent, AdEvent.adLoaded)
+    }
+
+    func testAdClosedCallback() {
+        // Given
+        configureAdResponseWithSuccess()
+
+        let controller = AdController()
+        var receivedEvent: AdEvent?
+
+        controller.callback = { (placementId, event) in
+            receivedEvent = event
+        }
+
+        // When
+        controller.close()
+
+        // Then
+        XCTAssertEqual(receivedEvent, AdEvent.adClosed)
+    }
+
+    func testAdCFailedToLoadCallback() {
+        // Given
+        configureAdResponseWithError()
+
+        let controller = AdController()
+        var receivedEvent: AdEvent?
+
+        controller.callback = { (placementId, event) in
+            receivedEvent = event
+        }
+
+        // When
+        controller.load(123, MockFactory.makeAdRequest())
+
+        // Then
+        XCTAssertEqual(receivedEvent, AdEvent.adFailedToLoad)
+    }
+
+    func testAdCFailedToShowCallback() {
+        // Given
+
+        let controller = AdController()
+        var receivedEvent: AdEvent?
+
+        controller.callback = { (placementId, event) in
+            receivedEvent = event
+        }
+
+        // When
+        controller.adFailedToShow()
+
+        // Then
+        XCTAssertEqual(receivedEvent, AdEvent.adFailedToShow)
+    }
+
+    func testAdEndedCallback() {
+        // Given
+
+        let controller = AdController()
+        var receivedEvent: AdEvent?
+
+        controller.callback = { (placementId, event) in
+            receivedEvent = event
+        }
+
+        // When
+        controller.adEnded()
+
+        // Then
+        XCTAssertEqual(receivedEvent, AdEvent.adEnded)
+    }
+
+    func testAdShownCallback() {
+        // Given
+
+        let controller = AdController()
+        var receivedEvent: AdEvent?
+
+        controller.callback = { (placementId, event) in
+            receivedEvent = event
+        }
+
+        // When
+        controller.adShown()
+
+        // Then
+        XCTAssertEqual(receivedEvent, AdEvent.adShown)
+    }
+
+    func testAdClickedCallback() {
+        // Given
+
+        let controller = AdController()
+        var receivedEvent: AdEvent?
+
+        controller.callback = { (placementId, event) in
+            receivedEvent = event
+        }
+
+        // When
+        controller.adClicked()
+
+        // Then
+        XCTAssertEqual(receivedEvent, AdEvent.adClicked)
     }
 }
