@@ -61,7 +61,7 @@ class AdControllerTests: XCTestCase {
         XCTAssertEqual(receivedEvent, AdEvent.adLoaded)
     }
 
-    func testAdCFailedToLoadCallback() {
+    func testAdFailedToLoadCallback() {
         // Given
         adRepository.response = .failure(MockFactory.makeError())
 
@@ -95,7 +95,7 @@ class AdControllerTests: XCTestCase {
         XCTAssertEqual(receivedEvent, AdEvent.adClosed)
     }
 
-    func testAdCFailedToShowCallback() {
+    func testAdFailedToShowCallback() {
         // Given
 
         let controller = AdController()
