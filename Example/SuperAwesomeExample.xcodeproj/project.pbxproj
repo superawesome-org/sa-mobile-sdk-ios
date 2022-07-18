@@ -62,7 +62,6 @@
 		C6C6AF4D27D7E37A00FFB5CA /* UserAgentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF4127D7E37A00FFB5CA /* UserAgentTests.swift */; };
 		C6C6AF4E27D7E37A00FFB5CA /* HtmlFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF4227D7E37A00FFB5CA /* HtmlFormatterTests.swift */; };
 		C6C6AF4F27D7E37A00FFB5CA /* AdProcessorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF4327D7E37A00FFB5CA /* AdProcessorTest.swift */; };
-		CC619C752881B46300D037C9 /* VideoAdTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC619C742881B46300D037C9 /* VideoAdTests.swift */; };
 		CC6AE3D1284F906B002F7581 /* VideoAdUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6AE3D0284F906B002F7581 /* VideoAdUITests.swift */; };
 		CCDA7340283E56CB00A75542 /* AwesomeAdsTargetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDA733F283E56CB00A75542 /* AwesomeAdsTargetTests.swift */; };
 /* End PBXBuildFile section */
@@ -152,7 +151,6 @@
 		C6C6AF4127D7E37A00FFB5CA /* UserAgentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAgentTests.swift; sourceTree = "<group>"; };
 		C6C6AF4227D7E37A00FFB5CA /* HtmlFormatterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HtmlFormatterTests.swift; sourceTree = "<group>"; };
 		C6C6AF4327D7E37A00FFB5CA /* AdProcessorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdProcessorTest.swift; sourceTree = "<group>"; };
-		CC619C742881B46300D037C9 /* VideoAdTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoAdTests.swift; sourceTree = "<group>"; };
 		CC6AE3CE284F906B002F7581 /* SuperAwesomeExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperAwesomeExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC6AE3D0284F906B002F7581 /* VideoAdUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoAdUITests.swift; sourceTree = "<group>"; };
 		CCDA733F283E56CB00A75542 /* AwesomeAdsTargetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwesomeAdsTargetTests.swift; sourceTree = "<group>"; };
@@ -301,7 +299,6 @@
 		C6895C4F27F4C79B009FAE1A /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				CC619C732881B45200D037C9 /* Ads */,
 				C6895C5027F4C7A1009FAE1A /* Common */,
 			);
 			path = UI;
@@ -431,14 +428,6 @@
 				C6895C5227F4CA38009FAE1A /* AdRepositoryMock.swift */,
 			);
 			path = Mocks;
-			sourceTree = "<group>";
-		};
-		CC619C732881B45200D037C9 /* Ads */ = {
-			isa = PBXGroup;
-			children = (
-				CC619C742881B46300D037C9 /* VideoAdTests.swift */,
-			);
-			path = Ads;
 			sourceTree = "<group>";
 		};
 		CC6AE3CF284F906B002F7581 /* SuperAwesomeExampleUITests */ = {
@@ -724,7 +713,6 @@
 				C6C6AF4F27D7E37A00FFB5CA /* AdProcessorTest.swift in Sources */,
 				C6C6AF2527D7D3DB00FFB5CA /* BundleMock.swift in Sources */,
 				CCDA7340283E56CB00A75542 /* AwesomeAdsTargetTests.swift in Sources */,
-				CC619C752881B46300D037C9 /* VideoAdTests.swift in Sources */,
 				C6C6AF2127D7D3DB00FFB5CA /* IdGeneratorMock.swift in Sources */,
 				C6C6AF1627D7D3DB00FFB5CA /* AdProcessorMock.swift in Sources */,
 				C6C6AF2827D7D3DB00FFB5CA /* SdkInfoMock.swift in Sources */,

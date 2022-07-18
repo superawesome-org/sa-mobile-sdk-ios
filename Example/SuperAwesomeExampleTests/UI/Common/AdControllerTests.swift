@@ -18,16 +18,6 @@ class AdControllerTests: XCTestCase {
         TestDependencies.register(adRepository: adRepository)
     }
 
-    private func configureAdResponseWithSuccess() {
-        adRepository.response = .success(
-            AdResponse(123, MockFactory.makeAd())
-        )
-    }
-
-    private func configureAdResponseWithError() {
-        adRepository.response = .failure(MockFactory.makeError())
-    }
-
     private func showPadlockTest(showPadlock: Bool, ksfUrl: String?, expectedResult: Bool) {
         // Given
         adRepository.response = .success(
@@ -53,7 +43,9 @@ class AdControllerTests: XCTestCase {
 
     func testAdLoadedCallback() {
         // Given
-        configureAdResponseWithSuccess()
+        adRepository.response = .success(
+            AdResponse(123, MockFactory.makeAd())
+        )
 
         let controller = AdController()
         var receivedEvent: AdEvent?
@@ -69,27 +61,9 @@ class AdControllerTests: XCTestCase {
         XCTAssertEqual(receivedEvent, AdEvent.adLoaded)
     }
 
-    func testAdClosedCallback() {
-        // Given
-        configureAdResponseWithSuccess()
-
-        let controller = AdController()
-        var receivedEvent: AdEvent?
-
-        controller.callback = { (placementId, event) in
-            receivedEvent = event
-        }
-
-        // When
-        controller.close()
-
-        // Then
-        XCTAssertEqual(receivedEvent, AdEvent.adClosed)
-    }
-
     func testAdCFailedToLoadCallback() {
         // Given
-        configureAdResponseWithError()
+        adRepository.response = .failure(MockFactory.makeError())
 
         let controller = AdController()
         var receivedEvent: AdEvent?
@@ -103,6 +77,22 @@ class AdControllerTests: XCTestCase {
 
         // Then
         XCTAssertEqual(receivedEvent, AdEvent.adFailedToLoad)
+    }
+
+    func testAdClosedCallback() {
+        // Given
+        let controller = AdController()
+        var receivedEvent: AdEvent?
+
+        controller.callback = { (placementId, event) in
+            receivedEvent = event
+        }
+
+        // When
+        controller.close()
+
+        // Then
+        XCTAssertEqual(receivedEvent, AdEvent.adClosed)
     }
 
     func testAdCFailedToShowCallback() {
