@@ -52,7 +52,6 @@ class ViewableDetector: ViewableDetectorType {
         if t == .playing {
             viewableCounter += 1
             whenVisible?()
-
             print("Heartbeat increased: \(viewableCounter)")
         }
 
