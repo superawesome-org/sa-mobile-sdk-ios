@@ -40,6 +40,13 @@ class VideoEvents: Injectable {
                                               with: avLayer,
                                               andView: videoPlayer)
         }
+
+        if let videoPlayer = player as? UIView {
+            viewableDetector = dependencies.resolve() as ViewableDetectorType
+            viewableDetector?.start(for: videoPlayer, forTickCount: 10, hasBeenVisible: { [weak self] in
+                self?.delegate?.hasBeenVisible()
+            })
+        }
     }
 
     public func complete(player: VideoPlayer, time: Int, duration: Int) {
@@ -60,7 +67,7 @@ class VideoEvents: Injectable {
             vastRepository?.creativeView()
             vastRepository?.start()
         }
-        if time >= 2 && !is2SHandled {
+        /*if time >= 2 && !is2SHandled {
             is2SHandled = true
 
             if let videoPlayer = player as? UIView {
@@ -69,7 +76,7 @@ class VideoEvents: Injectable {
                     self?.delegate?.hasBeenVisible()
                 })
             }
-        }
+        }*/
         if time >= duration / 4 && !isFirstQuartileHandled {
             isFirstQuartileHandled = true
             vastRepository?.firstQuartile()

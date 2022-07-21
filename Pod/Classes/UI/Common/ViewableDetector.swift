@@ -33,7 +33,7 @@ class ViewableDetector: ViewableDetectorType {
         cancel()
         self.hasBeenVisible = hasBeenVisible
         self.view = view
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self,
+        timer = Timer.scheduledTimer(timeInterval: 0.2, target: self,
                                      selector: #selector(timerFunction), userInfo: nil, repeats: true)
     }
 
@@ -43,12 +43,21 @@ class ViewableDetector: ViewableDetectorType {
     }
 
     @objc private func timerFunction() {
-        if view?.isVisibleToUser ?? false {
+
+        guard
+            let v = view as? VideoPlayer,
+            let t = v.getAVPlayer()?.timeControlStatus
+        else { return }
+
+        if t == .playing {
             viewableCounter += 1
             whenVisible?()
+
+            print("Heartbeat increased: \(viewableCounter)")
         }
 
         if viewableCounter >= targetTickCount {
+            print("Heartbeat reached target: \(viewableCounter)")
             hasBeenVisible?()
             cancel()
         }

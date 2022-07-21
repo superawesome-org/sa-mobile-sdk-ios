@@ -133,6 +133,7 @@ import UIKit
 
 extension VideoViewController: VideoEventsDelegate {
     func hasBeenVisible() {
+        print("Heartbeat reached and viewability impression tracked")
         controller.triggerViewableImpression()
         controller.triggerDwellTime()
 
