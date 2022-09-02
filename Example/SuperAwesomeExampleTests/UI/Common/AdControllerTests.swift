@@ -103,12 +103,4 @@ class AdControllerTests: XCTestCase {
         // Then
         XCTAssertEqual(receivedEvent, AdEvent.adShown)
     }
-
-    func testAdClickedCallback() {
-        // Given
-        controller.adClicked()
-
-        // Then
-        XCTAssertEqual(receivedEvent, AdEvent.adClicked)
-    }
 }

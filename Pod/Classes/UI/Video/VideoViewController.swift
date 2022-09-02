@@ -119,7 +119,6 @@ import UIKit
     }
 
     private func clickAction() {
-        controller.adClicked()
         controller.handleAdTapForVast()
     }
 

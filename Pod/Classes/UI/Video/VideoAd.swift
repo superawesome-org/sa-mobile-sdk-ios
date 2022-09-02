@@ -15,7 +15,7 @@ enum AdState {
 @objc(SAVideoAd)
 public class VideoAd: NSObject, Injectable {
     private static var adRepository: AdRepositoryType = dependencies.resolve()
-    private static var logger: LoggerType = dependencies.resolve(param: InterstitialAd.self)
+    private static var logger: LoggerType = dependencies.resolve(param: VideoAd.self)
 
     static var isTestingEnabled: Bool = Constants.defaultTestMode
     static var isParentalGateEnabled: Bool = Constants.defaultParentalGate

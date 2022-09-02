@@ -21,8 +21,6 @@ protocol AdControllerType {
     func handleAdTap(url: URL)
     func handleSafeAdTap()
 
-    func onAdClicked(_ url: URL)
-
     func load(_ placementId: Int, _ request: AdRequest)
     func load(_ placementId: Int, lineItemId: Int, creativeId: Int, _ request: AdRequest)
     func close()
@@ -31,7 +29,6 @@ protocol AdControllerType {
     func adEnded()
     func adFailedToShow()
     func adShown()
-    func adClicked()
     func adClosed()
 
     // trigger web events
@@ -107,11 +104,6 @@ class AdController: AdControllerType, Injectable {
         logger.info("Event callback: adEnded for placement \(placementId)")
     }
 
-    func adClicked() {
-        callback?(placementId, .adClicked)
-        logger.info("Event callback: adClicked for placement \(placementId)")
-    }
-
     func adClosed() {
         callback?(placementId, .adClosed)
         logger.info("Event callback: adClosed for placement \(placementId)")
@@ -172,7 +164,7 @@ class AdController: AdControllerType, Injectable {
     }
 
     /// Method that is called when a user clicks / taps on an ad
-    func onAdClicked(_ url: URL) {
+    private func onAdClicked(_ url: URL) {
         logger.success("Event callback: onAdClicked: for url: \(url.absoluteString)")
 
         if bumperPageEnabled || adResponse?.advert.creative.bumper ?? false {
@@ -210,6 +202,8 @@ class AdController: AdControllerType, Injectable {
     }
 
     func handleAdTapForVast() {
+        logger.info("Event callback: adClicked for placement \(placementId)")
+        
         guard let clickThroughUrl = adResponse?.vast?.clickThroughUrl, let url = URL(string: clickThroughUrl) else {
             logger.info("Event callback: Click through URL is not found")
             return
