@@ -23,7 +23,8 @@ class MockFactory {
         _ clickUrl: String? = nil,
         _ tag: String? = nil,
         _ showPadlock: Bool = false,
-        _ ksfRequest: String? = nil
+        _ ksfRequest: String? = nil,
+        _ bumper: Bool = true
     ) -> Ad {
         Ad(advertiserId: 10,
            publisherId: 20,
@@ -55,7 +56,7 @@ class MockFactory {
                 height: 100,
                 duration: 110,
                 vast: vast),
-            bumper: true,
+            bumper: bumper,
             payload: nil),
            ksfRequest: ksfRequest)
     }
@@ -112,5 +113,22 @@ class MockFactory {
 
     static func makeAdResponse() -> AdResponse {
         AdResponse(10, makeAd())
+    }
+    
+    static func makeVastAd(clickThrough: String? = nil) -> VastAd {
+        VastAd(url: nil,
+               type: .inLine,
+               redirect: nil,
+               errorEvents: [],
+               impressions: [],
+               clickThrough: clickThrough,
+               creativeViewEvents: [],
+               startEvents: [],
+               firstQuartileEvents: [],
+               midPointEvents: [],
+               thirdQuartileEvents: [],
+               completeEvents: [],
+               clickTrackingEvents: [],
+               media: [])
     }
 }

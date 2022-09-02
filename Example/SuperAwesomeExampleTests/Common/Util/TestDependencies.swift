@@ -16,6 +16,17 @@ struct TestDependencies {
         container.single(LoggerType.self) { _, _ in
             LoggerMock()
         }
+        container.single(ImageProviderType.self) { _, _ in
+            ImageProvider()
+        }
+        container.single(StringProviderType.self) { _, _ in
+            StringProvider()
+        }
+        container.single(EventRepositoryType.self) { container, _ in
+            EventRepository(dataSource: AdDataSourceMock(),
+                            adQueryMaker: AdQueryMakerMock(),
+                            logger: container.resolve(param: EventRepository.self))
+        }
         InjectableComponent.register(container)
     }
 }
