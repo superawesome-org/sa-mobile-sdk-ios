@@ -201,6 +201,22 @@ public enum AdEvent: Int {
     case adClicked = 6
     case adEnded = 7
     case adClosed = 8
+    
+    /// Gets the name of the event
+    public func name() -> String {
+        switch self {
+        case .adLoaded: return "adLoaded"
+        case .adEmpty: return "adEmpty"
+        case .adFailedToLoad: return "adFailedToLoad"
+        case .adAlreadyLoaded: return "adAlreadyLoaded"
+        case .adShown: return "adShown"
+        case .adFailedToShow: return "adFailedToShow"
+        case .adClicked: return "adClicked"
+        case .adEnded: return "adEnded"
+        case .adClosed: return "adClosed"
+        default: return "\(self.rawValue)"
+        }
+    }
 }
 
 /// Callback function for completable events

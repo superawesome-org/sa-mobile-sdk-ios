@@ -54,17 +54,20 @@ private let rows: [AdRow] = [
         lineItemId: 176803,
         creativeId: 503038
     ),
-    MultiIdRow(
+    SingleIdRow(
         type: .video,
         name: "Direct MultiId",
-        placementId: 82090,
-        lineItemId: 176803,
-        creativeId: 504433
+        placementId: 82090
     ),
     SingleIdRow(
         type: .video,
         name: "VPAID via KSF",
         placementId: 84798
+    ),
+    SingleIdRow(
+        type: .video,
+        name: "Direct video flat",
+        placementId: 87969
     )
 ]
 
@@ -183,7 +186,7 @@ class MainViewController: UIViewController {
         ])
 
         bannerView.setCallback { (_, event) in
-            print(" bannerView >> \(event.rawValue)")
+            print(" bannerView >> \(event.name())")
 
             if event == .adLoaded {
                 self.bannerView.play()
@@ -193,7 +196,7 @@ class MainViewController: UIViewController {
 
     private func configureInterstitial() {
         InterstitialAd.setCallback { (placementId, event) in
-            print(" InterstitialAd >> \(event.rawValue)")
+            print(" InterstitialAd >> \(event.name())")
 
             if event == .adLoaded {
                 InterstitialAd.play(placementId, fromVC: self)
@@ -204,7 +207,7 @@ class MainViewController: UIViewController {
     private func configureVideo() {
         VideoAd.enableCloseButton()
         VideoAd.setCallback { (placementId, event) in
-            print(" VideoAd >> \(event.rawValue)")
+            print(" VideoAd >> \(event.name())")
 
             if event == .adLoaded {
                 VideoAd.play(withPlacementId: placementId, fromVc: self)

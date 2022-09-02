@@ -21,8 +21,6 @@ protocol AdControllerType {
     func handleAdTap(url: URL)
     func handleSafeAdTap()
 
-    func onAdClicked(_ url: URL)
-
     func load(_ placementId: Int, _ request: AdRequest)
     func load(_ placementId: Int, lineItemId: Int, creativeId: Int, _ request: AdRequest)
     func close()
@@ -31,7 +29,6 @@ protocol AdControllerType {
     func adEnded()
     func adFailedToShow()
     func adShown()
-    func adClicked()
     func adClosed()
 
     // trigger web events
@@ -107,11 +104,6 @@ class AdController: AdControllerType, Injectable {
         logger.info("Event callback: adEnded for placement \(placementId)")
     }
 
-    func adClicked() {
-        callback?(placementId, .adClicked)
-        logger.info("Event callback: adClicked for placement \(placementId)")
-    }
-
     func adClosed() {
         callback?(placementId, .adClosed)
         logger.info("Event callback: adClosed for placement \(placementId)")
@@ -171,10 +163,8 @@ class AdController: AdControllerType, Injectable {
         callback?(placementId, .adFailedToLoad)
     }
 
-    /// Method that is called when a user clicks / taps on an ad
-    func onAdClicked(_ url: URL) {
-        logger.success("Event callback: onAdClicked: for url: \(url.absoluteString)")
-
+    /// Shows bumper screen if needed
+    private func showBumperIfNeeded(_ url: URL) {
         if bumperPageEnabled || adResponse?.advert.creative.bumper ?? false {
             BumperPage().play { [weak self] in
                 self?.navigateToUrl(url)
@@ -184,7 +174,7 @@ class AdController: AdControllerType, Injectable {
         }
     }
 
-    func navigateToUrl(_ url: URL) {
+    private func navigateToUrl(_ url: URL) {
         guard let adResponse = adResponse else { return }
 
         let currentTime = NSDate().timeIntervalSince1970
@@ -210,6 +200,8 @@ class AdController: AdControllerType, Injectable {
     }
 
     func handleAdTapForVast() {
+        logger.info("Event callback: adClicked for placement \(placementId)")
+        
         guard let clickThroughUrl = adResponse?.vast?.clickThroughUrl, let url = URL(string: clickThroughUrl) else {
             logger.info("Event callback: Click through URL is not found")
             return
@@ -220,7 +212,7 @@ class AdController: AdControllerType, Injectable {
 
     func handleAdTap(url: URL) {
         showParentalGateIfNeeded { [weak self] in
-            self?.onAdClicked(url)
+            self?.showBumperIfNeeded(url)
         }
     }
 
@@ -228,7 +220,7 @@ class AdController: AdControllerType, Injectable {
         showParentalGateIfNeeded(showSuperAwesomeWebPageInSafari)
     }
 
-    func showParentalGateIfNeeded(_ completion: VoidBlock?) {
+    private func showParentalGateIfNeeded(_ completion: VoidBlock?) {
         if parentalGateEnabled {
             parentalGate?.stop()
             parentalGate = dependencies.resolve() as ParentalGate
@@ -245,7 +237,7 @@ class AdController: AdControllerType, Injectable {
         }
     }
 
-    func showSuperAwesomeWebPageInSafari() {
+    private func showSuperAwesomeWebPageInSafari() {
         let onComplete = {
             if let url = URL(string: Constants.defaultSafeAdUrl) {
                 UIApplication.shared.open( url, options: [:], completionHandler: nil)

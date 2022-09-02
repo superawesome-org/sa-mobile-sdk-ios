@@ -106,7 +106,13 @@ class AdControllerTests: XCTestCase {
 
     func testAdClickedCallback() {
         // Given
-        controller.adClicked()
+        let adResponse = AdResponse(123, MockFactory.makeAd(.tag, nil, nil, nil, false, nil, false))
+        adResponse.vast = MockFactory.makeVastAd(clickThrough: "https://www.superawesome.com/")
+        adRepository.response = .success(adResponse)
+        controller.load(123, MockFactory.makeAdRequest())
+
+        // When
+        controller.handleAdTapForVast()
 
         // Then
         XCTAssertEqual(receivedEvent, AdEvent.adClicked)
