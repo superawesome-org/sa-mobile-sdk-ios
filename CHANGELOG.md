@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+8.3.9
+ - Fix multiple click event is being sent to listener
+ - Update objc annotation for AwesomeAds class
+
 8.3.8
  - Fix for missing events in the AdController callback
 
