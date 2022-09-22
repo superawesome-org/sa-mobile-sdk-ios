@@ -87,7 +87,6 @@ class AdViewMessageHandler: NSObject, WKScriptMessageHandler {
     private var moatLimiting = true
     private var bridge: AdViewJavaScriptBridge?
 
-    @available(iOS 14.5, *)
     private lazy var sknetworkManager: SKAdNetworkManager = dependencies.resolve()
     private var logger: LoggerType = dependencies.resolve(param: SAManagedAdView.self)
 
