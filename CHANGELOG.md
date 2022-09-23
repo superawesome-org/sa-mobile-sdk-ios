@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+8.3.10
+ - Fix compile issue on iOS 16 where it restricts adding available annotation to stored properties
+
 8.3.9
  - Fix multiple click event is being sent to listener
  - Update objc annotation for AwesomeAds class
