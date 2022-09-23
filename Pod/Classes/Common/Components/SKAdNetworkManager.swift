@@ -8,9 +8,11 @@
 import Foundation
 import StoreKit
 
-@available(iOS 14.5, *)
+// All the functions should be marked with at least @available(iOS 14.5, *) for SKAdNetworkManager
 protocol SKAdNetworkManager {
+    @available(iOS 14.5, *)
     func startImpression(lineItemId: Int, creativeId: Int)
+    @available(iOS 14.5, *)
     func endImpression()
 }
 

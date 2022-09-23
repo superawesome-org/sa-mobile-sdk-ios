@@ -201,7 +201,7 @@ public enum AdEvent: Int {
     case adClicked = 6
     case adEnded = 7
     case adClosed = 8
-    
+
     /// Gets the name of the event
     public func name() -> String {
         switch self {

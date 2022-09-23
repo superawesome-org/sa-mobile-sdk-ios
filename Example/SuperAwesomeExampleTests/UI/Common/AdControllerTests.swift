@@ -20,7 +20,7 @@ class AdControllerTests: XCTestCase {
         TestDependencies.register(adRepository: adRepository)
         receivedEvent = nil
 
-        controller.callback = { [weak self] (placementId, event) in
+        controller.callback = { [weak self] (_, event) in
             self?.receivedEvent = event
         }
     }

@@ -201,7 +201,7 @@ class AdController: AdControllerType, Injectable {
 
     func handleAdTapForVast() {
         logger.info("Event callback: adClicked for placement \(placementId)")
-        
+
         guard let clickThroughUrl = adResponse?.vast?.clickThroughUrl, let url = URL(string: clickThroughUrl) else {
             logger.info("Event callback: Click through URL is not found")
             return

@@ -114,7 +114,7 @@ class MockFactory {
     static func makeAdResponse() -> AdResponse {
         AdResponse(10, makeAd())
     }
-    
+
     static func makeVastAd(clickThrough: String? = nil) -> VastAd {
         VastAd(url: nil,
                type: .inLine,
