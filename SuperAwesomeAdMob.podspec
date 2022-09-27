@@ -7,10 +7,6 @@ Pod::Spec.new do |s|
   DESC
   s.homepage = 'https://doc.superawesome.tv/sa-mobile-sdk-ios/latest/'
   s.documentation_url = 'https://doc.superawesome.tv/sa-mobile-sdk-ios/latest/'
-  s.license = {
-    :type => 'GNU GENERAL PUBLIC LICENSE Version 3',
-    :file => 'LICENSE'
-  }
   s.author = { 'Gunhan Sancar' => 'gunhan.sancar@superawesome.com' }
   s.source = {
     :git => 'https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git',
