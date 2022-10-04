@@ -18,20 +18,24 @@ class InterstitialAdViewController: UIViewController, Injectable {
     private let adResponse: AdResponse
     private let parentGateEnabled: Bool
     private let bumperPageEnabled: Bool
+    private let closeButtonState: CloseButtonState
     private let testingEnabled: Bool
     private let orientation: Orientation
+
     // swiftlint:disable weak_delegate
     private let delegate: AdEventCallback?
 
     init(adResponse: AdResponse,
          parentGateEnabled: Bool,
          bumperPageEnabled: Bool,
+         closeButtonState: CloseButtonState,
          testingEnabled: Bool,
          orientation: Orientation,
          delegate: AdEventCallback?) {
         self.adResponse = adResponse
         self.parentGateEnabled = parentGateEnabled
         self.bumperPageEnabled = bumperPageEnabled
+        self.closeButtonState = closeButtonState
         self.testingEnabled = testingEnabled
         self.orientation = orientation
         self.delegate = delegate
@@ -95,11 +99,12 @@ class InterstitialAdViewController: UIViewController, Injectable {
 
     private func configureCloseButton() {
         let button = UIButton()
-        button.isHidden = true
+        button.isHidden = closeButtonState != .visibleImmediately
         button.setTitle("", for: .normal)
         button.setImage(imageProvider.closeImage, for: .normal)
         button.addTarget(self, action: #selector(onCloseClicked), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.accessibilityIdentifier = "closeButton"
 
         view.addSubview(button)
 
