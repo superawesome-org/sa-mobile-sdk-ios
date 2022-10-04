@@ -96,6 +96,7 @@ class MainViewController: UIViewController {
 
         // Normal close button configuration
         VideoAd.enableCloseButton()
+        InterstitialAd.enableCloseButtonNoDelay()
     }
 
     func configuration2() {
@@ -110,6 +111,7 @@ class MainViewController: UIViewController {
 
         // Close button configured with no delay
         VideoAd.enableCloseButtonNoDelay()
+        InterstitialAd.enableCloseButtonNoDelay()
     }
 
     private func initUI() {

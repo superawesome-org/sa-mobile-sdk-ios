@@ -17,6 +17,7 @@ public class InterstitialAd: NSObject, Injectable {
     private(set) static var isTestingEnabled: Bool = Constants.defaultTestMode
     private(set) static var orientation: Orientation = Constants.defaultOrientation
     private(set) static var isMoatLimitingEnabled: Bool = Constants.defaultMoatLimitingState
+    private(set) static var closeButtonState: CloseButtonState = Constants.defaultCloseButtonInterstitial
 
     // MARK: - Public functions
 
@@ -70,6 +71,7 @@ public class InterstitialAd: NSObject, Injectable {
         let viewController = InterstitialAdViewController(adResponse: adResponse,
                                                       parentGateEnabled: isParentalGateEnabled,
                                                       bumperPageEnabled: isBumperPageEnabled,
+                                                      closeButtonState: closeButtonState,
                                                       testingEnabled: isTestingEnabled,
                                                       orientation: orientation,
                                                       delegate: self.controller.callback)
@@ -86,6 +88,24 @@ public class InterstitialAd: NSObject, Injectable {
      */
     @objc
     public class func hasAdAvailable(_ placementId: Int) -> Bool { controller.adAvailable }
+
+    /**
+     * Method that enables the close button to display with a delay.
+     */
+    @objc(enableCloseButton)
+    public static func enableCloseButton() {
+        closeButtonState = .visibleWithDelay
+    }
+
+    /**
+     * Method that enables the close button to display immediately without a delay.
+     * WARNING: this will allow users to close the ad before the viewable tracking event is fired
+     * and should only be used if you explicitly want this behaviour over consistent tracking.
+     */
+    @objc(enableCloseButtonNoDelay)
+    public static func enableCloseButtonNoDelay() {
+        closeButtonState = .visibleImmediately
+    }
 
     @objc
     public class func setCallback(_ callback: @escaping AdEventCallback) { controller.callback = callback }
