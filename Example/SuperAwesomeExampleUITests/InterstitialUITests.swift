@@ -19,7 +19,7 @@ class InterstitialUITests: XCTestCase {
 
         // Given close button appearing with no delay is configured via the SegmentControl
         app.segmentedControls["configControl"].buttons.element(boundBy: 1).tap()
-        
+
         let closeButtonExpectation = expectation(
             for: NSPredicate(format: "exists == true"),
             evaluatedWith: app.buttons["closeButton"],
@@ -28,7 +28,7 @@ class InterstitialUITests: XCTestCase {
 
         // When Tap the video ad in the list
         app.otherElements["adsStackView"].buttons.element(boundBy: 1).tap()
-        
+
         // Then the close button is visible
         let closeButtonResult = XCTWaiter.wait(for: [closeButtonExpectation], timeout: 5.0)
 
