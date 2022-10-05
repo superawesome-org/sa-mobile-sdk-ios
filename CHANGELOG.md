@@ -2,7 +2,7 @@ CHANGELOG
 =========
 
 8.4.0
- - Add immediately close button functionality to the interstitial ads
+ - Added new functionality to display close button immediately for the interstitial ads
 
 8.3.10
  - Fix compile issue on iOS 16 where it restricts adding available annotation to stored properties
