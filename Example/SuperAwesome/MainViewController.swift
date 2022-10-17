@@ -45,7 +45,7 @@ private let rows: [AdRow] = [
     SingleIdRow(
         type: .interstitial,
         name: "Portrait",
-        placementId: 82089
+        placementId: 87892
     ),
     MultiIdRow(
         type: .interstitial,
@@ -63,6 +63,11 @@ private let rows: [AdRow] = [
         type: .video,
         name: "VPAID via KSF",
         placementId: 84798
+    ),
+    SingleIdRow(
+        type: .video,
+        name: "VPAID non-KSF",
+        placementId: 89056
     ),
     SingleIdRow(
         type: .video,
