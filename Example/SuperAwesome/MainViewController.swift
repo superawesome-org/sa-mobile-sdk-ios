@@ -45,7 +45,7 @@ private let rows: [AdRow] = [
     SingleIdRow(
         type: .interstitial,
         name: "Portrait",
-        placementId: 87892
+        placementId: 82089
     ),
     MultiIdRow(
         type: .interstitial,
