@@ -16,9 +16,19 @@ protocol StringProviderType {
 
     func bumperPageInfo(counter: Int) -> String
     func bumperPageLeaving(appName: String?) -> String
+
+    var closeDialogTitle: String { get }
+    var closeDialogMessage: String { get }
+    var closeDialogCloseAction: String { get }
+    var closeDialogResumeAction: String { get }
 }
 
 class StringProvider: StringProviderType {
+    var closeDialogTitle = "Close Video?"
+    var closeDialogMessage = "You will lose your reward"
+    var closeDialogCloseAction = "Close Video"
+    var closeDialogResumeAction = "Resume Video"
+
     var parentalGateTitle = "Parental Gate"
     func parentalGateMessage(firstNumber: Int, secondNumber: Int) -> String {
         "Please solve the following problem to continue:\n\(firstNumber) + \(secondNumber) = ?"

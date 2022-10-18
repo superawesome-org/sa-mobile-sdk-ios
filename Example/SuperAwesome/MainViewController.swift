@@ -108,6 +108,7 @@ class MainViewController: UIViewController {
 
         VideoAd.disableParentalGate()
         VideoAd.disableBumperPage()
+        VideoAd.enableCloseButtonWithWarning()
 
         // Close button configured with no delay
         VideoAd.enableCloseButtonNoDelay()

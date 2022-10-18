@@ -13,4 +13,5 @@ struct AdConfig {
     let isParentalGateEnabled: Bool
     let isBumperPageEnabled: Bool
     let orientation: Orientation
+    let shouldShowCloseWarning: Bool
 }
