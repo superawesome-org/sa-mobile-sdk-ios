@@ -31,6 +31,9 @@ override func viewDidLoad() {
     // WARNING: this will allow users to close the ad before the viewable tracking event is fired
     // and should only be used if you explicitly want this behaviour over consistent tracking.
     VideoAd.enableCloseButtonNoDelay()
+    
+    // enable close button and warn user before closing
+    VideoAd.enableCloseButtonWithWarning()
 
     // enable or disable auto-closing at the end
     VideoAd.disableCloseAtEnd()
