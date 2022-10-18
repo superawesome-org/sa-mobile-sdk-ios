@@ -66,6 +66,11 @@ private let rows: [AdRow] = [
     ),
     SingleIdRow(
         type: .video,
+        name: "VPAID non-KSF",
+        placementId: 89056
+    ),
+    SingleIdRow(
+        type: .video,
         name: "Direct video flat",
         placementId: 87969
     )
