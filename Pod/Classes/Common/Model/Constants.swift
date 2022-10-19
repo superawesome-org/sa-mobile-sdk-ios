@@ -6,7 +6,7 @@
 //
 
 struct Constants {
-    static let defaultClickThresholdInMs = 5000
+    static let defaultClickThresholdInSecs = 5
     static let defaultTestMode = false
     static let defaultParentalGate = false
     static let defaultBumperPage = false

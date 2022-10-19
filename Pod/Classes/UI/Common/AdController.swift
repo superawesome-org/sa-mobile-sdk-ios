@@ -180,7 +180,7 @@ class AdController: AdControllerType, Injectable {
         let currentTime = NSDate().timeIntervalSince1970
         let diff = abs(currentTime - lastClickTime)
 
-        if Int32(diff) < Constants.defaultClickThresholdInMs {
+        if Int32(diff) < Constants.defaultClickThresholdInSecs {
             logger.info("Event callback: Ad clicked too quickly: ignored")
             return
         }
