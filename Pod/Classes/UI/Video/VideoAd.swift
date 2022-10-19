@@ -22,14 +22,13 @@ public class VideoAd: NSObject, Injectable {
     static var isBumperPageEnabled: Bool = Constants.defaultBumperPage
     static var shouldAutomaticallyCloseAtEnd: Bool = Constants.defaultCloseAtEnd
     static var closeButtonState: CloseButtonState = Constants.defaultCloseButton
+    static var shouldShowCloseWarning: Bool = Constants.defaultCloseWarning
     static var shouldShowSmallClickButton: Bool = Constants.defaultSmallClick
     static var orientation: Orientation = Constants.defaultOrientation
-
     static var isMoatLimitingEnabled: Bool = Constants.defaultMoatLimitingState
     static var delay: AdRequest.StartDelay = Constants.defaultStartDelay
 
     private static var callback: AdEventCallback?
-
     private static var ads = [Int: AdState]()
 
     ////////////////////////////////////////////////////////////////////////////
@@ -109,7 +108,8 @@ public class VideoAd: NSObject, Injectable {
                                   shouldCloseAtEnd: shouldAutomaticallyCloseAtEnd,
                                   isParentalGateEnabled: isParentalGateEnabled,
                                   isBumperPageEnabled: isBumperPageEnabled,
-                                  orientation: orientation)
+                                  orientation: orientation,
+                                  shouldShowCloseWarning: shouldShowCloseWarning)
             if ad.isVpaid {
                 let managedVideoAdController = SAManagedAdViewController(adResponse: ad, config: config, callback: callback)
                 managedVideoAdController.modalPresentationStyle = .fullScreen
@@ -255,6 +255,11 @@ public class VideoAd: NSObject, Injectable {
         closeButtonState = close ? .visibleWithDelay : .hidden
     }
 
+    @objc(setCloseButtonWarning:)
+    public static func setCloseButtonWarning(_ withWarning: Bool) {
+        shouldShowCloseWarning = withWarning
+    }
+
     @objc(enableCloseButton)
     public static func enableCloseButton() {
         setCloseButton(true)
@@ -263,6 +268,15 @@ public class VideoAd: NSObject, Injectable {
     @objc(disableCloseButton)
     public static func disableCloseButton() {
         setCloseButton(false)
+    }
+
+    /**
+     * Method that shows a warning dialog prior to closing the video via the close button or the
+     * the back button.
+     */
+    public static func enableCloseButtonWithWarning() {
+        setCloseButton(true)
+        setCloseButtonWarning(true)
     }
 
     /**

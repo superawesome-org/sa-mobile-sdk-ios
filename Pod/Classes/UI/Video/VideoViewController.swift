@@ -11,12 +11,15 @@ import UIKit
 
     private lazy var controller: AdControllerType = dependencies.resolve()
     private lazy var orientationProvider: OrientationProviderType = dependencies.resolve()
+    private lazy var stringProvider: StringProviderType = dependencies.resolve()
     private var videoPlayer: AwesomeVideoPlayer!
     private var chrome: AdSocialVideoPlayerControlsView!
     private var logger: LoggerType = dependencies.resolve(param: VideoViewController.self)
     private let config: AdConfig
     private let control: VideoPlayerControls = VideoPlayerController()
     private let videoEvents: VideoEvents
+    private var completed: Bool = false
+    private var closeDialog: UIAlertController?
 
     init(adResponse: AdResponse, callback: AdEventCallback?, config: AdConfig) {
         self.config = config
@@ -95,11 +98,21 @@ import UIKit
         NotificationCenter.default.addObserver(forName: UIApplication.willEnterForegroundNotification, object: nil, queue: .main) { [weak self] notification in
             self?.willEnterForeground(notification)
         }
+
+        // register notification for background
+        // swiftlint:disable discarded_notification_center_observer
+        NotificationCenter.default.addObserver(forName: UIApplication.didEnterBackgroundNotification, object: nil, queue: .main) { [weak self] _ in
+            self?.didEnterBackground()
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         control.start()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -111,6 +124,14 @@ import UIKit
         NotificationCenter.default.removeObserver(self,
                                                   name: UIApplication.willEnterForegroundNotification,
                                                   object: nil)
+        NotificationCenter.default.removeObserver(self,
+                                                  name: UIApplication.didEnterBackgroundNotification,
+                                                  object: nil)
+    }
+
+    private func didEnterBackground() {
+        closeDialog?.dismiss(animated: true)
+        closeDialog = nil
     }
 
     @objc
@@ -123,6 +144,22 @@ import UIKit
     }
 
     private func closeAction() {
+        if config.shouldShowCloseWarning && !completed {
+            control.pause()
+            closeDialog = showQuestionDialog(title: stringProvider.closeDialogTitle,
+                                             message: stringProvider.closeDialogMessage,
+                                             yesTitle: stringProvider.closeDialogCloseAction,
+                                             noTitle: stringProvider.closeDialogResumeAction) { [weak self] in
+                self?.close()
+            } noAction: { [weak self] in
+                self?.control.start()
+            }
+        } else {
+            close()
+        }
+    }
+
+    private func close() {
         videoPlayer.destroy()
         dismiss(animated: true) { [weak self] in
             self?.controller.close()
@@ -152,6 +189,7 @@ extension VideoViewController: VideoPlayerDelegate {
     }
 
     func didComplete(videoPlayer: VideoPlayer, time: Int, duration: Int) {
+        completed = true
         videoEvents.complete(player: videoPlayer, time: time, duration: duration)
         chrome.makeCloseButtonVisible()
         controller.adEnded()
