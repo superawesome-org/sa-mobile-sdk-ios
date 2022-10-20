@@ -42,6 +42,7 @@ class AdController: AdControllerType, Injectable {
     private lazy var logger: LoggerType = dependencies.resolve(param: AdController.self)
     private lazy var eventRepository: EventRepositoryType = dependencies.resolve()
     private lazy var adRepository: AdRepositoryType = dependencies.resolve()
+    private lazy var timeProvider: TimeProviderType = dependencies.resolve()
 
     private var parentalGate: ParentalGate?
     private var lastClickTime: TimeInterval = 0
@@ -139,7 +140,6 @@ class AdController: AdControllerType, Injectable {
     }
 
     func load(_ placementId: Int, lineItemId: Int, creativeId: Int, _ request: AdRequest) {
-
         adRepository.getAd(
             placementId: placementId,
             lineItemId: lineItemId,
@@ -177,10 +177,10 @@ class AdController: AdControllerType, Injectable {
     private func navigateToUrl(_ url: URL) {
         guard let adResponse = adResponse else { return }
 
-        let currentTime = NSDate().timeIntervalSince1970
+        let currentTime = timeProvider.secondsSince1970
         let diff = abs(currentTime - lastClickTime)
 
-        if Int32(diff) < Constants.defaultClickThresholdInMs {
+        if Int32(diff) < Constants.defaultClickThresholdInSecs {
             logger.info("Event callback: Ad clicked too quickly: ignored")
             return
         }

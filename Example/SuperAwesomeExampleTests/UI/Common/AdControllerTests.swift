@@ -12,16 +12,21 @@ import Nimble
 
 class AdControllerTests: XCTestCase {
     private var adRepository: AdRepositoryMock = AdRepositoryMock()
+    private var timeProvider: TimeProviderMock = TimeProviderMock()
     private let controller = AdController()
     private var receivedEvent: AdEvent?
+    private var receivedEvents: [AdEvent] = []
 
     override func setUp() {
         super.setUp()
-        TestDependencies.register(adRepository: adRepository)
+        TestDependencies.register(adRepository: adRepository,
+                                  timeProvider: timeProvider)
         receivedEvent = nil
+        receivedEvents = []
 
         controller.callback = { [weak self] (_, event) in
             self?.receivedEvent = event
+            self?.receivedEvents.append(event)
         }
     }
 
@@ -116,5 +121,49 @@ class AdControllerTests: XCTestCase {
 
         // Then
         XCTAssertEqual(receivedEvent, AdEvent.adClicked)
+    }
+
+    func test_two_consecutive_clicks_then_only_one_event() {
+        // Given
+        let initialTime = Date().timeIntervalSince1970
+        let adResponse = AdResponse(123, MockFactory.makeAd(.tag, nil, nil, nil, false, nil, false))
+        adResponse.vast = MockFactory.makeVastAd(clickThrough: "https://www.superawesome.com/")
+        adRepository.response = .success(adResponse)
+        controller.load(123, MockFactory.makeAdRequest())
+
+        // When ad is clicked
+        timeProvider.secondsSince1970Mock = initialTime
+        controller.handleAdTapForVast()
+
+        // And 1 second passed
+        timeProvider.secondsSince1970Mock = initialTime + 1
+        controller.handleAdTapForVast()
+
+        let filtered = receivedEvents.filter { $0 == AdEvent.adClicked }
+
+        // Then
+        XCTAssertEqual(filtered.count, 1)
+    }
+
+    func test_click_after_threshold_then_multiple_events() {
+        // Given
+        let initialTime = Date().timeIntervalSince1970
+        let adResponse = AdResponse(123, MockFactory.makeAd(.tag, nil, nil, nil, false, nil, false))
+        adResponse.vast = MockFactory.makeVastAd(clickThrough: "https://www.superawesome.com/")
+        adRepository.response = .success(adResponse)
+        controller.load(123, MockFactory.makeAdRequest())
+
+        // When ad is clicked
+        timeProvider.secondsSince1970Mock = initialTime
+        controller.handleAdTapForVast()
+
+        // And 5 seconds passed
+        timeProvider.secondsSince1970Mock = initialTime + 5
+        controller.handleAdTapForVast()
+
+        let filtered = receivedEvents.filter { $0 == AdEvent.adClicked }
+
+        // Then
+        XCTAssertEqual(filtered.count, 2)
     }
 }

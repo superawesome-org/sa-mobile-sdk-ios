@@ -8,8 +8,12 @@
 @testable import SuperAwesome
 
 struct TestDependencies {
-    static func register(adRepository: AdRepositoryType = AdRepositoryMock()) {
+    static func register(adRepository: AdRepositoryType = AdRepositoryMock(),
+                         timeProvider: TimeProviderType = TimeProviderMock()) {
         let container = DependencyContainer()
+        container.single(TimeProviderType.self) { _, _ in
+            timeProvider
+        }
         container.single(AdRepositoryType.self) { _, _ in
             adRepository
         }
