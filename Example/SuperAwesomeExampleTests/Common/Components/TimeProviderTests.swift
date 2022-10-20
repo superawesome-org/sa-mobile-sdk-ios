@@ -17,7 +17,6 @@ class TimeProviderTests: XCTestCase {
         // When
         let result = timeProvider.secondsSince1970
         let diff = abs(NSDate().timeIntervalSince1970 - result)
-        print("diff: \(diff)")
 
         // Then
         expect(diff).to(beLessThan(0.1))
