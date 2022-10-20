@@ -13,6 +13,8 @@
 		4D2BB747266A689B00E3D86A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2BB746266A689B00E3D86A /* AppDelegate.swift */; };
 		7F12D2F7DB65E88C1B5E1D5A /* Pods_SuperAwesomeExampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEB1A8E3ADA4E4B4C3D91571 /* Pods_SuperAwesomeExampleTests.framework */; };
 		A7EFC8DE3E1F552F65AEDB94 /* Pods_SuperAwesomeExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46665EBC142A783963BB4282 /* Pods_SuperAwesomeExample.framework */; };
+		C614C9762901639200531678 /* TimeProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C614C9752901639200531678 /* TimeProviderTests.swift */; };
+		C614C978290165BE00531678 /* TimeProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C614C977290165BE00531678 /* TimeProviderMock.swift */; };
 		C6398A1027AAAEF300D6A152 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6398A0F27AAAEF300D6A152 /* MainViewController.swift */; };
 		C6398A1327AAB1E500D6A152 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6398A1227AAB1E500D6A152 /* UIView+Extensions.swift */; };
 		C6535602245239270043115E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6535601245239270043115E /* HealthKit.framework */; };
@@ -101,6 +103,8 @@
 		763EEEB15C3FC5CF9C4C2503 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
 		A01EA0D5528DC347839D3C89 /* Pods_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B11A00536A3939F72F5C056B /* Pods-SuperAwesomeExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesomeExampleTests.debug.xcconfig"; path = "Target Support Files/Pods-SuperAwesomeExampleTests/Pods-SuperAwesomeExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C614C9752901639200531678 /* TimeProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeProviderTests.swift; sourceTree = "<group>"; };
+		C614C977290165BE00531678 /* TimeProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeProviderMock.swift; sourceTree = "<group>"; };
 		C6398A0F27AAAEF300D6A152 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C6398A1227AAB1E500D6A152 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		C6535600245239270043115E /* SuperAwesomeExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SuperAwesomeExample.entitlements; sourceTree = "<group>"; };
@@ -371,6 +375,7 @@
 				C6C6AF3F27D7E37A00FFB5CA /* NumberGeneratorTests.swift */,
 				C6C6AF4027D7E37A00FFB5CA /* SdkInfoTests.swift */,
 				C6C6AF4127D7E37A00FFB5CA /* UserAgentTests.swift */,
+				C614C9752901639200531678 /* TimeProviderTests.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -428,6 +433,7 @@
 				C6C6AF0827D7D3DA00FFB5CA /* UserAgentProviderMock.swift */,
 				C6C6AF0B27D7D3DA00FFB5CA /* VastParserMock.swift */,
 				C6895C5227F4CA38009FAE1A /* AdRepositoryMock.swift */,
+				C614C977290165BE00531678 /* TimeProviderMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -695,6 +701,7 @@
 				C6C6AEEA27D7D1D000FFB5CA /* SuperAwesomeExampleTests.swift in Sources */,
 				C6C6AEF827D7D31A00FFB5CA /* ConnectionTypeTests.swift in Sources */,
 				C6C6AF1D27D7D3DB00FFB5CA /* DeviceMock.swift in Sources */,
+				C614C978290165BE00531678 /* TimeProviderMock.swift in Sources */,
 				C6C6AF3727D7E34F00FFB5CA /* CodableExtensionTests.swift in Sources */,
 				C6C6AF4B27D7E37A00FFB5CA /* NumberGeneratorTests.swift in Sources */,
 				C6C6AF1E27D7D3DB00FFB5CA /* AdDataSourceMock.swift in Sources */,
@@ -729,6 +736,7 @@
 				C6C6AF4427D7E37A00FFB5CA /* DateProviderTests.swift in Sources */,
 				C6C6AF1B27D7D3DB00FFB5CA /* UIDeviceMock.swift in Sources */,
 				C6C6AF4D27D7E37A00FFB5CA /* UserAgentTests.swift in Sources */,
+				C614C9762901639200531678 /* TimeProviderTests.swift in Sources */,
 				C6C6AF1F27D7D3DB00FFB5CA /* VastParserMock.swift in Sources */,
 				C6C6AF4C27D7E37A00FFB5CA /* SdkInfoTests.swift in Sources */,
 				C6C6AF4827D7E37A00FFB5CA /* EncoderTests.swift in Sources */,
