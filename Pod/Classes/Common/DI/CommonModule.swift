@@ -32,7 +32,6 @@ struct CommonModule: DependencyModule {
         container.single(NumberGeneratorType.self) { _, _ in NumberGenerator() }
         container.single(SdkInfoType.self) { container, _ in
             SdkInfo(mainBundle: container.resolve(),
-                    sdkBundle: Bundle(for: DependencyContainer.self),
                     locale: Locale.current,
                     encoder: container.resolve())
         }

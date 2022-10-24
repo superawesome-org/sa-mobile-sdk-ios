@@ -37,10 +37,8 @@ public class SdkInfo: NSObject, SdkInfoType {
     public var lang: String
     public var versionNumber: String
 
-    init(mainBundle: Bundle, sdkBundle: Bundle, locale: Locale, encoder: EncoderType) {
-        let platform = "ios"
-        self.versionNumber = sdkBundle.versionNumber ?? ""
-
+    init(mainBundle: Bundle, locale: Locale, encoder: EncoderType) {
+        self.versionNumber = SDK_VERSION
         self.bundle = mainBundle.bundleIdentifier ?? ""
         self.name = encoder.encodeUri(mainBundle.name)
 
@@ -57,7 +55,7 @@ public class SdkInfo: NSObject, SdkInfoType {
         self.pluginName = ""
         #endif
 
-        self.sdkVersion = "\(platform)_\(versionNumber)"
+        self.sdkVersion = "ios_\(versionNumber)"
     }
 
     public var version: String {
