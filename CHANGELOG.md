@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+8.4.1
+ - Fix SDK version information on non framework builds
+
 8.4.0
  - Added new functionality to display close button immediately for the interstitial ads
 
