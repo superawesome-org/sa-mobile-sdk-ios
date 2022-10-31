@@ -11,4 +11,8 @@ target 'SuperAwesomeExample' do
     inherit! :search_paths
     pod 'Nimble'
   end
+
+  target 'SuperAwesomeExampleUITests' do
+    pod 'DominantColor'
+  end
 end

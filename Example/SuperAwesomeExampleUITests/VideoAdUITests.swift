@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import DominantColor
 
 class VideoAdUITests: XCTestCase {
 
@@ -15,7 +16,7 @@ class VideoAdUITests: XCTestCase {
 
     func testCloseButtonAppearsWithNoDelay_WhenConfigured() throws {
 
-        let app = XCUIApplication()
+        let app = localApp()
         app.launch()
 
         // Given
@@ -24,7 +25,7 @@ class VideoAdUITests: XCTestCase {
         app.segmentedControls["configControl"].buttons.element(boundBy: 1).tap()
 
         // Tap the video ad in the list
-        app.otherElements["adsStackView"].buttons.element(boundBy: 3).tap()
+        app.otherElements["adsStackView"].buttons.element(boundBy: 6).tap()
 
         let padlockExpectation = expectation(
             for: NSPredicate(format: "exists == true"),
@@ -46,7 +47,7 @@ class VideoAdUITests: XCTestCase {
 
     func testCloseButtonAppearsWithDelay_WhenConfigured() throws {
 
-        let app = XCUIApplication()
+        let app = localApp()
         app.launch()
 
         // Given
@@ -55,7 +56,7 @@ class VideoAdUITests: XCTestCase {
         app.segmentedControls["configControl"].buttons.element(boundBy: 0).tap()
 
         // Tap the video ad in the list
-        app.otherElements["adsStackView"].buttons.element(boundBy: 3).tap()
+        app.otherElements["adsStackView"].buttons.element(boundBy: 6).tap()
 
         let padlockExpectation = expectation(
             for: NSPredicate(format: "exists == true"),
@@ -84,5 +85,50 @@ class VideoAdUITests: XCTestCase {
         let closeButtonResult = XCTWaiter.wait(for: [closeButtonExpectation], timeout: 5.0)
 
         XCTAssertEqual(closeButtonResult, .completed)
+    }
+
+    func testNonKSF_VPAID_ad_loads_successfully() throws {
+
+        let app = localApp()
+        app.launch()
+
+        // Given
+
+        app.segmentedControls["configControl"].buttons.element(boundBy: 0).tap()
+
+        // Tap the non-ksf vpaid video ad in the list
+        app.otherElements["adsStackView"].buttons.element(boundBy: 5).tap()
+
+        // When
+
+        let webView = app.webViews.firstMatch
+        let playButton = webView.images.firstMatch
+
+        // The play button is visible
+        let playButtonExpectation = expectation(
+            for: NSPredicate(format: "exists == true"),
+            evaluatedWith: playButton,
+            handler: .none
+        )
+
+        let playButtonResult = XCTWaiter.wait(for: [playButtonExpectation], timeout: 5.0)
+        XCTAssertEqual(playButtonResult, .completed)
+
+        // Tap the play button
+        let playButtonCoordinate = webView.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
+        playButtonCoordinate.tap()
+
+        // Then
+
+        // Wait for the webview to load, crop a sample from the centre and test the colour
+        sleep(5)
+
+        let screenshot = XCUIScreen.main.screenshot().image
+        let crop = screenshot.centreCroppedTo(CGSize(width: 50, height: 50))
+
+        let expectedColour = "#F5E871"
+        let sampledColour = crop.dominantColors().first ?? .clear
+
+        XCTAssertEqual(expectedColour, sampledColour.hexString())
     }
 }

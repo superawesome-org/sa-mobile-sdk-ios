@@ -56,7 +56,7 @@ private let rows: [AdRow] = [
     ),
     SingleIdRow(
         type: .video,
-        name: "Direct MultiId",
+        name: "Direct Video",
         placementId: 82090
     ),
     SingleIdRow(
@@ -71,7 +71,7 @@ private let rows: [AdRow] = [
     ),
     SingleIdRow(
         type: .video,
-        name: "Direct video flat",
+        name: "Direct Video Flat Colour",
         placementId: 87969
     )
 ]

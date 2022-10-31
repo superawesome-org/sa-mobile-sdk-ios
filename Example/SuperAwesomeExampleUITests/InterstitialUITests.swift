@@ -14,7 +14,7 @@ class InterstitialUITests: XCTestCase {
     }
 
     func testCloseButtonAppearsWithNoDelay_WhenConfigured() throws {
-        let app = XCUIApplication()
+        let app = localApp()
         app.launch()
 
         // Given close button appearing with no delay is configured via the SegmentControl
@@ -37,7 +37,7 @@ class InterstitialUITests: XCTestCase {
     }
 
     func testCloseButtonAppearsWithDelay_WhenConfigured() throws {
-        let app = XCUIApplication()
+        let app = localApp()
         app.launch()
 
         // Given

@@ -1,0 +1,10 @@
+{
+  "request": {
+      "method": "GET",
+      "urlPath": "/ad/87969"
+  },
+  "response": {
+      "status": 200,
+      "bodyFileName": "video_direct_success.json"
+  }
+}
