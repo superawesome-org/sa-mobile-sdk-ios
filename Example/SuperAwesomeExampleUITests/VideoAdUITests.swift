@@ -129,6 +129,6 @@ class VideoAdUITests: XCTestCase {
         let expectedColour = "#F5E871"
         let sampledColour = crop.dominantColors().first ?? .clear
 
-        XCTAssertEqual(expectedColour, hexStringFromColor(color: sampledColour))
+        XCTAssertEqual(expectedColour, sampledColour.hexString())
     }
 }
