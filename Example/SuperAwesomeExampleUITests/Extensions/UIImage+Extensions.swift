@@ -9,7 +9,7 @@ import UIKit
 
 extension UIImage {
 
-    func croppedTo(_ size : CGSize) -> UIImage{
+    func centreCroppedTo(_ size : CGSize) -> UIImage {
         let refWidth : CGFloat = CGFloat(self.cgImage!.width)
         let refHeight : CGFloat = CGFloat(self.cgImage!.height)
         let x = (refWidth - size.width) / 2
