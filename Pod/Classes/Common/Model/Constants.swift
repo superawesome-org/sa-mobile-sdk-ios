@@ -12,6 +12,7 @@ struct Constants {
     static let defaultBumperPage = false
     static let defaultCloseAtEnd = true
     static let defaultCloseWarning = false
+    static let defaultMuteOnStart = false
     static let defaultCloseButton: CloseButtonState = .hidden
     static let defaultCloseButtonInterstitial: CloseButtonState = .visibleWithDelay
     static let defaultSmallClick = false

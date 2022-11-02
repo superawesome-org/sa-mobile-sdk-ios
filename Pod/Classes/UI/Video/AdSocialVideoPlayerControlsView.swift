@@ -14,6 +14,7 @@ import UIKit
     private var clicker: URLClicker!
     private var padlock: Padlock!
     private var closeButton: CloseButton!
+    private var volumeButton: VolumeButton!
     private var smallClicker: Bool = false
     private var safeLogoVisible: Bool = true
     private var didSetupConstraints: Bool = false
@@ -21,6 +22,7 @@ import UIKit
     private var padlockAction: (() -> Void)?
     private var closeAction: (() -> Void)?
     private var clickAction: (() -> Void)?
+    private var volumeAction: (() -> Void)?
 
     @objc(initWithSmallClick:andShowSafeAdLogo:)
     init(smallClick: Bool, showSafeAdLogo: Bool) {
@@ -87,6 +89,7 @@ import UIKit
                 padlock.heightAnchor.constraint(equalToConstant: 31.0).isActive = true
             }
             closeButton.bind(toTopRightOf: self)
+            volumeButton.bind(toBottomRightOf: self)
             didSetupConstraints = true
         }
 
@@ -112,6 +115,12 @@ import UIKit
         closeButton.isHidden = true
         closeButton.addTarget(self, action: #selector(close), for: .touchUpInside)
         addSubview(closeButton)
+        
+        volumeButton = VolumeButton()
+        volumeButton.accessibilityIdentifier = "volumeButton"
+        volumeButton.isHidden = true
+        volumeButton.addTarget(self, action: #selector(onVolumeTapped), for: .touchUpInside)
+        addSubview(volumeButton)
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -121,6 +130,11 @@ import UIKit
     @objc(makeCloseButtonVisible)
     public func makeCloseButtonVisible() {
         self.closeButton.isHidden = false
+    }
+    
+    @objc(makeVolumeButtonVisible)
+    public func makeVolumeButtonVisible() {
+        self.volumeButton.isHidden = false
     }
 
     public func setPadlockAction(action: @escaping () -> Void) {
@@ -133,6 +147,10 @@ import UIKit
 
     public func setCloseAction(action: @escaping () -> Void) {
         closeAction = action
+    }
+    
+    public func setVolumeAction(action: @escaping () -> Void) {
+        volumeAction = action
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -153,6 +171,17 @@ import UIKit
     func close() {
         closeAction?()
     }
+    
+    @objc
+    func onVolumeTapped() {
+        volumeAction?()
+    }
+    
+    @objc
+    func setMuted(_ muted: Bool) {
+        volumeButton.setMuted(muted)
+    }
+    
 
     ////////////////////////////////////////////////////////////////////////////
     // ChromeControl

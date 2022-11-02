@@ -27,6 +27,7 @@ public class VideoAd: NSObject, Injectable {
     static var orientation: Orientation = Constants.defaultOrientation
     static var isMoatLimitingEnabled: Bool = Constants.defaultMoatLimitingState
     static var delay: AdRequest.StartDelay = Constants.defaultStartDelay
+    static var shouldMuteOnStart: Bool = Constants.defaultMuteOnStart
 
     private static var callback: AdEventCallback?
     private static var ads = [Int: AdState]()
@@ -109,7 +110,8 @@ public class VideoAd: NSObject, Injectable {
                                   isParentalGateEnabled: isParentalGateEnabled,
                                   isBumperPageEnabled: isBumperPageEnabled,
                                   orientation: orientation,
-                                  shouldShowCloseWarning: shouldShowCloseWarning)
+                                  shouldShowCloseWarning: shouldShowCloseWarning,
+                                  shouldMuteOnStart: shouldMuteOnStart)
             if ad.isVpaid {
                 let managedVideoAdController = SAManagedAdViewController(adResponse: ad, config: config, callback: callback)
                 managedVideoAdController.modalPresentationStyle = .fullScreen
@@ -332,5 +334,20 @@ public class VideoAd: NSObject, Injectable {
     @objc(disableMoatLimiting)
     public static func disableMoatLimiting() {
         VideoAd.isMoatLimitingEnabled = false
+    }
+    
+    @objc(setMuteOnStart:)
+    public static func setMuteOnStart(_ mute: Bool) {
+        shouldMuteOnStart = mute
+    }
+
+    @objc(enableMuteOnStart)
+    public static func enableMuteOnStart() {
+        setMuteOnStart(true)
+    }
+
+    @objc(disableMuteOnStart)
+    public static func disableMuteOnStart() {
+        setMuteOnStart(false)
     }
 }

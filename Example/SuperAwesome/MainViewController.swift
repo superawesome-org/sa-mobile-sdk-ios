@@ -98,6 +98,7 @@ class MainViewController: UIViewController {
 
         VideoAd.enableParentalGate()
         VideoAd.enableBumperPage()
+        VideoAd.enableMuteOnStart()
 
         // Normal close button configuration
         VideoAd.enableCloseButton()
@@ -114,6 +115,7 @@ class MainViewController: UIViewController {
         VideoAd.disableParentalGate()
         VideoAd.disableBumperPage()
         VideoAd.enableCloseButtonWithWarning()
+        VideoAd.disableMuteOnStart()
 
         // Close button configured with no delay
         VideoAd.enableCloseButtonNoDelay()

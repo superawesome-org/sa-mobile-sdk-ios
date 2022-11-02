@@ -68,7 +68,8 @@ import UIKit
         )
 
         // setup chrome
-        chrome = AdSocialVideoPlayerControlsView(smallClick: config.showSmallClick, showSafeAdLogo: config.showSafeAdLogo)
+        chrome = AdSocialVideoPlayerControlsView(smallClick: config.showSmallClick,
+                                                 showSafeAdLogo: config.showSafeAdLogo)
         chrome.layoutMargins = .zero
         chrome.setCloseAction { [weak self] in
             self?.closeAction()
@@ -79,10 +80,23 @@ import UIKit
         chrome.setPadlockAction { [weak self] in
             self?.controller.handleSafeAdTap()
         }
+        chrome.setVolumeAction { [weak self] in
+            self?.volumeAction()
+        }
         videoPlayer.setControlsView(
             controllerView: chrome,
             insets: UIEdgeInsets(top: 0.0, left: 0.0, bottom: Padding.s.negative, right: 0.0)
         )
+        
+        if let avPlayer = videoPlayer.getAVPlayer() {
+            let muted = config.shouldMuteOnStart
+            avPlayer.isMuted = muted
+            chrome.setMuted(muted)
+            
+            if muted {
+                chrome.makeVolumeButtonVisible()
+            }
+        }
 
         if config.closeButtonState == .visibleImmediately {
             chrome.makeCloseButtonVisible()
@@ -156,6 +170,14 @@ import UIKit
             }
         } else {
             close()
+        }
+    }
+    
+    private func volumeAction() {
+        if let avPlayer = videoPlayer.getAVPlayer() {
+            let toggle = !avPlayer.isMuted
+            avPlayer.isMuted = toggle
+            chrome.setMuted(toggle)
         }
     }
 
