@@ -14,4 +14,5 @@ struct AdConfig {
     let isBumperPageEnabled: Bool
     let orientation: Orientation
     let shouldShowCloseWarning: Bool
+    let shouldMuteOnStart: Bool
 }

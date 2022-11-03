@@ -135,3 +135,21 @@ extension UILabel {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+@objc(VolumeButton) class VolumeButton: UIButton, Injectable {
+    
+    private lazy var imageProvider: ImageProviderType = dependencies.resolve()
+
+    init() {
+        super.init(frame: CGRect.zero)
+        setImage(imageProvider.volumeOn, for: .normal)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setMuted(_ muted: Bool) {
+        setImage(muted ? imageProvider.volumeOff : imageProvider.volumeOn, for: .normal)
+    }
+}

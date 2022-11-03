@@ -80,6 +80,21 @@ extension UIView {
         self.widthAnchor.constraint(equalToConstant: 40.0).isActive = true
         self.heightAnchor.constraint(equalToConstant: 40.0).isActive = true
     }
+    
+    func bind(toBottomRightOf otherView: UIView) {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        let margins = otherView.layoutMarginsGuide
+
+        if #available(iOS 11.0, *) {
+            self.bottomAnchor.constraint(equalToSystemSpacingBelow: otherView.safeAreaLayoutGuide.bottomAnchor, multiplier: 1.0).isActive = true
+            self.trailingAnchor.constraint(equalTo: otherView.layoutMarginsGuide.trailingAnchor, constant: 0.0).isActive = true
+        } else {
+            self.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: 0.0).isActive = true
+            self.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: 0.0).isActive = true
+        }
+        self.widthAnchor.constraint(equalToConstant: 40.0).isActive = true
+        self.heightAnchor.constraint(equalToConstant: 40.0).isActive = true
+    }
 
     /// Checks to see if the `View` is visible to the user
     var isVisibleToUser: Bool {

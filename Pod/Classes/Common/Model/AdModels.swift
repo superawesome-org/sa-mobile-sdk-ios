@@ -9,13 +9,9 @@ public struct Ad: Codable {
     let advertiserId: Int
     let publisherId: Int
     let moat: Float
-    let isFill: Bool
-    let isFallback: Bool
     var campaignId: Int? = 0
     let campaignType: Int
-    let isHouse: Bool
     let isVpaid: Bool?
-    let safeAdApproved: Bool
     let showPadlock: Bool
     public let lineItemId: Int
     let test: Bool
@@ -28,13 +24,9 @@ public struct Ad: Codable {
         case advertiserId
         case publisherId
         case moat
-        case isFill = "is_fill"
-        case isFallback = "is_fallback"
         case campaignId = "campaign_id"
         case campaignType = "campaign_type"
-        case isHouse = "is_house"
         case isVpaid = "is_vpaid"
-        case safeAdApproved = "safe_ad_approved"
         case showPadlock = "show_padlock"
         case lineItemId = "line_item_id"
         case test
