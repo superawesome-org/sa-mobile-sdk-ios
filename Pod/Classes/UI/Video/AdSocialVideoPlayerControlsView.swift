@@ -115,7 +115,7 @@ import UIKit
         closeButton.isHidden = true
         closeButton.addTarget(self, action: #selector(close), for: .touchUpInside)
         addSubview(closeButton)
-        
+
         volumeButton = VolumeButton()
         volumeButton.accessibilityIdentifier = "volumeButton"
         volumeButton.isHidden = true
@@ -131,7 +131,7 @@ import UIKit
     public func makeCloseButtonVisible() {
         self.closeButton.isHidden = false
     }
-    
+
     @objc(makeVolumeButtonVisible)
     public func makeVolumeButtonVisible() {
         self.volumeButton.isHidden = false
@@ -148,7 +148,7 @@ import UIKit
     public func setCloseAction(action: @escaping () -> Void) {
         closeAction = action
     }
-    
+
     public func setVolumeAction(action: @escaping () -> Void) {
         volumeAction = action
     }
@@ -171,17 +171,16 @@ import UIKit
     func close() {
         closeAction?()
     }
-    
+
     @objc
     func onVolumeTapped() {
         volumeAction?()
     }
-    
+
     @objc
     func setMuted(_ muted: Bool) {
         volumeButton.setMuted(muted)
     }
-    
 
     ////////////////////////////////////////////////////////////////////////////
     // ChromeControl

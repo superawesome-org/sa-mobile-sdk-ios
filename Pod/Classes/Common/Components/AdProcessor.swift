@@ -51,7 +51,7 @@ class AdProcessor: AdProcessorType {
             if let url = ad.creative.details.vast {
                 handleVast(url, initialVast: nil) { vast in
                     response.vast = vast
-                    response.baseUrl = (ad.creative.details.video ?? Constants.defaultBaseUrl).baseUrl
+                    response.baseUrl = (vast?.url ??? Constants.defaultBaseUrl).baseUrl
 
                     self.networkDataSource.downloadFile(url: vast?.url ?? "",
                                                         completion: { result in

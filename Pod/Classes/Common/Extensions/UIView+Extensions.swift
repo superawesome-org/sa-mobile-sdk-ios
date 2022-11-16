@@ -80,7 +80,7 @@ extension UIView {
         self.widthAnchor.constraint(equalToConstant: 40.0).isActive = true
         self.heightAnchor.constraint(equalToConstant: 40.0).isActive = true
     }
-    
+
     func bind(toBottomRightOf otherView: UIView) {
         self.translatesAutoresizingMaskIntoConstraints = false
         let margins = otherView.layoutMarginsGuide

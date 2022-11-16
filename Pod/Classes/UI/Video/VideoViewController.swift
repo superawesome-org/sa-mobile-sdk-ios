@@ -87,12 +87,12 @@ import UIKit
             controllerView: chrome,
             insets: UIEdgeInsets(top: 0.0, left: 0.0, bottom: Padding.s.negative, right: 0.0)
         )
-        
+
         if let avPlayer = videoPlayer.getAVPlayer() {
             let muted = config.shouldMuteOnStart
             avPlayer.isMuted = muted
             chrome.setMuted(muted)
-            
+
             if muted {
                 chrome.makeVolumeButtonVisible()
             }
@@ -172,7 +172,7 @@ import UIKit
             close()
         }
     }
-    
+
     private func volumeAction() {
         if let avPlayer = videoPlayer.getAVPlayer() {
             let toggle = !avPlayer.isMuted

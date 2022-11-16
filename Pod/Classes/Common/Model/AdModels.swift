@@ -125,13 +125,22 @@ class AdResponse {
 }
 
 extension AdRequest {
-    /// The playback method
-    static let PlaybackSoundOnScreen = 5
-
     /// Specify if the ad is in full screen or not
     enum FullScreen: Int, Codable {
         case on = 1
         case off = 0
+    }
+
+    /// Playback method to enable sound at the beginning
+    enum Playback: Int, Codable {
+        /// Start with sound on
+        case soundOn = 5
+        /// Start with sound off
+        case soundOff = 2
+
+        static func from(_ muted: Bool) -> Playback {
+            return muted ? soundOff : soundOn
+        }
     }
 
     /// Start delay cases
