@@ -146,7 +146,7 @@ public class VideoAd: NSObject, Injectable {
         return AdRequest(test: isTestingEnabled,
                          position: AdRequest.Position.fullScreen,
                          skip: AdRequest.Skip.yes,
-                         playbackMethod: AdRequest.PlaybackSoundOnScreen,
+                         playbackMethod: AdRequest.Playback.from(shouldMuteOnStart).rawValue,
                          startDelay: delay,
                          instl: AdRequest.FullScreen.on,
                          width: Int(size.width),
@@ -335,7 +335,7 @@ public class VideoAd: NSObject, Injectable {
     public static func disableMoatLimiting() {
         VideoAd.isMoatLimitingEnabled = false
     }
-    
+
     @objc(setMuteOnStart:)
     public static func setMuteOnStart(_ mute: Bool) {
         shouldMuteOnStart = mute

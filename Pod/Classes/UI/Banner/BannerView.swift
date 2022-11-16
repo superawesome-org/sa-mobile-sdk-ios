@@ -219,7 +219,7 @@ public class BannerView: UIView, Injectable {
         AdRequest(test: controller.testEnabled,
                   position: AdRequest.Position.aboveTheFold,
                   skip: AdRequest.Skip.no,
-                  playbackMethod: AdRequest.PlaybackSoundOnScreen,
+                  playbackMethod: AdRequest.Playback.soundOn.rawValue,
                   startDelay: AdRequest.StartDelay.preRoll,
                   instl: AdRequest.FullScreen.off,
                   width: Int(frame.size.width),

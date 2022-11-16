@@ -47,3 +47,11 @@ extension StringProtocol {
         return nil
     }
 }
+
+/// `???` operator returns the second parameter if the first parameter is null or empty
+infix operator ???
+
+func ??? (lhs: String?, rhs: String) -> String {
+    guard let given = lhs, !given.isEmpty else { return rhs }
+    return given
+}

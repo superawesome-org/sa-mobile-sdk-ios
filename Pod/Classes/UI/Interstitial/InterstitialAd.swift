@@ -172,7 +172,7 @@ public class InterstitialAd: NSObject, Injectable {
         return AdRequest(test: isTestingEnabled,
                          position: AdRequest.Position.fullScreen,
                          skip: AdRequest.Skip.yes,
-                         playbackMethod: AdRequest.PlaybackSoundOnScreen,
+                         playbackMethod: AdRequest.Playback.soundOn.rawValue,
                          startDelay: AdRequest.StartDelay.preRoll,
                          instl: AdRequest.FullScreen.on,
                          width: Int(size.width),
