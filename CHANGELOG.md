@@ -2,7 +2,7 @@ CHANGELOG
 =========
 
 8.5.0
- - Added a close button to video ads to control mute on the start
+ - Added a functionality to video ads to mute audio on the start
 
 8.4.1
  - Fix SDK version information on non framework builds
