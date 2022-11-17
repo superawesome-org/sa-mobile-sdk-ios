@@ -37,6 +37,9 @@ override func viewDidLoad() {
 
     // enable or disable auto-closing at the end
     VideoAd.disableCloseAtEnd()
+    
+    // mute the video on start
+    VideoAd.enableMuteOnStart()
 
     // start loading ad data for a placement
     VideoAd.load(30479)
@@ -71,5 +74,8 @@ These are the default values:
 | Closes at end | True |
 | Close button | Disabled |
 | Small click button | Disabled | 
+| Close button with no delay | Disabled |
+| Close with warning | Disabled |
+| Mute on start | Disabled |
 
 {% include alert.html type="info" title="Note" content="When locking orientation with either the <strong>setOrientationPortrait</strong> or <strong>setOrientationLandscape</strong> methods, the SDK will first look at the list of orientations supported by your app and conform to that. If, for example, you set an interstitial ad to display in landscape mode but your app only supports portrait orientations, the ad will show in portrait mode." %}

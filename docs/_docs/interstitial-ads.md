@@ -56,5 +56,7 @@ These are the default values:
 | Configuration | Production |
 | Test mode | Disabled |
 | Orientation | Any | 
+| Close button | Enabled |
+| Close button with no delay | Disabled |
 
 {% include alert.html type="info" title="Note" content="When locking orientation with either the <strong>setOrientationPortrait</strong> or <strong>setOrientationLandscape</strong> methods, the SDK will first look at the list of orientations supported by your app and conform to that. If, for example, you set an interstitial ad to display in landscape mode but your app only supports portrait orientations, the ad will show in portrait mode." %}
