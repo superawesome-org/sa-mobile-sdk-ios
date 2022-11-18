@@ -1,8 +1,12 @@
 CHANGELOG
 =========
 
+8.5.0
+ - Added a functionality to video ads to mute audio on the start
+
 8.4.1
  - Fix SDK version information on non framework builds
+ - Added an optional confirmation dialog when closing the ad
 
 8.4.0
  - Added new functionality to display close button immediately for the interstitial ads
