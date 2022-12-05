@@ -24,6 +24,19 @@ You can enable it like so:
 [SAVideoAd enableParentalGate];
 {% endhighlight %}
 
+It can subsequently be disabled by calling:
+
+{% highlight objective_c %}
+// disable the Parental gate for a particular banner placement
+[mybanner disableParentalGate];
+
+// disable the Parental gate on all interstitial ads
+[SAInterstitialAd disableParentalGate];
+
+// disable the Parental gate on all video ads
+[SAVideoAd disableParentalGate];
+{% endhighlight %}
+
 The final result will look something similar to this:
 
 ![image-title-here]({{ site.baseurl }}/assets/img/IMG_06_ParentalGate.png){:class="img-responsive"}
