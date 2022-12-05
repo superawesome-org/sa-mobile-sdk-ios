@@ -28,6 +28,8 @@
           url: "docs/bumper-page#bumper-customisation"
         - title: Forcing the Bumper
           url: "docs/bumper-page#forcing-the-bumper"
+        - title: Disabling the Bumper
+          url: "docs/bumper-page#disabling-the-bumper"
     - title: Ad Callbacks
       url: "docs/ad-callbacks"
     - title: Integrate with AdMob

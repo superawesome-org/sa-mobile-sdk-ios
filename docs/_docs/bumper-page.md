@@ -48,12 +48,27 @@ By default the Bumper page will try to use the application name and the AwesomeA
 Optionally, Publishers can choose for the bumper to always display when an ad is served on a placement. In order to enable the bumper, please use the following code:
 
 {% highlight objective_c %}
-// enable Bumper page on one banner placement
+// enable the Bumper page for a particular banner placement
 [mybanner enableBumperPage];
 
-// enable Bumper page on all interstitial ads
+// enable the Bumper page on all interstitial ads
 [SAInterstitialAd enableBumperPage];
 
-// enable Bumper page on all video ads
+// enable the Bumper page on all video ads
 [SAVideoAd enableBumperPage];
+{% endhighlight %}
+
+## Disabling the bumper
+
+The bumper can subsequently be disabled using:
+
+{% highlight objective_c %}
+// disable the Bumper page for a particular banner placement
+[mybanner disableBumperPage];
+
+// disable the Bumper page on all interstitial ads
+[SAInterstitialAd disableBumperPage];
+
+// disable the Bumper page on all video ads
+[SAVideoAd disableBumperPage];
 {% endhighlight %}
