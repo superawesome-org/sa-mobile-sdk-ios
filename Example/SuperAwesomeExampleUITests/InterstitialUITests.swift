@@ -27,7 +27,7 @@ class InterstitialUITests: XCTestCase {
         )
 
         // When Tap the video ad in the list
-        app.otherElements["adsStackView"].buttons.element(boundBy: 1).tap()
+        app.otherElements["adsStackView"].buttons.element(boundBy: 2).tap()
 
         // Then the close button is visible
         let closeButtonResult = XCTWaiter.wait(for: [closeButtonExpectation], timeout: 5.0)
@@ -41,7 +41,7 @@ class InterstitialUITests: XCTestCase {
         app.launch()
 
         // Given
-        app.otherElements["adsStackView"].buttons.element(boundBy: 1).tap()
+        app.otherElements["adsStackView"].buttons.element(boundBy: 2).tap()
 
         let closeButtonExpectation = expectation(
             for: NSPredicate(format: "exists == true"),
