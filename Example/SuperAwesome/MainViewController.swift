@@ -35,6 +35,11 @@ struct MultiIdRow: AdRow {
 }
 
 private let rows: [AdRow] = [
+    SingleIdRow(
+        type: .video,
+        name: "PopJam VPAID Video",
+        placementId: 93969
+    ),
     MultiIdRow(
         type: .banner,
         name: "Leaderboard MultiId",
