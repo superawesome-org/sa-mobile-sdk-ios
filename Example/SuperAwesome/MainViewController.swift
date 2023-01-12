@@ -40,11 +40,15 @@ struct PlacementItem: Decodable {
     }
 }
 
-private var items: [PlacementItem] = []
-
 class MainViewController: UIViewController {
 
-    public lazy var tableView: UITableView = {
+    private var database: DatabaseReference!
+    private var items: [PlacementItem] = []
+    private var headerLabel: UILabel!
+    private var bannerView: BannerView!
+    private var segment: UISegmentedControl!
+
+    private lazy var tableView: UITableView = {
         let view = UITableView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.accessibilityIdentifier = "adsTableView"
@@ -53,11 +57,6 @@ class MainViewController: UIViewController {
         view.delegate = self
         return view
     }()
-
-    private var database: DatabaseReference!
-    private var headerLabel: UILabel!
-    private var bannerView: BannerView!
-    private var segment: UISegmentedControl!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -165,7 +164,7 @@ class MainViewController: UIViewController {
                 return
             }
 
-            items = children.compactMap { snapshot in
+            self?.items = children.compactMap { snapshot in
                 return try? snapshot.data(as: PlacementItem.self)
             }
 
