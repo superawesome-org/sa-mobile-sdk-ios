@@ -28,7 +28,7 @@ struct PlacementItem: Decodable {
     let creativeId: Int?
 
     var fullName: String {
-        if (isFull()) {
+        if isFull() {
             return "\(placementId) - \(lineItemId!) - \(creativeId!) | (\(name))"
         } else {
             return "\(placementId) | (\(name))"

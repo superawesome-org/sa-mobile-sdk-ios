@@ -42,7 +42,7 @@ class ItemCell: UITableViewCell {
             stack.leadingAnchor.constraint(equalTo: self.contentView.safeLeadingAnchor, constant: 16.0),
             stack.trailingAnchor.constraint(equalTo: self.contentView.safeTrailingAnchor, constant: -16.0),
             stack.topAnchor.constraint(equalTo: self.contentView.safeTopAnchor, constant: 8.0),
-            stack.bottomAnchor.constraint(equalTo: self.contentView.safeBottomAnchor, constant: -8.0),
+            stack.bottomAnchor.constraint(equalTo: self.contentView.safeBottomAnchor, constant: -8.0)
         ])
     }
 
