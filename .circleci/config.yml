@@ -8,7 +8,7 @@ references:
       command: |
         echo "Google Services"
         echo 'export SA_IOS_SDKS_GOOGLE_SERVICES_PLIST_ENC="$SA_IOS_SDKS_GOOGLE_SERVICES_PLIST_ENC"' >> $BASH_ENV
-        echo $SA_IOS_SDKS_GOOGLE_SERVICES_PLIST_ENC | base64 -di > app/${SA_IOS_SDKS_GOOGLE_SERVICES_PLIST_NAME}.plist
+        echo $SA_IOS_SDKS_GOOGLE_SERVICES_PLIST_ENC | base64 -di > Example/SuperAwesome/${SA_IOS_SDKS_GOOGLE_SERVICES_PLIST_NAME}.plist
 
 jobs:
   build-and-test:
