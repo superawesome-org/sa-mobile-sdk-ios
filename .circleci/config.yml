@@ -1,5 +1,15 @@
 # .circleci/config.yml
 version: 2.1
+references:
+
+  configure_google_services: &configure_google_services
+    run:
+      name: Configure Google Services
+      command: |
+        echo "Google Services"
+        echo 'export SA_IOS_SDKS_GOOGLE_SERVICES_PLIST_ENC="$SA_IOS_SDKS_GOOGLE_SERVICES_PLIST_ENC"' >> $BASH_ENV
+        echo $SA_IOS_SDKS_GOOGLE_SERVICES_PLIST_ENC | base64 -di > app/${SA_IOS_SDKS_GOOGLE_SERVICES_PLIST_NAME}.plist
+
 jobs:
   build-and-test:
     macos:
@@ -9,6 +19,7 @@ jobs:
       FASTLANE_LANE: test
     steps:
       - checkout
+      - *configure_google_services
       - run: bundle install
       
       # Install CocoaPods
@@ -32,6 +43,7 @@ jobs:
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - checkout
+      - *configure_google_services
       - run: swiftlint lint --reporter junit | tee result.xml
       - store_artifacts:
           path: result.xml
@@ -43,6 +55,7 @@ jobs:
       xcode: 13.2.1
     steps:
       - checkout
+      - *configure_google_services
       - run:
           name: Select Ruby Version
           command:  echo "ruby-2.4" > .ruby-version
