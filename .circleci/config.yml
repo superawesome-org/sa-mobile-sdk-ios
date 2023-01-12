@@ -76,9 +76,11 @@ jobs:
 
 workflows:
   build-test:
-    context: MOBILE_IOS_SDKS
     jobs:
-      - swiftlint
-      - setup-FastLane
-      - build-and-test
+      - swiftlint:
+          context: MOBILE_IOS_SDKS
+      - setup-FastLane:
+          context: MOBILE_IOS_SDKS
+      - build-and-test:
+          context: MOBILE_IOS_SDKS
 
