@@ -12,7 +12,6 @@ references:
 
 jobs:
   build-and-test:
-    context: MOBILE_IOS_SDKS
     macos:
       xcode: 13.2.1
     environment:
@@ -37,7 +36,6 @@ jobs:
           path: output/scan
           
   swiftlint:
-    context: MOBILE_IOS_SDKS
     docker:
       - image: bytesguy/swiftlint:latest
         auth:
@@ -53,7 +51,6 @@ jobs:
           path: result.xml
           
   setup-FastLane:
-    context: MOBILE_IOS_SDKS
     macos:
       xcode: 13.2.1
     steps:
@@ -79,6 +76,7 @@ jobs:
 
 workflows:
   build-test:
+    context: MOBILE_IOS_SDKS
     jobs:
       - swiftlint
       - setup-FastLane
