@@ -277,6 +277,7 @@ extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = items[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "placementCell", for: indexPath) as! ItemCell
+        cell.accessibilityIdentifier = item.name
         cell.placementItem = item
         return cell
     }

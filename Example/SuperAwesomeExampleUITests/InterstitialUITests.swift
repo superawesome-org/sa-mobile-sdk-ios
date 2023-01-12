@@ -26,8 +26,9 @@ class InterstitialUITests: XCTestCase {
             handler: .none
         )
 
-        // When Tap the video ad in the list
-        app.otherElements["adsTableView"].buttons.element(boundBy: 2).tap()
+        // When
+        // Tap the interstitial ad in the list
+        app.tables.matching(identifier: "adsTableView").cells.element(matching: .cell, identifier: "Mobile Interstitial Portrait").tap()
 
         // Then the close button is visible
         let closeButtonResult = XCTWaiter.wait(for: [closeButtonExpectation], timeout: 5.0)
@@ -41,7 +42,8 @@ class InterstitialUITests: XCTestCase {
         app.launch()
 
         // Given
-        app.otherElements["adsTableView"].buttons.element(boundBy: 2).tap()
+        // Tap the interstitial ad in the list
+        app.tables.matching(identifier: "adsTableView").cells.element(matching: .cell, identifier: "Mobile Interstitial Portrait").tap()
 
         let closeButtonExpectation = expectation(
             for: NSPredicate(format: "exists == true"),

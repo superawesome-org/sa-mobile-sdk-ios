@@ -1,52 +1,60 @@
 {
-  "programmaticUuid":null,
-  "creative":{
-    "id":512633,
-    "format":"video",
-    "details":{
-      "url":"/7yLPH7Lp5DWcQsN7NLwhEWxWmmcyB1DE.mp4",
-      "image":"/7yLPH7Lp5DWcQsN7NLwhEWxWmmcyB1DE.mp4",
-      "video":"/7yLPH7Lp5DWcQsN7NLwhEWxWmmcyB1DE.mp4",
-      "placement_format":"video",
-      "width":600,
-      "height":480,
-      "transcodedVideos":[
-        {
-          "url":"/7yLPH7Lp5DWcQsN7NLwhEWxWmmcyB1DE.mp4",
-          "bitrate":720
+    "programmaticUuid": null,
+    "creative": {
+        "id": 499385,
+        "format": "video",
+        "details": {
+            "url": "/k0mhZTxbYKiSb1pvqtaDMiFu7BEWRwT8.mp4",
+            "image": "/k0mhZTxbYKiSb1pvqtaDMiFu7BEWRwT8.mp4",
+            "video": "/k0mhZTxbYKiSb1pvqtaDMiFu7BEWRwT8.mp4",
+            "placement_format": "video",
+            "width": 600,
+            "height": 480,
+            "transcodedVideos": [{
+                "url": "/k0mhZTxbYKiSb1pvqtaDMiFu7BEWRwT8.mp4",
+                "bitrate": 720
+            }, {
+                "url": "/k0mhZTxbYKiSb1pvqtaDMiFu7BEWRwT8-med.mp4",
+                "bitrate": 540
+            }, {
+                "url": "/k0mhZTxbYKiSb1pvqtaDMiFu7BEWRwT8-low.mp4",
+                "bitrate": 360
+            }, {
+                "url": "/k0mhZTxbYKiSb1pvqtaDMiFu7BEWRwT8.m3u8",
+                "bitrate": 1800
+            }, {
+                "url": "/k0mhZTxbYKiSb1pvqtaDMiFu7BEWRwT8-watermark.mp4",
+                "bitrate": 720
+            }, {
+                "url": "/k0mhZTxbYKiSb1pvqtaDMiFu7BEWRwT8-med-watermark.mp4",
+                "bitrate": 540
+            }, {
+                "url": "/k0mhZTxbYKiSb1pvqtaDMiFu7BEWRwT8-low-watermark.mp4",
+                "bitrate": 360
+            }, {
+                "url": "/k0mhZTxbYKiSb1pvqtaDMiFu7BEWRwT8.m3u8",
+                "bitrate": 1800
+            }],
+            "duration": 11,
+            "vast": "https://eu-west-1-ads.superawesome.tv/v2/video/vast/82090/176803/499385/?sdkVersion=ios_8.5.0&rnd=e5dc704a-868f-4af9-b88c-5d9c3ccd213c&dauid=-7444032436457552807&bundle=tv.superawesome.awesomeads.sdk&device=phone&country=GB&flow=normal&aua=eyJhbGciOiJIUzI1NiJ9.TW96aWxsYS81LjAgKGlQaG9uZTsgQ1BVIGlQaG9uZSBPUyAxM181XzEgbGlrZSBNYWMgT1MgWCkgQXBwbGVXZWJLaXQvNjA1LjEuMTUgKEtIVE1MLCBsaWtlIEdlY2tvKSBWZXJzaW9uLzEzLjEgTW9iaWxlLzE1RTE0OCBTYWZhcmkvNjA0LjE.4BfJdabo9HtuqgyAOcE3uqHJbhq4FDACJX-Fh1MQdJY&tip=eyJhbGciOiJIUzI1NiJ9.ODEuMTEwLjI0OS4w.JID_ookEWOeYqark_ZJ8RGhOQaLYYq2UodGzzmzy0oQ&lang=en_US&ct=2"
         },
-        {
-          "url":"/7yLPH7Lp5DWcQsN7NLwhEWxWmmcyB1DE-med.mp4",
-          "bitrate":540
-        },
-        {
-          "url":"/7yLPH7Lp5DWcQsN7NLwhEWxWmmcyB1DE-low.mp4",
-          "bitrate":360
-        },
-        {
-          "url":"/7yLPH7Lp5DWcQsN7NLwhEWxWmmcyB1DE.m3u8",
-          "bitrate":1800
-        }
-      ],
-      "duration":10,
-      "vast":"https://eu-west-1-ads.superawesome.tv/v2/video/vast/87969/181342/512633/?sdkVersion=android_8.3.6_admob&rnd=ebdb60a5-1b7a-4e32-ab15-a239b8f19c0f&dauid=189315213&bundle=tv.superawesome.demoapp&device=phone&country=GB&flow=normal&aua=eyJhbGciOiJIUzI1NiJ9.TW96aWxsYS81LjAgKExpbnV4OyBBbmRyb2lkIDEwKSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODMuMC40MTAzLjk2IE1vYmlsZSBTYWZhcmkvNTM3LjM2.I_tn7-WYamd5_dlbbCVEZM0gj0A0s3akPbjkX2p2v6E&tip=eyJhbGciOiJIUzI1NiJ9.ODEuMTEwLjI0OS4w.JID_ookEWOeYqark_ZJ8RGhOQaLYYq2UodGzzmzy0oQ&lang=en_US&ct=2"
-    }
-  },
-  "advertiserId":4,
-  "publisherId":4,
-  "is_fill":false,
-  "is_fallback":false,
-  "campaign_type":0,
-  "is_house":true,
-  "safe_ad_approved":false,
-  "show_padlock":true,
-  "line_item_id":181342,
-  "moat":0.1,
-  "test":false,
-  "campaign_id":48202,
-  "app":41037,
-  "device":"phone",
-  "aua":"eyJhbGciOiJIUzI1NiJ9.TW96aWxsYS81LjAgKExpbnV4OyBBbmRyb2lkIDEwKSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODMuMC40MTAzLjk2IE1vYmlsZSBTYWZhcmkvNTM3LjM2.I_tn7-WYamd5_dlbbCVEZM0gj0A0s3akPbjkX2p2v6E",
-  "tip":"eyJhbGciOiJIUzI1NiJ9.ODEuMTEwLjI0OS4w.JID_ookEWOeYqark_ZJ8RGhOQaLYYq2UodGzzmzy0oQ",
-  "is_vpaid":false
+        "click_url": "www.superawesome.com"
+    },
+    "advertiserId": 4,
+    "publisherId": 4,
+    "is_fill": false,
+    "is_fallback": false,
+    "campaign_type": 0,
+    "is_house": true,
+    "safe_ad_approved": true,
+    "show_padlock": true,
+    "line_item_id": 176803,
+    "moat": 0.1,
+    "test": false,
+    "campaign_id": 49137,
+    "app": 41037,
+    "device": "phone",
+    "aua": "eyJhbGciOiJIUzI1NiJ9.TW96aWxsYS81LjAgKGlQaG9uZTsgQ1BVIGlQaG9uZSBPUyAxM181XzEgbGlrZSBNYWMgT1MgWCkgQXBwbGVXZWJLaXQvNjA1LjEuMTUgKEtIVE1MLCBsaWtlIEdlY2tvKSBWZXJzaW9uLzEzLjEgTW9iaWxlLzE1RTE0OCBTYWZhcmkvNjA0LjE.4BfJdabo9HtuqgyAOcE3uqHJbhq4FDACJX-Fh1MQdJY",
+    "tip": "eyJhbGciOiJIUzI1NiJ9.ODEuMTEwLjI0OS4w.JID_ookEWOeYqark_ZJ8RGhOQaLYYq2UodGzzmzy0oQ",
+    "is_vpaid": false
 }
