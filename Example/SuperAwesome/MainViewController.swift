@@ -44,8 +44,6 @@ private var items: [PlacementItem] = []
 
 class MainViewController: UIViewController {
 
-    private let stackView = UIStackView()
-
     public lazy var tableView: UITableView = {
         let view = UITableView()
         view.translatesAutoresizingMaskIntoConstraints = false
