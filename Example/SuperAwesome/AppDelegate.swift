@@ -7,6 +7,7 @@
 
 import UIKit
 import SuperAwesome
+import FirebaseCore
 @UIApplicationMain
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,5 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AwesomeAds.initSDK(configuration: Configuration(environment: environment, logging: true)) {
             print("AwesomeAds SDK init complete")
         }
+        FirebaseApp.configure()
     }
 }

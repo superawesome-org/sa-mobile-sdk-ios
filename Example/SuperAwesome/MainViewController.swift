@@ -7,81 +7,56 @@
 
 import UIKit
 import SuperAwesome
+import FirebaseDatabase
+import FirebaseDatabaseSwift
 
-enum RowType: String {
-    case banner = "Banner"
-    case interstitial = "Interstitial"
-    case video = "Video"
+enum RowType: String, Decodable {
+    case banner = "BANNER"
+    case interstitial = "INTERSTITIAL"
+    case video = "VIDEO"
+
+    var capitalized: String {
+        return rawValue.capitalized
+    }
 }
 
-protocol AdRow {
-    var type: RowType { get }
-    var name: String { get }
-    var placementId: Int { get }
-}
-
-struct SingleIdRow: AdRow {
+struct PlacementItem: Decodable {
     let type: RowType
     let name: String
     let placementId: Int
+    let lineItemId: Int?
+    let creativeId: Int?
+
+    var fullName: String {
+        if (isFull()) {
+            return "\(placementId) - \(lineItemId!) - \(creativeId!) | (\(name))"
+        } else {
+            return "\(placementId) | (\(name))"
+        }
+    }
+
+    func isFull() -> Bool {
+        return lineItemId != nil && creativeId != nil
+    }
 }
 
-struct MultiIdRow: AdRow {
-    let type: RowType
-    let name: String
-    let placementId: Int
-    let lineItemId: Int
-    let creativeId: Int
-}
-
-private let rows: [AdRow] = [
-    SingleIdRow(
-        type: .video,
-        name: "PopJam VPAID Video",
-        placementId: 93969
-    ),
-    MultiIdRow(
-        type: .banner,
-        name: "Leaderboard MultiId",
-        placementId: 82088,
-        lineItemId: 176803,
-        creativeId: 499387
-    ),
-    SingleIdRow(
-        type: .interstitial,
-        name: "Portrait",
-        placementId: 82089
-    ),
-    MultiIdRow(
-        type: .interstitial,
-        name: "Portrait MultiId",
-        placementId: 82089,
-        lineItemId: 176803,
-        creativeId: 503038
-    ),
-    SingleIdRow(
-        type: .video,
-        name: "Direct Video",
-        placementId: 82090
-    ),
-    SingleIdRow(
-        type: .video,
-        name: "VPAID via KSF",
-        placementId: 84798
-    ),
-    SingleIdRow(
-        type: .video,
-        name: "VPAID non-KSF",
-        placementId: 89056
-    ),
-    SingleIdRow(
-        type: .video,
-        name: "Direct Video Flat Colour",
-        placementId: 87969
-    )
-]
+private var items: [PlacementItem] = []
 
 class MainViewController: UIViewController {
+
+    private let stackView = UIStackView()
+
+    public lazy var tableView: UITableView = {
+        let view = UITableView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.accessibilityIdentifier = "adsTableView"
+        view.register(ItemCell.self, forCellReuseIdentifier: "placementCell")
+        view.dataSource = self
+        view.delegate = self
+        return view
+    }()
+
+    private var database: DatabaseReference!
     private var headerLabel: UILabel!
     private var bannerView: BannerView!
     private var segment: UISegmentedControl!
@@ -92,6 +67,7 @@ class MainViewController: UIViewController {
         BumperPage.overrideName("Demo App")
 
         initUI()
+        configureDataSource()
     }
 
     func configuration1() {
@@ -131,7 +107,7 @@ class MainViewController: UIViewController {
         initHeader()
         initSegment()
         initBannerView()
-        initButtons()
+        initTable()
         configureInterstitial()
         configureVideo()
     }
@@ -152,6 +128,18 @@ class MainViewController: UIViewController {
         ])
     }
 
+    private func initTable() {
+
+        view.addSubview(tableView)
+
+        NSLayoutConstraint.activate([
+            tableView.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: bannerView.topAnchor),
+            tableView.topAnchor.constraint(equalTo: segment.bottomAnchor)
+        ])
+    }
+
     private func initSegment() {
         let segment = UISegmentedControl(items: ["Enable checks", "Disable checks"])
         segment.addTarget(self, action: #selector(segmentChanged), for: .valueChanged)
@@ -168,6 +156,23 @@ class MainViewController: UIViewController {
         ])
 
         self.segment = segment
+    }
+
+    private func configureDataSource() {
+
+        database = Database.database(url: Constants.firebaseDatabaseURL).reference()
+
+        database.child("list-items").observe(.value) { [weak self] snapshot in
+            guard let children = snapshot.children.allObjects as? [DataSnapshot] else {
+                return
+            }
+
+            items = children.compactMap { snapshot in
+                return try? snapshot.data(as: PlacementItem.self)
+            }
+
+            self?.tableView.reloadData()
+        }
     }
 
     @objc func segmentChanged() {
@@ -230,65 +235,7 @@ class MainViewController: UIViewController {
         }
     }
 
-    private func initButtons() {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.spacing = 8.0
-        stackView.alignment = .fill
-        stackView.distribution = .fill
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.accessibilityIdentifier = "adsStackView"
-
-        view.addSubview(stackView)
-
-        NSLayoutConstraint.activate([
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16.0),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 16.0),
-            stackView.bottomAnchor.constraint(lessThanOrEqualTo: bannerView.topAnchor),
-            stackView.topAnchor.constraint(equalTo: segment.bottomAnchor, constant: 16.0)
-        ])
-
-        for (index, row) in rows.enumerated() {
-            let horizontalStack = UIStackView()
-            horizontalStack.axis = .horizontal
-            horizontalStack.spacing = 8.0
-            horizontalStack.alignment = .fill
-            horizontalStack.distribution = .fillEqually
-
-            let label = UILabel()
-            label.text = "\(row.type.rawValue) (\(row.name))"
-            label.font = UIFont(name: "HelveticaNeue-Light", size: 14)
-
-            let button = UIButton()
-            button.translatesAutoresizingMaskIntoConstraints = false
-            button.setTitle("\(row.placementId)", for: .normal)
-            button.setTitleColor(.black, for: .normal)
-            button.setBackgroundColor(color: UIColor(red: 0.68, green: 0.68, blue: 0.68, alpha: 1.0), forState: .highlighted)
-            button.setBackgroundColor(color: UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1.0), forState: .normal)
-            button.addTarget(self, action: #selector(onButtonClick), for: .touchUpInside)
-            button.tag = index
-            button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
-
-            horizontalStack.addArrangedSubview(label)
-            horizontalStack.addArrangedSubview(button)
-
-            stackView.addArrangedSubview(horizontalStack)
-        }
-    }
-
-    @objc private func onButtonClick(_ sender: UIButton) {
-        let item = rows[sender.tag]
-        if let item = item as? SingleIdRow {
-            handleSingleIdRowTapped(item: item)
-        } else if let item = item as? MultiIdRow {
-            handleMultiIdRowTapped(item: item)
-        }
-    }
-
-    private func handleSingleIdRowTapped(item: SingleIdRow) {
-
-        print("\(item.type.rawValue) clicked for \(item.placementId)")
-
+    private func handleSingleRowTapped(item: PlacementItem) {
         switch item.type {
         case .banner:
             bannerView.load(item.placementId)
@@ -299,33 +246,67 @@ class MainViewController: UIViewController {
         }
     }
 
-    private func handleMultiIdRowTapped(item: MultiIdRow) {
-
-        print("\(item.type.rawValue) clicked"
-              + " for placement id: \(item.placementId)"
-              + " lineItemId: \(item.lineItemId)"
-              + " creativeId: \(item.creativeId)"
-        )
+    private func handleMultiIdRowTapped(item: PlacementItem) {
+        guard let lineItemId = item.lineItemId, let creativeId = item.creativeId else { return }
 
         switch item.type {
         case .banner:
             bannerView.load(
                 item.placementId,
-                lineItemId: item.lineItemId,
-                creativeId: item.creativeId
+                lineItemId: lineItemId,
+                creativeId: creativeId
             )
         case .interstitial:
             InterstitialAd.load(
                 item.placementId,
-                lineItemId: item.lineItemId,
-                creativeId: item.creativeId
+                lineItemId: lineItemId,
+                creativeId: creativeId
             )
         case .video:
             VideoAd.load(
                 withPlacementId: item.placementId,
-                lineItemId: item.lineItemId,
-                creativeId: item.creativeId
+                lineItemId: lineItemId,
+                creativeId: creativeId
             )
         }
+    }
+}
+
+extension MainViewController: UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let item = items[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "placementCell", for: indexPath) as! ItemCell
+        cell.placementItem = item
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return items.count
+    }
+}
+
+extension MainViewController: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        let item = items[indexPath.row]
+
+        print("\(item.type.capitalized) clicked"
+              + " for placement id: \(item.placementId)"
+              + " lineItemId: \(String(describing: item.lineItemId))"
+              + " creativeId: \(String(describing: item.creativeId))"
+        )
+
+        if item.isFull() {
+            handleMultiIdRowTapped(item: item)
+        } else {
+            handleSingleRowTapped(item: item)
+        }
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44
     }
 }
