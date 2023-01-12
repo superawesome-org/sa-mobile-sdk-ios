@@ -50,7 +50,7 @@ class MainViewController: UIViewController {
         let view = UITableView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.accessibilityIdentifier = "adsTableView"
-        view.register(ItemCell.self, forCellReuseIdentifier: "placementCell")
+        view.register(ItemCell.self, forCellReuseIdentifier: "itemCell")
         view.dataSource = self
         view.delegate = self
         return view
@@ -276,7 +276,12 @@ extension MainViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = items[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "placementCell", for: indexPath) as! ItemCell
+        guard
+            let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath) as? ItemCell
+        else {
+            print("Unable to dequeue itemCell")
+            return UITableViewCell()
+        }
         cell.accessibilityIdentifier = item.name
         cell.placementItem = item
         return cell
