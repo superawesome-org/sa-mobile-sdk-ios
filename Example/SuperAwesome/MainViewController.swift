@@ -279,7 +279,7 @@ extension MainViewController: UITableViewDataSource {
         guard
             let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath) as? ItemCell
         else {
-            print("Unable to dequeue itemCell")
+            print("Unable to dequeue an ItemCell")
             return UITableViewCell()
         }
         cell.accessibilityIdentifier = item.name
