@@ -25,7 +25,7 @@ class VideoAdUITests: XCTestCase {
         app.segmentedControls["configControl"].buttons.element(boundBy: 1).tap()
 
         // Tap the video ad in the list
-        app.otherElements["adsStackView"].buttons.element(boundBy: 7).tap()
+        app.tables.matching(identifier: "adsTableView").cells.element(matching: .cell, identifier: "Video Test Multi Id").tap()
 
         let padlockExpectation = expectation(
             for: NSPredicate(format: "exists == true"),
@@ -56,7 +56,7 @@ class VideoAdUITests: XCTestCase {
         app.segmentedControls["configControl"].buttons.element(boundBy: 0).tap()
 
         // Tap the video ad in the list
-        app.otherElements["adsStackView"].buttons.element(boundBy: 7).tap()
+        app.tables.matching(identifier: "adsTableView").cells.element(matching: .cell, identifier: "Video Test Multi Id").tap()
 
         let padlockExpectation = expectation(
             for: NSPredicate(format: "exists == true"),
@@ -97,7 +97,7 @@ class VideoAdUITests: XCTestCase {
         app.segmentedControls["configControl"].buttons.element(boundBy: 0).tap()
 
         // Tap the non-ksf vpaid video ad in the list
-        app.otherElements["adsStackView"].buttons.element(boundBy: 6).tap()
+        app.tables.matching(identifier: "adsTableView").cells.element(matching: .cell, identifier: "VPAID Video Flat Colour").tap()
 
         // When
 
