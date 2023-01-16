@@ -13,10 +13,10 @@ Pod::Spec.new do |s|
      'Tom O\'Rourke' => 'tom.orourke@superawesome.com'
   }
   s.pod_target_xcconfig  = {
-      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 arm64e armv7 armv7s',
+      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'armv7 armv7s',
       'EXCLUDED_ARCHS[sdk=iphoneos*]' => 'i386 x86_64' }
   s.user_target_xcconfig = {
-      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 arm64e armv7 armv7s',
+      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'armv7 armv7s',
       'EXCLUDED_ARCHS[sdk=iphoneos*]' => 'i386 x86_64' }
   
   s.ios.deployment_target = '10.0'
@@ -32,7 +32,6 @@ Pod::Spec.new do |s|
   s.dependency 'SwiftyXMLParser', '5.6.0'
   s.dependency 'Moya', '~> 14.0'
   s.source_files = 'Pod/Classes/**/*'
-  s.vendored_frameworks = 'Pod/Libraries/SUPMoatMobileAppKit.framework'
 
 # s.subspec 'Unity' do |u|
 #    u.dependency 'SuperAwesome/Full'

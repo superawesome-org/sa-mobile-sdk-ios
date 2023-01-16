@@ -34,7 +34,6 @@ class AdModelTests: XCTestCase {
         let ad = Ad(
             advertiserId: 1000,
             publisherId: 1000,
-            moat: false,
             campaignId: 0,
             campaignType: 1,
             isVpaid: false,

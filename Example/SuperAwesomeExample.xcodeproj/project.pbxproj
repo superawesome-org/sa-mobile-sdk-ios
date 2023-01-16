@@ -42,7 +42,6 @@
 		C6C6AF2427D7D3DB00FFB5CA /* NetworkDataSourceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF1027D7D3DA00FFB5CA /* NetworkDataSourceMock.swift */; };
 		C6C6AF2527D7D3DB00FFB5CA /* BundleMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF1127D7D3DB00FFB5CA /* BundleMock.swift */; };
 		C6C6AF2627D7D3DB00FFB5CA /* DateProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF1227D7D3DB00FFB5CA /* DateProviderMock.swift */; };
-		C6C6AF2727D7D3DB00FFB5CA /* MoatRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF1327D7D3DB00FFB5CA /* MoatRepositoryMock.swift */; };
 		C6C6AF2827D7D3DB00FFB5CA /* SdkInfoMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF1427D7D3DB00FFB5CA /* SdkInfoMock.swift */; };
 		C6C6AF2927D7D3DB00FFB5CA /* MockFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF1527D7D3DB00FFB5CA /* MockFactory.swift */; };
 		C6C6AF2C27D7E27800FFB5CA /* BundleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF2A27D7E27700FFB5CA /* BundleHelper.swift */; };
@@ -152,7 +151,6 @@
 		C6C6AF1027D7D3DA00FFB5CA /* NetworkDataSourceMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkDataSourceMock.swift; sourceTree = "<group>"; };
 		C6C6AF1127D7D3DB00FFB5CA /* BundleMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BundleMock.swift; sourceTree = "<group>"; };
 		C6C6AF1227D7D3DB00FFB5CA /* DateProviderMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateProviderMock.swift; sourceTree = "<group>"; };
-		C6C6AF1327D7D3DB00FFB5CA /* MoatRepositoryMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoatRepositoryMock.swift; sourceTree = "<group>"; };
 		C6C6AF1427D7D3DB00FFB5CA /* SdkInfoMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SdkInfoMock.swift; sourceTree = "<group>"; };
 		C6C6AF1527D7D3DB00FFB5CA /* MockFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockFactory.swift; sourceTree = "<group>"; };
 		C6C6AF2A27D7E27700FFB5CA /* BundleHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BundleHelper.swift; sourceTree = "<group>"; };
@@ -461,7 +459,6 @@
 				C6C6AF0527D7D3DA00FFB5CA /* HtmlFormatterMock.swift */,
 				C6C6AF0D27D7D3DA00FFB5CA /* IdGeneratorMock.swift */,
 				C6C6AF0427D7D3DA00FFB5CA /* LoggerMock.swift */,
-				C6C6AF1327D7D3DB00FFB5CA /* MoatRepositoryMock.swift */,
 				C6C6AF1527D7D3DB00FFB5CA /* MockFactory.swift */,
 				C6C6AF1027D7D3DA00FFB5CA /* NetworkDataSourceMock.swift */,
 				C6C6AF0F27D7D3DA00FFB5CA /* NumberGeneratorMock.swift */,
@@ -889,7 +886,6 @@
 				C6C6AF4927D7E37A00FFB5CA /* AdQueryMakerTests.swift in Sources */,
 				C6C6AF2927D7D3DB00FFB5CA /* MockFactory.swift in Sources */,
 				C6C6AF1C27D7D3DB00FFB5CA /* UserAgentProviderMock.swift in Sources */,
-				C6C6AF2727D7D3DB00FFB5CA /* MoatRepositoryMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1063,6 +1059,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = DCC9L689QJ;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "$(inherited)";
 				INFOPLIST_FILE = SuperAwesome/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1095,6 +1092,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = DCC9L689QJ;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "$(inherited)";
 				INFOPLIST_FILE = SuperAwesome/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

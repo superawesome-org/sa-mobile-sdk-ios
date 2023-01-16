@@ -14,7 +14,6 @@ import Foundation
 class VideoEvents: Injectable {
 
     private var vastRepository: VastEventRepositoryType?
-    private var moatRepository: MoatRepositoryType?
     private var viewableDetector: ViewableDetectorType?
 
     private var isStartHandled: Bool = false
@@ -27,29 +26,16 @@ class VideoEvents: Injectable {
 
     init(_ adResponse: AdResponse) {
         vastRepository = dependencies.resolve(param: adResponse) as VastEventRepositoryType
-        moatRepository = dependencies.resolve(param: adResponse, false) as MoatRepositoryType
     }
 
     // MARK: - public class interface
 
-    public func prepare(player: VideoPlayer, time: Int, duration: Int) {
-        if let videoPlayer = player as? UIView,
-           let avPlayer = player.getAVPlayer(),
-           let avLayer = player.getAVPlayerLayer() {
-            _ = moatRepository?.startMoatTracking(forVideoPlayer: avPlayer,
-                                              with: avLayer,
-                                              andView: videoPlayer)
-        }
-    }
-
     public func complete(player: VideoPlayer, time: Int, duration: Int) {
-        _ = moatRepository?.stopMoatTrackingForVideoPlayer()
         guard time >= duration else { return }
         vastRepository?.complete()
     }
 
     public func error(player: VideoPlayer, time: Int, duration: Int) {
-        _ = moatRepository?.stopMoatTrackingForVideoPlayer()
         vastRepository?.error()
     }
 

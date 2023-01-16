@@ -84,7 +84,6 @@ class AdViewMessageHandler: NSObject, WKScriptMessageHandler {
 
     private var callback: AdEventCallback?
     private var placementId: Int = 0
-    private var moatLimiting = true
     private var bridge: AdViewJavaScriptBridge?
 
     private lazy var sknetworkManager: SKAdNetworkManager = dependencies.resolve()
