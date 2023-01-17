@@ -27,6 +27,7 @@ jobs:
     steps:
       - checkout
       - *configure_google_services
+      - run: bundle install
       - run:
           name: Fastlane
           command: |
