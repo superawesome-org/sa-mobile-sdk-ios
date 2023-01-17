@@ -8,7 +8,6 @@
 public struct Ad: Codable {
     let advertiserId: Int
     let publisherId: Int
-    let moat: Float
     var campaignId: Int? = 0
     let campaignType: Int
     let isVpaid: Bool?
@@ -23,7 +22,6 @@ public struct Ad: Codable {
     enum CodingKeys: String, CodingKey {
         case advertiserId
         case publisherId
-        case moat
         case campaignId = "campaign_id"
         case campaignType = "campaign_type"
         case isVpaid = "is_vpaid"

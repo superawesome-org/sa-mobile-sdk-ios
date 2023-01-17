@@ -126,7 +126,7 @@ class VideoAdUITests: XCTestCase {
         let screenshot = XCUIScreen.main.screenshot().image
         let crop = screenshot.centreCroppedTo(CGSize(width: 50, height: 50))
 
-        let expectedColour = "#F5E871"
+        let expectedColour = "#F2EFCB"
         let sampledColour = crop.dominantColors().first ?? .clear
 
         XCTAssertEqual(expectedColour, sampledColour.hexString())

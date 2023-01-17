@@ -18,7 +18,6 @@ struct Constants {
     static let defaultSmallClick = false
     static let defaultOrientation = Orientation.any
     static let defaultEnvironment = Environment.production
-    static let defaultMoatLimitingState = true
     static let defaultStartDelay = AdRequest.StartDelay.preRoll
 
     static let backgroundGray = UIColor(red: 224.0 / 255.0, green: 224.0 / 255.0,

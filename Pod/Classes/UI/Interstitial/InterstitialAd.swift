@@ -16,7 +16,6 @@ public class InterstitialAd: NSObject, Injectable {
     private(set) static var isBumperPageEnabled: Bool = Constants.defaultBumperPage
     private(set) static var isTestingEnabled: Bool = Constants.defaultTestMode
     private(set) static var orientation: Orientation = Constants.defaultOrientation
-    private(set) static var isMoatLimitingEnabled: Bool = Constants.defaultMoatLimitingState
     private(set) static var closeButtonState: CloseButtonState = Constants.defaultCloseButtonInterstitial
 
     // MARK: - Public functions
@@ -142,9 +141,6 @@ public class InterstitialAd: NSObject, Injectable {
 
     @objc
     public class func disableTestMode() { setTestMode(false) }
-
-    @objc
-    public class func disableMoatLimiting() { isMoatLimitingEnabled = false }
 
     @objc
     public class func setBumperPage(_ value: Bool) { isBumperPageEnabled = value }

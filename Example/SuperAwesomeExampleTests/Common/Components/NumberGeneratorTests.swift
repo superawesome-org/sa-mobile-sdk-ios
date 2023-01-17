@@ -34,15 +34,6 @@ class NumberGeneratorTests: XCTestCase {
         expect(duplicateFound).to(equal(false))
     }
 
-    func test_nextFloatForMoat() throws {
-        // When
-        let result = numberGenerator.nextFloatForMoat()
-
-        // Then
-        expect(result) > 0
-        expect(result) < 1
-    }
-
     func test_nextIntForCache() throws {
         // When
         let result = numberGenerator.nextIntForCache()

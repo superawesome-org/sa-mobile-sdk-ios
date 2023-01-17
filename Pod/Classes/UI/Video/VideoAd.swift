@@ -25,7 +25,6 @@ public class VideoAd: NSObject, Injectable {
     static var shouldShowCloseWarning: Bool = Constants.defaultCloseWarning
     static var shouldShowSmallClickButton: Bool = Constants.defaultSmallClick
     static var orientation: Orientation = Constants.defaultOrientation
-    static var isMoatLimitingEnabled: Bool = Constants.defaultMoatLimitingState
     static var delay: AdRequest.StartDelay = Constants.defaultStartDelay
     static var shouldMuteOnStart: Bool = Constants.defaultMuteOnStart
 
@@ -155,10 +154,6 @@ public class VideoAd: NSObject, Injectable {
 
     private static func onSuccess(_ placementId: Int, _ response: AdResponse) {
         logger.success("Event callback: adLoaded for placement \(placementId)")
-
-        if !isMoatLimitingEnabled {
-            disableMoatLimiting()
-        }
 
         self.ads[placementId] = .hasAd(ad: response)
         callback?(placementId, .adLoaded)
@@ -329,11 +324,6 @@ public class VideoAd: NSObject, Injectable {
 
     public static func getCallback() -> AdEventCallback? {
         return callback
-    }
-
-    @objc(disableMoatLimiting)
-    public static func disableMoatLimiting() {
-        VideoAd.isMoatLimitingEnabled = false
     }
 
     @objc(setMuteOnStart:)

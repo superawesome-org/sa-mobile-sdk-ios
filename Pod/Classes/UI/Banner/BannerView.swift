@@ -20,7 +20,6 @@ public class BannerView: UIView, Injectable {
     private var padlock: UIButton?
     private var viewableDetector: ViewableDetectorType?
     private var hasBeenVisible: VoidBlock?
-    private var moatRepository: MoatRepositoryType?
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -94,16 +93,9 @@ public class BannerView: UIView, Injectable {
             sknetworkManager.startImpression(lineItemId: adResponse.advert.lineItemId, creativeId: adResponse.advert.creative.id)
         }
 
-        let fullHtml = startMoat(adResponse: adResponse, html: html)
-        webView?.loadHTML(fullHtml, withBase: adResponse.baseUrl,
+        webView?.loadHTML(html, withBase: adResponse.baseUrl,
                           sourceSize: CGSize(width: adResponse.advert.creative.details.width,
                                              height: adResponse.advert.creative.details.height))
-    }
-
-    private func startMoat(adResponse: AdResponse, html: String) -> String {
-        moatRepository = dependencies.resolve(param: adResponse, controller.moatLimiting) as MoatRepositoryType
-        let moatScript = moatRepository?.startMoatTracking(forDisplay: webView)
-        return "\(html)\(moatScript ?? "")"
     }
 
     private func showPadlockIfNeeded() {
@@ -130,8 +122,6 @@ public class BannerView: UIView, Injectable {
     @objc
     public func close() {
         viewableDetector = nil
-        _ = moatRepository?.stopMoatTrackingForDisplay()
-        moatRepository = nil
         controller.close()
         removeWebView()
         if #available(iOS 14.5, *) {
@@ -201,9 +191,6 @@ public class BannerView: UIView, Injectable {
     public func setColor(_ value: Bool) {
         backgroundColor = value ? UIColor.clear : Constants.backgroundGray
     }
-
-    @objc
-    public func disableMoatLimiting() { controller.moatLimiting = false }
 
     // MARK: - Private functions
 

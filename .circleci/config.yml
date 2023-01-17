@@ -2,6 +2,15 @@
 version: 2.1
 references:
 
+  ios_config: &ios_config
+    macos:
+      xcode: 14.1.0
+    resource_class: macos.x86.medium.gen2
+    environment:
+      FL_OUTPUT_DIR: output
+      LC_ALL: en_GB.UTF-8
+      LANG: en_GB.UTF-8
+
   configure_google_services: &configure_google_services
     run:
       name: Configure Google Services
@@ -12,8 +21,7 @@ references:
 
 jobs:
   build-and-test:
-    macos:
-      xcode: 14.1.0
+    <<: *ios_config
     environment:
       FL_OUTPUT_DIR: output
       FASTLANE_LANE: test
@@ -29,7 +37,9 @@ jobs:
           
       - run:
           name: Fastlane
-          command: bundle exec fastlane $FASTLANE_LANE
+          command: |
+            /usr/bin/java Example/SuperAwesomeExampleUITests/MockServer/WireMock.jar &
+            bundle exec fastlane $FASTLANE_LANE
       - store_artifacts:
           path: output
       - store_test_results:
@@ -51,8 +61,7 @@ jobs:
           path: result.xml
           
   setup-FastLane:
-    macos:
-      xcode: 13.2.1
+    <<: *ios_config
     steps:
       - checkout
       - *configure_google_services

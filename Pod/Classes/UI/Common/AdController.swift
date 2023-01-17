@@ -9,7 +9,6 @@ protocol AdControllerType {
     var parentalGateEnabled: Bool { get set }
     var bumperPageEnabled: Bool { get set }
     var testEnabled: Bool { get set }
-    var moatLimiting: Bool { get set }
     var closed: Bool { get set }
     var showPadlock: Bool { get }
     var callback: AdEventCallback? { get set }
@@ -50,7 +49,6 @@ class AdController: AdControllerType, Injectable {
     var parentalGateEnabled: Bool = false
     var bumperPageEnabled: Bool = false
     var testEnabled = false
-    var moatLimiting = true
     var closed = false
     var adResponse: AdResponse?
     var callback: AdEventCallback?

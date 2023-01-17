@@ -12,17 +12,10 @@ public class AwesomeAds: NSObject {
     private(set) var container: DependencyContainer = DependencyContainer()
     private var initialised: Bool = false
 
-    private func registerMoatModule(_ loggingEnabled: Bool) {
-        let module = MoatModule()
-        module.initMoat(loggingEnabled)
-        module.register(container)
-    }
-
     private func registerDependencies(_ configuration: Configuration) {
         self.container = DependencyContainer()
 
         CommonModule(configuration: configuration).register(container)
-        registerMoatModule(configuration.logging)
         NetworkModule().register(container)
         UIModule().register(container)
 
