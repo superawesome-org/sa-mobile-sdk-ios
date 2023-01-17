@@ -28,10 +28,11 @@ class InterstitialUITests: XCTestCase {
 
         // When
         // Tap the interstitial ad in the list
-        app.tables.matching(identifier: "adsTableView").cells.element(matching: .cell, identifier: "Mobile Interstitial Portrait").tap()
+        app.tables.matching(identifier: "adsTableView").cells.element(matching: .cell,
+                                                                      identifier: "Mobile Interstitial Portrait").tap()
 
         // Then the close button is visible
-        let closeButtonResult = XCTWaiter.wait(for: [closeButtonExpectation], timeout: 5.0)
+        let closeButtonResult = XCTWaiter.wait(for: [closeButtonExpectation], timeout: Timeouts.standard.rawValue)
 
         XCTAssertEqual(closeButtonResult, .completed)
         XCTAssertTrue(app.buttons["closeButton"].exists)
@@ -43,7 +44,8 @@ class InterstitialUITests: XCTestCase {
 
         // Given
         // Tap the interstitial ad in the list
-        app.tables.matching(identifier: "adsTableView").cells.element(matching: .cell, identifier: "Mobile Interstitial Portrait").tap()
+        app.tables.matching(identifier: "adsTableView").cells.element(matching: .cell,
+                                                                      identifier: "Mobile Interstitial Portrait").tap()
 
         let closeButtonExpectation = expectation(
             for: NSPredicate(format: "exists == true"),
@@ -55,7 +57,7 @@ class InterstitialUITests: XCTestCase {
         XCTAssertFalse(app.buttons["closeButton"].exists)
 
         // Then the close button is visible after a delay
-        let closeButtonResult = XCTWaiter.wait(for: [closeButtonExpectation], timeout: 5.0)
+        let closeButtonResult = XCTWaiter.wait(for: [closeButtonExpectation], timeout: Timeouts.standard.rawValue)
 
         XCTAssertEqual(closeButtonResult, .completed)
     }

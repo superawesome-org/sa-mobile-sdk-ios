@@ -25,7 +25,8 @@ class VideoAdUITests: XCTestCase {
         app.segmentedControls["configControl"].buttons.element(boundBy: 1).tap()
 
         // Tap the video ad in the list
-        app.tables.matching(identifier: "adsTableView").cells.element(matching: .cell, identifier: "Video Test Multi Id").tap()
+        app.tables.matching(identifier: "adsTableView").cells.element(matching: .cell,
+                                                                      identifier: "Video Test Multi Id").tap()
 
         let padlockExpectation = expectation(
             for: NSPredicate(format: "exists == true"),
@@ -36,7 +37,7 @@ class VideoAdUITests: XCTestCase {
         // When
 
         // The padlock is visible (it's visible immediately)
-        let padlockResult = XCTWaiter.wait(for: [padlockExpectation], timeout: 5.0)
+        let padlockResult = XCTWaiter.wait(for: [padlockExpectation], timeout: Timeouts.standard.rawValue)
         XCTAssertEqual(padlockResult, .completed)
 
         // Then
@@ -56,7 +57,8 @@ class VideoAdUITests: XCTestCase {
         app.segmentedControls["configControl"].buttons.element(boundBy: 0).tap()
 
         // Tap the video ad in the list
-        app.tables.matching(identifier: "adsTableView").cells.element(matching: .cell, identifier: "Video Test Multi Id").tap()
+        app.tables.matching(identifier: "adsTableView").cells.element(matching: .cell,
+                                                                      identifier: "Video Test Multi Id").tap()
 
         let padlockExpectation = expectation(
             for: NSPredicate(format: "exists == true"),
@@ -73,7 +75,7 @@ class VideoAdUITests: XCTestCase {
         // When
 
         // The padlock is visible (it's visible immediately)
-        let padlockResult = XCTWaiter.wait(for: [padlockExpectation], timeout: 5.0)
+        let padlockResult = XCTWaiter.wait(for: [padlockExpectation], timeout: Timeouts.standard.rawValue)
         XCTAssertEqual(padlockResult, .completed)
 
         // The close button is not initially visible
@@ -82,7 +84,7 @@ class VideoAdUITests: XCTestCase {
         // Then
 
         // The close button is visible after a delay
-        let closeButtonResult = XCTWaiter.wait(for: [closeButtonExpectation], timeout: 5.0)
+        let closeButtonResult = XCTWaiter.wait(for: [closeButtonExpectation], timeout: Timeouts.standard.rawValue)
 
         XCTAssertEqual(closeButtonResult, .completed)
     }
@@ -97,7 +99,8 @@ class VideoAdUITests: XCTestCase {
         app.segmentedControls["configControl"].buttons.element(boundBy: 0).tap()
 
         // Tap the non-ksf vpaid video ad in the list
-        app.tables.matching(identifier: "adsTableView").cells.element(matching: .cell, identifier: "VPAID Video Flat Colour").tap()
+        app.tables.matching(identifier: "adsTableView").cells.element(matching: .cell,
+                                                                      identifier: "VPAID Video Flat Colour").tap()
 
         // When
 
@@ -111,7 +114,7 @@ class VideoAdUITests: XCTestCase {
             handler: .none
         )
 
-        let playButtonResult = XCTWaiter.wait(for: [playButtonExpectation], timeout: 5.0)
+        let playButtonResult = XCTWaiter.wait(for: [playButtonExpectation], timeout: Timeouts.standard.rawValue)
         XCTAssertEqual(playButtonResult, .completed)
 
         // Tap the play button
