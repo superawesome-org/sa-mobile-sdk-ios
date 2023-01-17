@@ -8,6 +8,5 @@
 import Foundation
 
 enum Timeouts: Double {
-    case standard = 30.0
-    case extraLong = 200.0
+    case standard = 300.0
 }
