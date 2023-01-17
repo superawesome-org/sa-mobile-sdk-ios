@@ -28,6 +28,7 @@ jobs:
     steps:
       - checkout
       - *configure_google_services
+      - run: rm -r /Users/distiller/.ruby-version
       - run: bundle install
       
       # Install CocoaPods
@@ -65,6 +66,7 @@ jobs:
     steps:
       - checkout
       - *configure_google_services
+      - run: rm -r /Users/distiller/.ruby-version
       - run:
           name: Select Ruby Version
           command:  echo "ruby-2.4" > .ruby-version
