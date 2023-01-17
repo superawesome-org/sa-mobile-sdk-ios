@@ -27,8 +27,9 @@ jobs:
       FASTLANE_LANE: test
     steps:
       - checkout
+      - macos/switch-ruby:
+          version: "2.4"
       - *configure_google_services
-      - run: rm -r /Users/distiller/.ruby-version
       - run: bundle install
       
       # Install CocoaPods
@@ -65,8 +66,9 @@ jobs:
     <<: *ios_config
     steps:
       - checkout
+      - macos/switch-ruby:
+          version: "2.4"
       - *configure_google_services
-      - run: rm -r /Users/distiller/.ruby-version
       - run:
           name: Select Ruby Version
           command:  echo "ruby-2.4" > .ruby-version
