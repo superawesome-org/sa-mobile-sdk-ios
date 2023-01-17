@@ -5,8 +5,6 @@ references:
   ios_config: &ios_config
     macos:
       xcode: 14.2.0
-    orbs:
-      macos: circleci/macos@2
     resource_class: macos.x86.medium.gen2
     environment:
       FL_OUTPUT_DIR: output
@@ -20,6 +18,9 @@ references:
         echo "Google Services"
         echo 'export SA_IOS_SDKS_GOOGLE_SERVICES_PLIST_ENC="$SA_IOS_SDKS_GOOGLE_SERVICES_PLIST_ENC"' >> $BASH_ENV
         echo $SA_IOS_SDKS_GOOGLE_SERVICES_PLIST_ENC | base64 --decode > Example/SuperAwesome/${SA_IOS_SDKS_GOOGLE_SERVICES_PLIST_NAME}.plist
+
+orbs:
+  macos: circleci/macos@2
 
 jobs:
   build-and-test:
