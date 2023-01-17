@@ -5,6 +5,8 @@ references:
   ios_config: &ios_config
     macos:
       xcode: 14.2.0
+    orbs:
+      macos: circleci/macos@2
     resource_class: macos.x86.medium.gen2
     environment:
       FL_OUTPUT_DIR: output
