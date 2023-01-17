@@ -7,7 +7,7 @@
          "url":"",
          "image":"",
          "video":"",
-         "tag":"<html>\n    <header>\n        <meta name='viewport' content='width=device-width'/>\n        <style>html, body, div { margin: 0px; padding: 0px; } html, body { width: 100%; height: 100%; }</style>\n    </header>\n    <body><script type=\"text/javascript\" src=\"https://eu-west-1-ads.superawesome.tv/v2/ad.js?placement=89056&lineItemId=182932&creativeId=510371&sdkVersion=ios_8.4.0&rnd=c2bb30ad-7b8c-4c7a-a531-78b60c0be6f8&bundle=tv.superawesome.awesomeads.sdk&dauid=-1001367253434052798&ct=2&lang=en_US&device=phone&pos=7&timestamp=_TIMESTAMP_&skip=1&playbackmethod=5&startdelay=null&instl=1&isProgrammatic=true&vpaid=true\"></script></body>\n    </html>",
+         "tag":"<html>\n    <header>\n        <meta name='viewport' content='width=device-width'/>\n        <style>html, body, div { margin: 0px; padding: 0px; } html, body { width: 100%; height: 100%; }</style>\n    </header>\n    <body><script type=\"text/javascript\" src=\"https://eu-west-1-ads.superawesome.tv/v2/ad.js?placement=89056&lineItemId=182932&creativeId=510371&sdkVersion=ios_8.5.0&rnd=c2bb30ad-7b8c-4c7a-a531-78b60c0be6f8&bundle=tv.superawesome.awesomeads.sdk&dauid=-1001367253434052798&ct=2&lang=en_US&device=phone&pos=7&timestamp=_TIMESTAMP_&skip=1&playbackmethod=5&startdelay=null&instl=1&isProgrammatic=true&vpaid=true\"></script></body>\n    </html>",
          "transcodedVideos":[
             
          ],
@@ -15,7 +15,7 @@
          "width":600,
          "height":480,
          "duration":0,
-         "vast":"https://eu-west-1-ads.superawesome.tv/v2/video/vast/89056/182932/510371/?sdkVersion=ios_8.4.0&rnd=557757a2-0933-427c-b13f-3141aca23916&dauid=-1001367253434052798&bundle=tv.superawesome.awesomeads.sdk&device=phone&country=GB&flow=normal&aua=eyJhbGciOiJIUzI1NiJ9.TW96aWxsYS81LjAgKExpbnV4OyBBbmRyb2lkIDEwKSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODMuMC40MTAzLjk2IE1vYmlsZSBTYWZhcmkvNTM3LjM2.I_tn7-WYamd5_dlbbCVEZM0gj0A0s3akPbjkX2p2v6E&tip=eyJhbGciOiJIUzI1NiJ9.ODEuMTEwLjI0OS4w.JID_ookEWOeYqark_ZJ8RGhOQaLYYq2UodGzzmzy0oQ&lang=en_US&ct=2"
+         "vast":"https://eu-west-1-ads.superawesome.tv/v2/video/vast/89056/182932/510371/?sdkVersion=ios_8.5.0&rnd=557757a2-0933-427c-b13f-3141aca23916&dauid=-1001367253434052798&bundle=tv.superawesome.awesomeads.sdk&device=phone&country=GB&flow=normal&aua=eyJhbGciOiJIUzI1NiJ9.TW96aWxsYS81LjAgKExpbnV4OyBBbmRyb2lkIDEwKSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvODMuMC40MTAzLjk2IE1vYmlsZSBTYWZhcmkvNTM3LjM2.I_tn7-WYamd5_dlbbCVEZM0gj0A0s3akPbjkX2p2v6E&tip=eyJhbGciOiJIUzI1NiJ9.ODEuMTEwLjI0OS4w.JID_ookEWOeYqark_ZJ8RGhOQaLYYq2UodGzzmzy0oQ&lang=en_US&ct=2"
       },
       "isKSF":true
    },
