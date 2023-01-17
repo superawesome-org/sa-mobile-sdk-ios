@@ -202,7 +202,6 @@ extension VideoViewController: VideoEventsDelegate {
 
 extension VideoViewController: VideoPlayerDelegate {
     func didPrepare(videoPlayer: VideoPlayer, time: Int, duration: Int) {
-        videoEvents.prepare(player: videoPlayer, time: time, duration: duration)
         controller.adShown()
     }
 

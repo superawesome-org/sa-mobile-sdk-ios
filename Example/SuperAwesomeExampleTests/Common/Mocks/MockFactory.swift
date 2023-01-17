@@ -28,7 +28,6 @@ class MockFactory {
     ) -> Ad {
         Ad(advertiserId: 10,
            publisherId: 20,
-           moat: 0.1,
            campaignId: 30,
            campaignType: 40,
            isVpaid: true,
