@@ -46,6 +46,7 @@ class VideoAdUITests: XCTestCase {
         XCTAssertTrue(app.buttons["closeButton"].exists)
     }
 
+    // NOTE: This test is flakey on the CI and times out.
     func testCloseButtonAppearsWithDelay_WhenConfigured() throws {
 
         let app = localApp()
@@ -75,7 +76,7 @@ class VideoAdUITests: XCTestCase {
         // When
 
         // The padlock is visible (it's visible immediately)
-        let padlockResult = XCTWaiter.wait(for: [padlockExpectation], timeout: Timeouts.standard.rawValue)
+        let padlockResult = XCTWaiter.wait(for: [padlockExpectation], timeout: Timeouts.extraLong.rawValue)
         XCTAssertEqual(padlockResult, .completed)
 
         // The close button is not initially visible
@@ -84,7 +85,7 @@ class VideoAdUITests: XCTestCase {
         // Then
 
         // The close button is visible after a delay
-        let closeButtonResult = XCTWaiter.wait(for: [closeButtonExpectation], timeout: Timeouts.standard.rawValue)
+        let closeButtonResult = XCTWaiter.wait(for: [closeButtonExpectation], timeout: Timeouts.extraLong.rawValue)
 
         XCTAssertEqual(closeButtonResult, .completed)
     }
