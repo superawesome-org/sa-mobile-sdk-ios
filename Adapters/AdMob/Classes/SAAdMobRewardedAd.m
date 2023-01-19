@@ -1,8 +1,7 @@
 #import "SAAdMobRewardedAd.h"
 #import "SAAdMobExtras.h"
-#import <SuperAwesome/SAVersion.h>
-#import <SuperAwesome/SuperAwesome-Swift.h>
 #include <stdatomic.h>
+@import SuperAwesome;
 
 #define kERROR_DOMAIN @"tv.superawesome.SAAdMobVideoMediationAdapter"
 
@@ -68,7 +67,6 @@
         [SAVideoAd setCloseButton:extras.closeButtonEnabled];
         [SAVideoAd setCloseAtEnd:extras.closeAtEndEnabled];
         [SAVideoAd setSmallClick:extras.smallCLickEnabled];
-        [SAVideoAd setConfiguration:extras.configuration];
         [SAVideoAd setPlaybackMode:extras.playback];
     }
     
@@ -90,35 +88,35 @@
     [SAVideoAd setCallback:^(NSInteger placementId, SAEvent event) {
         
         switch (event) {
-            case adLoaded: {
+            case SAEventAdLoaded: {
                 [weakSelf adLoaded];
                 break;
             }
-            case adEmpty: {
+            case SAEventAdEmpty: {
                 [weakSelf adFailed];
                 break;
             }
-            case adFailedToLoad: {
+            case SAEventAdFailedToLoad: {
                 [weakSelf adFailed];
                 break;
             }
-            case adShown: {
+            case SAEventAdShown: {
                 [weakSelf.delegate willPresentFullScreenView];
                 break;
             }
-            case adClicked: {
+            case SAEventAdClicked: {
                 [weakSelf.delegate reportClick];
                 [weakSelf.delegate willDismissFullScreenView];
                 break;
             }
-            case adClosed: {
+            case SAEventAdClosed: {
                 [weakSelf.delegate willDismissFullScreenView];
                 [weakSelf.delegate didDismissFullScreenView];
                 break;
             }
-            case adAlreadyLoaded:
-            case adFailedToShow:
-            case adEnded: {
+            case SAEventAdAlreadyLoaded:
+            case SAEventAdFailedToShow:
+            case SAEventAdEnded: {
                 GADAdReward *reward = [[GADAdReward alloc] initWithRewardType:@"Reward"
                                                                  rewardAmount:[[NSDecimalNumber alloc] initWithInt:1]];
                 

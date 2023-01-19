@@ -55,40 +55,40 @@
     // Step 3. Add callbacks
     [SAInterstitialAd setCallback:^(NSInteger placementId, SAEvent event) {
         switch (event) {
-            case adLoaded: {
+            case SAEventAdLoaded: {
                 //
                 // send event to AdMob
                 [weakSelf.delegate customEventInterstitialDidReceiveAd:weakSelf];
                 break;
             }
-            case adEmpty: {
+            case SAEventAdEmpty: {
                 //
                 // send error info to AdMob
                 NSError *error = [NSError errorWithDomain:kERROR_DOMAIN code:0 userInfo:nil];
                 [weakSelf.delegate customEventInterstitial:weakSelf didFailAd:error];
                 break;
             }
-            case adFailedToLoad: {
+            case SAEventAdFailedToLoad: {
                 //
                 // send error info to AdMob
                 NSError *error = [NSError errorWithDomain:kERROR_DOMAIN code:0 userInfo:nil];
                 [weakSelf.delegate customEventInterstitial:weakSelf didFailAd:error];
                 break;
             }
-            case adShown: {
+            case SAEventAdShown: {
                 //
                 // send event to AdMob
                 [weakSelf.delegate customEventInterstitialWillPresent:weakSelf];
                 break;
             }
-            case adClicked: {
+            case SAEventAdClicked: {
                 //
                 // send click & leve to AdMob
                 [weakSelf.delegate customEventInterstitialWasClicked:weakSelf];
                 [weakSelf.delegate customEventInterstitialWillLeaveApplication:weakSelf];
                 break;
             }
-            case adClosed: {
+            case SAEventAdClosed: {
                 //
                 // send will & did dismiss to AdMob
                 [weakSelf.delegate customEventInterstitialWillDismiss:weakSelf];
@@ -96,9 +96,7 @@
                 break;
             //
             // non supported SA events
-            case adAlreadyLoaded:
-            case adFailedToShow:
-            case adEnded:
+            default:
                 break;
             }
         }

@@ -1,5 +1,4 @@
 #import "SAAdMobBannerCustomEvent.h"
-#import "SABannerAd.h"
 #import "SAAdMobExtras.h"
 
 // error domain
@@ -51,7 +50,6 @@
     
     if (params != nil) {
         [_bannerAd setTestMode:[[params objectForKey:kKEY_TEST] boolValue]];
-        [_bannerAd setConfiguration:[[params objectForKey:kKEY_CONFIGURATION] integerValue]];
         [_bannerAd setParentalGate:[[params objectForKey:kKEY_PARENTAL_GATE] boolValue]];
         [_bannerAd setBumperPage:[[params objectForKey:kKEY_BUMPER_PAGE] boolValue]];
         [_bannerAd setColor:[[params objectForKey:kKEY_TRANSPARENT] boolValue]];
@@ -61,7 +59,7 @@
     // Step 4. Add callbacks
     [_bannerAd setCallback:^(NSInteger placementId, SAEvent event) {
         switch (event) {
-            case adLoaded: {
+            case SAEventAdLoaded: {
                 
                 //
                 // send event
@@ -72,21 +70,21 @@
                 [weakSelf.bannerAd play];
                 break;
             }
-            case adEmpty: {
+            case SAEventAdEmpty: {
                 //
                 // send error in this case
                 NSError *error = [NSError errorWithDomain:kERROR_DOMAIN code:0 userInfo:nil];
                 [weakSelf.delegate customEventBanner:weakSelf didFailAd:error];
                 break;
             }
-            case adFailedToLoad: {
+            case SAEventAdFailedToLoad: {
                 //
                 // send error in this case
                 NSError *error = [NSError errorWithDomain:kERROR_DOMAIN code:0 userInfo:nil];
                 [weakSelf.delegate customEventBanner:weakSelf didFailAd:error];
                 break;
             }
-            case adClicked: {
+            case SAEventAdClicked: {
                 //
                 // send clicked and leave events
                 [weakSelf.delegate customEventBannerWasClicked:weakSelf];
@@ -95,11 +93,7 @@
             }
             //
             // non supported SA events
-            case adAlreadyLoaded:
-            case adShown:
-            case adFailedToShow:
-            case adEnded:
-            case adClosed:
+            default:
                 break;
         }
     }];
