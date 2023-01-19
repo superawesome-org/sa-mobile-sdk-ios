@@ -34,6 +34,7 @@ import WebKit
 
     lazy var managedAdView: SAManagedAdView = {
         let adView = SAManagedAdView()
+        adView.accessibilityIdentifier = "adContent"
         adView.setBridge(bridge: self)
         adView.setCallback(value: callback)
         return adView
