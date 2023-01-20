@@ -1,6 +1,5 @@
 #import "SAAdMobVideoMediationAdapter.h"
 #import "SAAdMobExtras.h"
-#import <SuperAwesome/SAVersion.h>
 #import "SAAdMobRewardedAd.h"
 #include <stdatomic.h>
 
@@ -11,7 +10,7 @@
 }
 
 + (GADVersionNumber)adSDKVersion {
-    NSString *versionString = [SAVersion getSdkVersion];
+    NSString *versionString = [[AwesomeAds info] versionNumber];
     NSArray *versionComponents = [versionString componentsSeparatedByString:@"."];
     GADVersionNumber version = {0};
     if (versionComponents.count == 3) {
@@ -23,7 +22,7 @@
 }
 
 + (GADVersionNumber)version {
-    NSString *versionString = [NSString stringWithFormat:@"%@.0", [SAVersion getSdkVersion]];
+    NSString *versionString = [NSString stringWithFormat:@"%@.0", [[AwesomeAds info] versionNumber]];
     NSArray *versionComponents = [versionString componentsSeparatedByString:@"."];
     GADVersionNumber version = {0};
     if (versionComponents.count == 4) {
@@ -38,7 +37,7 @@
 }
 
 + (NSString *)adapterVersion {
-    return [SAVersion getSdkVersion];
+    return [[AwesomeAds info] versionNumber];
 }
 
 + (Class<GADAdNetworkExtras>)networkExtrasClass {

@@ -4,14 +4,13 @@
 
 - (id) init {
     if (self = [super init]) {
-        _testEnabled = SA_DEFAULT_TESTMODE;
-        _configuration = SA_DEFAULT_CONFIGURATION;
-        _orientation = SA_DEFAULT_ORIENTATION;
-        _parentalGateEnabled = SA_DEFAULT_PARENTALGATE;
-        _bumperPageEnabled = SA_DEFAULT_BUMPERPAGE;
-        _closeButtonEnabled = SA_DEFAULT_CLOSEBUTTON;
-        _closeAtEndEnabled = SA_DEFAULT_CLOSEATEND;
-        _smallCLickEnabled = SA_DEFAULT_SMALLCLICK;
+        _testEnabled = false;
+        _orientation = OrientationAny;
+        _parentalGateEnabled = false;
+        _bumperPageEnabled = false;
+        _closeButtonEnabled = false;
+        _closeAtEndEnabled = true;
+        _smallCLickEnabled = false;
     }
     
     return self;
@@ -26,18 +25,16 @@
 @synthesize parentalGateEnabled = _parentalGateEnabled;
 @synthesize bumperPageEnabled = _bumperPageEnabled;
 @synthesize orientation = _orientation;
-@synthesize configuration = _configuration;
 
 - (id) init {
     _dict = [[NSMutableDictionary alloc] init];
     
     if (self = [super init]) {
-        _testEnabled = SA_DEFAULT_TESTMODE;
-        _configuration = SA_DEFAULT_CONFIGURATION;
-        _parentalGateEnabled = SA_DEFAULT_PARENTALGATE;
-        _bumperPageEnabled = SA_DEFAULT_BUMPERPAGE;
-        _orientation = SA_DEFAULT_ORIENTATION;
-        _trasparentEnabled = SA_DEFAULT_BGCOLOR;
+        _testEnabled = false;
+        _parentalGateEnabled = false;
+        _bumperPageEnabled = false;
+        _orientation = OrientationAny;
+        _trasparentEnabled = false;
     }
     
     return self;
@@ -68,11 +65,6 @@
     [_dict setObject:@(value) forKey:kKEY_TEST];
 }
 
-- (void) setConfiguration:(SAConfiguration)value {
-    _configuration = value;
-    [_dict setObject:@(value) forKey:kKEY_CONFIGURATION];
-}
-
 - (void) setParentalGateEnabled:(BOOL)value  {
     _parentalGateEnabled = value;
     [_dict setObject:@(value) forKey:kKEY_PARENTAL_GATE];
@@ -83,7 +75,7 @@
     [_dict setObject:@(value) forKey:kKEY_BUMPER_PAGE];
 }
 
-- (void) setOrientation:(SAOrientation)value {
+- (void) setOrientation:(Orientation)value {
     _orientation = value;
     [_dict setObject:@(value) forKey:kKEY_ORIENTATION];
 }
