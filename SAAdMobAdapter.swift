@@ -22,8 +22,8 @@ class SAAdMobAdapter: NSObject, GADMediationAdapter {
         let versionComponents = versionNumber.components(separatedBy: ".")
         var version = GADVersionNumber()
         if versionComponents.count == 3 {
-          version.majorVersion = Int(versionComponents[0]) ?? 0
-          version.minorVersion = Int(versionComponents[1]) ?? 0
+            version.majorVersion = Int(versionComponents[0]) ?? 0
+            version.minorVersion = Int(versionComponents[1]) ?? 0
             version.patchVersion = (Int(versionComponents[2]) ?? 0) * 100
         }
         return version
@@ -32,18 +32,19 @@ class SAAdMobAdapter: NSObject, GADMediationAdapter {
     static func adSDKVersion() -> GADVersionNumber {
         let versionNumber = AwesomeAds.info()?.versionNumber ?? ""
         let versionComponents = versionNumber.components(separatedBy: ".")
-
+        
         if versionComponents.count >= 3 {
-          let majorVersion = Int(versionComponents[0]) ?? 0
-          let minorVersion = Int(versionComponents[1]) ?? 0
-          let patchVersion = Int(versionComponents[2]) ?? 0
-
-          return GADVersionNumber(
-            majorVersion: majorVersion, minorVersion: minorVersion, patchVersion: patchVersion)
+            let majorVersion = Int(versionComponents[0]) ?? 0
+            let minorVersion = Int(versionComponents[1]) ?? 0
+            let patchVersion = Int(versionComponents[2]) ?? 0
+            
+            return GADVersionNumber(majorVersion: majorVersion,
+                                    minorVersion: minorVersion,
+                                    patchVersion: patchVersion)
         }
-
+        
         return GADVersionNumber()
-      }
+    }
     
     static func networkExtrasClass() -> GADAdNetworkExtras.Type? {
         return nil
