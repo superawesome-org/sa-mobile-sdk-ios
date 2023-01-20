@@ -56,10 +56,10 @@ class SAAdMobAdapter: NSObject, GADMediationAdapter {
     }
     
     func loadInterstitial(for adConfiguration: GADMediationInterstitialAdConfiguration, completionHandler: @escaping GADMediationInterstitialLoadCompletionHandler) {
-        
+        // TODO: Load interstitial
     }
     
     func loadRewardedAd(for adConfiguration: GADMediationRewardedAdConfiguration, completionHandler: @escaping GADMediationRewardedLoadCompletionHandler) {
-        
+        // TODO: Load video ad
     }
 }
