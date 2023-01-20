@@ -1,40 +1,20 @@
-# If you want to automatically update fastlane if a new version is available:
-# update_fastlane
-
-# This is the minimum version number required.
-# Update this, if you use features of a newer version
-fastlane_version "2.28.3"
-
-default_platform :ios
-
-platform :ios do
-  before_all do
-    setup_circle_ci
-  end
-
-  desc "Runs all the tests"
-  lane :test do
-    # cocoapods() 
-    scan(workspace:"Example/SuperAwesomeExample.xcworkspace", include_simulator_logs: false)
-  end
-
-  # desc "Install cocoapods"
-  # lane :install_pods do
-  #   cocoapods(
-  #       clean: true,
-  #       use_bundle_exec: false
-  # )
-  # end
-
-  after_all do |lane|
-    # This block is called, only if the executed lane was successful
-  end
-
-  error do |lane, exception|
-    # slack(
-    #   message: exception.message,
-    #   success: false
-    # )
+if ENV['FAST_PATH'] then
+  FAST_PATH = ENV['FAST_PATH']
+  import "#{FAST_PATH}/mobile/sdks/android/Fastfile"
+else
+  if ENV['SA_USE_DEV_FASTFILE'] then
+    USER = `printf $USER`
+    #Fetch sa-continous-integration path and trim any newlines and trailing white space
+    dirtySALocalRepoDirectory = sh("find /users/#{USER} -name sa-continuous-integration -maxdepth 2 -type d | tr -d '\n'")
+    saLocalRepoDirectory = "#{dirtySALocalRepoDirectory}".strip
+    import "#{saLocalRepoDirectory}/mobile/sdks/android/Fastfile"
+  else
+    import_from_git(
+      url: "git@github.com:SuperAwesomeLTD/sa-continuous-integration.git",
+      branch: "master",
+      path: "mobile/sdks/android/Fastfile",
+    )
   end
 end
+
 
