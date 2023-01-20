@@ -2,6 +2,7 @@ excluded: # paths to ignore during linting.
   - Example/Pods
   - Example/SuperAwesomeExampleTests/Common/Components/VastParserTests.swift
   - Example/SuperAwesomeExampleTests/Common/Components/HtmlFormatterTests.swift
+  - Adapters/AdMob/Example/Pods
 identifier_name:
   min_length: 1
   allowed_symbols: ["_"]
