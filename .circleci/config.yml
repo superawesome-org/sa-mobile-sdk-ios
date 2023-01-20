@@ -36,7 +36,6 @@ jobs:
       FASTLANE_LANE: run_all_tests
     steps:
       - checkout
-      - *generate_github_token
       - *configure_google_services
       - *bootstrap
       - run: bundle install
