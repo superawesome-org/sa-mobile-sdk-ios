@@ -10,8 +10,9 @@ import SuperAwesome
 
 @objc(SAAdMobBannerAd)
 class SAAdMobBannerAd: NSObject, GADMediationBannerAd {
+
     var view: UIView {
-        return bannerAd ?? UIView()
+       bannerAd ?? UIView()
     }
     
     required override init() {
