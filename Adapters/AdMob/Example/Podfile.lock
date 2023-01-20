@@ -51,10 +51,10 @@ PODS:
   - nanopb/decode (2.30909.0)
   - nanopb/encode (2.30909.0)
   - PromisesObjC (2.1.1)
-  - SuperAwesome (8.5.0):
+  - SuperAwesome (8.5.1):
     - Moya (~> 14.0)
     - SwiftyXMLParser (= 5.6.0)
-  - SuperAwesomeAdMob (8.5.0):
+  - SuperAwesomeAdMob (8.5.1):
     - Google-Mobile-Ads-SDK
     - SuperAwesome (~> 8.5)
   - SwiftyXMLParser (5.6.0)
@@ -88,8 +88,8 @@ SPEC CHECKSUMS:
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
-  SuperAwesome: 33a63378fd262864adb07fee26f70d813e435bd6
-  SuperAwesomeAdMob: 7a4590378f746105e214c6091d87d7529f8b3807
+  SuperAwesome: 21b0978a1908e91fcf5bf2b6fe3fcd3a9985235d
+  SuperAwesomeAdMob: 37b4c93ecb3a96743dab11d3b729f2f22000fef0
   SwiftyXMLParser: 9b98995235961881322015ebe38d1f3d7c953bd7
 
 PODFILE CHECKSUM: d9f17782073701152863b71254b43ce6dd7582e8

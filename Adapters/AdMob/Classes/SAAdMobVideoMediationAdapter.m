@@ -2,7 +2,6 @@
 #import "SAAdMobExtras.h"
 #import "SAAdMobRewardedAd.h"
 #include <stdatomic.h>
-@import SuperAwesome;
 
 #define kERROR_DOMAIN @"tv.superawesome.SAAdMobVideoMediationAdapter"
 

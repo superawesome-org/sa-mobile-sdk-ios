@@ -48,7 +48,6 @@
         [SAInterstitialAd setParentalGate:[[params objectForKey:kKEY_PARENTAL_GATE] boolValue]];
         [SAInterstitialAd setBumperPage:[[params objectForKey:kKEY_BUMPER_PAGE] boolValue]];
         [SAInterstitialAd setOrientation:[[params objectForKey:kKEY_ORIENTATION] intValue]];
-        [SAInterstitialAd setConfiguration:[[params objectForKey:kKEY_CONFIGURATION] intValue]];
     }
     
     //
