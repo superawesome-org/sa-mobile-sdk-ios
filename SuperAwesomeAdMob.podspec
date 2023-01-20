@@ -27,7 +27,7 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.source_files = 'Adapters/AdMob/Classes/**/*'
-  s.dependency 'SuperAwesome', '~> 7.2'
+  s.dependency 'SuperAwesome', '~> 8.5'
   s.dependency 'Google-Mobile-Ads-SDK'
   s.xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) ADMOB_PLUGIN',
                  'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) ADMOB_PLUGIN=1' }

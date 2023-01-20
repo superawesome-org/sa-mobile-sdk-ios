@@ -45,7 +45,7 @@ class AdMobViewController: UIViewController {
         let request = GADRequest()
         request.register(extras)
 
-        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+        bannerView = GADBannerView(adSize: GADAdSizeBanner)
         bannerView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(bannerView)
         view.addConstraints([

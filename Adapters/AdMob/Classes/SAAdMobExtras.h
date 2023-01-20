@@ -1,13 +1,12 @@
 #import <Foundation/Foundation.h>
 #import <GoogleMobileAds/GoogleMobileAds.h>
-#import <SuperAwesome/AwesomeAds.h>
+@import SuperAwesome;
 
 @interface SAAdMobVideoExtra : NSObject <GADAdNetworkExtras>
 
 @property (nonatomic, assign) BOOL testEnabled;
-@property (nonatomic, assign) SAOrientation orientation;
-@property (nonatomic, assign) SAConfiguration configuration;
-@property (nonatomic, assign) SARTBStartDelay playback;
+@property (nonatomic, assign) Orientation orientation;
+@property (nonatomic, assign) enum StartDelay playback;
 @property (nonatomic, assign) BOOL parentalGateEnabled;
 @property (nonatomic, assign) BOOL bumperPageEnabled;
 @property (nonatomic, assign) BOOL closeButtonEnabled;
@@ -34,9 +33,8 @@
 
 @property (nonatomic, assign) BOOL trasparentEnabled;
 @property (nonatomic, assign) BOOL testEnabled;
-@property (nonatomic, assign) SAConfiguration configuration;
 @property (nonatomic, assign) BOOL parentalGateEnabled;
 @property (nonatomic, assign) BOOL bumperPageEnabled;
-@property (nonatomic, assign) SAOrientation orientation;
+@property (nonatomic, assign) Orientation orientation;
 
 @end
