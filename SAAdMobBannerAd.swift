@@ -11,11 +11,7 @@ import SuperAwesome
 @objc(SAAdMobBannerAd)
 class SAAdMobBannerAd: NSObject, GADMediationBannerAd {
     var view: UIView {
-        return bannerAd ?? UIView()
-    }
-    
-    required override init() {
-        super.init()
+        bannerAd ?? UIView()
     }
     
     /// AwesomeAds banner ad.
@@ -35,7 +31,7 @@ class SAAdMobBannerAd: NSObject, GADMediationBannerAd {
         let placementId = Int(parameter) ?? 0
         let adSize = adConfiguration.adSize
         
-        bannerAd = BannerView(frame: CGRect(x: 0, y: 0, width: adSize.size.width, height: adSize.size.height))
+        bannerAd = BannerView(frame: CGRect(x: 0.0, y: 0.0, width: adSize.size.width, height: adSize.size.height))
         bannerAd?.setCallback({ [weak self] placementId, event in
             self?.onEvent(placementId, event)
         })
@@ -62,7 +58,7 @@ class SAAdMobBannerAd: NSObject, GADMediationBannerAd {
     }
     
     private func adError(message: String) {
-        let error = NSError(domain: "tv.superawesome.SAAdMobBannerAd",
+        let error = NSError(domain: AwesomeAds.info()?.bundle ?? "",
                             code: 0,
                             userInfo: [ NSLocalizedDescriptionKey: message])
         
