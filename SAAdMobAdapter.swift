@@ -47,7 +47,7 @@ class SAAdMobAdapter: NSObject, GADMediationAdapter {
     }
     
     static func networkExtrasClass() -> GADAdNetworkExtras.Type? {
-        return nil
+       nil
     }
     
     func loadBanner(for adConfiguration: GADMediationBannerAdConfiguration, completionHandler: @escaping GADMediationBannerLoadCompletionHandler) {
