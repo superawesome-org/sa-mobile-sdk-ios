@@ -31,14 +31,13 @@ class SAAdMobBannerAd: NSObject, GADMediationBannerAd {
         for adConfiguration: GADMediationBannerAdConfiguration,
         completionHandler: @escaping GADMediationBannerLoadCompletionHandler
     ) {
-        guard let placementString = adConfiguration.credentials.settings["parameter"] as? String, let placementId = Int(placementString) else {
-            return
-        }
+        let parameter = adConfiguration.credentials.settings["parameter"] as? String ?? ""
+        let placementId = Int(parameter) ?? 0
         let adSize = adConfiguration.adSize
-        print(adSize.size)
+        
         bannerAd = BannerView(frame: CGRect(x: 0, y: 0, width: adSize.size.width, height: adSize.size.height))
-        bannerAd?.setCallback({ placementId, event in
-            self.onEvent(placementId, event)
+        bannerAd?.setCallback({ [weak self] placementId, event in
+            self?.onEvent(placementId, event)
         })
         self.completionHandler = completionHandler
         bannerAd?.load(placementId)
