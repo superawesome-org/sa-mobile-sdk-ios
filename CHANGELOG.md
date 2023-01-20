@@ -1,6 +1,9 @@
 CHANGELOG
 =========
 
+8.5.1
+ - Update AdMob plugin
+
 8.5.0
  - Added a functionality to video ads to mute audio on the start
 
