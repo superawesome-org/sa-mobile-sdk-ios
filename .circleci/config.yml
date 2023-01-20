@@ -18,15 +18,21 @@ references:
         echo 'export SA_IOS_SDKS_GOOGLE_SERVICES_PLIST_ENC="$SA_IOS_SDKS_GOOGLE_SERVICES_PLIST_ENC"' >> $BASH_ENV
         echo $SA_IOS_SDKS_GOOGLE_SERVICES_PLIST_ENC | base64 --decode > Example/SuperAwesome/${SA_IOS_SDKS_GOOGLE_SERVICES_PLIST_NAME}.plist
 
-  # bootstrap
-  bootstrap: &bootstrap
+  # clone some scripts
+  clone_scripts_repo: &clone_scripts_repo
     run:
-      name: Bootstrap
+      name: Clone scripts repo
       command: |
         echo "Github unknown hosts setup"
         mkdir -p ~/.ssh/
         echo -e "Host github.comntStrictHostKeyChecking non" >> ~/.ssh/config
         git clone "${SA_CONTINUOUS_INTEGRATION_GIT_REPO_URL}" "${SA_PATH_TO_CONTINUOUS_INTEGRATION_REPO}"
+
+  # bootstrap iOS system
+  bootstrap_ios: &bootstrap_ios
+    run:
+      name: Bootstrap iOS
+      command: ${SA_PATH_TO_CONTINUOUS_INTEGRATION_REPO}/bootstrap/bootstrap-mobile-ios-app.sh
 
 jobs:
   build-and-test:
@@ -36,9 +42,10 @@ jobs:
       FASTLANE_LANE: run_all_tests
     steps:
       - checkout
-      - *configure_google_services
-      - *bootstrap
       - run: bundle install
+      - *clone_scripts_repo
+      - *bootstrap_ios
+      - *configure_google_services
 
       # Install CocoaPods in project
       - run: 
