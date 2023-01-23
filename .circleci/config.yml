@@ -35,9 +35,6 @@ references:
     run:
       name: Clone scripts repo
       command: |
-        echo "Github unknown hosts setup"
-        mkdir -p ~/.ssh/
-        echo -e "Host github.comntStrictHostKeyChecking non" >> ~/.ssh/config
         git clone "${SA_CONTINUOUS_INTEGRATION_GIT_REPO_URL}" "${SA_PATH_TO_CONTINUOUS_INTEGRATION_REPO}"
 
   # bootstrap iOS system
