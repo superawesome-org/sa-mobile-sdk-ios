@@ -15,7 +15,7 @@ references:
       name: Generate & store Github Token
       command: |
         curl -L https://github.com/SuperAwesomeLTD/gha-token-generator/releases/download/v1.0.3/gha-token-generator_1.0.3_Darwin_x86_64.tar.gz | tar xz
-        GENERATED_APP_TOKEN=$( ./gha-token-generator -app-id ${SA_GITHUB_CIRCLECI_DOWNLOAD_TOOLS_APP_ID} -org-name SuperAwesomeLTD -pem-key ${SA_GITHUB_CIRCLECI_DOWNLOAD_TOOLS_APP_PEM} )
+        GENERATED_APP_TOKEN=$( ./gha-token-generator -app-id ${SA_RELEASE_BOT_APP_ID} -org-name SuperAwesomeLTD -pem-key ${SA_RELEASE_BOT_GITHUB_PEM} )
         echo "export GITHUB_TOKEN=${GENERATED_APP_TOKEN}" >> $BASH_ENV
         echo "export GIT_COMMITTER_NAME=sa-release-bot" >> $BASH_ENV
         echo "export GIT_COMMITTER_EMAIL=sa-release-bot@superawesome.tv" >> $BASH_ENV
