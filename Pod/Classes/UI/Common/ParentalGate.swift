@@ -8,7 +8,6 @@
 import UIKit
 
 class ParentalGate {
-    private var topWindow: UIWindow?
     private var challangeAlertController: UIAlertController?
     private var errorAlertController: UIAlertController?
 
@@ -33,8 +32,6 @@ class ParentalGate {
     func stop() {
         challangeAlertController?.dismiss(animated: true, completion: nil)
         errorAlertController?.dismiss(animated: true, completion: nil)
-        topWindow?.isHidden = true
-        topWindow = nil
     }
 
     func show() {
@@ -58,7 +55,9 @@ class ParentalGate {
             controller.addTextField(configurationHandler: { textField in
                 textField.keyboardType = .numberPad
             })
-            topWindow = controller.presentInNewWindow()
+            controller.modalTransitionStyle = .crossDissolve
+            UIApplication.shared.keyWindow?.rootViewController?.getTopMostViewController().present(controller,
+                                                                                                   animated: true)
         }
 
         self.openAction?()
@@ -83,7 +82,9 @@ class ParentalGate {
 
         if let controller = errorAlertController {
             controller.addAction(okAction)
-            topWindow = controller.presentInNewWindow()
+            controller.modalTransitionStyle = .crossDissolve
+            UIApplication.shared.keyWindow?.rootViewController?.getTopMostViewController().present(controller,
+                                                                                                   animated: true)
         }
     }
 

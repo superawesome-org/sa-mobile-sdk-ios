@@ -9,14 +9,27 @@ import UIKit
 
 extension UIViewController {
 
-    /// Present the caller viewcontroller in a new `UIWindow` and return the window
-    func presentInNewWindow() -> UIWindow {
-        let window = UIWindow(frame: UIScreen.main.bounds)
-        window.rootViewController = UIViewController()
-        window.windowLevel = UIWindow.Level(UIWindow.Level.alert.rawValue + 1)
-        window.makeKeyAndVisible()
-        window.rootViewController?.present(self, animated: true)
-        return window
+    func getTopMostViewController() -> UIViewController {
+        switch self {
+        case let tab as UITabBarController:
+            if let selected = tab.selectedViewController {
+                return selected.getTopMostViewController()
+            } else {
+                return tab
+            }
+        case let nav as UINavigationController:
+            if let topViewController = nav.presentedViewController {
+                return topViewController.getTopMostViewController()
+            } else {
+                return nav
+            }
+        default:
+            if let presentedViewController = presentedViewController {
+                return presentedViewController.getTopMostViewController()
+            } else {
+                return self
+            }
+        }
     }
 
     func showQuestionDialog(title: String,
