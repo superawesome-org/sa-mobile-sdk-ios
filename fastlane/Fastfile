@@ -12,12 +12,10 @@ if ENV['SA_USE_DEV_FASTFILE'] then
     import "#{saLocalRepoDirectory}/mobile/sdks/ios/Fastfile"
   end
 else
+  GH_TOKEN = ENV['GITHUB_TOKEN']
   import_from_git(
-    url: "https://x-access-token:${GITHUB_TOKEN}@github.com/SuperAwesomeLTD/sa-continuous-integration.git",
+    url: "https://x-access-token:#{GITHUB_TOKEN}@github.com/SuperAwesomeLTD/sa-continuous-integration.git",
     branch: "master",
     path: "mobile/sdks/ios/Fastfile",
   )
 end
-
-
-
