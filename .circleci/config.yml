@@ -35,7 +35,7 @@ references:
     run:
       name: Clone scripts repo
       command: |
-        git clone "${SA_CONTINUOUS_INTEGRATION_GIT_REPO_URL}" "${SA_PATH_TO_CONTINUOUS_INTEGRATION_REPO}"
+        git clone https://x-access-token:${GITHUB_TOKEN}@github.com/SuperAwesomeLTD/sa-continuous-integration.git "${SA_PATH_TO_CONTINUOUS_INTEGRATION_REPO}"
 
   # bootstrap iOS system
   bootstrap_ios: &bootstrap_ios
