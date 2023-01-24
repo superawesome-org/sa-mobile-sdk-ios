@@ -1,20 +1,23 @@
-if ENV['FAST_PATH'] then
-  FAST_PATH = ENV['FAST_PATH']
-  import "#{FAST_PATH}/mobile/sdks/android/Fastfile"
-else
-  if ENV['SA_USE_DEV_FASTFILE'] then
-    USER = `printf $USER`
+
+if ENV['SA_USE_DEV_FASTFILE'] then
+  USER = `printf $USER`
+
+  if ENV['FAST_PATH'] then
+    FAST_PATH = ENV['FAST_PATH']
+    import "#{FAST_PATH}/mobile/sdks/ios/Fastfile"
+  else
     #Fetch sa-continous-integration path and trim any newlines and trailing white space
     dirtySALocalRepoDirectory = sh("find /users/#{USER} -name sa-continuous-integration -maxdepth 2 -type d | tr -d '\n'")
     saLocalRepoDirectory = "#{dirtySALocalRepoDirectory}".strip
-    import "#{saLocalRepoDirectory}/mobile/sdks/android/Fastfile"
-  else
-    import_from_git(
-      url: "git@github.com:SuperAwesomeLTD/sa-continuous-integration.git",
-      branch: "master",
-      path: "mobile/sdks/android/Fastfile",
-    )
+    import "#{saLocalRepoDirectory}/mobile/sdks/ios/Fastfile"
   end
+else
+  import_from_git(
+    url: "https://x-access-token:${GITHUB_TOKEN}@github.com/SuperAwesomeLTD/sa-continuous-integration.git",
+    branch: "master",
+    path: "mobile/sdks/ios/Fastfile",
+  )
 end
+
 
 
