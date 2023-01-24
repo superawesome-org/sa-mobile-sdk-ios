@@ -41,7 +41,10 @@ references:
   bootstrap_ios: &bootstrap_ios
     run:
       name: Bootstrap iOS
-      command: ${SA_PATH_TO_CONTINUOUS_INTEGRATION_REPO}/bootstrap/bootstrap-mobile-ios-app.sh
+      command: |
+        ${SA_PATH_TO_CONTINUOUS_INTEGRATION_REPO}/bootstrap/bootstrap-mobile.sh
+        ${SA_PATH_TO_CONTINUOUS_INTEGRATION_REPO}/bootstrap/bootstrap-mobile-ios.sh
+        ${SA_PATH_TO_CONTINUOUS_INTEGRATION_REPO}/bootstrap/bootstrap-mobile-ios-sdk.sh
 
 jobs:
   build-and-test:
@@ -53,7 +56,6 @@ jobs:
       - checkout
       - *generate_github_token
       - *clone_scripts_repo
-      - run: bundle install
       - *bootstrap_ios
       - *configure_google_services
 
