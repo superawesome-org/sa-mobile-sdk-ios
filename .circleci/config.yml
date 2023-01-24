@@ -42,8 +42,6 @@ references:
     run:
       name: Bootstrap iOS
       command: |
-        ${SA_PATH_TO_CONTINUOUS_INTEGRATION_REPO}/bootstrap/bootstrap-mobile.sh
-        ${SA_PATH_TO_CONTINUOUS_INTEGRATION_REPO}/bootstrap/bootstrap-mobile-ios.sh
         ${SA_PATH_TO_CONTINUOUS_INTEGRATION_REPO}/bootstrap/bootstrap-mobile-ios-sdk.sh
 
 jobs:
