@@ -51,6 +51,9 @@
                <Test
                   Identifier = "VideoAdUITests/testCloseButtonAppearsWithDelay_WhenConfigured()">
                </Test>
+               <Test
+                  Identifier = "VideoAdUITests/testNonKSF_VPAID_ad_loads_successfully()">
+               </Test>
             </SkippedTests>
          </TestableReference>
       </Testables>
