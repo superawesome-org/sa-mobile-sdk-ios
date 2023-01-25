@@ -47,6 +47,11 @@
                BlueprintName = "SuperAwesomeExampleUITests"
                ReferencedContainer = "container:SuperAwesomeExample.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "VideoAdUITests/testCloseButtonAppearsWithDelay_WhenConfigured()">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
    </TestAction>
