@@ -32,7 +32,7 @@ class InterstitialUITests: XCTestCase {
                                                                       identifier: "Mobile Interstitial Portrait").tap()
 
         // Then the close button is visible
-        let closeButtonResult = XCTWaiter.wait(for: [closeButtonExpectation], timeout: Timeouts.standard.rawValue)
+        let closeButtonResult = XCTWaiter.wait(for: [closeButtonExpectation], timeout: Timeouts.standard.duration)
 
         XCTAssertEqual(closeButtonResult, .completed)
         XCTAssertTrue(app.buttons["closeButton"].exists)
@@ -57,7 +57,7 @@ class InterstitialUITests: XCTestCase {
         XCTAssertFalse(app.buttons["closeButton"].exists)
 
         // Then the close button is visible after a delay
-        let closeButtonResult = XCTWaiter.wait(for: [closeButtonExpectation], timeout: Timeouts.standard.rawValue)
+        let closeButtonResult = XCTWaiter.wait(for: [closeButtonExpectation], timeout: Timeouts.standard.duration)
 
         XCTAssertEqual(closeButtonResult, .completed)
     }
