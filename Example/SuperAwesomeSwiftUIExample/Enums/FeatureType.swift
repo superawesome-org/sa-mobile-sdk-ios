@@ -9,9 +9,7 @@ import Foundation
 
 enum FeatureType {
     case banner
-    case bumper
     case interstial
-    case parentGate
     case video
 
     var title: String {

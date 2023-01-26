@@ -14,7 +14,6 @@
 		0788DAA529818A800087AE93 /* SuperAwesomeSwiftUIExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0788DAA429818A800087AE93 /* SuperAwesomeSwiftUIExampleUITests.swift */; };
 		0788DAA729818A800087AE93 /* SuperAwesomeSwiftUIExampleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0788DAA629818A800087AE93 /* SuperAwesomeSwiftUIExampleUITestsLaunchTests.swift */; };
 		0788DAB829818C2E0087AE93 /* FeatureType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0788DAB629818C2E0087AE93 /* FeatureType.swift */; };
-		0788DAB929818C2E0087AE93 /* BannerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0788DAB729818C2E0087AE93 /* BannerType.swift */; };
 		0788DABC29818C3F0087AE93 /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0788DABA29818C3F0087AE93 /* Binding.swift */; };
 		0788DABD29818C3F0087AE93 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0788DABB29818C3F0087AE93 /* UIApplication.swift */; };
 		0788DAC029818C470087AE93 /* PlacementItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0788DABE29818C470087AE93 /* PlacementItem.swift */; };
@@ -145,7 +144,6 @@
 		0788DAA429818A800087AE93 /* SuperAwesomeSwiftUIExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperAwesomeSwiftUIExampleUITests.swift; sourceTree = "<group>"; };
 		0788DAA629818A800087AE93 /* SuperAwesomeSwiftUIExampleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperAwesomeSwiftUIExampleUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		0788DAB629818C2E0087AE93 /* FeatureType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureType.swift; sourceTree = "<group>"; };
-		0788DAB729818C2E0087AE93 /* BannerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerType.swift; sourceTree = "<group>"; };
 		0788DABA29818C3F0087AE93 /* Binding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
 		0788DABB29818C3F0087AE93 /* UIApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		0788DABE29818C470087AE93 /* PlacementItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacementItem.swift; sourceTree = "<group>"; };
@@ -352,7 +350,6 @@
 		0788DAB129818C030087AE93 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
-				0788DAB729818C2E0087AE93 /* BannerType.swift */,
 				0788DAB629818C2E0087AE93 /* FeatureType.swift */,
 			);
 			path = Enums;
@@ -1245,7 +1242,6 @@
 				0788DAB829818C2E0087AE93 /* FeatureType.swift in Sources */,
 				0788DAD129818C9A0087AE93 /* AdBannerView.swift in Sources */,
 				0788DA8A29818A7F0087AE93 /* SuperAwesomeSwiftUIExampleApp.swift in Sources */,
-				0788DAB929818C2E0087AE93 /* BannerType.swift in Sources */,
 				0788DABC29818C3F0087AE93 /* Binding.swift in Sources */,
 				0788DACF29818C940087AE93 /* ContentsTableView.swift in Sources */,
 				0788DAC129818C470087AE93 /* FeatureItem.swift in Sources */,

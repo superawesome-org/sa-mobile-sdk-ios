@@ -33,13 +33,21 @@ struct ContentsTableView_Previews: PreviewProvider {
                 FeatureItem(
                     type: .banner,
                     placements: [
-                        PlacementItem(name: "Banner", type: .banner, placementId: 0, lineItemId: nil, creativeId: nil)
+                        PlacementItem(name: "Banner",
+                                      type: .banner,
+                                      placementId: 0,
+                                      lineItemId: nil,
+                                      creativeId: nil)
                     ]
                 ),
                 FeatureItem(
                     type: .interstial,
                     placements: [
-                        PlacementItem(name: "Interstitial", type: .bumper, placementId: 0, lineItemId: nil, creativeId: nil)
+                        PlacementItem(name: "Interstitial",
+                                      type: .interstial,
+                                      placementId: 0,
+                                      lineItemId: nil,
+                                      creativeId: nil)
                     ]
                 )
             ]
