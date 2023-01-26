@@ -7,21 +7,12 @@
 
 import Foundation
 
-enum FeatureType {
+enum FeatureType: String {
     case banner
     case interstial
     case video
 
     var title: String {
-        var type = ""
-        switch self {
-        case .interstial:
-            type = "Interstital"
-        case .video:
-            type = "Video"
-        default:
-            type = "Banner"
-        }
-        return type
+        rawValue.capitalized
     }
 }
