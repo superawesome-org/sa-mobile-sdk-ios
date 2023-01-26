@@ -2,6 +2,26 @@
 version: 2.1
 references:
 
+  ios_config: &ios_config
+    macos:
+      xcode: 14.2.0
+    environment:
+      FL_OUTPUT_DIR: output
+      LC_ALL: en_GB.UTF-8
+      LANG: en_GB.UTF-8
+
+  generate_github_token: &generate_github_token
+    run:
+      name: Generate & store Github Token
+      command: |
+        curl -L https://github.com/SuperAwesomeLTD/gha-token-generator/releases/download/v1.0.3/gha-token-generator_1.0.3_Darwin_x86_64.tar.gz | tar xz
+        GENERATED_APP_TOKEN=$( ./gha-token-generator -app-id ${SA_RELEASE_BOT_APP_ID} -org-name SuperAwesomeLTD -pem-key ${SA_RELEASE_BOT_GITHUB_PEM} )
+        echo "export GITHUB_TOKEN=${GENERATED_APP_TOKEN}" >> $BASH_ENV
+        echo "export GIT_COMMITTER_NAME=sa-release-bot" >> $BASH_ENV
+        echo "export GIT_COMMITTER_EMAIL=sa-release-bot@superawesome.tv" >> $BASH_ENV
+        echo "export GIT_AUTHOR_NAME=sa-release-bot" >> $BASH_ENV
+        echo "export GIT_AUTHOR_EMAIL=sa-release-bot@superawesome.tv" >> $BASH_ENV
+
   configure_google_services: &configure_google_services
     run:
       name: Configure Google Services
@@ -10,26 +30,45 @@ references:
         echo 'export SA_IOS_SDKS_GOOGLE_SERVICES_PLIST_ENC="$SA_IOS_SDKS_GOOGLE_SERVICES_PLIST_ENC"' >> $BASH_ENV
         echo $SA_IOS_SDKS_GOOGLE_SERVICES_PLIST_ENC | base64 --decode > Example/SuperAwesome/${SA_IOS_SDKS_GOOGLE_SERVICES_PLIST_NAME}.plist
 
+  # clone some scripts
+  clone_scripts_repo: &clone_scripts_repo
+    run:
+      name: Clone scripts repo
+      command: |
+        git clone https://x-access-token:${GITHUB_TOKEN}@github.com/SuperAwesomeLTD/sa-continuous-integration.git "${SA_PATH_TO_CONTINUOUS_INTEGRATION_REPO}"
+
+  # bootstrap iOS system
+  bootstrap_ios: &bootstrap_ios
+    run:
+      name: Bootstrap iOS
+      command: |
+        ${SA_PATH_TO_CONTINUOUS_INTEGRATION_REPO}/bootstrap/bootstrap-mobile-ios-sdk.sh
+
 jobs:
   build-and-test:
-    macos:
-      xcode: 13.2.1
+    <<: *ios_config
     environment:
       FL_OUTPUT_DIR: output
-      FASTLANE_LANE: test
+      FASTLANE_LANE: run_all_tests
     steps:
       - checkout
+      - *generate_github_token
+      - *clone_scripts_repo
+      - *bootstrap_ios
       - *configure_google_services
-      - run: bundle install
-      
-      # Install CocoaPods
-      - run:
-          name: Install CocoaPods
+
+      # Install CocoaPods in project
+      - run: 
+          name: Pod Install
           command: cd Example && bundle exec pod install
-          
+
       - run:
           name: Fastlane
-          command: bundle exec fastlane $FASTLANE_LANE
+          command: |
+            cd Example/SuperAwesomeExampleUITests/MockServer
+            /usr/bin/java -jar WireMock.jar &
+            cd ../../../
+            IOS_IPHONE_UI_TEST_DEVICE="iPhone SE (3rd generation) (16.2)" IOS_IPAD_UI_TEST_DEVICE="iPad Pro (11-inch) (4th generation) (16,2)" SA_IOS_SDKS_SCHEME=SuperAwesomeExample SA_IOS_SDKS_PATH_TO_WORKSPACE=Example/SuperAwesomeExample bundle exec fastlane $FASTLANE_LANE
       - store_artifacts:
           path: output
       - store_test_results:
@@ -49,37 +88,11 @@ jobs:
           path: result.xml
       - store_test_results:
           path: result.xml
-          
-  setup-FastLane:
-    macos:
-      xcode: 13.2.1
-    steps:
-      - checkout
-      - *configure_google_services
-      - run:
-          name: Select Ruby Version
-          command:  echo "ruby-2.4" > .ruby-version
-      - restore_cache:
-          keys:
-          - m2-gems-{{ checksum "Gemfile.lock" }}
-          - m2-gems-
-      - run:
-          name: Install Ruby Gems
-          command: bundle check || bundle install --path vendor/bundle
-          environment:
-            BUNDLE_JOBS: 4
-            BUNDLE_RETRY: 3
-      - save_cache:
-          key: m2-gems-{{ checksum "Gemfile.lock" }}
-          paths:
-            - vendor/bundle
 
 workflows:
   build-test:
     jobs:
       - swiftlint:
-          context: MOBILE_IOS_SDKS
-      - setup-FastLane:
           context: MOBILE_IOS_SDKS
       - build-and-test:
           context: MOBILE_IOS_SDKS

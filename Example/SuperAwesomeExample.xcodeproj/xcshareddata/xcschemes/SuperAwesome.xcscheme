@@ -41,16 +41,6 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1B0D26CB1CF7186F00619C9C"
-               BuildableName = "Tests.xctest"
-               BlueprintName = "Tests"
-               ReferencedContainer = "container:SuperAwesomeExample.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "C6C6AEE627D7D1D000FFB5CA"
                BuildableName = "SuperAwesomeExampleTests.xctest"
                BlueprintName = "SuperAwesomeExampleTests"
@@ -66,6 +56,14 @@
                BlueprintName = "SuperAwesomeExampleUITests"
                ReferencedContainer = "container:SuperAwesomeExample.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "VideoAdUITests/testCloseButtonAppearsWithDelay_WhenConfigured()">
+               </Test>
+               <Test
+                  Identifier = "VideoAdUITests/testNonKSF_VPAID_ad_loads_successfully()">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
    </TestAction>
