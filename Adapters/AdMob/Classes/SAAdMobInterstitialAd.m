@@ -2,7 +2,7 @@
 #import "SAAdMobExtras.h"
 #include <stdatomic.h>
 
-#define kERROR_DOMAIN @"tv.superawesome.SAAdMobVideoMediationAdapter"
+#define kERROR_DOMAIN @"tv.superawesome.SAAdMobInterstitialAd"
 
 @interface SAAdMobInterstitialAd () <GADMediationInterstitialAd> {
     
@@ -64,7 +64,7 @@
         [SAInterstitialAd setBumperPage:extras.bumperPageEnabled];
     }
     
-    [self requestVideoAd];
+    [self requestAd];
 }
 
 - (void) adLoaded {
@@ -76,7 +76,7 @@
     [_delegate didFailToPresentWithError:error];
 }
 
-- (void) requestVideoAd {
+- (void) requestAd {
     __weak typeof (self) weakSelf = self;
     
     [SAInterstitialAd setCallback:^(NSInteger placementId, SAEvent event) {

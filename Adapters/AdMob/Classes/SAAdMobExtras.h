@@ -2,6 +2,7 @@
 #import <GoogleMobileAds/GoogleMobileAds.h>
 @import SuperAwesome;
 
+// Will be removed instead use `SAAdMobExtras`
 @interface SAAdMobVideoExtra : NSObject <GADAdNetworkExtras>
 
 @property (nonatomic, assign) BOOL testEnabled;
@@ -12,6 +13,20 @@
 @property (nonatomic, assign) BOOL closeButtonEnabled;
 @property (nonatomic, assign) BOOL closeAtEndEnabled;
 @property (nonatomic, assign) BOOL smallCLickEnabled;
+
+@end
+
+@interface SAAdMobExtras : NSObject <GADAdNetworkExtras>
+
+@property (nonatomic, assign) BOOL testEnabled;
+@property (nonatomic, assign) Orientation orientation;
+@property (nonatomic, assign) enum StartDelay playback;
+@property (nonatomic, assign) BOOL parentalGateEnabled;
+@property (nonatomic, assign) BOOL bumperPageEnabled;
+@property (nonatomic, assign) BOOL closeButtonEnabled;
+@property (nonatomic, assign) BOOL closeAtEndEnabled;
+@property (nonatomic, assign) BOOL smallCLickEnabled;
+@property (nonatomic, assign) BOOL transparentEnabled;
 
 @end
 

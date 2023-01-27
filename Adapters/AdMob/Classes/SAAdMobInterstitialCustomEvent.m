@@ -34,7 +34,7 @@
 }
 
 + (Class<GADAdNetworkExtras>)networkExtrasClass {
-    return [SAAdMobVideoExtra class];
+    return [SAAdMobExtras class];
 }
 
 - (void)loadInterstitialForAdConfiguration:(GADMediationInterstitialAdConfiguration *)adConfiguration completionHandler:(GADMediationInterstitialLoadCompletionHandler)completionHandler {
