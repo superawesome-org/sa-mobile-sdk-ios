@@ -55,9 +55,7 @@ class ParentalGate {
             controller.addTextField(configurationHandler: { textField in
                 textField.keyboardType = .numberPad
             })
-            controller.modalTransitionStyle = .crossDissolve
-            UIApplication.shared.keyWindow?.rootViewController?.getTopMostViewController().present(controller,
-                                                                                                   animated: true)
+            presentOnTopLevelVC(viewController: controller)
         }
 
         self.openAction?()
@@ -82,10 +80,15 @@ class ParentalGate {
 
         if let controller = errorAlertController {
             controller.addAction(okAction)
-            controller.modalTransitionStyle = .crossDissolve
-            UIApplication.shared.keyWindow?.rootViewController?.getTopMostViewController().present(controller,
-                                                                                                   animated: true)
+            presentOnTopLevelVC(viewController: controller)
         }
+    }
+
+    private func presentOnTopLevelVC(viewController: UIViewController) {
+        viewController.modalTransitionStyle = .crossDissolve
+        viewController.modalPresentationStyle = .overCurrentContext
+        UIApplication.shared.keyWindow?.rootViewController?.getTopMostViewController().present(viewController,
+                                                                                               animated: true)
     }
 
     private func onContinue() {
