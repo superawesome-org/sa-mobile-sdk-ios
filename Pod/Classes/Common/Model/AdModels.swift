@@ -6,12 +6,11 @@
 //
 
 public struct Ad: Codable {
-    public let lineItemId: Int
-    public let creative: Creative
-
     let isVpaid: Bool?
     let showPadlock: Bool
+    public let lineItemId: Int
     let test: Bool
+    public let creative: Creative
     let ksfRequest: String?
 
     enum CodingKeys: String, CodingKey {
