@@ -6,30 +6,19 @@
 //
 
 public struct Ad: Codable {
-    let advertiserId: Int
-    let publisherId: Int
-    var campaignId: Int? = 0
-    let campaignType: Int
+    public let lineItemId: Int
+    public let creative: Creative
+
     let isVpaid: Bool?
     let showPadlock: Bool
-    public let lineItemId: Int
     let test: Bool
-    let app: Int
-    let device: String
-    public let creative: Creative
     let ksfRequest: String?
 
     enum CodingKeys: String, CodingKey {
-        case advertiserId
-        case publisherId
-        case campaignId = "campaign_id"
-        case campaignType = "campaign_type"
         case isVpaid = "is_vpaid"
         case showPadlock = "show_padlock"
         case lineItemId = "line_item_id"
         case test
-        case app
-        case device
         case creative
         case ksfRequest
     }
