@@ -17,7 +17,6 @@ public class BumperPage: UIViewController, Injectable {
 
     private var onComplete: VoidBlock?
 
-    private var topWindow: UIWindow?
     private var bgView: UIImageView?
     private var logo: UIImageView?
     private var poweredBy: UIImageView?
@@ -47,9 +46,8 @@ public class BumperPage: UIViewController, Injectable {
     }
 
     public override func viewDidDisappear(_ animated: Bool) {
+        dismiss(animated: animated)
         super.viewDidDisappear(animated)
-        topWindow?.isHidden = true
-        topWindow = nil
     }
 
     private func setTimerVars() {
@@ -202,7 +200,8 @@ public class BumperPage: UIViewController, Injectable {
     func play(_ onComplete: VoidBlock?) {
         self.onComplete = onComplete
         self.modalPresentationStyle = .overCurrentContext
-        topWindow = presentInNewWindow()
+        self.modalTransitionStyle = .crossDissolve
+        UIApplication.shared.keyWindow?.rootViewController?.getTopMostViewController().present(self, animated: true)
     }
 
     /// Overrides the logo on the bumper dialog
