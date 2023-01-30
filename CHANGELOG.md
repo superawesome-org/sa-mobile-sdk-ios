@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+8.5.2
+ - Update AdMob plguin to use latest AdMob MediationAdapter
+ - Update BannerView layout positioning
+ - Update API decoding for Ad models
+ - Update Unity plugin and convert ObjC++ to ObjC
+
 8.5.1
  - Update AdMob plugin
 
