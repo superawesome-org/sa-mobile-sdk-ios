@@ -4,7 +4,6 @@
  */
 
 #import <UIKit/UIKit.h>
-#import <SuperAwesome/SuperAwesome-Swift.h>
 
 static inline NSString* jsonData(NSDictionary *data) {
     if ([NSJSONSerialization isValidJSONObject:data]) {
@@ -21,12 +20,12 @@ static inline NSString* jsonData(NSDictionary *data) {
  * @param data      a dictionary of data to send back
  */
 static inline void sendToUnity (NSString *unityName, NSDictionary *data) {
-    
+
     const char *name = [unityName UTF8String];
     NSString *payload = jsonData(data);
     const char *payloadUTF8 = [payload UTF8String];
     UnitySendMessage (name, "nativeCallback", payloadUTF8);
-    
+
 }
 
 /**
@@ -39,11 +38,10 @@ static inline void sendToUnity (NSString *unityName, NSDictionary *data) {
 static inline void unitySendAdCallback (NSString *unityName, NSInteger placementId, NSString *callback) {
 
     NSDictionary *data = @{
-                           @"placementId": [NSString stringWithFormat:@"%ld", (long) placementId],
-                           @"type": [NSString stringWithFormat:@"sacallback_%@", callback]
-                           };
-    
-    sendToUnity(unityName, data);
-    
-}
+        @"placementId": [NSString stringWithFormat:@"%ld", (long) placementId],
+        @"type": [NSString stringWithFormat:@"sacallback_%@", callback]
+    };
 
+    sendToUnity(unityName, data);
+
+}
