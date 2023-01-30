@@ -1,10 +1,10 @@
-#import "SAAdMobRewardedAd.h"
+#import "SAAdMobInterstitialAd.h"
 #import "SAAdMobExtras.h"
 #include <stdatomic.h>
 
-#define kERROR_DOMAIN @"tv.superawesome.SAAdMobVideoMediationAdapter"
+#define kERROR_DOMAIN @"tv.superawesome.SAAdMobInterstitialAd"
 
-@interface SAAdMobRewardedAd () <GADMediationRewardedAd> {
+@interface SAAdMobInterstitialAd () <GADMediationInterstitialAd> {
     
 }
 
@@ -12,36 +12,35 @@
 @property (nonatomic, assign) NSInteger placementId;
 
 /// An ad event delegate to invoke when ad rendering events occur.
-@property (nonatomic, weak, nullable) id<GADMediationRewardedAdEventDelegate> delegate;
+@property (nonatomic, weak, nullable) id<GADMediationInterstitialAdEventDelegate> delegate;
 
 @end
 
-@implementation SAAdMobRewardedAd {
+@implementation SAAdMobInterstitialAd {
     /// The completion handler to call when the ad loading succeeds or fails.
-    GADMediationRewardedLoadCompletionHandler _completionHandler;
+    GADMediationInterstitialLoadCompletionHandler _completionHandler;
 }
 
-- (void)loadRewardedAdForAdConfiguration: (nonnull GADMediationRewardedAdConfiguration *)adConfiguration
-                       completionHandler: (nonnull GADMediationRewardedLoadCompletionHandler)completionHandler {
-    
+- (void)loadInterstitialForAdConfiguration: (GADMediationInterstitialAdConfiguration *) adConfiguration
+                         completionHandler: (GADMediationInterstitialLoadCompletionHandler) completionHandler {
     // Ensure the original completion handler is only called once, and is deallocated once called.
     __block atomic_flag completionHandlerCalled = ATOMIC_FLAG_INIT;
     
     // Store the complition handler for later use
-    __block GADMediationRewardedLoadCompletionHandler originalCompletionHandler = [completionHandler copy];
+    __block GADMediationInterstitialLoadCompletionHandler originalCompletionHandler = [completionHandler copy];
     
     // Complition handler is called once the ad is loaded
-    _completionHandler = ^id<GADMediationRewardedAdEventDelegate>(
-                                                                  id<GADMediationRewardedAd> rewardedAd,
+    _completionHandler = ^id<GADMediationInterstitialAdEventDelegate>(
+                                                                  id<GADMediationInterstitialAd> ad,
                                                                   NSError *error) {
         // Check wether the complition handler is called and return if it is
         if (atomic_flag_test_and_set(&completionHandlerCalled)) {
             return nil;
         }
         
-        id<GADMediationRewardedAdEventDelegate> delegate = nil;
+        id<GADMediationInterstitialAdEventDelegate> delegate = nil;
         if (originalCompletionHandler) {
-            delegate = originalCompletionHandler(rewardedAd, error);
+            delegate = originalCompletionHandler(ad, error);
         }
         originalCompletionHandler = nil;
         
@@ -59,14 +58,10 @@
 
     SAAdMobVideoExtra *extras = adConfiguration.extras;
     if (extras != nil) {
-        [SAVideoAd setTestMode:extras.testEnabled];
-        [SAVideoAd setOrientation:extras.orientation];
-        [SAVideoAd setParentalGate:extras.parentalGateEnabled];
-        [SAVideoAd setBumperPage:extras.bumperPageEnabled];
-        [SAVideoAd setCloseButton:extras.closeButtonEnabled];
-        [SAVideoAd setCloseAtEnd:extras.closeAtEndEnabled];
-        [SAVideoAd setSmallClick:extras.smallCLickEnabled];
-        [SAVideoAd setPlaybackMode:extras.playback];
+        [SAInterstitialAd setTestMode:extras.testEnabled];
+        [SAInterstitialAd setOrientation:extras.orientation];
+        [SAInterstitialAd setParentalGate:extras.parentalGateEnabled];
+        [SAInterstitialAd setBumperPage:extras.bumperPageEnabled];
     }
     
     [self requestAd];
@@ -84,8 +79,7 @@
 - (void) requestAd {
     __weak typeof (self) weakSelf = self;
     
-    [SAVideoAd setCallback:^(NSInteger placementId, SAEvent event) {
-        
+    [SAInterstitialAd setCallback:^(NSInteger placementId, SAEvent event) {
         switch (event) {
             case SAEventAdLoaded: {
                 [weakSelf adLoaded];
@@ -112,28 +106,23 @@
                 [weakSelf.delegate willDismissFullScreenView];
                 [weakSelf.delegate didDismissFullScreenView];
                 break;
-            }
-            case SAEventAdAlreadyLoaded:
-            case SAEventAdFailedToShow:
-            case SAEventAdEnded: {
-                GADAdReward *reward = [[GADAdReward alloc] initWithRewardType:@"Reward"
-                                                                 rewardAmount:[[NSDecimalNumber alloc] initWithInt:1]];
-                
-                [weakSelf.delegate didRewardUserWithReward: reward];
+            //
+            // non supported SA events
+            default:
                 break;
             }
         }
     }];
     
-    [SAVideoAd load: _placementId];
+    [SAInterstitialAd load: _placementId];
 }
 
 - (void)presentFromViewController:(nonnull UIViewController *)viewController {
-    if ([SAVideoAd hasAdAvailable: _placementId]) {
-        [SAVideoAd play: _placementId fromVC:viewController];
+    if ([SAInterstitialAd hasAdAvailable: _placementId]) {
+        [SAInterstitialAd play: _placementId fromVC:viewController];
     } else {
         NSError *error =
-        [NSError errorWithDomain:@"SAAdMobRewardedAd"
+        [NSError errorWithDomain:@"SAAdMobInterstitialAd"
                             code:0
                         userInfo:@{NSLocalizedDescriptionKey : @"Unable to display ad."}];
         [self.delegate didFailToPresentWithError:error];

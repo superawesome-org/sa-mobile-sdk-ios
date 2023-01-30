@@ -1,47 +1,47 @@
-#import "SAAdMobRewardedAd.h"
+#import "SAAdMobBannerAd.h"
 #import "SAAdMobExtras.h"
 #include <stdatomic.h>
 
-#define kERROR_DOMAIN @"tv.superawesome.SAAdMobVideoMediationAdapter"
+#define kERROR_DOMAIN @"tv.superawesome.SAAdMobBannerAd"
 
-@interface SAAdMobRewardedAd () <GADMediationRewardedAd> {
-    
+@interface SAAdMobBannerAd () <GADMediationBannerAd> {
 }
+
+@property (nonatomic, strong) SABannerAd *bannerAd;
 
 /// Placement Id for requested ad
 @property (nonatomic, assign) NSInteger placementId;
 
 /// An ad event delegate to invoke when ad rendering events occur.
-@property (nonatomic, weak, nullable) id<GADMediationRewardedAdEventDelegate> delegate;
+@property (nonatomic, weak, nullable) id<GADMediationBannerAdEventDelegate> delegate;
 
 @end
 
-@implementation SAAdMobRewardedAd {
+@implementation SAAdMobBannerAd {
     /// The completion handler to call when the ad loading succeeds or fails.
-    GADMediationRewardedLoadCompletionHandler _completionHandler;
+    GADMediationBannerLoadCompletionHandler _completionHandler;
 }
 
-- (void)loadRewardedAdForAdConfiguration: (nonnull GADMediationRewardedAdConfiguration *)adConfiguration
-                       completionHandler: (nonnull GADMediationRewardedLoadCompletionHandler)completionHandler {
-    
+- (void)loadBannerForAdConfiguration: (GADMediationBannerAdConfiguration *) adConfiguration
+                   completionHandler: (GADMediationBannerLoadCompletionHandler) completionHandler {
     // Ensure the original completion handler is only called once, and is deallocated once called.
     __block atomic_flag completionHandlerCalled = ATOMIC_FLAG_INIT;
     
     // Store the complition handler for later use
-    __block GADMediationRewardedLoadCompletionHandler originalCompletionHandler = [completionHandler copy];
+    __block GADMediationBannerLoadCompletionHandler originalCompletionHandler = [completionHandler copy];
     
     // Complition handler is called once the ad is loaded
-    _completionHandler = ^id<GADMediationRewardedAdEventDelegate>(
-                                                                  id<GADMediationRewardedAd> rewardedAd,
+    _completionHandler = ^id<GADMediationBannerAdEventDelegate>(
+                                                                  id<GADMediationBannerAd> ad,
                                                                   NSError *error) {
         // Check wether the complition handler is called and return if it is
         if (atomic_flag_test_and_set(&completionHandlerCalled)) {
             return nil;
         }
         
-        id<GADMediationRewardedAdEventDelegate> delegate = nil;
+        id<GADMediationBannerAdEventDelegate> delegate = nil;
         if (originalCompletionHandler) {
-            delegate = originalCompletionHandler(rewardedAd, error);
+            delegate = originalCompletionHandler(ad, error);
         }
         originalCompletionHandler = nil;
         
@@ -56,24 +56,26 @@
         completionHandler(nil, error);
         return;
     }
-
-    SAAdMobVideoExtra *extras = adConfiguration.extras;
-    if (extras != nil) {
-        [SAVideoAd setTestMode:extras.testEnabled];
-        [SAVideoAd setOrientation:extras.orientation];
-        [SAVideoAd setParentalGate:extras.parentalGateEnabled];
-        [SAVideoAd setBumperPage:extras.bumperPageEnabled];
-        [SAVideoAd setCloseButton:extras.closeButtonEnabled];
-        [SAVideoAd setCloseAtEnd:extras.closeAtEndEnabled];
-        [SAVideoAd setSmallClick:extras.smallCLickEnabled];
-        [SAVideoAd setPlaybackMode:extras.playback];
-    }
     
+    _bannerAd = [[SABannerAd alloc] initWithFrame:CGRectMake(0,
+                                                             0,
+                                                             adConfiguration.adSize.size.width,
+                                                             adConfiguration.adSize.size.height)];
+    
+    SAAdMobExtras *extras = adConfiguration.extras;
+    if (extras != nil) {
+        [_bannerAd setTestMode:extras.testEnabled];
+        [_bannerAd setParentalGate:extras.parentalGateEnabled];
+        [_bannerAd setBumperPage:extras.bumperPageEnabled];
+        [_bannerAd setColor:extras.transparentEnabled];
+    }
+   
     [self requestAd];
 }
 
 - (void) adLoaded {
     _delegate = _completionHandler(self, nil);
+    [_bannerAd play];
 }
 
 - (void) adFailed {
@@ -84,8 +86,7 @@
 - (void) requestAd {
     __weak typeof (self) weakSelf = self;
     
-    [SAVideoAd setCallback:^(NSInteger placementId, SAEvent event) {
-        
+    [_bannerAd setCallback:^(NSInteger placementId, SAEvent event) {
         switch (event) {
             case SAEventAdLoaded: {
                 [weakSelf adLoaded];
@@ -112,32 +113,19 @@
                 [weakSelf.delegate willDismissFullScreenView];
                 [weakSelf.delegate didDismissFullScreenView];
                 break;
-            }
-            case SAEventAdAlreadyLoaded:
-            case SAEventAdFailedToShow:
-            case SAEventAdEnded: {
-                GADAdReward *reward = [[GADAdReward alloc] initWithRewardType:@"Reward"
-                                                                 rewardAmount:[[NSDecimalNumber alloc] initWithInt:1]];
-                
-                [weakSelf.delegate didRewardUserWithReward: reward];
+            //
+            // non supported SA events
+            default:
                 break;
             }
         }
     }];
     
-    [SAVideoAd load: _placementId];
+    [_bannerAd load:_placementId];
 }
 
-- (void)presentFromViewController:(nonnull UIViewController *)viewController {
-    if ([SAVideoAd hasAdAvailable: _placementId]) {
-        [SAVideoAd play: _placementId fromVC:viewController];
-    } else {
-        NSError *error =
-        [NSError errorWithDomain:@"SAAdMobRewardedAd"
-                            code:0
-                        userInfo:@{NSLocalizedDescriptionKey : @"Unable to display ad."}];
-        [self.delegate didFailToPresentWithError:error];
-    }
+- (nonnull UIView *)view {
+  return _bannerAd;
 }
 
 @end
