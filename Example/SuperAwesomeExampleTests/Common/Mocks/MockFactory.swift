@@ -26,16 +26,11 @@ class MockFactory {
         _ ksfRequest: String? = nil,
         _ bumper: Bool = true
     ) -> Ad {
-        Ad(advertiserId: 10,
-           publisherId: 20,
-           campaignId: 30,
-           campaignType: 40,
+        Ad(
            isVpaid: true,
            showPadlock: showPadlock,
            lineItemId: 50,
            test: false,
-           app: 70,
-           device: "device",
            creative: Creative(
             id: 80,
             name: "name",

@@ -24,6 +24,7 @@
 		0788DACE29818C940087AE93 /* PlacementsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0788DACC29818C940087AE93 /* PlacementsTableView.swift */; };
 		0788DACF29818C940087AE93 /* ContentsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0788DACD29818C940087AE93 /* ContentsTableView.swift */; };
 		0788DAD129818C9A0087AE93 /* AdBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0788DAD029818C9A0087AE93 /* AdBannerView.swift */; };
+		0741648A2977061000C3D9A9 /* Timeouts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074164892977061000C3D9A9 /* Timeouts.swift */; };
 		1B76D2411C91EEB1000AE8F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B76D23F1C91EEB1000AE8F3 /* Main.storyboard */; };
 		1B76D2431C91EEB1000AE8F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B76D2421C91EEB1000AE8F3 /* Assets.xcassets */; };
 		1B76D2461C91EEB1000AE8F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B76D2441C91EEB1000AE8F3 /* LaunchScreen.storyboard */; };
@@ -154,6 +155,7 @@
 		0788DACC29818C940087AE93 /* PlacementsTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacementsTableView.swift; sourceTree = "<group>"; };
 		0788DACD29818C940087AE93 /* ContentsTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentsTableView.swift; sourceTree = "<group>"; };
 		0788DAD029818C9A0087AE93 /* AdBannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdBannerView.swift; sourceTree = "<group>"; };
+		074164892977061000C3D9A9 /* Timeouts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timeouts.swift; sourceTree = "<group>"; };
 		14DB9CADBD9717EB3B802403 /* Pods-SuperAwesomeExampleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesomeExampleUITests.debug.xcconfig"; path = "Target Support Files/Pods-SuperAwesomeExampleUITests/Pods-SuperAwesomeExampleUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		1B76D2331C91EEB1000AE8F3 /* SuperAwesomeExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperAwesomeExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B76D2401C91EEB1000AE8F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -734,6 +736,7 @@
 				CC3A52AA290F240800484D1B /* LaunchArguments */,
 				CC6AE3D0284F906B002F7581 /* VideoAdUITests.swift */,
 				C6C9703828EC4CF700C87436 /* InterstitialUITests.swift */,
+				074164892977061000C3D9A9 /* Timeouts.swift */,
 			);
 			path = SuperAwesomeExampleUITests;
 			sourceTree = "<group>";
@@ -1341,6 +1344,7 @@
 				CC193BEF290F698D00EEC736 /* UIColor+Extensions.swift in Sources */,
 				CC6AE3D1284F906B002F7581 /* VideoAdUITests.swift in Sources */,
 				CC193BED290F466C00EEC736 /* UIImage+Extensions.swift in Sources */,
+				0741648A2977061000C3D9A9 /* Timeouts.swift in Sources */,
 				C6C9703928EC4CF700C87436 /* InterstitialUITests.swift in Sources */,
 				CC3A52A9290F23ED00484D1B /* LaunchArguments.swift in Sources */,
 			);
