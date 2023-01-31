@@ -48,9 +48,9 @@ public class BannerView: UIView, Injectable {
      * - Parameter placementId: the Ad placement id to load data for
      */
     @objc
-    public func load(_ placementId: Int) {
+    public func load(_ placementId: Int, options: [String: String]? = nil) {
         logger.info("load() for: \(placementId)")
-        controller.load(placementId, makeAdRequest())
+        controller.load(placementId, makeAdRequest(with: options))
     }
 
     public func getAd() -> Ad? {
@@ -68,9 +68,9 @@ public class BannerView: UIView, Injectable {
      *   - creativeId: id of the creative
      */
     @objc
-    public func load(_ placementId: Int, lineItemId: Int, creativeId: Int) {
+    public func load(_ placementId: Int, lineItemId: Int, creativeId: Int, options: [String: String]? = nil) {
         logger.info("load() for placement Id: \(placementId) lineItemId: \(lineItemId), creativeId: \(creativeId)")
-        controller.load(placementId, lineItemId: lineItemId, creativeId: creativeId, makeAdRequest())
+        controller.load(placementId, lineItemId: lineItemId, creativeId: creativeId, makeAdRequest(with: options))
     }
 
     /// Method that, if an ad data is loaded, will play the content for the user
@@ -202,7 +202,7 @@ public class BannerView: UIView, Injectable {
         controller.adResponse = adResponse
     }
 
-    private func makeAdRequest() -> AdRequest {
+    private func makeAdRequest(with options: [String: String]?) -> AdRequest {
         AdRequest(test: controller.testEnabled,
                   position: AdRequest.Position.aboveTheFold,
                   skip: AdRequest.Skip.no,
@@ -211,7 +211,7 @@ public class BannerView: UIView, Injectable {
                   instl: AdRequest.FullScreen.off,
                   width: Int(frame.size.width),
                   height: Int(frame.size.height),
-                  options: nil)
+                  options: options)
     }
 
     private func addWebView() {

@@ -45,7 +45,7 @@ public class VideoAd: NSObject, Injectable {
 
             logger.success("Event callback: ad is started to load for placement \(placementId)")
 
-            adRepository.getAd(placementId: placementId, request: makeAdRequest(options)) { result in
+            adRepository.getAd(placementId: placementId, request: makeAdRequest(with: options)) { result in
                 switch result {
                 case .success(let response): self.onSuccess(placementId, response)
                 case .failure(let error): self.onFailure(placementId, error)
@@ -82,7 +82,7 @@ public class VideoAd: NSObject, Injectable {
             adRepository.getAd(placementId: placementId,
                                lineItemId: lineItemId,
                                creativeId: creativeId,
-                               request: makeAdRequest(options)) { result in
+                               request: makeAdRequest(with: options)) { result in
                 switch result {
                 case .success(let response): self.onSuccess(placementId, response)
                 case .failure(let error): self.onFailure(placementId, error)
@@ -139,7 +139,7 @@ public class VideoAd: NSObject, Injectable {
         }
     }
 
-    private static func makeAdRequest(_ options: [String: String]?) -> AdRequest {
+    private static func makeAdRequest(with options: [String: String]?) -> AdRequest {
         let size = UIScreen.main.bounds.size
 
         return AdRequest(test: isTestingEnabled,

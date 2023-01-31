@@ -30,7 +30,7 @@ public class InterstitialAd: NSObject, Injectable {
     @objc
     public class func load(_ placementId: Int, options: [String: String]? = nil) {
         logger.info("load() for: \(placementId)")
-        controller.load(placementId, makeAdRequest(options))
+        controller.load(placementId, makeAdRequest(with: options))
     }
 
     /**
@@ -46,7 +46,7 @@ public class InterstitialAd: NSObject, Injectable {
     @objc
     public class func load(_ placementId: Int, lineItemId: Int, creativeId: Int, options: [String: String]? = nil) {
         logger.info("load() for placement Id: \(placementId) lineItemId: \(lineItemId), creativeId: \(creativeId)")
-        controller.load(placementId, lineItemId: lineItemId, creativeId: creativeId, makeAdRequest(options))
+        controller.load(placementId, lineItemId: lineItemId, creativeId: creativeId, makeAdRequest(with: options))
     }
 
     /**
@@ -162,7 +162,7 @@ public class InterstitialAd: NSObject, Injectable {
 
     // MARK: - Private functions
 
-    private static func makeAdRequest(_ options: [String: String]?) -> AdRequest {
+    private static func makeAdRequest(with options: [String: String]?) -> AdRequest {
         let size = UIScreen.main.bounds.size
 
         return AdRequest(test: isTestingEnabled,
