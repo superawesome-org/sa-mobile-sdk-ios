@@ -54,7 +54,7 @@ class AdQueryMaker: AdQueryMakerType {
                                         instl: request.instl.rawValue,
                                         width: request.width,
                                         height: request.height),
-                    options: buildOptions(request.queryOptions))
+                    options: buildOptions(request.options))
     }
 
     func makeImpressionQuery(_ adResponse: AdResponse) -> QueryBundle {

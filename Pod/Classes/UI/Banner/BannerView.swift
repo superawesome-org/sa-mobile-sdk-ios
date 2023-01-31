@@ -54,7 +54,7 @@ public class BannerView: UIView, Injectable {
     }
 
     public func getAd() -> Ad? {
-       return controller.adResponse?.advert
+        return controller.adResponse?.advert
     }
 
     /**
@@ -79,9 +79,9 @@ public class BannerView: UIView, Injectable {
         logger.info("play()")
         // guard against invalid ad formats
         guard let adResponse = controller.adResponse, let html = adResponse.html,
-            adResponse.advert.creative.format != CreativeFormatType.video, !controller.closed else {
-                controller.adFailedToShow()
-                return
+              adResponse.advert.creative.format != CreativeFormatType.video, !controller.closed else {
+            controller.adFailedToShow()
+            return
         }
 
         addWebView()
@@ -211,7 +211,7 @@ public class BannerView: UIView, Injectable {
                   instl: AdRequest.FullScreen.off,
                   width: Int(frame.size.width),
                   height: Int(frame.size.height),
-                  queryOptions: nil)
+                  options: nil)
     }
 
     private func addWebView() {

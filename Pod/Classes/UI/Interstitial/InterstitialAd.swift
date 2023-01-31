@@ -173,6 +173,6 @@ public class InterstitialAd: NSObject, Injectable {
                          instl: AdRequest.FullScreen.on,
                          width: Int(size.width),
                          height: Int(size.height),
-                         queryOptions: options)
+                         options: options)
     }
 }

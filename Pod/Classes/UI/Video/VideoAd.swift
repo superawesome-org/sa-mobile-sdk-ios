@@ -150,7 +150,7 @@ public class VideoAd: NSObject, Injectable {
                          instl: AdRequest.FullScreen.on,
                          width: Int(size.width),
                          height: Int(size.height),
-                         queryOptions: options)
+                         options: options)
     }
 
     private static func onSuccess(_ placementId: Int, _ response: AdResponse) {

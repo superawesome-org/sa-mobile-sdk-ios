@@ -70,7 +70,7 @@ public struct AdRequest: Codable {
     let instl: FullScreen
     let width: Int
     let height: Int
-    let queryOptions: [String: String]?
+    let options: [String: String]?
 
     enum CodingKeys: String, CodingKey {
         case test
@@ -81,7 +81,7 @@ public struct AdRequest: Codable {
         case instl
         case width = "w"
         case height = "h"
-        case queryOptions
+        case options
     }
 
 }
