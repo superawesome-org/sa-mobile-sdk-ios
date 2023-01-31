@@ -10,9 +10,9 @@ protocol AdProcessorType {
     ///
     /// - Parameter placementId: Used while forming HTML tags
     /// - Parameter ad: The `Ad` object to be processed
-    /// - Parameter requestOptions: The additional data that was sent with the ad's request. Should be nil if no additional data was sent.
+    /// - Parameter requestOptions: The additional data sent with the ad's request. Should be nil if no additional data was sent.
     /// - Parameter completion: Callback closure to be notified once the process is completed
-    /// - Returns: `AdResponse` object which contains `HTML` or `VAST` fields to be shown
+    /// - Returns `AdResponse` object which contains `HTML` or `VAST` fields to be shown
     func process(_ placementId: Int, _ ad: Ad, _ requestOptions: [String: String]?, completion: @escaping OnComplete<AdResponse>)
 }
 
