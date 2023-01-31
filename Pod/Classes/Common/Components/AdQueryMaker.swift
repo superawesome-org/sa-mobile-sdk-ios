@@ -38,23 +38,23 @@ class AdQueryMaker: AdQueryMakerType {
     }
 
     func makeAdQuery(_ request: AdRequest) -> QueryBundle {
-        return QueryBundle(parameters: AdQuery(test: request.test,
-                                               sdkVersion: sdkInfo.version,
-                                               random: numberGenerator.nextIntForCache(),
-                                               bundle: sdkInfo.bundle,
-                                               name: sdkInfo.name,
-                                               dauid: idGenerator.uniqueDauId,
-                                               connectionType: connectionProvider.findConnectionType(),
-                                               lang: sdkInfo.lang,
-                                               device: device.genericType,
-                                               position: request.position.rawValue,
-                                               skip: request.skip.rawValue,
-                                               playbackMethod: request.playbackMethod,
-                                               startDelay: request.startDelay.rawValue,
-                                               instl: request.instl.rawValue,
-                                               width: request.width,
-                                               height: request.height),
-                           options: buildOptions(request.queryOptions))
+        QueryBundle(parameters: AdQuery(test: request.test,
+                                        sdkVersion: sdkInfo.version,
+                                        random: numberGenerator.nextIntForCache(),
+                                        bundle: sdkInfo.bundle,
+                                        name: sdkInfo.name,
+                                        dauid: idGenerator.uniqueDauId,
+                                        connectionType: connectionProvider.findConnectionType(),
+                                        lang: sdkInfo.lang,
+                                        device: device.genericType,
+                                        position: request.position.rawValue,
+                                        skip: request.skip.rawValue,
+                                        playbackMethod: request.playbackMethod,
+                                        startDelay: request.startDelay.rawValue,
+                                        instl: request.instl.rawValue,
+                                        width: request.width,
+                                        height: request.height),
+                    options: buildOptions(request.queryOptions))
     }
 
     func makeImpressionQuery(_ adResponse: AdResponse) -> QueryBundle {
