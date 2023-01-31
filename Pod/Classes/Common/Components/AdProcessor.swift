@@ -10,9 +10,9 @@ protocol AdProcessorType {
     ///
     /// - Parameter placementId: Used while forming HTML tags
     /// - Parameter ad: The `Ad` object to be processed
-    /// - Parameter complition: Callback closure to be notified once the process is completed
+    /// - Parameter completion: Callback closure to be notified once the process is completed
     /// - Returns: `AdResponse` object which contains `HTML` or `VAST` fields to be shown
-    func process(_ placementId: Int, _ ad: Ad, complition: @escaping OnComplete<AdResponse>)
+    func process(_ placementId: Int, _ ad: Ad, _ additionalOptions: [String: String]?, completion: @escaping OnComplete<AdResponse>)
 }
 
 class AdProcessor: AdProcessorType {
@@ -31,22 +31,22 @@ class AdProcessor: AdProcessorType {
         self.logger = logger
     }
 
-    func process(_ placementId: Int, _ ad: Ad, complition: @escaping OnComplete<AdResponse>) {
-        let response = AdResponse(placementId, ad)
+    func process(_ placementId: Int, _ ad: Ad, _ additionalOptions: [String: String]?, completion: @escaping OnComplete<AdResponse>) {
+        let response = AdResponse(placementId, ad, additionalOptions)
 
         switch ad.creative.format {
         case .imageWithLink:
             response.html = htmlFormatter.formatImageIntoHtml(ad)
             response.baseUrl = ad.creative.details.image?.baseUrl
-            complition(response)
+            completion(response)
         case .richMedia:
             response.html = htmlFormatter.formatRichMediaIntoHtml(placementId, ad)
             response.baseUrl = (ad.creative.details.url ?? Constants.defaultBaseUrl).baseUrl
-            complition(response)
+            completion(response)
         case .tag:
             response.html = htmlFormatter.formatTagIntoHtml(ad)
             response.baseUrl = Constants.defaultBaseUrl
-            complition(response)
+            completion(response)
         case .video:
             if let url = ad.creative.details.vast {
                 handleVast(url, initialVast: nil) { vast in
@@ -55,18 +55,18 @@ class AdProcessor: AdProcessorType {
 
                     self.networkDataSource.downloadFile(url: vast?.url ?? "",
                                                         completion: { result in
-                                                            switch result {
-                                                            case .success(let localFilePath):
-                                                                response.filePath = localFilePath
-                                                                complition(response)
-                                                            case .failure: complition(response)
-                                                            }
+                        switch result {
+                        case .success(let localFilePath):
+                            response.filePath = localFilePath
+                            completion(response)
+                        case .failure: completion(response)
+                        }
                     })
                 }
             } else {
-                complition(response)
+                completion(response)
             }
-        case .unknown: complition(response)
+        case .unknown: completion(response)
         }
     }
 

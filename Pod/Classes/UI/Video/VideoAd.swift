@@ -35,8 +35,8 @@ public class VideoAd: NSObject, Injectable {
     // Internal control methods
     ////////////////////////////////////////////////////////////////////////////
 
-    @objc(load:)
-    public static func load(withPlacementId placementId: Int) {
+    @objc(load:additionalOptions:)
+    public static func load(withPlacementId placementId: Int, additionalOptions: [String: String]?) {
         let adState = ads[placementId] ?? .none
 
         switch adState {
@@ -45,7 +45,7 @@ public class VideoAd: NSObject, Injectable {
 
             logger.success("Event callback: ad is started to load for placement \(placementId)")
 
-            adRepository.getAd(placementId: placementId, request: makeAdRequest()) { result in
+            adRepository.getAd(placementId: placementId, request: makeAdRequest(additionalOptions)) { result in
                 switch result {
                 case .success(let response): self.onSuccess(placementId, response)
                 case .failure(let error): self.onFailure(placementId, error)
@@ -69,8 +69,8 @@ public class VideoAd: NSObject, Injectable {
      *   - lineItemId: id of the line item
      *   - creativeId: id of the creative
      */
-    @objc(load: lineItemId: creativeId:)
-    public static func load(withPlacementId placementId: Int, lineItemId: Int, creativeId: Int) {
+    @objc(load: lineItemId: creativeId: additionalOptions:)
+    public static func load(withPlacementId placementId: Int, lineItemId: Int, creativeId: Int, additionalOptions: [String: String]?) {
         let adState = ads[placementId] ?? .none
 
         switch adState {
@@ -82,7 +82,7 @@ public class VideoAd: NSObject, Injectable {
             adRepository.getAd(placementId: placementId,
                                lineItemId: lineItemId,
                                creativeId: creativeId,
-                               request: makeAdRequest()) { result in
+                               request: makeAdRequest(additionalOptions)) { result in
                 switch result {
                 case .success(let response): self.onSuccess(placementId, response)
                 case .failure(let error): self.onFailure(placementId, error)
@@ -139,7 +139,7 @@ public class VideoAd: NSObject, Injectable {
         }
     }
 
-    private static func makeAdRequest() -> AdRequest {
+    private static func makeAdRequest(_ additionalOptions: [String: String]?) -> AdRequest {
         let size = UIScreen.main.bounds.size
 
         return AdRequest(test: isTestingEnabled,
@@ -149,7 +149,8 @@ public class VideoAd: NSObject, Injectable {
                          startDelay: delay,
                          instl: AdRequest.FullScreen.on,
                          width: Int(size.width),
-                         height: Int(size.height))
+                         height: Int(size.height),
+                         additionalOptions: additionalOptions)
     }
 
     private static func onSuccess(_ placementId: Int, _ response: AdResponse) {

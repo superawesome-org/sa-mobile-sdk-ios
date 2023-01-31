@@ -28,9 +28,9 @@ public class InterstitialAd: NSObject, Injectable {
      * - Parameter placementId: The Ad placement id to load data for
      */
     @objc
-    public class func load(_ placementId: Int) {
+    public class func load(_ placementId: Int, additionalOptions: [String: String]? = nil) {
         logger.info("load() for: \(placementId)")
-        controller.load(placementId, makeAdRequest())
+        controller.load(placementId, makeAdRequest(additionalOptions))
     }
 
     /**
@@ -44,9 +44,9 @@ public class InterstitialAd: NSObject, Injectable {
      *   - creativeId: id of the creative
      */
     @objc
-    public class func load(_ placementId: Int, lineItemId: Int, creativeId: Int) {
+    public class func load(_ placementId: Int, lineItemId: Int, creativeId: Int, additionalOptions: [String: String]? = nil) {
         logger.info("load() for placement Id: \(placementId) lineItemId: \(lineItemId), creativeId: \(creativeId)")
-        controller.load(placementId, lineItemId: lineItemId, creativeId: creativeId, makeAdRequest())
+        controller.load(placementId, lineItemId: lineItemId, creativeId: creativeId, makeAdRequest(additionalOptions))
     }
 
     /**
@@ -63,17 +63,17 @@ public class InterstitialAd: NSObject, Injectable {
         // guard against invalid ad formats
         guard let adResponse = controller.adResponse,
               adResponse.advert.creative.format != CreativeFormatType.video else {
-                controller.adFailedToShow()
-                return
+            controller.adFailedToShow()
+            return
         }
 
         let viewController = InterstitialAdViewController(adResponse: adResponse,
-                                                      parentGateEnabled: isParentalGateEnabled,
-                                                      bumperPageEnabled: isBumperPageEnabled,
-                                                      closeButtonState: closeButtonState,
-                                                      testingEnabled: isTestingEnabled,
-                                                      orientation: orientation,
-                                                      delegate: self.controller.callback)
+                                                          parentGateEnabled: isParentalGateEnabled,
+                                                          bumperPageEnabled: isBumperPageEnabled,
+                                                          closeButtonState: closeButtonState,
+                                                          testingEnabled: isTestingEnabled,
+                                                          orientation: orientation,
+                                                          delegate: self.controller.callback)
         viewController.modalPresentationStyle = .fullScreen
         viewController.modalTransitionStyle = .coverVertical
         parent?.present(viewController, animated: true, completion: nil)
@@ -162,7 +162,7 @@ public class InterstitialAd: NSObject, Injectable {
 
     // MARK: - Private functions
 
-    private static func makeAdRequest() -> AdRequest {
+    private static func makeAdRequest(_ additionalOptions: [String: String]?) -> AdRequest {
         let size = UIScreen.main.bounds.size
 
         return AdRequest(test: isTestingEnabled,
@@ -172,6 +172,7 @@ public class InterstitialAd: NSObject, Injectable {
                          startDelay: AdRequest.StartDelay.preRoll,
                          instl: AdRequest.FullScreen.on,
                          width: Int(size.width),
-                         height: Int(size.height))
+                         height: Int(size.height),
+                         additionalOptions: additionalOptions)
     }
 }

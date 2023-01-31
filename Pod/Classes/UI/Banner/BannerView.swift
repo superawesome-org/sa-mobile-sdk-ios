@@ -210,7 +210,8 @@ public class BannerView: UIView, Injectable {
                   startDelay: AdRequest.StartDelay.preRoll,
                   instl: AdRequest.FullScreen.off,
                   width: Int(frame.size.width),
-                  height: Int(frame.size.height))
+                  height: Int(frame.size.height),
+                  additionalOptions: nil)
     }
 
     private func addWebView() {
