@@ -89,16 +89,16 @@ public struct AdRequest: Codable {
 class AdResponse {
     let placementId: Int
     let advert: Ad
-    let requestQueryOptions: [String: String]?
+    let requestOptions: [String: String]?
     var html: String?
     var vast: VastAd?
     var baseUrl: String?
     var filePath: String?
 
-    init(_ placementId: Int, _ advert: Ad, _ requestQueryOptions: [String: String]?) {
+    init(_ placementId: Int, _ advert: Ad, _ requestOptions: [String: String]?) {
         self.placementId = placementId
         self.advert = advert
-        self.requestQueryOptions = requestQueryOptions
+        self.requestOptions = requestOptions
     }
 
     /// Returns the aspect ratio of the ad's creative

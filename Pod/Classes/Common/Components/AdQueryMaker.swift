@@ -68,7 +68,7 @@ class AdQueryMaker: AdQueryMakerType {
                                            type: .impressionDownloaded,
                                            noImage: true,
                                            data: nil),
-                    options: buildOptions(adResponse.requestQueryOptions))
+                    options: buildOptions(adResponse.requestOptions))
     }
 
     func makeClickQuery(_ adResponse: AdResponse) -> QueryBundle {
@@ -82,7 +82,7 @@ class AdQueryMaker: AdQueryMakerType {
                                            type: nil,
                                            noImage: nil,
                                            data: nil),
-                    options: buildOptions(adResponse.requestQueryOptions))
+                    options: buildOptions(adResponse.requestOptions))
     }
 
     func makeEventQuery(_ adResponse: AdResponse, _ eventData: EventData) -> QueryBundle {
@@ -96,18 +96,18 @@ class AdQueryMaker: AdQueryMakerType {
                                            type: eventData.type,
                                            noImage: nil,
                                            data: encoder.toJson(eventData)),
-                    options: buildOptions(adResponse.requestQueryOptions))
+                    options: buildOptions(adResponse.requestOptions))
     }
 
-    private func buildOptions(_ requestQueryOptions: [String: String]?) -> [String: String] {
+    private func buildOptions(_ requestOptions: [String: String]?) -> [String: String] {
         var optionsDict = [String: String]()
 
         if let options = options {
             optionsDict = optionsDict.merging(options) { $1 }
         }
 
-        if let requestQueryOptions = requestQueryOptions {
-            optionsDict = optionsDict.merging(requestQueryOptions) { $1 }
+        if let requestOptions = requestOptions {
+            optionsDict = optionsDict.merging(requestOptions) { $1 }
         }
         return optionsDict
     }
