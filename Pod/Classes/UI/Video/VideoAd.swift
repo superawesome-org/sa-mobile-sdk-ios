@@ -35,7 +35,16 @@ public class VideoAd: NSObject, Injectable {
     // Internal control methods
     ////////////////////////////////////////////////////////////////////////////
 
-    @objc(load:options:)
+    /**
+     * Method that loads an ad into the queue.
+     * Ads can only be loaded once and then can be reloaded after they've
+     * been played.
+     *
+     * - Parameters:
+     *  - placementId: The Ad placement id to load data for
+     *  - options: an optional dictionary of data to send with an ad's requests and events
+     */
+    @objc
     public static func load(withPlacementId placementId: Int, options: [String: String]? = nil) {
         let adState = ads[placementId] ?? .none
 
@@ -68,8 +77,9 @@ public class VideoAd: NSObject, Injectable {
      *   - placementId: the Ad placement id to load data for
      *   - lineItemId: id of the line item
      *   - creativeId: id of the creative
+     *   - options: an optional dictionary of data to send with an ad's requests and events
      */
-    @objc(load: lineItemId: creativeId: options:)
+    @objc
     public static func load(withPlacementId placementId: Int, lineItemId: Int, creativeId: Int, options: [String: String]? = nil) {
         let adState = ads[placementId] ?? .none
 
@@ -96,7 +106,7 @@ public class VideoAd: NSObject, Injectable {
         }
     }
 
-    @objc(play:fromVC:)
+    @objc
     public static func play(withPlacementId placementId: Int, fromVc viewController: UIViewController) {
         let adState = ads[placementId] ?? .none
 
@@ -130,7 +140,7 @@ public class VideoAd: NSObject, Injectable {
         }
     }
 
-    @objc(hasAdAvailable:)
+    @objc
     public static func hasAdAvailable(placementId: Int) -> Bool {
         let adState = ads[placementId] ?? .none
         switch adState {
