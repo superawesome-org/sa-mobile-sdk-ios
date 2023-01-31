@@ -10,9 +10,10 @@ protocol AdProcessorType {
     ///
     /// - Parameter placementId: Used while forming HTML tags
     /// - Parameter ad: The `Ad` object to be processed
+    /// - Parameter requestOptions: The query parameters sent with the `Ad` request
     /// - Parameter completion: Callback closure to be notified once the process is completed
     /// - Returns: `AdResponse` object which contains `HTML` or `VAST` fields to be shown
-    func process(_ placementId: Int, _ ad: Ad, _ requestQueryOptions: [String: String]?, completion: @escaping OnComplete<AdResponse>)
+    func process(_ placementId: Int, _ ad: Ad, _ requestOptions: [String: String]?, completion: @escaping OnComplete<AdResponse>)
 }
 
 class AdProcessor: AdProcessorType {
@@ -31,8 +32,8 @@ class AdProcessor: AdProcessorType {
         self.logger = logger
     }
 
-    func process(_ placementId: Int, _ ad: Ad, _ requestQueryOptions: [String: String]?, completion: @escaping OnComplete<AdResponse>) {
-        let response = AdResponse(placementId, ad, requestQueryOptions)
+    func process(_ placementId: Int, _ ad: Ad, _ requestOptions: [String: String]?, completion: @escaping OnComplete<AdResponse>) {
+        let response = AdResponse(placementId, ad, requestOptions)
 
         switch ad.creative.format {
         case .imageWithLink:
