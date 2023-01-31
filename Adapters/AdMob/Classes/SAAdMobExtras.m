@@ -81,3 +81,22 @@
 }
 
 @end
+
+@implementation SAAdMobExtras
+
+- (id) init {
+    if (self = [super init]) {
+        _testEnabled = false;
+        _orientation = OrientationAny;
+        _parentalGateEnabled = false;
+        _bumperPageEnabled = false;
+        _closeButtonEnabled = false;
+        _closeAtEndEnabled = true;
+        _smallCLickEnabled = false;
+        _transparentEnabled = false;
+    }
+    
+    return self;
+}
+
+@end

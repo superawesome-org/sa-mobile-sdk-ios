@@ -1,107 +1,45 @@
 #import "SAAdMobBannerCustomEvent.h"
 #import "SAAdMobExtras.h"
+#import "SAAdMobBannerAd.h"
+#include <stdatomic.h>
 
-// error domain
 #define kERROR_DOMAIN @"tv.superawesome.SAAdMobBannerCustomEvent"
 
-@interface SAAdMobBannerCustomEvent ()
-
-// a SA banner instance
-@property (nonatomic, strong) SABannerAd *bannerAd;
-
-@end
-
-@implementation SAAdMobBannerCustomEvent
-
-@synthesize delegate;
-
-- (void) requestBannerAd:(GADAdSize)adSize
-               parameter:(NSString *)serverParameter
-                   label:(NSString *)serverLabel
-                 request:(GADCustomEventRequest *)request {
-    
-    
-    //
-    // Step 1. get the palcement Id from the server parameter
-    NSInteger placementId = [serverParameter integerValue];
-    
-    //
-    // Step 1.1 check the placement Id to see if it's different from 0
-    // (meaning the parameter sent isn't a proper number, as expected by SA)
-    // and if it's not, cause an error
-    if (placementId == 0) {
-        if (delegate != nil) {
-            NSError *error = [NSError errorWithDomain:kERROR_DOMAIN code:0 userInfo:nil];
-            [self.delegate customEventBanner:self didFailAd:error];
-        }
-        return;
-    }
-    
-    __weak typeof (self) weakSelf = self;
-    
-    //
-    // Step 2. Init the banner ad
-    _bannerAd = [[SABannerAd alloc] initWithFrame:CGRectMake(0, 0, adSize.size.width, adSize.size.height)];
-    
-    //
-    // Step 3. customise the banner ad with values taken from additional
-    // parameters sent by the user
-    NSDictionary *params = [request additionalParameters];
-    
-    if (params != nil) {
-        [_bannerAd setTestMode:[[params objectForKey:kKEY_TEST] boolValue]];
-        [_bannerAd setParentalGate:[[params objectForKey:kKEY_PARENTAL_GATE] boolValue]];
-        [_bannerAd setBumperPage:[[params objectForKey:kKEY_BUMPER_PAGE] boolValue]];
-        [_bannerAd setColor:[[params objectForKey:kKEY_TRANSPARENT] boolValue]];
-    }
-    
-    //
-    // Step 4. Add callbacks
-    [_bannerAd setCallback:^(NSInteger placementId, SAEvent event) {
-        switch (event) {
-            case SAEventAdLoaded: {
-                
-                //
-                // send event
-                [weakSelf.delegate customEventBanner:weakSelf didReceiveAd:weakSelf.bannerAd];
-                
-                //
-                // play ad
-                [weakSelf.bannerAd play];
-                break;
-            }
-            case SAEventAdEmpty: {
-                //
-                // send error in this case
-                NSError *error = [NSError errorWithDomain:kERROR_DOMAIN code:0 userInfo:nil];
-                [weakSelf.delegate customEventBanner:weakSelf didFailAd:error];
-                break;
-            }
-            case SAEventAdFailedToLoad: {
-                //
-                // send error in this case
-                NSError *error = [NSError errorWithDomain:kERROR_DOMAIN code:0 userInfo:nil];
-                [weakSelf.delegate customEventBanner:weakSelf didFailAd:error];
-                break;
-            }
-            case SAEventAdClicked: {
-                //
-                // send clicked and leave events
-                [weakSelf.delegate customEventBannerWasClicked:weakSelf];
-                [weakSelf.delegate customEventBannerWillLeaveApplication:weakSelf];
-                break;
-            }
-            //
-            // non supported SA events
-            default:
-                break;
-        }
-    }];
-    
-    //
-    // Step 5. Load the AD
-    [_bannerAd load:placementId];
+@implementation SAAdMobBannerCustomEvent {
+    SAAdMobBannerAd *_bannerAd;
 }
 
++ (GADVersionNumber) adSDKVersion {
+    NSString *versionString = [[AwesomeAds info] versionNumber];
+    NSArray *versionComponents = [versionString componentsSeparatedByString:@"."];
+    GADVersionNumber version = {0};
+    if (versionComponents.count == 3) {
+        version.majorVersion = [versionComponents[0] integerValue];
+        version.minorVersion = [versionComponents[1] integerValue];
+        version.patchVersion = [versionComponents[2] integerValue];
+    }
+    return version;
+}
+
++ (GADVersionNumber) adapterVersion {
+    NSString *versionString = [[AwesomeAds info] versionNumber];
+    NSArray *versionComponents = [versionString componentsSeparatedByString:@"."];
+    GADVersionNumber version = {0};
+    if (versionComponents.count == 3) {
+        version.majorVersion = [versionComponents[0] integerValue];
+        version.minorVersion = [versionComponents[1] integerValue];
+        version.patchVersion = [versionComponents[2] integerValue];
+    }
+    return version;
+}
+
++ (Class<GADAdNetworkExtras>)networkExtrasClass {
+    return [SAAdMobExtras class];
+}
+
+- (void)loadBannerForAdConfiguration:(GADMediationBannerAdConfiguration *)adConfiguration completionHandler:(GADMediationBannerLoadCompletionHandler)completionHandler {
+    _bannerAd = [[SAAdMobBannerAd alloc] init];
+    [_bannerAd loadBannerForAdConfiguration:adConfiguration completionHandler:completionHandler];
+}
 
 @end

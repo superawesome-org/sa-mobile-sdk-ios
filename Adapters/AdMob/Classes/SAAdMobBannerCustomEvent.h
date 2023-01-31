@@ -1,5 +1,6 @@
 #import <Foundation/Foundation.h>
-#import <GoogleMobileAds/GoogleMobileAds.h>
+@import GoogleMobileAds;
+@import SuperAwesome;
 
-@interface SAAdMobBannerCustomEvent : NSObject<GADCustomEventBanner>
+@interface SAAdMobBannerCustomEvent : NSObject <GADMediationAdapter>
 @end
