@@ -54,7 +54,7 @@ class AdQueryMaker: AdQueryMakerType {
                                         instl: request.instl.rawValue,
                                         width: request.width,
                                         height: request.height),
-                    options: buildOptions(request.options))
+                    options: buildOptions(with: request.options))
     }
 
     func makeImpressionQuery(_ adResponse: AdResponse) -> QueryBundle {
@@ -68,7 +68,7 @@ class AdQueryMaker: AdQueryMakerType {
                                            type: .impressionDownloaded,
                                            noImage: true,
                                            data: nil),
-                    options: buildOptions(adResponse.requestOptions))
+                    options: buildOptions(with: adResponse.requestOptions))
     }
 
     func makeClickQuery(_ adResponse: AdResponse) -> QueryBundle {
@@ -82,7 +82,7 @@ class AdQueryMaker: AdQueryMakerType {
                                            type: nil,
                                            noImage: nil,
                                            data: nil),
-                    options: buildOptions(adResponse.requestOptions))
+                    options: buildOptions(with: adResponse.requestOptions))
     }
 
     func makeEventQuery(_ adResponse: AdResponse, _ eventData: EventData) -> QueryBundle {
@@ -96,10 +96,10 @@ class AdQueryMaker: AdQueryMakerType {
                                            type: eventData.type,
                                            noImage: nil,
                                            data: encoder.toJson(eventData)),
-                    options: buildOptions(adResponse.requestOptions))
+                    options: buildOptions(with: adResponse.requestOptions))
     }
 
-    private func buildOptions(_ requestOptions: [String: String]?) -> [String: String] {
+    private func buildOptions(with requestOptions: [String: String]?) -> [String: String] {
         var optionsDict = [String: String]()
 
         if let options = options {
