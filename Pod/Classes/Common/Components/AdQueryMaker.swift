@@ -54,7 +54,7 @@ class AdQueryMaker: AdQueryMakerType {
                                                instl: request.instl.rawValue,
                                                width: request.width,
                                                height: request.height),
-                           options: buildOptions(request.additionalOptions))
+                           options: buildOptions(request.queryOptions))
     }
 
     func makeImpressionQuery(_ adResponse: AdResponse) -> QueryBundle {
@@ -68,7 +68,7 @@ class AdQueryMaker: AdQueryMakerType {
                                            type: .impressionDownloaded,
                                            noImage: true,
                                            data: nil),
-                    options: buildOptions(adResponse.additionalOptions))
+                    options: buildOptions(adResponse.requestQueryOptions))
     }
 
     func makeClickQuery(_ adResponse: AdResponse) -> QueryBundle {
@@ -82,7 +82,7 @@ class AdQueryMaker: AdQueryMakerType {
                                            type: nil,
                                            noImage: nil,
                                            data: nil),
-                    options: buildOptions(adResponse.additionalOptions))
+                    options: buildOptions(adResponse.requestQueryOptions))
     }
 
     func makeEventQuery(_ adResponse: AdResponse, _ eventData: EventData) -> QueryBundle {
@@ -96,18 +96,18 @@ class AdQueryMaker: AdQueryMakerType {
                                            type: eventData.type,
                                            noImage: nil,
                                            data: encoder.toJson(eventData)),
-                    options: buildOptions(adResponse.additionalOptions))
+                    options: buildOptions(adResponse.requestQueryOptions))
     }
 
-    private func buildOptions(_ additionalOptions: [String: String]?) -> [String: String]? {
+    private func buildOptions(_ requestQueryOptions: [String: String]?) -> [String: String] {
         var optionsDict = [String: String]()
 
         if let options = options {
             optionsDict = optionsDict.merging(options) { $1 }
         }
 
-        if let additionalOptions = additionalOptions {
-            optionsDict = optionsDict.merging(additionalOptions) { $1 }
+        if let requestQueryOptions = requestQueryOptions {
+            optionsDict = optionsDict.merging(requestQueryOptions) { $1 }
         }
         return optionsDict
     }

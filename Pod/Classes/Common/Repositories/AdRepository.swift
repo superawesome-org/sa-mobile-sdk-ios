@@ -32,7 +32,7 @@ class AdRepository: AdRepositoryType {
         dataSource.getAd(placementId: placementId, query: query) { result in
             switch result {
             case .success(let ad):
-                self.adProcessor.process(placementId, ad, request.additionalOptions) { response in
+                self.adProcessor.process(placementId, ad, request.queryOptions) { response in
                     completion(Result.success(response))
                 }
             case .failure(let error): completion(Result.failure(error))
@@ -48,7 +48,7 @@ class AdRepository: AdRepositoryType {
                          query: query) { result in
             switch result {
             case .success(let ad):
-                self.adProcessor.process(placementId, ad, request.additionalOptions) { response in
+                self.adProcessor.process(placementId, ad, request.queryOptions) { response in
                     completion(Result.success(response))
                 }
             case .failure(let error): completion(Result.failure(error))

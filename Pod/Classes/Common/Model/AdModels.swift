@@ -70,7 +70,7 @@ public struct AdRequest: Codable {
     let instl: FullScreen
     let width: Int
     let height: Int
-    let additionalOptions: [String: String]?
+    let queryOptions: [String: String]?
 
     enum CodingKeys: String, CodingKey {
         case test
@@ -81,7 +81,7 @@ public struct AdRequest: Codable {
         case instl
         case width = "w"
         case height = "h"
-        case additionalOptions
+        case queryOptions
     }
 
 }
@@ -89,16 +89,16 @@ public struct AdRequest: Codable {
 class AdResponse {
     let placementId: Int
     let advert: Ad
-    let additionalOptions: [String: String]?
+    let requestQueryOptions: [String: String]?
     var html: String?
     var vast: VastAd?
     var baseUrl: String?
     var filePath: String?
 
-    init(_ placementId: Int, _ advert: Ad, _ additionalOptions: [String: String]?) {
+    init(_ placementId: Int, _ advert: Ad, _ requestQueryOptions: [String: String]?) {
         self.placementId = placementId
         self.advert = advert
-        self.additionalOptions = additionalOptions
+        self.requestQueryOptions = requestQueryOptions
     }
 
     /// Returns the aspect ratio of the ad's creative

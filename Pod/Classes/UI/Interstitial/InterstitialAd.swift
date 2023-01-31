@@ -28,9 +28,9 @@ public class InterstitialAd: NSObject, Injectable {
      * - Parameter placementId: The Ad placement id to load data for
      */
     @objc
-    public class func load(_ placementId: Int, additionalOptions: [String: String]? = nil) {
+    public class func load(_ placementId: Int, options: [String: String]? = nil) {
         logger.info("load() for: \(placementId)")
-        controller.load(placementId, makeAdRequest(additionalOptions))
+        controller.load(placementId, makeAdRequest(options))
     }
 
     /**
@@ -44,9 +44,9 @@ public class InterstitialAd: NSObject, Injectable {
      *   - creativeId: id of the creative
      */
     @objc
-    public class func load(_ placementId: Int, lineItemId: Int, creativeId: Int, additionalOptions: [String: String]? = nil) {
+    public class func load(_ placementId: Int, lineItemId: Int, creativeId: Int, options: [String: String]? = nil) {
         logger.info("load() for placement Id: \(placementId) lineItemId: \(lineItemId), creativeId: \(creativeId)")
-        controller.load(placementId, lineItemId: lineItemId, creativeId: creativeId, makeAdRequest(additionalOptions))
+        controller.load(placementId, lineItemId: lineItemId, creativeId: creativeId, makeAdRequest(options))
     }
 
     /**
@@ -162,7 +162,7 @@ public class InterstitialAd: NSObject, Injectable {
 
     // MARK: - Private functions
 
-    private static func makeAdRequest(_ additionalOptions: [String: String]?) -> AdRequest {
+    private static func makeAdRequest(_ options: [String: String]?) -> AdRequest {
         let size = UIScreen.main.bounds.size
 
         return AdRequest(test: isTestingEnabled,
@@ -173,6 +173,6 @@ public class InterstitialAd: NSObject, Injectable {
                          instl: AdRequest.FullScreen.on,
                          width: Int(size.width),
                          height: Int(size.height),
-                         additionalOptions: additionalOptions)
+                         queryOptions: options)
     }
 }

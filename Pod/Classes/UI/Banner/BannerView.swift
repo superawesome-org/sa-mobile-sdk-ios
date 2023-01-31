@@ -211,7 +211,7 @@ public class BannerView: UIView, Injectable {
                   instl: AdRequest.FullScreen.off,
                   width: Int(frame.size.width),
                   height: Int(frame.size.height),
-                  additionalOptions: nil)
+                  queryOptions: nil)
     }
 
     private func addWebView() {
