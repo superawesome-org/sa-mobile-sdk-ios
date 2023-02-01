@@ -15,8 +15,9 @@ class AdProcessorTests: XCTestCase {
     private let imageFormatUsed = "imgformatused"
     private let mediaFormatUsed = "mediaformatused"
     private let tagFormatUsed = "tagformatused"
+    private let options = ["testKey1": "testValue1", "testKey2": "testValue2"]
 
-    private func testProcess(_ format: CreativeFormatType, _ html: String?, _ vast: String?) {
+    private func testProcess(_ format: CreativeFormatType, _ html: String?, _ vast: String?, _ options: [String: String]?) {
         // Given
         let placementId = 1
         let ad = MockFactory.makeAd(format, vast)
@@ -32,7 +33,7 @@ class AdProcessorTests: XCTestCase {
                                       logger: LoggerMock())
         // When
         let expectation = self.expectation(description: "request")
-        adProcessor.process(placementId, ad) { response in
+        adProcessor.process(placementId, ad, options) { response in
             self.response = response
             expectation.fulfill()
         }
@@ -41,6 +42,7 @@ class AdProcessorTests: XCTestCase {
 
         // Then
         expect(self.response?.html).to(equalSmart(html))
+        expect(self.response?.requestOptions).to(equalSmart(options))
     }
 
     private func testVideo(_ url: String?, filePath: String?,
@@ -48,7 +50,8 @@ class AdProcessorTests: XCTestCase {
                            dataResult2: Result<Data, Error>,
                            downloadResult: Result<String, Error>,
                            vastAd: VastAd, secondVastAd: VastAd,
-                           impressionEventCount: Int?) {
+                           impressionEventCount: Int?,
+                           options: [String: String]?) {
         // Given
         let placementId = 1
         let ad = MockFactory.makeAd(.video, url)
@@ -62,7 +65,7 @@ class AdProcessorTests: XCTestCase {
                                       logger: LoggerMock())
         // When
         let expectation = self.expectation(description: "request")
-        adProcessor.process(placementId, ad) { response in
+        adProcessor.process(placementId, ad, options) { response in
             self.response = response
             expectation.fulfill()
         }
@@ -72,13 +75,21 @@ class AdProcessorTests: XCTestCase {
         // Then
         expect(self.response?.filePath).to(filePath != nil ? equal(filePath) : beNil())
         expect(self.response?.vast?.impressionEvents.count).to(equalSmart(impressionEventCount))
+        expect(self.response?.requestOptions).to(equalSmart(options))
     }
 
     func test_process() throws {
-        testProcess(.imageWithLink, imageFormatUsed, nil)
-        testProcess(.richMedia, mediaFormatUsed, nil)
-        testProcess(.tag, tagFormatUsed, nil)
-        testProcess(.unknown, nil, nil)
+        // With additional request options
+        testProcess(.imageWithLink, imageFormatUsed, nil, options)
+        testProcess(.richMedia, mediaFormatUsed, nil, options)
+        testProcess(.tag, tagFormatUsed, nil, options)
+        testProcess(.unknown, nil, nil, options)
+
+        // Without additional request options
+        testProcess(.imageWithLink, imageFormatUsed, nil, nil)
+        testProcess(.richMedia, mediaFormatUsed, nil, nil)
+        testProcess(.tag, tagFormatUsed, nil, nil)
+        testProcess(.unknown, nil, nil, nil)
     }
 
     func test_videoTag_networkDataCalled() throws {
@@ -90,13 +101,26 @@ class AdProcessorTests: XCTestCase {
                   dataResult2: Result.success(Data()),
                   downloadResult: Result.success(downloadFilePath),
                   vastAd: first, secondVastAd: VastAd(type: .inLine),
-                  impressionEventCount: 1)
+                  impressionEventCount: 1,
+                  options: nil)
+    }
+
+    func test_videoTag_withOptions() throws {
+        let downloadFilePath = "localfilepath"
+        let first = VastAd(type: .inLine, impressions: ["url1"])
+
+        testVideo("first_url", filePath: downloadFilePath,
+                  dataResult: Result.success(Data("firstdata".utf8)),
+                  dataResult2: Result.success(Data()),
+                  downloadResult: Result.success(downloadFilePath),
+                  vastAd: first, secondVastAd: VastAd(type: .inLine),
+                  impressionEventCount: 1,
+                  options: options)
     }
 
     func test_videoTag_vastRedirect_mergeVasts() throws {
         let downloadFilePath = "localfilepath"
         let first =  VastAd(type: .invalid, redirect: "redirecturl", impressions: ["url1"])
-
         let second =  VastAd(type: .inLine, impressions: ["url2"])
 
         testVideo("firsturl", filePath: downloadFilePath,
@@ -104,7 +128,8 @@ class AdProcessorTests: XCTestCase {
                   dataResult2: Result.success(Data()),
                   downloadResult: Result.success(downloadFilePath),
                   vastAd: first, secondVastAd: second,
-                  impressionEventCount: 2)
+                  impressionEventCount: 2,
+                  options: nil)
     }
 
     func test_videoTag_downloadFailure_emptyResponse() throws {
@@ -113,7 +138,8 @@ class AdProcessorTests: XCTestCase {
                   dataResult2: Result.failure(AwesomeAdsError.network),
                   downloadResult: Result.failure(AwesomeAdsError.network),
                   vastAd: VastAd(type: .inLine), secondVastAd: VastAd(type: .inLine),
-                  impressionEventCount: nil)
+                  impressionEventCount: nil,
+                  options: nil)
     }
 
     func test_videoTag_noUrl_emptyResponse() throws {
@@ -122,7 +148,7 @@ class AdProcessorTests: XCTestCase {
                   dataResult2: Result.failure(AwesomeAdsError.network),
                   downloadResult: Result.failure(AwesomeAdsError.network),
                   vastAd: VastAd(type: .inLine), secondVastAd: VastAd(type: .inLine),
-                  impressionEventCount: nil)
+                  impressionEventCount: nil,
+                  options: nil)
     }
-
 }

@@ -10,13 +10,10 @@ import Nimble
 @testable import SuperAwesome
 
 class AdQueryMakerTests: XCTestCase {
-    private let queryMaker = AdQueryMaker(device: DeviceMock(),
-                                          sdkInfo: SdkInfoMock(),
-                                          connectionProvider: ConnectionProviderMock(),
-                                          numberGenerator: NumberGeneratorMock(400),
-                                          idGenerator: IdGeneratorMock(300),
-                                          encoder: EncoderMock(),
-                                          options: nil)
+    private lazy var queryMaker = { buildQueryMaker(options: nil) }()
+
+    private let initialOptions = ["testKey1": "testValue1"]
+    private let additionalOptions = ["testKey2": "testValue2"]
 
     func test_adQuery() throws {
         // Given
@@ -27,7 +24,8 @@ class AdQueryMakerTests: XCTestCase {
                                 startDelay: AdRequest.StartDelay.midRoll,
                                 instl: .off,
                                 width: 20,
-                                height: 30)
+                                height: 30,
+                                options: nil)
 
         // When
         let bundle = queryMaker.makeAdQuery(request)
@@ -114,5 +112,130 @@ class AdQueryMakerTests: XCTestCase {
         expect(query.rnd).to(equal(400))
         expect(query.sdkVersion).to(equal("SdkInfoMockVersion"))
         expect(query.type).to(equal(.impressionDownloaded))
+    }
+
+    private func buildQueryMaker(options: [String: String]?) -> AdQueryMaker {
+        return AdQueryMaker(device: DeviceMock(),
+                            sdkInfo: SdkInfoMock(),
+                            connectionProvider: ConnectionProviderMock(),
+                            numberGenerator: NumberGeneratorMock(400),
+                            idGenerator: IdGeneratorMock(300),
+                            encoder: EncoderMock(),
+                            options: options)
+    }
+
+    // MARK: - Test request options
+
+    func test_adQuery_with_no_options() throws {
+        // Given
+        let queryMaker = buildQueryMaker(options: nil)
+
+        let request = AdRequest(test: false,
+                                position: .aboveTheFold,
+                                skip: .no,
+                                playbackMethod: 5,
+                                startDelay: AdRequest.StartDelay.midRoll,
+                                instl: .off,
+                                width: 20,
+                                height: 30,
+                                options: nil)
+
+        // When
+        let bundle = queryMaker.makeAdQuery(request)
+        guard let options = bundle.options else { return }
+
+        // Then
+        expect(options).to(equal([:]))
+    }
+
+    func test_adQuery_with_initial_options_only() throws {
+        // Given
+        let queryMaker = buildQueryMaker(options: initialOptions)
+
+        let request = AdRequest(test: false,
+                                position: .aboveTheFold,
+                                skip: .no,
+                                playbackMethod: 5,
+                                startDelay: AdRequest.StartDelay.midRoll,
+                                instl: .off,
+                                width: 20,
+                                height: 30,
+                                options: nil)
+
+        // When
+        let bundle = queryMaker.makeAdQuery(request)
+        guard let options = bundle.options else { return }
+
+        // Then
+        expect(options).to(equal(initialOptions))
+    }
+
+    func test_adQuery_with_additional_options_only() throws {
+        // Given
+        let queryMaker = buildQueryMaker(options: nil)
+
+        let request = AdRequest(test: false,
+                                position: .aboveTheFold,
+                                skip: .no,
+                                playbackMethod: 5,
+                                startDelay: AdRequest.StartDelay.midRoll,
+                                instl: .off,
+                                width: 20,
+                                height: 30,
+                                options: additionalOptions)
+
+        // When
+        let bundle = queryMaker.makeAdQuery(request)
+        guard let options = bundle.options else { return }
+
+        // Then
+        expect(options).to(equal(additionalOptions))
+    }
+
+    func test_adQuery_with_initial_options_and_additional_options() throws {
+        // Given
+        let queryMaker = buildQueryMaker(options: initialOptions)
+
+        let request = AdRequest(test: false,
+                                position: .aboveTheFold,
+                                skip: .no,
+                                playbackMethod: 5,
+                                startDelay: AdRequest.StartDelay.midRoll,
+                                instl: .off,
+                                width: 20,
+                                height: 30,
+                                options: additionalOptions)
+
+        // When
+        let bundle = queryMaker.makeAdQuery(request)
+        guard let options = bundle.options else { return }
+
+        // Then
+        expect(options).to(equal(["testKey1": "testValue1", "testKey2": "testValue2"]))
+    }
+
+    func test_adQuery_additional_options_can_override_initial_options_when_conflicted() throws {
+        // Given
+        let queryMaker = buildQueryMaker(options: initialOptions)
+
+        let additionalOptions = ["testKey1": "x"]
+
+        let request = AdRequest(test: false,
+                                position: .aboveTheFold,
+                                skip: .no,
+                                playbackMethod: 5,
+                                startDelay: AdRequest.StartDelay.midRoll,
+                                instl: .off,
+                                width: 20,
+                                height: 30,
+                                options: additionalOptions)
+
+        // When
+        let bundle = queryMaker.makeAdQuery(request)
+        guard let options = bundle.options else { return }
+
+        // Then
+        let combinedOptions = ["testKey1": "x"]
+        expect(options).to(equal(combinedOptions))
     }
 }

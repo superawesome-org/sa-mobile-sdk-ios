@@ -33,7 +33,7 @@ class AdControllerTests: XCTestCase {
     private func showPadlockTest(showPadlock: Bool, ksfUrl: String?, expectedResult: Bool) {
         // Given
         adRepository.response = .success(
-            AdResponse(123, MockFactory.makeAd(.tag, nil, nil, nil, showPadlock, ksfUrl))
+            AdResponse(123, MockFactory.makeAd(.tag, nil, nil, nil, showPadlock, ksfUrl), nil)
         )
 
         // When
@@ -54,7 +54,7 @@ class AdControllerTests: XCTestCase {
     func testAdLoadedCallback() {
         // Given
         adRepository.response = .success(
-            AdResponse(123, MockFactory.makeAd())
+            AdResponse(123, MockFactory.makeAd(), nil)
         )
 
         // When
@@ -111,7 +111,7 @@ class AdControllerTests: XCTestCase {
 
     func testAdClickedCallback() {
         // Given
-        let adResponse = AdResponse(123, MockFactory.makeAd(.tag, nil, nil, nil, false, nil, false))
+        let adResponse = AdResponse(123, MockFactory.makeAd(.tag, nil, nil, nil, false, nil, false), nil)
         adResponse.vast = MockFactory.makeVastAd(clickThrough: "https://www.superawesome.com/")
         adRepository.response = .success(adResponse)
         controller.load(123, MockFactory.makeAdRequest())
@@ -126,7 +126,7 @@ class AdControllerTests: XCTestCase {
     func test_two_consecutive_clicks_then_only_one_event() {
         // Given
         let initialTime = Date().timeIntervalSince1970
-        let adResponse = AdResponse(123, MockFactory.makeAd(.tag, nil, nil, nil, false, nil, false))
+        let adResponse = AdResponse(123, MockFactory.makeAd(.tag, nil, nil, nil, false, nil, false), nil)
         adResponse.vast = MockFactory.makeVastAd(clickThrough: "https://www.superawesome.com/")
         adRepository.response = .success(adResponse)
         controller.load(123, MockFactory.makeAdRequest())
@@ -148,7 +148,7 @@ class AdControllerTests: XCTestCase {
     func test_click_after_threshold_then_multiple_events() {
         // Given
         let initialTime = Date().timeIntervalSince1970
-        let adResponse = AdResponse(123, MockFactory.makeAd(.tag, nil, nil, nil, false, nil, false))
+        let adResponse = AdResponse(123, MockFactory.makeAd(.tag, nil, nil, nil, false, nil, false), nil)
         adResponse.vast = MockFactory.makeVastAd(clickThrough: "https://www.superawesome.com/")
         adRepository.response = .success(adResponse)
         controller.load(123, MockFactory.makeAdRequest())

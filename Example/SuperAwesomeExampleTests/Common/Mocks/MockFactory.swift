@@ -61,7 +61,8 @@ class MockFactory {
                   startDelay: AdRequest.StartDelay.midRoll,
                   instl: .off,
                   width: 25,
-                  height: 35)
+                  height: 35,
+                  options: nil)
     }
 
     static func makeAdQueryInstance() -> QueryBundle {
@@ -102,7 +103,7 @@ class MockFactory {
     }
 
     static func makeAdResponse() -> AdResponse {
-        AdResponse(10, makeAd())
+        AdResponse(10, makeAd(), nil)
     }
 
     static func makeVastAd(clickThrough: String? = nil) -> VastAd {
