@@ -114,16 +114,6 @@ class AdQueryMakerTests: XCTestCase {
         expect(query.type).to(equal(.impressionDownloaded))
     }
 
-    private func buildQueryMaker(options: [String: String]?) -> AdQueryMaker {
-        return AdQueryMaker(device: DeviceMock(),
-                            sdkInfo: SdkInfoMock(),
-                            connectionProvider: ConnectionProviderMock(),
-                            numberGenerator: NumberGeneratorMock(400),
-                            idGenerator: IdGeneratorMock(300),
-                            encoder: EncoderMock(),
-                            options: options)
-    }
-
     // MARK: - Test request options
 
     func test_adQuery_with_no_options() throws {
@@ -237,5 +227,17 @@ class AdQueryMakerTests: XCTestCase {
         // Then
         let combinedOptions = ["testKey1": "x"]
         expect(options).to(equal(combinedOptions))
+    }
+
+    // MARK: - Conveniences
+
+    private func buildQueryMaker(options: [String: String]?) -> AdQueryMaker {
+        return AdQueryMaker(device: DeviceMock(),
+                            sdkInfo: SdkInfoMock(),
+                            connectionProvider: ConnectionProviderMock(),
+                            numberGenerator: NumberGeneratorMock(400),
+                            idGenerator: IdGeneratorMock(300),
+                            encoder: EncoderMock(),
+                            options: options)
     }
 }
