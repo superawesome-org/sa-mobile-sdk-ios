@@ -225,8 +225,8 @@ class AdQueryMakerTests: XCTestCase {
         guard let options = bundle.options else { return }
 
         // Then
-        let combinedOptions = ["testKey1": "x"]
-        expect(options).to(equal(combinedOptions))
+        let expectedOptions = ["testKey1": "x"]
+        expect(options).to(equal(expectedOptions))
     }
 
     // MARK: - Conveniences
