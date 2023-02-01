@@ -109,11 +109,13 @@ class AdProcessorTests: XCTestCase {
         let downloadFilePath = "localfilepath"
         let first = VastAd(type: .inLine, impressions: ["url1"])
 
-        testVideo("first_url", filePath: downloadFilePath,
+        testVideo("first_url",
+                  filePath: downloadFilePath,
                   dataResult: Result.success(Data("firstdata".utf8)),
                   dataResult2: Result.success(Data()),
                   downloadResult: Result.success(downloadFilePath),
-                  vastAd: first, secondVastAd: VastAd(type: .inLine),
+                  vastAd: first, 
+                  secondVastAd: VastAd(type: .inLine),
                   impressionEventCount: 1,
                   options: options)
     }
