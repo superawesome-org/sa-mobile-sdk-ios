@@ -204,7 +204,7 @@ class AdQueryMakerTests: XCTestCase {
         expect(options).to(equal(["testKey1": "testValue1", "testKey2": "testValue2"]))
     }
 
-    func test_adQuery_additional_options_can_override_initial_options_when_conflicted() throws {
+    func test_adQuery_additional_options_can_override_initial_options_when_keys_conflict() throws {
         // Given
         let queryMaker = buildQueryMaker(options: initialOptions)
 
