@@ -48,8 +48,7 @@ class AdProcessorTests: XCTestCase {
                            dataResult2: Result<Data, Error>,
                            downloadResult: Result<String, Error>,
                            vastAd: VastAd, secondVastAd: VastAd,
-                           impressionEventCount: Int?,
-                           options: [String: Any]?) {
+                           impressionEventCount: Int?) {
         // Given
         let placementId = 1
         let ad = MockFactory.makeAd(.video, url)
@@ -63,7 +62,7 @@ class AdProcessorTests: XCTestCase {
                                       logger: LoggerMock())
         // When
         let expectation = self.expectation(description: "request")
-        adProcessor.process(placementId, ad, options) { response in
+        adProcessor.process(placementId, ad, nil) { response in
             self.response = response
             expectation.fulfill()
         }
@@ -91,8 +90,7 @@ class AdProcessorTests: XCTestCase {
                   dataResult2: Result.success(Data()),
                   downloadResult: Result.success(downloadFilePath),
                   vastAd: first, secondVastAd: VastAd(type: .inLine),
-                  impressionEventCount: 1,
-                  options: nil)
+                  impressionEventCount: 1)
     }
 
     func test_videoTag_withOptions() throws {
@@ -106,8 +104,7 @@ class AdProcessorTests: XCTestCase {
                   downloadResult: Result.success(downloadFilePath),
                   vastAd: first,
                   secondVastAd: VastAd(type: .inLine),
-                  impressionEventCount: 1,
-                  options: nil)
+                  impressionEventCount: 1)
     }
 
     func test_videoTag_vastRedirect_mergeVasts() throws {
@@ -120,8 +117,7 @@ class AdProcessorTests: XCTestCase {
                   dataResult2: Result.success(Data()),
                   downloadResult: Result.success(downloadFilePath),
                   vastAd: first, secondVastAd: second,
-                  impressionEventCount: 2,
-                  options: nil)
+                  impressionEventCount: 2)
     }
 
     func test_videoTag_downloadFailure_emptyResponse() throws {
@@ -130,8 +126,7 @@ class AdProcessorTests: XCTestCase {
                   dataResult2: Result.failure(AwesomeAdsError.network),
                   downloadResult: Result.failure(AwesomeAdsError.network),
                   vastAd: VastAd(type: .inLine), secondVastAd: VastAd(type: .inLine),
-                  impressionEventCount: nil,
-                  options: nil)
+                  impressionEventCount: nil)
     }
 
     func test_videoTag_noUrl_emptyResponse() throws {
@@ -140,7 +135,6 @@ class AdProcessorTests: XCTestCase {
                   dataResult2: Result.failure(AwesomeAdsError.network),
                   downloadResult: Result.failure(AwesomeAdsError.network),
                   vastAd: VastAd(type: .inLine), secondVastAd: VastAd(type: .inLine),
-                  impressionEventCount: nil,
-                  options: nil)
+                  impressionEventCount: nil)
     }
 }
