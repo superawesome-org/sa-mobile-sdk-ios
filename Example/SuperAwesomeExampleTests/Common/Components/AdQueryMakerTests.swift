@@ -254,8 +254,7 @@ class AdQueryMakerTests: XCTestCase {
 
         // Then
         let expectedOptions: [String: Any] = ["testKey1": "x",
-                                              "testKey2": 2,
-                                              "testKey3": true]
+                                              "testKey2": 2]
         verifyOptions(options: options, expectedOptions: expectedOptions)
     }
 
