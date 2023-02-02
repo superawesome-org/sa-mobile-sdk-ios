@@ -145,7 +145,10 @@ class AdQueryMakerTests: XCTestCase {
 
         // When
         let bundle = queryMaker.makeAdQuery(request)
-        guard let options = bundle.options else { return }
+        guard let options = bundle.options else {
+            XCTFail("Did not find options on the QueryBundle")
+            return
+        }
 
         // Then
         XCTAssertTrue(options.isEmpty)
@@ -167,7 +170,10 @@ class AdQueryMakerTests: XCTestCase {
 
         // When
         let bundle = queryMaker.makeAdQuery(request)
-        guard let options = bundle.options else { return }
+        guard let options = bundle.options else {
+            XCTFail("Did not find options on the QueryBundle")
+            return
+        }
 
         // Then
         verifyOptions(options: options, expectedOptions: initialOptions)
@@ -189,9 +195,10 @@ class AdQueryMakerTests: XCTestCase {
 
         // When
         let bundle = queryMaker.makeAdQuery(request)
-        guard
-            let options = bundle.options
-        else { return }
+        guard let options = bundle.options else {
+            XCTFail("Did not find options on the QueryBundle")
+            return
+        }
 
         // Then
         verifyOptions(options: options, expectedOptions: additionalOptions)
@@ -213,7 +220,10 @@ class AdQueryMakerTests: XCTestCase {
 
         // When
         let bundle = queryMaker.makeAdQuery(request)
-        guard let options = bundle.options else { return }
+        guard let options = bundle.options else {
+            XCTFail("Did not find options on the QueryBundle")
+            return
+        }
 
         // Then
         verifyOptions(options: options, expectedOptions: combinedOptions)
@@ -237,7 +247,10 @@ class AdQueryMakerTests: XCTestCase {
 
         // When
         let bundle = queryMaker.makeAdQuery(request)
-        guard let options = bundle.options else { return }
+        guard let options = bundle.options else {
+            XCTFail("Did not find options on the QueryBundle")
+            return
+        }
 
         // Then
         let expectedOptions: [String: Any] = ["testKey1": "x",
@@ -264,7 +277,10 @@ class AdQueryMakerTests: XCTestCase {
 
         // When
         let bundle = queryMaker.makeAdQuery(request)
-        guard let options = bundle.options else { return }
+        guard let options = bundle.options else {
+            XCTFail("Did not find options on the QueryBundle")
+            return
+        }
 
         // Then
         let expectedOptions: [String: Any] = ["testKey1": "testValue1", "testKey2": 2, "testKey4": 4]
