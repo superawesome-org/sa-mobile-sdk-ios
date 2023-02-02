@@ -148,7 +148,7 @@ class AdQueryMakerTests: XCTestCase {
         guard let options = bundle.options else { return }
 
         // Then
-        verifyOptions(options: options, expectedOptions: [:])
+        XCTAssertTrue(options.isEmpty)
     }
 
     func test_adQuery_with_initial_options_only() throws {
