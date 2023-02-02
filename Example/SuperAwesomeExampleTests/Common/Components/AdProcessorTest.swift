@@ -93,20 +93,6 @@ class AdProcessorTests: XCTestCase {
                   impressionEventCount: 1)
     }
 
-    func test_videoTag_withOptions() throws {
-        let downloadFilePath = "localfilepath"
-        let first = VastAd(type: .inLine, impressions: ["url1"])
-
-        testVideo("first_url",
-                  filePath: downloadFilePath,
-                  dataResult: Result.success(Data("firstdata".utf8)),
-                  dataResult2: Result.success(Data()),
-                  downloadResult: Result.success(downloadFilePath),
-                  vastAd: first,
-                  secondVastAd: VastAd(type: .inLine),
-                  impressionEventCount: 1)
-    }
-
     func test_videoTag_vastRedirect_mergeVasts() throws {
         let downloadFilePath = "localfilepath"
         let first =  VastAd(type: .invalid, redirect: "redirecturl", impressions: ["url1"])
