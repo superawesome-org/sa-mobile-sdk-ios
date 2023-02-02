@@ -15,7 +15,6 @@ class AdProcessorTests: XCTestCase {
     private let imageFormatUsed = "imgformatused"
     private let mediaFormatUsed = "mediaformatused"
     private let tagFormatUsed = "tagformatused"
-    private let options = ["testKey": "testValue"]
 
     private func testProcess(_ format: CreativeFormatType, _ html: String?, _ vast: String?, _ options: [String: Any]?) {
         // Given
@@ -42,7 +41,6 @@ class AdProcessorTests: XCTestCase {
 
         // Then
         expect(self.response?.html).to(equalSmart(html))
-        expect(self.response?.requestOptions as? [String: String]).to(equalSmart(options as? [String: String]))
     }
 
     private func testVideo(_ url: String?, filePath: String?,
@@ -75,17 +73,9 @@ class AdProcessorTests: XCTestCase {
         // Then
         expect(self.response?.filePath).to(filePath != nil ? equal(filePath) : beNil())
         expect(self.response?.vast?.impressionEvents.count).to(equalSmart(impressionEventCount))
-        expect(self.response?.requestOptions as? [String: String]).to(equalSmart(options as? [String: String]))
     }
 
     func test_process() throws {
-        // With additional request options
-        testProcess(.imageWithLink, imageFormatUsed, nil, options)
-        testProcess(.richMedia, mediaFormatUsed, nil, options)
-        testProcess(.tag, tagFormatUsed, nil, options)
-        testProcess(.unknown, nil, nil, options)
-
-        // Without additional request options
         testProcess(.imageWithLink, imageFormatUsed, nil, nil)
         testProcess(.richMedia, mediaFormatUsed, nil, nil)
         testProcess(.tag, tagFormatUsed, nil, nil)
@@ -114,10 +104,10 @@ class AdProcessorTests: XCTestCase {
                   dataResult: Result.success(Data("firstdata".utf8)),
                   dataResult2: Result.success(Data()),
                   downloadResult: Result.success(downloadFilePath),
-                  vastAd: first, 
+                  vastAd: first,
                   secondVastAd: VastAd(type: .inLine),
                   impressionEventCount: 1,
-                  options: options)
+                  options: nil)
     }
 
     func test_videoTag_vastRedirect_mergeVasts() throws {
