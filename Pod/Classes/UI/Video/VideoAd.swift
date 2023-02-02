@@ -45,7 +45,7 @@ public class VideoAd: NSObject, Injectable {
      *  - options: an optional dictionary of data to send with an ad's requests and events
      */
     @objc
-    public static func load(withPlacementId placementId: Int, options: [String: String]? = nil) {
+    public static func load(withPlacementId placementId: Int, options: [String: Any]? = nil) {
         let adState = ads[placementId] ?? .none
 
         switch adState {
@@ -80,7 +80,7 @@ public class VideoAd: NSObject, Injectable {
      *   - options: an optional dictionary of data to send with an ad's requests and events
      */
     @objc
-    public static func load(withPlacementId placementId: Int, lineItemId: Int, creativeId: Int, options: [String: String]? = nil) {
+    public static func load(withPlacementId placementId: Int, lineItemId: Int, creativeId: Int, options: [String: Any]? = nil) {
         let adState = ads[placementId] ?? .none
 
         switch adState {
@@ -149,7 +149,7 @@ public class VideoAd: NSObject, Injectable {
         }
     }
 
-    private static func makeAdRequest(with options: [String: String]?) -> AdRequest {
+    private static func makeAdRequest(with options: [String: Any]?) -> AdRequest {
         let size = UIScreen.main.bounds.size
 
         return AdRequest(test: isTestingEnabled,

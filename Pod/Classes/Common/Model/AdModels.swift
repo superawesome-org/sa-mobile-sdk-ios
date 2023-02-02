@@ -70,7 +70,8 @@ public struct AdRequest: Codable {
     let instl: FullScreen
     let width: Int
     let height: Int
-    let options: [String: String]?
+    @CodableExcluded
+    private(set)var options: [String: Any]?
 
     enum CodingKeys: String, CodingKey {
         case test
@@ -81,21 +82,19 @@ public struct AdRequest: Codable {
         case instl
         case width = "w"
         case height = "h"
-        case options
     }
-
 }
 
 class AdResponse {
     let placementId: Int
     let advert: Ad
-    let requestOptions: [String: String]?
+    let requestOptions: [String: Any]?
     var html: String?
     var vast: VastAd?
     var baseUrl: String?
     var filePath: String?
 
-    init(_ placementId: Int, _ advert: Ad, _ requestOptions: [String: String]?) {
+    init(_ placementId: Int, _ advert: Ad, _ requestOptions: [String: Any]?) {
         self.placementId = placementId
         self.advert = advert
         self.requestOptions = requestOptions

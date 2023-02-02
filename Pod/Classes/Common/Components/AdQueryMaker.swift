@@ -19,7 +19,7 @@ class AdQueryMaker: AdQueryMakerType {
     private let numberGenerator: NumberGeneratorType
     private let idGenerator: IdGeneratorType
     private let encoder: EncoderType
-    private let options: [String: String]?
+    private let options: [String: Any]?
 
     init(device: DeviceType,
          sdkInfo: SdkInfoType,
@@ -27,7 +27,7 @@ class AdQueryMaker: AdQueryMakerType {
          numberGenerator: NumberGeneratorType,
          idGenerator: IdGeneratorType,
          encoder: EncoderType,
-         options: [String: String]?) {
+         options: [String: Any]?) {
         self.device = device
         self.sdkInfo = sdkInfo
         self.connectionProvider = connectionProvider
@@ -99,16 +99,30 @@ class AdQueryMaker: AdQueryMakerType {
                     options: buildOptions(with: adResponse.requestOptions))
     }
 
-    private func buildOptions(with requestOptions: [String: String]?) -> [String: String] {
-        var optionsDict = [String: String]()
+    private func buildOptions(with requestOptions: [String: Any]?) -> [String: Any] {
+        var optionsDict = [String: Any]()
 
         if let options = options {
-            optionsDict = optionsDict.merging(options) { $1 }
+            optionsDict = merge(to: &optionsDict, from: options)
         }
 
         if let requestOptions = requestOptions {
-            optionsDict = optionsDict.merging(requestOptions) { $1 }
+            optionsDict = merge(to: &optionsDict, from: requestOptions)
         }
         return optionsDict
+    }
+
+    private func merge(to original: inout [String: Any], from new: [String: Any]) -> [String: Any] {
+        for (key, value) in new {
+            switch(value) {
+            case let value as String:
+                original[key] = value
+            case let value as Int:
+                original[key] = value
+            default:
+                continue
+            }
+        }
+        return original
     }
 }

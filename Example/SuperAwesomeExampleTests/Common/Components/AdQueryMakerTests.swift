@@ -12,8 +12,21 @@ import Nimble
 class AdQueryMakerTests: XCTestCase {
     private lazy var queryMaker = { buildQueryMaker(options: nil) }()
 
-    private let initialOptions = ["testKey1": "testValue1"]
-    private let additionalOptions = ["testKey2": "testValue2"]
+    private let initialOptions: [String: Any] = [
+        "testKey1": "testValue1",
+        "testKey2": 2
+    ]
+
+    private let additionalOptions: [String: Any] = [
+        "testKey3": "testValue3",
+        "testKey4": 4
+    ]
+    private let combinedOptions: [String: Any] = [
+        "testKey1": "testValue1",
+        "testKey2": 2,
+        "testKey3": "testValue3",
+        "testKey4": 4
+    ]
 
     func test_adQuery() throws {
         // Given
@@ -135,7 +148,7 @@ class AdQueryMakerTests: XCTestCase {
         guard let options = bundle.options else { return }
 
         // Then
-        expect(options).to(equal([:]))
+        verifyOptions(options: options, expectedOptions: [:])
     }
 
     func test_adQuery_with_initial_options_only() throws {
@@ -157,7 +170,7 @@ class AdQueryMakerTests: XCTestCase {
         guard let options = bundle.options else { return }
 
         // Then
-        expect(options).to(equal(initialOptions))
+        verifyOptions(options: options, expectedOptions: initialOptions)
     }
 
     func test_adQuery_with_additional_options_only() throws {
@@ -176,10 +189,12 @@ class AdQueryMakerTests: XCTestCase {
 
         // When
         let bundle = queryMaker.makeAdQuery(request)
-        guard let options = bundle.options else { return }
+        guard
+            let options = bundle.options
+        else { return }
 
         // Then
-        expect(options).to(equal(additionalOptions))
+        verifyOptions(options: options, expectedOptions: additionalOptions)
     }
 
     func test_adQuery_with_initial_options_and_additional_options() throws {
@@ -201,7 +216,7 @@ class AdQueryMakerTests: XCTestCase {
         guard let options = bundle.options else { return }
 
         // Then
-        expect(options).to(equal(["testKey1": "testValue1", "testKey2": "testValue2"]))
+        verifyOptions(options: options, expectedOptions: combinedOptions)
     }
 
     func test_adQuery_additional_options_can_override_initial_options_when_keys_conflict() throws {
@@ -225,13 +240,40 @@ class AdQueryMakerTests: XCTestCase {
         guard let options = bundle.options else { return }
 
         // Then
-        let expectedOptions = ["testKey1": "x"]
-        expect(options).to(equal(expectedOptions))
+        let expectedOptions: [String: Any] = ["testKey1": "x",
+                                              "testKey2": 2,
+                                              "testKey3": true]
+        verifyOptions(options: options, expectedOptions: expectedOptions)
+    }
+
+    func test_adQuery_unsuitable_types_are_not_included() throws {
+        // Given
+        let queryMaker = buildQueryMaker(options: initialOptions)
+
+        let additionalOptions: [String: Any] = ["testKey3": UIViewController(), "testKey4": 4]
+
+        let request = AdRequest(test: false,
+                                position: .aboveTheFold,
+                                skip: .no,
+                                playbackMethod: 5,
+                                startDelay: AdRequest.StartDelay.midRoll,
+                                instl: .off,
+                                width: 20,
+                                height: 30,
+                                options: additionalOptions)
+
+        // When
+        let bundle = queryMaker.makeAdQuery(request)
+        guard let options = bundle.options else { return }
+
+        // Then
+        let expectedOptions: [String: Any] = ["testKey1": "testValue1", "testKey2": 2, "testKey4": 4]
+        verifyOptions(options: options, expectedOptions: expectedOptions)
     }
 
     // MARK: - Conveniences
 
-    private func buildQueryMaker(options: [String: String]?) -> AdQueryMaker {
+    private func buildQueryMaker(options: [String: Any]?) -> AdQueryMaker {
         return AdQueryMaker(device: DeviceMock(),
                             sdkInfo: SdkInfoMock(),
                             connectionProvider: ConnectionProviderMock(),
@@ -239,5 +281,18 @@ class AdQueryMakerTests: XCTestCase {
                             idGenerator: IdGeneratorMock(300),
                             encoder: EncoderMock(),
                             options: options)
+    }
+
+    private func verifyOptions(options: [String: Any], expectedOptions: [String: Any]) {
+        for (key, value) in options {
+            switch(value, expectedOptions[key]) {
+            case let (x, y) as (String, String):
+                expect(x).to(equal(y))
+            case let (x, y) as (Int, Int):
+                expect(x).to(equal(y))
+            default:
+                XCTFail("The dictionary did not contain the expected value")
+            }
+        }
     }
 }

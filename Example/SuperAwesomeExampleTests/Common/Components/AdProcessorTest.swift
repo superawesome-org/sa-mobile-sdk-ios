@@ -15,9 +15,9 @@ class AdProcessorTests: XCTestCase {
     private let imageFormatUsed = "imgformatused"
     private let mediaFormatUsed = "mediaformatused"
     private let tagFormatUsed = "tagformatused"
-    private let options = ["testKey1": "testValue1", "testKey2": "testValue2"]
+    private let options = ["testKey": "testValue"]
 
-    private func testProcess(_ format: CreativeFormatType, _ html: String?, _ vast: String?, _ options: [String: String]?) {
+    private func testProcess(_ format: CreativeFormatType, _ html: String?, _ vast: String?, _ options: [String: Any]?) {
         // Given
         let placementId = 1
         let ad = MockFactory.makeAd(format, vast)
@@ -42,7 +42,7 @@ class AdProcessorTests: XCTestCase {
 
         // Then
         expect(self.response?.html).to(equalSmart(html))
-        expect(self.response?.requestOptions).to(equalSmart(options))
+        expect(self.response?.requestOptions as? [String: String]).to(equalSmart(options as? [String: String]))
     }
 
     private func testVideo(_ url: String?, filePath: String?,
@@ -51,7 +51,7 @@ class AdProcessorTests: XCTestCase {
                            downloadResult: Result<String, Error>,
                            vastAd: VastAd, secondVastAd: VastAd,
                            impressionEventCount: Int?,
-                           options: [String: String]?) {
+                           options: [String: Any]?) {
         // Given
         let placementId = 1
         let ad = MockFactory.makeAd(.video, url)
@@ -75,7 +75,7 @@ class AdProcessorTests: XCTestCase {
         // Then
         expect(self.response?.filePath).to(filePath != nil ? equal(filePath) : beNil())
         expect(self.response?.vast?.impressionEvents.count).to(equalSmart(impressionEventCount))
-        expect(self.response?.requestOptions).to(equalSmart(options))
+        expect(self.response?.requestOptions as? [String: String]).to(equalSmart(options as? [String: String]))
     }
 
     func test_process() throws {

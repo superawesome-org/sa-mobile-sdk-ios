@@ -50,7 +50,7 @@ public class BannerView: UIView, Injectable {
      *  - options: an optional dictionary of data to send with an ad's requests and events
      */
     @objc
-    public func load(_ placementId: Int, options: [String: String]? = nil) {
+    public func load(_ placementId: Int, options: [String: Any]? = nil) {
         logger.info("load() for: \(placementId)")
         controller.load(placementId, makeAdRequest(with: options))
     }
@@ -71,7 +71,7 @@ public class BannerView: UIView, Injectable {
      *   - options: an optional dictionary of data to send with an ad's requests and events
      */
     @objc
-    public func load(_ placementId: Int, lineItemId: Int, creativeId: Int, options: [String: String]? = nil) {
+    public func load(_ placementId: Int, lineItemId: Int, creativeId: Int, options: [String: Any]? = nil) {
         logger.info("load() for placement Id: \(placementId) lineItemId: \(lineItemId), creativeId: \(creativeId)")
         controller.load(placementId, lineItemId: lineItemId, creativeId: creativeId, makeAdRequest(with: options))
     }
@@ -205,7 +205,7 @@ public class BannerView: UIView, Injectable {
         controller.adResponse = adResponse
     }
 
-    private func makeAdRequest(with options: [String: String]?) -> AdRequest {
+    private func makeAdRequest(with options: [String: Any]?) -> AdRequest {
         AdRequest(test: controller.testEnabled,
                   position: AdRequest.Position.aboveTheFold,
                   skip: AdRequest.Skip.no,
