@@ -16,7 +16,7 @@ class AdProcessorTests: XCTestCase {
     private let mediaFormatUsed = "mediaformatused"
     private let tagFormatUsed = "tagformatused"
 
-    private func testProcess(_ format: CreativeFormatType, _ html: String?, _ vast: String?, _ options: [String: Any]?) {
+    private func testProcess(_ format: CreativeFormatType, _ html: String?, _ vast: String?) {
         // Given
         let placementId = 1
         let ad = MockFactory.makeAd(format, vast)
@@ -32,7 +32,7 @@ class AdProcessorTests: XCTestCase {
                                       logger: LoggerMock())
         // When
         let expectation = self.expectation(description: "request")
-        adProcessor.process(placementId, ad, options) { response in
+        adProcessor.process(placementId, ad, nil) { response in
             self.response = response
             expectation.fulfill()
         }
@@ -76,10 +76,10 @@ class AdProcessorTests: XCTestCase {
     }
 
     func test_process() throws {
-        testProcess(.imageWithLink, imageFormatUsed, nil, nil)
-        testProcess(.richMedia, mediaFormatUsed, nil, nil)
-        testProcess(.tag, tagFormatUsed, nil, nil)
-        testProcess(.unknown, nil, nil, nil)
+        testProcess(.imageWithLink, imageFormatUsed, nil)
+        testProcess(.richMedia, mediaFormatUsed, nil)
+        testProcess(.tag, tagFormatUsed, nil)
+        testProcess(.unknown, nil, nil)
     }
 
     func test_videoTag_networkDataCalled() throws {
