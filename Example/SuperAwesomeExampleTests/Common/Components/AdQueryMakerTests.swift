@@ -127,7 +127,7 @@ class AdQueryMakerTests: XCTestCase {
         expect(query.type).to(equal(.impressionDownloaded))
     }
 
-    // MARK: - Test request options
+    // MARK: - Test options
 
     func test_adQuery_with_no_options() throws {
         // Given
