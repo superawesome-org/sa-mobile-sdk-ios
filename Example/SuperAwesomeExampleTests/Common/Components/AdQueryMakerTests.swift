@@ -299,6 +299,9 @@ class AdQueryMakerTests: XCTestCase {
     }
 
     private func verifyOptions(options: [String: Any], expectedOptions: [String: Any]) {
+
+        XCTAssertEqual(options.count, expectedOptions.count)
+
         for (key, value) in expectedOptions {
             switch(value, options[key]) {
             case let (x, y) as (String, String):
