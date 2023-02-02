@@ -299,14 +299,14 @@ class AdQueryMakerTests: XCTestCase {
     }
 
     private func verifyOptions(options: [String: Any], expectedOptions: [String: Any]) {
-        for (key, value) in options {
-            switch(value, expectedOptions[key]) {
+        for (key, value) in expectedOptions {
+            switch(value, options[key]) {
             case let (x, y) as (String, String):
                 expect(x).to(equal(y))
             case let (x, y) as (Int, Int):
                 expect(x).to(equal(y))
             default:
-                XCTFail("The dictionary did not contain the expected value")
+                XCTFail("The dictionary did not contain the expected value \(value) for key \(key)")
             }
         }
     }
