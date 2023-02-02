@@ -103,16 +103,16 @@ class AdQueryMaker: AdQueryMakerType {
         var optionsDict = [String: Any]()
 
         if let options = options {
-            optionsDict = merge(to: &optionsDict, from: options)
+            merge(to: &optionsDict, from: options)
         }
 
         if let requestOptions = requestOptions {
-            optionsDict = merge(to: &optionsDict, from: requestOptions)
+            merge(to: &optionsDict, from: requestOptions)
         }
         return optionsDict
     }
 
-    private func merge(to original: inout [String: Any], from new: [String: Any]) -> [String: Any] {
+    private func merge(to original: inout [String: Any], from new: [String: Any]) {
         for (key, value) in new {
             switch(value) {
             case let value as String:
@@ -123,6 +123,5 @@ class AdQueryMaker: AdQueryMakerType {
                 continue
             }
         }
-        return original
     }
 }
