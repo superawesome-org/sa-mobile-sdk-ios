@@ -10,6 +10,14 @@ references:
       LC_ALL: en_GB.UTF-8
       LANG: en_GB.UTF-8
 
+  configure_google_services: &configure_google_services
+    run:
+      name: Configure Google Services
+      command: |
+        echo "Google Services"
+        echo 'export SA_IOS_SDKS_GOOGLE_SERVICES_PLIST_ENC="$SA_IOS_SDKS_GOOGLE_SERVICES_PLIST_ENC"' >> $BASH_ENV
+        echo $SA_IOS_SDKS_GOOGLE_SERVICES_PLIST_ENC | base64 --decode > Example/SuperAwesome/${SA_IOS_SDKS_GOOGLE_SERVICES_PLIST_NAME}.plist
+
   generate_github_token: &generate_github_token
     run:
       name: Generate & store Github Token
@@ -21,14 +29,6 @@ references:
         echo "export GIT_COMMITTER_EMAIL=sa-release-bot@superawesome.tv" >> $BASH_ENV
         echo "export GIT_AUTHOR_NAME=sa-release-bot" >> $BASH_ENV
         echo "export GIT_AUTHOR_EMAIL=sa-release-bot@superawesome.tv" >> $BASH_ENV
-
-  configure_google_services: &configure_google_services
-    run:
-      name: Configure Google Services
-      command: |
-        echo "Google Services"
-        echo 'export SA_IOS_SDKS_GOOGLE_SERVICES_PLIST_ENC="$SA_IOS_SDKS_GOOGLE_SERVICES_PLIST_ENC"' >> $BASH_ENV
-        echo $SA_IOS_SDKS_GOOGLE_SERVICES_PLIST_ENC | base64 --decode > Example/SuperAwesome/${SA_IOS_SDKS_GOOGLE_SERVICES_PLIST_NAME}.plist
 
   # clone some scripts
   clone_scripts_repo: &clone_scripts_repo
@@ -45,11 +45,31 @@ references:
         ${SA_PATH_TO_CONTINUOUS_INTEGRATION_REPO}/bootstrap/bootstrap-mobile-ios-sdk.sh
 
 jobs:
-  build-and-test:
+
+  swiftlint:
+    docker:
+      - image: bytesguy/swiftlint:latest
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+    steps:
+      - checkout
+      - *configure_google_services
+      - run: swiftlint lint --reporter junit | tee result.xml
+      - store_artifacts:
+          path: result.xml
+      - store_test_results:
+          path: result.xml
+
+  # Run unit and UI tests
+  test_superawesome_base:
     <<: *ios_config
     environment:
       FL_OUTPUT_DIR: output
-      FASTLANE_LANE: run_all_tests
+      IOS_IPHONE_UI_TEST_DEVICE: "iPhone SE (3rd generation) (16.2)"
+      IOS_IPAD_UI_TEST_DEVICE: "iPad Pro (11-inch) (4th generation) (16,2)"
+      SA_IOS_SDKS_SCHEME: "SuperAwesomeExample"
+      SA_IOS_SDKS_PATH_TO_WORKSPACE: "Example/SuperAwesomeExample"
     steps:
       - checkout
       - *generate_github_token
@@ -68,32 +88,127 @@ jobs:
             cd Example/SuperAwesomeExampleUITests/MockServer
             /usr/bin/java -jar WireMock.jar &
             cd ../../../
-            IOS_IPHONE_UI_TEST_DEVICE="iPhone SE (3rd generation) (16.2)" IOS_IPAD_UI_TEST_DEVICE="iPad Pro (11-inch) (4th generation) (16,2)" SA_IOS_SDKS_SCHEME=SuperAwesomeExample SA_IOS_SDKS_PATH_TO_WORKSPACE=Example/SuperAwesomeExample bundle exec fastlane $FASTLANE_LANE
+            bundle exec fastlane run_all_tests
       - store_artifacts:
           path: output
       - store_test_results:
           path: output/scan
-          
-  swiftlint:
-    docker:
-      - image: bytesguy/swiftlint:latest
-        auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+
+  semantic_release_dry_run:
+    <<: *ios_config
+    environment:
+      SA_SEMANTIC_RELEASE_RUN_BRANCH: develop
+    steps:
+      - attach_workspace:
+          at: .
+      - checkout
+      - *generate_github_token
+      - *clone_scripts_repo
+      - run:
+          name: Check semantic release version
+          command: |
+            ${SA_PATH_TO_CONTINUOUS_INTEGRATION_REPO}/semantic-release/semantic-release.sh --dry-run
+      - persist_to_workspace:
+          root: "."
+          paths:
+          - "nextRelease"
+
+  semantic_release:
+    <<: *ios_config
+    environment:
+      SA_SEMANTIC_RELEASE_RUN_BRANCH: develop
     steps:
       - checkout
+      - *generate_github_token
       - *configure_google_services
-      - run: swiftlint lint --reporter junit | tee result.xml
-      - store_artifacts:
-          path: result.xml
-      - store_test_results:
-          path: result.xml
+      - *clone_scripts_repo
+      - run:
+          name: Run semantic release
+          command: |
+            git pull origin develop
+            ${SA_PATH_TO_CONTINUOUS_INTEGRATION_REPO}/semantic-release/semantic-release.sh
 
+  ## Run sdk push - base
+  sdk_push_superawesome:
+    <<: *ios_config
+    environment:
+      FL_OUTPUT_DIR: output
+      SA_IOS_SDKS_MODULE: "SuperAwesome"
+      SA_IOS_SDKS_PODFILE_PATH: "./Example/Podfile"
+      SA_IOS_SDKS_HAS_PRIVATE_DEPENDENCIES: false
+    steps:
+      - checkout
+      - *generate_github_token
+      - *clone_scripts_repo
+      - *bootstrap_ios
+      - *configure_google_services
+      - run:
+          name: Push Superawesome to cocoapods
+          command: bundle exec fastlane sdk_push isPrivateRepo:false
+  ## Run sdk push - admob
+  sdk_push_superawesome_admob:
+    <<: *ios_config
+    environment:
+      FL_OUTPUT_DIR: output
+      SA_IOS_SDKS_MODULE: "SuperAwesomeAdMob"
+      SA_IOS_SDKS_PODFILE_PATH: "./Example/Podfile"
+      SA_IOS_SDKS_HAS_PRIVATE_DEPENDENCIES: false
+    steps:
+      - checkout
+      - *generate_github_token
+      - *clone_scripts_repo
+      - *bootstrap_ios
+      - *configure_google_services
+      - run:
+          name: Push Superawesome-AdMob to cocoapods
+          command: bundle exec fastlane sdk_push isPrivateRepo:false
+          
 workflows:
   build-test:
     jobs:
       - swiftlint:
           context: MOBILE_IOS_SDKS
-      - build-and-test:
+          filters:
+            tags:
+              ignore: /^v.*/
+      - test_superawesome_base:
           context: MOBILE_IOS_SDKS
+          filters:
+            tags:
+              ignore: /^v.*/
+      - semantic_release_dry_run:
+          context: MOBILE_IOS_SDKS
+          requires:
+            - test_superawesome_base
+          filters:
+            branches:
+              only: develop
+      - approve_release:
+          type: approval
+          requires:
+            - test_superawesome_base
+          filters:
+            branches:
+              only: develop
+      - semantic_release:
+          context: MOBILE_IOS_SDKS
+          requires:
+            - approve_release
+          filters:
+            branches:
+              only: develop
+      - sdk_push_superawesome:
+          context: MOBILE_IOS_SDKS
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
+      - sdk_push_superawesome_admob:
+          context: MOBILE_IOS_SDKS
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
 
