@@ -121,7 +121,6 @@ jobs:
     steps:
       - checkout
       - *generate_github_token
-      - *configure_google_services
       - *clone_scripts_repo
       - run:
           name: Run semantic release
@@ -136,7 +135,6 @@ jobs:
     steps:
       - checkout
       - *generate_github_token
-      - *configure_google_services
       - attach_workspace:
           at: .
       - run:
