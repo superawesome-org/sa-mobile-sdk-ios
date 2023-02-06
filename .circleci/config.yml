@@ -9,7 +9,7 @@ references:
       FL_OUTPUT_DIR: output
       LC_ALL: en_GB.UTF-8
       LANG: en_GB.UTF-8
-      TERM: -T xterm-256color
+      TERM: xterm-256color
 
   configure_google_services: &configure_google_services
     run:
@@ -171,7 +171,7 @@ jobs:
       SA_IOS_SDKS_MODULE: "SuperAwesome"
       SA_IOS_SDKS_PODFILE_PATH: "./Example/Podfile"
       SA_IOS_SDKS_HAS_PRIVATE_DEPENDENCIES: false
-      TERM: -T xterm-256color
+      TERM: xterm-256color
     steps:
       - checkout
       - *generate_github_token
@@ -189,7 +189,7 @@ jobs:
       SA_IOS_SDKS_MODULE: "SuperAwesomeAdMob"
       SA_IOS_SDKS_PODFILE_PATH: "./Example/Podfile"
       SA_IOS_SDKS_HAS_PRIVATE_DEPENDENCIES: false
-      TERM: -T xterm-256color
+      TERM: xterm-256color
     steps:
       - checkout
       - *generate_github_token
