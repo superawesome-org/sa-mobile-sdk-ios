@@ -213,8 +213,6 @@ workflows:
               ignore: /^v.*/
       - semantic_release_dry_run:
           context: MOBILE_IOS_SDKS
-          requires:
-            - test_superawesome_base
       - approve_dry_run_and_release:
           type: approval
           requires:
