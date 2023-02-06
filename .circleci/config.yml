@@ -201,36 +201,32 @@ jobs:
 workflows:
   build-test:
     jobs:
-      - swiftlint:
-          context: MOBILE_IOS_SDKS
-          filters:
-            tags:
-              ignore: /^v.*/
-      - test_superawesome_base:
-          context: MOBILE_IOS_SDKS
-          filters:
-            tags:
-              ignore: /^v.*/
-      - semantic_release_dry_run:
-          context: MOBILE_IOS_SDKS
-      - approve_dry_run_and_release:
-          type: approval
-          requires:
-            - semantic_release_dry_run
-      - auto_update_release_version:
-          context: MOBILE_IOS_SDKS
-          requires:
-            - approve_dry_run_and_release
+      # - swiftlint:
+      #     context: MOBILE_IOS_SDKS
+      #     filters:
+      #       tags:
+      #         ignore: /^v.*/
+      # - test_superawesome_base:
+      #     context: MOBILE_IOS_SDKS
+      #     filters:
+      #       tags:
+      #         ignore: /^v.*/
+      # - semantic_release_dry_run:
+      #     context: MOBILE_IOS_SDKS
+      # - approve_dry_run_and_release:
+      #     type: approval
+      #     requires:
+      #       - semantic_release_dry_run
+      # - auto_update_release_version:
+      #     context: MOBILE_IOS_SDKS
+      #     requires:
+      #       - approve_dry_run_and_release
       # - semantic_release:
       #     context: MOBILE_IOS_SDKS
       #     requires:
       #       - auto_update_release_version
       - sdk_push_superawesome:
           context: MOBILE_IOS_SDKS
-          requires:
-            - auto_update_release_version
       - sdk_push_superawesome_admob:
           context: MOBILE_IOS_SDKS
-          requires:
-            - auto_update_release_version
 
