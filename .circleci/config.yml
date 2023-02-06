@@ -9,6 +9,7 @@ references:
       FL_OUTPUT_DIR: output
       LC_ALL: en_GB.UTF-8
       LANG: en_GB.UTF-8
+      TERM: -T xterm-256color
 
   configure_google_services: &configure_google_services
     run:
@@ -128,6 +129,42 @@ jobs:
             git pull origin develop
             ${SA_PATH_TO_CONTINUOUS_INTEGRATION_REPO}/semantic-release/semantic-release.sh
 
+  auto_update_release_version:
+    <<: *ios_config
+    environment:
+      SA_SEMANTIC_RELEASE_RUN_BRANCH: develop
+    steps:
+      - checkout
+      - *generate_github_token
+      - *configure_google_services
+      - attach_workspace:
+          at: .
+      - run:
+          name: Auto update release version
+          command: |
+            NEXT_RELEASE_NUMBER=`cat nextRelease`
+            VERSION_PROPERTIES=Pod/Classes/Common/Model/Version.swift
+
+            if [[ ( ! -z "$NEXT_RELEASE_NUMBER" ) && ( -f "$VERSION_PROPERTIES" ) ]]; then
+
+              echo "****** Current release version ******"
+              cat $VERSION_PROPERTIES
+
+              echo "let SDK_VERSION = \"$NEXT_RELEASE_NUMBER\"" > $VERSION_PROPERTIES
+
+              echo "****** Updated release version ******"
+              cat $VERSION_PROPERTIES
+
+              git pull origin develop
+              git add $VERSION_PROPERTIES
+              git commit -m "Auto incremented version to $NEXT_RELEASE_NUMBER via Circle CI [skip ci]"
+              git push -q origin develop
+            else
+              echo "Next release version number not found, no new version to release."
+              exit 1
+            fi
+
+
   ## Run sdk push - base
   sdk_push_superawesome:
     <<: *ios_config
@@ -144,7 +181,7 @@ jobs:
       - *configure_google_services
       - run:
           name: Push Superawesome to cocoapods
-          command: bundle exec fastlane sdk_push isPrivateRepo:false
+          command: bundle exec fastlane sdk_push isPrivateRepo:false oSkipVersionBump:true
   ## Run sdk push - admob
   sdk_push_superawesome_admob:
     <<: *ios_config
@@ -161,7 +198,7 @@ jobs:
       - *configure_google_services
       - run:
           name: Push Superawesome-AdMob to cocoapods
-          command: bundle exec fastlane sdk_push isPrivateRepo:false
+          command: bundle exec fastlane sdk_push isPrivateRepo:false oSkipVersionBump:true
           
 workflows:
   build-test:
@@ -180,16 +217,24 @@ workflows:
           context: MOBILE_IOS_SDKS
           requires:
             - test_superawesome_base
-      - approve_release:
+      - approve_dry_run_and_release:
           type: approval
           requires:
-            - test_superawesome_base
-      - semantic_release:
+            - semantic_release_dry_run
+      - auto_update_release_version:
           context: MOBILE_IOS_SDKS
           requires:
-            - approve_release
+            - approve_dry_run_and_release
+      # - semantic_release:
+      #     context: MOBILE_IOS_SDKS
+      #     requires:
+      #       - auto_update_release_version
       - sdk_push_superawesome:
           context: MOBILE_IOS_SDKS
+          requires:
+            - auto_update_release_version
       - sdk_push_superawesome_admob:
           context: MOBILE_IOS_SDKS
+          requires:
+            - auto_update_release_version
 
