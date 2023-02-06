@@ -180,35 +180,16 @@ workflows:
           context: MOBILE_IOS_SDKS
           requires:
             - test_superawesome_base
-          filters:
-            branches:
-              only: develop
       - approve_release:
           type: approval
           requires:
             - test_superawesome_base
-          filters:
-            branches:
-              only: develop
       - semantic_release:
           context: MOBILE_IOS_SDKS
           requires:
             - approve_release
-          filters:
-            branches:
-              only: develop
       - sdk_push_superawesome:
           context: MOBILE_IOS_SDKS
-          filters:
-            tags:
-              only: /^v.*/
-            branches:
-              ignore: /.*/
       - sdk_push_superawesome_admob:
           context: MOBILE_IOS_SDKS
-          filters:
-            tags:
-              only: /^v.*/
-            branches:
-              ignore: /.*/
 
