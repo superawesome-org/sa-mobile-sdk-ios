@@ -171,6 +171,7 @@ jobs:
       SA_IOS_SDKS_MODULE: "SuperAwesome"
       SA_IOS_SDKS_PODFILE_PATH: "./Example/Podfile"
       SA_IOS_SDKS_HAS_PRIVATE_DEPENDENCIES: false
+      TERM: -T xterm-256color
     steps:
       - checkout
       - *generate_github_token
@@ -179,7 +180,7 @@ jobs:
       - *configure_google_services
       - run:
           name: Push Superawesome to cocoapods
-          command: bundle exec fastlane sdk_push isPrivateRepo:false oSkipVersionBump:true
+          command: bundle exec fastlane sdk_push isPrivateRepo:false skipVersionBump:true
   ## Run sdk push - admob
   sdk_push_superawesome_admob:
     <<: *ios_config
@@ -188,6 +189,7 @@ jobs:
       SA_IOS_SDKS_MODULE: "SuperAwesomeAdMob"
       SA_IOS_SDKS_PODFILE_PATH: "./Example/Podfile"
       SA_IOS_SDKS_HAS_PRIVATE_DEPENDENCIES: false
+      TERM: -T xterm-256color
     steps:
       - checkout
       - *generate_github_token
@@ -196,7 +198,7 @@ jobs:
       - *configure_google_services
       - run:
           name: Push Superawesome-AdMob to cocoapods
-          command: bundle exec fastlane sdk_push isPrivateRepo:false oSkipVersionBump:true
+          command: bundle exec fastlane sdk_push isPrivateRepo:false skipVersionBump:true
           
 workflows:
   build-test:
