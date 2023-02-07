@@ -153,10 +153,10 @@ jobs:
               echo "****** Updated release version ******"
               cat $VERSION_PROPERTIES
 
-              git pull origin develop
+              git pull
               git add $VERSION_PROPERTIES
               git commit -m "Auto incremented version to $NEXT_RELEASE_NUMBER via Circle CI [skip ci]"
-              git push -q origin develop
+              git push
             else
               echo "Next release version number not found, no new version to release."
               exit 1
@@ -219,16 +219,20 @@ workflows:
       #     type: approval
       #     requires:
       #       - semantic_release_dry_run
-      # - auto_update_release_version:
-      #     context: MOBILE_IOS_SDKS
-      #     requires:
-      #       - approve_dry_run_and_release
+      - auto_update_release_version:
+          context: MOBILE_IOS_SDKS
+          # requires:
+          #   - approve_dry_run_and_release
       # - semantic_release:
       #     context: MOBILE_IOS_SDKS
       #     requires:
       #       - auto_update_release_version
-      - sdk_push_superawesome:
-          context: MOBILE_IOS_SDKS
-      - sdk_push_superawesome_admob:
-          context: MOBILE_IOS_SDKS
+      # - sdk_push_superawesome:
+      #     context: MOBILE_IOS_SDKS
+      #     requires:
+      #       - semantic_release
+      # - sdk_push_superawesome_admob:
+      #     context: MOBILE_IOS_SDKS
+      #     requires:
+      #       - semantic_release
 
