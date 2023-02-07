@@ -42,7 +42,7 @@ public class VideoAd: NSObject, Injectable {
      *
      * - Parameters:
      *  - placementId: The Ad placement id to load data for
-     *  - options: an optional dictionary of data to send with an ad's requests and events
+     *  - options: an optional dictionary of data to send with an ad's requests and events. Supports String or Int values.
      */
     @objc
     public static func load(withPlacementId placementId: Int, options: [String: Any]? = nil) {
@@ -77,7 +77,7 @@ public class VideoAd: NSObject, Injectable {
      *   - placementId: the Ad placement id to load data for
      *   - lineItemId: id of the line item
      *   - creativeId: id of the creative
-     *   - options: an optional dictionary of data to send with an ad's requests and events
+     *   - options: an optional dictionary of data to send with an ad's requests and events. Supports String or Int values.
      */
     @objc
     public static func load(withPlacementId placementId: Int, lineItemId: Int, creativeId: Int, options: [String: Any]? = nil) {

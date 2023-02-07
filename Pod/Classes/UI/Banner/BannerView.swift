@@ -47,7 +47,7 @@ public class BannerView: UIView, Injectable {
      *
      * - Parameters:
      *  - placementId: the Ad placement id to load data for
-     *  - options: an optional dictionary of data to send with an ad's requests and events
+     *  - options: an optional dictionary of data to send with an ad's requests and events. Supports String or Int values.
      */
     @objc
     public func load(_ placementId: Int, options: [String: Any]? = nil) {
@@ -68,7 +68,7 @@ public class BannerView: UIView, Injectable {
      *   - placementId: the Ad placement id to load data for
      *   - lineItemId: id of the line item
      *   - creativeId: id of the creative
-     *   - options: an optional dictionary of data to send with an ad's requests and events
+     *   - options: an optional dictionary of data to send with an ad's requests and events. Supports String or Int values.
      */
     @objc
     public func load(_ placementId: Int, lineItemId: Int, creativeId: Int, options: [String: Any]? = nil) {
