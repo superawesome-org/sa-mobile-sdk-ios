@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0741648A2977061000C3D9A9 /* Timeouts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074164892977061000C3D9A9 /* Timeouts.swift */; };
 		0788DA8A29818A7F0087AE93 /* SuperAwesomeSwiftUIExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0788DA8929818A7F0087AE93 /* SuperAwesomeSwiftUIExampleApp.swift */; };
 		0788DA8E29818A800087AE93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0788DA8D29818A800087AE93 /* Assets.xcassets */; };
 		0788DA9129818A800087AE93 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0788DA9029818A800087AE93 /* Preview Assets.xcassets */; };
@@ -24,7 +25,6 @@
 		0788DACE29818C940087AE93 /* PlacementsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0788DACC29818C940087AE93 /* PlacementsTableView.swift */; };
 		0788DACF29818C940087AE93 /* ContentsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0788DACD29818C940087AE93 /* ContentsTableView.swift */; };
 		0788DAD129818C9A0087AE93 /* AdBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0788DAD029818C9A0087AE93 /* AdBannerView.swift */; };
-		0741648A2977061000C3D9A9 /* Timeouts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074164892977061000C3D9A9 /* Timeouts.swift */; };
 		1B76D2411C91EEB1000AE8F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B76D23F1C91EEB1000AE8F3 /* Main.storyboard */; };
 		1B76D2431C91EEB1000AE8F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B76D2421C91EEB1000AE8F3 /* Assets.xcassets */; };
 		1B76D2461C91EEB1000AE8F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B76D2441C91EEB1000AE8F3 /* LaunchScreen.storyboard */; };
@@ -135,6 +135,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		074164892977061000C3D9A9 /* Timeouts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timeouts.swift; sourceTree = "<group>"; };
 		0788DA8729818A7F0087AE93 /* SuperAwesomeSwiftUIExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperAwesomeSwiftUIExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0788DA8929818A7F0087AE93 /* SuperAwesomeSwiftUIExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperAwesomeSwiftUIExampleApp.swift; sourceTree = "<group>"; };
 		0788DA8D29818A800087AE93 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -155,7 +156,6 @@
 		0788DACC29818C940087AE93 /* PlacementsTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacementsTableView.swift; sourceTree = "<group>"; };
 		0788DACD29818C940087AE93 /* ContentsTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentsTableView.swift; sourceTree = "<group>"; };
 		0788DAD029818C9A0087AE93 /* AdBannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdBannerView.swift; sourceTree = "<group>"; };
-		074164892977061000C3D9A9 /* Timeouts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timeouts.swift; sourceTree = "<group>"; };
 		14DB9CADBD9717EB3B802403 /* Pods-SuperAwesomeExampleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesomeExampleUITests.debug.xcconfig"; path = "Target Support Files/Pods-SuperAwesomeExampleUITests/Pods-SuperAwesomeExampleUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		1B76D2331C91EEB1000AE8F3 /* SuperAwesomeExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperAwesomeExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B76D2401C91EEB1000AE8F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -914,7 +914,6 @@
 					};
 					CC6AE3CD284F906B002F7581 = {
 						CreatedOnToolsVersion = 13.3.1;
-						DevelopmentTeam = DCC9L689QJ;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 1B76D2321C91EEB1000AE8F3;
 					};
@@ -1407,6 +1406,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SuperAwesomeSwiftUIExample/Preview Content\"";
@@ -1426,6 +1426,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.superawesome.awesomeads.sdk.swiftui.SuperAwesomeSwiftUIExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1446,6 +1447,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SuperAwesomeSwiftUIExample/Preview Content\"";
@@ -1464,6 +1466,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.superawesome.awesomeads.sdk.swiftui.SuperAwesomeSwiftUIExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
@@ -1482,6 +1485,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = DCC9L689QJ;
@@ -1493,6 +1497,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.superawesome.awesomeads.sdk.swiftui.SuperAwesomeSwiftUIExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1513,6 +1518,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = DCC9L689QJ;
@@ -1523,6 +1529,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.superawesome.awesomeads.sdk.swiftui.SuperAwesomeSwiftUIExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
@@ -1541,6 +1548,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = DCC9L689QJ;
@@ -1552,6 +1560,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.superawesome.awesomeads.sdk.swiftui.SuperAwesomeSwiftUIExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1571,6 +1580,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = DCC9L689QJ;
@@ -1581,6 +1591,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.superawesome.awesomeads.sdk.swiftui.SuperAwesomeSwiftUIExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
@@ -1773,8 +1784,10 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
@@ -1783,6 +1796,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.superawesome.SuperAwesomeExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1803,8 +1817,10 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
@@ -1812,6 +1828,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.superawesome.SuperAwesomeExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
@@ -1830,9 +1847,10 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = DCC9L689QJ;
+				DEVELOPMENT_TEAM = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
@@ -1841,6 +1859,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.superawesome.SuperAwesomeExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1860,9 +1879,10 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = DCC9L689QJ;
+				DEVELOPMENT_TEAM = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
@@ -1870,6 +1890,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.superawesome.SuperAwesomeExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
