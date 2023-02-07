@@ -47,6 +47,15 @@ references:
 
 jobs:
 
+  checkout_code:
+    <<: *ios_config
+    steps:
+      - checkout
+      - persist_to_workspace:
+          root: "."
+          paths:
+            - "."
+
   swiftlint:
     docker:
       - image: bytesguy/swiftlint:latest
@@ -54,7 +63,8 @@ jobs:
           username: mydockerhub-user
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
-      - checkout
+      - attach_workspace:
+          at: .
       - *configure_google_services
       - run: swiftlint lint --reporter junit | tee result.xml
       - store_artifacts:
@@ -72,7 +82,8 @@ jobs:
       SA_IOS_SDKS_SCHEME: "SuperAwesomeExample"
       SA_IOS_SDKS_PATH_TO_WORKSPACE: "Example/SuperAwesomeExample"
     steps:
-      - checkout
+      - attach_workspace:
+          at: .
       - *generate_github_token
       - *clone_scripts_repo
       - *bootstrap_ios
@@ -102,7 +113,6 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      - checkout
       - *generate_github_token
       - *clone_scripts_repo
       - run:
@@ -119,7 +129,8 @@ jobs:
     environment:
       SA_SEMANTIC_RELEASE_RUN_BRANCH: develop
     steps:
-      - checkout
+      - attach_workspace:
+          at: .
       - *generate_github_token
       - *clone_scripts_repo
       - run:
@@ -133,7 +144,8 @@ jobs:
     environment:
       SA_SEMANTIC_RELEASE_RUN_BRANCH: develop
     steps:
-      - checkout
+      - attach_workspace:
+          at: .
       - *generate_github_token
       - attach_workspace:
           at: .
@@ -153,10 +165,10 @@ jobs:
               echo "****** Updated release version ******"
               cat $VERSION_PROPERTIES
 
-              git pull
+              git pull origin develop
               git add $VERSION_PROPERTIES
               git commit -m "Auto incremented version to $NEXT_RELEASE_NUMBER via Circle CI [skip ci]"
-              git push
+              git push -q origin develop
             else
               echo "Next release version number not found, no new version to release."
               exit 1
@@ -173,7 +185,8 @@ jobs:
       SA_IOS_SDKS_HAS_PRIVATE_DEPENDENCIES: false
       TERM: xterm-256color
     steps:
-      - checkout
+      - attach_workspace:
+          at: .
       - *generate_github_token
       - *clone_scripts_repo
       - *bootstrap_ios
@@ -191,7 +204,8 @@ jobs:
       SA_IOS_SDKS_HAS_PRIVATE_DEPENDENCIES: false
       TERM: xterm-256color
     steps:
-      - checkout
+      - attach_workspace:
+          at: .
       - *generate_github_token
       - *clone_scripts_repo
       - *bootstrap_ios
@@ -203,36 +217,75 @@ jobs:
 workflows:
   build-test:
     jobs:
-      # - swiftlint:
-      #     context: MOBILE_IOS_SDKS
-      #     filters:
-      #       tags:
-      #         ignore: /^v.*/
-      # - test_superawesome_base:
-      #     context: MOBILE_IOS_SDKS
-      #     filters:
-      #       tags:
-      #         ignore: /^v.*/
-      # - semantic_release_dry_run:
-      #     context: MOBILE_IOS_SDKS
-      # - approve_dry_run_and_release:
-      #     type: approval
-      #     requires:
-      #       - semantic_release_dry_run
+      - checkout_code:
+        context: MOBILE_IOS_SDKS
+
+      - swiftlint:
+          context: MOBILE_IOS_SDKS
+          requires:
+            - checkout_code
+          filters:
+            tags:
+              ignore: /^v.*/
+
+      - test_superawesome_base:
+          context: MOBILE_IOS_SDKS
+          requires:
+            - checkout_code
+          filters:
+            tags:
+              ignore: /^v.*/
+
+      - semantic_release_dry_run:
+          context: MOBILE_IOS_SDKS
+          requires:
+            - test_superawesome_base
+          filters:
+            branches:
+              only: develop
+
+      - approve_dry_run_and_release:
+          type: approval
+          requires:
+            - semantic_release_dry_run
+          filters:
+            branches:
+              only: develop
+
       - auto_update_release_version:
           context: MOBILE_IOS_SDKS
-          # requires:
-          #   - approve_dry_run_and_release
-      # - semantic_release:
-      #     context: MOBILE_IOS_SDKS
-      #     requires:
-      #       - auto_update_release_version
-      # - sdk_push_superawesome:
-      #     context: MOBILE_IOS_SDKS
-      #     requires:
-      #       - semantic_release
-      # - sdk_push_superawesome_admob:
-      #     context: MOBILE_IOS_SDKS
-      #     requires:
-      #       - semantic_release
+          requires:
+            - approve_dry_run_and_release
+          filters:
+            branches:
+              only: develop
+
+      - semantic_release:
+          context: MOBILE_IOS_SDKS
+          requires:
+            - auto_update_release_version
+          filters:
+            branches:
+              only: develop
+
+      - sdk_push_superawesome:
+          context: MOBILE_IOS_SDKS
+          requires:
+            - checkout_code
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
+
+      - sdk_push_superawesome_admob:
+          context: MOBILE_IOS_SDKS
+          requires:
+            - checkout_code
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
+
 
