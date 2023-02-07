@@ -77,8 +77,8 @@ jobs:
     <<: *ios_config
     environment:
       FL_OUTPUT_DIR: output
-      IOS_IPHONE_UI_TEST_DEVICE: "iPhone SE (3rd generation) (16.2)"
-      IOS_IPAD_UI_TEST_DEVICE: "iPad Pro (11-inch) (4th generation) (16.2)"
+      # IOS_IPHONE_UI_TEST_DEVICE: "iPhone SE (3rd generation) (16.2)"
+      # IOS_IPAD_UI_TEST_DEVICE: "iPad Pro (11-inch) (4th generation) (16.2)"
       SA_IOS_SDKS_SCHEME: "SuperAwesomeExample"
       SA_IOS_SDKS_PATH_TO_WORKSPACE: "Example/SuperAwesomeExample"
       TERM: xterm-256color
