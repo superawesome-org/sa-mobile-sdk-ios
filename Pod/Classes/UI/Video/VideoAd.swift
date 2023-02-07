@@ -35,8 +35,17 @@ public class VideoAd: NSObject, Injectable {
     // Internal control methods
     ////////////////////////////////////////////////////////////////////////////
 
-    @objc(load:)
-    public static func load(withPlacementId placementId: Int) {
+    /**
+     * Method that loads an ad into the queue.
+     * Ads can only be loaded once and then can be reloaded after they've
+     * been played.
+     *
+     * - Parameters:
+     *  - placementId: The Ad placement id to load data for
+     *  - options: an optional dictionary of data to send with an ad's requests and events. Supports String or Int values.
+     */
+    @objc
+    public static func load(withPlacementId placementId: Int, options: [String: Any]? = nil) {
         let adState = ads[placementId] ?? .none
 
         switch adState {
@@ -45,7 +54,7 @@ public class VideoAd: NSObject, Injectable {
 
             logger.success("Event callback: ad is started to load for placement \(placementId)")
 
-            adRepository.getAd(placementId: placementId, request: makeAdRequest()) { result in
+            adRepository.getAd(placementId: placementId, request: makeAdRequest(with: options)) { result in
                 switch result {
                 case .success(let response): self.onSuccess(placementId, response)
                 case .failure(let error): self.onFailure(placementId, error)
@@ -68,9 +77,10 @@ public class VideoAd: NSObject, Injectable {
      *   - placementId: the Ad placement id to load data for
      *   - lineItemId: id of the line item
      *   - creativeId: id of the creative
+     *   - options: an optional dictionary of data to send with an ad's requests and events. Supports String or Int values.
      */
-    @objc(load: lineItemId: creativeId:)
-    public static func load(withPlacementId placementId: Int, lineItemId: Int, creativeId: Int) {
+    @objc
+    public static func load(withPlacementId placementId: Int, lineItemId: Int, creativeId: Int, options: [String: Any]? = nil) {
         let adState = ads[placementId] ?? .none
 
         switch adState {
@@ -82,7 +92,7 @@ public class VideoAd: NSObject, Injectable {
             adRepository.getAd(placementId: placementId,
                                lineItemId: lineItemId,
                                creativeId: creativeId,
-                               request: makeAdRequest()) { result in
+                               request: makeAdRequest(with: options)) { result in
                 switch result {
                 case .success(let response): self.onSuccess(placementId, response)
                 case .failure(let error): self.onFailure(placementId, error)
@@ -96,7 +106,7 @@ public class VideoAd: NSObject, Injectable {
         }
     }
 
-    @objc(play:fromVC:)
+    @objc
     public static func play(withPlacementId placementId: Int, fromVc viewController: UIViewController) {
         let adState = ads[placementId] ?? .none
 
@@ -130,7 +140,7 @@ public class VideoAd: NSObject, Injectable {
         }
     }
 
-    @objc(hasAdAvailable:)
+    @objc
     public static func hasAdAvailable(placementId: Int) -> Bool {
         let adState = ads[placementId] ?? .none
         switch adState {
@@ -139,7 +149,7 @@ public class VideoAd: NSObject, Injectable {
         }
     }
 
-    private static func makeAdRequest() -> AdRequest {
+    private static func makeAdRequest(with options: [String: Any]?) -> AdRequest {
         let size = UIScreen.main.bounds.size
 
         return AdRequest(test: isTestingEnabled,
@@ -149,7 +159,8 @@ public class VideoAd: NSObject, Injectable {
                          startDelay: delay,
                          instl: AdRequest.FullScreen.on,
                          width: Int(size.width),
-                         height: Int(size.height))
+                         height: Int(size.height),
+                         options: options)
     }
 
     private static func onSuccess(_ placementId: Int, _ response: AdResponse) {

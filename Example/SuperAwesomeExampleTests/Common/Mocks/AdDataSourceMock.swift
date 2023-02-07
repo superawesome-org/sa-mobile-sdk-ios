@@ -44,7 +44,7 @@ class AdDataSourceMock: AwesomeAdsApiDataSourceType {
 
     }
 
-    func get(endPoint: String, params: [String: String], completion: OnResult<Void>?) {
+    func get(endPoint: String, params: [String: Any], completion: OnResult<Void>?) {
         completion?(mockEventResult)
     }
 }
