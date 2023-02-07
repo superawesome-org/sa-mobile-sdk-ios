@@ -89,18 +89,13 @@ jobs:
       - *bootstrap_ios
       - *configure_google_services
 
-      # Install CocoaPods in project
-      - run: 
-          name: Pod Install
-          command: cd Example && bundle exec pod install
-
       - run:
           name: Fastlane
           command: |
             cd Example/SuperAwesomeExampleUITests/MockServer
             /usr/bin/java -jar WireMock.jar &
             cd ../../../
-            bundle exec fastlane run_all_tests
+            fastlane run_all_tests
       - store_artifacts:
           path: output
       - store_test_results:
@@ -193,7 +188,7 @@ jobs:
       - *configure_google_services
       - run:
           name: Push Superawesome to cocoapods
-          command: bundle exec fastlane sdk_push isPrivateRepo:false skipVersionBump:true
+          command: fastlane sdk_push isPrivateRepo:false skipVersionBump:true
   ## Run sdk push - admob
   sdk_push_superawesome_admob:
     <<: *ios_config
@@ -212,7 +207,7 @@ jobs:
       - *configure_google_services
       - run:
           name: Push Superawesome-AdMob to cocoapods
-          command: bundle exec fastlane sdk_push isPrivateRepo:false skipVersionBump:true
+          command: fastlane sdk_push isPrivateRepo:false skipVersionBump:true
           
 workflows:
   build-test:
