@@ -1,5 +1,10 @@
 # .circleci/config.yml
 version: 2.1
+
+dependencies:
+  pre:
+  - curl -sS https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash
+
 references:
 
   ios_config: &ios_config
@@ -72,13 +77,10 @@ jobs:
       - store_test_results:
           path: result.xml
 
-  # Run unit and UI tests
-  test_superawesome_base:
+  # Run unit tests
+  test_superawesome_base_unit_tests:
     <<: *ios_config
     environment:
-      FL_OUTPUT_DIR: output
-      IOS_IPHONE_UI_TEST_DEVICE: "iPhone SE (3rd generation) (16.2)"
-      IOS_IPAD_UI_TEST_DEVICE: "iPad Pro (11-inch) (4th generation) (16.2)"
       SA_IOS_SDKS_SCHEME: "SuperAwesomeExample"
       SA_IOS_SDKS_PATH_TO_WORKSPACE: "Example/SuperAwesomeExample"
       SA_IOS_SDKS_PODFILE_PATH: "./Example/Podfile"
@@ -97,10 +99,47 @@ jobs:
             /usr/bin/java -jar WireMock.jar &
             cd ../../../
             fastlane run_all_tests
-      - store_artifacts:
-          path: output
       - store_test_results:
-          path: output/scan
+          path: "./fastlane/test_output"
+      - store_artifacts:
+          path: "./fastlane/test_output"
+          destination: scan-test-output
+      - store_artifacts:
+          path: ~/Library/Logs/scan
+          destination: scan-logs
+
+  # Run ui tests
+  test_superawesome_base_ui_tests:
+    <<: *ios_config
+    environment:
+      IOS_IPHONE_UI_TEST_DEVICE: "iPhone SE (3rd generation) (16.2)"
+      IOS_IPAD_UI_TEST_DEVICE: "iPad Pro (11-inch) (4th generation) (16.2)"
+      SA_IOS_SDKS_SCHEME: "SuperAwesomeExample - UITests"
+      SA_IOS_SDKS_PATH_TO_WORKSPACE: "Example/SuperAwesomeExample"
+      SA_IOS_SDKS_PODFILE_PATH: "./Example/Podfile"
+      TERM: xterm-256color
+    steps:
+      - attach_workspace:
+          at: .
+      - *generate_github_token
+      - *clone_scripts_repo
+      - *bootstrap_ios
+      - *configure_google_services
+      - run:
+          name: Fastlane
+          command: |
+            cd Example/SuperAwesomeExampleUITests/MockServer
+            /usr/bin/java -jar WireMock.jar &
+            cd ../../../
+            fastlane run_all_tests
+      - store_test_results:
+          path: "./fastlane/test_output"
+      - store_artifacts:
+          path: "./fastlane/test_output"
+          destination: scan-test-output
+      - store_artifacts:
+          path: ~/Library/Logs/scan
+          destination: scan-logs
 
   semantic_release_dry_run:
     <<: *ios_config
@@ -211,10 +250,36 @@ jobs:
           command: fastlane sdk_push isPrivateRepo:false skipVersionBump:true
           
 workflows:
-  build-test:
+  nightly:
+   triggers:
+    - schedule:
+       cron: "0 7 * * 1-5"
+       filters:
+         branches:
+           only:
+             - develop
+  jobs:
+    - checkout_code:
+          context: MOBILE_IOS_SDKS
+          branches:
+              only: develop
+
+    - test_superawesome_base_ui_tests:
+          context: MOBILE_IOS_SDKS
+          requires:
+            - checkout_code
+          branches:
+              only: develop
+
+  pull_request:
     jobs:
       - checkout_code:
           context: MOBILE_IOS_SDKS
+          filters:
+            tags:
+              ignore: /^v.*/
+            branches:
+              ignore: develop
 
       - swiftlint:
           context: MOBILE_IOS_SDKS
@@ -223,19 +288,64 @@ workflows:
           filters:
             tags:
               ignore: /^v.*/
+            branches:
+              ignore: develop
 
-      - test_superawesome_base:
+      - test_superawesome_base_unit_tests:
           context: MOBILE_IOS_SDKS
           requires:
             - checkout_code
           filters:
             tags:
               ignore: /^v.*/
+            branches:
+              ignore: develop
+
+      - test_superawesome_base_ui_tests:
+          context: MOBILE_IOS_SDKS
+          requires:
+            - checkout_code
+          filters:
+            tags:
+              ignore: /^v.*/
+            branches:
+              ignore: develop
+
+  develop:
+    jobs:
+      - checkout_code:
+          context: MOBILE_IOS_SDKS
+          branches:
+              only: develop
+
+      - swiftlint:
+          context: MOBILE_IOS_SDKS
+          requires:
+            - checkout_code
+          filters:
+            branches:
+              only: develop
+
+      - test_superawesome_base_unit_tests:
+          context: MOBILE_IOS_SDKS
+          requires:
+            - checkout_code
+          filters:
+            branches:
+              only: develop
+
+      - test_superawesome_base_ui_tests:
+          context: MOBILE_IOS_SDKS
+          requires:
+            - checkout_code
+          filters:
+            branches:
+              only: develop
 
       - semantic_release_dry_run:
           context: MOBILE_IOS_SDKS
           requires:
-            - test_superawesome_base
+            - test_superawesome_base_unit_tests
           filters:
             branches:
               only: develop
@@ -263,6 +373,15 @@ workflows:
           filters:
             branches:
               only: develop
+
+  release:
+      - checkout_code:
+          context: MOBILE_IOS_SDKS
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
 
       - sdk_push_superawesome:
           context: MOBILE_IOS_SDKS
