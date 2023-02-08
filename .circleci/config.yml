@@ -253,8 +253,10 @@ workflows:
   nightly:
     triggers:
       - schedule:
-          cron: "52 10 * * 1-5"
+          cron: "0 7 * * 1-5"
           filters:
+            tags:
+              ignore: /^v.*/
             branches:
               only:
                 - develop
@@ -262,6 +264,8 @@ workflows:
       - checkout_code:
           context: MOBILE_IOS_SDKS
           filters:
+            tags:
+              ignore: /^v.*/
             branches:
               only: develop
 
@@ -270,6 +274,8 @@ workflows:
           requires:
             - checkout_code
           filters:
+            tags:
+              ignore: /^v.*/
             branches:
               only: develop
 
@@ -311,7 +317,7 @@ workflows:
             tags:
               ignore: /^v.*/
             branches:
-              ignore: develop
+              only: /ui-tests\/.*/
 
   develop:
     jobs:
@@ -326,6 +332,8 @@ workflows:
           requires:
             - checkout_code
           filters:
+            tags:
+              ignore: /^v.*/
             branches:
               only: develop
 
@@ -334,6 +342,8 @@ workflows:
           requires:
             - checkout_code
           filters:
+            tags:
+              ignore: /^v.*/
             branches:
               only: develop
 
@@ -342,6 +352,8 @@ workflows:
           requires:
             - checkout_code
           filters:
+            tags:
+              ignore: /^v.*/
             branches:
               only: develop
 
@@ -350,6 +362,8 @@ workflows:
           requires:
             - test_superawesome_base_unit_tests
           filters:
+            tags:
+              ignore: /^v.*/
             branches:
               only: develop
 
@@ -358,6 +372,8 @@ workflows:
           requires:
             - semantic_release_dry_run
           filters:
+            tags:
+              ignore: /^v.*/
             branches:
               only: develop
 
@@ -366,6 +382,8 @@ workflows:
           requires:
             - approve_dry_run_and_release
           filters:
+            tags:
+              ignore: /^v.*/
             branches:
               only: develop
 
@@ -374,6 +392,8 @@ workflows:
           requires:
             - auto_update_release_version
           filters:
+            tags:
+              ignore: /^v.*/
             branches:
               only: develop
 
