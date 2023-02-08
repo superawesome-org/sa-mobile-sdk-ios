@@ -251,24 +251,26 @@ jobs:
           
 workflows:
   nightly:
-   triggers:
-    - schedule:
-       cron: "45 10 * * 1-5"
-       filters:
-         branches:
-           only:
-             - develop
-  jobs:
-    - checkout_code:
+    triggers:
+      - schedule:
+          cron: "45 10 * * 1-5"
+          filters:
+            branches:
+              only:
+                - develop
+    jobs:
+      - checkout_code:
           context: MOBILE_IOS_SDKS
-          branches:
+          filters:
+            branches:
               only: develop
 
-    - test_superawesome_base_ui_tests:
+      - test_superawesome_base_ui_tests:
           context: MOBILE_IOS_SDKS
           requires:
             - checkout_code
-          branches:
+          filters:
+            branches:
               only: develop
 
   pull_request:
@@ -315,7 +317,8 @@ workflows:
     jobs:
       - checkout_code:
           context: MOBILE_IOS_SDKS
-          branches:
+          filters:
+            branches:
               only: develop
 
       - swiftlint:
@@ -375,6 +378,7 @@ workflows:
               only: develop
 
   release:
+    jobs:
       - checkout_code:
           context: MOBILE_IOS_SDKS
           filters:
