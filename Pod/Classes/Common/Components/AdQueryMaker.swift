@@ -19,7 +19,7 @@ class AdQueryMaker: AdQueryMakerType {
     private let numberGenerator: NumberGeneratorType
     private let idGenerator: IdGeneratorType
     private let encoder: EncoderType
-    private let options: [String: String]?
+    private let options: [String: Any]?
 
     init(device: DeviceType,
          sdkInfo: SdkInfoType,
@@ -27,7 +27,7 @@ class AdQueryMaker: AdQueryMakerType {
          numberGenerator: NumberGeneratorType,
          idGenerator: IdGeneratorType,
          encoder: EncoderType,
-         options: [String: String]?) {
+         options: [String: Any]?) {
         self.device = device
         self.sdkInfo = sdkInfo
         self.connectionProvider = connectionProvider
@@ -54,7 +54,7 @@ class AdQueryMaker: AdQueryMakerType {
                                         instl: request.instl.rawValue,
                                         width: request.width,
                                         height: request.height),
-                    options: options)
+                    options: buildOptions(with: request.options))
     }
 
     func makeImpressionQuery(_ adResponse: AdResponse) -> QueryBundle {
@@ -68,7 +68,7 @@ class AdQueryMaker: AdQueryMakerType {
                                            type: .impressionDownloaded,
                                            noImage: true,
                                            data: nil),
-                    options: options)
+                    options: buildOptions(with: adResponse.requestOptions))
     }
 
     func makeClickQuery(_ adResponse: AdResponse) -> QueryBundle {
@@ -82,7 +82,7 @@ class AdQueryMaker: AdQueryMakerType {
                                            type: nil,
                                            noImage: nil,
                                            data: nil),
-                    options: options)
+                    options: buildOptions(with: adResponse.requestOptions))
     }
 
     func makeEventQuery(_ adResponse: AdResponse, _ eventData: EventData) -> QueryBundle {
@@ -96,6 +96,32 @@ class AdQueryMaker: AdQueryMakerType {
                                            type: eventData.type,
                                            noImage: nil,
                                            data: encoder.toJson(eventData)),
-                    options: options)
+                    options: buildOptions(with: adResponse.requestOptions))
+    }
+
+    private func buildOptions(with requestOptions: [String: Any]?) -> [String: Any] {
+        var optionsDict = [String: Any]()
+
+        if let options = options {
+            merge(options, with: &optionsDict)
+        }
+
+        if let requestOptions = requestOptions {
+            merge(requestOptions, with: &optionsDict)
+        }
+        return optionsDict
+    }
+
+    private func merge( _ new: [String: Any], with original: inout [String: Any]) {
+        for (key, value) in new {
+            switch(value) {
+            case let value as String:
+                original[key] = value
+            case let value as Int:
+                original[key] = value
+            default:
+                continue
+            }
+        }
     }
 }

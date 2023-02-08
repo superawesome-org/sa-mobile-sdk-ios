@@ -45,16 +45,18 @@ public class BannerView: UIView, Injectable {
      * Ads can only be loaded once and then can be reloaded after they've
      * been played.
      *
-     * - Parameter placementId: the Ad placement id to load data for
+     * - Parameters:
+     *  - placementId: the Ad placement id to load data for
+     *  - options: an optional dictionary of data to send with an ad's requests and events. Supports String or Int values.
      */
     @objc
-    public func load(_ placementId: Int) {
+    public func load(_ placementId: Int, options: [String: Any]? = nil) {
         logger.info("load() for: \(placementId)")
-        controller.load(placementId, makeAdRequest())
+        controller.load(placementId, makeAdRequest(with: options))
     }
 
     public func getAd() -> Ad? {
-       return controller.adResponse?.advert
+        return controller.adResponse?.advert
     }
 
     /**
@@ -66,11 +68,12 @@ public class BannerView: UIView, Injectable {
      *   - placementId: the Ad placement id to load data for
      *   - lineItemId: id of the line item
      *   - creativeId: id of the creative
+     *   - options: an optional dictionary of data to send with an ad's requests and events. Supports String or Int values.
      */
     @objc
-    public func load(_ placementId: Int, lineItemId: Int, creativeId: Int) {
+    public func load(_ placementId: Int, lineItemId: Int, creativeId: Int, options: [String: Any]? = nil) {
         logger.info("load() for placement Id: \(placementId) lineItemId: \(lineItemId), creativeId: \(creativeId)")
-        controller.load(placementId, lineItemId: lineItemId, creativeId: creativeId, makeAdRequest())
+        controller.load(placementId, lineItemId: lineItemId, creativeId: creativeId, makeAdRequest(with: options))
     }
 
     /// Method that, if an ad data is loaded, will play the content for the user
@@ -79,9 +82,9 @@ public class BannerView: UIView, Injectable {
         logger.info("play()")
         // guard against invalid ad formats
         guard let adResponse = controller.adResponse, let html = adResponse.html,
-            adResponse.advert.creative.format != CreativeFormatType.video, !controller.closed else {
-                controller.adFailedToShow()
-                return
+              adResponse.advert.creative.format != CreativeFormatType.video, !controller.closed else {
+            controller.adFailedToShow()
+            return
         }
 
         addWebView()
@@ -202,7 +205,7 @@ public class BannerView: UIView, Injectable {
         controller.adResponse = adResponse
     }
 
-    private func makeAdRequest() -> AdRequest {
+    private func makeAdRequest(with options: [String: Any]?) -> AdRequest {
         AdRequest(test: controller.testEnabled,
                   position: AdRequest.Position.aboveTheFold,
                   skip: AdRequest.Skip.no,
@@ -210,7 +213,8 @@ public class BannerView: UIView, Injectable {
                   startDelay: AdRequest.StartDelay.preRoll,
                   instl: AdRequest.FullScreen.off,
                   width: Int(frame.size.width),
-                  height: Int(frame.size.height))
+                  height: Int(frame.size.height),
+                  options: options)
     }
 
     private func addWebView() {

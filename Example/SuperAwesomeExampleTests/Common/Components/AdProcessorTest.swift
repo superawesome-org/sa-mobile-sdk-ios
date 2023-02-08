@@ -32,7 +32,7 @@ class AdProcessorTests: XCTestCase {
                                       logger: LoggerMock())
         // When
         let expectation = self.expectation(description: "request")
-        adProcessor.process(placementId, ad) { response in
+        adProcessor.process(placementId, ad, nil) { response in
             self.response = response
             expectation.fulfill()
         }
@@ -62,7 +62,7 @@ class AdProcessorTests: XCTestCase {
                                       logger: LoggerMock())
         // When
         let expectation = self.expectation(description: "request")
-        adProcessor.process(placementId, ad) { response in
+        adProcessor.process(placementId, ad, nil) { response in
             self.response = response
             expectation.fulfill()
         }
@@ -96,7 +96,6 @@ class AdProcessorTests: XCTestCase {
     func test_videoTag_vastRedirect_mergeVasts() throws {
         let downloadFilePath = "localfilepath"
         let first =  VastAd(type: .invalid, redirect: "redirecturl", impressions: ["url1"])
-
         let second =  VastAd(type: .inLine, impressions: ["url2"])
 
         testVideo("firsturl", filePath: downloadFilePath,
@@ -124,5 +123,4 @@ class AdProcessorTests: XCTestCase {
                   vastAd: VastAd(type: .inLine), secondVastAd: VastAd(type: .inLine),
                   impressionEventCount: nil)
     }
-
 }

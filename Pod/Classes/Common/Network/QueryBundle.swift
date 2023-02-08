@@ -7,7 +7,7 @@
 
 struct QueryBundle {
     let parameters: Codable
-    let options: [String: String]?
+    let options: [String: Any]?
 
     /// Build query parameters by joining default `parameters` and `options`
     func build() -> [String: Any] {

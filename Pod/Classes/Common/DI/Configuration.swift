@@ -10,11 +10,11 @@
 public class Configuration: NSObject {
     let environment: Environment
     let logging: Bool
-    let options: [String: String]?
+    let options: [String: Any]?
 
     public init(environment: Environment = .production,
                 logging: Bool = false,
-                options: [String: String]? = nil) {
+                options: [String: Any]? = nil) {
         self.environment = environment
         self.logging = logging
         self.options = options

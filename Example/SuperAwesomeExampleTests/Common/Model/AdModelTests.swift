@@ -38,7 +38,7 @@ class AdModelTests: XCTestCase {
             test: true,
             creative: creative,
             ksfRequest: nil)
-        let response = AdResponse(3000, ad)
+        let response = AdResponse(3000, ad, nil)
 
         // when
         let result = response.aspectRatio()
