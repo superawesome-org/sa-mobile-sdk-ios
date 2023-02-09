@@ -209,7 +209,6 @@ jobs:
               exit 1
             fi
 
-
   ## Run sdk push - base
   sdk_push_superawesome:
     <<: *ios_config
