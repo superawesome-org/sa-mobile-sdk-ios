@@ -153,7 +153,7 @@ jobs:
       - run:
           name: Check semantic release version
           command: |
-            ${SA_PATH_TO_CONTINUOUS_INTEGRATION_REPO}/semantic-release/semantic-release.sh --dry-run
+            ${SA_PATH_TO_CONTINUOUS_INTEGRATION_REPO}/mobile/semantic-release/semantic-release.sh --dry-run
       - persist_to_workspace:
           root: "."
           paths:
@@ -205,7 +205,7 @@ jobs:
       - run:
           name: Run semantic release
           command: |
-            ${SA_PATH_TO_CONTINUOUS_INTEGRATION_REPO}/semantic-release/semantic-release.sh
+            ${SA_PATH_TO_CONTINUOUS_INTEGRATION_REPO}/mobile/semantic-release/semantic-release.sh
 
   ## Run sdk push - base
   sdk_push_superawesome:
