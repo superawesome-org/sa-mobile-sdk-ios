@@ -260,7 +260,7 @@ workflows:
           context: MOBILE_IOS_SDKS
           filters:
             tags:
-              ignore: /^\d\.\d\.\d*/
+              ignore: /^\d+.\d+.\d+(-{1}[a-z]+)?$/
             branches:
               only: develop
 
@@ -270,7 +270,7 @@ workflows:
             - checkout_code
           filters:
             tags:
-              ignore: /^\d\.\d\.\d*/
+              ignore: /^\d+.\d+.\d+(-{1}[a-z]+)?$/
             branches:
               only: develop
 
@@ -280,7 +280,7 @@ workflows:
           context: MOBILE_IOS_SDKS
           filters:
             tags:
-              ignore: /^\d\.\d\.\d*/
+              ignore: /^\d+.\d+.\d+(-{1}[a-z]+)?$/
             branches:
               ignore: develop
 
@@ -290,7 +290,7 @@ workflows:
             - checkout_code
           filters:
             tags:
-              ignore: /^\d\.\d\.\d*/
+              ignore: /^\d+.\d+.\d+(-{1}[a-z]+)?$/
             branches:
               ignore: develop
 
@@ -300,7 +300,7 @@ workflows:
             - checkout_code
           filters:
             tags:
-              ignore: /^\d\.\d\.\d*/
+              ignore: /^\d+.\d+.\d+(-{1}[a-z]+)?$/
             branches:
               ignore: develop
 
@@ -310,7 +310,7 @@ workflows:
             - checkout_code
           filters:
             tags:
-              ignore: /^\d\.\d\.\d*/
+              ignore: /^\d+.\d+.\d+(-{1}[a-z]+)?$/
             branches:
               only: /ui-tests\/.*/
 
@@ -319,6 +319,8 @@ workflows:
       - checkout_code:
           context: MOBILE_IOS_SDKS
           filters:
+            tags:
+              ignore: /^\d+.\d+.\d+(-{1}[a-z]+)?$/
             branches:
               only: develop
 
@@ -328,7 +330,7 @@ workflows:
             - checkout_code
           filters:
             tags:
-              ignore: /^\d\.\d\.\d*/
+              ignore: /^\d+.\d+.\d+(-{1}[a-z]+)?$/
             branches:
               only: develop
 
@@ -338,7 +340,7 @@ workflows:
             - checkout_code
           filters:
             tags:
-              ignore: /^\d\.\d\.\d*/
+              ignore: /^\d+.\d+.\d+(-{1}[a-z]+)?$/
             branches:
               only: develop
 
@@ -348,7 +350,7 @@ workflows:
             - checkout_code
           filters:
             tags:
-              ignore: /^\d\.\d\.\d*/
+              ignore: /^\d+.\d+.\d+(-{1}[a-z]+)?$/
             branches:
               only: develop
 
@@ -358,7 +360,7 @@ workflows:
             - test_superawesome_base_unit_tests
           filters:
             tags:
-              ignore: /^\d\.\d\.\d*/
+              ignore: /^\d+.\d+.\d+(-{1}[a-z]+)?$/
             branches:
               only: develop
 
@@ -368,7 +370,7 @@ workflows:
             - semantic_release_dry_run
           filters:
             tags:
-              ignore: /^\d\.\d\.\d*/
+              ignore: /^\d+.\d+.\d+(-{1}[a-z]+)?$/
             branches:
               only: develop
 
@@ -378,7 +380,7 @@ workflows:
             - approve_dry_run_and_release
           filters:
             tags:
-              ignore: /^\d\.\d\.\d*/
+              ignore: /^\d+.\d+.\d+(-{1}[a-z]+)?$/
             branches:
               only: develop
 
@@ -388,7 +390,7 @@ workflows:
             - auto_update_release_version
           filters:
             tags:
-              ignore: /^\d\.\d\.\d*/
+              ignore: /^\d+.\d+.\d+(-{1}[a-z]+)?$/
             branches:
               only: develop
 
@@ -400,7 +402,7 @@ workflows:
             branches:
               ignore: /.*/
             tags:
-              only: /^\d\.\d\.\d*/
+              only: /^\d+.\d+.\d+(-{1}[a-z]+)?$/
 
       - sdk_push_superawesome:
           context: MOBILE_IOS_SDKS
@@ -410,7 +412,7 @@ workflows:
             branches:
               ignore: /.*/
             tags:
-              only: /^\d\.\d\.\d*/
+              only: /^\d+.\d+.\d+(-{1}[a-z]+)?$/
 
       - sdk_push_superawesome_admob:
           context: MOBILE_IOS_SDKS
@@ -420,4 +422,4 @@ workflows:
             branches:
               ignore: /.*/
             tags:
-              only: /^\d\.\d\.\d*/
+              only: /^\d+.\d+.\d+(-{1}[a-z]+)?$/
