@@ -159,21 +159,6 @@ jobs:
           paths:
             - "nextRelease"
 
-  semantic_release:
-    <<: *ios_config
-    environment:
-      SA_SEMANTIC_RELEASE_RUN_BRANCH: develop
-    steps:
-      - attach_workspace:
-          at: .
-      - *generate_github_token
-      - *clone_scripts_repo
-      - run:
-          name: Run semantic release
-          command: |
-            git pull origin develop
-            ${SA_PATH_TO_CONTINUOUS_INTEGRATION_REPO}/semantic-release/semantic-release.sh
-
   auto_update_release_version:
     <<: *ios_config
     environment:
@@ -181,9 +166,8 @@ jobs:
     steps:
       - attach_workspace:
           at: .
+      - checkout
       - *generate_github_token
-      - attach_workspace:
-          at: .
       - run:
           name: Auto update release version
           command: |
@@ -200,7 +184,6 @@ jobs:
               echo "****** Updated release version ******"
               cat $VERSION_PROPERTIES
 
-              git pull origin develop
               git add $VERSION_PROPERTIES
               git commit -m "Auto incremented version to $NEXT_RELEASE_NUMBER via Circle CI [skip ci]"
               git push -q origin develop
@@ -209,6 +192,20 @@ jobs:
               exit 1
             fi
 
+  semantic_release:
+    <<: *ios_config
+    environment:
+      SA_SEMANTIC_RELEASE_RUN_BRANCH: develop
+    steps:
+      - attach_workspace:
+          at: .
+      - checkout
+      - *generate_github_token
+      - *clone_scripts_repo
+      - run:
+          name: Run semantic release
+          command: |
+            ${SA_PATH_TO_CONTINUOUS_INTEGRATION_REPO}/semantic-release/semantic-release.sh
 
   ## Run sdk push - base
   sdk_push_superawesome:
@@ -400,29 +397,27 @@ workflows:
       - checkout_code:
           context: MOBILE_IOS_SDKS
           filters:
-            tags:
-              only: /^v.*/
             branches:
               ignore: /.*/
+            tags:
+              only: /^v.*/
 
       - sdk_push_superawesome:
           context: MOBILE_IOS_SDKS
           requires:
             - checkout_code
           filters:
-            tags:
-              only: /^v.*/
             branches:
               ignore: /.*/
+            tags:
+              only: /^v.*/
 
       - sdk_push_superawesome_admob:
           context: MOBILE_IOS_SDKS
           requires:
             - checkout_code
           filters:
-            tags:
-              only: /^v.*/
             branches:
               ignore: /.*/
-
-
+            tags:
+              only: /^v.*/
