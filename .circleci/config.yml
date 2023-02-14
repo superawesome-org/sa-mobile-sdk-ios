@@ -314,6 +314,14 @@ workflows:
             tags:
               ignore: /^v.*/
 
+      - semantic_release_dry_run:
+          context: MOBILE_IOS_SDKS
+          filters:
+            branches:
+              ignore: develop
+            tags:
+              ignore: /^v.*/
+
   develop:
     jobs:
       - checkout_code:
