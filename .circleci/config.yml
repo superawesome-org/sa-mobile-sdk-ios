@@ -153,7 +153,7 @@ jobs:
       - run:
           name: Check semantic release version
           command: |
-            ${SA_PATH_TO_CONTINUOUS_INTEGRATION_REPO}/mobile/semantic-release/semantic-release.sh --dry-run -t "/^\d+.\d+.\d+(-{1}[a-z]+)?$/"
+            ${SA_PATH_TO_CONTINUOUS_INTEGRATION_REPO}/mobile/semantic-release/semantic-release.sh --dry-run
       - persist_to_workspace:
           root: "."
           paths:
@@ -205,7 +205,7 @@ jobs:
       - run:
           name: Run semantic release
           command: |
-            ${SA_PATH_TO_CONTINUOUS_INTEGRATION_REPO}/mobile/semantic-release/semantic-release.sh -t "/^\d+.\d+.\d+(-{1}[a-z]+)?$/"
+            ${SA_PATH_TO_CONTINUOUS_INTEGRATION_REPO}/mobile/semantic-release/semantic-release.sh
 
   ## Run sdk push - base
   sdk_push_superawesome:
@@ -259,140 +259,140 @@ workflows:
       - checkout_code:
           context: MOBILE_IOS_SDKS
           filters:
-            tags:
-              ignore: /^\d+.\d+.\d+(-{1}[a-z]+)?$/
             branches:
               only: develop
+            tags:
+              ignore: /^v.*/
 
       - test_superawesome_base_ui_tests:
           context: MOBILE_IOS_SDKS
           requires:
             - checkout_code
           filters:
-            tags:
-              ignore: /^\d+.\d+.\d+(-{1}[a-z]+)?$/
             branches:
               only: develop
+            tags:
+              ignore: /^v.*/
 
   pull_request:
     jobs:
       - checkout_code:
           context: MOBILE_IOS_SDKS
           filters:
-            tags:
-              ignore: /^\d+.\d+.\d+(-{1}[a-z]+)?$/
             branches:
               ignore: develop
+            tags:
+              ignore: /^v.*/
 
       - swiftlint:
           context: MOBILE_IOS_SDKS
           requires:
             - checkout_code
           filters:
-            tags:
-              ignore: /^\d+.\d+.\d+(-{1}[a-z]+)?$/
             branches:
               ignore: develop
+            tags:
+              ignore: /^v.*/
 
       - test_superawesome_base_unit_tests:
           context: MOBILE_IOS_SDKS
           requires:
             - checkout_code
           filters:
-            tags:
-              ignore: /^\d+.\d+.\d+(-{1}[a-z]+)?$/
             branches:
               ignore: develop
+            tags:
+              ignore: /^v.*/
 
       - test_superawesome_base_ui_tests:
           context: MOBILE_IOS_SDKS
           requires:
             - checkout_code
           filters:
-            tags:
-              ignore: /^\d+.\d+.\d+(-{1}[a-z]+)?$/
             branches:
               only: /ui-tests\/.*/
+            tags:
+              ignore: /^v.*/
 
   develop:
     jobs:
       - checkout_code:
           context: MOBILE_IOS_SDKS
           filters:
-            tags:
-              ignore: /^\d+.\d+.\d+(-{1}[a-z]+)?$/
             branches:
               only: develop
+            tags:
+              ignore: /^v.*/
 
       - swiftlint:
           context: MOBILE_IOS_SDKS
           requires:
             - checkout_code
           filters:
-            tags:
-              ignore: /^\d+.\d+.\d+(-{1}[a-z]+)?$/
             branches:
               only: develop
+            tags:
+              ignore: /^v.*/
 
       - test_superawesome_base_unit_tests:
           context: MOBILE_IOS_SDKS
           requires:
             - checkout_code
           filters:
-            tags:
-              ignore: /^\d+.\d+.\d+(-{1}[a-z]+)?$/
             branches:
               only: develop
+            tags:
+              ignore: /^v.*/
 
       - test_superawesome_base_ui_tests:
           context: MOBILE_IOS_SDKS
           requires:
             - checkout_code
           filters:
-            tags:
-              ignore: /^\d+.\d+.\d+(-{1}[a-z]+)?$/
             branches:
               only: develop
+            tags:
+              ignore: /^v.*/
 
       - semantic_release_dry_run:
           context: MOBILE_IOS_SDKS
           requires:
             - test_superawesome_base_unit_tests
           filters:
-            tags:
-              ignore: /^\d+.\d+.\d+(-{1}[a-z]+)?$/
             branches:
               only: develop
+            tags:
+              ignore: /^v.*/
 
       - approve_dry_run_and_release:
           type: approval
           requires:
             - semantic_release_dry_run
           filters:
-            tags:
-              ignore: /^\d+.\d+.\d+(-{1}[a-z]+)?$/
             branches:
               only: develop
+            tags:
+              ignore: /^v.*/
 
       - auto_update_release_version:
           context: MOBILE_IOS_SDKS
           requires:
             - approve_dry_run_and_release
           filters:
-            tags:
-              ignore: /^\d+.\d+.\d+(-{1}[a-z]+)?$/
             branches:
               only: develop
+            tags:
+              ignore: /^v.*/
 
       - semantic_release:
           context: MOBILE_IOS_SDKS
           requires:
             - auto_update_release_version
           filters:
-            tags:
-              ignore: /^\d+.\d+.\d+(-{1}[a-z]+)?$/
             branches:
               only: develop
+            tags:
+              ignore: /^v.*/
 
   release:
     jobs:
@@ -402,7 +402,7 @@ workflows:
             branches:
               ignore: /.*/
             tags:
-              only: /^\d+.\d+.\d+(-{1}[a-z]+)?$/
+              only: /^v.*/
 
       - sdk_push_superawesome:
           context: MOBILE_IOS_SDKS
@@ -412,7 +412,7 @@ workflows:
             branches:
               ignore: /.*/
             tags:
-              only: /^\d+.\d+.\d+(-{1}[a-z]+)?$/
+              only: /^v.*/
 
       - sdk_push_superawesome_admob:
           context: MOBILE_IOS_SDKS
@@ -422,4 +422,4 @@ workflows:
             branches:
               ignore: /.*/
             tags:
-              only: /^\d+.\d+.\d+(-{1}[a-z]+)?$/
+              only: /^v.*/
