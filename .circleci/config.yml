@@ -167,13 +167,13 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      - checkout
       - *generate_github_token
       - run:
           name: Auto update release version
           command: |
-            NEXT_RELEASE_NUMBER=`cat nextRelease`
-            VERSION_PROPERTIES=Pod/Classes/Common/Model/Version.swift
+            echo "export NEXT_RELEASE_NUMBER=`cat nextRelease`" >> $BASH_ENV
+            echo "export VERSION_PROPERTIES=Pod/Classes/Common/Model/Version.swift" >> $BASH_ENV
+            source $BASH_ENV
 
             if [[ ( ! -z "$NEXT_RELEASE_NUMBER" ) && ( -f "$VERSION_PROPERTIES" ) ]]; then
 
@@ -185,10 +185,10 @@ jobs:
               echo "****** Updated release version ******"
               cat $VERSION_PROPERTIES
 
-              git pull origin develop
+              git pull https://x-access-token:${GITHUB_TOKEN}@github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git develop
               git add $VERSION_PROPERTIES
               git commit -m "Auto incremented version to $NEXT_RELEASE_NUMBER via Circle CI [skip ci]"
-              git push -q origin develop
+              git push https://x-access-token:${GITHUB_TOKEN}@github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git -q develop
             else
               echo "Next release version number not found, no new version to release."
               exit 1
@@ -201,7 +201,6 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      - checkout
       - *generate_github_token
       - *clone_scripts_repo
       - run:
