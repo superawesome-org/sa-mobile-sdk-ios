@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
   s.source = {
   	:git => 'https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git',
   	:branch => 'develop',
-  	:tag => "#{s.version}"
+  	:tag => "v#{s.version}"
   }
   s.static_framework = false
 
