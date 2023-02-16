@@ -206,6 +206,7 @@ jobs:
       - run:
           name: Run semantic release
           command: |
+            git pull https://x-access-token:${GITHUB_TOKEN}@github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git ${SA_SEMANTIC_RELEASE_RUN_BRANCH}
             ${SA_PATH_TO_CONTINUOUS_INTEGRATION_REPO}/mobile/semantic-release/semantic-release.sh
 
   ## Run sdk push - base
