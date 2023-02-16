@@ -46,8 +46,8 @@ public class VideoAd: NSObject, Injectable {
      */
 
     @objc
-    public static func load(withPlacementId placementId: Int) {
-        load(withPlacementId: placementId, options: nil)
+    public static func load(_ placementId: Int) {
+        load(placementId, options: nil)
     }
 
     /**
@@ -60,7 +60,7 @@ public class VideoAd: NSObject, Injectable {
      *  - options: an optional dictionary of data to send with an ad's requests and events. Supports String or Int values.
      */
     @objc
-    public static func load(withPlacementId placementId: Int, options: [String: Any]? = nil) {
+    public static func load(_ placementId: Int, options: [String: Any]? = nil) {
         let adState = ads[placementId] ?? .none
 
         switch adState {
@@ -94,8 +94,8 @@ public class VideoAd: NSObject, Injectable {
      *   - creativeId: id of the creative
      */
     @objc
-    public static func load(withPlacementId placementId: Int, lineItemId: Int, creativeId: Int) {
-        load(withPlacementId: placementId, lineItemId: lineItemId, creativeId: creativeId, options: nil)
+    public static func load(_ placementId: Int, lineItemId: Int, creativeId: Int) {
+        load(placementId, lineItemId: lineItemId, creativeId: creativeId, options: nil)
     }
 
     /**
@@ -110,7 +110,7 @@ public class VideoAd: NSObject, Injectable {
      *   - options: an optional dictionary of data to send with an ad's requests and events. Supports String or Int values.
      */
     @objc
-    public static func load(withPlacementId placementId: Int, lineItemId: Int, creativeId: Int, options: [String: Any]? = nil) {
+    public static func load(_ placementId: Int, lineItemId: Int, creativeId: Int, options: [String: Any]? = nil) {
         let adState = ads[placementId] ?? .none
 
         switch adState {
@@ -137,7 +137,7 @@ public class VideoAd: NSObject, Injectable {
     }
 
     @objc
-    public static func play(withPlacementId placementId: Int, fromVc viewController: UIViewController) {
+    public static func play(_ placementId: Int, fromVc viewController: UIViewController) {
         let adState = ads[placementId] ?? .none
 
         switch adState {
@@ -171,7 +171,7 @@ public class VideoAd: NSObject, Injectable {
     }
 
     @objc
-    public static func hasAdAvailable(placementId: Int) -> Bool {
+    public static func hasAdAvailable(_ placementId: Int) -> Bool {
         let adState = ads[placementId] ?? .none
         switch adState {
         case .hasAd: return true
