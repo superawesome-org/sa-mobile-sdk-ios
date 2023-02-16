@@ -1,3 +1,13 @@
+## [8.5.3](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/compare/v8.5.2...v8.5.3) (2023-02-16)
+
+
+### Bug Fixes
+
+* Added wrapper methods for obj-c / Unity compatibility ([#259](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/issues/259)) ([16bc985](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/commit/16bc985c663a97739634157f78f9d2570894d850))
+* **CI:** Added Tag format to semantic release ([#251](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/issues/251)) ([6106dd7](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/commit/6106dd706a7551b50a17231b00ce10d7251610c2))
+* **CI:** Fixed missing git pull step for semantic release ([#258](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/issues/258)) ([0a327b8](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/commit/0a327b85ed9f7b5ad810153375fafdd081b6f662))
+* **version:** Fixed version number in podspec ([#256](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/issues/256)) ([41cdb50](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/commit/41cdb500b97270ac32e2eab9f7b158dd01f30c4c))
+
 CHANGELOG
 =========
 
@@ -357,4 +367,3 @@ with regards to rewarded videos since now you can trigger your reward UI while s
  - Added new publisher interface for SABannerAd, SAInterstitialAd, SAVideoAd
  - In this new version each type of ad is responsbile for loading & playing the ad unit
  - Also, once an ad has been played, it has to be loaded again
-
