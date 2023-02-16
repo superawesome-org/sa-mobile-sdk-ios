@@ -227,7 +227,7 @@ class MainViewController: UIViewController {
             print(" VideoAd >> \(event.name())")
 
             if event == .adLoaded {
-                VideoAd.play(withPlacementId: placementId, fromVc: self)
+                VideoAd.play(placementId, fromVc: self)
             }
         }
     }
@@ -239,7 +239,7 @@ class MainViewController: UIViewController {
         case .interstitial:
             InterstitialAd.load(item.placementId)
         case .video:
-            VideoAd.load(withPlacementId: item.placementId)
+            VideoAd.load(item.placementId)
         }
     }
 
@@ -261,7 +261,7 @@ class MainViewController: UIViewController {
             )
         case .video:
             VideoAd.load(
-                withPlacementId: item.placementId,
+                item.placementId,
                 lineItemId: lineItemId,
                 creativeId: creativeId
             )
