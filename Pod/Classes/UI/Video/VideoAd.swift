@@ -35,6 +35,21 @@ public class VideoAd: NSObject, Injectable {
     // Internal control methods
     ////////////////////////////////////////////////////////////////////////////
 
+
+    /**
+     * Method that loads an ad into the queue.
+     * Ads can only be loaded once and then can be reloaded after they've
+     * been played.
+     *
+     * - Parameters:
+     *  - placementId: The Ad placement id to load data for
+     */
+
+    @objc
+    public static func load(withPlacementId placementId: Int) {
+        load(withPlacementId: placementId, options: nil)
+    }
+
     /**
      * Method that loads an ad into the queue.
      * Ads can only be loaded once and then can be reloaded after they've
@@ -66,6 +81,21 @@ public class VideoAd: NSObject, Injectable {
             logger.success("Event callback: adAlreadyLoaded for placement \(placementId)")
             callback?(placementId, .adAlreadyLoaded)
         }
+    }
+
+    /**
+     * Method that loads an ad into the queue.
+     * Ads can only be loaded once and then can be reloaded after they've
+     * been played.
+     *
+     * - Parameters:
+     *   - placementId: the Ad placement id to load data for
+     *   - lineItemId: id of the line item
+     *   - creativeId: id of the creative
+     */
+    @objc
+    public static func load(withPlacementId placementId: Int, lineItemId: Int, creativeId: Int) {
+        load(withPlacementId: placementId, lineItemId: lineItemId, creativeId: creativeId, options: nil)
     }
 
     /**

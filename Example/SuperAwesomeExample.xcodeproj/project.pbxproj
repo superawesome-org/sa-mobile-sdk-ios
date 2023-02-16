@@ -97,6 +97,7 @@
 		CC3A52B2290F252C00484D1B /* WireMock.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = CC3A52AE290F252C00484D1B /* WireMock.jar */; };
 		CC3A52B6290F25D900484D1B /* XCTestCase+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3A52B5290F25D900484D1B /* XCTestCase+Extensions.swift */; };
 		CC469474296EFE30003E28CB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC469473296EFE30003E28CB /* Constants.swift */; };
+		CC5058B0299E47D700440326 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CC5058AF299E47D700440326 /* GoogleService-Info.plist */; };
 		CC6AE3D1284F906B002F7581 /* VideoAdUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6AE3D0284F906B002F7581 /* VideoAdUITests.swift */; };
 		CCDA7340283E56CB00A75542 /* AwesomeAdsTargetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDA733F283E56CB00A75542 /* AwesomeAdsTargetTests.swift */; };
 		CCFF5B53296F9E5F00707BBD /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFF5B52296F9E5F00707BBD /* ItemCell.swift */; };
@@ -247,6 +248,7 @@
 		CC3A52AE290F252C00484D1B /* WireMock.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; path = WireMock.jar; sourceTree = "<group>"; };
 		CC3A52B5290F25D900484D1B /* XCTestCase+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Extensions.swift"; sourceTree = "<group>"; };
 		CC469473296EFE30003E28CB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		CC5058AF299E47D700440326 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CC6AE3CE284F906B002F7581 /* SuperAwesomeExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperAwesomeExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC6AE3D0284F906B002F7581 /* VideoAdUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoAdUITests.swift; sourceTree = "<group>"; };
 		CCDA733F283E56CB00A75542 /* AwesomeAdsTargetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwesomeAdsTargetTests.swift; sourceTree = "<group>"; };
@@ -452,6 +454,7 @@
 		1B76D2351C91EEB1000AE8F3 /* SuperAwesome */ = {
 			isa = PBXGroup;
 			children = (
+				CC5058AF299E47D700440326 /* GoogleService-Info.plist */,
 				CCFF5B51296F9E3700707BBD /* UI */,
 				1BB5F58E1ED6CC4F00ACD72E /* Storyboards */,
 				1BB5F58D1ED6CC4300ACD72E /* Meta */,
@@ -972,6 +975,7 @@
 			files = (
 				1B76D2461C91EEB1000AE8F3 /* LaunchScreen.storyboard in Resources */,
 				CC194D19296ED4E20068B85F /* GoogleService-Info.plist in Resources */,
+				CC5058B0299E47D700440326 /* GoogleService-Info.plist in Resources */,
 				1B76D2431C91EEB1000AE8F3 /* Assets.xcassets in Resources */,
 				1B76D2411C91EEB1000AE8F3 /* Main.storyboard in Resources */,
 			);

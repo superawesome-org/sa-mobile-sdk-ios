@@ -27,12 +27,40 @@ public class InterstitialAd: NSObject, Injectable {
      *
      * - Parameters:
      *  - placementId: The Ad placement id to load data for
+     */
+    @objc
+    public class func load(_ placementId: Int) {
+        load(placementId, options: nil)
+    }
+
+    /**
+     * Method that loads an ad into the queue.
+     * Ads can only be loaded once and then can be reloaded after they've
+     * been played.
+     *
+     * - Parameters:
+     *  - placementId: The Ad placement id to load data for
      *  - options: an optional dictionary of data to send with an ad's requests and events. Supports String or Int values.
      */
     @objc
     public class func load(_ placementId: Int, options: [String: Any]? = nil) {
         logger.info("load() for: \(placementId)")
         controller.load(placementId, makeAdRequest(with: options))
+    }
+
+    /**
+     * Method that loads an ad into the queue.
+     * Ads can only be loaded once and then can be reloaded after they've
+     * been played.
+     *
+     * - Parameters:
+     *   - placementId: the Ad placement id to load data for
+     *   - lineItemId: id of the line item
+     *   - creativeId: id of the creative
+     */
+    @objc
+    public class func load(_ placementId: Int, lineItemId: Int, creativeId: Int) {
+        load(placementId, lineItemId: lineItemId, creativeId: creativeId, options: nil)
     }
 
     /**

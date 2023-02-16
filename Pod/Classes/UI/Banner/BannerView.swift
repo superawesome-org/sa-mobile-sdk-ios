@@ -47,6 +47,19 @@ public class BannerView: UIView, Injectable {
      *
      * - Parameters:
      *  - placementId: the Ad placement id to load data for
+     */
+    @objc
+    public func load(_ placementId: Int) {
+        load(placementId, options: nil)
+    }
+
+    /**
+     * Method that loads an ad into the queue.
+     * Ads can only be loaded once and then can be reloaded after they've
+     * been played.
+     *
+     * - Parameters:
+     *  - placementId: the Ad placement id to load data for
      *  - options: an optional dictionary of data to send with an ad's requests and events. Supports String or Int values.
      */
     @objc
@@ -55,8 +68,19 @@ public class BannerView: UIView, Injectable {
         controller.load(placementId, makeAdRequest(with: options))
     }
 
-    public func getAd() -> Ad? {
-        return controller.adResponse?.advert
+    /**
+     * Method that loads an ad into the queue.
+     * Ads can only be loaded once and then can be reloaded after they've
+     * been played.
+     *
+     * - Parameters:
+     *   - placementId: the Ad placement id to load data for
+     *   - lineItemId: id of the line item
+     *   - creativeId: id of the creative
+     */
+    @objc
+    public func load(_ placementId: Int, lineItemId: Int, creativeId: Int) {
+        load(placementId, lineItemId: lineItemId, creativeId: creativeId, options: nil)
     }
 
     /**
@@ -74,6 +98,10 @@ public class BannerView: UIView, Injectable {
     public func load(_ placementId: Int, lineItemId: Int, creativeId: Int, options: [String: Any]? = nil) {
         logger.info("load() for placement Id: \(placementId) lineItemId: \(lineItemId), creativeId: \(creativeId)")
         controller.load(placementId, lineItemId: lineItemId, creativeId: creativeId, makeAdRequest(with: options))
+    }
+
+    public func getAd() -> Ad? {
+       controller.adResponse?.advert
     }
 
     /// Method that, if an ad data is loaded, will play the content for the user
