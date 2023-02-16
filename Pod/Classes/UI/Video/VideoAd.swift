@@ -45,8 +45,8 @@ public class VideoAd: NSObject, Injectable {
      *  - placementId: The Ad placement id to load data for
      */
 
-    @objc
-    public static func load(_ placementId: Int) {
+    @objc(load:)
+    public static func load(withPlacementId placementId: Int) {
         load(placementId, options: nil)
     }
 
@@ -93,8 +93,8 @@ public class VideoAd: NSObject, Injectable {
      *   - lineItemId: id of the line item
      *   - creativeId: id of the creative
      */
-    @objc
-    public static func load(_ placementId: Int, lineItemId: Int, creativeId: Int) {
+    @objc(load: lineItemId: creativeId:)
+    public static func load(withPlacementId placementId: Int, lineItemId: Int, creativeId: Int) {
         load(placementId, lineItemId: lineItemId, creativeId: creativeId, options: nil)
     }
 
@@ -136,8 +136,8 @@ public class VideoAd: NSObject, Injectable {
         }
     }
 
-    @objc
-    public static func play(_ placementId: Int, fromVc viewController: UIViewController) {
+    @objc(play:fromVC:)
+    public static func play(withPlacementId placementId: Int, fromVc viewController: UIViewController) {
         let adState = ads[placementId] ?? .none
 
         switch adState {
@@ -170,8 +170,8 @@ public class VideoAd: NSObject, Injectable {
         }
     }
 
-    @objc
-    public static func hasAdAvailable(_ placementId: Int) -> Bool {
+    @objc(hasAdAvailable:)
+    public static func hasAdAvailable(placementId: Int) -> Bool {
         let adState = ads[placementId] ?? .none
         switch adState {
         case .hasAd: return true
