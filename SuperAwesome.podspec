@@ -8,7 +8,6 @@ Pod::Spec.new do |s|
   s.homepage = 'https://doc.superawesome.tv/sa-mobile-sdk-ios/latest/'
   s.documentation_url = 'https://doc.superawesome.tv/sa-mobile-sdk-ios/latest/'
   s.author = {
-     'Gabriel Coman' => 'gabriel.coman@superawesome.com',
      'Gunhan Sancar' => 'gunhan.sancar@superawesome.com',
      'Tom O\'Rourke' => 'tom.orourke@superawesome.com',
      'Myles Eynon' => 'myles.eynon@superawesome.com'

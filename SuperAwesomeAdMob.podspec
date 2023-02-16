@@ -7,7 +7,11 @@ Pod::Spec.new do |s|
   DESC
   s.homepage = 'https://doc.superawesome.tv/sa-mobile-sdk-ios/latest/'
   s.documentation_url = 'https://doc.superawesome.tv/sa-mobile-sdk-ios/latest/'
-  s.author = { 'Gunhan Sancar' => 'gunhan.sancar@superawesome.com' }
+    s.author = {
+     'Gunhan Sancar' => 'gunhan.sancar@superawesome.com',
+     'Tom O\'Rourke' => 'tom.orourke@superawesome.com',
+     'Myles Eynon' => 'myles.eynon@superawesome.com'
+  }
   s.source = {
     :git => 'https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git',
     :branch => 'develop',
