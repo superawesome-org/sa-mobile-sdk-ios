@@ -101,7 +101,7 @@ public class BannerView: UIView, Injectable {
     }
 
     public func getAd() -> Ad? {
-        return controller.adResponse?.advert
+       controller.adResponse?.advert
     }
 
     /// Method that, if an ad data is loaded, will play the content for the user
