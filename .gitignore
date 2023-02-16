@@ -69,5 +69,6 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 
+Example/Podfile.lock
 Example/Pods/*
 /.idea
