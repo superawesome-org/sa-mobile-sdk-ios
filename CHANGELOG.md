@@ -1,3 +1,10 @@
+## [8.5.4](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/compare/v8.5.3...v8.5.4) (2023-02-17)
+
+
+### Bug Fixes
+
+* **VideoAd:** updated the loading / play and hasAdAvailable methods for consistency ([#262](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/issues/262)) ([7325d5b](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/commit/7325d5b3ebc9ded6eee5594c2693a63443dfe068))
+
 ## [8.5.3](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/compare/v8.5.2...v8.5.3) (2023-02-16)
 
 
