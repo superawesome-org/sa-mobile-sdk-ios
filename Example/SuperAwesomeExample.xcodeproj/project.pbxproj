@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0741648A2977061000C3D9A9 /* Timeouts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074164892977061000C3D9A9 /* Timeouts.swift */; };
+		07554853299FF28D00DA5C29 /* GetPlacements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07554852299FF28D00DA5C29 /* GetPlacements.swift */; };
+		07554858299FFB8700DA5C29 /* FeaturesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07554857299FFB8700DA5C29 /* FeaturesViewModel.swift */; };
 		0788DA8A29818A7F0087AE93 /* SuperAwesomeSwiftUIExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0788DA8929818A7F0087AE93 /* SuperAwesomeSwiftUIExampleApp.swift */; };
 		0788DA8E29818A800087AE93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0788DA8D29818A800087AE93 /* Assets.xcassets */; };
 		0788DA9129818A800087AE93 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0788DA9029818A800087AE93 /* Preview Assets.xcassets */; };
@@ -25,6 +27,13 @@
 		0788DACE29818C940087AE93 /* PlacementsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0788DACC29818C940087AE93 /* PlacementsTableView.swift */; };
 		0788DACF29818C940087AE93 /* ContentsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0788DACD29818C940087AE93 /* ContentsTableView.swift */; };
 		0788DAD129818C9A0087AE93 /* AdBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0788DAD029818C9A0087AE93 /* AdBannerView.swift */; };
+		07A6F47329A00008004FED87 /* Features.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A6F47229A00008004FED87 /* Features.swift */; };
+		07A6F47529A3DE95004FED87 /* FeatureType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0788DAB629818C2E0087AE93 /* FeatureType.swift */; };
+		07A6F47629A3DE95004FED87 /* Features.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A6F47229A00008004FED87 /* Features.swift */; };
+		07A6F47729A3DE95004FED87 /* PlacementItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0788DABE29818C470087AE93 /* PlacementItem.swift */; };
+		07A6F47829A3DE95004FED87 /* FeatureItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0788DABF29818C470087AE93 /* FeatureItem.swift */; };
+		07A6F47929A3DE95004FED87 /* FeaturesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07554857299FFB8700DA5C29 /* FeaturesViewModel.swift */; };
+		07A6F47A29A3DE95004FED87 /* GetPlacements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07554852299FF28D00DA5C29 /* GetPlacements.swift */; };
 		1B76D2411C91EEB1000AE8F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B76D23F1C91EEB1000AE8F3 /* Main.storyboard */; };
 		1B76D2431C91EEB1000AE8F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B76D2421C91EEB1000AE8F3 /* Assets.xcassets */; };
 		1B76D2461C91EEB1000AE8F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B76D2441C91EEB1000AE8F3 /* LaunchScreen.storyboard */; };
@@ -96,7 +105,6 @@
 		CC3A52A9290F23ED00484D1B /* LaunchArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3A52A8290F23ED00484D1B /* LaunchArguments.swift */; };
 		CC3A52B2290F252C00484D1B /* WireMock.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = CC3A52AE290F252C00484D1B /* WireMock.jar */; };
 		CC3A52B6290F25D900484D1B /* XCTestCase+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3A52B5290F25D900484D1B /* XCTestCase+Extensions.swift */; };
-		CC469474296EFE30003E28CB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC469473296EFE30003E28CB /* Constants.swift */; };
 		CC5058B0299E47D700440326 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CC5058AF299E47D700440326 /* GoogleService-Info.plist */; };
 		CC6AE3D1284F906B002F7581 /* VideoAdUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6AE3D0284F906B002F7581 /* VideoAdUITests.swift */; };
 		CCDA7340283E56CB00A75542 /* AwesomeAdsTargetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDA733F283E56CB00A75542 /* AwesomeAdsTargetTests.swift */; };
@@ -137,6 +145,8 @@
 
 /* Begin PBXFileReference section */
 		074164892977061000C3D9A9 /* Timeouts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timeouts.swift; sourceTree = "<group>"; };
+		07554852299FF28D00DA5C29 /* GetPlacements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlacements.swift; sourceTree = "<group>"; };
+		07554857299FFB8700DA5C29 /* FeaturesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturesViewModel.swift; sourceTree = "<group>"; };
 		0788DA8729818A7F0087AE93 /* SuperAwesomeSwiftUIExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperAwesomeSwiftUIExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0788DA8929818A7F0087AE93 /* SuperAwesomeSwiftUIExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperAwesomeSwiftUIExampleApp.swift; sourceTree = "<group>"; };
 		0788DA8D29818A800087AE93 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -157,6 +167,7 @@
 		0788DACC29818C940087AE93 /* PlacementsTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacementsTableView.swift; sourceTree = "<group>"; };
 		0788DACD29818C940087AE93 /* ContentsTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentsTableView.swift; sourceTree = "<group>"; };
 		0788DAD029818C9A0087AE93 /* AdBannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdBannerView.swift; sourceTree = "<group>"; };
+		07A6F47229A00008004FED87 /* Features.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Features.swift; sourceTree = "<group>"; };
 		14DB9CADBD9717EB3B802403 /* Pods-SuperAwesomeExampleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesomeExampleUITests.debug.xcconfig"; path = "Target Support Files/Pods-SuperAwesomeExampleUITests/Pods-SuperAwesomeExampleUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		1B76D2331C91EEB1000AE8F3 /* SuperAwesomeExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperAwesomeExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B76D2401C91EEB1000AE8F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -247,7 +258,6 @@
 		CC3A52A8290F23ED00484D1B /* LaunchArguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchArguments.swift; sourceTree = "<group>"; };
 		CC3A52AE290F252C00484D1B /* WireMock.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; path = WireMock.jar; sourceTree = "<group>"; };
 		CC3A52B5290F25D900484D1B /* XCTestCase+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Extensions.swift"; sourceTree = "<group>"; };
-		CC469473296EFE30003E28CB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CC5058AF299E47D700440326 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CC6AE3CE284F906B002F7581 /* SuperAwesomeExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperAwesomeExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC6AE3D0284F906B002F7581 /* VideoAdUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoAdUITests.swift; sourceTree = "<group>"; };
@@ -312,12 +322,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		07554851299FF27700DA5C29 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				07554852299FF28D00DA5C29 /* GetPlacements.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		07554856299FFB7600DA5C29 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				07554857299FFB8700DA5C29 /* FeaturesViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		0788DA8829818A7F0087AE93 /* SuperAwesomeSwiftUIExample */ = {
 			isa = PBXGroup;
 			children = (
-				0788DAB129818C030087AE93 /* Enums */,
 				0788DAB229818C080087AE93 /* Extensions */,
-				0788DAB329818C150087AE93 /* Models */,
 				0788DAB529818C1F0087AE93 /* Views */,
 				0788DA8929818A7F0087AE93 /* SuperAwesomeSwiftUIExampleApp.swift */,
 				0788DA8D29818A800087AE93 /* Assets.xcassets */,
@@ -373,6 +397,7 @@
 			children = (
 				0788DABF29818C470087AE93 /* FeatureItem.swift */,
 				0788DABE29818C470087AE93 /* PlacementItem.swift */,
+				07A6F47229A00008004FED87 /* Features.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -422,10 +447,22 @@
 			path = UIViewWrappers;
 			sourceTree = "<group>";
 		};
+		07A6F47429A3DE6C004FED87 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				0788DAB129818C030087AE93 /* Enums */,
+				07554851299FF27700DA5C29 /* Networking */,
+				07554856299FFB7600DA5C29 /* ViewModels */,
+				0788DAB329818C150087AE93 /* Models */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		1B76D22A1C91EEB1000AE8F3 = {
 			isa = PBXGroup;
 			children = (
 				C6535600245239270043115E /* SuperAwesomeExample.entitlements */,
+				07A6F47429A3DE6C004FED87 /* Shared */,
 				1B76D2351C91EEB1000AE8F3 /* SuperAwesome */,
 				C6C6AEE827D7D1D000FFB5CA /* SuperAwesomeExampleTests */,
 				CC6AE3CF284F906B002F7581 /* SuperAwesomeExampleUITests */,
@@ -468,7 +505,6 @@
 		1B76D2361C91EEB1000AE8F3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				CC469473296EFE30003E28CB /* Constants.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1057,40 +1093,16 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SuperAwesomeExample/Pods-SuperAwesomeExample-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseCoreInternal/FirebaseCoreInternal.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseDatabase/FirebaseDatabase.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseDatabaseSwift/FirebaseDatabaseSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseSharedSwift/FirebaseSharedSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
-				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/SuperAwesome/SuperAwesome.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyXMLParser/SwiftyXMLParser.framework",
-				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreDiagnostics.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreInternal.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseDatabase.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseDatabaseSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseInstallations.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseSharedSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleDataTransport.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SuperAwesome.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyXMLParser.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1149,41 +1161,17 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SuperAwesomeExample-SuperAwesomeExampleUITests/Pods-SuperAwesomeExample-SuperAwesomeExampleUITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseCoreInternal/FirebaseCoreInternal.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseDatabase/FirebaseDatabase.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseDatabaseSwift/FirebaseDatabaseSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework",
-				"${BUILT_PRODUCTS_DIR}/FirebaseSharedSwift/FirebaseSharedSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
-				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/SuperAwesome/SuperAwesome.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyXMLParser/SwiftyXMLParser.framework",
-				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 				"${BUILT_PRODUCTS_DIR}/DominantColor/DominantColor.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreDiagnostics.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreInternal.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseDatabase.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseDatabaseSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseInstallations.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseSharedSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleDataTransport.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SuperAwesome.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyXMLParser.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DominantColor.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1241,12 +1229,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				0788DABD29818C3F0087AE93 /* UIApplication.swift in Sources */,
+				07554858299FFB8700DA5C29 /* FeaturesViewModel.swift in Sources */,
 				0788DAC729818C870087AE93 /* PlacementCellView.swift in Sources */,
+				07554853299FF28D00DA5C29 /* GetPlacements.swift in Sources */,
 				0788DACB29818C8E0087AE93 /* FeatureDetailView.swift in Sources */,
 				0788DAC029818C470087AE93 /* PlacementItem.swift in Sources */,
 				0788DACA29818C8E0087AE93 /* RootView.swift in Sources */,
 				0788DAB829818C2E0087AE93 /* FeatureType.swift in Sources */,
 				0788DAD129818C9A0087AE93 /* AdBannerView.swift in Sources */,
+				07A6F47329A00008004FED87 /* Features.swift in Sources */,
 				0788DA8A29818A7F0087AE93 /* SuperAwesomeSwiftUIExampleApp.swift in Sources */,
 				0788DABC29818C3F0087AE93 /* Binding.swift in Sources */,
 				0788DACF29818C940087AE93 /* ContentsTableView.swift in Sources */,
@@ -1276,12 +1267,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC469474296EFE30003E28CB /* Constants.swift in Sources */,
 				CC3A52A7290F23C600484D1B /* LaunchUtils.swift in Sources */,
 				C6398A1327AAB1E500D6A152 /* UIView+Extensions.swift in Sources */,
+				07A6F47629A3DE95004FED87 /* Features.swift in Sources */,
 				CCFF5B53296F9E5F00707BBD /* ItemCell.swift in Sources */,
+				07A6F47A29A3DE95004FED87 /* GetPlacements.swift in Sources */,
 				4D2BB747266A689B00E3D86A /* AppDelegate.swift in Sources */,
+				07A6F47929A3DE95004FED87 /* FeaturesViewModel.swift in Sources */,
+				07A6F47529A3DE95004FED87 /* FeatureType.swift in Sources */,
+				07A6F47729A3DE95004FED87 /* PlacementItem.swift in Sources */,
 				C6398A1027AAAEF300D6A152 /* MainViewController.swift in Sources */,
+				07A6F47829A3DE95004FED87 /* FeatureItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1728,7 +1724,7 @@
 				DEVELOPMENT_TEAM = DCC9L689QJ;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "$(inherited)";
 				INFOPLIST_FILE = SuperAwesome/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1761,7 +1757,7 @@
 				DEVELOPMENT_TEAM = DCC9L689QJ;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "$(inherited)";
 				INFOPLIST_FILE = SuperAwesome/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",

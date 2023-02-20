@@ -7,9 +7,9 @@
 
 import Foundation
 
-enum FeatureType: String {
+enum FeatureType: String, Codable {
     case banner
-    case interstial
+    case interstitial
     case video
 
     var title: String {
