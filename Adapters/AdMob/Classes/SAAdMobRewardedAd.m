@@ -2,7 +2,7 @@
 #import "SAAdMobExtras.h"
 #include <stdatomic.h>
 
-#define kERROR_DOMAIN @"tv.superawesome.SAAdMobVideoMediationAdapter"
+#define kERROR_DOMAIN @"tv.superawesome.SAAdMobRewardedAd"
 
 @interface SAAdMobRewardedAd () <GADMediationRewardedAd> {
     
@@ -85,22 +85,22 @@
     __weak typeof (self) weakSelf = self;
     
     [SAVideoAd setCallback:^(NSInteger placementId, SAEvent event) {
-        
         switch (event) {
+            case SAEventAdAlreadyLoaded:
             case SAEventAdLoaded: {
                 [weakSelf adLoaded];
                 break;
             }
-            case SAEventAdEmpty: {
-                [weakSelf adFailed];
-                break;
-            }
+            case SAEventAdEmpty:
+            case SAEventAdFailedToShow:
             case SAEventAdFailedToLoad: {
                 [weakSelf adFailed];
                 break;
             }
             case SAEventAdShown: {
                 [weakSelf.delegate willPresentFullScreenView];
+                [weakSelf.delegate didStartVideo];
+                [weakSelf.delegate reportImpression];
                 break;
             }
             case SAEventAdClicked: {
@@ -110,15 +110,13 @@
             }
             case SAEventAdClosed: {
                 [weakSelf.delegate willDismissFullScreenView];
+                [weakSelf.delegate didEndVideo];
                 [weakSelf.delegate didDismissFullScreenView];
                 break;
             }
-            case SAEventAdAlreadyLoaded:
-            case SAEventAdFailedToShow:
             case SAEventAdEnded: {
                 GADAdReward *reward = [[GADAdReward alloc] initWithRewardType:@"Reward"
                                                                  rewardAmount:[[NSDecimalNumber alloc] initWithInt:1]];
-                
                 [weakSelf.delegate didRewardUserWithReward: reward];
                 break;
             }
