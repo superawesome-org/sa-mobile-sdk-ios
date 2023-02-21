@@ -75,7 +75,7 @@ void SuperAwesomeUnitySABannerAdLoad(const char *unityName, int placementId, int
       [banner setTestMode:test];
 
       if (error || [options length] == 0) {
-        NSLog(@"Error decoding options: %@ %@", error, @"loading the ad normally");
+        NSLog(@"Error decoding options: %@ %@", error, @"loading the banner normally");
         [banner load:placementId];
       } else {
         [banner load:placementId options:optionsData];

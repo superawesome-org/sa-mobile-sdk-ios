@@ -34,10 +34,23 @@ void SuperAwesomeUnitySAInterstitialAdCreate () {
  * @param placementId   the placement id to try to load an ad for
  * @param configuration production = 0 / staging = 1
  * @param test          true / false
+ * @param encodedOptions a json encoded dictionary of options to send with requests
  */
-void SuperAwesomeUnitySAInterstitialAdLoad (int placementId, int configuration, bool test) {
+void SuperAwesomeUnitySAInterstitialAdLoad (int placementId, int configuration, bool test, const char *encodedOptions) {
+
+    NSString *options = [NSString stringWithUTF8String:encodedOptions];
+    NSData *jsonData = [options dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSMutableDictionary *optionsData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&error];
+
     [SAInterstitialAd setTestMode:test];
-    [SAInterstitialAd load: placementId];
+
+    if (error || [options length] == 0) {
+        NSLog(@"Error decoding options: %@ %@", error, @"loading the interstitial normally");
+        [SAInterstitialAd load: placementId];
+    } else {
+        [SAInterstitialAd load: placementId options: optionsData];
+    }
 }
 
 /**
