@@ -88,20 +88,20 @@
     
     [_bannerAd setCallback:^(NSInteger placementId, SAEvent event) {
         switch (event) {
+            case SAEventAdAlreadyLoaded:
             case SAEventAdLoaded: {
                 [weakSelf adLoaded];
                 break;
             }
-            case SAEventAdEmpty: {
-                [weakSelf adFailed];
-                break;
-            }
+            case SAEventAdEmpty:
+            case SAEventAdFailedToShow:
             case SAEventAdFailedToLoad: {
                 [weakSelf adFailed];
                 break;
             }
             case SAEventAdShown: {
                 [weakSelf.delegate willPresentFullScreenView];
+                [weakSelf.delegate reportImpression];
                 break;
             }
             case SAEventAdClicked: {
@@ -113,9 +113,9 @@
                 [weakSelf.delegate willDismissFullScreenView];
                 [weakSelf.delegate didDismissFullScreenView];
                 break;
-            //
-            // non supported SA events
-            default:
+            }
+            case SAEventAdEnded: {
+                [weakSelf.delegate didDismissFullScreenView];
                 break;
             }
         }

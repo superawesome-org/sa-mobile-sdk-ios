@@ -114,7 +114,7 @@ class AdQueryMaker: AdQueryMakerType {
 
     private func merge( _ new: [String: Any], with original: inout [String: Any]) {
         for (key, value) in new {
-            switch(value) {
+            switch value {
             case let value as String:
                 original[key] = value
             case let value as Int:

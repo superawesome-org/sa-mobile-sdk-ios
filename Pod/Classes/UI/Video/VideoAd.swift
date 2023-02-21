@@ -35,7 +35,6 @@ public class VideoAd: NSObject, Injectable {
     // Internal control methods
     ////////////////////////////////////////////////////////////////////////////
 
-
     /**
      * Method that loads an ad into the queue.
      * Ads can only be loaded once and then can be reloaded after they've
