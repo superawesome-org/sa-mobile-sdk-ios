@@ -46,7 +46,6 @@ void SuperAwesomeUnitySAInterstitialAdLoad (int placementId, int configuration, 
     [SAInterstitialAd setTestMode:test];
 
     if (error || [options length] == 0) {
-        NSLog(@"Error decoding options: %@ %@", error, @"loading the interstitial normally");
         [SAInterstitialAd load: placementId];
     } else {
         [SAInterstitialAd load: placementId options: optionsData];

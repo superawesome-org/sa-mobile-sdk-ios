@@ -66,21 +66,20 @@ void SuperAwesomeUnitySABannerAdLoad(const char *unityName, int placementId, int
     NSString *key = [NSString stringWithUTF8String:unityName];
 
     if (bannerDictionary == nil) {
-      bannerDictionary = [[NSMutableDictionary alloc] init];
+        bannerDictionary = [[NSMutableDictionary alloc] init];
     }
 
     if ([bannerDictionary objectForKey:key]) {
 
-      SABannerAd *banner = [bannerDictionary objectForKey:key];
-      [banner setTestMode:test];
+        SABannerAd *banner = [bannerDictionary objectForKey:key];
+        [banner setTestMode:test];
 
-      if (error || [options length] == 0) {
-        NSLog(@"Error decoding options: %@ %@", error, @"loading the banner normally");
-        [banner load:placementId];
-      } else {
-        [banner load:placementId options:optionsData];
-      }
-  }
+        if (error || [options length] == 0) {
+            [banner load:placementId];
+        } else {
+            [banner load:placementId options:optionsData];
+        }
+    }
 }
 
 /**

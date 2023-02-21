@@ -50,7 +50,6 @@ void SuperAwesomeUnitySAVideoAdLoad(int placementId, int configuration, bool tes
     [SAVideoAd setPlaybackMode:[StartDelayHelper from:playback]];
 
     if (error || [options length] == 0) {
-        NSLog(@"Error decoding options: %@ %@", error, @"loading the video normally");
         [SAVideoAd load: placementId];
     } else {
         [SAVideoAd load: placementId options: optionsData];
