@@ -10,7 +10,13 @@ import Foundation
 
 class GetPlacements {
 
-    private let root = "https://aa-sdk.s3.eu-west-1.amazonaws.com"
+    private var root: String {
+        if CommandLine.arguments.contains("-runlocal") {
+            return "http://localhost:8080"
+        } else {
+            return "https://aa-sdk.s3.eu-west-1.amazonaws.com"
+        }
+    }
 
     func loadFeatures() -> AnyPublisher<Features, Never>? {
         guard let url = URL(string: "\(root)/placements.json") else { return nil }

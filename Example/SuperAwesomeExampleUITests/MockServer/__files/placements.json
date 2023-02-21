@@ -1,0 +1,117 @@
+{
+  "features" : [
+    { 
+      "type": "banner",
+      "placements": [
+        {
+          "type": "banner",
+          "name": "Banner",
+          "placementId": 82088
+        },
+        {
+          "placementId": 88001,
+          "name": "Banner image Flat Colour",
+          "type": "banner"
+        },
+        {
+          "placementId": 82088,
+          "lineItemId": 176803,
+          "name": "Banner Test Multi ID",
+          "type": "banner",
+          "creativeId": 499387
+        }
+      ]
+    },
+    {
+      "type": "interstitial",
+      "placements": [
+        {
+          "placementId": 87892,
+          "name": "Mobile Interstitial Flat Colour Portrait",
+          "type": "interstitial"
+        },
+        {
+          "placementId": 82089,
+          "name": "Mobile Interstitial Portrait",
+          "type": "interstitial"
+        },
+        {
+          "placementId": 82088,
+          "name": "Mobile Interstitial via KSF",
+          "type": "interstitial"
+        },
+        {
+          "placementId": 87970,
+          "name": "Interstitial Flat Colour via KSF",
+          "type": "interstitial"
+        },
+        {
+          "placementId": 82089,
+          "lineItemId": 176803,
+          "name": "Interstitial Test Multi Id",
+          "type": "interstitial",
+          "creativeId": 503038
+        }
+      ]
+    },
+    {
+      "type": "video",
+      "placements" : [
+        {
+          "placementId": 96690,
+          "name": "Plain Grey VPAID Ad",
+          "type": "video"
+        },
+        {
+          "placementId": 90636,
+          "name": "VPAID PopJam Video With Sound",
+          "type": "video"
+        },
+        {
+          "placementId": 88406,
+          "name": "VAST Video Flat Colour",
+          "type": "video"
+        },
+        {
+          "placementId": 89056,
+          "name": "VPAID Video Flat Colour",
+          "type": "video"
+        },
+        {
+          "placementId": 87969,
+          "name": "Direct Video Flat Colour",
+          "type": "video"
+        },
+        {
+          "placementId": 82090,
+          "name": "Direct Video",
+          "type": "video"
+        },
+        {
+          "placementId": 84777,
+          "lineItemId": 178822,
+          "name": "VAST Video",
+          "type": "video",
+          "creativeId": 503585
+        },
+        {
+          "placementId": 84798,
+          "name": "VPAID Video via KSF",
+          "type": "video"
+        },
+        {
+          "placementId": 82090,
+          "lineItemId": 176803,
+          "name": "Video Test Multi Id",
+          "type": "video",
+          "creativeId": 499385
+        },
+        {
+          "placementId": 58316,
+          "name": "STAGING - VPAID PopJam Video With Sound",
+          "type": "video"
+        }
+      ]
+    }
+  ]
+}
