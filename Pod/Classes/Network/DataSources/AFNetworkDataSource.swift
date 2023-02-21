@@ -8,8 +8,15 @@
 import Alamofire
 
 class AFNetworkDataSource: NetworkDataSourceType {
+
+    private lazy var networking: Session = {
+        let sessionConfig = URLSessionConfiguration.af.default
+        sessionConfig.requestCachePolicy = .reloadIgnoringLocalAndRemoteCacheData
+        return Session.init(configuration: sessionConfig)
+    }()
+
     func getData(url: String, completion: OnResult<Data>?) {
-        AF.request(url).responseData { response in
+        networking.request(url).responseData { response in
             if let data = response.data {
                 completion?(Result.success(data))
             } else {
@@ -34,7 +41,7 @@ class AFNetworkDataSource: NetworkDataSourceType {
             return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
         }
 
-        AF.download(url, to: destination).response { response in
+        networking.download(url, to: destination).response { response in
             debugPrint(response)
 
             if response.error == nil, let path = response.fileURL?.path {
