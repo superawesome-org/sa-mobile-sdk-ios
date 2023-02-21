@@ -12,24 +12,6 @@ class GetPlacements {
 
     private let root = "https://aa-sdk.s3.eu-west-1.amazonaws.com"
 
-//    func load(completion: @escaping (([FeatureItem]?, Error?) -> Void)) {
-//        guard let url = URL(string: "\(root)/placements.json") else { return }
-//        let session = URLSession.shared
-//        var request = URLRequest(url: url)
-//        let task = session.dataTask(with: request) { data, response, error in
-//            if let data = data {
-//                let decoder = JSONDecoder()
-//                decoder.keyDecodingStrategy = .convertFromSnakeCase
-//                guard let features = try? decoder.decode([FeatureItem].self, from: data) else { return }
-//                completion(features, nil)
-//            } else if let error = error {
-//                print("HTTP Request Failed \(error)")
-//                completion(nil, error)
-//            }
-//        }
-//        task.resume()
-//    }
-
     func loadFeatures() -> AnyPublisher<Features, Never>? {
         guard let url = URL(string: "\(root)/placements.json") else { return nil }
         let session = URLSession.shared
