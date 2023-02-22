@@ -47,7 +47,7 @@ void SuperAwesomeUnitySAInterstitialAdLoad (int placementId, int configuration, 
         NSError *error;
         NSMutableDictionary *optionsData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&error];
 
-        if (error || [options length] == 0) {
+        if (error) {
             // Fallback to loading without options
             [SAInterstitialAd load: placementId];
         } else {

@@ -76,7 +76,7 @@ void SuperAwesomeUnitySABannerAdLoad(const char *unityName, int placementId, int
             NSError *error;
             NSMutableDictionary *optionsData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&error];
 
-            if (error || [options length] == 0) {
+            if (error) {
                 // Fallback to loading without options
                 [banner load:placementId];
             } else {
