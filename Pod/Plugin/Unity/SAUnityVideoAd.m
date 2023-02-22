@@ -41,18 +41,25 @@ void SuperAwesomeUnitySAVideoAdCreate () {
 
 void SuperAwesomeUnitySAVideoAdLoad(int placementId, int configuration, bool test, int playback, const char *encodedOptions) {
 
-    NSString *options = [NSString stringWithUTF8String:encodedOptions];
-    NSData *jsonData = [options dataUsingEncoding:NSUTF8StringEncoding];
-    NSError *error;
-    NSMutableDictionary *optionsData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&error];
-
     [SAVideoAd setTestMode:test];
     [SAVideoAd setPlaybackMode:[StartDelayHelper from:playback]];
 
-    if (error || [options length] == 0) {
-        [SAVideoAd load: placementId];
+    if(encodedOptions) {
+
+        NSString *options = [NSString stringWithUTF8String:encodedOptions];
+        NSData *jsonData = [options dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *error;
+        NSMutableDictionary *optionsData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&error];
+
+        if (error || [options length] == 0) {
+            // Fallback to loading without options
+            [SAVideoAd load: placementId];
+        } else {
+            [SAVideoAd load: placementId options: optionsData];
+        }
+
     } else {
-        [SAVideoAd load: placementId options: optionsData];
+        [SAVideoAd load: placementId];
     }
 }
 

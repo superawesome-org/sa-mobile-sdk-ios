@@ -57,11 +57,6 @@ void SuperAwesomeUnitySABannerAdCreate (const char *unityName) {
  */
 void SuperAwesomeUnitySABannerAdLoad(const char *unityName, int placementId, int configuration, bool test, const char *encodedOptions) {
 
-    NSString *options = [NSString stringWithUTF8String:encodedOptions];
-    NSData *jsonData = [options dataUsingEncoding:NSUTF8StringEncoding];
-    NSError *error;
-    NSMutableDictionary *optionsData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&error];
-
     // get the key
     NSString *key = [NSString stringWithUTF8String:unityName];
 
@@ -74,10 +69,22 @@ void SuperAwesomeUnitySABannerAdLoad(const char *unityName, int placementId, int
         SABannerAd *banner = [bannerDictionary objectForKey:key];
         [banner setTestMode:test];
 
-        if (error || [options length] == 0) {
-            [banner load:placementId];
+        if(encodedOptions) {
+
+            NSString *options = [NSString stringWithUTF8String:encodedOptions];
+            NSData *jsonData = [options dataUsingEncoding:NSUTF8StringEncoding];
+            NSError *error;
+            NSMutableDictionary *optionsData = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&error];
+
+            if (error || [options length] == 0) {
+                // Fallback to loading without options
+                [banner load:placementId];
+            } else {
+                [banner load:placementId options:optionsData];
+            }
+
         } else {
-            [banner load:placementId options:optionsData];
+            [banner load:placementId];
         }
     }
 }
