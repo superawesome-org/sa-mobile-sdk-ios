@@ -1,0 +1,10 @@
+{
+  "request": {
+      "method": "GET",
+      "urlPath": "/placements.json"
+  },
+  "response": {
+      "status": 200,
+      "bodyFileName": "placements.json"
+  }
+}
