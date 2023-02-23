@@ -16,8 +16,13 @@ class NetworkModule: DependencyModule {
             MoyaHeaderPlugin(userAgentProvider: cont.resolve() as UserAgentProviderType)
         }
         container.single(MoyaProvider<AwesomeAdsTarget>.self) { cont, _ in
-            MoyaProvider<AwesomeAdsTarget>(plugins: [cont.resolve() as MoyaHeaderPlugin,
-                                                     cont.resolve() as MoyaLoggerPlugin])
+            let configuration = URLSessionConfiguration.default
+            configuration.headers = .default
+            configuration.requestCachePolicy = .reloadIgnoringLocalAndRemoteCacheData
+            let session = Session(configuration: configuration, startRequestsImmediately: false)
+            return MoyaProvider<AwesomeAdsTarget>(session: session,
+                                                  plugins: [cont.resolve() as MoyaHeaderPlugin,
+                                                            cont.resolve() as MoyaLoggerPlugin])
         }
         container.single(AwesomeAdsApiDataSourceType.self) { cont, _ in
             MoyaAwesomeAdsApiDataSource(provider: cont.resolve(), environment: cont.resolve())
