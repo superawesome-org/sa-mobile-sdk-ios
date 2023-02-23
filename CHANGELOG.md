@@ -1,3 +1,11 @@
+## [8.5.5](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/compare/v8.5.4...v8.5.5) (2023-02-23)
+
+
+### Bug Fixes
+
+* AdMob custom adapters so that the correct events are passed through the admob plugin from the awesome ads sdk ([#264](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/issues/264)) ([384aa72](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/commit/384aa724540a9708732024bcd46d7b3cd8c546c6))
+* **Networking:** AAG-2861: Changed the caching policy on all network requests made by the SA SDK to ignore cache on both local and remote. ([#266](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/issues/266)) ([91e6a56](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/commit/91e6a563b03208d5a04d52fd83a681b607f07824))
+
 ## [8.5.4](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/compare/v8.5.3...v8.5.4) (2023-02-17)
 
 
