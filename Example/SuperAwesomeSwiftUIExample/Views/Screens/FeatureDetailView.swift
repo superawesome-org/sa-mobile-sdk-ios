@@ -14,7 +14,7 @@ struct FeatureDetailView: View {
     private let padding = 16.0
 
     @State var feature: FeatureItem
-    @State private var selectedPlacement: PlacementItem? = nil
+    @State private var selectedPlacement: PlacementItem?
     @State private var isTestModeEnabled: Bool = false
     @State private var isBumperEnabled: Bool = false
     @State private var isParentGateEnabled: Bool = false
