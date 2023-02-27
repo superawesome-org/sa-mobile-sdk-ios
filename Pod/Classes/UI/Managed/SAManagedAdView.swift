@@ -198,6 +198,22 @@ extension SAManagedAdView: WKNavigationDelegate, WKUIDelegate {
                         decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         decisionHandler(.allow)
     }
+
+    // Error handling
+
+    public func webView(_: WKWebView, didFail: WKNavigation!, withError: Error) {
+        let error = withError as NSError
+        if error.code == NSURLErrorCannotFindHost {
+            onEvent(event: .adFailedToLoad)
+        }
+    }
+
+    public func webView(_: WKWebView, didFailProvisionalNavigation: WKNavigation!, withError: Error) {
+        let error = withError as NSError
+        if error.code == NSURLErrorCannotFindHost {
+            onEvent(event: .adFailedToLoad)
+        }
+    }
 }
 
 extension SAManagedAdView: AdViewJavaScriptBridge {
