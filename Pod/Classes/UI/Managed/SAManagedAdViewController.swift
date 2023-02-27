@@ -86,7 +86,7 @@ import WebKit
             button.isHidden = true
             closeButtonFallbackTimer = Timer.scheduledTimer(timeInterval: 1,
                                                             target: self,
-                                                            selector: #selector(startCloseButtonVisibilityFallback),
+                                                            selector: #selector(closeButtonVisibilityFallback),
                                                             userInfo: nil,
                                                             repeats: true)
         case .visibleImmediately:
@@ -106,7 +106,7 @@ import WebKit
         })
     }
 
-    @objc private func startCloseButtonVisibilityFallback() {
+    @objc private func closeButtonVisibilityFallback() {
         closeButtonFallbackTimerTickCounter += 1
         if closeButtonFallbackTimerTickCounter >= config.closeButtonFallbackDelay {
             cancelCloseButtonVisibilityFallback()
