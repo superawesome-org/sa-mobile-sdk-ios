@@ -202,17 +202,11 @@ extension SAManagedAdView: WKNavigationDelegate, WKUIDelegate {
     // Error handling
 
     public func webView(_: WKWebView, didFail: WKNavigation!, withError: Error) {
-        let error = withError as NSError
-        if error.code == NSURLErrorCannotFindHost {
-            onEvent(event: .adFailedToLoad)
-        }
+        onEvent(event: .adFailedToLoad)
     }
 
     public func webView(_: WKWebView, didFailProvisionalNavigation: WKNavigation!, withError: Error) {
-        let error = withError as NSError
-        if error.code == NSURLErrorCannotFindHost {
-            onEvent(event: .adFailedToLoad)
-        }
+        onEvent(event: .adFailedToLoad)
     }
 }
 
