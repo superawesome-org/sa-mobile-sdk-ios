@@ -1,1 +1,1 @@
-let SDK_VERSION = "8.5.5"
+let SDK_VERSION = "8.5.6"
