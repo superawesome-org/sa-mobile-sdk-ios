@@ -1,3 +1,10 @@
+## [8.5.6](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/compare/v8.5.5...v8.5.6) (2023-02-28)
+
+
+### Bug Fixes
+
+* **IV Close Button:** Added configuration methods to control the display of the close button ([#270](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/issues/270)) ([c81a6bc](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/commit/c81a6bcd170a552ca4b0a4a82413df3e0c44d86e))
+
 ## [8.5.5](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/compare/v8.5.4...v8.5.5) (2023-02-23)
 
 
