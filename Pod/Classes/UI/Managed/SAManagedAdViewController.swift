@@ -153,6 +153,8 @@ import WebKit
     override public func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         cancelCloseButtonVisibilityFallback()
+        viewableDetector?.cancel()
+        viewableDetector = nil
     }
 }
 
