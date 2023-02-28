@@ -195,7 +195,7 @@ class MainViewController: UIViewController {
     private func configureVideo() {
         VideoAd.enableCloseButton()
         VideoAd.setCallback { (placementId, event) in
-            print(" VideoAd >> \(event.name())")
+            print("VideoAd >> \(event.name())")
 
             if event == .adLoaded {
                 VideoAd.play(withPlacementId: placementId, fromVc: self)
