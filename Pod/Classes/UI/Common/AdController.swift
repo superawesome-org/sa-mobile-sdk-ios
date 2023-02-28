@@ -224,8 +224,8 @@ class AdController: AdControllerType, Injectable {
             parentalGate = dependencies.resolve() as ParentalGate
             parentalGate?.openAction = parentalGateOpenAction
             parentalGate?.cancelAction = parentalGateCancelAction
-            parentalGate?.successAction = {
-                self.parentalGateSuccessAction()
+            parentalGate?.successAction = { [weak self] in
+                self?.parentalGateSuccessAction()
                 completion?()
             }
             parentalGate?.failAction = parentalGateFailAction
