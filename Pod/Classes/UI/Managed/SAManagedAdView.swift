@@ -198,16 +198,6 @@ extension SAManagedAdView: WKNavigationDelegate, WKUIDelegate {
                         decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         decisionHandler(.allow)
     }
-
-    // Error handling
-
-    public func webView(_: WKWebView, didFail: WKNavigation!, withError: Error) {
-        onEvent(event: .adFailedToLoad)
-    }
-
-    public func webView(_: WKWebView, didFailProvisionalNavigation: WKNavigation!, withError: Error) {
-        onEvent(event: .adFailedToLoad)
-    }
 }
 
 extension SAManagedAdView: AdViewJavaScriptBridge {
