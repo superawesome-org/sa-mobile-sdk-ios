@@ -58,7 +58,7 @@ bool SuperAwesomeUnitySAVideoAdHasAdAvailable(int placementId) {
  *
  * @param isParentalGateEnabled         true / false
  * @param isBumperPageEnabled           true / false
- * @param shouldShowCloseButton         true / false
+ * @param closeButtonState      VISIBLEWITHDELAY = 0 / VISIBLEIMMEDIATELY = 1 / HIDDEN = 2
  * @param shouldShowSmallClickButton    true / false
  * @param shouldAutomaticallyCloseAtEnd true / false
  * @param orientation                   ANY = 0 / PORTRAIT = 1 / LANDSCAPE = 2
@@ -66,17 +66,29 @@ bool SuperAwesomeUnitySAVideoAdHasAdAvailable(int placementId) {
 void SuperAwesomeUnitySAVideoAdPlay(int placementId,
                                     bool isParentalGateEnabled,
                                     bool isBumperPageEnabled,
-                                    bool shouldShowCloseButton,
+                                    int closeButtonState,
                                     bool shouldShowSmallClickButton,
                                     bool shouldAutomaticallyCloseAtEnd,
                                     int orientation) {
     UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;
     [SAVideoAd setParentalGate:isParentalGateEnabled];
     [SAVideoAd setBumperPage:isBumperPageEnabled];
-    [SAVideoAd setCloseButton:shouldShowCloseButton];
     [SAVideoAd setSmallClick:shouldShowSmallClickButton];
     [SAVideoAd setCloseAtEnd:shouldAutomaticallyCloseAtEnd];
     [SAVideoAd setOrientation:[OrientationHelper from: orientation]];
+
+    switch([CloseButtonStateHelper from: closeButtonState]){
+        case CloseButtonStateVisibleWithDelay:
+            [SAVideoAd enableCloseButton];
+            break;
+        case CloseButtonStateVisibleImmediately:
+            [SAVideoAd enableCloseButtonNoDelay];
+            break;
+        case CloseButtonStateHidden:
+            [SAVideoAd disableCloseButton];
+            break;
+    }
+
     [SAVideoAd play: placementId fromVC: root];
 }
 
@@ -84,25 +96,37 @@ void SuperAwesomeUnitySAVideoAdPlay(int placementId,
  * Native method called from Unity.
  * Play a video ad
  *
- * @param isParentalGateEnabled         true / false
- * @param isBumperPageEnabled           true / false
- * @param shouldShowCloseButton         true / false
- * @param shouldShowSmallClickButton    true / false
- * @param shouldAutomaticallyCloseAtEnd true / false
- * @param orientation                   ANY = 0 / PORTRAIT = 1 / LANDSCAPE = 2
+ * @param isParentalGateEnabled      true / false
+ * @param isBumperPageEnabled       true / false
+ * @param closeButtonState      VISIBLEWITHDELAY = 0 / VISIBLEIMMEDIATELY = 1 / HIDDEN = 2
+ * @param shouldShowSmallClickButton        true / false
+ * @param shouldAutomaticallyCloseAtEnd     true / false
+ * @param orientation       ANY = 0 / PORTRAIT = 1 / LANDSCAPE = 2
  */
 void SuperAwesomeUnitySAVideoAdApplySettings(bool isParentalGateEnabled,
                                              bool isBumperPageEnabled,
-                                             bool shouldShowCloseButton,
+                                             int closeButtonState,
                                              bool shouldShowSmallClickButton,
                                              bool shouldAutomaticallyCloseAtEnd,
                                              int orientation,
                                              bool isTestingEnabled) {
+
     [SAVideoAd setParentalGate:isParentalGateEnabled];
     [SAVideoAd setBumperPage:isBumperPageEnabled];
-    [SAVideoAd setCloseButton:shouldShowCloseButton];
     [SAVideoAd setSmallClick:shouldShowSmallClickButton];
     [SAVideoAd setCloseAtEnd:shouldAutomaticallyCloseAtEnd];
     [SAVideoAd setOrientation:[OrientationHelper from: orientation]];
     [SAVideoAd setTestMode: isTestingEnabled];
+
+    switch([CloseButtonStateHelper from: closeButtonState]){
+        case CloseButtonStateVisibleWithDelay:
+            [SAVideoAd enableCloseButton];
+            break;
+        case CloseButtonStateVisibleImmediately:
+            [SAVideoAd enableCloseButtonNoDelay];
+            break;
+        case CloseButtonStateHidden:
+            [SAVideoAd disableCloseButton];
+            break;
+    }
 }
