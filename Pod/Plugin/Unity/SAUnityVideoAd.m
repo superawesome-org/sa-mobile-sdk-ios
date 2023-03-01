@@ -78,13 +78,13 @@ void SuperAwesomeUnitySAVideoAdPlay(int placementId,
     [SAVideoAd setOrientation:[OrientationHelper from: orientation]];
 
     switch([CloseButtonStateHelper from: closeButtonState]){
-        case 0:
+        case CloseButtonStateVisibleWithDelay:
             [SAVideoAd enableCloseButton];
             break;
-        case 1:
+        case CloseButtonStateVisibleImmediately:
             [SAVideoAd enableCloseButtonNoDelay];
             break;
-        case 2:
+        case CloseButtonStateHidden:
             [SAVideoAd disableCloseButton];
             break;
     }
@@ -119,13 +119,13 @@ void SuperAwesomeUnitySAVideoAdApplySettings(bool isParentalGateEnabled,
     [SAVideoAd setTestMode: isTestingEnabled];
 
     switch([CloseButtonStateHelper from: closeButtonState]){
-        case 0:
+        case CloseButtonStateVisibleWithDelay:
             [SAVideoAd enableCloseButton];
             break;
-        case 1:
+        case CloseButtonStateVisibleImmediately:
             [SAVideoAd enableCloseButtonNoDelay];
             break;
-        case 2:
+        case CloseButtonStateHidden:
             [SAVideoAd disableCloseButton];
             break;
     }
