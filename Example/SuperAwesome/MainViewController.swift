@@ -5,48 +5,27 @@
 //  Created by Gunhan Sancar on 02/02/2022.
 //
 
-import UIKit
+import Combine
 import SuperAwesome
-import FirebaseDatabase
-import FirebaseDatabaseSwift
-
-enum RowType: String, Decodable {
-    case banner = "BANNER"
-    case interstitial = "INTERSTITIAL"
-    case video = "VIDEO"
-
-    var capitalized: String {
-        return rawValue.capitalized
-    }
-}
-
-struct PlacementItem: Decodable {
-    let type: RowType
-    let name: String
-    let placementId: Int
-    let lineItemId: Int?
-    let creativeId: Int?
-
-    var fullName: String {
-        if isFull() {
-            return "\(placementId) - \(lineItemId!) - \(creativeId!) | (\(name))"
-        } else {
-            return "\(placementId) | (\(name))"
-        }
-    }
-
-    func isFull() -> Bool {
-        return lineItemId != nil && creativeId != nil
-    }
-}
+import UIKit
 
 class MainViewController: UIViewController {
 
-    private var database: DatabaseReference!
-    private var items: [PlacementItem] = []
     private var headerLabel: UILabel!
     private var bannerView: BannerView!
     private var segment: UISegmentedControl!
+    private var features: Features?
+    private var featuresViewModel: FeaturesViewModel!
+    var cancellable: AnyCancellable?
+
+    private var items: [PlacementItem] {
+        guard let features else { return [] }
+        var placements: [PlacementItem] = []
+        features.features.forEach { item in
+            placements.append(contentsOf: item.placements)
+        }
+        return placements
+    }
 
     private lazy var tableView: UITableView = {
         let view = UITableView()
@@ -64,7 +43,16 @@ class MainViewController: UIViewController {
         BumperPage.overrideName("Demo App")
 
         initUI()
-        configureDataSource()
+        featuresViewModel = FeaturesViewModel()
+        cancellable = featuresViewModel.$features.sink { [weak self] features in
+            self?.features = features
+            self?.tableView.reloadData()
+        }
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        cancellable?.cancel()
     }
 
     func configuration1() {
@@ -155,23 +143,6 @@ class MainViewController: UIViewController {
         self.segment = segment
     }
 
-    private func configureDataSource() {
-
-        database = Database.database(url: Constants.firebaseDatabaseURL).reference()
-
-        database.child("list-items").observe(.value) { [weak self] snapshot in
-            guard let children = snapshot.children.allObjects as? [DataSnapshot] else {
-                return
-            }
-
-            self?.items = children.compactMap { snapshot in
-                return try? snapshot.data(as: PlacementItem.self)
-            }
-
-            self?.tableView.reloadData()
-        }
-    }
-
     @objc func segmentChanged() {
         let idx = segment.selectedSegmentIndex
         switch idx {
@@ -224,7 +195,7 @@ class MainViewController: UIViewController {
     private func configureVideo() {
         VideoAd.enableCloseButton()
         VideoAd.setCallback { (placementId, event) in
-            print(" VideoAd >> \(event.name())")
+            print("VideoAd >> \(event.name())")
 
             if event == .adLoaded {
                 VideoAd.play(withPlacementId: placementId, fromVc: self)
@@ -296,13 +267,13 @@ extension MainViewController: UITableViewDelegate {
 
         let item = items[indexPath.row]
 
-        print("\(item.type.capitalized) clicked"
+        print("\(item.type.title.capitalized) clicked"
               + " for placement id: \(item.placementId)"
               + " lineItemId: \(String(describing: item.lineItemId))"
               + " creativeId: \(String(describing: item.creativeId))"
         )
 
-        if item.isFull() {
+        if item.isFull {
             handleMultiIdRowTapped(item: item)
         } else {
             handleSingleRowTapped(item: item)

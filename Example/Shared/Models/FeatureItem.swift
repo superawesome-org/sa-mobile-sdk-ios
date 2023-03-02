@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct FeatureItem: Identifiable, Hashable {
+struct FeatureItem: Identifiable, Hashable, Codable {
 
     let id = UUID()
     let type: FeatureType

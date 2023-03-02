@@ -13,9 +13,12 @@ import WebKit
     private let html: String
     private var closeButton: UIButton?
     private var callback: AdEventCallback?
+    private weak var closeButtonFallbackTimer: Timer?
+    private var closeButtonFallbackTimerTickCounter = 0
     private let config: AdConfig
     private lazy var imageProvider: ImageProviderType = dependencies.resolve()
     private lazy var controller: AdControllerType = dependencies.resolve()
+    private lazy var viewableDetector: ViewableDetectorType? = dependencies.resolve() as ViewableDetectorType
 
     init(adResponse: AdResponse, config: AdConfig, callback: AdEventCallback?) {
         self.placementId = adResponse.placementId
@@ -26,6 +29,7 @@ import WebKit
         self.controller.adResponse = adResponse
         self.controller.parentalGateEnabled = config.isParentalGateEnabled
         self.controller.bumperPageEnabled = config.isBumperPageEnabled
+        self.controller.callback = callback
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -44,10 +48,11 @@ import WebKit
         super.viewDidLoad()
         initView()
 
-        DispatchQueue.main.async {
-            self.managedAdView.load(placementId: self.placementId,
-                                    html: self.html,
-                                    baseUrl: self.controller.adResponse?.baseUrl)
+        DispatchQueue.main.async { [weak self] in
+            guard let strongSelf = self else { return }
+            strongSelf.managedAdView.load(placementId: strongSelf.placementId,
+                                          html: strongSelf.html,
+                                          baseUrl: strongSelf.controller.adResponse?.baseUrl)
         }
 
     }
@@ -61,8 +66,13 @@ import WebKit
     }
 
     private func configureCloseButton() {
+
+        if (closeButton != nil) {
+            closeButton?.removeFromSuperview()
+            closeButton = nil
+        }
+
         let button = UIButton()
-        button.isHidden = false
         button.setTitle("", for: .normal)
         button.setImage(imageProvider.closeImage, for: .normal)
         button.addTarget(self, action: #selector(onCloseClicked), for: .touchUpInside)
@@ -78,10 +88,50 @@ import WebKit
         ])
 
         self.closeButton = button
+
+        switch config.closeButtonState {
+        case .visibleWithDelay:
+            button.isHidden = true
+            closeButtonFallbackTimer = Timer.scheduledTimer(timeInterval: 1,
+                                                            target: self,
+                                                            selector: #selector(closeButtonVisibilityFallback),
+                                                            userInfo: nil,
+                                                            repeats: true)
+        case .visibleImmediately:
+            button.isHidden = false
+        case .hidden:
+            button.isHidden = true
+        }
+    }
+
+    private func showCloseButtonAfterDelay() {
+
+        cancelCloseButtonVisibilityFallback()
+
+        viewableDetector?.start(for: managedAdView, hasBeenVisible: { [weak self] in
+            guard let strongSelf = self else { return }
+            strongSelf.closeButton?.isHidden = false
+        })
+    }
+
+    @objc private func closeButtonVisibilityFallback() {
+        closeButtonFallbackTimerTickCounter += 1
+        if closeButtonFallbackTimerTickCounter >= config.closeButtonFallbackDelay {
+            cancelCloseButtonVisibilityFallback()
+            closeButton?.isHidden = false
+        }
+    }
+
+    private func cancelCloseButtonVisibilityFallback() {
+        closeButtonFallbackTimerTickCounter = 0
+        closeButtonFallbackTimer?.invalidate()
+        closeButtonFallbackTimer = nil
     }
 
     @objc private func onCloseClicked() {
         managedAdView.close()
+        controller.close()
+
         dismiss(animated: true)
     }
 
@@ -99,11 +149,22 @@ import WebKit
 
         configureCloseButton()
     }
+
+    override public func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        cancelCloseButtonVisibilityFallback()
+        viewableDetector?.cancel()
+        viewableDetector = nil
+    }
 }
 
 extension SAManagedAdViewController: AdViewJavaScriptBridge {
     func onEvent(event: AdEvent) {
-        callback?(self.placementId, event)
+        callback?(placementId, event)
+
+        if (event == .adShown && config.closeButtonState == .visibleWithDelay) {
+            showCloseButtonAfterDelay()
+        }
 
         if eventsForClosing.contains(event) {
             if !isBeingDismissed {

@@ -7,9 +7,6 @@ use_frameworks!
 target 'SuperAwesomeExample' do
   pod 'SuperAwesome', :path => '../'
 
-  pod 'Firebase/AnalyticsWithoutAdIdSupport', '~> 9.6.0'
-  pod 'FirebaseDatabaseSwift', '~> 9.6.0'
-
   target 'SuperAwesomeExampleTests' do
     inherit! :search_paths
     pod 'Nimble', '~> 10.0.0'

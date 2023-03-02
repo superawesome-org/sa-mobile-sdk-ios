@@ -15,4 +15,5 @@ struct AdConfig {
     let orientation: Orientation
     let shouldShowCloseWarning: Bool
     let shouldMuteOnStart: Bool
+    let closeButtonFallbackDelay: Int = 12
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PlacementItem: Identifiable, Hashable {
+struct PlacementItem: Identifiable, Hashable, Codable {
     let name: String?
     let type: FeatureType
     let placementId: Int
@@ -29,5 +29,17 @@ struct PlacementItem: Identifiable, Hashable {
 
     var title: String {
         name ?? "Default"
+    }
+
+    var fullName: String {
+        if isFull {
+            return "\(placementId) - \(lineItemId ?? 0) - \(creativeId ?? 0) | (\(name ?? ""))"
+        } else {
+            return "\(placementId) | (\(name ?? ""))"
+        }
+    }
+
+    var isFull: Bool {
+        lineItemId != nil && creativeId != nil
     }
 }

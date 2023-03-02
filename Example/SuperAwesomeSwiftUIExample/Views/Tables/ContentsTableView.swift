@@ -10,10 +10,10 @@ import SwiftUI
 
 public struct ContentsTableView: View {
 
-    var features: [FeatureItem]
+    var features: [FeatureItem]?
 
     public var body: some View {
-        List(features, id: \.id) { feature in
+        List(features ?? [], id: \.id) { feature in
             NavigationLink(
                 destination: {
                     FeatureDetailView(feature: feature)
