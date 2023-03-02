@@ -44,7 +44,7 @@ void SuperAwesomeUnitySAVideoAdLoad(int placementId, int configuration, bool tes
     [SAVideoAd setTestMode:test];
     [SAVideoAd setPlaybackMode:[StartDelayHelper from:playback]];
 
-    if(encodedOptions) {
+    if (encodedOptions) {
 
         NSString *options = [NSString stringWithUTF8String:encodedOptions];
         NSData *jsonData = [options dataUsingEncoding:NSUTF8StringEncoding];
