@@ -69,7 +69,7 @@ void SuperAwesomeUnitySABannerAdLoad(const char *unityName, int placementId, int
         SABannerAd *banner = [bannerDictionary objectForKey:key];
         [banner setTestMode:test];
 
-        if(encodedOptions) {
+        if (encodedOptions) {
 
             NSString *options = [NSString stringWithUTF8String:encodedOptions];
             NSData *jsonData = [options dataUsingEncoding:NSUTF8StringEncoding];
