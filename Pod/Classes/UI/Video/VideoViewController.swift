@@ -183,7 +183,7 @@ import UIKit
 
     private func close() {
         videoPlayer.destroy()
-        dismiss(animated: true) { [weak self] in
+        view.window?.rootViewController?.dismiss(animated: true) { [weak self] in
             self?.controller.close()
         }
     }
