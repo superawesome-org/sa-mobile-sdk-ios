@@ -61,8 +61,7 @@ import WebKit
     func close() {
         managedAdView.close()
         controller.close()
-
-        dismiss(animated: true, completion: nil)
+        view.window?.rootViewController?.dismiss(animated: true)
     }
 
     private func configureCloseButton() {

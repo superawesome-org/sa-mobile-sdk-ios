@@ -1,3 +1,10 @@
+## [8.5.7](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/compare/v8.5.6...v8.5.7) (2023-03-15)
+
+
+### Bug Fixes
+
+* **Unity:** Removed Unity files as these are now moved to the Unity Repo ([#274](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/issues/274)) ([732bdf8](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/commit/732bdf8aa5f2a80108dabe846cfbe118ddf48bdf))
+
 ## [8.5.6](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/compare/v8.5.5...v8.5.6) (2023-02-28)
 
 
