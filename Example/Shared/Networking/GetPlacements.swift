@@ -22,7 +22,7 @@ class GetPlacements {
         guard let url = URL(string: "\(root)/placements.json") else { return nil }
         let session = URLSession.shared
         let publisher = session.dataTaskPublisher(for: url)
-            .tryMap() { element -> Data in
+            .tryMap { element -> Data in
                 guard let httpResponse = element.response as? HTTPURLResponse,
                       httpResponse.statusCode == 200 else {
                     throw URLError(.badServerResponse)

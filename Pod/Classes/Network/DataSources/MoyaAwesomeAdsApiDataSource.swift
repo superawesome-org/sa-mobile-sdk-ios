@@ -8,20 +8,20 @@
 import Moya
 
 class MoyaAwesomeAdsApiDataSource: AwesomeAdsApiDataSourceType {
-    
+
     private let provider: MoyaProvider<AwesomeAdsTarget>
     private let environment: Environment
     private let retryDelay: TimeInterval
-    
+
     init(provider: MoyaProvider<AwesomeAdsTarget>, environment: Environment, retryDelay: TimeInterval) {
         self.provider = provider
         self.environment = environment
         self.retryDelay = retryDelay
     }
-    
+
     func getAd(placementId: Int, query: QueryBundle, completion: @escaping OnResult<Ad>) {
         let target = AwesomeAdsTarget(environment, .ad(placementId: placementId, query: query))
-        
+
         provider.request(target) { result in
             switch result {
             case .success(let response):
@@ -37,7 +37,7 @@ class MoyaAwesomeAdsApiDataSource: AwesomeAdsApiDataSourceType {
             }
         }
     }
-    
+
     func getAd(placementId: Int,
                lineItemId: Int,
                creativeId: Int,
@@ -52,7 +52,7 @@ class MoyaAwesomeAdsApiDataSource: AwesomeAdsApiDataSourceType {
                 query: query
             )
         )
-        
+
         provider.request(target) { result in
             switch result {
             case .success(let response):
@@ -68,10 +68,10 @@ class MoyaAwesomeAdsApiDataSource: AwesomeAdsApiDataSourceType {
             }
         }
     }
-    
+
     func signature(lineItemId: Int, creativeId: Int, completion: @escaping (Result<AdvertiserSignatureDTO, Error>) -> Void) {
         let target = AwesomeAdsTarget(environment, .signature(lineItemId: lineItemId, creativeId: creativeId))
-        
+
         provider.request(target) { result in
             switch result {
             case .success(let response):
@@ -87,33 +87,33 @@ class MoyaAwesomeAdsApiDataSource: AwesomeAdsApiDataSourceType {
             }
         }
     }
-    
+
     func impression(query: QueryBundle, completion: OnResult<Void>?) {
         let target = AwesomeAdsTarget(environment, .impression(query: query))
         responseHandler(target: target, completion: completion)
     }
-    
+
     func click(query: QueryBundle, completion: OnResult<Void>?) {
         let target = AwesomeAdsTarget(environment, .click(query: query))
         responseHandler(target: target, completion: completion)
     }
-    
+
     func videoClick(query: QueryBundle, completion: OnResult<Void>?) {
         let target = AwesomeAdsTarget(environment, .videoClick(query: query))
         responseHandler(target: target, completion: completion)
     }
-    
+
     func event(query: QueryBundle, completion: OnResult<Void>?) {
         let target = AwesomeAdsTarget(environment, .event(query: query))
         responseHandler(target: target, completion: completion)
     }
-    
+
     private func responseHandler(target: AwesomeAdsTarget, completion: OnResult<Void>?) {
         var retries = 0
         let delay = retryDelay
-        
+
         func innerRequest() {
-            provider.request(target) { [weak self] result in
+            provider.request(target) { result in
                 switch result {
                 case .success(let response):
                     do {
@@ -129,8 +129,8 @@ class MoyaAwesomeAdsApiDataSource: AwesomeAdsApiDataSourceType {
                     // - or no response was received (server timed out)
                     if retries < Constants.numberOfRetries {
                         retries += 1
-                        DispatchQueue.global().asyncAfter(deadline: .now() + delay) {  [weak self] in
-                            self?.innerRequest()
+                        DispatchQueue.global().asyncAfter(deadline: .now() + delay) {
+                            innerRequest()
                         }
                     } else {
                         completion?(Result.failure(error))
@@ -138,7 +138,7 @@ class MoyaAwesomeAdsApiDataSource: AwesomeAdsApiDataSourceType {
                 }
             }
         }
-        
+
         innerRequest()
     }
 }
