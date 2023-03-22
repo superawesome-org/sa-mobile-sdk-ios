@@ -6,6 +6,12 @@
 //
 
 struct Constants {
+    /// Number of retries for each network request before it fails
+    static let numberOfRetries = 5
+    
+    /// The delay between each request when retrying
+    static let retryDelay: TimeInterval = 1
+    
     static let defaultClickThresholdInSecs = 5
     static let defaultTestMode = false
     static let defaultParentalGate = false
