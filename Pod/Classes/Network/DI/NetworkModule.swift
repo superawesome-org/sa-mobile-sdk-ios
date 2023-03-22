@@ -27,7 +27,8 @@ class NetworkModule: DependencyModule {
         container.single(AwesomeAdsApiDataSourceType.self) { cont, _ in
             MoyaAwesomeAdsApiDataSource(provider: cont.resolve(),
                                         environment: cont.resolve(),
-                                        retryDelay: Constants.retryDelay)
+                                        retryDelay: Constants.retryDelay,
+                                        logger: cont.resolve(param: MoyaAwesomeAdsApiDataSource.self) as LoggerType)
         }
         container.single(NetworkDataSourceType.self) { _, _ in
             AFNetworkDataSource()

@@ -12,11 +12,13 @@ class MoyaAwesomeAdsApiDataSource: AwesomeAdsApiDataSourceType {
     private let provider: MoyaProvider<AwesomeAdsTarget>
     private let environment: Environment
     private let retryDelay: TimeInterval
+    private let logger: LoggerType
 
-    init(provider: MoyaProvider<AwesomeAdsTarget>, environment: Environment, retryDelay: TimeInterval) {
+    init(provider: MoyaProvider<AwesomeAdsTarget>, environment: Environment, retryDelay: TimeInterval, logger: LoggerType) {
         self.provider = provider
         self.environment = environment
         self.retryDelay = retryDelay
+        self.logger = logger
     }
 
     func getAd(placementId: Int, query: QueryBundle, completion: @escaping OnResult<Ad>) {
@@ -111,6 +113,7 @@ class MoyaAwesomeAdsApiDataSource: AwesomeAdsApiDataSourceType {
     private func responseHandler(target: AwesomeAdsTarget, completion: OnResult<Void>?) {
         var retries = 0
         let delay = retryDelay
+        let innerLogger = logger
 
         func innerRequest() {
             provider.request(target) { result in
@@ -128,11 +131,13 @@ class MoyaAwesomeAdsApiDataSource: AwesomeAdsApiDataSourceType {
                     // - either the request wasn't sent (connectivity),
                     // - or no response was received (server timed out)
                     if retries < Constants.numberOfRetries {
+                        innerLogger.error("Network failure, retrying again", error: error)
                         retries += 1
                         DispatchQueue.global().asyncAfter(deadline: .now() + delay) {
                             innerRequest()
                         }
                     } else {
+                        innerLogger.error("Number of retries reached", error: error)
                         completion?(Result.failure(error))
                     }
                 }
