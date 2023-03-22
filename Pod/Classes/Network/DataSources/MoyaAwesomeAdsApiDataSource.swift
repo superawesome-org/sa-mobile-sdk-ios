@@ -113,7 +113,7 @@ class MoyaAwesomeAdsApiDataSource: AwesomeAdsApiDataSourceType {
         let delay = retryDelay
         
         func innerRequest() {
-            provider.request(target) { result in
+            provider.request(target) { [weak self] result in
                 switch result {
                 case .success(let response):
                     do {
@@ -129,8 +129,8 @@ class MoyaAwesomeAdsApiDataSource: AwesomeAdsApiDataSourceType {
                     // - or no response was received (server timed out)
                     if retries < Constants.numberOfRetries {
                         retries += 1
-                        DispatchQueue.global().asyncAfter(deadline: .now() + delay) {
-                            innerRequest()
+                        DispatchQueue.global().asyncAfter(deadline: .now() + delay) {  [weak self] in
+                            self?.innerRequest()
                         }
                     } else {
                         completion?(Result.failure(error))
