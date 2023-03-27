@@ -11,10 +11,14 @@ class MoyaAwesomeAdsApiDataSource: AwesomeAdsApiDataSourceType {
 
     private let provider: MoyaProvider<AwesomeAdsTarget>
     private let environment: Environment
+    private let retryDelay: TimeInterval
+    private let logger: LoggerType
 
-    init(provider: MoyaProvider<AwesomeAdsTarget>, environment: Environment) {
+    init(provider: MoyaProvider<AwesomeAdsTarget>, environment: Environment, retryDelay: TimeInterval, logger: LoggerType) {
         self.provider = provider
         self.environment = environment
+        self.retryDelay = retryDelay
+        self.logger = logger
     }
 
     func getAd(placementId: Int, query: QueryBundle, completion: @escaping OnResult<Ad>) {
@@ -107,18 +111,39 @@ class MoyaAwesomeAdsApiDataSource: AwesomeAdsApiDataSourceType {
     }
 
     private func responseHandler(target: AwesomeAdsTarget, completion: OnResult<Void>?) {
-        provider.request(target) { result in
-            switch result {
-            case .success(let response):
-                do {
-                    _ = try response.filterSuccessfulStatusCodes()
-                    completion?(Result.success(Void()))
-                } catch let error {
-                    completion?(Result.failure(error))
+        var retries = 0
+        let delay = retryDelay
+        let innerLogger = logger
+
+        func innerRequest() {
+            provider.request(target) { result in
+                switch result {
+                case .success(let response):
+                    do {
+                        _ = try response.filterSuccessfulStatusCodes()
+                        completion?(Result.success(Void()))
+                    } catch let error {
+                        // If the server responds with a 4xx or 5xx error
+                        completion?(Result.failure(error))
+                    }
+                case .failure(let error):
+                    // This means there was a network failure
+                    // - either the request wasn't sent (connectivity),
+                    // - or no response was received (server timed out)
+                    if retries < Constants.numberOfRetries {
+                        innerLogger.error("Network failure, retrying again", error: error)
+                        retries += 1
+                        DispatchQueue.global().asyncAfter(deadline: .now() + delay) {
+                            innerRequest()
+                        }
+                    } else {
+                        innerLogger.error("Number of retries reached", error: error)
+                        completion?(Result.failure(error))
+                    }
                 }
-            case .failure(let error):
-                completion?(Result.failure(error))
             }
         }
+
+        innerRequest()
     }
 }

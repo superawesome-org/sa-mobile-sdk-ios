@@ -66,7 +66,7 @@ import WebKit
 
     private func configureCloseButton() {
 
-        if (closeButton != nil) {
+        if closeButton != nil {
             closeButton?.removeFromSuperview()
             closeButton = nil
         }
@@ -161,7 +161,7 @@ extension SAManagedAdViewController: AdViewJavaScriptBridge {
     func onEvent(event: AdEvent) {
         callback?(placementId, event)
 
-        if (event == .adShown && config.closeButtonState == .visibleWithDelay) {
+        if event == .adShown && config.closeButtonState == .visibleWithDelay {
             showCloseButtonAfterDelay()
         }
 
