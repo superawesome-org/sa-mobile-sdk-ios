@@ -9,16 +9,30 @@ import UIKit
 import WebKit
 
 @objc(SAManagedAdViewController) public final class SAManagedAdViewController: UIViewController, Injectable {
+
+    // MARK: Properties
+
     private let placementId: Int
     private let html: String
-    private var closeButton: UIButton?
-    private var callback: AdEventCallback?
-    private weak var closeButtonFallbackTimer: Timer?
-    private var closeButtonFallbackTimerTickCounter = 0
     private let config: AdConfig
+
+    private let eventsForClosing = [
+        AdEvent.adEmpty, .adFailedToLoad, .adFailedToShow, .adEnded, .adClosed
+    ]
+
+    private var closeButton: UIButton?
+    private var closeButtonFallbackTimerTickCounter = 0
+    private var callback: AdEventCallback?
+    private var isCompleted: Bool = false
+    private var closeDialog: UIAlertController?
+
+    private weak var closeButtonFallbackTimer: Timer?
+    private lazy var stringProvider: StringProviderType = dependencies.resolve()
     private lazy var imageProvider: ImageProviderType = dependencies.resolve()
     private lazy var controller: AdControllerType = dependencies.resolve()
     private lazy var viewableDetector: ViewableDetectorType? = dependencies.resolve() as ViewableDetectorType
+
+    // MARK: Init
 
     init(adResponse: AdResponse, config: AdConfig, callback: AdEventCallback?) {
         self.placementId = adResponse.placementId
@@ -55,6 +69,17 @@ import WebKit
                                           baseUrl: strongSelf.controller.adResponse?.baseUrl)
         }
 
+        // register notification for foreground
+        // swiftlint:disable discarded_notification_center_observer
+        NotificationCenter.default.addObserver(forName: UIApplication.willEnterForegroundNotification, object: nil, queue: .main) { [weak self] notification in
+            self?.willEnterForeground(notification)
+        }
+
+        // register notification for background
+        // swiftlint:disable discarded_notification_center_observer
+        NotificationCenter.default.addObserver(forName: UIApplication.didEnterBackgroundNotification, object: nil, queue: .main) { [weak self] _ in
+            self?.didEnterBackground()
+        }
     }
 
     /// Method that is called to close the ad
@@ -128,10 +153,20 @@ import WebKit
     }
 
     @objc private func onCloseClicked() {
-        managedAdView.close()
-        controller.close()
-
-        dismiss(animated: true)
+        
+        if config.shouldShowCloseWarning && !isCompleted {
+            // control.pause() TODO: Pause playing video AAG-3024
+            closeDialog = showQuestionDialog(title: stringProvider.closeDialogTitle,
+                                             message: stringProvider.closeDialogMessage,
+                                             yesTitle: stringProvider.closeDialogCloseAction,
+                                             noTitle: stringProvider.closeDialogResumeAction) { [weak self] in
+                self?.close()
+            } noAction: { // [weak self] in
+                // control.resume() TODO: Resume playing video AAG-3024
+            }
+        } else {
+            close()
+        }
     }
 
     private func initView() {
@@ -155,7 +190,31 @@ import WebKit
         viewableDetector?.cancel()
         viewableDetector = nil
     }
+
+    // MARK: Background / Foreground handlers
+
+    @objc
+    func willEnterForeground(_ notification: Notification) {
+        // control.start() TODO: Resume playing video AAG-3024
+    }
+
+    private func didEnterBackground() {
+        // control.pause() TODO: Pause playing video AAG-3024
+        closeDialog?.dismiss(animated: true)
+        closeDialog = nil
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self,
+                                                  name: UIApplication.willEnterForegroundNotification,
+                                                  object: nil)
+        NotificationCenter.default.removeObserver(self,
+                                                  name: UIApplication.didEnterBackgroundNotification,
+                                                  object: nil)
+    }
 }
+
+// MARK: AdViewJavaScriptBridge
 
 extension SAManagedAdViewController: AdViewJavaScriptBridge {
     func onEvent(event: AdEvent) {
@@ -165,8 +224,12 @@ extension SAManagedAdViewController: AdViewJavaScriptBridge {
             showCloseButtonAfterDelay()
         }
 
+        if event == .adEnded {
+            isCompleted = true
+        }
+
         if eventsForClosing.contains(event) {
-            if !isBeingDismissed {
+            if !isBeingDismissed && config.shouldCloseAtEnd {
                 close()
             }
         }
@@ -177,7 +240,3 @@ extension SAManagedAdViewController: AdViewJavaScriptBridge {
         controller.handleAdTap(url: url)
     }
 }
-
-private let eventsForClosing = [
-    AdEvent.adEmpty, .adFailedToLoad, .adFailedToShow, .adEnded, .adClosed
-]
