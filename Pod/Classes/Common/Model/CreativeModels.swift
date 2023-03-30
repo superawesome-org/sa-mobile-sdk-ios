@@ -33,7 +33,7 @@ struct CreativeDetail: Codable {
     let tag: String?
     let width: Int
     let height: Int
-    let duration: Int
+    let duration: Int?
     let vast: String?
 
     enum CodingKeys: String, CodingKey {
@@ -46,7 +46,7 @@ struct CreativeDetail: Codable {
         case height
         case duration
         case vast
-        }
+    }
 }
 
 enum CreativeFormatType: String, Codable, DecodableDefaultLastItem {
