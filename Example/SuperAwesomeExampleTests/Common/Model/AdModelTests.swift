@@ -21,7 +21,6 @@ class AdModelTests: XCTestCase {
             tag: nil,
             width: 400,
             height: 150,
-            duration: 0,
             vast: nil)
         let creative = Creative(
             id: 2000,
