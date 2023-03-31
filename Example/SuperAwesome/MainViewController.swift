@@ -11,6 +11,11 @@ import UIKit
 
 class MainViewController: UIViewController {
 
+    private let inset: CGFloat = 16.0
+    private let settingsButtonSize = CGSize(width: 20.0, height: 20.0)
+    private let segmentHeight: CGFloat = 30.0
+    private let bannerHeight: CGFloat = 50.0
+
     private var headerLabel: UILabel!
     private var bannerView: BannerView!
     private var segment: UISegmentedControl!
@@ -27,6 +32,17 @@ class MainViewController: UIViewController {
         return placements
     }
 
+    private lazy var settingsButton: TappableButton = {
+        let button = TappableButton()
+        button.accessibilityIdentifier = "Placements.Buttons.Settings"
+        button.setImage(UIImage(named: "ico_settings"), for: .normal)
+        button.tintColor = .darkGray
+        button.onTap = { [weak self] in
+            self?.settingsView.show()
+        }
+        return button
+    }()
+
     private lazy var tableView: UITableView = {
         let view = UITableView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -34,6 +50,14 @@ class MainViewController: UIViewController {
         view.register(ItemCell.self, forCellReuseIdentifier: "itemCell")
         view.dataSource = self
         view.delegate = self
+        return view
+    }()
+
+    private lazy var settingsView: SettingsView = {
+        let view = SettingsView(frame: .zero)
+        view.delegate = self
+        view.accessibilityIdentifier = "SettingsView"
+        view.alpha = 0.0
         return view
     }()
 
@@ -55,46 +79,12 @@ class MainViewController: UIViewController {
         cancellable?.cancel()
     }
 
-    func configuration1() {
-        bannerView.enableParentalGate()
-        bannerView.enableBumperPage()
-
-        InterstitialAd.enableParentalGate()
-        InterstitialAd.enableBumperPage()
-
-        VideoAd.enableParentalGate()
-        VideoAd.enableBumperPage()
-        VideoAd.enableMuteOnStart()
-
-        // Normal close button configuration
-        VideoAd.enableCloseButton()
-        InterstitialAd.enableCloseButton()
-    }
-
-    func configuration2() {
-        bannerView.disableParentalGate()
-        bannerView.disableBumperPage()
-
-        InterstitialAd.disableParentalGate()
-        InterstitialAd.disableBumperPage()
-
-        VideoAd.disableParentalGate()
-        VideoAd.disableBumperPage()
-        VideoAd.enableCloseButtonWithWarning()
-        VideoAd.disableMuteOnStart()
-
-        // Close button configured with no delay
-        VideoAd.enableCloseButtonNoDelay()
-        InterstitialAd.enableCloseButtonNoDelay()
-    }
-
     private func initUI() {
         initHeader()
-        initSegment()
-        initBannerView()
         initTable()
-        configureInterstitial()
-        configureVideo()
+        initBannerView()
+        initSettings()
+        updateSettings(settings: SettingsModel())
     }
 
     private func initHeader() {
@@ -102,59 +92,31 @@ class MainViewController: UIViewController {
         headerLabel = UILabel()
         headerLabel.text = "AwesomeAds.version: \(version)"
         headerLabel.font = UIFont(name: "HelveticaNeue-Light", size: 14)
-        headerLabel.translatesAutoresizingMaskIntoConstraints = false
 
         view.addSubview(headerLabel)
+        view.addSubview(settingsButton)
 
-        NSLayoutConstraint.activate([
-            headerLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            headerLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 16),
-            headerLabel.topAnchor.constraint(equalTo: view.safeTopAnchor, constant: 16)
-        ])
+        headerLabel.autoPinEdge(toSuperviewSafeArea: .top, withInset: inset)
+        headerLabel.autoPinEdge(toSuperviewEdge: .leading, withInset: inset)
+
+        settingsButton.autoPinEdge(.leading, to: .trailing, of: headerLabel, withOffset: inset)
+        settingsButton.autoPinEdge(toSuperviewEdge: .trailing, withInset: inset)
+        settingsButton.autoAlignAxis(.horizontal, toSameAxisOf: headerLabel)
+        settingsButton.autoSetDimensions(to: settingsButtonSize)
     }
 
     private func initTable() {
 
         view.addSubview(tableView)
 
-        NSLayoutConstraint.activate([
-            tableView.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: bannerView.topAnchor),
-            tableView.topAnchor.constraint(equalTo: segment.bottomAnchor)
-        ])
+        tableView.autoPinEdge(toSuperviewEdge: .leading)
+        tableView.autoPinEdge(toSuperviewEdge: .trailing)
+        tableView.autoPinEdge(.top, to: .bottom, of: settingsButton, withOffset: inset)
     }
 
-    private func initSegment() {
-        let segment = UISegmentedControl(items: ["Enable checks", "Disable checks"])
-        segment.addTarget(self, action: #selector(segmentChanged), for: .valueChanged)
-        segment.translatesAutoresizingMaskIntoConstraints = false
-        segment.accessibilityIdentifier = "configControl"
-
-        view.addSubview(segment)
-
-        NSLayoutConstraint.activate([
-            segment.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            segment.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            segment.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 16),
-            segment.heightAnchor.constraint(equalToConstant: 30)
-        ])
-
-        self.segment = segment
-    }
-
-    @objc func segmentChanged() {
-        let idx = segment.selectedSegmentIndex
-        switch idx {
-        case 0:
-            configuration1()
-            print("configuration 1")
-        case 1:
-            configuration2()
-            print("configuration 2")
-        default:
-            print("configuration none")
-        }
+    private func initSettings() {
+        view.addSubview(settingsView)
+        settingsView.autoPinEdgesToSuperviewEdges()
     }
 
     private func initBannerView() {
@@ -166,12 +128,11 @@ class MainViewController: UIViewController {
 
         view.addSubview(bannerView)
 
-        NSLayoutConstraint.activate([
-            bannerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            bannerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            bannerView.bottomAnchor.constraint(equalTo: view.safeBottomAnchor, constant: 0),
-            bannerView.heightAnchor.constraint(equalToConstant: 50)
-        ])
+        bannerView.autoPinEdge(.top, to: .bottom, of: tableView)
+        bannerView.autoPinEdge(toSuperviewEdge: .leading)
+        bannerView.autoPinEdge(toSuperviewEdge: .trailing)
+        bannerView.autoPinEdge(toSuperviewSafeArea: .bottom)
+        bannerView.autoSetDimension(.height, toSize: bannerHeight)
 
         bannerView.setCallback { (_, event) in
             print(" bannerView >> \(event.name())")
@@ -240,6 +201,8 @@ class MainViewController: UIViewController {
     }
 }
 
+// MARK: UITableViewDataSource
+
 extension MainViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -259,6 +222,8 @@ extension MainViewController: UITableViewDataSource {
         return items.count
     }
 }
+
+// MARK: UITableViewDelegate
 
 extension MainViewController: UITableViewDelegate {
 
@@ -282,5 +247,48 @@ extension MainViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 44
+    }
+
+    private func updateSettings(settings: SettingsModel) {
+
+        // banner
+
+        bannerView.setTestMode(settings.isTestModeEnabled.value)
+        bannerView.setBumperPage(settings.isBumperEnabled.value)
+        bannerView.setParentalGate(settings.isParentalGateEnabled.value)
+
+        // Interstitial
+
+        InterstitialAd.setTestMode(settings.isTestModeEnabled.value)
+        InterstitialAd.setBumperPage(settings.isBumperEnabled.value)
+        InterstitialAd.setParentalGate(settings.isParentalGateEnabled.value)
+
+        // Video
+
+        VideoAd.setTestMode(settings.isTestModeEnabled.value)
+        VideoAd.setBumperPage(settings.isBumperEnabled.value)
+        VideoAd.setParentalGate(settings.isParentalGateEnabled.value)
+        VideoAd.setMuteOnStart(settings.isVideoMutedOnStart.value)
+        VideoAd.setCloseButtonWarning(settings.isVideoLeaveWarningEnabled.value)
+        VideoAd.setCloseAtEnd(settings.isVideoCloseAtEndEnabled.value)
+
+        switch settings.closeButtonMode.value {
+        case .hidden:
+            VideoAd.disableCloseButton()
+        case .visibleImmediately:
+            InterstitialAd.enableCloseButtonNoDelay()
+            VideoAd.enableCloseButtonNoDelay()
+        case .visibleWithDelay:
+            InterstitialAd.enableCloseButton()
+            VideoAd.enableCloseButton()
+        }
+    }
+}
+
+// MARK: SettingsViewDelegate
+
+extension MainViewController: SettingsViewDelegate {
+    func didUpdateSettings(settings: SettingsModel) {
+        updateSettings(settings: settings)
     }
 }

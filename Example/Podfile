@@ -6,6 +6,7 @@ use_frameworks!
 
 target 'SuperAwesomeExample' do
   pod 'SuperAwesome', :path => '../'
+  pod 'PureLayout', '3.1.9'
 
   target 'SuperAwesomeExampleTests' do
     inherit! :search_paths
