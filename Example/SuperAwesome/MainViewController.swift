@@ -13,16 +13,12 @@ class MainViewController: UIViewController {
 
     private let inset: CGFloat = 16.0
     private let settingsButtonSize = CGSize(width: 20.0, height: 20.0)
-    private let segmentHeight: CGFloat = 30.0
     private let bannerHeight: CGFloat = 50.0
 
     private var isPlayImmediatelyEnabled = true
-    private var headerLabel: UILabel!
-    private var bannerView: BannerView!
-    private var segment: UISegmentedControl!
     private var features: Features?
     private var featuresViewModel: FeaturesViewModel!
-    var cancellable: AnyCancellable?
+    private var cancellable: AnyCancellable?
 
     private var items: [PlacementItem] {
         guard let features else { return [] }
@@ -32,6 +28,15 @@ class MainViewController: UIViewController {
         }
         return placements
     }
+
+    private lazy var headerLabel: UILabel = {
+        let version = AwesomeAds.info()?.versionNumber ?? ""
+        let label = UILabel()
+        label.text = "AwesomeAds.version: \(version)"
+        label.font = UIFont(name: "HelveticaNeue-Light", size: 14)
+        label.accessibilityIdentifier = "Placements.Labels.Version"
+        return label
+    }()
 
     private lazy var settingsButton: TappableButton = {
         let button = TappableButton()
@@ -47,11 +52,26 @@ class MainViewController: UIViewController {
     private lazy var tableView: UITableView = {
         let view = UITableView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.accessibilityIdentifier = "adsTableView"
+        view.accessibilityIdentifier = "Placements.TableView"
         view.register(ItemCell.self, forCellReuseIdentifier: "itemCell")
         view.dataSource = self
         view.delegate = self
         return view
+    }()
+
+    private lazy var bannerView: BannerView = {
+        let bannerView = BannerView()
+        bannerView.enableBumperPage()
+        bannerView.backgroundColor = UIColor.gray
+
+        bannerView.setCallback { [weak self] (_, event) in
+            print(" bannerView >> \(event.name())")
+
+            if event == .adLoaded && self?.isPlayImmediatelyEnabled == true {
+                bannerView.play()
+            }
+        }
+        return bannerView
     }()
 
     private lazy var settingsView: SettingsView = {
@@ -68,6 +88,7 @@ class MainViewController: UIViewController {
         BumperPage.overrideName("Demo App")
 
         initUI()
+        
         featuresViewModel = FeaturesViewModel()
         cancellable = featuresViewModel.$features.sink { [weak self] features in
             self?.features = features
@@ -81,23 +102,22 @@ class MainViewController: UIViewController {
     }
 
     private func initUI() {
-        initHeader()
-        initTable()
-        initBannerView()
-        initSettings()
+        addSubViews()
+        addConstriants()
         configureVideo()
         configureInterstitial()
         updateSettings(settings: SettingsModel())
     }
 
-    private func initHeader() {
-        let version = AwesomeAds.info()?.versionNumber ?? ""
-        headerLabel = UILabel()
-        headerLabel.text = "AwesomeAds.version: \(version)"
-        headerLabel.font = UIFont(name: "HelveticaNeue-Light", size: 14)
-
+    private func addSubViews() {
         view.addSubview(headerLabel)
         view.addSubview(settingsButton)
+        view.addSubview(tableView)
+        view.addSubview(bannerView)
+        view.addSubview(settingsView)
+    }
+
+    private func addConstriants() {
 
         headerLabel.autoPinEdge(toSuperviewSafeArea: .top, withInset: inset)
         headerLabel.autoPinEdge(toSuperviewEdge: .leading, withInset: inset)
@@ -106,30 +126,10 @@ class MainViewController: UIViewController {
         settingsButton.autoPinEdge(toSuperviewEdge: .trailing, withInset: inset)
         settingsButton.autoAlignAxis(.horizontal, toSameAxisOf: headerLabel)
         settingsButton.autoSetDimensions(to: settingsButtonSize)
-    }
-
-    private func initTable() {
-
-        view.addSubview(tableView)
 
         tableView.autoPinEdge(toSuperviewEdge: .leading)
         tableView.autoPinEdge(toSuperviewEdge: .trailing)
         tableView.autoPinEdge(.top, to: .bottom, of: settingsButton, withOffset: inset)
-    }
-
-    private func initSettings() {
-        view.addSubview(settingsView)
-        settingsView.autoPinEdgesToSuperviewEdges()
-    }
-
-    private func initBannerView() {
-        // banner view
-        bannerView = BannerView()
-        bannerView.enableBumperPage()
-        bannerView.backgroundColor = UIColor.gray
-        bannerView.translatesAutoresizingMaskIntoConstraints = false
-
-        view.addSubview(bannerView)
 
         bannerView.autoPinEdge(.top, to: .bottom, of: tableView)
         bannerView.autoPinEdge(toSuperviewEdge: .leading)
@@ -137,13 +137,7 @@ class MainViewController: UIViewController {
         bannerView.autoPinEdge(toSuperviewSafeArea: .bottom)
         bannerView.autoSetDimension(.height, toSize: bannerHeight)
 
-        bannerView.setCallback { [weak self] (_, event) in
-            print(" bannerView >> \(event.name())")
-
-            if event == .adLoaded && self?.isPlayImmediatelyEnabled == true {
-                self?.bannerView.play()
-            }
-        }
+        settingsView.autoPinEdgesToSuperviewEdges()
     }
 
     private func configureInterstitial() {
