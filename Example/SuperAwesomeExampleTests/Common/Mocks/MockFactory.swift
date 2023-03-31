@@ -44,7 +44,6 @@ class MockFactory {
                 tag: tag,
                 width: 90,
                 height: 100,
-                duration: 110,
                 vast: vast),
             bumper: bumper,
             payload: nil),
