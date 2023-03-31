@@ -8,7 +8,6 @@
 
 "Settings.Labels.Title" = "Settings";
 
-"Settings.Item.Environment" = "Environment";
 "Settings.Item.CloseButtonMode" = "Close Button";
 "Settings.Item.TestMode" = "Test Mode";
 "Settings.Item.Bumper" = "Bumper";
@@ -18,8 +17,6 @@
 "Settings.Item.LeaveVideoWarning" = "Leave Video Warning";
 "Settings.Item.CloseAtEnd" = "Close At End";
 
-"Settings.Item.Option.Environment.UITesting" = "UI Testing";
-"Settings.Item.Option.Environment.Production" = "Production";
 "Settings.Item.Option.CloseButtonMode.NoDelay" = "No Delay";
 "Settings.Item.Option.CloseButtonMode.Delay" = "Delay";
 "Settings.Item.Option.CloseButtonMode.Hidden" = "Hidden";

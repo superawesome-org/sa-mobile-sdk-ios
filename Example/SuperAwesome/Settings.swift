@@ -8,7 +8,6 @@
 import SuperAwesome
 
 enum Settings {
-    case environment
     case closeButtonMode
     case testMode
     case bumper
@@ -24,8 +23,6 @@ enum Settings {
 
     var identifier: String {
         switch self {
-        case .environment:
-            return "Environment"
         case .closeButtonMode:
             return "CloseButtonMode"
         case .testMode:
@@ -47,17 +44,6 @@ enum Settings {
 
     var options: [SettingsItemOption] {
         switch self {
-        case .environment:
-            return [
-                SettingsItemOption(identifier: "UITesting",
-                                   name: NSLocalizedString("Settings.Item.Option.Environment.UITesting",
-                                                           comment: "UI Testing"),
-                                   value: SuperAwesome.Environment.uitesting),
-                SettingsItemOption(identifier: "Production",
-                                   name: NSLocalizedString("Settings.Item.Option.Environment.Production",
-                                                           comment: "Production"),
-                                   value: SuperAwesome.Environment.production)
-            ]
         case .closeButtonMode:
             return [
                 SettingsItemOption(identifier: "NoDelay",
@@ -91,8 +77,7 @@ enum Settings {
     }
 
     static var all: [Settings] {
-        [.environment,
-         .closeButtonMode,
+        [.closeButtonMode,
          .testMode,
          .bumper,
          .parentalGate,

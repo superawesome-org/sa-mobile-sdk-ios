@@ -8,8 +8,6 @@
 import SuperAwesome
 
 class SettingsModel {
-    var environment: SettingValue<SuperAwesome.Environment> =
-        SettingValue(setting: .environment, value: SuperAwesome.Environment.production)
 
     var closeButtonMode: SettingValue<CloseButtonState> =
         SettingValue(setting: .closeButtonMode, value: CloseButtonState.visibleWithDelay)
@@ -30,8 +28,6 @@ class SettingsModel {
 
     func getValue(forSetting setting: Settings) -> Any {
         switch setting {
-        case .environment:
-            return environment.value
         case .closeButtonMode:
             return closeButtonMode.value
         case .testMode:
@@ -53,9 +49,6 @@ class SettingsModel {
 
     func setValue(forSetting setting: Settings, value: Any) {
         switch setting {
-        case .environment:
-            guard let env = value as? SuperAwesome.Environment else { return }
-            environment = SettingValue(setting: .environment, value: env)
         case .closeButtonMode:
             guard let mode = value as? CloseButtonState else { return }
             closeButtonMode = SettingValue(setting: .closeButtonMode, value: mode)
