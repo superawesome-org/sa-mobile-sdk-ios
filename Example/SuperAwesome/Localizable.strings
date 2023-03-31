@@ -1,0 +1,24 @@
+/* 
+  Localizable.strings
+  SuperAwesomeExample
+
+  Created by Myles Eynon on 30/03/2023.
+  
+*/
+
+"Settings.Labels.Title" = "Settings";
+
+"Settings.Item.CloseButtonMode" = "Close Button";
+"Settings.Item.TestMode" = "Test Mode";
+"Settings.Item.Bumper" = "Bumper";
+"Settings.Item.ParentalGate" = "Parental Gate";
+"Settings.Item.PlayAdImmediately" = "Play ad Immediately";
+"Settings.Item.MuteOnStart" = "Mute On Start";
+"Settings.Item.LeaveVideoWarning" = "Leave Video Warning";
+"Settings.Item.CloseAtEnd" = "Close At End";
+
+"Settings.Item.Option.CloseButtonMode.NoDelay" = "No Delay";
+"Settings.Item.Option.CloseButtonMode.Delay" = "Delay";
+"Settings.Item.Option.CloseButtonMode.Hidden" = "Hidden";
+"Settings.Item.Option.Enable" = "Enable";
+"Settings.Item.Option.Disable" = "Disable";

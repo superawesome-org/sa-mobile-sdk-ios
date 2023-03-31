@@ -14,6 +14,16 @@
 		07A6F47829A3DE95004FED87 /* FeatureItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0788DABF29818C470087AE93 /* FeatureItem.swift */; };
 		07A6F47929A3DE95004FED87 /* FeaturesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07554857299FFB8700DA5C29 /* FeaturesViewModel.swift */; };
 		07A6F47A29A3DE95004FED87 /* GetPlacements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07554852299FF28D00DA5C29 /* GetPlacements.swift */; };
+		07F03E8029D5C559004790F5 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F03E7F29D5C559004790F5 /* SettingsView.swift */; };
+		07F03E8229D5C68E004790F5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 07F03E8129D5C68E004790F5 /* Localizable.strings */; };
+		07F03E8529D5CA96004790F5 /* SettingsItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F03E8429D5CA96004790F5 /* SettingsItemView.swift */; };
+		07F03E8729D5CBBE004790F5 /* ConstraintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F03E8629D5CBBE004790F5 /* ConstraintView.swift */; };
+		07F03E8929D5D323004790F5 /* TappableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F03E8829D5D323004790F5 /* TappableButton.swift */; };
+		07F03E8C29D5D9D8004790F5 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F03E8B29D5D9D8004790F5 /* Settings.swift */; };
+		07F03E8E29D5D9F3004790F5 /* SettingsItemOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F03E8D29D5D9F3004790F5 /* SettingsItemOption.swift */; };
+		07F03E9029D5DA09004790F5 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F03E8F29D5DA09004790F5 /* SettingsModel.swift */; };
+		07F03E9329D5F890004790F5 /* Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F03E9229D5F890004790F5 /* Equatable.swift */; };
+		07F03E9529D5FEC5004790F5 /* TappableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F03E9429D5FEC5004790F5 /* TappableView.swift */; };
 		1B76D2411C91EEB1000AE8F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B76D23F1C91EEB1000AE8F3 /* Main.storyboard */; };
 		1B76D2431C91EEB1000AE8F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B76D2421C91EEB1000AE8F3 /* Assets.xcassets */; };
 		1B76D2461C91EEB1000AE8F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B76D2441C91EEB1000AE8F3 /* LaunchScreen.storyboard */; };
@@ -115,6 +125,16 @@
 		0788DABE29818C470087AE93 /* PlacementItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacementItem.swift; sourceTree = "<group>"; };
 		0788DABF29818C470087AE93 /* FeatureItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeatureItem.swift; sourceTree = "<group>"; };
 		07A6F47229A00008004FED87 /* Features.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Features.swift; sourceTree = "<group>"; };
+		07F03E7F29D5C559004790F5 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		07F03E8129D5C68E004790F5 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		07F03E8429D5CA96004790F5 /* SettingsItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsItemView.swift; sourceTree = "<group>"; };
+		07F03E8629D5CBBE004790F5 /* ConstraintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintView.swift; sourceTree = "<group>"; };
+		07F03E8829D5D323004790F5 /* TappableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableButton.swift; sourceTree = "<group>"; };
+		07F03E8B29D5D9D8004790F5 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		07F03E8D29D5D9F3004790F5 /* SettingsItemOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsItemOption.swift; sourceTree = "<group>"; };
+		07F03E8F29D5DA09004790F5 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
+		07F03E9229D5F890004790F5 /* Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equatable.swift; sourceTree = "<group>"; };
+		07F03E9429D5FEC5004790F5 /* TappableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableView.swift; sourceTree = "<group>"; };
 		14DB9CADBD9717EB3B802403 /* Pods-SuperAwesomeExampleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesomeExampleUITests.debug.xcconfig"; path = "Target Support Files/Pods-SuperAwesomeExampleUITests/Pods-SuperAwesomeExampleUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		1B76D2331C91EEB1000AE8F3 /* SuperAwesomeExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperAwesomeExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B76D2401C91EEB1000AE8F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -291,6 +311,34 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
+		07F03E8329D5CA86004790F5 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				07F03E8A29D5D9CF004790F5 /* Data */,
+				07F03E7F29D5C559004790F5 /* SettingsView.swift */,
+				07F03E8429D5CA96004790F5 /* SettingsItemView.swift */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		07F03E8A29D5D9CF004790F5 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				07F03E8B29D5D9D8004790F5 /* Settings.swift */,
+				07F03E8D29D5D9F3004790F5 /* SettingsItemOption.swift */,
+				07F03E8F29D5DA09004790F5 /* SettingsModel.swift */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		07F03E9129D5F886004790F5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				07F03E9229D5F890004790F5 /* Equatable.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		1B76D22A1C91EEB1000AE8F3 = {
 			isa = PBXGroup;
 			children = (
@@ -318,12 +366,13 @@
 		1B76D2351C91EEB1000AE8F3 /* SuperAwesome */ = {
 			isa = PBXGroup;
 			children = (
-				CCFF5B51296F9E3700707BBD /* UI */,
-				1BB5F58E1ED6CC4F00ACD72E /* Storyboards */,
-				1BB5F58D1ED6CC4300ACD72E /* Meta */,
+				4D2BB746266A689B00E3D86A /* AppDelegate.swift */,
 				1BB5F58C1ED6CC3900ACD72E /* Controllers */,
-				1B76D2361C91EEB1000AE8F3 /* Supporting Files */,
+				07F03E9129D5F886004790F5 /* Extensions */,
+				CCFF5B51296F9E3700707BBD /* Views */,
 				C6398A1127AAB1D400D6A152 /* Utils */,
+				1BB5F58E1ED6CC4F00ACD72E /* Storyboards */,
+				1B76D2361C91EEB1000AE8F3 /* Supporting Files */,
 			);
 			path = SuperAwesome;
 			sourceTree = "<group>";
@@ -331,6 +380,11 @@
 		1B76D2361C91EEB1000AE8F3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CC194D18296ED4E20068B85F /* GoogleService-Info.plist */,
+				1B76D2421C91EEB1000AE8F3 /* Assets.xcassets */,
+				1B76D2471C91EEB1000AE8F3 /* Info.plist */,
+				1BFE15E422A00DE500C500C0 /* SuperAwesome-Bridging-Header.h */,
+				07F03E8129D5C68E004790F5 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -341,18 +395,6 @@
 				C6398A0F27AAAEF300D6A152 /* MainViewController.swift */,
 			);
 			name = Controllers;
-			sourceTree = "<group>";
-		};
-		1BB5F58D1ED6CC4300ACD72E /* Meta */ = {
-			isa = PBXGroup;
-			children = (
-				CC194D18296ED4E20068B85F /* GoogleService-Info.plist */,
-				1B76D2421C91EEB1000AE8F3 /* Assets.xcassets */,
-				1B76D2471C91EEB1000AE8F3 /* Info.plist */,
-				1BFE15E422A00DE500C500C0 /* SuperAwesome-Bridging-Header.h */,
-				4D2BB746266A689B00E3D86A /* AppDelegate.swift */,
-			);
-			name = Meta;
 			sourceTree = "<group>";
 		};
 		1BB5F58E1ED6CC4F00ACD72E /* Storyboards */ = {
@@ -614,12 +656,16 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
-		CCFF5B51296F9E3700707BBD /* UI */ = {
+		CCFF5B51296F9E3700707BBD /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				07F03E8329D5CA86004790F5 /* Settings */,
 				CCFF5B52296F9E5F00707BBD /* ItemCell.swift */,
+				07F03E8629D5CBBE004790F5 /* ConstraintView.swift */,
+				07F03E8829D5D323004790F5 /* TappableButton.swift */,
+				07F03E9429D5FEC5004790F5 /* TappableView.swift */,
 			);
-			name = UI;
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -737,6 +783,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07F03E8229D5C68E004790F5 /* Localizable.strings in Resources */,
 				1B76D2461C91EEB1000AE8F3 /* LaunchScreen.storyboard in Resources */,
 				CC194D19296ED4E20068B85F /* GoogleService-Info.plist in Resources */,
 				1B76D2431C91EEB1000AE8F3 /* Assets.xcassets in Resources */,
@@ -799,6 +846,7 @@
 				"${PODS_ROOT}/Target Support Files/Pods-SuperAwesomeExample/Pods-SuperAwesomeExample-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/PureLayout/PureLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/SuperAwesome/SuperAwesome.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyXMLParser/SwiftyXMLParser.framework",
 			);
@@ -806,6 +854,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PureLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SuperAwesome.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyXMLParser.framework",
 			);
@@ -867,6 +916,7 @@
 				"${PODS_ROOT}/Target Support Files/Pods-SuperAwesomeExample-SuperAwesomeExampleUITests/Pods-SuperAwesomeExample-SuperAwesomeExampleUITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/PureLayout/PureLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/SuperAwesome/SuperAwesome.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyXMLParser/SwiftyXMLParser.framework",
 				"${BUILT_PRODUCTS_DIR}/DominantColor/DominantColor.framework",
@@ -875,6 +925,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PureLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SuperAwesome.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyXMLParser.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DominantColor.framework",
@@ -909,15 +960,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07F03E9029D5DA09004790F5 /* SettingsModel.swift in Sources */,
 				CC3A52A7290F23C600484D1B /* LaunchUtils.swift in Sources */,
 				C6398A1327AAB1E500D6A152 /* UIView+Extensions.swift in Sources */,
+				07F03E8E29D5D9F3004790F5 /* SettingsItemOption.swift in Sources */,
+				07F03E8529D5CA96004790F5 /* SettingsItemView.swift in Sources */,
 				07A6F47629A3DE95004FED87 /* Features.swift in Sources */,
 				CCFF5B53296F9E5F00707BBD /* ItemCell.swift in Sources */,
 				07A6F47A29A3DE95004FED87 /* GetPlacements.swift in Sources */,
 				4D2BB747266A689B00E3D86A /* AppDelegate.swift in Sources */,
+				07F03E9529D5FEC5004790F5 /* TappableView.swift in Sources */,
 				07A6F47929A3DE95004FED87 /* FeaturesViewModel.swift in Sources */,
+				07F03E8929D5D323004790F5 /* TappableButton.swift in Sources */,
 				07A6F47529A3DE95004FED87 /* FeatureType.swift in Sources */,
+				07F03E8C29D5D9D8004790F5 /* Settings.swift in Sources */,
+				07F03E8729D5CBBE004790F5 /* ConstraintView.swift in Sources */,
 				07A6F47729A3DE95004FED87 /* PlacementItem.swift in Sources */,
+				07F03E9329D5F890004790F5 /* Equatable.swift in Sources */,
+				07F03E8029D5C559004790F5 /* SettingsView.swift in Sources */,
 				C6398A1027AAAEF300D6A152 /* MainViewController.swift in Sources */,
 				07A6F47829A3DE95004FED87 /* FeatureItem.swift in Sources */,
 			);

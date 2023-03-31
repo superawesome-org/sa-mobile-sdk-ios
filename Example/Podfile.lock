@@ -6,6 +6,7 @@ PODS:
   - Moya/Core (14.0.0):
     - Alamofire (~> 5.0)
   - Nimble (10.0.0)
+  - PureLayout (3.1.9)
   - SuperAwesome (8.5.7):
     - Moya (~> 14.0)
     - SwiftyXMLParser (= 5.6.0)
@@ -14,6 +15,7 @@ PODS:
 DEPENDENCIES:
   - DominantColor (~> 0.2.0)
   - Nimble (~> 10.0.0)
+  - PureLayout (= 3.1.9)
   - SuperAwesome (from `../`)
 
 SPEC REPOS:
@@ -22,6 +24,7 @@ SPEC REPOS:
     - DominantColor
     - Moya
     - Nimble
+    - PureLayout
     - SwiftyXMLParser
 
 EXTERNAL SOURCES:
@@ -33,9 +36,10 @@ SPEC CHECKSUMS:
   DominantColor: 960c25e8d7eaf598bb5adae5c99a67a205ad3099
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   Nimble: 5316ef81a170ce87baf72dd961f22f89a602ff84
+  PureLayout: 5fb5e5429519627d60d079ccb1eaa7265ce7cf88
   SuperAwesome: 6197541d1f2f3e3401cb51cb09a4d398444b9820
   SwiftyXMLParser: 9b98995235961881322015ebe38d1f3d7c953bd7
 
-PODFILE CHECKSUM: 1d2a860c705998b097bbe2d8bb6add23bf19e9af
+PODFILE CHECKSUM: 2004594000bdb2c6962bdeee90b55c3acf55d43d
 
 COCOAPODS: 1.12.0
