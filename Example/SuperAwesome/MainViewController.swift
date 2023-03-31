@@ -16,6 +16,7 @@ class MainViewController: UIViewController {
     private let segmentHeight: CGFloat = 30.0
     private let bannerHeight: CGFloat = 50.0
 
+    private var isPlayImmediatelyEnabled = true
     private var headerLabel: UILabel!
     private var bannerView: BannerView!
     private var segment: UISegmentedControl!
@@ -84,6 +85,8 @@ class MainViewController: UIViewController {
         initTable()
         initBannerView()
         initSettings()
+        configureVideo()
+        configureInterstitial()
         updateSettings(settings: SettingsModel())
     }
 
@@ -134,32 +137,32 @@ class MainViewController: UIViewController {
         bannerView.autoPinEdge(toSuperviewSafeArea: .bottom)
         bannerView.autoSetDimension(.height, toSize: bannerHeight)
 
-        bannerView.setCallback { (_, event) in
+        bannerView.setCallback { [weak self] (_, event) in
             print(" bannerView >> \(event.name())")
 
-            if event == .adLoaded {
-                self.bannerView.play()
+            if event == .adLoaded && self?.isPlayImmediatelyEnabled == true {
+                self?.bannerView.play()
             }
         }
     }
 
     private func configureInterstitial() {
-        InterstitialAd.setCallback { (placementId, event) in
+        InterstitialAd.setCallback { [weak self] (placementId, event) in
             print(" InterstitialAd >> \(event.name())")
-
-            if event == .adLoaded {
-                InterstitialAd.play(placementId, fromVC: self)
+            guard let strongSelf = self else { return }
+            if event == .adLoaded && strongSelf.isPlayImmediatelyEnabled {
+                InterstitialAd.play(placementId, fromVC: strongSelf)
             }
         }
     }
 
     private func configureVideo() {
         VideoAd.enableCloseButton()
-        VideoAd.setCallback { (placementId, event) in
+        VideoAd.setCallback { [weak self] (placementId, event) in
             print("VideoAd >> \(event.name())")
-
-            if event == .adLoaded {
-                VideoAd.play(withPlacementId: placementId, fromVc: self)
+            guard let strongSelf = self else { return }
+            if event == .adLoaded && strongSelf.isPlayImmediatelyEnabled {
+                VideoAd.play(withPlacementId: placementId, fromVc: strongSelf)
             }
         }
     }
@@ -250,6 +253,8 @@ extension MainViewController: UITableViewDelegate {
     }
 
     private func updateSettings(settings: SettingsModel) {
+
+        isPlayImmediatelyEnabled = settings.isPlayAdImmediatelyEnabled.value
 
         // banner
 
