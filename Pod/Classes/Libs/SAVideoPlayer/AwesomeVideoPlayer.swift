@@ -119,6 +119,17 @@ public class AwesomeVideoPlayer: UIView, VideoPlayer {
         return playerLayer
     }
 
+    // MARK: Init
+
+    public init() {
+        super.init(frame: .zero)
+        accessibilityIdentifier = "SuperAwesome.Video.Player"
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     ////////////////////////////////////////////////////////////////////////////
     // MediaControlDelegate
     ////////////////////////////////////////////////////////////////////////////

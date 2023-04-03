@@ -15,12 +15,14 @@ class InterstitialAdViewController: UIViewController, Injectable {
     private var bannerView: BannerView?
     private var closeButton: UIButton?
 
+    private let accessibilityPrefix = "SuperAwesome.Interstital."
     private let adResponse: AdResponse
     private let parentGateEnabled: Bool
     private let bumperPageEnabled: Bool
     private let closeButtonState: CloseButtonState
     private let testingEnabled: Bool
     private let orientation: Orientation
+    private let closeButtonSize: CGFloat = 40.0
 
     // swiftlint:disable weak_delegate
     private let delegate: AdEventCallback?
@@ -49,6 +51,7 @@ class InterstitialAdViewController: UIViewController, Injectable {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Constants.backgroundGray
+        view.accessibilityIdentifier = "\(accessibilityPrefix)Screen"
         configureBannerView()
         configureCloseButton()
     }
@@ -84,14 +87,14 @@ class InterstitialAdViewController: UIViewController, Injectable {
         bannerView.setBumperPage(bumperPageEnabled)
         bannerView.setParentalGate(parentGateEnabled)
         bannerView.translatesAutoresizingMaskIntoConstraints = false
-
+        bannerView.accessibilityIdentifier = "\(accessibilityPrefix)Banner"
         view.addSubview(bannerView)
 
         NSLayoutConstraint.activate([
-            bannerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            bannerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            bannerView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-            bannerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+            bannerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0.0),
+            bannerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0.0),
+            bannerView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0.0),
+            bannerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0.0)
         ])
 
         self.bannerView = bannerView
@@ -104,15 +107,15 @@ class InterstitialAdViewController: UIViewController, Injectable {
         button.setImage(imageProvider.closeImage, for: .normal)
         button.addTarget(self, action: #selector(onCloseClicked), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.accessibilityIdentifier = "closeButton"
+        button.accessibilityIdentifier = "\(accessibilityPrefix)Buttons.Close"
 
         view.addSubview(button)
 
         NSLayoutConstraint.activate([
-            button.widthAnchor.constraint(equalToConstant: 40.0),
-            button.heightAnchor.constraint(equalToConstant: 40.0),
-            button.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: 0),
-            button.topAnchor.constraint(equalTo: view.safeTopAnchor, constant: 0)
+            button.widthAnchor.constraint(equalToConstant: closeButtonSize),
+            button.heightAnchor.constraint(equalToConstant: closeButtonSize),
+            button.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: 0.0),
+            button.topAnchor.constraint(equalTo: view.safeTopAnchor, constant: 0.0)
         ])
 
         self.closeButton = button

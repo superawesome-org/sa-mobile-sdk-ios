@@ -9,6 +9,8 @@ import UIKit
 
 @objc(SAAdSocialVideoPlayerControlsView) public class AdSocialVideoPlayerControlsView: UIView, VideoPlayerControlsView {
 
+    private let accessibilityPrefix = "SuperAwesome.Video.Controls."
+
     private var blackMask: BlackMask!
     private var chrono: Chronograph!
     private var clicker: URLClicker!
@@ -98,28 +100,32 @@ import UIKit
 
     private func initSubViews(_ smallClick: Bool, _ showSafeAdLogo: Bool) {
 
+        accessibilityIdentifier = "\(accessibilityPrefix)Screen"
+
         blackMask = BlackMask()
+        blackMask.accessibilityIdentifier = "\(accessibilityPrefix)Views.BlackMask"
         addSubview(blackMask)
 
         chrono = Chronograph()
+        chrono.accessibilityIdentifier = "\(accessibilityPrefix)Views.Chronograph"
         addSubview(chrono)
 
         clicker = URLClicker(smallClick: smallClick)
-        addSubview(clicker)
-
+        clicker.accessibilityIdentifier = "\(accessibilityPrefix)Buttons.Clicker"
         clicker.translatesAutoresizingMaskIntoConstraints = false
         clicker.addTarget(self, action: #selector(didTapOnUrl), for: .touchUpInside)
+        addSubview(clicker)
 
         closeButton = CloseButton()
-        closeButton.accessibilityIdentifier = "closeButton"
         closeButton.isHidden = true
         closeButton.addTarget(self, action: #selector(close), for: .touchUpInside)
+        closeButton.accessibilityIdentifier = "\(accessibilityPrefix)Buttons.Close"
         addSubview(closeButton)
 
         volumeButton = VolumeButton()
-        volumeButton.accessibilityIdentifier = "volumeButton"
         volumeButton.isHidden = true
         volumeButton.addTarget(self, action: #selector(onVolumeTapped), for: .touchUpInside)
+        volumeButton.accessibilityIdentifier = "\(accessibilityPrefix)Buttons.Volume"
         addSubview(volumeButton)
     }
 

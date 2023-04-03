@@ -34,13 +34,13 @@ class MainViewController: UIViewController {
         let label = UILabel()
         label.text = "AwesomeAds.version: \(version)"
         label.font = UIFont(name: "HelveticaNeue-Light", size: 14)
-        label.accessibilityIdentifier = "Placements.Labels.Version"
+        label.accessibilityIdentifier = "AdList.Labels.Version"
         return label
     }()
 
     private lazy var settingsButton: TappableButton = {
         let button = TappableButton()
-        button.accessibilityIdentifier = "Placements.Buttons.Settings"
+        button.accessibilityIdentifier = "AdList.Buttons.Settings"
         button.setImage(UIImage(named: "ico_settings"), for: .normal)
         button.tintColor = .darkGray
         button.onTap = { [weak self] in
@@ -52,7 +52,7 @@ class MainViewController: UIViewController {
     private lazy var tableView: UITableView = {
         let view = UITableView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.accessibilityIdentifier = "Placements.TableView"
+        view.accessibilityIdentifier = "AdList.TableView"
         view.register(ItemCell.self, forCellReuseIdentifier: "itemCell")
         view.dataSource = self
         view.delegate = self
@@ -63,7 +63,7 @@ class MainViewController: UIViewController {
         let bannerView = BannerView()
         bannerView.enableBumperPage()
         bannerView.backgroundColor = UIColor.gray
-
+        bannerView.accessibilityIdentifier = "AdList.BannerView"
         bannerView.setCallback { [weak self] (_, event) in
             print(" bannerView >> \(event.name())")
 
@@ -84,7 +84,7 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.accessibilityIdentifier = "AdList.Screen"
         BumperPage.overrideName("Demo App")
 
         initUI()

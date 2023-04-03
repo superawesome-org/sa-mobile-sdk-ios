@@ -12,9 +12,11 @@ import WebKit
 
     // MARK: Properties
 
+    private let accessibilityPrefix = "SuperAwesome.ManagedAdView."
     private let placementId: Int
     private let html: String
     private let config: AdConfig
+    private let closeButtonSize: CGFloat = 40.0
 
     private let eventsForClosing = [
         AdEvent.adEmpty, .adFailedToLoad, .adFailedToShow, .adEnded, .adClosed
@@ -44,6 +46,7 @@ import WebKit
         self.controller.parentalGateEnabled = config.isParentalGateEnabled
         self.controller.bumperPageEnabled = config.isBumperPageEnabled
         self.controller.callback = callback
+        view.accessibilityIdentifier = "\(accessibilityPrefix)Screen"
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -52,7 +55,7 @@ import WebKit
 
     lazy var managedAdView: SAManagedAdView = {
         let adView = SAManagedAdView()
-        adView.accessibilityIdentifier = "adContent"
+        adView.accessibilityIdentifier = "\(accessibilityPrefix)Views.ManagedAd"
         adView.setBridge(bridge: self)
         adView.setCallback(value: callback)
         return adView
@@ -101,14 +104,14 @@ import WebKit
         button.setImage(imageProvider.closeImage, for: .normal)
         button.addTarget(self, action: #selector(onCloseClicked), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
-
+        button.accessibilityIdentifier = "\(accessibilityPrefix)Buttons.Close"
         view.addSubview(button)
 
         NSLayoutConstraint.activate([
-            button.widthAnchor.constraint(equalToConstant: 40.0),
-            button.heightAnchor.constraint(equalToConstant: 40.0),
-            button.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: 0),
-            button.topAnchor.constraint(equalTo: view.safeTopAnchor, constant: 0)
+            button.widthAnchor.constraint(equalToConstant: closeButtonSize),
+            button.heightAnchor.constraint(equalToConstant: closeButtonSize),
+            button.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: 0.0),
+            button.topAnchor.constraint(equalTo: view.safeTopAnchor, constant: 0.0)
         ])
 
         self.closeButton = button
@@ -116,7 +119,7 @@ import WebKit
         switch config.closeButtonState {
         case .visibleWithDelay:
             button.isHidden = true
-            closeButtonFallbackTimer = Timer.scheduledTimer(timeInterval: 1,
+            closeButtonFallbackTimer = Timer.scheduledTimer(timeInterval: 1.0,
                                                             target: self,
                                                             selector: #selector(closeButtonVisibilityFallback),
                                                             userInfo: nil,
