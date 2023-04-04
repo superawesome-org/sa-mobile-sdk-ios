@@ -26,6 +26,7 @@ class BannerUITests: BaseUITest {
 
             banner(app) { banner in
                 banner.waitForView()
+                banner.checkPadlockButtonExists()
                 banner.tapBanner()
 
                 bumperScreen(app) { bumper in
@@ -57,6 +58,7 @@ class BannerUITests: BaseUITest {
 
             banner(app) { banner in
                 banner.waitForView()
+                banner.checkPadlockButtonExists()
                 banner.tapBanner()
 
                 parentGateAlert(app) { parentGate in

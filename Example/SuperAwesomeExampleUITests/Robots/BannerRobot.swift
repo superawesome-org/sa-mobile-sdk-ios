@@ -9,8 +9,14 @@ import XCTest
 
 class BannerRobot: Robot {
 
+    private let accessibilityPrefix = "SuperAwesome.Banner."
+
     private var banner: XCUIElement {
         app.otherElements["AdList.BannerView"]
+    }
+
+    private var padlockButton: XCUIElement {
+        banner.buttons["\(accessibilityPrefix)Buttons.Padlock"]
     }
 
     func waitForView() {
@@ -19,6 +25,14 @@ class BannerRobot: Robot {
 
     func tapBanner() {
         banner.tap()
+    }
+
+    func tapPadlockButton() {
+        padlockButton.tap()
+    }
+
+    func checkPadlockButtonExists() {
+        XCTAssertTrue(padlockButton.exists)
     }
 }
 

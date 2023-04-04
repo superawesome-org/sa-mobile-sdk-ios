@@ -1,0 +1,10 @@
+{
+  "request": {
+      "method": "GET",
+      "urlPath": "/banner_yellow.png"
+  },
+  "response": {
+      "status": 200,
+      "bodyFileName": "banner_yellow.png"
+  }
+}

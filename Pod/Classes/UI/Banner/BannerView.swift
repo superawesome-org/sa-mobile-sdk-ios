@@ -11,6 +11,8 @@ import UIKit
 @objc(SABannerAd)
 public class BannerView: UIView, Injectable {
 
+    private let accessibilityPrefix = "SuperAwesome.Banner."
+
     private lazy var imageProvider: ImageProviderType = dependencies.resolve()
     private lazy var controller: AdControllerType = dependencies.resolve()
     private lazy var logger: LoggerType = dependencies.resolve(param: BannerView.self)
@@ -136,7 +138,7 @@ public class BannerView: UIView, Injectable {
         padlock.translatesAutoresizingMaskIntoConstraints = false
         padlock.setImage(imageProvider.safeAdImage, for: .normal)
         padlock.addTarget(self, action: #selector(padlockAction), for: .touchUpInside)
-
+        padlock.accessibilityIdentifier = "\(accessibilityPrefix)Buttons.Padlock"
         webView.addSubview(padlock)
 
         NSLayoutConstraint.activate([

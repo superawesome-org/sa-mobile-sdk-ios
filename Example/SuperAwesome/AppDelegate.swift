@@ -19,8 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UIView.setAnimationsEnabled(false)
         }
 
-//        let environment: Environment = testSetup.isInTestMode ? .uitesting : .production
-        let environment: Environment = .production
+        let environment: Environment = testSetup.isInTestMode ? .uitesting : .production
         AwesomeAds.initSDK(configuration: Configuration(environment: environment, logging: true)) {
             print("AwesomeAds SDK init complete")
         }
