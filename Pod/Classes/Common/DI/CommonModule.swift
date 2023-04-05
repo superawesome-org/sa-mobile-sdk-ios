@@ -51,7 +51,9 @@ struct CommonModule: DependencyModule {
             VastParser(connectionProvider: container.resolve())
         }
         container.single(AdProcessorType.self) { container, _ in
-            AdProcessor(htmlFormatter: container.resolve(), vastParser: container.resolve(), networkDataSource: container.resolve(),
+            AdProcessor(htmlFormatter: container.resolve(),
+                        vastParser: container.resolve(),
+                        networkDataSource: container.resolve(),
                         logger: container.resolve(param: AdProcessor.self))
         }
         container.single(HtmlFormatterType.self) { container, _ in
@@ -73,10 +75,14 @@ struct CommonModule: DependencyModule {
             PreferencesRepository(UserDefaults.standard)
         }
         container.single(AdRepositoryType.self) { container, _ in
-            AdRepository(dataSource: container.resolve(), adQueryMaker: container.resolve(), adProcessor: container.resolve())
+            AdRepository(dataSource: container.resolve(),
+                         adQueryMaker: container.resolve(),
+                         adProcessor: container.resolve())
         }
         container.single(EventRepositoryType.self) { container, _ in
-            EventRepository(dataSource: container.resolve(), adQueryMaker: container.resolve(), logger: container.resolve(param: EventRepository.self))
+            EventRepository(dataSource: container.resolve(),
+                            adQueryMaker: container.resolve(),
+                            logger: container.resolve(param: EventRepository.self))
         }
         container.factory(VastEventRepositoryType.self) { container, param in
             guard let adResponse = param[0] as?  AdResponse else {

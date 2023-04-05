@@ -36,8 +36,8 @@ class AdRepositoryTests: XCTestCase {
         // When
         let expectation = self.expectation(description: "request")
 
-        adRepository.getAd(placementId: placementId, request: MockFactory.makeAdRequest()) { result in
-            self.result = result
+        adRepository.getAd(placementId: placementId, request: MockFactory.makeAdRequest()) { [weak self] result in
+            self?.result = result
             expectation.fulfill()
         }
 
@@ -61,8 +61,8 @@ class AdRepositoryTests: XCTestCase {
             placementId: placementId,
             lineItemId: lineItemId,
             creativeId: creativeId,
-            request: MockFactory.makeAdRequest()) { result in
-                self.result = result
+            request: MockFactory.makeAdRequest()) { [weak self] result in
+                self?.result = result
                 expectation.fulfill()
             }
 

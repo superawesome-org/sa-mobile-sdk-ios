@@ -17,11 +17,11 @@ class AFNetworkDataSource: NetworkDataSourceType {
 
     func getData(url: String, completion: OnResult<Data>?) {
         networking.request(url).responseData { response in
-            if let data = response.data {
-                completion?(Result.success(data))
-            } else {
+            guard let data = response.data else {
                 completion?(Result.failure(AwesomeAdsError.network))
+                return
             }
+            completion?(Result.success(data))
         }
     }
 

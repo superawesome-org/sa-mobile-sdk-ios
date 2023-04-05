@@ -27,15 +27,15 @@ class UserAgentProvider: UserAgentProviderType {
 
     private func evaluateUserAgent() {
         webView = WKWebView()
-        webView?.evaluateJavaScript("navigator.userAgent", completionHandler: { (result, error) in
+        webView?.evaluateJavaScript("navigator.userAgent", completionHandler: { [weak self] result, error in
             if error != nil {
                 print("UserAgent.evaluateUserAgent.error:", String(describing: error))
             } else if let res = result as? String {
-                self.name = res
-                self.preferencesRepository.userAgent = res
+                self?.name = res
+                self?.preferencesRepository.userAgent = res
             }
 
-            self.webView = nil
+            self?.webView = nil
         })
     }
 }

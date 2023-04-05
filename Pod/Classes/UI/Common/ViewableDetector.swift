@@ -42,7 +42,8 @@ class ViewableDetector: ViewableDetectorType {
         start(for: view, hasBeenVisible: hasBeenVisible)
     }
 
-    @objc private func timerFunction() {
+    @objc
+    private func timerFunction() {
         if view?.isVisibleToUser ?? false {
             viewableCounter += 1
             whenVisible?()

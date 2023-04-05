@@ -107,7 +107,7 @@ class VastParser: NSObject, VastParserType {
     }
 
     func getUrl(medias: [VastMedia]) -> String? {
-        let sortedMedias = medias.sorted { (first, second) -> Bool in
+        let sortedMedias = medias.sorted { first, second -> Bool in
             first.bitrate ?? 0 < second.bitrate ?? 0
         }
         var url: String?

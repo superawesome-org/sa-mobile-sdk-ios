@@ -135,12 +135,12 @@ import UIKit
 
     @objc(makeCloseButtonVisible)
     public func makeCloseButtonVisible() {
-        self.closeButton.isHidden = false
+        closeButton.isHidden = false
     }
 
     @objc(makeVolumeButtonVisible)
     public func makeVolumeButtonVisible() {
-        self.volumeButton.isHidden = false
+        volumeButton.isHidden = false
     }
 
     public func setPadlockAction(action: @escaping () -> Void) {
@@ -201,8 +201,8 @@ import UIKit
     public func setError(error: Error) { /* N/A */ }
 
     public func setTime(time: Int, duration: Int) {
-        let ramaining = duration - time
-        chrono.setTime(remaining: ramaining)
+        let remaining = duration - time
+        chrono.setTime(remaining: remaining)
     }
 
     public func isPlaying() -> Bool {
@@ -218,7 +218,7 @@ import UIKit
     public func setMaximised() { /* N/A */ }
 
     public func isMaximised() -> Bool {
-        return self.bounds == UIApplication.shared.keyWindow?.bounds
+        return bounds == UIApplication.shared.keyWindow?.bounds
     }
 
     @objc(setDelegate:)

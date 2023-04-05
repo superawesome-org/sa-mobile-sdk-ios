@@ -123,7 +123,8 @@ public class BannerView: UIView, Injectable {
 
         showPadlockIfNeeded()
         if #available(iOS 14.5, *) {
-            sknetworkManager.startImpression(lineItemId: adResponse.advert.lineItemId, creativeId: adResponse.advert.creative.id)
+            sknetworkManager.startImpression(lineItemId: adResponse.advert.lineItemId,
+                                             creativeId: adResponse.advert.creative.id)
         }
 
         webView?.loadHTML(html, withBase: adResponse.baseUrl,

@@ -43,8 +43,8 @@ final class SKAdNetworkManagerImpl: SKAdNetworkManager {
 
     func endImpression() {
         guard let adImpression = adImpression else { return }
-        SKAdNetwork.endImpression(adImpression) {[weak self] e in
-            print(e?.localizedDescription ?? "nil")
+        SKAdNetwork.endImpression(adImpression) { [weak self] error in
+            print(error?.localizedDescription ?? "nil")
             self?.adImpression = nil
         }
     }
