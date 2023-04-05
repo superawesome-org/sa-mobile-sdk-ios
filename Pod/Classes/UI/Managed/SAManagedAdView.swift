@@ -7,99 +7,30 @@
 import UIKit
 import WebKit
 
-private let overrideConsoleScript = """
-    function log(emoji, type, args) {
-      window.webkit.messageHandlers.logging.postMessage(
-        `${emoji} JS ${type}: ${Object.values(args)
-          .map(v => typeof(v) === "undefined" ? "undefined" : typeof(v) === "object" ? JSON.stringify(v) : v.toString())
-          .map(v => v.substring(0, 3000)) // Limit msg to 3000 chars
-          .join(", ")}`
-      )
-    }
-
-    let originalLog = console.log
-    let originalWarn = console.warn
-    let originalError = console.error
-    let originalDebug = console.debug
-
-    console.log = function() { log("📗", "log", arguments); originalLog.apply(null, arguments) }
-    console.warn = function() { log("📙", "warning", arguments); originalWarn.apply(null, arguments) }
-    console.error = function() { log("📕", "error", arguments); originalError.apply(null, arguments) }
-    console.debug = function() { log("📘", "debug", arguments); originalDebug.apply(null, arguments) }
-
-    window.addEventListener("error", function(e) {
-       log("💥", "Uncaught", [`${e.message} at ${e.filename}:${e.lineno}:${e.colno}`])
-    })
-
-"""
-
-private let bridgeScript = """
-    function postMessageToBridge(message) {
-        window.webkit.messageHandlers.bridge.postMessage(message);
-    }
-
-    var SA_AD_JS_BRIDGE = {
-        adLoaded: function() { postMessageToBridge("\(AdEvent.adLoaded.rawValue)"); },
-        adEmpty: function() { postMessageToBridge("\(AdEvent.adEmpty.rawValue)"); },
-        adFailedToLoad: function() { postMessageToBridge("\(AdEvent.adFailedToLoad.rawValue)"); },
-        adAlreadyLoaded: function() { postMessageToBridge("\(AdEvent.adAlreadyLoaded.rawValue)"); },
-        adShown: function() { postMessageToBridge("\(AdEvent.adShown.rawValue)"); },
-        adFailedToShow: function() { postMessageToBridge("\(AdEvent.adFailedToShow.rawValue)"); },
-        adClicked: function() { postMessageToBridge("\(AdEvent.adClicked.rawValue)"); },
-        adEnded: function() { postMessageToBridge("\(AdEvent.adEnded.rawValue)"); },
-        adClosed: function() { postMessageToBridge("\(AdEvent.adClosed.rawValue)"); }
-    };
-"""
-
-class LoggingMessageHandler: NSObject, WKScriptMessageHandler {
-    private var logger: LoggerType
-
-    init(_ logger: LoggerType) {
-        self.logger = logger
-    }
-
-    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        let log = String(describing: message.body)
-        logger.info(log)
-    }
+protocol SAManagedAdViewDelegate: AdJSMessageHandlerDelegate {
+    func onAdClick(url: URL)
 }
 
-class AdViewMessageHandler: NSObject, WKScriptMessageHandler {
-    private var bridge: AdViewJavaScriptBridge?
-
-    init(_ bridge: AdViewJavaScriptBridge?) {
-        self.bridge = bridge
-    }
-
-    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        let body = String(describing: message.body)
-        guard let id = Int(body), let event = AdEvent(rawValue: id) else { return }
-        bridge?.onEvent(event: event)
-    }
-}
-
-@objc(SAManagedAdView) public final class SAManagedAdView: UIView, Injectable {
+@objc(SAManagedAdView)
+public final class SAManagedAdView: UIView, Injectable {
 
     internal var finishedLoading = false
 
     private var callback: AdEventCallback?
     private var placementId: Int = 0
-    private var bridge: AdViewJavaScriptBridge?
+    private var adJSBridge: AdJSMessageHandler!
+    private var loggerJSMessageHandler: LoggingJSMessageHandler!
+    private var delegate: SAManagedAdViewDelegate? {
+        didSet {
+            adJSBridge.delegate = delegate
+        }
+    }
 
     private lazy var sknetworkManager: SKAdNetworkManager = dependencies.resolve()
     private var logger: LoggerType = dependencies.resolve(param: SAManagedAdView.self)
 
     lazy var webView: WKWebView = {
         let userContentController = WKUserContentController()
-        userContentController.add(LoggingMessageHandler(logger), name: "logging")
-        userContentController.add(AdViewMessageHandler(self), name: "bridge")
-        userContentController.addUserScript(WKUserScript(source: overrideConsoleScript,
-                                                         injectionTime: .atDocumentStart,
-                                                         forMainFrameOnly: false))
-        userContentController.addUserScript(WKUserScript(source: bridgeScript,
-                                                         injectionTime: .atDocumentStart,
-                                                         forMainFrameOnly: false))
-
         let preferences = WKPreferences()
         preferences.javaScriptEnabled = true
         preferences.javaScriptCanOpenWindowsAutomatically = true
@@ -109,6 +40,8 @@ class AdViewMessageHandler: NSObject, WKScriptMessageHandler {
         configuration.allowsInlineMediaPlayback = true
         configuration.mediaTypesRequiringUserActionForPlayback = []
         configuration.userContentController = userContentController
+        adJSBridge = AdJSMessageHandler(withWebViewConfiguration: configuration)
+        loggerJSMessageHandler = LoggingJSMessageHandler(withWebViewConfiguration: configuration, logger: logger)
 
         if #available(iOS 14.0, *) {
             configuration.defaultWebpagePreferences.allowsContentJavaScript = true
@@ -153,8 +86,8 @@ class AdViewMessageHandler: NSObject, WKScriptMessageHandler {
         }
     }
 
-    func setBridge(bridge: AdViewJavaScriptBridge? = nil) {
-        self.bridge = bridge
+    func setDelegate(_ delegate: SAManagedAdViewDelegate? = nil) {
+        self.delegate = delegate
     }
 
     public func setCallback(value: AdEventCallback? = nil) {
@@ -174,7 +107,17 @@ class AdViewMessageHandler: NSObject, WKScriptMessageHandler {
         // Stop any playing media
         webView.loadHTMLString("", baseURL: nil)
     }
+
+    func playVideo() {
+        webView.evaluateJavaScript("playVideo();")
+    }
+
+    func pauseVideo() {
+        webView.evaluateJavaScript("pauseVideo();")
+    }
 }
+
+// MARK: WKNavigationDelegate, WKUIDelegate
 
 extension SAManagedAdView: WKNavigationDelegate, WKUIDelegate {
     public func webView(_ webView: WKWebView,
@@ -183,7 +126,7 @@ extension SAManagedAdView: WKNavigationDelegate, WKUIDelegate {
                         windowFeatures: WKWindowFeatures) -> WKWebView? {
         if finishedLoading && navigationAction.navigationType == .other {
             if let url = navigationAction.request.url {
-                bridge?.onAdClick(url: url)
+                delegate?.onAdClick(url: url)
             }
         }
         return nil
@@ -197,17 +140,5 @@ extension SAManagedAdView: WKNavigationDelegate, WKUIDelegate {
                         decidePolicyFor navigationAction: WKNavigationAction,
                         decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         decisionHandler(.allow)
-    }
-}
-
-extension SAManagedAdView: AdViewJavaScriptBridge {
-    // Propagate events to the callback bridge
-    func onAdClick(url: URL) {
-        bridge?.onAdClick(url: url)
-    }
-
-    // Propagate events to the callback bridge
-    func onEvent(event: AdEvent) {
-        bridge?.onEvent(event: event)
     }
 }

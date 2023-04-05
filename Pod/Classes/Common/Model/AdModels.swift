@@ -179,6 +179,8 @@ public class StartDelayHelper: NSObject {
  *  - adClicked:        triggered every time the ad gets clicked
  *  - adEnded:          triggerd when a video ad ends
  *  - adClosed:         triggered once when the ad is closed;
+ *  - adPaused:        triggered once when the ad is paused;
+ *  - adPlaying:        triggered once when the ad starts playing or resumes playing after a pause;
  */
 @objc(SAEvent)
 public enum AdEvent: Int {
@@ -191,6 +193,8 @@ public enum AdEvent: Int {
     case adClicked = 6
     case adEnded = 7
     case adClosed = 8
+    case adPaused = 9
+    case adPlaying = 10
 
     /// Gets the name of the event
     public func name() -> String {
@@ -204,6 +208,8 @@ public enum AdEvent: Int {
         case .adClicked: return "adClicked"
         case .adEnded: return "adEnded"
         case .adClosed: return "adClosed"
+        case .adPaused: return "adPaused"
+        case .adPlaying: return "adPlaying"
         default: return "\(self.rawValue)"
         }
     }

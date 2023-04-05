@@ -108,6 +108,16 @@ class AdController: AdControllerType, Injectable {
         logger.info("Event callback: adClosed for placement \(placementId)")
     }
 
+    func adPaused() {
+        callback?(placementId, .adPaused)
+        logger.info("Event callback: adPaused for placement \(placementId)")
+    }
+
+    func adPlaying() {
+        callback?(placementId, .adPlaying)
+        logger.info("Event callback: adPlaying for placement \(placementId)")
+    }
+
     func triggerViewableImpression() {
         guard let adResponse = adResponse else { return }
         eventRepository.viewableImpression(adResponse, completion: nil)

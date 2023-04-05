@@ -56,7 +56,7 @@ import WebKit
     lazy var managedAdView: SAManagedAdView = {
         let adView = SAManagedAdView()
         adView.accessibilityIdentifier = "\(accessibilityPrefix)Views.ManagedAd"
-        adView.setBridge(bridge: self)
+        adView.setDelegate(self)
         adView.setCallback(value: callback)
         return adView
     }()
@@ -158,14 +158,14 @@ import WebKit
     @objc private func onCloseClicked() {
         
         if config.shouldShowCloseWarning && !isCompleted {
-            // control.pause() TODO: Pause playing video AAG-3024
+            managedAdView.pauseVideo()
             closeDialog = showQuestionDialog(title: stringProvider.closeDialogTitle,
                                              message: stringProvider.closeDialogMessage,
                                              yesTitle: stringProvider.closeDialogCloseAction,
                                              noTitle: stringProvider.closeDialogResumeAction) { [weak self] in
                 self?.close()
-            } noAction: { // [weak self] in
-                // control.resume() TODO: Resume playing video AAG-3024
+            } noAction: { [weak self] in
+                self?.managedAdView.playVideo()
             }
         } else {
             close()
@@ -198,11 +198,11 @@ import WebKit
 
     @objc
     func willEnterForeground(_ notification: Notification) {
-        // control.start() TODO: Resume playing video AAG-3024
+        managedAdView.playVideo()
     }
 
     private func didEnterBackground() {
-        // control.pause() TODO: Pause playing video AAG-3024
+        managedAdView.pauseVideo()
         closeDialog?.dismiss(animated: true)
         closeDialog = nil
     }
@@ -217,12 +217,13 @@ import WebKit
     }
 }
 
-// MARK: AdViewJavaScriptBridge
+// MARK: SAManagedAdViewDelegate
 
-extension SAManagedAdViewController: AdViewJavaScriptBridge {
+extension SAManagedAdViewController: SAManagedAdViewDelegate {
+
     func onEvent(event: AdEvent) {
         callback?(placementId, event)
-
+        print("MYLO: AD Event \(event)")
         if event == .adShown && config.closeButtonState == .visibleWithDelay {
             showCloseButtonAfterDelay()
         }
