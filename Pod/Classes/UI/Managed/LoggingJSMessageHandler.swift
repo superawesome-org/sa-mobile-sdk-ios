@@ -11,7 +11,7 @@ class LoggingJSMessageHandler: NSObject, WKScriptMessageHandler {
 
     // MARK: Properties
 
-    private static let bridgeKey = "logging"
+    internal static let bridgeKey = "logging"
 
     private var logger: LoggerType
 

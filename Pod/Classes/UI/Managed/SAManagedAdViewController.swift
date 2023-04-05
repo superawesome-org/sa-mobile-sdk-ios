@@ -223,7 +223,6 @@ extension SAManagedAdViewController: SAManagedAdViewDelegate {
 
     func onEvent(event: AdEvent) {
         callback?(placementId, event)
-        print("MYLO: AD Event \(event)")
         if event == .adShown && config.closeButtonState == .visibleWithDelay {
             showCloseButtonAfterDelay()
         }

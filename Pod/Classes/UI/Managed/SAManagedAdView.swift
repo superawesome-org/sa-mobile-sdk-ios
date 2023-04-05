@@ -18,11 +18,11 @@ public final class SAManagedAdView: UIView, Injectable {
 
     private var callback: AdEventCallback?
     private var placementId: Int = 0
-    private var adJSBridge: AdJSMessageHandler!
-    private var loggerJSMessageHandler: LoggingJSMessageHandler!
-    private var delegate: SAManagedAdViewDelegate? {
+    private var adJSBridge: AdJSMessageHandler?
+    private var loggerJSMessageHandler: LoggingJSMessageHandler?
+    private weak var delegate: SAManagedAdViewDelegate? {
         didSet {
-            adJSBridge.delegate = delegate
+            adJSBridge?.delegate = delegate
         }
     }
 
@@ -106,6 +106,9 @@ public final class SAManagedAdView: UIView, Injectable {
 
         // Stop any playing media
         webView.loadHTMLString("", baseURL: nil)
+        webView.configuration.userContentController.removeAllUserScripts()
+        webView.configuration.userContentController.removeScriptMessageHandler(forName: AdJSMessageHandler.bridgeKey)
+        webView.configuration.userContentController.removeScriptMessageHandler(forName: LoggingJSMessageHandler.bridgeKey)
     }
 
     func playVideo() {
@@ -114,6 +117,11 @@ public final class SAManagedAdView: UIView, Injectable {
 
     func pauseVideo() {
         webView.evaluateJavaScript("pauseVideo();")
+    }
+
+    deinit {
+        adJSBridge = nil
+        loggerJSMessageHandler = nil
     }
 }
 
