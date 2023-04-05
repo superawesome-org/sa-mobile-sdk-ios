@@ -106,10 +106,7 @@
 		CC193C17290FF9E200EEC736 /* interstitial_standard_success.json in Resources */ = {isa = PBXBuildFile; fileRef = CC193C14290FF9E200EEC736 /* interstitial_standard_success.json */; };
 		CC193C18290FF9E300EEC736 /* video_vpaid_non_ksf.json in Resources */ = {isa = PBXBuildFile; fileRef = CC193C15290FF9E200EEC736 /* video_vpaid_non_ksf.json */; };
 		CC194D19296ED4E20068B85F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CC194D18296ED4E20068B85F /* GoogleService-Info.plist */; };
-		CC3A52A7290F23C600484D1B /* LaunchUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3A52A6290F23C600484D1B /* LaunchUtils.swift */; };
-		CC3A52A9290F23ED00484D1B /* LaunchArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3A52A8290F23ED00484D1B /* LaunchArguments.swift */; };
 		CC3A52B2290F252C00484D1B /* WireMock.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = CC3A52AE290F252C00484D1B /* WireMock.jar */; };
-		CC3A52B6290F25D900484D1B /* XCTestCase+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3A52B5290F25D900484D1B /* XCTestCase+Extensions.swift */; };
 		CC6AE3D1284F906B002F7581 /* VideoAdUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6AE3D0284F906B002F7581 /* VideoAdUITests.swift */; };
 		CCDA7340283E56CB00A75542 /* AwesomeAdsTargetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDA733F283E56CB00A75542 /* AwesomeAdsTargetTests.swift */; };
 		CCFF5B53296F9E5F00707BBD /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFF5B52296F9E5F00707BBD /* ItemCell.swift */; };
@@ -252,10 +249,7 @@
 		CC193C14290FF9E200EEC736 /* interstitial_standard_success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = interstitial_standard_success.json; sourceTree = "<group>"; };
 		CC193C15290FF9E200EEC736 /* video_vpaid_non_ksf.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = video_vpaid_non_ksf.json; sourceTree = "<group>"; };
 		CC194D18296ED4E20068B85F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		CC3A52A6290F23C600484D1B /* LaunchUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchUtils.swift; sourceTree = "<group>"; };
-		CC3A52A8290F23ED00484D1B /* LaunchArguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchArguments.swift; sourceTree = "<group>"; };
 		CC3A52AE290F252C00484D1B /* WireMock.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; path = WireMock.jar; sourceTree = "<group>"; };
-		CC3A52B5290F25D900484D1B /* XCTestCase+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Extensions.swift"; sourceTree = "<group>"; };
 		CC6AE3CE284F906B002F7581 /* SuperAwesomeExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperAwesomeExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC6AE3D0284F906B002F7581 /* VideoAdUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoAdUITests.swift; sourceTree = "<group>"; };
 		CCDA733F283E56CB00A75542 /* AwesomeAdsTargetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwesomeAdsTargetTests.swift; sourceTree = "<group>"; };
@@ -513,7 +507,6 @@
 		C6398A1127AAB1D400D6A152 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				CC3A52A6290F23C600484D1B /* LaunchUtils.swift */,
 				C6398A1227AAB1E500D6A152 /* UIView+Extensions.swift */,
 				07F03EAD29DAF689004790F5 /* UITestSetup.swift */,
 			);
@@ -655,14 +648,6 @@
 			path = Mocks;
 			sourceTree = "<group>";
 		};
-		CC3A52AA290F240800484D1B /* LaunchArguments */ = {
-			isa = PBXGroup;
-			children = (
-				CC3A52A8290F23ED00484D1B /* LaunchArguments.swift */,
-			);
-			path = LaunchArguments;
-			sourceTree = "<group>";
-		};
 		CC3A52AB290F252C00484D1B /* MockServer */ = {
 			isa = PBXGroup;
 			children = (
@@ -696,7 +681,6 @@
 		CC3A52B4290F25A400484D1B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				CC3A52B5290F25D900484D1B /* XCTestCase+Extensions.swift */,
 				CC193BEC290F466C00EEC736 /* UIImage+Extensions.swift */,
 				CC193BEE290F698D00EEC736 /* UIColor+Extensions.swift */,
 				07F03EA829D759BE004790F5 /* XCUIElement.swift */,
@@ -712,7 +696,6 @@
 				07F03EA529D75977004790F5 /* Utils */,
 				CC3A52B4290F25A400484D1B /* Extensions */,
 				CC3A52AB290F252C00484D1B /* MockServer */,
-				CC3A52AA290F240800484D1B /* LaunchArguments */,
 				074164892977061000C3D9A9 /* Timeouts.swift */,
 			);
 			path = SuperAwesomeExampleUITests;
@@ -1031,7 +1014,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				07F03E9029D5DA09004790F5 /* SettingsModel.swift in Sources */,
-				CC3A52A7290F23C600484D1B /* LaunchUtils.swift in Sources */,
 				C6398A1327AAB1E500D6A152 /* UIView+Extensions.swift in Sources */,
 				07F03E8E29D5D9F3004790F5 /* SettingsItemOption.swift in Sources */,
 				07F03E8529D5CA96004790F5 /* SettingsItemView.swift in Sources */,
@@ -1112,7 +1094,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC3A52B6290F25D900484D1B /* XCTestCase+Extensions.swift in Sources */,
 				07F03EA229D751C8004790F5 /* BannerRobot.swift in Sources */,
 				CC193BEF290F698D00EEC736 /* UIColor+Extensions.swift in Sources */,
 				07F03EB529DB1736004790F5 /* BumperScreenRobot.swift in Sources */,
@@ -1130,7 +1111,6 @@
 				C6C9703928EC4CF700C87436 /* InterstitialUITests.swift in Sources */,
 				07F03EA029D74C8E004790F5 /* ManagedAdViewScreenRobot.swift in Sources */,
 				07F03EB129DB13F7004790F5 /* BannerUITests.swift in Sources */,
-				CC3A52A9290F23ED00484D1B /* LaunchArguments.swift in Sources */,
 				07F03E9E29D74C86004790F5 /* InterstitialScreenRobot.swift in Sources */,
 				07F03E9A29D74C6A004790F5 /* SettingsScreenRobot.swift in Sources */,
 				07F03EA929D759BE004790F5 /* XCUIElement.swift in Sources */,
