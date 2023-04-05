@@ -11,7 +11,7 @@ import Foundation
 class GetPlacements {
 
     private var root: String {
-        if CommandLine.arguments.contains("-runlocal") {
+        if CommandLine.arguments.contains("--UITests") {
             return "http://localhost:8080"
         } else {
             return "https://aa-sdk.s3.eu-west-1.amazonaws.com"
