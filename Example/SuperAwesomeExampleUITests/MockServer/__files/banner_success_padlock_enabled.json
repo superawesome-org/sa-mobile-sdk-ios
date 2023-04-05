@@ -1,0 +1,52 @@
+{
+  "advertiserId": 4,
+  "publisherId": 4,
+  "creative": {
+    "id": 507932,
+    "version": 1,
+    "name": "QA Mobile Banner Flat Colour",
+    "format": "image_with_link",
+    "formatId": 6,
+    "cpms": {
+      "default": "0"
+    },
+    "impressionUrls": [],
+    "freqCappingLimit": 0,
+    "details": {
+      "url": "https://uploads-api-main-awesomeads.sacdn.net/images/0vJrnt2F5fipvsudXo6thUIAw3egbY5A.png",
+      "image": "http://localhost:8080/banner_yellow.png",
+      "video": "https://uploads-api-main-awesomeads.sacdn.net/images/0vJrnt2F5fipvsudXo6thUIAw3egbY5A.png",
+      "placement_format": "mobile_display",
+      "width": 320,
+      "height": 50,
+      "duration": 0
+    },
+    "approved": 1,
+    "live": true,
+    "osTarget": [],
+    "browserTarget": [],
+    "browserTargetExclude": false,
+    "paused": false,
+    "approvedImpressions": [],
+    "approvedClickTracking": [],
+    "approvedEvents": {},
+    "bumper": false,
+    "attributionType": 1,
+    "vpaid": false,
+    "click_url": "undefined"
+  },
+  "is_fill": false,
+  "is_fallback": false,
+  "moat": 0.1,
+  "is_house": true,
+  "safe_ad_approved": false,
+  "show_padlock": true,
+  "campaign_type": 0,
+  "line_item_id": 181402,
+  "campaign_id": 48202,
+  "test": false,
+  "app": 41037,
+  "device": "web",
+  "aua": "eyJhbGciOiJIUzI1NiJ9.TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzgzLjAuNDEwMy45NyBTYWZhcmkvNTM3LjM2.fNi_jam5Bd9ip_c68rVpQWyuOY_Az3Jsv05mC2mCsnM",
+  "tip": "eyJhbGciOiJIUzI1NiJ9.NS4xNzYuOC4w.yofjSBqnTDGUSODZVQ2wgUrHKR3a3NoIFeBL0_Pw42s"
+}

@@ -24,6 +24,22 @@
 		07F03E9029D5DA09004790F5 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F03E8F29D5DA09004790F5 /* SettingsModel.swift */; };
 		07F03E9329D5F890004790F5 /* Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F03E9229D5F890004790F5 /* Equatable.swift */; };
 		07F03E9529D5FEC5004790F5 /* TappableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F03E9429D5FEC5004790F5 /* TappableView.swift */; };
+		07F03E9829D74C61004790F5 /* Robot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F03E9729D74C61004790F5 /* Robot.swift */; };
+		07F03E9A29D74C6A004790F5 /* SettingsScreenRobot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F03E9929D74C6A004790F5 /* SettingsScreenRobot.swift */; };
+		07F03E9C29D74C76004790F5 /* AdListScreenRobot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F03E9B29D74C76004790F5 /* AdListScreenRobot.swift */; };
+		07F03E9E29D74C86004790F5 /* InterstitialScreenRobot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F03E9D29D74C86004790F5 /* InterstitialScreenRobot.swift */; };
+		07F03EA029D74C8E004790F5 /* ManagedAdViewScreenRobot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F03E9F29D74C8E004790F5 /* ManagedAdViewScreenRobot.swift */; };
+		07F03EA229D751C8004790F5 /* BannerRobot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F03EA129D751C8004790F5 /* BannerRobot.swift */; };
+		07F03EA429D751D4004790F5 /* ParentGateRobot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F03EA329D751D4004790F5 /* ParentGateRobot.swift */; };
+		07F03EA729D7597E004790F5 /* UIAwait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F03EA629D7597E004790F5 /* UIAwait.swift */; };
+		07F03EA929D759BE004790F5 /* XCUIElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F03EA829D759BE004790F5 /* XCUIElement.swift */; };
+		07F03EAC29DAE221004790F5 /* BaseUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F03EAB29DAE221004790F5 /* BaseUITest.swift */; };
+		07F03EAF29DB1238004790F5 /* UITestSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F03EAD29DAF689004790F5 /* UITestSetup.swift */; };
+		07F03EB129DB13F7004790F5 /* BannerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F03EB029DB13F7004790F5 /* BannerUITests.swift */; };
+		07F03EB329DB159F004790F5 /* VideoScreenRobot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F03EB229DB159F004790F5 /* VideoScreenRobot.swift */; };
+		07F03EB529DB1736004790F5 /* BumperScreenRobot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F03EB429DB1736004790F5 /* BumperScreenRobot.swift */; };
+		07F03EB729DB3055004790F5 /* ParentGateErrorRobot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F03EB629DB3055004790F5 /* ParentGateErrorRobot.swift */; };
+		07F03EB829DB328B004790F5 /* NumberGeneratorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AF0F27D7D3DA00FFB5CA /* NumberGeneratorMock.swift */; };
 		1B76D2411C91EEB1000AE8F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B76D23F1C91EEB1000AE8F3 /* Main.storyboard */; };
 		1B76D2431C91EEB1000AE8F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B76D2421C91EEB1000AE8F3 /* Assets.xcassets */; };
 		1B76D2461C91EEB1000AE8F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B76D2441C91EEB1000AE8F3 /* LaunchScreen.storyboard */; };
@@ -135,6 +151,21 @@
 		07F03E8F29D5DA09004790F5 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
 		07F03E9229D5F890004790F5 /* Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equatable.swift; sourceTree = "<group>"; };
 		07F03E9429D5FEC5004790F5 /* TappableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableView.swift; sourceTree = "<group>"; };
+		07F03E9729D74C61004790F5 /* Robot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Robot.swift; sourceTree = "<group>"; };
+		07F03E9929D74C6A004790F5 /* SettingsScreenRobot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenRobot.swift; sourceTree = "<group>"; };
+		07F03E9B29D74C76004790F5 /* AdListScreenRobot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdListScreenRobot.swift; sourceTree = "<group>"; };
+		07F03E9D29D74C86004790F5 /* InterstitialScreenRobot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterstitialScreenRobot.swift; sourceTree = "<group>"; };
+		07F03E9F29D74C8E004790F5 /* ManagedAdViewScreenRobot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedAdViewScreenRobot.swift; sourceTree = "<group>"; };
+		07F03EA129D751C8004790F5 /* BannerRobot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerRobot.swift; sourceTree = "<group>"; };
+		07F03EA329D751D4004790F5 /* ParentGateRobot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentGateRobot.swift; sourceTree = "<group>"; };
+		07F03EA629D7597E004790F5 /* UIAwait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAwait.swift; sourceTree = "<group>"; };
+		07F03EA829D759BE004790F5 /* XCUIElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCUIElement.swift; sourceTree = "<group>"; };
+		07F03EAB29DAE221004790F5 /* BaseUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUITest.swift; sourceTree = "<group>"; };
+		07F03EAD29DAF689004790F5 /* UITestSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestSetup.swift; sourceTree = "<group>"; };
+		07F03EB029DB13F7004790F5 /* BannerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerUITests.swift; sourceTree = "<group>"; };
+		07F03EB229DB159F004790F5 /* VideoScreenRobot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoScreenRobot.swift; sourceTree = "<group>"; };
+		07F03EB429DB1736004790F5 /* BumperScreenRobot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BumperScreenRobot.swift; sourceTree = "<group>"; };
+		07F03EB629DB3055004790F5 /* ParentGateErrorRobot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentGateErrorRobot.swift; sourceTree = "<group>"; };
 		14DB9CADBD9717EB3B802403 /* Pods-SuperAwesomeExampleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesomeExampleUITests.debug.xcconfig"; path = "Target Support Files/Pods-SuperAwesomeExampleUITests/Pods-SuperAwesomeExampleUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		1B76D2331C91EEB1000AE8F3 /* SuperAwesomeExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperAwesomeExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B76D2401C91EEB1000AE8F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -339,6 +370,42 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
+		07F03E9629D74C57004790F5 /* Robots */ = {
+			isa = PBXGroup;
+			children = (
+				07F03E9B29D74C76004790F5 /* AdListScreenRobot.swift */,
+				07F03EA129D751C8004790F5 /* BannerRobot.swift */,
+				07F03EB429DB1736004790F5 /* BumperScreenRobot.swift */,
+				07F03E9D29D74C86004790F5 /* InterstitialScreenRobot.swift */,
+				07F03E9F29D74C8E004790F5 /* ManagedAdViewScreenRobot.swift */,
+				07F03EA329D751D4004790F5 /* ParentGateRobot.swift */,
+				07F03EB629DB3055004790F5 /* ParentGateErrorRobot.swift */,
+				07F03E9729D74C61004790F5 /* Robot.swift */,
+				07F03E9929D74C6A004790F5 /* SettingsScreenRobot.swift */,
+				07F03EB229DB159F004790F5 /* VideoScreenRobot.swift */,
+			);
+			path = Robots;
+			sourceTree = "<group>";
+		};
+		07F03EA529D75977004790F5 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				07F03EA629D7597E004790F5 /* UIAwait.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		07F03EAA29DAE20A004790F5 /* Stories */ = {
+			isa = PBXGroup;
+			children = (
+				07F03EAB29DAE221004790F5 /* BaseUITest.swift */,
+				07F03EB029DB13F7004790F5 /* BannerUITests.swift */,
+				CC6AE3D0284F906B002F7581 /* VideoAdUITests.swift */,
+				C6C9703828EC4CF700C87436 /* InterstitialUITests.swift */,
+			);
+			path = Stories;
+			sourceTree = "<group>";
+		};
 		1B76D22A1C91EEB1000AE8F3 = {
 			isa = PBXGroup;
 			children = (
@@ -448,6 +515,7 @@
 			children = (
 				CC3A52A6290F23C600484D1B /* LaunchUtils.swift */,
 				C6398A1227AAB1E500D6A152 /* UIView+Extensions.swift */,
+				07F03EAD29DAF689004790F5 /* UITestSetup.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -631,6 +699,7 @@
 				CC3A52B5290F25D900484D1B /* XCTestCase+Extensions.swift */,
 				CC193BEC290F466C00EEC736 /* UIImage+Extensions.swift */,
 				CC193BEE290F698D00EEC736 /* UIColor+Extensions.swift */,
+				07F03EA829D759BE004790F5 /* XCUIElement.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -638,11 +707,12 @@
 		CC6AE3CF284F906B002F7581 /* SuperAwesomeExampleUITests */ = {
 			isa = PBXGroup;
 			children = (
+				07F03E9629D74C57004790F5 /* Robots */,
+				07F03EAA29DAE20A004790F5 /* Stories */,
+				07F03EA529D75977004790F5 /* Utils */,
 				CC3A52B4290F25A400484D1B /* Extensions */,
 				CC3A52AB290F252C00484D1B /* MockServer */,
 				CC3A52AA290F240800484D1B /* LaunchArguments */,
-				CC6AE3D0284F906B002F7581 /* VideoAdUITests.swift */,
-				C6C9703828EC4CF700C87436 /* InterstitialUITests.swift */,
 				074164892977061000C3D9A9 /* Timeouts.swift */,
 			);
 			path = SuperAwesomeExampleUITests;
@@ -970,6 +1040,7 @@
 				07A6F47A29A3DE95004FED87 /* GetPlacements.swift in Sources */,
 				4D2BB747266A689B00E3D86A /* AppDelegate.swift in Sources */,
 				07F03E9529D5FEC5004790F5 /* TappableView.swift in Sources */,
+				07F03EAF29DB1238004790F5 /* UITestSetup.swift in Sources */,
 				07A6F47929A3DE95004FED87 /* FeaturesViewModel.swift in Sources */,
 				07F03E8929D5D323004790F5 /* TappableButton.swift in Sources */,
 				07A6F47529A3DE95004FED87 /* FeatureType.swift in Sources */,
@@ -1042,12 +1113,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC3A52B6290F25D900484D1B /* XCTestCase+Extensions.swift in Sources */,
+				07F03EA229D751C8004790F5 /* BannerRobot.swift in Sources */,
 				CC193BEF290F698D00EEC736 /* UIColor+Extensions.swift in Sources */,
+				07F03EB529DB1736004790F5 /* BumperScreenRobot.swift in Sources */,
+				07F03EA729D7597E004790F5 /* UIAwait.swift in Sources */,
+				07F03EA429D751D4004790F5 /* ParentGateRobot.swift in Sources */,
+				07F03EAC29DAE221004790F5 /* BaseUITest.swift in Sources */,
 				CC6AE3D1284F906B002F7581 /* VideoAdUITests.swift in Sources */,
+				07F03EB729DB3055004790F5 /* ParentGateErrorRobot.swift in Sources */,
 				CC193BED290F466C00EEC736 /* UIImage+Extensions.swift in Sources */,
+				07F03E9829D74C61004790F5 /* Robot.swift in Sources */,
+				07F03E9C29D74C76004790F5 /* AdListScreenRobot.swift in Sources */,
+				07F03EB829DB328B004790F5 /* NumberGeneratorMock.swift in Sources */,
+				07F03EB329DB159F004790F5 /* VideoScreenRobot.swift in Sources */,
 				0741648A2977061000C3D9A9 /* Timeouts.swift in Sources */,
 				C6C9703928EC4CF700C87436 /* InterstitialUITests.swift in Sources */,
+				07F03EA029D74C8E004790F5 /* ManagedAdViewScreenRobot.swift in Sources */,
+				07F03EB129DB13F7004790F5 /* BannerUITests.swift in Sources */,
 				CC3A52A9290F23ED00484D1B /* LaunchArguments.swift in Sources */,
+				07F03E9E29D74C86004790F5 /* InterstitialScreenRobot.swift in Sources */,
+				07F03E9A29D74C6A004790F5 /* SettingsScreenRobot.swift in Sources */,
+				07F03EA929D759BE004790F5 /* XCUIElement.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

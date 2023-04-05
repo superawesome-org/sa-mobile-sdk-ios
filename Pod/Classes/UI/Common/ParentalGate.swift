@@ -8,6 +8,8 @@
 import UIKit
 
 class ParentalGate {
+    private let accessibilityPrefix = "SuperAwesome.Alerts."
+
     private var challangeAlertController: UIAlertController?
     private var errorAlertController: UIAlertController?
 
@@ -36,24 +38,30 @@ class ParentalGate {
 
     func show() {
         challangeAlertController = UIAlertController(title: stringProvider.parentalGateTitle,
-                                                message: stringProvider.parentalGateMessage(
-                                                    firstNumber: firstNumber, secondNumber: secondNumber),
-                                                preferredStyle: .alert)
+                                                     message: stringProvider.parentalGateMessage(
+                                                        firstNumber: firstNumber,
+                                                        secondNumber: secondNumber
+                                                     ),
+                                                     preferredStyle: .alert)
+        challangeAlertController?.view.accessibilityIdentifier = "\(accessibilityPrefix)ParentGate"
 
         let continueAction = UIAlertAction(title: stringProvider.continueTitle, style: .default) { [weak self] _ in
             self?.onContinue()
         }
+        continueAction.accessibilityIdentifier = "\(accessibilityPrefix)ParentGate.Buttons.Continue"
 
         let cancelAction = UIAlertAction(title: stringProvider.cancelTitle, style: .default) { [weak self] _ in
             self?.stop()
             self?.cancelAction?()
         }
+        cancelAction.accessibilityIdentifier = "\(accessibilityPrefix)ParentGate.Buttons.Cancel"
 
         if let controller = challangeAlertController {
             controller.addAction(cancelAction)
             controller.addAction(continueAction)
-            controller.addTextField(configurationHandler: { textField in
+            controller.addTextField(configurationHandler: { [weak self] textField in
                 textField.keyboardType = .numberPad
+                textField.accessibilityIdentifier = "\(self?.accessibilityPrefix ?? "")ParentGate.TextFields.Answer"
             })
             presentOnTopLevelVC(viewController: controller)
         }
@@ -70,16 +78,18 @@ class ParentalGate {
         stop()
 
         errorAlertController = UIAlertController(title: stringProvider.errorTitle,
-                                                message: stringProvider.errorMessage,
-                                                preferredStyle: .alert)
+                                                 message: stringProvider.errorMessage,
+                                                 preferredStyle: .alert)
+        errorAlertController?.view.accessibilityIdentifier = "\(accessibilityPrefix)ParentGateError"
 
-        let okAction = UIAlertAction(title: stringProvider.cancelTitle, style: .default) { [weak self] _ in
+        let cancelAction = UIAlertAction(title: stringProvider.cancelTitle, style: .default) { [weak self] _ in
             self?.stop()
             self?.failAction?()
         }
+        cancelAction.accessibilityIdentifier = "\(accessibilityPrefix)ParentGateError.Buttons.Cancel"
 
         if let controller = errorAlertController {
-            controller.addAction(okAction)
+            controller.addAction(cancelAction)
             presentOnTopLevelVC(viewController: controller)
         }
     }
@@ -107,5 +117,4 @@ class ParentalGate {
         secondNumber = numberGenerator.nextIntForParentalGate()
         solution = firstNumber + secondNumber
     }
-
 }

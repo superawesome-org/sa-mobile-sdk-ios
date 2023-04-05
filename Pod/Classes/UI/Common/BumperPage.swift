@@ -10,6 +10,7 @@ import UIKit
 @objc(SABumperPage)
 public class BumperPage: UIViewController, Injectable {
     private static let CounterMaxInSeconds = 3
+    private let accessibilityPrefix = "SuperAwesome.Bumper."
 
     // Dependencies
     private lazy var imageProvider: ImageProviderType = dependencies.resolve()
@@ -55,12 +56,16 @@ public class BumperPage: UIViewController, Injectable {
     }
 
     private func createTimer() {
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerFunction),
-                                     userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1,
+                                     target: self,
+                                     selector: #selector(timerFunction),
+                                     userInfo: nil,
+                                     repeats: true)
     }
 
     private func createBackground() {
         view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        view.accessibilityIdentifier = "\(accessibilityPrefix)Screen"
     }
 
     private func createSupportPanel() {
@@ -80,7 +85,7 @@ public class BumperPage: UIViewController, Injectable {
         imageView.layer.shadowOffset = CGSize(width: 0, height: 0)
         imageView.backgroundColor = UIColor.white
         imageView.translatesAutoresizingMaskIntoConstraints = false
-
+        imageView.accessibilityIdentifier = "\(accessibilityPrefix)ImageViews.Background"
         view.addSubview(imageView)
 
         NSLayoutConstraint.activate([
@@ -104,6 +109,7 @@ public class BumperPage: UIViewController, Injectable {
         imageView.image = overriddenLogo
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.accessibilityIdentifier = "\(accessibilityPrefix)ImageViews.AppLogo"
 
         panel.addSubview(imageView)
 
@@ -124,6 +130,7 @@ public class BumperPage: UIViewController, Injectable {
         imageView.image = imageProvider.bumperPoweredByImage
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.accessibilityIdentifier = "\(accessibilityPrefix)ImageViews.PoweredByLogo"
 
         panel.addSubview(imageView)
 
@@ -147,7 +154,7 @@ public class BumperPage: UIViewController, Injectable {
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
-
+        label.accessibilityIdentifier = "\(accessibilityPrefix)Labels.Small"
         panel.addSubview(label)
 
         NSLayoutConstraint.activate([
@@ -170,6 +177,7 @@ public class BumperPage: UIViewController, Injectable {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         label.text = stringProvider.bumperPageLeaving(appName: BumperPage.overridenName)
+        label.accessibilityIdentifier = "\(accessibilityPrefix)Labels.Big"
 
         panel.addSubview(label)
 
@@ -191,16 +199,16 @@ public class BumperPage: UIViewController, Injectable {
             timer?.invalidate()
             timer = nil
 
-            dismiss(animated: true) {
-                self.onComplete?()
+            dismiss(animated: true) { [weak self] in
+                self?.onComplete?()
             }
         }
     }
 
     func play(_ onComplete: VoidBlock?) {
         self.onComplete = onComplete
-        self.modalPresentationStyle = .overCurrentContext
-        self.modalTransitionStyle = .crossDissolve
+        modalPresentationStyle = .overCurrentContext
+        modalTransitionStyle = .crossDissolve
         UIApplication.shared.keyWindow?.rootViewController?.getTopMostViewController().present(self, animated: true)
     }
 
