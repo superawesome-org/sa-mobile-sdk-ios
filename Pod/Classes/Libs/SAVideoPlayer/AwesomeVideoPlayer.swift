@@ -92,11 +92,9 @@ public class AwesomeVideoPlayer: UIView, VideoPlayer {
     public func setMinimised() {
         guard isFullscreen else { return }
         isFullscreen = false
-        let parentVC = self.parentViewController
+        let parentVC = parentViewController
         parentVC?.dismiss(animated: true)
-        guard let previousParent = previousParent else {
-            return
-        }
+        guard let previousParent = previousParent else { return }
         previousParent.addSubview(self)
         let isPlaying = controllerView?.isPlaying() ?? false
         if isPlaying {
@@ -142,7 +140,9 @@ public class AwesomeVideoPlayer: UIView, VideoPlayer {
             if let playerLayer = playerLayer {
                 layer.addSublayer(playerLayer)
                 control.start()
-                delegate?.didPrepare(videoPlayer: self, time: control.getCurrentPosition(), duration: control.getDuration())
+                delegate?.didPrepare(videoPlayer: self,
+                                     time: control.getCurrentPosition(),
+                                     duration: control.getDuration())
 
                 controllerView?.setPlaying()
                 subviews.forEach { bringSubviewToFront($0) }

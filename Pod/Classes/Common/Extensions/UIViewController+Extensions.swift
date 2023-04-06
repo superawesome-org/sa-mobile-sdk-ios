@@ -53,7 +53,7 @@ extension UIViewController {
         controller.addAction(yesUIAction)
         controller.addAction(noUIAction)
 
-        self.present(controller, animated: true)
+        present(controller, animated: true)
 
         return controller
     }

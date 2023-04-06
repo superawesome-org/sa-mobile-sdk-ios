@@ -28,8 +28,8 @@ class EventRepositoryTests: XCTestCase {
 
         // When
         let expectation = self.expectation(description: "request")
-        repository.impression(MockFactory.makeAdResponse()) { result in
-            self.result = result
+        repository.impression(MockFactory.makeAdResponse()) { [weak self] result in
+            self?.result = result
             expectation.fulfill()
         }
         waitForExpectations(timeout: 2.0, handler: nil)
@@ -45,8 +45,8 @@ class EventRepositoryTests: XCTestCase {
 
         // When
         let expectation = self.expectation(description: "request")
-        repository.impression(MockFactory.makeAdResponse()) { result in
-            self.result = result
+        repository.impression(MockFactory.makeAdResponse()) { [weak self] result in
+            self?.result = result
             expectation.fulfill()
         }
         waitForExpectations(timeout: 2.0, handler: nil)
@@ -62,8 +62,8 @@ class EventRepositoryTests: XCTestCase {
 
         // When
         let expectation = self.expectation(description: "request")
-        repository.impression(MockFactory.makeAdResponse()) { result in
-            self.result = result
+        repository.impression(MockFactory.makeAdResponse()) { [weak self] result in
+            self?.result = result
             expectation.fulfill()
         }
         waitForExpectations(timeout: 2.0, handler: nil)
@@ -79,8 +79,8 @@ class EventRepositoryTests: XCTestCase {
 
         // When
         let expectation = self.expectation(description: "request")
-        repository.impression(MockFactory.makeAdResponse()) { result in
-            self.result = result
+        repository.impression(MockFactory.makeAdResponse()) { [weak self] result in
+            self?.result = result
             expectation.fulfill()
         }
         waitForExpectations(timeout: 2.0, handler: nil)

@@ -158,7 +158,7 @@ class AdViewMessageHandler: NSObject, WKScriptMessageHandler {
     }
 
     public func setCallback(value: AdEventCallback? = nil) {
-        self.callback = value
+        callback = value
     }
 
     public func setColor(value: Bool) {

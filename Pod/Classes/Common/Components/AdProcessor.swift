@@ -13,7 +13,10 @@ protocol AdProcessorType {
     /// - Parameter requestOptions: The additional data sent with the ad's request. Should be nil if no additional data was sent.
     /// - Parameter completion: Callback closure to be notified once the process is completed
     /// - Returns `AdResponse` object which contains `HTML` or `VAST` fields to be shown
-    func process(_ placementId: Int, _ ad: Ad, _ requestOptions: [String: Any]?, completion: @escaping OnComplete<AdResponse>)
+    func process(_ placementId: Int,
+                 _ ad: Ad,
+                 _ requestOptions: [String: Any]?,
+                 completion: @escaping OnComplete<AdResponse>)
 }
 
 class AdProcessor: AdProcessorType {
@@ -32,7 +35,10 @@ class AdProcessor: AdProcessorType {
         self.logger = logger
     }
 
-    func process(_ placementId: Int, _ ad: Ad, _ requestOptions: [String: Any]?, completion: @escaping OnComplete<AdResponse>) {
+    func process(_ placementId: Int,
+                 _ ad: Ad,
+                 _ requestOptions: [String: Any]?,
+                 completion: @escaping OnComplete<AdResponse>) {
         let response = AdResponse(placementId, ad, requestOptions)
 
         switch ad.creative.format {
@@ -50,12 +56,12 @@ class AdProcessor: AdProcessorType {
             completion(response)
         case .video:
             if let url = ad.creative.details.vast {
-                handleVast(url, initialVast: nil) { vast in
+                handleVast(url, initialVast: nil) { [weak self] vast in
                     response.vast = vast
                     response.baseUrl = (vast?.url ??? Constants.defaultBaseUrl).baseUrl
 
-                    self.networkDataSource.downloadFile(url: vast?.url ?? "",
-                                                        completion: { result in
+                    self?.networkDataSource.downloadFile(url: vast?.url ?? "",
+                                                         completion: { result in
                         switch result {
                         case .success(let localFilePath):
                             response.filePath = localFilePath
@@ -71,14 +77,17 @@ class AdProcessor: AdProcessorType {
         }
     }
 
-    private func handleVast(_ url: String, initialVast: VastAd?, isRedirect: Bool = false, complition: @escaping OnComplete<VastAd?>) {
-        networkDataSource.getData(url: url) { result in
+    private func handleVast(_ url: String,
+                            initialVast: VastAd?,
+                            isRedirect: Bool = false,
+                            complition: @escaping OnComplete<VastAd?>) {
+        networkDataSource.getData(url: url) { [weak self] result in
             switch result {
             case .success(let data):
-                let vast = self.vastParser.parse(data)
+                let vast = self?.vastParser.parse(data)
                 if let redirect = vast?.redirect, !isRedirect {
                     let mergedVast = vast?.merge(from: initialVast)
-                    self.handleVast(redirect, initialVast: mergedVast, isRedirect: true, complition: complition)
+                    self?.handleVast(redirect, initialVast: mergedVast, isRedirect: true, complition: complition)
                 } else {
                     let mergedVast = vast?.merge(from: initialVast)
                     complition(mergedVast)

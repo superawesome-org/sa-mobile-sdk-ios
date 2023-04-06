@@ -32,8 +32,8 @@ class AdProcessorTests: XCTestCase {
                                       logger: LoggerMock())
         // When
         let expectation = self.expectation(description: "request")
-        adProcessor.process(placementId, ad, nil) { response in
-            self.response = response
+        adProcessor.process(placementId, ad, nil) { [weak self] response in
+            self?.response = response
             expectation.fulfill()
         }
 
@@ -62,8 +62,8 @@ class AdProcessorTests: XCTestCase {
                                       logger: LoggerMock())
         // When
         let expectation = self.expectation(description: "request")
-        adProcessor.process(placementId, ad, nil) { response in
-            self.response = response
+        adProcessor.process(placementId, ad, nil) { [weak self] response in
+            self?.response = response
             expectation.fulfill()
         }
 

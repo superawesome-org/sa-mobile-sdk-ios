@@ -29,7 +29,10 @@ public class VideoPlayerController: AVPlayer, VideoPlayerControls {
 
     public override init() {
         super.init()
-        didEndObserver = notif.addObserver(forName: videoEndEvent, object: nil, queue: OperationQueue.main, using: { [weak self] (notif) in
+        didEndObserver = notif.addObserver(forName: videoEndEvent,
+                                           object: nil,
+                                           queue: OperationQueue.main,
+                                           using: { [weak self] notif in
             self?.didFinishPlaying(notif)
         })
     }
@@ -120,8 +123,8 @@ public class VideoPlayerController: AVPlayer, VideoPlayerControls {
 
     private func didCompleteMedia() {
         delegate?.didCompleteMedia(control: self,
-                                   time: self.getCurrentPosition(),
-                                   duration: self.getDuration())
+                                   time: getCurrentPosition(),
+                                   duration: getDuration())
     }
 
     private func timeFunction(_ time: CMTime) {

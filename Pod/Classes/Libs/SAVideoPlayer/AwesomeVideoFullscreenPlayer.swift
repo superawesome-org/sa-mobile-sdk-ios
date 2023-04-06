@@ -75,22 +75,27 @@ public class AwesomeVideoFullscreenPlayer: UIViewController {
         if isPlaying {
             player.getAVPlayer()?.play()
         }
-        UIView.animate(withDuration: 0.3, animations: {
-            self.player.frame = CGRect(x: 0.0, y: 0.0, width: self.view.frame.size.width, height: self.view.frame.size.height)
-            self.player.center = self.view.center
-            self.player.alpha = 1.0
-        }, completion: { _ in
-            self.player.layoutSubviews()
+        UIView.animate(withDuration: 0.3, animations: { [weak self] in
+            guard let strongSelf = self else { return }
+            self?.player.frame = CGRect(x: 0.0,
+                                        y: 0.0,
+                                        width: strongSelf.view.frame.size.width,
+                                        height: strongSelf.view.frame.size.height)
+            self?.player.center = strongSelf.view.center
+            self?.player.alpha = 1.0
+        }, completion: { [weak self] _ in
+            self?.player.layoutSubviews()
         })
     }
 
     override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         let duration: TimeInterval = animated ? 0.3 : 0.0
-        UIView.animate(withDuration: duration, animations: {
-            self.player.center = self.previousCentre
-        }, completion: { _ in
-            self.player.layoutSubviews()
+        UIView.animate(withDuration: duration, animations: { [weak self] in
+            guard let strongSelf = self else { return }
+            self?.player.center = strongSelf.previousCentre
+        }, completion: { [weak self] _ in
+            self?.player.layoutSubviews()
         })
     }
 
@@ -100,9 +105,13 @@ public class AwesomeVideoFullscreenPlayer: UIViewController {
 
     override public func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        coordinator.animate(alongsideTransition: { _ in
-            self.player.frame = CGRect(x: 0.0, y: 0.0, width: self.view.frame.size.width, height: self.view.frame.size.height)
-            self.player.layoutSubviews()
+        coordinator.animate(alongsideTransition: { [weak self] _ in
+            guard let strongSelf = self else { return }
+            self?.player.frame = CGRect(x: 0.0,
+                                        y: 0.0,
+                                        width: strongSelf.view.frame.size.width,
+                                        height: strongSelf.view.frame.size.height)
+            self?.player.layoutSubviews()
         })
     }
 }

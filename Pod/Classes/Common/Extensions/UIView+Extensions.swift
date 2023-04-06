@@ -57,43 +57,47 @@ extension UIView {
     }
 
     func bind(toTheEdgesOf otherView: UIView, insets: UIEdgeInsets = .zero) {
-        self.translatesAutoresizingMaskIntoConstraints = false
+        translatesAutoresizingMaskIntoConstraints = false
         let margins = otherView.layoutMarginsGuide
 
-        self.topAnchor.constraint(equalTo: margins.topAnchor, constant: insets.top).isActive = true
-        self.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: insets.left).isActive = true
-        self.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: insets.right).isActive = true
-        self.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: insets.bottom).isActive = true
+        topAnchor.constraint(equalTo: margins.topAnchor, constant: insets.top).isActive = true
+        leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: insets.left).isActive = true
+        trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: insets.right).isActive = true
+        bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: insets.bottom).isActive = true
     }
 
     func bind(toTopRightOf otherView: UIView) {
-        self.translatesAutoresizingMaskIntoConstraints = false
+        translatesAutoresizingMaskIntoConstraints = false
         let margins = otherView.layoutMarginsGuide
 
         if #available(iOS 11.0, *) {
-            self.topAnchor.constraint(equalToSystemSpacingBelow: otherView.safeAreaLayoutGuide.topAnchor, multiplier: 1.0).isActive = true
-            self.trailingAnchor.constraint(equalTo: otherView.layoutMarginsGuide.trailingAnchor, constant: 0.0).isActive = true
+            topAnchor.constraint(equalToSystemSpacingBelow: otherView.safeAreaLayoutGuide.topAnchor,
+                                 multiplier: 1.0).isActive = true
+            trailingAnchor.constraint(equalTo: otherView.layoutMarginsGuide.trailingAnchor,
+                                      constant: 0.0).isActive = true
         } else {
-            self.topAnchor.constraint(equalTo: margins.topAnchor, constant: 0.0).isActive = true
-            self.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: 0.0).isActive = true
+            topAnchor.constraint(equalTo: margins.topAnchor, constant: 0.0).isActive = true
+            trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: 0.0).isActive = true
         }
-        self.widthAnchor.constraint(equalToConstant: 40.0).isActive = true
-        self.heightAnchor.constraint(equalToConstant: 40.0).isActive = true
+        widthAnchor.constraint(equalToConstant: 40.0).isActive = true
+        heightAnchor.constraint(equalToConstant: 40.0).isActive = true
     }
 
     func bind(toBottomRightOf otherView: UIView) {
-        self.translatesAutoresizingMaskIntoConstraints = false
+        translatesAutoresizingMaskIntoConstraints = false
         let margins = otherView.layoutMarginsGuide
 
         if #available(iOS 11.0, *) {
-            self.bottomAnchor.constraint(equalToSystemSpacingBelow: otherView.safeAreaLayoutGuide.bottomAnchor, multiplier: 1.0).isActive = true
-            self.trailingAnchor.constraint(equalTo: otherView.layoutMarginsGuide.trailingAnchor, constant: 0.0).isActive = true
+            bottomAnchor.constraint(equalToSystemSpacingBelow: otherView.safeAreaLayoutGuide.bottomAnchor,
+                                    multiplier: 1.0).isActive = true
+            trailingAnchor.constraint(equalTo: otherView.layoutMarginsGuide.trailingAnchor,
+                                      constant: 0.0).isActive = true
         } else {
-            self.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: 0.0).isActive = true
-            self.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: 0.0).isActive = true
+            bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: 0.0).isActive = true
+            trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: 0.0).isActive = true
         }
-        self.widthAnchor.constraint(equalToConstant: 40.0).isActive = true
-        self.heightAnchor.constraint(equalToConstant: 40.0).isActive = true
+        widthAnchor.constraint(equalToConstant: 40.0).isActive = true
+        heightAnchor.constraint(equalToConstant: 40.0).isActive = true
     }
 
     /// Checks to see if the `View` is visible to the user
