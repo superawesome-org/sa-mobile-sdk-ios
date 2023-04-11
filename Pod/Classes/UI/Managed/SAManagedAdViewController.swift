@@ -8,7 +8,7 @@
 import UIKit
 import WebKit
 
-@objc(SAManagedAdViewController) public final class SAManagedAdViewController: UIViewController, Injectable {
+@objc(SAManagedAdViewController) public final class SAManagedAdViewController: UIViewController, Injectable, AdControllerVideoDelegate {
 
     // MARK: Properties
 
@@ -241,5 +241,15 @@ extension SAManagedAdViewController: SAManagedAdViewDelegate {
     func onAdClick(url: URL) {
         callback?(placementId, .adClicked)
         controller.handleAdTap(url: url)
+    }
+
+    // MARK: AdControllerVideoDelegate
+
+    public func controllerDidRequestPlayVideo() {
+        managedAdView.playVideo()
+    }
+
+    public func controllerDidRequestPauseVideo() {
+        managedAdView.pauseVideo()
     }
 }
