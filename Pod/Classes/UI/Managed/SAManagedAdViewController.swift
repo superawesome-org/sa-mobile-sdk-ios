@@ -42,10 +42,11 @@ import WebKit
         self.callback = callback
         self.config = config
         super.init(nibName: nil, bundle: nil)
-        self.controller.adResponse = adResponse
-        self.controller.parentalGateEnabled = config.isParentalGateEnabled
-        self.controller.bumperPageEnabled = config.isBumperPageEnabled
-        self.controller.callback = callback
+        controller.adResponse = adResponse
+        controller.parentalGateEnabled = config.isParentalGateEnabled
+        controller.bumperPageEnabled = config.isBumperPageEnabled
+        controller.callback = callback
+        controller.videoDelegate = self
         view.accessibilityIdentifier = "\(accessibilityPrefix)Screen"
     }
 

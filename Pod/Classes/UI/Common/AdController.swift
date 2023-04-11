@@ -13,6 +13,7 @@ protocol AdControllerType {
     var showPadlock: Bool { get }
     var callback: AdEventCallback? { get set }
     var adResponse: AdResponse? { get set }
+    var videoDelegate: AdControllerVideoDelegate? { get set }
     var filePathUrl: URL? { get }
     var adAvailable: Bool { get }
 
