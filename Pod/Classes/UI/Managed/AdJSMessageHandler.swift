@@ -63,9 +63,7 @@ class AdJSMessageHandler: NSObject, WKScriptMessageHandler {
             adEnded: function() { postMessageToBridge("\(AdEvent.adEnded.rawValue)"); },
             adClosed: function() { postMessageToBridge("\(AdEvent.adClosed.rawValue)"); },
             adPaused: function() { postMessageToBridge("\(AdEvent.adPaused.rawValue)"); },
-            adPlaying: function() { postMessageToBridge("\(AdEvent.adPlaying.rawValue)"); },
-            appRequestedPause: function() {},
-            appRequestedPlay: function() {}
+            adPlaying: function() { postMessageToBridge("\(AdEvent.adPlaying.rawValue)"); }
         };
     """
 }

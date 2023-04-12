@@ -112,11 +112,11 @@ public final class SAManagedAdView: UIView, Injectable {
     }
 
     func playVideo() {
-        webView.evaluateJavaScript("SA_AD_JS_BRIDGE.appRequestedPlay();")
+        webView.evaluateJavaScript("window.dispatchEvent(new Event('SA_AD_JS_BRIDGE.appRequestedPlay'));")
     }
 
     func pauseVideo() {
-        webView.evaluateJavaScript("SA_AD_JS_BRIDGE.appRequestedPause();")
+        webView.evaluateJavaScript("window.dispatchEvent(new Event('SA_AD_JS_BRIDGE.appRequestedPause'));")
     }
 
     deinit {
