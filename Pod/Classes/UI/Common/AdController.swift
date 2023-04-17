@@ -13,6 +13,7 @@ protocol AdControllerType {
     var showPadlock: Bool { get }
     var callback: AdEventCallback? { get set }
     var adResponse: AdResponse? { get set }
+    var videoDelegate: AdControllerVideoDelegate? { get set }
     var filePathUrl: URL? { get }
     var adAvailable: Bool { get }
 
@@ -36,6 +37,11 @@ protocol AdControllerType {
     func triggerDwellTime()
 }
 
+public protocol AdControllerVideoDelegate: AnyObject {
+    func controllerDidRequestPlayVideo()
+    func controllerDidRequestPauseVideo()
+}
+
 class AdController: AdControllerType, Injectable {
 
     private lazy var logger: LoggerType = dependencies.resolve(param: AdController.self)
@@ -52,6 +58,7 @@ class AdController: AdControllerType, Injectable {
     var closed = false
     var adResponse: AdResponse?
     var callback: AdEventCallback?
+    weak var videoDelegate: AdControllerVideoDelegate?
     var placementId: Int { adResponse?.placementId ?? 0 }
     var showPadlock: Bool { adResponse?.advert.showPadlock ?? false && adResponse?.advert.ksfRequest == nil }
     var adAvailable: Bool { adResponse != nil }
@@ -63,6 +70,7 @@ class AdController: AdControllerType, Injectable {
 
     private lazy var parentalGateCancelAction = { [weak self] in
         guard let adResponse = self?.adResponse else { return }
+        self?.videoDelegate?.controllerDidRequestPlayVideo()
         self?.eventRepository.parentalGateClose(adResponse, completion: nil)
     }
 
@@ -106,6 +114,16 @@ class AdController: AdControllerType, Injectable {
     func adClosed() {
         callback?(placementId, .adClosed)
         logger.info("Event callback: adClosed for placement \(placementId)")
+    }
+
+    func adPaused() {
+        callback?(placementId, .adPaused)
+        logger.info("Event callback: adPaused for placement \(placementId)")
+    }
+
+    func adPlaying() {
+        callback?(placementId, .adPlaying)
+        logger.info("Event callback: adPlaying for placement \(placementId)")
     }
 
     func triggerViewableImpression() {
@@ -164,6 +182,7 @@ class AdController: AdControllerType, Injectable {
     /// Shows bumper screen if needed
     private func showBumperIfNeeded(_ url: URL) {
         if bumperPageEnabled || adResponse?.advert.creative.bumper ?? false {
+            videoDelegate?.controllerDidRequestPauseVideo()
             BumperPage().play { [weak self] in
                 self?.navigateToUrl(url)
             }
@@ -229,6 +248,7 @@ class AdController: AdControllerType, Injectable {
                 completion?()
             }
             parentalGate?.failAction = parentalGateFailAction
+            videoDelegate?.controllerDidRequestPauseVideo()
             parentalGate?.show()
         } else {
             completion?()
@@ -243,6 +263,7 @@ class AdController: AdControllerType, Injectable {
         }
 
         if bumperPageEnabled {
+            videoDelegate?.controllerDidRequestPauseVideo()
             BumperPage().play(onComplete)
         } else {
             onComplete()

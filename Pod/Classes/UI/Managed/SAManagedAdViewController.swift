@@ -8,7 +8,7 @@
 import UIKit
 import WebKit
 
-@objc(SAManagedAdViewController) public final class SAManagedAdViewController: UIViewController, Injectable {
+@objc(SAManagedAdViewController) public final class SAManagedAdViewController: UIViewController, Injectable, AdControllerVideoDelegate {
 
     // MARK: Properties
 
@@ -42,10 +42,11 @@ import WebKit
         self.callback = callback
         self.config = config
         super.init(nibName: nil, bundle: nil)
-        self.controller.adResponse = adResponse
-        self.controller.parentalGateEnabled = config.isParentalGateEnabled
-        self.controller.bumperPageEnabled = config.isBumperPageEnabled
-        self.controller.callback = callback
+        controller.adResponse = adResponse
+        controller.parentalGateEnabled = config.isParentalGateEnabled
+        controller.bumperPageEnabled = config.isBumperPageEnabled
+        controller.callback = callback
+        controller.videoDelegate = self
         view.accessibilityIdentifier = "\(accessibilityPrefix)Screen"
     }
 
@@ -56,7 +57,7 @@ import WebKit
     lazy var managedAdView: SAManagedAdView = {
         let adView = SAManagedAdView()
         adView.accessibilityIdentifier = "\(accessibilityPrefix)Views.ManagedAd"
-        adView.setBridge(bridge: self)
+        adView.setDelegate(self)
         adView.setCallback(value: callback)
         return adView
     }()
@@ -162,14 +163,14 @@ import WebKit
     @objc private func onCloseClicked() {
         
         if config.shouldShowCloseWarning && !isCompleted {
-            // control.pause() TODO: Pause playing video AAG-3024
+            managedAdView.pauseVideo()
             closeDialog = showQuestionDialog(title: stringProvider.closeDialogTitle,
                                              message: stringProvider.closeDialogMessage,
                                              yesTitle: stringProvider.closeDialogCloseAction,
                                              noTitle: stringProvider.closeDialogResumeAction) { [weak self] in
                 self?.close()
-            } noAction: { // [weak self] in
-                // control.resume() TODO: Resume playing video AAG-3024
+            } noAction: { [weak self] in
+                self?.managedAdView.playVideo()
             }
         } else {
             close()
@@ -202,11 +203,11 @@ import WebKit
 
     @objc
     func willEnterForeground(_ notification: Notification) {
-        // control.start() TODO: Resume playing video AAG-3024
+        managedAdView.playVideo()
     }
 
     private func didEnterBackground() {
-        // control.pause() TODO: Pause playing video AAG-3024
+        managedAdView.pauseVideo()
         closeDialog?.dismiss(animated: true)
         closeDialog = nil
     }
@@ -221,12 +222,12 @@ import WebKit
     }
 }
 
-// MARK: AdViewJavaScriptBridge
+// MARK: SAManagedAdViewDelegate
 
-extension SAManagedAdViewController: AdViewJavaScriptBridge {
+extension SAManagedAdViewController: SAManagedAdViewDelegate {
+
     func onEvent(event: AdEvent) {
         callback?(placementId, event)
-
         if event == .adShown && config.closeButtonState == .visibleWithDelay {
             showCloseButtonAfterDelay()
         }
@@ -245,5 +246,15 @@ extension SAManagedAdViewController: AdViewJavaScriptBridge {
     func onAdClick(url: URL) {
         callback?(placementId, .adClicked)
         controller.handleAdTap(url: url)
+    }
+
+    // MARK: AdControllerVideoDelegate
+
+    public func controllerDidRequestPlayVideo() {
+        managedAdView.playVideo()
+    }
+
+    public func controllerDidRequestPauseVideo() {
+        managedAdView.pauseVideo()
     }
 }
