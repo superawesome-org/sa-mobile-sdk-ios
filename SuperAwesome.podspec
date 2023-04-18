@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'SuperAwesome'
-  s.version = File.read("Pod/Classes/Common/Model/Version.swift").split(" = ")[1].delete("\"")
+  s.version = File.read("SuperAwesome/Classes/Common/Model/Version.swift").split(" = ")[1].delete("\"")
   s.summary = 'SuperAwesome Mobile SDK for iOS'
   s.description = <<-DESC
                    The SuperAwesome Mobile SDK lets you to easily add COPPA compliant advertisements and other platform features, like user authentication and registration, to your apps. We try to make integration as easy as possible, so we provide all the necessary tools such as this guide, API documentation, screencasts and demo apps.
@@ -17,14 +17,12 @@ Pod::Spec.new do |s|
   s.swift_versions = ['5.0']
   s.requires_arc = true
   s.source = {
-    :git => 'https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git',
-    :branch => 'develop',
-    :tag => "v#{s.version}"
+    :http => "https://aa-sdk.s3.eu-west-1.amazonaws.com/ios_repo/SuperAwesome/#{s.version}/SuperAwesome-#{s.version}.zip"
   }
   s.static_framework = false
 
   s.dependency 'SwiftyXMLParser', '5.6.0'
   s.dependency 'Moya', '~> 14.0'
-  s.source_files = 'Pod/Classes/**/*'
+  s.source_files = 'SuperAwesome/Classes/**/*'
 
 end

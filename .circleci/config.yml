@@ -1,5 +1,7 @@
 # .circleci/config.yml
 version: 2.1
+orbs:
+  aws-s3: circleci/aws-s3@3.1
 
 dependencies:
   pre:
@@ -229,6 +231,18 @@ jobs:
       - run:
           name: Push Superawesome to cocoapods
           command: fastlane sdk_push isPrivateRepo:false skipVersionBump:true
+      - run:
+          name: Compress
+          command: |
+            echo "export RELEASE_NUMBER=`cat SuperAwesome/Classes/Common/Model/Version.swift | cut -d '"' -f 2`" >> $BASH_ENV
+            zip -vr "SuperAwesome-${RELEASE_NUMBER}.zip" SuperAwesome/ -x "*.DS_Store"
+      - aws-s3/copy:
+          from: "SuperAwesome-${RELEASE_NUMBER}.zip"
+          to: "${SA_IOS_SDKS_S3_PUBLIC_REPO}/SuperAwesome/${RELEASE_NUMBER}/"
+          aws-access-key-id: $SA_IOS_APPS_S3_REPO_KEY
+          aws-region: $SA_IOS_APPS_S3_REGION
+          aws-secret-access-key: $SA_IOS_APPS_S3_REPO_SECRET
+
   ## Run sdk push - admob
   sdk_push_superawesome_admob:
     <<: *ios_config
@@ -248,7 +262,18 @@ jobs:
       - run:
           name: Push Superawesome-AdMob to cocoapods
           command: fastlane sdk_push isPrivateRepo:false skipVersionBump:true
-          
+      - run:
+          name: Compress
+          command: |
+            echo "export RELEASE_NUMBER=`cat SuperAwesome/Classes/Common/Model/Version.swift | cut -d '"' -f 2`" >> $BASH_ENV
+            zip -vr "SuperAwesomeAdMob-${RELEASE_NUMBER}.zip" SuperAwesomeAdMob/ -x "*.DS_Store"
+      - aws-s3/copy:
+          from: "SuperAwesomeAdMob-${RELEASE_NUMBER}.zip"
+          to: "${SA_IOS_SDKS_S3_PUBLIC_REPO}/SuperAwesomeAdMob/${RELEASE_NUMBER}/"
+          aws-access-key-id: $SA_IOS_APPS_S3_REPO_KEY
+          aws-region: $SA_IOS_APPS_S3_REGION
+          aws-secret-access-key: $SA_IOS_APPS_S3_REPO_SECRET
+
 workflows:
   nightly:
     triggers:
