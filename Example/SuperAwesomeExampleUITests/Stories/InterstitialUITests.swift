@@ -99,7 +99,7 @@ class InterstitialUITests: BaseUITest {
         }
     }
     
-    func test_safeAd_logo_parental_gate() throws {
+    func test_safeAd_logo_withParentalGate() throws {
         
         adsListScreen(app) {
             $0.waitForView()
