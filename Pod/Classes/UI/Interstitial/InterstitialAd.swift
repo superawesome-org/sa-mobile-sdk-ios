@@ -9,7 +9,7 @@ import UIKit
 
 @objc(SAInterstitialAd)
 public class InterstitialAd: NSObject, Injectable {
-    private static var controller: AdControllerType = AdController()
+    private static var controller: AdControllerType = dependencies.resolve()
     private static var logger: LoggerType = dependencies.resolve(param: InterstitialAd.self)
 
     private(set) static var isParentalGateEnabled: Bool = Constants.defaultParentalGate
