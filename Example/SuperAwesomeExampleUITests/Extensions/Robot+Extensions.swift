@@ -11,10 +11,10 @@ import DominantColor
 extension Robot {
     
     /**
-     * Method that asserts that a sampled colour of an image is the expected colour
+     * Method that asserts that a sampled color of an image is the expected color
      *
      * - Parameters:
-     *  - expectedColor: The expected colour as a hex string e.g: "#FFFFFF"
+     *  - expectedColor: The expected color as a hex string e.g: "#FFFFFF"
      *  - sampleSize: The number of pixels to sample from the centre of the image
      *  - image: The image to test, e.g: `closeButton.screenshot().image`
      */
@@ -38,13 +38,13 @@ extension Robot {
             )
         )
         
-        let sampledColour = crop.dominantColors().first(
+        let sampledColor = crop.dominantColors().first(
             where: { $0.hexString() == expectedColor }
         )
         
         XCTAssertEqual(
             expectedColor,
-            sampledColour?.hexString(),
+            sampledColor?.hexString(),
             file: file,
             line: line
         )
