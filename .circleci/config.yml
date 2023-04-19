@@ -240,9 +240,9 @@ jobs:
       - aws-s3/copy:
           from: "SuperAwesome-${RELEASE_NUMBER}.zip"
           to: "${SA_IOS_SDKS_S3_PUBLIC_REPO}/SuperAwesome/${RELEASE_NUMBER}/"
-          aws-access-key-id: $SA_IOS_APPS_S3_REPO_KEY
-          aws-region: $SA_IOS_APPS_S3_REGION
-          aws-secret-access-key: $SA_IOS_APPS_S3_REPO_SECRET
+          aws-access-key-id: SA_IOS_APPS_S3_REPO_KEY
+          aws-region: SA_IOS_APPS_S3_REGION
+          aws-secret-access-key: SA_IOS_APPS_S3_REPO_SECRET
       - run:
           name: Update Release page in docs
           command: |
@@ -298,9 +298,9 @@ jobs:
       - aws-s3/copy:
           from: "SuperAwesomeAdMob-${RELEASE_NUMBER}.zip"
           to: "${SA_IOS_SDKS_S3_PUBLIC_REPO}/SuperAwesomeAdMob/${RELEASE_NUMBER}/"
-          aws-access-key-id: $SA_IOS_APPS_S3_REPO_KEY
-          aws-region: $SA_IOS_APPS_S3_REGION
-          aws-secret-access-key: $SA_IOS_APPS_S3_REPO_SECRET
+          aws-access-key-id: SA_IOS_APPS_S3_REPO_KEY
+          aws-region: SA_IOS_APPS_S3_REGION
+          aws-secret-access-key: SA_IOS_APPS_S3_REPO_SECRET
 
 workflows:
   nightly:
