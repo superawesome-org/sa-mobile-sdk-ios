@@ -11,50 +11,83 @@ import DominantColor
 extension Robot {
     
     /**
-     * Method that asserts that a sampled color of an image is the expected color
+     * Method that asserts that an expected color is present on screen
+     *
+     * - Parameters:
+     *  - expectedColor: The expected color as a hex string e.g: "#FFFFFF"
+     *  - timeout: The number of pixels to sample from the centre of the screen
+     */
+    func waitForExpectedColor(
+        expectedColor: String,
+        image: UIImage,
+        timeout: Int = 5,
+        file: StaticString = #file,
+        line: UInt = #line)
+    {
+        
+        let expectation = XCTestExpectation(description: "Located expected color")
+        
+        var count = 0
+        
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] timer in
+            
+            let locatedColor = self?.findColorInImage(
+                expectedColor: expectedColor,
+                sampleSize: 5,
+                image: image
+            )
+            
+            if(expectedColor == locatedColor) {
+                timer.invalidate()
+                expectation.fulfill()
+                XCTAssertEqual(
+                    expectedColor,
+                    locatedColor,
+                    file: file,
+                    line: line
+                )
+            }
+            
+            if (count == timeout - 1) {
+                timer.invalidate()
+            }
+            count+=1
+        }
+        
+        let result = XCTWaiter.wait(for: [expectation], timeout: TimeInterval(timeout))
+        
+        switch result {
+        case .completed: break // Assertion made above
+        case .timedOut: XCTFail(
+            "Timed out waiting for expected color: \(expectedColor)",
+            file: file,
+            line: line)
+        default: XCTFail(
+            "Failed to locate expected color: \(expectedColor)",
+            file: file,
+            line: line)
+        }
+    }
+    
+    /**
+     * Method that finds an expected color
      *
      * - Parameters:
      *  - expectedColor: The expected color as a hex string e.g: "#FFFFFF"
      *  - sampleSize: The number of pixels to sample from the centre of the image
      *  - image: The image to test, e.g: `closeButton.screenshot().image`
      */
-    func AssertExpectedColor(
+    private func findColorInImage(
         expectedColor: String,
         sampleSize: CGFloat,
-        image: UIImage,
-        file: StaticString = #file,
-        line: UInt = #line)
+        image: UIImage) -> String?
     {
+        guard sampleSize > 2 else { return nil }
         
-        guard sampleSize > 2 else {
-            XCTFail("The sample size must be greater than 2", file: file, line: line)
-            return
-        }
+        let crop = image.centreCroppedTo(CGSize(width: sampleSize, height: sampleSize))
         
-        let crop = image.centreCroppedTo(
-            CGSize(
-                width: sampleSize,
-                height: sampleSize
-            )
-        )
-        
-        let sampledColor = crop.dominantColors().first(
-            where: { $0.hexString() == expectedColor }
-        )
-        
-        XCTAssertEqual(
-            expectedColor,
-            sampledColor?.hexString(),
-            file: file,
-            line: line
-        )
-    }
-    
-    func AssertExpectedScreenshotColor(expectedColor: String) {
-        AssertExpectedColor(
-            expectedColor: expectedColor,
-            sampleSize: 50.0,
-            image: XCUIScreen.main.screenshot().image
-        )
+        return crop.dominantColors()
+            .first( where: { $0.hexString() == expectedColor })?
+            .hexString()
     }
 }

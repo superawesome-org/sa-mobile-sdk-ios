@@ -9,7 +9,7 @@ import XCTest
 
 class InterstitialUITests: BaseUITest {
         
-    func test_ad_load_success() throws {
+    func testAdAppears() throws {
 
         adsListScreen(app) {
             $0.waitForView()
@@ -23,7 +23,7 @@ class InterstitialUITests: BaseUITest {
         }
     }
     
-    func test_ad_load_success_withBumper() throws {
+    func testAdAppears_withBumper() throws {
 
         adsListScreen(app) {
             $0.waitForView()
@@ -52,7 +52,7 @@ class InterstitialUITests: BaseUITest {
         }
     }
     
-    func test_ad_load_success_withParentalGate() throws {
+    func testAdAppears_withParentalGate() throws {
 
         adsListScreen(app) {
             $0.waitForView()

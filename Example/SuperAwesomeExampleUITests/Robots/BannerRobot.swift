@@ -22,6 +22,13 @@ class BannerRobot: Robot {
     func waitForView() {
         XCTAssertTrue(banner.waitForExistence(timeout: 5))
     }
+    
+    func waitForRender() {
+        waitForExpectedColor(
+            expectedColor: "#F7E26B",
+            image: banner.screenshot().image
+        )
+    }
 
     func tapBanner() {
         banner.tap()

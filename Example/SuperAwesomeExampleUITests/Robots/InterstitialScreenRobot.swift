@@ -40,7 +40,10 @@ class InterstitialScreenRobot: Robot {
     }
     
     func waitForRender() {
-        AssertExpectedScreenshotColor(expectedColor: "#F7E26B")
+        waitForExpectedColor(
+            expectedColor: "#F7E26B",
+            image: XCUIScreen.main.screenshot().image
+        )
     }
 
     func tapClose() {
