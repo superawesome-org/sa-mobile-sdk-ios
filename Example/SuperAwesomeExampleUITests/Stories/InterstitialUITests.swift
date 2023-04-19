@@ -8,15 +8,13 @@
 import XCTest
 
 class InterstitialUITests: BaseUITest {
-    
-    private let placementName = "Mobile Interstitial Flat Colour Portrait"
-    
+        
     func test_ad_load_success() throws {
 
         adsListScreen(app) {
             $0.waitForView()
 
-            $0.tapPlacement(withName: placementName)
+            $0.tapPlacement(withName: "Mobile Interstitial Flat Colour Portrait")
 
             interstitialScreen(app) { interstitialScreen in
                 interstitialScreen.waitForView()
@@ -37,7 +35,7 @@ class InterstitialUITests: BaseUITest {
                 settings.tapCloseButton()
             }
 
-            $0.tapPlacement(withName: placementName)
+            $0.tapPlacement(withName: "Mobile Interstitial Flat Colour Portrait")
 
             interstitialScreen(app) { interstitialScreen in
                 interstitialScreen.waitForView()
@@ -66,7 +64,7 @@ class InterstitialUITests: BaseUITest {
                 settings.tapCloseButton()
             }
             
-            $0.tapPlacement(withName: placementName)
+            $0.tapPlacement(withName: "Mobile Interstitial Flat Colour Portrait")
 
             interstitialScreen(app) { interstitialScreen in
                 interstitialScreen.waitForView()
@@ -113,7 +111,7 @@ class InterstitialUITests: BaseUITest {
                 settings.tapCloseButton()
             }
             
-            $0.tapPlacement(withName: placementName)
+            $0.tapPlacement(withName: "Mobile Interstitial Flat Colour Portrait")
 
             interstitialScreen(app) { interstitialScreen in
                 interstitialScreen.waitForView()
@@ -152,48 +150,17 @@ class InterstitialUITests: BaseUITest {
         }
     }
     
-    func test_safeAd_logo_parentalGate() throws {
-
+    func test_safeAd_logo_disabled() throws {
+        
         adsListScreen(app) {
             $0.waitForView()
-            $0.tapSettingsButton()
-
-            settingsScreen(app) { settings in
-                settings.waitForView()
-                settings.tapParentalGateEnable()
-                settings.tapCloseButton()
-            }
-            
-            $0.tapPlacement(withName: placementName)
+            $0.tapPlacement(withName: "Mobile Interstitial Portrait")
 
             interstitialScreen(app) { interstitialScreen in
                 interstitialScreen.waitForView()
-                interstitialScreen.tapOnAd()
-
-                parentGateAlert(app) { parentGate in
-                    parentGate.waitForView()
-                    parentGate.checkTitle(hasText: parentGate.title)
-                    parentGate.checkMessage(hasText: parentGate.questionMessage)
-                    parentGate.checkPlaceholder(hasText: "")
-                    parentGate.tapCancelButton()
-                }
-
-                interstitialScreen.tapOnAd()
-
-                parentGateAlert(app) { parentGate in
-                    parentGate.waitForView()
-                    parentGate.checkTitle(hasText: parentGate.title)
-                    parentGate.checkMessage(hasText: parentGate.questionMessage)
-                    parentGate.checkPlaceholder(hasText: "")
-                    parentGate.typeAnswer(text: "")
-                    parentGate.tapContinueButton()
-
-                    parentGateErrorAlert(app) { parentGateError in
-                        parentGateError.waitForView()
-                        parentGateError.checkTitle(hasText: parentGate.wrongAnswerTitle)
-                        parentGateError.checkMessage(hasText: parentGate.wrongAnswerMessage)
-                        parentGateError.tapCancelButton()
-                    }
+                banner(app) { banner in
+                    // Interstitials use the banner internally
+                    banner.checkPadlockButtonDoesNotExist()
                 }
             }
         }
@@ -211,7 +178,7 @@ class InterstitialUITests: BaseUITest {
                 settings.tapCloseButton()
             }
 
-            $0.tapPlacement(withName: placementName)
+            $0.tapPlacement(withName: "Mobile Interstitial Flat Colour Portrait")
 
             interstitialScreen(app) { interstitialScreen in
                 interstitialScreen.waitForView()
@@ -233,7 +200,7 @@ class InterstitialUITests: BaseUITest {
                 settings.tapCloseButton()
             }
 
-            $0.tapPlacement(withName: placementName)
+            $0.tapPlacement(withName: "Mobile Interstitial Flat Colour Portrait")
 
             interstitialScreen(app) { interstitialScreen in
                 interstitialScreen.waitForView()

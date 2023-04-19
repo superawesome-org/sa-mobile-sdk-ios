@@ -34,6 +34,10 @@ class BannerRobot: Robot {
     func checkPadlockButtonExists() {
         XCTAssertTrue(padlockButton.exists)
     }
+    
+    func checkPadlockButtonDoesNotExist() {
+        XCTAssertFalse(padlockButton.exists)
+    }
 }
 
 @discardableResult

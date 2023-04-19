@@ -36,7 +36,6 @@ class BumperScreenRobot: Robot {
     }
     
     let warningMessage = " seconds. Remember to stay safe online and don’t share your username or password with anyone!"
-    
     let goodByeMessage = "Bye! You’re now leaving Demo App."
 
     func waitForView() {

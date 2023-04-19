@@ -5,6 +5,6 @@
   },
   "response": {
       "status": 200,
-      "bodyFileName": "interstitial_standard_success.json"
+      "bodyFileName": "interstitial_success_padlock_enabled.json"
   }
 }
