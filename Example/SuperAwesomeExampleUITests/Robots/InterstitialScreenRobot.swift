@@ -18,13 +18,33 @@ class InterstitialScreenRobot: Robot {
     private var bannerView: XCUIElement {
         screen.otherElements["\(accessibilityPrefix)Banner"]
     }
+    
+    private var padlockButton: XCUIElement {
+        app.buttons["\(accessibilityPrefix)Buttons.Padlock"]
+    }
 
     private var closeButton: XCUIElement {
-        screen.buttons["\(accessibilityPrefix).Buttons.Close"]
+        screen.buttons["\(accessibilityPrefix)Buttons.Close"]
+    }
+    
+    func checkCloseButtonExists() {
+        XCTAssertTrue(closeButton.exists)
+    }
+    
+    func checkCloseButtonDoesNotExist() {
+        XCTAssertFalse(closeButton.exists)
+    }
+    
+    func waitForCloseButton() {
+        XCTAssertTrue(closeButton.waitForExistence(timeout: 5))
     }
 
     func waitForView() {
         XCTAssertTrue(screen.waitForExistence(timeout: 5))
+    }
+    
+    func waitForRender() {
+        AssertExpectedScreenshotColor(expectedColor: "#F7E26B")
     }
 
     func tapClose() {

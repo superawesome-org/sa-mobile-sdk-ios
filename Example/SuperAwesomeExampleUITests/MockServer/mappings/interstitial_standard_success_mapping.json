@@ -1,10 +1,10 @@
 {
   "request": {
       "method": "GET",
-      "urlPath": "/interstitial_yellow.png"
+      "urlPath": "/ad/87892"
   },
   "response": {
       "status": 200,
-      "bodyFileName": "interstitial_yellow.png"
+      "bodyFileName": "interstitial_standard_success.json"
   }
 }

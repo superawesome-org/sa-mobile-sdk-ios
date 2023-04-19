@@ -14,7 +14,7 @@
     "freqCappingLimit": 0,
     "details": {
       "url": "https://uploads-api-main-awesomeads.sacdn.net/images/JgXBaIa8XI1jMoYFSDewp0uVShhC6qr5.png",
-      "image": "https://uploads-api-main-awesomeads.sacdn.net/images/JgXBaIa8XI1jMoYFSDewp0uVShhC6qr5.png",
+      "image": "http://localhost:8080/interstitial_yellow.png",
       "video": "https://uploads-api-main-awesomeads.sacdn.net/images/JgXBaIa8XI1jMoYFSDewp0uVShhC6qr5.png",
       "placement_format": "mobile_display",
       "width": 320,
@@ -40,7 +40,7 @@
   "moat": 0.1,
   "is_house": true,
   "safe_ad_approved": false,
-  "show_padlock": false,
+  "show_padlock": true,
   "campaign_type": 0,
   "line_item_id": 181223,
   "campaign_id": 48202,

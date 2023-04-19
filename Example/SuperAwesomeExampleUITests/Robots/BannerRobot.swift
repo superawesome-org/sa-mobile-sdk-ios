@@ -16,7 +16,7 @@ class BannerRobot: Robot {
     }
 
     private var padlockButton: XCUIElement {
-        banner.buttons["\(accessibilityPrefix)Buttons.Padlock"]
+        app.buttons["\(accessibilityPrefix)Buttons.Padlock"]
     }
 
     func waitForView() {

@@ -105,10 +105,18 @@
 		CC193C16290FF9E200EEC736 /* video_direct_success.json in Resources */ = {isa = PBXBuildFile; fileRef = CC193C13290FF9E200EEC736 /* video_direct_success.json */; };
 		CC193C17290FF9E200EEC736 /* interstitial_standard_success.json in Resources */ = {isa = PBXBuildFile; fileRef = CC193C14290FF9E200EEC736 /* interstitial_standard_success.json */; };
 		CC193C18290FF9E300EEC736 /* video_vpaid_non_ksf.json in Resources */ = {isa = PBXBuildFile; fileRef = CC193C15290FF9E200EEC736 /* video_vpaid_non_ksf.json */; };
-		CC194D19296ED4E20068B85F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CC194D18296ED4E20068B85F /* GoogleService-Info.plist */; };
 		CC3A52B2290F252C00484D1B /* WireMock.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = CC3A52AE290F252C00484D1B /* WireMock.jar */; };
 		CC6AE3D1284F906B002F7581 /* VideoAdUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6AE3D0284F906B002F7581 /* VideoAdUITests.swift */; };
 		CCDA7340283E56CB00A75542 /* AwesomeAdsTargetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDA733F283E56CB00A75542 /* AwesomeAdsTargetTests.swift */; };
+		CCE84B7529EE90560035131C /* banner_yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = CCE84B7129EE90550035131C /* banner_yellow.png */; };
+		CCE84B7629EE90560035131C /* banner_success_padlock_enabled.json in Resources */ = {isa = PBXBuildFile; fileRef = CCE84B7229EE90550035131C /* banner_success_padlock_enabled.json */; };
+		CCE84B7729EE90560035131C /* placements.json in Resources */ = {isa = PBXBuildFile; fileRef = CCE84B7329EE90560035131C /* placements.json */; };
+		CCE84B7829EE90560035131C /* interstitial_yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = CCE84B7429EE90560035131C /* interstitial_yellow.png */; };
+		CCE84B7D29EE906C0035131C /* banner_success_padlock_enabled_mapping.json in Resources */ = {isa = PBXBuildFile; fileRef = CCE84B7929EE906C0035131C /* banner_success_padlock_enabled_mapping.json */; };
+		CCE84B7E29EE906C0035131C /* placement_mapping.json in Resources */ = {isa = PBXBuildFile; fileRef = CCE84B7A29EE906C0035131C /* placement_mapping.json */; };
+		CCE84B7F29EE906C0035131C /* interstitial_yellow_mapping.json in Resources */ = {isa = PBXBuildFile; fileRef = CCE84B7B29EE906C0035131C /* interstitial_yellow_mapping.json */; };
+		CCE84B8029EE906C0035131C /* banner_yellow_mapping.json in Resources */ = {isa = PBXBuildFile; fileRef = CCE84B7C29EE906C0035131C /* banner_yellow_mapping.json */; };
+		CCE84B8229EEA9B70035131C /* Robot+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE84B8129EEA9B70035131C /* Robot+Extensions.swift */; };
 		CCFF5B53296F9E5F00707BBD /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFF5B52296F9E5F00707BBD /* ItemCell.swift */; };
 		D3A60225CA92E888D6D0C23E /* Pods_SuperAwesomeExample_SuperAwesomeExampleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC820E08C1E5559E91F4F23 /* Pods_SuperAwesomeExample_SuperAwesomeExampleUITests.framework */; };
 /* End PBXBuildFile section */
@@ -248,11 +256,19 @@
 		CC193C13290FF9E200EEC736 /* video_direct_success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = video_direct_success.json; sourceTree = "<group>"; };
 		CC193C14290FF9E200EEC736 /* interstitial_standard_success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = interstitial_standard_success.json; sourceTree = "<group>"; };
 		CC193C15290FF9E200EEC736 /* video_vpaid_non_ksf.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = video_vpaid_non_ksf.json; sourceTree = "<group>"; };
-		CC194D18296ED4E20068B85F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CC3A52AE290F252C00484D1B /* WireMock.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; path = WireMock.jar; sourceTree = "<group>"; };
 		CC6AE3CE284F906B002F7581 /* SuperAwesomeExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperAwesomeExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC6AE3D0284F906B002F7581 /* VideoAdUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoAdUITests.swift; sourceTree = "<group>"; };
 		CCDA733F283E56CB00A75542 /* AwesomeAdsTargetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwesomeAdsTargetTests.swift; sourceTree = "<group>"; };
+		CCE84B7129EE90550035131C /* banner_yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = banner_yellow.png; sourceTree = "<group>"; };
+		CCE84B7229EE90550035131C /* banner_success_padlock_enabled.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = banner_success_padlock_enabled.json; sourceTree = "<group>"; };
+		CCE84B7329EE90560035131C /* placements.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = placements.json; sourceTree = "<group>"; };
+		CCE84B7429EE90560035131C /* interstitial_yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = interstitial_yellow.png; sourceTree = "<group>"; };
+		CCE84B7929EE906C0035131C /* banner_success_padlock_enabled_mapping.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = banner_success_padlock_enabled_mapping.json; sourceTree = "<group>"; };
+		CCE84B7A29EE906C0035131C /* placement_mapping.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = placement_mapping.json; sourceTree = "<group>"; };
+		CCE84B7B29EE906C0035131C /* interstitial_yellow_mapping.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = interstitial_yellow_mapping.json; sourceTree = "<group>"; };
+		CCE84B7C29EE906C0035131C /* banner_yellow_mapping.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = banner_yellow_mapping.json; sourceTree = "<group>"; };
+		CCE84B8129EEA9B70035131C /* Robot+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Robot+Extensions.swift"; sourceTree = "<group>"; };
 		CCFF5B52296F9E5F00707BBD /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		D6B71C01F9DFB74D05E0B0FD /* Pods-SuperAwesomeExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesomeExample.debug.xcconfig"; path = "Target Support Files/Pods-SuperAwesomeExample/Pods-SuperAwesomeExample.debug.xcconfig"; sourceTree = "<group>"; };
 		D8F2154D326FE2F80967D14F /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -441,7 +457,6 @@
 		1B76D2361C91EEB1000AE8F3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				CC194D18296ED4E20068B85F /* GoogleService-Info.plist */,
 				1B76D2421C91EEB1000AE8F3 /* Assets.xcassets */,
 				1B76D2471C91EEB1000AE8F3 /* Info.plist */,
 				1BFE15E422A00DE500C500C0 /* SuperAwesome-Bridging-Header.h */,
@@ -661,6 +676,10 @@
 		CC3A52AC290F252C00484D1B /* __files */ = {
 			isa = PBXGroup;
 			children = (
+				CCE84B7229EE90550035131C /* banner_success_padlock_enabled.json */,
+				CCE84B7129EE90550035131C /* banner_yellow.png */,
+				CCE84B7429EE90560035131C /* interstitial_yellow.png */,
+				CCE84B7329EE90560035131C /* placements.json */,
 				CC193C14290FF9E200EEC736 /* interstitial_standard_success.json */,
 				CC193C13290FF9E200EEC736 /* video_direct_success.json */,
 				CC193C15290FF9E200EEC736 /* video_vpaid_non_ksf.json */,
@@ -671,6 +690,10 @@
 		CC3A52AF290F252C00484D1B /* mappings */ = {
 			isa = PBXGroup;
 			children = (
+				CCE84B7929EE906C0035131C /* banner_success_padlock_enabled_mapping.json */,
+				CCE84B7C29EE906C0035131C /* banner_yellow_mapping.json */,
+				CCE84B7B29EE906C0035131C /* interstitial_yellow_mapping.json */,
+				CCE84B7A29EE906C0035131C /* placement_mapping.json */,
 				CC193C0E290FF9D500EEC736 /* interstitial_standard_success_mapping.json */,
 				CC193C0D290FF9D500EEC736 /* video_direct_success_mapping.json */,
 				CC193C0F290FF9D500EEC736 /* video_vpaid_non_ksf_mapping.json */,
@@ -684,6 +707,7 @@
 				CC193BEC290F466C00EEC736 /* UIImage+Extensions.swift */,
 				CC193BEE290F698D00EEC736 /* UIColor+Extensions.swift */,
 				07F03EA829D759BE004790F5 /* XCUIElement.swift */,
+				CCE84B8129EEA9B70035131C /* Robot+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -838,7 +862,6 @@
 			files = (
 				07F03E8229D5C68E004790F5 /* Localizable.strings in Resources */,
 				1B76D2461C91EEB1000AE8F3 /* LaunchScreen.storyboard in Resources */,
-				CC194D19296ED4E20068B85F /* GoogleService-Info.plist in Resources */,
 				1B76D2431C91EEB1000AE8F3 /* Assets.xcassets in Resources */,
 				1B76D2411C91EEB1000AE8F3 /* Main.storyboard in Resources */,
 			);
@@ -856,11 +879,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCE84B7F29EE906C0035131C /* interstitial_yellow_mapping.json in Resources */,
+				CCE84B7729EE90560035131C /* placements.json in Resources */,
+				CCE84B7829EE90560035131C /* interstitial_yellow.png in Resources */,
+				CCE84B7629EE90560035131C /* banner_success_padlock_enabled.json in Resources */,
+				CCE84B7D29EE906C0035131C /* banner_success_padlock_enabled_mapping.json in Resources */,
 				CC193C17290FF9E200EEC736 /* interstitial_standard_success.json in Resources */,
+				CCE84B7529EE90560035131C /* banner_yellow.png in Resources */,
 				CC193C12290FF9D500EEC736 /* video_vpaid_non_ksf_mapping.json in Resources */,
 				CC193C11290FF9D500EEC736 /* interstitial_standard_success_mapping.json in Resources */,
 				CC193C18290FF9E300EEC736 /* video_vpaid_non_ksf.json in Resources */,
 				CC193C16290FF9E200EEC736 /* video_direct_success.json in Resources */,
+				CCE84B7E29EE906C0035131C /* placement_mapping.json in Resources */,
+				CCE84B8029EE906C0035131C /* banner_yellow_mapping.json in Resources */,
 				CC193C10290FF9D500EEC736 /* video_direct_success_mapping.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1113,6 +1144,7 @@
 				07F03EB129DB13F7004790F5 /* BannerUITests.swift in Sources */,
 				07F03E9E29D74C86004790F5 /* InterstitialScreenRobot.swift in Sources */,
 				07F03E9A29D74C6A004790F5 /* SettingsScreenRobot.swift in Sources */,
+				CCE84B8229EEA9B70035131C /* Robot+Extensions.swift in Sources */,
 				07F03EA929D759BE004790F5 /* XCUIElement.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -22,7 +22,6 @@ class BannerUITests: BaseUITest {
             }
 
             $0.tapPlacement(withName: "Banner")
-            UIAwait(forSeconds: 1)
 
             banner(app) { banner in
                 banner.waitForView()
@@ -35,7 +34,6 @@ class BannerUITests: BaseUITest {
                     bumper.isPoweredByLogoVisible()
                     bumper.isBackgroundImageViewVisible()
                     bumper.tapBumperBackgroundImageView()
-                    UIAwait(forSeconds: 3)
                 }
             }
         }
@@ -54,7 +52,6 @@ class BannerUITests: BaseUITest {
             }
 
             $0.tapPlacement(withName: "Banner")
-            UIAwait(forSeconds: 1)
 
             banner(app) { banner in
                 banner.waitForView()
