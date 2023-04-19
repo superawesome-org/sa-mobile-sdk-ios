@@ -15,7 +15,7 @@ extension Robot {
      *
      * - Parameters:
      *  - expectedColor: The expected color as a hex string e.g: "#FFFFFF"
-     *  - timeout: The number of pixels to sample from the centre of the screen
+     *  - timeout: The number of seconds to wait for the expected color to appear
      */
     func waitForExpectedColor(
         expectedColor: String,
@@ -70,7 +70,7 @@ extension Robot {
     }
     
     /**
-     * Method that finds an expected color
+     * Method that finds an expected color within an image
      *
      * - Parameters:
      *  - expectedColor: The expected color as a hex string e.g: "#FFFFFF"
