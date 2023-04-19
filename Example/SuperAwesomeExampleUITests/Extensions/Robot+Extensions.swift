@@ -15,6 +15,7 @@ extension Robot {
      *
      * - Parameters:
      *  - expectedColor: The expected color as a hex string e.g: "#FFFFFF"
+     *  - image: The image to test, e.g: `closeButton.screenshot().image`
      *  - timeout: The number of seconds to wait for the expected color to appear
      */
     func waitForExpectedColor(
@@ -33,8 +34,8 @@ extension Robot {
             
             let locatedColor = self?.findColorInImage(
                 expectedColor: expectedColor,
-                sampleSize: 5,
-                image: image
+                image: image,
+                sampleSize: 5
             )
             
             if(expectedColor == locatedColor) {
@@ -74,13 +75,13 @@ extension Robot {
      *
      * - Parameters:
      *  - expectedColor: The expected color as a hex string e.g: "#FFFFFF"
-     *  - sampleSize: The number of pixels to sample from the centre of the image
      *  - image: The image to test, e.g: `closeButton.screenshot().image`
+     *  - sampleSize: The number of pixels to sample from the centre of the image
      */
     private func findColorInImage(
         expectedColor: String,
-        sampleSize: CGFloat,
-        image: UIImage) -> String?
+        image: UIImage,
+        sampleSize: CGFloat) -> String?
     {
         guard sampleSize > 2 else { return nil }
         
