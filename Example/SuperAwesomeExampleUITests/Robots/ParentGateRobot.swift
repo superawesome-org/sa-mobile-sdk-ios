@@ -18,6 +18,11 @@ class ParentGateRobot: Robot {
     private var answerField: XCUIElement {
         app.textFields["\(accessibilityPrefix).TextFields.Answer"]
     }
+    
+    let title = "Parental Gate"
+    let questionMessage = "Please solve the following problem to continue:"
+    let wrongAnswerTitle = "Oops! That was the wrong answer."
+    let wrongAnswerMessage = "Please seek guidance from a responsible adult to help you continue."
 
     func waitForView() {
         XCTAssertTrue(alert.waitForExistence(timeout: 5))

@@ -44,8 +44,8 @@ class InterstitialUITests: BaseUITest {
                 interstitialScreen.tapOnAd()
 
                 bumperScreen(app) { bumper in
-                    bumper.checkSmallLabelExists(withText: " seconds. Remember to stay safe online and don’t share your username or password with anyone!")
-                    bumper.checkBigLabelExists(withText: "Bye! You’re now leaving Demo App.")
+                    bumper.checkSmallLabelExists(withText: bumper.warningMessage)
+                    bumper.checkBigLabelExists(withText: bumper.goodByeMessage)
                     bumper.isPoweredByLogoVisible()
                     bumper.isBackgroundImageViewVisible()
                     bumper.tapBumperBackgroundImageView()
@@ -74,8 +74,8 @@ class InterstitialUITests: BaseUITest {
 
                 parentGateAlert(app) { parentGate in
                     parentGate.waitForView()
-                    parentGate.checkTitle(hasText: "Parental Gate")
-                    parentGate.checkMessage(hasText: "Please solve the following problem to continue:")
+                    parentGate.checkTitle(hasText: parentGate.title)
+                    parentGate.checkMessage(hasText: parentGate.questionMessage)
                     parentGate.checkPlaceholder(hasText: "")
                     parentGate.tapCancelButton()
                 }
@@ -84,16 +84,16 @@ class InterstitialUITests: BaseUITest {
 
                 parentGateAlert(app) { parentGate in
                     parentGate.waitForView()
-                    parentGate.checkTitle(hasText: "Parental Gate")
-                    parentGate.checkMessage(hasText: "Please solve the following problem to continue:")
+                    parentGate.checkTitle(hasText: parentGate.title)
+                    parentGate.checkMessage(hasText: parentGate.questionMessage)
                     parentGate.checkPlaceholder(hasText: "")
                     parentGate.typeAnswer(text: "")
                     parentGate.tapContinueButton()
 
                     parentGateErrorAlert(app) { parentGateError in
                         parentGateError.waitForView()
-                        parentGateError.checkTitle(hasText: "Oops! That was the wrong answer.")
-                        parentGateError.checkMessage(hasText: "Please seek guidance from a responsible adult to help you continue.")
+                        parentGateError.checkTitle(hasText: parentGate.wrongAnswerTitle)
+                        parentGateError.checkMessage(hasText: parentGate.wrongAnswerMessage)
                         parentGateError.tapCancelButton()
                     }
                 }
@@ -117,12 +117,16 @@ class InterstitialUITests: BaseUITest {
 
             interstitialScreen(app) { interstitialScreen in
                 interstitialScreen.waitForView()
-                interstitialScreen.tapOnAd()
+                
+                banner(app) { banner in
+                    // Interstitials use the banner internally
+                    banner.tapPadlockButton()
+                }
 
                 parentGateAlert(app) { parentGate in
                     parentGate.waitForView()
-                    parentGate.checkTitle(hasText: "Parental Gate")
-                    parentGate.checkMessage(hasText: "Please solve the following problem to continue:")
+                    parentGate.checkTitle(hasText: parentGate.title)
+                    parentGate.checkMessage(hasText: parentGate.questionMessage)
                     parentGate.checkPlaceholder(hasText: "")
                     parentGate.tapCancelButton()
                 }
@@ -131,16 +135,16 @@ class InterstitialUITests: BaseUITest {
 
                 parentGateAlert(app) { parentGate in
                     parentGate.waitForView()
-                    parentGate.checkTitle(hasText: "Parental Gate")
-                    parentGate.checkMessage(hasText: "Please solve the following problem to continue:")
+                    parentGate.checkTitle(hasText: parentGate.title)
+                    parentGate.checkMessage(hasText: parentGate.questionMessage)
                     parentGate.checkPlaceholder(hasText: "")
                     parentGate.typeAnswer(text: "")
                     parentGate.tapContinueButton()
 
                     parentGateErrorAlert(app) { parentGateError in
                         parentGateError.waitForView()
-                        parentGateError.checkTitle(hasText: "Oops! That was the wrong answer.")
-                        parentGateError.checkMessage(hasText: "Please seek guidance from a responsible adult to help you continue.")
+                        parentGateError.checkTitle(hasText: parentGate.wrongAnswerTitle)
+                        parentGateError.checkMessage(hasText: parentGate.wrongAnswerTitle)
                         parentGateError.tapCancelButton()
                     }
                 }
@@ -168,8 +172,8 @@ class InterstitialUITests: BaseUITest {
 
                 parentGateAlert(app) { parentGate in
                     parentGate.waitForView()
-                    parentGate.checkTitle(hasText: "Parental Gate")
-                    parentGate.checkMessage(hasText: "Please solve the following problem to continue:")
+                    parentGate.checkTitle(hasText: parentGate.title)
+                    parentGate.checkMessage(hasText: parentGate.questionMessage)
                     parentGate.checkPlaceholder(hasText: "")
                     parentGate.tapCancelButton()
                 }
@@ -178,16 +182,16 @@ class InterstitialUITests: BaseUITest {
 
                 parentGateAlert(app) { parentGate in
                     parentGate.waitForView()
-                    parentGate.checkTitle(hasText: "Parental Gate")
-                    parentGate.checkMessage(hasText: "Please solve the following problem to continue:")
+                    parentGate.checkTitle(hasText: parentGate.title)
+                    parentGate.checkMessage(hasText: parentGate.questionMessage)
                     parentGate.checkPlaceholder(hasText: "")
                     parentGate.typeAnswer(text: "")
                     parentGate.tapContinueButton()
 
                     parentGateErrorAlert(app) { parentGateError in
                         parentGateError.waitForView()
-                        parentGateError.checkTitle(hasText: "Oops! That was the wrong answer.")
-                        parentGateError.checkMessage(hasText: "Please seek guidance from a responsible adult to help you continue.")
+                        parentGateError.checkTitle(hasText: parentGate.wrongAnswerTitle)
+                        parentGateError.checkMessage(hasText: parentGate.wrongAnswerMessage)
                         parentGateError.tapCancelButton()
                     }
                 }

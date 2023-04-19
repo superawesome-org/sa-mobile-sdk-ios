@@ -18,10 +18,6 @@ class InterstitialScreenRobot: Robot {
     private var bannerView: XCUIElement {
         screen.otherElements["\(accessibilityPrefix)Banner"]
     }
-    
-    private var padlockButton: XCUIElement {
-        app.buttons["\(accessibilityPrefix)Buttons.Padlock"]
-    }
 
     private var closeButton: XCUIElement {
         screen.buttons["\(accessibilityPrefix)Buttons.Close"]
