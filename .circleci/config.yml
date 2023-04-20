@@ -1,5 +1,7 @@
 # .circleci/config.yml
 version: 2.1
+orbs:
+  aws-s3: circleci/aws-s3@3.1
 
 dependencies:
   pre:
@@ -229,6 +231,45 @@ jobs:
       - run:
           name: Push Superawesome to cocoapods
           command: fastlane sdk_push isPrivateRepo:false skipVersionBump:true
+      - run:
+          name: Compress
+          command: |
+            echo "export RELEASE_NUMBER=`cat SuperAwesome/Classes/Common/Model/Version.swift | cut -d '"' -f 2`" >> $BASH_ENV
+            source $BASH_ENV
+            zip -vr "SuperAwesome-${RELEASE_NUMBER}.zip" SuperAwesome/ -x "*.DS_Store"
+      - aws-s3/copy:
+          from: "SuperAwesome-${RELEASE_NUMBER}.zip"
+          to: "${SA_IOS_SDKS_S3_PUBLIC_REPO}/SuperAwesome/${RELEASE_NUMBER}/"
+          aws-access-key-id: SA_IOS_APPS_S3_REPO_KEY
+          aws-region: SA_IOS_APPS_S3_REGION
+          aws-secret-access-key: SA_IOS_APPS_S3_REPO_SECRET
+      - run:
+          name: Update Release page in docs
+          command: |
+            # get previous release tag
+            export CURRENT_VERSION=`git tag -l 'v*' --sort=-refname | sed -n 1p`
+            export PREVIOUS_VERSION=`git tag -l 'v*' --sort=-refname | sed -n 2p`
+            export AWK_PATTERN="/^([#]+ \[${CURRENT_VERSION:1}\])/{flag=1;next}/^([#]+ \[${PREVIOUS_VERSION:1}\])/{flag=0}flag"
+
+            # get release notes from semantic-release
+            export CHANGES=`awk $AWK_PATTERN CHANGELOG.md`
+            export CHANGES=`sed -E 's/ \(\[([^\[]+)\](\(.*\))//g' \<<< $CHANGES`
+
+            # checkout docs repo
+            git pull https://x-access-token:${GITHUB_TOKEN}@github.com/SuperAwesomeLTD/sa-mobile-sdk-publisher-docs.git main
+
+            # Update releases
+            echo "export RELEASE_DOC_PATH=sa-mobile-sdk-publisher-docs/docs/_docs/ios/releases.md" >> $BASH_ENV
+            source $BASH_ENV
+
+            # insert new release and change log
+            perl -i -pe '$_ = "\n## $ENV{CURRENT_VERSION}$ENV{CHANGES}\n$_" if $. == 7' $RELEASE_DOC_PATH
+
+            # commit and push
+            git add $RELEASE_DOC_PATH
+            git commit -m "Add iOS release version $RELEASE_NUMBER via Circle CI"
+            git push https://x-access-token:${GITHUB_TOKEN}@github.com/SuperAwesomeLTD/sa-mobile-sdk-publisher-docs.git -q main
+
   ## Run sdk push - admob
   sdk_push_superawesome_admob:
     <<: *ios_config
@@ -248,7 +289,19 @@ jobs:
       - run:
           name: Push Superawesome-AdMob to cocoapods
           command: fastlane sdk_push isPrivateRepo:false skipVersionBump:true
-          
+      - run:
+          name: Compress
+          command: |
+            echo "export RELEASE_NUMBER=`cat SuperAwesome/Classes/Common/Model/Version.swift | cut -d '"' -f 2`" >> $BASH_ENV
+            source $BASH_ENV
+            zip -vr "SuperAwesomeAdMob-${RELEASE_NUMBER}.zip" SuperAwesomeAdMob/ -x "*.DS_Store"
+      - aws-s3/copy:
+          from: "SuperAwesomeAdMob-${RELEASE_NUMBER}.zip"
+          to: "${SA_IOS_SDKS_S3_PUBLIC_REPO}/SuperAwesomeAdMob/${RELEASE_NUMBER}/"
+          aws-access-key-id: SA_IOS_APPS_S3_REPO_KEY
+          aws-region: SA_IOS_APPS_S3_REGION
+          aws-secret-access-key: SA_IOS_APPS_S3_REPO_SECRET
+
 workflows:
   nightly:
     triggers:
