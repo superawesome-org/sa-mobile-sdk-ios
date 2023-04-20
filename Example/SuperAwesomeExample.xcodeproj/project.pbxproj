@@ -105,6 +105,7 @@
 		CC193C16290FF9E200EEC736 /* video_direct_success.json in Resources */ = {isa = PBXBuildFile; fileRef = CC193C13290FF9E200EEC736 /* video_direct_success.json */; };
 		CC193C17290FF9E200EEC736 /* interstitial_success_padlock_enabled.json in Resources */ = {isa = PBXBuildFile; fileRef = CC193C14290FF9E200EEC736 /* interstitial_success_padlock_enabled.json */; };
 		CC193C18290FF9E300EEC736 /* video_vpaid_non_ksf.json in Resources */ = {isa = PBXBuildFile; fileRef = CC193C15290FF9E200EEC736 /* video_vpaid_non_ksf.json */; };
+		CC332ED829F0B925002F2E84 /* Int+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC332ED729F0B925002F2E84 /* Int+Extensions.swift */; };
 		CC3A52B2290F252C00484D1B /* WireMock.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = CC3A52AE290F252C00484D1B /* WireMock.jar */; };
 		CC6AE3D1284F906B002F7581 /* VideoAdUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6AE3D0284F906B002F7581 /* VideoAdUITests.swift */; };
 		CCDA7340283E56CB00A75542 /* AwesomeAdsTargetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDA733F283E56CB00A75542 /* AwesomeAdsTargetTests.swift */; };
@@ -258,6 +259,7 @@
 		CC193C13290FF9E200EEC736 /* video_direct_success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = video_direct_success.json; sourceTree = "<group>"; };
 		CC193C14290FF9E200EEC736 /* interstitial_success_padlock_enabled.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = interstitial_success_padlock_enabled.json; sourceTree = "<group>"; };
 		CC193C15290FF9E200EEC736 /* video_vpaid_non_ksf.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = video_vpaid_non_ksf.json; sourceTree = "<group>"; };
+		CC332ED729F0B925002F2E84 /* Int+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extensions.swift"; sourceTree = "<group>"; };
 		CC3A52AE290F252C00484D1B /* WireMock.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; path = WireMock.jar; sourceTree = "<group>"; };
 		CC6AE3CE284F906B002F7581 /* SuperAwesomeExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperAwesomeExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC6AE3D0284F906B002F7581 /* VideoAdUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoAdUITests.swift; sourceTree = "<group>"; };
@@ -714,6 +716,7 @@
 				CC193BEE290F698D00EEC736 /* UIColor+Extensions.swift */,
 				07F03EA829D759BE004790F5 /* XCUIElement.swift */,
 				CCE84B8129EEA9B70035131C /* Robot+Extensions.swift */,
+				CC332ED729F0B925002F2E84 /* Int+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1140,6 +1143,7 @@
 				07F03EA429D751D4004790F5 /* ParentGateRobot.swift in Sources */,
 				07F03EAC29DAE221004790F5 /* BaseUITest.swift in Sources */,
 				CC6AE3D1284F906B002F7581 /* VideoAdUITests.swift in Sources */,
+				CC332ED829F0B925002F2E84 /* Int+Extensions.swift in Sources */,
 				07F03EB729DB3055004790F5 /* ParentGateErrorRobot.swift in Sources */,
 				CC193BED290F466C00EEC736 /* UIImage+Extensions.swift in Sources */,
 				07F03E9829D74C61004790F5 /* Robot.swift in Sources */,

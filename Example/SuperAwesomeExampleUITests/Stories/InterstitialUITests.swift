@@ -99,6 +99,45 @@ class InterstitialUITests: BaseUITest {
         }
     }
     
+    func testAdAppears_withBumper_andParentalGate() throws {
+
+        adsListScreen(app) {
+            $0.waitForView()
+            $0.tapSettingsButton()
+
+            settingsScreen(app) { settings in
+                settings.waitForView()
+                settings.tapParentalGateEnable()
+                settings.tapBumperEnable()
+                settings.tapCloseButton()
+            }
+
+            $0.tapPlacement(withName: "Mobile Interstitial Flat Colour Portrait")
+
+            interstitialScreen(app) { interstitialScreen in
+                interstitialScreen.waitForView()
+                interstitialScreen.tapOnAd()
+                
+                parentGateAlert(app) { parentGate in
+                    parentGate.waitForView()
+                    parentGate.checkTitle(hasText: parentGate.title)
+                    parentGate.checkMessage(hasText: parentGate.questionMessage)
+                    parentGate.checkPlaceholder(hasText: "")
+                    parentGate.typeAnswer(text: parentGate.solve())
+                    parentGate.tapContinueButton()
+                }
+                
+                bumperScreen(app) { bumper in
+                    bumper.checkSmallLabelExists(withText: bumper.warningMessage)
+                    bumper.checkBigLabelExists(withText: bumper.goodByeMessage)
+                    bumper.isPoweredByLogoVisible()
+                    bumper.isBackgroundImageViewVisible()
+                    bumper.tapBumperBackgroundImageView()
+                }
+            }
+        }
+    }
+    
     func test_safeAd_logo_withParentalGate() throws {
         
         adsListScreen(app) {
