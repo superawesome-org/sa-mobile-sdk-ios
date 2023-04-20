@@ -1,0 +1,10 @@
+{
+  "request": {
+      "method": "GET",
+      "urlPath": "/ad/87892"
+  },
+  "response": {
+      "status": 200,
+      "bodyFileName": "interstitial_success_padlock_enabled.json"
+  }
+}

@@ -16,11 +16,18 @@ class BannerRobot: Robot {
     }
 
     private var padlockButton: XCUIElement {
-        banner.buttons["\(accessibilityPrefix)Buttons.Padlock"]
+        app.buttons["\(accessibilityPrefix)Buttons.Padlock"]
     }
 
     func waitForView() {
         XCTAssertTrue(banner.waitForExistence(timeout: 5))
+    }
+    
+    func waitForRender() {
+        waitForExpectedColor(
+            expectedColor: "#F7E26B",
+            image: banner.screenshot().image
+        )
     }
 
     func tapBanner() {
@@ -33,6 +40,10 @@ class BannerRobot: Robot {
 
     func checkPadlockButtonExists() {
         XCTAssertTrue(padlockButton.exists)
+    }
+    
+    func checkPadlockButtonDoesNotExist() {
+        XCTAssertFalse(padlockButton.exists)
     }
 }
 
