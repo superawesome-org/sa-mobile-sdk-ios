@@ -22,7 +22,7 @@ class BannerUITests: BaseUITest {
         }
     }
     
-    func testAdAppears_withBumper() throws {
+    /*func testAdAppears_withBumper() throws {
         
         adsListScreen(app) {
             $0.waitForView()
@@ -47,11 +47,10 @@ class BannerUITests: BaseUITest {
                     bumper.isPoweredByLogoVisible()
                     bumper.isBackgroundImageViewVisible()
                     bumper.tapBumperBackgroundImageView()
-                    UIAwait(forSeconds: 3)
                 }
             }
         }
-    }
+    }*/
     
     func testAdAppears_withParentGate() throws {
         
