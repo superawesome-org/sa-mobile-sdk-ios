@@ -1,3 +1,20 @@
+# [8.6.0](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/compare/v8.5.7...v8.6.0) (2023-04-19)
+
+
+### Bug Fixes
+
+* **Bumper:** calling dismiss on the presenting viewcontroller if one exists and cleaning up the timer ([#292](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/issues/292)) ([a88f15c](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/commit/a88f15c61c83d088162f2993682655cc36e999ac))
+* **CI:** Locked in Circle CI macos.x86.medium.gen2 resource class ([#279](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/issues/279)) ([8e18233](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/commit/8e182334d7260ac4b40ff22df0ffeabb8f310d59))
+* **Interactive Video:** Added Video Leave Warning dialog and close at end option to IV. ([#280](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/issues/280)) ([a7d38a8](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/commit/a7d38a8674753ead80de61873a149d4d8d6168d0))
+* **InteractiveVideo:** Added Player end and pause events and play and resume methods to the Managed Ad View ([#290](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/issues/290)) ([9f53899](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/commit/9f53899cb736d60b6a44b8bc3bf653d02e694608))
+* **Settings:** Added a settings screen to the test app for testing. ([#284](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/issues/284)) ([5dcd9ce](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/commit/5dcd9ceb9c8662186961a3d0b1eb283bcc5c120b))
+* **Test Ads:** Made the duration parameter optional in the Decodable object ([#283](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/issues/283)) ([2fbf955](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/commit/2fbf955b82d4bb8d0918563ddf632c0bbcaa8ba4))
+
+
+### Features
+
+* **Network:** Adds retry mechanism for the failed networking requests ([#278](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/issues/278)) ([a7a43d6](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/commit/a7a43d6df11f1307d277341bf677cfb796d74f7b))
+
 ## [8.5.7](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/compare/v8.5.6...v8.5.7) (2023-03-15)
 
 

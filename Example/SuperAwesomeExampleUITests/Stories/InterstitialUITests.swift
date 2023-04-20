@@ -7,58 +7,247 @@
 
 import XCTest
 
-class InterstitialUITests: XCTestCase {
+class InterstitialUITests: BaseUITest {
+        
+    func testAdAppears() throws {
 
-    override func setUpWithError() throws {
-        continueAfterFailure = false
+        adsListScreen(app) {
+            $0.waitForView()
+
+            $0.tapPlacement(withName: "Mobile Interstitial Flat Colour Portrait")
+
+            interstitialScreen(app) { interstitialScreen in
+                interstitialScreen.waitForView()
+                interstitialScreen.waitForRender()
+            }
+        }
     }
+    
+    func testAdAppears_withBumper() throws {
 
-    func testCloseButtonAppearsWithNoDelay_WhenConfigured() throws {
-//        let app = localApp()
-//        app.launch()
-//
-//        // Given close button appearing with no delay is configured via the SegmentControl
-//        app.segmentedControls["configControl"].buttons.element(boundBy: 1).tap()
-//
-//        let closeButtonExpectation = expectation(
-//            for: NSPredicate(format: "exists == true"),
-//            evaluatedWith: app.buttons["closeButton"],
-//            handler: .none
-//        )
-//
-//        // When
-//        // Tap the interstitial ad in the list
-//        app.tables.matching(identifier: "adsTableView").cells.element(matching: .cell,
-//                                                                      identifier: "Mobile Interstitial Portrait").tap()
-//
-//        // Then the close button is visible
-//        let closeButtonResult = XCTWaiter.wait(for: [closeButtonExpectation], timeout: Timeouts.standard.duration)
-//
-//        XCTAssertEqual(closeButtonResult, .completed)
-//        XCTAssertTrue(app.buttons["closeButton"].exists)
+        adsListScreen(app) {
+            $0.waitForView()
+            $0.tapSettingsButton()
+
+            settingsScreen(app) { settings in
+                settings.waitForView()
+                settings.tapBumperEnable()
+                settings.tapCloseButton()
+            }
+
+            $0.tapPlacement(withName: "Mobile Interstitial Flat Colour Portrait")
+
+            interstitialScreen(app) { interstitialScreen in
+                interstitialScreen.waitForView()
+                interstitialScreen.tapOnAd()
+
+                bumperScreen(app) { bumper in
+                    bumper.checkSmallLabelExists(withText: bumper.warningMessage)
+                    bumper.checkBigLabelExists(withText: bumper.goodByeMessage)
+                    bumper.isPoweredByLogoVisible()
+                    bumper.isBackgroundImageViewVisible()
+                    bumper.tapBumperBackgroundImageView()
+                }
+            }
+        }
     }
+    
+    func testAdAppears_withParentalGate() throws {
 
-    func testCloseButtonAppearsWithDelay_WhenConfigured() throws {
-//        let app = localApp()
-//        app.launch()
-//
-//        // Given
-//        // Tap the interstitial ad in the list
-//        app.tables.matching(identifier: "adsTableView").cells.element(matching: .cell,
-//                                                                      identifier: "Mobile Interstitial Portrait").tap()
-//
-//        let closeButtonExpectation = expectation(
-//            for: NSPredicate(format: "exists == true"),
-//            evaluatedWith: app.buttons["closeButton"],
-//            handler: .none
-//        )
-//
-//        // When the close button is not initially visible
-//        XCTAssertFalse(app.buttons["closeButton"].exists)
-//
-//        // Then the close button is visible after a delay
-//        let closeButtonResult = XCTWaiter.wait(for: [closeButtonExpectation], timeout: Timeouts.standard.duration)
-//
-//        XCTAssertEqual(closeButtonResult, .completed)
+        adsListScreen(app) {
+            $0.waitForView()
+            $0.tapSettingsButton()
+
+            settingsScreen(app) { settings in
+                settings.waitForView()
+                settings.tapParentalGateEnable()
+                settings.tapCloseButton()
+            }
+            
+            $0.tapPlacement(withName: "Mobile Interstitial Flat Colour Portrait")
+
+            interstitialScreen(app) { interstitialScreen in
+                interstitialScreen.waitForView()
+                interstitialScreen.tapOnAd()
+
+                parentGateAlert(app) { parentGate in
+                    parentGate.waitForView()
+                    parentGate.checkTitle(hasText: parentGate.title)
+                    parentGate.checkMessage(hasText: parentGate.questionMessage)
+                    parentGate.checkPlaceholder(hasText: "")
+                    parentGate.tapCancelButton()
+                }
+
+                interstitialScreen.tapOnAd()
+
+                parentGateAlert(app) { parentGate in
+                    parentGate.waitForView()
+                    parentGate.checkTitle(hasText: parentGate.title)
+                    parentGate.checkMessage(hasText: parentGate.questionMessage)
+                    parentGate.checkPlaceholder(hasText: "")
+                    parentGate.typeAnswer(text: "")
+                    parentGate.tapContinueButton()
+
+                    parentGateErrorAlert(app) { parentGateError in
+                        parentGateError.waitForView()
+                        parentGateError.checkTitle(hasText: parentGate.wrongAnswerTitle)
+                        parentGateError.checkMessage(hasText: parentGate.wrongAnswerMessage)
+                        parentGateError.tapCancelButton()
+                    }
+                }
+            }
+        }
+    }
+    
+    func testAdAppears_withBumper_andParentalGate() throws {
+
+        adsListScreen(app) {
+            $0.waitForView()
+            $0.tapSettingsButton()
+
+            settingsScreen(app) { settings in
+                settings.waitForView()
+                settings.tapParentalGateEnable()
+                settings.tapBumperEnable()
+                settings.tapCloseButton()
+            }
+
+            $0.tapPlacement(withName: "Mobile Interstitial Flat Colour Portrait")
+
+            interstitialScreen(app) { interstitialScreen in
+                interstitialScreen.waitForView()
+                interstitialScreen.tapOnAd()
+                
+                parentGateAlert(app) { parentGate in
+                    parentGate.waitForView()
+                    parentGate.checkTitle(hasText: parentGate.title)
+                    parentGate.checkMessage(hasText: parentGate.questionMessage)
+                    parentGate.checkPlaceholder(hasText: "")
+                    parentGate.typeAnswer(text: parentGate.solve())
+                    parentGate.tapContinueButton()
+                }
+                
+                bumperScreen(app) { bumper in
+                    bumper.checkSmallLabelExists(withText: bumper.warningMessage)
+                    bumper.checkBigLabelExists(withText: bumper.goodByeMessage)
+                    bumper.isPoweredByLogoVisible()
+                    bumper.isBackgroundImageViewVisible()
+                    bumper.tapBumperBackgroundImageView()
+                }
+            }
+        }
+    }
+    
+    func test_safeAd_logo_withParentalGate() throws {
+        
+        adsListScreen(app) {
+            $0.waitForView()
+            $0.tapSettingsButton()
+
+            settingsScreen(app) { settings in
+                settings.waitForView()
+                settings.tapParentalGateEnable()
+                settings.tapCloseButton()
+            }
+            
+            $0.tapPlacement(withName: "Mobile Interstitial Flat Colour Portrait")
+
+            interstitialScreen(app) { interstitialScreen in
+                interstitialScreen.waitForView()
+                
+                banner(app) { banner in
+                    // Interstitials use the banner internally
+                    banner.tapPadlockButton()
+                }
+
+                parentGateAlert(app) { parentGate in
+                    parentGate.waitForView()
+                    parentGate.checkTitle(hasText: parentGate.title)
+                    parentGate.checkMessage(hasText: parentGate.questionMessage)
+                    parentGate.checkPlaceholder(hasText: "")
+                    parentGate.tapCancelButton()
+                }
+
+                interstitialScreen.tapOnAd()
+
+                parentGateAlert(app) { parentGate in
+                    parentGate.waitForView()
+                    parentGate.checkTitle(hasText: parentGate.title)
+                    parentGate.checkMessage(hasText: parentGate.questionMessage)
+                    parentGate.checkPlaceholder(hasText: "")
+                    parentGate.typeAnswer(text: "")
+                    parentGate.tapContinueButton()
+
+                    parentGateErrorAlert(app) { parentGateError in
+                        parentGateError.waitForView()
+                        parentGateError.checkTitle(hasText: parentGate.wrongAnswerTitle)
+                        parentGateError.checkMessage(hasText: parentGate.wrongAnswerTitle)
+                        parentGateError.tapCancelButton()
+                    }
+                }
+            }
+        }
+    }
+    
+    func test_safeAd_logo_disabled() throws {
+        
+        adsListScreen(app) {
+            $0.waitForView()
+            $0.tapPlacement(withName: "Mobile Interstitial Portrait")
+
+            interstitialScreen(app) { interstitialScreen in
+                interstitialScreen.waitForView()
+                banner(app) { banner in
+                    // Interstitials use the banner internally
+                    banner.checkPadlockButtonDoesNotExist()
+                }
+            }
+        }
+    }
+    
+    func test_closeButton_no_delay() throws {
+        
+        adsListScreen(app) {
+            $0.waitForView()
+            $0.tapSettingsButton()
+
+            settingsScreen(app) { settings in
+                settings.waitForView()
+                settings.tapCloseButtonNoDelay()
+                settings.tapCloseButton()
+            }
+
+            $0.tapPlacement(withName: "Mobile Interstitial Flat Colour Portrait")
+
+            interstitialScreen(app) { interstitialScreen in
+                interstitialScreen.waitForView()
+                // Check that the close button is visible immediately
+                interstitialScreen.checkCloseButtonExists()
+            }
+        }
+    }
+    
+    func test_closeButton_with_delay() throws {
+        
+        adsListScreen(app) {
+            $0.waitForView()
+            $0.tapSettingsButton()
+
+            settingsScreen(app) { settings in
+                settings.waitForView()
+                settings.tapCloseButtonWithDelay()
+                settings.tapCloseButton()
+            }
+
+            $0.tapPlacement(withName: "Mobile Interstitial Flat Colour Portrait")
+
+            interstitialScreen(app) { interstitialScreen in
+                interstitialScreen.waitForView()
+                // Check that the close button is not visible at first
+                interstitialScreen.checkCloseButtonDoesNotExist()
+                // Wait for the close button to be visible
+                interstitialScreen.waitForCloseButton()
+            }
+        }
     }
 }
