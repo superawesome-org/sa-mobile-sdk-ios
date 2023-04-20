@@ -249,11 +249,11 @@ jobs:
             # get previous release tag
             export CURRENT_VERSION=`git tag -l 'v*' --sort=-refname | sed -n 1p`
             export PREVIOUS_VERSION=`git tag -l 'v*' --sort=-refname | sed -n 2p`
-            export AWK_PATTERN="/(# \[${CURRENT_VERSION:1}\])/{flag=1;next}/(# \[${PREVIOUS_VERSION:1}\])/{flag=0}flag"
+            export AWK_PATTERN="/^([#]+ \[${CURRENT_VERSION:1}\])/{flag=1;next}/^([#]+ \[${PREVIOUS_VERSION:1}\])/{flag=0}flag"
 
             # get release notes from semantic-release
             export CHANGES=`awk $AWK_PATTERN CHANGELOG.md`
-            export CHANGES=`sed -E 's/ \(\[([^\[]+)\](\(.*\))//g' <<<$CHANGES`
+            export CHANGES=`sed -E 's/ \(\[([^\[]+)\](\(.*\))//g' \<<< $CHANGES`
 
             # checkout docs repo
             git pull https://x-access-token:${GITHUB_TOKEN}@github.com/SuperAwesomeLTD/sa-mobile-sdk-publisher-docs.git main
