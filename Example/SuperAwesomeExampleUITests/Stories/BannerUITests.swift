@@ -47,6 +47,7 @@ class BannerUITests: BaseUITest {
                     bumper.isPoweredByLogoVisible()
                     bumper.isBackgroundImageViewVisible()
                     bumper.tapBumperBackgroundImageView()
+                    UIAwait(forSeconds: 3)
                 }
             }
         }
