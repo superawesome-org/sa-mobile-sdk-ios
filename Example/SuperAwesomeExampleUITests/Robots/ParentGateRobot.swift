@@ -74,10 +74,8 @@ class ParentGateRobot: Robot {
             XCTFail("Failed to extract numbers for the parental gate question")
             return ""
         }
-        
-        let answer = firstNumber + secondNumber
-        
-        return String(answer)
+                
+        return String(firstNumber + secondNumber)
     }
     
     private func getMessage(withText text: String) -> XCUIElement? {
