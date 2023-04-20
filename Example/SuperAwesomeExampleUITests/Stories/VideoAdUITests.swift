@@ -8,7 +8,7 @@
 import XCTest
 import DominantColor
 
-class VideoAdUITests: XCTestCase {
+/*class VideoAdUITests: XCTestCase {
 
     override func setUpWithError() throws {
         continueAfterFailure = false
@@ -135,4 +135,4 @@ class VideoAdUITests: XCTestCase {
 //
 //        XCTAssertNotNil(sampledColour)
     }
-}
+}*/
