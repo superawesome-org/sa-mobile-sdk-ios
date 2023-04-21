@@ -47,16 +47,16 @@ public class BumperPage: UIViewController, Injectable {
     }
 
     public override func viewDidDisappear(_ animated: Bool) {
-        
+
         timer?.invalidate()
         timer = nil
-        
+
         if let presenter = presentingViewController {
             presenter.dismiss(animated: animated)
         } else {
             dismiss(animated: animated)
         }
-        
+
         super.viewDidDisappear(animated)
     }
 
@@ -207,7 +207,7 @@ public class BumperPage: UIViewController, Injectable {
         } else {
             timer?.invalidate()
             timer = nil
-            
+
             if let presenter = presentingViewController {
                 presenter.dismiss(animated: true) { [weak self] in
                     self?.onComplete?()

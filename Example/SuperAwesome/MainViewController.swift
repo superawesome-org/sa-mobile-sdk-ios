@@ -88,7 +88,7 @@ class MainViewController: UIViewController {
         BumperPage.overrideName("Demo App")
 
         initUI()
-        
+
         featuresViewModel = FeaturesViewModel()
         cancellable = featuresViewModel.$features.sink { [weak self] features in
             self?.features = features
