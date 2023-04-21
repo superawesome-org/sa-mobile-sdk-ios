@@ -1,0 +1,10 @@
+{
+  "request": {
+      "method": "GET",
+      "urlPath": "/ad/10001"
+  },
+  "response": {
+      "status": 200,
+      "bodyFileName": "video_padlock_enabled.json"
+  }
+}

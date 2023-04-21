@@ -76,6 +76,7 @@ import UIKit
 
             if safeLogoVisible {
                 padlock = Padlock()
+                padlock.accessibilityIdentifier = "\(accessibilityPrefix)Buttons.Padlock"
                 padlock.addTarget(self, action: #selector(didTapOnPadlock), for: .touchUpInside)
                 addSubview(padlock)
                 padlock.translatesAutoresizingMaskIntoConstraints = false
