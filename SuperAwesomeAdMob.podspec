@@ -12,6 +12,7 @@ Pod::Spec.new do |s|
      'Tom O\'Rourke' => 'tom.orourke@superawesome.com',
      'Myles Eynon' => 'myles.eynon@superawesome.com'
   }
+  s.readme = "https://aa-sdk.s3.eu-west-1.amazonaws.com/ios_repo/SuperAwesome/#{s.version}/SuperAwesome-#{s.version}-README.md"
   s.source = {
     :http => "https://aa-sdk.s3.eu-west-1.amazonaws.com/ios_repo/SuperAwesomeAdMob/#{s.version}/SuperAwesomeAdMob-#{s.version}.zip"
   }
@@ -22,7 +23,7 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.source_files = 'SuperAwesomeAdMob/Classes/**/*'
-  s.dependency 'SuperAwesome', '~> 8.5'
+  s.dependency 'SuperAwesome', "~> #{s.version}"
   s.dependency 'Google-Mobile-Ads-SDK'
   s.xcconfig = { 'SWIFT_ACTIVE_COMPILATION_CONDITIONS' => '$(inherited) ADMOB_PLUGIN',
                  'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) ADMOB_PLUGIN=1' }

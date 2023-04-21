@@ -228,17 +228,25 @@ jobs:
       - *clone_scripts_repo
       - *bootstrap_ios
       - *configure_google_services
-      - run:
-          name: Push Superawesome to cocoapods
-          command: fastlane sdk_push isPrivateRepo:false skipVersionBump:true
+      
       - run:
           name: Compress
           command: |
             echo "export RELEASE_NUMBER=`cat SuperAwesome/Classes/Common/Model/Version.swift | cut -d '"' -f 2`" >> $BASH_ENV
             source $BASH_ENV
             zip -vr "SuperAwesome-${RELEASE_NUMBER}.zip" SuperAwesome/ -x "*.DS_Store"
+      - run:
+          name: Rename readme file
+          command: |
+            cp README.md "SuperAwesome-$RELEASE_NUMBER-README.md"
       - aws-s3/copy:
           from: "SuperAwesome-${RELEASE_NUMBER}.zip"
+          to: "${SA_IOS_SDKS_S3_PUBLIC_REPO}/SuperAwesome/${RELEASE_NUMBER}/"
+          aws-access-key-id: SA_IOS_APPS_S3_REPO_KEY
+          aws-region: SA_IOS_APPS_S3_REGION
+          aws-secret-access-key: SA_IOS_APPS_S3_REPO_SECRET
+      - aws-s3/copy:
+          from: "SuperAwesome-${RELEASE_NUMBER}-README.md"
           to: "${SA_IOS_SDKS_S3_PUBLIC_REPO}/SuperAwesome/${RELEASE_NUMBER}/"
           aws-access-key-id: SA_IOS_APPS_S3_REPO_KEY
           aws-region: SA_IOS_APPS_S3_REGION
@@ -269,6 +277,9 @@ jobs:
             git add $RELEASE_DOC_PATH
             git commit -m "Add iOS release version $RELEASE_NUMBER via Circle CI"
             git push https://x-access-token:${GITHUB_TOKEN}@github.com/SuperAwesomeLTD/sa-mobile-sdk-publisher-docs.git -q main
+      - run:
+          name: Push Superawesome to cocoapods
+          command: fastlane sdk_push isPrivateRepo:false skipVersionBump:true
 
   ## Run sdk push - admob
   sdk_push_superawesome_admob:
@@ -287,9 +298,6 @@ jobs:
       - *bootstrap_ios
       - *configure_google_services
       - run:
-          name: Push Superawesome-AdMob to cocoapods
-          command: fastlane sdk_push isPrivateRepo:false skipVersionBump:true
-      - run:
           name: Compress
           command: |
             echo "export RELEASE_NUMBER=`cat SuperAwesome/Classes/Common/Model/Version.swift | cut -d '"' -f 2`" >> $BASH_ENV
@@ -301,6 +309,9 @@ jobs:
           aws-access-key-id: SA_IOS_APPS_S3_REPO_KEY
           aws-region: SA_IOS_APPS_S3_REGION
           aws-secret-access-key: SA_IOS_APPS_S3_REPO_SECRET
+      - run:
+          name: Push Superawesome-AdMob to cocoapods
+          command: fastlane sdk_push isPrivateRepo:false skipVersionBump:true
 
 workflows:
   nightly:
