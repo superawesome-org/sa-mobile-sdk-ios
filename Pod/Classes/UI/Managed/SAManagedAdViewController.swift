@@ -161,7 +161,7 @@ import WebKit
     }
 
     @objc private func onCloseClicked() {
-        
+
         if config.shouldShowCloseWarning && !isCompleted {
             managedAdView.pauseVideo()
             closeDialog = showQuestionDialog(title: stringProvider.closeDialogTitle,

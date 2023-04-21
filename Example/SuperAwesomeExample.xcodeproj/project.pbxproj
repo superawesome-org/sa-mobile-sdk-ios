@@ -54,6 +54,12 @@
 		C6895C4E27F4C780009FAE1A /* AdControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6895C4D27F4C780009FAE1A /* AdControllerTests.swift */; };
 		C6895C5327F4CA38009FAE1A /* AdRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6895C5227F4CA38009FAE1A /* AdRepositoryMock.swift */; };
 		C6895C5527F4DE7B009FAE1A /* TestDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6895C5427F4DE7B009FAE1A /* TestDependencies.swift */; };
+		C6AF1A9029F1AE9F00CD2DDB /* video_padlock_enabled_mapping.json in Resources */ = {isa = PBXBuildFile; fileRef = C6AF1A8E29F1AE9F00CD2DDB /* video_padlock_enabled_mapping.json */; };
+		C6AF1A9129F1AE9F00CD2DDB /* video_padlock_disabled_mapping.json in Resources */ = {isa = PBXBuildFile; fileRef = C6AF1A8F29F1AE9F00CD2DDB /* video_padlock_disabled_mapping.json */; };
+		C6AF1A9429F1AED500CD2DDB /* video_padlock_disabled.json in Resources */ = {isa = PBXBuildFile; fileRef = C6AF1A9229F1AED500CD2DDB /* video_padlock_disabled.json */; };
+		C6AF1A9529F1AED500CD2DDB /* video_padlock_enabled.json in Resources */ = {isa = PBXBuildFile; fileRef = C6AF1A9329F1AED500CD2DDB /* video_padlock_enabled.json */; };
+		C6C0740629F166E1003782A6 /* video_flat_success_mapping.json in Resources */ = {isa = PBXBuildFile; fileRef = C6C0740529F166E1003782A6 /* video_flat_success_mapping.json */; };
+		C6C0740829F1673C003782A6 /* video_flat_success.json in Resources */ = {isa = PBXBuildFile; fileRef = C6C0740729F1673C003782A6 /* video_flat_success.json */; };
 		C6C6AEEA27D7D1D000FFB5CA /* SuperAwesomeExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AEE927D7D1D000FFB5CA /* SuperAwesomeExampleTests.swift */; };
 		C6C6AEF827D7D31A00FFB5CA /* ConnectionTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AEF727D7D31A00FFB5CA /* ConnectionTypeTests.swift */; };
 		C6C6AEFA27D7D36900FFB5CA /* AdModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AEF927D7D36900FFB5CA /* AdModelTests.swift */; };
@@ -207,6 +213,12 @@
 		C6895C4D27F4C780009FAE1A /* AdControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdControllerTests.swift; sourceTree = "<group>"; };
 		C6895C5227F4CA38009FAE1A /* AdRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdRepositoryMock.swift; sourceTree = "<group>"; };
 		C6895C5427F4DE7B009FAE1A /* TestDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDependencies.swift; sourceTree = "<group>"; };
+		C6AF1A8E29F1AE9F00CD2DDB /* video_padlock_enabled_mapping.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = video_padlock_enabled_mapping.json; sourceTree = "<group>"; };
+		C6AF1A8F29F1AE9F00CD2DDB /* video_padlock_disabled_mapping.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = video_padlock_disabled_mapping.json; sourceTree = "<group>"; };
+		C6AF1A9229F1AED500CD2DDB /* video_padlock_disabled.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = video_padlock_disabled.json; sourceTree = "<group>"; };
+		C6AF1A9329F1AED500CD2DDB /* video_padlock_enabled.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = video_padlock_enabled.json; sourceTree = "<group>"; };
+		C6C0740529F166E1003782A6 /* video_flat_success_mapping.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = video_flat_success_mapping.json; sourceTree = "<group>"; };
+		C6C0740729F1673C003782A6 /* video_flat_success.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = video_flat_success.json; sourceTree = "<group>"; };
 		C6C6AEE727D7D1D000FFB5CA /* SuperAwesomeExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperAwesomeExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6C6AEE927D7D1D000FFB5CA /* SuperAwesomeExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperAwesomeExampleTests.swift; sourceTree = "<group>"; };
 		C6C6AEF727D7D31A00FFB5CA /* ConnectionTypeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionTypeTests.swift; sourceTree = "<group>"; };
@@ -690,6 +702,9 @@
 				CCE84B7329EE90560035131C /* placements.json */,
 				CC193C13290FF9E200EEC736 /* video_direct_success.json */,
 				CC193C15290FF9E200EEC736 /* video_vpaid_non_ksf.json */,
+				C6C0740729F1673C003782A6 /* video_flat_success.json */,
+				C6AF1A9229F1AED500CD2DDB /* video_padlock_disabled.json */,
+				C6AF1A9329F1AED500CD2DDB /* video_padlock_enabled.json */,
 			);
 			path = __files;
 			sourceTree = "<group>";
@@ -697,6 +712,9 @@
 		CC3A52AF290F252C00484D1B /* mappings */ = {
 			isa = PBXGroup;
 			children = (
+				C6AF1A8F29F1AE9F00CD2DDB /* video_padlock_disabled_mapping.json */,
+				C6AF1A8E29F1AE9F00CD2DDB /* video_padlock_enabled_mapping.json */,
+				C6C0740529F166E1003782A6 /* video_flat_success_mapping.json */,
 				CCE84B8629F045B70035131C /* interstitial_success_padlock_disabled_mapping.json */,
 				CC193C0E290FF9D500EEC736 /* interstitial_success_padlock_enabled_mapping.json */,
 				CCE84B7929EE906C0035131C /* banner_success_padlock_enabled_mapping.json */,
@@ -888,6 +906,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6C0740629F166E1003782A6 /* video_flat_success_mapping.json in Resources */,
+				C6AF1A9129F1AE9F00CD2DDB /* video_padlock_disabled_mapping.json in Resources */,
 				CCE84B7F29EE906C0035131C /* interstitial_yellow_mapping.json in Resources */,
 				CCE84B7729EE90560035131C /* placements.json in Resources */,
 				CCE84B7829EE90560035131C /* interstitial_yellow.png in Resources */,
@@ -900,10 +920,14 @@
 				CC193C18290FF9E300EEC736 /* video_vpaid_non_ksf.json in Resources */,
 				CCE84B8929F046020035131C /* interstitial_success_padlock_disabled.json in Resources */,
 				CCE84B8729F045B70035131C /* interstitial_success_padlock_disabled_mapping.json in Resources */,
+				C6AF1A9529F1AED500CD2DDB /* video_padlock_enabled.json in Resources */,
 				CC193C16290FF9E200EEC736 /* video_direct_success.json in Resources */,
 				CCE84B7E29EE906C0035131C /* placement_mapping.json in Resources */,
 				CCE84B8029EE906C0035131C /* banner_yellow_mapping.json in Resources */,
+				C6C0740829F1673C003782A6 /* video_flat_success.json in Resources */,
+				C6AF1A9429F1AED500CD2DDB /* video_padlock_disabled.json in Resources */,
 				CC193C10290FF9D500EEC736 /* video_direct_success_mapping.json in Resources */,
+				C6AF1A9029F1AE9F00CD2DDB /* video_padlock_enabled_mapping.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

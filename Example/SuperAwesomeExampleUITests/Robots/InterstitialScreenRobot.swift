@@ -22,15 +22,15 @@ class InterstitialScreenRobot: Robot {
     private var closeButton: XCUIElement {
         screen.buttons["\(accessibilityPrefix)Buttons.Close"]
     }
-    
+
     func checkCloseButtonExists() {
         XCTAssertTrue(closeButton.exists)
     }
-    
+
     func checkCloseButtonDoesNotExist() {
         XCTAssertFalse(closeButton.exists)
     }
-    
+
     func waitForCloseButton() {
         XCTAssertTrue(closeButton.waitForExistence(timeout: 5))
     }
@@ -38,7 +38,7 @@ class InterstitialScreenRobot: Robot {
     func waitForView() {
         XCTAssertTrue(screen.waitForExistence(timeout: 5))
     }
-    
+
     func waitForRender() {
         waitForExpectedColor(
             expectedColor: "#F7E26B",

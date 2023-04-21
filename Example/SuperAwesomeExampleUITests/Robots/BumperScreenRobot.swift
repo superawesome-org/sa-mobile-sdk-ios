@@ -34,14 +34,14 @@ class BumperScreenRobot: Robot {
     private var bigLabel: XCUIElement {
         screen.staticTexts["\(accessibilityPrefix)Labels.Big"]
     }
-    
+
     let warningMessage = " seconds. Remember to stay safe online and don’t share your username or password with anyone!"
     let goodByeMessage = "Bye! You’re now leaving Demo App."
 
     func waitForView() {
         XCTAssertTrue(screen.waitForExistence(timeout: 5))
     }
-    
+
     func tapBumperBackground() {
         screen.tapTopLeft()
     }

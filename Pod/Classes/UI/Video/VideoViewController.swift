@@ -20,6 +20,7 @@ import UIKit
     private let videoEvents: VideoEvents
     private var completed: Bool = false
     private var closeDialog: UIAlertController?
+    private let accessibilityPrefix = "SuperAwesome.Video."
 
     init(adResponse: AdResponse, callback: AdEventCallback?, config: AdConfig) {
         self.config = config
@@ -53,6 +54,7 @@ import UIKit
         super.viewDidLoad()
 
         // initial view setup
+        view.accessibilityIdentifier = "\(accessibilityPrefix)Screen"
         view.backgroundColor = .black
         view.layoutMargins = .zero
 
@@ -61,6 +63,7 @@ import UIKit
         videoPlayer.setControls(controller: control)
         videoPlayer.layoutMargins = .zero
         videoPlayer.setDelegate(delegate: self)
+        videoPlayer.accessibilityIdentifier = "\(accessibilityPrefix)Player"
         view.addSubview(videoPlayer)
         videoPlayer.bind(
             toTheEdgesOf: view,

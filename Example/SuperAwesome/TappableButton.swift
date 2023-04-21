@@ -21,7 +21,7 @@ open class TappableButton: UIButton {
 
     private var textObserver: NSKeyValueObservation?
 
-    public var shadowLayer: CALayer? = nil
+    public var shadowLayer: CALayer?
     public var isScaleEnabled: Bool = true
 
     open override var isSelected: Bool {
