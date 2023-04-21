@@ -187,6 +187,7 @@ import UIKit
     @objc
     func setMuted(_ muted: Bool) {
         volumeButton.setMuted(muted)
+        volumeButton.accessibilityIdentifier = "\(accessibilityPrefix)Buttons.Volume.\(muted ? "Off" : "On")"
     }
 
     ////////////////////////////////////////////////////////////////////////////

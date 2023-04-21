@@ -235,4 +235,48 @@ class VideoAdUITests: BaseUITest {
             }
         }
     }
+
+    func test_muteOnStart_Enabled_andDisabledLater() throws {
+        adsListScreen(app) {
+            $0.waitForView()
+            $0.tapSettingsButton()
+
+            settingsScreen(app) { settings in
+                settings.waitForView()
+                settings.tapMuteOnStartEnable()
+                settings.tapCloseButton()
+            }
+
+            $0.tapPlacement(withName: "Direct Video Flat Colour")
+
+            videoScreen(app) { screen in
+                screen.waitForView()
+                screen.checkVolumeButtonOffExists()
+
+                screen.tapOnVolumeOffButton()
+
+                screen.checkVolumeButtonOnExists()
+            }
+        }
+    }
+
+    func test_muteOnStart_Disabled() throws {
+        adsListScreen(app) {
+            $0.waitForView()
+            $0.tapSettingsButton()
+
+            settingsScreen(app) { settings in
+                settings.waitForView()
+                settings.tapMuteOnStartDisable()
+                settings.tapCloseButton()
+            }
+
+            $0.tapPlacement(withName: "Direct Video Flat Colour")
+
+            videoScreen(app) { screen in
+                screen.waitForView()
+                screen.checkVolumeButtonDoesNotExists()
+            }
+        }
+    }
 }

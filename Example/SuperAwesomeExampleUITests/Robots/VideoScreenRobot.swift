@@ -35,6 +35,14 @@ class VideoScreenRobot: Robot {
         videoPlayerControls.buttons["\(accessibilityPrefix)Controls.Buttons.Volume"]
     }
 
+    private var volumeOnButton: XCUIElement {
+        videoPlayerControls.buttons["\(accessibilityPrefix)Controls.Buttons.Volume.On"]
+    }
+
+    private var volumeOffButton: XCUIElement {
+        videoPlayerControls.buttons["\(accessibilityPrefix)Controls.Buttons.Volume.Off"]
+    }
+
     private var chronograph: XCUIElement {
         videoPlayerControls.otherElements["\(accessibilityPrefix)Controls.Views.Chronograph"]
     }
@@ -86,6 +94,20 @@ class VideoScreenRobot: Robot {
         XCTAssertTrue(volumeButton.exists)
     }
 
+    func checkVolumeButtonDoesNotExists() {
+        XCTAssertFalse(volumeButton.exists)
+        XCTAssertFalse(volumeOnButton.exists)
+        XCTAssertFalse(volumeOffButton.exists)
+    }
+
+    func checkVolumeButtonOnExists() {
+        XCTAssertTrue(volumeOnButton.exists)
+    }
+
+    func checkVolumeButtonOffExists() {
+        XCTAssertTrue(volumeOffButton.exists)
+    }
+
     func checkPadlockButtonDoesNotExist() {
         XCTAssertFalse(padlockButton.exists)
     }
@@ -108,6 +130,10 @@ class VideoScreenRobot: Robot {
 
     func tapPadlockButton() {
         padlockButton.tap()
+    }
+
+    func tapOnVolumeOffButton() {
+        volumeOffButton.tap()
     }
 }
 
