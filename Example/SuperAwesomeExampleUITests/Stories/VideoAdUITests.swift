@@ -50,7 +50,6 @@ class VideoAdUITests: BaseUITest {
     }
 
     func testAdAppears_withParentalGate() throws {
-
         adsListScreen(app) {
             $0.waitForView()
             $0.tapSettingsButton()
@@ -97,7 +96,6 @@ class VideoAdUITests: BaseUITest {
     }
 
     func testAdAppears_withBumper_andParentalGate() throws {
-
         adsListScreen(app) {
             $0.waitForView()
             $0.tapSettingsButton()

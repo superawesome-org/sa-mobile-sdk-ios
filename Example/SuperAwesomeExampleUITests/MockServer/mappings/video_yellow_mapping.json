@@ -1,0 +1,10 @@
+{
+  "request": {
+      "method": "GET",
+      "urlPath": "/video_yellow.mp4"
+  },
+  "response": {
+      "status": 200,
+      "bodyFileName": "video_yellow.mp4"
+  }
+}
