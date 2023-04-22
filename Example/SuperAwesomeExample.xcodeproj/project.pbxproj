@@ -64,6 +64,7 @@
 		C6AF1AA929F2EAF600CD2DDB /* video_yellow.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = C6AF1AA829F2EAF500CD2DDB /* video_yellow.mp4 */; };
 		C6AF1AAB29F2EB2300CD2DDB /* video_yellow_mapping.json in Resources */ = {isa = PBXBuildFile; fileRef = C6AF1AAA29F2EB2300CD2DDB /* video_yellow_mapping.json */; };
 		C6AF1AAD29F2EB7C00CD2DDB /* video_flat_vast_mapping.json in Resources */ = {isa = PBXBuildFile; fileRef = C6AF1AAC29F2EB7C00CD2DDB /* video_flat_vast_mapping.json */; };
+		C6AF1AAF29F3045600CD2DDB /* QuestionDialogRobot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AF1AAE29F3045600CD2DDB /* QuestionDialogRobot.swift */; };
 		C6C6AEEA27D7D1D000FFB5CA /* SuperAwesomeExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AEE927D7D1D000FFB5CA /* SuperAwesomeExampleTests.swift */; };
 		C6C6AEF827D7D31A00FFB5CA /* ConnectionTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AEF727D7D31A00FFB5CA /* ConnectionTypeTests.swift */; };
 		C6C6AEFA27D7D36900FFB5CA /* AdModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AEF927D7D36900FFB5CA /* AdModelTests.swift */; };
@@ -227,6 +228,7 @@
 		C6AF1AA829F2EAF500CD2DDB /* video_yellow.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video_yellow.mp4; sourceTree = "<group>"; };
 		C6AF1AAA29F2EB2300CD2DDB /* video_yellow_mapping.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = video_yellow_mapping.json; sourceTree = "<group>"; };
 		C6AF1AAC29F2EB7C00CD2DDB /* video_flat_vast_mapping.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = video_flat_vast_mapping.json; sourceTree = "<group>"; };
+		C6AF1AAE29F3045600CD2DDB /* QuestionDialogRobot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionDialogRobot.swift; sourceTree = "<group>"; };
 		C6C6AEE727D7D1D000FFB5CA /* SuperAwesomeExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperAwesomeExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6C6AEE927D7D1D000FFB5CA /* SuperAwesomeExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperAwesomeExampleTests.swift; sourceTree = "<group>"; };
 		C6C6AEF727D7D31A00FFB5CA /* ConnectionTypeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionTypeTests.swift; sourceTree = "<group>"; };
@@ -419,6 +421,7 @@
 				07F03E9729D74C61004790F5 /* Robot.swift */,
 				07F03E9929D74C6A004790F5 /* SettingsScreenRobot.swift */,
 				07F03EB229DB159F004790F5 /* VideoScreenRobot.swift */,
+				C6AF1AAE29F3045600CD2DDB /* QuestionDialogRobot.swift */,
 			);
 			path = Robots;
 			sourceTree = "<group>";
@@ -1180,6 +1183,7 @@
 				CC193BEF290F698D00EEC736 /* UIColor+Extensions.swift in Sources */,
 				07F03EB529DB1736004790F5 /* BumperScreenRobot.swift in Sources */,
 				07F03EA729D7597E004790F5 /* UIAwait.swift in Sources */,
+				C6AF1AAF29F3045600CD2DDB /* QuestionDialogRobot.swift in Sources */,
 				07F03EA429D751D4004790F5 /* ParentGateRobot.swift in Sources */,
 				07F03EAC29DAE221004790F5 /* BaseUITest.swift in Sources */,
 				CC6AE3D1284F906B002F7581 /* VideoAdUITests.swift in Sources */,

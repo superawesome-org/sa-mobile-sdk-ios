@@ -39,8 +39,8 @@ extension UIViewController {
                             yesAction: VoidBlock?,
                             noAction: VoidBlock?) -> UIAlertController {
         let controller = UIAlertController(title: title,
-                                                message: message,
-                                                preferredStyle: .alert)
+                                           message: message,
+                                           preferredStyle: .alert)
 
         let yesUIAction = UIAlertAction(title: yesTitle, style: .default) {_ in
             yesAction?()
@@ -52,6 +52,10 @@ extension UIViewController {
 
         controller.addAction(yesUIAction)
         controller.addAction(noUIAction)
+
+        controller.view.accessibilityIdentifier = "SuperAwesome.Alerts.Question"
+        yesUIAction.accessibilityIdentifier = "SuperAwesome.Alerts.Question.Button.Yes"
+        noUIAction.accessibilityIdentifier = "SuperAwesome.Alerts.Question.Button.No"
 
         present(controller, animated: true)
 

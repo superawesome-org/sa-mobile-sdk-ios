@@ -279,4 +279,45 @@ class VideoAdUITests: BaseUITest {
             }
         }
     }
+
+    func test_leaveVideoWarning_Enabled() throws {
+        adsListScreen(app) { listScreen in
+            listScreen.waitForView()
+            listScreen.tapSettingsButton()
+
+            settingsScreen(app) { settings in
+                settings.waitForView()
+                settings.tapLeaveVideoWarningEnable()
+                settings.tapCloseButtonNoDelay()
+                settings.tapCloseButton()
+            }
+
+            listScreen.tapPlacement(withName: "Direct Video Flat Colour")
+
+            videoScreen(app) { screen in
+                screen.waitForView()
+                screen.tapCloseButton()
+
+                // Show dialog and resume video
+                questionDialog(app) { dialog in
+                    dialog.checkTitle(hasText: "Close Video?")
+                    dialog.tapNoButton()
+                }
+
+                screen.waitForRender()
+                screen.tapCloseButton()
+
+                listScreen.checkTableViewDoesNotExists()
+
+                // Show dialog and exit video
+                questionDialog(app) { dialog in
+                    dialog.checkTitle(hasText: "Close Video?")
+                    dialog.tapYesButton()
+                }
+
+                listScreen.checkTableViewExists()
+            }
+        }
+    }
 }
+

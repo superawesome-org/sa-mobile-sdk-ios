@@ -17,6 +17,14 @@ class AdListScreenRobot: Robot {
         screen.tables["AdList.TableView"]
     }
 
+    func checkTableViewDoesNotExists() {
+        XCTAssertFalse(tableView.exists)
+    }
+
+    func checkTableViewExists() {
+        XCTAssertTrue(tableView.exists)
+    }
+
     func waitForView() {
         XCTAssertTrue(screen.waitForExistence(timeout: 5))
     }
