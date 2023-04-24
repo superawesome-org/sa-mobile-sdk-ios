@@ -10,6 +10,8 @@ import XCTest
 class ParentGateErrorRobot: Robot {
 
     private let accessibilityPrefix = "SuperAwesome.Alerts.ParentGateError"
+    let wrongAnswerTitle = "Oops! That was the wrong answer."
+    let wrongAnswerMessage = "Please seek guidance from a responsible adult to help you continue."
 
     private var alert: XCUIElement {
         app.alerts[accessibilityPrefix]

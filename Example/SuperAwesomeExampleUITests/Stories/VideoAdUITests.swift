@@ -81,15 +81,15 @@ class VideoAdUITests: BaseUITest {
                     parentGate.checkTitle(hasText: parentGate.title)
                     parentGate.checkMessage(hasText: parentGate.questionMessage)
                     parentGate.checkPlaceholder(hasText: "")
-                    parentGate.typeAnswer(text: "")
+                    parentGate.typeAnswer(text: "9999")
                     parentGate.tapContinueButton()
+                }
 
-                    parentGateErrorAlert(app) { parentGateError in
-                        parentGateError.waitForView()
-                        parentGateError.checkTitle(hasText: parentGate.wrongAnswerTitle)
-                        parentGateError.checkMessage(hasText: parentGate.wrongAnswerMessage)
-                        parentGateError.tapCancelButton()
-                    }
+                parentGateErrorAlert(app) { parentGateError in
+                    parentGateError.waitForView()
+                    parentGateError.checkTitle(hasText: parentGateError.wrongAnswerTitle)
+                    parentGateError.checkMessage(hasText: parentGateError.wrongAnswerMessage)
+                    parentGateError.tapCancelButton()
                 }
             }
         }
@@ -166,15 +166,15 @@ class VideoAdUITests: BaseUITest {
                     parentGate.checkTitle(hasText: parentGate.title)
                     parentGate.checkMessage(hasText: parentGate.questionMessage)
                     parentGate.checkPlaceholder(hasText: "")
-                    parentGate.typeAnswer(text: "")
+                    parentGate.typeAnswer(text: "9999")
                     parentGate.tapContinueButton()
+                }
 
-                    parentGateErrorAlert(app) { parentGateError in
-                        parentGateError.waitForView()
-                        parentGateError.checkTitle(hasText: parentGate.wrongAnswerTitle)
-                        parentGateError.checkMessage(hasText: parentGate.wrongAnswerTitle)
-                        parentGateError.tapCancelButton()
-                    }
+                parentGateErrorAlert(app) { parentGateError in
+                    parentGateError.waitForView()
+                    parentGateError.checkTitle(hasText: parentGateError.wrongAnswerTitle)
+                    parentGateError.checkMessage(hasText: parentGateError.wrongAnswerTitle)
+                    parentGateError.tapCancelButton()
                 }
             }
         }
@@ -320,4 +320,3 @@ class VideoAdUITests: BaseUITest {
         }
     }
 }
-
