@@ -7,19 +7,7 @@
 
 import UIKit
 
-extension CAGradientLayer {
-    static func darkGradient() -> CAGradientLayer {
-        let layer = CAGradientLayer()
-        layer.colors = [UIColor.black.cgColor, UIColor.clear.cgColor]
-        layer.startPoint = CGPoint(x: 1, y: 0.7)
-        layer.endPoint = CGPoint(x: 1, y: 0)
-        return layer
-    }
-}
-
 @objc(SABlackMask2) class BlackMask: UIView {
-
-    private let gradient: CAGradientLayer = CAGradientLayer.darkGradient()
 
     init() {
         super.init(frame: CGRect.zero)
@@ -37,13 +25,11 @@ extension CAGradientLayer {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        gradient.frame = bounds
     }
 
     private func setup() {
         backgroundColor = UIColor.clear
         alpha = 0.75
-        layer.addSublayer(gradient)
     }
 }
 
@@ -77,7 +63,7 @@ extension UILabel {
     }
 
     private func setup() {
-        backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.25)
+        backgroundColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 0.7)
         layer.cornerRadius = 5.0
         addSubview(adLabel)
     }
