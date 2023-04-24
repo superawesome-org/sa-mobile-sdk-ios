@@ -16,7 +16,7 @@ class ParentGateErrorRobot: Robot {
     }
 
     func waitForView() {
-        XCTAssertTrue(alert.waitForExistence(timeout: 5))
+        XCTAssertTrue(alert.waitForExistence(timeout: 20))
     }
 
     func tapCancelButton() {

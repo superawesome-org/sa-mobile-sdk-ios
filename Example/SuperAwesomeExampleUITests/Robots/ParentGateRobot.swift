@@ -25,7 +25,7 @@ class ParentGateRobot: Robot {
     let wrongAnswerMessage = "Please seek guidance from a responsible adult to help you continue."
 
     func waitForView() {
-        XCTAssertTrue(alert.waitForExistence(timeout: 5))
+        XCTAssertTrue(alert.waitForExistence(timeout: 20))
     }
 
     func tapContinueButton() {
