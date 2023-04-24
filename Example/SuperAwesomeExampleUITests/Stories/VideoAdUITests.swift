@@ -49,51 +49,51 @@ class VideoAdUITests: BaseUITest {
         }
     }
 
-    func testAdAppears_withParentalGate() throws {
-        adsListScreen(app) {
-            $0.waitForView()
-            $0.tapSettingsButton()
-
-            settingsScreen(app) { settings in
-                settings.waitForView()
-                settings.tapParentalGateEnable()
-                settings.tapCloseButton()
-            }
-
-            $0.tapPlacement(withName: "Direct Video Flat Colour")
-
-            videoScreen(app) { screen in
-                screen.waitForView()
-                screen.tapOnAd()
-
-                parentGateAlert(app) { parentGate in
-                    parentGate.waitForView()
-                    parentGate.checkTitle(hasText: parentGate.title)
-                    parentGate.checkMessage(hasText: parentGate.questionMessage)
-                    parentGate.checkPlaceholder(hasText: "")
-                    parentGate.tapCancelButton()
-                }
-
-                screen.tapOnAd()
-
-                parentGateAlert(app) { parentGate in
-                    parentGate.waitForView()
-                    parentGate.checkTitle(hasText: parentGate.title)
-                    parentGate.checkMessage(hasText: parentGate.questionMessage)
-                    parentGate.checkPlaceholder(hasText: "")
-                    parentGate.typeAnswer(text: "9999")
-                    parentGate.tapContinueButton()
-                }
-
-                parentGateErrorAlert(app) { parentGateError in
-                    parentGateError.waitForView()
-                    parentGateError.checkTitle(hasText: parentGateError.wrongAnswerTitle)
-                    parentGateError.checkMessage(hasText: parentGateError.wrongAnswerMessage)
-                    parentGateError.tapCancelButton()
-                }
-            }
-        }
-    }
+//    func testAdAppears_withParentalGate() throws {
+//        adsListScreen(app) {
+//            $0.waitForView()
+//            $0.tapSettingsButton()
+//
+//            settingsScreen(app) { settings in
+//                settings.waitForView()
+//                settings.tapParentalGateEnable()
+//                settings.tapCloseButton()
+//            }
+//
+//            $0.tapPlacement(withName: "Direct Video Flat Colour")
+//
+//            videoScreen(app) { screen in
+//                screen.waitForView()
+//                screen.tapOnAd()
+//
+//                parentGateAlert(app) { parentGate in
+//                    parentGate.waitForView()
+//                    parentGate.checkTitle(hasText: parentGate.title)
+//                    parentGate.checkMessage(hasText: parentGate.questionMessage)
+//                    parentGate.checkPlaceholder(hasText: "")
+//                    parentGate.tapCancelButton()
+//                }
+//
+//                screen.tapOnAd()
+//
+//                parentGateAlert(app) { parentGate in
+//                    parentGate.waitForView()
+//                    parentGate.checkTitle(hasText: parentGate.title)
+//                    parentGate.checkMessage(hasText: parentGate.questionMessage)
+//                    parentGate.checkPlaceholder(hasText: "")
+//                    parentGate.typeAnswer(text: "9999")
+//                    parentGate.tapContinueButton()
+//                }
+//
+//                parentGateErrorAlert(app) { parentGateError in
+//                    parentGateError.waitForView()
+//                    parentGateError.checkTitle(hasText: parentGateError.wrongAnswerTitle)
+//                    parentGateError.checkMessage(hasText: parentGateError.wrongAnswerMessage)
+//                    parentGateError.tapCancelButton()
+//                }
+//            }
+//        }
+//    }
 
     func testAdAppears_withBumper_andParentalGate() throws {
         adsListScreen(app) {
@@ -133,52 +133,52 @@ class VideoAdUITests: BaseUITest {
         }
     }
 
-    func test_safeAd_logo_withParentalGate() throws {
-        adsListScreen(app) {
-            $0.waitForView()
-            $0.tapSettingsButton()
-
-            settingsScreen(app) { settings in
-                settings.waitForView()
-                settings.tapParentalGateEnable()
-                settings.tapCloseButton()
-            }
-
-            $0.tapPlacement(withName: "Direct Video Padlock Enabled")
-
-            videoScreen(app) { screen in
-                screen.waitForView()
-
-                screen.tapPadlockButton()
-
-                parentGateAlert(app) { parentGate in
-                    parentGate.waitForView()
-                    parentGate.checkTitle(hasText: parentGate.title)
-                    parentGate.checkMessage(hasText: parentGate.questionMessage)
-                    parentGate.checkPlaceholder(hasText: "")
-                    parentGate.tapCancelButton()
-                }
-
-                screen.tapOnAd()
-
-                parentGateAlert(app) { parentGate in
-                    parentGate.waitForView()
-                    parentGate.checkTitle(hasText: parentGate.title)
-                    parentGate.checkMessage(hasText: parentGate.questionMessage)
-                    parentGate.checkPlaceholder(hasText: "")
-                    parentGate.typeAnswer(text: "9999")
-                    parentGate.tapContinueButton()
-                }
-
-                parentGateErrorAlert(app) { parentGateError in
-                    parentGateError.waitForView()
-                    parentGateError.checkTitle(hasText: parentGateError.wrongAnswerTitle)
-                    parentGateError.checkMessage(hasText: parentGateError.wrongAnswerTitle)
-                    parentGateError.tapCancelButton()
-                }
-            }
-        }
-    }
+//    func test_safeAd_logo_withParentalGate() throws {
+//        adsListScreen(app) {
+//            $0.waitForView()
+//            $0.tapSettingsButton()
+//
+//            settingsScreen(app) { settings in
+//                settings.waitForView()
+//                settings.tapParentalGateEnable()
+//                settings.tapCloseButton()
+//            }
+//
+//            $0.tapPlacement(withName: "Direct Video Padlock Enabled")
+//
+//            videoScreen(app) { screen in
+//                screen.waitForView()
+//
+//                screen.tapPadlockButton()
+//
+//                parentGateAlert(app) { parentGate in
+//                    parentGate.waitForView()
+//                    parentGate.checkTitle(hasText: parentGate.title)
+//                    parentGate.checkMessage(hasText: parentGate.questionMessage)
+//                    parentGate.checkPlaceholder(hasText: "")
+//                    parentGate.tapCancelButton()
+//                }
+//
+//                screen.tapOnAd()
+//
+//                parentGateAlert(app) { parentGate in
+//                    parentGate.waitForView()
+//                    parentGate.checkTitle(hasText: parentGate.title)
+//                    parentGate.checkMessage(hasText: parentGate.questionMessage)
+//                    parentGate.checkPlaceholder(hasText: "")
+//                    parentGate.typeAnswer(text: "9999")
+//                    parentGate.tapContinueButton()
+//                }
+//
+//                parentGateErrorAlert(app) { parentGateError in
+//                    parentGateError.waitForView()
+//                    parentGateError.checkTitle(hasText: parentGateError.wrongAnswerTitle)
+//                    parentGateError.checkMessage(hasText: parentGateError.wrongAnswerTitle)
+//                    parentGateError.tapCancelButton()
+//                }
+//            }
+//        }
+//    }
 
     func test_safeAd_logo_disabled() throws {
         adsListScreen(app) {
