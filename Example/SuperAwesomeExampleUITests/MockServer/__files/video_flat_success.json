@@ -1,0 +1,52 @@
+{
+    "programmaticUuid": null,
+    "creative": {
+        "id": 512633,
+        "format": "video",
+        "details": {
+            "transcodedVideos": [
+                {
+                    "url": "/7yLPH7Lp5DWcQsN7NLwhEWxWmmcyB1DE.mp4",
+                    "bitrate": 720
+                },
+                {
+                    "url": "/7yLPH7Lp5DWcQsN7NLwhEWxWmmcyB1DE-med.mp4",
+                    "bitrate": 540
+                },
+                {
+                    "url": "/7yLPH7Lp5DWcQsN7NLwhEWxWmmcyB1DE-low.mp4",
+                    "bitrate": 360
+                },
+                {
+                    "url": "/7yLPH7Lp5DWcQsN7NLwhEWxWmmcyB1DE.m3u8",
+                    "bitrate": 1800
+                }
+            ],
+            "url": "/7yLPH7Lp5DWcQsN7NLwhEWxWmmcyB1DE.mp4",
+            "image": "/7yLPH7Lp5DWcQsN7NLwhEWxWmmcyB1DE.mp4",
+            "video": "/7yLPH7Lp5DWcQsN7NLwhEWxWmmcyB1DE.mp4",
+            "placement_format": "video",
+            "width": 600,
+            "height": 480,
+            "duration": 10,
+            "vast": "http://localhost:8080/video_flat_vast.xml"
+        },
+        "click_url": "https://www.popjam.com/"
+    },
+    "advertiserId": 4,
+    "publisherId": 4,
+    "is_fill": false,
+    "is_fallback": false,
+    "campaign_type": 0,
+    "is_house": true,
+    "safe_ad_approved": false,
+    "show_padlock": false,
+    "line_item_id": 181342,
+    "moat": 0.1,
+    "test": false,
+    "campaign_id": 48202,
+    "app": 41037,
+    "device": "phone",
+    "tip": "eyJhbGciOiJIUzI1NiJ9.OTAuMjU0LjE5MS4w.cXNx66DhpHX2pf4Hal4BsJffEONpvAcKCWCn6WaczS0",
+    "is_vpaid": false
+}

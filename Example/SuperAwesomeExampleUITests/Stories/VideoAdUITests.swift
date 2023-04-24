@@ -8,131 +8,315 @@
 import XCTest
 import DominantColor
 
-/*class VideoAdUITests: XCTestCase {
+class VideoAdUITests: BaseUITest {
+    func testAdAppears() throws {
+        adsListScreen(app) {
+            $0.waitForView()
+            $0.tapPlacement(withName: "Direct Video Flat Colour")
 
-    override func setUpWithError() throws {
-        continueAfterFailure = false
+            videoScreen(app) { screen in
+                screen.waitForView()
+                screen.waitForRender()
+            }
+        }
     }
 
-    func testCloseButtonAppearsWithNoDelay_WhenConfigured() throws {
+    func testAdAppears_withBumper() throws {
+        adsListScreen(app) {
+            $0.waitForView()
+            $0.tapSettingsButton()
 
-//        let app = localApp()
-//        app.launch()
-//
-//        // Given
-//
-//        // Close button appearing with no delay is configured via the SegmentControl
-//        app.segmentedControls["configControl"].buttons.element(boundBy: 1).tap()
-//
-//        // Tap the video ad in the list
-//        app.tables.matching(identifier: "adsTableView").cells.element(matching: .cell,
-//                                                                      identifier: "Video Test Multi Id").tap()
-//
-//        let padlockExpectation = expectation(
-//            for: NSPredicate(format: "exists == true"),
-//            evaluatedWith: app.buttons["padlock"],
-//            handler: .none
-//        )
-//
-//        // When
-//
-//        // The padlock is visible (it's visible immediately)
-//        let padlockResult = XCTWaiter.wait(for: [padlockExpectation], timeout: Timeouts.standard.duration)
-//        XCTAssertEqual(padlockResult, .completed)
-//
-//        // Then
-//
-//        // The close button is visible
-//        XCTAssertTrue(app.buttons["closeButton"].exists)
+            settingsScreen(app) { settings in
+                settings.waitForView()
+                settings.tapBumperEnable()
+                settings.tapCloseButton()
+            }
+
+            $0.tapPlacement(withName: "Direct Video Flat Colour")
+
+            videoScreen(app) { screen in
+                screen.waitForView()
+                screen.tapOnAd()
+
+                bumperScreen(app) { bumper in
+                    bumper.checkSmallLabelExists(withText: bumper.warningMessage)
+                    bumper.checkBigLabelExists(withText: bumper.goodByeMessage)
+                    bumper.isPoweredByLogoVisible()
+                    bumper.isBackgroundImageViewVisible()
+                    bumper.tapBumperBackgroundImageView()
+                }
+            }
+        }
     }
 
-    // NOTE: This test is flakey on the CI and times out.
-    func testCloseButtonAppearsWithDelay_WhenConfigured() throws {
+//    func testAdAppears_withParentalGate() throws {
+//        adsListScreen(app) {
+//            $0.waitForView()
+//            $0.tapSettingsButton()
+//
+//            settingsScreen(app) { settings in
+//                settings.waitForView()
+//                settings.tapParentalGateEnable()
+//                settings.tapCloseButton()
+//            }
+//
+//            $0.tapPlacement(withName: "Direct Video Flat Colour")
+//
+//            videoScreen(app) { screen in
+//                screen.waitForView()
+//                screen.tapOnAd()
+//
+//                parentGateAlert(app) { parentGate in
+//                    parentGate.waitForView()
+//                    parentGate.checkTitle(hasText: parentGate.title)
+//                    parentGate.checkMessage(hasText: parentGate.questionMessage)
+//                    parentGate.checkPlaceholder(hasText: "")
+//                    parentGate.tapCancelButton()
+//                }
+//
+//                screen.tapOnAd()
+//
+//                parentGateAlert(app) { parentGate in
+//                    parentGate.waitForView()
+//                    parentGate.checkTitle(hasText: parentGate.title)
+//                    parentGate.checkMessage(hasText: parentGate.questionMessage)
+//                    parentGate.checkPlaceholder(hasText: "")
+//                    parentGate.typeAnswer(text: "9999")
+//                    parentGate.tapContinueButton()
+//                }
+//
+//                parentGateErrorAlert(app) { parentGateError in
+//                    parentGateError.waitForView()
+//                    parentGateError.checkTitle(hasText: parentGateError.wrongAnswerTitle)
+//                    parentGateError.checkMessage(hasText: parentGateError.wrongAnswerMessage)
+//                    parentGateError.tapCancelButton()
+//                }
+//            }
+//        }
+//    }
 
-//        let app = localApp()
-//        app.launch()
-//
-//        // Given
-//
-//        // Close button appearing with a delay is configured via the SegmentControl
-//        app.segmentedControls["configControl"].buttons.element(boundBy: 0).tap()
-//
-//        // Tap the video ad in the list
-//        app.tables.matching(identifier: "adsTableView").cells.element(matching: .cell,
-//                                                                      identifier: "Video Test Multi Id").tap()
-//
-//        let padlockExpectation = expectation(
-//            for: NSPredicate(format: "exists == true"),
-//            evaluatedWith: app.buttons["padlock"],
-//            handler: .none
-//        )
-//
-//        let closeButtonExpectation = expectation(
-//            for: NSPredicate(format: "exists == true"),
-//            evaluatedWith: app.buttons["closeButton"],
-//            handler: .none
-//        )
-//
-//        // When
-//
-//        // The padlock is visible (it's visible immediately)
-//        let padlockResult = XCTWaiter.wait(for: [padlockExpectation], timeout: Timeouts.extraLong.duration)
-//        XCTAssertEqual(padlockResult, .completed)
-//
-//        // The close button is not initially visible
-//        XCTAssertFalse(app.buttons["closeButton"].exists)
-//
-//        // Then
-//
-//        // The close button is visible after a delay
-//        let closeButtonResult = XCTWaiter.wait(for: [closeButtonExpectation], timeout: Timeouts.extraLong.duration)
-//
-//        XCTAssertEqual(closeButtonResult, .completed)
+    func testAdAppears_withBumper_andParentalGate() throws {
+        adsListScreen(app) {
+            $0.waitForView()
+            $0.tapSettingsButton()
+
+            settingsScreen(app) { settings in
+                settings.waitForView()
+                settings.tapParentalGateEnable()
+                settings.tapBumperEnable()
+                settings.tapCloseButton()
+            }
+
+            $0.tapPlacement(withName: "Direct Video Flat Colour")
+
+            videoScreen(app) { screen in
+                screen.waitForView()
+                screen.tapOnAd()
+
+                parentGateAlert(app) { parentGate in
+                    parentGate.waitForView()
+                    parentGate.checkTitle(hasText: parentGate.title)
+                    parentGate.checkMessage(hasText: parentGate.questionMessage)
+                    parentGate.checkPlaceholder(hasText: "")
+                    parentGate.typeAnswer(text: parentGate.solve())
+                    parentGate.tapContinueButton()
+                }
+
+                bumperScreen(app) { bumper in
+                    bumper.checkSmallLabelExists(withText: bumper.warningMessage)
+                    bumper.checkBigLabelExists(withText: bumper.goodByeMessage)
+                    bumper.isPoweredByLogoVisible()
+                    bumper.isBackgroundImageViewVisible()
+                    bumper.tapBumperBackgroundImageView()
+                }
+            }
+        }
     }
 
-    func testNonKSF_VPAID_ad_loads_successfully() throws {
+//    func test_safeAd_logo_withParentalGate() throws {
+//        adsListScreen(app) {
+//            $0.waitForView()
+//            $0.tapSettingsButton()
+//
+//            settingsScreen(app) { settings in
+//                settings.waitForView()
+//                settings.tapParentalGateEnable()
+//                settings.tapCloseButton()
+//            }
+//
+//            $0.tapPlacement(withName: "Direct Video Padlock Enabled")
+//
+//            videoScreen(app) { screen in
+//                screen.waitForView()
+//
+//                screen.tapPadlockButton()
+//
+//                parentGateAlert(app) { parentGate in
+//                    parentGate.waitForView()
+//                    parentGate.checkTitle(hasText: parentGate.title)
+//                    parentGate.checkMessage(hasText: parentGate.questionMessage)
+//                    parentGate.checkPlaceholder(hasText: "")
+//                    parentGate.tapCancelButton()
+//                }
+//
+//                screen.tapOnAd()
+//
+//                parentGateAlert(app) { parentGate in
+//                    parentGate.waitForView()
+//                    parentGate.checkTitle(hasText: parentGate.title)
+//                    parentGate.checkMessage(hasText: parentGate.questionMessage)
+//                    parentGate.checkPlaceholder(hasText: "")
+//                    parentGate.typeAnswer(text: "9999")
+//                    parentGate.tapContinueButton()
+//                }
+//
+//                parentGateErrorAlert(app) { parentGateError in
+//                    parentGateError.waitForView()
+//                    parentGateError.checkTitle(hasText: parentGateError.wrongAnswerTitle)
+//                    parentGateError.checkMessage(hasText: parentGateError.wrongAnswerTitle)
+//                    parentGateError.tapCancelButton()
+//                }
+//            }
+//        }
+//    }
 
-//        let app = localApp()
-//        app.launch()
-//
-//        // Given
-//
-//        app.segmentedControls["configControl"].buttons.element(boundBy: 0).tap()
-//
-//        // Tap the non-ksf vpaid video ad in the list
-//        app.tables.matching(identifier: "adsTableView").cells.element(matching: .cell,
-//                                                                      identifier: "VPAID Video Flat Colour").tap()
-//
-//        // When
-//
-//        let webView = app.webViews.firstMatch
-//        let playButton = webView.images.firstMatch
-//
-//        // The play button is visible
-//        let playButtonExpectation = expectation(
-//            for: NSPredicate(format: "exists == true"),
-//            evaluatedWith: playButton,
-//            handler: .none
-//        )
-//
-//        let playButtonResult = XCTWaiter.wait(for: [playButtonExpectation], timeout: Timeouts.standard.duration)
-//        XCTAssertEqual(playButtonResult, .completed)
-//
-//        // Tap the play button
-//        let playButtonCoordinate = webView.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
-//        playButtonCoordinate.tap()
-//
-//        // Then
-//
-//        // Wait for the webview to load, crop a sample from the centre and test the colour
-//        sleep(5)
-//
-//        let screenshot = XCUIScreen.main.screenshot().image
-//        let crop = screenshot.centreCroppedTo(CGSize(width: 50, height: 50))
-//
-//        let expectedColour = "#F5E871"
-//        let sampledColour = crop.dominantColors().contains(where: { $0.hexString() == expectedColour })
-//
-//        XCTAssertNotNil(sampledColour)
+    func test_safeAd_logo_disabled() throws {
+        adsListScreen(app) {
+            $0.waitForView()
+            $0.tapPlacement(withName: "Direct Video Padlock Disabled")
+
+            videoScreen(app) { screen in
+                screen.waitForView()
+                screen.checkPadlockButtonDoesNotExist()
+            }
+        }
     }
-}*/
+
+    func test_closeButton_no_delay() throws {
+        adsListScreen(app) {
+            $0.waitForView()
+            $0.tapSettingsButton()
+
+            settingsScreen(app) { settings in
+                settings.waitForView()
+                settings.tapCloseButtonNoDelay()
+                settings.tapCloseButton()
+            }
+
+            $0.tapPlacement(withName: "Direct Video Flat Colour")
+
+            videoScreen(app) { screen in
+                screen.waitForView()
+                // Check that the close button is visible immediately
+                screen.checkCloseButtonExists()
+            }
+        }
+    }
+
+    func test_closeButton_with_delay() throws {
+        adsListScreen(app) {
+            $0.waitForView()
+            $0.tapSettingsButton()
+
+            settingsScreen(app) { settings in
+                settings.waitForView()
+                settings.tapCloseButtonWithDelay()
+                settings.tapCloseButton()
+            }
+
+            $0.tapPlacement(withName: "Direct Video Flat Colour")
+
+            videoScreen(app) { screen in
+                screen.waitForView()
+                // Check that the close button is not visible at first
+                screen.checkCloseButtonDoesNotExist()
+                // Wait for the close button to be visible
+                screen.waitAndCheckForCloseButton()
+            }
+        }
+    }
+
+    func test_muteOnStart_Enabled_andDisabledLater() throws {
+        adsListScreen(app) {
+            $0.waitForView()
+            $0.tapSettingsButton()
+
+            settingsScreen(app) { settings in
+                settings.waitForView()
+                settings.tapMuteOnStartEnable()
+                settings.tapCloseButton()
+            }
+
+            $0.tapPlacement(withName: "Direct Video Flat Colour")
+
+            videoScreen(app) { screen in
+                screen.waitForView()
+                screen.checkVolumeButtonOffExists()
+
+                screen.tapOnVolumeOffButton()
+
+                screen.checkVolumeButtonOnExists()
+            }
+        }
+    }
+
+    func test_muteOnStart_Disabled() throws {
+        adsListScreen(app) {
+            $0.waitForView()
+            $0.tapSettingsButton()
+
+            settingsScreen(app) { settings in
+                settings.waitForView()
+                settings.tapMuteOnStartDisable()
+                settings.tapCloseButton()
+            }
+
+            $0.tapPlacement(withName: "Direct Video Flat Colour")
+
+            videoScreen(app) { screen in
+                screen.waitForView()
+                screen.checkVolumeButtonDoesNotExists()
+            }
+        }
+    }
+
+    func test_leaveVideoWarning_Enabled() throws {
+        adsListScreen(app) { listScreen in
+            listScreen.waitForView()
+            listScreen.tapSettingsButton()
+
+            settingsScreen(app) { settings in
+                settings.waitForView()
+                settings.tapLeaveVideoWarningEnable()
+                settings.tapCloseButtonNoDelay()
+                settings.tapCloseButton()
+            }
+
+            listScreen.tapPlacement(withName: "Direct Video Flat Colour")
+
+            videoScreen(app) { screen in
+                screen.waitForView()
+                screen.tapCloseButton()
+
+                // Show dialog and resume video
+                questionDialog(app) { dialog in
+                    dialog.checkTitle(hasText: "Close Video?")
+                    dialog.tapNoButton()
+                }
+
+                screen.waitForRender()
+                screen.tapCloseButton()
+
+                listScreen.checkTableViewDoesNotExists()
+
+                // Show dialog and exit video
+                questionDialog(app) { dialog in
+                    dialog.checkTitle(hasText: "Close Video?")
+                    dialog.tapYesButton()
+                }
+
+                listScreen.checkTableViewExists()
+            }
+        }
+    }
+}

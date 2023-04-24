@@ -9,7 +9,7 @@ import XCTest
 import DominantColor
 
 extension Robot {
-    
+
     /**
      * Method that asserts that an expected color is present on screen
      *
@@ -23,22 +23,21 @@ extension Robot {
         image: UIImage,
         timeout: Int = 5,
         file: StaticString = #file,
-        line: UInt = #line)
-    {
-        
+        line: UInt = #line) {
+
         let expectation = XCTestExpectation(description: "Located expected color")
-        
+
         var count = 0
-        
+
         Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] timer in
-            
+
             let locatedColor = self?.findColorInImage(
                 expectedColor: expectedColor,
                 image: image,
                 sampleSize: 5
             )
-            
-            if(expectedColor == locatedColor) {
+
+            if expectedColor == locatedColor {
                 timer.invalidate()
                 expectation.fulfill()
                 XCTAssertEqual(
@@ -48,15 +47,15 @@ extension Robot {
                     line: line
                 )
             }
-            
-            if (count == timeout - 1) {
+
+            if count == timeout - 1 {
                 timer.invalidate()
             }
             count+=1
         }
-        
+
         let result = XCTWaiter.wait(for: [expectation], timeout: TimeInterval(timeout))
-        
+
         switch result {
         case .completed: break // Assertion made above
         case .timedOut: XCTFail(
@@ -69,7 +68,7 @@ extension Robot {
             line: line)
         }
     }
-    
+
     /**
      * Method that finds an expected color within an image
      *
@@ -81,12 +80,11 @@ extension Robot {
     private func findColorInImage(
         expectedColor: String,
         image: UIImage,
-        sampleSize: CGFloat) -> String?
-    {
+        sampleSize: CGFloat) -> String? {
         guard sampleSize > 2 else { return nil }
-        
+
         let crop = image.centreCroppedTo(CGSize(width: sampleSize, height: sampleSize))
-        
+
         return crop.dominantColors()
             .first( where: { $0.hexString() == expectedColor })?
             .hexString()

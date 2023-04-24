@@ -1,6 +1,6 @@
 {
   "features" : [
-    { 
+    {
       "type": "banner",
       "placements": [
         {
@@ -58,57 +58,18 @@
       "type": "video",
       "placements" : [
         {
-          "placementId": 96690,
-          "name": "Plain Grey VPAID Ad",
-          "type": "video"
-        },
-        {
-          "placementId": 90636,
-          "name": "VPAID PopJam Video With Sound",
-          "type": "video"
-        },
-        {
-          "placementId": 88406,
-          "name": "VAST Video Flat Colour",
-          "type": "video"
-        },
-        {
-          "placementId": 89056,
-          "name": "VPAID Video Flat Colour",
-          "type": "video"
-        },
-        {
-          "placementId": 87969,
+          "placementId": 10000,
           "name": "Direct Video Flat Colour",
           "type": "video"
         },
         {
-          "placementId": 82090,
-          "name": "Direct Video",
+          "placementId": 10001,
+          "name": "Direct Video Padlock Enabled",
           "type": "video"
         },
         {
-          "placementId": 84777,
-          "lineItemId": 178822,
-          "name": "VAST Video",
-          "type": "video",
-          "creativeId": 503585
-        },
-        {
-          "placementId": 84798,
-          "name": "VPAID Video via KSF",
-          "type": "video"
-        },
-        {
-          "placementId": 82090,
-          "lineItemId": 176803,
-          "name": "Video Test Multi Id",
-          "type": "video",
-          "creativeId": 499385
-        },
-        {
-          "placementId": 58316,
-          "name": "STAGING - VPAID PopJam Video With Sound",
+          "placementId": 10002,
+          "name": "Direct Video Padlock Disabled",
           "type": "video"
         }
       ]

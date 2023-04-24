@@ -54,6 +54,17 @@
 		C6895C4E27F4C780009FAE1A /* AdControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6895C4D27F4C780009FAE1A /* AdControllerTests.swift */; };
 		C6895C5327F4CA38009FAE1A /* AdRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6895C5227F4CA38009FAE1A /* AdRepositoryMock.swift */; };
 		C6895C5527F4DE7B009FAE1A /* TestDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6895C5427F4DE7B009FAE1A /* TestDependencies.swift */; };
+		C6AF1A9929F2E58900CD2DDB /* video_padlock_disabled.json in Resources */ = {isa = PBXBuildFile; fileRef = C6AF1A9629F2E58900CD2DDB /* video_padlock_disabled.json */; };
+		C6AF1A9A29F2E58900CD2DDB /* video_flat_success.json in Resources */ = {isa = PBXBuildFile; fileRef = C6AF1A9729F2E58900CD2DDB /* video_flat_success.json */; };
+		C6AF1A9B29F2E58900CD2DDB /* video_padlock_enabled.json in Resources */ = {isa = PBXBuildFile; fileRef = C6AF1A9829F2E58900CD2DDB /* video_padlock_enabled.json */; };
+		C6AF1A9F29F2E5A300CD2DDB /* video_flat_success_mapping.json in Resources */ = {isa = PBXBuildFile; fileRef = C6AF1A9C29F2E5A300CD2DDB /* video_flat_success_mapping.json */; };
+		C6AF1AA029F2E5A300CD2DDB /* video_padlock_disabled_mapping.json in Resources */ = {isa = PBXBuildFile; fileRef = C6AF1A9D29F2E5A300CD2DDB /* video_padlock_disabled_mapping.json */; };
+		C6AF1AA129F2E5A300CD2DDB /* video_padlock_enabled_mapping.json in Resources */ = {isa = PBXBuildFile; fileRef = C6AF1A9E29F2E5A300CD2DDB /* video_padlock_enabled_mapping.json */; };
+		C6AF1AA729F2EAD900CD2DDB /* video_flat_vast.xml in Resources */ = {isa = PBXBuildFile; fileRef = C6AF1AA629F2EAD900CD2DDB /* video_flat_vast.xml */; };
+		C6AF1AA929F2EAF600CD2DDB /* video_yellow.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = C6AF1AA829F2EAF500CD2DDB /* video_yellow.mp4 */; };
+		C6AF1AAB29F2EB2300CD2DDB /* video_yellow_mapping.json in Resources */ = {isa = PBXBuildFile; fileRef = C6AF1AAA29F2EB2300CD2DDB /* video_yellow_mapping.json */; };
+		C6AF1AAD29F2EB7C00CD2DDB /* video_flat_vast_mapping.json in Resources */ = {isa = PBXBuildFile; fileRef = C6AF1AAC29F2EB7C00CD2DDB /* video_flat_vast_mapping.json */; };
+		C6AF1AAF29F3045600CD2DDB /* QuestionDialogRobot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AF1AAE29F3045600CD2DDB /* QuestionDialogRobot.swift */; };
 		C6C6AEEA27D7D1D000FFB5CA /* SuperAwesomeExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AEE927D7D1D000FFB5CA /* SuperAwesomeExampleTests.swift */; };
 		C6C6AEF827D7D31A00FFB5CA /* ConnectionTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AEF727D7D31A00FFB5CA /* ConnectionTypeTests.swift */; };
 		C6C6AEFA27D7D36900FFB5CA /* AdModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C6AEF927D7D36900FFB5CA /* AdModelTests.swift */; };
@@ -207,6 +218,17 @@
 		C6895C4D27F4C780009FAE1A /* AdControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdControllerTests.swift; sourceTree = "<group>"; };
 		C6895C5227F4CA38009FAE1A /* AdRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdRepositoryMock.swift; sourceTree = "<group>"; };
 		C6895C5427F4DE7B009FAE1A /* TestDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDependencies.swift; sourceTree = "<group>"; };
+		C6AF1A9629F2E58900CD2DDB /* video_padlock_disabled.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = video_padlock_disabled.json; sourceTree = "<group>"; };
+		C6AF1A9729F2E58900CD2DDB /* video_flat_success.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = video_flat_success.json; sourceTree = "<group>"; };
+		C6AF1A9829F2E58900CD2DDB /* video_padlock_enabled.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = video_padlock_enabled.json; sourceTree = "<group>"; };
+		C6AF1A9C29F2E5A300CD2DDB /* video_flat_success_mapping.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = video_flat_success_mapping.json; sourceTree = "<group>"; };
+		C6AF1A9D29F2E5A300CD2DDB /* video_padlock_disabled_mapping.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = video_padlock_disabled_mapping.json; sourceTree = "<group>"; };
+		C6AF1A9E29F2E5A300CD2DDB /* video_padlock_enabled_mapping.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = video_padlock_enabled_mapping.json; sourceTree = "<group>"; };
+		C6AF1AA629F2EAD900CD2DDB /* video_flat_vast.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = video_flat_vast.xml; sourceTree = "<group>"; };
+		C6AF1AA829F2EAF500CD2DDB /* video_yellow.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video_yellow.mp4; sourceTree = "<group>"; };
+		C6AF1AAA29F2EB2300CD2DDB /* video_yellow_mapping.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = video_yellow_mapping.json; sourceTree = "<group>"; };
+		C6AF1AAC29F2EB7C00CD2DDB /* video_flat_vast_mapping.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = video_flat_vast_mapping.json; sourceTree = "<group>"; };
+		C6AF1AAE29F3045600CD2DDB /* QuestionDialogRobot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionDialogRobot.swift; sourceTree = "<group>"; };
 		C6C6AEE727D7D1D000FFB5CA /* SuperAwesomeExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperAwesomeExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6C6AEE927D7D1D000FFB5CA /* SuperAwesomeExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperAwesomeExampleTests.swift; sourceTree = "<group>"; };
 		C6C6AEF727D7D31A00FFB5CA /* ConnectionTypeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionTypeTests.swift; sourceTree = "<group>"; };
@@ -399,6 +421,7 @@
 				07F03E9729D74C61004790F5 /* Robot.swift */,
 				07F03E9929D74C6A004790F5 /* SettingsScreenRobot.swift */,
 				07F03EB229DB159F004790F5 /* VideoScreenRobot.swift */,
+				C6AF1AAE29F3045600CD2DDB /* QuestionDialogRobot.swift */,
 			);
 			path = Robots;
 			sourceTree = "<group>";
@@ -690,6 +713,11 @@
 				CCE84B7329EE90560035131C /* placements.json */,
 				CC193C13290FF9E200EEC736 /* video_direct_success.json */,
 				CC193C15290FF9E200EEC736 /* video_vpaid_non_ksf.json */,
+				C6AF1AA829F2EAF500CD2DDB /* video_yellow.mp4 */,
+				C6AF1AA629F2EAD900CD2DDB /* video_flat_vast.xml */,
+				C6AF1A9729F2E58900CD2DDB /* video_flat_success.json */,
+				C6AF1A9629F2E58900CD2DDB /* video_padlock_disabled.json */,
+				C6AF1A9829F2E58900CD2DDB /* video_padlock_enabled.json */,
 			);
 			path = __files;
 			sourceTree = "<group>";
@@ -703,8 +731,13 @@
 				CCE84B7C29EE906C0035131C /* banner_yellow_mapping.json */,
 				CCE84B7B29EE906C0035131C /* interstitial_yellow_mapping.json */,
 				CCE84B7A29EE906C0035131C /* placement_mapping.json */,
+				C6AF1AAA29F2EB2300CD2DDB /* video_yellow_mapping.json */,
 				CC193C0D290FF9D500EEC736 /* video_direct_success_mapping.json */,
 				CC193C0F290FF9D500EEC736 /* video_vpaid_non_ksf_mapping.json */,
+				C6AF1AAC29F2EB7C00CD2DDB /* video_flat_vast_mapping.json */,
+				C6AF1A9C29F2E5A300CD2DDB /* video_flat_success_mapping.json */,
+				C6AF1A9D29F2E5A300CD2DDB /* video_padlock_disabled_mapping.json */,
+				C6AF1A9E29F2E5A300CD2DDB /* video_padlock_enabled_mapping.json */,
 			);
 			path = mappings;
 			sourceTree = "<group>";
@@ -891,19 +924,29 @@
 				CCE84B7F29EE906C0035131C /* interstitial_yellow_mapping.json in Resources */,
 				CCE84B7729EE90560035131C /* placements.json in Resources */,
 				CCE84B7829EE90560035131C /* interstitial_yellow.png in Resources */,
+				C6AF1AA729F2EAD900CD2DDB /* video_flat_vast.xml in Resources */,
+				C6AF1AA929F2EAF600CD2DDB /* video_yellow.mp4 in Resources */,
 				CCE84B7629EE90560035131C /* banner_success_padlock_enabled.json in Resources */,
 				CCE84B7D29EE906C0035131C /* banner_success_padlock_enabled_mapping.json in Resources */,
 				CC193C17290FF9E200EEC736 /* interstitial_success_padlock_enabled.json in Resources */,
 				CCE84B7529EE90560035131C /* banner_yellow.png in Resources */,
+				C6AF1AA129F2E5A300CD2DDB /* video_padlock_enabled_mapping.json in Resources */,
 				CC193C12290FF9D500EEC736 /* video_vpaid_non_ksf_mapping.json in Resources */,
+				C6AF1AAD29F2EB7C00CD2DDB /* video_flat_vast_mapping.json in Resources */,
 				CC193C11290FF9D500EEC736 /* interstitial_success_padlock_enabled_mapping.json in Resources */,
 				CC193C18290FF9E300EEC736 /* video_vpaid_non_ksf.json in Resources */,
 				CCE84B8929F046020035131C /* interstitial_success_padlock_disabled.json in Resources */,
 				CCE84B8729F045B70035131C /* interstitial_success_padlock_disabled_mapping.json in Resources */,
+				C6AF1A9929F2E58900CD2DDB /* video_padlock_disabled.json in Resources */,
 				CC193C16290FF9E200EEC736 /* video_direct_success.json in Resources */,
+				C6AF1AAB29F2EB2300CD2DDB /* video_yellow_mapping.json in Resources */,
 				CCE84B7E29EE906C0035131C /* placement_mapping.json in Resources */,
+				C6AF1A9F29F2E5A300CD2DDB /* video_flat_success_mapping.json in Resources */,
 				CCE84B8029EE906C0035131C /* banner_yellow_mapping.json in Resources */,
+				C6AF1A9A29F2E58900CD2DDB /* video_flat_success.json in Resources */,
+				C6AF1A9B29F2E58900CD2DDB /* video_padlock_enabled.json in Resources */,
 				CC193C10290FF9D500EEC736 /* video_direct_success_mapping.json in Resources */,
+				C6AF1AA029F2E5A300CD2DDB /* video_padlock_disabled_mapping.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1140,6 +1183,7 @@
 				CC193BEF290F698D00EEC736 /* UIColor+Extensions.swift in Sources */,
 				07F03EB529DB1736004790F5 /* BumperScreenRobot.swift in Sources */,
 				07F03EA729D7597E004790F5 /* UIAwait.swift in Sources */,
+				C6AF1AAF29F3045600CD2DDB /* QuestionDialogRobot.swift in Sources */,
 				07F03EA429D751D4004790F5 /* ParentGateRobot.swift in Sources */,
 				07F03EAC29DAE221004790F5 /* BaseUITest.swift in Sources */,
 				CC6AE3D1284F906B002F7581 /* VideoAdUITests.swift in Sources */,

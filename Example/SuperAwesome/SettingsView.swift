@@ -8,7 +8,6 @@
 import PureLayout
 import UIKit
 
-
 protocol SettingsViewDelegate: AnyObject {
     func didUpdateSettings(settings: SettingsModel)
 }
