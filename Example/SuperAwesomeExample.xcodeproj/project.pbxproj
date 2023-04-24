@@ -120,6 +120,7 @@
 		CC3A52B2290F252C00484D1B /* WireMock.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = CC3A52AE290F252C00484D1B /* WireMock.jar */; };
 		CC6AE3D1284F906B002F7581 /* VideoAdUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6AE3D0284F906B002F7581 /* VideoAdUITests.swift */; };
 		CCDA7340283E56CB00A75542 /* AwesomeAdsTargetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDA733F283E56CB00A75542 /* AwesomeAdsTargetTests.swift */; };
+		CCE65D3829F6D3000011F539 /* SafariRobot.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE65D3729F6D3000011F539 /* SafariRobot.swift */; };
 		CCE84B7529EE90560035131C /* banner_yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = CCE84B7129EE90550035131C /* banner_yellow.png */; };
 		CCE84B7629EE90560035131C /* banner_success_padlock_enabled.json in Resources */ = {isa = PBXBuildFile; fileRef = CCE84B7229EE90550035131C /* banner_success_padlock_enabled.json */; };
 		CCE84B7729EE90560035131C /* placements.json in Resources */ = {isa = PBXBuildFile; fileRef = CCE84B7329EE90560035131C /* placements.json */; };
@@ -286,6 +287,7 @@
 		CC6AE3CE284F906B002F7581 /* SuperAwesomeExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperAwesomeExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC6AE3D0284F906B002F7581 /* VideoAdUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoAdUITests.swift; sourceTree = "<group>"; };
 		CCDA733F283E56CB00A75542 /* AwesomeAdsTargetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwesomeAdsTargetTests.swift; sourceTree = "<group>"; };
+		CCE65D3729F6D3000011F539 /* SafariRobot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariRobot.swift; sourceTree = "<group>"; };
 		CCE84B7129EE90550035131C /* banner_yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = banner_yellow.png; sourceTree = "<group>"; };
 		CCE84B7229EE90550035131C /* banner_success_padlock_enabled.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = banner_success_padlock_enabled.json; sourceTree = "<group>"; };
 		CCE84B7329EE90560035131C /* placements.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = placements.json; sourceTree = "<group>"; };
@@ -422,6 +424,7 @@
 				07F03E9929D74C6A004790F5 /* SettingsScreenRobot.swift */,
 				07F03EB229DB159F004790F5 /* VideoScreenRobot.swift */,
 				C6AF1AAE29F3045600CD2DDB /* QuestionDialogRobot.swift */,
+				CCE65D3729F6D3000011F539 /* SafariRobot.swift */,
 			);
 			path = Robots;
 			sourceTree = "<group>";
@@ -1179,6 +1182,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCE65D3829F6D3000011F539 /* SafariRobot.swift in Sources */,
 				07F03EA229D751C8004790F5 /* BannerRobot.swift in Sources */,
 				CC193BEF290F698D00EEC736 /* UIColor+Extensions.swift in Sources */,
 				07F03EB529DB1736004790F5 /* BumperScreenRobot.swift in Sources */,

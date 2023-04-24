@@ -39,11 +39,11 @@ class VideoAdUITests: BaseUITest {
                 screen.tapOnAd()
 
                 bumperScreen(app) { bumper in
+                    bumper.waitForView()
                     bumper.checkSmallLabelExists(withText: bumper.warningMessage)
                     bumper.checkBigLabelExists(withText: bumper.goodByeMessage)
                     bumper.isPoweredByLogoVisible()
                     bumper.isBackgroundImageViewVisible()
-                    bumper.tapBumperBackgroundImageView()
                 }
             }
         }
@@ -123,13 +123,23 @@ class VideoAdUITests: BaseUITest {
                 }
 
                 bumperScreen(app) { bumper in
+                    bumper.waitForView()
                     bumper.checkSmallLabelExists(withText: bumper.warningMessage)
                     bumper.checkBigLabelExists(withText: bumper.goodByeMessage)
                     bumper.isPoweredByLogoVisible()
                     bumper.isBackgroundImageViewVisible()
-                    bumper.tapBumperBackgroundImageView()
                 }
             }
+            
+            safari { safari in
+                safari.waitForView()
+            }
+            
+            // Return to the app from Safari
+            app.activate()
+            
+            // The ad list is visible
+            $0.waitForView()
         }
     }
 
@@ -317,6 +327,113 @@ class VideoAdUITests: BaseUITest {
 
                 listScreen.checkTableViewExists()
             }
+        }
+    }
+    
+    func testParentalGate_isDismissedOnClose() throws {
+        adsListScreen(app) {
+            $0.waitForView()
+            $0.tapSettingsButton()
+
+            settingsScreen(app) { settings in
+                settings.waitForView()
+                settings.tapParentalGateEnable()
+                settings.tapCloseButton()
+            }
+
+            $0.tapPlacement(withName: "Direct Video Flat Colour")
+
+            videoScreen(app) { screen in
+                screen.waitForView()
+                screen.tapOnAd()
+            }
+            
+            parentGateAlert(app) { parentGate in
+                parentGate.waitForView()
+                parentGate.checkTitle(hasText: parentGate.title)
+                parentGate.checkMessage(hasText: parentGate.questionMessage)
+                parentGate.checkPlaceholder(hasText: "")
+            }
+            
+            // Wait for the parental gate to be auto closed and the ad list to be visible again
+            $0.waitForView(timeout: .extraLong)
+        }
+    }
+    
+    func testParentalGate_navigatesToSafari_andBackToApp() throws {
+        adsListScreen(app) {
+            $0.waitForView()
+            $0.tapSettingsButton()
+
+            settingsScreen(app) { settings in
+                settings.waitForView()
+                settings.tapParentalGateEnable()
+                settings.tapCloseButton()
+            }
+
+            $0.tapPlacement(withName: "Direct Video Flat Colour")
+
+            videoScreen(app) { screen in
+                screen.waitForView()
+                screen.tapOnAd()
+            }
+            
+            parentGateAlert(app) { parentGate in
+                parentGate.waitForView()
+                parentGate.checkTitle(hasText: parentGate.title)
+                parentGate.checkMessage(hasText: parentGate.questionMessage)
+                parentGate.checkPlaceholder(hasText: "")
+                parentGate.typeAnswer(text: parentGate.solve())
+                parentGate.tapContinueButton()
+            }
+            
+            safari { safari in
+                safari.waitForView()
+            }
+            
+            // Return to the app from Safari
+            app.activate()
+            
+            // The ad list is visible
+            $0.waitForView()
+        }
+    }
+    
+    func testBumper_navigatesToSafari_andBackToApp() throws {
+        adsListScreen(app) {
+            $0.waitForView()
+            $0.tapSettingsButton()
+
+            settingsScreen(app) { settings in
+                settings.waitForView()
+                settings.tapBumperEnable()
+                settings.tapCloseButton()
+            }
+
+            $0.tapPlacement(withName: "Direct Video Flat Colour")
+
+            videoScreen(app) { screen in
+                screen.waitForView()
+                screen.tapOnAd()
+            }
+            
+            bumperScreen(app) { bumper in
+                bumper.waitForView()
+                bumper.checkSmallLabelExists(withText: bumper.warningMessage)
+                bumper.checkBigLabelExists(withText: bumper.goodByeMessage)
+                bumper.isPoweredByLogoVisible()
+                bumper.isBackgroundImageViewVisible()
+            }
+            
+            safari { safari in
+                safari.waitForView()
+            }
+            
+            // Return to the app from Safari
+            app.activate()
+            
+            // The ad list is visible
+            $0.waitForView()
         }
     }
 }

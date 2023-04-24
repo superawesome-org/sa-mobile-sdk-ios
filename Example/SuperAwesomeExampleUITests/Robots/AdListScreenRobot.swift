@@ -25,8 +25,8 @@ class AdListScreenRobot: Robot {
         XCTAssertTrue(tableView.exists)
     }
 
-    func waitForView() {
-        XCTAssertTrue(screen.waitForExistence(timeout: 5))
+    func waitForView(timeout: Timeout = .standard) {
+        XCTAssertTrue(screen.waitForExistence(timeout: timeout.duration))
     }
 
     func tapPlacement(withName name: String) {

@@ -7,9 +7,9 @@
 
 import Foundation
 
-enum Timeouts: Double {
-    case standard = 300.0
-    case extraLong = 1000.0
+enum Timeout: Double {
+    case standard = 5.0
+    case extraLong = 30.0
 
     var duration: Double {
         self.rawValue
