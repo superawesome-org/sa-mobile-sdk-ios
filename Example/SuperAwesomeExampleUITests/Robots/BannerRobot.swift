@@ -26,7 +26,7 @@ class BannerRobot: Robot {
     func waitForRender() {
         waitForExpectedColor(
             expectedColor: "#F7E26B",
-            image: banner.screenshot().image
+            screenshotProvider: banner
         )
     }
 

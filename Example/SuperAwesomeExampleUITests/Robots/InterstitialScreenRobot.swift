@@ -42,7 +42,7 @@ class InterstitialScreenRobot: Robot {
     func waitForRender() {
         waitForExpectedColor(
             expectedColor: "#F7E26B",
-            image: XCUIScreen.main.screenshot().image
+            screenshotProvider: XCUIScreen.main
         )
     }
 

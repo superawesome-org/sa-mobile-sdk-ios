@@ -8,7 +8,7 @@
 import XCTest
 
 class SafariRobot: Robot {
-    
+
     func waitForView(timeout: Timeout = .standard) {
         app.wait(for: .runningForeground, timeout: timeout.duration)
     }

@@ -15,12 +15,12 @@ extension Robot {
      *
      * - Parameters:
      *  - expectedColor: The expected color as a hex string e.g: "#FFFFFF"
-     *  - image: The image to test, e.g: `closeButton.screenshot().image`
+     *  - screenshotProvider: The element to test that can provide an `XCUIScreenshot`, e.g: `XCUIScreen.main`
      *  - timeout: The number of seconds to wait for the expected color to appear
      */
     func waitForExpectedColor(
         expectedColor: String,
-        image: UIImage,
+        screenshotProvider: XCUIScreenshotProviding,
         timeout: Int = 5,
         file: StaticString = #file,
         line: UInt = #line) {
@@ -33,7 +33,7 @@ extension Robot {
 
             let locatedColor = self?.findColorInImage(
                 expectedColor: expectedColor,
-                image: image,
+                image: screenshotProvider.screenshot().image,
                 sampleSize: 5
             )
 
@@ -74,7 +74,7 @@ extension Robot {
      *
      * - Parameters:
      *  - expectedColor: The expected color as a hex string e.g: "#FFFFFF"
-     *  - image: The image to test, e.g: `closeButton.screenshot().image`
+     *  - image: The image to test
      *  - sampleSize: The number of pixels to sample from the centre of the image
      */
     private func findColorInImage(

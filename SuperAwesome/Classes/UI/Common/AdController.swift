@@ -81,6 +81,7 @@ class AdController: AdControllerType, Injectable {
 
     private lazy var parentalGateFailAction = { [weak self] in
         guard let adResponse = self?.adResponse else { return }
+        self?.videoDelegate?.controllerDidRequestPlayVideo()
         self?.eventRepository.parentalGateFail(adResponse, completion: nil)
     }
 

@@ -62,7 +62,7 @@ class VideoScreenRobot: Robot {
     func waitForRender() {
         waitForExpectedColor(
             expectedColor: "#F7DE60",
-            image: XCUIScreen.main.screenshot().image
+            screenshotProvider: XCUIScreen.main
         )
     }
 

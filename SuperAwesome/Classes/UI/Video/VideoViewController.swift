@@ -30,6 +30,7 @@ import UIKit
         self.controller.callback = callback
         self.controller.parentalGateEnabled = config.isParentalGateEnabled
         self.controller.bumperPageEnabled = config.isBumperPageEnabled
+        self.controller.videoDelegate = self
         videoEvents.delegate = self
     }
 
@@ -203,6 +204,16 @@ extension VideoViewController: VideoEventsDelegate {
         if config.closeButtonState == .visibleWithDelay {
             chrome.makeCloseButtonVisible()
         }
+    }
+}
+
+extension VideoViewController: AdControllerVideoDelegate {
+    func controllerDidRequestPlayVideo() {
+        control.start()
+    }
+
+    func controllerDidRequestPauseVideo() {
+        control.pause()
     }
 }
 
