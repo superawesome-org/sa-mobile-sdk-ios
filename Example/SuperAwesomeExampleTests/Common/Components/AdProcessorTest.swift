@@ -25,7 +25,8 @@ class AdProcessorTests: XCTestCase {
         let adProcessor = AdProcessor(htmlFormatter: HtmlFormatterMock(imageFormat: imageFormatUsed,
                                                                        mediaFormat: mediaFormatUsed,
                                                                        tagFormat: tagFormatUsed),
-                                      vastParser: VastParserMock(firstVast: VastAd(type: .inLine), secondVast: VastAd(type: .inLine)),
+                                      vastParser: VastParserMock(firstVast: VastAd(type: .inLine),
+                                                                 secondVast: VastAd(type: .inLine)),
                                       networkDataSource: NetworkDataSourceMock(getDataResult: dataResult,
                                                                                getDataResult2: dataResult,
                                                                                downloadFileResult: downloadResult),
@@ -83,7 +84,7 @@ class AdProcessorTests: XCTestCase {
 
     func test_videoTag_networkDataCalled() throws {
         let downloadFilePath = "localfilepath"
-        let first = VastAd(type: .inLine, impressions: ["url1"])
+        let first = VastAd(url: "Blah", type: .inLine, impressions: ["url1"])
 
         testVideo("first_url", filePath: downloadFilePath,
                   dataResult: Result.success(Data("firstdata".utf8)),
@@ -95,8 +96,8 @@ class AdProcessorTests: XCTestCase {
 
     func test_videoTag_vastRedirect_mergeVasts() throws {
         let downloadFilePath = "localfilepath"
-        let first =  VastAd(type: .invalid, redirect: "redirecturl", impressions: ["url1"])
-        let second =  VastAd(type: .inLine, impressions: ["url2"])
+        let first = VastAd(url: "Blah", type: .invalid, redirect: "redirecturl", impressions: ["url1"])
+        let second = VastAd(url: "Blah2", type: .inLine, impressions: ["url2"])
 
         testVideo("firsturl", filePath: downloadFilePath,
                   dataResult: Result.success(Data("firstdata".utf8)),

@@ -59,22 +59,30 @@ class AdProcessor: AdProcessorType {
                 handleVast(url, initialVast: nil) { [weak self] vast in
                     response.vast = vast
                     response.baseUrl = (vast?.url ??? Constants.defaultBaseUrl).baseUrl
-
-                    self?.networkDataSource.downloadFile(url: vast?.url ?? "",
-                                                         completion: { result in
-                        switch result {
-                        case .success(let localFilePath):
-                            response.filePath = localFilePath
-                            completion(response)
-                        case .failure: completion(response)
-                        }
-                    })
+                    guard let vastUrl = vast?.url else {
+                        completion(response)
+                        return
+                    }
+                    self?.downloadFile(withUrl: vastUrl, response: response) { result in completion(result) }
                 }
+            } else if let url = ad.creative.details.video {
+                downloadFile(withUrl: url, response: response) { result in completion(result) }
             } else {
                 completion(response)
             }
         case .unknown: completion(response)
         }
+    }
+
+    private func downloadFile(withUrl url: String, response: AdResponse, completion: @escaping OnComplete<AdResponse>) {
+        networkDataSource.downloadFile(url: url, completion: { result in
+            switch result {
+            case .success(let localFilePath):
+                response.filePath = localFilePath
+                completion(response)
+            case .failure: completion(response)
+            }
+        })
     }
 
     private func handleVast(_ url: String,
