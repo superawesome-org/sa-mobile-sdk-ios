@@ -16,6 +16,10 @@ class AdListScreenRobot: Robot {
     private var tableView: XCUIElement {
         screen.tables["AdList.TableView"]
     }
+    
+    private var debugLogLabel: XCUIElement {
+        app.staticTexts["Debug.Labels.Log"]
+    }
 
     func checkTableViewDoesNotExists() {
         XCTAssertFalse(tableView.exists)
@@ -35,6 +39,10 @@ class AdListScreenRobot: Robot {
 
     func tapSettingsButton() {
         screen.buttons["AdList.Buttons.Settings"].tap()
+    }
+    
+    func assertEvent(_ event: String) {
+        XCTAssertNotNil(debugLogLabel.label.range(of: event))
     }
 }
 

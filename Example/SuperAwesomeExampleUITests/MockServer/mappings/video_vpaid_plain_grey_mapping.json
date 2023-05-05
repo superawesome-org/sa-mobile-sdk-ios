@@ -1,0 +1,10 @@
+{
+  "request": {
+      "method": "GET",
+      "urlPath": "/ad/10003"
+  },
+  "response": {
+      "status": 200,
+      "bodyFileName": "video_vpaid_plain_grey.json"
+  }
+}

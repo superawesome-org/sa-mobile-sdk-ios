@@ -71,6 +71,16 @@
           "placementId": 10002,
           "name": "Direct Video Padlock Disabled",
           "type": "video"
+        },
+        {
+          "placementId": 10003,
+          "name": "Plain Grey VPAID Ad",
+          "type": "video"
+        },
+        {
+          "placementId": 10004,
+          "name": "VPAID Ad Not Found",
+          "type": "video"
         }
       ]
     }

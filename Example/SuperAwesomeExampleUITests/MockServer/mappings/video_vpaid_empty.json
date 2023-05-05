@@ -1,10 +1,10 @@
 {
   "request": {
       "method": "GET",
-      "urlPath": "/ad/89056"
+      "urlPath": "/ad/10004"
   },
   "response": {
       "status": 200,
-      "bodyFileName": "video_vpaid_non_ksf.json"
+      "bodyFileName": "not_found.json"
   }
 }

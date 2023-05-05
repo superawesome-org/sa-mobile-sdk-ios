@@ -1,0 +1,38 @@
+{
+    "programmaticUuid": null,
+    "creative": {
+        "id": 532609,
+        "format": "video",
+        "details": {
+            "transcodedVideos": [],
+            "url": "",
+            "image": "",
+            "video": "",
+            "placement_format": "video",
+            "width": 600,
+            "height": 480,
+            "duration": 0,
+            "tag": "<html>\n    <header>\n        <meta name='viewport' content='width=device-width'/>\n        <style>html, body, div { margin: 0px; padding: 0px; } html, body { width: 100%; height: 100%; }</style>\n    </header>\n    <body><script type=\"text/javascript\" src=\"https://eu-west-1-ads.superawesome.tv/v2/ad.js?placement=96690&lineItemId=195197&creativeId=532609&sdkVersion=ios_8.6.0&rnd=ab966858-3845-4350-a2ef-f9daa6a51271&bundle=tv.superawesome.awesomeads.sdk&dauid=-4156151720403264589&ct=2&lang=en_US&device=phone&pos=7&timestamp=_TIMESTAMP_&skip=1&playbackmethod=5&startdelay=null&instl=1&isProgrammatic=true&vpaid=true\"></script></body>\n    </html>",
+            "_tag": "tag",
+            "vast": "https://eu-west-1-ads.superawesome.tv/v2/video/vast/96690/195197/532609/?sdkVersion=ios_8.6.0&rnd=2b3c7f73-7f51-4ecd-8eae-56af7f377703&dauid=-4156151720403264589&bundle=tv.superawesome.awesomeads.sdk&device=phone&country=GB&flow=normal&aua=eyJhbGciOiJIUzI1NiJ9.TW96aWxsYS81LjAgKGlQaG9uZTsgQ1BVIGlQaG9uZSBPUyAxNl8zXzEgbGlrZSBNYWMgT1MgWCkgQXBwbGVXZWJLaXQvNjA1LjEuMTUgKEtIVE1MLCBsaWtlIEdlY2tvKSBWZXJzaW9uLzE2LjMgTW9iaWxlLzE1RTE0OCBTYWZhcmkvNjA0LjE.55jmomLuQmOfEobEvgMlzdOsrU6RKu51eMIu5vnBt0c&tip=eyJhbGciOiJIUzI1NiJ9.ODEuMTEwLjI0OS4w.JID_ookEWOeYqark_ZJ8RGhOQaLYYq2UodGzzmzy0oQ&lang=en_US&ct=2"
+        },
+        "isKSF": true
+    },
+    "advertiserId": 4,
+    "publisherId": 4,
+    "is_fill": false,
+    "is_fallback": false,
+    "campaign_type": 0,
+    "is_house": true,
+    "safe_ad_approved": false,
+    "show_padlock": false,
+    "line_item_id": 195197,
+    "moat": 0.1,
+    "test": false,
+    "campaign_id": 53075,
+    "app": 32937,
+    "device": "phone",
+    "aua": "eyJhbGciOiJIUzI1NiJ9.TW96aWxsYS81LjAgKGlQaG9uZTsgQ1BVIGlQaG9uZSBPUyAxNl8zXzEgbGlrZSBNYWMgT1MgWCkgQXBwbGVXZWJLaXQvNjA1LjEuMTUgKEtIVE1MLCBsaWtlIEdlY2tvKSBWZXJzaW9uLzE2LjMgTW9iaWxlLzE1RTE0OCBTYWZhcmkvNjA0LjE.55jmomLuQmOfEobEvgMlzdOsrU6RKu51eMIu5vnBt0c",
+    "tip": "eyJhbGciOiJIUzI1NiJ9.ODEuMTEwLjI0OS4w.JID_ookEWOeYqark_ZJ8RGhOQaLYYq2UodGzzmzy0oQ",
+    "is_vpaid": true
+}

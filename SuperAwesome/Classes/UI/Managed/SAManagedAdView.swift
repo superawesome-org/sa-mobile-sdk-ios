@@ -13,7 +13,8 @@ protocol SAManagedAdViewDelegate: AdJSMessageHandlerDelegate {
 
 @objc(SAManagedAdView)
 public final class SAManagedAdView: UIView, Injectable {
-
+    private let accessibilityPrefix = "SuperAwesome.ManagedAdView.ManagedAd."
+    
     internal var finishedLoading = false
 
     private var callback: AdEventCallback?
@@ -46,7 +47,9 @@ public final class SAManagedAdView: UIView, Injectable {
         if #available(iOS 14.0, *) {
             configuration.defaultWebpagePreferences.allowsContentJavaScript = true
         }
-        return WKWebView(frame: bounds, configuration: configuration)
+        let webView = WKWebView(frame: bounds, configuration: configuration)
+        webView.accessibilityIdentifier = "\(accessibilityPrefix)Views.WebView"
+        return webView
     }()
 
     init() {
@@ -70,6 +73,7 @@ public final class SAManagedAdView: UIView, Injectable {
         ])
         webView.navigationDelegate = self
         webView.uiDelegate = self
+        accessibilityIdentifier = "\(accessibilityPrefix)View"
     }
 
     public func load(placementId: Int, html: String, baseUrl: String?) {
