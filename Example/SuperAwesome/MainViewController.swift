@@ -196,7 +196,9 @@ class MainViewController: UIViewController {
     }
     
     private func logEventForUITesting(_ event: AdEvent) {
-        debugLogLabel.text?.append("\(event.name()) ")
+        if (isInTestMode) {
+            debugLogLabel.text?.append("\(event.name()) ")
+        }
     }
 
     private func handleMultiIdRowTapped(item: PlacementItem) {
