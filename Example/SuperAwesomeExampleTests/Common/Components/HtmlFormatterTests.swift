@@ -19,7 +19,8 @@ class HtmlFormatterTests: XCTestCase {
         let result = formatter.formatImageIntoHtml(MockFactory.makeAdWithImageLink(imageLink))
 
         // Then
-        expect("<a href='https://www.superawesome.com/' target='_blank'><img src='image' width='100%' height='100%' style='object-fit: contain;'/></a>").to(equal(result))
+        expect("<a href='https://www.superawesome.com/' target='_blank'>" +
+               "<img src='image' width='100%' height='100%' style='object-fit: contain;'/></a>").to(equal(result))
     }
 
     func test_formatImage_withoutLink() throws {
@@ -42,12 +43,16 @@ class HtmlFormatterTests: XCTestCase {
         let result = formatter.formatRichMediaIntoHtml(placementId, MockFactory.makeAd())
 
         // Then
-        expect("<iframe style='padding:0;border:0;' width='100%' height='100%' src='detailurl?placement=\(placementId)&line_item=50&creative=80&rnd=10'></iframe>").to(equal(result))
+        expect("<iframe style='padding:0;border:0;' width='100%' height='100%' " +
+               "src='detailurl?placement=\(placementId)&line_item=50&creative=80&rnd=10'></iframe>").to(equal(result))
     }
 
     func test_formatTag() throws {
         // Given
-        let tag = "<A HREF=\"[click]https://ad.doubleclick.net/ddm/jump/N304202.1915243SUPERAWESOME.TV/B10773905.144955457;sz=480x320;ord=1486394166729?\"><IMG SRC=\"https://ad.doubleclick.net/ddm/ad/N304202.1915243SUPERAWESOME.TV/B10773905.144955457;sz=480x320;ord=1486394166729;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=?\" BORDER=0 WIDTH=480 HEIGHT=320 ALT=\"Advertisement\"></A>"
+        let tag = "<A HREF=\"[click]https://ad.doubleclick.net/ddm/jump/N304202.1915243SUPERAWESOME.TV" +
+        "/B10773905.144955457;sz=480x320;ord=1486394166729?\"><IMG SRC=\"https://ad.doubleclick.net/ddm/" +
+        "ad/N304202.1915243SUPERAWESOME.TV/B10773905.144955457;sz=480x320;ord=1486394166729;dc_lat=;dc_rdid" +
+        "=;tag_for_child_directed_treatment=?\" BORDER=0 WIDTH=480 HEIGHT=320 ALT=\"Advertisement\"></A>"
         let url = "someurl"
         let formatter = HtmlFormatter(numberGenerator: NumberGeneratorMock(10), encoder: EncoderMock())
 

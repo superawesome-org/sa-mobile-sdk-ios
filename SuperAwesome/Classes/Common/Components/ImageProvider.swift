@@ -52,3 +52,4 @@ class ImageProvider: ImageProviderType {
         return UIImage(data: imageData!)!
     }
 }
+// swiftlint:enable line_length

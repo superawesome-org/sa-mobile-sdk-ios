@@ -94,8 +94,8 @@ class StringExtensionTests: XCTestCase {
         let result = string.extractURLs()
 
         // then
-        XCTAssertEqual(result.count, 1)
-        XCTAssertEqual(result.first?.absoluteString, "https://website.com")
+        expect(result.count).to(equal(1))
+        expect(result.first?.absoluteString).to(equal("https://website.com"))
     }
 
     func test_extractURLs_when_string_contains_one_url_mid_string() {
@@ -107,8 +107,8 @@ class StringExtensionTests: XCTestCase {
         let result = string.extractURLs()
 
         // then
-        XCTAssertEqual(result.count, 1)
-        XCTAssertEqual(result.first?.absoluteString, "https://website.com")
+        expect(result.count).to(equal(1))
+        expect(result.first?.absoluteString).to(equal("https://website.com"))
     }
 
     func test_extractURLs_when_string_contains_one_url_end_string() {
@@ -120,8 +120,8 @@ class StringExtensionTests: XCTestCase {
         let result = string.extractURLs()
 
         // then
-        XCTAssertEqual(result.count, 1)
-        XCTAssertEqual(result.first?.absoluteString, "https://website.com")
+        expect(result.count).to(equal(1))
+        expect(result.first?.absoluteString).to(equal("https://website.com"))
     }
 
     func test_extractURLs_when_string_contains_two() {
@@ -133,36 +133,43 @@ class StringExtensionTests: XCTestCase {
         let result = string.extractURLs()
 
         // then
-        XCTAssertEqual(result.count, 2)
-        XCTAssertEqual(result.first?.absoluteString, "https://website.com")
+        expect(result.count).to(equal(2))
+        expect(result.first?.absoluteString).to(equal("https://website.com"))
         XCTAssertEqual(result.last?.absoluteString, "http://someurl.co.uk")
     }
 
     func test_extractURLs_when_string_contains_three() {
 
         // given
-        let string = "This is a string with https://website.com urls http://someurl.co.uk something something http://blah.com"
+        let string = "This is a string with https://website.com urls http://someurl.co.uk something something " +
+        "http://blah.com"
 
         // when
         let result = string.extractURLs()
 
         // then
-        XCTAssertEqual(result.count, 3)
-        XCTAssertEqual(result.first?.absoluteString, "https://website.com")
-        XCTAssertEqual(result[1].absoluteString, "http://someurl.co.uk")
-        XCTAssertEqual(result.last?.absoluteString, "http://blah.com")
+        expect(result.count).to(equal(3))
+        expect(result.first?.absoluteString).to(equal("https://website.com"))
+        expect(result[1].absoluteString).to(equal("http://someurl.co.uk"))
+        expect(result.last?.absoluteString).to(equal("http://blah.com"))
     }
 
     func test_extractURLs_in_realistic_case() {
 
         // given
-        let string = "<html>\n    <header>\n        <meta name='viewport' content='width=device-width'/>\n        <style>html, body, div { margin: 0px; padding: 0px; } html, body { width: 100%; height: 100%; }</style>\n    </header>\n    <body><script type=\"text/javascript\" src=\"https://eu-west-1-ads.superawesome.tv/v2/ad.js?placement=89056&lineItemId=182932&creativeId=510371&sdkVersion=ios_8.6.0&rnd=d31df441-aca9-4018-8a6b-61f3fe31886a&bundle=tv.superawesome.awesomeads.sdk&dauid=287646772018416067&ct=2&lang=en_US&device=phone&pos=7&timestamp=_TIMESTAMP_&skip=1&playbackmethod=5&startdelay=null&instl=1&isProgrammatic=true&vpaid=true\"></script></body>\n    </html>"
+        let string = "<html>\n    <header>\n        <meta name='viewport' content='width=device-width'/>\n        " +
+        "<style>html, body, div { margin: 0px; padding: 0px; } html, body { width: 100%; height: 100%; }</style>\n" +
+        "    </header>\n    <body><script type=\"text/javascript\" src=\"https://eu-west-1-ads.superawesome.tv/v2/" +
+        "ad.js?placement=89056&lineItemId=182932&creativeId=510371&sdkVersion=ios_8.6.0&rnd=d31df441-aca9-4018-8a6" +
+        "b-61f3fe31886a&bundle=tv.superawesome.awesomeads.sdk&dauid=287646772018416067&ct=2&lang=en_US&device=phon" +
+        "e&pos=7&timestamp=_TIMESTAMP_&skip=1&playbackmethod=5&startdelay=null&instl=1&isProgrammatic=true&vpaid=t" +
+        "rue\"></script></body>\n    </html>"
 
         // when
         let result = string.extractURLs()
 
         // then
-        XCTAssertEqual(result.count, 1)
+        expect(result.count).to(equal(1))
         XCTAssertEqual(result.first?.absoluteString, "https://eu-west-1-ads.superawesome.tv/v2/ad.js")
     }
 
@@ -175,7 +182,7 @@ class StringExtensionTests: XCTestCase {
         let result = string.extractURLs()
 
         // then
-        XCTAssertEqual(result.count, 0)
+        expect(result.count).to(equal(0))
     }
 
     func test_extractURLs_when_string_contains_partial_url_incomplete_host_only() {
@@ -187,7 +194,7 @@ class StringExtensionTests: XCTestCase {
         let result = string.extractURLs()
 
         // then
-        XCTAssertEqual(result.count, 0)
+        expect(result.count).to(equal(0))
     }
 
     func test_extractURLs_when_string_contains_more_partial_url() {
@@ -199,7 +206,7 @@ class StringExtensionTests: XCTestCase {
         let result = string.extractURLs()
 
         // then
-        XCTAssertEqual(result.count, 1)
+        expect(result.count).to(equal(1))
     }
 
     func test_extractURLs_when_string_contains_url_no_host() {
@@ -211,7 +218,7 @@ class StringExtensionTests: XCTestCase {
         let result = string.extractURLs()
 
         // then
-        XCTAssertEqual(result.count, 1)
+        expect(result.count).to(equal(1))
     }
 
     func test_extractURLs_when_string_does_not_contain_them() {
@@ -223,6 +230,6 @@ class StringExtensionTests: XCTestCase {
         let result = string.extractURLs()
 
         // then
-        XCTAssertEqual(result.count, 0)
+        expect(result.count).to(equal(0))
     }
 }

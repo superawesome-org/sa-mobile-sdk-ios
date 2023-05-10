@@ -9,19 +9,19 @@ import XCTest
 import DominantColor
 
 class IVVideoAdUITests: BaseUITest {
-    
+
     func testAdAppears() throws {
         adsListScreen(app) {
             $0.waitForView()
             $0.tapPlacement(withName: "Plain Grey VPAID Ad")
-            
+
             interactiveVideoScreen(app) { screen in
                 screen.waitForView()
                 screen.waitForRender()
             }
         }
     }
-    
+
     func testAdAppears_withBumper() throws {
         adsListScreen(app) {
             $0.waitForView()
@@ -50,7 +50,7 @@ class IVVideoAdUITests: BaseUITest {
             }
         }
     }
-    
+
     func testAdAppears_withParentalGate() throws {
         adsListScreen(app) {
             $0.waitForView()
@@ -97,7 +97,7 @@ class IVVideoAdUITests: BaseUITest {
             }
         }
     }
-    
+
     func testParentalGateCancelled_thenAdResumes() throws {
         adsListScreen(app) { adsList in
             adsList.waitForView()
@@ -132,7 +132,7 @@ class IVVideoAdUITests: BaseUITest {
             adsList.waitForView(timeout: .extraLong)
         }
     }
-    
+
     func testParentalGateFailed_thenAdResumes() throws {
         adsListScreen(app) { adsList in
             adsList.waitForView()
@@ -175,7 +175,7 @@ class IVVideoAdUITests: BaseUITest {
             adsList.waitForView(timeout: .extraLong)
         }
     }
-    
+
     func testAdAppears_withBumper_andParentalGate() throws {
         adsListScreen(app) { adsList in
             adsList.waitForView()
@@ -227,7 +227,7 @@ class IVVideoAdUITests: BaseUITest {
             }
         }
     }
-    
+
     func test_closeButton_no_delay() throws {
         adsListScreen(app) {
             $0.waitForView()
@@ -248,7 +248,7 @@ class IVVideoAdUITests: BaseUITest {
             }
         }
     }
-    
+
     func test_closeButton_with_delay() throws {
         adsListScreen(app) {
             $0.waitForView()
@@ -271,7 +271,7 @@ class IVVideoAdUITests: BaseUITest {
             }
         }
     }
-    
+
     func test_closeButton_disabled() throws {
         adsListScreen(app) {
             $0.waitForView()
@@ -295,7 +295,7 @@ class IVVideoAdUITests: BaseUITest {
             }
         }
     }
-    
+
     func test_leaveVideoWarning_Enabled() throws {
         adsListScreen(app) { adsList in
             adsList.waitForView()
@@ -335,7 +335,7 @@ class IVVideoAdUITests: BaseUITest {
             }
         }
     }
-    
+
     func test_adPause_adPlay() throws {
         adsListScreen(app) { adsList in
             adsList.waitForView()
@@ -370,7 +370,7 @@ class IVVideoAdUITests: BaseUITest {
             }
         }
     }
-    
+
     func test_adLoaded_event() throws {
         adsListScreen(app) { adsList in
             adsList.waitForView()
@@ -393,7 +393,7 @@ class IVVideoAdUITests: BaseUITest {
             }
         }
     }
-    
+
     func test_adShown_event() throws {
         adsListScreen(app) { adsList in
             adsList.waitForView()
@@ -416,7 +416,7 @@ class IVVideoAdUITests: BaseUITest {
             }
         }
     }
-    
+
     func test_adClicked_event() throws {
         adsListScreen(app) { adsList in
             adsList.waitForView()
@@ -451,7 +451,7 @@ class IVVideoAdUITests: BaseUITest {
             }
         }
     }
-    
+
     func test_adEnded_event() throws {
         adsListScreen(app) { adsList in
             adsList.waitForView()
@@ -468,7 +468,7 @@ class IVVideoAdUITests: BaseUITest {
             }
         }
     }
-    
+
     func test_adClosed_event() throws {
         adsListScreen(app) { adsList in
             adsList.waitForView()
@@ -491,7 +491,7 @@ class IVVideoAdUITests: BaseUITest {
             }
         }
     }
-    
+
     func test_adFailedToLoad_event() throws {
         adsListScreen(app) { adsList in
             adsList.waitForView()

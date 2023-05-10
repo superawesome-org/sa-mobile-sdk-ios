@@ -196,7 +196,7 @@ class MainViewController: UIViewController {
     }
     
     private func logEventForUITesting(_ event: AdEvent) {
-        if (isInTestMode) {
+        if isInTestMode {
             debugLogLabel.text?.append("\(event.name()) ")
         }
     }

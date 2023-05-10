@@ -25,7 +25,8 @@ class InterstitialAdViewController: UIViewController, Injectable {
     private let closeButtonSize: CGFloat = 40.0
 
     // swiftlint:disable weak_delegate
-    private let delegate: AdEventCallback?
+    private var delegate: AdEventCallback?
+    // swiftlint:enable weak_delegate
 
     init(adResponse: AdResponse,
          parentGateEnabled: Bool,
@@ -75,6 +76,7 @@ class InterstitialAdViewController: UIViewController, Injectable {
     func close() {
         bannerView?.close()
         bannerView = nil
+        delegate = nil
         dismiss(animated: true, completion: nil)
     }
 

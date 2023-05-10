@@ -120,12 +120,12 @@ import UIKit
         }
 
         // register notification for background
-        // swiftlint:disable discarded_notification_center_observer
         NotificationCenter.default.addObserver(forName: UIApplication.didEnterBackgroundNotification,
                                                object: nil,
                                                queue: .main) { [weak self] _ in
             self?.didEnterBackground()
         }
+        // swiftlint:enable discarded_notification_center_observer
     }
 
     override func viewDidAppear(_ animated: Bool) {

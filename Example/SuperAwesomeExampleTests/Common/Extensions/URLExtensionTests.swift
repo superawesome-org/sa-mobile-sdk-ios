@@ -5,6 +5,7 @@
 //  Created by Myles Eynon on 09/05/2023.
 //
 
+import Nimble
 import XCTest
 
 @testable import SuperAwesome
@@ -20,7 +21,7 @@ class URLExtenstionTests: XCTestCase {
         let result = url.cleanBaseUrl
 
         // then
-        XCTAssertEqual(result, "https://something.com")
+        expect(result).to(equal("https://something.com"))
     }
 
     func test_cleanBaseUrl_with_noPath_noParams_trailingSlash() {
@@ -32,7 +33,7 @@ class URLExtenstionTests: XCTestCase {
         let result = url.cleanBaseUrl
 
         // then
-        XCTAssertEqual(result, "https://something.com")
+        expect(result).to(equal("https://something.com"))
     }
 
     func test_cleanBaseUrl_with_noPath_noParams() {
@@ -44,7 +45,7 @@ class URLExtenstionTests: XCTestCase {
         let result = url.cleanBaseUrl
 
         // then
-        XCTAssertEqual(result, "https://something.com")
+        expect(result).to(equal("https://something.com"))
     }
 
     func test_cleanBaseUrl_with_path() {
@@ -56,6 +57,6 @@ class URLExtenstionTests: XCTestCase {
         let result = url.cleanBaseUrl
 
         // then
-        XCTAssertEqual(result, "https://something.com")
+        expect(result).to(equal("https://something.com"))
     }
 }
