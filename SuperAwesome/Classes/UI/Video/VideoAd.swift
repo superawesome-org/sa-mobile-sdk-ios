@@ -193,8 +193,14 @@ public class VideoAd: NSObject, Injectable {
     }
 
     private static func onSuccess(_ placementId: Int, _ response: AdResponse) {
-        logger.success("Event callback: adLoaded for placement \(placementId)")
 
+        guard response.advert.creative.format == .video,
+              response.advert.creative.details.tag != nil || response.advert.creative.details.vast != nil else {
+            onFailure(placementId, AwesomeAdsError.missingVastOrTag)
+            return
+        }
+
+        logger.success("Event callback: adLoaded for placement \(placementId)")
         self.ads[placementId] = .hasAd(ad: response)
         callback?(placementId, .adLoaded)
     }

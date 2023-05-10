@@ -33,12 +33,13 @@ import WebKit
     private lazy var imageProvider: ImageProviderType = dependencies.resolve()
     private lazy var controller: AdControllerType = dependencies.resolve()
     private lazy var viewableDetector: ViewableDetectorType? = dependencies.resolve() as ViewableDetectorType
+    private lazy var environment: Environment = dependencies.resolve() as Environment
 
     // MARK: Init
 
     init(adResponse: AdResponse, config: AdConfig, callback: AdEventCallback?) {
         self.placementId = adResponse.placementId
-        self.html = adResponse.advert.creative.details.tag ?? ""
+        self.html = adResponse.html ?? ""
         self.callback = callback
         self.config = config
         super.init(nibName: nil, bundle: nil)
@@ -69,7 +70,7 @@ import WebKit
             guard let strongSelf = self else { return }
             strongSelf.managedAdView.load(placementId: strongSelf.placementId,
                                           html: strongSelf.html,
-                                          baseUrl: strongSelf.controller.adResponse?.baseUrl)
+                                          baseUrl: strongSelf.controller.adResponse?.baseUrl ?? self?.environment.baseURL.absoluteString)
         }
 
         // register notification for foreground

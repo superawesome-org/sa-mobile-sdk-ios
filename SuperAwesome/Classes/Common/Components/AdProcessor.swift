@@ -56,16 +56,13 @@ class AdProcessor: AdProcessorType {
             completion(response)
         case .video:
             if ad.isVpaid == true {
-                var baseUrl: String? = nil
 
-                if let tag = ad.creative.details.tag, let bUrl = tag.extractURLs().first {
-                    baseUrl = (bUrl.scheme ?? "https") + "://" + (bUrl.host ?? "")
+                if let tag = ad.creative.details.tag,
+                    let cleanBaseUrl = tag.extractURLs().first?.cleanBaseUrl {
+                    response.baseUrl = cleanBaseUrl
                 }
 
-                if let vUrl = ad.creative.details.vast?.baseUrl, baseUrl == nil {
-                    baseUrl = vUrl
-                }
-                response.baseUrl = baseUrl
+                response.html = ad.creative.details.tag
                 completion(response)
             } else if let url = ad.creative.details.vast {
                 handleVast(url, initialVast: nil) { [weak self] vast in

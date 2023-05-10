@@ -175,7 +175,7 @@ class AdProcessorTests: XCTestCase {
                   secondVastAd: VastAd(type: .inLine),
                   impressionEventCount: nil,
                   isVpaid: true) { [weak self] in
-            XCTAssertEqual(self?.response?.baseUrl, "https://test.com")
+            XCTAssertNil(self?.response?.baseUrl)
         }
     }
 
