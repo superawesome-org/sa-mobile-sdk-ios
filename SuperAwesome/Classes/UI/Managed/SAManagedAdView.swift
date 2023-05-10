@@ -77,6 +77,7 @@ public final class SAManagedAdView: UIView, Injectable {
     }
 
     public func load(placementId: Int, html: String, baseUrl: String?) {
+
         if let baseUrl = baseUrl, let url = URL(string: baseUrl) {
             self.placementId = placementId
 

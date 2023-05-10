@@ -55,7 +55,19 @@ class AdProcessor: AdProcessorType {
             response.baseUrl = Constants.defaultBaseUrl
             completion(response)
         case .video:
-            if let url = ad.creative.details.vast {
+            if ad.isVpaid == true {
+                var baseUrl: String? = nil
+
+                if let tag = ad.creative.details.tag, let bUrl = tag.extractURLs().first {
+                    baseUrl = (bUrl.scheme ?? "https") + "://" + (bUrl.host ?? "")
+                }
+
+                if let vUrl = ad.creative.details.vast?.baseUrl, baseUrl == nil {
+                    baseUrl = vUrl
+                }
+                response.baseUrl = baseUrl
+                completion(response)
+            } else if let url = ad.creative.details.vast {
                 handleVast(url, initialVast: nil) { [weak self] vast in
                     response.vast = vast
                     response.baseUrl = (vast?.url ??? Constants.defaultBaseUrl).baseUrl
@@ -88,19 +100,19 @@ class AdProcessor: AdProcessorType {
     private func handleVast(_ url: String,
                             initialVast: VastAd?,
                             isRedirect: Bool = false,
-                            complition: @escaping OnComplete<VastAd?>) {
+                            completion: @escaping OnComplete<VastAd?>) {
         networkDataSource.getData(url: url) { [weak self] result in
             switch result {
             case .success(let data):
                 let vast = self?.vastParser.parse(data)
                 if let redirect = vast?.redirect, !isRedirect {
                     let mergedVast = vast?.merge(from: initialVast)
-                    self?.handleVast(redirect, initialVast: mergedVast, isRedirect: true, complition: complition)
+                    self?.handleVast(redirect, initialVast: mergedVast, isRedirect: true, completion: completion)
                 } else {
                     let mergedVast = vast?.merge(from: initialVast)
-                    complition(mergedVast)
+                    completion(mergedVast)
                 }
-            case .failure: complition(initialVast)
+            case .failure: completion(initialVast)
             }
         }
     }

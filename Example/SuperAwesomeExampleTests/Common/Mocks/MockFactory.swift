@@ -10,24 +10,25 @@
 class MockFactory {
 
     static func makeAdWithTagAndClickUrl(_ tag: String?, _ url: String?) -> Ad {
-        makeAd(.tag, nil, url, tag)
+        makeAd(format: .tag, vast: nil, clickUrl: url, tag: tag)
     }
 
     static func makeAdWithImageLink(_ url: String?) -> Ad {
-        makeAd(.imageWithLink, nil, url)
+        makeAd(format: .imageWithLink, vast: nil, clickUrl: url)
     }
 
     static func makeAd(
-        _ format: CreativeFormatType = .imageWithLink,
-        _ vast: String? = nil,
-        _ clickUrl: String? = nil,
-        _ tag: String? = nil,
-        _ showPadlock: Bool = false,
-        _ ksfRequest: String? = nil,
-        _ bumper: Bool = true
+        format: CreativeFormatType = .imageWithLink,
+        vast: String? = nil,
+        clickUrl: String? = nil,
+        tag: String? = nil,
+        showPadlock: Bool = false,
+        ksfRequest: String? = nil,
+        bumper: Bool = true,
+        isVpaid: Bool = false
     ) -> Ad {
         Ad(
-           isVpaid: true,
+           isVpaid: isVpaid,
            showPadlock: showPadlock,
            lineItemId: 50,
            test: false,
