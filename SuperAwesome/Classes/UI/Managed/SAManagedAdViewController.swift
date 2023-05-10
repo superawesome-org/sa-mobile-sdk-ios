@@ -236,10 +236,16 @@ extension SAManagedAdViewController: SAManagedAdViewDelegate {
             isCompleted = true
         }
 
-        if eventsForClosing.contains(event) {
-            if !isBeingDismissed && config.shouldCloseAtEnd {
-                close()
-            }
+        if event == .adEnded && config.shouldCloseAtEnd {
+            dismiss()
+        } else if eventsForClosing.contains(event) {
+            dismiss()
+        }
+    }
+
+    private func dismiss() {
+        if !isBeingDismissed {
+            close()
         }
     }
 
