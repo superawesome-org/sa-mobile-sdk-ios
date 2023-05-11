@@ -22,9 +22,11 @@ extension String {
     }
 
     /// Returns the base url formed from a full url
-    var baseUrl: String {
-        let url = URL(string: self)
-        return "\(url?.scheme ?? "")://\(url?.host ?? "")"
+    var baseUrl: String? {
+        guard let url = URL(string: self),
+                let scheme = url.scheme,
+                let host = url.host else { return nil }
+        return "\(scheme)://\(host)"
     }
 
     /// Returns the extension name or nil

@@ -39,18 +39,52 @@ class StringExtensionTests: XCTestCase {
         expect(result3).to(beNil())
     }
 
-    func test_baseUrl_method_on_String_type() {
+    func test_cleanBaseUrl_with_path_params() {
+
         // given
-        let url1 = "https://my.url.com/path/to/image.png"
-        let url2 = "hhhsasaaaa"
+        let url = "https://something.com/blah/web.js?something=some&blah=3"
 
         // when
-        let result1 = url1.baseUrl
-        let result2 = url2.baseUrl
+        let result = url.baseUrl
 
         // then
-        expect(result1).to(equal("https://my.url.com"))
-        expect(result2).to(equal("://"))
+        expect(result).to(equal("https://something.com"))
+    }
+
+    func test_cleanBaseUrl_with_noPath_noParams_trailingSlash() {
+
+        // given
+        let url = "https://something.com/"
+
+        // when
+        let result = url.baseUrl
+
+        // then
+        expect(result).to(equal("https://something.com"))
+    }
+
+    func test_cleanBaseUrl_with_noPath_noParams() {
+
+        // given
+        let url = "https://something.com"
+
+        // when
+        let result = url.baseUrl
+
+        // then
+        expect(result).to(equal("https://something.com"))
+    }
+
+    func test_cleanBaseUrl_with_path() {
+
+        // given
+        let url = "https://something.com/blah/web.js"
+
+        // when
+        let result = url.baseUrl
+
+        // then
+        expect(result).to(equal("https://something.com"))
     }
 
     func test_toInt_method_on_String_type() {

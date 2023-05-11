@@ -58,7 +58,7 @@ class AdProcessor: AdProcessorType {
             if ad.isVpaid == true {
 
                 if let tag = ad.creative.details.tag,
-                    let cleanBaseUrl = tag.extractURLs().first?.cleanBaseUrl {
+                   let cleanBaseUrl = tag.extractURLs().first?.absoluteString.baseUrl {
                     response.baseUrl = cleanBaseUrl
                 }
 
