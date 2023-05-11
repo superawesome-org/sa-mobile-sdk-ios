@@ -66,13 +66,15 @@ public final class SAManagedAdView: UIView, Injectable {
         addSubview(webView)
         webView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            webView.leadingAnchor.constraint(equalTo: safeLeadingAnchor, constant: 0),
-            webView.trailingAnchor.constraint(equalTo: safeTrailingAnchor, constant: 0),
-            webView.bottomAnchor.constraint(equalTo: safeBottomAnchor, constant: 0),
-            webView.topAnchor.constraint(equalTo: safeTopAnchor, constant: 0)
+            webView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
+            webView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
+            webView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
+            webView.topAnchor.constraint(equalTo: topAnchor, constant: 0)
         ])
         webView.navigationDelegate = self
         webView.uiDelegate = self
+        webView.backgroundColor = .black
+        backgroundColor = .black
         accessibilityIdentifier = "\(accessibilityPrefix)View"
     }
 

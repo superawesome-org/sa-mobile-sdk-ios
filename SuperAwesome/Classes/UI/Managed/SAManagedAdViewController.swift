@@ -188,7 +188,7 @@ import WebKit
             managedAdView.bottomAnchor.constraint(equalTo: view.safeBottomAnchor, constant: 0),
             managedAdView.topAnchor.constraint(equalTo: view.safeTopAnchor, constant: 0)
         ])
-
+        view.backgroundColor = .black
         configureCloseButton()
     }
 

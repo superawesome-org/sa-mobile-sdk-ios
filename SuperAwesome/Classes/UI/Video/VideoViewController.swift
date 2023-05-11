@@ -26,11 +26,11 @@ import UIKit
         self.config = config
         videoEvents = VideoEvents(adResponse)
         super.init(nibName: nil, bundle: nil)
-        self.controller.adResponse = adResponse
-        self.controller.callback = callback
-        self.controller.parentalGateEnabled = config.isParentalGateEnabled
-        self.controller.bumperPageEnabled = config.isBumperPageEnabled
-        self.controller.videoDelegate = self
+        controller.adResponse = adResponse
+        controller.callback = callback
+        controller.parentalGateEnabled = config.isParentalGateEnabled
+        controller.bumperPageEnabled = config.isBumperPageEnabled
+        controller.videoDelegate = self
         videoEvents.delegate = self
     }
 
@@ -58,6 +58,20 @@ import UIKit
         view.accessibilityIdentifier = "\(accessibilityPrefix)Screen"
         view.backgroundColor = .black
         view.layoutMargins = .zero
+
+        // swiftlint:disable discarded_notification_center_observer
+        NotificationCenter.default.addObserver(forName: UIApplication.willEnterForegroundNotification,
+                                               object: nil,
+                                               queue: .main) { [weak self] notification in
+            self?.willEnterForeground(notification)
+        }
+
+        NotificationCenter.default.addObserver(forName: UIApplication.didEnterBackgroundNotification,
+                                               object: nil,
+                                               queue: .main) { [weak self] _ in
+            self?.didEnterBackground()
+        }
+        // swiftlint:enable discarded_notification_center_observer
 
         // setup video player
         videoPlayer = AwesomeVideoPlayer()
@@ -110,22 +124,6 @@ import UIKit
         if let url = controller.filePathUrl {
             control.play(url: url)
         }
-
-        // register notification for foreground
-        // swiftlint:disable discarded_notification_center_observer
-        NotificationCenter.default.addObserver(forName: UIApplication.willEnterForegroundNotification,
-                                               object: nil,
-                                               queue: .main) { [weak self] notification in
-            self?.willEnterForeground(notification)
-        }
-
-        // register notification for background
-        NotificationCenter.default.addObserver(forName: UIApplication.didEnterBackgroundNotification,
-                                               object: nil,
-                                               queue: .main) { [weak self] _ in
-            self?.didEnterBackground()
-        }
-        // swiftlint:enable discarded_notification_center_observer
     }
 
     override func viewDidAppear(_ animated: Bool) {

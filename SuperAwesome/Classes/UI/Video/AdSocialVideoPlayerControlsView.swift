@@ -47,29 +47,29 @@ import UIKit
     public override func updateConstraints() {
         if !didSetupConstraints {
             blackMask.translatesAutoresizingMaskIntoConstraints = false
-            blackMask.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-            blackMask.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-            blackMask.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-            blackMask.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1/5).isActive = true
+            blackMask.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+            blackMask.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+            blackMask.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+            blackMask.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 1/5).isActive = true
             chrono.translatesAutoresizingMaskIntoConstraints = false
             if #available(iOS 11.0, *) {
                 chrono.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor, constant: 5.0).isActive = true
                 chrono.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor, constant: -5.0).isActive = true
             } else {
-                chrono.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5.0).isActive = true
-                chrono.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5.0).isActive = true
+                chrono.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5.0).isActive = true
+                chrono.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5.0).isActive = true
             }
             chrono.widthAnchor.constraint(equalToConstant: 50).isActive = true
             chrono.heightAnchor.constraint(equalToConstant: 20).isActive = true
 
             if !smallClicker {
-                clicker.topAnchor.constraint(equalTo: self.topAnchor, constant: 8.0).isActive = true
-                clicker.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-                clicker.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-                clicker.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8.0).isActive = true
+                clicker.topAnchor.constraint(equalTo: topAnchor, constant: 8.0).isActive = true
+                clicker.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+                clicker.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+                clicker.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8.0).isActive = true
             } else {
                 clicker.leadingAnchor.constraint(equalTo: chrono.trailingAnchor, constant: 8.0).isActive = true
-                clicker.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+                clicker.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
                 clicker.widthAnchor.constraint(equalToConstant: 100).isActive = true
                 clicker.heightAnchor.constraint(equalToConstant: 20).isActive = true
             }
@@ -82,11 +82,13 @@ import UIKit
                 padlock.translatesAutoresizingMaskIntoConstraints = false
 
                 if #available(iOS 11.0, *) {
-                    padlock.topAnchor.constraint(equalToSystemSpacingBelow: safeAreaLayoutGuide.topAnchor, multiplier: 1.0).isActive = true
-                    padlock.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor, constant: 0.0).isActive = true
+                    padlock.topAnchor.constraint(equalToSystemSpacingBelow: safeAreaLayoutGuide.topAnchor,
+                                                 multiplier: 1.0).isActive = true
+                    padlock.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor,
+                                                     constant: 0.0).isActive = true
                 } else {
-                    padlock.topAnchor.constraint(equalTo: self.topAnchor, constant: 0.0).isActive = true
-                    padlock.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0.0).isActive = true
+                    padlock.topAnchor.constraint(equalTo: topAnchor, constant: 0.0).isActive = true
+                    padlock.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0.0).isActive = true
                 }
                 padlock.widthAnchor.constraint(equalToConstant: 77.0).isActive = true
                 padlock.heightAnchor.constraint(equalToConstant: 31.0).isActive = true
