@@ -187,7 +187,6 @@ public class BumperPage: UIViewController, Injectable {
         label.numberOfLines = 0
         label.text = stringProvider.bumperPageLeaving(appName: BumperPage.overridenName)
         label.accessibilityIdentifier = "\(accessibilityPrefix)Labels.Big"
-
         panel.addSubview(label)
 
         NSLayoutConstraint.activate([
