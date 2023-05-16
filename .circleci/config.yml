@@ -157,7 +157,7 @@ jobs:
       - run:
           name: Check semantic release version
           command: |
-            ${SA_PATH_TO_CONTINUOUS_INTEGRATION_REPO}/mobile/semantic-release/semantic-release.sh --dry-run
+            ${SA_PATH_TO_CONTINUOUS_INTEGRATION_REPO}/mobile/semantic-release/semantic-release-sdks.sh --dry-run
       - persist_to_workspace:
           root: "."
           paths:
@@ -210,7 +210,7 @@ jobs:
           name: Run semantic release
           command: |
             git pull https://x-access-token:${GITHUB_TOKEN}@github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git ${SA_SEMANTIC_RELEASE_RUN_BRANCH}
-            ${SA_PATH_TO_CONTINUOUS_INTEGRATION_REPO}/mobile/semantic-release/semantic-release.sh
+            ${SA_PATH_TO_CONTINUOUS_INTEGRATION_REPO}/mobile/semantic-release/semantic-release-sdks.sh
 
   ## Run sdk push - base
   sdk_push_superawesome:
@@ -257,7 +257,7 @@ jobs:
             # get previous release tag
             export CURRENT_VERSION=`git tag -l 'v*' --sort=-refname | sed -n 1p`
             export PREVIOUS_VERSION=`git tag -l 'v*' --sort=-refname | sed -n 2p`
-            export AWK_PATTERN="/^([#]+ \[${CURRENT_VERSION:1}\])/{flag=1;next}/^([#]+ \[${PREVIOUS_VERSION:1}\])/{flag=0}flag"
+            export AWK_PATTERN="\"/^([#]+ \[${CURRENT_VERSION:1}\])/{flag=1;next}/^([#]+ \[${PREVIOUS_VERSION:1}\])/{flag=0}flag\""
 
             # get release notes from semantic-release
             export CHANGES=`awk $AWK_PATTERN CHANGELOG.md`
@@ -273,8 +273,13 @@ jobs:
             # insert new release and change log
             perl -i -pe '$_ = "\n## $ENV{CURRENT_VERSION}$ENV{CHANGES}\n$_" if $. == 7' $RELEASE_DOC_PATH
 
+            # update config file release version
+            echo "export CONFIG_PATH=sa-mobile-sdk-publisher-docs/docs/_config.yml" >> $BASH_ENV
+            sed -i '' "s/ios_latest_version: ${PREVIOUS_VERSION:1}/ios_latest_version: ${CURRENT_VERSION:1}/g" $CONFIG_PATH
+
             # commit and push
             git add $RELEASE_DOC_PATH
+            git add $CONFIG_PATH
             git commit -m "Add iOS release version $RELEASE_NUMBER via Circle CI"
             git push https://x-access-token:${GITHUB_TOKEN}@github.com/SuperAwesomeLTD/sa-mobile-sdk-publisher-docs.git -q main
       - run:
