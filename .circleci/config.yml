@@ -175,7 +175,7 @@ jobs:
           name: Auto update release version
           command: |
             echo "export NEXT_RELEASE_NUMBER=`cat nextRelease`" >> $BASH_ENV
-            echo "export VERSION_PROPERTIES=Pod/Classes/Common/Model/Version.swift" >> $BASH_ENV
+            echo "export VERSION_PROPERTIES=SuperAwesome/Classes/Common/Model/Version.swift" >> $BASH_ENV
             source $BASH_ENV
 
             if [[ ( ! -z "$NEXT_RELEASE_NUMBER" ) && ( -f "$VERSION_PROPERTIES" ) ]]; then
