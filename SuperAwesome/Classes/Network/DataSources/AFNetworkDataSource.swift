@@ -16,7 +16,13 @@ class AFNetworkDataSource: NetworkDataSourceType {
     }()
 
     func getData(url: String, completion: OnResult<Data>?) {
-        networking.request(url).responseData { response in
+
+        guard let cleanUrl = url.removingPercentEncoding?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+            completion?(Result.failure(AwesomeAdsError.network))
+            return
+        }
+
+        networking.request(cleanUrl, method: .get).responseData { response in
             guard let data = response.data else {
                 completion?(Result.failure(AwesomeAdsError.network))
                 return

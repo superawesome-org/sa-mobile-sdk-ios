@@ -120,4 +120,40 @@ class VastParserTests: XCTestCase {
         expect(vast?.clickTrackingEvents).to(equal(["https://video-ad-stats.googlesyndication.com/video/client_events?event=6&amp;web_property=ca-pub-3279133228669082&amp;cpn=[CPN]&amp;break_type=[BREAK_TYPE]&amp;slot_pos=[SLOT_POS]&amp;ad_id=[AD_ID]&amp;ad_sys=[AD_SYS]&amp;ad_len=[AD_LEN]&amp;p_w=[P_W]&amp;p_h=[P_H]&amp;mt=[MT]&amp;rwt=[RWT]&amp;wt=[WT]&amp;sdkv=[SDKV]&amp;vol=[VOL]&amp;content_v=[CONTENT_V]&amp;conn=[CONN]&amp;format=[FORMAT_NAMESPACE]_[FORMAT_TYPE]_[FORMAT_SUBTYPE]", "https://pubads.g.doubleclick.net/pcs/click?xai=AKAOjsuyjdNJZ1zHVE5WfaJrEvrP7eK0VqSdNyGBRoMjMXd90VYE3xZVr3l5Kn0h166VefqEYqeNX_z_zObIjytcV-YGYRDvmnzU93x3Kplly4YHIdlHtXRrAE3AbaZAjN9HEjoTs4g6GZM7lc4KX_5OdCRwaEq-DuVxs0QZNkyJ5b8nCA3nkya8WzKLmAf_4sjx3e3aAanzjuaYc1__5LMi7hXLuYk_Bubh7HNPofn4y8PKVmnaOZGfaycMkFIr4pTd1DdQJ6Ma&amp;sig=Cg0ArKJSzOdaV5VR9GxbEAE&amp;urlfix=1"]))
     }
 
+    func test_parse_podded_response() throws {
+        // Given
+        let parser = VastParser(connectionProvider: ConnectionProviderMock())
+
+        // When
+        let vast = parser.parse(xmlFile("mock_vast_response_podded"))
+
+        // Then
+        expect(vast?.errorEvents.count).to(equal(1))
+        expect(vast?.impressionEvents.count).to(equal(1))
+        expect(vast?.clickTrackingEvents.count).to(equal(0))
+        expect(vast?.redirect).to(beNil())
+        expect(vast?.type).to(equal(.inLine))
+        expect(vast?.media.count).to(equal(1))
+        expect(vast?.creativeViewEvents).to(equal(["https://ads.superawesome.tv/v2/video/tracking?event=creativeView&placement=30479&creative=-1&line_item=-1&sdkVersion=unknown&rnd=4240693&device=web&country=GB"]))
+
+        expect(vast?.startEvents).to(equal(["https://ads.superawesome.tv/v2/video/tracking?event=start&placement=30479&creative=-1&line_item=-1&sdkVersion=unknown&rnd=3286915&device=web&country=GB"]))
+
+        expect( vast?.firstQuartileEvents).to(equal([
+            "https://ads.superawesome.tv/v2/video/tracking?event=firstQuartile&placement=30479&creative=-1&line_item=-1&sdkVersion=unknown&rnd=6712493&device=web&country=GB"
+        ]))
+
+        expect( vast?.midPointEvents).to(equal([
+            "https://ads.superawesome.tv/v2/video/tracking?event=midpoint&placement=30479&creative=-1&line_item=-1&sdkVersion=unknown&rnd=6657530&device=web&country=GB"
+        ]))
+
+        expect( vast?.thirdQuartileEvents).to(equal([
+            "https://ads.superawesome.tv/v2/video/tracking?event=thirdQuartile&placement=30479&creative=-1&line_item=-1&sdkVersion=unknown&rnd=5158651&device=web&country=GB"
+        ]))
+
+        expect( vast?.completeEvents).to(equal([
+            "https://ads.superawesome.tv/v2/video/tracking?event=complete&placement=30479&creative=-1&line_item=-1&sdkVersion=unknown&rnd=2312316&device=web&country=GB"
+        ]))
+
+        expect(vast?.clickTrackingEvents).to(equal([]))
+    }
 }

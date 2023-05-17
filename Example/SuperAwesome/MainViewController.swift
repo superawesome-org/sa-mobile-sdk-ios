@@ -78,7 +78,7 @@ class MainViewController: UIViewController {
             guard let strongSelf = self else { return }
             print(" bannerView >> \(event.name())")
             strongSelf.logEventForUITesting(event)
-            if event == .adLoaded && self?.isPlayImmediatelyEnabled == true {
+            if (event == .adLoaded || event == .adAlreadyLoaded) && self?.isPlayImmediatelyEnabled == true {
                 bannerView.play()
             }
         }
@@ -166,7 +166,7 @@ class MainViewController: UIViewController {
             guard let strongSelf = self else { return }
             strongSelf.logEventForUITesting(event)
             print(" InterstitialAd >> \(event.name())")
-            if event == .adLoaded && strongSelf.isPlayImmediatelyEnabled {
+            if (event == .adLoaded || event == .adAlreadyLoaded) && strongSelf.isPlayImmediatelyEnabled {
                 InterstitialAd.play(placementId, fromVC: strongSelf)
             }
         }
@@ -178,7 +178,7 @@ class MainViewController: UIViewController {
             guard let strongSelf = self else { return }
             print("VideoAd >> \(event.name())")
             strongSelf.logEventForUITesting(event)
-            if event == .adLoaded && strongSelf.isPlayImmediatelyEnabled {
+            if (event == .adLoaded || event == .adAlreadyLoaded) && strongSelf.isPlayImmediatelyEnabled {
                 VideoAd.play(withPlacementId: placementId, fromVc: strongSelf)
             }
         }

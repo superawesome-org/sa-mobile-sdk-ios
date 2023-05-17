@@ -89,7 +89,8 @@ class AdProcessor: AdProcessorType {
             case .success(let localFilePath):
                 response.filePath = localFilePath
                 completion(response)
-            case .failure: completion(response)
+            case .failure:
+                completion(response)
             }
         })
     }
@@ -109,7 +110,8 @@ class AdProcessor: AdProcessorType {
                     let mergedVast = vast?.merge(from: initialVast)
                     completion(mergedVast)
                 }
-            case .failure: completion(initialVast)
+            case .failure:
+                completion(initialVast)
             }
         }
     }

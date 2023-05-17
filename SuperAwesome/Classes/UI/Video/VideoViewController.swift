@@ -119,16 +119,18 @@ import UIKit
         if config.closeButtonState == .visibleImmediately {
             chrome.makeCloseButtonVisible()
         }
-
-        // play ad
-        if let url = controller.filePathUrl {
-            control.play(url: url)
-        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        control.start()
+        // play ad
+        DispatchQueue.main.async { [weak self] in
+            if let url = self?.controller.filePathUrl, self?.control.getDuration() == 0 {
+                self?.control.play(url: url)
+            } else {
+                self?.control.start()
+            }
+        }
     }
 
     override func viewDidDisappear(_ animated: Bool) {

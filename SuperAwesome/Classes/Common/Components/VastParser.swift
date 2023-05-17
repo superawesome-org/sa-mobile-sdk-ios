@@ -19,11 +19,15 @@ class VastParser: NSObject, VastParserType {
 
         let xml = XML.parse(data)
         var root: XML.Accessor
-
+        let adCount = xml.VAST.Ad.all?.count ?? 0
         var type: VastType!
+
         if xml.VAST.Ad.InLine.error == nil {
             type = .inLine
             root = xml.VAST.Ad.InLine
+        } else if adCount > 0 && xml.VAST.Ad[0].InLine.error == nil {
+            type = .inLine
+            root = xml.VAST.Ad[0].InLine
         } else if xml.VAST.Ad.Wrapper.error == nil {
             type = .wrapper
             root = xml.VAST.Ad.Wrapper

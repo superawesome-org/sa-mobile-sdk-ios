@@ -157,6 +157,11 @@ public class VideoAd: NSObject, Injectable {
 
                 viewController.present(managedVideoAdController, animated: true)
             } else {
+                guard ad.filePath != nil else {
+                    callback?(placementId, .adFailedToShow)
+                    ads[placementId] = AdState.none
+                    return
+                }
                 let adViewController = VideoViewController(adResponse: ad, callback: callback, config: config)
                 adViewController.modalPresentationStyle = .fullScreen
                 adViewController.modalTransitionStyle = .coverVertical
@@ -201,13 +206,13 @@ public class VideoAd: NSObject, Injectable {
         }
 
         logger.success("Event callback: adLoaded for placement \(placementId)")
-        self.ads[placementId] = .hasAd(ad: response)
+        ads[placementId] = .hasAd(ad: response)
         callback?(placementId, .adLoaded)
     }
 
     private static func onFailure(_ placementId: Int, _ error: Error) {
         logger.error("Event callback: adFailedToLoad for placement \(placementId)", error: error)
-        self.ads[placementId] = AdState.none
+        ads[placementId] = AdState.none
         callback?(placementId, .adFailedToLoad)
     }
 

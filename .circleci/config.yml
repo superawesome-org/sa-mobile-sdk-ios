@@ -264,7 +264,7 @@ jobs:
             export CHANGES=`sed -E 's/ \(\[([^\[]+)\](\(.*\))//g' \<<< $CHANGES`
 
             # checkout docs repo
-            git pull https://x-access-token:${GITHUB_TOKEN}@github.com/SuperAwesomeLTD/sa-mobile-sdk-publisher-docs.git main
+            git clone https://x-access-token:${GITHUB_TOKEN}@github.com/SuperAwesomeLTD/sa-mobile-sdk-publisher-docs.git
 
             # Update releases
             echo "export RELEASE_DOC_PATH=sa-mobile-sdk-publisher-docs/docs/_docs/ios/releases.md" >> $BASH_ENV
