@@ -257,30 +257,40 @@ jobs:
             # get previous release tag
             export CURRENT_VERSION=`git tag -l 'v*' --sort=-refname | sed -n 1p`
             export PREVIOUS_VERSION=`git tag -l 'v*' --sort=-refname | sed -n 2p`
-            export AWK_PATTERN="\"/^([#]+ \[${CURRENT_VERSION:1}\])/{flag=1;next}/^([#]+ \[${PREVIOUS_VERSION:1}\])/{flag=0}flag\""
 
             # get release notes from semantic-release
-            export CHANGES=`awk $AWK_PATTERN CHANGELOG.md`
-            export CHANGES=`sed -E 's/ \(\[([^\[]+)\](\(.*\))//g' \<<< $CHANGES`
+            export CHANGES=`awk "/^([#]+ \[${CURRENT_VERSION:1}\])/{flag=1;next}/^([#]+ \[${PREVIOUS_VERSION:1}\])/{flag=0}flag" CHANGELOG.md`
+
+            touch select_changes.txt
+            echo "$CHANGES" > select_changes.txt
+            perl -i -pe 's/ \(\[([^\[]+)\](\(.*\))//g' select_changes.txt
+            export CHANGES=`cat select_changes.txt`
+            cat select_changes.txt
+
+            echo "CURRENT_VERSION ${CURRENT_VERSION}"
+            echo "PREVIOUS_VERSION ${PREVIOUS_VERSION}"
+            echo "Changes Found ${CHANGES}"
 
             # checkout docs repo
             git clone https://x-access-token:${GITHUB_TOKEN}@github.com/SuperAwesomeLTD/sa-mobile-sdk-publisher-docs.git
 
             # Update releases
-            echo "export RELEASE_DOC_PATH=sa-mobile-sdk-publisher-docs/docs/_docs/ios/releases.md" >> $BASH_ENV
-            source $BASH_ENV
+            export RELEASE_DOC_PATH="sa-mobile-sdk-publisher-docs/docs/_docs/ios/releases.md"
 
             # insert new release and change log
-            perl -i -pe '$_ = "\n## $ENV{CURRENT_VERSION}$ENV{CHANGES}\n$_" if $. == 7' $RELEASE_DOC_PATH
+
+            export CLEAN_CURRENT_VERSION="${CURRENT_VERSION:1}"
+            perl -i -pe '$_ = "\n## $ENV{CLEAN_CURRENT_VERSION}$ENV{CHANGES}\n$_" if $. == 7' $RELEASE_DOC_PATH
 
             # update config file release version
-            echo "export CONFIG_PATH=sa-mobile-sdk-publisher-docs/docs/_config.yml" >> $BASH_ENV
-            sed -i '' "s/ios_latest_version: ${PREVIOUS_VERSION:1}/ios_latest_version: ${CURRENT_VERSION:1}/g" $CONFIG_PATH
+            export CONFIG_PATH="sa-mobile-sdk-publisher-docs/docs/_config.yml"
+
+            sed -i '' "s/ios_latest_version:.*/ios_latest_version: ${CURRENT_VERSION:1}/g" $CONFIG_PATH
 
             # commit and push
             git add $RELEASE_DOC_PATH
             git add $CONFIG_PATH
-            git commit -m "Add iOS release version $RELEASE_NUMBER via Circle CI"
+            git commit -m "Add iOS release version $CURRENT_VERSION via Circle CI"
             git push https://x-access-token:${GITHUB_TOKEN}@github.com/SuperAwesomeLTD/sa-mobile-sdk-publisher-docs.git -q main
       - run:
           name: Push Superawesome to cocoapods
