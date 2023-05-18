@@ -288,8 +288,9 @@ jobs:
             sed -i '' "s/ios_latest_version:.*/ios_latest_version: ${CURRENT_VERSION:1}/g" $CONFIG_PATH
 
             # commit and push
-            git add $RELEASE_DOC_PATH
-            git add $CONFIG_PATH
+            cd sa-mobile-sdk-publisher-docs
+            git add docs/_docs/ios/releases.md
+            git add docs/_config.yml
             git commit -m "Add iOS release version $CURRENT_VERSION via Circle CI"
             git push https://x-access-token:${GITHUB_TOKEN}@github.com/SuperAwesomeLTD/sa-mobile-sdk-publisher-docs.git -q main
       - run:
@@ -489,7 +490,7 @@ workflows:
       - sdk_push_superawesome_admob:
           context: MOBILE_IOS_SDKS
           requires:
-            - checkout_code
+            - sdk_push_superawesome
           filters:
             branches:
               ignore: /.*/

@@ -1,32 +1,3 @@
-# [9.0.0](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/compare/v8.6.0...v9.0.0) (2023-05-17)
-
-
-### Bug Fixes
-
-* **ManagedAd:** Corrected the close behaviour for Ads when close video at end is disabled. ([#11](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/issues/11)) ([2843a8b](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/commit/2843a8b02946fa9045274db69b02f673702996b7))
-* **Video:** Added the ability to load direct "vast" videos as they do not load and play ([#9](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/issues/9)) ([4606621](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/commit/46066213a34964ed14be7ae6efa7a74a59ea3ef5))
-* **Video:** Fixed Extraneous Celtra call when loading a VPAID Ad ([#13](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/issues/13)) ([708b00b](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/commit/708b00b9e571e0e6769fbd9e3e00b21c596b9b28))
-* **Video:** Moved play code for videos so that the video starts to play on appear instead of view did load ([#20](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/issues/20)) ([ebd1ee8](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/commit/ebd1ee8d3bfd8294218124ec216eff78c6d8f1af))
-* **Video:** Removed margins around videos and webviews so that Ads fill the screen better. ([#17](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/issues/17)) ([ed3c20e](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/commit/ed3c20e3792ae7dfd12ab7fe895f1e5a81b55198))
-* **Video:** Removed the gradient from videos and made the ad counter darker. ([ac8ee7f](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/commit/ac8ee7f910ae22d7e5840a623983e4e96ecc748d))
-* **Video:** Vast tag nil handlers ([#14](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/issues/14)) ([2fdb1a5](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/commit/2fdb1a5b68974e21f608bca4cf08f8fb8a3dbea1))
-
-
-### Features
-
-* **UITesting:** Added tests around parental gate and banner edge cases ([#5](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/issues/5)) ([adce2d8](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/commit/adce2d8fc306a5160ea0a12ab32c613e9e4778d2))
-
-
-### Performance Improvements
-
-* **CI:** Fixed CI issues ([#19](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/issues/19)) ([2e70088](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/commit/2e70088d3eff077ad6ac528a09b938468e1f1ced))
-* **Release:** Updated Major version to bring code into line with other SDKs ([#18](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/issues/18)) ([aa7e639](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/commit/aa7e6398ebc7470ba88b10b12837b68e002613ad))
-
-
-### BREAKING CHANGES
-
-* **CI:** Updating version number to be inline with Android SDK, there are no breaking changes in this version.
-
 # [8.6.0](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/compare/v8.5.7...v8.6.0) (2023-04-19)
 
 
