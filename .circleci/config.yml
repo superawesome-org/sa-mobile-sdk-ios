@@ -252,6 +252,9 @@ jobs:
           aws-region: SA_IOS_APPS_S3_REGION
           aws-secret-access-key: SA_IOS_APPS_S3_REPO_SECRET
       - run:
+          name: Push Superawesome to cocoapods
+          command: fastlane sdk_push isPrivateRepo:false skipVersionBump:true
+      - run:
           name: Update Release page in docs
           command: |
             # get previous release tag
@@ -265,7 +268,6 @@ jobs:
             echo "$CHANGES" > select_changes.txt
             perl -i -pe 's/ \(\[([^\[]+)\](\(.*\))//g' select_changes.txt
             export CHANGES=`cat select_changes.txt`
-            cat select_changes.txt
 
             echo "CURRENT_VERSION ${CURRENT_VERSION}"
             echo "PREVIOUS_VERSION ${PREVIOUS_VERSION}"
@@ -293,9 +295,6 @@ jobs:
             git add docs/_config.yml
             git commit -m "Add iOS release version $CURRENT_VERSION via Circle CI"
             git push https://x-access-token:${GITHUB_TOKEN}@github.com/SuperAwesomeLTD/sa-mobile-sdk-publisher-docs.git -q main
-      - run:
-          name: Push Superawesome to cocoapods
-          command: fastlane sdk_push isPrivateRepo:false skipVersionBump:true
 
   ## Run sdk push - admob
   sdk_push_superawesome_admob:
@@ -327,7 +326,7 @@ jobs:
           aws-secret-access-key: SA_IOS_APPS_S3_REPO_SECRET
       - run:
           name: Push Superawesome-AdMob to cocoapods
-          command: fastlane sdk_push isPrivateRepo:false skipVersionBump:true
+          command: fastlane sdk_push podSpec:SuperAwesomeAdMob isPrivateRepo:false skipVersionBump:true
 
 workflows:
   nightly:
