@@ -228,7 +228,9 @@ jobs:
       - *clone_scripts_repo
       - *bootstrap_ios
       - *configure_google_services
-      
+      - run:
+          name: Push Superawesome to cocoapods
+          command: fastlane sdk_push isPrivateRepo:false skipVersionBump:true
       - run:
           name: Compress
           command: |
@@ -251,9 +253,6 @@ jobs:
           aws-access-key-id: SA_IOS_APPS_S3_REPO_KEY
           aws-region: SA_IOS_APPS_S3_REGION
           aws-secret-access-key: SA_IOS_APPS_S3_REPO_SECRET
-      - run:
-          name: Push Superawesome to cocoapods
-          command: fastlane sdk_push isPrivateRepo:false skipVersionBump:true
       - run:
           name: Update Release page in docs
           command: |
