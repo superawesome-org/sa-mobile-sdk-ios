@@ -324,6 +324,9 @@ jobs:
           aws-region: SA_IOS_APPS_S3_REGION
           aws-secret-access-key: SA_IOS_APPS_S3_REPO_SECRET
       - run:
+          name: Pod Repo Update
+          command: pod repo update
+      - run:
           name: Push Superawesome-AdMob to cocoapods
           command: fastlane sdk_push podSpec:SuperAwesomeAdMob isPrivateRepo:false skipVersionBump:true
 
