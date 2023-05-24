@@ -500,4 +500,27 @@ class IVVideoAdUITests: BaseUITest {
             adsList.assertEvent("adFailedToLoad")
         }
     }
+    
+    func test_closeButton_hidden_until_video_ends() throws {
+        adsListScreen(app) { adsList in
+            adsList.waitForView()
+            adsList.tapSettingsButton()
+            
+            settingsScreen(app) { settings in
+                settings.waitForView()
+                settings.tapCloseButtonHidden()
+                settings.tapCloseAtEndDisable()
+                settings.tapCloseButton()
+            }
+            
+            adsList.tapPlacement(withName: "Plain Grey VPAID Ad")
+            
+            interactiveVideoScreen(app) { screen in
+                screen.waitForView()
+                screen.checkCloseButtonDoesNotExist()
+                // Wait for the close button to be visible
+                screen.waitAndCheckForCloseButton(timeout: Timeout.extraLong)
+            }
+        }
+    }
 }

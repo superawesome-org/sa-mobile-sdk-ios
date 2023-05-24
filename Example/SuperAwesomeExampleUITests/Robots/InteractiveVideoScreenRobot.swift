@@ -30,8 +30,8 @@ class InteractiveVideoScreenRobot: Robot {
         XCTAssertFalse(closeButton.exists)
     }
 
-    func waitAndCheckForCloseButton() {
-        XCTAssertTrue(closeButton.waitForExistence(timeout: 5))
+    func waitAndCheckForCloseButton(timeout: Timeout = .standard) {
+        XCTAssertTrue(closeButton.waitForExistence(timeout: timeout.duration))
     }
 
     func waitForView() {

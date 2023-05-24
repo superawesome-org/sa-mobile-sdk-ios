@@ -19,7 +19,7 @@ import WebKit
     private let closeButtonSize: CGFloat = 40.0
 
     private let eventsForClosing = [
-        AdEvent.adEmpty, .adFailedToLoad, .adFailedToShow, .adEnded, .adClosed
+        AdEvent.adEmpty, .adFailedToLoad, .adFailedToShow, .adClosed
     ]
 
     private var closeButton: UIButton?
@@ -34,6 +34,7 @@ import WebKit
     private lazy var controller: AdControllerType = dependencies.resolve()
     private lazy var viewableDetector: ViewableDetectorType? = dependencies.resolve() as ViewableDetectorType
     private lazy var environment: Environment = dependencies.resolve() as Environment
+    private lazy var logger: LoggerType = dependencies.resolve(param: SAManagedAdViewController.self)
 
     // MARK: Init
 
@@ -135,14 +136,16 @@ import WebKit
             button.isHidden = true
         }
     }
+    
+    private func showCloseButton() {
+        closeButton?.isHidden = false
+    }
 
     private func showCloseButtonAfterDelay() {
-
         cancelCloseButtonVisibilityFallback()
 
         viewableDetector?.start(for: managedAdView, hasBeenVisible: { [weak self] in
-            guard let strongSelf = self else { return }
-            strongSelf.closeButton?.isHidden = false
+            self?.showCloseButton()
         })
     }
 
@@ -150,7 +153,7 @@ import WebKit
         closeButtonFallbackTimerTickCounter += 1
         if closeButtonFallbackTimerTickCounter >= config.closeButtonFallbackDelay {
             cancelCloseButtonVisibilityFallback()
-            closeButton?.isHidden = false
+            showCloseButton()
         }
     }
 
@@ -161,7 +164,6 @@ import WebKit
     }
 
     @objc private func onCloseClicked() {
-
         if config.shouldShowCloseWarning && !isCompleted {
             managedAdView.pauseVideo()
             closeDialog = showQuestionDialog(title: stringProvider.closeDialogTitle,
@@ -225,19 +227,23 @@ import WebKit
 // MARK: SAManagedAdViewDelegate
 
 extension SAManagedAdViewController: SAManagedAdViewDelegate {
-
     func onEvent(event: AdEvent) {
+        logger.info("onEvent: \(event.name())")
+        
         callback?(placementId, event)
+        
         if event == .adShown && config.closeButtonState == .visibleWithDelay {
             showCloseButtonAfterDelay()
         }
 
         if event == .adEnded {
             isCompleted = true
-        }
-
-        if event == .adEnded && config.shouldCloseAtEnd {
-            dismiss()
+            
+            if config.shouldCloseAtEnd {
+                dismiss()
+            } else {
+                showCloseButton()
+            }
         } else if eventsForClosing.contains(event) {
             dismiss()
         }
