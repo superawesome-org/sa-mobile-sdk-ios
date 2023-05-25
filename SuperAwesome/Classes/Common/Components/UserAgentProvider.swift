@@ -26,7 +26,13 @@ class UserAgentProvider: UserAgentProviderType {
     }
 
     private func evaluateUserAgent() {
-        webView = WKWebView()
+        let config = WKWebViewConfiguration()
+        if #available(iOS 13.0, *) {
+            let preferences = WKWebpagePreferences()
+            preferences.preferredContentMode = .mobile
+            config.defaultWebpagePreferences = preferences
+        }
+        webView = WKWebView(frame: .zero, configuration: config)
         webView?.evaluateJavaScript("navigator.userAgent", completionHandler: { [weak self] result, error in
             if error != nil {
                 print("UserAgent.evaluateUserAgent.error:", String(describing: error))
@@ -34,7 +40,6 @@ class UserAgentProvider: UserAgentProviderType {
                 self?.name = res
                 self?.preferencesRepository.userAgent = res
             }
-
             self?.webView = nil
         })
     }

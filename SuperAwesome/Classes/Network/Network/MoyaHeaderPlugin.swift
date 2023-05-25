@@ -8,15 +8,15 @@
 import Moya
 
 struct MoyaHeaderPlugin: PluginType {
-    private let userAgent: String
+    private let userAgentProvider: UserAgentProviderType
 
     init(userAgentProvider: UserAgentProviderType) {
-        self.userAgent = userAgentProvider.name
+        self.userAgentProvider = userAgentProvider
     }
 
     func prepare(_ request: URLRequest, target: TargetType) -> URLRequest {
         var request = request
-        request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
+        request.setValue(userAgentProvider.name, forHTTPHeaderField: "User-Agent")
         return request
     }
 }

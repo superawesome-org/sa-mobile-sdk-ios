@@ -89,6 +89,11 @@ class WebView: WKWebView {
         let configuration = WKWebViewConfiguration()
         configuration.allowsInlineMediaPlayback = true
         configuration.mediaTypesRequiringUserActionForPlayback = []
+        if #available(iOS 13.0, *) {
+            let preferences = WKWebpagePreferences()
+            preferences.preferredContentMode = .mobile
+            configuration.defaultWebpagePreferences = preferences
+        }
         return configuration
     }
 }
