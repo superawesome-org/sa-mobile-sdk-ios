@@ -7,9 +7,16 @@
 
 import UIKit
 
-@objc(SAAdSocialVideoPlayerControlsView) public class AdSocialVideoPlayerControlsView: UIView, VideoPlayerControlsView {
+@objc(SAAdSocialVideoPlayerControlsView)
+public class AdSocialVideoPlayerControlsView: UIView, VideoPlayerControlsView {
 
     private let accessibilityPrefix = "SuperAwesome.Video.Controls."
+    private let padLockSize = CGSize(width: 77.0, height: 31.0)
+    private let chronoSize = CGSize(width: 50.0, height: 20.0)
+    private let clickerSize = CGSize(width: 100.0, height: 20.0)
+    private let chronoPadding: CGFloat = 5.0
+    private let clickerPadding: CGFloat = 8.0
+    private let blackMaskHeightMultiplier: CGFloat = 0.2
 
     private var blackMask: BlackMask!
     private var chrono: Chronograph!
@@ -46,32 +53,38 @@ import UIKit
 
     public override func updateConstraints() {
         if !didSetupConstraints {
+            didSetupConstraints = true
+
             blackMask.translatesAutoresizingMaskIntoConstraints = false
             blackMask.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
             blackMask.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
             blackMask.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-            blackMask.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 1/5).isActive = true
+            blackMask.heightAnchor.constraint(equalTo: heightAnchor,
+                                              multiplier: blackMaskHeightMultiplier).isActive = true
             chrono.translatesAutoresizingMaskIntoConstraints = false
             if #available(iOS 11.0, *) {
-                chrono.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor, constant: 5.0).isActive = true
-                chrono.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor, constant: -5.0).isActive = true
+                chrono.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor,
+                                                constant: chronoPadding).isActive = true
+                chrono.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor,
+                                               constant: -chronoPadding).isActive = true
             } else {
-                chrono.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5.0).isActive = true
-                chrono.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5.0).isActive = true
+                chrono.leadingAnchor.constraint(equalTo: leadingAnchor, constant: chronoPadding).isActive = true
+                chrono.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -chronoPadding).isActive = true
             }
-            chrono.widthAnchor.constraint(equalToConstant: 50).isActive = true
-            chrono.heightAnchor.constraint(equalToConstant: 20).isActive = true
+            chrono.widthAnchor.constraint(equalToConstant: chronoSize.width).isActive = true
+            chrono.heightAnchor.constraint(equalToConstant: chronoSize.height).isActive = true
 
             if !smallClicker {
-                clicker.topAnchor.constraint(equalTo: topAnchor, constant: 8.0).isActive = true
+                clicker.topAnchor.constraint(equalTo: topAnchor, constant: clickerPadding).isActive = true
                 clicker.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
                 clicker.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-                clicker.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8.0).isActive = true
+                clicker.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -clickerPadding).isActive = true
             } else {
-                clicker.leadingAnchor.constraint(equalTo: chrono.trailingAnchor, constant: 8.0).isActive = true
+                clicker.leadingAnchor.constraint(equalTo: chrono.trailingAnchor,
+                                                 constant: clickerPadding).isActive = true
                 clicker.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-                clicker.widthAnchor.constraint(equalToConstant: 100).isActive = true
-                clicker.heightAnchor.constraint(equalToConstant: 20).isActive = true
+                clicker.widthAnchor.constraint(equalToConstant: clickerSize.width).isActive = true
+                clicker.heightAnchor.constraint(equalToConstant: clickerSize.height).isActive = true
             }
 
             if safeLogoVisible {
@@ -90,12 +103,11 @@ import UIKit
                     padlock.topAnchor.constraint(equalTo: topAnchor, constant: 0.0).isActive = true
                     padlock.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0.0).isActive = true
                 }
-                padlock.widthAnchor.constraint(equalToConstant: 77.0).isActive = true
-                padlock.heightAnchor.constraint(equalToConstant: 31.0).isActive = true
+                padlock.widthAnchor.constraint(equalToConstant: padLockSize.width).isActive = true
+                padlock.heightAnchor.constraint(equalToConstant: padLockSize.height).isActive = true
             }
             closeButton.bind(toTopRightOf: self)
             volumeButton.bind(toBottomRightOf: self)
-            didSetupConstraints = true
         }
 
         super.updateConstraints()

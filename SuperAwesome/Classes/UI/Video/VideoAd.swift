@@ -157,11 +157,13 @@ public class VideoAd: NSObject, Injectable {
 
                 viewController.present(managedVideoAdController, animated: true)
             } else {
-                guard ad.filePath != nil else {
+                guard let path = ad.filePath,
+                      FileManager.default.fileExists(atPath: path) else {
                     callback?(placementId, .adFailedToShow)
                     ads[placementId] = AdState.none
                     return
                 }
+
                 let adViewController = VideoViewController(adResponse: ad, callback: callback, config: config)
                 adViewController.modalPresentationStyle = .fullScreen
                 adViewController.modalTransitionStyle = .coverVertical

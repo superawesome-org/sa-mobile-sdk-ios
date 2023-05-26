@@ -133,10 +133,6 @@ import UIKit
         }
     }
 
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-    }
-
     override func viewWillDisappear(_ animated: Bool) {
         control.pause()
         super.viewWillDisappear(animated)

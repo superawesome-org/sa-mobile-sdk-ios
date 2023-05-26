@@ -21,6 +21,7 @@ public class VideoPlayerController: AVPlayer, VideoPlayerControls {
     private let notif = NotificationCenter.default
     private let mainQueue = DispatchQueue.main
     private var didEndObserver: NSObjectProtocol?
+    private var statusObserver: NSKeyValueObservation?
     private var item: AVPlayerItem?
 
     ////////////////////////////////////////////////////////////////////////////
@@ -58,15 +59,22 @@ public class VideoPlayerController: AVPlayer, VideoPlayerControls {
 
     public func play(url: URL) {
         let asset = AVAsset(url: url)
-        item = AVPlayerItem(asset: asset)
-        if let item = item {
-            replaceCurrentItem(with: item)
-            timeObserver = addPeriodicTimeObserver(forInterval: periodicTimeInterval,
-                                                   queue: mainQueue) { [weak self] time in
-                self?.timeFunction(time)
-            }
-            delegate?.didPrepare(control: self)
+        let playerItem = AVPlayerItem(asset: asset)
+        item = playerItem
+
+        statusObserver = item?.observe(
+            \.status,
+             options: [.old, .new]
+        ) { [weak self] object, _ in
+            self?.checkStatus(status: object.status)
         }
+
+        replaceCurrentItem(with: playerItem)
+        timeObserver = addPeriodicTimeObserver(forInterval: periodicTimeInterval,
+                                               queue: mainQueue) { [weak self] time in
+            self?.timeFunction(time)
+        }
+        delegate?.didPrepare(control: self)
     }
 
     public func start() {
@@ -75,7 +83,10 @@ public class VideoPlayerController: AVPlayer, VideoPlayerControls {
 
     public func reset() {
         pause()
-        removeObservers()
+        statusObserver?.invalidate()
+        statusObserver = nil
+        replaceCurrentItem(with: nil)
+        item = nil
     }
 
     public func destroy() {
@@ -130,5 +141,14 @@ public class VideoPlayerController: AVPlayer, VideoPlayerControls {
     private func timeFunction(_ time: CMTime) {
         let time = CMTimeGetSeconds(time)
         delegate?.didUpdateTime(control: self, time: Int(time), duration: getDuration())
+    }
+
+    private func checkStatus(status: AVPlayerItem.Status) {
+        if status == .failed, let error = item?.error as NSError? {
+            delegate?.didError(control: self,
+                               error: error,
+                               time: getDuration(),
+                               duration: getCurrentPosition())
+        }
     }
 }
