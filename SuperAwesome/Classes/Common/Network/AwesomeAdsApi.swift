@@ -13,19 +13,29 @@ enum AwesomeAdsApi {
     case videoClick(query: QueryBundle)
     case event(query: QueryBundle)
     case signature(lineItemId: Int, creativeId: Int)
+    case performance(metric: PerformanceMetric)
 
     var path: String {
         switch self {
-        case .ad(let placementId, _): return "/ad/\(placementId)"
+        case .ad(let placementId, _):
+            return "/ad/\(placementId)"
         case .adByPlacementLineAndCreativeId(
             placementId: let placementId,
             lineItemId: let lineItemId,
-            creativeId: let creativeId, _): return "/ad/\(placementId)/\(lineItemId)/\(creativeId)"
-        case .impression: return "/impression"
-        case .click: return "/click"
-        case .videoClick: return "/video/click"
-        case .event: return "/event"
-        case .signature(let lineItemId, let creativeId): return "/skadnetwork/sign/\(lineItemId)/\(creativeId)"
+            creativeId: let creativeId, _):
+            return "/ad/\(placementId)/\(lineItemId)/\(creativeId)"
+        case .impression:
+            return "/impression"
+        case .click:
+            return "/click"
+        case .videoClick:
+            return "/video/click"
+        case .event:
+            return "/event"
+        case .signature(let lineItemId, let creativeId):
+            return "/skadnetwork/sign/\(lineItemId)/\(creativeId)"
+        case .performance:
+            return "/sdk/performance"
         }
     }
 }

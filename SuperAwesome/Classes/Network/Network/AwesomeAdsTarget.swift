@@ -45,6 +45,8 @@ extension AwesomeAdsApi: TargetType {
             return .requestParameters(parameters: query.build(), encoding: URLEncoding.queryString)
         case .signature:
             return .requestParameters(parameters: [:], encoding: URLEncoding.queryString)
+        case .performance(let metric):
+            return .requestParameters(parameters: metric.build(), encoding: URLEncoding.queryString)
         }
     }
 

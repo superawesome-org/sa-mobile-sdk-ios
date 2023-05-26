@@ -109,6 +109,11 @@ class MoyaAwesomeAdsApiDataSource: AwesomeAdsApiDataSourceType {
         let target = AwesomeAdsTarget(environment, .event(query: query))
         responseHandler(target: target, completion: completion)
     }
+    
+    func performance(metric: PerformanceMetric, completion: OnResult<Void>?) {
+        let target = AwesomeAdsTarget(environment, .performance(metric: metric))
+        responseHandler(target: target, completion: completion)
+    }
 
     private func responseHandler(target: AwesomeAdsTarget, completion: OnResult<Void>?) {
         var retries = 0

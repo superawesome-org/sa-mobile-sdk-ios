@@ -91,4 +91,19 @@ class AwesomeAdsTargetTest: XCTestCase {
 
         XCTAssertEqual("/skadnetwork/sign/2/3", target.path)
     }
+    
+    func test_target_path_for_performance() {
+        let given = PerformanceMetric(value: 1,
+                                      metricName: .decrement,
+                                      metricType: .closeButtonPressTime)
+        let target = AwesomeAdsTarget(environment, .performance(metric: given))
+        
+        if case let .requestParameters(parameters, _) = target.task {
+            XCTAssertEqual(parameters["value"] as? Int, given.value)
+            XCTAssertEqual(parameters["metricName"] as? String, given.metricName.rawValue)
+            XCTAssertEqual(parameters["metricType"] as? String, given.metricType.rawValue)
+        }
+        
+        XCTAssertEqual("/sdk/performance", target.path)
+    }
 }

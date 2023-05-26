@@ -30,4 +30,7 @@ protocol AwesomeAdsApiDataSourceType {
     func event(query: QueryBundle, completion: OnResult<Void>?)
 
     func signature(lineItemId: Int, creativeId: Int, completion: @escaping OnResult<AdvertiserSignatureDTO>)
+
+    /// Makes a request to `/sdk/performance` endpoint to measure the various performance metrics
+    func performance(metric: PerformanceMetric, completion: OnResult<Void>?)
 }
