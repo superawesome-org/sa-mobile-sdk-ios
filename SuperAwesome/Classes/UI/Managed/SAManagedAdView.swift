@@ -49,6 +49,9 @@ public final class SAManagedAdView: UIView, Injectable {
         }
         let webView = WKWebView(frame: bounds, configuration: configuration)
         webView.accessibilityIdentifier = "\(accessibilityPrefix)Views.WebView"
+        if #available(iOS 16.4, *) {
+            webView.isInspectable = true
+        }
         return webView
     }()
 
