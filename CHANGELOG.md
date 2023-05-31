@@ -1,3 +1,12 @@
+## [9.0.1](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/compare/v9.0.0...v9.0.1) (2023-05-31)
+
+
+### Bug Fixes
+
+* **IV:** Add option to show close button on adEnded if it is set to hidden ([#29](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/issues/29)) ([ed2207a](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/commit/ed2207af145475874a11943abe1958759177bde6))
+* **UserAgent:** Corrected the User Agent string for iPads and fixed the missing user agent string in Moya. ([#30](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/issues/30)) ([031533a](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/commit/031533a1386e558b426509bc431a753577532f9d))
+* **Video:** Added additional checks for downloaded videos before attempting to play. ([#31](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/issues/31)) ([7bd47b5](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/commit/7bd47b57fb13cd402195dce2b4dbb34eb4ace4a9))
+
 # [9.0.0](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/compare/v8.6.0...v9.0.0) (2023-05-18)
 
 
