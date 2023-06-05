@@ -7,7 +7,7 @@
 
 import XCTest
 class InteractiveVideoScreenRobot: Robot {
-    
+
     private let accessibilityPrefix = "SuperAwesome.ManagedAdView."
 
     private var screen: XCUIElement {

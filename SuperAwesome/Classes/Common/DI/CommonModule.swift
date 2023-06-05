@@ -92,5 +92,9 @@ struct CommonModule: DependencyModule {
                                 networkDataSource: container.resolve(),
                                 logger: container.resolve(param: VastEventRepository.self))
         }
+        container.single(PerformanceRepositoryType.self) { container, _ in
+            PerformanceRepository(dataSource: container.resolve(),
+                            logger: container.resolve(param: PerformanceRepository.self))
+        }
     }
 }

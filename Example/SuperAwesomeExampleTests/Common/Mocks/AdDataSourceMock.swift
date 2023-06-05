@@ -47,7 +47,7 @@ class AdDataSourceMock: AwesomeAdsApiDataSourceType {
     func get(endPoint: String, params: [String: Any], completion: OnResult<Void>?) {
         completion?(mockEventResult)
     }
-    
+
     func performance(metric: SuperAwesome.PerformanceMetric, completion: SuperAwesome.OnResult<Void>?) {
         completion?(mockEventResult)
     }

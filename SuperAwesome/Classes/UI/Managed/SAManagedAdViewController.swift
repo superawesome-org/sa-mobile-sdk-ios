@@ -83,12 +83,12 @@ import WebKit
         }
 
         // register notification for background
+        // swiftlint:enable discarded_notification_center_observer
         NotificationCenter.default.addObserver(forName: UIApplication.didEnterBackgroundNotification,
                                                object: nil,
                                                queue: .main) { [weak self] _ in
             self?.didEnterBackground()
         }
-        // swiftlint:enable discarded_notification_center_observer
     }
 
     /// Method that is called to close the ad
@@ -131,7 +131,7 @@ import WebKit
                                                             userInfo: nil,
                                                             repeats: true)
         case .visibleImmediately:
-            button.isHidden = false
+            showCloseButton()
         case .hidden:
             button.isHidden = true
         }
@@ -139,6 +139,7 @@ import WebKit
     
     private func showCloseButton() {
         closeButton?.isHidden = false
+        controller.onCloseButtonVisible()
     }
 
     private func showCloseButtonAfterDelay() {
@@ -164,6 +165,7 @@ import WebKit
     }
 
     @objc private func onCloseClicked() {
+        controller.onCloseButtonClicked()
         if config.shouldShowCloseWarning && !isCompleted {
             managedAdView.pauseVideo()
             closeDialog = showQuestionDialog(title: stringProvider.closeDialogTitle,

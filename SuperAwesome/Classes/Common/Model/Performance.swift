@@ -6,7 +6,7 @@
 //
 
 struct PerformanceMetric: Codable {
-    let value: Int
+    let value: Int64
     let metricName: PerformanceMetricName
     let metricType: PerformanceMetricType
     
@@ -20,6 +20,13 @@ struct PerformanceMetric: Codable {
 }
 
 enum PerformanceMetricName: String, Codable {
+    case closeButtonPressTime = "sa.ad.sdk.close.button.press.time"
+    case dwellTime = "sa.ad.sdk.dwell.time"
+    case loadTime = "sa.ad.sdk.performance.load.time"
+    case renderTime = "sa.ad.sdk.performance.render.time"
+}
+
+enum PerformanceMetricType: String, Codable {
     case gauge
     case increment
     case decrementBy
@@ -27,11 +34,4 @@ enum PerformanceMetricName: String, Codable {
     case histogram
     case incrementBy
     case timing
-}
-
-enum PerformanceMetricType: String, Codable {
-    case closeButtonPressTime = "sa.ad.sdk.close.button.press.time"
-    case dwellTime = "sa.ad.sdk.dwell.time"
-    case loadTime = "sa.ad.sdk.performance.load.time"
-    case renderTime = "sa.ad.sdk.performance.render.time"
 }

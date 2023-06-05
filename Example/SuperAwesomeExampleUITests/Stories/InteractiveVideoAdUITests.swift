@@ -26,20 +26,20 @@ class IVVideoAdUITests: BaseUITest {
         adsListScreen(app) {
             $0.waitForView()
             $0.tapSettingsButton()
-            
+
             settingsScreen(app) { settings in
                 settings.waitForView()
                 settings.tapBumperEnable()
                 settings.tapCloseButton()
             }
-            
+
             $0.tapPlacement(withName: "Plain Grey VPAID Ad")
-            
+
             interactiveVideoScreen(app) { screen in
                 screen.waitForView()
                 screen.waitForRender()
                 screen.tapOnAd()
-                
+
                 bumperScreen(app) { bumper in
                     bumper.waitForView()
                     bumper.checkSmallLabelExists(withText: bumper.warningMessage)
@@ -55,20 +55,20 @@ class IVVideoAdUITests: BaseUITest {
         adsListScreen(app) {
             $0.waitForView()
             $0.tapSettingsButton()
-            
+
             settingsScreen(app) { settings in
                 settings.waitForView()
                 settings.tapParentalGateEnable()
                 settings.tapCloseButton()
             }
-            
+
             $0.tapPlacement(withName: "Plain Grey VPAID Ad")
-            
+
             interactiveVideoScreen(app) { screen in
                 screen.waitForView()
                 screen.waitForRender()
                 screen.tapOnAd()
-                
+
                 parentGateAlert(app) { parentGate in
                     parentGate.waitForView()
                     parentGate.checkTitle(hasText: parentGate.title)
@@ -76,9 +76,9 @@ class IVVideoAdUITests: BaseUITest {
                     parentGate.checkPlaceholder(hasText: "")
                     parentGate.tapCancelButton()
                 }
-                
+
                 screen.tapOnAd()
-                
+
                 parentGateAlert(app) { parentGate in
                     parentGate.waitForView()
                     parentGate.checkTitle(hasText: parentGate.title)
@@ -87,7 +87,7 @@ class IVVideoAdUITests: BaseUITest {
                     parentGate.typeAnswer(text: "9999")
                     parentGate.tapContinueButton()
                 }
-                
+
                 parentGateErrorAlert(app) { parentGateError in
                     parentGateError.waitForView()
                     parentGateError.checkTitle(hasText: parentGateError.wrongAnswerTitle)
@@ -102,20 +102,20 @@ class IVVideoAdUITests: BaseUITest {
         adsListScreen(app) { adsList in
             adsList.waitForView()
             adsList.tapSettingsButton()
-            
+
             settingsScreen(app) { settings in
                 settings.waitForView()
                 settings.tapParentalGateEnable()
                 settings.tapCloseButton()
             }
-            
+
             adsList.tapPlacement(withName: "Plain Grey VPAID Ad")
-            
+
             interactiveVideoScreen(app) { screen in
                 screen.waitForView()
                 screen.waitForRender()
                 screen.tapOnAd()
-                
+
                 parentGateAlert(app) { parentGate in
                     parentGate.waitForView()
                     parentGate.checkTitle(hasText: parentGate.title)
@@ -123,11 +123,11 @@ class IVVideoAdUITests: BaseUITest {
                     parentGate.checkPlaceholder(hasText: "")
                     parentGate.tapCancelButton()
                 }
-                
+
                 // The ad content is visible
                 screen.waitForRender()
             }
-            
+
             // The ad list is visible again after the ad ends
             adsList.waitForView(timeout: .extraLong)
         }
@@ -137,20 +137,20 @@ class IVVideoAdUITests: BaseUITest {
         adsListScreen(app) { adsList in
             adsList.waitForView()
             adsList.tapSettingsButton()
-            
+
             settingsScreen(app) { settings in
                 settings.waitForView()
                 settings.tapParentalGateEnable()
                 settings.tapCloseButton()
             }
-            
+
             adsList.tapPlacement(withName: "Plain Grey VPAID Ad")
-            
+
             interactiveVideoScreen(app) { screen in
                 screen.waitForView()
                 screen.waitForRender()
                 screen.tapOnAd()
-                
+
                 parentGateAlert(app) { parentGate in
                     parentGate.waitForView()
                     parentGate.checkTitle(hasText: parentGate.title)
@@ -159,18 +159,18 @@ class IVVideoAdUITests: BaseUITest {
                     parentGate.typeAnswer(text: "9999")
                     parentGate.tapContinueButton()
                 }
-                
+
                 parentGateErrorAlert(app) { parentGateError in
                     parentGateError.waitForView()
                     parentGateError.checkTitle(hasText: parentGateError.wrongAnswerTitle)
                     parentGateError.checkMessage(hasText: parentGateError.wrongAnswerMessage)
                     parentGateError.tapCancelButton()
                 }
-                
+
                 // The ad content is visible
                 screen.waitForRender()
             }
-            
+
             // The ad list is visible again after the ad ends
             adsList.waitForView(timeout: .extraLong)
         }
@@ -180,21 +180,21 @@ class IVVideoAdUITests: BaseUITest {
         adsListScreen(app) { adsList in
             adsList.waitForView()
             adsList.tapSettingsButton()
-            
+
             settingsScreen(app) { settings in
                 settings.waitForView()
                 settings.tapParentalGateEnable()
                 settings.tapBumperEnable()
                 settings.tapCloseButton()
             }
-            
+
             adsList.tapPlacement(withName: "Plain Grey VPAID Ad")
-            
+
             interactiveVideoScreen(app) { screen in
                 screen.waitForView()
                 screen.waitForRender()
                 screen.tapOnAd()
-                
+
                 parentGateAlert(app) { parentGate in
                     parentGate.waitForView()
                     parentGate.checkTitle(hasText: parentGate.title)
@@ -203,7 +203,7 @@ class IVVideoAdUITests: BaseUITest {
                     parentGate.typeAnswer(text: parentGate.solve())
                     parentGate.tapContinueButton()
                 }
-                
+
                 bumperScreen(app) { bumper in
                     bumper.waitForView()
                     bumper.checkSmallLabelExists(withText: bumper.warningMessage)
@@ -211,17 +211,17 @@ class IVVideoAdUITests: BaseUITest {
                     bumper.isPoweredByLogoVisible()
                     bumper.isBackgroundImageViewVisible()
                 }
-                
+
                 safari { safari in
                     safari.waitForView()
                 }
-                
+
                 // Return to the app from Safari
                 app.activate()
-                
+
                 // The ad content is visible
                 screen.waitForRender()
-                
+
                 // The ad list is visible again after the ad ends
                 adsList.waitForView(timeout: .extraLong)
             }
@@ -232,15 +232,15 @@ class IVVideoAdUITests: BaseUITest {
         adsListScreen(app) {
             $0.waitForView()
             $0.tapSettingsButton()
-            
+
             settingsScreen(app) { settings in
                 settings.waitForView()
                 settings.tapCloseButtonNoDelay()
                 settings.tapCloseButton()
             }
-            
+
             $0.tapPlacement(withName: "Plain Grey VPAID Ad")
-            
+
             interactiveVideoScreen(app) { screen in
                 screen.waitForView()
                 // Check that the close button is visible immediately
@@ -253,15 +253,15 @@ class IVVideoAdUITests: BaseUITest {
         adsListScreen(app) {
             $0.waitForView()
             $0.tapSettingsButton()
-            
+
             settingsScreen(app) { settings in
                 settings.waitForView()
                 settings.tapCloseButtonWithDelay()
                 settings.tapCloseButton()
             }
-            
+
             $0.tapPlacement(withName: "Plain Grey VPAID Ad")
-            
+
             interactiveVideoScreen(app) { screen in
                 screen.waitForView()
                 // Check that the close button is not visible at first
@@ -276,15 +276,15 @@ class IVVideoAdUITests: BaseUITest {
         adsListScreen(app) {
             $0.waitForView()
             $0.tapSettingsButton()
-            
+
             settingsScreen(app) { settings in
                 settings.waitForView()
                 settings.tapCloseButtonHidden()
                 settings.tapCloseButton()
             }
-            
+
             $0.tapPlacement(withName: "Plain Grey VPAID Ad")
-            
+
             interactiveVideoScreen(app) { screen in
                 screen.waitForView()
                 // Check that the close button is not visible
@@ -340,20 +340,20 @@ class IVVideoAdUITests: BaseUITest {
         adsListScreen(app) { adsList in
             adsList.waitForView()
             adsList.tapSettingsButton()
-            
+
             settingsScreen(app) { settings in
                 settings.waitForView()
                 settings.tapParentalGateEnable()
                 settings.tapCloseButton()
             }
-            
+
             adsList.tapPlacement(withName: "Plain Grey VPAID Ad")
-            
+
             interactiveVideoScreen(app) { screen in
                 screen.waitForView()
                 screen.waitForRender()
                 screen.tapOnAd()
-                
+
                 parentGateAlert(app) { parentGate in
                     parentGate.waitForView()
                     parentGate.checkTitle(hasText: parentGate.title)
@@ -361,10 +361,10 @@ class IVVideoAdUITests: BaseUITest {
                     parentGate.checkPlaceholder(hasText: "")
                     parentGate.tapCancelButton()
                 }
-                
+
                 screen.waitForRender()
                 screen.tapClose()
-                
+
                 adsList.assertEvent("adPaused")
                 adsList.assertEvent("adPlaying")
             }
@@ -375,20 +375,20 @@ class IVVideoAdUITests: BaseUITest {
         adsListScreen(app) { adsList in
             adsList.waitForView()
             adsList.tapSettingsButton()
-            
+
             settingsScreen(app) { settings in
                 settings.waitForView()
                 settings.tapCloseButtonNoDelay()
                 settings.tapCloseButton()
             }
-            
+
             adsList.tapPlacement(withName: "Plain Grey VPAID Ad")
-            
+
             interactiveVideoScreen(app) { screen in
                 screen.waitForView()
                 screen.waitForRender()
                 screen.tapClose()
-                
+
                 adsList.assertEvent("adLoaded")
             }
         }
@@ -398,20 +398,20 @@ class IVVideoAdUITests: BaseUITest {
         adsListScreen(app) { adsList in
             adsList.waitForView()
             adsList.tapSettingsButton()
-            
+
             settingsScreen(app) { settings in
                 settings.waitForView()
                 settings.tapCloseButtonNoDelay()
                 settings.tapCloseButton()
             }
-            
+
             adsList.tapPlacement(withName: "Plain Grey VPAID Ad")
-            
+
             interactiveVideoScreen(app) { screen in
                 screen.waitForView()
                 screen.waitForRender()
                 screen.tapClose()
-                
+
                 adsList.assertEvent("adShown")
             }
         }
@@ -421,32 +421,32 @@ class IVVideoAdUITests: BaseUITest {
         adsListScreen(app) { adsList in
             adsList.waitForView()
             adsList.tapSettingsButton()
-            
+
             settingsScreen(app) { settings in
                 settings.waitForView()
                 settings.tapCloseButtonNoDelay()
                 settings.tapCloseButton()
             }
-            
+
             adsList.tapPlacement(withName: "Plain Grey VPAID Ad")
-            
+
             interactiveVideoScreen(app) { screen in
                 screen.waitForView()
                 screen.waitForRender()
                 screen.tapOnAd()
-                
+
                 safari { safari in
                     safari.waitForView()
                 }
-                
+
                 // Return to the app from Safari
                 app.activate()
-                
+
                 // The ad content is visible
                 screen.waitForRender()
-                
+
                 screen.tapClose()
-                
+
                 adsList.assertEvent("adClicked")
             }
         }
@@ -455,13 +455,13 @@ class IVVideoAdUITests: BaseUITest {
     func test_adEnded_event() throws {
         adsListScreen(app) { adsList in
             adsList.waitForView()
-            
+
             adsList.tapPlacement(withName: "Plain Grey VPAID Ad")
-            
+
             interactiveVideoScreen(app) { screen in
                 screen.waitForView()
                 screen.waitForRender()
-                
+
                 // The ad list is visible again after the ad ends
                 adsList.waitForView(timeout: .extraLong)
                 adsList.assertEvent("adEnded")
@@ -473,20 +473,20 @@ class IVVideoAdUITests: BaseUITest {
         adsListScreen(app) { adsList in
             adsList.waitForView()
             adsList.tapSettingsButton()
-            
+
             settingsScreen(app) { settings in
                 settings.waitForView()
                 settings.tapCloseButtonNoDelay()
                 settings.tapCloseButton()
             }
-            
+
             adsList.tapPlacement(withName: "Plain Grey VPAID Ad")
-            
+
             interactiveVideoScreen(app) { screen in
                 screen.waitForView()
                 screen.waitForRender()
                 screen.tapClose()
-                
+
                 adsList.assertEvent("adClosed")
             }
         }
@@ -500,21 +500,21 @@ class IVVideoAdUITests: BaseUITest {
             adsList.assertEvent("adFailedToLoad")
         }
     }
-    
+
     func test_closeButton_hidden_until_video_ends() throws {
         adsListScreen(app) { adsList in
             adsList.waitForView()
             adsList.tapSettingsButton()
-            
+
             settingsScreen(app) { settings in
                 settings.waitForView()
                 settings.tapCloseButtonHidden()
                 settings.tapCloseAtEndDisable()
                 settings.tapCloseButton()
             }
-            
+
             adsList.tapPlacement(withName: "Plain Grey VPAID Ad")
-            
+
             interactiveVideoScreen(app) { screen in
                 screen.waitForView()
                 screen.checkCloseButtonDoesNotExist()

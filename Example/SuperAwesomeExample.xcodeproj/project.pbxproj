@@ -51,6 +51,8 @@
 		C6398A1027AAAEF300D6A152 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6398A0F27AAAEF300D6A152 /* MainViewController.swift */; };
 		C6398A1327AAB1E500D6A152 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6398A1227AAB1E500D6A152 /* UIView+Extensions.swift */; };
 		C6535602245239270043115E /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6535601245239270043115E /* HealthKit.framework */; };
+		C65CBCD52A2A3F20006FBFE9 /* PerformanceRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65CBCD42A2A3F20006FBFE9 /* PerformanceRepositoryTests.swift */; };
+		C65CBCD72A2A4869006FBFE9 /* PerformanceTimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65CBCD62A2A4869006FBFE9 /* PerformanceTimerTests.swift */; };
 		C6895C4E27F4C780009FAE1A /* AdControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6895C4D27F4C780009FAE1A /* AdControllerTests.swift */; };
 		C6895C5327F4CA38009FAE1A /* AdRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6895C5227F4CA38009FAE1A /* AdRepositoryMock.swift */; };
 		C6895C5527F4DE7B009FAE1A /* TestDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6895C5427F4DE7B009FAE1A /* TestDependencies.swift */; };
@@ -214,12 +216,14 @@
 		A01EA0D5528DC347839D3C89 /* Pods_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A52ED962E0174762FC6448BB /* Pods-SuperAwesomeSwiftUIExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesomeSwiftUIExample.debug.xcconfig"; path = "Target Support Files/Pods-SuperAwesomeSwiftUIExample/Pods-SuperAwesomeSwiftUIExample.debug.xcconfig"; sourceTree = "<group>"; };
 		B11A00536A3939F72F5C056B /* Pods-SuperAwesomeExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperAwesomeExampleTests.debug.xcconfig"; path = "Target Support Files/Pods-SuperAwesomeExampleTests/Pods-SuperAwesomeExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
-		C614C9752901639200531678 /* TimeProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeProviderTests.swift; sourceTree = "<group>"; };
+		C614C9752901639200531678 /* TimeProviderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeProviderTests.swift; sourceTree = "<group>"; };
 		C614C977290165BE00531678 /* TimeProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeProviderMock.swift; sourceTree = "<group>"; };
 		C6398A0F27AAAEF300D6A152 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C6398A1227AAB1E500D6A152 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		C6535600245239270043115E /* SuperAwesomeExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SuperAwesomeExample.entitlements; sourceTree = "<group>"; };
 		C6535601245239270043115E /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		C65CBCD42A2A3F20006FBFE9 /* PerformanceRepositoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerformanceRepositoryTests.swift; sourceTree = "<group>"; };
+		C65CBCD62A2A4869006FBFE9 /* PerformanceTimerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerformanceTimerTests.swift; sourceTree = "<group>"; };
 		C6895C4D27F4C780009FAE1A /* AdControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdControllerTests.swift; sourceTree = "<group>"; };
 		C6895C5227F4CA38009FAE1A /* AdRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdRepositoryMock.swift; sourceTree = "<group>"; };
 		C6895C5427F4DE7B009FAE1A /* TestDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDependencies.swift; sourceTree = "<group>"; };
@@ -644,6 +648,7 @@
 				C6C6AF4027D7E37A00FFB5CA /* SdkInfoTests.swift */,
 				C6C6AF4127D7E37A00FFB5CA /* UserAgentTests.swift */,
 				C614C9752901639200531678 /* TimeProviderTests.swift */,
+				C65CBCD62A2A4869006FBFE9 /* PerformanceTimerTests.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -663,6 +668,7 @@
 				C6C6AF2F27D7E2CE00FFB5CA /* AdRepositoryTests.swift */,
 				C6C6AF3027D7E2CF00FFB5CA /* EventRepositoryTests.swift */,
 				C6C6AF2E27D7E2CE00FFB5CA /* PreferencesRepositoryTests.swift */,
+				C65CBCD42A2A3F20006FBFE9 /* PerformanceRepositoryTests.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1158,6 +1164,7 @@
 				C6895C4E27F4C780009FAE1A /* AdControllerTests.swift in Sources */,
 				C6C6AF3227D7E2CF00FFB5CA /* AdRepositoryTests.swift in Sources */,
 				C6C6AF1927D7D3DB00FFB5CA /* HtmlFormatterMock.swift in Sources */,
+				C65CBCD52A2A3F20006FBFE9 /* PerformanceRepositoryTests.swift in Sources */,
 				C6C6AF2427D7D3DB00FFB5CA /* NetworkDataSourceMock.swift in Sources */,
 				C6895C5327F4CA38009FAE1A /* AdRepositoryMock.swift in Sources */,
 				C6C6AF4E27D7E37A00FFB5CA /* HtmlFormatterTests.swift in Sources */,
@@ -1166,6 +1173,7 @@
 				C6C6AF4527D7E37A00FFB5CA /* DeviceTests.swift in Sources */,
 				C6C6AEFA27D7D36900FFB5CA /* AdModelTests.swift in Sources */,
 				C6C6AF3627D7E34F00FFB5CA /* StringExtensionTests.swift in Sources */,
+				C65CBCD72A2A4869006FBFE9 /* PerformanceTimerTests.swift in Sources */,
 				C6C6AF4F27D7E37A00FFB5CA /* AdProcessorTest.swift in Sources */,
 				C6C6AF2527D7D3DB00FFB5CA /* BundleMock.swift in Sources */,
 				CCDA7340283E56CB00A75542 /* AwesomeAdsTargetTests.swift in Sources */,

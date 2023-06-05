@@ -24,6 +24,10 @@ protocol AdControllerType {
     func load(_ placementId: Int, _ request: AdRequest)
     func load(_ placementId: Int, lineItemId: Int, creativeId: Int, _ request: AdRequest)
     func close()
+    
+    // performance metrics
+    func onCloseButtonVisible()
+    func onCloseButtonClicked()
 
     // delegate events
     func adEnded()
@@ -48,9 +52,13 @@ class AdController: AdControllerType, Injectable {
     private lazy var eventRepository: EventRepositoryType = dependencies.resolve()
     private lazy var adRepository: AdRepositoryType = dependencies.resolve()
     private lazy var timeProvider: TimeProviderType = dependencies.resolve()
+    private lazy var performanceRepository: PerformanceRepositoryType = dependencies.resolve()
 
     private var parentalGate: ParentalGate?
     private var lastClickTime: TimeInterval = 0
+    
+    // performance metrics
+    private var closeButtonTimer: PerformanceTimer?
 
     var parentalGateEnabled: Bool = false
     var bumperPageEnabled: Bool = false
@@ -143,6 +151,17 @@ class AdController: AdControllerType, Injectable {
         guard let adResponse = adResponse else { return }
         eventRepository.dwellTime(adResponse, completion: nil)
         logger.info("Event callback: dwellTime for placement \(placementId)")
+    }
+    
+    func onCloseButtonClicked() {
+        guard let closeButtonTimer = closeButtonTimer else { return }
+        performanceRepository.sendCloseButtonPressTime(value: closeButtonTimer.calculate(),
+                                                       completion: nil)
+    }
+    
+    func onCloseButtonVisible() {
+        guard closeButtonTimer == nil else { return }
+        closeButtonTimer = PerformanceTimer(timeProvider: dependencies.resolve() as TimeProviderType)
     }
 
     func load(_ placementId: Int, _ request: AdRequest) {

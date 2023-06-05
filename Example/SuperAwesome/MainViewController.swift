@@ -28,7 +28,7 @@ class MainViewController: UIViewController {
         }
         return placements
     }
-    
+
     private lazy var debugLogLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
@@ -99,7 +99,7 @@ class MainViewController: UIViewController {
         BumperPage.overrideName("Demo App")
 
         initUI()
-        
+
         featuresViewModel = FeaturesViewModel()
         cancellable = featuresViewModel.$features.sink { [weak self] features in
             self?.features = features
@@ -129,20 +129,20 @@ class MainViewController: UIViewController {
         view.addSubview(bannerView)
         view.addSubview(settingsView)
     }
-    
+
     private func configureDebugLogLabel() {
         debugLogLabel.isHidden = !isInTestMode
     }
 
     private func addConstriants() {
-        
+
         debugLogLabel.autoPinEdge(toSuperviewSafeArea: .top, withInset: inset)
         debugLogLabel.autoPinEdge(toSuperviewEdge: .leading, withInset: inset)
         debugLogLabel.autoPinEdge(toSuperviewEdge: .trailing, withInset: inset)
-        
+
         headerLabel.autoPinEdge(.top, to: .bottom, of: debugLogLabel, withOffset: inset)
         headerLabel.autoPinEdge(toSuperviewEdge: .leading, withInset: inset)
-        
+
         settingsButton.autoPinEdge(.leading, to: .trailing, of: headerLabel, withOffset: inset)
         settingsButton.autoPinEdge(toSuperviewEdge: .trailing, withInset: inset)
         settingsButton.autoAlignAxis(.horizontal, toSameAxisOf: headerLabel)
@@ -194,7 +194,7 @@ class MainViewController: UIViewController {
             VideoAd.load(withPlacementId: item.placementId)
         }
     }
-    
+
     private func logEventForUITesting(_ event: AdEvent) {
         if isInTestMode {
             debugLogLabel.text?.append("\(event.name()) ")

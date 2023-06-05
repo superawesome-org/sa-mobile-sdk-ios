@@ -119,7 +119,7 @@ class VideoAdUITests: BaseUITest {
                     parentGate.checkPlaceholder(hasText: "")
                     parentGate.tapCancelButton()
                 }
-                
+
                 // The ad content is visible
                 screen.waitForRender()
             }
@@ -161,7 +161,7 @@ class VideoAdUITests: BaseUITest {
                     parentGateError.checkMessage(hasText: parentGateError.wrongAnswerMessage)
                     parentGateError.tapCancelButton()
                 }
-                
+
                 // The ad content is visible
                 screen.waitForRender()
             }
@@ -324,7 +324,7 @@ class VideoAdUITests: BaseUITest {
             }
         }
     }
-    
+
     func test_closeButton_disabled() throws {
         adsListScreen(app) {
             $0.waitForView()
