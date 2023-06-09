@@ -37,4 +37,21 @@ class PerformanceRepositoryTests: XCTestCase {
         // Then
         expect(self.result?.isSuccess).to(equal(expectedResult.isSuccess))
     }
+    
+    func test_givenSuccess_sendDwellTimeCalled_returnsSuccess() throws {
+        // Given
+        let expectedResult = Result<(), Error>.success(())
+        mockDataSource.mockEventResult = expectedResult
+
+        // When
+        let expectation = self.expectation(description: "request")
+        repository.sendDwellTime(value: 10) { [weak self] result in
+            self?.result = result
+            expectation.fulfill()
+        }
+        waitForExpectations(timeout: 2.0, handler: nil)
+
+        // Then
+        expect(self.result?.isSuccess).to(equal(expectedResult.isSuccess))
+    }
 }

@@ -151,7 +151,9 @@ public class VideoAd: NSObject, Injectable {
                                   shouldShowCloseWarning: shouldShowCloseWarning,
                                   shouldMuteOnStart: shouldMuteOnStart)
             if ad.isVpaid {
-                let managedVideoAdController = SAManagedAdViewController(adResponse: ad, config: config, callback: callback)
+                let managedVideoAdController = SAManagedAdViewController(adResponse: ad,
+                                                                         config: config,
+                                                                         callback: callback)
                 managedVideoAdController.modalPresentationStyle = .fullScreen
                 managedVideoAdController.modalTransitionStyle = .coverVertical
 
@@ -164,11 +166,13 @@ public class VideoAd: NSObject, Injectable {
                     return
                 }
 
-                let adViewController = VideoViewController(adResponse: ad, callback: callback, config: config)
-                adViewController.modalPresentationStyle = .fullScreen
-                adViewController.modalTransitionStyle = .coverVertical
+                let videoViewController = VideoViewController(adResponse: ad,
+                                                           callback: callback,
+                                                           config: config)
+                videoViewController.modalPresentationStyle = .fullScreen
+                videoViewController.modalTransitionStyle = .coverVertical
 
-                viewController.present(adViewController, animated: true)
+                viewController.present(videoViewController, animated: true)
             }
             ads[placementId] = AdState.none
         default:

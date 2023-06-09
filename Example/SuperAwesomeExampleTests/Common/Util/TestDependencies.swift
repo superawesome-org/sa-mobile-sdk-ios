@@ -9,13 +9,17 @@
 
 struct TestDependencies {
     static func register(adRepository: AdRepositoryType = AdRepositoryMock(),
-                         timeProvider: TimeProviderType = TimeProviderMock()) {
+                         timeProvider: TimeProviderType = TimeProviderMock(),
+                         performanceRepository: PerformanceRepositoryType = PerformanceRepositoryMock()) {
         let container = DependencyContainer()
         container.single(TimeProviderType.self) { _, _ in
             timeProvider
         }
         container.single(AdRepositoryType.self) { _, _ in
             adRepository
+        }
+        container.single(PerformanceRepositoryType.self) { _, _ in
+            performanceRepository
         }
         container.single(LoggerType.self) { _, _ in
             LoggerMock()

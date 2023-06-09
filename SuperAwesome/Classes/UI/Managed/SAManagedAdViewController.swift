@@ -99,7 +99,6 @@ import WebKit
     }
 
     private func configureCloseButton() {
-
         if closeButton != nil {
             closeButton?.removeFromSuperview()
             closeButton = nil
@@ -139,7 +138,7 @@ import WebKit
     
     private func showCloseButton() {
         closeButton?.isHidden = false
-        controller.onCloseButtonVisible()
+        controller.trackCloseButtonVisible()
     }
 
     private func showCloseButtonAfterDelay() {
@@ -165,7 +164,7 @@ import WebKit
     }
 
     @objc private func onCloseClicked() {
-        controller.onCloseButtonClicked()
+        controller.trackCloseButtonClicked()
         if config.shouldShowCloseWarning && !isCompleted {
             managedAdView.pauseVideo()
             closeDialog = showQuestionDialog(title: stringProvider.closeDialogTitle,
@@ -234,8 +233,12 @@ extension SAManagedAdViewController: SAManagedAdViewDelegate {
         
         callback?(placementId, event)
         
-        if event == .adShown && config.closeButtonState == .visibleWithDelay {
-            showCloseButtonAfterDelay()
+        if event == .adShown {
+            controller.trackAdShown()
+            
+            if config.closeButtonState == .visibleWithDelay {
+                showCloseButtonAfterDelay()
+            }
         }
 
         if event == .adEnded {

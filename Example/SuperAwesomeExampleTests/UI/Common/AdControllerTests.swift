@@ -12,6 +12,7 @@ import Nimble
 
 class AdControllerTests: XCTestCase {
     private var adRepository: AdRepositoryMock = AdRepositoryMock()
+    private var performanceRepository: PerformanceRepositoryMock = PerformanceRepositoryMock()
     private var timeProvider: TimeProviderMock = TimeProviderMock()
     private let controller = AdController()
     private var receivedEvent: AdEvent?
@@ -20,7 +21,8 @@ class AdControllerTests: XCTestCase {
     override func setUp() {
         super.setUp()
         TestDependencies.register(adRepository: adRepository,
-                                  timeProvider: timeProvider)
+                                  timeProvider: timeProvider,
+                                  performanceRepository: performanceRepository)
         receivedEvent = nil
         receivedEvents = []
 
@@ -168,5 +170,47 @@ class AdControllerTests: XCTestCase {
 
         // Then
         XCTAssertEqual(filtered.count, 2)
+    }
+    
+    func test_dwellTime_withoutAdShown_noCall() {
+        // Given adShown is not called
+
+        // When ad is closed
+        controller.trackAdClosed()
+
+        // Then dwell time is not sent
+        XCTAssertEqual(performanceRepository.sendDwellTimeCount, 0)
+    }
+    
+    func test_dwellTime_withAdShown_sendDwellTime() {
+        // Given adShown is called
+        controller.trackAdShown()
+
+        // When ad is closed
+        controller.trackAdClosed()
+
+        // Then dwell time is not sent
+        XCTAssertEqual(performanceRepository.sendDwellTimeCount, 1)
+    }
+    
+    func test_closeButton_withoutVisibleEvent_noCall() {
+        // Given close button visible is not called
+
+        // When close button is clicked
+        controller.trackCloseButtonClicked()
+
+        // Then dwell time is not sent
+        XCTAssertEqual(performanceRepository.sendCloseButtonPressTimeCount, 0)
+    }
+    
+    func test_closeButton_withVisibleEvent_sendCloseButtonTime() {
+        // Given close button visible is called
+        controller.trackCloseButtonVisible()
+
+        // When close button is clicked
+        controller.trackCloseButtonClicked()
+
+        // Then dwell time is not sent
+        XCTAssertEqual(performanceRepository.sendCloseButtonPressTimeCount, 1)
     }
 }
