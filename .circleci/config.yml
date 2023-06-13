@@ -222,12 +222,12 @@ jobs:
       SA_IOS_SDKS_HAS_PRIVATE_DEPENDENCIES: false
       TERM: xterm-256color
     steps:
+      - attach_workspace:
+          at: .
       - run:
           name: Rename readme file
           command: |
             cp README.md "SuperAwesome-$RELEASE_NUMBER-README.md"
-      - attach_workspace:
-          at: .
       - *generate_github_token
       - *clone_scripts_repo
       - *bootstrap_ios
@@ -324,11 +324,10 @@ jobs:
           aws-region: SA_IOS_APPS_S3_REGION
           aws-secret-access-key: SA_IOS_APPS_S3_REPO_SECRET
       - run:
-          name: Pod Repo Update
-          command: pod repo update
-      - run:
           name: Push Superawesome-AdMob to cocoapods
-          command: fastlane sdk_push podSpec:SuperAwesomeAdMob isPrivateRepo:false skipVersionBump:true
+          command: |
+            pod repo update
+            fastlane sdk_push podSpec:SuperAwesomeAdMob isPrivateRepo:false skipVersionBump:true
 
 workflows:
   nightly:

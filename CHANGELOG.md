@@ -1,17 +1,3 @@
-# [9.1.0](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/compare/v9.0.1...v9.1.0) (2023-06-13)
-
-
-### Bug Fixes
-
-* **IV:** Enable debugging inspector for example app ([#33](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/issues/33)) ([ea93ff2](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/commit/ea93ff234186512d11afb40aa6f1e3f61f8bd87a))
-
-
-### Features
-
-* **IV:** Add tracking metric for load time ([#39](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/issues/39)) ([774b7ba](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/commit/774b7ba9c7c5bdff56f741caaa9ad8e2d15e2c6b))
-* **IV:** Track dwell time ([#37](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/issues/37)) ([e875bf7](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/commit/e875bf762bac7e45c68d580c061f8ff99998b27b))
-* **Video:** Add Metric for measuring how long it takes for the user to press the close button ([#36](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/issues/36)) ([d083ab5](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/commit/d083ab5182ee8852d406382c0604093e6db50761))
-
 ## [9.0.1](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/compare/v9.0.0...v9.0.1) (2023-05-31)
 
 
