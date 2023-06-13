@@ -8,6 +8,7 @@
 protocol PerformanceRepositoryType {
     func sendCloseButtonPressTime(value: Int64, completion: OnResult<Void>?)
     func sendDwellTime(value: Int64, completion: OnResult<Void>?)
+    func sendLoadTime(value: Int64, completion: OnResult<Void>?)
 }
 
 class PerformanceRepository: PerformanceRepositoryType {
@@ -30,6 +31,14 @@ class PerformanceRepository: PerformanceRepositoryType {
     func sendDwellTime(value: Int64, completion: OnResult<Void>?) {
         let metric = PerformanceMetric(value: value,
                                        metricName: .dwellTime,
+                                       metricType: .gauge)
+        
+        dataSource.performance(metric: metric, completion: completion)
+    }
+    
+    func sendLoadTime(value: Int64, completion: OnResult<Void>?) {
+        let metric = PerformanceMetric(value: value,
+                                       metricName: .loadTime,
                                        metricType: .gauge)
         
         dataSource.performance(metric: metric, completion: completion)

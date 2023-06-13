@@ -20,10 +20,10 @@ struct PerformanceMetric: Codable {
 }
 
 enum PerformanceMetricName: String, Codable {
-    case closeButtonPressTime = "sa.ad.sdk.close.button.press.time"
-    case dwellTime = "sa.ad.sdk.dwell.time"
-    case loadTime = "sa.ad.sdk.performance.load.time"
-    case renderTime = "sa.ad.sdk.performance.render.time"
+    case closeButtonPressTime = "sa.ad.sdk.close.button.press.time.ios"
+    case dwellTime = "sa.ad.sdk.dwell.time.ios"
+    case loadTime = "sa.ad.sdk.performance.load.time.ios"
+    case renderTime = "sa.ad.sdk.performance.render.time.ios"
 }
 
 enum PerformanceMetricType: String, Codable {

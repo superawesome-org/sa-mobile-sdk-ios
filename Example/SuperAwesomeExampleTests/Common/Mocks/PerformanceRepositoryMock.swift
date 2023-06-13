@@ -22,5 +22,9 @@ class PerformanceRepositoryMock: PerformanceRepositoryType {
         completion?(response)
         sendDwellTimeCount += 1
     }
+    
+    func sendLoadTime(value: Int64, completion: SuperAwesome.OnResult<Void>?) {
+    
+    }
 }
 

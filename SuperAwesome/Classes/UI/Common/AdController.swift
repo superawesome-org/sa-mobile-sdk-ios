@@ -187,7 +187,6 @@ class AdController: AdControllerType, Injectable {
             case .success(let response): self?.onSuccess(response)
             case .failure(let error): self?.onFailure(error)
             }
-            
         }
     }
     

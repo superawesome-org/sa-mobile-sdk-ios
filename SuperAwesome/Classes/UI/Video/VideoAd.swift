@@ -15,6 +15,7 @@ enum AdState {
 @objc(SAVideoAd)
 public class VideoAd: NSObject, Injectable {
     private static var adRepository: AdRepositoryType = dependencies.resolve()
+    private static var performanceRepository: PerformanceRepositoryType = dependencies.resolve()
     private static var logger: LoggerType = dependencies.resolve(param: VideoAd.self)
 
     static var isTestingEnabled: Bool = Constants.defaultTestMode
@@ -30,6 +31,7 @@ public class VideoAd: NSObject, Injectable {
 
     private static var callback: AdEventCallback?
     private static var ads = [Int: AdState]()
+    private static var loadTimeTimer: PerformanceTimer?
 
     ////////////////////////////////////////////////////////////////////////////
     // Internal control methods
@@ -67,7 +69,8 @@ public class VideoAd: NSObject, Injectable {
             ads[placementId] = .loading
 
             logger.success("Event callback: ad is started to load for placement \(placementId)")
-
+            trackLoadTimeStart()
+            
             adRepository.getAd(placementId: placementId, request: makeAdRequest(with: options)) { result in
                 switch result {
                 case .success(let response): self.onSuccess(placementId, response)
@@ -117,6 +120,7 @@ public class VideoAd: NSObject, Injectable {
             ads[placementId] = .loading
 
             logger.success("Event callback: ad is started to load for placement \(placementId)")
+            trackLoadTimeStart()
 
             adRepository.getAd(placementId: placementId,
                                lineItemId: lineItemId,
@@ -204,11 +208,15 @@ public class VideoAd: NSObject, Injectable {
     }
 
     private static func onSuccess(_ placementId: Int, _ response: AdResponse) {
-
         guard response.advert.creative.format == .video,
               response.advert.creative.details.tag != nil || response.advert.creative.details.vast != nil else {
             onFailure(placementId, AwesomeAdsError.missingVastOrTag)
             return
+        }
+        
+        // For now only track IV ads
+        if response.isVpaid {
+            trackLoadTimeEnd()
         }
 
         logger.success("Event callback: adLoaded for placement \(placementId)")
@@ -220,6 +228,18 @@ public class VideoAd: NSObject, Injectable {
         logger.error("Event callback: adFailedToLoad for placement \(placementId)", error: error)
         ads[placementId] = AdState.none
         callback?(placementId, .adFailedToLoad)
+    }
+    
+    private static func trackLoadTimeStart() {
+        guard loadTimeTimer == nil else { return }
+        loadTimeTimer = PerformanceTimer(timeProvider: dependencies.resolve() as TimeProviderType)
+    }
+    
+    private static func trackLoadTimeEnd() {
+        guard let loadTimeTimer = loadTimeTimer else { return }
+        performanceRepository.sendLoadTime(value: loadTimeTimer.calculate(),
+                                            completion: nil)
+        self.loadTimeTimer = nil
     }
 
     ////////////////////////////////////////////////////////////////////////////
