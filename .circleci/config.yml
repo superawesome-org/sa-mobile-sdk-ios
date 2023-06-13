@@ -222,6 +222,10 @@ jobs:
       SA_IOS_SDKS_HAS_PRIVATE_DEPENDENCIES: false
       TERM: xterm-256color
     steps:
+      - run:
+          name: Rename readme file
+          command: |
+            cp README.md "SuperAwesome-$RELEASE_NUMBER-README.md"
       - attach_workspace:
           at: .
       - *generate_github_token
@@ -234,10 +238,6 @@ jobs:
             echo "export RELEASE_NUMBER=`cat SuperAwesome/Classes/Common/Model/Version.swift | cut -d '"' -f 2`" >> $BASH_ENV
             source $BASH_ENV
             zip -vr "SuperAwesome-${RELEASE_NUMBER}.zip" SuperAwesome/ -x "*.DS_Store"
-      - run:
-          name: Rename readme file
-          command: |
-            cp README.md "SuperAwesome-$RELEASE_NUMBER-README.md"
       - aws-s3/copy:
           from: "SuperAwesome-${RELEASE_NUMBER}.zip"
           to: "${SA_IOS_SDKS_S3_PUBLIC_REPO}/SuperAwesome/${RELEASE_NUMBER}/"
