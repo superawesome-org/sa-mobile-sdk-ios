@@ -225,6 +225,12 @@ jobs:
       - attach_workspace:
           at: .
       - run:
+          name: Compress
+          command: |
+            echo "export RELEASE_NUMBER=`cat SuperAwesome/Classes/Common/Model/Version.swift | cut -d '"' -f 2`" >> $BASH_ENV
+            source $BASH_ENV
+            zip -vr "SuperAwesome-${RELEASE_NUMBER}.zip" SuperAwesome/ -x "*.DS_Store"
+      - run:
           name: Rename readme file
           command: |
             cp README.md "SuperAwesome-$RELEASE_NUMBER-README.md"
@@ -232,12 +238,6 @@ jobs:
       - *clone_scripts_repo
       - *bootstrap_ios
       - *configure_google_services
-      - run:
-          name: Compress
-          command: |
-            echo "export RELEASE_NUMBER=`cat SuperAwesome/Classes/Common/Model/Version.swift | cut -d '"' -f 2`" >> $BASH_ENV
-            source $BASH_ENV
-            zip -vr "SuperAwesome-${RELEASE_NUMBER}.zip" SuperAwesome/ -x "*.DS_Store"
       - aws-s3/copy:
           from: "SuperAwesome-${RELEASE_NUMBER}.zip"
           to: "${SA_IOS_SDKS_S3_PUBLIC_REPO}/SuperAwesome/${RELEASE_NUMBER}/"
