@@ -70,4 +70,5 @@ fastlane/screenshots
 fastlane/test_output
 
 Example/Pods/*
+IronSourceExample/SuperAwesomeIronSourceExample/Pods/*
 /.idea
