@@ -1,0 +1,39 @@
+PODS:
+  - Alamofire (5.7.1)
+  - IronSourceSDK (7.3.1.0)
+  - IronSourceSuperAwesomeAdapter (4.1.7.0):
+    - IronSourceSDK (= 7.3.1.0)
+    - SuperAwesome (= 9.1.0)
+  - Moya (14.0.0):
+    - Moya/Core (= 14.0.0)
+  - Moya/Core (14.0.0):
+    - Alamofire (~> 5.0)
+  - SuperAwesome (9.1.0):
+    - Moya (~> 14.0)
+    - SwiftyXMLParser (= 5.6.0)
+  - SwiftyXMLParser (5.6.0)
+
+DEPENDENCIES:
+  - IronSourceSDK
+  - IronSourceSuperAwesomeAdapter (= 4.1.7.0)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - IronSourceSDK
+    - IronSourceSuperAwesomeAdapter
+    - Moya
+    - SuperAwesome
+    - SwiftyXMLParser
+
+SPEC CHECKSUMS:
+  Alamofire: 0123a34370cb170936ae79a8df46cc62b2edeb88
+  IronSourceSDK: eb6d95e3528d2163343d79ec70ec7d065e808864
+  IronSourceSuperAwesomeAdapter: b41df7dcf448e0378be86d13a969cfceef83203a
+  Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
+  SuperAwesome: 1d2430e6b69cda32cd56747d8e54cae0ba4f0946
+  SwiftyXMLParser: 9b98995235961881322015ebe38d1f3d7c953bd7
+
+PODFILE CHECKSUM: e7be702a6459b8ae039bbf458c8bf01a254a2a51
+
+COCOAPODS: 1.12.1
