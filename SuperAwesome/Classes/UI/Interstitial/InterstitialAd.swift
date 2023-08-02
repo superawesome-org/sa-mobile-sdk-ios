@@ -117,7 +117,15 @@ public class InterstitialAd: NSObject, Injectable {
      * - Returns:  true or false
      */
     @objc
+    @available(*, deprecated, message: "Use new version without placementId parameter")
     public class func hasAdAvailable(_ placementId: Int) -> Bool { controller.adAvailable }
+
+    /**
+     * Method that returns whether ad data has already been loaded.
+     * - Returns:  true or false
+     */
+    @objc
+    public class func hasAdAvailable() -> Bool { controller.adAvailable }
 
     /**
      * Method that enables the close button to display with a delay.
