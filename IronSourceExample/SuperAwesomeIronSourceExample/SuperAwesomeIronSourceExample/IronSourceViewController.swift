@@ -20,6 +20,8 @@ class SharedState : ObservableObject {
 
 class IronSourceViewController : UIViewController, LevelPlayRewardedVideoDelegate, LevelPlayInterstitialDelegate, ISInitializationDelegate {
 
+    private let APP_KEY = "1b22f7fad"
+
     var contentView: UIHostingController<ContentView>? = nil
     var sharedState = SharedState()
 
@@ -36,7 +38,7 @@ class IronSourceViewController : UIViewController, LevelPlayRewardedVideoDelegat
     private func setupIronSourceSdk() {
         IronSource.setLevelPlayRewardedVideoDelegate(self)
         IronSource.setLevelPlayInterstitialDelegate(self)
-        IronSource.initWithAppKey("1b0b7f8f5",
+        IronSource.initWithAppKey(APP_KEY,
                                   adUnits: [IS_REWARDED_VIDEO, IS_INTERSTITIAL],
                                   delegate: self)
 
