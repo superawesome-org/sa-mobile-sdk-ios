@@ -2,23 +2,20 @@
 version: 2.1
 orbs:
   aws-s3: circleci/aws-s3@3.1
-
+  token-gen: superawesomeltd/sa-gha-token-gen-orb@0.0.6
 dependencies:
   pre:
-  - curl -sS https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash
-
+    - curl -sS https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash
 references:
-
   ios_config: &ios_config
     macos:
       xcode: 14.3.1
-    resource_class: macos.x86.medium.gen2
+    resource_class: superawesomeltd/machine-runner
     environment:
       FL_OUTPUT_DIR: output
       LC_ALL: en_GB.UTF-8
       LANG: en_GB.UTF-8
       TERM: xterm-256color
-
   configure_google_services: &configure_google_services
     run:
       name: Configure Google Services
@@ -26,7 +23,6 @@ references:
         echo "Google Services"
         echo 'export SA_IOS_SDKS_GOOGLE_SERVICES_PLIST_ENC="$SA_IOS_SDKS_GOOGLE_SERVICES_PLIST_ENC"' >> $BASH_ENV
         echo $SA_IOS_SDKS_GOOGLE_SERVICES_PLIST_ENC | base64 --decode > Example/SuperAwesome/${SA_IOS_SDKS_GOOGLE_SERVICES_PLIST_NAME}.plist
-
   generate_github_token: &generate_github_token
     run:
       name: Generate & store Github Token
@@ -39,38 +35,33 @@ references:
         echo "export GIT_AUTHOR_NAME=sa-release-bot" >> $BASH_ENV
         echo "export GIT_AUTHOR_EMAIL=sa-release-bot@superawesome.tv" >> $BASH_ENV
         source "$BASH_ENV"
-
   # clone some scripts
   clone_scripts_repo: &clone_scripts_repo
     run:
       name: Clone scripts repo
-      command: |
-        git clone https://x-access-token:${GITHUB_TOKEN}@github.com/SuperAwesomeLTD/sa-continuous-integration.git "${SA_PATH_TO_CONTINUOUS_INTEGRATION_REPO}"
-
+      command: |-
+        git clone https://x-access-token:${GITHUB_TOKEN}@github.com/SuperAwesomeLTD/sa-continuous-integration.git
   # bootstrap iOS system
   bootstrap_ios: &bootstrap_ios
     run:
       name: Bootstrap iOS
       command: |
         ${SA_PATH_TO_CONTINUOUS_INTEGRATION_REPO}/bootstrap/bootstrap-mobile-ios-sdk.sh
-
 jobs:
-
   checkout_code:
-    <<: *ios_config
+    !!merge <<: *ios_config
     steps:
       - checkout
       - persist_to_workspace:
           root: "."
           paths:
             - "."
-
   swiftlint:
     docker:
       - image: bytesguy/swiftlint:latest
         auth:
           username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+          password: $DOCKERHUB_PASSWORD # context / project UI env-var reference
     steps:
       - attach_workspace:
           at: .
@@ -80,10 +71,11 @@ jobs:
           path: result.xml
       - store_test_results:
           path: result.xml
-
   # Run unit tests
   test_superawesome_base_unit_tests:
-    <<: *ios_config
+    machine: true
+    resource_class: ""
+    !!merge <<: *ios_config
     environment:
       SA_IOS_SDKS_SCHEME: "SuperAwesomeExample"
       SA_IOS_SDKS_PATH_TO_WORKSPACE: "Example/SuperAwesomeExample"
@@ -111,10 +103,11 @@ jobs:
       - store_artifacts:
           path: ~/Library/Logs/scan
           destination: scan-logs
-
   # Run ui tests
   test_superawesome_base_ui_tests:
-    <<: *ios_config
+    machine: true
+    resource_class: ""
+    !!merge <<: *ios_config
     environment:
       IOS_IPHONE_UI_TEST_DEVICE: "iPhone SE (3rd generation) (16.2)"
       IOS_IPAD_UI_TEST_DEVICE: "iPad Pro (11-inch) (4th generation) (16.2)"
@@ -144,9 +137,10 @@ jobs:
       - store_artifacts:
           path: ~/Library/Logs/scan
           destination: scan-logs
-
   semantic_release_dry_run:
-    <<: *ios_config
+    machine: true
+    resource_class: ""
+    !!merge <<: *ios_config
     environment:
       SA_SEMANTIC_RELEASE_RUN_BRANCH: develop
     steps:
@@ -162,9 +156,8 @@ jobs:
           root: "."
           paths:
             - "nextRelease"
-
   auto_update_release_version:
-    <<: *ios_config
+    !!merge <<: *ios_config
     environment:
       SA_SEMANTIC_RELEASE_RUN_BRANCH: develop
     steps:
@@ -196,9 +189,10 @@ jobs:
               echo "Next release version number not found, no new version to release."
               exit 1
             fi
-
   semantic_release:
-    <<: *ios_config
+    machine: true
+    resource_class: ""
+    !!merge <<: *ios_config
     environment:
       SA_SEMANTIC_RELEASE_RUN_BRANCH: develop
     steps:
@@ -211,10 +205,11 @@ jobs:
           command: |
             git pull https://x-access-token:${GITHUB_TOKEN}@github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git ${SA_SEMANTIC_RELEASE_RUN_BRANCH}
             ${SA_PATH_TO_CONTINUOUS_INTEGRATION_REPO}/mobile/semantic-release/semantic-release-sdks.sh
-
   ## Run sdk push - base
   sdk_push_superawesome:
-    <<: *ios_config
+    machine: true
+    resource_class: ""
+    !!merge <<: *ios_config
     environment:
       FL_OUTPUT_DIR: output
       SA_IOS_SDKS_MODULE: "SuperAwesome"
@@ -294,10 +289,11 @@ jobs:
       - run:
           name: Push Superawesome to cocoapods
           command: fastlane sdk_push isPrivateRepo:false skipVersionBump:true
-
   ## Run sdk push - admob
   sdk_push_superawesome_admob:
-    <<: *ios_config
+    machine: true
+    resource_class: ""
+    !!merge <<: *ios_config
     environment:
       FL_OUTPUT_DIR: output
       SA_IOS_SDKS_MODULE: "SuperAwesomeAdMob"
@@ -328,7 +324,6 @@ jobs:
           command: |
             pod repo update
             fastlane sdk_push podSpec:SuperAwesomeAdMob isPrivateRepo:false skipVersionBump:true
-
 workflows:
   nightly:
     triggers:
@@ -346,7 +341,6 @@ workflows:
               only: develop
             tags:
               ignore: /^v.*/
-
       - test_superawesome_base_ui_tests:
           context: MOBILE_IOS_SDKS
           requires:
@@ -356,7 +350,6 @@ workflows:
               only: develop
             tags:
               ignore: /^v.*/
-
   pull_request:
     jobs:
       - checkout_code:
@@ -366,7 +359,6 @@ workflows:
               ignore: develop
             tags:
               ignore: /^v.*/
-
       - swiftlint:
           context: MOBILE_IOS_SDKS
           requires:
@@ -376,7 +368,6 @@ workflows:
               ignore: develop
             tags:
               ignore: /^v.*/
-
       - test_superawesome_base_unit_tests:
           context: MOBILE_IOS_SDKS
           requires:
@@ -386,7 +377,6 @@ workflows:
               ignore: develop
             tags:
               ignore: /^v.*/
-
       - test_superawesome_base_ui_tests:
           context: MOBILE_IOS_SDKS
           requires:
@@ -396,7 +386,6 @@ workflows:
               only: /ui-tests\/.*/
             tags:
               ignore: /^v.*/
-
   develop:
     jobs:
       - checkout_code:
@@ -406,7 +395,6 @@ workflows:
               only: develop
             tags:
               ignore: /^v.*/
-
       - swiftlint:
           context: MOBILE_IOS_SDKS
           requires:
@@ -416,7 +404,6 @@ workflows:
               only: develop
             tags:
               ignore: /^v.*/
-
       - test_superawesome_base_unit_tests:
           context: MOBILE_IOS_SDKS
           requires:
@@ -426,7 +413,6 @@ workflows:
               only: develop
             tags:
               ignore: /^v.*/
-
       - semantic_release_dry_run:
           context: MOBILE_IOS_SDKS
           requires:
@@ -436,7 +422,6 @@ workflows:
               only: develop
             tags:
               ignore: /^v.*/
-
       - approve_dry_run_and_release:
           type: approval
           requires:
@@ -446,7 +431,6 @@ workflows:
               only: develop
             tags:
               ignore: /^v.*/
-
       - auto_update_release_version:
           context: MOBILE_IOS_SDKS
           requires:
@@ -456,7 +440,6 @@ workflows:
               only: develop
             tags:
               ignore: /^v.*/
-
       - semantic_release:
           context: MOBILE_IOS_SDKS
           requires:
@@ -466,7 +449,6 @@ workflows:
               only: develop
             tags:
               ignore: /^v.*/
-
   release:
     jobs:
       - checkout_code:
@@ -476,7 +458,6 @@ workflows:
               ignore: /.*/
             tags:
               only: /^v.*/
-
       - sdk_push_superawesome:
           context: MOBILE_IOS_SDKS
           requires:
@@ -486,7 +467,6 @@ workflows:
               ignore: /.*/
             tags:
               only: /^v.*/
-
       - sdk_push_superawesome_admob:
           context: MOBILE_IOS_SDKS
           requires:
