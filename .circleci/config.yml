@@ -7,6 +7,10 @@ dependencies:
   pre:
     - curl -sS https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash
 references:
+  sa_config: &sa_config
+    machine: true
+    resource_class: superawesomeltd/machine-runner
+  
   ios_config: &ios_config
     macos:
       xcode: 14.3.1
@@ -16,6 +20,7 @@ references:
       LC_ALL: en_GB.UTF-8
       LANG: en_GB.UTF-8
       TERM: xterm-256color
+  
   configure_google_services: &configure_google_services
     run:
       name: Configure Google Services
@@ -23,48 +28,35 @@ references:
         echo "Google Services"
         echo 'export SA_IOS_SDKS_GOOGLE_SERVICES_PLIST_ENC="$SA_IOS_SDKS_GOOGLE_SERVICES_PLIST_ENC"' >> $BASH_ENV
         echo $SA_IOS_SDKS_GOOGLE_SERVICES_PLIST_ENC | base64 --decode > Example/SuperAwesome/${SA_IOS_SDKS_GOOGLE_SERVICES_PLIST_NAME}.plist
-  generate_github_token: &generate_github_token
-    run:
-      name: Generate & store Github Token
-      command: |
-        curl -L https://github.com/SuperAwesomeLTD/gha-token-generator/releases/download/v1.0.3/gha-token-generator_1.0.3_Darwin_x86_64.tar.gz | tar xz
-        GENERATED_APP_TOKEN=$( ./gha-token-generator -app-id ${SA_RELEASE_BOT_APP_ID} -org-name SuperAwesomeLTD -pem-key ${SA_RELEASE_BOT_GITHUB_PEM} )
-        echo "export GITHUB_TOKEN=${GENERATED_APP_TOKEN}" >> $BASH_ENV
-        echo "export GIT_COMMITTER_NAME=sa-release-bot" >> $BASH_ENV
-        echo "export GIT_COMMITTER_EMAIL=sa-release-bot@superawesome.tv" >> $BASH_ENV
-        echo "export GIT_AUTHOR_NAME=sa-release-bot" >> $BASH_ENV
-        echo "export GIT_AUTHOR_EMAIL=sa-release-bot@superawesome.tv" >> $BASH_ENV
-        source "$BASH_ENV"
+  
   # clone some scripts
   clone_scripts_repo: &clone_scripts_repo
     run:
       name: Clone scripts repo
       command: |-
         git clone https://x-access-token:${GITHUB_TOKEN}@github.com/SuperAwesomeLTD/sa-continuous-integration.git
+  
   # bootstrap iOS system
   bootstrap_ios: &bootstrap_ios
     run:
       name: Bootstrap iOS
       command: |
         ${SA_PATH_TO_CONTINUOUS_INTEGRATION_REPO}/bootstrap/bootstrap-mobile-ios-sdk.sh
+
+  load_env_vars: &load_env_vars
+    run:
+      name: Load environment variables from GitHub Token Generator
+      command: cat bash.env >> $BASH_ENV
+
 jobs:
-  download_tools:
-    machine: true
-    resource_class: superawesomeltd/machine-runner
-    steps:
-      - checkout
-      - token-gen/generate
-      - run:
-          name: Pull sa-continuous-integration
-          command: git clone https://x-access-token:${GITHUB_TOKEN}@github.com/SuperAwesomeLTD/sa-continuous-integration.git
   checkout_code:
     !!merge <<: *ios_config
     steps:
       - checkout
       - persist_to_workspace:
-          root: "."
+          root: .
           paths:
-            - "."
+            - .
   swiftlint:
     docker:
       - image: bytesguy/swiftlint:latest
@@ -80,6 +72,26 @@ jobs:
           path: result.xml
       - store_test_results:
           path: result.xml
+
+  generate_github_token:
+    <<: *sa_config
+    steps:
+      - token-gen/generate
+      - run:
+          name: Set environment variables for GITHUB
+          command: |
+            echo "export GITHUB_TOKEN=${GITHUB_TOKEN}" >> $BASH_ENV
+            echo "export GIT_COMMITTER_NAME=sa-release-bot" >> $BASH_ENV
+            echo "export GIT_COMMITTER_EMAIL=sa-release-bot@superawesome.tv" >> $BASH_ENV
+            echo "export GIT_AUTHOR_NAME=sa-release-bot" >> $BASH_ENV
+            echo "export GIT_AUTHOR_EMAIL=sa-release-bot@superawesome.tv" >> $BASH_ENV
+      - run: |
+          cp $BASH_ENV bash.env
+      - persist_to_workspace:
+          root: .
+          paths:
+            - bash.env
+  
   # Run unit tests
   test_superawesome_base_unit_tests:
     machine: true
@@ -93,7 +105,7 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      - *generate_github_token
+      - *load_env_vars
       - *clone_scripts_repo
       - *bootstrap_ios
       - *configure_google_services
@@ -112,6 +124,7 @@ jobs:
       - store_artifacts:
           path: ~/Library/Logs/scan
           destination: scan-logs
+  
   # Run ui tests
   test_superawesome_base_ui_tests:
     machine: true
@@ -127,7 +140,7 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      - *generate_github_token
+      - *load_env_vars
       - *clone_scripts_repo
       - *bootstrap_ios
       - *configure_google_services
@@ -155,7 +168,7 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      - *generate_github_token
+      - *load_env_vars
       - *clone_scripts_repo
       - run:
           name: Check semantic release version
@@ -172,7 +185,7 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      - *generate_github_token
+      - *load_env_vars
       - run:
           name: Auto update release version
           command: |
@@ -207,7 +220,7 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      - *generate_github_token
+      - *load_env_vars
       - *clone_scripts_repo
       - run:
           name: Run semantic release
@@ -238,7 +251,7 @@ jobs:
           name: Rename readme file
           command: |
             cp README.md "SuperAwesome-$RELEASE_NUMBER-README.md"
-      - *generate_github_token
+      - *load_env_vars
       - *clone_scripts_repo
       - *bootstrap_ios
       - *configure_google_services
@@ -298,6 +311,7 @@ jobs:
       - run:
           name: Push Superawesome to cocoapods
           command: fastlane sdk_push isPrivateRepo:false skipVersionBump:true
+  
   ## Run sdk push - admob
   sdk_push_superawesome_admob:
     machine: true
@@ -312,7 +326,7 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      - *generate_github_token
+      - *load_env_vars
       - *clone_scripts_repo
       - *bootstrap_ios
       - *configure_google_services
@@ -342,23 +356,44 @@ workflows:
             branches:
               only:
                 - develop
+    
     jobs:
+    - generate_github_token:
+          context: Build
+          filters:
+            branches:
+              only: develop
+            tags:
+              ignore: /^v.*/\
+              
       - checkout_code:
           context: MOBILE_IOS_SDKS
           filters:
             branches:
               only: develop
             tags:
-              ignore: /^v.*/
+              ignore: /^v.*/\
+      
       - test_superawesome_base_ui_tests:
           context: MOBILE_IOS_SDKS
           requires:
             - checkout_code
+            - generate_github_token
           filters:
             branches:
               only: develop
+            
+            tags:
+              ignore: /^v.*/\
+      
+      - generate_github_token:
+          context: Build
+          filters:
+            branches:
+              ignore: develop
             tags:
               ignore: /^v.*/
+      
   pull_request:
     jobs:
       - checkout_code:
@@ -367,34 +402,57 @@ workflows:
             branches:
               ignore: develop
             tags:
-              ignore: /^v.*/
+              ignore: /^v.*/\
+      
       - swiftlint:
           context: MOBILE_IOS_SDKS
           requires:
             - checkout_code
+            - generate_github_token
           filters:
             branches:
               ignore: develop
             tags:
               ignore: /^v.*/
+       
+       - generate_github_token:
+          context: Build
+          filters:
+            branches:
+              only: develop
+            tags:
+              ignore: /^v.*/
+      
       - test_superawesome_base_unit_tests:
           context: MOBILE_IOS_SDKS
           requires:
             - checkout_code
+            - generate_github_token
           filters:
             branches:
               ignore: develop
             tags:
               ignore: /^v.*/
+      
+      - generate_github_token:
+          context: Build
+          filters:
+            branches:
+              only: develop
+            tags:
+              ignore: /^v.*/
+      
       - test_superawesome_base_ui_tests:
           context: MOBILE_IOS_SDKS
           requires:
             - checkout_code
+            - generate_github_token
           filters:
             branches:
               only: /ui-tests\/.*/
             tags:
               ignore: /^v.*/
+  
   develop:
     jobs:
       - checkout_code:
@@ -403,25 +461,38 @@ workflows:
             branches:
               only: develop
             tags:
-              ignore: /^v.*/
+              ignore: /^v.*/\
+      
       - swiftlint:
           context: MOBILE_IOS_SDKS
           requires:
             - checkout_code
+            - generate_github_token
+          filters:
+            branches:
+              only: develop
+            tags:
+              ignore: /^v.*/\
+      
+      - generate_github_token:
+          context: Build
           filters:
             branches:
               only: develop
             tags:
               ignore: /^v.*/
+      
       - test_superawesome_base_unit_tests:
           context: MOBILE_IOS_SDKS
           requires:
             - checkout_code
+            - generate_github_token
           filters:
             branches:
               only: develop
             tags:
-              ignore: /^v.*/
+              ignore: /^v.*/\
+      
       - semantic_release_dry_run:
           context: MOBILE_IOS_SDKS
           requires:
@@ -431,6 +502,7 @@ workflows:
               only: develop
             tags:
               ignore: /^v.*/
+      
       - approve_dry_run_and_release:
           type: approval
           requires:
@@ -440,6 +512,7 @@ workflows:
               only: develop
             tags:
               ignore: /^v.*/
+      
       - auto_update_release_version:
           context: MOBILE_IOS_SDKS
           requires:
@@ -449,6 +522,7 @@ workflows:
               only: develop
             tags:
               ignore: /^v.*/
+      
       - semantic_release:
           context: MOBILE_IOS_SDKS
           requires:
@@ -458,6 +532,7 @@ workflows:
               only: develop
             tags:
               ignore: /^v.*/
+  
   release:
     jobs:
       - checkout_code:
@@ -467,15 +542,26 @@ workflows:
               ignore: /.*/
             tags:
               only: /^v.*/
+      
       - sdk_push_superawesome:
           context: MOBILE_IOS_SDKS
           requires:
             - checkout_code
+            - generate_github_token
           filters:
             branches:
               ignore: /.*/
             tags:
-              only: /^v.*/
+              only: /^v.*/\
+
+      - generate_github_token:
+          context: Build
+          filters:
+            branches:
+              only: develop
+            tags:
+              ignore: /^v.*/
+      
       - sdk_push_superawesome_admob:
           context: MOBILE_IOS_SDKS
           requires:
@@ -484,4 +570,4 @@ workflows:
             branches:
               ignore: /.*/
             tags:
-              only: /^v.*/
+              only: /^v.*/\
