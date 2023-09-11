@@ -48,6 +48,15 @@ references:
       command: |
         ${SA_PATH_TO_CONTINUOUS_INTEGRATION_REPO}/bootstrap/bootstrap-mobile-ios-sdk.sh
 jobs:
+  download_tools:
+    machine: true
+    resource_class: superawesomeltd/machine-runner
+    steps:
+      - checkout
+      - token-gen/generate
+      - run:
+          name: Pull sa-continuous-integration
+          command: git clone https://x-access-token:${GITHUB_TOKEN}@github.com/SuperAwesomeLTD/sa-continuous-integration.git
   checkout_code:
     !!merge <<: *ios_config
     steps:
