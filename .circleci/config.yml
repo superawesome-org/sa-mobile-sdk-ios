@@ -1,11 +1,14 @@
 # .circleci/config.yml
 version: 2.1
+
 orbs:
   aws-s3: circleci/aws-s3@3.1
   token-gen: superawesomeltd/sa-gha-token-gen-orb@0.0.6
+
 dependencies:
   pre:
     - curl -sS https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash
+
 references:
   sa_config: &sa_config
     machine: true
@@ -14,7 +17,7 @@ references:
   ios_config: &ios_config
     macos:
       xcode: 14.3.1
-    resource_class: superawesomeltd/machine-runner
+    resource_class: macos.x86.medium.gen2
     environment:
       FL_OUTPUT_DIR: output
       LC_ALL: en_GB.UTF-8
@@ -50,13 +53,14 @@ references:
 
 jobs:
   checkout_code:
-    !!merge <<: *ios_config
+    <<: *ios_config
     steps:
       - checkout
       - persist_to_workspace:
           root: .
           paths:
             - .
+
   swiftlint:
     docker:
       - image: bytesguy/swiftlint:latest
@@ -76,7 +80,8 @@ jobs:
   generate_github_token:
     <<: *sa_config
     steps:
-      - token-gen/generate
+      - token-gen/generate:
+          scope: read-write
       - run:
           name: Set environment variables for GITHUB
           command: |
@@ -94,9 +99,7 @@ jobs:
   
   # Run unit tests
   test_superawesome_base_unit_tests:
-    machine: true
-    resource_class: ""
-    !!merge <<: *ios_config
+    <<: *ios_config
     environment:
       SA_IOS_SDKS_SCHEME: "SuperAwesomeExample"
       SA_IOS_SDKS_PATH_TO_WORKSPACE: "Example/SuperAwesomeExample"
@@ -127,9 +130,7 @@ jobs:
   
   # Run ui tests
   test_superawesome_base_ui_tests:
-    machine: true
-    resource_class: ""
-    !!merge <<: *ios_config
+    <<: *ios_config
     environment:
       IOS_IPHONE_UI_TEST_DEVICE: "iPhone SE (3rd generation) (16.2)"
       IOS_IPAD_UI_TEST_DEVICE: "iPad Pro (11-inch) (4th generation) (16.2)"
@@ -160,9 +161,7 @@ jobs:
           path: ~/Library/Logs/scan
           destination: scan-logs
   semantic_release_dry_run:
-    machine: true
-    resource_class: ""
-    !!merge <<: *ios_config
+    <<: *ios_config
     environment:
       SA_SEMANTIC_RELEASE_RUN_BRANCH: develop
     steps:
@@ -178,8 +177,9 @@ jobs:
           root: "."
           paths:
             - "nextRelease"
+  
   auto_update_release_version:
-    !!merge <<: *ios_config
+    <<: *ios_config
     environment:
       SA_SEMANTIC_RELEASE_RUN_BRANCH: develop
     steps:
@@ -211,10 +211,9 @@ jobs:
               echo "Next release version number not found, no new version to release."
               exit 1
             fi
+  
   semantic_release:
-    machine: true
-    resource_class: ""
-    !!merge <<: *ios_config
+    <<: *ios_config
     environment:
       SA_SEMANTIC_RELEASE_RUN_BRANCH: develop
     steps:
@@ -227,11 +226,10 @@ jobs:
           command: |
             git pull https://x-access-token:${GITHUB_TOKEN}@github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git ${SA_SEMANTIC_RELEASE_RUN_BRANCH}
             ${SA_PATH_TO_CONTINUOUS_INTEGRATION_REPO}/mobile/semantic-release/semantic-release-sdks.sh
+  
   ## Run sdk push - base
   sdk_push_superawesome:
-    machine: true
-    resource_class: ""
-    !!merge <<: *ios_config
+    <<: *ios_config
     environment:
       FL_OUTPUT_DIR: output
       SA_IOS_SDKS_MODULE: "SuperAwesome"
@@ -241,6 +239,7 @@ jobs:
     steps:
       - attach_workspace:
           at: .
+      - *load_env_vars
       - run:
           name: Compress
           command: |
@@ -251,7 +250,6 @@ jobs:
           name: Rename readme file
           command: |
             cp README.md "SuperAwesome-$RELEASE_NUMBER-README.md"
-      - *load_env_vars
       - *clone_scripts_repo
       - *bootstrap_ios
       - *configure_google_services
@@ -314,9 +312,7 @@ jobs:
   
   ## Run sdk push - admob
   sdk_push_superawesome_admob:
-    machine: true
-    resource_class: ""
-    !!merge <<: *ios_config
+    <<: *ios_config
     environment:
       FL_OUTPUT_DIR: output
       SA_IOS_SDKS_MODULE: "SuperAwesomeAdMob"
@@ -347,6 +343,7 @@ jobs:
           command: |
             pod repo update
             fastlane sdk_push podSpec:SuperAwesomeAdMob isPrivateRepo:false skipVersionBump:true
+
 workflows:
   nightly:
     triggers:
@@ -403,26 +400,25 @@ workflows:
               ignore: develop
             tags:
               ignore: /^v.*/\
-      
-      - swiftlint:
-          context: MOBILE_IOS_SDKS
-          requires:
-            - checkout_code
-            - generate_github_token
+
+      - generate_github_token:
+          context: Build
           filters:
             branches:
               ignore: develop
             tags:
               ignore: /^v.*/
-       
-       - generate_github_token:
-          context: Build
+
+      - swiftlint:
+          context: MOBILE_IOS_SDKS
+          requires:
+            - checkout_code
           filters:
             branches:
-              only: develop
+              ignore: develop
             tags:
               ignore: /^v.*/
-      
+
       - test_superawesome_base_unit_tests:
           context: MOBILE_IOS_SDKS
           requires:
@@ -433,15 +429,7 @@ workflows:
               ignore: develop
             tags:
               ignore: /^v.*/
-      
-      - generate_github_token:
-          context: Build
-          filters:
-            branches:
-              only: develop
-            tags:
-              ignore: /^v.*/
-      
+
       - test_superawesome_base_ui_tests:
           context: MOBILE_IOS_SDKS
           requires:
@@ -462,26 +450,25 @@ workflows:
               only: develop
             tags:
               ignore: /^v.*/\
-      
-      - swiftlint:
-          context: MOBILE_IOS_SDKS
-          requires:
-            - checkout_code
-            - generate_github_token
-          filters:
-            branches:
-              only: develop
-            tags:
-              ignore: /^v.*/\
-      
+
       - generate_github_token:
           context: Build
           filters:
             branches:
               only: develop
             tags:
-              ignore: /^v.*/
-      
+              ignore: /^v.*/\
+
+      - swiftlint:
+          context: MOBILE_IOS_SDKS
+          requires:
+            - checkout_code
+          filters:
+            branches:
+              only: develop
+            tags:
+              ignore: /^v.*/\
+
       - test_superawesome_base_unit_tests:
           context: MOBILE_IOS_SDKS
           requires:
@@ -492,7 +479,7 @@ workflows:
               only: develop
             tags:
               ignore: /^v.*/\
-      
+
       - semantic_release_dry_run:
           context: MOBILE_IOS_SDKS
           requires:
@@ -502,7 +489,7 @@ workflows:
               only: develop
             tags:
               ignore: /^v.*/
-      
+
       - approve_dry_run_and_release:
           type: approval
           requires:
@@ -512,7 +499,7 @@ workflows:
               only: develop
             tags:
               ignore: /^v.*/
-      
+
       - auto_update_release_version:
           context: MOBILE_IOS_SDKS
           requires:
@@ -522,7 +509,7 @@ workflows:
               only: develop
             tags:
               ignore: /^v.*/
-      
+
       - semantic_release:
           context: MOBILE_IOS_SDKS
           requires:
@@ -542,7 +529,14 @@ workflows:
               ignore: /.*/
             tags:
               only: /^v.*/
-      
+      - generate_github_token:
+          context: Build
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v.*/\
+
       - sdk_push_superawesome:
           context: MOBILE_IOS_SDKS
           requires:
@@ -554,14 +548,6 @@ workflows:
             tags:
               only: /^v.*/\
 
-      - generate_github_token:
-          context: Build
-          filters:
-            branches:
-              only: develop
-            tags:
-              ignore: /^v.*/
-      
       - sdk_push_superawesome_admob:
           context: MOBILE_IOS_SDKS
           requires:
