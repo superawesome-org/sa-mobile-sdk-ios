@@ -1,6 +1,5 @@
 # .circleci/config.yml
 version: 2.1
-
 orbs:
   aws-s3: circleci/aws-s3@3.1
   token-gen: superawesomeltd/sa-gha-token-gen-orb@0.0.6
