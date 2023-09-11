@@ -61,23 +61,7 @@ jobs:
           paths:
             - .
 
-  swiftlint:
-    docker:
-      - image: bytesguy/swiftlint:latest
-        auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD # context / project UI env-var reference
-    steps:
-      - attach_workspace:
-          at: .
-      - *configure_google_services
-      - run: swiftlint lint --reporter junit | tee result.xml
-      - store_artifacts:
-          path: result.xml
-      - store_test_results:
-          path: result.xml
-
-  generate_github_token:
+generate_github_token:
     <<: *sa_config
     steps:
       - token-gen/generate:
@@ -96,7 +80,23 @@ jobs:
           root: .
           paths:
             - bash.env
-  
+
+  swiftlint:
+    docker:
+      - image: bytesguy/swiftlint:latest
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD # context / project UI env-var reference
+    steps:
+      - attach_workspace:
+          at: .
+      - *configure_google_services
+      - run: swiftlint lint --reporter junit | tee result.xml
+      - store_artifacts:
+          path: result.xml
+      - store_test_results:
+          path: result.xml
+
   # Run unit tests
   test_superawesome_base_unit_tests:
     <<: *ios_config
@@ -355,7 +355,7 @@ workflows:
                 - develop
     
     jobs:
-    - generate_github_token:
+      - generate_github_token:
           context: Build
           filters:
             branches:
@@ -382,15 +382,7 @@ workflows:
             
             tags:
               ignore: /^v.*/\
-      
-      - generate_github_token:
-          context: Build
-          filters:
-            branches:
-              ignore: develop
-            tags:
-              ignore: /^v.*/
-      
+
   pull_request:
     jobs:
       - checkout_code:
