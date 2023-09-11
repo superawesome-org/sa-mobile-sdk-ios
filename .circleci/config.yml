@@ -60,7 +60,7 @@ jobs:
           paths:
             - .
 
-generate_github_token:
+  generate_github_token:
     <<: *sa_config
     steps:
       - token-gen/generate:
