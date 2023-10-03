@@ -344,207 +344,207 @@ jobs:
             fastlane sdk_push podSpec:SuperAwesomeAdMob isPrivateRepo:false skipVersionBump:true
 
 workflows:
-  nightly:
-    triggers:
-      - schedule:
-          cron: "0 7 * * 1-5"
-          filters:
-            branches:
-              only:
-                - develop
+  # nightly:
+  #   triggers:
+  #     - schedule:
+  #         cron: "0 7 * * 1-5"
+  #         filters:
+  #           branches:
+  #             only:
+  #               - develop
     
-    jobs:
-      - generate_github_token:
-          context: Build
-          filters:
-            branches:
-              only: develop
-            tags:
-              ignore: /^v.*/\
+  #   jobs:
+  #     - generate_github_token:
+  #         context: Build
+  #         filters:
+  #           branches:
+  #             only: develop
+  #           tags:
+  #             ignore: /^v.*/\
               
-      - checkout_code:
-          context: MOBILE_IOS_SDKS
-          filters:
-            branches:
-              only: develop
-            tags:
-              ignore: /^v.*/\
+  #     - checkout_code:
+  #         context: MOBILE_IOS_SDKS
+  #         filters:
+  #           branches:
+  #             only: develop
+  #           tags:
+  #             ignore: /^v.*/\
       
-      - test_superawesome_base_ui_tests:
-          context: MOBILE_IOS_SDKS
-          requires:
-            - checkout_code
-            - generate_github_token
-          filters:
-            branches:
-              only: develop
+  #     - test_superawesome_base_ui_tests:
+  #         context: MOBILE_IOS_SDKS
+  #         requires:
+  #           - checkout_code
+  #           - generate_github_token
+  #         filters:
+  #           branches:
+  #             only: develop
             
-            tags:
-              ignore: /^v.*/\
+  #           tags:
+  #             ignore: /^v.*/\
 
-  pull_request:
-    jobs:
-      - checkout_code:
-          context: MOBILE_IOS_SDKS
-          filters:
-            branches:
-              ignore: develop
-            tags:
-              ignore: /^v.*/\
+  # pull_request:
+  #   jobs:
+  #     - checkout_code:
+  #         context: MOBILE_IOS_SDKS
+  #         filters:
+  #           branches:
+  #             ignore: develop
+  #           tags:
+  #             ignore: /^v.*/\
 
-      - generate_github_token:
-          context: Build
-          filters:
-            branches:
-              ignore: develop
-            tags:
-              ignore: /^v.*/
+  #     - generate_github_token:
+  #         context: Build
+  #         filters:
+  #           branches:
+  #             ignore: develop
+  #           tags:
+  #             ignore: /^v.*/
 
-      - swiftlint:
-          context: MOBILE_IOS_SDKS
-          requires:
-            - checkout_code
-          filters:
-            branches:
-              ignore: develop
-            tags:
-              ignore: /^v.*/
+  #     - swiftlint:
+  #         context: MOBILE_IOS_SDKS
+  #         requires:
+  #           - checkout_code
+  #         filters:
+  #           branches:
+  #             ignore: develop
+  #           tags:
+  #             ignore: /^v.*/
 
-      - test_superawesome_base_unit_tests:
-          context: MOBILE_IOS_SDKS
-          requires:
-            - checkout_code
-            - generate_github_token
-          filters:
-            branches:
-              ignore: develop
-            tags:
-              ignore: /^v.*/
+  #     - test_superawesome_base_unit_tests:
+  #         context: MOBILE_IOS_SDKS
+  #         requires:
+  #           - checkout_code
+  #           - generate_github_token
+  #         filters:
+  #           branches:
+  #             ignore: develop
+  #           tags:
+  #             ignore: /^v.*/
 
-      - test_superawesome_base_ui_tests:
-          context: MOBILE_IOS_SDKS
-          requires:
-            - checkout_code
-            - generate_github_token
-          filters:
-            branches:
-              only: /ui-tests\/.*/
-            tags:
-              ignore: /^v.*/
+  #     - test_superawesome_base_ui_tests:
+  #         context: MOBILE_IOS_SDKS
+  #         requires:
+  #           - checkout_code
+  #           - generate_github_token
+  #         filters:
+  #           branches:
+  #             only: /ui-tests\/.*/
+  #           tags:
+  #             ignore: /^v.*/
   
-  develop:
-    jobs:
-      - checkout_code:
-          context: MOBILE_IOS_SDKS
-          filters:
-            branches:
-              only: develop
-            tags:
-              ignore: /^v.*/\
+  # develop:
+  #   jobs:
+  #     - checkout_code:
+  #         context: MOBILE_IOS_SDKS
+  #         filters:
+  #           branches:
+  #             only: develop
+  #           tags:
+  #             ignore: /^v.*/\
 
-      - generate_github_token:
-          context: Build
-          filters:
-            branches:
-              only: develop
-            tags:
-              ignore: /^v.*/\
+  #     - generate_github_token:
+  #         context: Build
+  #         filters:
+  #           branches:
+  #             only: develop
+  #           tags:
+  #             ignore: /^v.*/\
 
-      - swiftlint:
-          context: MOBILE_IOS_SDKS
-          requires:
-            - checkout_code
-          filters:
-            branches:
-              only: develop
-            tags:
-              ignore: /^v.*/\
+  #     - swiftlint:
+  #         context: MOBILE_IOS_SDKS
+  #         requires:
+  #           - checkout_code
+  #         filters:
+  #           branches:
+  #             only: develop
+  #           tags:
+  #             ignore: /^v.*/\
 
-      - test_superawesome_base_unit_tests:
-          context: MOBILE_IOS_SDKS
-          requires:
-            - checkout_code
-            - generate_github_token
-          filters:
-            branches:
-              only: develop
-            tags:
-              ignore: /^v.*/\
+  #     - test_superawesome_base_unit_tests:
+  #         context: MOBILE_IOS_SDKS
+  #         requires:
+  #           - checkout_code
+  #           - generate_github_token
+  #         filters:
+  #           branches:
+  #             only: develop
+  #           tags:
+  #             ignore: /^v.*/\
 
-      - semantic_release_dry_run:
-          context: MOBILE_IOS_SDKS
-          requires:
-            - test_superawesome_base_unit_tests
-          filters:
-            branches:
-              only: develop
-            tags:
-              ignore: /^v.*/
+  #     - semantic_release_dry_run:
+  #         context: MOBILE_IOS_SDKS
+  #         requires:
+  #           - test_superawesome_base_unit_tests
+  #         filters:
+  #           branches:
+  #             only: develop
+  #           tags:
+  #             ignore: /^v.*/
 
-      - approve_dry_run_and_release:
-          type: approval
-          requires:
-            - semantic_release_dry_run
-          filters:
-            branches:
-              only: develop
-            tags:
-              ignore: /^v.*/
+  #     - approve_dry_run_and_release:
+  #         type: approval
+  #         requires:
+  #           - semantic_release_dry_run
+  #         filters:
+  #           branches:
+  #             only: develop
+  #           tags:
+  #             ignore: /^v.*/
 
-      - auto_update_release_version:
-          context: MOBILE_IOS_SDKS
-          requires:
-            - approve_dry_run_and_release
-          filters:
-            branches:
-              only: develop
-            tags:
-              ignore: /^v.*/
+  #     - auto_update_release_version:
+  #         context: MOBILE_IOS_SDKS
+  #         requires:
+  #           - approve_dry_run_and_release
+  #         filters:
+  #           branches:
+  #             only: develop
+  #           tags:
+  #             ignore: /^v.*/
 
-      - semantic_release:
-          context: MOBILE_IOS_SDKS
-          requires:
-            - auto_update_release_version
-          filters:
-            branches:
-              only: develop
-            tags:
-              ignore: /^v.*/
+  #     - semantic_release:
+  #         context: MOBILE_IOS_SDKS
+  #         requires:
+  #           - auto_update_release_version
+  #         filters:
+  #           branches:
+  #             only: develop
+  #           tags:
+  #             ignore: /^v.*/
   
-  release:
-    jobs:
-      - checkout_code:
-          context: MOBILE_IOS_SDKS
-          filters:
-            branches:
-              ignore: /.*/
-            tags:
-              only: /^v.*/
-      - generate_github_token:
-          context: Build
-          filters:
-            branches:
-              ignore: /.*/
-            tags:
-              only: /^v.*/\
+  # release:
+  #   jobs:
+  #     - checkout_code:
+  #         context: MOBILE_IOS_SDKS
+  #         filters:
+  #           branches:
+  #             ignore: /.*/
+  #           tags:
+  #             only: /^v.*/
+  #     - generate_github_token:
+  #         context: Build
+  #         filters:
+  #           branches:
+  #             ignore: /.*/
+  #           tags:
+  #             only: /^v.*/\
 
-      - sdk_push_superawesome:
-          context: MOBILE_IOS_SDKS
-          requires:
-            - checkout_code
-            - generate_github_token
-          filters:
-            branches:
-              ignore: /.*/
-            tags:
-              only: /^v.*/\
+  #     - sdk_push_superawesome:
+  #         context: MOBILE_IOS_SDKS
+  #         requires:
+  #           - checkout_code
+  #           - generate_github_token
+  #         filters:
+  #           branches:
+  #             ignore: /.*/
+  #           tags:
+  #             only: /^v.*/\
 
-      - sdk_push_superawesome_admob:
-          context: MOBILE_IOS_SDKS
-          requires:
-            - sdk_push_superawesome
-          filters:
-            branches:
-              ignore: /.*/
-            tags:
-              only: /^v.*/\
+  #     - sdk_push_superawesome_admob:
+  #         context: MOBILE_IOS_SDKS
+  #         requires:
+  #           - sdk_push_superawesome
+  #         filters:
+  #           branches:
+  #             ignore: /.*/
+  #           tags:
+  #             only: /^v.*/\
