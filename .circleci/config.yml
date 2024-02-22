@@ -2,7 +2,7 @@
 version: 2.1
 orbs:
   aws-s3: circleci/aws-s3@3.1
-  token-gen: superawesomeltd/sa-gha-token-gen-orb@0.0.6
+  token-gen: superawesome-org/sa-gha-token-generator@1.0.2
 
 dependencies:
   pre:
