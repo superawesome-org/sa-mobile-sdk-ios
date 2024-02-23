@@ -10,7 +10,7 @@ else
     import "#{saLocalRepoDirectory}/mobile/sdks/ios/Fastfile"
   else
     import_from_git(
-      url: "git@github.com:SuperAwesomeLTD/sa-continuous-integration.git",
+      url: "git@github.com:superawesome-org/sa-continuous-integration.git",
       branch: "master",
       path: "mobile/sdks/ios/Fastfile",
     )
