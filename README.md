@@ -1,6 +1,6 @@
 # AwesomeAds Mobile SDK for iOS
 
-[![GitHub contributors](https://img.shields.io/github/contributors/SuperAwesomeLTD/sa-mobile-sdk-ios.svg)]() 
+[![GitHub contributors](https://img.shields.io/github/contributors/superawesome-org/sa-mobile-sdk-ios.svg)]() 
 [![Language](https://img.shields.io/badge/language-swift-f48041.svg?style=flat)]() 
 [![Platform](https://img.shields.io/badge/platform-ios-lightgrey.svg)]()
 

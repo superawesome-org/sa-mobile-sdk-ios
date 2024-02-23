@@ -1,96 +1,96 @@
-## [9.0.1](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/compare/v9.0.0...v9.0.1) (2023-05-31)
+## [9.0.1](https://github.com/superawesome-org/sa-mobile-sdk-ios-private/compare/v9.0.0...v9.0.1) (2023-05-31)
 
 
 ### Bug Fixes
 
-* **IV:** Add option to show close button on adEnded if it is set to hidden ([#29](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/issues/29)) ([ed2207a](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/commit/ed2207af145475874a11943abe1958759177bde6))
-* **UserAgent:** Corrected the User Agent string for iPads and fixed the missing user agent string in Moya. ([#30](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/issues/30)) ([031533a](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/commit/031533a1386e558b426509bc431a753577532f9d))
-* **Video:** Added additional checks for downloaded videos before attempting to play. ([#31](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/issues/31)) ([7bd47b5](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/commit/7bd47b57fb13cd402195dce2b4dbb34eb4ace4a9))
+* **IV:** Add option to show close button on adEnded if it is set to hidden ([#29](https://github.com/superawesome-org/sa-mobile-sdk-ios-private/issues/29)) ([ed2207a](https://github.com/superawesome-org/sa-mobile-sdk-ios-private/commit/ed2207af145475874a11943abe1958759177bde6))
+* **UserAgent:** Corrected the User Agent string for iPads and fixed the missing user agent string in Moya. ([#30](https://github.com/superawesome-org/sa-mobile-sdk-ios-private/issues/30)) ([031533a](https://github.com/superawesome-org/sa-mobile-sdk-ios-private/commit/031533a1386e558b426509bc431a753577532f9d))
+* **Video:** Added additional checks for downloaded videos before attempting to play. ([#31](https://github.com/superawesome-org/sa-mobile-sdk-ios-private/issues/31)) ([7bd47b5](https://github.com/superawesome-org/sa-mobile-sdk-ios-private/commit/7bd47b57fb13cd402195dce2b4dbb34eb4ace4a9))
 
-# [9.0.0](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/compare/v8.6.0...v9.0.0) (2023-05-18)
+# [9.0.0](https://github.com/superawesome-org/sa-mobile-sdk-ios-private/compare/v8.6.0...v9.0.0) (2023-05-18)
 
 
 ### Bug Fixes
 
-* **ManagedAd:** Corrected the close behaviour for Ads when close video at end is disabled. ([#11](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/issues/11)) ([2843a8b](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/commit/2843a8b02946fa9045274db69b02f673702996b7))
-* **Video:** Added the ability to load direct "vast" videos as they do not load and play ([#9](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/issues/9)) ([4606621](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/commit/46066213a34964ed14be7ae6efa7a74a59ea3ef5))
-* **Video:** Fixed Extraneous Celtra call when loading a VPAID Ad ([#13](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/issues/13)) ([708b00b](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/commit/708b00b9e571e0e6769fbd9e3e00b21c596b9b28))
-* **Video:** Moved play code for videos so that the video starts to play on appear instead of view did load ([#20](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/issues/20)) ([ebd1ee8](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/commit/ebd1ee8d3bfd8294218124ec216eff78c6d8f1af))
-* **Video:** Removed margins around videos and webviews so that Ads fill the screen better. ([#17](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/issues/17)) ([ed3c20e](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/commit/ed3c20e3792ae7dfd12ab7fe895f1e5a81b55198))
-* **Video:** Removed the gradient from videos and made the ad counter darker. ([ac8ee7f](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/commit/ac8ee7f910ae22d7e5840a623983e4e96ecc748d))
-* **Video:** Vast tag nil handlers ([#14](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/issues/14)) ([2fdb1a5](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/commit/2fdb1a5b68974e21f608bca4cf08f8fb8a3dbea1))
+* **ManagedAd:** Corrected the close behaviour for Ads when close video at end is disabled. ([#11](https://github.com/superawesome-org/sa-mobile-sdk-ios-private/issues/11)) ([2843a8b](https://github.com/superawesome-org/sa-mobile-sdk-ios-private/commit/2843a8b02946fa9045274db69b02f673702996b7))
+* **Video:** Added the ability to load direct "vast" videos as they do not load and play ([#9](https://github.com/superawesome-org/sa-mobile-sdk-ios-private/issues/9)) ([4606621](https://github.com/superawesome-org/sa-mobile-sdk-ios-private/commit/46066213a34964ed14be7ae6efa7a74a59ea3ef5))
+* **Video:** Fixed Extraneous Celtra call when loading a VPAID Ad ([#13](https://github.com/superawesome-org/sa-mobile-sdk-ios-private/issues/13)) ([708b00b](https://github.com/superawesome-org/sa-mobile-sdk-ios-private/commit/708b00b9e571e0e6769fbd9e3e00b21c596b9b28))
+* **Video:** Moved play code for videos so that the video starts to play on appear instead of view did load ([#20](https://github.com/superawesome-org/sa-mobile-sdk-ios-private/issues/20)) ([ebd1ee8](https://github.com/superawesome-org/sa-mobile-sdk-ios-private/commit/ebd1ee8d3bfd8294218124ec216eff78c6d8f1af))
+* **Video:** Removed margins around videos and webviews so that Ads fill the screen better. ([#17](https://github.com/superawesome-org/sa-mobile-sdk-ios-private/issues/17)) ([ed3c20e](https://github.com/superawesome-org/sa-mobile-sdk-ios-private/commit/ed3c20e3792ae7dfd12ab7fe895f1e5a81b55198))
+* **Video:** Removed the gradient from videos and made the ad counter darker. ([ac8ee7f](https://github.com/superawesome-org/sa-mobile-sdk-ios-private/commit/ac8ee7f910ae22d7e5840a623983e4e96ecc748d))
+* **Video:** Vast tag nil handlers ([#14](https://github.com/superawesome-org/sa-mobile-sdk-ios-private/issues/14)) ([2fdb1a5](https://github.com/superawesome-org/sa-mobile-sdk-ios-private/commit/2fdb1a5b68974e21f608bca4cf08f8fb8a3dbea1))
 
 
 ### Features
 
-* **UITesting:** Added tests around parental gate and banner edge cases ([#5](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/issues/5)) ([adce2d8](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/commit/adce2d8fc306a5160ea0a12ab32c613e9e4778d2))
+* **UITesting:** Added tests around parental gate and banner edge cases ([#5](https://github.com/superawesome-org/sa-mobile-sdk-ios-private/issues/5)) ([adce2d8](https://github.com/superawesome-org/sa-mobile-sdk-ios-private/commit/adce2d8fc306a5160ea0a12ab32c613e9e4778d2))
 
 
 ### Performance Improvements
 
-* **CI:** Fixed CI issues ([#19](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/issues/19)) ([2e70088](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/commit/2e70088d3eff077ad6ac528a09b938468e1f1ced))
-* **Release:** Updated Major version to bring code into line with other SDKs ([#18](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/issues/18)) ([aa7e639](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios-private/commit/aa7e6398ebc7470ba88b10b12837b68e002613ad))
+* **CI:** Fixed CI issues ([#19](https://github.com/superawesome-org/sa-mobile-sdk-ios-private/issues/19)) ([2e70088](https://github.com/superawesome-org/sa-mobile-sdk-ios-private/commit/2e70088d3eff077ad6ac528a09b938468e1f1ced))
+* **Release:** Updated Major version to bring code into line with other SDKs ([#18](https://github.com/superawesome-org/sa-mobile-sdk-ios-private/issues/18)) ([aa7e639](https://github.com/superawesome-org/sa-mobile-sdk-ios-private/commit/aa7e6398ebc7470ba88b10b12837b68e002613ad))
 
 
 ### BREAKING CHANGES
 
 * **CI:** Updating version number to be inline with Android SDK, there are no breaking changes in this version.
 
-# [8.6.0](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/compare/v8.5.7...v8.6.0) (2023-04-19)
+# [8.6.0](https://github.com/superawesome-org/sa-mobile-sdk-ios/compare/v8.5.7...v8.6.0) (2023-04-19)
 
 
 ### Bug Fixes
 
-* **Bumper:** calling dismiss on the presenting viewcontroller if one exists and cleaning up the timer ([#292](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/issues/292)) ([a88f15c](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/commit/a88f15c61c83d088162f2993682655cc36e999ac))
-* **CI:** Locked in Circle CI macos.x86.medium.gen2 resource class ([#279](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/issues/279)) ([8e18233](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/commit/8e182334d7260ac4b40ff22df0ffeabb8f310d59))
-* **Interactive Video:** Added Video Leave Warning dialog and close at end option to IV. ([#280](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/issues/280)) ([a7d38a8](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/commit/a7d38a8674753ead80de61873a149d4d8d6168d0))
-* **InteractiveVideo:** Added Player end and pause events and play and resume methods to the Managed Ad View ([#290](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/issues/290)) ([9f53899](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/commit/9f53899cb736d60b6a44b8bc3bf653d02e694608))
-* **Settings:** Added a settings screen to the test app for testing. ([#284](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/issues/284)) ([5dcd9ce](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/commit/5dcd9ceb9c8662186961a3d0b1eb283bcc5c120b))
-* **Test Ads:** Made the duration parameter optional in the Decodable object ([#283](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/issues/283)) ([2fbf955](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/commit/2fbf955b82d4bb8d0918563ddf632c0bbcaa8ba4))
+* **Bumper:** calling dismiss on the presenting viewcontroller if one exists and cleaning up the timer ([#292](https://github.com/superawesome-org/sa-mobile-sdk-ios/issues/292)) ([a88f15c](https://github.com/superawesome-org/sa-mobile-sdk-ios/commit/a88f15c61c83d088162f2993682655cc36e999ac))
+* **CI:** Locked in Circle CI macos.x86.medium.gen2 resource class ([#279](https://github.com/superawesome-org/sa-mobile-sdk-ios/issues/279)) ([8e18233](https://github.com/superawesome-org/sa-mobile-sdk-ios/commit/8e182334d7260ac4b40ff22df0ffeabb8f310d59))
+* **Interactive Video:** Added Video Leave Warning dialog and close at end option to IV. ([#280](https://github.com/superawesome-org/sa-mobile-sdk-ios/issues/280)) ([a7d38a8](https://github.com/superawesome-org/sa-mobile-sdk-ios/commit/a7d38a8674753ead80de61873a149d4d8d6168d0))
+* **InteractiveVideo:** Added Player end and pause events and play and resume methods to the Managed Ad View ([#290](https://github.com/superawesome-org/sa-mobile-sdk-ios/issues/290)) ([9f53899](https://github.com/superawesome-org/sa-mobile-sdk-ios/commit/9f53899cb736d60b6a44b8bc3bf653d02e694608))
+* **Settings:** Added a settings screen to the test app for testing. ([#284](https://github.com/superawesome-org/sa-mobile-sdk-ios/issues/284)) ([5dcd9ce](https://github.com/superawesome-org/sa-mobile-sdk-ios/commit/5dcd9ceb9c8662186961a3d0b1eb283bcc5c120b))
+* **Test Ads:** Made the duration parameter optional in the Decodable object ([#283](https://github.com/superawesome-org/sa-mobile-sdk-ios/issues/283)) ([2fbf955](https://github.com/superawesome-org/sa-mobile-sdk-ios/commit/2fbf955b82d4bb8d0918563ddf632c0bbcaa8ba4))
 
 
 ### Features
 
-* **Network:** Adds retry mechanism for the failed networking requests ([#278](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/issues/278)) ([a7a43d6](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/commit/a7a43d6df11f1307d277341bf677cfb796d74f7b))
+* **Network:** Adds retry mechanism for the failed networking requests ([#278](https://github.com/superawesome-org/sa-mobile-sdk-ios/issues/278)) ([a7a43d6](https://github.com/superawesome-org/sa-mobile-sdk-ios/commit/a7a43d6df11f1307d277341bf677cfb796d74f7b))
 
-## [8.5.7](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/compare/v8.5.6...v8.5.7) (2023-03-15)
-
-
-### Bug Fixes
-
-* **Unity:** Removed Unity files as these are now moved to the Unity Repo ([#274](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/issues/274)) ([732bdf8](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/commit/732bdf8aa5f2a80108dabe846cfbe118ddf48bdf))
-
-## [8.5.6](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/compare/v8.5.5...v8.5.6) (2023-02-28)
+## [8.5.7](https://github.com/superawesome-org/sa-mobile-sdk-ios/compare/v8.5.6...v8.5.7) (2023-03-15)
 
 
 ### Bug Fixes
 
-* **IV Close Button:** Added configuration methods to control the display of the close button ([#270](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/issues/270)) ([c81a6bc](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/commit/c81a6bcd170a552ca4b0a4a82413df3e0c44d86e))
+* **Unity:** Removed Unity files as these are now moved to the Unity Repo ([#274](https://github.com/superawesome-org/sa-mobile-sdk-ios/issues/274)) ([732bdf8](https://github.com/superawesome-org/sa-mobile-sdk-ios/commit/732bdf8aa5f2a80108dabe846cfbe118ddf48bdf))
 
-## [8.5.5](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/compare/v8.5.4...v8.5.5) (2023-02-23)
-
-
-### Bug Fixes
-
-* AdMob custom adapters so that the correct events are passed through the admob plugin from the awesome ads sdk ([#264](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/issues/264)) ([384aa72](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/commit/384aa724540a9708732024bcd46d7b3cd8c546c6))
-* **Networking:** AAG-2861: Changed the caching policy on all network requests made by the SA SDK to ignore cache on both local and remote. ([#266](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/issues/266)) ([91e6a56](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/commit/91e6a563b03208d5a04d52fd83a681b607f07824))
-
-## [8.5.4](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/compare/v8.5.3...v8.5.4) (2023-02-17)
+## [8.5.6](https://github.com/superawesome-org/sa-mobile-sdk-ios/compare/v8.5.5...v8.5.6) (2023-02-28)
 
 
 ### Bug Fixes
 
-* **VideoAd:** updated the loading / play and hasAdAvailable methods for consistency ([#262](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/issues/262)) ([7325d5b](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/commit/7325d5b3ebc9ded6eee5594c2693a63443dfe068))
+* **IV Close Button:** Added configuration methods to control the display of the close button ([#270](https://github.com/superawesome-org/sa-mobile-sdk-ios/issues/270)) ([c81a6bc](https://github.com/superawesome-org/sa-mobile-sdk-ios/commit/c81a6bcd170a552ca4b0a4a82413df3e0c44d86e))
 
-## [8.5.3](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/compare/v8.5.2...v8.5.3) (2023-02-16)
+## [8.5.5](https://github.com/superawesome-org/sa-mobile-sdk-ios/compare/v8.5.4...v8.5.5) (2023-02-23)
 
 
 ### Bug Fixes
 
-* Added wrapper methods for obj-c / Unity compatibility ([#259](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/issues/259)) ([16bc985](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/commit/16bc985c663a97739634157f78f9d2570894d850))
-* **CI:** Added Tag format to semantic release ([#251](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/issues/251)) ([6106dd7](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/commit/6106dd706a7551b50a17231b00ce10d7251610c2))
-* **CI:** Fixed missing git pull step for semantic release ([#258](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/issues/258)) ([0a327b8](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/commit/0a327b85ed9f7b5ad810153375fafdd081b6f662))
-* **version:** Fixed version number in podspec ([#256](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/issues/256)) ([41cdb50](https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/commit/41cdb500b97270ac32e2eab9f7b158dd01f30c4c))
+* AdMob custom adapters so that the correct events are passed through the admob plugin from the awesome ads sdk ([#264](https://github.com/superawesome-org/sa-mobile-sdk-ios/issues/264)) ([384aa72](https://github.com/superawesome-org/sa-mobile-sdk-ios/commit/384aa724540a9708732024bcd46d7b3cd8c546c6))
+* **Networking:** AAG-2861: Changed the caching policy on all network requests made by the SA SDK to ignore cache on both local and remote. ([#266](https://github.com/superawesome-org/sa-mobile-sdk-ios/issues/266)) ([91e6a56](https://github.com/superawesome-org/sa-mobile-sdk-ios/commit/91e6a563b03208d5a04d52fd83a681b607f07824))
+
+## [8.5.4](https://github.com/superawesome-org/sa-mobile-sdk-ios/compare/v8.5.3...v8.5.4) (2023-02-17)
+
+
+### Bug Fixes
+
+* **VideoAd:** updated the loading / play and hasAdAvailable methods for consistency ([#262](https://github.com/superawesome-org/sa-mobile-sdk-ios/issues/262)) ([7325d5b](https://github.com/superawesome-org/sa-mobile-sdk-ios/commit/7325d5b3ebc9ded6eee5594c2693a63443dfe068))
+
+## [8.5.3](https://github.com/superawesome-org/sa-mobile-sdk-ios/compare/v8.5.2...v8.5.3) (2023-02-16)
+
+
+### Bug Fixes
+
+* Added wrapper methods for obj-c / Unity compatibility ([#259](https://github.com/superawesome-org/sa-mobile-sdk-ios/issues/259)) ([16bc985](https://github.com/superawesome-org/sa-mobile-sdk-ios/commit/16bc985c663a97739634157f78f9d2570894d850))
+* **CI:** Added Tag format to semantic release ([#251](https://github.com/superawesome-org/sa-mobile-sdk-ios/issues/251)) ([6106dd7](https://github.com/superawesome-org/sa-mobile-sdk-ios/commit/6106dd706a7551b50a17231b00ce10d7251610c2))
+* **CI:** Fixed missing git pull step for semantic release ([#258](https://github.com/superawesome-org/sa-mobile-sdk-ios/issues/258)) ([0a327b8](https://github.com/superawesome-org/sa-mobile-sdk-ios/commit/0a327b85ed9f7b5ad810153375fafdd081b6f662))
+* **version:** Fixed version number in podspec ([#256](https://github.com/superawesome-org/sa-mobile-sdk-ios/issues/256)) ([41cdb50](https://github.com/superawesome-org/sa-mobile-sdk-ios/commit/41cdb500b97270ac32e2eab9f7b158dd01f30c4c))
 
 CHANGELOG
 =========

@@ -11,8 +11,8 @@ baseurl: "/" # the subpath of your site, e.g. /blog
 url: "https://sa-mobile-sdk-ios.superawesome.tv" # the base hostname & protocol for your site
 
 latest_version: 8.0.8
-changelog_url: https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios/blob/develop/CHANGELOG.md
-repo: "https://github.com/SuperAwesomeLTD/sa-mobile-sdk-ios"
+changelog_url: https://github.com/superawesome-org/sa-mobile-sdk-ios/blob/develop/CHANGELOG.md
+repo: "https://github.com/superawesome-org/sa-mobile-sdk-ios"
 github_user: "SuperAwesomeLTD"
 github_repo: "sa-mobile-sdk-ios"
 
