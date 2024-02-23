@@ -4,14 +4,18 @@ orbs:
   aws-s3: circleci/aws-s3@3.1
   token-gen: superawesome-org/sa-gha-token-generator@1.0.2
 
+executors:
+  machine:
+    machine:
+      image: ubuntu-2204:2023.10.1
+
 dependencies:
   pre:
     - curl -sS https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash
 
 references:
   sa_config: &sa_config
-    machine: true
-    resource_class: superawesomeltd/machine-runner
+    executor: machine
   
   ios_config: &ios_config
     macos:
@@ -36,7 +40,7 @@ references:
     run:
       name: Clone scripts repo
       command: |-
-        git clone https://x-access-token:${GITHUB_TOKEN}@github.com/SuperAwesomeLTD/sa-continuous-integration.git "${SA_PATH_TO_CONTINUOUS_INTEGRATION_REPO}"
+        git clone https://x-access-token:${GITHUB_TOKEN}@github.com/superawesome-org/sa-continuous-integration.git "${SA_PATH_TO_CONTINUOUS_INTEGRATION_REPO}"
   
   # bootstrap iOS system
   bootstrap_ios: &bootstrap_ios
@@ -202,10 +206,10 @@ jobs:
               echo "****** Updated release version ******"
               cat $VERSION_PROPERTIES
 
-              git pull https://x-access-token:${GITHUB_TOKEN}@github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git develop
+              git pull https://x-access-token:${GITHUB_TOKEN}@github.com/superawesome-org/sa-mobile-sdk-ios.git develop
               git add $VERSION_PROPERTIES
               git commit -m "Auto incremented version to $NEXT_RELEASE_NUMBER via Circle CI [skip ci]"
-              git push https://x-access-token:${GITHUB_TOKEN}@github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git -q develop
+              git push https://x-access-token:${GITHUB_TOKEN}@github.com/superawesome-org/sa-mobile-sdk-ios.git -q develop
             else
               echo "Next release version number not found, no new version to release."
               exit 1
@@ -223,7 +227,7 @@ jobs:
       - run:
           name: Run semantic release
           command: |
-            git pull https://x-access-token:${GITHUB_TOKEN}@github.com/SuperAwesomeLTD/sa-mobile-sdk-ios.git ${SA_SEMANTIC_RELEASE_RUN_BRANCH}
+            git pull https://x-access-token:${GITHUB_TOKEN}@github.com/superawesome-org/sa-mobile-sdk-ios.git ${SA_SEMANTIC_RELEASE_RUN_BRANCH}
             ${SA_PATH_TO_CONTINUOUS_INTEGRATION_REPO}/mobile/semantic-release/semantic-release-sdks.sh
   
   ## Run sdk push - base
@@ -284,7 +288,7 @@ jobs:
             echo "Changes Found ${CHANGES}"
 
             # checkout docs repo
-            git clone https://x-access-token:${GITHUB_TOKEN}@github.com/SuperAwesomeLTD/sa-mobile-sdk-publisher-docs.git
+            git clone https://x-access-token:${GITHUB_TOKEN}@github.com/superawesome-org/sa-mobile-sdk-publisher-docs.git
 
             # Update releases
             export RELEASE_DOC_PATH="sa-mobile-sdk-publisher-docs/docs/_docs/ios/releases.md"
@@ -304,7 +308,7 @@ jobs:
             git add docs/_docs/ios/releases.md
             git add docs/_config.yml
             git commit -m "Add iOS release version $CURRENT_VERSION via Circle CI"
-            git push https://x-access-token:${GITHUB_TOKEN}@github.com/SuperAwesomeLTD/sa-mobile-sdk-publisher-docs.git -q main
+            git push https://x-access-token:${GITHUB_TOKEN}@github.com/superawesome-org/sa-mobile-sdk-publisher-docs.git -q main
       - run:
           name: Push Superawesome to cocoapods
           command: fastlane sdk_push isPrivateRepo:false skipVersionBump:true
